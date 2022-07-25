@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/yourbit-auth.css' %}"/>
+        <title>Yourbit Login</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    </head>
+    <body id="login-body">
+        
+        <video autoplay muted loop id="background-video">
+            <source src="/static/videos/AdobeStock_145403750.mov" type="video/mp4">
+        </video>
+
+        <script type="text/javascript">
+            var backVid = document.getElementById("background-video");
+            function sign_in()
+            {
+                backVid.currentTime = 0;
+            }
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script>
+            function delete_flash(flash){
+                $(flash).parent().remove()
+            }
+        </script>  
+    </body>
+</html>

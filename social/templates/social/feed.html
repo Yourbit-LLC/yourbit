@@ -1,0 +1,515 @@
+<html>
+{% load static %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/yourbit_posts.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/yourbit_core.css' %}"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+    {% if profile %}
+    <div id="content-container-feed" style="padding-top: 0px;">
+    {% else %}
+    <div id="content-container-feed" style="padding-top: 80px;">
+    {% endif %}
+        {% if bit_pool %}
+        {% for bit in bit_pool %}
+
+        <!--Begin bit update copy-->
+
+            <!-- Start Chat bits in bitstream-->
+
+            {% if bit.bit_type == "chat"%}
+                {% if user_colors_on %}
+                <div class="post-wrapper" id = "chat-post-wrapper" style="background-color:{{ bit.user.profile.bit_background }}">
+                {% else %}
+                <div class="post-wrapper" id = "chat-post-wrapper">
+                {% endif %}
+                    <div id="chat-bit-name-date">
+                        <a id="chat-bit-profile-picture-link" href="{% url 'profile' bit.user.profile.pk %}"><img style="border-color: {{bit.user.profile.accent_color}}" id="chat-bit-profile-picture" src="{{bit.user.profile.image.url}}" ></a>
+                        <p id="chat-bit-user-info"><strong id="chat-user-name">{{bit.user.first_name}} {{bit.user.last_name}}</strong> <small>@{{bit.user.username}}</small> </p>
+                        <p id="chat-bit-time-label"><small>{{ bit.created_at }}</small></p>
+                    </div>
+                    <div id="bit-meta" style="display:none">
+                        <input type="text" id="bit-accent" value="{{bit.user.profile.accent_color}}">
+                        <input type="text" id="bit-icon" value="{{bit.user.profile.feedback_icon_color}}">
+                    </div>
+                    {% if bit.title %}
+                        
+                        <div id="chat-bit-title"><hr><h3>{{ bit.title }}<h3><hr></div>
+                    {% endif %}
+                    <div id="comments-display{{bit.pk}}"></div>
+                    <div id="chat-bit-display-description" style="color:{{bit.user.profile.text_color}};"><p>{{bit.body|linebreaks|urlize}}</p></div>
+                    <div id="feed-bit-comment-container"></div>
+                    <a class="post-background-link" href="{% url 'bit-detail' bit.pk %}"></a>
+                    <form method='POST' id="chat-bit-feedback-container" class = "post-interaction-container" action="{% url 'interact' bit.pk %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.path }}">
+                        {% if bit in liked_bits %}
+                            <button type="button" class="feedback-icon-active" style="background-color: {{bit.user.profile.accent_color}};" data-catid="{{bit.id}}" name = "like" id="like{{bit.id}}"><svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path id="active-like-icon-{{bit.id}}" style="fill:{{bit.user.profile.feedback_icon_color}}" d="M15.5 11Q16.15 11 16.575 10.575Q17 10.15 17 9.5Q17 8.85 16.575 8.425Q16.15 8 15.5 8Q14.85 8 14.425 8.425Q14 8.85 14 9.5Q14 10.15 14.425 10.575Q14.85 11 15.5 11ZM8.5 11Q9.15 11 9.575 10.575Q10 10.15 10 9.5Q10 8.85 9.575 8.425Q9.15 8 8.5 8Q7.85 8 7.425 8.425Q7 8.85 7 9.5Q7 10.15 7.425 10.575Q7.85 11 8.5 11ZM12 17.5Q13.775 17.5 15.137 16.525Q16.5 15.55 17.1 14H15.45Q14.925 14.9 14.025 15.45Q13.125 16 12 16Q10.875 16 9.975 15.45Q9.075 14.9 8.55 14H6.9Q7.5 15.55 8.863 16.525Q10.225 17.5 12 17.5ZM12 22Q9.925 22 8.1 21.212Q6.275 20.425 4.925 19.075Q3.575 17.725 2.788 15.9Q2 14.075 2 12Q2 9.925 2.788 8.1Q3.575 6.275 4.925 4.925Q6.275 3.575 8.1 2.787Q9.925 2 12 2Q14.075 2 15.9 2.787Q17.725 3.575 19.075 4.925Q20.425 6.275 21.212 8.1Q22 9.925 22 12Q22 14.075 21.212 15.9Q20.425 17.725 19.075 19.075Q17.725 20.425 15.9 21.212Q14.075 22 12 22ZM12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12ZM12 20Q15.325 20 17.663 17.663Q20 15.325 20 12Q20 8.675 17.663 6.337Q15.325 4 12 4Q8.675 4 6.338 6.337Q4 8.675 4 12Q4 15.325 6.338 17.663Q8.675 20 12 20Z"/></svg></button>
+                        {% else %}
+                            <button type="button" class="feedback-icon" name = "like" id="like{{bit.id}}" data-catid="{{bit.id}}"><svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path id="like-icon-{{bit.id}}" d="M15.5 11Q16.15 11 16.575 10.575Q17 10.15 17 9.5Q17 8.85 16.575 8.425Q16.15 8 15.5 8Q14.85 8 14.425 8.425Q14 8.85 14 9.5Q14 10.15 14.425 10.575Q14.85 11 15.5 11ZM8.5 11Q9.15 11 9.575 10.575Q10 10.15 10 9.5Q10 8.85 9.575 8.425Q9.15 8 8.5 8Q7.85 8 7.425 8.425Q7 8.85 7 9.5Q7 10.15 7.425 10.575Q7.85 11 8.5 11ZM12 17.5Q13.775 17.5 15.137 16.525Q16.5 15.55 17.1 14H15.45Q14.925 14.9 14.025 15.45Q13.125 16 12 16Q10.875 16 9.975 15.45Q9.075 14.9 8.55 14H6.9Q7.5 15.55 8.863 16.525Q10.225 17.5 12 17.5ZM12 22Q9.925 22 8.1 21.212Q6.275 20.425 4.925 19.075Q3.575 17.725 2.788 15.9Q2 14.075 2 12Q2 9.925 2.788 8.1Q3.575 6.275 4.925 4.925Q6.275 3.575 8.1 2.787Q9.925 2 12 2Q14.075 2 15.9 2.787Q17.725 3.575 19.075 4.925Q20.425 6.275 21.212 8.1Q22 9.925 22 12Q22 14.075 21.212 15.9Q20.425 17.725 19.075 19.075Q17.725 20.425 15.9 21.212Q14.075 22 12 22ZM12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12ZM12 20Q15.325 20 17.663 17.663Q20 15.325 20 12Q20 8.675 17.663 6.337Q15.325 4 12 4Q8.675 4 6.338 6.337Q4 8.675 4 12Q4 15.325 6.338 17.663Q8.675 20 12 20Z"/></svg></button>
+                        {% endif %}
+                        <!--Like Counter on Chats-->
+                        <p id="like-count{{bit.id}}" class="counter"  style="grid-column: 2; color: lightgreen; margin-top: auto; margin-bottom: auto;">{{ bit.likes.all.count }}</p>
+                        
+                        {% if bit in disliked_bits %}
+                            <button type="button" style="background-color: {{bit.user.profile.accent_color}};" data-catid="{{bit.id}}" class="feedback-icon-active" name = "dislike" id="dislike{{bit.id}}"><svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path id="active-dislike-icon-{{bit.id}}" style="fill:{{bit.user.profile.feedback_icon_color}};" d="M15.5 11Q16.15 11 16.575 10.575Q17 10.15 17 9.5Q17 8.85 16.575 8.425Q16.15 8 15.5 8Q14.85 8 14.425 8.425Q14 8.85 14 9.5Q14 10.15 14.425 10.575Q14.85 11 15.5 11ZM8.5 11Q9.15 11 9.575 10.575Q10 10.15 10 9.5Q10 8.85 9.575 8.425Q9.15 8 8.5 8Q7.85 8 7.425 8.425Q7 8.85 7 9.5Q7 10.15 7.425 10.575Q7.85 11 8.5 11ZM12 13.5Q10.225 13.5 8.863 14.475Q7.5 15.45 6.9 17H8.55Q9.075 16.1 9.975 15.55Q10.875 15 12 15Q13.125 15 14.025 15.55Q14.925 16.1 15.45 17H17.1Q16.5 15.45 15.137 14.475Q13.775 13.5 12 13.5ZM12 22Q9.925 22 8.1 21.212Q6.275 20.425 4.925 19.075Q3.575 17.725 2.788 15.9Q2 14.075 2 12Q2 9.925 2.788 8.1Q3.575 6.275 4.925 4.925Q6.275 3.575 8.1 2.787Q9.925 2 12 2Q14.075 2 15.9 2.787Q17.725 3.575 19.075 4.925Q20.425 6.275 21.212 8.1Q22 9.925 22 12Q22 14.075 21.212 15.9Q20.425 17.725 19.075 19.075Q17.725 20.425 15.9 21.212Q14.075 22 12 22ZM12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12ZM12 20Q15.325 20 17.663 17.663Q20 15.325 20 12Q20 8.675 17.663 6.337Q15.325 4 12 4Q8.675 4 6.338 6.337Q4 8.675 4 12Q4 15.325 6.338 17.663Q8.675 20 12 20Z"/></svg></button>
+                        {% else %}
+                            <button type="button" class="feedback-icon" name = "dislike" id="dislike{{bit.id}}" data-catid="{{bit.id}}"><svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path id="dislike-icon-{{bit.id}}" d="M15.5 11Q16.15 11 16.575 10.575Q17 10.15 17 9.5Q17 8.85 16.575 8.425Q16.15 8 15.5 8Q14.85 8 14.425 8.425Q14 8.85 14 9.5Q14 10.15 14.425 10.575Q14.85 11 15.5 11ZM8.5 11Q9.15 11 9.575 10.575Q10 10.15 10 9.5Q10 8.85 9.575 8.425Q9.15 8 8.5 8Q7.85 8 7.425 8.425Q7 8.85 7 9.5Q7 10.15 7.425 10.575Q7.85 11 8.5 11ZM12 13.5Q10.225 13.5 8.863 14.475Q7.5 15.45 6.9 17H8.55Q9.075 16.1 9.975 15.55Q10.875 15 12 15Q13.125 15 14.025 15.55Q14.925 16.1 15.45 17H17.1Q16.5 15.45 15.137 14.475Q13.775 13.5 12 13.5ZM12 22Q9.925 22 8.1 21.212Q6.275 20.425 4.925 19.075Q3.575 17.725 2.788 15.9Q2 14.075 2 12Q2 9.925 2.788 8.1Q3.575 6.275 4.925 4.925Q6.275 3.575 8.1 2.787Q9.925 2 12 2Q14.075 2 15.9 2.787Q17.725 3.575 19.075 4.925Q20.425 6.275 21.212 8.1Q22 9.925 22 12Q22 14.075 21.212 15.9Q20.425 17.725 19.075 19.075Q17.725 20.425 15.9 21.212Q14.075 22 12 22ZM12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12ZM12 20Q15.325 20 17.663 17.663Q20 15.325 20 12Q20 8.675 17.663 6.337Q15.325 4 12 4Q8.675 4 6.338 6.337Q4 8.675 4 12Q4 15.325 6.338 17.663Q8.675 20 12 20Z"/></svg></button>
+                        {% endif %}
+                        <p id="dislike-count{{bit.id}}" class="counter">{{ bit.dislikes.all.count }}</p>
+                        <button type="button" class="feedback-icon" name = "share" id="share-post-button" href="#" data-catid="{{bit.pk}}"><svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M6 23Q5.175 23 4.588 22.413Q4 21.825 4 21V10Q4 9.175 4.588 8.587Q5.175 8 6 8H9V10H6Q6 10 6 10Q6 10 6 10V21Q6 21 6 21Q6 21 6 21H18Q18 21 18 21Q18 21 18 21V10Q18 10 18 10Q18 10 18 10H15V8H18Q18.825 8 19.413 8.587Q20 9.175 20 10V21Q20 21.825 19.413 22.413Q18.825 23 18 23ZM11 16V4.825L9.4 6.425L8 5L12 1L16 5L14.6 6.425L13 4.825V16Z"/></svg></button>
+                        <p id="share-count" class="counter">0</p>
+                        <button type="button" onclick="ShowComments('chat-comment-display-container{{bit.pk}}','comments-display-label{{bit.pk}}')" class="feedback-icon" name = "comment" id="comment-post-button" href="#" data-catid="{{bit.pk}}" ><svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M6 14H18V12H6ZM6 11H18V9H6ZM6 8H18V6H6ZM22 22 18 18H4Q3.175 18 2.588 17.413Q2 16.825 2 16V4Q2 3.175 2.588 2.587Q3.175 2 4 2H20Q20.825 2 21.413 2.587Q22 3.175 22 4ZM4 4V16Q4 16 4 16Q4 16 4 16H18.825L20 17.175V4Q20 4 20 4Q20 4 20 4H4Q4 4 4 4Q4 4 4 4ZM4 4V17.175V16Q4 16 4 16Q4 16 4 16V4Q4 4 4 4Q4 4 4 4Q4 4 4 4Q4 4 4 4Z"/></svg></button>
+                        <p id="comment-count" class="counter">{{ bit.comments.all.count }}</p>
+                        <button type = "button" class="feedback-icon" name = "donate" id="donate-post-button" href="#" data-catid="{{bit.pk}}"><svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M11.025 21V18.85Q9.7 18.55 8.738 17.7Q7.775 16.85 7.325 15.3L9.175 14.55Q9.55 15.75 10.288 16.375Q11.025 17 12.225 17Q13.25 17 13.963 16.538Q14.675 16.075 14.675 15.1Q14.675 14.225 14.125 13.712Q13.575 13.2 11.575 12.55Q9.425 11.875 8.625 10.938Q7.825 10 7.825 8.65Q7.825 7.025 8.875 6.125Q9.925 5.225 11.025 5.1V3H13.025V5.1Q14.275 5.3 15.088 6.012Q15.9 6.725 16.275 7.75L14.425 8.55Q14.125 7.75 13.575 7.35Q13.025 6.95 12.075 6.95Q10.975 6.95 10.4 7.438Q9.825 7.925 9.825 8.65Q9.825 9.475 10.575 9.95Q11.325 10.425 13.175 10.95Q14.9 11.45 15.788 12.537Q16.675 13.625 16.675 15.05Q16.675 16.825 15.625 17.75Q14.575 18.675 13.025 18.9V21Z"/></svg></button>
+                    </form>
+                    <form method="POST" id="field-write-comment">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.path }}">
+                        <input type="text" placeholder="Write Comment" id="field-write-comment{{bit.id}}" class="write-comment-field-text">
+                        <a id="write-comment-button" data-catid="{{bit.id}}" class="send-comment" name="send_comment" style="background-color: rgba(255, 255, 255, 0.5)"><svg fill="{{bit.user.profile.text_color}}" style="display: block; margin: auto; position: relative; top:-2px; left:-2px;" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M6 19.05 7.975 18.25Q7.725 17.525 7.513 16.775Q7.3 16.025 7.175 15.275L6 16.075Q6 16.075 6 16.075Q6 16.075 6 16.075ZM10 18H14Q14.45 17 14.725 15.562Q15 14.125 15 12.625Q15 10.15 14.175 7.937Q13.35 5.725 12 4.525Q10.65 5.725 9.825 7.937Q9 10.15 9 12.625Q9 14.125 9.275 15.562Q9.55 17 10 18ZM12 13Q11.175 13 10.588 12.412Q10 11.825 10 11Q10 10.175 10.588 9.587Q11.175 9 12 9Q12.825 9 13.413 9.587Q14 10.175 14 11Q14 11.825 13.413 12.412Q12.825 13 12 13ZM18 19.05V16.075Q18 16.075 18 16.075Q18 16.075 18 16.075L16.825 15.275Q16.7 16.025 16.488 16.775Q16.275 17.525 16.025 18.25ZM12 1.975Q14.475 3.775 15.738 6.55Q17 9.325 17 13Q17 13 17 13Q17 13 17 13L19.1 14.4Q19.525 14.675 19.763 15.125Q20 15.575 20 16.075V22L15.025 20H8.975L4 22V16.075Q4 15.575 4.238 15.125Q4.475 14.675 4.9 14.4L7 13Q7 13 7 13Q7 13 7 13Q7 9.325 8.262 6.55Q9.525 3.775 12 1.975Z"/></svg></a>
+                    </form>
+                    <p class = "comments-display-label" id="comments-display-label{{bit.pk}}" style="display:none;"><b>Comments:</b></p>
+                    <div class = "chat-comment-display-container" id="chat-comment-display-container{{bit.pk}}" style="display: none;">
+                        {% if bit.comments.all%}
+                            {% for comment in bit.comments.all|dictsortreversed:"created_on" %}
+                                {% if user.id == comment.user.id %}
+                                        <div id="right-comment-display-wrapper">
+                                            <div id="chat-comment-display-right" style="background-color: {{bit.user.profile.accent_color}}">
+                                                <p id="comment-text"> <strong>{{ comment.user.first_name }} {{comment.user.last_name}}</strong>: {{ comment.comment }}</p>
+                                                <weak id="comment-time">{{comment.created_on}}</weak>
+                                            </div>
+                                        </div>
+                                    <br>
+                                {% else %}
+                                    <div id="comment-display-left">
+                                        <p id="comment-text"> <strong>{{ comment.user.first_name }} {{comment.user.last_name}}</strong>: {{ comment.comment }}</p>
+                                        <weak id="comment-time">{{comment.created_on}}</weak>
+                                    </div>
+                                    <br>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <p class="no-comments">No comments</p>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <!--End Chatbits in Bitstream-->
+
+            <!--Start Photo bits in bitstream-->
+            {% elif bit.bit_type == "photo" %}
+            {% if user_colors_on %}
+            <div class="post-wrapper" id = "photo-post-wrapper" style="background-color:{{ bit.user.profile.bit_background }}">
+            {% else %}
+            <div class="post-wrapper" id = "photo-post-wrapper">
+            {% endif %}
+                <div id="photo-user-name">
+                    <a id="photo-bit-profile-picture-link" href="{% url 'profile' bit.user.profile.pk %}"><img id="chat-bit-profile-picture" src="{{bit.user.profile.image.url}}" ></a>
+                    <p id="photo-user-name-text"><strong>{{bit.user.first_name}} {{bit.user.last_name}}</strong> <small>@{{bit.user.username}}</small></p>
+                </div>
+                <img src="{{ bit.image.url }}" width="100%" id="photobit"/>
+                <div id="photo-info" style="text-align:center;">
+                    <h4 id="photo-title"> {{bit.title}}</h4>
+                    <p id="photo-caption"> {{bit.body}}</p>
+                </div>                
+                <form method='POST' id="chat-bit-feedback-container" class = "post-interaction-container" action="{% url 'interact' bit.pk %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.path }}">
+                    {% if bit in liked_bits %}
+                        <a class="feedback-icon-active" style="background-color: {{bit.user.profile.accent_color}};" name = "like" id="smiley-post-button"><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path id="active-like-icon-{{bit.id}}" style="fill:{{bit.user.profile.feedback_icon_color}}" d="M15.5 11Q16.15 11 16.575 10.575Q17 10.15 17 9.5Q17 8.85 16.575 8.425Q16.15 8 15.5 8Q14.85 8 14.425 8.425Q14 8.85 14 9.5Q14 10.15 14.425 10.575Q14.85 11 15.5 11ZM8.5 11Q9.15 11 9.575 10.575Q10 10.15 10 9.5Q10 8.85 9.575 8.425Q9.15 8 8.5 8Q7.85 8 7.425 8.425Q7 8.85 7 9.5Q7 10.15 7.425 10.575Q7.85 11 8.5 11ZM12 17.5Q13.775 17.5 15.137 16.525Q16.5 15.55 17.1 14H15.45Q14.925 14.9 14.025 15.45Q13.125 16 12 16Q10.875 16 9.975 15.45Q9.075 14.9 8.55 14H6.9Q7.5 15.55 8.863 16.525Q10.225 17.5 12 17.5ZM12 22Q9.925 22 8.1 21.212Q6.275 20.425 4.925 19.075Q3.575 17.725 2.788 15.9Q2 14.075 2 12Q2 9.925 2.788 8.1Q3.575 6.275 4.925 4.925Q6.275 3.575 8.1 2.787Q9.925 2 12 2Q14.075 2 15.9 2.787Q17.725 3.575 19.075 4.925Q20.425 6.275 21.212 8.1Q22 9.925 22 12Q22 14.075 21.212 15.9Q20.425 17.725 19.075 19.075Q17.725 20.425 15.9 21.212Q14.075 22 12 22ZM12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12ZM12 20Q15.325 20 17.663 17.663Q20 15.325 20 12Q20 8.675 17.663 6.337Q15.325 4 12 4Q8.675 4 6.338 6.337Q4 8.675 4 12Q4 15.325 6.338 17.663Q8.675 20 12 20Z"/></svg></a>
+                    {% else %}
+                        <a class="feedback-icon" name = "like" id="smiley-post-button"><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M15.5 11Q16.15 11 16.575 10.575Q17 10.15 17 9.5Q17 8.85 16.575 8.425Q16.15 8 15.5 8Q14.85 8 14.425 8.425Q14 8.85 14 9.5Q14 10.15 14.425 10.575Q14.85 11 15.5 11ZM8.5 11Q9.15 11 9.575 10.575Q10 10.15 10 9.5Q10 8.85 9.575 8.425Q9.15 8 8.5 8Q7.85 8 7.425 8.425Q7 8.85 7 9.5Q7 10.15 7.425 10.575Q7.85 11 8.5 11ZM12 17.5Q13.775 17.5 15.137 16.525Q16.5 15.55 17.1 14H15.45Q14.925 14.9 14.025 15.45Q13.125 16 12 16Q10.875 16 9.975 15.45Q9.075 14.9 8.55 14H6.9Q7.5 15.55 8.863 16.525Q10.225 17.5 12 17.5ZM12 22Q9.925 22 8.1 21.212Q6.275 20.425 4.925 19.075Q3.575 17.725 2.788 15.9Q2 14.075 2 12Q2 9.925 2.788 8.1Q3.575 6.275 4.925 4.925Q6.275 3.575 8.1 2.787Q9.925 2 12 2Q14.075 2 15.9 2.787Q17.725 3.575 19.075 4.925Q20.425 6.275 21.212 8.1Q22 9.925 22 12Q22 14.075 21.212 15.9Q20.425 17.725 19.075 19.075Q17.725 20.425 15.9 21.212Q14.075 22 12 22ZM12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12ZM12 20Q15.325 20 17.663 17.663Q20 15.325 20 12Q20 8.675 17.663 6.337Q15.325 4 12 4Q8.675 4 6.338 6.337Q4 8.675 4 12Q4 15.325 6.338 17.663Q8.675 20 12 20Z"/></svg></a>
+                    {% endif %}
+                    <p id="like-count{{bit.id}}" class="counter" style="grid-column: 2; color: lightgreen; margin-top: auto; margin-bottom: auto;">{{ bit.likes.all.count }}</p>
+                    {% if bit in disliked_bits %}
+                        <button type = "submit" style="background-color: {{bit.user.profile.accent_color}};" class="feedback-icon-active" name = "dislike" id="dislike{{bit.id}}"><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill:{{bit.user.profile.feedback_icon_color}};" d="M15.5 11Q16.15 11 16.575 10.575Q17 10.15 17 9.5Q17 8.85 16.575 8.425Q16.15 8 15.5 8Q14.85 8 14.425 8.425Q14 8.85 14 9.5Q14 10.15 14.425 10.575Q14.85 11 15.5 11ZM8.5 11Q9.15 11 9.575 10.575Q10 10.15 10 9.5Q10 8.85 9.575 8.425Q9.15 8 8.5 8Q7.85 8 7.425 8.425Q7 8.85 7 9.5Q7 10.15 7.425 10.575Q7.85 11 8.5 11ZM12 13.5Q10.225 13.5 8.863 14.475Q7.5 15.45 6.9 17H8.55Q9.075 16.1 9.975 15.55Q10.875 15 12 15Q13.125 15 14.025 15.55Q14.925 16.1 15.45 17H17.1Q16.5 15.45 15.137 14.475Q13.775 13.5 12 13.5ZM12 22Q9.925 22 8.1 21.212Q6.275 20.425 4.925 19.075Q3.575 17.725 2.788 15.9Q2 14.075 2 12Q2 9.925 2.788 8.1Q3.575 6.275 4.925 4.925Q6.275 3.575 8.1 2.787Q9.925 2 12 2Q14.075 2 15.9 2.787Q17.725 3.575 19.075 4.925Q20.425 6.275 21.212 8.1Q22 9.925 22 12Q22 14.075 21.212 15.9Q20.425 17.725 19.075 19.075Q17.725 20.425 15.9 21.212Q14.075 22 12 22ZM12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12ZM12 20Q15.325 20 17.663 17.663Q20 15.325 20 12Q20 8.675 17.663 6.337Q15.325 4 12 4Q8.675 4 6.338 6.337Q4 8.675 4 12Q4 15.325 6.338 17.663Q8.675 20 12 20Z"/></svg></button>
+                    {% else %}
+                        <button type = "submit" class="feedback-icon" name = "dislike" id="frowny-post-button"><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M15.5 11Q16.15 11 16.575 10.575Q17 10.15 17 9.5Q17 8.85 16.575 8.425Q16.15 8 15.5 8Q14.85 8 14.425 8.425Q14 8.85 14 9.5Q14 10.15 14.425 10.575Q14.85 11 15.5 11ZM8.5 11Q9.15 11 9.575 10.575Q10 10.15 10 9.5Q10 8.85 9.575 8.425Q9.15 8 8.5 8Q7.85 8 7.425 8.425Q7 8.85 7 9.5Q7 10.15 7.425 10.575Q7.85 11 8.5 11ZM12 13.5Q10.225 13.5 8.863 14.475Q7.5 15.45 6.9 17H8.55Q9.075 16.1 9.975 15.55Q10.875 15 12 15Q13.125 15 14.025 15.55Q14.925 16.1 15.45 17H17.1Q16.5 15.45 15.137 14.475Q13.775 13.5 12 13.5ZM12 22Q9.925 22 8.1 21.212Q6.275 20.425 4.925 19.075Q3.575 17.725 2.788 15.9Q2 14.075 2 12Q2 9.925 2.788 8.1Q3.575 6.275 4.925 4.925Q6.275 3.575 8.1 2.787Q9.925 2 12 2Q14.075 2 15.9 2.787Q17.725 3.575 19.075 4.925Q20.425 6.275 21.212 8.1Q22 9.925 22 12Q22 14.075 21.212 15.9Q20.425 17.725 19.075 19.075Q17.725 20.425 15.9 21.212Q14.075 22 12 22ZM12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12ZM12 20Q15.325 20 17.663 17.663Q20 15.325 20 12Q20 8.675 17.663 6.337Q15.325 4 12 4Q8.675 4 6.338 6.337Q4 8.675 4 12Q4 15.325 6.338 17.663Q8.675 20 12 20Z"/></svg></button>
+                    {% endif %}
+                    <p id="dislike-count" class="counter">{{ bit.dislikes.all.count }}</p>
+                    <button type = "submit" class="feedback-icon" name = "share" id="share-post-button" href="#" data-catid="{{bit.pk}}"><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M6 23Q5.175 23 4.588 22.413Q4 21.825 4 21V10Q4 9.175 4.588 8.587Q5.175 8 6 8H9V10H6Q6 10 6 10Q6 10 6 10V21Q6 21 6 21Q6 21 6 21H18Q18 21 18 21Q18 21 18 21V10Q18 10 18 10Q18 10 18 10H15V8H18Q18.825 8 19.413 8.587Q20 9.175 20 10V21Q20 21.825 19.413 22.413Q18.825 23 18 23ZM11 16V4.825L9.4 6.425L8 5L12 1L16 5L14.6 6.425L13 4.825V16Z"/></svg></button>
+                    <p id="share-count" class="counter">0</p>
+                    <a onclick="ShowComments('chat-comment-display-container{{bit.pk}}','comments-display-label{{bit.pk}}')" class="feedback-icon" name = "comment" id="comment-post-button" href="#" data-catid="{{bit.pk}}" ><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M6 14H18V12H6ZM6 11H18V9H6ZM6 8H18V6H6ZM22 22 18 18H4Q3.175 18 2.588 17.413Q2 16.825 2 16V4Q2 3.175 2.588 2.587Q3.175 2 4 2H20Q20.825 2 21.413 2.587Q22 3.175 22 4ZM4 4V16Q4 16 4 16Q4 16 4 16H18.825L20 17.175V4Q20 4 20 4Q20 4 20 4H4Q4 4 4 4Q4 4 4 4ZM4 4V17.175V16Q4 16 4 16Q4 16 4 16V4Q4 4 4 4Q4 4 4 4Q4 4 4 4Q4 4 4 4Z"/></svg></a>
+                    <p id="comment-count" class="counter">{{ bit.comments.all.count }}</p>
+                    <button type = "submit" class="feedback-icon" name = "donate" id="donate-post-button" href="#" data-catid="{{bit.pk}}"><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M11.025 21V18.85Q9.7 18.55 8.738 17.7Q7.775 16.85 7.325 15.3L9.175 14.55Q9.55 15.75 10.288 16.375Q11.025 17 12.225 17Q13.25 17 13.963 16.538Q14.675 16.075 14.675 15.1Q14.675 14.225 14.125 13.712Q13.575 13.2 11.575 12.55Q9.425 11.875 8.625 10.938Q7.825 10 7.825 8.65Q7.825 7.025 8.875 6.125Q9.925 5.225 11.025 5.1V3H13.025V5.1Q14.275 5.3 15.088 6.012Q15.9 6.725 16.275 7.75L14.425 8.55Q14.125 7.75 13.575 7.35Q13.025 6.95 12.075 6.95Q10.975 6.95 10.4 7.438Q9.825 7.925 9.825 8.65Q9.825 9.475 10.575 9.95Q11.325 10.425 13.175 10.95Q14.9 11.45 15.788 12.537Q16.675 13.625 16.675 15.05Q16.675 16.825 15.625 17.75Q14.575 18.675 13.025 18.9V21Z"/></svg></button>
+                </form>
+            <div class = "video-comment-display-container" id="video-comment-display-container{{bit.pk}}" style="display: none;">
+                {% if bit.comments.all%}
+                    {% for comment in bit.comments.all|dictsortreversed:"created_on" %}
+                        {% if user.id == comment.user.id %}
+                                <div id="right-comment-display-wrapper">
+                                    <div id="chat-comment-display-right" style="background-color: {{bit.user.profile.accent_color}};">
+                                        <p id="comment-text"> <strong>{{ comment.user.first_name }} {{comment.user.last_name}}</strong>: {{ comment.comment }}</p>
+                                        <weak id="comment-time">{{comment.created_on}}</weak>
+                                    </div>
+                                </div>
+                            <br>
+                        {% else %}
+                            <div id="comment-display-left">
+                                <p id="comment-text"> <strong>{{ comment.user.first_name }} {{comment.user.last_name}}</strong>: {{ comment.comment }}</p>
+                                <weak id="comment-time">{{comment.created_on}}</weak>
+                            </div>
+                            <br>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <p class="no-comments">No comments</p>
+                {% endif %}
+                <form method="POST" id="video-field-write-comment" action="{% url 'comment' bit.pk%}">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.path }}">
+                {{write_comment.comment}}
+                <button id="write-comment-button" type="submit">Send</button>
+            </form>
+            </div>
+        </div>
+            
+            <!--End Photobits in bitstream-->
+
+            <!--Start Video bits in bitstream-->
+            {% elif bit.bit_type == "video"%}
+            {% if user_colors_on %}
+            <div class="post-wrapper" id = "video-post-wrapper" style="background-color:{{ bit.user.profile.bit_background }}">
+            {% else %}
+            <div class="post-wrapper" id = "video-post-wrapper">
+            {% endif %}
+                <div id = "video-bit-name-date">
+                    <a id="chat-bit-profile-picture-link" href="{% url 'profile' bit.user.profile.pk %}"><img id="chat-bit-profile-picture" src="{{bit.user.profile.image.url}}" ></a>
+                    <p id="video-user-name"><strong>{{bit.user.first_name}} {{bit.user.last_name}}</strong> <small>@{{ bit.user.username }}</small></p>
+                </div>
+                <video src="{{ bit.video.url }}" width="100%" id="videobit" autoplay muted loop playsinline></video>              
+                        
+                <h3 id="video-title"> {{bit.title}}</h3>
+                <p onclick="ShowDescription('video-description{{bit.pk}}')" id="video-show-description-button">Show Description</p>
+                <p class="video-caption" id="video-description{{bit.pk}}" style = "display: none;"> {{bit.body}}</p>
+
+                <form method='POST' id="video-bit-feedback-container" class = "post-interaction-container" action="{% url 'interact' bit.pk %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.path }}">
+                    {% if bit in liked_bits %}
+                        <a class="feedback-icon-active" style="background-color: {{bit.user.profile.accent_color}};" name = "like" id="like{{bit.pk}}" data-catid="{{ bit.pk }}"><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill:{{bit.user.profile.feedback_icon_color}}" d="M15.5 11Q16.15 11 16.575 10.575Q17 10.15 17 9.5Q17 8.85 16.575 8.425Q16.15 8 15.5 8Q14.85 8 14.425 8.425Q14 8.85 14 9.5Q14 10.15 14.425 10.575Q14.85 11 15.5 11ZM8.5 11Q9.15 11 9.575 10.575Q10 10.15 10 9.5Q10 8.85 9.575 8.425Q9.15 8 8.5 8Q7.85 8 7.425 8.425Q7 8.85 7 9.5Q7 10.15 7.425 10.575Q7.85 11 8.5 11ZM12 17.5Q13.775 17.5 15.137 16.525Q16.5 15.55 17.1 14H15.45Q14.925 14.9 14.025 15.45Q13.125 16 12 16Q10.875 16 9.975 15.45Q9.075 14.9 8.55 14H6.9Q7.5 15.55 8.863 16.525Q10.225 17.5 12 17.5ZM12 22Q9.925 22 8.1 21.212Q6.275 20.425 4.925 19.075Q3.575 17.725 2.788 15.9Q2 14.075 2 12Q2 9.925 2.788 8.1Q3.575 6.275 4.925 4.925Q6.275 3.575 8.1 2.787Q9.925 2 12 2Q14.075 2 15.9 2.787Q17.725 3.575 19.075 4.925Q20.425 6.275 21.212 8.1Q22 9.925 22 12Q22 14.075 21.212 15.9Q20.425 17.725 19.075 19.075Q17.725 20.425 15.9 21.212Q14.075 22 12 22ZM12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12ZM12 20Q15.325 20 17.663 17.663Q20 15.325 20 12Q20 8.675 17.663 6.337Q15.325 4 12 4Q8.675 4 6.338 6.337Q4 8.675 4 12Q4 15.325 6.338 17.663Q8.675 20 12 20Z"/></svg></a>
+                    {% else %}
+                        <a class="feedback-icon" name ="like" id="like{{bit.id}}" data-catid="{{bit.id}}"><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill:white;" d="M15.5 11Q16.15 11 16.575 10.575Q17 10.15 17 9.5Q17 8.85 16.575 8.425Q16.15 8 15.5 8Q14.85 8 14.425 8.425Q14 8.85 14 9.5Q14 10.15 14.425 10.575Q14.85 11 15.5 11ZM8.5 11Q9.15 11 9.575 10.575Q10 10.15 10 9.5Q10 8.85 9.575 8.425Q9.15 8 8.5 8Q7.85 8 7.425 8.425Q7 8.85 7 9.5Q7 10.15 7.425 10.575Q7.85 11 8.5 11ZM12 17.5Q13.775 17.5 15.137 16.525Q16.5 15.55 17.1 14H15.45Q14.925 14.9 14.025 15.45Q13.125 16 12 16Q10.875 16 9.975 15.45Q9.075 14.9 8.55 14H6.9Q7.5 15.55 8.863 16.525Q10.225 17.5 12 17.5ZM12 22Q9.925 22 8.1 21.212Q6.275 20.425 4.925 19.075Q3.575 17.725 2.788 15.9Q2 14.075 2 12Q2 9.925 2.788 8.1Q3.575 6.275 4.925 4.925Q6.275 3.575 8.1 2.787Q9.925 2 12 2Q14.075 2 15.9 2.787Q17.725 3.575 19.075 4.925Q20.425 6.275 21.212 8.1Q22 9.925 22 12Q22 14.075 21.212 15.9Q20.425 17.725 19.075 19.075Q17.725 20.425 15.9 21.212Q14.075 22 12 22ZM12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12ZM12 20Q15.325 20 17.663 17.663Q20 15.325 20 12Q20 8.675 17.663 6.337Q15.325 4 12 4Q8.675 4 6.338 6.337Q4 8.675 4 12Q4 15.325 6.338 17.663Q8.675 20 12 20Z"/></svg></a>
+                    {% endif %}
+                    <p id="like-count" class="counter">{{ bit.likes.all.count }}</p>
+                    {% if bit in disliked_bits %}
+                        <a style="background-color: {{bit.user.profile.accent_color}};" class="feedback-icon-active" name = "dislike" id="dislike{{bit.id}}"><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill:{{bit.user.profile.feedback_icon_color}};" d="M15.5 11Q16.15 11 16.575 10.575Q17 10.15 17 9.5Q17 8.85 16.575 8.425Q16.15 8 15.5 8Q14.85 8 14.425 8.425Q14 8.85 14 9.5Q14 10.15 14.425 10.575Q14.85 11 15.5 11ZM8.5 11Q9.15 11 9.575 10.575Q10 10.15 10 9.5Q10 8.85 9.575 8.425Q9.15 8 8.5 8Q7.85 8 7.425 8.425Q7 8.85 7 9.5Q7 10.15 7.425 10.575Q7.85 11 8.5 11ZM12 13.5Q10.225 13.5 8.863 14.475Q7.5 15.45 6.9 17H8.55Q9.075 16.1 9.975 15.55Q10.875 15 12 15Q13.125 15 14.025 15.55Q14.925 16.1 15.45 17H17.1Q16.5 15.45 15.137 14.475Q13.775 13.5 12 13.5ZM12 22Q9.925 22 8.1 21.212Q6.275 20.425 4.925 19.075Q3.575 17.725 2.788 15.9Q2 14.075 2 12Q2 9.925 2.788 8.1Q3.575 6.275 4.925 4.925Q6.275 3.575 8.1 2.787Q9.925 2 12 2Q14.075 2 15.9 2.787Q17.725 3.575 19.075 4.925Q20.425 6.275 21.212 8.1Q22 9.925 22 12Q22 14.075 21.212 15.9Q20.425 17.725 19.075 19.075Q17.725 20.425 15.9 21.212Q14.075 22 12 22ZM12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12ZM12 20Q15.325 20 17.663 17.663Q20 15.325 20 12Q20 8.675 17.663 6.337Q15.325 4 12 4Q8.675 4 6.338 6.337Q4 8.675 4 12Q4 15.325 6.338 17.663Q8.675 20 12 20Z"/></svg></a>
+                    {% else %}
+                        <a class="feedback-icon" name = "dislike" id="frowny-post-button"><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill:white;" d="M15.5 11Q16.15 11 16.575 10.575Q17 10.15 17 9.5Q17 8.85 16.575 8.425Q16.15 8 15.5 8Q14.85 8 14.425 8.425Q14 8.85 14 9.5Q14 10.15 14.425 10.575Q14.85 11 15.5 11ZM8.5 11Q9.15 11 9.575 10.575Q10 10.15 10 9.5Q10 8.85 9.575 8.425Q9.15 8 8.5 8Q7.85 8 7.425 8.425Q7 8.85 7 9.5Q7 10.15 7.425 10.575Q7.85 11 8.5 11ZM12 13.5Q10.225 13.5 8.863 14.475Q7.5 15.45 6.9 17H8.55Q9.075 16.1 9.975 15.55Q10.875 15 12 15Q13.125 15 14.025 15.55Q14.925 16.1 15.45 17H17.1Q16.5 15.45 15.137 14.475Q13.775 13.5 12 13.5ZM12 22Q9.925 22 8.1 21.212Q6.275 20.425 4.925 19.075Q3.575 17.725 2.788 15.9Q2 14.075 2 12Q2 9.925 2.788 8.1Q3.575 6.275 4.925 4.925Q6.275 3.575 8.1 2.787Q9.925 2 12 2Q14.075 2 15.9 2.787Q17.725 3.575 19.075 4.925Q20.425 6.275 21.212 8.1Q22 9.925 22 12Q22 14.075 21.212 15.9Q20.425 17.725 19.075 19.075Q17.725 20.425 15.9 21.212Q14.075 22 12 22ZM12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12ZM12 20Q15.325 20 17.663 17.663Q20 15.325 20 12Q20 8.675 17.663 6.337Q15.325 4 12 4Q8.675 4 6.338 6.337Q4 8.675 4 12Q4 15.325 6.338 17.663Q8.675 20 12 20Z"/></svg></a>
+                    {% endif %}
+                    <p id="dislike-count" class="counter">{{ bit.dislikes.all.count }}</p>
+                    <button type = "submit" class="feedback-icon" name = "share" id="share-post-button" href="#" data-catid="{{bit.pk}}"><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M6 23Q5.175 23 4.588 22.413Q4 21.825 4 21V10Q4 9.175 4.588 8.587Q5.175 8 6 8H9V10H6Q6 10 6 10Q6 10 6 10V21Q6 21 6 21Q6 21 6 21H18Q18 21 18 21Q18 21 18 21V10Q18 10 18 10Q18 10 18 10H15V8H18Q18.825 8 19.413 8.587Q20 9.175 20 10V21Q20 21.825 19.413 22.413Q18.825 23 18 23ZM11 16V4.825L9.4 6.425L8 5L12 1L16 5L14.6 6.425L13 4.825V16Z"/></svg></button>
+                    <p id="share-count" class="counter">0</p>
+                    <a onclick="ShowComments('chat-comment-display-container{{bit.pk}}','comments-display-label{{bit.pk}}')" class="feedback-icon" name = "comment" id="comment-post-button" href="#" data-catid="{{bit.pk}}" ><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M6 14H18V12H6ZM6 11H18V9H6ZM6 8H18V6H6ZM22 22 18 18H4Q3.175 18 2.588 17.413Q2 16.825 2 16V4Q2 3.175 2.588 2.587Q3.175 2 4 2H20Q20.825 2 21.413 2.587Q22 3.175 22 4ZM4 4V16Q4 16 4 16Q4 16 4 16H18.825L20 17.175V4Q20 4 20 4Q20 4 20 4H4Q4 4 4 4Q4 4 4 4ZM4 4V17.175V16Q4 16 4 16Q4 16 4 16V4Q4 4 4 4Q4 4 4 4Q4 4 4 4Q4 4 4 4Z"/></svg></a>
+                    <p id="comment-count" class="counter">{{ bit.comments.all.count }}</p>
+                    <button type = "submit" class="feedback-icon" name = "donate" id="donate-post-button" href="#" data-catid="{{bit.id}}"><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M11.025 21V18.85Q9.7 18.55 8.738 17.7Q7.775 16.85 7.325 15.3L9.175 14.55Q9.55 15.75 10.288 16.375Q11.025 17 12.225 17Q13.25 17 13.963 16.538Q14.675 16.075 14.675 15.1Q14.675 14.225 14.125 13.712Q13.575 13.2 11.575 12.55Q9.425 11.875 8.625 10.938Q7.825 10 7.825 8.65Q7.825 7.025 8.875 6.125Q9.925 5.225 11.025 5.1V3H13.025V5.1Q14.275 5.3 15.088 6.012Q15.9 6.725 16.275 7.75L14.425 8.55Q14.125 7.75 13.575 7.35Q13.025 6.95 12.075 6.95Q10.975 6.95 10.4 7.438Q9.825 7.925 9.825 8.65Q9.825 9.475 10.575 9.95Q11.325 10.425 13.175 10.95Q14.9 11.45 15.788 12.537Q16.675 13.625 16.675 15.05Q16.675 16.825 15.625 17.75Q14.575 18.675 13.025 18.9V21Z"/></svg></button>
+                </form>
+                <form method="POST" id="video-field-write-comment">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.path }}">
+                    <input type="text" placeholder="Write Comment" id="field-write-comment{{bit.id}}" class="write-comment-field-text">
+                    <a id="write-comment-button" data-catid="{{bit.id}}" class="send-comment" name="send_comment" style="background-color: rgba(255, 255, 255, 0.5)"><svg fill="{{bit.user.profile.text_color}}" style="display: block; margin: auto; position: relative; top:-2px; left:-2px;" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M6 19.05 7.975 18.25Q7.725 17.525 7.513 16.775Q7.3 16.025 7.175 15.275L6 16.075Q6 16.075 6 16.075Q6 16.075 6 16.075ZM10 18H14Q14.45 17 14.725 15.562Q15 14.125 15 12.625Q15 10.15 14.175 7.937Q13.35 5.725 12 4.525Q10.65 5.725 9.825 7.937Q9 10.15 9 12.625Q9 14.125 9.275 15.562Q9.55 17 10 18ZM12 13Q11.175 13 10.588 12.412Q10 11.825 10 11Q10 10.175 10.588 9.587Q11.175 9 12 9Q12.825 9 13.413 9.587Q14 10.175 14 11Q14 11.825 13.413 12.412Q12.825 13 12 13ZM18 19.05V16.075Q18 16.075 18 16.075Q18 16.075 18 16.075L16.825 15.275Q16.7 16.025 16.488 16.775Q16.275 17.525 16.025 18.25ZM12 1.975Q14.475 3.775 15.738 6.55Q17 9.325 17 13Q17 13 17 13Q17 13 17 13L19.1 14.4Q19.525 14.675 19.763 15.125Q20 15.575 20 16.075V22L15.025 20H8.975L4 22V16.075Q4 15.575 4.238 15.125Q4.475 14.675 4.9 14.4L7 13Q7 13 7 13Q7 13 7 13Q7 9.325 8.262 6.55Q9.525 3.775 12 1.975Z"/></svg></a>
+                </form>
+                <p class = "comments-display-label" id="comments-display-label{{bit.pk}}" style="display:none;"><b>Comments:</b></p>
+                <div class = "video-comment-display-container" id="video-comment-display-container{{bit.pk}}" style="display: none;">
+                    {% if bit.comments.all%}
+                        {% for comment in bit.comments.all|dictsortreversed:"created_on" %}
+                            {% if user.id == comment.user.id %}
+                                    <div id="right-comment-display-wrapper">
+                                        <div id="chat-comment-display-right" style="background-color: {{bit.user.profile.accent_color}}">
+                                            <p id="comment-text"> <strong>{{ comment.user.first_name }} {{comment.user.last_name}}</strong>: {{ comment.comment }}</p>
+                                            <weak id="comment-time">{{comment.created_on}}</weak>
+                                        </div>
+                                    </div>
+                                <br>
+                            {% else %}
+                                <div id="comment-display-left">
+                                    <p id="comment-text"> <strong>{{ comment.user.first_name }} {{comment.user.last_name}}</strong>: {{ comment.comment }}</p>
+                                    <weak id="comment-time">{{comment.created_on}}</weak>
+                                </div>
+                                <br>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <p class="no-comments">No comments</p>
+                    {% endif %}
+                </div>
+            </div>
+            <!--End Video bits in bitstream-->
+        
+            {% endif %}
+
+        <!--End Bit Update Copy-->
+        
+            
+        {% endfor %}
+        {% else %}
+        <h1>Oops, looks like you have no friends (no offense) add or invite some now!</h1>
+        {% endif %}
+        </div>  
+        <script type="text/javascript" src="{% static 'scripts/yourbit_core.js' %}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script type="text/javascript">
+            $('.feedback-icon').click(function(){
+                var catid;
+                catid = $(this).attr("data-catid");
+                console.log(catid);
+                button_name = $(this).attr("name");
+        
+                let cookie = document.cookie;
+                let csrfToken = cookie.substring(cookie.indexOf('=') + 1);
+        
+                if (button_name === "like"){
+                    $.ajax(
+                    {
+                        type:"POST",
+                        headers: {
+                            'X-CSRFToken': csrfToken
+                          },
+                        url: "/social/like/",
+                        data: {
+                            bit_id: catid 
+                        },
+                        success: function(data){
+                            let json_file = data;
+        
+                            console.log(json_file.icon_color);
+                            if (json_file.action === 'like') {
+                                let like_count = json_file.like_count
+                                let dislike_count = json_file.dislike_count
+            
+                                dislike_count = dislike_count.toString();
+                                like_count = like_count.toString();
+                                $('#like' + catid).css("background-color", json_file.accent_color);
+                                $('#like-icon-'+catid).css("fill", json_file.icon_color);
+                                $('#dislike' + catid).css("background-color", "rgba(0,0,0,0)");
+                                $('#active-dislike-icon-' + catid).css("fill", "white");
+                                $('#dislike-icon-' + catid).css("fill", "white");
+                                $('#like-count' + catid).replaceWith(`<p id="like-count${catid}" class="counter" style="grid-column: 2; color: lightgreen; margin-top: auto; margin-bottom: auto;">${like_count}</p>`);
+                                $('#dislike-count' + catid).replaceWith(`<p id="dislike-count${catid}" class="counter" style="grid-column: 4; color: lightgreen; margin-top: auto; margin-bottom: auto;">${dislike_count}</p>`);
+                            } else {
+                                let like_count = json_file.like_count
+                                let dislike_count = json_file.dislike_count
+            
+                                dislike_count = dislike_count.toString();
+                                like_count = like_count.toString();
+                                $('#like' + catid).css("background-color", "rgba(0,0,0,0)");
+                                $('#active-like-icon-' + catid).css("fill", "white");
+                                $('#like-icon' + catid).css("fill", "white");
+                                $('#like-count' + catid).replaceWith(`<p id="like-count${catid}" class="counter" style="grid-column: 2; color: lightgreen; margin-top: auto; margin-bottom: auto;">${like_count}</p>`);
+                                $('#dislike-count' + catid).replaceWith(`<p id="dislike-count${catid}" class="counter" style="grid-column: 4; color: lightgreen; margin-top: auto; margin-bottom: auto;">${dislike_count}</p>`);                   
+                            }
+        
+                        }
+        
+        
+                    });
+                }
+        
+                if (button_name === "dislike"){
+                    $.ajax(
+                        {
+                            type:"POST",
+                            headers: {
+                                'X-CSRFToken': csrfToken
+                              },
+                            url: "/social/dislike/",
+                            data: {
+                                bit_id: catid
+                            },
+                            success: function(data){
+                                let json_file = data;
+                                if (json_file.action === 'dislike') {
+                                    let like_count = json_file.like_count
+                                    let dislike_count = json_file.dislike_count
+                                    dislike_count = dislike_count.toString();
+                                    like_count = like_count.toString();
+                                    $('#dislike' + catid).css("background-color", json_file.accent_color);
+                                    $('#dislike-icon-'+catid).css("fill", json_file.icon_color);
+                                    $('#like' + catid).css("background-color", "rgba(0,0,0,0)");
+                                    $('#active-like-icon-' + catid).css("fill", "white");
+                                    $('#like-icon-' + catid).css("fill", "white");
+                                    $('#dislike-count' + catid).replaceWith(`<p id="dislike-count${catid}" class="counter" style="grid-column: 4; color: lightgreen; margin-top: auto; margin-bottom: auto;">${dislike_count}</p>`);
+                                    $('#like-count' + catid).replaceWith(`<p id="like-count${catid}" class="counter" style="grid-column: 2; color: lightgreen; margin-top: auto; margin-bottom: auto;">${like_count}</p>`);  
+                                } else {
+                                    let like_count = json_file.like_count
+                                    let dislike_count = json_file.dislike_count
+                                    dislike_count = dislike_count.toString();
+                                    like_count = like_count.toString();
+                                    $('#dislike' + catid).css("background-color", "rgba(0,0,0,0)"); 
+                                    $('#dislike-icon-' + catid).css("fill", "white");
+                                    $('#like-count' + catid).replaceWith(`<p id="like-count${catid}" class="counter" style="grid-column: 2; color: lightgreen; margin-top: auto; margin-bottom: auto;">${like_count}</p>`);
+                                    $('#dislike-count' + catid).replaceWith(`<p id="dislike-count${catid}" class="counter" style="grid-column: 4; color: lightgreen; margin-top: auto; margin-bottom: auto;">${dislike_count}</p>`);
+                                    $('#active-dislike-icon-' + catid).css("fill", "white");                            
+                                }
+                            }
+        
+                        }
+                    )
+                }
+        
+            });
+        
+        
+            $('.feedback-icon-active').click(function(){
+                var catid;
+                catid = $(this).attr("data-catid");
+                console.log(catid);
+                button_name = $(this).attr("name");
+        
+                let cookie = document.cookie;
+                let csrfToken = cookie.substring(cookie.indexOf('=') + 1);
+        
+                if (button_name === "like"){
+                    $.ajax(
+                    {
+                        type:"POST",
+                        headers: {
+                            'X-CSRFToken': csrfToken
+                          },
+                        url: "/social/like/",
+                        data: {
+                            bit_id: catid 
+                        },
+                        success: function(data){
+                            let json_file = data;
+                            console.log(json_file.icon_color);
+                            if (json_file.action === 'like') {
+                                let like_count = json_file.like_count
+                                let dislike_count = json_file.dislike_count
+            
+                                dislike_count = dislike_count.toString();
+                                like_count = like_count.toString();
+                                $('#like' + catid).css("background-color", json_file.accent_color);
+                                $('#like-icon-'+catid).css("fill", json_file.icon_color);
+                                $('#dislike' + catid).css("background-color", "rgba(0,0,0,0)");
+                                $('#active-dislike-icon-' + catid).css("fill", "white");
+                                $('#dislike-icon-' + catid).css("fill", "white");
+                                console.log(like_count)
+                                $('#like-count' + catid).replaceWith(`<p id="like-count${catid}" class="counter" style="grid-column: 2; color: lightgreen; margin-top: auto; margin-bottom: auto;">${like_count}</p>`);
+                                $('#dislike-count' + catid).replaceWith(`<p id="dislike-count${catid}" class="counter" style="grid-column: 4; color: lightgreen; margin-top: auto; margin-bottom: auto;">${dislike_count}</p>`);
+                            } else {
+                                let like_count = json_file.like_count
+                                let dislike_count = json_file.dislike_count
+            
+                                dislike_count = dislike_count.toString();
+                                like_count = like_count.toString();
+                                $('#like' + catid).css("background-color", "rgba(0,0,0,0)");
+                                $('#active-like-icon-' + catid).css("fill", "white");
+                                $('#like-icon' + catid).css("fill", "white");
+                                $('#like-count' + catid).replaceWith(`<p id="like-count${catid}" class="counter" style="grid-column: 2; color: lightgreen; margin-top: auto; margin-bottom: auto;">${like_count}</p>`);
+                                $('#dislike-count' + catid).replaceWith(`<p id="dislike-count${catid}" class="counter" style="grid-column: 4; color: lightgreen; margin-top: auto; margin-bottom: auto;">${dislike_count}</p>`);                   
+                            }
+        
+                        }
+        
+        
+                    }
+                )
+                }
+        
+                if (button_name === "dislike"){
+                    $.ajax(
+                        {
+                            type:"POST",
+                            headers: {
+                                'X-CSRFToken': csrfToken
+                              },
+                            url: "/social/dislike/",
+                            data: {
+                                bit_id: catid
+                            },
+                            success: function(data){
+                                let json_file = data;
+                                if (json_file.action === 'dislike') {
+                                    let like_count = json_file.like_count
+                                    let dislike_count = json_file.dislike_count
+                
+                                    dislike_count = dislike_count.toString();
+                                    like_count = like_count.toString();
+                                    $('#dislike' + catid).css("background-color", json_file.accent_color);
+                                    $('#dislike-icon-'+catid).css("fill", json_file.icon_color);
+                                    $('#like' + catid).css("background-color", "rgba(0,0,0,0)");
+                                    $('#active-like-icon-' + catid).css("fill", "white");
+                                    $('#like-icon-' + catid).css("fill", "white");
+                                    $('#like-count' + catid).replaceWith(`<p id="like-count${catid}" class="counter" style="grid-column: 2; color: lightgreen; margin-top: auto; margin-bottom: auto;">${like_count}</p>`);
+                                    $('#dislike-count' + catid).replaceWith(`<p id="dislike-count${catid}" class="counter" style="grid-column: 4; color: lightgreen; margin-top: auto; margin-bottom: auto;">${dislike_count}</p>`);  
+                                } else {
+                                    let like_count = json_file.like_count
+                                    let dislike_count = json_file.dislike_count
+                
+                                    dislike_count = dislike_count.toString();
+                                    like_count = like_count.toString();
+                                    $('#dislike' + catid).css("background-color", "rgba(0,0,0,0)");
+                                    $('#active-dislike-icon-' + catid).css("fill", "white");  
+                                    $('#dislike-icon-' + catid).css("fill", "white");
+                                    $('#like-count' + catid).replaceWith(`<p id="like-count${catid}" class="counter" style="grid-column: 2; color: lightgreen; margin-top: auto; margin-bottom: auto;">${like_count}</p>`);
+                                    $('#dislike-count' + catid).replaceWith(`<p id="dislike-count${catid}" class="counter" style="grid-column: 4; color: lightgreen; margin-top: auto; margin-bottom: auto;">${dislike_count}</p>`);                            
+                                }
+                            }
+        
+                        }
+                    )
+                }
+        
+            });
+        
+        
+            $('.send-comment').click(function() {
+                var catid;
+                catid = $(this).attr("data-catid");
+                Comment(catid);
+            });
+
+            function Comment(catid) {
+                let cookie = document.cookie;
+                let csrfToken = cookie.substring(cookie.indexOf('=') + 1);
+        
+                let form_value = $('#field-write-comment' + catid).val();
+                console.log(form_value)
+        
+                $.ajax(
+                    {
+                        type:"POST",
+                        headers: {
+                            'X-CSRFToken': csrfToken
+                          },
+                        url: "/social/comment/",
+                        data: {
+                            bit_id: catid,
+                            comment: form_value
+                        },
+                        success: function(data){
+                            let json_file = data;
+                            let comment_display = document.getElementById('chat-comment-display-container'+catid)
+                            let comment_count = json_file.comment_count;
+                            let accent_color = json_file.accent_color;
+                            let icon_color = json_file.icon_color;
+                            var user_first = json_file.user_first;
+                            var user_last = json_file.user_last;
+                            console.log(accent_color)
+                            $('#chat-comment-display-container'+catid).prepend(
+                                `<div id="right-comment-display-wrapper">
+                                    <div id="chat-comment-display-right" style="background-color: ${accent_color}">
+                                    <p id="comment-text">
+                                     <strong>${user_first} ${user_last}</strong>: ${form_value}</p><weak id="comment-time">Now</weak>
+                                    </div>
+                                </div>
+                                <br>`
+
+                                )
+                            $('#field-write-comment' + catid).val('');
+                            
+                            
+                        }
+                    }
+                )
+            }
+        </script>  
+    </body>
+</html>
+    

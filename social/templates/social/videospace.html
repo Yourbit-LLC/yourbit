@@ -1,0 +1,32 @@
+{% extends 'social/base.html' %}
+{% load static %}
+{% block video_space_button %}
+<a id = "video-space-button" href="{% url 'videospace' %}" class = "space-button-active" ><img class="space-button-image" src="{% static 'images/video-icon.png' %}"></a>
+{% endblock %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/feed_yourbit.css' %}"/>
+<div id="content-container">
+    <iframe id='feed-content-container' src="{% url 'feed' 'videospace' '0' %}">
+    </iframe>
+<script type="text/javascript" src="{% static 'scripts/yourbit_core.js' %}" onload="post_fly_in()"></script>
+
+{% endblock %}
+{% block notifications_quickpanel %}
+    <p>Notifications</p>
+    {% if notification_length == 0 %}
+    <p>No Notifications</p>
+    {% else %}
+    {% for request_notification in friend_requests %}
+    <form class="interaction-notification" id="friend-request" method="POST" action="{% url 'profile-interact' request_notification.pk %}">
+        {% csrf_token %}
+        <img class="notification-profile-image"src="{{ request_notification.from_user.profile.image.url }}">
+        <p class="interaction-notification-text">{{request_notification.from_user.first_name}} {{request_notification.from_user.last_name}} requested to be your friend!</p>
+        <div class="notification-response-button-container">
+            <button type="submit" name="accept_friend" class="friend-request-response-button">Accept</button>
+            <button type="submit" name="decline_friend" class="friend-request-response-button">Decline</button>
+        <div>
+    </form>
+    
+    {% endfor %}
+    {% endif %}
+{% endblock %}

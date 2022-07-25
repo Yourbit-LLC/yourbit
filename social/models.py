@@ -1,0 +1,181 @@
+from email.policy import default
+from unittest.util import _MAX_LENGTH
+from django.db import models
+from django.db.models.signals import post_save
+from django.utils import timezone
+from django.dispatch import receiver
+from django.forms import FileField
+
+# from ImageKit.models import ImageSpecField
+# from ImageKit.processors import ResizeToFill
+
+
+#from PIL import Image
+
+
+from YourbitAccounts.models import Account as User
+
+# Create your models here.
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete = models.CASCADE)
+    follows = models.ManyToManyField(
+        "self",
+        related_name="followed_by",
+        symmetrical=False,
+        blank = True
+    )
+    connections = models.ManyToManyField(
+        "self",
+        related_name="friends_with",
+        symmetrical=False, 
+        blank = True
+    )
+    
+    image_uploaded = models.BooleanField(default=False)
+    image = models.ImageField(upload_to='media/', default="media/blenderlogo.png")
+    background_image = models.ImageField(upload_to='media/', blank=True, default="media/aqua_default_theme.png")
+    is_public = models.BooleanField(default=False)
+    liked_bits = models.ManyToManyField('Bit', related_name="liked_bits", blank=True)
+    disliked_bits = models.ManyToManyField('Bit', related_name="disliked_bits", blank=True)
+    pending_requests = models.ManyToManyField('ConnectRequest', blank=True, related_name="friend_request")
+    conversations = models.ManyToManyField('Conversation', blank=True, related_name="conversations")
+    clusters = models.ManyToManyField('Cluster', blank=True, related_name="clusters")
+    bit_background = models.CharField(max_length=50, default = "#000000")
+    background_color = models.CharField(max_length=50, default="#000000")
+    accent_color = models.CharField(max_length=50, default="#ffffff")
+    title_color = models.CharField(max_length=50, default="#ffffff")
+    text_color = models.CharField(max_length=50, default="#ffffff")
+    user_bio = models.CharField(max_length = 500, blank=True)
+    feedback_icon_color = models.CharField(max_length=50, default="#ffffff")
+    icon_color = models.CharField(max_length=50, default="#ffffff")
+    rewards_earned = models.IntegerField(default=0)
+    share_points = models.IntegerField(default=0)
+    point_balance = models.IntegerField(default=0)
+    level = models.IntegerField(default=1)
+    interacted_with = models.ManyToManyField('bit', related_name='interacted_with', blank=True )
+    commented_on = models.ManyToManyField('bit', related_name='commented_on', blank=True)
+
+    def __str__(self):
+        return self.user.username
+
+def create_profile(sender, instance, created, **kwargs):
+    if created:
+        user_profile = Profile(user=instance)
+        user_profile.save()
+        customizations = Customizations(profile=user_profile)
+        customizations.save()
+        user_profile.follows.set([instance.profile.id])
+        user_profile.save()
+
+@receiver(post_save, sender=User)
+def create_profile(sender, instance, created, **kwargs):
+    if created:
+        user_profile = Profile(user=instance)
+        user_profile.save()
+        customizations = Customizations(profile=user_profile)
+        feed = Feed(profile=user_profile)
+        customizations.save()
+        feed.save()
+        user_profile.follows.add(instance.profile)
+        user_profile.save()
+
+class Feed(models.Model):
+    profile = models.ForeignKey('Profile', related_name="feed", on_delete=models.DO_NOTHING, null=True)
+    friends_only_on = models.BooleanField(default=False)
+    sorting = models.CharField(max_length= 100, default = 'chronological')
+
+class ConnectRequest(models.Model):
+    from_user = models.ForeignKey(User, related_name="from_user", on_delete=models.CASCADE)
+    to_user= models.ForeignKey(User, related_name="to_user", on_delete=models.CASCADE)
+
+class Bit(models.Model):
+    user = models.ForeignKey(
+        User, related_name="bits", on_delete=models.DO_NOTHING, default=None
+    )
+    title = models.CharField(max_length=140, blank=True)
+    image = models.ImageField(blank = True, upload_to='media/')
+    video = models.FileField(blank = True, upload_to = 'media/')
+    body = models.CharField(max_length=5000)
+    created_at = models.DateTimeField(default=timezone.now)
+    bit_type = models.CharField(max_length=20, default="chat")
+    likes = models.ManyToManyField(User, blank=True, related_name='likes')
+    like_count = models.IntegerField(default=0)
+    dislikes = models.ManyToManyField(User, blank=True, related_name='dislikes')
+    dislike_count = models.IntegerField(default=0)
+    notifications = models.ManyToManyField('Notification', blank = True, related_name = 'notifications')
+    is_public = models.BooleanField(default=False)
+    is_tips = models.BooleanField(default=False)
+    comments = models.ManyToManyField('Comment', related_name="bit_comments", blank=True)
+    comment_count = models.IntegerField(default=0)
+
+    def __str__(self):
+        return (
+            f"{self.user}"
+            f"({self.created_at: %Y-%m-%d %H:%M}): "
+            f"{self.body[:30]}..."
+        )
+class Comment(models.Model):
+    comment = models.CharField(max_length=1000, blank=True, default=None)
+    created_on = models.DateTimeField(default=timezone.now)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    bit = models.ForeignKey('Bit', on_delete=models.CASCADE)
+
+class SearchHistory(models.Model):
+    query = models.CharField(max_length = 200)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+class Notification(models.Model):
+    #Notification type 1 = like, 2 = comment, 3 = follow
+    notication_type = models.IntegerField()
+    to_user = models.ForeignKey('Profile', related_name='notification_to', on_delete=models.CASCADE, null=True)
+    from_user = models.ForeignKey('Profile', related_name='notification_from', on_delete=models.CASCADE, null=True)
+    post = models.ForeignKey('Bit', on_delete=models.CASCADE, related_name='+', blank=True, null=True)
+    comment = models.ForeignKey('Comment', on_delete=models.CASCADE, related_name='+', blank=True, null=True)
+    date = models.DateTimeField(default=timezone.now)
+    user_has_seen = models.BooleanField(default=False)
+
+class Conversation(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="+")
+    reciever = models.ForeignKey(User, on_delete=models.CASCADE, related_name="+")
+
+class Message(models.Model):
+    conversation = models.ForeignKey('Conversation', related_name="+", on_delete=models.CASCADE, blank=True, null=True)
+    body = models.CharField(max_length = 1500)
+    video = models.FileField(upload_to='media/message_attachments', blank=True)
+    image = models.ImageField(upload_to='media/message_attachments', blank=True, null=True)
+    to_user = models.ForeignKey(User, related_name='message_to', on_delete=models.CASCADE, null=True)
+    from_user = models.ForeignKey(User, related_name='message_from', on_delete=models.CASCADE)
+    date = models.DateTimeField(default=timezone.now)
+    is_read = models.BooleanField(default=False)
+
+class Cluster(models.Model):
+    name = models.CharField(max_length=100)
+    profile = models.ForeignKey('Profile', on_delete= models.CASCADE, related_name = 'cluster', null=True)
+    bits = models.ManyToManyField('Bit', related_name = 'clustered_bit', blank=True)
+
+class Customizations(models.Model):
+    #Reference to user profile
+    profile = models.ForeignKey('Profile', on_delete = models.DO_NOTHING, related_name= 'custom', null=True)
+    
+    #Profile Images
+    image_uploaded = models.BooleanField(default=False)
+    image = models.ImageField(upload_to='media/', default="media/blenderlogo.png")
+    background_image = models.ImageField(upload_to='media/', blank=True, default="media/aqua_default_theme.png")
+
+    #bits
+    bit_background = models.CharField(max_length=50, default = "#000000")
+    title_color = models.CharField(max_length=50, default="#ffffff")
+    text_color = models.CharField(max_length=50, default="#ffffff")
+    feedback_icon_color = models.CharField(max_length=50, default="#ffffff")
+
+    #UI
+    background_color = models.CharField(max_length=50, default="#000000")
+    accent_color = models.CharField(max_length=50, default="#ffffff")
+    user_bio = models.CharField(max_length = 500, blank=True)
+    icon_color = models.CharField(max_length=50, default="#ffffff")
+
+    #Quick Appearance Settings
+    user_colors_on = models.BooleanField(default=True)
+    wallpaper_on = models.BooleanField(default=True)
+    default_theme_on = models.BooleanField(default=False)

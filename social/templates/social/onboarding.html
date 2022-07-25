@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/static/yourbitstyles.css"/>
+        <title>Welcome, {{ user.first_name }}</title>
+    </head>
+    <body>
+        <video autoplay muted id="background-video">
+            <source src="/static/videos/AdobeStock_183849828_Video_HD_Preview.mov" type="video/mp4">
+        </video>
+        <div id="intro-container">
+            <h1 id = "onboarding-header" class="onboardingText">Welcome, {{ user.first_name }}, to Yourbit</h1>
+            <br>
+            <p id = "onboarding-intro" class="onboardingText">Now that you're in Yourbit, here's a few tips to help you get around.</p>
+        </div>
+        <div id="info-panels-container">
+            <div class="infoPanel" id="info-panel-1">
+                <h3>We have Options</h3>
+                <p>Opt out of sharing data for advertisement purposes and remove ads completely with Yourbit Void. Just $2.99 a month.</p>
+            </div>
+            <div class="infoPanel" id="info=panel-2">
+                
+            </div>
+        </div>
+    </body>
+    <script>
+        var backVid = document.getElementById("background-video");
+        function sign_in()
+        {
+            backVid.currentTime = 0;
+        }
+    </script>
+</html>

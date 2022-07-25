@@ -1,0 +1,11 @@
+{% extends 'social/base.html' %}
+{% load static %}
+{% block content %}
+
+        <form class = "mobile-search" id = "mobile-search" method="POST" action="{% url 'search' %}">
+            {% csrf_token %}
+            {{ search_bar.query }}
+            <button class="search-button" id="search-button" name="search"><img class="search-arrow" src="{% static 'images/icon-search-go.png' %}"></button>
+        </form>
+
+{% endblock %}

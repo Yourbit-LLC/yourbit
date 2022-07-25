@@ -1,0 +1,119 @@
+{% extends 'social/base.html'%}
+{% load static %}
+{% block background-image%}
+    <img class="bg-image" src = "{{ profile.background_image.url }}">
+{% endblock %}
+{% block space_navigator %}
+    <a data-catid="{{profile.id}}" id = "global-space-button" class = "space-button"><svg class="space-button-image"xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M5.35 17.9q-2.45 0-4.175-1.725-1.725-1.725-1.725-4.2 0-2.45 1.713-4.188Q2.875 6.05 5.35 6.05q1 0 1.937.325Q8.225 6.7 8.95 7.4l1.525 1.475L8.5 10.65 7.15 9.4q-.375-.35-.838-.525Q5.85 8.7 5.35 8.7q-1.35 0-2.3.962-.95.963-.95 2.338 0 1.35.95 2.3.95.95 2.3.95.5 0 .962-.175.463-.175.838-.525l7.9-7.15q.725-.7 1.663-1.025.937-.325 1.937-.325 2.45 0 4.175 1.725Q24.55 9.5 24.55 11.95q0 2.475-1.713 4.212Q21.125 17.9 18.65 17.9q-1 0-1.937-.325-.938-.325-1.663-1.025l-1.525-1.425 2-1.8 1.325 1.225q.375.35.838.525.462.175.962.175 1.35 0 2.3-.963.95-.962.95-2.337 0-1.35-.95-2.3-.95-.95-2.3-.95-.5 0-.962.175-.463.175-.838.525l-7.9 7.15q-.725.7-1.663 1.025-.937.325-1.937.325Z"/></svg></a>
+                        
+    <a data-catid="{{profile.id}}" id = "text-space-button" class = "space-button"><svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M.95 17.8V1.85q0-.5.325-.825Q1.6.7 2.1.7h14.25q.5 0 .825.325.325.325.325.825V12q0 .5-.325.825-.325.325-.825.325H5.6Zm5.8.9q-.5 0-.825-.325-.325-.325-.325-.825v-2.4h13.9V5.4h2.4q.5 0 .825.325.325.325.325.825v16.8L18.4 18.7Zm8.1-15.35H3.6v8.05l.9-.9h10.35Zm-11.25 0v8.05Z"/></svg></a>
+
+    <a data-catid="{{profile.id}}" id = "video-space-button" class = "space-button" ><svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m9.15 17.15 8-5.15-8-5.15ZM12 22.8q-2.25 0-4.213-.85-1.962-.85-3.424-2.312Q2.9 18.175 2.05 16.212 1.2 14.25 1.2 12t.85-4.225Q2.9 5.8 4.363 4.338q1.462-1.463 3.424-2.301Q9.75 1.2 12 1.2t4.225.837q1.975.838 3.438 2.301 1.462 1.462 2.299 3.437Q22.8 9.75 22.8 12q0 2.25-.838 4.212-.837 1.963-2.299 3.426Q18.2 21.1 16.225 21.95q-1.975.85-4.225.85Zm0-2.65q3.425 0 5.788-2.363Q20.15 15.425 20.15 12t-2.362-5.788Q15.425 3.85 12 3.85q-3.425 0-5.787 2.362Q3.85 8.575 3.85 12q0 3.425 2.363 5.787Q8.575 20.15 12 20.15ZM12 12Z"/></svg></a>
+
+    <a data-catid="{{profile.id}}" id = "photo-space-button" class = "space-button"><svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M12 17.75q1.925 0 3.263-1.337Q16.6 15.075 16.6 13.15q0-1.925-1.337-3.263Q13.925 8.55 12 8.55q-1.925 0-3.262 1.337Q7.4 11.225 7.4 13.15q0 1.925 1.338 3.263Q10.075 17.75 12 17.75Zm0-2.65q-.8 0-1.375-.575t-.575-1.375q0-.8.575-1.375T12 11.2q.8 0 1.375.575t.575 1.375q0 .8-.575 1.375T12 15.1Zm-8.15 6.725q-1.1 0-1.875-.775-.775-.775-.775-1.875V7.125q0-1.1.775-1.875.775-.775 1.875-.775h3.025l2.05-2.25h6.15l2.05 2.25h3.025q1.1 0 1.875.775.775.775.775 1.875v12.05q0 1.1-.775 1.875-.775.775-1.875.775Zm16.3-2.65V7.125h-4.2l-2.05-2.25h-3.8l-2.05 2.25h-4.2v12.05ZM12 13.15Z"/></svg></a>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        $('.space-button').click(function() {
+            let iframe = document.getElementById("profile-feed-content-container");
+            var profile_id = $(this).attr('data-catid')
+            console.log(profile_id)
+            profile_id = parseInt(profile_id)
+            if ($(this).attr('id') === 'global-space-button') {
+                iframe.src = `{% url 'feed' type='profile-global' id=profile.id %}`;
+            }
+            if ($(this).attr('id') === 'text-space-button') {
+                iframe.src = `{% url 'feed' type='profile-chatspace' id=profile.id %}`;
+            }
+            if ($(this).attr('id') === 'photo-space-button') {
+                iframe.src = `{% url 'feed' type='profile-photospace' id=profile.id %}`;
+            }
+            if ($(this).attr('id') === 'video-space-button') {
+                iframe.src = `{% url 'feed' type='profile-videospace' id=profile.id %}`;
+            }
+        });
+    </script>
+{% endblock %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/yourbit_profile.css' %}"/>
+<div id="content-container">
+    <div class="profile-info">
+        <input type='hidden' id="profile_id" value="{{profile.id}}">
+        <div id="profile-image-profile" ><img style="border-color: {{profile.accent_color}}" src="{{ profile.image.url }}" class="profile-image-large" id="profile-image-profile-image"></div>
+        <div id="user-name-profile"> <p id="profile-first-last-name"><strong>{{profile.user.first_name}} {{profile.user.last_name}}</strong> <small>@{{profile.user.username}}</small></p></div>
+        
+        <div id="profile-bio"><p id="bio-text">Bio<br><small>{{profile.user_bio}}</small></p></div>
+        <form method = "POST" class="profile-interaction-form" action="{% url 'profile-interact' profile.pk %}">
+            {% csrf_token %}
+            {% if user.id == profile.user.id %}
+                <a class = "profile-header-link" id="profile-edit-link" data-catid="{{profile.id}}" href="{%  url 'personalize' %}"><svg class="profile-interact-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill:{{profile.bit_background}};" d="M5 19h1.4l8.625-8.625-1.4-1.4L5 17.6ZM19.3 8.925l-4.25-4.2 1.4-1.4q.575-.575 1.413-.575.837 0 1.412.575l1.4 1.4q.575.575.6 1.388.025.812-.55 1.387ZM17.85 10.4 7.25 21H3v-4.25l10.6-10.6Zm-3.525-.725-.7-.7 1.4 1.4Z"/></svg></a>
+                <a id="profile-follow-button" class = "profile-header-link" data-catid="{{profile.id}}"><svg class="profile-interact-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill:{{profile.bit_background}};" d="M1 20v-4q0-.85.588-1.425Q2.175 14 3 14h3.275q.5 0 .95.25.45.25.725.675.725.975 1.788 1.525Q10.8 17 12 17q1.225 0 2.288-.55 1.062-.55 1.762-1.525.325-.425.762-.675.438-.25.913-.25H21q.85 0 1.425.575Q23 15.15 23 16v4h-7v-2.275q-.875.625-1.887.95Q13.1 19 12 19q-1.075 0-2.1-.337-1.025-.338-1.9-.963V20Zm11-4q-.95 0-1.8-.438-.85-.437-1.425-1.212-.425-.625-1.062-.987Q7.075 13 6.325 13q.55-.925 2.325-1.463Q10.425 11 12 11q1.575 0 3.35.537 1.775.538 2.325 1.463-.725 0-1.375.363-.65.362-1.075.987-.55.8-1.4 1.225Q12.975 16 12 16Zm-8-3q-1.25 0-2.125-.875T1 10q0-1.275.875-2.138Q2.75 7 4 7q1.275 0 2.138.862Q7 8.725 7 10q0 1.25-.862 2.125Q5.275 13 4 13Zm16 0q-1.25 0-2.125-.875T17 10q0-1.275.875-2.138Q18.75 7 20 7q1.275 0 2.138.862Q23 8.725 23 10q0 1.25-.862 2.125Q21.275 13 20 13Zm-8-3q-1.25 0-2.125-.875T9 7q0-1.275.875-2.138Q10.75 4 12 4q1.275 0 2.137.862Q15 5.725 15 7q0 1.25-.863 2.125Q13.275 10 12 10Z"/></svg></a>
+                <a class = "profile-header-link" id="profile-message-button" data-catid="{{profile.id}}"><svg class="profile-interact-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill:{{profile.bit_background}};" d="M4 20q-.825 0-1.412-.587Q2 18.825 2 18V6q0-.825.588-1.412Q3.175 4 4 4h16q.825 0 1.413.588Q22 5.175 22 6v12q0 .825-.587 1.413Q20.825 20 20 20Zm8-7L4 8v10h16V8Zm0-2 8-5H4ZM4 8V6v12Z"/></svg></a>
+            {% else %}
+                {% if profile in user_connections %}
+                    <button type="submit" data-catid="{{profile.id}}"  name = "request_friend" class = "profile-button" id="profile-connect-button">Edit Friend</button>
+                    <a data-catid="{{profile.id}}" id="profile-follow-button" class = "profile-header-link"><svg class="profile-interact-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill:{{profile.bit_background}};" d="M1 20v-4q0-.85.588-1.425Q2.175 14 3 14h3.275q.5 0 .95.25.45.25.725.675.725.975 1.788 1.525Q10.8 17 12 17q1.225 0 2.288-.55 1.062-.55 1.762-1.525.325-.425.762-.675.438-.25.913-.25H21q.85 0 1.425.575Q23 15.15 23 16v4h-7v-2.275q-.875.625-1.887.95Q13.1 19 12 19q-1.075 0-2.1-.337-1.025-.338-1.9-.963V20Zm11-4q-.95 0-1.8-.438-.85-.437-1.425-1.212-.425-.625-1.062-.987Q7.075 13 6.325 13q.55-.925 2.325-1.463Q10.425 11 12 11q1.575 0 3.35.537 1.775.538 2.325 1.463-.725 0-1.375.363-.65.362-1.075.987-.55.8-1.4 1.225Q12.975 16 12 16Zm-8-3q-1.25 0-2.125-.875T1 10q0-1.275.875-2.138Q2.75 7 4 7q1.275 0 2.138.862Q7 8.725 7 10q0 1.25-.862 2.125Q5.275 13 4 13Zm16 0q-1.25 0-2.125-.875T17 10q0-1.275.875-2.138Q18.75 7 20 7q1.275 0 2.138.862Q23 8.725 23 10q0 1.25-.862 2.125Q21.275 13 20 13Zm-8-3q-1.25 0-2.125-.875T9 7q0-1.275.875-2.138Q10.75 4 12 4q1.275 0 2.137.862Q15 5.725 15 7q0 1.25-.863 2.125Q13.275 10 12 10Z"/></svg></a>
+                    <a data-catid="{{profile.id}}" class = "profile-header-link" id="profile-message-button"><svg class="profile-interact-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill:{{profile.bit_background}};" d="M4 20q-.825 0-1.412-.587Q2 18.825 2 18V6q0-.825.588-1.412Q3.175 4 4 4h16q.825 0 1.413.588Q22 5.175 22 6v12q0 .825-.587 1.413Q20.825 20 20 20Zm8-7L4 8v10h16V8Zm0-2 8-5H4ZM4 8V6v12Z"/></svg></a>
+                {% else %}
+                    <button style="background-color: {{profile.accent_color}};" type="submit" name = "request_friend" class = "profile-button" id="profile-connect-button">Add Friend</button>
+                    <button style="background-color: {{profile.accent_color}};" class = "profile-button" id="profile-follow-button">Follow</button>
+                    <button style="background-color: {{profile.accent_color}};" class = "profile-button" id="profile-message-button">Message</button>
+                {% endif %}
+            {% endif %}
+        </form>
+        
+        </div>
+        <hr style="margin-top: 10px; background-color:{{profile.accent_color}}; border-color:{{profile.accent_color}};">
+    <!--Check if profile is public before proceeding as this is the highest form of exposure -->
+
+    {% if profile.is_public%}
+            <iframe id='profile-feed-content-container' src="{% url 'feed' type='profile' id=profile.id %}">
+            </iframe>
+
+    {% else %}
+        <!--If profile is not public check if the user is authenticated to avoid future errors -->  
+        {% if user.is_authenticated %}
+
+            <!-- If user is authenticated check if users are friends -->
+
+                {% if profile in user.profile.connections.all %}
+                <!--If users are friends retreive posts from backend-->
+
+                    <iframe id='feed-content-container' src="{% url 'feed' type='profile' id=profile.id %}">
+                    </iframe>
+
+                    <!--Finally check if profile is user-->
+
+                    {% elif profile == user.profile %}
+
+                        <iframe id='profile-feed-content-container' src="{% url 'feed' type='profile' id=profile.id %}">
+                        </iframe>
+
+                    {% else %}
+                    <h1>You must be friends with {{ profile.user.first_name }} to see their posts</h1>
+                {% endif %}
+            {% else %}
+                <h1>You must be logged in to see this users profile</h1>
+            {% endif %}
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block notifications_quickpanel %}
+    <p>Notifications</p>
+    {% if notification_length == 0 %}
+    <p>No Notifications</p>
+    {% else %}
+    {% for request_notification in friend_requests %}
+    <form class="interaction-notification" id="friend-request" method="POST" action="{% url 'profile-interact' request_notification.pk %}">
+        {% csrf_token %}
+        <img class="notification-profile-image"src="{{ request_notification.from_user.profile.image.url }}">
+        <p class="interaction-notification-text">{{request_notification.from_user.first_name}} {{request_notification.from_user.last_name}} requested to be your friend!</p>
+        <div class="notification-response-button-container">
+            <button type="submit" name="accept_friend" class="friend-request-response-button">Accept</button>
+            <button type="submit" name="decline_friend" class="friend-request-response-button">Decline</button>
+        <div>
+    </form>
+    {% endfor %}
+    {% endif %}
+{% endblock %}

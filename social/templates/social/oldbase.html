@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/yourbitbeta.css' %}"/>
+    </head>
+    <nav class="grid-container" id = "navibar">
+        <img src="{% static 'images/yourbit-logo-modern.png' %}" class="logo" id = "logo" alt="yourbit logo">
+        <p id="yourbit" class="grid-container">
+            Yourbit
+        </p>
+        <!--Space navigator allows people to switch between content types on the network-->
+        <div class = "spaceNavigator" id="space-navigator">
+            <button class = "spaceButton" id="global"><img class="spaceButtonImage" src="{% static 'images/globalspace-icon.png' %}"></button>
+            <button class = "spaceButton" id="social"><img class="spaceButtonImage" src="{% static 'images/social-icon.png' %}"></button>
+            <button class = "spaceButton" id="video"><img class="spaceButtonImage" src="{% static 'images/video-icon.png' %}"></button>
+            <button class = "spaceButton" id="photo"><img class="spaceButtonImage" src="{% static 'images/photospace-icon.png' %}"></button>
+        </div>
+        <!--Search box must disappear at half width and become button until the button is clicked in which the search bar will expand to fill entire element-->
+        <form class = "search" id = "search" method="POST">
+            <input type="text" class="searchbox" id="searchbox" placeholder="Search Yourbit">
+            <button class="searchButton" id="search-button"><img class="search-arrow" src="{% static 'images/search-arrow.png' %}"></button>
+        </form>
+
+        <div class = "notificationPane" id="notification-pane">
+            <button class="notificationButton" id="messages"><img class="notificationBackground" src="{% static 'images/messages-icon.png' %}"></button>
+            <button class="notificationButton" id="notifications"><img class="notificationBackground" src="{% static 'images/notification-icon.png' %}"></button>
+            <button class="notificationButton" id="create-post"><img class="notificationBackground" src="{% static 'images/create-post-icon.png' %}" onclick="show_create_post()"></button>
+        </div>
+
+        <div class="profile-icon" id = "profile-icon" onclick="show_profile_menu()">
+            <img src="{% static 'images/smilinglady2.jfif' %}" class="profile-icon" id="profile-pic">
+        </div>
+    </nav>
+    <body>
+        <div width="100%"><img src="{% static 'images/milkyway.jpg' %}" class="bg-image"></div>
+        <div class="contentContainer" id="content-container">
+            {% csrf_token %}
+            {% if user.is_authenticated %}
+        
+                {% block content %}
+            
+                {% endblock %}
+            
+            {% else %}
+                <div id="not-auth-error" class="notAuthError">
+                    <div>
+                        <h1>Oops!</h1>
+                        <p>It looks like you arent logged in...</p>
+                        <a href="/login">Log in</a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        <!--Profile Menu comes and goes when user clicks on the profile icon, contains links to user settings-->
+        <div class="profileMenu" id="profile-menu">
+            <div class="profileName" id="profileName"><p id="profileNameLabel">{{user.first_name}} {{user.last_name}}</p></div>
+            <br>
+            <div id="menuOptions">
+                <div class="profileMenuLink"><a class="profileMenuLabel" id= "profileLink">Profile</a></div>
+                <br>
+                <div class="profileMenuLink"><a class="profileMenuLabel" id="historyLink">History</a></div>
+                <br>
+                <div class="profileMenuLink"><a class="profileMenuLabel" id="settingsLink">Settings</a></div>
+                <br>
+                <div class="profileMenuLink"><a class="profileMenuLabel" id="logoutLink" href="/logout">Logout</a></div>
+            </div>
+        </div>
+        <!--Create post element appears when user clicks on the create post button-->
+        <div class="createPost" id="createPost">
+                <form class="writePost" id="writePost" method="POST">
+                <h3>Create Post</h3><button type="button" class="postClose" id="postClose" onclick="hide_create_post()">&times;</button>
+                <textarea name="post_text" class="postText" id="postText" rows = "5" cols="75" name="text" id="Text" placeholder="What would you like to tell the internet?"></textarea>
+                <input name="post_type" type="text" class="postType" id="post-type" value="text">
+                <div class="postType" id="postType">
+                    <button class = "spaceButtonPost" id="social"><img class="spaceButtonImage" src="/static/graphics/social-icon.png"></button>
+                    <button class = "spaceButtonPost" id="video"><img class="spaceButtonImage" src="/static/graphics/video-icon.png"></button>
+                    <button class = "spaceButtonPost" id="photo"><img class="spaceButtonImage" src="/static/graphics/photospace-icon.png"></button>
+                </div>
+                <button type="submit" class="createPostInteract" id="publish">Publish</button>
+            </form>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="{% static 'scripts/script.js' %}"></script>
+    </body>
+</html> 

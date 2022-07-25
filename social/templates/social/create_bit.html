@@ -1,0 +1,75 @@
+{% extends 'social/base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/create_bit_yourbit.css' %}"/>
+
+    <div id="content-container">
+        <form class="write-post" id="write-post" method="POST" action="{% url 'create-bit' %}" style="display:grid; background-color:{{user.profile.bit_background}};">
+            <input type="hidden" name="last_page" value="{{ last_page }}">
+            <input type="hidden" name="bit_type" value="chat">
+            <div id="create-post-title"><h3 id="create-post-title-text">Create Chat Bit</h3><button type="button" class="post-close" id="post-close">&times;</button></div>
+            
+                {% csrf_token %}
+                {{ bit_form.title }}
+                {{ bit_form.body }}
+                <div id="public-toggle-field">
+                    {{ bit_form.is_public.label}}
+                    {{ bit_form.is_public}}
+                </div>
+        
+            <input name="post-type" type="text" class="post-type-hidden" id="post-type-hidden" value="text">
+            <div class="post-type" id="post-type">
+                <div class = "icon-square-small-active" id="social-tiny"><img class="icon-square-small-icon" src="{% static 'images/socialspace-icon.png' %}"></div>
+                <div class = "icon-square-small" id="video-tiny" onclick="VideoForm()"><img class="icon-square-small-icon" src="{% static 'images/videospace-icon.png' %}"></div>
+                <div class = "icon-square-small" id="photo-tiny" onclick="PhotoForm()"><img class="icon-square-small-icon" src="{% static 'images/photospace-icon.png' %}"></div>
+            </div>
+            <button type="submit" class="create-post-interact" name="publish_bit" id="publish">Publish</button>
+        </form>
+        <form class="write-post" id="upload-video" method="POST" action="{% url 'create-bit' %}" style="display:none; background-color:{{user.profile.bit_background}};" enctype="multipart/form-data">
+            <input type="hidden" name="last_page" value="{{ last_page }}">
+            <input type="hidden" name="bit_type" value="video">
+            <div id="create-post-title"><h3 id="create-post-title-text">Create Video Bit</h3><button type="button" class="post-close" id="post-close">&times;</button></div>
+            
+                {% csrf_token %}
+                {{ bit_form.title }}
+                {{ bit_form.body }}
+                {{ bit_form.video }}
+                <div id="public-toggle-field">
+                    {{ bit_form.is_public.label}}
+                    {{ bit_form.is_public}}
+                </div>
+        
+            <input name="post-type" type="text" class="post-type-hidden" id="post-type-hidden" value="text">
+            <div class="post-type" id="post-type">
+                <div class = "icon-square-small" id="social-tiny" onclick="ChatForm()"><img class="icon-square-small-icon" src="{% static 'images/socialspace-icon.png' %}"></div>
+                <div class = "icon-square-small-active" id="video-tiny"><img class="icon-square-small-icon" src="{% static 'images/videospace-icon.png' %}"></div>
+                <div class = "icon-square-small" id="photo-tiny" onclick="PhotoForm()"><img class="icon-square-small-icon" src="{% static 'images/photospace-icon.png' %}"></div>
+            </div>
+            <button type="submit" class="create-post-interact" name="publish_bit" id="publish">Publish</button>
+        </form>
+        <form class="write-post" id="upload-photo" method="POST" action="{% url 'create-bit' %}" style="display:none; background-color:{{user.profile.bit_background}};" enctype="multipart/form-data">
+            <input type="hidden" name="last_page" value="{{ last_page }}">
+            <input type="hidden" name="bit_type" value="photo">
+            <div id="create-post-title"><h3 id="create-post-title-text">Create Photo Bit</h3><button type="button" class="post-close" id="post-close" onclick="hide_create_post()">&times;</button></div>
+            
+                {% csrf_token %}
+                {{ bit_form.title }}
+                {{ bit_form.body }}
+                {{ bit_form.image }}
+                <div id="public-toggle-field">
+                    {{ bit_form.is_public.label}}
+                    {{ bit_form.is_public}}
+                </div>
+        
+            <input name="post-type" type="text" class="post-type-hidden" id="post-type-hidden" value="text">
+            <div class="post-type" id="post-type">
+                <div class = "icon-square-small" id="social-tiny" onclick="ChatForm()"><img class="icon-square-small-icon" src="{% static 'images/socialspace-icon.png' %}"></div>
+                <div class = "icon-square-small" id="video-tiny" onclick="VideoForm()"><img class="icon-square-small-icon" src="{% static 'images/videospace-icon.png' %}"></div>
+                <div class = "icon-square-small-active" id="photo-tiny"><img class="icon-square-small-icon" src="{% static 'images/photospace-icon.png' %}"></div>
+            </div>
+            <button type="submit" class="create-post-interact" name="publish_bit" id="publish">Publish</button>
+        </form>        
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+{% endblock %}

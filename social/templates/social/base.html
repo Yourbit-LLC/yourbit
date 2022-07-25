@@ -1,0 +1,471 @@
+<!--
+    Yourbit Home Final:
+    Yourbit home screen presents users with their feed. This feed can be defaulted to any space 
+    by the user, here users will see content of other users they are connected to within their 
+    default space upon login.
+-->
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{%block title%}Yourbit | Home{%endblock%}</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/yourbit_core.css' %}"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/yourbit_posts.css' %}"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/notifications_yourbit.css' %}"/>
+        {%block extend_styles%}{%endblock%}
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    </head>
+    <body style="background-color:rgb(25,25,25);">
+
+        <!--Mobile Header-->
+
+        <div id="mobile-header">
+            <img id="mobile-logo" src="{% static "images/logo-flat.png"%}"/>
+            <div id="visibility-mobile">
+                <svg id="visibility-icon-mobile" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M12 16q1.875 0 3.188-1.312Q16.5 13.375 16.5 11.5q0-1.875-1.312-3.188Q13.875 7 12 7q-1.875 0-3.188 1.312Q7.5 9.625 7.5 11.5q0 1.875 1.312 3.188Q10.125 16 12 16Zm0-1.8q-1.125 0-1.912-.788Q9.3 12.625 9.3 11.5t.788-1.913Q10.875 8.8 12 8.8t1.913.787q.787.788.787 1.913t-.787 1.912q-.788.788-1.913.788Zm0 4.8q-3.65 0-6.65-2.038-3-2.037-4.35-5.462 1.35-3.425 4.35-5.463Q8.35 4 12 4q3.65 0 6.65 2.037 3 2.038 4.35 5.463-1.35 3.425-4.35 5.462Q15.65 19 12 19Z"/></svg>
+                <div id="visibility-dropdown-mobile" style="display:none; font-size: 14px;">
+                    <div id="options-container-mobile" style="display:none;">
+                        <p class="vis-option-text">Default Theme</p>
+                        <label class="switch" id="theme" style="grid-column: 2;">
+                            <input type="checkbox" class="checkbox" name="defaultTheme" id="defaultCheck" >
+                            <span class="slider round"></span>
+                        </label>
+                        <p class="vis-option-text">Bit Colors</p>
+                            <label class="switch" id="theme" style="grid-column: 2;">
+                                <input type="checkbox" class="checkbox" name="bitColor"id="postColorCheck">
+                                <span class="slider round"></span>
+                            </label>
+                        <p class="vis-option-text">Wallpaper</p>
+                        <label class="switch" id="theme" style="grid-column: 2;">
+                            <input class="checkbox" type="checkbox" name="wallpaper" id="wallpaperCheck">
+                            <span class="slider round"></span>
+                        </label>
+                        
+                    </div>
+                    <div class="all-settings-shortcut-container"><button type="button" class="all-settings-shortcut">Go To Settings</button></div>
+                </div>
+            </div>
+        </div>
+        {% csrf_token %}
+        {% if user.is_authenticated %}
+        
+
+        <div width = "100%">
+            {% block background-image%}
+            {% if user.is_authenticated %}
+                {% if user.profile.background_image %}
+                    {% if wallpaper_on %}
+                        <img class="bg-image" src = "{{ request.user.profile.background_image.url }}">
+                    {% else %}
+                        <div class="bg-image" style="background-color: rgb(95, 95, 95)"></div>
+                    {% endif %}
+                {% else %}
+                    <div class="bg-image" style="background-color: rgb(95, 95, 95)"></div>
+                {% endif %}
+            {% else %}
+                <div class="bg-image" style="background-color: rgb(95, 95, 95)"></div>
+            {% endif %}
+            {% endblock %}
+            </div>        
+            <nav class="navigation-bar">
+                <img id = "logo-image" style="-webkit-filter: drop-shadow(0px 0px 10px black);" src="{% static 'images/yourbit-logo-modern.png' %}">
+                <p id="logo-name" style="text-shadow: 0px 0px 5px black;">Yourbit</p>
+                
+                
+                <div class = "space-navigator">
+                    <!--Space navigator allows people to switch between content types on the network-->
+                {% block space_navigator %}
+
+                        <a id = "global-space-button" class = "space-button"><svg class="space-button-image"xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M5.35 17.9q-2.45 0-4.175-1.725-1.725-1.725-1.725-4.2 0-2.45 1.713-4.188Q2.875 6.05 5.35 6.05q1 0 1.937.325Q8.225 6.7 8.95 7.4l1.525 1.475L8.5 10.65 7.15 9.4q-.375-.35-.838-.525Q5.85 8.7 5.35 8.7q-1.35 0-2.3.962-.95.963-.95 2.338 0 1.35.95 2.3.95.95 2.3.95.5 0 .962-.175.463-.175.838-.525l7.9-7.15q.725-.7 1.663-1.025.937-.325 1.937-.325 2.45 0 4.175 1.725Q24.55 9.5 24.55 11.95q0 2.475-1.713 4.212Q21.125 17.9 18.65 17.9q-1 0-1.937-.325-.938-.325-1.663-1.025l-1.525-1.425 2-1.8 1.325 1.225q.375.35.838.525.462.175.962.175 1.35 0 2.3-.963.95-.962.95-2.337 0-1.35-.95-2.3-.95-.95-2.3-.95-.5 0-.962.175-.463.175-.838.525l-7.9 7.15q-.725.7-1.663 1.025-.937.325-1.937.325Z"/></svg></a>
+                    
+                        <a id = "text-space-button" class = "space-button"><svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M.95 17.8V1.85q0-.5.325-.825Q1.6.7 2.1.7h14.25q.5 0 .825.325.325.325.325.825V12q0 .5-.325.825-.325.325-.825.325H5.6Zm5.8.9q-.5 0-.825-.325-.325-.325-.325-.825v-2.4h13.9V5.4h2.4q.5 0 .825.325.325.325.325.825v16.8L18.4 18.7Zm8.1-15.35H3.6v8.05l.9-.9h10.35Zm-11.25 0v8.05Z"/></svg></a>
+                    
+                        <a id = "video-space-button" class = "space-button" ><svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m9.15 17.15 8-5.15-8-5.15ZM12 22.8q-2.25 0-4.213-.85-1.962-.85-3.424-2.312Q2.9 18.175 2.05 16.212 1.2 14.25 1.2 12t.85-4.225Q2.9 5.8 4.363 4.338q1.462-1.463 3.424-2.301Q9.75 1.2 12 1.2t4.225.837q1.975.838 3.438 2.301 1.462 1.462 2.299 3.437Q22.8 9.75 22.8 12q0 2.25-.838 4.212-.837 1.963-2.299 3.426Q18.2 21.1 16.225 21.95q-1.975.85-4.225.85Zm0-2.65q3.425 0 5.788-2.363Q20.15 15.425 20.15 12t-2.362-5.788Q15.425 3.85 12 3.85q-3.425 0-5.787 2.362Q3.85 8.575 3.85 12q0 3.425 2.363 5.787Q8.575 20.15 12 20.15ZM12 12Z"/></svg></a>
+                    
+                        <a id = "photo-space-button" class = "space-button"><svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M12 17.75q1.925 0 3.263-1.337Q16.6 15.075 16.6 13.15q0-1.925-1.337-3.263Q13.925 8.55 12 8.55q-1.925 0-3.262 1.337Q7.4 11.225 7.4 13.15q0 1.925 1.338 3.263Q10.075 17.75 12 17.75Zm0-2.65q-.8 0-1.375-.575t-.575-1.375q0-.8.575-1.375T12 11.2q.8 0 1.375.575t.575 1.375q0 .8-.575 1.375T12 15.1Zm-8.15 6.725q-1.1 0-1.875-.775-.775-.775-.775-1.875V7.125q0-1.1.775-1.875.775-.775 1.875-.775h3.025l2.05-2.25h6.15l2.05 2.25h3.025q1.1 0 1.875.775.775.775.775 1.875v12.05q0 1.1-.775 1.875-.775.775-1.875.775Zm16.3-2.65V7.125h-4.2l-2.05-2.25h-3.8l-2.05 2.25h-4.2v12.05ZM12 13.15Z"/></svg></a>
+
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+                        <script type="text/javascript">
+                            $('.space-button').click(function() {
+                                let iframe = document.getElementById("feed-content-container");
+                                if ($(this).attr('id') === 'global-space-button') {
+                                    iframe.src = "{% url 'feed' 'global' '0' %}";
+                                }
+                                if ($(this).attr('id') === 'text-space-button') {
+                                    iframe.src = "{% url 'feed' 'chatspace' '0' %}";
+                                }
+                                if ($(this).attr('id') === 'photo-space-button') {
+                                    iframe.src = "{% url 'feed' 'photospace' '0' %}";
+                                }
+                                if ($(this).attr('id') === 'video-space-button') {
+                                    iframe.src = "{% url 'feed' 'videospace' '0' %}";
+                                }
+                            });
+                        </script>
+                {% endblock %}
+                </div>
+                
+                <!--Start Search-->
+
+                <!--Search box must disappear at half width and become button until the button is clicked 
+                    in which the search bar will expand to fill entire element-->
+
+                <form class = "search" id = "search" method="POST" action="{% url 'search' %}">
+                    {% csrf_token %}
+                    {{ search_bar.query }}
+                    <button class="search-button" id="search-button" name="search"><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m19.825 21.65-6.35-6.35q-.75.575-1.837.912-1.088.338-2.213.338-2.975 0-5.037-2.062-2.063-2.063-2.063-5.038t2.063-5.038Q6.45 2.35 9.425 2.35t5.038 2.062q2.062 2.063 2.062 5.038 0 1.125-.312 2.15-.313 1.025-.913 1.825l6.375 6.375Zm-10.4-7.75q1.875 0 3.163-1.288 1.287-1.287 1.287-3.162t-1.287-3.163Q11.3 5 9.425 5 7.55 5 6.263 6.287 4.975 7.575 4.975 9.45q0 1.875 1.288 3.162Q7.55 13.9 9.425 13.9Z"/></svg></button>
+                    <div id="search-options">
+                        <p id="search-options-label">Filters:</p>
+                        <div id="global-search"class="search-filter-option">1</div>
+                        <div id="chat-search" class="search-filter-option">2</div>
+                        <div id="video-search" class="search-filter-option">3</div>
+                        <div id="photo-search" class="search-filter-option">4</div>
+                        <div id="people-search" class="search-filter-option">5</div>
+                    </div>
+                </form>
+
+                <!--End Search-->
+
+                <!--Visibility Cointainer Mobile-->
+
+                <div id="visibility">
+                    <svg id="visibility-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M12 16q1.875 0 3.188-1.312Q16.5 13.375 16.5 11.5q0-1.875-1.312-3.188Q13.875 7 12 7q-1.875 0-3.188 1.312Q7.5 9.625 7.5 11.5q0 1.875 1.312 3.188Q10.125 16 12 16Zm0-1.8q-1.125 0-1.912-.788Q9.3 12.625 9.3 11.5t.788-1.913Q10.875 8.8 12 8.8t1.913.787q.787.788.787 1.913t-.787 1.912q-.788.788-1.913.788Zm0 4.8q-3.65 0-6.65-2.038-3-2.037-4.35-5.462 1.35-3.425 4.35-5.463Q8.35 4 12 4q3.65 0 6.65 2.037 3 2.038 4.35 5.463-1.35 3.425-4.35 5.462Q15.65 19 12 19Z"/></svg>
+                    <div id="visibility-dropdown" style="display:none; font-size: 14px;">
+                        <div id="options-container" style="display:none;">
+                            <p class="vis-option-text">Default Theme</p>
+                            <label class="switch" id="theme" style="grid-column: 2;">
+                                <input type="checkbox" class="checkbox" name="defaultTheme" id="defaultCheck" >
+                                <span class="slider round"></span>
+                            </label>
+                            <p class="vis-option-text">Bit Colors</p>
+                                <label class="switch" id="theme" style="grid-column: 2;">
+                                    <input type="checkbox" class="checkbox" name="bitColor"id="postColorCheck">
+                                    <span class="slider round"></span>
+                                </label>
+                            <p class="vis-option-text">Wallpaper</p>
+                            <label class="switch" id="theme" style="grid-column: 2;">
+                                <input class="checkbox" type="checkbox" name="wallpaper" id="wallpaperCheck">
+                                <span class="slider round"></span>
+                            </label>
+                            
+                        </div>
+                        <div class="all-settings-shortcut-container"><button type="button" class="all-settings-shortcut">Go To Settings</button></div>
+                    </div>
+                </div>
+
+                <!--
+
+                    Quick Actions Bar:
+                    -Create bit
+                    -notifications
+                    -messages
+
+                -->
+
+                <form class = "nav-element" id="quick-actions" method="GET" action="{% url 'create-bit' %}">
+                    {% csrf_token %}
+                    <a class="quick-button" href="{% url 'messages' %}" id="messages-quick" ><svg xmlns="http://www.w3.org/2000/svg" class="quick-button-background" height="24" width="24"><path d="M3.85 20.75q-1.1 0-1.875-.775Q1.2 19.2 1.2 18.1V5.9q0-1.1.775-1.875.775-.775 1.875-.775h16.3q1.1 0 1.875.775.775.775.775 1.875v12.2q0 1.1-.775 1.875-.775.775-1.875.775ZM12 13.575 3.85 8.6v9.5h16.3V8.6ZM12 11l8.35-5.1H3.65ZM3.65 8.6V5.9v12.2H3.85h-.2Z"/></svg></a>
+                    <a class="quick-button" onclick="show_notifications()" id="notifications-quick" ><div class="status-indicator" id="notification-status" style="display: none;"></div><svg xmlns="http://www.w3.org/2000/svg" class="quick-button-background" height="24" width="24"><path d="M3.55 19.05V16.4h2.025v-6.375q0-2.15 1.263-3.863Q8.1 4.45 10.15 3.875v-.7q0-.775.538-1.313.537-.537 1.312-.537t1.312.537q.538.538.538 1.313v.7q2.05.575 3.313 2.287 1.262 1.713 1.262 3.863V16.4h2.025v2.65ZM12 11.325Zm0 11.325q-.95 0-1.625-.675T9.7 20.35h4.6q0 .95-.675 1.625T12 22.65ZM8.225 16.4h7.55v-6.375q0-1.575-1.1-2.675-1.1-1.1-2.675-1.1-1.575 0-2.675 1.1-1.1 1.1-1.1 2.675Z"/></svg></a>
+                    <input type="hidden" name="last_page" value="{{ request.path }}">
+                    <button class="quick-button" id="create-post-button" type="submit"><svg class="quick-button-background" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M10.7 17.4h2.65v-4.05h4.05V10.7h-4.05V6.6H10.7v4.1H6.6v2.65h4.1Zm1.3 5.4q-2.25 0-4.213-.85-1.962-.85-3.424-2.312Q2.9 18.175 2.05 16.212 1.2 14.25 1.2 12t.85-4.225Q2.9 5.8 4.363 4.338q1.462-1.463 3.424-2.301Q9.75 1.2 12 1.2t4.225.837q1.975.838 3.438 2.301 1.462 1.462 2.299 3.437Q22.8 9.75 22.8 12q0 2.25-.838 4.212-.837 1.963-2.299 3.426Q18.2 21.1 16.225 21.95q-1.975.85-4.225.85Zm0-2.65q3.425 0 5.788-2.363Q20.15 15.425 20.15 12t-2.362-5.788Q15.425 3.85 12 3.85q-3.425 0-5.787 2.362Q3.85 8.575 3.85 12q0 3.425 2.363 5.787Q8.575 20.15 12 20.15ZM12 12Z"/></svg></button>
+                </form>
+
+                <div class="profile-icon" id = "profile-icon" onclick="show_profile_menu()">
+                    <img src="{{request.user.profile.image.url}}" class="profile-icon" style="border-color: {{user.profile.accent_color}};" id="profile-pic">
+
+
+                </div>
+            </nav>
+  
+                <!--Profile Menu comes and goes when user clicks on the profile icon, contains links to user settings-->
+                <div class="profile-menu" id="profile-menu">
+
+                    <a class="profile-name" href="{% url 'profile' user.profile.pk %}" id="profile-name">                    
+                        <img src="{{ request.user.profile.image.url }}" class="profile-image-large" id="menu-profile-image">
+
+                        <p id="profile-name-label">{{user.first_name}} {{user.last_name}}</p>
+                        <p id="menu-username">@{{user.username}}</p>
+                        <p style="font-size: 12px; margin-bottom: 4px;">Yourbit Rewards</p>
+                        <p id="menu-rewards-balance">{{user.profile.point_balance}}<small>pts</small></p>
+                    </a>
+                    <div id="menu-options">
+                        <div class="profile-menu-link" id = "home-link" ><a class="profile-menu-label" href="{% url 'home' %}" ><svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path style="fill:{{user.profile.accent_color}};" d="M8 42V18L24.1 6 40 18v24H28.3V27.75h-8.65V42Zm3-3h5.65V24.75H31.3V39H37V19.5L24.1 9.75 11 19.5Zm13-14.65Z"/></svg></a></div>
+                        
+                        <div class="profile-menu-link" id= "stuff-link"><a class="profile-menu-label" href="{% url 'stuff' %}"><svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path style="fill:{{user.profile.accent_color}};"  d="M6 40.9V16.3q-.7-.1-1.35-1Q4 14.4 4 13.35V7q0-1.15.9-2.075Q5.8 4 7 4h34q1.15 0 2.075.925Q44 5.85 44 7v6.35q0 1.05-.65 1.95-.65.9-1.35 1v24.6q0 1.15-.925 2.125Q40.15 44 39 44H9q-1.2 0-2.1-.975Q6 42.05 6 40.9Zm3-24.55V41h30V16.35Zm32-3V7H7v6.35Zm-23 13.5h12v-3H18ZM9 41V16.35 41Z"/></svg></a></div>
+                        
+                        <div class="profile-menu-link" id="history-link"><a class="profile-menu-label" href="{% url 'history' 'liked' %}"><svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path style="fill:{{user.profile.accent_color}};" d="m30.25 32.15-7.7-7.6v-10.7h3v9.45L32.4 30ZM23.85 42q-7.45 0-12.65-5.275T6 23.95h3q0 6.25 4.3 10.65T23.85 39q6.35 0 10.75-4.45t4.4-10.8q0-6.2-4.45-10.475Q30.1 9 23.85 9q-3.4 0-6.375 1.55t-5.175 4.1h5.25v3H7.1V7.25h3v5.3q2.6-3.05 6.175-4.8Q19.85 6 23.85 6q3.75 0 7.05 1.4t5.775 3.825q2.475 2.425 3.9 5.675Q42 20.15 42 23.9t-1.425 7.05q-1.425 3.3-3.9 5.75-2.475 2.45-5.775 3.875Q27.6 42 23.85 42Z"/></svg></a></div>
+                        
+                        <div class="profile-menu-link" id= "rewards-link"><a class="profile-menu-label" href="{% url 'rewards' %}"><svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path style="fill:{{user.profile.accent_color}};" d="m16 36 8-6.1 8 6.1-3.2-9.85 8-5.65h-9.75L24 10.35 20.9 20.5h-9.75l8 5.65Zm8 8q-4.1 0-7.75-1.575-3.65-1.575-6.375-4.3-2.725-2.725-4.3-6.375Q4 28.1 4 24q0-4.15 1.575-7.8 1.575-3.65 4.3-6.35 2.725-2.7 6.375-4.275Q19.9 4 24 4q4.15 0 7.8 1.575 3.65 1.575 6.35 4.275 2.7 2.7 4.275 6.35Q44 19.85 44 24q0 4.1-1.575 7.75-1.575 3.65-4.275 6.375t-6.35 4.3Q28.15 44 24 44Zm0-3q7.1 0 12.05-4.975Q41 31.05 41 24q0-7.1-4.95-12.05Q31.1 7 24 7q-7.05 0-12.025 4.95Q7 16.9 7 24q0 7.05 4.975 12.025Q16.95 41 24 41Zm0-17Z"/></svg></a></div>
+                        
+                        <div class="profile-menu-link" id="settings-link" ><a class="profile-menu-label" href="{% url 'mysettings' %}"><svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path style="fill:{{user.profile.accent_color}};" d="m19.4 44-1-6.3q-.95-.35-2-.95t-1.85-1.25l-5.9 2.7L4 30l5.4-3.95q-.1-.45-.125-1.025Q9.25 24.45 9.25 24q0-.45.025-1.025T9.4 21.95L4 18l4.65-8.2 5.9 2.7q.8-.65 1.85-1.25t2-.9l1-6.35h9.2l1 6.3q.95.35 2.025.925Q32.7 11.8 33.45 12.5l5.9-2.7L44 18l-5.4 3.85q.1.5.125 1.075.025.575.025 1.075t-.025 1.05q-.025.55-.125 1.05L44 30l-4.65 8.2-5.9-2.7q-.8.65-1.825 1.275-1.025.625-2.025.925l-1 6.3ZM24 30.5q2.7 0 4.6-1.9 1.9-1.9 1.9-4.6 0-2.7-1.9-4.6-1.9-1.9-4.6-1.9-2.7 0-4.6 1.9-1.9 1.9-1.9 4.6 0 2.7 1.9 4.6 1.9 1.9 4.6 1.9Zm0-3q-1.45 0-2.475-1.025Q20.5 25.45 20.5 24q0-1.45 1.025-2.475Q22.55 20.5 24 20.5q1.45 0 2.475 1.025Q27.5 22.55 27.5 24q0 1.45-1.025 2.475Q25.45 27.5 24 27.5Zm0-3.5Zm-2.2 17h4.4l.7-5.6q1.65-.4 3.125-1.25T32.7 32.1l5.3 2.3 2-3.6-4.7-3.45q.2-.85.325-1.675.125-.825.125-1.675 0-.85-.1-1.675-.1-.825-.35-1.675L40 17.2l-2-3.6-5.3 2.3q-1.15-1.3-2.6-2.175-1.45-.875-3.2-1.125L26.2 7h-4.4l-.7 5.6q-1.7.35-3.175 1.2-1.475.85-2.625 2.1L10 13.6l-2 3.6 4.7 3.45q-.2.85-.325 1.675-.125.825-.125 1.675 0 .85.125 1.675.125.825.325 1.675L8 30.8l2 3.6 5.3-2.3q1.2 1.2 2.675 2.05Q19.45 35 21.1 35.4Z"/></svg></a></div>
+                        
+                        
+                    </div>
+                    <div class="logout-button"><a class="logout-button-link" id="logout-link" href="/logout">Logout</a></div>
+                    <div id="mobile-exit-button" onclick="show_profile_menu()">&times;</div>
+                </div>
+                
+                <div id="mobile-create-button" style="border-color: {{user.profile.accent_color}}; background-color: rgb(75,75,75);" class="mobile-floating-actions">
+                    <svg id="mobile-create-icon" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path style="fill:{{user.profile.accent_color}}" d="M7.792 39.5q-1.125 0-1.959-.833Q5 37.833 5 36.708V12.292q0-1.125.833-1.959.834-.833 1.959-.833H24l-2.792 2.792H7.792v24.416h24.416v-13.5L35 20.417v16.291q0 1.125-.833 1.959-.834.833-1.959.833ZM20 24.5Zm7.375-14.458 2 1.958-11.583 11.542v3.166h3.125l11.625-11.625 1.958 1.959L22.083 29.5H15v-7.083Zm7.125 7-7.125-7 4.167-4.167q.791-.792 1.958-.792 1.167 0 2 .834l3.083 3.125q.792.833.792 1.979 0 1.146-.792 1.937Z"/></svg>
+                </div>
+                <div id="mobile-search-button" style="border-color: {{user.profile.accent_color}}; background-color: rgb(75,75,75);" class="mobile-floating-actions">
+                    <svg id="mobile-search-icon" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path style="fill:{{user.profile.accent_color}}" d="M33 34.958 22.208 24.167q-1.25 1.041-2.916 1.645-1.667.605-3.5.605-4.542 0-7.667-3.125T5 15.708q0-4.458 3.125-7.604t7.625-3.146q4.458 0 7.583 3.146t3.125 7.604q0 1.792-.583 3.438-.583 1.646-1.708 3.062L35 32.958ZM15.75 23.625q3.292 0 5.604-2.313 2.313-2.312 2.313-5.604 0-3.291-2.313-5.625Q19.042 7.75 15.75 7.75q-3.333 0-5.646 2.333-2.312 2.334-2.312 5.625 0 3.292 2.312 5.604 2.313 2.313 5.646 2.313Z"/></svg>
+                </div>
+                
+                <div id="learn-bubble" class="large-bubble" style="display:none; height:0; width:0; z-index: 28;">
+                    {% block bubble_content %}
+                    {% endblock %}
+                </div>
+            
+                {% block content %}
+                {% endblock %}
+                <div id="notifications-dropdown">
+                    <form class="interaction-notification" id="friend-request" method="POST" action="">
+                        <img class="notification-profile-image"src="">
+                        <p class="interaction-notification-text"></p>
+                        <div class="notification-response-button-container">
+                            <button type="button" name="accept_friend" class="friend-request-response-button">Accept</button>
+                            <button type="button" name="decline_friend" class="friend-request-response-button">Decline</button>
+                        <div>
+                    </form>
+                </div>
+                <audio id="notification-sound" style="visibility:hidden">
+                    <source src="{% static 'audio/notification2.mp3' %}" type="audio/mp3">
+                    <source src="audio/notification1.mp3" type="audio/mpeg">
+                </audio>
+
+                {% else %}
+                    <div id="not-auth-error" class="notAuthError">
+                        <div>
+                            <h1>Oops!</h1>
+                            <p>It looks like you arent logged in...</p>
+                            <a href="/login">Log in</a>
+                        </div>
+                    </div>  
+            {% endif %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script type="text/javascript" src="{% static 'scripts/yourbit_core.js' %}"></script>
+        <script type="text/javascript">
+            var width = screen.width;
+            var notifications_last = 0;
+            var first_load = true;
+            $(document).ready(function() {
+                console.log(notifications_last)
+                updateNotificationStatus();
+            });
+
+            function updateNotificationStatus(){
+                // do whatever you like here
+                notificationIconUpdate();
+                setTimeout(updateNotificationStatus, 5000);
+                
+            };
+            
+            
+            function notificationIconUpdate() {
+                $.ajax(
+                    {
+                        type: 'GET',
+                        url: '/social/notifications/status/',
+
+                        success: function(data) {
+                            let status_response= data;
+                            let current_notifications = status_response.notification_len;
+                            
+                            console.log(status_response);
+
+                            if (status_response.status === true) {
+                                $('#notification-status').show();
+                                if (first_load === true) {
+                                    first_load = false;
+                                } else {
+                                    if (current_notifications > notifications_last) {
+                                        document.getElementById("notification-sound").play();
+                                        notifications_last = status_response.notification_len;
+                                    }
+                            }
+                                
+                            } else {
+                                $('#notification-status').hide();
+                            }
+                        }
+
+                    }
+                    
+                )
+            };
+
+
+            function getNotifications() {
+                $.ajax(
+                    {
+                        type: 'GET',
+                        url: '/social/notifications/',
+
+                        success: function(data) {
+                            let response = data;
+                            let notifications = response.notifications
+                            for (let i = 0; i < notifications.length; i++) {
+                                $('#notifications-dropdown').append(
+                                    `
+                                    <div class="interaction-notification" id="friend-request">
+                                        <img class="notification-profile-image"src="">
+                                        <p class="interaction-notification-text"></p>
+                                        <div class="notification-response-button-container">
+                                            <button type="button" name="accept_friend" class="friend-request-response-button">Accept</button>
+                                            <button type="button" name="decline_friend" class="friend-request-response-button">Decline</button>
+                                        <div>
+                                    </div>
+                                    
+                                    `
+                                )
+                            }
+                        }
+
+                    }
+                )
+            }
+
+            /*
+
+                Show Search Filters
+
+            */
+
+            $(".search-bar").focus(function() {
+                document.getElementById('search-options').style.display = "grid";
+            });
+            $(".search-bar").blur('blur', function() {
+                document.getElementById('search-options').style.display = "none";
+            });
+
+            /*
+                Show Visibility Settings
+            */
+            $('#visibility-icon').click(function() {
+                showVisibility(getVisibilityOptions, visibilityClose, scrollOpen);
+            });
+
+            $('#visibility-icon-mobile').click(function() {
+                showVisibility(getVisibilityOptions, visibilityClose, scrollOpen);
+            });
+            
+            function showVisibility(getData, callbackClose, callbackOpen) {
+                var dropdown = document.getElementById("visibility-dropdown");
+                if (dropdown.style.display === 'none') {
+
+                    dropdown.style.display='block';
+                    getData(callbackOpen);
+
+                } else {
+
+                    $('#visibility-dropdown').stop().animate({height: "0px"}, 150);
+                    callbackClose(dropdown);
+
+                }
+                
+            }
+            /*
+                Change Visibility Settings
+            */
+
+            $('.checkbox').change(function() {
+                let button_name = $(this).attr("name");
+
+                let cookie = document.cookie;
+                let csrfToken = cookie.substring(cookie.indexOf('=') + 1);
+                
+                $.ajax(
+                    {
+                        type:'POST',
+                        headers: {
+                            'X-CSRFToken': csrfToken
+                        },
+                        url: "/social/visibility/",
+                        data: {
+                            button_name: button_name
+                        },
+                        success: function(data){
+                            let file = data;
+                            iframe = document.getElementById('feed-content-container');
+                            if(button_name === "bitColor"){
+                                iframe.contentWindow.location.reload();
+                            }
+                            if(button_name === "wallpaper") {
+                                if(file.toggle === 'off') {
+                                    $('.bg-image').replaceWith('<div class="bg-image" style="background-color: rgb(95, 95, 95)"></div>');
+                                } else {
+                                    $('.bg-image').replaceWith(`<img class="bg-image" src="${file.wallpaper}">`);
+                                }
+                            }if(button_name === "defaultThemeS") {
+                                $('.bg-image').replaceWith('<div class="bg-image" style="background-color: rgb(95, 95, 95)"></div>');
+                                iframe.contentWindow.location.reload();
+                            }
+                            
+                            updateVisibilitySwitches(file);
+                        }
+                    }
+                )
+            });
+
+
+            function updateVisibilitySwitches(data) {
+                var user_colors_on = data.bit_colors_on;
+                var wallpaper_on = data.wallpaper_on;
+                var default_theme_on = data.default_theme_on;
+                console.log(user_colors_on);
+                console.log(wallpaper_on);
+                console.log(default_theme_on);
+                if(user_colors_on) {
+                    document.getElementById('postColorCheck').checked = true;
+                } else {
+                    document.getElementById('postColorCheck').checked = false;
+                }
+                if(wallpaper_on) {
+                    document.getElementById('wallpaperCheck').checked = true;
+                } else {
+                    document.getElementById('wallpaperCheck').checked = false
+                }
+                if(default_theme_on) {
+                    document.getElementById('defaultCheck').checked = true;
+                } else {
+                    document.getElementById('defaultCheck').checked = false
+                }
+
+            }
+            
+            function scrollOpen(data) {
+                updateVisibilitySwitches(data);
+                if (width > 800) {
+                    $('#visibility-dropdown').stop().animate({height: "170px"}, 150);
+                    $('#options-container').show();
+                } else {
+                    $('#visibility-dropdown-mobile').stop().animate({height: "200px"}, 150);
+                    $('#options-container-mobile').show();
+                }
+                
+
+            }
+
+            function getVisibilityOptions(scrollOpen) {
+                $.ajax(
+                    {
+                        type: "GET",
+                        url: "/social/visibility/",
+                    success: function(data) {
+                        let options_set = data;
+                        scrollOpen(options_set);
+                    }
+                })
+            }
+
+            function visibilityClose(dropdown) {
+                dropdown.style.display='none';
+            }
+            
+        </script>
+    </body>                
+
+</html>

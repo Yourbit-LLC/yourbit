@@ -1,0 +1,77 @@
+{% extends 'social/base.html' %}
+{% load static %}
+{% block content %}
+    <div id="content-container" style="color: white; padding-top: 50px;">
+        <h1>History</h1>
+
+        {% for bit in liked_bits %}
+        
+    <!--Begin bit update copy-->
+
+        <!-- Start Chat bits in bitstream-->
+
+        {% if bit.bit_type == "chat"%}
+            <div class="post-wrapper" id = "chat-post-wrapper" style="background-color:{{ bit.user.profile.bit_background }}">
+                <div id="chat-bit-name-date">
+                    <a id="chat-bit-profile-picture-link" href="{% url 'profile' bit.user.profile.pk %}"><img style="border-color: {{bit.user.profile.accent_color}}" id="chat-bit-profile-picture" src="{{bit.user.profile.image.url}}" ></a>
+                    <p id="chat-bit-user-info"><strong id="chat-user-name">{{bit.user.first_name}} {{bit.user.last_name}}</strong> <small>@{{bit.user.username}}</small> </p>
+                    <p id="chat-bit-time-label"><small>{{ bit.created_at }}</small></p>
+                </div>
+                <div id="bit-meta" style="display:none">
+                    <input type="text" id="bit-accent" value="{{bit.user.profile.accent_color}}">
+                    <input type="text" id="bit-icon" value="{{bit.user.profile.feedback_icon_color}}">
+                </div>
+                {% if bit.title %}
+                    <div id="chat-bit-title"><h3>{{ bit.title }}<h3></div>
+                {% endif %}
+                <div id="comments-display{{bit.pk}}"></div>
+                <div id="chat-bit-display-description" style="color:{{bit.user.profile.text_color}};"><p>{{bit.body|linebreaks|urlize}}</p></div>
+                <div id="feed-bit-comment-container"></div>
+                <a class="post-background-link" href="{% url 'bit-detail' bit.pk %}"></a>
+            </div>
+            <br>
+            
+            <!--End Chatbits in Bitstream-->
+
+        <!--Start Photo bits in bitstream-->
+        {% elif bit.bit_type == "photo" %}
+        <div class="post-wrapper" id="photo-post-wrapper" style="background-color:{{ bit.user.profile.bit_background }}">
+            <div id="photo-user-name">
+                <a id="photo-bit-profile-picture-link" href="{% url 'profile' bit.user.profile.pk %}"><img id="chat-bit-profile-picture" src="{{bit.user.profile.image.url}}" ></a>
+                <p id="photo-user-name-text"><strong>{{bit.user.first_name}} {{bit.user.last_name}}</strong> <small>@{{bit.user.username}}</small></p>
+            </div>
+            <img src="{{ bit.image.url }}" width="100%" id="photobit"/>
+            <div id="photo-info" style="text-align:center;">
+                <h4 id="photo-title"> {{bit.title}}</h4>
+                <p id="photo-caption"> {{bit.body}}</p>
+            </div>                
+        </div>
+    </div>
+            <br>
+        <!--End Photobits in bitstream-->
+
+        <!--Start Video bits in bitstream-->
+        {% elif bit.bit_type == "video"%}
+        <div class="post-wrapper" id="video-post-wrapper" style="background-color:{{ bit.user.profile.bit_background }}">
+            <div id = "video-bit-name-date">
+                <a id="chat-bit-profile-picture-link" href="{% url 'profile' bit.user.profile.pk %}"><img id="chat-bit-profile-picture" src="{{bit.user.profile.image.url}}" ></a>
+                <p id="video-user-name"><strong>{{bit.user.first_name}} {{bit.user.last_name}}</strong> <small>@{{ bit.user.username }}</small></p>
+            </div>
+            <video src="{{ bit.video.url }}" width="100%" id="videobit" controls></video>              
+                    
+            <h3 id="video-title"> {{bit.title}}</h3>
+        </div>
+
+        <br>
+        <!--End Video bits in bitstream-->
+        
+    
+        {% endif %}
+
+    <!--End Bit Update Copy-->
+    {% endfor %}
+    <div id="mobile-spacer">
+        </div>
+    </div>
+
+{% endblock %}

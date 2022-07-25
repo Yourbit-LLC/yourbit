@@ -1,0 +1,48 @@
+{% extends 'social/base.html' %}
+{% load static %}
+{% block content %}
+<div class="large-post-wrapper" id = "chat-post-wrapper">
+    <div id="chat-bit-name-date">
+        <img id="chat-bit-profile-picture" src="{{bit.user.profile.image.url}}">
+        <p id="chat-bit-user-info"><strong id="chat-user-name">{{bit.user.first_name}} {{bit.user.last_name}}</strong> <small>@{{bit.user.username}}</small> </p>
+        <p id="chat-bit-time-label"><small>{{ bit.created_at }}</small></p>
+    </div>
+    <div id="chat-bit-display-description"><p>{{bit.body|linebreaks}}</p></div>
+    <div id="feed-bit-comment-container"></div>
+    <a class="post-background-link" href="{% url 'bit-detail' bit.pk %}"></a>
+    <form method="POST" id="field-write-comment">
+        {% csrf_token %}
+        {{write_comment.comment}}
+        <button id="write-comment-button" type="submit">Send</button>
+    </form>
+    <div id="chat-comment-display-container">
+        <p id="comments-display-label">Comments</p>
+        {% for comment in comments %}
+            {% if user.id == comment.user.id %}
+                    <div id="right-comment-display-wrapper">
+                        <div id="chat-comment-display-right">
+                        {{ comment.user.first_name }} {{comment.user.last_name}}<br><br> 
+                        {{ comment.comment }}
+                    </div>
+                </div>
+                <br>
+            {% else %}
+                <div id="comment-display-left">
+                    {{ comment.user.first_name }} {{comment.user.last_name}}<br><br>
+                    {{ comment.comment }}
+                </div>
+                <br>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div id="chat-bit-feedback-container" class = "post-interaction-container">
+        <a class="feedback-icon" id="smiley-post-button"><img class = "post-feedback-icon" id="smiley-post-icon" src="{% static 'images/icon-smiley.png' %}"></a>
+        <a class="feedback-icon" id="frowny-post-button"><img class = "post-feedback-icon" id="frowny-post-icon" src="{%  static 'images/icon-frowny.png' %}"></a>
+        <a class="feedback-icon" id="share-post-button"><img class = "post-feedback-icon" id="share-post-icon" src="{% static 'images/icon-share.png' %}"></a>
+        <a class="feedback-icon" id="comment-post-button{{bit.pk}}" href="#" data-catid="{{bit.pk}}"><img class = "post-feedback-icon" id="comment-post-icon" src="{% static 'images/icon-comment.png' %}"></a>
+        <a class="feedback-icon" id="donate-post-button"><img class = "post-feedback-icon" id="donate-post-icon" src="{% static 'images/icon-donate1.png' %}"></a>
+    </div>
+{% endblock %}
+</div>
+
+

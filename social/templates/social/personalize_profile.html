@@ -1,0 +1,235 @@
+{% extends "social/base.html" %}
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/personalization-new.css' %}"/>
+    
+    <div id="split-content-container">
+        <h1>Personalization</h1>
+        <div id="container-column-1">
+            <div class="dropdown-large" id="profile-images" style="background-color:{{user.profile.bit_background}}">
+                <h3 class="option-header" id="image-option-header">Profile Images</h3>
+                <div class="sub-setting" id="profile-img-sub" style="display:none;">
+                    
+                    <!--
+                        Background image upload/select from library
+                            Effects
+                                -Hue
+                                -Brightness
+                                -Saturation
+                                -Blur
+
+                        Profile image upload/select from library
+                            -Alpha PNG Toggle (Enables Transparency)
+                            -Border Toggle (Assists with making transparent images look more natural)
+                            -Border Type: Squircle, Square, Rectangle
+                            -Gif Playback (Loop/Bounce)
+                    --> 
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <p>Profile Picture</p>
+                        {{ profile_image_form.image }}
+                        <button type="submit" name="profile_image_button">Apply</button>
+                    </form>
+                    <form method="POST" enctype="multipart/form-data" style="margin-bottom: 10px;">
+                        {% csrf_token %}
+                        <p>Profile Background</p> 
+                        {{ background_image_form.background_image }}
+                        <button type="submit" name="background_image_button">Apply</button>
+                        <br><br>                       
+                        <label for="blur-radius">Blur</label>
+                        <input type="range" id="blur-radius">
+                        <br>
+                        <label for="dim-intensity">Dim Intensity</label>
+                        <input type="range" id="dim-intensity">
+                        <br><br>
+                        
+                    </form>
+
+                </div>
+            </div>
+            <div class="dropdown-large" id="color" style="background-color:{{user.profile.bit_background}}">
+                <h3 class="option-header" id="color-option-header" style="width: 100%;">Color</h3>
+                    <form id="color-sub" class="sub-setting" style="display:none;" method="POST">
+                        {% csrf_token %}
+                        <div id="hidden-form" style="display:none;">
+                            {% for field in color_form %}
+                                {{ field }}
+                            {% endfor %}
+                        </div>
+
+                        <label class="color-select-label" for="primary-color-select">Primary Color</label>
+                        <input class="color-selector" id="primary-color-select" type="color" value="{{user.profile.bit_background}}">
+                        <br>
+                        <label class="color-select-label" for="accent-color-select">Accent Color</label>
+                        <input class="color-selector" id="accent-color-select" type="color" value="{{user.profile.accent_color}}">
+                        <br>
+                        <label class="color-select-label" for="tfont-color-select">Title Font Color</label>
+                        <input class="color-selector" id="tfont-color-select" type="color">
+                        <br>
+                        <label class="color-select-label" for="pfont-color-select" >Paragraph Font Color</label>
+                        <input class="color-selector" id="pfont-color-select" type="color" value="{{user.profile.text_color}}">
+                        <br>
+                    <button type="submit" name="colors">Apply</button>
+                    </form>
+                    <!--
+                        Bit background color
+                            -Alpha
+                            -Blur
+                            -Shadow Toggle
+                        Accent color
+                        Icon colors
+                        Panel Options (Header/Menu)
+                            -Hue
+                            -Filter Toggle
+                            -Background Opacity
+                    -->
+            </div>
+            <div class="dropdown-large" id="fonts" style="background-color:{{user.profile.bit_background}}">
+                <h3 class="option-header">Fonts</h3>
+                <div id="sub-setting">
+
+                <!--
+                    Title Font
+                        Type
+                        Size
+                        Color
+                        Weight
+                        Border
+                    Paragraph Font
+                        Type
+                        Size
+                        Color
+                        Weight
+                        Border
+                -->
+                </div>
+            </div>
+            <div class="dropdown-large" id="bit-layouts" style="background-color:{{user.profile.bit_background}}">
+                <h3 class="option-header">Bit Layouts</h3>
+                <div id="sub-setting">
+                <!--
+                    Title Position
+                    Paragraph Align
+                    Paragraph Justify
+                    Bit Frames (Future)
+                -->
+
+                </div>
+                
+
+            </div> 
+        </div>
+        <div id="container-column-2">
+            <div id="preview">
+                
+                <img id="preview-background-img" style="-webkit-filter: brightness(80%) blur(30px);" {% if user.profile.background_image %} src = "{{ user.profile.background_image.url }}" {% endif %}>
+                <div id="mini-head" style='backdrop-filter: brightness(200%);'></div>
+                <div id="mini-content">
+                    <div id="mini-profile-header">
+                        <img id="mini-user-image" style="border:2px solid; border-color: {{user.profile.accent_color}};" src="{{ user.profile.image.url }}"/>
+                        
+                    </div>
+                    <hr width="100%" style="position: relative;">
+                    <div id="mini-bit1" style="background-color: {{ user.profile.bit_background }};" class="mini-bit">
+                        <div id="mini-user-info"></div>
+                        <div id="mini-title">Title Preview</div>
+                        <div id="mini-paragraph" style="color:{{user.profile.text_color}}">This is a paragraph preview, it is a preview of paragraph text in paragraphs.</div>
+                        
+                        <div class="mini-feedback"><div id="like-circle" style="background-color:{{user.profile.accent_color}}"></div></div>
+                    </div>
+                    <br>  
+                </div>
+                <!--Display mini profile replica for preview-->
+            </div>
+            <div id="toggles">
+                <!--Default, Default Mode (light/dark), show customizations in feed, toggle post colors-->
+            </div>
+                
+        </div>
+    </div>
+    <script>
+        
+        let image_settings = document.getElementById("image-option-header");
+        let image_sub = document.getElementById("profile-img-sub");
+        image_settings.addEventListener('click', function() {
+            if (image_sub.style.display === 'none') {
+                image_sub.style.display = "block";
+            } else {
+                image_sub.style.display = "none";
+            }
+        });
+
+        let color_sub = document.getElementById('color-sub')
+        document.getElementById("color-option-header").addEventListener('click', function() {
+            if (color_sub.style.display === 'none') {
+                color_sub.style.display = "grid";
+            } else {
+                color_sub.style.display = "none";
+            }
+        });
+
+        let profile_bkd_field = document.getElementById('bkd-image-field');
+        profile_bkd_field.addEventListener("change", function() {
+            let image_preview = document.getElementById('preview-background-img');
+            const image_loaded = this.files[0];
+            if (image_loaded) {
+                const reader = new FileReader();
+
+                reader.addEventListener('load', function() {
+                    image_preview.setAttribute('src', this.result);
+                });
+
+                reader.readAsDataURL(image_loaded);
+
+            }
+        });
+
+        let profile_img_field = document.getElementById('profile-image-field');
+        profile_img_field.addEventListener("change", function() {
+            let user_image_preview = document.getElementById('mini-user-image');
+            const image_loaded = this.files[0];
+            if (image_loaded) {
+                const reader = new FileReader();
+
+                reader.addEventListener('load', function() {
+                    user_image_preview.setAttribute('src', this.result);
+                });
+
+                reader.readAsDataURL(image_loaded);
+
+            }
+        });
+
+        let primary_color_field = document.getElementById("primary-color-select");
+        let bit_preview1 = document.getElementById("mini-bit1");
+        primary_color_field.addEventListener("change", function() {
+            bit_preview1.style.backgroundColor = this.value;
+            document.getElementById("primary-color").value = this.value;
+        });
+
+        let text_color_field = document.getElementById("pfont-color-select")
+        let paragraph_preview = document.getElementById("mini-paragraph")
+        text_color_field.addEventListener("change", function() {
+            paragraph_preview.style.color = this.value;
+            document.getElementById("text-color").value = this.value;
+        });
+
+        let title_color_field = document.getElementById("tfont-color-select");
+        let title_preview = document.getElementById("mini-title");
+        title_color_field.addEventListener("change", function() {
+            title_preview.style.color = this.value;
+            document.getElementById("title-color").value = this.value;
+        });
+
+        let accent_color_field = document.getElementById("accent-color-select");
+        let accent_like_preview = document.getElementById("like-circle");
+        let user_image = document.getElementById("mini-user-image");
+        accent_color_field.addEventListener("change", function() {
+            accent_like_preview.style.backgroundColor = this.value;
+            user_image.style.borderColor = this.value;
+            document.getElementById("accent-color").value = this.value;
+        });
+
+        </script>
+{% endblock %}

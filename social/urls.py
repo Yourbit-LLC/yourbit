@@ -1,0 +1,31 @@
+from django.urls import path, re_path
+from . import views
+from .views import *
+
+urlpatterns = [
+    path('home/', Home.as_view(), name='home'),
+    path('bit/<int:pk>', BitDetailView.as_view(), name='bit-detail'),
+    path('bit/<int:pk>/interact/', Interact.as_view(), name='interact'),
+    path('profile/<int:pk>/interact', ProfileInteract.as_view(), name='profile-interact'),
+    path('profile/<int:pk>', ProfileView.as_view(), name="profile"),
+    path('mysettings/', Settings.as_view(), name="mysettings"),
+    path('personalization/', Personalization.as_view(), name="personalize"),
+    path('search/', SearchResults.as_view(), name="search"),
+    path('messages/', Messages.as_view(), name="messages"),
+    path('bit/<int:pk>/comment', WriteComment.as_view(), name = "comment"),
+    path('collection/', MyStuff.as_view(), name="stuff"),
+    path('history/<str:action>', HistoryView.as_view(), name="history"),
+    path('chats/', ChatSpace.as_view(), name="chatspace"),
+    path('photospace/', PhotoSpace.as_view(), name="photospace"),
+    path('videospace/', VideoSpace.as_view(), name='videospace'),
+    path('create/', CreateBit.as_view(), name="create-bit"),
+    path('like/', LikeBit.as_view(), name='like'),
+    path('dislike/', DislikeBit.as_view(), name='dislike'),
+    path('comment/', AddComment.as_view(), name='addComment'),
+    path('rewards/', Rewards.as_view(), name='rewards'),
+    path('feed/<str:type>/<str:id>/', Feed.as_view(), name='feed'),
+    path('test/', DynamicFeedTest.as_view(), name='feedtest'),
+    path('visibility/', QuickVisibility.as_view(), name="get-visibility"),
+    path('notifications/', GetNotifications.as_view, name="get-notificatons"),
+    path('notifications/status/', NotificationStatus.as_view(), name='get-notification-status')
+]

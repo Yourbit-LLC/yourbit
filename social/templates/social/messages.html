@@ -1,0 +1,33 @@
+{% extends 'social/base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/messages-yourbit.css' %}"/>
+    <div id = 'content-container'>
+        
+        
+    
+    
+        <div id="messages-friends-display">
+            <h2>Messages</h2>
+            <div id="friends-messages-actions">
+                <input type="text-field" id="message-friends-search" placeholder="Search Friends">
+                <a class="write-message-button-bkd"><img id="write-message-button-icon" src="{% static 'images/icon-write-message.png' %}"></a>
+            </div>
+            <hr>
+            {% for connection in connections%}
+            
+                <div id="user-list-container">
+                    <img class="profile-image-medium" src="{{connection.user.profile.image.url}}">
+                    <p class="list-user-name"><b>{{connection.user.first_name}} {{connection.user.last_name}}</b></p>
+                    <div class="active-status"></div>
+                </div>
+                <br>
+            {% endfor %}
+            
+        </div>
+
+
+    
+    </div>
+{% endblock %}

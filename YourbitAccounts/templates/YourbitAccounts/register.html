@@ -1,0 +1,40 @@
+<html>
+    {% load static %}
+    <head>
+        <title>Create an Account | Yourbit</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}"/>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <video autoplay loop muted id="background-video">
+            <source src="{% static 'videos/AdobeStock_425941747_Video_HD_Preview.mov' %}"  type="video/mp4">
+        </video>
+        
+        <form method='POST' class='form-group' id="form">
+            <img src="{% static 'images/yourbit-logo-modern.png' %}" width="40%" id="logo">
+            <h1>Yourbit&trade;</h1>
+            <h3 id="form-title">Create an Account</h3>
+            
+            <!--Box around form-->
+            <div id="register-container" class="register-container">
+                {% csrf_token %}
+                {% for field in registration_form %}
+                    <!--Label for each field-->
+                    {{field}}
+                    <br><br>
+                {% endfor %}
+            </div>
+            <br>
+            <a class = "auth-button" id="back-login" href="{% url 'login' %}">Login</a>
+            <button type='submit' id='submit' class='auth-button'>Sign Up</button>
+            <br>
+            <div id="build-info">
+            <p>
+            Designed by Austin Chaney<br>
+            </p>
+        </div>
+        </form>
+        
+    </body>
+</html>
