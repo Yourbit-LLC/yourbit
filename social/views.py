@@ -1,5 +1,4 @@
 import profile
-from tkinter.filedialog import LoadFileDialog
 from django.forms import RadioSelect
 from django.shortcuts import render, redirect
 from django.views import View
