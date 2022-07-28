@@ -8,9 +8,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <video autoplay loop muted id="background-video">
-            <source src="{% static 'videos/AdobeStock_425941747_Video_HD_Preview.mov' %}"  type="video/mp4">
-        </video>
         
         <form method='POST' class='form-group' id='form'>
             <img src="{% static 'images/yourbit-logo-modern.png' %}" width="40%" id="logo">
@@ -23,16 +20,23 @@
                 {% endfor %}
             </div>
             <br>
-            <a class = "auth-button" id="back-login" href="{% url 'register' %}">Sign Up</a>
+            <button type="button" class = "auth-button" id="back-login">Sign Up</button>
             <button class = "auth-button" id="submit" type="submit">Login</button>
             <br>
             <div id="build-info">
-            <p>Yourbit_DevBuild_v1.00-PYDJA130901142021<br>
+            <p style="font-size:xx-small">Yourbit_live_DevBuild_v1.00-PYDJA07282022<br>
             Designed by Austin Chaney<br>
-            Property of Space Cloud Studios 2021
+            Property of Yourbit Studios
             </p>
         </div>
+      </form>  
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+      <script type="text/javascript">
+        $('#back-login').click(function() {
+            window.location.href = "http://yourbit.me:8000/register/";
+        });
+      </script>
     </body>
-        </form>
+        
         
 </html>

@@ -1,0 +1,284 @@
+/*
+
+
+
+Profile Page
+
+*/
+@media screen and (min-width: 700px){
+    #profile-image-profile {
+        width: 200px;
+        height: 200px;
+        grid-column: 1;
+        grid-row-start: 1;
+        grid-row-end: 3;
+        
+    }
+
+    #profile-feed-content-container {
+        position: relative;
+        top: 0px;
+        padding-top: 0px;
+        z-index: 3;
+        width: 100vw;
+        height: 100%;
+        overflow-y: scroll;
+        transition: 0.25s;
+        border-width: 0px;
+        background-color: rgba(0,0,0,0);
+    }
+
+    #profile-image-profile-image {
+        position: relative;
+        height: 100px;
+        width: 100px;
+        object-fit: contain;
+        margin-left: 10px;
+    }
+
+    .profile-info {
+        display:grid;
+        grid-template-columns: 115px 100px 100px 100px;
+        grid-template-rows: 50px 50px 20px;
+        column-gap: 10px;
+        row-gap: 5px;
+
+
+    }
+
+    #profile-first-last-name {
+        font-size: larger;
+        
+        grid-row: 1;
+        grid-column-start: 2;
+        grid-column-end: 4;
+        -ms-grid-column-span: 2;
+        width: 300px;
+    }
+
+    #username-profile {
+        position: relative;
+        grid-column: 2;
+        top: 0px;
+    }
+
+    /*   --Buttons on Profile Header-- */
+
+    .profile-interaction-form {
+        display: grid;
+        grid-row: 2;
+        grid-column: 2;
+        grid-template-columns: 40px 40px 40px;
+        column-gap: 10px;
+
+    }
+
+    .profile-button {
+        border-radius: 50%;
+        border-width: 0px;
+        height: 40px;
+        width: 40px;
+        font-size: 14px;
+        text-align: center;
+        color: auto;
+
+    }
+    .profile-header-link {
+        width: 40px;
+        border-radius: 50%;
+        height: 40px;
+        text-align: center;
+        background-color: white;
+        font-size: 14px;
+
+    }
+
+    .profile-interact-icon {
+        position: relative;
+        display: block;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%)
+    }
+
+    #profile-connect-button {
+        grid-column: 1;
+        
+    }
+
+    #profile-follow-button {
+        grid-column: 2;
+        width: auto;
+        
+    }
+
+    #profile-message-button {
+        grid-column: 3;
+        
+    }
+
+    #profile-bio {
+        grid-row: 3;
+        grid-column-start: 2;
+        grid-column-end: 5;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 20px;
+        justify-content: center;
+        margin-top: 20px;
+        padding-left: 10px;
+        display: none;
+    }
+
+}
+
+/*
+    CSS Styling for Mobile
+
+    tags: css mobile css styling mobile styles mobile screen mobile scaling
+
+*/
+
+@media screen and (max-width:700px){
+
+    /*
+        Header Profile Image Mobile
+        
+        tags: mobile profile image mobile profile header image mobile profile picture header mobile profile picture on mobile profile
+    */
+
+    
+    #profile-image-profile {
+        width: 200px;
+        height: 200px;
+        grid-column: 1;
+        grid-row-start: 1;
+        grid-row-end: 3;
+        
+    }
+
+    #profile-image-profile-image {
+        position: relative;
+        height: 80px;
+        width: 80px;
+        margin-left:5px;
+        object-fit: contain;
+        border-radius: 180px;
+        margin-top: 15px;
+        border: 3px solid white;
+    }
+
+    .profile-info {
+        display:grid;
+        grid-template-columns: 100px 100px 100px 100px;
+        grid-template-rows: 50px 70px 20px auto;
+        column-gap: 3px;
+        color: white;
+
+    }
+
+    #profile-first-last-name {
+        font-size: larger;
+        grid-row: 1;
+        grid-column-start: 2;
+        grid-column-end: 4;
+        -ms-grid-column-span: 2;
+        width: 300px;
+        margin-bottom: 5px;
+        
+    }
+
+    #username-profile {
+        position: relative;
+        grid-column: 2;
+        top: 0px;
+    }
+
+    /*   --Buttons on Profile Header-- */
+
+    .profile-interaction-form {
+        display: grid;
+        grid-row: 2;
+        grid-column: 2;
+        grid-template-columns: 40px 40px 40px;
+        column-gap: 10px;
+        margin-top: 10px;
+
+    }
+
+    .profile-button {
+        border-radius: 25px;
+        border-width: 0px;
+        font-size: 14px;
+        text-align: center;
+        color: auto;
+        height: 40px;
+
+    }
+    .profile-header-link {
+        display: block;
+        position: relative;
+        width: 40px;
+        border-radius: 50%;
+        height: 40px;
+        text-align: center;
+        text-decoration: none;
+        color: black;
+        font-size: 14px;
+        padding-top: 2px;
+        background-color: white;
+
+    }
+
+    .profile-interact-icon {
+        display: block;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #profile-connect-button {
+        grid-column: 1;
+        height: 40px;
+    }
+
+    #profile-follow-button {
+        grid-column: 2;
+        width: auto;
+        height: 40px;
+    }
+
+    #profile-message-button {
+        grid-column: 3;
+        height: 40px;
+    }
+
+    #profile-bio {
+        grid-row: 3;
+        grid-column-start: 2;
+        grid-column-end: 5;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 20px;
+        justify-content: center;
+        margin-top: 10px;
+        padding-left: 10px;
+        display: none;
+    }
+
+    #profile-feed-content-container {
+        position: relative;
+        top: 0px;
+        padding-top: 0px;
+        z-index: 3;
+        width: 100vw;
+        height: 100%;
+        overflow-y: scroll;
+        transition: 0.25s;
+        border-width: 0px;
+        background-color: rgba(0,0,0,0);
+    }
+
+
+}

@@ -1,0 +1,605 @@
+/* width */
+::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background-color: gray;
+    backdrop-filter: brightness(150%) saturate(150%);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(56, 56, 56);
+    border-radius: 10px;
+    
+}
+
+html {
+    overflow-x: hidden;
+}
+
+body, html {
+    height: 100%;
+    background-color: black;
+    color: white;
+    font-family:Arial, Helvetica, sans-serif; 
+    
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+
+.bg-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    /* The image used */
+  
+    /* Add the blur effect */
+    filter: blur(8px);
+    -webkit-filter: blur(30px) brightness(80%) saturate(150%);
+    /* Full height */
+    min-height: 100%;
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    z-index: 1;
+
+}
+
+#navibar.grid-container {
+    position: fixed;
+    display: grid;
+    grid-template-columns: 55px 70px 250px auto auto auto;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    margin: 0px;
+    height: auto;
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 2%;
+    backdrop-filter: brightness(200%) blur(50px);
+    background-color: rgba(255,255,255,0.0);
+    padding-bottom: 0;
+}
+
+#logo {
+    grid-row: 1;
+    grid-column: 1;
+    float: left;
+    width: 60px;
+    margin-top: 0.75em;
+}
+
+#yourbit {
+    grid-column: 2;
+    float: left;
+    font-weight: 600;
+    font-size: 1.2em;
+    height: 5%;
+    margin-right: 0px;
+    margin-left: 10px;
+    
+    
+}
+
+.space-navigator {
+    display: grid;
+    grid-column: 3;
+    grid-template-columns: auto auto auto auto; 
+    float: left;
+    position: absolute;
+    margin-left: 1.7%;
+    margin-right: 5%;
+    margin-top: 1em;
+    border-radius: 0.5em;
+    background-color: rgba(0,0,0,0.3);
+}
+
+.spaceButton {
+    width: 50px;
+    height: 30px;
+    background-color: rgba(0,0,0,0.3);
+    border-width: 0px;
+    border-radius: 0.5em;
+    padding: 10%;
+    margin: 0.15em;
+    background-color: rgba(0,0,0,0.4);
+    transition: 0.3s;
+}
+
+.spaceButtonImage {
+    width: 100%;
+}
+
+.spaceButton:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.spaceButtonImage:hover {
+    border-color: black;
+    border-width: 0.25em;
+    transition: 0.3s;
+}
+
+#search {
+    grid-column: 4;
+    display: grid;
+    grid-template-columns: auto auto;
+    margin-top: 0.9em;
+    width: 100%;
+    height: 2em;
+    margin-right: 1%;
+}
+
+#searchbox {
+    grid-column: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    border-width: 0px;
+    font-weight: 700;
+    font-size: 1.1em;
+    padding-left: 1em;
+    border-radius: 0.5em;
+    color: rgba(255, 255, 255, 0.6);
+    transition: 0.5s;
+}
+
+#search-button {
+    grid-column: 2;
+    border-width: 0px;
+    background-color: rgba(0,0,0,0.4);
+    border-radius: 24em;
+    height: 2.25em;
+    width: 2.25em;
+    margin: 0.1em;
+    margin-left: 0.5em;
+    transition: 0.4s;
+}
+
+.search-arrow {
+    width: 100%;
+    margin-top: 0.28em;;
+}
+
+#search-button:hover {
+    background-color: rgba(1, 190, 42, 0.6);
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+#searchbox:hover {
+    background-color: rgba(255,255,255,0.3);
+    color:rgba(0,0,0,0.6);
+    transition: 0.5s;
+}
+.notificationPane {
+    position: absolute;
+    float: right;
+    right: 6em;
+    grid-column: 5;
+    background-color:rgba(0,0,0,0.3) ;
+    margin-top: 0.75em;
+    border-radius: 0.5em;
+
+}
+
+
+#profile-icon {
+    width: auto;
+    float: right;
+    position: fixed;
+    right: 20%;
+    grid-column: 6;
+
+}
+#profile-pic {
+    border-radius: 100%;
+    position: fixed;
+    width: 2.5em;
+    right: 2%;
+    float: right;
+    margin-top: 0.6em;
+    height: 2.5em;
+    border-color: white;
+    border-width: 0.15em;
+    border-style: solid;
+    transition: 1s;
+
+}
+
+#profile-pic:hover {
+    border-radius: 100%;
+    position: fixed;
+    width: 2.6em;
+    right: 2%;
+    float: right;
+    margin-top: 0.6em;
+    height: 2.6em;
+    border-color: white;
+    border-width: 0.15em;
+    border-style: solid;
+    box-shadow: 0.1em 0.1em 0.5em black;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+#create-thought {
+    background-color: rgba(0,0,0,0.3);
+    height:26%;
+    padding-top:1em;
+    padding: 0.2em;
+    border-radius: 1em;
+    margin-top: 0.1em;
+} 
+
+#write-thought {
+    grid-row: 1;
+    width: auto;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-width: 0px;
+    border-radius: 1em;
+    color: rgba(255, 255, 255, 0.6);
+    text-align: left;
+    font-size: 1.2em;
+    padding: 0.5em;
+    width: 100%;
+    height: auto;
+    margin-bottom: 0.25em;
+}
+
+.quickPostButton {
+    grid-row: 2;
+    background-color: rgba(255, 255, 255, 0);
+    border-width: 0px;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: white;
+    float: right;
+
+}
+
+.widgetLabel {
+    margin-left: auto;
+    margin-right:auto;
+}
+
+
+
+
+.spaceButtonPost:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+    transition: 0.3s;
+    cursor: pointer;
+}
+#postClose {
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    font-size: 1.5em;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    height: 1.4em;
+    width: 1.4em;
+    border-radius: 4em;
+    border-width: 0px;
+
+}
+
+#postClose:hover {
+    background-color: rgba(255, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.postList {
+    position: absolute;
+    width: 100%;
+    top: 7em;
+    display: block;
+    z-index: 2;
+    margin: auto;
+    list-style-type: none;
+    transform: translate(0, 110%);
+    transition: 0.5s;
+}
+
+.postItem {
+    display: block;
+    width: 66%;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background-color: rgba(131, 130, 130, 0.8);
+    backdrop-filter: saturate(150%) brightness(120%);
+    margin-bottom: 1em;
+    border-radius: 1em;
+    color: rgb(37, 37, 37);
+    font-weight: 700;
+    transition: 1s;
+}
+
+.postItem:hover {
+    transform: scale(101%, 101%);
+    transition: 0.7s;
+    backdrop-filter: saturate(200%) brightness(150%);
+    background-color: rgba(172, 172, 172, 0.8);
+}
+
+#user-name {
+    display: grid;
+    grid-row: 1;
+    grid-column: 1;
+}
+
+#post-date {
+    position: absolute;
+    display: block;
+    float: right;
+    bottom: 2%;
+    right: 3%;
+    grid-row: 1;
+    grid-column: 2;
+    font-size: 1em;
+    font-weight: 500;
+}
+
+.bitData {
+    white-space: pre-wrap;
+    font-size: 0.85em;
+    color: black;
+    font-weight: 550;
+}
+.divider {
+    border-top: 1px solid;
+    border-color: rgba(73, 73, 73, 0.8);
+}
+
+.postInteractions {
+    position: absolute;
+    bottom: 2%;
+    width: 50%;
+}
+
+.postInteractionButton {
+    height: 2.5em;
+    width: 2.5em;
+    background-color: rgba(0, 0, 0, 0); 
+    border-width: 0;
+    margin-right: 10%;
+}
+
+.postInteractIcon {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.postInteractionButton:hover {
+    background-color: rgba(0, 0, 0, 0.5); 
+    border-width: 0;
+    margin-right: 10%;
+    border-radius: 0.5em;
+    transition: 1s;
+}
+
+#post-type {
+    display: none;
+}
+#post-text {
+    
+    width: 30em !important;
+    background-color: rgba(255,255,255,0.2);
+    border-width: 0px;
+    border-radius: 1em;
+    padding: 0.5em;
+    color: rgb(56, 56, 56);
+    font-size: 1.37em;
+    font-weight: 800;
+    
+}
+
+#post-type {
+    position: absolute;
+    border-radius: 0.75em;
+    bottom: 0.5em;
+    left: 0.5em;
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 8em;
+    height: 2em;
+    padding: 0.2em;
+}
+
+.space-button-post {
+    position: relative;
+    height: 1.9em;
+    width: 2.8em;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 0.5em;
+    border-width: 0px;
+}
+#intro-container {
+    display: grid;
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+#onboarding-header {
+    width: 100%;
+    font-size: 5vw;
+    position: absolute;
+    grid-row: 1;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.4);
+    backdrop-filter: brightness(50%) saturate(220%);
+}
+
+#onboarding-intro {
+    position: absolute;
+    grid-row: 2;
+    margin-top: 8.5vw;
+    left: 50%;
+    transform: translate(-50%);
+    font-size: 1.25rem;
+    width: 100%;
+    text-align: center;
+}
+
+#info-panels-container {
+    margin-left: 2vw;
+    display: grid;
+    position: fixed;
+    left: 0;
+    top: 14em;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+}
+
+.infoPanel {
+    display: block;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 1em;
+    height: 25%;
+    width: 20%;
+    padding: 1%;
+    text-align: center;
+}
+
+#settings-container {
+    position: absolute;
+    display: grid;
+    grid-template-columns: 25% 25% 25%;
+    grid-template-rows: 45% 45%;
+    grid-template-areas: 
+        'subs account pers'
+        'priv mod monetize';
+    z-index: 2;
+    margin-top: 5em;
+    width: 100%;
+    height: 100%;
+    justify-content: space-evenly;
+    overflow-y: hidden;
+}
+
+
+
+.settingsBox {
+    width: 100%;
+    height: 80%;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 1em;
+    border-radius: 1em;
+    margin-left: 2%;
+    text-align: center;
+    color: rgb(75, 75, 75);
+}
+
+.editSetting {
+    bottom: 2%;
+    border-width: 0px;
+    background-color: white;
+    border-radius: 1em;
+    font-size: 1rem;
+    padding: 1em;
+    width: 75%;
+}
+
+#account-settings-list {
+    left: 50%;
+    transform: translate(50%);
+    float: left;
+    text-align: left !important;
+}
+
+#setting-header {
+    color: rgb(75, 75, 75)
+}
+#void-subscription {
+    grid-area: subs;
+}
+
+#account-settings {
+    grid-area: account;
+}
+
+#personalization {
+    grid-area: pers;
+}
+
+#privacy {
+    grid-area: priv;
+}
+
+#moderation-bot {
+    grid-area: mod;
+}
+
+#monetization {
+    grid-area: monetize;
+}
+
+.settingFormContainer {
+    display: none;
+    position: absolute;
+    z-index: 4;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    overflow-y: hidden;
+}
+
+#subscription-form-box {
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 60%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 1em;
+}
+
+#not-auth-error {
+    position: fixed;
+    z-index: 10;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    height: 100%;
+
+}
+
+#content-container {
+    position: absolute;
+    z-index: 7;
+    margin-top: 7em;
+    width: 100%;
+}
+
+#test-post {
+    background-color: rgba(0, 204, 255, 0.5);
+    width: 75%;
+    margin-left: 12.5%;
+    color: black;
+    height: 10em;
+    border-radius: 2em;
+    padding: 1.5%;
+}

@@ -1,5 +1,11 @@
 import os
 
+import environ
+
+#initialize environment variables
+env = environ.Env()
+environ.Env.read_env()
+
 """
 Django settings for YourbitCore project.
 
@@ -25,9 +31,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^zc$$x0jyl*k8he7htbv8fckfy2c6bm-!sysku5f9398&)b2y#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['3.21.189.97', 'www.yourbit.me', 'yourbit.me']
+ALLOWED_HOSTS = ['45.79.189.46', '127.0.0.1', 'yourbit.me', 'www.yourbit.me']
 
 
 # Application definition
@@ -140,12 +146,9 @@ DATE_INPUT_FORMATS = [
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "yourbit/static/"),
-]
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
-STATIC_ROOT = "/django/yourbit/"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -155,9 +158,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 #STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-AWS_ACCESS_KEY_ID = 'xxx'
-AWS_SECRET_ACCESS_KEY = 'yyy'
-AWS_STORAGE_BUCKET_NAME = 'xxx'
+AWS_ACCESS_KEY_ID = env('BUCKET_ACCESS_KEY')
+AWS_SECRET_ACCESS_KEY = env('BUCKET_SECRET_KEY')
+AWS_STORAGE_BUCKET_NAME = env('MEDIA_BUCKET_NAME')
 AWS_QUERYSTRING_AUTH = False
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'

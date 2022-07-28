@@ -1,0 +1,178 @@
+/*Styling for fields on signup and log in page*/
+@media screen and (min-width:800px){
+    body {
+        background-color: rgb(26, 26, 26);
+        font-family: Arial, Helvetica, sans-serif;
+
+    }
+
+    #background-video {
+        z-index: 1;
+        min-width: 100%;
+        filter:blur(2px);
+        -webkit-filter: blur(2px);
+        position: fixed;
+        min-height: 100%;
+
+    }
+
+    #form {
+        position: fixed;
+        z-index: 2;
+        left: 50%;
+        top: 50%;
+        background-color: rgba(0, 0, 0, 0.5);
+        transform: translate(-50%, -50%);
+        padding: 5px;
+        border-radius: 10px;
+        text-align: center;
+        color: white;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+
+    }
+
+    .field {
+        border-radius: 10px;
+        border-style: solid;
+        border-width: 0.5px;
+        background-color: rgba(71, 71, 71, 0.25);
+        width: 15em;
+        height: 2em;
+        text-align: center;
+        font-size: large;
+        color: white;
+    }
+
+    .auth-button {
+        padding: 1em;
+        width: 125px;
+        border-radius: 1em;
+        border-width: 0;
+        font-weight: 650;
+        font-size: medium;
+        color: rgba(200, 200, 200, 0.8);
+    }
+
+    #submit {
+        margin-left: 2em;
+        background-color: rgba(0, 190, 0, 0.75);
+        transition: 0.25s;
+        cursor: pointer;
+    }
+
+    #sign-up:hover {
+        color: white;
+        background-color: rgba(50, 255, 50, 0.5);
+        transition: 0.25s;
+    }
+    #back-login {
+        background-color: rgba(0, 0, 190, 0.5);
+        transition: 0.25s;
+    }
+
+    #back-login:hover {
+        background-color: rgba(50, 50, 255, 0.5);
+        color: white;
+        transition: 0.25s;
+        cursor: pointer;
+    }
+}
+
+
+@media screen and (max-width:800px){
+    body {
+        background-color: rgb(100, 100, 100);
+        font-family: Arial, Helvetica, sans-serif;
+
+    }
+
+    #background-video {
+        margin-left: 0px;
+        text-align: center;
+        z-index: 1;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        min-height: 100%;
+        filter:blur(2px);
+        -webkit-filter: blur(2px);
+        position: fixed;
+        display: block;
+
+    }
+
+    #form {
+        position: fixed;
+        display: block;
+        z-index: 2;
+        left: 50%;
+        top: 50%;
+        width: 90vw;
+        background-color: rgba(0, 0, 0, 0.5);
+        transform: translate(-50%, -50%);
+        padding: 10px;
+        border-radius: 10px;
+        text-align: center;
+        color: white;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        
+
+    }
+
+    .field {
+        border-radius: 10px;
+        border-style: solid;
+        border-width: 0.5px;
+        background-color: rgba(71, 71, 71, 0.25);
+        width: 80%;
+        height: 30px;
+        text-align: center;
+        font-size: large;
+        color: white;
+    }
+
+    .auth-button {
+        padding: 10px;
+        width: 125px;
+        border-radius: 1em;
+        border-width: 0;
+        font-weight: 650;
+        font-size: medium;
+        color: rgba(200, 200, 200, 0.8);
+        text-decoration: none;
+    }
+
+    #submit {
+        margin-left: 2em;
+        background-color: rgba(0, 190, 0, 0.75);
+        transition: 0.25s;
+        cursor: pointer;
+    }
+
+    #sign-up:hover {
+        color: white;
+        background-color: rgba(50, 255, 50, 0.5);
+        transition: 0.25s;
+    }
+    #back-login {
+        background-color: rgba(0, 0, 190, 0.5);
+        transition: 0.25s;
+        text-decoration: none;
+    }
+
+    #back-login:hover {
+        background-color: rgba(50, 50, 255, 0.5);
+        color: white;
+        transition: 0.25s;
+        cursor: pointer;
+    }
+
+    #logo {
+        display: block;
+        position: relative;
+        margin-top: 40px;
+        width: 75px;
+    }
+}

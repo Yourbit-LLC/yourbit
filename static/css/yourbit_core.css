@@ -1,0 +1,1392 @@
+/* This is Yourbits main style sheet which controls the appearance of all pages of yourbit. 
+Refer to the interactive codex for current style guidelines for Yourbit*/
+
+/* -- Scrollbar Settings -- */
+
+/* width */
+::-webkit-scrollbar {
+    width: 0.5em;    
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0);
+    backdrop-filter: brightness(150%) saturate(150%);
+
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(56, 56, 56);
+    border-radius: 10px;
+
+    
+}
+
+@media screen and (min-width: 700px) {
+/*
+-- Universal --
+
+All universal methods define styling for classes of elements.  For further modification
+of an element in a specific circumstance, such as a specifically colored wide button
+please refer to the child elements to the following classes. Universal methods should
+only be used for object transforms (shaping and scaling)
+*/
+
+    .wide-button {
+        /*Wide button is typically used for confirmation and back buttons a similar
+        styling is used for the login and sign-up page buttons */
+        width: 100px; 
+        height: 25px;
+        border-radius: 20px;
+        border-width: 0px;
+        box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+        background-color: white;
+
+    }
+
+    .icon-rect-large:hover {
+        background-color: rgba(255, 255, 255, 0.6);
+        transition: 0.3s;
+        cursor: pointer;
+    }
+    /*
+    .interaction-button {
+        /* Interaction buttons are used for user generated content feedback, these will be
+        consistent across all content types on yourbit. 
+
+    }
+
+    .selector-tile {
+        /* Selector tiles are commonly used for color selection options throughout yourbit
+        the color will be changed in the CSS method for the color ID. This method should
+        only apply universal scaling 
+
+    }
+
+    .checkbox {
+        /* The checkboxes on yourbit are consistent across the entire site 
+
+    }*/
+    
+    
+
+
+    body, html {
+        height: 100%;
+        color: white;
+        font-family:Arial, Helvetica, sans-serif; 
+        overflow: hidden;
+        
+    }
+    /* UI background image */
+    .bg-image {
+        position: fixed;
+        top: 0;
+        left: 0;
+        min-width: 100%;
+        /* The image used */
+      
+        /* Add the blur effect */
+        filter: blur(8px);
+        -webkit-filter: blur(30px) brightness(80%) saturate(150%);
+        /* Full height */
+        max-height: 100%;
+      
+        /* Center and scale the image nicely */
+        background-position: center;
+        z-index: 1;
+        transition: 1s;
+    
+    }
+    ::placeholder {
+        color: rgb(150, 150, 150);
+        opacity: 1; /* Firefox */
+      }
+      
+      :-ms-input-placeholder { /* Internet Explorer 10-11 */
+       color: rgb(150, 150, 150);;
+      }
+      
+      ::-ms-input-placeholder { /* Microsoft Edge */
+       color: rgb(150, 150, 150);;
+      }
+
+    #content-container {
+        position: fixed;
+        top: 0;
+        z-index: 3;
+        width: 100vw;
+        height: 100vh;
+        overflow-y: scroll;
+        padding-top: 100px;
+        transition: 0.25s;
+    }
+
+
+
+    * {
+        box-sizing: border-box;
+    }
+
+    /* Switches */
+
+    /* The switch - the box around the slider */
+    .switch {
+        position: relative;
+        margin-left: 5px;
+        display: inline-block;
+        width: 21px;
+        height: 13.5px;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+    
+    /* Hide default HTML checkbox */
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+    
+    /* The slider */
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #6f00b9;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 11px;
+        width: 11px;
+        left: 1.5px;
+        bottom: 1.5px;
+        background-color: rgb(200, 200, 200);
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    input:checked + .slider {
+        background-color: rgb(1, 179, 16);
+    }
+    
+    input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+    
+    input:checked + .slider:before {
+        -webkit-transform: translateX(7.5px);
+        -ms-transform: translateX(7.5px);
+        transform: translateX(7.5px);
+        transition: 0.5s;
+    }
+    
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 27px;
+    }
+    
+    .slider.round:before {
+        border-radius: 50%;
+    }
+
+/* -- 
+    
+    --Navigation Bar--
+    The following 100 lines refer to different
+    elements in the navigation header on the top of the page.
+    This section is for desktop browsers. Mobile contains a 
+    split navigation bar as a header and footer. See mobile
+    styling for further adjustments.
+    
+-- */
+
+    .mobile-floating-actions {
+        display: none;
+    }
+
+    .navigation-bar {    
+        /* Navigation bar contains the logo, space navigator, search bar, quick action panel 
+        (notifications, messages, and quick appearance settings), and the user menu */
+        position: fixed;
+        display: grid;
+        grid-template-columns: 55px 70px 250px auto 50px 200px 50px;
+        z-index: 4;
+        top: 0;
+        left: 0;
+        margin: 0px;
+        height: auto;
+        width: 100%;
+        box-sizing: border-box;
+        padding-left: 2%;
+        backdrop-filter: brightness(200%) blur(50px);
+        background-color: rgba(255, 255, 255, 0.1);
+        padding-bottom: 0;
+    }
+
+    /* -- Logo Set -- */
+    
+    #logo-image {
+        /* Orbiting planets graphic on logo wide*/
+        grid-row: 1;
+        grid-column: 1;
+        float: left;
+        width: 60px;
+        margin-top: 0.75em;
+    }
+
+    
+    #logo-name {
+        /* Yourbit text on logo wide */
+        grid-column: 2;
+        float: left;
+        font-weight: 600;
+        font-size: 1.2em;
+        height: 5%;
+        margin-right: 0px;
+        margin-left: 10px;
+    }
+
+    /* -- Content Type Navigation -- */
+
+    .space-navigator {
+        /*The space container contains content type buttons, currently global, 
+        text, video, and photo but available spaces are subject to change */
+        display: grid;
+        grid-column: 3;
+        grid-template-columns: auto auto auto auto; 
+        float: left;
+        position: absolute;
+        margin-left: 1.7%;
+        margin-right: 5%;
+        margin-top: 15px;
+        border-radius: 10px;
+        background-color: rgba(0,0,0,0.5);
+    }
+
+    .space-button {
+        /* These are the content type buttons seen on the Space Navigator */
+        position: relative;
+        width: 40px;
+        height: 30px;
+        background-color: rgba(0,0,0,0.4);
+        border-width: 0px;
+        border-radius: 10px;
+        padding: 4px;
+        margin: 2px;
+        transition: 0.3s;
+    }
+
+    .space-button-active {
+        /* These are the content type buttons seen on the Space Navigator */
+        width: 40px;
+        height: 30px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-width: 0px;
+        border-radius: 10px;
+        margin: 2px;
+
+        transition: 0.3s;
+    }
+
+    .space-button-image {
+        /* The image identifying content type inside of each space button */
+        width: 24px;
+        height: 24px;
+        display: block;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .space-button:hover {
+        /* Button increases brightness on hover */
+        background-color: rgba(255, 255, 255, 0.6);
+        transition: 0.3s;
+        cursor: pointer;
+    }
+    
+    .space-button-image:hover {
+        border-color: black;
+        border-width: 0.25em;
+        transition: 0.3s;
+    }
+    
+
+    /* -- Search Interface -- */
+
+    .search {
+        /*This element contains the search text input field and the search action
+        button */
+        grid-column: 4;
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: 35px auto;
+        margin-top: 0.9em;
+        width: 100%;
+        height: fit-content;
+        margin-right: 1%;
+    } 
+
+    .search-bar{
+        /*This is the search text input field element */
+        grid-column: 1;
+        width: 100%;
+        height: 35px;
+        background-color: rgba(0,0,0,0.6);
+        border-width: 0px;
+        font-weight: 700;
+        font-size: 1.1em;
+        padding-left: 1em;
+        border-radius: 0.5em;
+        color: rgb(255, 255, 255);
+        transition: 0.5s;
+        grid-row: 1;
+    }
+
+    #search-button {
+        /* Search action button, will search content within text input on press */
+        grid-column: 2;
+        border-width: 0px;
+        background-color: rgba(0,0,0,0.4);
+        border-radius: 10px;
+        height: 35px;
+        width: 50px;
+        margin-left: 0.5em;
+        transition: 0.4s;
+        grid-row: 1;
+    }
+
+    #search-button:hover {
+        /* Search action button, will search content within text input on press */
+        grid-column: 2;
+        border-width: 0px;
+        background-color: rgba(255, 255, 255, 0.4);
+        border-radius: 10px;
+        height: 35px;
+        width: 50px;
+        margin-left: 0.5em;
+        transition: 0.4s;
+        grid-row: 1;
+        cursor: pointer;
+    }
+
+    .search-arrow {
+        /* Arrow graphic contained within the search action button. */
+        width: 100%;
+        margin-top: 0.28em;
+        grid-row: 1;
+    }
+
+    #search-options {
+        position: relative;
+        display: none;
+        grid-template-columns: 100px 35px 35px 35px 35px 35px;
+        height: 30px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        grid-row: 2;
+        background-color: rgba(0, 0, 0, 0.401);
+        border-radius: 10px;
+        padding-left: 5px;
+        padding-right: 5px;
+        grid-column-gap: 5px;
+    }
+
+    #search-options-label {
+        position: relative;
+        margin-top: auto;
+        margin-bottom: auto;
+
+    }
+
+    .search-filter-option {
+        display: block;
+        position: relative;
+        width: 35px;
+        height: 30px;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+    #global-search {
+        grid-column: 2;
+    }
+    #chat-search {
+        grid-column: 3;
+    }
+    #video-search {
+        grid-column: 4;
+    }
+    #photo-search {
+        grid-column: 5;
+    }
+    #people-search {
+        grid-column: 6;
+    }
+    #visibility {
+        position: relative;
+        grid-column: 5;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+        height: 35px;
+        width: 35px;
+        margin-top: auto;
+        margin-bottom: auto;
+        float: left;
+        transition: 0.5s;
+    }
+
+    #visibility:hover {
+        position: relative;
+        grid-column: 5;
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 10px;
+        height: 35px;
+        width: 35px;
+        margin-top: auto;
+        margin-bottom: auto;
+        float: left;
+        transition: 0.5s;
+        cursor: pointer;
+    }
+    
+    #visibility-icon {
+        display: block;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #visibility-dropdown {
+        position: absolute;
+        top: 40px;
+        left: -55px;
+        background-color: rgb(0, 0, 0, 0.9);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        height: 10px;
+        width: 150px;
+        border-radius: 20px;
+        padding: 5px;
+        padding-left: 10px;
+        text-align: left;
+
+    }
+
+    #options-container {
+        display: grid;
+        position: relative;
+        grid-template-columns: auto auto;
+        width: 100%;
+        margin: auto;
+    }
+
+    .vis-option-text {
+        grid-column: 1;
+    }
+
+    .all-settings-shortcut-container {
+        position: relative;
+        width: 100%;
+        text-align: center;
+    }
+
+    .all-settings-shortcut {
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 10px;
+        border-width: 0px;
+        color: white;
+        background-color: rgb(56, 56, 56);
+        padding: 5px;
+    
+    }
+    /* -- Quick Action Container -- */
+
+    #quick-actions {
+        /* Quick actions contain quick visibility adjustments, messages access,
+        and notification access */
+        position: absolute;
+        right: 7vw;
+        grid-column: 6;
+        background-color:rgba(0,0,0,0.5) ;
+        margin-top: 0.75em;
+        border-radius: 0.5em;
+        display: grid;
+
+    
+    }
+
+    .quick-button {
+        /* The shape, size, and color of a quick action button */
+        position: relative;
+        display: block;
+        margin: 3px;
+        height: 35px;
+        width: 35px;
+        background-color: rgba(0,0,0,0.4);
+        border-width: 0px;
+        border-radius: 0.5em;
+        transition: 0.3s;
+        padding: 5px;
+    
+    }
+
+    .quick-button-background {
+        /* icon contained within the quick action button */
+        position: relative;
+        display: block;
+        width: 100%;
+    }
+
+
+        
+    .quick-button:hover {
+        background-color: rgba(255, 255, 255, 0.6);
+        transition: 0.3s;
+        cursor: pointer;
+    }
+    
+    .quick-button-background:hover {
+        border-color: black;
+        border-width: 0.5em;
+        transition: 0.3s;
+    }
+    #messages-quick {
+        grid-column: 1;
+    }
+    #notifications-quick {
+        grid-column: 2
+    }
+
+    #create-post-button {
+        grid-column: 3;
+    }
+
+    /*Dropdown Header for quick actions*/
+
+
+
+    /* -- User Menu Button */
+    path {
+        fill: white;
+    }
+    #profile-icon {
+        width: auto;
+        float: right;
+        position: fixed;
+        right: 20%;
+        grid-column: 7;
+        z-index: 10;
+    
+    }
+    #profile-pic {
+        border-radius: 100%;
+        position: fixed;
+        width: 42px;
+        right: 2%;
+        float: right;
+        margin-top: 0.6em;
+        height: 42px;
+        border-color: white;
+        border-width: 0.15em;
+        object-fit: contain;
+        border-style: solid;
+        transition: 0.8s;
+        z-index: 10;
+    
+    }
+    
+    #profile-pic:hover {
+        border-radius: 100%;
+        position: fixed;
+        width: 44px;
+        right: 2%;
+        float: right;
+        margin-top: 0.6em;
+        height: 44px;
+        border-color: white;
+        object-fit: contain;
+        border-width: 0.15em;
+        border-style: solid;
+        box-shadow: 0.1em 0.1em 0.5em black;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+    /*------------------------------------------------------*/
+
+        /* -- User Menu -- */
+
+    /*-----------------------------------------------------*/
+    
+    #menu-profile-image {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+        object-fit: contain;
+        height:190px;
+        width: 190px;
+    }
+
+    #profile-menu {
+        position: fixed;
+        top: 3.75em;
+        background-color: rgba(155, 155, 155, 0.1);
+        z-index: 8;
+        right: 0px;
+        height: 100%;
+        width: 17em;
+        backdrop-filter: saturate(300%) brightness(125%) blur(20px);
+        display: grid;
+        visibility: hidden;
+        transform: translate(17em);
+        transition: 0.5s;
+        grid-template-rows: 340px 50px 40px;
+        grid-row-gap: 20px;
+    }
+    
+    #profile-name {
+        display: grid;
+        background-color: rgba(255, 255, 255, 0);
+        backdrop-filter: brightness(200%);
+        margin-top: 10px;
+        margin-left:auto;
+        margin-right: auto;
+        width:95%;
+        font-size: 16px;
+        text-align: center;
+        font-weight: 600;
+        color: white;
+        border-radius: 20px;
+        grid-row: 1;
+        text-decoration: none;
+    
+    }
+
+    .menu-profile-background-link {
+        position: absolute;
+        width: 100%;
+        height:100%;
+        z-index: 2;
+    } 
+
+    #menu-username {
+        font-size: 12px;
+        margin-top: 2px;
+    }
+
+    #menu-rewards-balance {
+        margin-top: 0px;
+        font-size: 16px;
+        background-color: rgba(0, 0, 0, 0.4);
+        padding: 4px;
+        border-radius: 5px;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #menu-options {
+        display: grid;
+        position: relative;
+        grid-row: 2;
+        width: 100%;
+        grid-template-columns: 50px 50px 50px 50px;
+        grid-template-rows: 50px 50px;
+        column-gap: 5px;
+        row-gap: 5px;
+        left: 12px;
+
+    }
+    
+    #profile-name-label {
+        margin-top: 10px;
+        margin-bottom: 2px;
+    }
+    
+    .profile-menu-link {
+        width: 50px;
+        height: 50px;
+        background-color: rgba(0, 0, 0, 0.801);
+        color: white;
+        border-radius: 10px;
+        transition: 0.3s;
+    }
+    .profile-menu-link:hover {
+        background-color: rgba(102, 102, 102, 0.3);
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    .profile-menu-icon {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%)
+
+    }
+
+    #home-link {
+  
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    #stuff-link {
+
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    #history-link {
+
+        grid-column: 3;
+    }
+
+    #settings-link {
+
+        grid-column: 4;
+        grid-row: 1;
+    }
+
+    #rewards-link {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    .profile-menu-label {
+        text-decoration: none;
+        color: white;
+        text-shadow: 2px 2px 1em black;
+        
+    }
+
+
+    .logout-button {
+        position: relative;
+        padding: 5px;
+        text-align: center;
+        background-color: rgb(194, 0, 0);
+        grid-row: 3;
+        width: 80%;
+        height: fit-content;
+        border-radius: 20px;
+        font-size: 20px;
+        margin: auto;
+        cursor: pointer;
+        
+    }
+
+    #logout-link {
+        text-decoration: none;
+        color: white;
+    }
+
+    .logout-button:hover {
+        filter: brightness(200%);
+        -webkit-filter: brightness(200%);
+    }
+
+    #mobile-header {
+        display: none;
+    }
+
+    .status-indicator {
+        position: absolute;
+        display: block;
+        border-radius: 50%;
+        height: 8px;
+        width: 8px;
+        top: 2px;
+        right: 2px;
+        background-color: red;
+        z-index: 3;
+    }
+
+/*Linear Content Container*/
+
+/*Grid Content Container*/
+
+/*Video Content*/
+
+/*Photo Content*/
+
+/*Settings Page*/
+    }
+
+/*
+
+    Mobile Styling
+
+*/
+
+@media screen and (max-width: 700px) {
+    /*Universal*/
+    .bg-image {
+        position: fixed;
+        min-height: 100vh;
+        /* The image used */
+      
+        /* Add the blur effect */
+        /* Full height */
+        width: 100%;
+        /* Center and scale the image nicely */
+        background-position: center;
+        z-index: 1;
+        transition: 1s;
+    
+    }
+
+    /*Core Interface*/
+    body, html {
+        display: grid;
+        font-family: Arial, Helvetica, sans-serif;
+        overflow: hidden;
+
+    }
+
+        /* Switches */
+
+    /* The switch - the box around the slider */
+    .switch {
+        position: relative;
+        margin-left: 5px;
+        display: inline-block;
+        width: 42px;
+        height: 27px;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+    
+    /* Hide default HTML checkbox */
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+    
+    /* The slider */
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #6f00b9;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 22px;
+        width: 22px;
+        left: 3px;
+        bottom: 3px;
+        background-color: rgb(200, 200, 200);
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    input:checked + .slider {
+        background-color: rgb(1, 179, 16);
+    }
+    
+    input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+    
+    input:checked + .slider:before {
+        -webkit-transform: translateX(15px);
+        -ms-transform: translateX(15px);
+        transform: translateX(15px);
+        transition: 0.5s;
+    }
+    
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 27px;
+    }
+    
+    .slider.round:before {
+        border-radius: 50%;
+    }
+    #visibility {
+        display: none;
+    }
+
+    #visibility-mobile {
+        display: block;
+        position: absolute;
+        right: 15px;
+        margin-top: 18px;
+    }
+    
+    #visibility-icon-mobile {
+        display: block;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #visibility-dropdown-mobile {
+        position: absolute;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        top: 20px;
+        left: -175px;
+        background-color: rgb(0, 0, 0, 0.9);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        height: 10px;
+        width: 200px;
+        border-radius: 20px;
+        padding: 5px;
+        padding-left: 10px;
+        text-align: left;
+
+    }
+
+    #options-container {
+        display: grid;
+        position: relative;
+        grid-template-columns: auto auto;
+        grid-template-rows: 50px 50px 50px auto;
+        width: 100%;
+        margin: auto;
+        font-size: 16px;
+    }
+
+    .vis-option-text {
+        grid-column: 1;
+    }
+
+    .all-settings-shortcut-container {
+        position: relative;
+        width: 100%;
+        text-align: center;
+    }
+
+    .all-settings-shortcut {
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 10px;
+        border-width: 0px;
+        color: white;
+        background-color: rgb(56, 56, 56);
+        padding: 5px;
+        margin-top: 20px;
+    
+    }
+
+    #mobile-header {
+        position: fixed;
+        display: block;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        z-index: 20;
+        height: 70px;
+        background-color: rgba(0, 0, 0, 0);
+        backdrop-filter: blur(20px) brightness(150%);
+        -webkit-backdrop-filter: blur(20px) brightness(200%);
+
+    }
+    
+    #mobile-logo {
+        position: relative;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        top: 35px;
+        height: 30px;
+    }
+
+    .wide-button {
+        /*Wide button is typically used for confirmation and back buttons a similar
+        styling is used for the login and sign-up page buttons */
+        width: 100px; 
+        height: 25px;
+        border-radius: 20px;
+        border-width: 0px;
+        box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+        background-color: white;
+
+    }
+
+    path {
+        fill: white;
+    }
+
+    /*Navigation Bar */
+    #content-container {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        z-index: 3;
+        width: 100vw;
+        height: 90vh;
+        padding-bottom: 70px;
+        overflow-y: scroll;
+        transition: 0.25s;
+        overflow-x: hidden;
+        backdrop-filter: blur(80px);
+        padding-top: 80px;
+    }
+    
+    .navigation-bar {    
+        /* Navigation bar contains the logo, space navigator, search bar, quick action panel 
+        (notifications, messages, and quick appearance settings), and the user menu */
+        position: fixed;
+        z-index: 10;
+        bottom: 0;
+        left: 0;
+        margin: 0px;
+        height: 50px;
+        width: 100%;
+        box-sizing: border-box;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(20px);
+        padding-bottom: 0;
+    }
+
+    #logo-image {
+        /* Orbiting planets graphic on logo wide*/
+        grid-row: 1;
+        grid-column: 1;
+        float: left;
+        width: 60px;
+        margin-top: 0.75em;
+        display: none;
+    }
+
+    #logo-name {
+        /* Yourbit text on logo wide */
+        display: none;
+    }
+    .space-navigator {
+        /*The space container contains content type buttons, currently global, 
+        text, video, and photo but available spaces are subject to change */
+        display: grid;
+        position: absolute;
+        grid-template-columns: auto auto 80px auto auto; 
+        width: 100vw;
+        bottom: 1px;
+        margin: auto;
+        
+    }
+
+    .search {
+        display: none;
+    }
+
+    #quick-actions {
+        display: none;
+    }
+
+    /* 
+    
+        Mobile Profile Menu
+    
+    */
+
+    /*This is the icon on mobile footer that shows the profile image*/
+    #profile-icon {
+        display: block;
+        position: absolute;
+        left: 50vw;
+        transform: translate(-50%);
+        width: 70px;
+        z-index: 11;
+        bottom: 0;
+    }
+
+    #profile-pic {
+        position: relative;
+        display: block;
+        width: 100%;
+        border-radius: 180px;
+        border: 3px solid white;
+    }
+
+    #profile-menu {
+        visibility: hidden;
+        position: fixed;
+        height: 100vh;
+        bottom: -100vh;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        transition: 0.3s;
+        z-index: 20;
+        display: grid;
+        width: 100vw;
+        left: 0;
+        color: white;
+        text-align: center;
+    }
+
+    #profile-name {
+        text-decoration: none;
+        width: 90vw;
+        height: 400px;
+        margin-left: auto;
+        margin-right: auto;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 20px;
+        margin-top: 20px;
+        margin-bottom: 0px;
+    }
+
+    #profile-name-label {
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    #menu-profile-image {
+        width: 50vw;
+        border-radius: 360px;
+        border: 2px solid white;
+        margin-top: 50px;
+    }
+
+    .menu-profile-background-link {
+        z-index: 3;
+        position: relative;
+        display: block;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+    }
+
+    #menu-options{
+        display: grid;
+        grid-template-columns: 50px 50px 50px 50px;
+        width: auto;
+        margin-left: auto;
+        margin-right: auto;
+        height: 50px;
+        column-gap: 10px;
+
+    }
+
+    .profile-menu-link{
+        position: relative;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+        padding: 2px;
+    }
+
+    .profile-menu-icon{
+        display: block;
+        position: absolute;
+    }
+
+    #home-link {
+        display: block;
+        grid-column: 1;
+    }
+
+    #stuff-link {
+        grid-column: 2;
+    }
+
+    #history-link {
+        grid-column: 3;
+    }
+
+    #rewards-link {
+        grid-column: 4;
+    }
+
+    #settings-link {
+        grid-column: 5;
+    }
+
+    .logout-button {
+        position: relative;
+        padding: 2px;
+        text-align: center;
+        background-color: rgb(194, 0, 0);
+        width: 80%;
+        height: fit-content;
+        border-radius: 20px;
+        margin: auto;
+        cursor: pointer;
+        
+    }
+
+    
+    #logout-link {
+        text-decoration: none;
+        color: white;
+        font-weight: 500;
+        font-size: 20px;
+    }
+
+    /* Profile Menu Exit Button Mobile (tags: exit menu mobile exit) */
+    #mobile-exit-button {
+        color: white;
+        border-radius: 50%;
+        border: 2px solid white;
+        font-size: 90px;
+        bottom: 5px;
+        height: 70px;
+        width: 70px;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        line-height: 70px;
+    }
+    /* 
+        Mobile Space Buttons
+        These are the content type buttons seen on the Space Navigator 
+        
+        Tags: space button mobile space button mobile content button type mobile content selector mobile content navigator content type button
+            
+            SECTION CONTAINS:
+                .space-button
+                .space-button-active
+                .space-button-image
+                #global-space-button
+                #text-space-button
+                #video-space-button
+                #photo-space-button
+    */
+    .space-button {
+        width: 60px;
+        height: 30px;
+        background-color: rgba(0,0,0,0.3);
+        border-width: 0px;
+        border-radius: 0.25em;
+        padding: 4px;
+        margin: 2px;
+        transition: 0.3s;
+    }
+    
+
+    .space-button-active {
+        /* These are the content type buttons seen on the Space Navigator */
+        width: 60px;
+        height: 30px;
+        background-color: rgba(255, 255, 255, 0.6);
+        border-width: 0px;
+        border-radius: 0.25em;
+        padding: 4px;
+        margin: 2px;
+
+        transition: 0.3s;
+    }
+
+    .space-button-image {
+        /* The image identifying content type inside of each space button */
+        position: relative;
+        display: block;
+        width: 80%;
+        display: block;
+        margin: auto;
+    }
+
+    #global-space-button {
+        grid-column: 1;
+    }
+
+    #text-space-button {
+        grid-column: 2;
+    }
+
+    #video-space-button {
+        grid-column: 4;
+    }
+
+    #photo-space-button {
+        grid-column: 5;
+    }
+
+    .mobile-floating-actions {
+        position: fixed;
+        display: block;
+        z-index: 15;
+        border-radius: 180px;
+        width: 60px;
+        height: 60px;
+        background-color: rgb(34, 34, 34);
+        bottom: 57px;
+        -webkit-filter: drop-shadow(2px 2px 3px black);
+        filter: drop-shadow(2px 2px 3px black) brightness(80%);
+        border: 3px solid black;
+        line-height: 30px;
+        text-align: center;
+    }
+
+    #mobile-create-button {
+        left: 7px;
+    }
+
+    #mobile-search-button {
+        right: 7px;
+    }
+
+    #mobile-search-icon {
+        position: relative;
+        display: block;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #mobile-create-icon {
+        position: relative;
+        display: block;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #mobile-spacer {
+        height: 100px;
+    }
+
+    .large-bubble {
+        background-color: rgba(0, 0, 0, 1);
+        position: fixed;
+        z-index: 1000;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 40px;
+        padding: 5px;
+        color: white;
+
+    }
+
+    /*Linear Content Container*/
+
+    /*Grid Content Container*/
+
+    /*Video Content*/
+
+    /*Photo Content*/
+
+    /*Text Content*/
+
+    /*Profile Page*/
+
+    /*Settings Page*/
+    }
+
