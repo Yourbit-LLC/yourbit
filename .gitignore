@@ -9,3 +9,6 @@ venv.bak/
 
 #Databases
 db.sqlite3
+
+#migrations
+migrations/
