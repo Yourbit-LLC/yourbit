@@ -326,7 +326,7 @@
 
                     }
                 )
-            }
+            };
 
             /*
 
@@ -345,19 +345,19 @@
                 Show Visibility Settings
             */
             $('#visibility-icon').click(function() {
-                showVisibility(getVisibilityOptions, visibilityClose, scrollOpen);
+                showVisibility(getVisibilityOptions, visibilityClose, scrollOpen, updateVisibilitySwitches);
             });
 
             $('#visibility-icon-mobile').click(function() {
-                showVisibility(getVisibilityOptions, visibilityClose, scrollOpen);
+                showVisibility(getVisibilityOptions, visibilityClose, scrollOpen, updateVisibilitySwitches);
             });
             
-            function showVisibility(getData, callbackClose, callbackOpen) {
+            function showVisibility(getData, callbackClose, callbackOpen, pass) {
                 var dropdown = document.getElementById("visibility-dropdown");
                 if (dropdown.style.display === 'none') {
 
                     dropdown.style.display='block';
-                    getData(callbackOpen);
+                    getData(callbackOpen, pass);
 
                 } else {
 
@@ -412,61 +412,69 @@
 
 
             function updateVisibilitySwitches(data) {
-                var user_colors_on = data.bit_colors_on;
-                var wallpaper_on = data.wallpaper_on;
-                var default_theme_on = data.default_theme_on;
+                let options = data;
+                var user_colors_on = options.bit_colors_on;
+                var wallpaper_on = options.wallpaper_on;
+                var default_theme_on = options.default_theme_on;
                 console.log(user_colors_on);
                 console.log(wallpaper_on);
                 console.log(default_theme_on);
                 
                 if (user_colors_on) {
-                    document.getElementById('postColorCheck').checked = true;
+                    $('#postColorCheck').checked = true;
                 } else {
-                    document.getElementById('postColorCheck').checked = false;
+                    $('#postColorCheck').checked = false;
                 }
 
                 if (wallpaper_on) {
-                    document.getElementById('wallpaperCheck').checked = true;
+                    $('#wallpaperCheck').checked = true;
                 } else {
-                    document.getElementById('wallpaperCheck').checked = false
+                    $('#wallpaperCheck').checked = false;
                 }
 
                 if (default_theme_on) {
-                    document.getElementById('defaultCheck').checked = true;
+                    $('#defaultCheck').checked = true;
                 } else {
-                    document.getElementById('defaultCheck').checked = false
+                    $('#defaultCheck').checked = false;
                 }
 
-            }
+            };
             
-            function scrollOpen(data) {
-                updateVisibilitySwitches(data);
+            function scrollOpen(data, pass) {
+               
+                pass(data);
+                showVisibilityOptions();
+
+
+            };
+
+            function showVisibilityOptions() {
                 if (width > 800) {
                     $('#visibility-dropdown').stop().animate({height: "170px"}, 150);
                     $('#options-container').show();
                 } else {
                     $('#visibility-dropdown-mobile').stop().animate({height: "200px"}, 150);
                     $('#options-container-mobile').show();
-                }
-                
 
-            }
+                }  
+            };
 
-            function getVisibilityOptions(scrollOpen) {
+            function getVisibilityOptions(scrollOpen, pass) {
                 $.ajax(
                     {
                         type: "GET",
                         url: "/social/visibility/",
                     success: function(data) {
                         let options_set = data;
-                        scrollOpen(options_set);
+                        console.log(options_set)
+                        scrollOpen(options_set, pass);
                     }
-                })
-            }
+                });
+            };
 
             function visibilityClose(dropdown) {
                 dropdown.style.display='none';
-            }
+            };
             
         </script>
     </body>                

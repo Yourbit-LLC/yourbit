@@ -1120,6 +1120,8 @@ only be used for object transforms (shaping and scaling)
         width: 100%;
         border-radius: 180px;
         border: 3px solid white;
+        object-fit: contain;
+
     }
 
     #profile-menu {
