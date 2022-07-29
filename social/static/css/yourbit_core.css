@@ -1112,8 +1112,10 @@ only be used for object transforms (shaping and scaling)
         display: block;
         position: absolute;
         left: 50vw;
-        transform: translate(-50%);
+        transform: translate(-50%, 0);
         width: 70px;
+        height:70px;
+        object-fit: contain;
         z-index: 11;
         bottom: 0;
     }
@@ -1121,7 +1123,8 @@ only be used for object transforms (shaping and scaling)
     #profile-pic {
         position: relative;
         display: block;
-        width: 100%;
+        width: 75px;
+        height: 75px;
         border-radius: 180px;
         border: 3px solid white;
         object-fit: contain;
