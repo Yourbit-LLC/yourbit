@@ -37,7 +37,7 @@
                     </div>
                     {% if bit.title %}
                         
-                        <div id="chat-bit-title"><hr><h3>{{ bit.title }}<h3><hr></div>
+                        <div id="chat-bit-title"><hr><h3 style="color:{{bit.user.profile.title_color}};">{{ bit.title }}<h3><hr></div>
                     {% endif %}
                     <div id="comments-display{{bit.pk}}"></div>
                     <div id="chat-bit-display-description" style="color:{{bit.user.profile.text_color}};"><p>{{bit.body|linebreaks|urlize}}</p></div>
