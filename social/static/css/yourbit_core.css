@@ -1379,6 +1379,7 @@ only be used for object transforms (shaping and scaling)
         box-shadow: -1px -1px 10px black;
         text-align: center;
         color: white;
+        transition: 0.2s;
     }
     #mobile-title {
         background-color: rgba(0, 0, 0, 0.4);
@@ -1391,7 +1392,7 @@ only be used for object transforms (shaping and scaling)
         
     }
 
-    #create-bit-mobile-paragraph {
+    #mobile-body {
         width: 90vw;
         height: 150px;
         border-radius: 10px;

@@ -818,7 +818,22 @@ class GetNotifications(View):
 
         return JsonResponse({'notifications', notifications})
 
+class Publish(View):
+    def post(self, request, *args, **kwargs):
+        bit_form = BitForm()
+        title = request.POST['title']
+        body = request.POST['body']
+        new_bit = bit_form.save(commit=False)
+        new_bit.user = request.user
+        new_bit.bit_type = 'chat'
+        if title != 0:
+            new_bit.title = title
+        new_bit.body = body
+        new_bit.save()
 
+        
+
+        return JsonResponse({'status':'success'}) 
             
 
 

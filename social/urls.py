@@ -27,5 +27,6 @@ urlpatterns = [
     path('test/', DynamicFeedTest.as_view(), name='feedtest'),
     path('visibility/', QuickVisibility.as_view(), name="get-visibility"),
     path('notifications/', GetNotifications.as_view, name="get-notificatons"),
-    path('notifications/status/', NotificationStatus.as_view(), name='get-notification-status')
+    path('notifications/status/', NotificationStatus.as_view(), name='get-notification-status'),
+    path('publish/', Publish.as_view(), name="publish"),
 ]

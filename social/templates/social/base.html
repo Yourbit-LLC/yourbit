@@ -221,9 +221,9 @@
                 <form id="create-bit-mobile" style="display:none;">
                     <h3 style="margin-top:10px; margin-bottom: 10px;">Create Bit</h3>
                     <input type="text" id="mobile-title" placeholder="Title">
-                    <textarea id="create-bit-mobile-paragraph" placeholder="Text">
+                    <textarea id="mobile-body" placeholder="Text">
                     </textarea>
-                    <button id="mobile-publish-bit" style="background-color: {{user.profile.bit_background}};">Publish</button>
+                    <button id="mobile-publish-bit" style="background-color: {{user.profile.bit_background}};" type="button">Publish</button>
                 </form>
             
                 {% block content %}
@@ -252,36 +252,52 @@
                         </div>
                     </div>  
             {% endif %}
+
+        <!--#####################=====   BEGIN BASE SCRIPTS   =====##########################-->
+        
+        <!--Jquery CDN-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+        <!--Yourbit Core Script Document (Global Functions)-->
         <script type="text/javascript" src="{% static 'scripts/yourbit_core.js' %}"></script>
+        
+        <!--Page Script (Local Functions)-->
         <script type="text/javascript">
+
+/*
+            --Declare Global Variables--
+*/
+
             var width = screen.width;
             var notifications_last = 0;
             var first_load = true;
+            var iframe = document.getElementById('feed-content-container');
+
+
+/*
+            --On document load get notifications, load bits, get messages, update rewards points--
+*/
             $(document).ready(function() {
                 console.log(notifications_last)
                 updateNotificationStatus();
             });
 
+/*
+            --Function for updating notifications--
+*/
             function updateNotificationStatus(){
-                // do whatever you like here
+                
                 notificationIconUpdate();
                 setTimeout(updateNotificationStatus, 5000);
                 
             };
 
-            $('#mobile-create-icon').click(function() {
-                showCreateBit();
-            })
 
-            function showCreateBit() {
-                let create_bit = document.getElementById('create-bit-mobile')
-                $('#create-bit-mobile').show();
-                create_bit.style.transform= 'translate(0, -70vh)';
-                $('#mobile-title').focus();
-            }
             
-            
+    /*
+            --Function for updating the notification icon-- 
+    */
+
             function notificationIconUpdate() {
                 $.ajax(
                     {
@@ -314,7 +330,9 @@
                     
                 )
             };
-
+/*
+                --Function For displaying notifications--
+*/
 
             function getNotifications() {
                 $.ajax(
@@ -346,11 +364,70 @@
                 )
             };
 
-            /*
+        /*
+            --Create Bit Functions--
+        */
 
-                Show Search Filters
+            $('#mobile-create-icon').click(function() {
+                showCreateBit();
+            })
 
-            */
+            function showCreateBit() {
+                let create_bit = document.getElementById('create-bit-mobile');
+                $('#create-bit-mobile').show();
+                create_bit.style.transform = 'translate(0, -70vh)';
+                $('#mobile-title').focus();
+            }
+
+            function dropCreateBit(followUp) {
+                let create_bit = document.getElementById('create-bit-mobile');
+                create_bit.style.transform = 'translate(0, 0vh)';
+                followUp();
+            }
+
+            function hideCreateBit() {
+                $('#create-bit-mobile').show();
+            }
+
+            $('#mobile-publish-bit').click(function() {
+                submitBit()
+            });
+
+            function submitBit() {
+                let title_field = document.getElementById("mobile-title");
+                let body_field = document.getElementById("mobile-body");
+                let title = title_field.value;
+                let body = body_field.value;
+                let cookie = document.cookie;
+                let csrfToken = cookie.substring(cookie.indexOf('=') + 1);
+                console.log(title)
+                $.ajax(
+                    {
+                        type: 'POST',
+                        headers: {
+                            'X-CSRFToken': csrfToken
+                        },
+                        url: '/social/publish/',
+                        data: {
+                            title: title,
+                            body: body
+                        },
+                        success: function(){
+                            iframe.contentWindow.location.reload();
+                            dropCreateBit(hideCreateBit);
+
+                        }
+                    }
+                )
+            }
+
+
+
+        /*
+
+            Show Search Filters
+
+        */
 
             $(".search-bar").focus(function() {
                 document.getElementById('search-options').style.display = "grid";
@@ -359,9 +436,10 @@
                 document.getElementById('search-options').style.display = "none";
             });
 
-            /*
-                Show Visibility Settings
-            */
+        /*
+            Show Visibility Settings
+        */  
+
             $('#visibility-icon').click(function() {
                 showVisibility(getVisibilityOptions, visibilityClose, scrollOpen, updateVisibilitySwitches);
             });
@@ -385,9 +463,12 @@
                 }
                 
             }
-            /*
-                Change Visibility Settings
-            */
+
+        /*
+
+            Change Visibility Settings
+        
+        */
 
             $('.checkbox').change(function() {
                 let button_name = $(this).attr("name");
