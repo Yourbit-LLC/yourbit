@@ -1044,7 +1044,7 @@ only be used for object transforms (shaping and scaling)
         overflow-x: hidden;
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
-        padding-top: 80px;
+        padding-top: 60px;
     }
     
     .navigation-bar {    
@@ -1052,8 +1052,8 @@ only be used for object transforms (shaping and scaling)
         (notifications, messages, and quick appearance settings), and the user menu */
         position: fixed;
         z-index: 10;
-        bottom: 0;
-        left: 0;
+        bottom: 0vh;
+        left: 0vw;
         margin: 0px;
         height: 50px;
         width: 100%;

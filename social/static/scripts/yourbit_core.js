@@ -18,7 +18,7 @@ function show_profile_menu() {
         if (menu.style.visibility === 'hidden') {
             menu.style.visibility='visible';
 
-            menu.style.transform= 'translate(0, -75vh)';
+            menu.style.transform= 'translate(0, -95vh)';
         } else {
             menu.style.visibility='hidden';
 
