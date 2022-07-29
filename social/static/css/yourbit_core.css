@@ -88,7 +88,7 @@ only be used for object transforms (shaping and scaling)
         /* The image used */
       
         /* Add the blur effect */
-        filter: blur(8px);
+        filter: blur(30px);
         -webkit-filter: blur(30px) brightness(80%) saturate(150%);
         /* Full height */
         max-height: 100%;
@@ -849,7 +849,6 @@ only be used for object transforms (shaping and scaling)
     /*Core Interface*/
     body, html {
         display: grid;
-        background-color: rgb(50, 50, 50);
         font-family: Arial, Helvetica, sans-serif;
         overflow: hidden;
 
@@ -1043,7 +1042,8 @@ only be used for object transforms (shaping and scaling)
         overflow-y: scroll;
         transition: 0.25s;
         overflow-x: hidden;
-        backdrop-filter: blur(80px);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         padding-top: 80px;
     }
     
@@ -1244,15 +1244,15 @@ only be used for object transforms (shaping and scaling)
         color: white;
         border-radius: 50%;
         border: 2px solid white;
-        font-size: 90px;
+        font-size: 20px;
         bottom: 5px;
-        height: 70px;
-        width: 70px;
+        height: 30px;
+        width: 30px;
         position: relative;
         margin-left: auto;
         margin-right: auto;
         text-align: center;
-        line-height: 70px;
+        line-height: 30px;
     }
     /* 
         Mobile Space Buttons
