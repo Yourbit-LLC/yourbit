@@ -1171,6 +1171,7 @@ only be used for object transforms (shaping and scaling)
         border-radius: 360px;
         border: 2px solid white;
         margin-top: 50px;
+        object-fit: contain;
     }
 
     .menu-profile-background-link {

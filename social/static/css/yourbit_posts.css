@@ -641,7 +641,7 @@
         grid-column: 1;
         width: 100%;
         margin: auto;
-        object-fit: contain;
+        
     
     }
     
@@ -650,7 +650,7 @@
         border: 2px solid white;
         border-radius: 180px;
         margin: auto;
-        
+        object-fit: contain;
     }
     
     #chat-bit-user-info {
