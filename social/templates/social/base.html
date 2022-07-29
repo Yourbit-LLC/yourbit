@@ -17,7 +17,7 @@
         <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
 
     </head>
-    <body style="background-color:rgb(100,100,100);">
+    <body style="background-color:rgb(25,25,25);">
 
         <!--Mobile Header-->
 
@@ -418,17 +418,20 @@
                 console.log(user_colors_on);
                 console.log(wallpaper_on);
                 console.log(default_theme_on);
-                if(user_colors_on) {
+                
+                if (user_colors_on) {
                     document.getElementById('postColorCheck').checked = true;
                 } else {
                     document.getElementById('postColorCheck').checked = false;
                 }
-                if(wallpaper_on) {
+
+                if (wallpaper_on) {
                     document.getElementById('wallpaperCheck').checked = true;
                 } else {
                     document.getElementById('wallpaperCheck').checked = false
                 }
-                if(default_theme_on) {
+
+                if (default_theme_on) {
                     document.getElementById('defaultCheck').checked = true;
                 } else {
                     document.getElementById('defaultCheck').checked = false
