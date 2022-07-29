@@ -218,7 +218,7 @@
                     {% block bubble_content %}
                     {% endblock %}
                 </div>
-                <form id="create-bit-mobile">
+                <form id="create-bit-mobile" style="display:none;">
                     <h3 style="margin-top:10px; margin-bottom: 10px;">Create Bit</h3>
                     <input type="text" id="mobile-title" placeholder="Title">
                     <textarea id="create-bit-mobile-paragraph" placeholder="Text">
@@ -269,6 +269,16 @@
                 setTimeout(updateNotificationStatus, 5000);
                 
             };
+
+            $('#mobile-create-icon').click(function() {
+                showCreateBit();
+            })
+
+            function showCreateBit() {
+                let create_bit = document.getElementById('create-bit-mobile')
+                $('#create-bit-mobile').show();
+                create_bit.style.transform= 'translate(0, -70vh)';
+            }
             
             
             function notificationIconUpdate() {
