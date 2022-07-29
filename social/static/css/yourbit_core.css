@@ -812,6 +812,10 @@ only be used for object transforms (shaping and scaling)
         z-index: 3;
     }
 
+    #create-bit-mobile {
+        display: none;
+    }
+
 /*Linear Content Container*/
 
 /*Grid Content Container*/
@@ -1361,6 +1365,31 @@ only be used for object transforms (shaping and scaling)
         transform: translate(-50%, -50%);
     }
 
+    #create-bit-mobile {
+        height: 85vh;
+        position: fixed;
+        z-index: 25;
+        background-color: rgba(0, 0, 0, 0.0);
+        -webkit-backdrop-filter: blur(40px);
+        backdrop-filter: blur(40px);
+        width: 100vw;
+        left: 0;
+        bottom: 0px;
+        box-shadow: -1px -1px 10px black;
+        text-align: center;
+        color: white;
+    }
+    #mobile-title {
+        background-color: rgba(0, 0, 0, 0.4);
+        border-radius: 20px;
+        border-width: 0px;
+        width: 80vw;
+        margin-left: auto;
+        margin-right: auto;
+        height: 30px;
+        
+    }
+    
     #mobile-spacer {
         height: 100px;
     }
