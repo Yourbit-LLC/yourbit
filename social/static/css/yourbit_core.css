@@ -1398,6 +1398,15 @@ only be used for object transforms (shaping and scaling)
         background-color: rgba(0, 0, 0, 0.4);
         border-width: 0px;
     }
+
+    #mobile-publish-bit {
+        border-width: 0px;
+        border-radius: 10px;
+        height: 30px;
+        width: 60px;
+        margin-top: 10px;
+        color: white;
+    }
     
     #mobile-spacer {
         height: 100px;
