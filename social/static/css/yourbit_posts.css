@@ -646,7 +646,8 @@
     }
     
     #chat-bit-profile-picture {
-        width: 100%;
+        width: 30;
+        height: 30;
         border: 2px solid white;
         border-radius: 180px;
         margin: auto;
