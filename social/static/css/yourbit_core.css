@@ -1423,7 +1423,7 @@ only be used for object transforms (shaping and scaling)
         height: 100%;
         transition: 0.2s;
         position: fixed;
-        z-index: 25;
+        z-index: 15;
         background-color: rgba(0, 0, 0, 0.0);
         -webkit-backdrop-filter: blur(40px);
         backdrop-filter: blur(40px);
