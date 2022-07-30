@@ -4,7 +4,7 @@
 <!--Content is divided by bit type. There is a post wrapper element for chats, videos, and photos.-->
 <link rel="stylesheet" type="text/css" href="{% static 'css/feed_yourbit.css' %}"/>
 <div id="content-container">
-    <iframe id='feed-content-container' name = "global" src="{% url 'feed' 'global' '0' %}" sandbox="allow-top-navigation allow-scripts allow-forms">
+    <iframe id='feed-content-container' name = "global" src="{% url 'feed' 'global' '0' %}" sandbox="allow-top-navigation allow-scripts allow-forms allow-same-origin allow-top-navigation-by-user-activation">
     </iframe>
 </div>
 <script type="text/javascript" src="{% static 'scripts/yourbit_core.js' %}"></script>
