@@ -1393,6 +1393,7 @@ only be used for object transforms (shaping and scaling)
         box-shadow: -1px -1px 10px black;
         text-align: center;
         color: white;
+        transition: 0.2s;
     }
 
     #mobile-body {
