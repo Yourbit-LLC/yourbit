@@ -403,19 +403,19 @@
 */
 
             $('#mobile-search-icon').click(function() {
-                showSearch(searchFocus);
+                showSearch();
             });
 
-            function showSearch(callback) {
+            function showSearch() {
                 let search = document.getElementById('search-mobile');
                 $('#search-mobile').show();
                 search.style.transform = 'translate(0, -100vh)';
-                setTimeout(callback, 500);
+                $('#mobile-searchbar').focus();
             }
 
             function searchFocus() {
                 let search = document.getElementById('search-mobile');
-                $('#mobile-searchbar').focus();
+                
             }
 
             function dropSearch() {
