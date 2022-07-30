@@ -27,7 +27,7 @@
                 <div class="post-wrapper" id = "chat-post-wrapper">
                 {% endif %}
                     <div id="chat-bit-name-date">
-                        <a id="chat-bit-profile-picture-link" href="{% url 'profile' bit.user.profile.pk %}"><img style="border-color: {{bit.user.profile.accent_color}}" id="chat-bit-profile-picture" src="{{bit.user.profile.image.url}}" ></a>
+                        <a id="chat-bit-profile-picture-link" href="{% url 'profile' bit.user.username %}"><img style="border-color: {{bit.user.profile.accent_color}}" id="chat-bit-profile-picture" src="{{bit.user.profile.image.url}}" ></a>
                         <p id="chat-bit-user-info"><strong id="chat-user-name" style="color:{{bit.user.profile.title_color}};">{{bit.user.first_name}} {{bit.user.last_name}}</strong> <small style="color:{{bit.user.profile.text_color}};">@{{bit.user.username}}</small> </p>
                         <p id="chat-bit-time-label"><small>{{ bit.created_at }}</small></p>
                     </div>

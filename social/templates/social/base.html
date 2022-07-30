@@ -15,7 +15,7 @@
         {%block extend_styles%}{%endblock%}
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1">
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     </head>
     <body style="background-color:rgb(25,25,25);">
 
@@ -182,7 +182,7 @@
                 <!--Profile Menu comes and goes when user clicks on the profile icon, contains links to user settings-->
                 <div class="profile-menu" id="profile-menu">
 
-                    <a class="profile-name" href="{% url 'profile' user.profile.pk %}" id="profile-name">                    
+                    <a class="profile-name" href="{% url 'profile' user.username %}" id="profile-name">                    
                         <img src="{{ request.user.profile.image.url }}" class="profile-image-large" id="menu-profile-image">
 
                         <p id="profile-name-label">{{user.first_name}} {{user.last_name}}</p>
@@ -205,6 +205,10 @@
                     </div>
                     <div class="logout-button"><a class="logout-button-link" id="logout-link" href="/logout">Logout</a></div>
                     <div id="mobile-exit-button" onclick="show_profile_menu()">&times;</div>
+                </div>
+
+                <div id="desktop-create-bit">
+
                 </div>
                 
                 <div id="mobile-create-button" style="border-color: {{user.profile.accent_color}}; background-color: rgb(75,75,75);" class="mobile-floating-actions">
@@ -257,361 +261,85 @@
                     </div>  
             {% endif %}
 
+            <div id="content-container">
+                <form class="write-post" id="write-post" method="POST" action="{% url 'create-bit' %}" style="display:grid; background-color:{{user.profile.bit_background}};">
+                    <input type="hidden" name="last_page" value="{{ last_page }}">
+                    <input type="hidden" name="bit_type" value="chat">
+                    <div id="create-post-title"><h3 id="create-post-title-text">Create Chat Bit</h3><button type="button" class="post-close" id="post-close">&times;</button></div>
+                    
+                        {% csrf_token %}
+                        {{ bit_form.title }}
+                        {{ bit_form.body }}
+                        <div id="public-toggle-field">
+                            {{ bit_form.is_public.label}}
+                            {{ bit_form.is_public}}
+                        </div>
+                
+                    <input name="post-type" type="text" class="post-type-hidden" id="post-type-hidden" value="text">
+                    <div class="post-type" id="post-type">
+                        <div class = "icon-square-small-active" id="social-tiny"><img class="icon-square-small-icon" src="{% static 'images/socialspace-icon.png' %}"></div>
+                        <div class = "icon-square-small" id="video-tiny" onclick="VideoForm()"><img class="icon-square-small-icon" src="{% static 'images/videospace-icon.png' %}"></div>
+                        <div class = "icon-square-small" id="photo-tiny" onclick="PhotoForm()"><img class="icon-square-small-icon" src="{% static 'images/photospace-icon.png' %}"></div>
+                    </div>
+                    <button type="submit" class="create-post-interact" name="publish_bit" id="publish">Publish</button>
+                </form>
+                <form class="write-post" id="upload-video" method="POST" action="{% url 'create-bit' %}" style="display:none; background-color:{{user.profile.bit_background}};" enctype="multipart/form-data">
+                    <input type="hidden" name="last_page" value="{{ last_page }}">
+                    <input type="hidden" name="bit_type" value="video">
+                    <div id="create-post-title"><h3 id="create-post-title-text">Create Video Bit</h3><button type="button" class="post-close" id="post-close">&times;</button></div>
+                    
+                        {% csrf_token %}
+                        {{ bit_form.title }}
+                        {{ bit_form.body }}
+                        {{ bit_form.video }}
+                        <div id="public-toggle-field">
+                            {{ bit_form.is_public.label}}
+                            {{ bit_form.is_public}}
+                        </div>
+                
+                    <input name="post-type" type="text" class="post-type-hidden" id="post-type-hidden" value="text">
+                    <div class="post-type" id="post-type">
+                        <div class = "icon-square-small" id="social-tiny" onclick="ChatForm()"><img class="icon-square-small-icon" src="{% static 'images/socialspace-icon.png' %}"></div>
+                        <div class = "icon-square-small-active" id="video-tiny"><img class="icon-square-small-icon" src="{% static 'images/videospace-icon.png' %}"></div>
+                        <div class = "icon-square-small" id="photo-tiny" onclick="PhotoForm()"><img class="icon-square-small-icon" src="{% static 'images/photospace-icon.png' %}"></div>
+                    </div>
+                    <button type="submit" class="create-post-interact" name="publish_bit" id="publish">Publish</button>
+                </form>
+                <form class="write-post" id="upload-photo" method="POST" action="{% url 'create-bit' %}" style="display:none; background-color:{{user.profile.bit_background}};" enctype="multipart/form-data">
+                    <input type="hidden" name="last_page" value="{{ last_page }}">
+                    <input type="hidden" name="bit_type" value="photo">
+                    <div id="create-post-title"><h3 id="create-post-title-text">Create Photo Bit</h3><button type="button" class="post-close" id="post-close" onclick="hide_create_post()">&times;</button></div>
+                    
+                        {% csrf_token %}
+                        {{ bit_form.title }}
+                        {{ bit_form.body }}
+                        {{ bit_form.image }}
+                        <div id="public-toggle-field">
+                            {{ bit_form.is_public.label}}
+                            {{ bit_form.is_public}}
+                        </div>
+                
+                    <input name="post-type" type="text" class="post-type-hidden" id="post-type-hidden" value="text">
+                    <div class="post-type" id="post-type">
+                        <div class = "icon-square-small" id="social-tiny" onclick="ChatForm()"><img class="icon-square-small-icon" src="{% static 'images/socialspace-icon.png' %}"></div>
+                        <div class = "icon-square-small" id="video-tiny" onclick="VideoForm()"><img class="icon-square-small-icon" src="{% static 'images/videospace-icon.png' %}"></div>
+                        <div class = "icon-square-small-active" id="photo-tiny"><img class="icon-square-small-icon" src="{% static 'images/photospace-icon.png' %}"></div>
+                    </div>
+                    <button type="submit" class="create-post-interact" name="publish_bit" id="publish">Publish</button>
+                </form>        
+            </div>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        
+
         <!--#####################=====   BEGIN BASE SCRIPTS   =====##########################-->
         
         <!--Jquery CDN-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
         <!--Yourbit Core Script Document (Global Functions)-->
         <script type="text/javascript" src="{% static 'scripts/yourbit_core.js' %}"></script>
         
         <!--Page Script (Local Functions)-->
         <script type="text/javascript">
-
-/*
-            --Declare Global Variables--
-*/
-
-            var width = screen.width;
-            var notifications_last = 0;
-            var first_load = true;
-            var iframe = document.getElementById('feed-content-container');
-
-
-/*
-            --On document load get notifications, load bits, get messages, update rewards points--
-*/
-            $(document).ready(function() {
-                console.log(notifications_last)
-                updateNotificationStatus();
-            });
-
-/*
-            --Function for updating notifications--
-*/
-            function updateNotificationStatus(){
-                
-                notificationIconUpdate();
-                setTimeout(updateNotificationStatus, 5000);
-                
-            };
-
-
-            
-    /*
-            --Function for updating the notification icon-- 
-    */
-
-            function notificationIconUpdate() {
-                $.ajax(
-                    {
-                        type: 'GET',
-                        url: '/social/notifications/status/',
-
-                        success: function(data) {
-                            let status_response= data;
-                            let current_notifications = status_response.notification_len;
-                            
-                            console.log(status_response);
-
-                            if (status_response.status === true) {
-                                $('#notification-status').show();
-                                if (first_load === true) {
-                                    first_load = false;
-                                } else {
-                                    if (current_notifications > notifications_last) {
-                                        document.getElementById("notification-sound").play();
-                                        notifications_last = status_response.notification_len;
-                                    }
-                            }
-                                
-                            } else {
-                                $('#notification-status').hide();
-                            }
-                        }
-
-                    }
-                    
-                )
-            };
-/*
-                --Function For displaying notifications--
-*/
-
-            function getNotifications() {
-                $.ajax(
-                    {
-                        type: 'GET',
-                        url: '/social/notifications/',
-
-                        success: function(data) {
-                            let response = data;
-                            let notifications = response.notifications
-                            for (let i = 0; i < notifications.length; i++) {
-                                $('#notifications-dropdown').append(
-                                    `
-                                    <div class="interaction-notification" id="friend-request">
-                                        <img class="notification-profile-image"src="">
-                                        <p class="interaction-notification-text"></p>
-                                        <div class="notification-response-button-container">
-                                            <button type="button" name="accept_friend" class="friend-request-response-button">Accept</button>
-                                            <button type="button" name="decline_friend" class="friend-request-response-button">Decline</button>
-                                        <div>
-                                    </div>
-                                    
-                                    `
-                                )
-                            }
-                        }
-
-                    }
-                )
-            };
-
-        /*
-            --Create Bit Functions--
-        */
-
-            $('#mobile-create-icon').click(function() {
-                showCreateBit(titleFocus);
-            })
-
-            function showCreateBit(callback) {
-                let create_bit = document.getElementById('create-bit-mobile');
-                $('#create-bit-mobile').show();
-                create_bit.style.transform = 'translate(0, -70vh)';
-                setTimeout(callback, 500);
-            }
-
-            function titleFocus() {
-                let create_bit = document.getElementById('create-bit-mobile');
-                $('#mobile-title').focus();
-            }
-
-            function dropCreateBit(followUp) {
-                let create_bit = document.getElementById('create-bit-mobile');
-                create_bit.style.transform = 'translate(0, 0vh)';
-                followUp();
-            }
-
-            function hideCreateBit() {
-                $('#create-bit-mobile').show();
-            }
-
-/*
-            --Mobile Search Functions--
-*/
-
-            $('#mobile-search-icon').click(function() {
-                showSearch();
-            });
-
-            function showSearch() {
-                let search = document.getElementById('search-mobile');
-                $('#search-mobile').show();
-                search.style.transform = 'translate(0, -100vh)';
-                $('#mobile-searchbar').focus();
-            }
-
-            function searchFocus() {
-                let search = document.getElementById('search-mobile');
-                
-            }
-
-            function dropSearch() {
-                let search = document.getElementById('search-mobile');
-                search.style.transform = 'translate(0, 0vh)';
-            }
-
-            function hideCreateBit() {
-                $('#create-bit-mobile').hide();
-            }
-
-            $('#mobile-publish-bit').click(function() {
-                submitBit()
-            });
-
-            function submitBit() {
-                let title_field = document.getElementById("mobile-title");
-                let body_field = document.getElementById("mobile-body");
-                let title = title_field.value;
-                let body = body_field.value;
-                let cookie = document.cookie;
-                let csrfToken = cookie.substring(cookie.indexOf('=') + 1);
-                console.log(title)
-                $.ajax(
-                    {
-                        type: 'POST',
-                        headers: {
-                            'X-CSRFToken': csrfToken
-                        },
-                        url: '/social/publish/',
-                        data: {
-                            title: title,
-                            body: body
-                        },
-                        success: function(){
-                            iframe.contentWindow.location.reload();
-                            dropCreateBit(hideCreateBit);
-
-                        }
-                    }
-                )
-            }
-
-
-
-        /*
-
-            Show Search Filters
-
-        */
-
-            $(".search-bar").focus(function() {
-                document.getElementById('search-options').style.display = "grid";
-            });
-            $(".search-bar").blur('blur', function() {
-                document.getElementById('search-options').style.display = "none";
-            });
-
-        /*
-            Show Visibility Settings
-        */  
-
-            $('#visibility-icon').click(function() {
-                showVisibility(getVisibilityOptions, visibilityClose, scrollOpen, updateVisibilitySwitches);
-            });
-
-            $('#visibility-icon-mobile').click(function() {
-                showVisibility(getVisibilityOptions, visibilityClose, scrollOpen, updateVisibilitySwitches);
-            });
-            
-            function showVisibility(getData, callbackClose, callbackOpen, pass) {
-                var dropdown = document.getElementById("visibility-dropdown");
-                if (dropdown.style.display === 'none') {
-
-                    dropdown.style.display='block';
-                    getData(callbackOpen, pass);
-
-                } else {
-
-                    $('#visibility-dropdown').stop().animate({height: "0px"}, 150);
-                    callbackClose(dropdown);
-
-                }
-                
-            }
-
-        /*
-
-            Change Visibility Settings
-        
-        */
-
-            $('.checkbox').change(function() {
-                let button_name = $(this).attr("name");
-
-                let cookie = document.cookie;
-                let csrfToken = cookie.substring(cookie.indexOf('=') + 1);
-                
-                $.ajax(
-                    {
-                        type:'POST',
-                        headers: {
-                            'X-CSRFToken': csrfToken
-                        },
-                        url: "/social/visibility/",
-                        data: {
-                            button_name: button_name
-                        },
-                        success: function(data){
-                            let file = data;
-                            iframe = document.getElementById('feed-content-container');
-                            if(button_name === "bitColor"){
-                                iframe.contentWindow.location.reload();
-                            }
-                            if(button_name === "wallpaper") {
-                                if(file.toggle === 'off') {
-                                    $('.bg-image').replaceWith('<div class="bg-image" style="background-color: rgb(95, 95, 95)"></div>');
-                                } else {
-                                    $('.bg-image').replaceWith(`<img class="bg-image" src="${file.wallpaper}">`);
-                                }
-                            }if(button_name === "defaultThemeS") {
-                                $('.bg-image').replaceWith('<div class="bg-image" style="background-color: rgb(95, 95, 95)"></div>');
-                                iframe.contentWindow.location.reload();
-                            }
-                            
-                            updateVisibilitySwitches(file);
-                        }
-                    }
-                )
-            });
-
-
-            function updateVisibilitySwitches(data) {
-                let options = data;
-                var user_colors_on = options.bit_colors_on;
-                var wallpaper_on = options.wallpaper_on;
-                var default_theme_on = options.default_theme_on;
-                console.log(user_colors_on);
-                console.log(wallpaper_on);
-                console.log(default_theme_on);
-                
-                if (user_colors_on) {
-                    $('#postColorCheck').checked = true;
-                } else {
-                    $('#postColorCheck').checked = false;
-                }
-
-                if (wallpaper_on) {
-                    $('#wallpaperCheck').checked = true;
-                } else {
-                    $('#wallpaperCheck').checked = false;
-                }
-
-                if (default_theme_on) {
-                    $('#defaultCheck').checked = true;
-                } else {
-                    $('#defaultCheck').checked = false;
-                }
-
-            };
-            
-            function scrollOpen(data, pass) {
-               
-                pass(data);
-                showVisibilityOptions();
-
-
-            };
-
-            function showVisibilityOptions() {
-                if (width > 800) {
-                    $('#visibility-dropdown').stop().animate({height: "170px"}, 150);
-                    $('#options-container').show();
-                } else {
-                    $('#visibility-dropdown-mobile').stop().animate({height: "200px"}, 150);
-                    $('#options-container-mobile').show();
-
-                }  
-            };
-
-            function getVisibilityOptions(scrollOpen, pass) {
-                $.ajax(
-                    {
-                        type: "GET",
-                        url: "/social/visibility/",
-                    success: function(data) {
-                        let options_set = data;
-                        console.log(options_set)
-                        scrollOpen(options_set, pass);
-                    }
-                });
-            };
-
-            function visibilityClose(dropdown) {
-                dropdown.style.display='none';
-            };
             
         </script>
     </body>                

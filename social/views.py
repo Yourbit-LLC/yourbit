@@ -132,13 +132,13 @@ class PhotoSpace(View):
 #Profile Page
 
 class ProfileView(View):
-    def get(self, request, pk, *args, **kwargs):
-        profile = Profile.objects.get(pk=pk)
-        view_user = profile.user
-        user_bits = Bit.objects.filter(user=view_user).order_by('-created_at')
+    def get(self, request, username, *args, **kwargs):
+        profile_user = User.objects.get(username = username)
+        profile = Profile.objects.get(user=profile_user)
+        user_bits = Bit.objects.filter(user=profile_user).order_by('-created_at')
         user_profile = Profile.objects.get(user=request.user)
         user_connections = user_profile.connections.all()
-        profile_id=str(pk)
+        profile_id=str(profile_user.id)
         print(profile_id)
         #forms
         # profile_bit_pool = sorted(
@@ -833,7 +833,7 @@ class Publish(View):
 
         
 
-        return JsonResponse({'status':'success'}) 
+        return JsonResponse({'success':'success'}) 
             
 
 
