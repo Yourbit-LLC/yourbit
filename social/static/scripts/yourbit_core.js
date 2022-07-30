@@ -1,4 +1,4 @@
-
+base_url = window.location.origin;
 var menu = document.getElementById("profile-menu");
 function show_profile_menu() {
     let width = screen.width;
@@ -504,3 +504,4 @@ function getVisibilityOptions(scrollOpen, pass) {
 function visibilityClose(dropdown) {
     dropdown.style.display='none';
 };
+
