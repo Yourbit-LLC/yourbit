@@ -241,8 +241,9 @@
 
 #chat-bit-title {
     grid-row: 2;
-    width: fit-content;
+    width: 100%;
     height: fit-content;
+    text-align: center;
 }
 
 #chat-bit-feedback-container {
