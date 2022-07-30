@@ -218,13 +218,17 @@
                     {% block bubble_content %}
                     {% endblock %}
                 </div>
-                <form id="create-bit-mobile" style="display:none;">
+                <form class="mobile-slide-up-panel" id="create-bit-mobile">
                     <h3 style="margin-top:10px; margin-bottom: 10px;">Create Bit</h3>
-                    <input type="text" id="mobile-title" placeholder="Title" style="color:white; font-size: 16px; font-weight: 600;">
+                    <input type="text" class="single-line-input" id="mobile-title" placeholder="Title (Optional)" style="color:white; font-size: 16px; font-weight: 600;">
                     <textarea id="mobile-body" placeholder="Text" style="color:white; font-size: 14px;">
                     </textarea>
-                    <button id="mobile-publish-bit" style="background-color: {{user.profile.bit_background}};" type="button">Publish</button>
+                    <button  id="mobile-publish-bit" style="background-color: {{user.profile.bit_background}};" type="button">Publish</button>
                 </form>
+                <div class="mobile-slide-up-panel" id="search-mobile">
+                    <input type="text" class="single-line-input" placeholder="Search Yourbit" id="mobile-searchbar">
+
+                </div>
             
                 {% block content %}
                 {% endblock %}
@@ -392,6 +396,35 @@
 
             function hideCreateBit() {
                 $('#create-bit-mobile').show();
+            }
+
+/*
+            --Mobile Search Functions--
+*/
+
+            $('#mobile-search-icon').click(function() {
+                showSearch(searchFocus);
+            });
+
+            function showSearch(callback) {
+                let search = document.getElementById('search-mobile');
+                $('#search-mobile').show();
+                search.style.transform = 'translate(0, -70vh)';
+                setTimeout(callback, 500);
+            }
+
+            function searchFocus() {
+                let search = document.getElementById('search-mobile');
+                $('#mobile-searchbar').focus();
+            }
+
+            function dropSearch() {
+                let search = document.getElementById('search-mobile');
+                search.style.transform = 'translate(0, 0vh)';
+            }
+
+            function hideCreateBit() {
+                $('#create-bit-mobile').hide();
             }
 
             $('#mobile-publish-bit').click(function() {

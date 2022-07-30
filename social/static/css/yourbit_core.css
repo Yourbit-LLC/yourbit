@@ -1370,31 +1370,29 @@ only be used for object transforms (shaping and scaling)
         transform: translate(-50%, -50%);
     }
 
+    .single-line-input {
+        background-color: rgba(0, 0, 0, 0.4);
+        border-radius: 10px;
+        border-width: 0px;
+        width: 90vw;
+        height: 30px;
+    }
+
     #create-bit-mobile {
-        height: 70vh;
+        display: none;
         top: 100vh;
+        width: 100vw;
+        height: 70vh;
+        transition: 0.2s;        
         position: fixed;
         z-index: 25;
         background-color: rgba(0, 0, 0, 0.0);
         -webkit-backdrop-filter: blur(40px);
         backdrop-filter: blur(40px);
-        width: 100vw;
         left: 0;
-        bottom: 0px;
         box-shadow: -1px -1px 10px black;
         text-align: center;
         color: white;
-        transition: 0.2s;
-    }
-    #mobile-title {
-        background-color: rgba(0, 0, 0, 0.4);
-        border-radius: 10px;
-        border-width: 0px;
-        width: 90vw;
-        margin-left: auto;
-        margin-right: auto;
-        height: 30px;
-        
     }
 
     #mobile-body {
@@ -1417,6 +1415,32 @@ only be used for object transforms (shaping and scaling)
         font-weight: 600;
         text-align: center;
     }
+
+    #search-mobile {
+        display: none;
+        top: 100vh;
+        width: 100vw;
+        height: 70vh;
+        transition: 0.2s;
+        position: fixed;
+        z-index: 25;
+        background-color: rgba(0, 0, 0, 0.0);
+        -webkit-backdrop-filter: blur(40px);
+        backdrop-filter: blur(40px);
+        left: 0;
+        box-shadow: -1px -1px 10px black;
+        text-align: center;
+        color: white;
+    }
+
+    #mobile-searchbar {
+        width: 80vw !important;
+        float: left;
+        left: 5px;
+        position: absolute;
+        bottom: 10px;
+    }
+
     
     #mobile-spacer {
         height: 100px;
