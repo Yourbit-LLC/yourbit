@@ -1197,7 +1197,7 @@ only be used for object transforms (shaping and scaling)
             left: 0;
             color: white;
             text-align: center;
-            grid-template-rows: 95px 35px 50px;
+            grid-template-rows: 95px 35px 150px 50px;
             row-gap: 10px;
         }
 
@@ -1215,7 +1215,7 @@ only be used for object transforms (shaping and scaling)
             margin-bottom: 0px;
             display: grid;
             grid-template-columns: 70px 150px;
-            grid-template-rows: 35px 35px;
+            grid-template-rows: 30px 30px;
             line-height: 20px;
             text-align: left;
             column-gap: 10px;
@@ -1254,7 +1254,7 @@ only be used for object transforms (shaping and scaling)
             position: relative;
             width: 95vw;
             height: 35px;
-            background-color: rgba(0, 0, 0, 0.6);
+            background-color: rgba(0, 0, 0, 0.5);
             margin-left: auto;
             margin-right: auto;
             border-radius: 10px;
@@ -1266,6 +1266,24 @@ only be used for object transforms (shaping and scaling)
         }
         #menu-rewards-balance {
             grid-column: 2;
+        }
+
+        #menu-notification-container {
+            grid-row: 3;
+            height: 150px;
+            width: 95vw;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #no-notifications-message {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            line-height: 110px;
         }
 
 
@@ -1287,7 +1305,7 @@ only be used for object transforms (shaping and scaling)
             margin-right: auto;
             height: 50px;
             column-gap: 10px;
-            grid-row: 3;
+            grid-row: 4;
 
         }
 
