@@ -4,9 +4,6 @@ var notifications_last = 0;
 var first_load = true;
 var iframe = document.getElementById('feed-content-container');
 
-$('#profile-menu').on('swipedown', function() {
-    show_profile_menu();
-});
 
 var menu = document.getElementById("profile-menu");
 function show_profile_menu() {
