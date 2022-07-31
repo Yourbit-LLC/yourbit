@@ -954,7 +954,7 @@ only be used for object transforms (shaping and scaling)
         color: white;
         font-family: Arial, Helvetica, sans-serif;
         top: 20px;
-        left: -175px;
+        left: 0px;
         background-color: rgb(0, 0, 0, 0.9);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
