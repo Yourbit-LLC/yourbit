@@ -1197,6 +1197,8 @@ only be used for object transforms (shaping and scaling)
             left: 0;
             color: white;
             text-align: center;
+            grid-template-rows: 95px 35px 50px;
+            row-gap: 10px;
         }
 
         #profile-name {
@@ -1217,6 +1219,7 @@ only be used for object transforms (shaping and scaling)
             line-height: 20px;
             text-align: left;
             column-gap: 10px;
+            grid-row: 1;
         }
 
         #profile-name-label {
@@ -1246,6 +1249,26 @@ only be used for object transforms (shaping and scaling)
             margin-left: 6px;
         }
 
+        #rewards-container {
+            display: grid;
+            position: relative;
+            width: 95vw;
+            height: 35px;
+            background-color: rgba(0, 0, 0, 0.6);
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 10px;
+            grid-row: 2;
+        }
+
+        #balance-label {
+            grid-column: 1;
+        }
+        #menu-rewards-balance {
+            grid-column: 2;
+        }
+
+
         .menu-profile-background-link {
             z-index: 3;
             position: relative;
@@ -1264,6 +1287,7 @@ only be used for object transforms (shaping and scaling)
             margin-right: auto;
             height: 50px;
             column-gap: 10px;
+            grid-row: 3;
 
         }
 
