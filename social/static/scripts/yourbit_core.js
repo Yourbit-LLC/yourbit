@@ -7,6 +7,7 @@ var iframe = document.getElementById('feed-content-container');
 $('#profile-menu').on('swipedown', function() {
     show_profile_menu();
 });
+
 var menu = document.getElementById("profile-menu");
 function show_profile_menu() {
     let width = screen.width;
