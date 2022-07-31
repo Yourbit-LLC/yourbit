@@ -835,6 +835,22 @@ class Publish(View):
 
         return JsonResponse({'success':'success'}) 
             
+class Follow(View):
+    def post(self, request, *args, **kwargs):
+        id = request.POST['profile']
+        send_user = request.user
+        send_user_profile = Profile.objects.get(user = send_user)
+        recieve_profile = Profile.objects.get(pk=id)
+        recieve_user = User.objects.get(pk=id)
+        send_user_profile.follows.add(recieve_profile)
+
+        recieve_user_first = recieve_user.first_name
+        recieve_user_last = recieve_user.last_name
+        recieve_user_name = recieve_user_first + " " + recieve_user_last
+        print(recieve_user_name)
+        return JsonResponse({'name':recieve_user_name})
+
+
 
 
 ############################## 

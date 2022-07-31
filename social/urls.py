@@ -29,4 +29,5 @@ urlpatterns = [
     path('notifications/', GetNotifications.as_view, name="get-notificatons"),
     path('notifications/status/', NotificationStatus.as_view(), name='get-notification-status'),
     path('publish/', Publish.as_view(), name="publish"),
+    path('follow/', Follow.as_view(), name='follow'),
 ]

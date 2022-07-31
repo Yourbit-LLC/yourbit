@@ -1,4 +1,10 @@
 base_url = window.location.origin;
+var width = screen.width;
+var notifications_last = 0;
+var first_load = true;
+var iframe = document.getElementById('feed-content-container');
+
+
 var menu = document.getElementById("profile-menu");
 function show_profile_menu() {
     let width = screen.width;
@@ -164,11 +170,6 @@ function ChatForm() {
 /*
             --Declare Global Variables--
 */
-
-var width = screen.width;
-var notifications_last = 0;
-var first_load = true;
-var iframe = document.getElementById('feed-content-container');
 
 
 /*
@@ -505,3 +506,48 @@ function visibilityClose(dropdown) {
     dropdown.style.display='none';
 };
 
+$('#profile-follow-button').click(function() {
+    let cookie = document.cookie;
+    let csrfToken = cookie.substring(cookie.indexOf('=') + 1);
+    let profile = $(this).attr("data-catid");
+    console.log(profile)
+    $.ajax(
+        {
+        type: "POST",
+        headers: {
+            'X-CSRFToken': csrfToken
+        },
+        url: '/social/follow/',
+        data: {
+            profile: profile
+        },
+        success: function(data) {
+            let response = data;
+            var name = response.name;
+            $('#non-interactive-notification-modal').append(`<h3>You are now following ${name}</h3>`);
+            showNotification(expandNotification);
+        }
+    }
+
+    )
+});
+
+function showNotification(callback) {
+    $('#non-interactive-notification-modal').show();
+    $('#non-interactive-notification-modal').animate({'top': '70px', 'opacity':'1'}, 'fast');
+    setTimeout(callback, 1000);
+}
+function expandNotification() {
+    $('#non-interactive-notification-modal').animate({'width':'400px'}, 'fast');
+    setTimeout(contractNotification, 5000)
+}
+
+function contractNotification() {
+    
+    $('#non-interactive-notification-modal').animate({'width':'50px', 'opacity':'0'}, 'fast');
+    setTimeout(hideNotification, 1000);
+}
+
+function hideNotification() {
+    $('#non-interactive-notification-modal').hide();
+}

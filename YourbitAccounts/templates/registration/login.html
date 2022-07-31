@@ -32,8 +32,9 @@
       </form>  
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
       <script type="text/javascript">
+        base_url = window.location.origin;
         $('#back-login').click(function() {
-            window.location.href = "http://yourbit.me:8000/register/";
+            window.location.href = `${base_url}/register/`;
         });
       </script>
     </body>

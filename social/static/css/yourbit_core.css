@@ -878,7 +878,11 @@ only be used for object transforms (shaping and scaling)
         height: 0;
     }
     
-    /* The slider */
+    /* 
+    
+        The slider 
+        
+    */
     .slider {
         position: absolute;
         cursor: pointer;
@@ -1080,7 +1084,22 @@ only be used for object transforms (shaping and scaling)
     #logo-name {
         /* Yourbit text on logo wide */
         display: none;
-    }
+    }    
+    /* 
+        Mobile Space Buttons
+        These are the content type buttons seen on the Space Navigator 
+        
+        Tags: space button mobile space button mobile content button type mobile content selector mobile content navigator content type button
+            
+            SECTION CONTAINS:
+                .space-button
+                .space-button-active
+                .space-button-image
+                #global-space-button
+                #text-space-button
+                #video-space-button
+                #photo-space-button
+    */
     .space-navigator {
         /*The space container contains content type buttons, currently global, 
         text, video, and photo but available spaces are subject to change */
@@ -1093,141 +1112,193 @@ only be used for object transforms (shaping and scaling)
         
     }
 
+        .space-button {
+            width: 60px;
+            height: 30px;
+            background-color: rgba(0,0,0,0.3);
+            border-width: 0px;
+            border-radius: 0.25em;
+            padding: 4px;
+            margin: 2px;
+            transition: 0.3s;
+        }
+        
+
+            .space-button-active {
+                /* These are the content type buttons seen on the Space Navigator */
+                width: 60px;
+                height: 30px;
+                background-color: rgba(255, 255, 255, 0.6);
+                border-width: 0px;
+                border-radius: 0.25em;
+                padding: 4px;
+                margin: 2px;
+
+                transition: 0.3s;
+            }
+
+        .space-button-image {
+            /* The image identifying content type inside of each space button */
+            position: relative;
+            display: block;
+            width: 80%;
+            display: block;
+            margin: auto;
+        }
+
     .search {
         display: none;
     }
+
 
     #quick-actions {
         display: none;
     }
 
-    /* 
-    
-        Mobile Profile Menu
-    
-    */
+    /*Below Contains styling for the profile menu button */
 
-    /*This is the icon on mobile footer that shows the profile image*/
-    #profile-icon {
-        display: block;
-        position: absolute;
-        left: 50vw;
-        transform: translate(-50%, 0);
-        width: 70px;
-        height:70px;
-        object-fit: contain;
-        z-index: 11;
-        bottom: 0;
-    }
+        /*This is the icon on mobile footer that shows the profile image*/
+        #profile-icon {
+            display: block;
+            position: absolute;
+            left: 50vw;
+            transform: translate(-50%, 0);
+            width: 70px;
+            height:70px;
+            object-fit: contain;
+            z-index: 11;
+            bottom: 0;
+        }
 
-    #profile-pic {
-        position: relative;
-        display: block;
-        width: 70px;
-        height: 70px;
-        border-radius: 180px;
-        border: 3px solid white;
-        object-fit: contain;
+        /*This is the Profile Pic that appears on the profile menu button */
+        #profile-pic {
+            position: relative;
+            display: block;
+            width: 70px;
+            height: 70px;
+            border-radius: 180px;
+            border: 3px solid white;
+            object-fit: contain;
 
-    }
+        }
 
-    #profile-menu {
-        visibility: hidden;
-        position: fixed;
-        height: 100vh;
-        bottom: -100vh;
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        transition: 0.3s;
-        z-index: 20;
-        display: grid;
-        width: 100vw;
-        left: 0;
-        color: white;
-        text-align: center;
-    }
+    /* Mobile Profile Menu styling below*/
+        #profile-menu {
+            visibility: hidden;
+            position: fixed;
+            height: 100vh;
+            bottom: -100vh;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: 0.3s;
+            z-index: 20;
+            display: grid;
+            width: 100vw;
+            left: 0;
+            color: white;
+            text-align: center;
+        }
 
-    #profile-name {
-        text-decoration: none;
-        width: 90vw;
-        height: 400px;
-        margin-left: auto;
-        margin-right: auto;
-        color: white;
-        font-family: Arial, Helvetica, sans-serif;
-        background-color: rgba(0, 0, 0, 0.5);
-        border-radius: 20px;
-        margin-top: 20px;
-        margin-bottom: 0px;
-    }
+        #profile-name {
+            text-decoration: none;
+            width: 95vw;
+            height: 80px;
+            margin-left: auto;
+            margin-right: auto;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            margin-top: 20px;
+            margin-bottom: 0px;
+            display: grid;
+            grid-template-columns: 70px 150px;
+            grid-template-rows: 35px 35px;
+            line-height: 20px;
+            text-align: left;
+            column-gap: 10px;
+        }
 
-    #profile-name-label {
-        font-size: 20px;
-        font-weight: 700;
-    }
+        #profile-name-label {
+            font-size: 20px;
+            font-weight: 700;
+            grid-row:1;
+            grid-column: 2;
+        }
 
-    #menu-profile-image {
-        width: 100px;
-        height: 100px;
-        border-radius: 360px;
-        border: 2px solid white;
-        margin-top: 50px;
-        object-fit: contain;
-    }
+        #menu-username {
+            grid-row: 2;
+            grid-column: 2;
+        }
 
-    .menu-profile-background-link {
-        z-index: 3;
-        position: relative;
-        display: block;
-        top: 0px;
-        width: 100%;
-        height: 100%;
-        background-color: black;
-    }
+        #menu-profile-image {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid white;
+            margin: auto;
+            object-fit: contain;
+            grid-row-start: 1;
+            grid-row-end:2;
+            grid-column: 1;
+            margin-top: 8px;
+            margin-left: 6px;
+        }
 
-    #menu-options{
-        display: grid;
-        grid-template-columns: 50px 50px 50px 50px;
-        width: auto;
-        margin-left: auto;
-        margin-right: auto;
-        height: 50px;
-        column-gap: 10px;
+        .menu-profile-background-link {
+            z-index: 3;
+            position: relative;
+            display: block;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+        }
 
-    }
+        #menu-options{
+            display: grid;
+            grid-template-columns: 50px 50px 50px 50px;
+            width: auto;
+            margin-left: auto;
+            margin-right: auto;
+            height: 50px;
+            column-gap: 10px;
 
-    .profile-menu-link{
-        position: relative;
-        background-color: rgba(0, 0, 0, 0.5);
-        border-radius: 10px;
-        padding: 2px;
-    }
+        }
 
-    .profile-menu-icon{
-        display: block;
-        position: absolute;
-    }
+            .profile-menu-link{
+                position: relative;
+                background-color: rgba(0, 0, 0, 0.5);
+                border-radius: 10px;
+                padding: 2px;
+            }
 
-    #home-link {
-        display: block;
-        grid-column: 1;
-    }
+                .profile-menu-icon{
+                    display: block;
+                    position: absolute;
+                }
 
-    #stuff-link {
-        grid-column: 2;
-    }
+                #home-link {
+                    display: block;
+                    grid-column: 1;
+                }
 
-    #history-link {
-        grid-column: 3;
-    }
+                #stuff-link {
+                    grid-column: 2;
+                }
 
-    #rewards-link {
-        grid-column: 4;
-    }
+                #history-link {
+                    grid-column: 3;
+                }
 
-    #settings-link {
-        grid-column: 5;
-    }
+                #rewards-link {
+                    grid-column: 4;
+                }
+
+                #settings-link {
+                    grid-column: 5;
+                }
 
     .logout-button {
         position: relative;
@@ -1243,12 +1314,12 @@ only be used for object transforms (shaping and scaling)
     }
 
     
-    #logout-link {
-        text-decoration: none;
-        color: white;
-        font-weight: 500;
-        font-size: 20px;
-    }
+        #logout-link {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            font-size: 20px;
+        }
 
     /* Profile Menu Exit Button Mobile (tags: exit menu mobile exit) */
     #mobile-exit-button {
@@ -1265,54 +1336,7 @@ only be used for object transforms (shaping and scaling)
         text-align: center;
         line-height: 30px;
     }
-    /* 
-        Mobile Space Buttons
-        These are the content type buttons seen on the Space Navigator 
-        
-        Tags: space button mobile space button mobile content button type mobile content selector mobile content navigator content type button
-            
-            SECTION CONTAINS:
-                .space-button
-                .space-button-active
-                .space-button-image
-                #global-space-button
-                #text-space-button
-                #video-space-button
-                #photo-space-button
-    */
-    .space-button {
-        width: 60px;
-        height: 30px;
-        background-color: rgba(0,0,0,0.3);
-        border-width: 0px;
-        border-radius: 0.25em;
-        padding: 4px;
-        margin: 2px;
-        transition: 0.3s;
-    }
-    
 
-    .space-button-active {
-        /* These are the content type buttons seen on the Space Navigator */
-        width: 60px;
-        height: 30px;
-        background-color: rgba(255, 255, 255, 0.6);
-        border-width: 0px;
-        border-radius: 0.25em;
-        padding: 4px;
-        margin: 2px;
-
-        transition: 0.3s;
-    }
-
-    .space-button-image {
-        /* The image identifying content type inside of each space button */
-        position: relative;
-        display: block;
-        width: 80%;
-        display: block;
-        margin: auto;
-    }
 
     #global-space-button {
         grid-column: 1;

@@ -18,6 +18,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     </head>
     <body style="background-color:rgb(25,25,25);">
+        <div class="notification-pop-up" id="non-interactive-notification-modal" style="color:white;">
+
+        </div>
 
         <!--Mobile Header-->
 
@@ -187,9 +190,11 @@
 
                         <p id="profile-name-label">{{user.first_name}} {{user.last_name}}</p>
                         <p id="menu-username">@{{user.username}}</p>
-                        <p style="font-size: 12px; margin-bottom: 4px;">Yourbit Rewards</p>
-                        <p id="menu-rewards-balance">{{user.profile.point_balance}}<small>pts</small></p>
+                        
+                        
                     </a>
+                    <p style="font-size: 12px; margin-bottom: 4px;">Yourbit Rewards</p>
+                    <p id="menu-rewards-balance">{{user.profile.point_balance}}<small>pts</small></p>
                     <div id="menu-options">
                         <div class="profile-menu-link" id = "home-link" ><a class="profile-menu-label" href="{% url 'home' %}" ><svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path style="fill:{{user.profile.accent_color}};" d="M8 42V18L24.1 6 40 18v24H28.3V27.75h-8.65V42Zm3-3h5.65V24.75H31.3V39H37V19.5L24.1 9.75 11 19.5Zm13-14.65Z"/></svg></a></div>
                         
