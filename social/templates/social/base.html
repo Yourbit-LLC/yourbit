@@ -17,7 +17,7 @@
         <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     </head>
-    <body style="background-color:rgb(25,25,25);">
+    <body style="background-color:rgb(25,25,25); overflow-x:hidden;">
         <div class="notification-pop-up" id="non-interactive-notification-modal" style="color:white;">
 
         </div>
@@ -344,15 +344,16 @@
         <!--#####################=====   BEGIN BASE SCRIPTS   =====##########################-->
         
         <!--Jquery CDN-->
-
+        <script src="https://code.jquery.com/mobile/1.5.0-rc1/jquery.mobile-1.5.0-rc1.js" integrity="sha256-ozaZ7ZptnEEuLpoEojfxBjOKXHoaQUb/DLnsTUEkIfs=" crossorigin="anonymous"></script>
         <!--Yourbit Core Script Document (Global Functions)-->
         <script type="text/javascript" src="{% static 'scripts/yourbit_core.js' %}"></script>
         
         <!--Page Script (Local Functions)-->
         <script type="text/javascript">
-            $('#profile-menu').swipe(function() {
-                show_profile_menu();
+            $('#create-bit-mobile').on('swipedown', function() {
+                $('#create-bit-mobile').hide();
             });
+
         </script>
     </body>                
 
