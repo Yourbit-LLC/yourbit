@@ -1306,6 +1306,7 @@ only be used for object transforms (shaping and scaling)
             height: 50px;
             column-gap: 10px;
             grid-row: 4;
+            z-index: 2;
 
         }
 
