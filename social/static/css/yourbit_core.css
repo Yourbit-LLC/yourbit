@@ -959,7 +959,7 @@ only be used for object transforms (shaping and scaling)
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         height: 10px;
-        width: 150px;
+        width: 160px;
         border-radius: 20px;
         padding: 5px;
         padding-left: 10px;
