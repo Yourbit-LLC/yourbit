@@ -484,7 +484,7 @@ function showVisibilityOptions() {
         $('#visibility-dropdown').stop().animate({height: "170px"}, 150);
       
     } else {
-        $('#options-container-mobile').style.display == "block";
+        $('#options-container-mobile').style.display = "block";
         $('#visibility-dropdown-mobile').stop().animate({height: "200px"}, 150);
         
 
