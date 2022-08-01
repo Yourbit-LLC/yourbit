@@ -277,7 +277,7 @@ $('#bit-panel-close').click(function() {
 function showCreateBit(callback) {
     let create_bit = document.getElementById('create-bit-mobile');
     create_bit.style.visibility='visible';
-    callback(raiseCreateBit);
+    callback(titleFocus);
 }
 
 function titleFocus() {
