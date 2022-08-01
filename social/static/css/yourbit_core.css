@@ -1066,7 +1066,7 @@ only be used for object transforms (shaping and scaling)
         height: 50px;
         width: 100%;
         box-sizing: border-box;
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: rgba(0, 0, 0, 0.8);
         backdrop-filter: blur(20px);
         padding-bottom: 0;
     }
