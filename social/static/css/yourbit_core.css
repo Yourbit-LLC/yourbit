@@ -1107,12 +1107,13 @@ only be used for object transforms (shaping and scaling)
         position: absolute;
         grid-template-columns: auto auto 80px auto auto; 
         width: 100vw;
-        bottom: 1px;
+        bottom: 0px;
         margin: auto;
         
     }
 
         .space-button {
+            position: relative;
             width: 60px;
             height: 30px;
             background-color: rgba(0,0,0,0.3);
@@ -1139,11 +1140,11 @@ only be used for object transforms (shaping and scaling)
 
         .space-button-image {
             /* The image identifying content type inside of each space button */
-            position: relative;
+            position: absolute;
             display: block;
-            width: 80%;
-            display: block;
-            margin: auto;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
     .search {
@@ -1163,11 +1164,12 @@ only be used for object transforms (shaping and scaling)
             position: absolute;
             left: 50vw;
             transform: translate(-50%, 0);
-            width: 70px;
-            height:70px;
+            width: 80px;
+            height: 80px;
             object-fit: contain;
             z-index: 11;
             bottom: 0;
+            grid-column: 3;
         }
 
         /*This is the Profile Pic that appears on the profile menu button */
