@@ -268,7 +268,11 @@ function getNotifications() {
 
 $('#mobile-create-icon').click(function() {
     showCreateBit(titleFocus);
-})
+});
+
+$('#bit-panel-close').click(function() {
+    dropCreateBit(hideCreateBit)
+});
 
 function showCreateBit(callback) {
     let create_bit = document.getElementById('create-bit-mobile');
@@ -286,35 +290,6 @@ function dropCreateBit(followUp) {
     let create_bit = document.getElementById('create-bit-mobile');
     create_bit.style.transform = 'translate(0, 0vh)';
     followUp();
-}
-
-function hideCreateBit() {
-    $('#create-bit-mobile').show();
-}
-
-/*
---Mobile Search Functions--
-*/
-
-$('#mobile-search-icon').click(function() {
-    showSearch();
-});
-
-function showSearch() {
-    let search = document.getElementById('search-mobile');
-    $('#search-mobile').show();
-    search.style.transform = 'translate(0, -100vh)';
-    $('#mobile-searchbar').focus();
-}
-
-function searchFocus() {
-    let search = document.getElementById('search-mobile');
-    
-}
-
-function dropSearch() {
-    let search = document.getElementById('search-mobile');
-    search.style.transform = 'translate(0, 0vh)';
 }
 
 function hideCreateBit() {
@@ -352,6 +327,32 @@ function submitBit() {
         }
     )
 }
+/*
+--Mobile Search Functions--
+*/
+
+$('#mobile-search-icon').click(function() {
+    showSearch();
+});
+
+function showSearch() {
+    let search = document.getElementById('search-mobile');
+    $('#search-mobile').show();
+    search.style.transform = 'translate(0, -100vh)';
+    $('#mobile-searchbar').focus();
+}
+
+function searchFocus() {
+    let search = document.getElementById('search-mobile');
+    
+}
+
+function dropSearch() {
+    let search = document.getElementById('search-mobile');
+    search.style.transform = 'translate(0, 0vh)';
+}
+
+
 
 
 /*
