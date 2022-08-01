@@ -1,5 +1,4 @@
 base_url = window.location.origin;
-var width = screen.width;
 var notifications_last = 0;
 var first_load = true;
 var iframe = document.getElementById('feed-content-container');
@@ -176,6 +175,7 @@ function ChatForm() {
 --On document load get notifications, load bits, get messages, update rewards points--
 */
 $(document).ready(function() {
+    var width = screen.width;
     console.log(notifications_last)
     updateNotificationStatus();
 });
