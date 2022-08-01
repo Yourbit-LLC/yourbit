@@ -479,12 +479,14 @@ function scrollOpen(data, pass) {
 
 function showVisibilityOptions() {
     let width = screen.width;
-    if (width > 800) {
-        $('#visibility-dropdown').stop().animate({height: "170px"}, 150);
+    if (width > 800) {  
         $('#options-container').show();
+        $('#visibility-dropdown').stop().animate({height: "170px"}, 150);
+      
     } else {
-        $('#visibility-dropdown-mobile').stop().animate({height: "200px"}, 150);
         $('#options-container-mobile').show();
+        $('#visibility-dropdown-mobile').stop().animate({height: "200px"}, 150);
+        
 
     }  
 };
