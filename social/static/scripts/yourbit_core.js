@@ -1,4 +1,5 @@
 base_url = window.location.origin;
+var width = screen.width;
 var notifications_last = 0;
 var first_load = true;
 var iframe = document.getElementById('feed-content-container');
@@ -379,16 +380,34 @@ $('#visibility-icon-mobile').click(function() {
 });
 
 function showVisibility(getData, callbackClose, callbackOpen, pass) {
-    var dropdown = document.getElementById("visibility-dropdown");
-    if (dropdown.style.display === 'none') {
+    
 
-        dropdown.style.display='block';
-        getData(callbackOpen, pass);
+    if (width > 700) {
+        let dropdown = document.getElementById("visibility-dropdown");
+        if (dropdown.style.display === 'none') {
 
+            dropdown.style.display='block';
+            getData(callbackOpen, pass);
+
+        } else {
+
+            $('#visibility-dropdown').stop().animate({height: "0px"}, 150);
+            callbackClose(dropdown);
+
+        }
     } else {
+        let dropdown = document.getElementById("visibility-dropdown-mobile");
+        if (dropdown.style.display === 'none') {
 
-        $('#visibility-dropdown').stop().animate({height: "0px"}, 150);
-        callbackClose(dropdown);
+            dropdown.style.display='block';
+            getData(callbackOpen, pass);
+
+        } else {
+
+            $('#visibility-dropdown-mobile').stop().animate({height: "0px"}, 150);
+            callbackClose(dropdown);
+
+        }
 
     }
     
@@ -442,54 +461,61 @@ $('.checkbox').change(function() {
 
 function updateVisibilitySwitches(data) {
     let options = data;
-    var user_colors_on = options.bit_colors_on;
-    var wallpaper_on = options.wallpaper_on;
-    var default_theme_on = options.default_theme_on;
+    let user_colors_on = options.bit_colors_on;
+    let wallpaper_on = options.wallpaper_on;
+    let default_theme_on = options.default_theme_on;
+    let post_color_check = document.getElementById('postColorCheck');
+    let wallpaper_check = document.getElementById('wallpaperCheck');
+    let default_theme_check = document.getElementById('defaultCheck')
     console.log(user_colors_on);
     console.log(wallpaper_on);
     console.log(default_theme_on);
-    
-    if (user_colors_on) {
-        $('#postColorCheck').checked = true;
-    } else {
-        $('#postColorCheck').checked = false;
-    }
 
-    if (wallpaper_on) {
-        $('#wallpaperCheck').checked = true;
-    } else {
-        $('#wallpaperCheck').checked = false;
-    }
-
-    if (default_theme_on) {
-        $('#defaultCheck').checked = true;
-    } else {
-        $('#defaultCheck').checked = false;
-    }
-
-};
-
-function scrollOpen(data, pass) {
-   
-    pass(data);
-    showVisibilityOptions();
-
-
-};
-
-function showVisibilityOptions() {
-    let width = screen.width;
-    if (width > 800) {  
-        $('#options-container').show();
-        $('#visibility-dropdown').animate({height: "170px"}, 150);
-      
-    } else {
-        $('#visibility-dropdown-mobile').show();
-        $('#visibility-dropdown-mobile').animate({height: "200px"}, 150);
+    if (width > 700) {
+        let post_color_check = document.getElementById('postColorCheck');
+        let wallpaper_check = document.getElementById('wallpaperCheck');
+        let default_theme_check = document.getElementById('defaultCheck')
+        if (user_colors_on) {
+            post_color_check.checked = true;
+        } else {
+            post_color_check.checked = false;
+        }    
         
+        if (wallpaper_on) {
+            wallpaper_check.checked = true;
+        } else {
+            wallpaper_check.checked = false;
+        }
 
-    }  
+        if (default_theme_on) {
+            default_theme_check.checked = true;
+        } else {
+            default_theme_check.checked = false;
+        }
+    } else {
+        let post_color_check = document.getElementById('postColorCheckMobile');
+        let wallpaper_check = document.getElementById('wallpaperCheckMobile');
+        let default_theme_check = document.getElementById('defaultCheckMobile')
+        if (user_colors_on) {
+            post_color_check.checked = true;
+        } else {
+            post_color_check.checked = false;
+        }    
+        
+        if (wallpaper_on) {
+            wallpaper_check.checked = true;
+        } else {
+            wallpaper_check.checked = false;
+        }
+
+        if (default_theme_on) {
+            default_theme_check.checked = true;
+        } else {
+            default_theme_check.checked = false;
+        }
+    }
 };
+
 
 function getVisibilityOptions(scrollOpen, pass) {
     $.ajax(
@@ -504,8 +530,27 @@ function getVisibilityOptions(scrollOpen, pass) {
     });
 };
 
-function visibilityClose(dropdown) {
+function scrollOpen(data, pass) {
+    showVisibilityOptions();
+    pass(data);
+
+};
+
+function showVisibilityOptions() {
     let width = screen.width;
+    if (width > 800) {  
+        $('#visibility-dropdown').show();
+        $('#visibility-dropdown').animate({height: "170px"}, 150);
+      
+    } else {
+        $('#visibility-dropdown-mobile').show();
+        $('#visibility-dropdown-mobile').animate({height: "200px"}, 150);
+        
+
+    }  
+};
+
+function visibilityClose(dropdown) {
     if (width > 800) {  
         dropdown.style.display='none';
     } else {
