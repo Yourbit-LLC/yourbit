@@ -277,7 +277,7 @@ $('#bit-panel-close').click(function() {
 function showCreateBit(callback) {
     let create_bit = document.getElementById('create-bit-mobile');
     $('#create-bit-mobile').show();
-    create_bit.style.transform = 'translate(0, -80vh)';
+    create_bit.style.transform = 'translate(0, -90vh)';
     setTimeout(callback, 500);
 }
 
