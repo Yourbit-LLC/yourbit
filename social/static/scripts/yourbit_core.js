@@ -358,9 +358,6 @@ function dropSearch() {
     search.style.transform = 'translate(0, 0vh)';
 }
 
-
-
-
 /*
 
 Show Search Filters
@@ -370,6 +367,7 @@ Show Search Filters
 $(".search-bar").focus(function() {
     document.getElementById('search-options').style.display = "grid";
 });
+
 $(".search-bar").blur('blur', function() {
     document.getElementById('search-options').style.display = "none";
 });
@@ -597,18 +595,19 @@ function showNotification(callback) {
     $('#non-interactive-notification-modal').show();
     $('#non-interactive-notification-modal').animate({'top': '70px', 'opacity':'1'}, 'fast');
     setTimeout(callback, 1000);
-}
+};
+
 function expandNotification() {
     $('#non-interactive-notification-modal').animate({'width':'400px'}, 'fast');
     setTimeout(contractNotification, 5000)
-}
+};
 
 function contractNotification() {
     
     $('#non-interactive-notification-modal').animate({'width':'50px', 'opacity':'0'}, 'fast');
     setTimeout(hideNotification, 1000);
-}
+};
 
 function hideNotification() {
     $('#non-interactive-notification-modal').hide();
-}
+};
