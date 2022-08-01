@@ -967,7 +967,7 @@ only be used for object transforms (shaping and scaling)
 
     }
 
-    #options-container {
+    #options-container-mobile {
         display: grid;
         position: relative;
         grid-template-columns: auto auto;
