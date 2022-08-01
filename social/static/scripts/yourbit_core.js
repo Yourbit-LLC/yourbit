@@ -484,7 +484,7 @@ function showVisibilityOptions() {
         $('#visibility-dropdown').animate({height: "170px"}, 150);
       
     } else {
-        $('#options-container-mobile').show();
+        $('#visibility-dropdown-mobile').show();
         $('#visibility-dropdown-mobile').animate({height: "200px"}, 150);
         
 
@@ -505,7 +505,14 @@ function getVisibilityOptions(scrollOpen, pass) {
 };
 
 function visibilityClose(dropdown) {
-    dropdown.style.display='none';
+    let width = screen.width;
+    if (width > 800) {  
+        dropdown.style.display='none';
+    } else {
+       $('#visibility-dropdown-mobile').animate({height: '0px'});
+       $('#visibility-dropdown-mobile').hide();
+
+    }  
 };
 
 $('#profile-follow-button').click(function() {
