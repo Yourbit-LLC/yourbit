@@ -175,7 +175,6 @@ function ChatForm() {
 --On document load get notifications, load bits, get messages, update rewards points--
 */
 $(document).ready(function() {
-    var width = screen.width;
     console.log(notifications_last)
     updateNotificationStatus();
 });
@@ -479,6 +478,7 @@ function scrollOpen(data, pass) {
 };
 
 function showVisibilityOptions() {
+    let width = screen.width;
     if (width > 800) {
         $('#visibility-dropdown').stop().animate({height: "170px"}, 150);
         $('#options-container').show();
