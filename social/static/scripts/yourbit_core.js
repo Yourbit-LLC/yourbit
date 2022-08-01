@@ -481,11 +481,11 @@ function showVisibilityOptions() {
     let width = screen.width;
     if (width > 800) {  
         $('#options-container').show();
-        $('#visibility-dropdown').stop().animate({height: "170px"}, 150);
+        $('#visibility-dropdown').animate({height: "170px"}, 150);
       
     } else {
-        $('#options-container-mobile').style.display = "block";
-        $('#visibility-dropdown-mobile').stop().animate({height: "200px"}, 150);
+        $('#options-container-mobile').show();
+        $('#visibility-dropdown-mobile').animate({height: "200px"}, 150);
         
 
     }  
