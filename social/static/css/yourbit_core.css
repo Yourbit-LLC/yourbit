@@ -950,7 +950,7 @@ only be used for object transforms (shaping and scaling)
     }
 
     #visibility-dropdown-mobile {
-        display:block;
+        display:none;
         position: absolute;
         color: white;
         font-family: Arial, Helvetica, sans-serif;
