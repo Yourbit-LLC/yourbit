@@ -267,7 +267,7 @@ function getNotifications() {
 */
 
 $('#mobile-create-icon').click(function() {
-    showCreateBit(titleFocus);
+    showCreateBit(raiseCreateBit);
 });
 
 $('#bit-panel-close').click(function() {
@@ -276,14 +276,19 @@ $('#bit-panel-close').click(function() {
 
 function showCreateBit(callback) {
     let create_bit = document.getElementById('create-bit-mobile');
-    $('#create-bit-mobile').show();
-    create_bit.style.transform = 'translate(0, -90vh)';
-    setTimeout(callback, 500);
+    create_bit.style.visibility='visible';
+    callback(raiseCreateBit);
 }
 
 function titleFocus() {
     let create_bit = document.getElementById('create-bit-mobile');
     $('#mobile-title').focus();
+}
+
+function raiseCreateBit(callback){
+    let create_bit = document.getElementById('create-bit-mobile');
+    create_bit.style.transform = 'translate(0, -80vh)';
+    setTimeout(callback, 500);
 }
 
 function dropCreateBit(followUp) {
@@ -293,7 +298,8 @@ function dropCreateBit(followUp) {
 }
 
 function hideCreateBit() {
-    $('#create-bit-mobile').hide();
+    let create_bit = document.getElementById('create-bit-mobile');
+    create_bit.style.visibility='hidden';
 }
 
 $('#mobile-publish-bit').click(function() {
