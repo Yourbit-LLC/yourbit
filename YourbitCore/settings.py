@@ -1,10 +1,13 @@
 import os
-
+import json
 import environ
 
 #initialize environment variables
 env = environ.Env()
 environ.Env.read_env()
+
+with open('etc/config.json') as config_file:
+    config = json.load(config_file)
 
 """
 Django settings for YourbitCore project.
@@ -28,10 +31,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-^zc$$x0jyl*k8he7htbv8fckfy2c6bm-!sysku5f9398&)b2y#'
+SECRET_KEY = config['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['45.79.189.46', '127.0.0.1', 'yourbit.me', 'www.yourbit.me']
 
