@@ -585,7 +585,7 @@
         height: 95vh;
         padding-bottom: 70px;
         overflow-y: scroll;
-        transition: 0.25s;
+        transition: 1s;
         overflow-x: hidden;
     }
 

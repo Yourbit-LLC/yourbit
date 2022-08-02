@@ -254,12 +254,13 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script type="text/javascript">
             var base_url = window.location.origin;
+             var postList = document.getElementById("content-container-feed");
             
             $(document).ready(function() {
                 post_fly_in();
                 console.log('ready')
             });
-            var postList = document.getElementById("content-container-feed");
+           
             
             function post_fly_in() {
                 postList.style.transform = 'translate(0, -100vh)';
