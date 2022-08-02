@@ -1054,7 +1054,6 @@ only be used for object transforms (shaping and scaling)
         overflow-x: hidden;
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
-        padding-top: 50px;
     }
     
     .navigation-bar {    
