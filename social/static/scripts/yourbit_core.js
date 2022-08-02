@@ -333,6 +333,28 @@ function submitBit() {
         }
     )
 }
+
+$('.type-button').click(function() {
+    let button_name = $(this).attr('name');
+    changeType(button_name);
+});
+
+function changeType(button_name) {
+    if (button_name === 'chat'){
+        $('bit-type-hidden-field').val('chat');
+        
+    }
+
+    if (button_name === 'video'){
+        $('bit-type-hidden-field').val('video');
+    }
+
+    if (button_name === 'photo'){
+        $('bit-type-hidden-field').val('photo');
+    }
+
+};
+
 /*
 --Mobile Search Functions--
 */
