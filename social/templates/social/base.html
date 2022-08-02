@@ -168,6 +168,9 @@
                     -messages
 
                 -->
+                <div class="profile-icon" id = "profile-icon" onclick="show_profile_menu()">
+                    <img src="{{request.user.profile.image.url}}" class="profile-icon" style="border-color: {{user.profile.accent_color}};" id="profile-pic">
+                </div>
 
                 <form class = "nav-element" id="quick-actions" method="GET" action="{% url 'create-bit' %}">
                     {% csrf_token %}
@@ -184,7 +187,7 @@
                         <div class="notification-response-button-container">
                             <button type="submit" name="accept_friend" class="friend-request-response-button">Accept</button>
                             <button type="submit" name="decline_friend" class="friend-request-response-button">Decline</button>
-                        <div>
+                        </div>
                     </form>
                 
                 
@@ -195,9 +198,7 @@
                 </form>
             </div>
                 
-                <div class="profile-icon" id = "profile-icon" onclick="show_profile_menu()">
-                    <img src="{{request.user.profile.image.url}}" class="profile-icon" style="border-color: {{user.profile.accent_color}};" id="profile-pic">
-                </div>
+
             </nav>
   
                 <!--Profile Menu comes and goes when user clicks on the profile icon, contains links to user settings-->
