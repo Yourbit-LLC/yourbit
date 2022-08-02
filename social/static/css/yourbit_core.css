@@ -1048,7 +1048,7 @@ only be used for object transforms (shaping and scaling)
         z-index: 3;
         width: 100vw;
         height: 90vh;
-        
+        padding-top: 35px;
         overflow-y: scroll;
         transition: 1s;
         overflow-x: hidden;
