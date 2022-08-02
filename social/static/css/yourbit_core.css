@@ -69,7 +69,6 @@ only be used for object transforms (shaping and scaling)
 
     }*/
     
-    
 
 
     body, html {
@@ -78,6 +77,10 @@ only be used for object transforms (shaping and scaling)
         font-family:Arial, Helvetica, sans-serif; 
         overflow: hidden;
         
+    }
+
+    #mobile-create-bit {
+        display: none; 
     }
     /* UI background image */
     .bg-image {
@@ -114,13 +117,13 @@ only be used for object transforms (shaping and scaling)
 
     #content-container {
         position: fixed;
-        top: 0;
+        top: 100vh;
         z-index: 3;
         width: 100vw;
         height: 100vh;
         overflow-y: scroll;
         padding-top: 100px;
-        transition: 0.25s;
+        transition: 1s;
     }
 
 
@@ -1041,14 +1044,14 @@ only be used for object transforms (shaping and scaling)
     /*Navigation Bar */
     #content-container {
         position: fixed;
-        top: 0px;
+        top: 100vh;
         left: 0px;
         z-index: 3;
         width: 100vw;
         height: 90vh;
         padding-bottom: 70px;
         overflow-y: scroll;
-        transition: 0.25s;
+        transition: 1s;
         overflow-x: hidden;
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);

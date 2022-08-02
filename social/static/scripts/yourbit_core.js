@@ -3,7 +3,11 @@ var width = screen.width;
 var notifications_last = 0;
 var first_load = true;
 var iframe = document.getElementById('feed-content-container');
-
+$(document).ready(function() {
+    console.log(notifications_last);
+    post_fly_in();
+    updateNotificationStatus();
+});
 
 var menu = document.getElementById("profile-menu");
 function show_profile_menu() {
@@ -44,7 +48,7 @@ function hide_create_post() {
 }
 var postList = document.getElementById("content-container");
 function post_fly_in() {
-    postList.style.transform = 'translate(0, 0)';
+    postList.style.transform = 'translate(0, -100vh)';
 
 }
 
@@ -175,10 +179,7 @@ function ChatForm() {
 /*
 --On document load get notifications, load bits, get messages, update rewards points--
 */
-$(document).ready(function() {
-    console.log(notifications_last)
-    updateNotificationStatus();
-});
+
 
 /*
 --Function for updating notifications--

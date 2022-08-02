@@ -22,6 +22,7 @@
 .dropdown-large {
     display: grid;
     background-color: black;
+    position: relative;
     height: fit-content;
     border-radius: 20px;
     margin-top: 10px;
@@ -29,12 +30,26 @@
     width: 95%;
     margin-left: auto;
     margin-right: auto;
+    grid-template-columns: 70% 30%;
+    transition: 1s;
 }
+
+.expand-icon {
+    display: block;
+    grid-column: 2;
+    float: right;
+    position: absolute;
+    right:10px;
+    top: 10px;
+}
+
 
 .option-header {
     display: block;
+    
     height: 100%;
     width: 100%;
+    grid-column: 1;
 
 }
 

@@ -1,8 +1,6 @@
 #notifications-dropdown {
     position: absolute;
-    display: block;
     top: 70px;
-    right: 3vw;
     width: 20%;
     background-color: rgba(0, 0, 0, 0.75);
     z-index: 9;
@@ -10,7 +8,7 @@
     border-radius: 20px;
     height: auto;
     padding-bottom: 10px;
-    visibility: hidden;
+    display: none;
 }
 
 .interaction-notification {
