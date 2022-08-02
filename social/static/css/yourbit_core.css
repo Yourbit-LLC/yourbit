@@ -1170,7 +1170,7 @@ only be used for object transforms (shaping and scaling)
             height: 80px;
             object-fit: contain;
             z-index: 11;
-            bottom: 0px;
+            bottom: 50px;
             grid-column: 3;
         }
 
