@@ -173,9 +173,6 @@
                     {% csrf_token %}
                     <a class="quick-button" href="{% url 'messages' %}" id="messages-quick" ><svg xmlns="http://www.w3.org/2000/svg" class="quick-button-background" height="24" width="24"><path d="M3.85 20.75q-1.1 0-1.875-.775Q1.2 19.2 1.2 18.1V5.9q0-1.1.775-1.875.775-.775 1.875-.775h16.3q1.1 0 1.875.775.775.775.775 1.875v12.2q0 1.1-.775 1.875-.775.775-1.875.775ZM12 13.575 3.85 8.6v9.5h16.3V8.6ZM12 11l8.35-5.1H3.65ZM3.65 8.6V5.9v12.2H3.85h-.2Z"/></svg></a>
                     <div class="quick-button" id="notifications-quick" ><div class="status-indicator" id="notification-status" style="display: none;"></div><svg xmlns="http://www.w3.org/2000/svg" class="quick-button-background" height="24" width="24"><path d="M3.55 19.05V16.4h2.025v-6.375q0-2.15 1.263-3.863Q8.1 4.45 10.15 3.875v-.7q0-.775.538-1.313.537-.537 1.312-.537t1.312.537q.538.538.538 1.313v.7q2.05.575 3.313 2.287 1.262 1.713 1.262 3.863V16.4h2.025v2.65ZM12 11.325Zm0 11.325q-.95 0-1.625-.675T9.7 20.35h4.6q0 .95-.675 1.625T12 22.65ZM8.225 16.4h7.55v-6.375q0-1.575-1.1-2.675-1.1-1.1-2.675-1.1-1.575 0-2.675 1.1-1.1 1.1-1.1 2.675Z"/></svg>    
-                    <div >
-
-                    </div>
                     {% if notification_length == 0 %}
                         <p>No Notifications</p>
                     {% else %}
@@ -196,11 +193,10 @@
                     <input id="full-url" type="hidden" name="last_page" value="{{ request.path }}">
                     <button class="quick-button" id="create-post-button" type="submit"><svg class="quick-button-background" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M10.7 17.4h2.65v-4.05h4.05V10.7h-4.05V6.6H10.7v4.1H6.6v2.65h4.1Zm1.3 5.4q-2.25 0-4.213-.85-1.962-.85-3.424-2.312Q2.9 18.175 2.05 16.212 1.2 14.25 1.2 12t.85-4.225Q2.9 5.8 4.363 4.338q1.462-1.463 3.424-2.301Q9.75 1.2 12 1.2t4.225.837q1.975.838 3.438 2.301 1.462 1.462 2.299 3.437Q22.8 9.75 22.8 12q0 2.25-.838 4.212-.837 1.963-2.299 3.426Q18.2 21.1 16.225 21.95q-1.975.85-4.225.85Zm0-2.65q3.425 0 5.788-2.363Q20.15 15.425 20.15 12t-2.362-5.788Q15.425 3.85 12 3.85q-3.425 0-5.787 2.362Q3.85 8.575 3.85 12q0 3.425 2.363 5.787Q8.575 20.15 12 20.15ZM12 12Z"/></svg></button>
                 </form>
-
+            </div>
+                
                 <div class="profile-icon" id = "profile-icon" onclick="show_profile_menu()">
                     <img src="{{request.user.profile.image.url}}" class="profile-icon" style="border-color: {{user.profile.accent_color}};" id="profile-pic">
-
-
                 </div>
             </nav>
   
