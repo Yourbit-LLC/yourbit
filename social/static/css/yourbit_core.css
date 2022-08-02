@@ -1163,7 +1163,7 @@ only be used for object transforms (shaping and scaling)
         /*This is the icon on mobile footer that shows the profile image*/
         #profile-icon {
             display: block;
-            position: relative;
+            position: absolute;
             left: 50vw;
             transform: translate(-50%, 0);
             width: 80px;
@@ -1176,7 +1176,7 @@ only be used for object transforms (shaping and scaling)
 
         /*This is the Profile Pic that appears on the profile menu button */
         #profile-pic {
-            position: absolute;
+            position: relative;
             display: block;
             width: 70px;
             height: 70px;
