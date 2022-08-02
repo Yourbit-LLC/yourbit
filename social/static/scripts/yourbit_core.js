@@ -6,6 +6,7 @@ var iframe = document.getElementById('feed-content-container');
 
 var postList = document.getElementById("content-container-feed");
 $(document).ready(function() {
+    post_fly_in();
     console.log(notifications_last);
     updateNotificationStatus();
 });
