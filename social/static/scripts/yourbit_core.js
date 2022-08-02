@@ -5,7 +5,6 @@ var first_load = true;
 var iframe = document.getElementById('feed-content-container');
 $(document).ready(function() {
     console.log(notifications_last);
-    post_fly_in();
     updateNotificationStatus();
 });
 
@@ -45,11 +44,6 @@ function show_create_post() {
 
 function hide_create_post() {
     $("#create-post").fadeOut('slow');
-}
-var postList = document.getElementById("content-container");
-function post_fly_in() {
-    postList.style.transform = 'translate(0, -100vh)';
-
 }
 
 function show_post_detail() {

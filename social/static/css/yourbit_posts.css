@@ -578,11 +578,11 @@
 
     #content-container-feed {
         position: fixed;
-        top: 0px;
+        top: 100vh;
         left: 0px;
         z-index: 3;
         width: 100vw;
-        height: 90vh;
+        height: 95vh;
         padding-bottom: 70px;
         overflow-y: scroll;
         transition: 0.25s;
