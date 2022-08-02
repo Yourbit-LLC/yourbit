@@ -343,6 +343,7 @@ function changeType(button_name) {
     if (button_name === 'chat'){
         $('bit-type-hidden-field').val('chat');
         
+
     }
 
     if (button_name === 'video'){

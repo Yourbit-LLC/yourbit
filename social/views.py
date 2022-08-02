@@ -386,7 +386,7 @@ class SearchResults(View):
     def post(self, request, *args, **kwargs):
         search_form = SearchBar(request.POST)
         if search_form.is_valid():
-
+            last_page = request.GET.get('last_page', '/')
             searched = search_form.cleaned_data['query']
             user_results = []
             user_first_name_filter = User.objects.filter(first_name__icontains = searched)
@@ -415,6 +415,7 @@ class SearchResults(View):
                 "result_count" : result_count,
                 'user_results': user_results, 
                 'bit_results': bit_results, 
+                'last_page': last_page,
             }
             return render(request, "social/search_results.html", context)
 

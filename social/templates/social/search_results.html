@@ -4,7 +4,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/search_results.css' %}"/>
 <div id="content-container">
     <form class="back-form" method="POST">
-        <button id="back-button">Go back</button>
+        <button id="back-button" href="{{ last_page }}">Go back</button>
     </form>
     {% if result_count == 1 %}
         <p>Showing {{ result_count }} result for "{{ searched }}" </p>

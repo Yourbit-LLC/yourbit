@@ -1465,6 +1465,10 @@ only be used for object transforms (shaping and scaling)
 
     }
 
+    #bit-panel-close {
+        height: 30px;
+    }
+
     #mobile-body {
         width: 90vw;
         height: 150px;
