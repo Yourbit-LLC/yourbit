@@ -578,7 +578,6 @@
 
     #content-container-feed {
         position: fixed;
-        top: 100vh;
         left: 0px;
         z-index: 3;
         width: 100vw;

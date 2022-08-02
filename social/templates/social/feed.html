@@ -9,9 +9,9 @@
 </head>
 <body>
     {% if profile %}
-        <div id="content-container-feed" style="padding-top: 0px;">
+        <div id="content-container-feed" style="padding-top: 0px; top: 100vh;">
     {% else %}
-        <div id="content-container-feed" style="padding-top: 70px;">
+        <div id="content-container-feed" style="padding-top: 70px; top: 100vh;">
     {% endif %}
         {% if bit_pool %}
         {% for bit in bit_pool %}
@@ -252,21 +252,9 @@
         {% endif %}
         </div>  
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script type="text/javascript" src="{% static 'scripts/yourbit_core.js' %}"></script>
         <script type="text/javascript">
             var base_url = window.location.origin;
-             var postList = document.getElementById("content-container-feed");
-            
-            $(document).ready(function() {
-                post_fly_in();
-                console.log('ready')
-            });
-           
-            
-            function post_fly_in() {
-                postList.style.transform = 'translate(0, 0vh)';
-
-            };
-
             
             $("#chat-bit-profile-picture").click(function() {
                 username = $(this).attr("data-catid");

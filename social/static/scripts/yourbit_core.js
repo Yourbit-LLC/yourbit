@@ -3,10 +3,18 @@ var width = screen.width;
 var notifications_last = 0;
 var first_load = true;
 var iframe = document.getElementById('feed-content-container');
+
+var postList = document.getElementById("content-container-feed");
 $(document).ready(function() {
+    post_fly_in();
     console.log(notifications_last);
     updateNotificationStatus();
 });
+
+function post_fly_in() {
+    postList.style.transform = 'translate(0, -100vh)';
+
+};
 
 var menu = document.getElementById("profile-menu");
 function show_profile_menu() {
