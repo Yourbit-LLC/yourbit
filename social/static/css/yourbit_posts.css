@@ -582,7 +582,7 @@
         top: 100vh;
         z-index: 3;
         width: 100vw;
-        height: 95vh;
+        height: 100vh;
         padding-bottom: 70px;
         overflow-y: scroll;
         transition: 1s;
