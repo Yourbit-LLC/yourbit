@@ -27,6 +27,7 @@ def FeedUI(request):
         chat_bit_pool = Bit.objects.filter(user__in = friend_pool, bit_type = 'chat').order_by('-created_at')
         photo_bit_pool = Bit.objects.filter(user__in = friend_pool, bit_type='photo').order_by('-created_at')
         video_bit_pool = Bit.objects.filter(user__in = friend_pool, bit_type = 'video').order_by('-created_at')
+        user_image = profile.image.url
         return {
             'write_comment':write_comment,
             'notification_length':notification_length ,

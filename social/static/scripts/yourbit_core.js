@@ -6,15 +6,9 @@ var iframe = document.getElementById('feed-content-container');
 
 var postList = document.getElementById("content-container-feed");
 $(document).ready(function() {
-    post_fly_in();
     console.log(notifications_last);
     updateNotificationStatus();
 });
-
-function post_fly_in() {
-    postList.style.transform = 'translate(0, -100vh)';
-
-};
 
 var menu = document.getElementById("profile-menu");
 function show_profile_menu() {
@@ -61,18 +55,28 @@ function show_post_detail() {
 
 }
 
+$('#notifications-quick').click(function() {
+    show_notifications();
+});
+
 function show_notifications() {
     const notification_panel = document.getElementById("notifications-dropdown");
     if (notification_panel.style.visibility === 'hidden') {
         
         notification_panel.style.visibility='visible';
         notification_panel.style.display='block';
+        growDropdown(notification_panel);
     } else {
 
         notification_panel.style.visibility='hidden';
         notification_panel.style.display='none';
 
     }
+}
+
+function growDropdown(item) {
+    item.style.width = "150px"
+
 }
 
 function show_messages() {
@@ -391,6 +395,7 @@ Show Search Filters
 */
 
 $(".search-bar").focus(function() {
+    console.log('search-bar-clicked')
     document.getElementById('search-options').style.display = "grid";
 });
 
