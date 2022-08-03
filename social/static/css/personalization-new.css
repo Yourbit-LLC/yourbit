@@ -168,7 +168,8 @@
 
     #mini-user-image {
         position: relative;
-        width: 80%;
+        width: 80px;
+        height: 80px;
         grid-column: 1;
         grid-row-start: 1;
         grid-row-end: 3;
