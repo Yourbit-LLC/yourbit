@@ -129,11 +129,15 @@
             <!--Profile page preview container for desktop-->
             <div id="preview">
                 <img id="preview-background-img" style="-webkit-filter: brightness(80%) blur(30px);" {% if user.profile.background_image %} src = "{{ user.profile.background_image.url }}" {% endif %}>
-                <div id="mini-head" style='backdrop-filter: brightness(200%);'></div>
+                <div id="mini-head" style='backdrop-filter: brightness(200%);'>
+
+                </div>
                 <div id="mini-content">
                     <div id="mini-profile-header">
-                       <img id="mini-user-image" style="border:2px solid; border-color: {{user.profile.accent_color}};" src="{{ user.profile.image.url }}"/>
-                        
+                       <img id="mini-user-image" style="border:2px solid; border-color: {{user.profile.accent_color}};" src="{{ user_image }}"/>
+                        <p id="mini-user-name">
+                            Austin Chaney
+                        </p>
                     </div>
                     <hr width="100%" style="position: relative;">
                     <div id="mini-bit1" style="background-color: {{ user.profile.bit_background }};" class="mini-bit">
@@ -141,7 +145,9 @@
                         <div id="mini-title">Title Preview</div>
                         <div id="mini-paragraph" style="color:{{user.profile.text_color}}">This is a paragraph preview, it is a preview of paragraph text in paragraphs.</div>
                         
-                        <div class="mini-feedback"><div id="like-circle" style="background-color:{{user.profile.accent_color}}"></div></div>
+                        <div class="mini-feedback">
+                            <div id="like-circle" style="background-color:{{user.profile.accent_color}}"></div>
+                        </div>
                     </div>
                     <br>  
                 </div>
@@ -154,6 +160,7 @@
 
 
             <div id="toggles">
+
                 <!--Default, Default Mode (light/dark), show customizations in feed, toggle post colors-->
             </div>
                 

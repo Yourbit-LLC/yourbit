@@ -41,6 +41,7 @@ def FeedUI(request):
             'friend_pool':friend_pool,
             'friend_requests':friend_requests,
             'wallpaper_on': wallpaper_on,
+            'user_image': user_image,
 
         }
     else:

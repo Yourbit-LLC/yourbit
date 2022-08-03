@@ -159,7 +159,7 @@
     #mini-profile-header {
         display:grid;
         position: relative;
-        grid-template-columns: 110px 50px 50px 50px;
+        grid-template-columns: 110px 100px 50px;
         grid-template-rows: 37.5px 7.5px 62.5px auto;
         column-gap: 5px;
         padding-left: 5px;
@@ -177,6 +177,9 @@
         object-fit: contain;
         margin-top: 10px;
         margin-left: 10px;
+    }
+    #mini-user-name {
+        grid-column: 2;
     }
 
     .mini-bit {
