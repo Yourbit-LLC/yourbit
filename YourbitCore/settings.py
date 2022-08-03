@@ -35,7 +35,7 @@ SECRET_KEY = env('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['45.79.189.46', '127.0.0.1', 'yourbit.me', 'www.yourbit.me']
+ALLOWED_HOSTS = ['45.79.163.131:8000','45.79.189.46', '127.0.0.1', 'yourbit.me', 'www.yourbit.me']
 
 
 # Application definition
