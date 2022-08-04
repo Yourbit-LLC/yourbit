@@ -56,16 +56,16 @@ function show_post_detail() {
 }
 
 $('#notifications-quick').click(function() {
-    show_notifications();
+    show_notifications(growDropdown);
 });
 
-function show_notifications() {
+function show_notifications(callback) {
     const notification_panel = document.getElementById("notifications-dropdown");
     if (notification_panel.style.visibility === 'hidden') {
         
         notification_panel.style.visibility='visible';
         notification_panel.style.display='block';
-        growDropdown(notification_panel);
+        callback(notification_panel);
     } else {
 
         notification_panel.style.visibility='hidden';
@@ -75,7 +75,7 @@ function show_notifications() {
 }
 
 function growDropdown(item) {
-    item.style.width = "150px"
+    item.style.width = "250px"
 
 }
 

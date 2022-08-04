@@ -17,7 +17,7 @@
         <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     </head>
-    <body style="background-color:rgb(10,10,10); overflow-x:hidden;">
+    <body style="background-color:rgb(25,25,25); overflow-x:hidden;">
         
         <div class="notification-pop-up" id="non-interactive-notification-modal" style="color:white;">
 
@@ -123,11 +123,11 @@
                     <button class="search-button" id="search-button" name="search"><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m19.825 21.65-6.35-6.35q-.75.575-1.837.912-1.088.338-2.213.338-2.975 0-5.037-2.062-2.063-2.063-2.063-5.038t2.063-5.038Q6.45 2.35 9.425 2.35t5.038 2.062q2.062 2.063 2.062 5.038 0 1.125-.312 2.15-.313 1.025-.913 1.825l6.375 6.375Zm-10.4-7.75q1.875 0 3.163-1.288 1.287-1.287 1.287-3.162t-1.287-3.163Q11.3 5 9.425 5 7.55 5 6.263 6.287 4.975 7.575 4.975 9.45q0 1.875 1.288 3.162Q7.55 13.9 9.425 13.9Z"/></svg></button>
                     <div id="search-options">
                         <p id="search-options-label">Filters:</p>
-                        <div id="global-search"class="search-filter-option">1</div>
-                        <div id="chat-search" class="search-filter-option">2</div>
-                        <div id="video-search" class="search-filter-option">3</div>
-                        <div id="photo-search" class="search-filter-option">4</div>
-                        <div id="people-search" class="search-filter-option">5</div>
+                        <div id="global-search"class="search-filter-option">All</div>
+                        <div id="chat-search" class="search-filter-option">Chats</div>
+                        <div id="video-search" class="search-filter-option">Videos</div>
+                        <div id="photo-search" class="search-filter-option">Pics</div>
+                        <div id="people-search" class="search-filter-option">People</div>
                     </div>
                 </form>
 
@@ -177,8 +177,10 @@
                     <a class="quick-button" href="{% url 'messages' %}" id="messages-quick" ><svg xmlns="http://www.w3.org/2000/svg" class="quick-button-background" height="24" width="24"><path d="M3.85 20.75q-1.1 0-1.875-.775Q1.2 19.2 1.2 18.1V5.9q0-1.1.775-1.875.775-.775 1.875-.775h16.3q1.1 0 1.875.775.775.775.775 1.875v12.2q0 1.1-.775 1.875-.775.775-1.875.775ZM12 13.575 3.85 8.6v9.5h16.3V8.6ZM12 11l8.35-5.1H3.65ZM3.65 8.6V5.9v12.2H3.85h-.2Z"/></svg></a>
                     <div class="quick-button" id="notifications-quick" ><div class="status-indicator" id="notification-status" style="display: none;"></div><svg xmlns="http://www.w3.org/2000/svg" class="quick-button-background" height="24" width="24"><path d="M3.55 19.05V16.4h2.025v-6.375q0-2.15 1.263-3.863Q8.1 4.45 10.15 3.875v-.7q0-.775.538-1.313.537-.537 1.312-.537t1.312.537q.538.538.538 1.313v.7q2.05.575 3.313 2.287 1.262 1.713 1.262 3.863V16.4h2.025v2.65ZM12 11.325Zm0 11.325q-.95 0-1.625-.675T9.7 20.35h4.6q0 .95-.675 1.625T12 22.65ZM8.225 16.4h7.55v-6.375q0-1.575-1.1-2.675-1.1-1.1-2.675-1.1-1.575 0-2.675 1.1-1.1 1.1-1.1 2.675Z"/></svg>
                         <div id='notifications-dropdown'>
+                            <h3 style="margin-top:5px; margin-bottom: 2px;">Notifications</h3>
+                            <hr>
                             {% if notification_length == 0 %}
-                                <p>No Notifications</p>
+                                <p style="font-size:14px; margin-top: 20px; margin-bottom: 10px; text-shadow: 1px 1px 10px rgba(255,255,255, 0.5);">No New Notifications</p>
                             {% else %}
                             {% for request_notification in friend_requests %}
                             <form class="interaction-notification" id="friend-request" method="POST" action="{% url 'profile-interact' request_notification.pk %}">

@@ -1,13 +1,14 @@
 #notifications-dropdown {
-    position: absolute;
-    top: 70px;
+    position: relative;
+    top: 20px;
+    right: 9vw;
     width: 0px;
     background-color: rgba(0, 0, 0, 0.75);
     z-index: 9;
     text-align: center;
     border-radius: 20px;
     height: auto;
-    padding-bottom: 10px;
+    padding: 5px;
     display: none;
     transition: 0.5;
 }
