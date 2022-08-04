@@ -1110,6 +1110,7 @@ only be used for object transforms (shaping and scaling)
         grid-template-columns: auto auto 80px auto auto; 
         width: 100vw;
         bottom: 0px;
+        height: 35px;
         margin: auto;
         -webkit-backdrop-filter: blur(20px);
         backdrop-filter: blur(20px);
