@@ -298,17 +298,19 @@
         width: 175px;
         height: 175px;
         margin: auto;
-        
+        object-fit: contain;
         
 
     }
 
     #preview-user-image {
+        display: block;
+        position: relative;
         width: 100%;
         border-radius: 50%;
         border: 3px solid white;
         box-shadow: 2px 2px 10px black; 
-        object-fit: contain;
+        
     }
 
     .dropdown-large {
