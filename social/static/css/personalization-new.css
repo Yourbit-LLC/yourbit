@@ -279,5 +279,8 @@
     #preview {
         display: none;
     }
+    #preview-background-img {
+        display: none;
+    }
 
 }
