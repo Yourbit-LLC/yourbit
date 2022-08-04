@@ -801,7 +801,8 @@ class NotificationStatus(View):
     def get(self, request, *args, **kwargs):
         connect_request_pending = False
         user = request.user
-        requests = ConnectRequest.objects.filter(to_user=user)
+        user_id = user.id
+        requests = ConnectRequest.objects.filter(to_user=user_id)
         notifications_len = len(requests)
         if requests:
             connect_request_pending = True
@@ -812,7 +813,8 @@ class NotificationStatus(View):
 class GetNotifications(View):
     def get(self, request, *args, **kwargs):
         user = request.user
-        connect_requests = ConnectRequest.objects.filter(to_user=user)
+        user_id = user.id
+        connect_requests = ConnectRequest.objects.filter(to_user=user_id)
         request_list = []
         notifications = []
         for request in connect_requests:
