@@ -1125,8 +1125,7 @@ only be used for object transforms (shaping and scaling)
             border-radius: 0.25em;
             padding: 4px;
             transition: 0.3s;
-            margin-top:auto;
-            margin-bottom: auto;
+            margin: auto;
         }
         
 
