@@ -256,7 +256,7 @@
     #split-content-container {
         display: grid;
         position: fixed;
-        grid-template-rows: 20% 80%;
+        grid-template-rows: 30% 70%;
         -webkit-backdrop-filter: blur(80px);
         backdrop-filter: blur(80px);
         z-index: 3;
@@ -264,6 +264,7 @@
         left:0px;
         height: 100%;
         width: 100%;
+        color: white;
         
     }
 
@@ -290,5 +291,34 @@
     #preview-background-img {
         display: none;
     }
+    #profile-image-preview {
+        position: relative;
+        display: block;
+        top: 70px;
+        width: 175px;
+        height: 175px;
+        margin: auto;
+        object-fit: contain;
+        
+
+    }
+
+    #preview-user-image {
+        width: 100%;
+        border-radius: 50%;
+        border: 3px solid white;
+        box-shadow: 2px 2px 10px black; 
+    }
+
+    .dropdown-large {
+        border-radius: 20px;
+        padding: 10px;
+        display: grid;
+        grid-template-columns: 80% 20%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    
 
 }

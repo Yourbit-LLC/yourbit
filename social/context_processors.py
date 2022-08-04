@@ -28,6 +28,7 @@ def FeedUI(request):
         photo_bit_pool = Bit.objects.filter(user__in = friend_pool, bit_type='photo').order_by('-created_at')
         video_bit_pool = Bit.objects.filter(user__in = friend_pool, bit_type = 'video').order_by('-created_at')
         user_image = profile.image.url
+        accent_color = profile.accent_color
         return {
             'write_comment':write_comment,
             'notification_length':notification_length ,
@@ -42,6 +43,7 @@ def FeedUI(request):
             'friend_requests':friend_requests,
             'wallpaper_on': wallpaper_on,
             'user_image': user_image,
+            'accent_color':accent_color,
 
         }
     else:
