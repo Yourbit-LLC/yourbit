@@ -800,7 +800,8 @@ class QuickVisibility(View):
 class NotificationStatus(View):
     def get(self, request, *args, **kwargs):
         connect_request_pending = False
-        requests = ConnectRequest.objects.filter(to_user=request.user)
+        user = request.user
+        requests = ConnectRequest.objects.filter(to_user=user)
         notifications_len = len(requests)
         if requests:
             connect_request_pending = True
