@@ -1067,7 +1067,7 @@ only be used for object transforms (shaping and scaling)
         height: 50px;
         width: 100%;
         box-sizing: border-box;
-        background-color: rgba(0, 0, 0, 0.8);
+        background-color: rgba(0, 0, 0, 0.6);
         -webkit-backdrop-filter: blur(20px);
         backdrop-filter: blur(20px);
         padding-bottom: 0;
@@ -1126,6 +1126,8 @@ only be used for object transforms (shaping and scaling)
             padding: 4px;
             margin: 2px;
             transition: 0.3s;
+            margin-top:auto;
+            margin-bottom: auto;
         }
         
 
