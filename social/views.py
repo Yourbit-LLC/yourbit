@@ -811,7 +811,8 @@ class NotificationStatus(View):
 
 class GetNotifications(View):
     def get(self, request, *args, **kwargs):
-        connect_requests = ConnectRequest.objects.filter(to_user=request.user)
+        user = request.user
+        connect_requests = ConnectRequest.objects.filter(to_user=user)
         request_list = []
         notifications = []
         for request in connect_requests:
