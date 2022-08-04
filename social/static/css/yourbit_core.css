@@ -199,6 +199,55 @@ only be used for object transforms (shaping and scaling)
     .slider.round:before {
         border-radius: 50%;
     }
+    /*
+
+        Helpers
+
+    */
+
+    .helper {
+        display:none;
+        position: relative;
+        top: 10px;
+        width: fit-content;
+        padding: 5px;
+        background-color: rgba(0, 0, 0, 0.801);
+        font-size:13px;
+        height: fit-content;
+        border-radius: 5px;
+        padding-bottom: 7px;
+        color: white;
+        text-decoration: none;
+        
+    }
+    #global-space-button:hover #global-helper {
+        display: block;
+        transition: 0.5s;
+    }
+
+    #text-space-button:hover #chat-helper {
+        display: block;
+    }
+    
+    #photo-space-button:hover #photo-helper {
+        display: block;
+    }
+
+    #video-space-button:hover #video-helper {
+        display: block;
+    }
+    #notifications-quick:hover #notification-helper {
+        display: block;
+    }
+    #messages-quick:hover #messages-helper {
+        display: block;
+    }
+    #create-post-button:hover #create-helper {
+        display: block;
+    }
+    #visibility:hover #visibility-helper {
+        display: block;
+    }
 
 /* -- 
     
@@ -243,6 +292,10 @@ only be used for object transforms (shaping and scaling)
         float: left;
         width: 60px;
         margin-top: 0.75em;
+    }
+
+    #logo-image:hover{
+        cursor: pointer;
     }
 
     
@@ -312,17 +365,21 @@ only be used for object transforms (shaping and scaling)
     
     .space-button:hover {
         /* Button increases brightness on hover */
-        background-color: rgba(255, 255, 255, 0.6);
+        background-color: rgba(150, 150, 150, 0.6);
         transition: 0.3s;
         cursor: pointer;
-        box-shadow: 1px 1px 20px rgba(255, 255, 255, 0.6);
+
     }
-    
+    .space-button:hover svg{
+        -webkit-filter: drop-shadow(1px 1px 5px white); 
+        filter: drop-shadow(1px 1px 5px white);
+    }
     .space-button-image:hover {
         border-color: black;
         border-width: 0.25em;
         transition: 0.3s;
     }
+
     
 
     /* -- Search Interface -- */
@@ -386,6 +443,10 @@ only be used for object transforms (shaping and scaling)
         transition: 0.4s;
         grid-row: 1;
         cursor: pointer;
+    }
+    .search-button:hover svg{
+        -webkit-filter: drop-shadow(1px 1px 5px white); 
+        filter: drop-shadow(1px 1px 5px white);
     }
 
     .search-arrow {
@@ -474,6 +535,10 @@ only be used for object transforms (shaping and scaling)
         float: left;
         transition: 0.5s;
         cursor: pointer;
+    }
+    #visibility:hover svg{
+        -webkit-filter: drop-shadow(1px 1px 5px white); 
+        filter: drop-shadow(1px 1px 5px white);
     }
     
     #visibility-icon {
@@ -572,8 +637,14 @@ only be used for object transforms (shaping and scaling)
         background-color: rgba(255, 255, 255, 0.6);
         transition: 0.3s;
         cursor: pointer;
-        box-shadow: 1px 1px 20px rgba(255, 255, 255, 0.6);
+        
     }
+
+    .quick-button:hover svg{
+        -webkit-filter: drop-shadow(1px 1px 5px white); 
+        filter: drop-shadow(1px 1px 5px white);
+    }
+    
     
     .quick-button-background:hover {
         border-color: black;

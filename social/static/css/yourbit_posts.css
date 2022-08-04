@@ -117,9 +117,14 @@
 .feedback-icon:hover {
     filter: brightness(150%);
     -webkit-filter: brightness(150%);
-    background-color: rgb(35, 35, 35);
+    background-color: rgba(35, 35, 35, 0.5);
     transition: 0.3s;
 }
+.feedback-icon:hover svg{
+    -webkit-filter: drop-shadow(0px 0px 10px white); 
+    filter: drop-shadow(0px 0px 10px white);
+}
+
 
 .feedback-icon-active {
     position: relative;

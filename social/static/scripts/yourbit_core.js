@@ -1,4 +1,4 @@
-base_url = window.location.origin;
+var base_url = window.location.origin;
 var width = screen.width;
 var notifications_last = 0;
 var first_load = true;
@@ -9,6 +9,10 @@ $(document).ready(function() {
     console.log(notifications_last);
     updateNotificationStatus();
 });
+
+$('#logo-image').click(function(){
+    window.location.href = `${base_url}`;
+})
 
 var menu = document.getElementById("profile-menu");
 function show_profile_menu() {
