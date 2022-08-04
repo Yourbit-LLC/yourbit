@@ -265,6 +265,8 @@
         height: 100%;
         width: 100%;
         color: white;
+        overflow-y: scroll;
+        overflow-x: hidden;
         
     }
 
@@ -321,6 +323,9 @@
         grid-template-columns: 80% 20%;
         margin-top: 10px;
         margin-bottom: 10px;
+        width: 90vw;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     
