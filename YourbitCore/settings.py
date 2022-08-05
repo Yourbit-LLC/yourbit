@@ -1,6 +1,7 @@
 import os
 import json
 import environ
+from pathlib import Path
 
 #initialize environment variables
 env = environ.Env()
@@ -148,7 +149,7 @@ DATE_INPUT_FORMATS = [
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_ROOT = '/home/achaney/yourbit/static/'
+STATIC_ROOT = Path.joinpath(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
 
