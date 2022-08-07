@@ -6,23 +6,13 @@
 
     }
 
-    #background-video {
-        z-index: 1;
-        min-width: 100%;
-        filter:blur(2px);
-        -webkit-filter: blur(2px);
-        position: fixed;
-        min-height: 100%;
-
-    }
-
     #form {
-        position: fixed;
+        position: relative;
         z-index: 2;
-        left: 50%;
-        top: 50%;
-        background-color: rgba(0, 0, 0, 0.5);
-        transform: translate(-50%, -50%);
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
         padding: 5px;
         border-radius: 10px;
         text-align: center;
