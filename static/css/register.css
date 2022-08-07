@@ -19,6 +19,7 @@
         color: white;
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
+        overflow-y: scroll;
 
     }
 
@@ -26,7 +27,7 @@
         border-radius: 10px;
         border-style: solid;
         border-width: 0.5px;
-        background-color: rgba(71, 71, 71, 0.25);
+        background-color: rgba(0, 0, 0, 0.25);
         width: 15em;
         height: 2em;
         text-align: center;
@@ -77,36 +78,20 @@
 
     }
 
-    #background-video {
-        margin-left: 0px;
-        text-align: center;
-        z-index: 1;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        min-height: 100%;
-        filter:blur(2px);
-        -webkit-filter: blur(2px);
-        position: fixed;
-        display: block;
-
-    }
-
     #form {
-        position: fixed;
-        display: block;
+        position: relative;
         z-index: 2;
-        left: 50%;
-        top: 50%;
-        width: 90vw;
-        background-color: rgba(0, 0, 0, 0.5);
-        transform: translate(-50%, -50%);
-        padding: 10px;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        padding: 5px;
         border-radius: 10px;
         text-align: center;
         color: white;
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
+        overflow-y: scroll;
         
 
     }
