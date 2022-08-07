@@ -41,7 +41,7 @@ class Profile(models.Model):
     pending_requests = models.ManyToManyField('ConnectRequest', blank=True, related_name="friend_request")
     conversations = models.ManyToManyField('Conversation', blank=True, related_name="conversations")
     clusters = models.ManyToManyField('Cluster', blank=True, related_name="clusters")
-    bit_background = models.CharField(max_length=50, default = "#000000")
+    bit_background = models.CharField(max_length=50, default = "#808080")
     background_color = models.CharField(max_length=50, default="#000000")
     accent_color = models.CharField(max_length=50, default="#ffffff")
     title_color = models.CharField(max_length=50, default="#ffffff")
