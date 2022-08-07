@@ -9,7 +9,13 @@
         <div id="container-column-1">
             <div class="dropdown-large" id="profile-images" style="background-color:{{user.profile.bit_background}}">
                 <h3 class="option-header" id="image-option-header">Profile Images</h3>
-                <div class="sub-setting" id="profile-img-sub" style="display:none;">
+                <div class="sub-setting" id="profile-img-sub" style="
+                display:none;
+                grid-column-start: 1;
+                grid-column-end: 2;
+                grid-row: 2;
+                position: relative;
+                " >
                     
                     <!--
                         Background image upload/select from library
@@ -52,7 +58,15 @@
             <div class="dropdown-large" id="color" style="background-color:{{user.profile.bit_background}}">
                 <h3 class="option-header" id="color-option-header" style="width: 100%;">Color</h3>
                 <svg class="expand-icon" id="font-expand-icon" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="m20 25.625-10-10 1.958-1.958L20 21.708l8.042-8.041 1.958 2Z"/></svg>
-                    <form id="color-sub" class="sub-setting" style="display:none;" method="POST">
+                    <form id="color-sub" class="sub-setting" 
+                    style="
+                    display:none;
+                    grid-column-start: 1;
+                    grid-column-end: 2;
+                    grid-row: 2;
+                    position: relative;
+                    " 
+                    method="POST">
                         {% csrf_token %}
                         <div id="hidden-form" style="display:none;">
                             {% for field in color_form %}

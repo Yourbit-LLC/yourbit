@@ -290,7 +290,9 @@
     .sub-setting {
         grid-column-start: 1;
         grid-column-end: 2;
-    }
+        grid-row: 2;
+        position: relative;
+        }
 
     #preview {
         display: none;
@@ -326,6 +328,7 @@
         padding: 10px;
         display: grid;
         grid-template-columns: 80% 20%;
+        grid-template-rows: 50px auto;
         margin-top: 10px;
         margin-bottom: 10px;
         width: 90vw;
