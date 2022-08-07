@@ -287,6 +287,11 @@
 
     }
 
+    .sub-setting {
+        grid-column-start: 1;
+        grid-column-end: 2;
+    }
+
     #preview {
         display: none;
     }
