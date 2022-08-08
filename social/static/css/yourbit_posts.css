@@ -579,7 +579,8 @@
         overflow-y: scroll;
         transition: 0.25s;
         border-width: 0px;
-        padding-bottom: 70px;
+        padding-bottom: 100px;
+        padding-top: 100px;
     }
 
     #content-container-feed {
@@ -589,7 +590,8 @@
         z-index: 3;
         width: 100vw;
         height: 100vh;
-        padding-bottom: 70px;
+        padding-bottom: 100px;
+        padding-top: 100px;
         overflow-y: scroll;
         transition: 1s;
         overflow-x: hidden;
