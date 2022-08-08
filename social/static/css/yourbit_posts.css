@@ -574,6 +574,7 @@
         position: fixed;
         display: block;
         bottom: 0;
+        left: 0px;
         z-index: 2;
         width: 100vw;
         height: 100vh;
