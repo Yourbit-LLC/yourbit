@@ -1653,6 +1653,8 @@ only be used for object transforms (shaping and scaling)
 
     
     #mobile-spacer {
+        display: block;
+        position: relative;
         height: 100px;
     }
 
