@@ -899,6 +899,12 @@
         display: none;
     }
     
+    #mobile-spacer {
+        position: relative;
+        display: block;
+        height: 100px;
+    }
+
 
 
 }
