@@ -18,6 +18,7 @@ Profile Page
     #profile-feed-content-container {
         position: relative;
         top: 0px;
+        left: 0px;
         padding-top: 0px;
         z-index: 3;
         width: 100vw;
