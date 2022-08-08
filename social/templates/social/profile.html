@@ -1,5 +1,6 @@
 {% extends 'social/base.html'%}
 {% load static %}
+{% block title %}{{profile.username}} | Yourbit{% endblock %}
 {% block background-image%}
     <img class="bg-image" src = "{{ profile.background_image.url }}">
 {% endblock %}
