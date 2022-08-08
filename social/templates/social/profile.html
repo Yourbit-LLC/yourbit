@@ -37,7 +37,7 @@
 {% endblock %}
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/yourbit_profile.css' %}"/>
-<div id="content-container" style="padding-top: 75px; overflow-y:hidden">
+<div id="content-container" style="padding-top: 75px; overflow-y:hidden;">
     <div class="profile-info">
         <input type='hidden' id="profile_id" value="{{profile.id}}">
         <div id="profile-image-profile" ><img style="border-color: {{profile.accent_color}}" src="{{ profile.image.url }}" class="profile-image-large" id="profile-image-profile-image"></div>
