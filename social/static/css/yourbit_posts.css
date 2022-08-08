@@ -576,7 +576,7 @@
         bottom: 0;
         z-index: 2;
         width: 100vw;
-        height: 90vh;
+        height: 100vh;
         overflow-y: scroll;
         transition: 0.25s;
         border-width: 0px;

@@ -1653,9 +1653,10 @@ only be used for object transforms (shaping and scaling)
 
     
     #mobile-spacer {
-        display: inline-block;
+        display: block;
         position: relative;
-        height: 300px;
+        height: 150px;
+        bottom: 0px;
     }
 
     .large-bubble {
