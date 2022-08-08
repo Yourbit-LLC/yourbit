@@ -579,10 +579,11 @@
         overflow-y: scroll;
         transition: 0.25s;
         border-width: 0px;
+        padding-bottom: 70px;
     }
 
     #content-container-feed {
-        position: fixed;
+        position: absolute;
         left: 0px;
         top: 100vh;
         z-index: 3;
