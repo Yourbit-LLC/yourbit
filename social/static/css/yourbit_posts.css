@@ -581,7 +581,6 @@
         overflow-y: scroll;
         transition: 0.25s;
         border-width: 0px;
-        padding-top: 40px;
     }
 
     #content-container-feed {
@@ -594,6 +593,7 @@
         overflow-y: scroll;
         transition: 1s;
         overflow-x: hidden;
+        padding-top:40px;
     }
 
     #large-post-iframe {
