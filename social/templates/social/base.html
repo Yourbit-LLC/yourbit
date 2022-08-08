@@ -182,25 +182,6 @@
                         <div class="helper" id="notification-helper">
                             Notifications
                         </div>
-                        <div id='notifications-dropdown'>
-                            <h3 style="margin-top:5px; margin-bottom: 2px;">Notifications</h3>
-                            <hr>
-                            {% if notification_length == 0 %}
-                                <p style="font-size:14px; margin-top: 20px; margin-bottom: 10px; text-shadow: 1px 1px 10px rgba(255,255,255, 0.5);">No New Notifications</p>
-                            {% else %}
-                            {% for request_notification in friend_requests %}
-                            <div class="interaction-notification" id="friend-request" method="POST" action="{% url 'profile-interact' request_notification.pk %}">
-                                
-                                <img class="notification-profile-image"src="{{ request_notification.from_user.profile.image.url }}">
-                                <p class="interaction-notification-text">{{request_notification.from_user.first_name}} {{request_notification.from_user.last_name}} requested to be your friend!</p>
-                                <div class="notification-response-button-container">
-                                    <button type="submit" name="accept_friend" class="friend-request-response-button">Accept</button>
-                                    <button type="submit" name="decline_friend" class="friend-request-response-button">Decline</button>
-                                </div>
-                            </div>
-                            {% endfor %}
-                            {% endif %}
-                        </div>
                     </div>
                     <input id="full-url" type="hidden" name="last_page" value="{{ request.path }}">
                     <a class="quick-button" id="create-post-button" type="submit"><svg class="quick-button-background" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M10.7 17.4h2.65v-4.05h4.05V10.7h-4.05V6.6H10.7v4.1H6.6v2.65h4.1Zm1.3 5.4q-2.25 0-4.213-.85-1.962-.85-3.424-2.312Q2.9 18.175 2.05 16.212 1.2 14.25 1.2 12t.85-4.225Q2.9 5.8 4.363 4.338q1.462-1.463 3.424-2.301Q9.75 1.2 12 1.2t4.225.837q1.975.838 3.438 2.301 1.462 1.462 2.299 3.437Q22.8 9.75 22.8 12q0 2.25-.838 4.212-.837 1.963-2.299 3.426Q18.2 21.1 16.225 21.95q-1.975.85-4.225.85Zm0-2.65q3.425 0 5.788-2.363Q20.15 15.425 20.15 12t-2.362-5.788Q15.425 3.85 12 3.85q-3.425 0-5.787 2.362Q3.85 8.575 3.85 12q0 3.425 2.363 5.787Q8.575 20.15 12 20.15ZM12 12Z"/></svg><div class="helper" id="create-helper">Create Bit</div></button>
