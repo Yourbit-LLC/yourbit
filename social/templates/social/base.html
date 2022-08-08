@@ -110,6 +110,7 @@
                         </script>
                 {% endblock %}
                 </div>
+                <!-- End space navigator -->
                 
                 <!--Start Search-->
 
@@ -178,7 +179,15 @@
                 <form class = "nav-element" id="quick-actions" method="GET" action="{% url 'create-bit' %}">
                     {% csrf_token %}
                     <a class="quick-button" href="{% url 'messages' %}" id="messages-quick" ><svg xmlns="http://www.w3.org/2000/svg" class="quick-button-background" height="24" width="24"><path d="M3.85 20.75q-1.1 0-1.875-.775Q1.2 19.2 1.2 18.1V5.9q0-1.1.775-1.875.775-.775 1.875-.775h16.3q1.1 0 1.875.775.775.775.775 1.875v12.2q0 1.1-.775 1.875-.775.775-1.875.775ZM12 13.575 3.85 8.6v9.5h16.3V8.6ZM12 11l8.35-5.1H3.65ZM3.65 8.6V5.9v12.2H3.85h-.2Z"/></svg><div class="helper" id="messages-helper">Messages</div></a>
-                    <div class="quick-button" id="notifications-quick" ><div class="status-indicator" id="notification-status" style="display: none;"></div><svg xmlns="http://www.w3.org/2000/svg" class="quick-button-background" height="24" width="24"><path d="M3.55 19.05V16.4h2.025v-6.375q0-2.15 1.263-3.863Q8.1 4.45 10.15 3.875v-.7q0-.775.538-1.313.537-.537 1.312-.537t1.312.537q.538.538.538 1.313v.7q2.05.575 3.313 2.287 1.262 1.713 1.262 3.863V16.4h2.025v2.65ZM12 11.325Zm0 11.325q-.95 0-1.625-.675T9.7 20.35h4.6q0 .95-.675 1.625T12 22.65ZM8.225 16.4h7.55v-6.375q0-1.575-1.1-2.675-1.1-1.1-2.675-1.1-1.575 0-2.675 1.1-1.1 1.1-1.1 2.675Z"/></svg>
+                    <div class="quick-button" id="notifications-quick" >
+                        <div class="status-indicator" id="notification-status" style="display: none;">
+                            <!--
+                                Nothing goes in here, this div appears as a small red circle on the notifcation icon when new notifications exist
+                            -->
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="quick-button-background" height="24" width="24">
+                            <path d="M3.55 19.05V16.4h2.025v-6.375q0-2.15 1.263-3.863Q8.1 4.45 10.15 3.875v-.7q0-.775.538-1.313.537-.537 1.312-.537t1.312.537q.538.538.538 1.313v.7q2.05.575 3.313 2.287 1.262 1.713 1.262 3.863V16.4h2.025v2.65ZM12 11.325Zm0 11.325q-.95 0-1.625-.675T9.7 20.35h4.6q0 .95-.675 1.625T12 22.65ZM8.225 16.4h7.55v-6.375q0-1.575-1.1-2.675-1.1-1.1-2.675-1.1-1.575 0-2.675 1.1-1.1 1.1-1.1 2.675Z"/>
+                        </svg>
                         <div class="helper" id="notification-helper">
                             Notifications
                         </div>
@@ -228,6 +237,9 @@
                     <div id="menu-notification-container">
                         <p id="no-notifications-message">No Notifications</p>
                     </div>
+
+                    <!-- Menu Options for Navigation -->
+                    
                     <div id="menu-options">
                         <div class="profile-menu-link" id = "home-link" ><a class="profile-menu-label" href="{% url 'home' %}" ><svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path style="fill:{{user.profile.accent_color}};" d="M8 42V18L24.1 6 40 18v24H28.3V27.75h-8.65V42Zm3-3h5.65V24.75H31.3V39H37V19.5L24.1 9.75 11 19.5Zm13-14.65Z"/></svg></a></div>
                         
@@ -238,28 +250,57 @@
                         <div class="profile-menu-link" id= "rewards-link"><a class="profile-menu-label" href="{% url 'rewards' %}"><svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path style="fill:{{user.profile.accent_color}};" d="m16 36 8-6.1 8 6.1-3.2-9.85 8-5.65h-9.75L24 10.35 20.9 20.5h-9.75l8 5.65Zm8 8q-4.1 0-7.75-1.575-3.65-1.575-6.375-4.3-2.725-2.725-4.3-6.375Q4 28.1 4 24q0-4.15 1.575-7.8 1.575-3.65 4.3-6.35 2.725-2.7 6.375-4.275Q19.9 4 24 4q4.15 0 7.8 1.575 3.65 1.575 6.35 4.275 2.7 2.7 4.275 6.35Q44 19.85 44 24q0 4.1-1.575 7.75-1.575 3.65-4.275 6.375t-6.35 4.3Q28.15 44 24 44Zm0-3q7.1 0 12.05-4.975Q41 31.05 41 24q0-7.1-4.95-12.05Q31.1 7 24 7q-7.05 0-12.025 4.95Q7 16.9 7 24q0 7.05 4.975 12.025Q16.95 41 24 41Zm0-17Z"/></svg></a></div>
                         
                         <div class="profile-menu-link" id="settings-link" ><a class="profile-menu-label" href="{% url 'mysettings' %}"><svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path style="fill:{{user.profile.accent_color}};" d="m19.4 44-1-6.3q-.95-.35-2-.95t-1.85-1.25l-5.9 2.7L4 30l5.4-3.95q-.1-.45-.125-1.025Q9.25 24.45 9.25 24q0-.45.025-1.025T9.4 21.95L4 18l4.65-8.2 5.9 2.7q.8-.65 1.85-1.25t2-.9l1-6.35h9.2l1 6.3q.95.35 2.025.925Q32.7 11.8 33.45 12.5l5.9-2.7L44 18l-5.4 3.85q.1.5.125 1.075.025.575.025 1.075t-.025 1.05q-.025.55-.125 1.05L44 30l-4.65 8.2-5.9-2.7q-.8.65-1.825 1.275-1.025.625-2.025.925l-1 6.3ZM24 30.5q2.7 0 4.6-1.9 1.9-1.9 1.9-4.6 0-2.7-1.9-4.6-1.9-1.9-4.6-1.9-2.7 0-4.6 1.9-1.9 1.9-1.9 4.6 0 2.7 1.9 4.6 1.9 1.9 4.6 1.9Zm0-3q-1.45 0-2.475-1.025Q20.5 25.45 20.5 24q0-1.45 1.025-2.475Q22.55 20.5 24 20.5q1.45 0 2.475 1.025Q27.5 22.55 27.5 24q0 1.45-1.025 2.475Q25.45 27.5 24 27.5Zm0-3.5Zm-2.2 17h4.4l.7-5.6q1.65-.4 3.125-1.25T32.7 32.1l5.3 2.3 2-3.6-4.7-3.45q.2-.85.325-1.675.125-.825.125-1.675 0-.85-.1-1.675-.1-.825-.35-1.675L40 17.2l-2-3.6-5.3 2.3q-1.15-1.3-2.6-2.175-1.45-.875-3.2-1.125L26.2 7h-4.4l-.7 5.6q-1.7.35-3.175 1.2-1.475.85-2.625 2.1L10 13.6l-2 3.6 4.7 3.45q-.2.85-.325 1.675-.125.825-.125 1.675 0 .85.125 1.675.125.825.325 1.675L8 30.8l2 3.6 5.3-2.3q1.2 1.2 2.675 2.05Q19.45 35 21.1 35.4Z"/></svg></a></div>
-                        
-                        
+                            
                     </div>
+
+                    <!--Logout Button-->
                     <div class="logout-button"><a class="logout-button-link" id="logout-link" href="/logout">Logout</a></div>
+
+                    <!--Menu Exit-->
                     <div id="mobile-exit-button" onclick="show_profile_menu()">&times;</div>
                 </div>
+
+
+                <!--Create Bit Desktop-->
 
                 <div id="desktop-create-bit">
 
                 </div>
+
+                <!--
+
+                    **********************   Mobile Popout Buttons *************************
+
+                -->
+
+                    <!--Create Bit Mobile Button-->
+
+                    <div id="mobile-create-button" style="border-color: {{user.profile.accent_color}}; background-color: rgb(75,75,75);" class="mobile-floating-actions">
+                        <svg id="mobile-create-icon" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path style="fill:{{user.profile.accent_color}}" d="M7.792 39.5q-1.125 0-1.959-.833Q5 37.833 5 36.708V12.292q0-1.125.833-1.959.834-.833 1.959-.833H24l-2.792 2.792H7.792v24.416h24.416v-13.5L35 20.417v16.291q0 1.125-.833 1.959-.834.833-1.959.833ZM20 24.5Zm7.375-14.458 2 1.958-11.583 11.542v3.166h3.125l11.625-11.625 1.958 1.959L22.083 29.5H15v-7.083Zm7.125 7-7.125-7 4.167-4.167q.791-.792 1.958-.792 1.167 0 2 .834l3.083 3.125q.792.833.792 1.979 0 1.146-.792 1.937Z"/></svg>
+                    </div>
+
+                    <!--Search Mobile Button-->
+                    <div id="mobile-search-button" style="border-color: {{user.profile.accent_color}}; background-color: rgb(75,75,75);" class="mobile-floating-actions">
+                        <svg id="mobile-search-icon" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path style="fill:{{user.profile.accent_color}}" d="M33 34.958 22.208 24.167q-1.25 1.041-2.916 1.645-1.667.605-3.5.605-4.542 0-7.667-3.125T5 15.708q0-4.458 3.125-7.604t7.625-3.146q4.458 0 7.583 3.146t3.125 7.604q0 1.792-.583 3.438-.583 1.646-1.708 3.062L35 32.958ZM15.75 23.625q3.292 0 5.604-2.313 2.313-2.312 2.313-5.604 0-3.291-2.313-5.625Q19.042 7.75 15.75 7.75q-3.333 0-5.646 2.333-2.312 2.334-2.312 5.625 0 3.292 2.312 5.604 2.313 2.313 5.646 2.313Z"/></svg>
+                    </div>
                 
-                <div id="mobile-create-button" style="border-color: {{user.profile.accent_color}}; background-color: rgb(75,75,75);" class="mobile-floating-actions">
-                    <svg id="mobile-create-icon" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path style="fill:{{user.profile.accent_color}}" d="M7.792 39.5q-1.125 0-1.959-.833Q5 37.833 5 36.708V12.292q0-1.125.833-1.959.834-.833 1.959-.833H24l-2.792 2.792H7.792v24.416h24.416v-13.5L35 20.417v16.291q0 1.125-.833 1.959-.834.833-1.959.833ZM20 24.5Zm7.375-14.458 2 1.958-11.583 11.542v3.166h3.125l11.625-11.625 1.958 1.959L22.083 29.5H15v-7.083Zm7.125 7-7.125-7 4.167-4.167q.791-.792 1.958-.792 1.167 0 2 .834l3.083 3.125q.792.833.792 1.979 0 1.146-.792 1.937Z"/></svg>
-                </div>
-                <div id="mobile-search-button" style="border-color: {{user.profile.accent_color}}; background-color: rgb(75,75,75);" class="mobile-floating-actions">
-                    <svg id="mobile-search-icon" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path style="fill:{{user.profile.accent_color}}" d="M33 34.958 22.208 24.167q-1.25 1.041-2.916 1.645-1.667.605-3.5.605-4.542 0-7.667-3.125T5 15.708q0-4.458 3.125-7.604t7.625-3.146q4.458 0 7.583 3.146t3.125 7.604q0 1.792-.583 3.438-.583 1.646-1.708 3.062L35 32.958ZM15.75 23.625q3.292 0 5.604-2.313 2.313-2.312 2.313-5.604 0-3.291-2.313-5.625Q19.042 7.75 15.75 7.75q-3.333 0-5.646 2.333-2.312 2.334-2.312 5.625 0 3.292 2.312 5.604 2.313 2.313 5.646 2.313Z"/></svg>
-                </div>
-                
+
+                <!--
+
+                    ***********************   Info Bubble   ********************************
+                            Contains information for tutorials, bits, or friend requests
+
+                -->
                 <div id="learn-bubble" class="large-bubble" style="display:none; height:0; width:0; z-index: 28;">
                     {% block bubble_content %}
                     {% endblock %}
                 </div>
+
+                <!--
+
+                    ***********************  Create Bit Mobile  *****************************
+
+                -->
                 <form class="mobile-slide-up-panel" id="create-bit-mobile">
                     
                     <svg id="bit-panel-close" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="M9.125 22.458q-1.042 0-1.75-.729T6.667 20q0-1 .729-1.729.729-.729 1.729-.729t1.708.729q.709.729.709 1.729t-.709 1.729q-.708.729-1.708.729Zm10.875 0q-1 0-1.729-.729Q17.542 21 17.542 20t.729-1.729Q19 17.542 20 17.542t1.729.729q.729.729.729 1.729t-.729 1.729q-.729.729-1.729.729Zm10.875 0q-1 0-1.708-.729Q28.458 21 28.458 20t.709-1.729q.708-.729 1.708-.729 1.042 0 1.75.729T33.333 20q0 1-.729 1.729-.729.729-1.729.729Z"/></svg>
@@ -288,11 +329,14 @@
                     <input type="text" class="single-line-input" placeholder="Search Yourbit" id="mobile-searchbar">
 
                 </div>
+
+                <!--Block for various page content within base page-->
             
                 {% block content %}
                 {% endblock %}
 
                 {% else %}
+                    <!--If not logged in-->
                     <div id="not-auth-error" class="notAuthError">
                         <div>
                             <h1>Oops!</h1>
