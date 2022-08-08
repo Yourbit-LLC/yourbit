@@ -571,7 +571,7 @@
 
     
     #feed-content-container {
-        position: absolute;
+        position: fixed;
         display: block;
         bottom: 0;
         z-index: 2;
