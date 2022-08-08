@@ -911,6 +911,10 @@ only be used for object transforms (shaping and scaling)
         display: none;
     }
 
+    #menu-notification-container {
+        display: none;
+    }
+
 /*Linear Content Container*/
 
 /*Grid Content Container*/
