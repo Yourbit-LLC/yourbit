@@ -572,10 +572,11 @@
     
     #feed-content-container {
         position: absolute;
+        display: block;
         bottom: 0;
         z-index: 2;
         width: 100vw;
-        height: 85vh;
+        height: 90vh;
         overflow-y: scroll;
         transition: 0.25s;
         border-width: 0px;
