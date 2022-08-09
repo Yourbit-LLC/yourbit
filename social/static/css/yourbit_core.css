@@ -1636,7 +1636,12 @@ only be used for object transforms (shaping and scaling)
         transition: 0.3s;
     }
 
-
+    #mobile-file-field {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        background-color: rgba(0,0,0,0.5);
+        border-radius: 10px;
+    }
 
     #mobile-publish-bit {
         position: relative;
