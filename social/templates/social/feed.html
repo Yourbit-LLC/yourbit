@@ -11,7 +11,7 @@
     {% if profile %}
         <div id="content-container" style="top: 100vh; padding-top: 0px;">
     {% else %}
-        <div id="content-container" style="top: 100vh; padding-top: 100px; padding-bottom: 100p;">
+        <div id="content-container-feed" style="padding-top: 100px; padding-bottom: 100p;">
             <div id="mobile-spacer" style="height: 50px;">
     {% endif %}
     
@@ -263,7 +263,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script type="text/javascript">
             var base_url = window.location.origin;
-            var postList = document.getElementById("content-container");
+            var postList = document.getElementById("content-container-feed");
             var width = screen.width;
             $(document).ready(function() {
                 post_fly_in(postList);
