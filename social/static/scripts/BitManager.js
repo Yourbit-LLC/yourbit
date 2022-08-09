@@ -1,3 +1,6 @@
+var iframe = document.getElementById('feed-content-container');
+var width = screen.width;
+
 /*
 --Create Bit Functions--
 */
@@ -39,7 +42,7 @@ function hideCreateBit() {
 }
 
 $('#mobile-publish-bit').click(function() {
-    submitBit()
+    submitBit();
 });
 
 function submitBit() {
@@ -62,12 +65,20 @@ function submitBit() {
                 body: body
             },
             success: function(){
+                clearBitForm();
                 iframe.contentWindow.location.reload();
                 dropCreateBit(hideCreateBit);
 
             }
         }
     )
+}
+
+function clearBitForm() {
+    if (width < 700) {
+        $('#mobile-title').val('');
+        $('#mobile-body').val('');
+    }
 }
 
 $('.type-button').click(function() {
