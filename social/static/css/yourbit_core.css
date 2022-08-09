@@ -1500,6 +1500,18 @@ only be used for object transforms (shaping and scaling)
     #photo-space-button {
         grid-column: 5;
     }
+    #text-type-button {
+        grid-column: 1;
+    }
+
+    #video-type-button {
+        grid-column: 2;
+    }
+
+    #photo-type-button {
+        grid-column: 3;
+    }
+
 
     .mobile-floating-actions {
         position: fixed;
@@ -1611,6 +1623,20 @@ only be used for object transforms (shaping and scaling)
         margin: 2px;
         transition: 0.3s;
     }
+
+    .type-button-active {
+        position: relative;
+        width: 60px;
+        height: 30px;
+        background-color: rgba(255,255,255,0.3);
+        border-width: 0px;
+        border-radius: 10px;
+        padding: 4px;
+        margin: 2px;
+        transition: 0.3s;
+    }
+
+
 
     #mobile-publish-bit {
         position: relative;
