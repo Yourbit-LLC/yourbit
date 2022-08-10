@@ -830,6 +830,7 @@ class Publish(View):
         title = request.POST.get('title')
         body = request.POST.get('body')
         type = request.POST.get('type')
+        print(type)
 
         if type == 'chat':
             if title != 'yb-no-title':
