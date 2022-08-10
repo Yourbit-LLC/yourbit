@@ -34,7 +34,7 @@ class BitForm(forms.ModelForm):
         ), label="",
     )
     body = forms.CharField(
-        required=True, widget = forms.widgets.Textarea(
+        required=False, widget = forms.widgets.Textarea(
         attrs={
             "placeholder": "Description",
             "class": "create-post-description-field"

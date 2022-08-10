@@ -826,14 +826,29 @@ class GetNotifications(View):
 class Publish(View):
     def post(self, request, *args, **kwargs):
         bit_form = BitForm()
+        new_bit = bit_form.save(commit=False)
         title = request.POST['title']
         body = request.POST['body']
-        new_bit = bit_form.save(commit=False)
+        type = request.POST['type']
+
+        if type == 'chat':
+            if title != 'yb-no-title':
+                new_bit.title = title
+            new_bit.body = body 
+            
+
+        elif type == 'photo':
+            image = request.FILES.get('photo')
+            new_bit.image = image
+            if body != 'yb-no-body':
+                new_bit.body = body
+            
+        else:
+            video = request.FILES.get('video')
+            new_bit.video = video
+        
         new_bit.user = request.user
-        new_bit.bit_type = 'chat'
-        if title != 0:
-            new_bit.title = title
-        new_bit.body = body
+        new_bit.bit_type = type
         new_bit.save()
 
         
