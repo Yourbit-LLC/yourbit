@@ -96,7 +96,7 @@ function changeBitForm(button_name) {
 /* Publish bit button listener mobile */
 $('#mobile-publish-bit').click(function() {
     let type = document.getElementById('bit-type-hidden-field').value;
-    gatherMobileBit(type, submitBit);
+    gatherMobileBit(type);
 });
 
 
@@ -104,7 +104,7 @@ $('#mobile-publish-bit').click(function() {
     Gather information from create bit form into data for ajax
 */
 
-function gatherMobileBit(type, callback) {
+function gatherMobileBit(type) {
     let new_bit = new FormData();
     var is_valid = true; /*Is valid verifies if forms are complete, initial value = true */ 
     let title_field = document.getElementById('mobile-title');
@@ -175,7 +175,7 @@ function gatherMobileBit(type, callback) {
     } 
 
     if (is_valid === true) {
-        callback(new_bit);
+        submitBit(new_bit);
     }
 }
 
