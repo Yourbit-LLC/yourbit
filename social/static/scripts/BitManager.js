@@ -189,6 +189,9 @@ function submitBit(new_bit) {
     $.ajax(
         {
             type: 'POST',
+            contentType: false,
+            // The following is necessary so jQuery won't try to convert the object into a string
+            processData: false,
             headers: {
                 'X-CSRFToken': csrfToken
             },

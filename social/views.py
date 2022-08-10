@@ -827,9 +827,9 @@ class Publish(View):
     def post(self, request, *args, **kwargs):
         bit_form = BitForm()
         new_bit = bit_form.save(commit=False)
-        title = request.POST['title']
-        body = request.POST['body']
-        type = request.POST['type']
+        title = request.POST.get('title')
+        body = request.POST.get('body')
+        type = request.POST.get('type')
 
         if type == 'chat':
             if title != 'yb-no-title':
