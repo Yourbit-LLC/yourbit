@@ -43,6 +43,7 @@ function hideCreateBit() {
 
 $('.type-button').click(function() {
     let button_name = $(this).attr('name');
+    console.log(button_name);
     changeBitForm(button_name);
 });
 
@@ -54,10 +55,10 @@ function changeBitForm(button_name) {
 
     /* Set form equal to mobile-bit-inputs container */
     let form = document.getElementById('mobile-bit-inputs');
-
+    let type_field = document.getElementById('bit-type-hidden-field')
     
     if (button_name === 'chat') {
-        $('bit-type-hidden-field').val('chat');
+        type_field.value = 'chat';
         form.innerHTML = `                            
             <input type="text" class="single-line-input" id="mobile-title" placeholder="Title (Optional)" style="color:white; font-size: 16px; font-weight: 600;">
             <textarea id="mobile-body" placeholder="Body" style="color:white; font-size: 14px;"></textarea>
@@ -68,7 +69,7 @@ function changeBitForm(button_name) {
     }
     
     if (button_name === 'video') {
-        $('bit-type-hidden-field').val('video');
+        type_field.value = 'video';
         form.innerHTML = `
             <input type="text" class="single-line-input" id="mobile-title" placeholder="Title (Optional)" style="color:white; font-size: 16px; font-weight: 600;">
             <textarea id="mobile-body" placeholder="Info" style="color:white; font-size: 14px;"></textarea>
@@ -80,7 +81,7 @@ function changeBitForm(button_name) {
     }
 
     if (button_name === 'photo') {
-        $('bit-type-hidden-field').val('photo');
+        type_field.value = 'photo';
         form.innerHTML = `
             <input type="text" class="single-line-input" id="mobile-title" placeholder="Title (Optional)" style="color:white; font-size: 16px; font-weight: 600;">
             <textarea id="mobile-body" placeholder="Info" style="color:white; font-size: 14px;"></textarea>
@@ -96,7 +97,7 @@ function changeBitForm(button_name) {
 /* Publish bit button listener mobile */
 $('#mobile-publish-bit').click(function() {
     let type = document.getElementById('bit-type-hidden-field').value;
-    gatherMobileBit(type);
+    gatherMobileBit(type, submitBit);
 });
 
 
@@ -104,7 +105,7 @@ $('#mobile-publish-bit').click(function() {
     Gather information from create bit form into data for ajax
 */
 
-function gatherMobileBit(type) {
+function gatherMobileBit(type, callback) {
     let new_bit = new FormData();
     var is_valid = true; /*Is valid verifies if forms are complete, initial value = true */ 
     let title_field = document.getElementById('mobile-title');
@@ -175,7 +176,7 @@ function gatherMobileBit(type) {
     } 
 
     if (is_valid === true) {
-        submitBit(new_bit);
+        callback(new_bit);
     }
 }
 
@@ -196,9 +197,7 @@ function submitBit(new_bit) {
                 'X-CSRFToken': csrfToken
             },
             url: '/social/publish/',
-            data: {
-                new_bit: new_bit,
-            },
+            data: new_bit,
             success: function(){
                 clearBitForm();
                 iframe.contentWindow.location.reload();
