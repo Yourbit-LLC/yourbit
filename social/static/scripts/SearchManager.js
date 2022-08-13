@@ -1,13 +1,44 @@
-$('#mobile-searchbar').change(function() {
+/*
+--Mobile Search Functions--
+*/
+
+$('#mobile-search-icon').click(function() {
+    showSearch();
+});
+
+function showSearch() {
+    let search = document.getElementById('search-mobile');
+    $('#search-mobile').show();
+    search.style.transform = 'translate(0, -100vh)';
+    $('#mobile-searchbar').focus();
+}
+
+function searchFocus() {
+    let search = document.getElementById('search-mobile');
+    
+}
+
+function dropSearch() {
+    let search = document.getElementById('search-mobile');
+    search.style.transform = 'translate(0, 0vh)';
+}
+
+$('#mobile-searchbar').on('change keyup', function() {
     let searchBar = document.getElementById('mobile-searchbar');
     let query = searchBar.value;
-    fetchResults(displayResults, query);
+    $('#mobile-instant-results').empty();
+    console.log(query);
+    if (query != 0) {
+        fetchResults(displayResults, query);
+    } else {
+        $('#mobile-instant-results').empty();
+    }
+    
 });
 
 function fetchResults(callback, query) {
     let cookie = document.cookie;
     let csrfToken = cookie.substring(cookie.indexOf('=') + 1);
-
     $.ajax( {
         type: 'POST',
         headers: {
@@ -28,13 +59,19 @@ function fetchResults(callback, query) {
 
 function displayResults(response) {
     let results = response.user_results;
-    for (let i = 0; i < 5; i++) {
+    let users = Object.keys(results);
+    let user = '';
+    for (let i = 0; i < users.length; i++) {
         let x = 0;
-        let result = results[x];
-        $('#mobile-instant-results').append(result)
-        x += 1;
+        user = users[x];
+        console.log(user)
 
-
+        user_info = results[user];
+        console.log(user_info)
+        user_name = user_info['name'];
+        image = user_info['image'];
+        $('#mobile-instant-results').append(`<p>${user_name} <img style="width: 50px; height: 50px;" src="${image}"> </p>`);
     }
+
 
 }

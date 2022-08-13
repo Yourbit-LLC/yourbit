@@ -871,30 +871,42 @@ class Follow(View):
         print(recieve_user_name)
         return JsonResponse({'name':recieve_user_name})
 
+
+
 #Asynchronous Search queries on mobile for search suggestions
 
-class Search(View):
+class PreSearch(View):
     def post(self, request, *args, **kwargs):
         #stuff
         searched = request.POST['query']
-        user_results = []
+        print(searched)
+        user_results_working = []
+        user_results = {}
         user_first_name_filter = User.objects.filter(first_name__icontains = searched)
         for result in user_first_name_filter:
-            if result not in user_results:
+            if result not in user_results_working:
+                user_results_working.append(result)
                 first_name = result.first_name
                 last_name = result.last_name
+                username = result.username
+                profile = Profile.objects.get(pk = result.id)
+                image = profile.image.url
                 name = first_name + " " + last_name
-                user_results.append(name)
+                user_results.update({username: {'name' : name, 'image' : image}})
 
         user_last_name_filter = User.objects.filter(last_name__icontains = searched)
         for result in user_last_name_filter:
-            if result not in user_results:
+            if result not in user_results_working:
+                user_results_working.append(result)
                 first_name = result.first_name
                 last_name = result.last_name
+                username = result.username
+                profile = Profile.objects.get(pk = result.id)
+                image = profile.image.url
                 name = first_name + " " + last_name
-                user_results.append(name)
+                user_results.update({username: {'name' : name, 'image' : image}})
 
-
+        print(user_results)
         response = {'user_results': user_results}
         return JsonResponse(response)
 

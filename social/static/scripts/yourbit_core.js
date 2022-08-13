@@ -274,31 +274,6 @@ function getNotifications() {
 };
 
 /*
---Mobile Search Functions--
-*/
-
-$('#mobile-search-icon').click(function() {
-    showSearch();
-});
-
-function showSearch() {
-    let search = document.getElementById('search-mobile');
-    $('#search-mobile').show();
-    search.style.transform = 'translate(0, -100vh)';
-    $('#mobile-searchbar').focus();
-}
-
-function searchFocus() {
-    let search = document.getElementById('search-mobile');
-    
-}
-
-function dropSearch() {
-    let search = document.getElementById('search-mobile');
-    search.style.transform = 'translate(0, 0vh)';
-}
-
-/*
 
 Show Search Filters
 
