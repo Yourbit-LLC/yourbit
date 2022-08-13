@@ -61,16 +61,18 @@ function displayResults(response) {
     let results = response.user_results;
     let users = Object.keys(results);
     let user = '';
+    let x = 0;
     for (let i = 0; i < users.length; i++) {
-        let x = 0;
+        console.log(x)
         user = users[x];
         console.log(user)
-        x+=1;
         user_info = results[user];
         console.log(user_info)
         user_name = user_info['name'];
         image = user_info['image'];
         $('#mobile-instant-results').append(`<p>${user_name} <img style="width: 50px; height: 50px;" src="${image}"> </p>`);
+        x = x + 1;
+        console.log(x)
     }
 
 
