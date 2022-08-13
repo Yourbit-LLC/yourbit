@@ -65,7 +65,7 @@ function displayResults(response) {
         let x = 0;
         user = users[x];
         console.log(user)
-
+        x+=1;
         user_info = results[user];
         console.log(user_info)
         user_name = user_info['name'];
