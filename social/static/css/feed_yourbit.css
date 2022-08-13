@@ -50,3 +50,11 @@
     position: relative;
     top: 40%;
 }
+
+    
+#mobile-spacer {
+    display: block;
+    position: relative;
+    height: 150px;
+    bottom: 0px;
+}

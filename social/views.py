@@ -380,7 +380,7 @@ class ProfileInteract(LoginRequiredMixin, View):
             connect_request.delete()
             return redirect('home')
 
-#Search results view
+#Actual search results view when search is clicked
 
 class SearchResults(View):
     def post(self, request, *args, **kwargs):
@@ -871,8 +871,32 @@ class Follow(View):
         print(recieve_user_name)
         return JsonResponse({'name':recieve_user_name})
 
+#Asynchronous Search queries on mobile for search suggestions
+
+class Search(View):
+    def post(self, request, *args, **kwargs):
+        #stuff
+        searched = request.POST['query']
+        user_results = []
+        user_first_name_filter = User.objects.filter(first_name__icontains = searched)
+        for result in user_first_name_filter:
+            if result not in user_results:
+                first_name = result.first_name
+                last_name = result.last_name
+                name = first_name + " " + last_name
+                user_results.append(name)
+
+        user_last_name_filter = User.objects.filter(last_name__icontains = searched)
+        for result in user_last_name_filter:
+            if result not in user_results:
+                first_name = result.first_name
+                last_name = result.last_name
+                name = first_name + " " + last_name
+                user_results.append(name)
 
 
+        response = {'user_results': user_results}
+        return JsonResponse(response)
 
 ############################## 
 #                            #

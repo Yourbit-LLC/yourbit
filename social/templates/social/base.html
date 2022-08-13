@@ -52,6 +52,8 @@
                 </div>
             </div>
         </div>
+
+        <!--End mobile header -->
         {% csrf_token %}
         {% if user.is_authenticated %}
         
@@ -219,7 +221,12 @@
 
             </nav>
   
-                <!--Profile Menu comes and goes when user clicks on the profile icon, contains links to user settings-->
+<!--
+                    
+                ****************************************   Profile Menu   ****************************************
+
+                Profile Menu comes and goes when user clicks on the profile icon, contains links to user settings
+-->
                 <div class="profile-menu" id="profile-menu">
 
                     <a class="profile-name" href="{% url 'profile' user.username %}" id="profile-name">                    
@@ -326,7 +333,14 @@
                         <button  id="mobile-publish-bit" style="background-color: {{user.profile.bit_background}};" name = "chat" type="button">Publish</button>
                     </div>
                 </form>
+<!--
+
+                ***************************  Search Mobile  *********************************
+
+-->
                 <div class="mobile-slide-up-panel" id="search-mobile">
+                    <div id="mobile-instant-results">
+                    </div>
                     <input type="text" class="single-line-input" placeholder="Search Yourbit" id="mobile-searchbar">
 
                 </div>
@@ -356,6 +370,8 @@
         <!--Yourbit Core Script Document (Global Functions)-->
         <script type="text/javascript" src="{% static 'scripts/yourbit_core.js' %}"></script>
         <!--Yourbit Bit Manager Script-->
+        <script type="text/javascript" src="{% static 'scripts/BitManager.js' %}"></script>
+        <!--Yourbit Searcg Manager Script-->
         <script type="text/javascript" src="{% static 'scripts/BitManager.js' %}"></script>
     </body>                
 

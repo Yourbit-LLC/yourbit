@@ -1683,14 +1683,6 @@ only be used for object transforms (shaping and scaling)
         bottom: 10px;
     }
 
-    
-    #mobile-spacer {
-        display: block;
-        position: relative;
-        height: 150px;
-        bottom: 0px;
-    }
-
     .large-bubble {
         background-color: rgba(0, 0, 0, 1);
         position: fixed;

@@ -1,3 +1,20 @@
+/*
+    ------------------[   Bit Manager   ]-----------------------
+
+    The bit manager contains scripting for creating and displaying
+    bits on yourbit. 
+
+    Includes:
+        -Create Bit Functions
+        -Create Bit Functions for mobile
+        -Gather bit
+        -Gather bit for mobile
+        -Submit bit
+        -Mobile and desktop create bit functions
+
+*/
+
+/* Get necessary platform information */
 var iframe = document.getElementById('feed-content-container');
 var width = screen.width;
 
@@ -215,3 +232,266 @@ function clearBitForm() {
         $('#mobile-body').val('');
     }
 }
+
+          
+$("#chat-bit-profile-picture").click(function() {
+    username = $(this).attr("data-catid");
+    console.log(username)
+    window.top.location.replace(`${base_url}/social/profile/${username}`);
+});
+
+$('.feedback-icon').click(function(){
+    var catid;
+    catid = $(this).attr("data-catid");
+    console.log(catid);
+    button_name = $(this).attr("name");
+
+    let cookie = document.cookie;
+    let csrfToken = cookie.substring(cookie.indexOf('=') + 1);
+
+    if (button_name === "like"){
+        $.ajax(
+        {
+            type:"POST",
+            headers: {
+                'X-CSRFToken': csrfToken
+              },
+            url: "/social/like/",
+            data: {
+                bit_id: catid 
+            },
+            success: function(data){
+                let json_file = data;
+
+                console.log(json_file.icon_color);
+                if (json_file.action === 'like') {
+                    let like_count = json_file.like_count
+                    let dislike_count = json_file.dislike_count
+
+                    dislike_count = dislike_count.toString();
+                    like_count = like_count.toString();
+                    $('#like' + catid).css("background-color", json_file.accent_color);
+                    $('#like-icon-'+catid).css("fill", json_file.icon_color);
+                    $('#dislike' + catid).css("background-color", "rgba(0,0,0,0)");
+                    $('#active-dislike-icon-' + catid).css("fill", "white");
+                    $('#dislike-icon-' + catid).css("fill", "white");
+                    $('#like-count' + catid).replaceWith(`<p id="like-count${catid}" class="counter" style="grid-column: 2; color: lightgreen; margin-top: auto; margin-bottom: auto;">${like_count}</p>`);
+                    $('#dislike-count' + catid).replaceWith(`<p id="dislike-count${catid}" class="counter" style="grid-column: 4; color: lightgreen; margin-top: auto; margin-bottom: auto;">${dislike_count}</p>`);
+                } else {
+                    let like_count = json_file.like_count
+                    let dislike_count = json_file.dislike_count
+
+                    dislike_count = dislike_count.toString();
+                    like_count = like_count.toString();
+                    $('#like' + catid).css("background-color", "rgba(0,0,0,0)");
+                    $('#active-like-icon-' + catid).css("fill", "white");
+                    $('#like-icon' + catid).css("fill", "white");
+                    $('#like-count' + catid).replaceWith(`<p id="like-count${catid}" class="counter" style="grid-column: 2; color: lightgreen; margin-top: auto; margin-bottom: auto;">${like_count}</p>`);
+                    $('#dislike-count' + catid).replaceWith(`<p id="dislike-count${catid}" class="counter" style="grid-column: 4; color: lightgreen; margin-top: auto; margin-bottom: auto;">${dislike_count}</p>`);                   
+                }
+
+            }
+
+
+        });
+    }
+
+    if (button_name === "dislike"){
+        $.ajax(
+            {
+                type:"POST",
+                headers: {
+                    'X-CSRFToken': csrfToken
+                  },
+                url: "/social/dislike/",
+                data: {
+                    bit_id: catid
+                },
+                success: function(data){
+                    let json_file = data;
+                    if (json_file.action === 'dislike') {
+                        let like_count = json_file.like_count
+                        let dislike_count = json_file.dislike_count
+                        dislike_count = dislike_count.toString();
+                        like_count = like_count.toString();
+                        $('#dislike' + catid).css("background-color", json_file.accent_color);
+                        $('#dislike-icon-'+catid).css("fill", json_file.icon_color);
+                        $('#like' + catid).css("background-color", "rgba(0,0,0,0)");
+                        $('#active-like-icon-' + catid).css("fill", "white");
+                        $('#like-icon-' + catid).css("fill", "white");
+                        $('#dislike-count' + catid).replaceWith(`<p id="dislike-count${catid}" class="counter" style="grid-column: 4; color: lightgreen; margin-top: auto; margin-bottom: auto;">${dislike_count}</p>`);
+                        $('#like-count' + catid).replaceWith(`<p id="like-count${catid}" class="counter" style="grid-column: 2; color: lightgreen; margin-top: auto; margin-bottom: auto;">${like_count}</p>`);  
+                    } else {
+                        let like_count = json_file.like_count
+                        let dislike_count = json_file.dislike_count
+                        dislike_count = dislike_count.toString();
+                        like_count = like_count.toString();
+                        $('#dislike' + catid).css("background-color", "rgba(0,0,0,0)"); 
+                        $('#dislike-icon-' + catid).css("fill", "white");
+                        $('#like-count' + catid).replaceWith(`<p id="like-count${catid}" class="counter" style="grid-column: 2; color: lightgreen; margin-top: auto; margin-bottom: auto;">${like_count}</p>`);
+                        $('#dislike-count' + catid).replaceWith(`<p id="dislike-count${catid}" class="counter" style="grid-column: 4; color: lightgreen; margin-top: auto; margin-bottom: auto;">${dislike_count}</p>`);
+                        $('#active-dislike-icon-' + catid).css("fill", "white");                            
+                    }
+                }
+
+            }
+        )
+    }
+
+});
+
+
+$('.feedback-icon-active').click(function(){
+    var catid;
+    catid = $(this).attr("data-catid");
+    console.log(catid);
+    button_name = $(this).attr("name");
+
+    let cookie = document.cookie;
+    let csrfToken = cookie.substring(cookie.indexOf('=') + 1);
+
+    if (button_name === "like"){
+        $.ajax(
+        {
+            type:"POST",
+            headers: {
+                'X-CSRFToken': csrfToken
+              },
+            url: "/social/like/",
+            data: {
+                bit_id: catid 
+            },
+            success: function(data){
+                let json_file = data;
+                console.log(json_file.icon_color);
+                if (json_file.action === 'like') {
+                    let like_count = json_file.like_count
+                    let dislike_count = json_file.dislike_count
+
+                    dislike_count = dislike_count.toString();
+                    like_count = like_count.toString();
+                    $('#like' + catid).css("background-color", json_file.accent_color);
+                    $('#like-icon-'+catid).css("fill", json_file.icon_color);
+                    $('#dislike' + catid).css("background-color", "rgba(0,0,0,0)");
+                    $('#active-dislike-icon-' + catid).css("fill", "white");
+                    $('#dislike-icon-' + catid).css("fill", "white");
+                    console.log(like_count)
+                    $('#like-count' + catid).replaceWith(`<p id="like-count${catid}" class="counter" style="grid-column: 2; color: lightgreen; margin-top: auto; margin-bottom: auto;">${like_count}</p>`);
+                    $('#dislike-count' + catid).replaceWith(`<p id="dislike-count${catid}" class="counter" style="grid-column: 4; color: lightgreen; margin-top: auto; margin-bottom: auto;">${dislike_count}</p>`);
+                } else {
+                    let like_count = json_file.like_count
+                    let dislike_count = json_file.dislike_count
+
+                    dislike_count = dislike_count.toString();
+                    like_count = like_count.toString();
+                    $('#like' + catid).css("background-color", "rgba(0,0,0,0)");
+                    $('#active-like-icon-' + catid).css("fill", "white");
+                    $('#like-icon' + catid).css("fill", "white");
+                    $('#like-count' + catid).replaceWith(`<p id="like-count${catid}" class="counter" style="grid-column: 2; color: lightgreen; margin-top: auto; margin-bottom: auto;">${like_count}</p>`);
+                    $('#dislike-count' + catid).replaceWith(`<p id="dislike-count${catid}" class="counter" style="grid-column: 4; color: lightgreen; margin-top: auto; margin-bottom: auto;">${dislike_count}</p>`);                   
+                }
+
+            }
+
+
+        }
+    )
+    }
+
+    if (button_name === "dislike"){
+        $.ajax(
+            {
+                type:"POST",
+                headers: {
+                    'X-CSRFToken': csrfToken
+                  },
+                url: "/social/dislike/",
+                data: {
+                    bit_id: catid
+                },
+                success: function(data){
+                    let json_file = data;
+                    if (json_file.action === 'dislike') {
+                        let like_count = json_file.like_count
+                        let dislike_count = json_file.dislike_count
+    
+                        dislike_count = dislike_count.toString();
+                        like_count = like_count.toString();
+                        $('#dislike' + catid).css("background-color", json_file.accent_color);
+                        $('#dislike-icon-'+catid).css("fill", json_file.icon_color);
+                        $('#like' + catid).css("background-color", "rgba(0,0,0,0)");
+                        $('#active-like-icon-' + catid).css("fill", "white");
+                        $('#like-icon-' + catid).css("fill", "white");
+                        $('#like-count' + catid).replaceWith(`<p id="like-count${catid}" class="counter" style="grid-column: 2; color: lightgreen; margin-top: auto; margin-bottom: auto;">${like_count}</p>`);
+                        $('#dislike-count' + catid).replaceWith(`<p id="dislike-count${catid}" class="counter" style="grid-column: 4; color: lightgreen; margin-top: auto; margin-bottom: auto;">${dislike_count}</p>`);  
+                    } else {
+                        let like_count = json_file.like_count
+                        let dislike_count = json_file.dislike_count
+    
+                        dislike_count = dislike_count.toString();
+                        like_count = like_count.toString();
+                        $('#dislike' + catid).css("background-color", "rgba(0,0,0,0)");
+                        $('#active-dislike-icon-' + catid).css("fill", "white");  
+                        $('#dislike-icon-' + catid).css("fill", "white");
+                        $('#like-count' + catid).replaceWith(`<p id="like-count${catid}" class="counter" style="grid-column: 2; color: lightgreen; margin-top: auto; margin-bottom: auto;">${like_count}</p>`);
+                        $('#dislike-count' + catid).replaceWith(`<p id="dislike-count${catid}" class="counter" style="grid-column: 4; color: lightgreen; margin-top: auto; margin-bottom: auto;">${dislike_count}</p>`);                            
+                    }
+                }
+
+            }
+        )
+    }
+
+});
+
+
+$('.send-comment').click(function() {
+    var catid;
+    catid = $(this).attr("data-catid");
+    Comment(catid);
+});
+
+function Comment(catid) {
+    let cookie = document.cookie;
+    let csrfToken = cookie.substring(cookie.indexOf('=') + 1);
+
+    let form_value = $('#field-write-comment' + catid).val();
+    console.log(form_value)
+
+    $.ajax(
+        {
+            type:"POST",
+            headers: {
+                'X-CSRFToken': csrfToken
+              },
+            url: "/social/comment/",
+            data: {
+                bit_id: catid,
+                comment: form_value
+            },
+            success: function(data){
+                let json_file = data;
+                let comment_display = document.getElementById('chat-comment-display-container'+catid)
+                let comment_count = json_file.comment_count;
+                let accent_color = json_file.accent_color;
+                let icon_color = json_file.icon_color;
+                var user_first = json_file.user_first;
+                var user_last = json_file.user_last;
+                console.log(accent_color)
+                $('#chat-comment-display-container'+catid).prepend(
+                    `<div id="right-comment-display-wrapper">
+                        <div id="chat-comment-display-right" style="background-color: ${accent_color}">
+                        <p id="comment-text">
+                         <strong>${user_first} ${user_last}</strong>: ${form_value}</p><weak id="comment-time">Now</weak>
+                        </div>
+                    </div>
+                    <br>`
+
+                    )
+                $('#field-write-comment' + catid).val('');
+                
+                
+            }
+        }
+    )
+};
