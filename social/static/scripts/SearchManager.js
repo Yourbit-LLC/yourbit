@@ -2,6 +2,8 @@
 --Mobile Search Functions--
 */
 
+var base_url = window.location.origin;
+
 $('#mobile-search-icon').click(function() {
     showSearch();
 });
@@ -68,12 +70,20 @@ function displayResults(response) {
         console.log(user)
         user_info = results[user];
         console.log(user_info)
-        user_name = user_info['name'];
+        user_name = user_info['name']
         image = user_info['image'];
-        $('#mobile-instant-results').append(`<p>${user_name} <img style="width: 50px; height: 50px;" src="${image}"> </p>`);
+        $('#mobile-instant-results').append(`<div data-username = "${user}" class="quick-result"><img data-username = "${user}" class="quick-result-image" src="${image}"> <p data-username = "${user}" class="quick-result-label" >${user_name}</p></div><span onclick="profileNavigate(${user})" class="profile-result-link"></span>`);
         x = x + 1;
         console.log(x)
     }
 
 
 }
+
+function profileNavigate(user) {
+    let username = user;
+
+    window.location.href = `${base_url}/social/profile/${username}`;
+    
+};
+

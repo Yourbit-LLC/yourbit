@@ -68,7 +68,26 @@
         transition: 0.25s;
         cursor: pointer;
     }
+    
+    #logo-container {
+        width: 80px;
+        height: 80px;
+        display: block;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    
+    #logo {
+        display: block;
+        position: relative;
+        width: 100%;
+    }
 }
+
+
+
 
 
 @media screen and (max-width:800px){

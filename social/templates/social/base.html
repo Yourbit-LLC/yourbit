@@ -12,6 +12,7 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/yourbit_core.css' %}"/>
         <link rel="stylesheet" type="text/css" href="{% static 'css/yourbit_posts.css' %}"/>
         <link rel="stylesheet" type="text/css" href="{% static 'css/notifications_yourbit.css' %}"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/search_results.css' %}"/>
         {%block extend_styles%}{%endblock%}
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1">
@@ -339,7 +340,7 @@
 
 -->
                 <div class="mobile-slide-up-panel" id="search-mobile">
-                    <div id="mobile-instant-results" style="display: block; position: relative; height: 100%; top:300px; color:white;">
+                    <div id="mobile-instant-results">
                     </div>
                     <input style="color:white" type="text" class="single-line-input" placeholder="Search Yourbit" id="mobile-searchbar">
 
@@ -373,6 +374,9 @@
         <script type="text/javascript" src="{% static 'scripts/BitManager.js' %}"></script>
         <!--Yourbit Search Manager Script-->
         <script type="text/javascript" src="{% static 'scripts/SearchManager.js' %}"></script>
+        <script type"text/javascript">
+            
+        </script>
     </body>                
 
 </html>
