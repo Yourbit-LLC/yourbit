@@ -72,7 +72,7 @@ function displayResults(response) {
         console.log(user_info)
         user_name = user_info['name']
         image = user_info['image'];
-        $('#mobile-instant-results').append(`<div data-username = "${user}" class="quick-result"><img data-username = "${user}" class="quick-result-image" src="${image}"> <p data-username = "${user}" class="quick-result-label" >${user_name}</p></div><span onclick="profileNavigate(${user})" class="profile-result-link"></span>`);
+        $('#mobile-instant-results').append(`<div data-username = "${user}" class="quick-result"><img data-username = "${user}" class="quick-result-image" src="${image}"> <p data-username = "${user}" class="quick-result-label" >${user_name}</p></div><span href="${base_url}/social/profile/${user})" class="profile-result-link"></span>`);
         x = x + 1;
         console.log(x)
     }
