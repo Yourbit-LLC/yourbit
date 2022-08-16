@@ -91,3 +91,21 @@
     opacity: 0;
 
 }
+
+.mobile-notification {
+    position: relative;
+    display: block;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    margin-bottom: 4px;
+    height: 35px;
+    width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mobile-interaction-notification-text {
+    position: relative;
+    display: block;
+    top: 7px;
+}

@@ -383,41 +383,40 @@ class ProfileInteract(LoginRequiredMixin, View):
 #Actual search results view when search is clicked
 
 class SearchResults(View):
-    def post(self, request, *args, **kwargs):
-        search_form = SearchBar(request.POST)
-        if search_form.is_valid():
-            last_page = request.GET.get('last_page', '/')
-            searched = search_form.cleaned_data['query']
-            user_results = []
-            user_first_name_filter = User.objects.filter(first_name__icontains = searched)
-            for result in user_first_name_filter:
-                if result not in user_results:
-                    user_results.append(result)
-            user_last_name_filter = User.objects.filter(last_name__icontains = searched)
-            for result in user_last_name_filter:
-                if result not in user_results:
-                    user_results.append(result)
-            bit_results = []
-            bit_body_filter = Bit.objects.filter(body__icontains = searched)
-            for result in bit_body_filter:
-                if result not in bit_results:
-                    bit_results.append(result)
-            bit_title_filter = Bit.objects.filter(title__icontains = searched)
-            for result in bit_title_filter:
-                if result not in bit_results:   
-                    bit_results.append(result)
+    def post(self, request, query, *args, **kwargs):
+        print(query)
+        last_page = request.GET.get('last_page', '/')
+        searched = query
+        user_results = []
+        user_first_name_filter = User.objects.filter(first_name__icontains = searched)
+        for result in user_first_name_filter:
+            if result not in user_results:
+                user_results.append(result)
+        user_last_name_filter = User.objects.filter(last_name__icontains = searched)
+        for result in user_last_name_filter:
+            if result not in user_results:
+                user_results.append(result)
+        bit_results = []
+        bit_body_filter = Bit.objects.filter(body__icontains = searched)
+        for result in bit_body_filter:
+            if result not in bit_results:
+                bit_results.append(result)
+        bit_title_filter = Bit.objects.filter(title__icontains = searched)
+        for result in bit_title_filter:
+            if result not in bit_results:   
+                bit_results.append(result)
 
-            user_result_count = len(user_results)
-            bit_result_count = len(bit_results)
-            result_count = user_result_count + bit_result_count
-            context={
-                'searched' : searched,
-                "result_count" : result_count,
-                'user_results': user_results, 
-                'bit_results': bit_results, 
-                'last_page': last_page,
-            }
-            return render(request, "social/search_results.html", context)
+        user_result_count = len(user_results)
+        bit_result_count = len(bit_results)
+        result_count = user_result_count + bit_result_count
+        context={
+            'searched' : searched,
+            "result_count" : result_count,
+            'user_results': user_results, 
+            'bit_results': bit_results, 
+            'last_page': last_page,
+        }
+        return render(request, "social/search_results.html", context)
 
 #Render messages page
 
@@ -811,17 +810,33 @@ class NotificationStatus(View):
         return JsonResponse({'status': connect_request_pending, 'notification_len': notifications_len,})
 
 class GetNotifications(View):
-    def get(self, request, *args, **kwargs):
+    print("""
+    
+            
+                    --Success--
+            Get notification request received
+            
+            
+        """)
+    def post(self, request, *args, **kwargs):
         user = request.user
         user_id = user.id
         connect_requests = ConnectRequest.objects.filter(to_user=user_id)
         request_list = []
-        notifications = []
+        connect_notifications = {}
+        iteration = 0
         for request in connect_requests:
-            request_list.append(request)
-        notifications.append(request_list)
+            from_user = request.from_user
+            first_name = from_user.first_name
+            last_name = from_user.last_name
+            name = first_name + " " + last_name
+            username = from_user.username
+            iteration += 1
+            connect_notification = 'connect_notification' + str(iteration)
+            connect_notifications.update({connect_notification : {'username':username, 'type': 'connect', 'from_name': name}})
 
-        return JsonResponse({'notifications', notifications})
+
+        return JsonResponse(connect_notifications)
 
 class Publish(View):
     def post(self, request, *args, **kwargs):

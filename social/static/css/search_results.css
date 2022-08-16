@@ -61,6 +61,10 @@
     width: 100%;
     height: 100%;
     z-index: 3;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-start: 3;
     
 }
 #mobile-instant-results {

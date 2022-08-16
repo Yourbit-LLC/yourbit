@@ -28,7 +28,7 @@ class Profile(models.Model):
     connections = models.ManyToManyField(
         "self",
         related_name="friends_with",
-        symmetrical=False, 
+        symmetrical=False,
         blank = True
     )
     
@@ -58,27 +58,6 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
-
-def create_profile(sender, instance, created, **kwargs):
-    if created:
-        user_profile = Profile(user=instance)
-        user_profile.save()
-        customizations = Customizations(profile=user_profile)
-        customizations.save()
-        user_profile.follows.set([instance.profile.id])
-        user_profile.save()
-
-@receiver(post_save, sender=User)
-def create_profile(sender, instance, created, **kwargs):
-    if created:
-        user_profile = Profile(user=instance)
-        user_profile.save()
-        customizations = Customizations(profile=user_profile)
-        feed = Feed(profile=user_profile)
-        customizations.save()
-        feed.save()
-        user_profile.follows.add(instance.profile)
-        user_profile.save()
 
 class Feed(models.Model):
     profile = models.ForeignKey('Profile', related_name="feed", on_delete=models.DO_NOTHING, null=True)

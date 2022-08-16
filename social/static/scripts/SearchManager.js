@@ -70,7 +70,7 @@ function displayResults(response) {
         console.log(user)
         user_info = results[user];
         console.log(user_info)
-        user_name = user_info['name']
+        user_name = user_info['name'];
         image = user_info['image'];
         $('#mobile-instant-results').append(`<div data-username = "${user}" class="quick-result"><img data-username = "${user}" class="quick-result-image" src="${image}"> <p data-username = "${user}" class="quick-result-label" >${user_name}</p></div><a href="${base_url}/social/profile/${user}" class="profile-result-link"></a>`);
         x = x + 1;
