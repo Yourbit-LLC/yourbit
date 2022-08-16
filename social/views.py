@@ -810,7 +810,9 @@ class NotificationStatus(View):
         return JsonResponse({'status': connect_request_pending, 'notification_len': notifications_len,})
 
 class GetNotifications(View):
-    print("""
+
+    def post(self, request, *args, **kwargs):    
+        print("""
     
             
                     --Success--
@@ -818,12 +820,14 @@ class GetNotifications(View):
             
             
         """)
-    def post(self, request, *args, **kwargs):
         user = request.user
         user_id = user.id
         connect_requests = ConnectRequest.objects.filter(to_user=user_id)
         request_list = []
         connect_notifications = {}
+        rate_notifications = {}
+        comment_notifications = {}
+        
         iteration = 0
         for request in connect_requests:
             from_user = request.from_user
@@ -831,10 +835,12 @@ class GetNotifications(View):
             last_name = from_user.last_name
             name = first_name + " " + last_name
             username = from_user.username
+            profile_id = from_user.id
             iteration += 1
             connect_notification = 'connect_notification' + str(iteration)
-            connect_notifications.update({connect_notification : {'username':username, 'type': 'connect', 'from_name': name}})
+            connect_notifications.update({connect_notification : {'username':username, 'type': 'connect', 'from_name': name, 'profile_id':profile_id}})
 
+        notifications = {'connect_notifications': connect_notifications}
 
         return JsonResponse(connect_notifications)
 
@@ -911,6 +917,18 @@ class PreSearch(View):
 
         user_last_name_filter = User.objects.filter(last_name__icontains = searched)
         for result in user_last_name_filter:
+            if result not in user_results_working:
+                user_results_working.append(result)
+                first_name = result.first_name
+                last_name = result.last_name
+                username = result.username
+                profile = Profile.objects.get(pk = result.id)
+                image = profile.image.url
+                name = first_name + " " + last_name
+                user_results.update({username: {'name' : name, 'image' : image}})
+
+        username_filter = User.objects.filter(username__icontains = searched)
+        for result in username_filter:
             if result not in user_results_working:
                 user_results_working.append(result)
                 first_name = result.first_name

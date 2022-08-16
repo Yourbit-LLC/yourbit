@@ -13,7 +13,7 @@ def FeedUI(request):
         write_comment = CommentForm()
         profile = Profile.objects.get(user=request.user)
         friend_requests = ConnectRequest.objects.filter(to_user = request.user)
-        customs = Customizations.objects.get(profile = profile)
+        customs = Customizations.objects.get(profile = profile.id)
         wallpaper_on = customs.wallpaper_on
         notification_length = len(friend_requests)
         liked_bits = profile.liked_bits.all()

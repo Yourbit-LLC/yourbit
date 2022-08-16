@@ -59,9 +59,21 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
+class Community(models.Model):
+    admin = models.ForeignKey(User, related_name="community", on_delete=models.CASCADE, null=True)
+    title = models.CharField(max_length=200)
+    followers = models.ManyToManyField(
+        "self",
+        related_name="followed_by",
+        symmetrical=False,
+        blank = True
+    )
+
 class Feed(models.Model):
     profile = models.ForeignKey('Profile', related_name="feed", on_delete=models.DO_NOTHING, null=True)
     friends_only_on = models.BooleanField(default=False)
+    block_links_on = models.BooleanField(default=False)
+    muted_users = models.ManyToManyField(User, blank=True, related_name='muted')
     sorting = models.CharField(max_length= 100, default = 'chronological')
 
 class ConnectRequest(models.Model):
@@ -136,6 +148,7 @@ class Cluster(models.Model):
 class Customizations(models.Model):
     #Reference to user profile
     profile = models.ForeignKey('Profile', on_delete = models.DO_NOTHING, related_name= 'custom', null=True)
+    community = models.ForeignKey('Community', on_delete= models.DO_NOTHING, related_name= 'custom', null=True)
     
     #Profile Images
     image_uploaded = models.BooleanField(default=False)

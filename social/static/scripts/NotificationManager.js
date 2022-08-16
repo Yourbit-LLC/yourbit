@@ -9,6 +9,7 @@
 var notifications_last = 0;
 var first_load = true;
 var width = screen.width;
+var base_url = window.location.origin;
 
 /*
 --On document load get notifications, load bits, get messages, update rewards points--
@@ -144,11 +145,14 @@ function getNotifications() {
                             console.log(notification)
                             let notification_info = connect_notifications[notification];
                             console.log(notification_info)
+                            let username = notification_info['username'];
                             let user_name = notification_info['from_name'];
+                            let profile_id = notification_info['profile_id'];
+                            let send_list = [username, user_name, profile_id]
                             $('#menu-notification-container').append(`
                                 <div class='mobile-notification' id='mobile-friend-request' style="color:white;">
                                     <p class="mobile-interaction-notification-text">${user_name} wants to be your friend!</p>
-                                    <a class="mobile-notification-link" style="display:none;"></a>
+                                    <span data-username="${username}" data-name="${user_name}" data-catid="${profile_id}" onclick="viewNotification('${send_list}')" class="mobile-notification-link" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display:block; z-index:2;"></span>
                                 </div>
                             `)
                         }
@@ -160,6 +164,31 @@ function getNotifications() {
     )
 };
 
+function viewNotification(receive_list) {
+    receive_list = receive_list.split(',');
+    let username = receive_list[0];
+    let user_name = receive_list[1];
+    let profile_id = receive_list[2];
+    displayBubbleSmall(growBubbleSmall, user_name, username, profile_id);
+}
+
+function displayBubbleSmall(callback, user_name, username, profile_id) {
+    $('#small-bubble').show();
+    callback(user_name, username, profile_id);
+}
+
+function growBubbleSmall(user_name, username, profile_id) {
+    $('#info-divider').show();
+    $('#small-bubble').animate({height: "140px", width: "300px"}, "fast");
+    $('#notification-bubble-text').html(`
+        <p style="color:white;">Add ${user_name} to your inner orbit?</p>
+        <button>Yes</button>
+        <button>No</button>
+        <br>
+        <br>
+        <a href="${base_url}/social/profile/${username}">Show Profile</a>
+    `);
+}
 
 function showNotification(callback) {
     $('#non-interactive-notification-modal').show();

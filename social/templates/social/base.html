@@ -1,8 +1,11 @@
 <!--
-    Yourbit Home Final:
-    Yourbit home screen presents users with their feed. This feed can be defaulted to any space 
-    by the user, here users will see content of other users they are connected to within their 
-    default space upon login.
+    Yourbit Base Final:
+    Base contains all core UI content such as the navigation bar, search, noifications, and user menus
+    the elements contained in this file are available on every page across site, except for login pages.
+    
+    Developed by Austin Chaney
+    05/07/2021
+
 -->
 {% load static %}
 <!DOCTYPE html>
@@ -227,6 +230,8 @@
                 ****************************************   Profile Menu   ****************************************
 
                 Profile Menu comes and goes when user clicks on the profile icon, contains links to user settings
+
+                **************************************** {    yourbit    } ****************************************
 -->
                 <div class="profile-menu" id="profile-menu">
 
@@ -274,6 +279,8 @@
                 <div id="desktop-create-bit">
 
                 </div>
+                <div id="info-divider" style="display: none; bottom: 0; left: 0; width: 100vw; height: 200vw; position: fixed; z-index: 26; -webkit-backdrop-filter: blur(100px) brightness(50%); backdrop-filter: blur(100px) brightness(50%); transition: 1s;">
+                </div>
 
                 <!--
 
@@ -295,7 +302,7 @@
 
                 <!--
 
-                    ***********************   Info Bubble   ********************************
+                    ***********************   Large Bubble   ********************************
                             Contains information for tutorials, bits, or friend requests
 
                 -->
@@ -304,7 +311,20 @@
                     {% endblock %}
                 </div>
 
+<!--
+
+                    **********************  Small Bubble ****************************
+    
+-->
+
+                <div id="small-bubble" style="display:none; height: 0; width: 0; z-index: 28; background-color:black; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius:20px; text-align: center; ">
+                    <div id="notification-bubble-text" style="position: relative; display: block; height: fit-content; width: 250px; margin: auto;">
+                    </div>
+                </div>
+
+
                 <!--
+
 
                     ***********************  Create Bit Mobile  *****************************
 
@@ -378,7 +398,6 @@
         <!--Yourbit Core Script Document (Global Functions)-->
         <script type="text/javascript" src="{% static 'scripts/yourbit_core.js' %}"></script>
         <script type"text/javascript">
-            
         </script>
     </body>                
 
