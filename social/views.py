@@ -72,65 +72,7 @@ class BitDetailView(View):
     def post(self, request, pk, *args, **kwargs):
         write_comment = CommentForm()
 
-#class VideoBitDetail(View):
-
-
-# def create_chat_bit(request):
-#     if request.method == "POST":
-#         chatbit_form = ChatBitForm(request.POST or None)
-#         if form.is_valid():
-#             ChatBit = chatbit_form.save(commit=False)
-#             ChatBit.user = request.user
-#             ChatBit.save()
-#             return redirect("social/home.html")
-#     form = ChatBitForm()
-#     return render(request, "social/home.html", {"form" : form})
-
-#def set_profile_image(request):
-
-#ChatSpace
-
-class ChatSpace(View):
-    def get(self, request, *args, **kwargs):
-    
-        return render(request, "social/chatspace.html")
-
-        #Prepare feed by pooling and sorting. The bit_pool will be referenced on front end to retrieve posts
-        # friend_bits = Bit.objects.filter(profile__in = friends)
-    #     bits = sorted(
-    #    chain(friend_bits, user_bits),
-    #    key=attrgetter('created_at'), reverse=True)
-        #photobit_form = PhotoBitForm()
-        #videobit_form = VideoBitForm()
-
-
-
-        #     bit_pool = sorted(
-        # chain(chat_bits, photo_bits, video_bits),
-        # key=attrgetter('created_at'), reverse=True)
-
-        # if 'publish_bit' in request.POST:
-        #     if chatbit_form.is_valid():
-        #         new_bit = chatbit_form.save(commit=False)
-        #         new_bit.user = request.user
-        #         new_bit.save()
-        #         bits = Bit.objects.all()
-
-
-#VideoSpace
-
-class VideoSpace(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, "social/videospace.html")
-
-#PhotoSpace
-
-class PhotoSpace(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, "social/photospace.html")
-
 #Profile Page
-
 class ProfileView(View):
     def get(self, request, username, *args, **kwargs):
         profile_user = User.objects.get(username = username)
@@ -307,57 +249,7 @@ class Interact(LoginRequiredMixin, View):
         next = request.POST.get('next', '/')
         return HttpResponseRedirect(next)
 
-
-#Legacy write comment view, delete later
-
-class WriteComment(LoginRequiredMixin, View):
-    def post(self, request, pk, *args, **kwargs):
-        chat = Bit.objects.get(pk=pk)
-        comment_form = CommentForm(request.POST)
-        new_comment = comment_form.save(commit=False)
-        new_comment.user = request.user
-        new_comment.bit = chat
-        new_comment.save()
-
-        chat.comments.add(new_comment)
-
-        next = request.POST.get('next', '/')
-        return HttpResponseRedirect(next)
-
-
-
 #def search_list(request):
-
-# def profile_list(request):
-#     profiles = Profile.objects.exclude(user=request.user)
-#     return render(request, "social/profile_list.html", {"profiles" : profiles})
-
-# def profile(request, pk):
-#     profile = Profile.objects.get(pk=pk)
-
-#     if request.method == "POST":
-#         current_user_profile = request.user.profile
-#         data = request.POST
-#         action = data.get("follow")
-#         if action == "follow":
-#             current_user_profile.follows.add(profile)
-
-#         elif action == "unfollow":
-#             current_user_profile.follows.remove(profile)
-
-#         elif action == "connect-friend":
-#             current_user_profile.friends_with.add(profile)
-
-#         elif action == "connect-work":
-#             current_user_profile.works_with.add(profile)
-
-#         elif action == "connect-family":
-#             current_user_profile.related_to.add(profile)
-
-
-#         current_user_profile.save()
-
-#     return render(request, "social/profile.html", {"profile": profile})
 
 #Legacy profile interaction view, delete later
 
@@ -368,17 +260,17 @@ class ProfileInteract(LoginRequiredMixin, View):
             user = request.user
             from_user = User.objects.get(id = user.id)
             to_user = User.objects.get(pk = pk) 
-            connect_request = ConnectRequest.objects.get_or_create(from_user = from_user, to_user = to_user)
-            return redirect('home')
+            connect_request = Notification.objects.get_or_create(from_user = from_user, to_user = to_user, notification_type=4)
+            return JsonResponse({'success':'success'})
 
         if 'accept_friend' in request.POST:
-            connect_request = ConnectRequest.objects.get(pk = pk)
+            connect_request = Notification.objects.get(pk = pk)
             user1_profile = Profile.objects.get(user = request.user)
             user2_profile = Profile.objects.get(user = connect_request.from_user)
             user1_profile.connections.add(user2_profile)
             user2_profile.connections.add(user1_profile)
             connect_request.delete()
-            return redirect('home')
+            return JsonResponse({'name': connect_request.from_user})
 
 #Actual search results view when search is clicked
 
@@ -486,13 +378,15 @@ class LikeBit(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         #Get request user profile for updating
         profile = Profile.objects.get(user=request.user)
-
+        from_user = request.user
+        from_user_id = from_user.id
         #Get bit ID from request and use to get bit
         bit_id = request.POST['bit_id']
         bit = Bit.objects.get(pk=bit_id)
 
         #Get bit user and find profile
         bit_user = bit.user
+        bit_user_id = bit_user.id
         bit_profile = bit_user.profile
 
         #Get accent colors
@@ -530,7 +424,7 @@ class LikeBit(LoginRequiredMixin, View):
             profile.liked_bits.add(bit)
             like_count = bit.likes.count()
             dislike_count = bit.dislikes.count()
-            
+
             if bit not in interacted_with:
                 profile.interacted_with.add(bit)
                 balance = profile.point_balance
@@ -549,7 +443,7 @@ class LikeBit(LoginRequiredMixin, View):
             like_count = bit.likes.count()
             dislike_count = bit.dislikes.count()
 
-            return JsonResponse({'action':'unlike', 'accent_color':accent_color,'icon_color': icon_color, 'like_count': like_count, 'dislike_count': dislike_count})
+            return JsonResponse({'action':'unlike', 'from_user': from_user_id, 'to_user': bit_user_id, 'accent_color':accent_color,'icon_color': icon_color, 'like_count': like_count, 'dislike_count': dislike_count})
 
 class DislikeBit(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
@@ -670,8 +564,8 @@ class AddComment(LoginRequiredMixin, View):
 
         #Get list of comments
         comment_count = bit.comments.count()
-
-        return JsonResponse({'accent_color':accent_color, 'icon_color':icon_color, 'comment_count':comment_count, 'user_first':user_first, 'user_last':user_last})
+        user_name = user_first + user_last
+        return JsonResponse({'accent_color':accent_color, 'icon_color':icon_color, 'comment_count':comment_count, 'to_user':user_name})
 
 class Feed(View):
     def get(self, request, type, id, *args, **kwargs):
@@ -691,46 +585,107 @@ class Feed(View):
             friend_pool.append(friend.user)   
         friend_pool.append(request.user)
         
-        print("id:" + id)
+        print("id: " + id)
 
         if type == 'global':
-            bit_pool = Bit.objects.filter(user__in = friend_pool).order_by('-created_at')
+            friends = profile.connections.all()        
+            following = profile.follows.all()
+            friend_pool = []
+            following_pool = []
+            for following in following:
+                following_pool.append(following.user)
+            for friend in friends:
+                friend_pool.append(friend.user)   
+            friend_pool.append(request.user)
+            private_bit_pool = Bit.objects.filter(user__in = friend_pool).order_by('-created_at')
+            follow_bit_pool = Bit.objects.filter(user__in = following_pool, is_public = True).order_by('-created_at')
             profile = False
 
         if type == 'chatspace':
-            bit_pool = Bit.objects.filter(user__in = friend_pool, bit_type = 'chat').order_by('-created_at')
+            friends = profile.connections.all()        
+            following = profile.follows.all()
+            friend_pool = []
+            following_pool = []
+            for following in following:
+                following_pool.append(following.user)
+            for friend in friends:
+                friend_pool.append(friend.user)   
+            friend_pool.append(request.user)
+            private_bit_pool = Bit.objects.filter(user__in = friend_pool, bit_type = 'chat').order_by('-created_at')
+            follow_bit_pool = Bit.objects.filter(user__in = following_pool, is_public = True, bit_type = 'chat').order_by('-created_at')
             profile = False
 
         if type == 'photospace':
-            bit_pool = Bit.objects.filter(user__in = friend_pool, bit_type='photo').order_by('-created_at')
+            friends = profile.connections.all()        
+            following = profile.follows.all()
+            friend_pool = []
+            following_pool = []
+            for following in following:
+                following_pool.append(following.user)
+            for friend in friends:
+                friend_pool.append(friend.user)   
+            friend_pool.append(request.user)
+            private_bit_pool = Bit.objects.filter(user__in = friend_pool, bit_type='photo').order_by('-created_at')
+            follow_bit_pool = Bit.objects.filter(user__in = following_pool, is_public = True, bit_type = 'photo').order_by('-created_at')
             profile = False
 
         if type == 'videospace':
-            bit_pool = Bit.objects.filter(user__in = friend_pool, bit_type = 'video').order_by('-created_at')
+            friends = profile.connections.all()        
+            following = profile.follows.all()
+            friend_pool = []
+            following_pool = []
+            for following in following:
+                following_pool.append(following.user)
+            for friend in friends:
+                friend_pool.append(friend.user)   
+            friend_pool.append(request.user)
+            private_bit_pool = Bit.objects.filter(user__in = friend_pool, bit_type = 'video').order_by('-created_at')
+            follow_bit_pool = Bit.objects.filter(user__in = following_pool, is_public = True, bit_type = 'photo').order_by('-created_at')
             profile = False
 
         if type == "profile":
-            bit_pool = Bit.objects.filter(user=id).order_by('-created_at')
+            private_bit_pool = Bit.objects.filter(user=id, is_public = False).order_by('-created_at')
+            follow_bit_pool = Bit.objects.filter(user=id, is_public = True).order_by('-created_at')
             profile = True
         
         if type == 'profile-global':
-            bit_pool = Bit.objects.filter(user = id).order_by('-created_at')
+            private_bit_pool = Bit.objects.filter(user=id, is_public = False).order_by('-created_at')
+            follow_bit_pool = Bit.objects.filter(user=id, is_public = True).order_by('-created_at')
             profile = True
 
         if type == 'profile-chatspace':
-            bit_pool = Bit.objects.filter(user = id, bit_type = 'chat').order_by('-created_at')
+            private_bit_pool = Bit.objects.filter(user=id, is_public = False, bit_type = 'chat').order_by('-created_at')
+            follow_bit_pool = Bit.objects.filter(user=id, is_public = True, bit_type='chat').order_by('-created_at')
             profile = True
 
         if type == 'profile-photospace':
-            bit_pool = Bit.objects.filter(user = id, bit_type='photo').order_by('-created_at')
+            private_bit_pool = Bit.objects.filter(user=id, is_public = False, bit_type = 'photo').order_by('-created_at')
+            follow_bit_pool = Bit.objects.filter(user=id, is_public = True, bit_type='photo').order_by('-created_at')
             profile = True
 
         if type == 'profile-videospace':
-            bit_pool = Bit.objects.filter(user = id, bit_type = 'video').order_by('-created_at')
+            private_bit_pool = Bit.objects.filter(user=id, is_public = False, bit_type = 'video').order_by('-created_at')
+            follow_bit_pool = Bit.objects.filter(user=id, is_public = True, bit_type='video').order_by('-created_at')
             profile = True
-        
+
+        bit_pool = sorted(
+            chain(private_bit_pool, follow_bit_pool), key=attrgetter('created_at'), reverse=True
+            )
+            
+
+        print("""
+    
+            
+                    --Success--
+            Feed Generated Successfully
+            
+            
+        """)
+
         context = {
             'bit_pool':bit_pool,
+            'private_bit_pool': private_bit_pool,
+            'public_bit_pool' : follow_bit_pool,
             'profile':profile,
             'user_colors_on': user_colors_on,
             'wallpaper_on': wallpaper_on,
@@ -796,19 +751,59 @@ class QuickVisibility(View):
         default_theme_on = customs.default_theme_on
         return JsonResponse({'bit_colors_on':bit_colors_on, 'wallpaper_on':wallpaper_on, 'default_theme_on': default_theme_on, 'toggle': toggle, 'wallpaper': wallpaper})
 
+
+#####################################################
+#                    Notifications                  #
+#####################################################
+
+#Notify Other Users
+class Notify(View):
+    def post(self, request, *args, **kwargs):
+
+        #Get request data
+        notification_type = request.POST.get('type')
+        to_user = request.POST.get('to_user')
+
+        #Get user and name
+        to_user = User.objects.get(id = to_user)
+        first_name = to_user.first_name
+        last_name = to_user.last_name
+        name = first_name + last_name
+
+        #Get to user profile
+        to_user_profile = Profile.objects.get(user=to_user)
+
+        #Type 1 notification = Like/Dislike
+        if notification_type == 1:
+            bit_id = request.POST.get('bit')
+            new_notification = Notification(to_user = to_user, bit=bit, from_user = request.user, notification_type=notification_type)
+            new_notification.save()
+
+        #Type 2 notification = Comment
+        elif notification_type == 2:
+            bit_id = request.POST.get('bit')
+            bit = Bit.objects.get(id=bit_id)
+            new_notification = Notification(to_user = to_user, bit=bit, from_user = request.user, notification_type=notification_type)
+            new_notification.save()
+
+        else:    
+            new_notification = Notification(to_user = to_user, from_user = request.user, notification_type=notification_type)
+        
+        if to_user_profile.alerted_notifications == True:
+            to_user_profile.alerted_notifications = False
+        return JsonResponse({'to_user': name})
+
+#Check if there are notifications
 class NotificationStatus(View):
     def get(self, request, *args, **kwargs):
-        connect_request_pending = False
         user = request.user
-        user_id = user.id
-        requests = ConnectRequest.objects.filter(to_user=user_id)
-        notifications_len = len(requests)
-        if requests:
-            connect_request_pending = True
+        profile = Profile.objects.get(user=user)
+        current_alerted_notifications = profile.alerted_notifications
         
         
-        return JsonResponse({'status': connect_request_pending, 'notification_len': notifications_len,})
+        return JsonResponse({'status': current_alerted_notifications})
 
+#Send notifications to client
 class GetNotifications(View):
 
     def post(self, request, *args, **kwargs):    
@@ -822,27 +817,101 @@ class GetNotifications(View):
         """)
         user = request.user
         user_id = user.id
-        connect_requests = ConnectRequest.objects.filter(to_user=user_id)
+        profile = Profile.objects.get(user = request.user)
+        #Get and sort all notifications
+        notification_pool = Notification.objects.filter(to_user = profile).order_by('date')
+        print(notification_pool)
         request_list = []
         connect_notifications = {}
-        rate_notifications = {}
-        comment_notifications = {}
-        
+        notifications_list = {}
         iteration = 0
-        for request in connect_requests:
-            from_user = request.from_user
-            first_name = from_user.first_name
-            last_name = from_user.last_name
-            name = first_name + " " + last_name
-            username = from_user.username
-            profile_id = from_user.id
-            iteration += 1
-            connect_notification = 'connect_notification' + str(iteration)
-            connect_notifications.update({connect_notification : {'username':username, 'type': 'connect', 'from_name': name, 'profile_id':profile_id}})
+        
+        #Package JSON response, but first check if there are notifications
+        if notification_pool:
 
-        notifications = {'connect_notifications': connect_notifications}
+            #Add each notification to the list
+            for notification in notification_pool:
+                
+                if notification.notification_type == 1:
+                    from_user_profile = notification.from_user
+                    from_user = from_user_profile.user
+                    first_name = from_user.first_name
+                    last_name = from_user.last_name
+                    name = first_name + last_name
+                    username = from_user.username
+                    bit = notification.bit
+                    time = notification.date
+                    iteration += 1
+                    rate_notification = 'notification' + str(iteration)
+                    notifications_list.update({rate_notification : {'id' : notification.id, 'time' : time, 'from_user': name, 'type' : 'rate', 'bit' : bit}})
 
-        return JsonResponse(connect_notifications)
+                elif notification.notification_type == 2:
+                    from_user_profile = notification.from_user
+                    from_user = from_user_profile.user
+                    first_name = from_user.first_name
+                    last_name = from_user.last_name
+                    name = first_name + last_name
+                    username = from_user.username
+                    bit = notification.bit
+                    time = notification.date
+                    comment = notification.comment
+                    comment_text = comment.body
+                    iteration += 1
+                    comment_notification = 'notification' + str(iteration)
+                    notifications_list.update({comment_notification : {'id' : notification.id, 'time' : time, 'from_user': name, 'type' : 'comment', 'bit' : bit, 'comment': comment_text}})
+
+                elif notification.notification_type == 3:
+                    from_user_profile = notification.from_user
+                    from_user = from_user_profile.user
+                    first_name = from_user.first_name
+                    last_name = from_user.last_name
+                    name = first_name + last_name
+                    username = from_user.username
+                    time = notification.date
+                    iteration += 1
+                    follow_notification = 'notification' + str(iteration)
+                    notifications_list.update({follow_notification : {'id' : notification.id, 'time' : time, 'from_user': name, 'type' : 'follow'}})       
+                
+                elif notification.notification_type == 4:
+                    from_user_profile = notification.from_user
+                    from_user = from_user_profile.user
+                    first_name = from_user.first_name
+                    last_name = from_user.last_name
+                    name = first_name + " " + last_name
+                    username = from_user.username
+                    profile_id = from_user.id
+                    time = notification.date
+                    iteration += 1
+                    connect_notification = 'notification' + str(iteration)
+                    notifications_list.update({connect_notification : {'id' : notification.id, 'time' : time, 'username':username, 'type': 'connect', 'from_name': name, 'profile_id':profile_id}})
+                
+
+                elif notification.notification_type == 5:
+                    from_user_profile = notification.from_user
+                    from_user = from_user_profile.user
+                    first_name = from_user.first_name
+                    last_name = from_user.last_name
+                    name = first_name + last_name
+                    username = from_user.username
+                    time = notification.date
+                    iteration += 1
+                    accept_notification = 'notification' + str(iteration)
+                    notifications_list.update({accept_notification : {'id' : notification.id, 'time' : time, 'from_user' : name, 'type' : 'accept_request'}})
+
+                else:
+                    from_user_profile = notification.from_user
+                    from_user = from_user_profile.user
+                    first_name = from_user.first_name
+                    last_name = from_user.last_name
+                    name = first_name + " " + last_name
+                    username = from_user.username
+                    time = notification.date
+                    iteration += 1
+                    message_notification = 'notification' + str(iteration)
+                    notifications_list.update({accept_notification : {'id' : notification.id, 'time' : time, 'from_user' : name, 'type' : 'message'}})
+
+
+        return JsonResponse(notifications_list)
 
 class Publish(View):
     def post(self, request, *args, **kwargs):
@@ -877,6 +946,52 @@ class Publish(View):
 
         return JsonResponse({'success':'success'}) 
             
+
+class AddFriend(View):
+    def post(self, request, *args, **kwargs):
+        action = request.POST.get('action')
+        notification_id = request.POST.get('id')
+
+        if action == 'request_friend':
+            user_id = request.POST.get('user_id')
+            user = request.user
+            user_profile = Profile.objects.get(user=request.user)
+            receiving_profile = Profile.objects.get(user = user_id)
+            from_user = User.objects.get(id = user.id)
+            to_user = User.objects.get(pk = user_id) 
+            first_name = to_user.first_name
+            last_name = to_user.last_name
+            name = first_name + " " + last_name
+            connect_request = Notification.objects.get_or_create(from_user = user_profile, to_user = receiving_profile, notification_type = 4)
+            return JsonResponse({'name': name})
+        
+        if action == 'accept_friend':
+            connect_request = Notification.objects.get(id = notification_id)
+            user1_profile = Profile.objects.get(user = request.user)
+            from_user = connect_request.from_user
+            from_user_id = from_user.id
+            print(connect_request.from_user)
+            user2_profile = Profile.objects.get(user = from_user_id)
+            user1_profile.connections.add(user2_profile)
+            user2_profile.connections.add(user1_profile)
+
+            user2 = User.objects.get(id = from_user_id)
+            from_user_first = user2.first_name
+            from_user_last = user2.last_name
+            from_user = from_user_first + " " + from_user_last
+            connect_request.delete()
+            return JsonResponse({'name': from_user})
+
+        if action == 'deny_request':
+            connect_request = Notification.objects.get(pk = notification_id)
+            from_user = connect_request.from_user
+            from_user_first = from_user.first_name
+            from_user_last = from_user.last_name
+            from_user = from_user_first + " " + from_user_last
+            connect_request.delete()
+            return JsonResponse({'name' : from_user})
+
+
 class Follow(View):
     def post(self, request, *args, **kwargs):
         id = request.POST['profile']

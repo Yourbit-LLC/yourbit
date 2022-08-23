@@ -12,10 +12,11 @@ def FeedUI(request):
     if request.user.is_authenticated:
         write_comment = CommentForm()
         profile = Profile.objects.get(user=request.user)
-        friend_requests = ConnectRequest.objects.filter(to_user = request.user)
         customs = Customizations.objects.get(profile = profile.id)
         wallpaper_on = customs.wallpaper_on
-        notification_length = len(friend_requests)
+
+        notifications = Notification.objects.filter(to_user = profile)
+        notification_length = len(notifications)
         liked_bits = profile.liked_bits.all()
         disliked_bits = profile.disliked_bits.all()
         friends = profile.connections.all()        
@@ -40,7 +41,7 @@ def FeedUI(request):
             'video_bit_pool': video_bit_pool,
             'friends':friends,
             'friend_pool':friend_pool,
-            'friend_requests':friend_requests,
+            'notifications':notifications,
             'wallpaper_on': wallpaper_on,
             'user_image': user_image,
             'accent_color':accent_color,

@@ -368,32 +368,6 @@ function visibilityClose(dropdown) {
 
     }  
 };
-
-$('#profile-follow-button').click(function() {
-    let cookie = document.cookie;
-    let csrfToken = cookie.substring(cookie.indexOf('=') + 1);
-    let profile = $(this).attr("data-catid");
-    console.log(profile)
-    $.ajax(
-        {
-        type: "POST",
-        headers: {
-            'X-CSRFToken': csrfToken
-        },
-        url: '/social/follow/',
-        data: {
-            profile: profile
-        },
-        success: function(data) {
-            let response = data;
-            var name = response.name;
-            $('#non-interactive-notification-modal').append(`<h3>You are now following ${name}</h3>`);
-            showNotification(expandNotification);
-        }
-    }
-
-    )
-});
 /*Mobile Bit form Functions*/
 
 

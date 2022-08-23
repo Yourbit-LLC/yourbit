@@ -1327,7 +1327,7 @@ only be used for object transforms (shaping and scaling)
         }
 
         #profile-name-label {
-            font-size: 20px;
+            font-size: auto;
             font-weight: 700;
             grid-row:1;
             grid-column: 2;
@@ -1682,6 +1682,8 @@ only be used for object transforms (shaping and scaling)
         left: 5px;
         bottom: 10px;
     }
+
+
 
     .large-bubble {
         background-color: rgba(0, 0, 0, 1);

@@ -23,29 +23,37 @@ var width = screen.width;
 */
 
 $('#mobile-create-icon').click(function() {
+    $('#cb-divider').show();
     showCreateBit(raiseCreateBit);
 });
 
 $('#bit-panel-close').click(function() {
+    $('#cb-divider').hide();
     dropCreateBit(hideCreateBit)
 });
 
+/* Function to set display of create bit to block */
 function showCreateBit(callback) {
     let create_bit = document.getElementById('create-bit-mobile');
     create_bit.style.visibility='visible';
     callback(titleFocus);
 }
 
-function titleFocus() {
-    let create_bit = document.getElementById('create-bit-mobile');
-    $('#mobile-title').focus();
-}
-
+/* Function to animate create bit onto the screen */
 function raiseCreateBit(callback){
     let create_bit = document.getElementById('create-bit-mobile');
     create_bit.style.transform = 'translate(0, -80vh)';
     setTimeout(callback, 500);
 }
+
+/* Places the cursor in the title field on reveal */
+
+function titleFocus() {
+    let create_bit = document.getElementById('create-bit-mobile');
+    $('#mobile-title').focus();
+}
+
+/* Before hiding create bit, ru a drop animation followUp = hideCreateBit() */
 
 function dropCreateBit(followUp) {
     let create_bit = document.getElementById('create-bit-mobile');
@@ -53,11 +61,13 @@ function dropCreateBit(followUp) {
     followUp();
 }
 
+/* Hide Create bit after drop down animation */
 function hideCreateBit() {
     let create_bit = document.getElementById('create-bit-mobile');
     create_bit.style.visibility='hidden';
 }
 
+/* Type button refers to the content type buttons in create bit */
 $('.type-button').click(function() {
     let button_name = $(this).attr('name');
     console.log(button_name);
@@ -233,6 +243,7 @@ function clearBitForm() {
     }
 }
 
+/*Bits in feed */
           
 $("#chat-bit-profile-picture").click(function() {
     username = $(this).attr("data-catid");
@@ -289,6 +300,10 @@ $('.feedback-icon').click(function(){
                     $('#like-count' + catid).replaceWith(`<p id="like-count${catid}" class="counter" style="grid-column: 2; color: lightgreen; margin-top: auto; margin-bottom: auto;">${like_count}</p>`);
                     $('#dislike-count' + catid).replaceWith(`<p id="dislike-count${catid}" class="counter" style="grid-column: 4; color: lightgreen; margin-top: auto; margin-bottom: auto;">${dislike_count}</p>`);                   
                 }
+                let to_user = json_file.to_user;
+                let from_user = json_file.from_user;
+                let type = 1;
+                Notify(from_user, to_user, type);
 
             }
 
@@ -390,6 +405,10 @@ $('.feedback-icon-active').click(function(){
                     $('#like-count' + catid).replaceWith(`<p id="like-count${catid}" class="counter" style="grid-column: 2; color: lightgreen; margin-top: auto; margin-bottom: auto;">${like_count}</p>`);
                     $('#dislike-count' + catid).replaceWith(`<p id="dislike-count${catid}" class="counter" style="grid-column: 4; color: lightgreen; margin-top: auto; margin-bottom: auto;">${dislike_count}</p>`);                   
                 }
+                let to_user = json_file.to_user;
+                let from_user = json_file.from_user;
+                let type = 1;
+                Notify(from_user, to_user, type);
 
             }
 
@@ -411,6 +430,7 @@ $('.feedback-icon-active').click(function(){
                 },
                 success: function(data){
                     let json_file = data;
+                    let user_name = json_file.user_name;
                     if (json_file.action === 'dislike') {
                         let like_count = json_file.like_count
                         let dislike_count = json_file.dislike_count
@@ -423,7 +443,8 @@ $('.feedback-icon-active').click(function(){
                         $('#active-like-icon-' + catid).css("fill", "white");
                         $('#like-icon-' + catid).css("fill", "white");
                         $('#like-count' + catid).replaceWith(`<p id="like-count${catid}" class="counter" style="grid-column: 2; color: lightgreen; margin-top: auto; margin-bottom: auto;">${like_count}</p>`);
-                        $('#dislike-count' + catid).replaceWith(`<p id="dislike-count${catid}" class="counter" style="grid-column: 4; color: lightgreen; margin-top: auto; margin-bottom: auto;">${dislike_count}</p>`);  
+                        $('#dislike-count' + catid).replaceWith(`<p id="dislike-count${catid}" class="counter" style="grid-column: 4; color: lightgreen; margin-top: auto; margin-bottom: auto;">${dislike_count}</p>`);
+                        showNotification(expandNotification, `Disliked ${user_name}'s bit`);  
                     } else {
                         let like_count = json_file.like_count
                         let dislike_count = json_file.dislike_count
@@ -435,7 +456,9 @@ $('.feedback-icon-active').click(function(){
                         $('#dislike-icon-' + catid).css("fill", "white");
                         $('#like-count' + catid).replaceWith(`<p id="like-count${catid}" class="counter" style="grid-column: 2; color: lightgreen; margin-top: auto; margin-bottom: auto;">${like_count}</p>`);
                         $('#dislike-count' + catid).replaceWith(`<p id="dislike-count${catid}" class="counter" style="grid-column: 4; color: lightgreen; margin-top: auto; margin-bottom: auto;">${dislike_count}</p>`);                            
+                        showNotification(expandNotification, `Undisliked ${user_name}'s bit`);
                     }
+                    
                 }
 
             }

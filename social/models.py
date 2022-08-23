@@ -38,7 +38,6 @@ class Profile(models.Model):
     is_public = models.BooleanField(default=False)
     liked_bits = models.ManyToManyField('Bit', related_name="liked_bits", blank=True)
     disliked_bits = models.ManyToManyField('Bit', related_name="disliked_bits", blank=True)
-    pending_requests = models.ManyToManyField('ConnectRequest', blank=True, related_name="friend_request")
     conversations = models.ManyToManyField('Conversation', blank=True, related_name="conversations")
     clusters = models.ManyToManyField('Cluster', blank=True, related_name="clusters")
     bit_background = models.CharField(max_length=50, default = "#808080")
@@ -55,6 +54,7 @@ class Profile(models.Model):
     level = models.IntegerField(default=1)
     interacted_with = models.ManyToManyField('bit', related_name='interacted_with', blank=True )
     commented_on = models.ManyToManyField('bit', related_name='commented_on', blank=True)
+    alerted_notifications = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username
@@ -75,10 +75,6 @@ class Feed(models.Model):
     block_links_on = models.BooleanField(default=False)
     muted_users = models.ManyToManyField(User, blank=True, related_name='muted')
     sorting = models.CharField(max_length= 100, default = 'chronological')
-
-class ConnectRequest(models.Model):
-    from_user = models.ForeignKey(User, related_name="from_user", on_delete=models.CASCADE)
-    to_user= models.ForeignKey(User, related_name="to_user", on_delete=models.CASCADE)
 
 class Bit(models.Model):
     user = models.ForeignKey(
@@ -117,11 +113,11 @@ class SearchHistory(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class Notification(models.Model):
-    #Notification type 1 = like, 2 = comment, 3 = follow
-    notication_type = models.IntegerField()
+    #Notification type 1 = like, 2 = comment, 3 = follow, 4 = friend request received, 5 = friend request accepted, 6 = message, 
+    notification_type = models.IntegerField()
     to_user = models.ForeignKey('Profile', related_name='notification_to', on_delete=models.CASCADE, null=True)
     from_user = models.ForeignKey('Profile', related_name='notification_from', on_delete=models.CASCADE, null=True)
-    post = models.ForeignKey('Bit', on_delete=models.CASCADE, related_name='+', blank=True, null=True)
+    bit = models.ForeignKey('Bit', on_delete=models.CASCADE, related_name='+', blank=True, null=True)
     comment = models.ForeignKey('Comment', on_delete=models.CASCADE, related_name='+', blank=True, null=True)
     date = models.DateTimeField(default=timezone.now)
     user_has_seen = models.BooleanField(default=False)
