@@ -1315,7 +1315,7 @@ only be used for object transforms (shaping and scaling)
             left: 0;
             color: white;
             text-align: center;
-            grid-template-rows: 95px 35px 325px 120px 40px 50px;
+            grid-template-rows: 95px 35px 275px 120px 40px 50px;
             row-gap: 10px;
         }
 
@@ -1400,7 +1400,7 @@ only be used for object transforms (shaping and scaling)
 
         #menu-notification-container {
             grid-row: 3;
-            height: 325px;
+            height: 275px;
             width: 95vw;
             background-color: rgba(0, 0, 0, 0.5);
             border-radius: 10px;
