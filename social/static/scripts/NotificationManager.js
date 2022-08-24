@@ -211,7 +211,11 @@ function acceptFriend(notif_id) {
             success: function(data) {
                 let response = data;
                 let to_user = data.name;
-
+                if (width < 700) {
+                    $('#small-bubble').hide();
+                    $('#info-divider').hide();
+                }
+                // Notify();
                 let body = `Added ${to_user} as friends`;
                 showNotification(expandNotification, body);
             }

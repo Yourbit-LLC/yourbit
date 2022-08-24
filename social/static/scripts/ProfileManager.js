@@ -70,7 +70,7 @@ function follow() {
 
             /*Notify both parties of success*/
             let type = 3;
-            Notify(from_user, to_user, type)
+            Notify(type, from_user, to_user)
 
         }
     }

@@ -50,7 +50,7 @@ function fetchResults(callback, query) {
         data: { 
             
             query: query
-        
+
         },
         success: function(data){
             let response = data;

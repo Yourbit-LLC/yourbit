@@ -1286,8 +1286,22 @@ only be used for object transforms (shaping and scaling)
 
         }
 
-    /* Mobile Profile Menu styling below*/
+/* 
+
+    ---Mobile Profile Menu styling below---
+        -Profile-menu
+        -Profile-name
+        -profile-name-label
+        -Menu profile image
+        -menu-name-label
+        -menu-username
+        -rewards-container
+        -balance-label
+        -menu-rewards-balance
+
+*/
         #profile-menu {
+            /*Contains styling for profile menu background- starts at bottom -100vw for animation purposes */
             visibility: hidden;
             position: fixed;
             height: 100vh;
@@ -1301,11 +1315,20 @@ only be used for object transforms (shaping and scaling)
             left: 0;
             color: white;
             text-align: center;
-            grid-template-rows: 95px 35px 150px 50px;
+            grid-template-rows: 95px 35px 325px 120px 40px 50px;
             row-gap: 10px;
         }
 
-        #profile-name {
+
+        #profile-name {        
+        /* 
+        
+            Not simply profile name but is the container that stores user identity info such as:
+            -Profile Pic
+            -Profile Name
+            -Profile Username
+        
+        */
             text-decoration: none;
             width: 95vw;
             height: 80px;
@@ -1327,6 +1350,9 @@ only be used for object transforms (shaping and scaling)
         }
 
         #profile-name-label {
+        /*
+            -User first and last name
+        */
             font-size: auto;
             font-weight: 700;
             grid-row:1;
@@ -1374,7 +1400,7 @@ only be used for object transforms (shaping and scaling)
 
         #menu-notification-container {
             grid-row: 3;
-            height: 150px;
+            height: 325px;
             width: 95vw;
             background-color: rgba(0, 0, 0, 0.5);
             border-radius: 10px;
@@ -1403,12 +1429,14 @@ only be used for object transforms (shaping and scaling)
 
         #menu-options{
             display: grid;
-            grid-template-columns: 50px 50px 50px 50px;
+            grid-template-columns: 60px 60px 60px;
+            grid-template-rows: 60px 60px 60px;
             width: auto;
             margin-left: auto;
             margin-right: auto;
-            height: 50px;
-            column-gap: 10px;
+            height: 60px;
+            column-gap: 5px;
+            row-gap: 5px;
             grid-row: 4;
             z-index: 2;
 
@@ -1418,7 +1446,7 @@ only be used for object transforms (shaping and scaling)
                 position: relative;
                 background-color: rgba(0, 0, 0, 0.5);
                 border-radius: 10px;
-                padding: 2px;
+                padding: 4px;
             }
 
                 .profile-menu-icon{
@@ -1429,22 +1457,32 @@ only be used for object transforms (shaping and scaling)
                 #home-link {
                     display: block;
                     grid-column: 1;
+                    grid-row: 1;
                 }
 
-                #stuff-link {
+                #messages-link {
+                    grid-row: 1;
                     grid-column: 2;
                 }
 
-                #history-link {
+                #stuff-link {
+                    grid-row: 1;
                     grid-column: 3;
                 }
 
+                #history-link {
+                    grid-row: 2;
+                    grid-column: 1;
+                }
+
                 #rewards-link {
-                    grid-column: 4;
+                    grid-row: 2;
+                    grid-column: 2;
                 }
 
                 #settings-link {
-                    grid-column: 5;
+                    grid-row: 2;
+                    grid-column: 3;
                 }
 
     .logout-button {
@@ -1457,6 +1495,7 @@ only be used for object transforms (shaping and scaling)
         border-radius: 20px;
         margin: auto;
         cursor: pointer;
+        grid-row: 5;
         
     }
 
@@ -1473,17 +1512,25 @@ only be used for object transforms (shaping and scaling)
         color: white;
         border-radius: 50%;
         border: 2px solid white;
-        font-size: 20px;
-        bottom: 10px;
-        height: 30px;
-        width: 30px;
+        font-size: 30px;
+        top: 30px;
+        height: 45px;
+        width: 45px;
         position: relative;
         margin-left: auto;
         margin-right: auto;
         text-align: center;
-        line-height: 30px;
+        line-height: 50px;
+        grid-row: 6;
     }
 
+/* _____________________________________________
+
+            End Profile Menu Styles
+
+*/
+
+    /* SPace buttons at the top of page */
 
     #global-space-button {
         grid-column: 1;
@@ -1500,6 +1547,8 @@ only be used for object transforms (shaping and scaling)
     #photo-space-button {
         grid-column: 5;
     }
+
+    /* Create bit space type buttons */
     #text-type-button {
         grid-column: 1;
     }
@@ -1512,7 +1561,7 @@ only be used for object transforms (shaping and scaling)
         grid-column: 3;
     }
 
-
+    /* Searcg and create bit icons on mobile */
     .mobile-floating-actions {
         position: fixed;
         display: block;
