@@ -107,7 +107,7 @@
             <!--Start Photo bits in bitstream-->
             {% elif bit.bit_type == "photo" %}
             {% if user_colors_on %}
-            <div class="post-wrapper" id = "photo-post-wrapper" style="background-color:{{ bit.user.profile.custom.bit_background }}">
+            <div class="post-wrapper" id = "photo-post-wrapper" style="background-color:{{bit.user.profile.custom.bit_background}}">
             {% else %}
             <div class="post-wrapper" id = "photo-post-wrapper">
             {% endif %}
