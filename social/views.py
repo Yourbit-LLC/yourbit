@@ -1008,7 +1008,9 @@ class Follow(View):
         return JsonResponse({'name':recieve_user_name})
 
 
-
+class Maintenance(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'social/maintenance.html')
 #Asynchronous Search queries on mobile for search suggestions
 
 class PreSearch(View):

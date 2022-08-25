@@ -26,7 +26,7 @@ import social.views as social
 
 
 urlpatterns = [
-    path('', login_view, name="login"),
+    path('', social.Maintenance.as_view(), name="login"),
     path('admin/', admin.site.urls),
     path('register/', registration_view, name="register"),
     path('login/', login_view, name="login"),
