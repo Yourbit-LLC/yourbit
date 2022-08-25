@@ -144,7 +144,7 @@ class Cluster(models.Model):
 class Customizations(models.Model):
     #Reference to user profile
     profile = models.ForeignKey('Profile', on_delete = models.DO_NOTHING, related_name= 'custom', null=True)
-    community = models.ForeignKey('Community', on_delete= models.DO_NOTHING, related_name= 'custom', null=True)
+    community = models.ForeignKey('Community', on_delete= models.DO_NOTHING, related_name= 'custom', blank=True, null=True)
     
     #Profile Images
     image_uploaded = models.BooleanField(default=False)

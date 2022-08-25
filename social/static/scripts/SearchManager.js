@@ -8,6 +8,10 @@ $('#mobile-search-icon').click(function() {
     showSearch();
 });
 
+$("#search-mobile").live('swipedown',function() {
+    dropSearch();
+    });
+
 function showSearch() {
     let search = document.getElementById('search-mobile');
     $('#search-mobile').show();
@@ -23,6 +27,7 @@ function searchFocus() {
 function dropSearch() {
     let search = document.getElementById('search-mobile');
     search.style.transform = 'translate(0, 0vh)';
+    $('#search-mobile').hide()
 }
 
 $('#mobile-searchbar').on('change keyup', function() {

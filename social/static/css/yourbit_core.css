@@ -1725,11 +1725,33 @@ only be used for object transforms (shaping and scaling)
         color: white;
     }
 
+    .mobile-search-form {
+        display:grid;
+        position: absolute;
+        bottom: 0vh;
+        width: 100vw;
+        grid-template-columns: 85vw 15vw;
+
+    }
+
     #mobile-searchbar {
         width: 80vw !important;
-        position: absolute;
+        position: relative;
         left: 5px;
-        bottom: 10px;
+        bottom: 5px;
+        grid-column: 1;
+
+    }
+
+    #mobile-submit-search-button {
+        display: block;
+        position: relative;
+        grid-column: 2;
+        bottom: 6px;
+        margin-right: 3px;
+        border-radius: 10px;
+        height: 33px;
+        border-width: 0px;
     }
 
 

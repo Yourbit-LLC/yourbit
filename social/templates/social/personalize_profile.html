@@ -7,7 +7,7 @@
     <div id="split-content-container">
         <h1>Personalization</h1>
         <div id="container-column-1">
-            <div class="dropdown-large" id="profile-images" style="background-color:{{user.profile.bit_background}}">
+            <div class="dropdown-large" id="profile-images" style="background-color:{{bit_background}}">
                 <h3 class="option-header" id="image-option-header">Profile Images</h3>
                 <div class="sub-setting" id="profile-img-sub" style="
                 display:none;
@@ -55,7 +55,7 @@
                 </div>
                 <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="m20 25.625-10-10 1.958-1.958L20 21.708l8.042-8.041 1.958 2Z"/></svg>
             </div>
-            <div class="dropdown-large" id="color" style="background-color:{{user.profile.bit_background}}">
+            <div class="dropdown-large" id="color" style="background-color:{{bit_background}}">
                 <h3 class="option-header" id="color-option-header" style="width: 100%;">Color</h3>
                 <svg class="expand-icon" id="font-expand-icon" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="m20 25.625-10-10 1.958-1.958L20 21.708l8.042-8.041 1.958 2Z"/></svg>
                     <form id="color-sub" class="sub-setting" 
@@ -75,16 +75,16 @@
                         </div>
 
                         <label class="color-select-label" for="primary-color-select">Primary Color</label>
-                        <input class="color-selector" id="primary-color-select" type="color" value="{{user.profile.bit_background}}">
+                        <input class="color-selector" id="primary-color-select" type="color" value="{{bit_background}}">
                         <br>
                         <label class="color-select-label" for="accent-color-select">Accent Color</label>
-                        <input class="color-selector" id="accent-color-select" type="color" value="{{user.profile.accent_color}}">
+                        <input class="color-selector" id="accent-color-select" type="color" value="{{accent_color}}">
                         <br>
                         <label class="color-select-label" for="tfont-color-select">Title Font Color</label>
                         <input class="color-selector" id="tfont-color-select" type="color">
                         <br>
                         <label class="color-select-label" for="pfont-color-select" >Paragraph Font Color</label>
-                        <input class="color-selector" id="pfont-color-select" type="color" value="{{user.profile.text_color}}">
+                        <input class="color-selector" id="pfont-color-select" type="color" value="{{text_color}}">
                         <br>
                     <button type="submit" class="personalzation-apply-button" name="colors">Apply</button>
                     </form>
@@ -101,7 +101,7 @@
                             -Background Opacity
                     -->
             </div>
-            <div class="dropdown-large" id="fonts" style="background-color:{{user.profile.bit_background}}">
+            <div class="dropdown-large" id="fonts" style="background-color:{{bit_background}}">
                 <h3 class="option-header">Fonts</h3>
                 <svg class="expand-icon" id="font-expand-icon" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="m20 25.625-10-10 1.958-1.958L20 21.708l8.042-8.041 1.958 2Z"/></svg>
                 <div id="sub-setting">
@@ -122,7 +122,7 @@
                 -->
                 </div>
             </div>
-            <div class="dropdown-large" id="bit-layouts" style="background-color:{{user.profile.bit_background}}">
+            <div class="dropdown-large" id="bit-layouts" style="background-color:{{bit_background}}">
                 <h3 class="option-header">Bit Layouts</h3>
                 <svg class="expand-icon" id="font-expand-icon" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="m20 25.625-10-10 1.958-1.958L20 21.708l8.042-8.041 1.958 2Z"/></svg>
                 <div id="sub-setting">
@@ -142,25 +142,25 @@
             
             <!--Profile page preview container for desktop-->
             <div id="preview">
-                <img id="preview-background-img" style="-webkit-filter: brightness(80%) blur(30px);" {% if user.profile.background_image %} src = "{{ user.profile.background_image.url }}" {% endif %}>
+                <img id="preview-background-img" style="-webkit-filter: brightness(80%) blur(30px);" {% if user.profile.custom.background_image %} src = "{{ user.profile.custom.background_image.url }}" {% endif %}>
                 <div id="mini-head" style='backdrop-filter: brightness(200%);'>
 
                 </div>
                 <div id="mini-content">
                     <div id="mini-profile-header">
-                       <img id="mini-user-image" style="border:2px solid; border-color: {{user.profile.accent_color}};" src="{{ user_image }}"/>
+                       <img id="mini-user-image" style="border:2px solid; border-color: {{accent_color}};" src="{{ user_image }}"/>
                         <p id="mini-user-name">
                             Austin Chaney
                         </p>
                     </div>
                     <hr width="100%" style="position: relative;">
-                    <div id="mini-bit1" style="background-color: {{ user.profile.bit_background }};" class="mini-bit">
+                    <div id="mini-bit1" style="background-color: {{ bit_background }};" class="mini-bit">
                         <div id="mini-user-info"></div>
                         <div id="mini-title">Title Preview</div>
-                        <div id="mini-paragraph" style="color:{{user.profile.text_color}}">This is a paragraph preview, it is a preview of paragraph text in paragraphs.</div>
+                        <div id="mini-paragraph" style="color:{{text_color}}">This is a paragraph preview, it is a preview of paragraph text in paragraphs.</div>
                         
                         <div class="mini-feedback">
-                            <div id="like-circle" style="background-color:{{user.profile.accent_color}}"></div>
+                            <div id="like-circle" style="background-color:{{accent_color}}"></div>
                         </div>
                     </div>
                     <br>  

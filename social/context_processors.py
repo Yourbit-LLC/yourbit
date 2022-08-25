@@ -12,8 +12,6 @@ def FeedUI(request):
     if request.user.is_authenticated:
         write_comment = CommentForm()
         profile = Profile.objects.get(user=request.user)
-        customs = Customizations.objects.get(profile = profile.id)
-        wallpaper_on = customs.wallpaper_on
 
         notifications = Notification.objects.filter(to_user = profile)
         notification_length = len(notifications)
@@ -28,8 +26,6 @@ def FeedUI(request):
         chat_bit_pool = Bit.objects.filter(user__in = friend_pool, bit_type = 'chat').order_by('-created_at')
         photo_bit_pool = Bit.objects.filter(user__in = friend_pool, bit_type='photo').order_by('-created_at')
         video_bit_pool = Bit.objects.filter(user__in = friend_pool, bit_type = 'video').order_by('-created_at')
-        user_image = profile.image.url
-        accent_color = profile.accent_color
         return {
             'write_comment':write_comment,
             'notification_length':notification_length ,
@@ -42,11 +38,46 @@ def FeedUI(request):
             'friends':friends,
             'friend_pool':friend_pool,
             'notifications':notifications,
-            'wallpaper_on': wallpaper_on,
-            'user_image': user_image,
-            'accent_color':accent_color,
-
         }
     else:
         return {}
 
+def Customization(request):
+    if request.user.is_authenticated:
+        profile = Profile.objects.get(user=request.user)
+        custom = Customizations.objects.get(profile = profile.id)
+        user_image = custom.image
+
+        #UI Settings
+        accent_color = custom.accent_color
+        icon_color = custom.icon_color
+        feedback_icon_color = custom.feedback_icon_color
+        background_color = custom.background_color
+
+        #Community customization
+        bit_background = custom.bit_background
+        title_color = custom.title_color
+        text_color = custom.text_color
+
+        #Quick Appearance
+        wallpaper_on = custom.wallpaper_on
+        user_colors_on = custom.user_colors_on
+        default_theme_on = custom.default_theme_on
+        return {
+            'wallpaper_on': wallpaper_on,
+            'user_image': user_image,
+            'accent_color':accent_color,
+            'icon_color':icon_color,
+            'feed_back_icon_color':feedback_icon_color,
+            'background_color':background_color,
+            'bit_background' : bit_background,
+            'tite_color':title_color,
+            'text_color':text_color,
+            'user_colors_on':user_colors_on,
+            'default_theme_on':default_theme_on,
+
+        }
+
+
+    else:
+        return {}
