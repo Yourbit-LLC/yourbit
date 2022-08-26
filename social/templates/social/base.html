@@ -103,15 +103,31 @@
                                 let iframe = document.getElementById("feed-content-container");
                                 if ($(this).attr('id') === 'global-space-button') {
                                     iframe.src = "{% url 'feed' 'global' '0' %}";
+                                    document.getElementById('global-space-button').className = "space-button-active";
+                                    document.getElementById('text-space-button').className = "space-button";
+                                    document.getElementById('video-space-button').className = "space-button";
+                                    document.getElementById('photo-space-button').className = "space-button";
                                 }
                                 if ($(this).attr('id') === 'text-space-button') {
                                     iframe.src = "{% url 'feed' 'chatspace' '0' %}";
+                                    document.getElementById('text-space-button').className = "space-button-active";
+                                    document.getElementById('photo-space-button').className = "space-button";
+                                    document.getElementById('video-space-button').className = "space-button";
+                                    document.getElementById('global-space-button').className = "space-button";
                                 }
                                 if ($(this).attr('id') === 'photo-space-button') {
                                     iframe.src = "{% url 'feed' 'photospace' '0' %}";
+                                    document.getElementById('photo-space-button').className = "space-button-active";
+                                    document.getElementById('text-space-button').className = "space-button";
+                                    document.getElementById('video-space-button').className = "space-button";
+                                    document.getElementById('global-space-button').className = "space-button";
                                 }
                                 if ($(this).attr('id') === 'video-space-button') {
                                     iframe.src = "{% url 'feed' 'videospace' '0' %}";
+                                    document.getElementById('video-space-button').className = "space-button-active";
+                                    document.getElementById('photo-space-button').className = "space-button";
+                                    document.getElementById('global-space-button').className = "space-button";
+                                    document.getElementById('text-space-button').className = "space-button";
                                 }
                             });
                         </script>
