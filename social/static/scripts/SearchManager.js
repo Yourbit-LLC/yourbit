@@ -8,9 +8,6 @@ $('#mobile-search-icon').click(function() {
     showSearch();
 });
 
-$("#search-mobile").live('swipedown',function() {
-    dropSearch();
-    });
 
 function showSearch() {
     let search = document.getElementById('search-mobile');

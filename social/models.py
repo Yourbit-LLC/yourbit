@@ -95,6 +95,7 @@ class Bit(models.Model):
     is_tips = models.BooleanField(default=False)
     comments = models.ManyToManyField('Comment', related_name="bit_comments", blank=True)
     comment_count = models.IntegerField(default=0)
+    custom = models.ManyToManyField("Customizations", related_name="custom", blank=True)
 
     def __str__(self):
         return (

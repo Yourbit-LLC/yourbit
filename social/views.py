@@ -917,6 +917,8 @@ class Publish(View):
     def post(self, request, *args, **kwargs):
         bit_form = BitForm()
         new_bit = bit_form.save(commit=False)
+        user_profile = Profile.objects.get(user = request.user)
+        customizations = Customizations(profile = user_profile)
         title = request.POST.get('title')
         body = request.POST.get('body')
         type = request.POST.get('type')
@@ -940,6 +942,7 @@ class Publish(View):
         
         new_bit.user = request.user
         new_bit.bit_type = type
+        new_bit.custom = customizations
         new_bit.save()
 
         
