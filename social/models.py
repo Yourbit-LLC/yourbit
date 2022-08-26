@@ -34,8 +34,6 @@ class Profile(models.Model):
     
     #Privacy
     is_public = models.BooleanField(default=False)
-    liked_bits = models.ManyToManyField('Bit', related_name="liked_bits", blank=True)
-    disliked_bits = models.ManyToManyField('Bit', related_name="disliked_bits", blank=True)
     conversations = models.ManyToManyField('Conversation', blank=True, related_name="conversations")
     clusters = models.ManyToManyField('Cluster', blank=True, related_name="clusters")
 
@@ -65,8 +63,12 @@ class Profile(models.Model):
     share_points = models.IntegerField(default=0)
     point_balance = models.IntegerField(default=0)
     level = models.IntegerField(default=1)
-    interacted_with = models.ManyToManyField('bit', related_name='interacted_with', blank=True )
-    commented_on = models.ManyToManyField('bit', related_name='commented_on', blank=True)
+
+    #Interaction History
+    liked_bits = models.ManyToManyField('Bit', related_name="liked_bits", blank=True)
+    disliked_bits = models.ManyToManyField('Bit', related_name="disliked_bits", blank=True)
+    interacted_with = models.ManyToManyField('Bit', related_name='interacted_with', blank=True )
+    commented_on = models.ManyToManyField('Bit', related_name='commented_on', blank=True)
     alerted_notifications = models.BooleanField(default=False)
 
     def __str__(self):
