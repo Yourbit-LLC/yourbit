@@ -1769,6 +1769,10 @@ only be used for object transforms (shaping and scaling)
 
     }
 
+    .helper {
+        display: none;
+    }
+
     /*Linear Content Container*/
 
     /*Grid Content Container*/
