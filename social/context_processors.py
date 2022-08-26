@@ -44,8 +44,7 @@ def FeedUI(request):
 
 def Customization(request):
     if request.user.is_authenticated:
-        profile = Profile.objects.get(user=request.user)
-        custom = Customizations.objects.get(profile = profile.id)
+        custom = Profile.objects.get(user=request.user)
         user_image = custom.image
 
         #UI Settings

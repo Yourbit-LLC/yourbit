@@ -32,22 +32,35 @@ class Profile(models.Model):
         blank = True
     )
     
-    image_uploaded = models.BooleanField(default=False)
-    image = models.ImageField(upload_to='media/', default="media/blenderlogo.png")
-    background_image = models.ImageField(upload_to='media/', blank=True, default="media/aqua_default_theme.png")
+    #Privacy
     is_public = models.BooleanField(default=False)
     liked_bits = models.ManyToManyField('Bit', related_name="liked_bits", blank=True)
     disliked_bits = models.ManyToManyField('Bit', related_name="disliked_bits", blank=True)
     conversations = models.ManyToManyField('Conversation', blank=True, related_name="conversations")
     clusters = models.ManyToManyField('Cluster', blank=True, related_name="clusters")
-    bit_background = models.CharField(max_length=50, default = "#808080")
-    background_color = models.CharField(max_length=50, default="#000000")
-    accent_color = models.CharField(max_length=50, default="#ffffff")
+
+
+    #Profile Images
+    image_uploaded = models.BooleanField(default=False)
+    image = models.ImageField(upload_to='media/', default="media/blenderlogo.png")
+    background_image = models.ImageField(upload_to='media/', blank=True, default="media/aqua_default_theme.png")
+
+    #bits
+    bit_background = models.CharField(max_length=50, default = "#000000")
     title_color = models.CharField(max_length=50, default="#ffffff")
     text_color = models.CharField(max_length=50, default="#ffffff")
-    user_bio = models.CharField(max_length = 500, blank=True)
     feedback_icon_color = models.CharField(max_length=50, default="#ffffff")
+
+    #UI
+    background_color = models.CharField(max_length=50, default="#000000")
+    accent_color = models.CharField(max_length=50, default="#ffffff")
+    user_bio = models.CharField(max_length = 500, blank=True)
     icon_color = models.CharField(max_length=50, default="#ffffff")
+
+    #Quick Appearance Settings
+    user_colors_on = models.BooleanField(default=True)
+    wallpaper_on = models.BooleanField(default=True)
+    default_theme_on = models.BooleanField(default=False)
     rewards_earned = models.IntegerField(default=0)
     share_points = models.IntegerField(default=0)
     point_balance = models.IntegerField(default=0)
@@ -95,7 +108,7 @@ class Bit(models.Model):
     is_tips = models.BooleanField(default=False)
     comments = models.ManyToManyField('Comment', related_name="bit_comments", blank=True)
     comment_count = models.IntegerField(default=0)
-    custom = models.ManyToManyField("Customizations", related_name="custom", blank=True)
+    #customization = models.ManyToManyField("Customizations", related_name="custom", blank=True)
 
     def __str__(self):
         return (
@@ -141,30 +154,3 @@ class Cluster(models.Model):
     name = models.CharField(max_length=100)
     profile = models.ForeignKey('Profile', on_delete= models.CASCADE, related_name = 'cluster', null=True)
     bits = models.ManyToManyField('Bit', related_name = 'clustered_bit', blank=True)
-
-class Customizations(models.Model):
-    #Reference to user profile
-    profile = models.ForeignKey('Profile', on_delete = models.DO_NOTHING, related_name= 'custom', null=True)
-    community = models.ForeignKey('Community', on_delete= models.DO_NOTHING, related_name= 'custom', blank=True, null=True)
-    
-    #Profile Images
-    image_uploaded = models.BooleanField(default=False)
-    image = models.ImageField(upload_to='media/', default="media/blenderlogo.png")
-    background_image = models.ImageField(upload_to='media/', blank=True, default="media/aqua_default_theme.png")
-
-    #bits
-    bit_background = models.CharField(max_length=50, default = "#000000")
-    title_color = models.CharField(max_length=50, default="#ffffff")
-    text_color = models.CharField(max_length=50, default="#ffffff")
-    feedback_icon_color = models.CharField(max_length=50, default="#ffffff")
-
-    #UI
-    background_color = models.CharField(max_length=50, default="#000000")
-    accent_color = models.CharField(max_length=50, default="#ffffff")
-    user_bio = models.CharField(max_length = 500, blank=True)
-    icon_color = models.CharField(max_length=50, default="#ffffff")
-
-    #Quick Appearance Settings
-    user_colors_on = models.BooleanField(default=True)
-    wallpaper_on = models.BooleanField(default=True)
-    default_theme_on = models.BooleanField(default=False)

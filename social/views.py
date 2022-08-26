@@ -571,10 +571,10 @@ class Feed(View):
     def get(self, request, type, id, *args, **kwargs):
         #recieve type string from url and check what type of feed the user is looking for
         profile = Profile.objects.get(user=request.user)
-        customs = Customizations.objects.get(profile=profile)
-        user_colors_on = customs.user_colors_on
-        wallpaper_on = customs.wallpaper_on
-        default_theme_on = customs.default_theme_on
+        custom = Profile.objects.get(user=request.user)
+        user_colors_on = custom.user_colors_on
+        wallpaper_on = custom.wallpaper_on
+        default_theme_on = custom.default_theme_on
         friends = profile.connections.all()        
         following = profile.follows.all()
         friend_pool = []
@@ -696,59 +696,58 @@ class Feed(View):
 
 class QuickVisibility(View):
     def get(self, request, *args, **kwargs):
-        profile = Profile.objects.get(user=request.user)
-        customizations = Customizations.objects.get(profile = profile)
-        bit_colors_on = customizations.user_colors_on
-        wallpaper_on = customizations.wallpaper_on
-        default_theme_on = customizations.default_theme_on
+        custom = Profile.objects.get(user=request.user)
+        
+        bit_colors_on = custom.user_colors_on
+        wallpaper_on = custom.wallpaper_on
+        default_theme_on = custom.default_theme_on
 
         return JsonResponse({'bit_colors_on':bit_colors_on, 'wallpaper_on':wallpaper_on, 'default_theme_on': default_theme_on})
 
     def post(self, request, *args, **kwargs):
-        profile = Profile.objects.get(user=request.user)
-        customs = Customizations.objects.get(profile = profile)
+        custom = Profile.objects.get(user=request.user)
         wallpaper = 'none'
         action = request.POST['button_name']
         print('action' + action)
 
         if action == 'bitColor':
-            if customs.user_colors_on:
-                customs.user_colors_on = False
-                customs.save()
+            if custom.user_colors_on:
+                custom.user_colors_on = False
+                custom.save()
                 toggle = 'off'
 
             else:
-                customs.user_colors_on = True
-                customs.save()
+                custom.user_colors_on = True
+                custom.save()
                 toggle = 'on'
 
         if action == 'wallpaper':
-            if customs.wallpaper_on:
-                customs.wallpaper_on = False
-                customs.save()
+            if custom.wallpaper_on:
+                custom.wallpaper_on = False
+                custom.save()
                 toggle = 'off'
 
             else:
-                customs.wallpaper_on = True
-                customs.save()
+                custom.wallpaper_on = True
+                custom.save()
                 wallpaper = profile.background_image.url
                 toggle = 'on'
 
 
         if action == 'defaultTheme':
-            if customs.default_theme_on:
-                customs.default_theme_on = False
-                customs.save()
+            if custom.default_theme_on:
+                custom.default_theme_on = False
+                custom.save()
                 toggle = 'off'
 
             else:
-                customs.default_theme_on = True
-                customs.save()
+                custom.default_theme_on = True
+                custom.save()
                 toggle = 'on'
         
-        bit_colors_on = customs.user_colors_on
-        wallpaper_on = customs.wallpaper_on
-        default_theme_on = customs.default_theme_on
+        bit_colors_on = custom.user_colors_on
+        wallpaper_on = custom.wallpaper_on
+        default_theme_on = custom.default_theme_on
         return JsonResponse({'bit_colors_on':bit_colors_on, 'wallpaper_on':wallpaper_on, 'default_theme_on': default_theme_on, 'toggle': toggle, 'wallpaper': wallpaper})
 
 
@@ -918,7 +917,6 @@ class Publish(View):
         bit_form = BitForm()
         new_bit = bit_form.save(commit=False)
         user_profile = Profile.objects.get(user = request.user)
-        customizations = Customizations(profile = user_profile)
         title = request.POST.get('title')
         body = request.POST.get('body')
         type = request.POST.get('type')
@@ -942,7 +940,6 @@ class Publish(View):
         
         new_bit.user = request.user
         new_bit.bit_type = type
-        new_bit.custom = customizations
         new_bit.save()
 
         
