@@ -1,0 +1,30 @@
+{% extends 'social/base.html' %}
+{% load static %}
+{% block content %}
+    <h2>Feed/Moderation Settings</h2>
+    <p>Sorting</p>
+    <datalist id="sort-list">
+        <option value = 'dynamic chronological'>
+        <option value = 'static chronological'>
+    </datlist>
+
+    <p>Feed Scope</p>
+    <label for="feed-scope" class="yb-switch-label-left" id="yb-switch-label-friends-only">Friends Only</label>
+    <label class="switch" id="feed-scope">
+        <input type="checkbox" id="yb-feed-scope-switch">
+        <span class="slider round"></span>
+    </label>
+    <label for="feed-scope" class="yb-switch-label-right" id="yb-switch-label-public">Public</label>
+
+    <p>Filters</p>
+    <p>Explicit Language</p>
+    <label for="explicit-language" class="yb-switch-label-left" id="yb-switch-label-language-filter-off">Off</label>
+    <label class="switch" id="feed-scope">
+        <input type="checkbox" id="yb-feed-scope-switch">
+        <span class="slider round"></span>
+    </label>
+    <label for="feed-scope" class="yb-switch-label-right" id="yb-switch-label-public">Public</label>
+
+    <p>Custom Filtration Keys</p>
+        <input type='textarea' class='yb-filtration-keys-field'>
+{% endblock %}
