@@ -4,33 +4,298 @@
         <title>Create an Account | Yourbit</title>
         <link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}"/>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
     </head>
-    <body>
-        <form method='POST' class='form-group' id="form">
-            <div id="logo-container"><img src="{% static 'images/yourbit-logo-modern.png' %}" width="40%" id="logo"></div>
-            <h1>Yourbit</h1>
+    <body >
+        <form method='POST' class='form-group' id="form" >
+            <div id="logo-container"><img src="{% static 'images/logo-flat.png' %}" width="30%" id="logo"></div>
             <h3 id="form-title">Create an Account</h3>
-            
             <!--Box around form-->
-            <div id="register-container" class="register-container">
-                {% csrf_token %}
-                {% for field in registration_form %}
-                    <!--Label for each field-->
-                    {{field}}
-                    <br><br>
-                {% endfor %}
+            {% csrf_token %}
+            <div id="register-container"  class="register-container">
+                <div id='yb-dob-field-container' style="position: absolute; left: 100vw; width: 95vw;">
+                    <p id='dob-label'>
+                        Before we do anything drastic, like launch you into Yourbit, we need to verify that you are old enough.
+                        <b>You must be 13 or older</b><br><br> Enter your birthdate below:
+                    </p>
+                    
+                    {{registration_form.dob}}
+                    <div id="yb-validation-response0"></div>
+                    <br>
+                    <br>
+                    <!--Submit-->
+                    <button class='yb-form-next' type="button" data-stage='id_dob'>Next</button>
+                </div>
+                <div id='yb-email-field-container' style="position: absolute; left: 100vw; display: none; width: 95vw;">
+                    <p id='email-label'>Now for the email address</p>
+                    {{registration_form.email}}
+                    <div id="yb-validation-response1"></div>
+                    <button class='yb-form-next' type="button" data-stage='id_email'>Next</button>
+
+
+                </div>
+                <div id='yb-fname-field-container' style="position: absolute; left: 100vw; top: 15vh; display: none; width: 95vw;">
+                    <p id='first_name-label'>What's your first name?</p>
+                    <br>
+                    {{registration_form.first_name}}
+                    <div id="yb-validation-response2"></div>
+                    <br>
+                    <br>
+                    <!--submit-->
+                    <button class='yb-form-next' type="button" data-stage='id_first_name'>Next</button>
+                </div>
+                <div id='yb-lname-field-container' style="position: absolute; left: 100vw; top: 15vh; display: none; width: 95vw;">
+                    <p id='last_name-label'></p>
+                    {{registration_form.last_name}}
+                    <div id="yb-validation-response3"></div>
+                    <button class='yb-form-next' type="button" data-stage='id_password2'>Next</button>
+                </div>
+                <div id='yb-username-field-container' style="position: absolute; left: 100vw; top: 15vh; display: none; width: 95vw;">
+                    <p id='username-label'>Now for the username</p>
+                    {{registration_form.username}}
+                    <div id="yb-validation-response4"></div>
+                    <p id='username-explanation'>
+                        Usernames have a lot of functions! They can be used in place
+                        of your name on your public posts or your profile. They can also act
+                        as an alternate ID to refer to yourself as and find you on Yourbit. If
+                        you have a public profile, it may be possible that you'd use a username
+                        versus your actual name.
+                    </p>
+                    <!--submit-->
+                    <button class='yb-form-next' type="button" data-stage='id_username'>Next</button>
+                </div>
+                <div id='yb-password-field-container' style="position: absolute; left: 100vw; top: 15vh; display: none; width: 95vw;">
+                    <p id='password1-label'>Now for the most important part, this'll grant you access to the station -- The Password:</p>
+                    {{registration_form.password1}}
+                    <div id="yb-validation-response5"></div>
+                    <br>
+                    <br>
+                    <button class='yb-form-next' type="button" id='password1-next'data-stage='id_password1'>Next</button>
+                    <div id='yb-password2-field-container' style="display:none; width=100%;">
+                        <p id='password2-label'>Let's just make sure its right, would suck to get locked out on your first day in Yourbit.</p>
+                        {{registration_form.password2}}
+                        <div id="yb-validation-response6"></div>
+                        <br>
+                        <br>
+                        <button class='yb-form-next' type="button" data-stage='id_password2'>Next</button>
+                    </div>
+                </div>
+                <div id='yb-terms-container' style="position: absolute; left: 100vw; top: 15vh; display: none; width: 95vw;">
+                    <p id='terms-label'>
+                        Now, we need you to accept our legal jargon. Feel free to read it, we did work hard to establish
+                        a fair and clear, no bs user policy.
+                        
+                        Hit 'agree' at the bottom of this page if you agree to our conditions and you'll be ready to launch.
+                    </p>
+                    <div id='terms-doc'>
+                        <p id='terms-text'>
+
+                        </p>
+                    </div>
+                    <button id='yb-decline-button' class='auth-button'>Decline</p>
+                    <button type = 'submit' id='yb-agree-button' class='auth-button'>Accept</p>
+                </div>
+                <br>
             </div>
             <br>
-            <a class = "auth-button" id="back-login" href="{% url 'login' %}">Login</a>
-            <button type='submit' id='submit' class='auth-button'>Sign Up</button>
-            <br>
-            <div id="build-info">
-            <p>
-            Designed by Austin Chaney<br>
-            </p>
-        </div>
+            <div id="build-info" style='display: none;'>
+                <p>
+                    Designed by Austin Chaney
+                    <br>
+                </p>
+            </div>
         </form>
-        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script>
+            var stage_number = 0;
+            var field_list = [
+                '#yb-dob-field-container', 
+                '#yb-email-field-container',
+                '#yb-fname-field-container', 
+                '#yb-lname-field-container', 
+                '#yb-username-field-container', 
+                '#yb-password-field-container',
+                '#yb-password2-field-container',
+                '#yb-terms-container'
+            ];
+
+            $(document).ready(function() {
+                $('#yb-dob-field-container').show();
+                $('#yb-dob-field-container').animate({'left': '0vw'});
+            });
+
+            $('.yb-form-next').click(function() {
+                let validation;
+                validation = validateField();
+                console.log(validation);
+
+                if (validation === 'pass'){       
+                    if (stage_number === 5){
+                        
+                        $('#password1-next').hide();
+                        $('#yb-password2-field-container').fadeIn('fast');
+                        stage_number += 1;
+                    } else {
+                        let current_field = field_list[stage_number];
+                        let next_field_pos = stage_number + 1;
+                        let next_field = field_list[next_field_pos];
+                        hideLastField(showNextField, current_field, next_field);
+                        stage_number += 1;
+                    }
+                } else {
+
+                    $(`#yb-validation-response${stage_number}`).html(`<p style="color: red;">${validation}</p>`);
+                }
+
+                
+
+
+
+            });
+
+            function validateField() {
+                console.log(stage_number)
+                if (stage_number === 0) {
+                    let birthday = $('#id_dob').val();
+                    console.log(birthday)
+                    let current_date = new Date();
+                    let current_day = current_date.getDate();
+                    let current_month = current_date.getMonth();
+                    let current_year = current_date.getFullYear();
+
+                    let valid_year = parseInt(current_year) - 13;
+                    console.log(valid_year)
+                    
+                    let birth_year = parseInt(birthday.slice(0, 4));
+                    console.log(birth_year)
+                    let birth_month = parseInt(birthday.slice(5, 7));
+                    console.log(birth_month)
+                    let birth_day = parseInt(birthday.slice(8, 10));
+                    console.log(birth_day)
+
+                    if (birth_year <= valid_year) {
+                        if (birth_year == valid_year){
+                            if (birth_month <= parseInt(current_month)) {
+                                if (birth_day <= parseInt(current_day)) {
+                                    return 'pass'
+                                } else {
+                                    return "You must be 13 or older to join Yourbit"
+                                }
+                            } else {
+                                return "You must be 13 or older to join Yourbit"
+                            }
+
+                        } else {
+                            return 'pass'
+                        }
+                    } else {
+                            return "You must be 13 or older to join Yourbit"
+                    }
+
+
+                }
+
+                if (stage_number === 1) {
+                    let entry = $('#id_email').val();
+                    if (entry != ''){
+                        if (entry.length < 150) {
+                            return 'pass'
+                        } else {
+                            return 'Please enter a valid email address'
+                        }
+                    } else {
+                        return 'Huh looks empty... Did you put anything in here yet?'
+                    }
+                }
+
+                if (stage_number === 2) {
+                    let entry = $('#id_first_name').val();
+                    if (entry != ''){
+                        if (entry.length < 150) {
+                            return 'pass'
+                        } else {
+                            return 'Oh man, thats way too long. Maybe an initial?'
+                        }
+                    } else {
+                        return "Oops! Didn't forget your name did you?"
+                    }
+                }
+
+                if (stage_number === 3) {
+                    let entry = $('#id_last_name').val();
+                    if (entry != ''){
+                        if (entry.length < 150) {
+                            return 'pass'
+                        } else {
+                            return "Wow that's a long name, I love it, but it's a bit too long for this field."
+                        }
+                    } else {
+                        return "Oops! Didn't forget your name did you?"
+                    }
+                }
+
+                if (stage_number === 4) {
+                    let entry = $('#id_username').val();
+                    if (entry != ''){
+                        if (entry.length < 150) {
+                            return 'pass'
+                        } else {
+                            return "I love it, its creative, its got potential... but its also got too many letters. Let's try another"
+                        }
+                    } else {
+                        return "Please enter a username."
+                    }
+                }
+                if (stage_number === 5) {
+                    let entry = $('#id_password1').val();
+                    if (entry != ''){
+                        if (entry.length < 150) {
+                            return 'pass'
+                        } else {
+                            return "I love it, its creative, its got potential... but its also got too many letters. Let's try another"
+                        }
+                    } else {
+                        return "Enter a password for accessing your account"
+                    }
+                }
+                if (stage_number === 6) {
+                    let entry1 = $('#id_password1').val();
+                    let entry2 = $('#id_password2').val();
+                    if (entry1 === entry2){
+                        if (entry != ''){
+                            if (entry.length < 150) {
+                                return 'pass'
+                            } else {
+                                return "I love it, its creative, its got potential... but its also got too many letters. Let's try another"
+                            }
+                        } else {
+                            return "Please enter a Password."
+                        }
+                    } else {
+                        return "Didn't forget your password already did you? Looks like theres a mismatch."
+                    }
+                }
+
+
+            }
+
+            function hideLastField(showNext, last_field, next_field) {
+                $(last_field).animate({'left' : '-100vw'});
+                showNext(last_field, next_field);
+            }
+
+            function showNextField(last_field, next_field) {
+                $(last_field).hide();
+                $(next_field).show();
+                if (next_field === '#yb-lname-field-container') {
+                    let first_name = $('#id_first_name').val();
+                    $('#last_name-label').html(`Nice to meet you, ${first_name}! <br><br> What's your last name?`)
+                }
+                $(next_field).animate({'left': '0vw'});
+
+            }
+
+            
+        </script>
     </body>
 </html>

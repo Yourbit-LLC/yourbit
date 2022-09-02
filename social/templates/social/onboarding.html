@@ -1,26 +1,48 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="/static/yourbitstyles.css"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/onboarding.css' %}"/>
         <title>Welcome, {{ user.first_name }}</title>
     </head>
     <body>
-        <video autoplay muted id="background-video">
-            <source src="/static/videos/AdobeStock_183849828_Video_HD_Preview.mov" type="video/mp4">
-        </video>
-        <div id="intro-container">
-            <h1 id = "onboarding-header" class="onboardingText">Welcome, {{ user.first_name }}, to Yourbit</h1>
-            <br>
-            <p id = "onboarding-intro" class="onboardingText">Now that you're in Yourbit, here's a few tips to help you get around.</p>
+        <div id='onboard-welcome'>
+            <p>
+                You are almost to Yourbit. On our way, lets set up
+                your preferences. Yourbit has a ton of options for personalizing
+                your experience
+            </p>
         </div>
-        <div id="info-panels-container">
-            <div class="infoPanel" id="info-panel-1">
-                <h3>We have Options</h3>
-                <p>Opt out of sharing data for advertisement purposes and remove ads completely with Yourbit Void. Just $2.99 a month.</p>
-            </div>
-            <div class="infoPanel" id="info=panel-2">
-                
-            </div>
+        <div id="profile-setup">
+            <h2>Profile Setup</h2>
+            <p>Let's get to know you a little more</p>
+            <label for='gender-field'>Gender</label>
+            <input type='text' id='gender-field'>
+            <label for='bio-field'>Bio</label>
+            <textarea  type="text" id="bio-field" placeholder="Bio" style="color:white; font-size: 14px;"></textarea>
+            <label for='public-check'>Make your profile public?</label>
+            <input type='checkbox' id='public-check'>
+            <label for='visibility-check'>Make real name visible in search?</label>
+            <input type='checkbox' id='visibility-check'>
+            <label for='name-check'>Who can see your real name?</label>
+            <input type="text" name="name-check" list="name-visible-options">
+            <datalist id="name-visible-options">
+                <option value="Everyone">
+                <option value="Friends Only">
+                <option value="Nobody">
+            </datalist>
+            <label for='name-check'>Who can message you?</label>
+            <input type="text" name="message-check" list="message-options">
+            <datalist id="message-options">
+                <option value="Everyone">
+                <option value="Friends and Following">
+                <option value="Friends Only">
+                <option value="Messages Off">
+            </datalist>
+            <label for='toggle-followers'>Disable Followers</label>
+            <input type='checkbox' id='toggle-followers'>
+            
+        </div>
+        <div id='profile-personalization'>
         </div>
     </body>
     <script>

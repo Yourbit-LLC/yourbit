@@ -56,7 +56,7 @@
                 <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="m20 25.625-10-10 1.958-1.958L20 21.708l8.042-8.041 1.958 2Z"/></svg>
             </div>
             <div class="dropdown-large" id="color" style="background-color:{{bit_background}}">
-                <h3 class="option-header" id="color-option-header" style="width: 100%;">Color</h3>
+                <h3 class="option-header" id="color-option-header" style="width: 100%;">Profile Colors</h3>
                 <svg class="expand-icon" id="font-expand-icon" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="m20 25.625-10-10 1.958-1.958L20 21.708l8.042-8.041 1.958 2Z"/></svg>
                     <form id="color-sub" class="sub-setting" 
                     style="
@@ -74,19 +74,18 @@
                             {% endfor %}
                         </div>
 
-                        <label class="color-select-label" for="primary-color-select">Primary Color</label>
+                        <label class="color-select-label" for="primary-color-select">Icon Color</label>
                         <input class="color-selector" id="primary-color-select" type="color" value="{{bit_background}}">
                         <br>
                         <label class="color-select-label" for="accent-color-select">Accent Color</label>
                         <input class="color-selector" id="accent-color-select" type="color" value="{{accent_color}}">
                         <br>
-                        <label class="color-select-label" for="tfont-color-select">Title Font Color</label>
+                        <label class="color-select-label" for="tfont-color-select">Text Color</label>
                         <input class="color-selector" id="tfont-color-select" type="color">
                         <br>
                         <label class="color-select-label" for="pfont-color-select" >Paragraph Font Color</label>
                         <input class="color-selector" id="pfont-color-select" type="color" value="{{text_color}}">
                         <br>
-                    <button type="submit" class="personalzation-apply-button" name="colors">Apply</button>
                     </form>
                     <!--
                         Bit background color
@@ -101,8 +100,26 @@
                             -Background Opacity
                     -->
             </div>
+
+            <div class="dropdown-large" id="bit-layouts" style="background-color:{{bit_background}}">
+                <h3 class="option-header">Customize Bits</h3>
+                <svg class="expand-icon" id="font-expand-icon" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="m20 25.625-10-10 1.958-1.958L20 21.708l8.042-8.041 1.958 2Z"/></svg>
+                <div id="sub-setting">
+                    <label class="color-select-label" for="pfont-color-select" >Paragraph Font Color</label>
+                    <input class="color-selector" id="pfont-color-select" type="color" value="{{text_color}}">
+                    <input type="text" name="yb-align-text" list="yb-alignments">
+                    <datalist id="yb-alignments">
+                        <option value="left">
+                        <option value="center">
+                        <option value="right">
+                    </datalist>
+
+                </div>
+                
+
+            </div> 
             <div class="dropdown-large" id="fonts" style="background-color:{{bit_background}}">
-                <h3 class="option-header">Fonts</h3>
+                <h3 class="option-header">Custom Fonts</h3>
                 <svg class="expand-icon" id="font-expand-icon" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="m20 25.625-10-10 1.958-1.958L20 21.708l8.042-8.041 1.958 2Z"/></svg>
                 <div id="sub-setting">
 
@@ -122,21 +139,6 @@
                 -->
                 </div>
             </div>
-            <div class="dropdown-large" id="bit-layouts" style="background-color:{{bit_background}}">
-                <h3 class="option-header">Bit Layouts</h3>
-                <svg class="expand-icon" id="font-expand-icon" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="m20 25.625-10-10 1.958-1.958L20 21.708l8.042-8.041 1.958 2Z"/></svg>
-                <div id="sub-setting">
-                <!--
-                    Title Position
-                    Paragraph Align
-                    Paragraph Justify
-                    Bit Frames (Future)
-                -->
-
-                </div>
-                
-
-            </div> 
         </div>
         <div id="container-column-2">
             
@@ -170,7 +172,21 @@
             <!--Dynamic Preview Window for Mobile-->
             <div id="preview-mobile">
                 <div class="mobile-preview-item"id="profile-image-preview">
-                    <img id="preview-user-image" style="border-color:{{accent_color}};" src="{{user_image}}"/>
+                    <img id="preview-user-image" style="border-color:{{accent_color}};" src="{{user_image.url}}"/>
+                    <div id='preview-mobile-bit'>
+                        <div id="preview-bit-name">
+                                <!--Container displays preview name and accent-->
+                        </div>
+                        <div id="preview-bit-title">
+                                <!--Container displays preview title color-->
+                        </div>
+                        <div id='preview-bit-paragraph'>
+                                <!--Container displays preview paragraph color-->
+                        </div>
+                        <div id='preview-bit-interaction'>
+                                <!--Container displays preview icon colors for bit interactions-->
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -181,6 +197,9 @@
                 <!--Default, Default Mode (light/dark), show customizations in feed, toggle post colors-->
             </div>
                 
+        </div>
+        <div id="mobile-spacer">
+
         </div>
     </div>
     <script>

@@ -28,7 +28,6 @@ $('#mobile-create-icon').click(function() {
 });
 
 $('#bit-panel-close').click(function() {
-    $('#cb-divider').hide();
     dropCreateBit(hideCreateBit)
 });
 
@@ -65,6 +64,8 @@ function dropCreateBit(followUp) {
 function hideCreateBit() {
     let create_bit = document.getElementById('create-bit-mobile');
     create_bit.style.visibility='hidden';
+    $('#cb-divider').hide();
+
 }
 
 /* Type button refers to the content type buttons in create bit */

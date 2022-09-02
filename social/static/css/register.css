@@ -94,7 +94,12 @@
     body {
         background-color: rgb(55, 55, 55);
         font-family: Arial, Helvetica, sans-serif;
+        overflow: hidden;
 
+    }
+
+    h3 {
+        margin-top: 0px;
     }
 
     #form {
@@ -102,15 +107,14 @@
         z-index: 2;
         top: 0;
         left: 0;
-        width: 100vw;
-        height: 100vh;
-        padding: 5px;
+        width: 99vw;
+        height: 99vh;
         border-radius: 10px;
         text-align: center;
         color: white;
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
-        overflow-y: scroll;
+        overflow: hidden;
         
 
     }
@@ -176,5 +180,6 @@
         display: block;
         position: relative;
         width: 100%;
+        margin-bottom: 0px;
     }
 }

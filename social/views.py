@@ -10,6 +10,7 @@ from django.views.generic.edit import UpdateView, DeleteView
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.views.generic.base import ContextMixin
+from django.db.models import Q
 #from PIL import Image
 
 # Create your views here. 
@@ -639,8 +640,8 @@ class Feed(View):
             for friend in friends:
                 friend_pool.append(friend.user)   
             friend_pool.append(request.user)
-            private_bit_pool = Bit.objects.filter(user__in = friend_pool, bit_type = 'video').order_by('-created_at')
-            follow_bit_pool = Bit.objects.filter(user__in = following_pool, is_public = True, bit_type = 'photo').order_by('-created_at')
+            private_bit_pool = Bit.objects.filter(Q(bit_type='video')|Q(bit_type='video_link'), user__in = friend_pool).order_by('-created_at')
+            follow_bit_pool = Bit.objects.filter(Q(bit_type='video')|Q(bit_type='video_link'), user__in = following_pool, is_public = True).order_by('-created_at')
             profile = False
 
         if type == "profile":
@@ -920,11 +921,50 @@ class Publish(View):
         title = request.POST.get('title')
         body = request.POST.get('body')
         type = request.POST.get('type')
+        contains_video_link = False
         print(type)
 
         if type == 'chat':
             if title != 'yb-no-title':
                 new_bit.title = title
+            if 'youtube.com' in body or 'youtu.be' in body:
+                split_bit = body.split(' ')
+                print(split_bit)
+
+                for word in split_bit:
+
+                    if 'v=' in word:
+                        contains_video_link = True
+                        print(word)
+                        position = word.index('v=')
+                        position = position + 2
+                        video_id = word[position:len(word)]
+                        new_bit.extend_widget = '<iframe style="margin-top: 5px;" width="98%" height="fit-content" src="https://www.youtube.com/embed/'+ video_id +'" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+                        body = ' '.join(split_bit)
+                        print(body)
+                        new_bit.contains_video_link = True
+                        new_type ='video_link'
+                        break
+
+                    elif 'youtu.be' in word:
+                        contains_video_link = True
+                        position= word.index('e/')
+                        position = position + 2
+                        video_id = word[position:len(word)]
+                        new_bit.extend_widget = '<iframe style="margin-top: 5px;" width="98%" height="fit-content" src="https://www.youtube.com/embed/'+ video_id +'" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+                        body = ' '.join(split_bit)
+                        new_bit.contains_video_link = True
+                        new_type ='video_link'
+                        break
+
+                    elif 'embed' in word:
+                        contains_video_link = True
+                        new_bit.contains_video_link = True
+                        new_bit.extend_widget = word
+                        new_type ='video_link'
+                        break
+
+            
             new_bit.body = body 
             
 
@@ -939,7 +979,10 @@ class Publish(View):
             new_bit.video = video
         
         new_bit.user = request.user
-        new_bit.bit_type = type
+        if contains_video_link:
+            new_bit.bit_type = new_type
+        else:
+            new_bit.bit_type = type
         new_bit.save()
 
         

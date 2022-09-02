@@ -110,6 +110,11 @@ class Bit(models.Model):
     is_tips = models.BooleanField(default=False)
     comments = models.ManyToManyField('Comment', related_name="bit_comments", blank=True)
     comment_count = models.IntegerField(default=0)
+    contains_video_link = models.BooleanField(default=False)
+    contains_news_link = models.BooleanField(default=False)
+    contains_web_link = models.BooleanField(default=False)
+    extend_widget = models.CharField(max_length = 1000, blank=True)
+    video_widget = models.CharField(max_length = 1000, blank=True)
     #customization = models.ManyToManyField("Customizations", related_name="custom", blank=True)
 
     def __str__(self):
