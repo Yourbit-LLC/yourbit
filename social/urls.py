@@ -4,6 +4,7 @@ from .views import *
 
 urlpatterns = [
     path('home/', Home.as_view(), name='home'),
+    path('onboarding/', Onboarding.as_view(), name='onboarding'),
     path('bit/<int:pk>', BitDetailView.as_view(), name='bit-detail'),
     path('bit/<int:pk>/interact/', Interact.as_view(), name='interact'),
     path('profile/<int:pk>/interact', ProfileInteract.as_view(), name='profile-interact'),

@@ -1050,6 +1050,10 @@ class Follow(View):
         print(recieve_user_name)
         return JsonResponse({'name':recieve_user_name})
 
+class Onboarding(View):
+    def get(self,request, *args, **kwargs):
+        return render(request, 'social/onboarding.html')
+
 
 class Maintenance(View):
     def get(self, request, *args, **kwargs):

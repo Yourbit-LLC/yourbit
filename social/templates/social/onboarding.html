@@ -7,10 +7,46 @@
     <body>
         <div id='onboard-welcome'>
             <p>
-                You are almost to Yourbit. On our way, lets set up
-                your preferences. Yourbit has a ton of options for personalizing
-                your experience
+                <h3>Welcome aboard, {{user.first_name}}!
+                You are almost to Yourbit. On our way, were going to configure
+                your initial profile settings with your preferences. Yourbit has
+                a ton of options for managing appearance, your exposure, and what
+                you see, this step will introduce you to the most important concepts.
+
+                <button class="yb-pages-next" data-step = '0';>OK!</button>
             </p>
+        </div>
+        <div id='profile-images'>
+            <div class='image-preview'>
+                <div id='background-image-preview'>
+                    <img id='background-image-preview-image'>
+                </div>
+                <div id='profile-image-preview'>
+                    <img id='profile-image-preview-image' src="">
+                </div>
+
+            </div>                
+            <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <p>Profile Picture</p>
+                    {{ profile_image_form.image }}
+                    <button type="submit" name="profile_image_button">Apply</button>
+            </form>
+            <form method="POST" enctype="multipart/form-data" style="margin-bottom: 10px;">
+                {% csrf_token %}
+                <p>Profile Background</p> 
+                {{ background_image_form.background_image }}
+                <button type="submit" name="background_image_button">Apply</button>
+                <br><br>                       
+                <label for="blur-radius">Blur</label>
+                <input type="range" id="blur-radius">
+                <br>
+                <label for="dim-intensity">Dim Intensity</label>
+                <input type="range" id="dim-intensity">
+                <br><br>
+                
+            </form>
+            <button class="yb-pages-next" data-step = '1';></button>
         </div>
         <div id="profile-setup">
             <h2>Profile Setup</h2>
@@ -40,16 +76,58 @@
             </datalist>
             <label for='toggle-followers'>Disable Followers</label>
             <input type='checkbox' id='toggle-followers'>
-            
+            <button class="yb-pages-next" data-step = '1';></button>
         </div>
-        <div id='profile-personalization'>
+        <div id='profile-personalization' style="display:none; left: 100vw;">
         </div>
     </body>
     <script>
-        var backVid = document.getElementById("background-video");
-        function sign_in()
-        {
-            backVid.currentTime = 0;
+        var page_list = ['#onboard-welcome', '#profile-images', '#profile-setup', '#profile-personalization'];
+
+        $('.yb-pages-next').click(function() {
+            let step = $(this).attr('data-step');
+            let current_page = page_list[parseInt(step)];
+            let next_page = parseInt(step) + 1;
+            $(current_page).hide();
+            nextPage(next_page);
+
+        });
+        
+        function nextPage(next_page) {
+            $(next_page).show();
+            $(next_page).animate({'left': '0vw'});
         }
+
+        let profile_bkd_field = document.getElementById('bkd-image-field');
+        profile_bkd_field.addEventListener("change", function() {
+            let image_preview = document.getElementById('background-image-preview-image');
+            const image_loaded = this.files[0];
+            if (image_loaded) {
+                const reader = new FileReader();
+
+                reader.addEventListener('load', function() {
+                    image_preview.setAttribute('src', this.result);
+                });
+
+                reader.readAsDataURL(image_loaded);
+
+            }
+        });
+
+        let profile_img_field = document.getElementById('profile-image-field');
+        profile_img_field.addEventListener("change", function() {
+            let user_image_preview = document.getElementById('profile-image-preview-image');
+            const image_loaded = this.files[0];
+            if (image_loaded) {
+                const reader = new FileReader();
+
+                reader.addEventListener('load', function() {
+                    user_image_preview.setAttribute('src', this.result);
+                });
+
+                reader.readAsDataURL(image_loaded);
+
+            }
+        });
     </script>
 </html>
