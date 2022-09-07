@@ -709,7 +709,7 @@
     }
 
     #photobit {
-        display: grid;
+        display: block;
         left: 5%;
         top: 20px;
         z-index: 5;
@@ -728,7 +728,7 @@
 
     #photo-post-wrapper {
         display: grid;
-        grid-template-rows: 50px auto auto auto;
+        grid-template-rows: 50px auto auto auto 50px auto auto;
     }
     
     #photo-user-name {
@@ -752,7 +752,7 @@
 
     #video-post-wrapper {
         display: grid;
-        grid-template-rows: 30px auto 30px 20px fit-content 10px fit-content 50px;
+        grid-template-rows: 30px auto 30px 20px fit-content 10px fit-content 50px auto auto;
         grid-row-gap: 3px;
         text-align: center;
         padding: 10px;
