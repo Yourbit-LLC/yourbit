@@ -601,7 +601,7 @@ class AddComment(LoginRequiredMixin, View):
 
         #Get list of comments
         comment_count = bit.comments.count()
-        user_name = user_first + user_last
+        user_name = user_first + " " + user_last
         return JsonResponse({'accent_color':accent_color, 'icon_color':icon_color, 'comment_count':comment_count, 'to_user': to_user_id, 'from_user' : from_user_id, 'from_user_name':user_name})
 
 class Feed(View):
