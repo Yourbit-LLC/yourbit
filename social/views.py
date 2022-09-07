@@ -88,7 +88,7 @@ class GetComments(View):
             comment_body = comment.comment
             comment_date = comment.created_on
             iteration += 1
-            
+
             comments.update({
                 comment + iteration: 
                 {
@@ -411,6 +411,7 @@ class LikeBit(LoginRequiredMixin, View):
         #Get request user profile for updating
         profile = Profile.objects.get(user=request.user)
         from_user = request.user
+        print(from_user)
         from_user_id = from_user.id
         #Get bit ID from request and use to get bit
         bit_id = request.POST['bit_id']
@@ -419,7 +420,7 @@ class LikeBit(LoginRequiredMixin, View):
         #Get bit user and find profile
         bit_user = bit.user
         bit_user_id = bit_user.id
-        bit_profile = bit_user.profile
+        bit_profile = Profile.objects.get(user=bit_user)
 
         #Get accent colors
         accent_color = bit_profile.accent_color
@@ -467,7 +468,7 @@ class LikeBit(LoginRequiredMixin, View):
                 profile.rewards_earned = earnings
                 profile.save()
 
-            return JsonResponse({'action':'like', 'accent_color':accent_color,'icon_color': icon_color, 'like_count': like_count, 'dislike_count': dislike_count})
+            return JsonResponse({'action':'like', 'from_user': from_user_id, 'to_user': bit_user_id, 'accent_color':accent_color,'icon_color': icon_color, 'like_count': like_count, 'dislike_count': dislike_count})
         
         if is_liked:
             bit.likes.remove(request.user)
@@ -551,19 +552,22 @@ class AddComment(LoginRequiredMixin, View):
         #Retrieve data from request
         bit_id = request.POST.get('bit_id')
         comment = request.POST.get('comment')
+        from_user = request.user
+        from_user_id = from_user.id
         print(comment)
 
         #Get commenting user information
         profile = Profile.objects.get(user=request.user)
-        user_first = request.user.first_name
-        user_last = request.user.last_name
+        user_first = from_user.first_name
+        user_last = from_user.last_name
         commented_on = profile.commented_on.all()
 
         #Retrieve bit from database
         bit = Bit.objects.get(pk=bit_id)
 
         #Get bit author and profile
-        bit_user = bit.user        
+        bit_user = bit.user
+        to_user_id = bit_user.id   
         bit_profile = bit_user.profile
 
         #Get bit author color scheme
@@ -593,11 +597,12 @@ class AddComment(LoginRequiredMixin, View):
 
         #Add comment to bit relationsips for faster query
         bit.comments.add(new_comment)
+        bit.save()
 
         #Get list of comments
         comment_count = bit.comments.count()
         user_name = user_first + user_last
-        return JsonResponse({'accent_color':accent_color, 'icon_color':icon_color, 'comment_count':comment_count, 'to_user':user_name})
+        return JsonResponse({'accent_color':accent_color, 'icon_color':icon_color, 'comment_count':comment_count, 'to_user': to_user_id, 'from_user' : from_user_id, 'from_user_name':user_name})
 
 class Feed(View):
     def get(self, request, type, id, *args, **kwargs):
@@ -794,6 +799,10 @@ class Notify(View):
         #Get request data
         notification_type = request.POST.get('type')
         to_user = request.POST.get('to_user')
+        
+        #get from user profile
+        from_user = request.user
+        from_user_profile = Profile.objects.get(user = from_user)
 
         #Get user and name
         to_user = User.objects.get(id = to_user)
@@ -807,18 +816,18 @@ class Notify(View):
         #Type 1 notification = Like/Dislike
         if notification_type == 1:
             bit_id = request.POST.get('bit')
-            new_notification = Notification(to_user = to_user, bit=bit, from_user = request.user, notification_type=notification_type)
+            new_notification = Notification(to_user = to_user_profile, bit=bit, from_user = from_user_profile, notification_type=notification_type)
             new_notification.save()
 
         #Type 2 notification = Comment
         elif notification_type == 2:
             bit_id = request.POST.get('bit')
             bit = Bit.objects.get(id=bit_id)
-            new_notification = Notification(to_user = to_user, bit=bit, from_user = request.user, notification_type=notification_type)
+            new_notification = Notification(to_user = to_user_profile, bit=bit, from_user = from_user_profile, notification_type=notification_type)
             new_notification.save()
 
         else:    
-            new_notification = Notification(to_user = to_user, from_user = request.user, notification_type=notification_type)
+            new_notification = Notification(to_user = to_user_profile, from_user = from_user_profile, notification_type=notification_type)
         
         if to_user_profile.alerted_notifications == True:
             to_user_profile.alerted_notifications = False

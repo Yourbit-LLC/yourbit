@@ -171,6 +171,7 @@
 .counter {
     font-size: 16px;
     font-weight: 400;
+    color: white;
 }
 
 #dislike-count {
@@ -863,6 +864,7 @@
     .counter {
         font-size: 16px;
         font-weight: 400;
+        color: white;
     }
 
     #like-count {
@@ -885,7 +887,7 @@
         margin-bottom: auto;
     }
     
-    #comment-count {
+    .comment-count {
         grid-column: 8;
         color: lightgoldenrodyellow;
         margin-top: auto;

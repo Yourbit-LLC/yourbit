@@ -304,7 +304,7 @@ $('.feedback-icon').click(function(){
                 let to_user = json_file.to_user;
                 let from_user = json_file.from_user;
                 let type = 1;
-                Notify(from_user, to_user, type);
+                Notify(type, from_user, to_user);
 
             }
 
@@ -460,7 +460,7 @@ $('.feedback-icon-active').click(function(){
                 let to_user = json_file.to_user;
                 let from_user = json_file.from_user;
                 let type = 1;
-                Notify(from_user, to_user, type);
+                Notify(type, from_user, to_user);
 
             }
 
@@ -550,20 +550,28 @@ function Comment(catid) {
                 let comment_count = json_file.comment_count;
                 let accent_color = json_file.accent_color;
                 let icon_color = json_file.icon_color;
-                var user_first = json_file.user_first;
-                var user_last = json_file.user_last;
+                var from_user_name = json_file.from_user_name;
                 console.log(accent_color)
                 $('#chat-comment-display-container'+catid).prepend(
                     `<div id="right-comment-display-wrapper">
                         <div id="chat-comment-display-right" style="background-color: ${accent_color}">
                         <p id="comment-text">
-                         <strong>${user_first} ${user_last}</strong>: ${form_value}</p><weak id="comment-time">Now</weak>
+                         <strong>${from_user_name}</strong>: ${form_value}</p><weak id="comment-time">Now</weak>
                         </div>
                     </div>
                     <br>`
 
                     )
+                $('')
                 $('#field-write-comment' + catid).val('');
+                $(`#comment-count${catid}`).replaceWith(`<p id="comment-count${catid}" class="counter">${comment_count}</p>`);
+                $(`#comments-display-label${catid}`).show();
+                $(`#chat-comment-display-container${catid}`).show();
+                let type = 2
+                let from_user = json_file.from_user
+                let to_user = json_file.to_user
+                Notify(type, from_user, to_user);
+
                 
                 
             }
