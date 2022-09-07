@@ -109,7 +109,7 @@
             {% if user_colors_on %}
             <div class="post-wrapper" id = "photo-post-wrapper" style="background-color:{{bit.user.profile.bit_background}}">
             {% else %}
-            <div class="post-wrapper" id = "photo-post-wrapper">
+            <div class="post-wrapper" id = "photo-post-wrapper" style="background-color:#4b4b4b">
             {% endif %}
                 <div id="photo-user-name">
                     <a id="photo-bit-profile-picture-link" data-catid = "{{bit.user.username}}"><img id="chat-bit-profile-picture" src="{{bit.user.profile.image.url}}" ></a>
@@ -179,7 +179,7 @@
                 {% if user_colors_on %}
                 <div class="post-wrapper" id = "chat-post-wrapper" style="background-color:{{bit.user.profile.bit_background}};">
                 {% else %}
-                <div class="post-wrapper" id = "chat-post-wrapper">
+                <div class="post-wrapper" id = "chat-post-wrapper" style="background-color:#4b4b4b">
                 {% endif %}
                     <div id="chat-bit-name-date">
                         <div id="chat-bit-profile-picture-link" data-catid = "{{bit.user.username}}"><img style="border-color: {{bit.user.profile.accent_color}}" id="chat-bit-profile-picture" src="{{bit.user.profile.image.url}}"></div>
@@ -263,7 +263,7 @@
             {% if user_colors_on %}
             <div class="post-wrapper" id = "video-post-wrapper" style="background-color:{{ bit.user.profile.bit_background }}">
             {% else %}
-            <div class="post-wrapper" id = "video-post-wrapper">
+            <div class="post-wrapper" id = "video-post-wrapper" style="background-color:#4b4b4b">
             {% endif %}
                 <div id = "video-bit-name-date">
                     <a id="chat-bit-profile-picture-link" data-catid = "{{bit.user.username}}"><img id="chat-bit-profile-picture" src="{{bit.user.profile.image.url}}" ></a>
