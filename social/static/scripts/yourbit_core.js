@@ -82,19 +82,19 @@ function ShowDescription(bit_id) {
     
 }
 
-function ShowComments(bit_id, label_id) {
-    var bit_id = bit_id;
-    var label_id = label_id;
-    var comments = document.getElementById(bit_id);
-    var comment_display_lbl = document.getElementById(label_id);
-    if (comments.style.display === 'none') {
-        comments.style.display='flex';
-        comment_display_lbl.style.display='block';
-    } else {
-        comments.style.display='none';
-        comment_display_lbl.style.display='none';
-    }
-}
+// function ShowComments(bit_id, label_id) {
+//     var bit_id = bit_id;
+//     var label_id = label_id;
+//     var comments = document.getElementById(bit_id);
+//     var comment_display_lbl = document.getElementById(label_id);
+//     if (comments.style.display === 'none') {
+//         comments.style.display='flex';
+//         comment_display_lbl.style.display='block';
+//     } else {
+//         comments.style.display='none';
+//         comment_display_lbl.style.display='none';
+//     }
+// }
 
 function VideoForm() {
     var chat_form = document.getElementById('write-post');

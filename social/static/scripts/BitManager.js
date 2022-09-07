@@ -356,22 +356,37 @@ $('.feedback-icon').click(function(){
 
     /* Comment Interactions */
 
-    if (button_name === 'comment') {
-        //If desktop
-        if (width > 700){
-            //Retrieve comments
-            //Show comments
+    if (button_name === 'show_comment') {
+        console.log('comment_clicked')
+        let comment_display_id = `chat-comment-display-container${catid}`;
+        console.log(comment_display_id)
+        let comment_label_id = `comments-display-label${catid}`
+        $(this).replaceWith(`<button type="button" class="feedback-icon" name = "hide_comment" onclick="hideComments('${comment_display_id}','${comment_label_id}')" id="comment-post-button" href="#" data-catid="${catid}" ><svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M6 14H18V12H6ZM6 11H18V9H6ZM6 8H18V6H6ZM22 22 18 18H4Q3.175 18 2.588 17.413Q2 16.825 2 16V4Q2 3.175 2.588 2.587Q3.175 2 4 2H20Q20.825 2 21.413 2.587Q22 3.175 22 4ZM4 4V16Q4 16 4 16Q4 16 4 16H18.825L20 17.175V4Q20 4 20 4Q20 4 20 4H4Q4 4 4 4Q4 4 4 4ZM4 4V17.175V16Q4 16 4 16Q4 16 4 16V4Q4 4 4 4Q4 4 4 4Q4 4 4 4Q4 4 4 4Z"/></svg></button>`);
+        ShowComments(comment_display_id, comment_label_id)
+    }
 
-        }/*If mobile*/ else {
-            //Retrieve Comments
-            //Expand bit
-            //display comments
-        }
-        
-
+    if (button_name === 'hide_comment') {
+        let comment_display_id = `chat-comment-display-container${catid}`;
+        console.log(comment_display_id)
+        let comment_label_id = `comments-display-label${catid}`
+        $(this).replaceWith(`<button type="button" class="feedback-icon" name = "show_comment" onclick="hideComments('${comment_display_id}','${comment_label_id}')" id="comment-post-button" href="#" data-catid="${catid}" ><svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M6 14H18V12H6ZM6 11H18V9H6ZM6 8H18V6H6ZM22 22 18 18H4Q3.175 18 2.588 17.413Q2 16.825 2 16V4Q2 3.175 2.588 2.587Q3.175 2 4 2H20Q20.825 2 21.413 2.587Q22 3.175 22 4ZM4 4V16Q4 16 4 16Q4 16 4 16H18.825L20 17.175V4Q20 4 20 4Q20 4 20 4H4Q4 4 4 4Q4 4 4 4ZM4 4V17.175V16Q4 16 4 16Q4 16 4 16V4Q4 4 4 4Q4 4 4 4Q4 4 4 4Q4 4 4 4Z"/></svg></button>`);
+        hideComments(comment_display_id, comment_label_id)
     }
 
 });
+
+function ShowComments(bit_id, label_id) {
+    $(`#${bit_id}`).show();
+    $(`#${label_id}`).show();
+
+}
+
+function hideComments(bit_id, label_id) {
+    $(`#${bit_id}`).hide();
+    $(`#${label_id}`).hide();
+
+}
+
 
 function getComments(id) {
     $.ajax ({
@@ -379,19 +394,19 @@ function getComments(id) {
         headers: {
             'X-CSRFToken': csrfToken
           },
-        url: "/social/dislike/",
+        url: "/social/get-comments/",
         data: {
             bit_id: id
         },
         success: function(data){
             let response = data;
+            let comment_display_id = `chat-comment-display`;
+            showComments(bit_id, label_id)
 
         }
         
 })
-
 }
-
 
 $('.feedback-icon-active').click(function(){
     var catid;
