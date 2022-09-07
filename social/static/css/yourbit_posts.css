@@ -937,14 +937,61 @@
         
     }
 
+    #field-write-comment {
+        position: relative;
+        grid-row: 7;
+        width: 100%;
+        grid-template-rows: 80% 20%;
+        z-index: 5;
+        display: block;
+    }
+    
+    .write-comment-field-text {
+        position: relative;
+        padding: 10px;
+        grid-column: 1;
+        margin: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-color: rgba(0, 0, 0, 0.5);
+        border-radius: 20px;
+        width: 100%;
+        
+    
+    }
 
+    #write-comment-button {
+        border-radius: 30px;
+        border-width: 0px;
+        height: 30px;
+        width: 30px;
+        cursor: pointer;
+        position: absolute;
+        right: 7px;
+        top:4px;
+    }
+    
+    #write-comment-button:hover {
+        filter: brightness(150%);
+        -webkit-filter: brightness(150%);
+        background-color: rgb(35,35,35);
+        border-radius: 20px;
+    }
+    /* #write-comment-button {
+        grid-column: 2;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        padding: 5px;
+        
+    
+    }
     #field-write-comment {
         display: none;
     }
 
     #video-field-write-comment {
         display: none;
-    }
+    } */
     
 
 
