@@ -354,7 +354,43 @@ $('.feedback-icon').click(function(){
         )
     }
 
+    /* Comment Interactions */
+
+    if (button_name === 'comment') {
+        //If desktop
+        if (width > 700){
+            //Retrieve comments
+            //Show comments
+
+        }/*If mobile*/ else {
+            //Retrieve Comments
+            //Expand bit
+            //display comments
+        }
+        
+
+    }
+
 });
+
+function getComments(id) {
+    $.ajax ({
+        type:"POST",
+        headers: {
+            'X-CSRFToken': csrfToken
+          },
+        url: "/social/dislike/",
+        data: {
+            bit_id: id
+        },
+        success: function(data){
+            let response = data;
+
+        }
+        
+})
+
+}
 
 
 $('.feedback-icon-active').click(function(){
@@ -519,3 +555,4 @@ function Comment(catid) {
         }
     )
 };
+

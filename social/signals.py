@@ -1,7 +1,7 @@
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from YourbitAccounts.models import Account as User
-from .models import Profile, Feed, Community
+from .models import Profile, Feed, Community, PrivacySettings
 
 # def create_profile(sender, instance, created, **kwargs):
 #     if created:
@@ -19,6 +19,8 @@ def create_profile(sender, instance, created, **kwargs):
         user_profile.save()
         feed = Feed(profile=user_profile)
         feed.save()
+        privacy = PrivacySettings(user=instance)
+        privacy.save()
         user_profile.follows.add(instance.profile)
         user_profile.save()
 

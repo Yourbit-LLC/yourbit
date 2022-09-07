@@ -6,7 +6,7 @@ class ProfilePictureUpload(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(ProfilePictureUpload, self).__init__(*args, **kwargs)
-        self.fields['image'].widget.attrs.update({'name': 'profile_image_field', 'id':'profile-image-field'})
+        self.fields['image'].widget.attrs.update({'name': 'profile_image_field', 'class':'profile-image-field', 'id':'profile-image-field'})
 
 
     class Meta:
@@ -18,7 +18,7 @@ class BackgroundPictureUpload(forms.ModelForm):
     background_image = forms.FileField(required=True)
     def __init__(self, *args, **kwargs):
         super(BackgroundPictureUpload, self).__init__(*args, **kwargs)
-        self.fields['background_image'].widget.attrs.update({'name': 'background_image_field', 'id':'bkd-image-field'})
+        self.fields['background_image'].widget.attrs.update({'name': 'background_image_field', 'class':'profile-image-field', 'id':'bkd-image-field'})
     class Meta:
         model = Profile
         fields = ('background_image',)
@@ -157,6 +157,7 @@ class ColorForm(forms.ModelForm):
             attrs={
                 "display":"none",
                 "id":"title-color",
+                "class":"yb-form-color-field",
             }
         )
     )
@@ -165,6 +166,7 @@ class ColorForm(forms.ModelForm):
             attrs={
                 "display":"none",
                 "id":"text-color",
+                "class":"yb-form-color-field",
             }
         )
     )

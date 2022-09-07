@@ -198,6 +198,10 @@
                     <div id="chat-bit-display-description" style="color:{{bit.user.profile.text_color}};"><p>{{bit.body|urlize|linebreaks}}<br>{{bit.extend_widget|safe}}</p></div>
                     <div id="feed-bit-comment-container"></div>
                     <a class="post-background-link" href="{% url 'bit-detail' bit.pk %}"></a>
+
+                    <!--
+                        Feedback container
+                    -->
                     <form method='POST' id="chat-bit-feedback-container" class = "post-interaction-container" action="{% url 'interact' bit.pk %}">
                         {% csrf_token %}
                         <input type="hidden" name="next" value="{{ request.path }}">

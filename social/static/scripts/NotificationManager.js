@@ -138,6 +138,7 @@ function getNotifications() {
                     }
                     
                 } else {
+                    $('#menu-notification-container').empty();
                     for (let i = 0; i < notification_length; i++) {
                         notification = notifications[x];
                         let notification_info = data[notification];
@@ -147,7 +148,6 @@ function getNotifications() {
                         let notif_id = notification_info['id'];
                         let send_list = [username, user_name, profile_id, notif_id];
                         console.log(username)
-                        $('#menu-notification-container').empty();
                         $('#menu-notification-container').append(`
                             <div class='mobile-notification' id='mobile-friend-request' style="color:white;">
                                 <p class="mobile-interaction-notification-text">${user_name} wants to be your friend!</p>

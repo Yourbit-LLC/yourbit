@@ -182,4 +182,13 @@
         width: 100%;
         margin-bottom: 0px;
     }
+
+    .yb-form-next {
+        border-radius: 10px;
+        height: 40px;
+        width: 75px;
+        border-width: 0px;
+        background-color: rgb(125, 125, 125);
+    
+    }
 }
