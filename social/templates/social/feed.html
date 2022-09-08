@@ -271,7 +271,7 @@
                     <a id="chat-bit-profile-picture-link" data-catid = "{{bit.user.username}}"><img id="chat-bit-profile-picture" src="{{bit.user.profile.image.url}}" ></a>
                     <p id="video-user-name"><strong>{{bit.user.first_name}} {{bit.user.last_name}}</strong> <small>@{{ bit.user.username }}</small></p>
                 </div>
-                <video src="{{ bit.video.url }}" width="100%" id="videobit" autoplay loop playsinline controls></video>              
+                <video src="{{ bit.video.url }}" width="100%" id="videobit" playsinline controls></video>              
                         
                 <h3 id="video-title"> {{bit.title}}</h3>
                 <p onclick="ShowDescription('video-description{{bit.pk}}')" id="video-show-description-button">Show Description</p>
