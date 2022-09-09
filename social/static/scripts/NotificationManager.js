@@ -15,7 +15,6 @@ var base_url = window.location.origin;
 --On document load get notifications, load bits, get messages, update rewards points--
 */
 $(document).ready(function() {
-    console.log(notifications_last);
     updateNotificationStatus();
     getNotifications();
 });
@@ -71,7 +70,7 @@ function notificationIconUpdate() {
                 let status_response= data;
                 let current_notifications = status_response.notification_len;
                 
-                console.log(status_response);
+                
 
                 if (status_response.status === false) {
                     $('#notification-status').show();
@@ -111,14 +110,14 @@ function getNotifications() {
             success: function(data) {
                 let notifications = Object.keys(data);
                 let notification_length = Object.keys(notifications).length
-                console.log(notification_length)
+                
                 let notification = '';
                 let x = 0;
                 if (width > 700){
                     for (let i = 0; i < notification_length; i++) {
                         notification = notifications[x];
                         let notification_info = data[notification];
-                        console.log(notification_info);
+                        
                         let user_name = notification_info['from_name'];
                         $('#notifications-dropdown').empty();
 
