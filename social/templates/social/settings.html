@@ -1,7 +1,7 @@
 {% extends "social/base.html" %}
 {% load static %}
 {% block content %}
-<div id="content-container">
+<div id="content-container" style="top: 100vh;">
     <link rel="stylesheet" type="text/css" href="{% static 'css/yourbit_settings.css' %}"/>
     <div id="settings-container">
 
@@ -67,6 +67,7 @@
     $(document).ready(function() {
         $('#back-to-home').fadeIn('slow');
         $('#back-to-home').animate({'bottom': '90px'});
+        $('#content-container').animate({'top':'0px'})
         
     });
     
