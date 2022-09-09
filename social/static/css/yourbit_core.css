@@ -1831,6 +1831,7 @@ only be used for object transforms (shaping and scaling)
     }
 
     #gradiant-overlay {
+        pointer-events: none;
         display: block;
         position: absolute;
         bottom: 50px;
