@@ -1835,7 +1835,7 @@ only be used for object transforms (shaping and scaling)
         position: absolute;
         bottom: 50px;
         left: 0px;
-        background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75));
+        background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.85));
         width: 100vw;
         height: 75px;
     }
