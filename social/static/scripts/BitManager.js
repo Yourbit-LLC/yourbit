@@ -250,8 +250,8 @@ function clearBitForm() {
 
 /*Bits in feed */
           
-$("#chat-bit-profile-picture").click(function() {
-    username = $(this).attr("data-catid");
+$("#chat-bit-profile-picture-link").click(function() {
+    let username = $(this).attr("data-username");
     console.log(username)
     window.top.location.replace(`${base_url}/social/profile/${username}`);
 });
