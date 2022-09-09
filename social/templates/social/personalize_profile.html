@@ -8,7 +8,7 @@
             <img class='profile-image-preview-image' id='profile-image-preview-image2' src="{{user_image.url}}">
         </div>
         <div id='bit-colors-preview' class='bit-preview' style='background-color: #4b4b4b; display: none; margin-top: 10px;'>
-            <input id='advanced-color-bit-background' type = "color" style='position: absolute; z-index: 3; top: 50%; left:50%; transform: translate(-50%, -50%)'>
+            <input id='advanced-color-bit-background' type = "color" style='display: none; position: absolute; z-index: 3; top: 50%; left:50%; transform: translate(-50%, -50%)'>
             <div id='bit-user-info'>
                 <div id='bit-profile-image'>
                     <img id = 'bit-profile-image-image' src="{{user_image.url}}"> 
@@ -264,9 +264,18 @@
             window.location.href = `${base_url}/social/home`
         });
 
-        $('#advanced-color-bit-background').click(function() {
-            $(this).css({'visibility' : 'visible'});
-        })
+        $('#bit-colors-preview').click(function() {
+            showColorOption('#advanced-color-bit-background', focusIn)
+            
+        });
+        
+        function showColorOption(field, callback) {
+            $(field).show();
+            callback(field);
+        }
+        function focusIn(field){
+            $(field).focus();
+        }
         
         var profile_image_loaded;
 
