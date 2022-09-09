@@ -300,8 +300,8 @@
         z-index: 19;
         top: 50px;
         left: 0px;
-        backdrop-filter: blur(80px);
-        -webkit-backdrop-filter: blur(80px);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
 
     }
 
