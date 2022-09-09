@@ -96,7 +96,7 @@
                         <a id = "video-space-button" class = "space-button" ><svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill:{{icon_color}}" d="m9.15 17.15 8-5.15-8-5.15ZM12 22.8q-2.25 0-4.213-.85-1.962-.85-3.424-2.312Q2.9 18.175 2.05 16.212 1.2 14.25 1.2 12t.85-4.225Q2.9 5.8 4.363 4.338q1.462-1.463 3.424-2.301Q9.75 1.2 12 1.2t4.225.837q1.975.838 3.438 2.301 1.462 1.462 2.299 3.437Q22.8 9.75 22.8 12q0 2.25-.838 4.212-.837 1.963-2.299 3.426Q18.2 21.1 16.225 21.95q-1.975.85-4.225.85Zm0-2.65q3.425 0 5.788-2.363Q20.15 15.425 20.15 12t-2.362-5.788Q15.425 3.85 12 3.85q-3.425 0-5.787 2.362Q3.85 8.575 3.85 12q0 3.425 2.363 5.787Q8.575 20.15 12 20.15ZM12 12Z"/></svg><div class="helper" id="video-helper">Videos</div></a>
                     
                         <a id = "photo-space-button" class = "space-button"><svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path style="fill:{{icon_color}}" d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-4.86 8.86l-3 3.87L9 13.14 6 17h12l-3.86-5.14z"/></svg><div class="helper" id="photo-helper">Photos</div></a>
-
+                        
                         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
                         <script type="text/javascript">
                             $('.space-button').click(function() {
@@ -132,6 +132,10 @@
                             });
                         </script>
                 {% endblock %}
+                <div id='back-to-home' class='center-popout-button' style="display: none;">
+                    <svg id='back-to-home-icon'xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m12 20-8-8 8-8 1.425 1.4-5.6 5.6H20v2H7.825l5.6 5.6Z"/></svg>
+                    <p id='back-to-home-label'>Back to Feed</p>
+                </div>
                 </div>
                 <!-- End space navigator -->
                 
@@ -243,8 +247,7 @@
                     <input id="full-url" type="hidden" name="last_page" value="{{ request.path }}">
                     
                 </form>
-            
-                
+        
 
             </nav>
   
@@ -333,7 +336,6 @@
                     **********************   Mobile Popout Buttons *************************
 
                 -->
-
                     <!--Create Bit Mobile Button-->
 
                     <div id="mobile-create-button" style="border-color: {{icon_color}}; background-color: rgb(75,75,75);" class="mobile-floating-actions">
@@ -382,7 +384,7 @@
                     <svg id="bit-panel-close" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="m20 25.625-10-10 1.958-1.958L20 21.708l8.042-8.041 1.958 2Z"/></svg>
                     
                     <hr style="margin-top:0px;">
-                    <h3 style="margin-top:10px; margin-bottom: 10px;">Create Bit</h3>
+                    <h3 id='create-bit-header' style="margin-top:10px; margin-bottom: 10px;">Create Chat Bit</h3>
                     <input type="hidden" id="bit-type-hidden-field" value="chat">
                     <!--Chat Bit Input Fields-->
                     <div id="mobile-bit-inputs" >

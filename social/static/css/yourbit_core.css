@@ -915,6 +915,10 @@ only be used for object transforms (shaping and scaling)
         display: none;
     }
 
+    #back-to-home {
+        display: none;
+    }
+
 /*Linear Content Container*/
 
 /*Grid Content Container*/
@@ -1790,6 +1794,42 @@ only be used for object transforms (shaping and scaling)
     .helper {
         display: none;
     }
+
+    #back-to-home {
+        display: grid;
+        position: absolute;
+        grid-template-columns: 25px auto;
+        left: 50%;
+        transform: translate(-50%, 0);
+        bottom: -90px;
+        height: 45px;
+        width: 155px;
+        border: 2px solid white;
+        text-align: center;
+        background-color: black;
+        border-radius: 40px;
+        color: white;
+        line-height: 0.7;
+        font-size: 16px;
+        -webkit-filter: drop-shadow(2px 2px 5px black);
+        filter: drop-shadow(2px 2px 5px black);
+    }
+
+    #back-to-home-icon {
+        display: block;
+        position: relative;
+        grid-column: 1;
+        margin-left: 10px;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    #back-to-home-text {
+        display: block;
+        position: relative;
+        grid-column: 2;
+    }
+
 
     /*Linear Content Container*/
 

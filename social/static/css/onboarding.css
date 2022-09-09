@@ -145,7 +145,7 @@ body {
     display: grid;
     position: relative;
     grid-row: 1;
-    grid-template-columns: 35px 100px;
+    grid-template-columns: 50px auto;
     grid-template-rows: 22px 15px;
     row-gap:1px;
     top:0px;

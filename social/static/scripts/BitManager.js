@@ -84,9 +84,11 @@ function changeBitForm(button_name) {
     /* Set form equal to mobile-bit-inputs container */
     let form = document.getElementById('mobile-bit-inputs');
     let type_field = document.getElementById('bit-type-hidden-field')
+    let header = document.getElementById('create-bit-header');
     
     if (button_name === 'chat') {
         type_field.value = 'chat';
+        $('#create-bit-header').html('Create Chat Bit');
         form.innerHTML = `                            
             <input type="text" class="single-line-input" id="mobile-title" placeholder="Title (Optional)" style="color:white; font-size: 16px; font-weight: 600;">
             <textarea id="mobile-body" placeholder="Body" style="color:white; font-size: 14px;"></textarea>
@@ -98,6 +100,7 @@ function changeBitForm(button_name) {
     
     if (button_name === 'video') {
         type_field.value = 'video';
+        $('#create-bit-header').html('Create Video Bit');
         form.innerHTML = `
             <input type="text" class="single-line-input" id="mobile-title" placeholder="Title (Optional)" style="color:white; font-size: 16px; font-weight: 600;">
             <textarea id="mobile-body" placeholder="Info" style="color:white; font-size: 14px;"></textarea>
@@ -110,6 +113,7 @@ function changeBitForm(button_name) {
 
     if (button_name === 'photo') {
         type_field.value = 'photo';
+        $('#create-bit-header').html('Create Photo Bit');
         form.innerHTML = `
             <input type="text" class="single-line-input" id="mobile-title" placeholder="Title (Optional)" style="color:white; font-size: 16px; font-weight: 600;">
             <textarea id="mobile-body" placeholder="Info" style="color:white; font-size: 14px;"></textarea>

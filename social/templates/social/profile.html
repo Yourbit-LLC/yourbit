@@ -88,7 +88,7 @@
     <!--Check if profile is public before proceeding as this is the highest form of exposure -->
 
     {% if profile.is_public%}
-            <iframe id='profile-feed-content-container' src="{% url 'feed' type='profile' id=profile.id %}" sandbox="allow-top-navigation allow-scripts allow-forms">
+            <iframe id='profile-feed-content-container' src="{% url 'feed' type='profile' id=profile.id %}" sandbox="allow-top-navigation allow-scripts allow-forms allow-same-origin">
             </iframe>
 
     {% else %}
@@ -100,14 +100,14 @@
                 {% if profile in user.profile.connections.all %}
                 <!--If users are friends retreive posts from backend-->
 
-                    <iframe id='profile-feed-content-container' src="{% url 'feed' type='profile' id=profile.id %}" sandbox="allow-top-navigation allow-scripts allow-forms">
+                    <iframe id='profile-feed-content-container' src="{% url 'feed' type='profile' id=profile.id %}" sandbox="allow-top-navigation allow-scripts allow-forms allow-same-origin">
                     </iframe>
 
                     <!--Finally check if profile is user-->
 
                     {% elif profile == user.profile %}
 
-                        <iframe id='profile-feed-content-container' src="{% url 'feed' type='profile' id=profile.id %}" sandbox="allow-top-navigation allow-scripts allow-forms">
+                        <iframe id='profile-feed-content-container' src="{% url 'feed' type='profile' id=profile.id %}" sandbox="allow-top-navigation allow-scripts allow-forms allow-same-origin">
                         </iframe>
 
                     {% else %}

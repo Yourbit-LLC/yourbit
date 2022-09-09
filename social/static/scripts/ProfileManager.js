@@ -1,3 +1,15 @@
+var base_url = window.location.origin;
+
+$(document).ready(function() {
+    $('#back-to-home').fadeIn('slow');
+    $('#back-to-home').animate({'bottom': '90px'});
+    
+});
+
+$('#back-to-home').click(function() {
+    window.location.href = `${base_url}/social/home`
+});
+
 $('.profile-interact-icon').click(function() {
     let button_name = $(this).attr('name');
     if (button_name === 'request_friend') {
