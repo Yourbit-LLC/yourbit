@@ -253,6 +253,18 @@
         </div>
     </div>
     <script>
+        var base_url = window.location.origin;
+        
+        $(document).ready(function() {
+            $('#back-to-home').fadeIn('slow');
+            $('#back-to-home').animate({'bottom': '90px'});
+            
+        });
+        
+        $('#back-to-home').click(function() {
+            window.location.href = `${base_url}/social/home`
+        });
+        
         var profile_image_loaded;
 
         var preview_stage = 0;
