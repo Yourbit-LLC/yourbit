@@ -180,13 +180,13 @@
                         <label class="color-select-label" for="feedback-icon-color-select">Bit Button Icon &lpar;selected&rpar;</label>
                         <br>
                         <br>
-
-                        <input type="text" class='single-line-input' name="yb-align-text" list="yb-alignments" style='color: white;' placeholder="Text Align">
-                        <datalist id="yb-alignments">
-                            <option value="left">
-                            <option value="center">
-                            <option value="right">
-                        </datalist>
+                        <label for='yb-align-text'>Paragraph Alignment</label>
+                        <br>
+                        <select type="text" class='single-line-input' name="yb-align-text" id="yb-align-text" style='color: white;' placeholder="Paragraph Align">
+                            <option value="left">Left</option>
+                            <option value="center">Center</option>
+                            <option value="right">Right</option>
+                        </select>
                     </div>
 
                 </div>
@@ -437,6 +437,12 @@
             updateCustom('color_change', 'title_font', this.value);
         });
 
+        const paragraph_align_field = document.getElementById('yb-align-text');
+        paragraph_align_field.addEventListener('change', function() {
+            $('#preview-paragraph').css({'text-align': this.value});
+            updateCustom('text_edit', 'para-align', this.value);
+        });
+
         accent_color_field.addEventListener('click', function() {
             if (preview_stage === 1) {
                 $('#bit-colors-preview').fadeOut();
@@ -498,6 +504,18 @@
             preview_stage = 1
         });
         primary_color_field.addEventListener('click', function() {
+            if (preview_stage === 0) {
+                $('#accent-color-preview').fadeOut();
+                $('#bit-colors-preview').fadeIn();
+            }
+            if (preview_stage === 2) {
+                $('#icon-color-preview').fadeOut();
+                $('#bit-colors-preview').fadeIn();
+            }
+            preview_stage = 1
+        });
+
+        paragraph_align_field.addEventListener('click', function() {
             if (preview_stage === 0) {
                 $('#accent-color-preview').fadeOut();
                 $('#bit-colors-preview').fadeIn();

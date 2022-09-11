@@ -50,7 +50,7 @@ class Profile(models.Model):
     text_color = models.CharField(max_length=50, default="#ffffff")
     feedback_icon_color = models.CharField(max_length=50, default="#ffffff")
     feedback_background_color = models.CharField(max_length=50, default="#313131")
-    
+    paragraph_align = models.CharField(max_length=10, default='left')
 
     #UI
     background_color = models.CharField(max_length=50, default="#323232")

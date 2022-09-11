@@ -224,6 +224,13 @@ class Personalization(LoginRequiredMixin, View):
                 user_profile.title_color = value
                 user_profile.save()
 
+        if action == 'text_edit':
+            option = request.POST.get('field')
+            value = request.POST.get('value')
+            if option == 'para-align':
+                user_profile.paragraph_align = value
+                user_profile.save()
+
         return JsonResponse({'success':'success'})
 
 

@@ -40,12 +40,16 @@
                         <input type="text" id="bit-accent" value="{{bit.user.profile.accent_color}}">
                         <input type="text" id="bit-icon" value="{{bit.user.profile.feedback_icon_color}}">
                     </div>
-                    
+                    <!--Bit title-->
                     {% if bit.title %}
                         <div id="chat-bit-title"><hr><h3 style="color:{{bit.user.profile.title_color}};">{{ bit.title }}<h3><hr></div>
                     {% endif %}
                     <div id="comments-display{{bit.pk}}"></div>
-                    <div id="chat-bit-display-description" style="color:{{bit.user.profile.text_color}};"><p>{{bit.body|urlize|linebreaks}}</p></div>
+
+                    <!--Bit paragraph container-->
+                    <div id="chat-bit-display-description" style="color:{{bit.user.profile.text_color}}; text-align:{{bit.user.profile.paragraph_align}}">
+                        <p>{{bit.body|urlize|linebreaks}}</p>
+                    </div>
                     <div id="feed-bit-comment-container"></div>
                     <a class="post-background-link" href="{% url 'bit-detail' bit.pk %}"></a>
                     <form method='POST' id="chat-bit-feedback-container" class = "post-interaction-container" action="{% url 'interact' bit.pk %}">
