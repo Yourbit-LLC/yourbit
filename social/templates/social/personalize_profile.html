@@ -163,29 +163,31 @@
                 grid-column-end: 2;
                 grid-row: 2;
                 position: relative;'>
-                    <input class="color-selector" id="tfont-color-select" type="color" name='title_color' value="{{title_color}}">
-                    <label class="color-select-label" for="tfont-color-select">Title Color</label>
-                    <br>
-                    <br>
-                    <input class="color-selector" id="pfont-color-select" type="color" name='text_color' value="{{text_color}}">
-                    <label class="color-select-label" for="pfont-color-select" >Paragraph Color</label>
-                    <br>
-                    <br>
-                    <input class="color-selector" id="feedback-icon-color-select" type="color" name='feedback_icon_color' value="{{feedback_icon_color}}">
-                    <label class="color-select-label" for="feedback-icon-color-select">Bit Button Bkd &lpar;selected&rpar;</label>
-                    <br>
-                    <br>
-                    <input class="color-selector" id="feedback-icon-color-select" type="color" name='feedback_icon_color' value="{{feedback_icon_color}}">
-                    <label class="color-select-label" for="feedback-icon-color-select">Bit Button Icon &lpar;selected&rpar;</label>
-                    <br>
-                    <br>
+                    <div id='bit-color-customizations' style='position: relative; height: 0vh; text-align: left;'>
+                        <input class="color-selector" id="tfont-color-select" type="color" name='title_color' value="{{title_color}}">
+                        <label class="color-select-label" for="tfont-color-select">Title Color</label>
+                        <br>
+                        <br>
+                        <input class="color-selector" id="pfont-color-select" type="color" name='text_color' value="{{text_color}}">
+                        <label class="color-select-label" for="pfont-color-select" >Paragraph Color</label>
+                        <br>
+                        <br>
+                        <input class="color-selector" id="feedback-icon-color-select" type="color" name='feedback_icon_color' value="{{feedback_icon_color}}">
+                        <label class="color-select-label" for="feedback-icon-color-select">Bit Button Bkd &lpar;selected&rpar;</label>
+                        <br>
+                        <br>
+                        <input class="color-selector" id="feedback-icon-color-select" type="color" name='feedback_icon_color' value="{{feedback_icon_color}}">
+                        <label class="color-select-label" for="feedback-icon-color-select">Bit Button Icon &lpar;selected&rpar;</label>
+                        <br>
+                        <br>
 
-                    <input type="text" class='single-line-input' name="yb-align-text" list="yb-alignments" style='color: white;' placeholder="Text Align">
-                    <datalist id="yb-alignments">
-                        <option value="left">
-                        <option value="center">
-                        <option value="right">
-                    </datalist>
+                        <input type="text" class='single-line-input' name="yb-align-text" list="yb-alignments" style='color: white;' placeholder="Text Align">
+                        <datalist id="yb-alignments">
+                            <option value="left">
+                            <option value="center">
+                            <option value="right">
+                        </datalist>
+                    </div>
 
                 </div>
                 
@@ -254,7 +256,7 @@
             </div>
                 
         </div>
-        <div id="mobile-spacer">
+        <div id="mobile-spacer" style='height: 90px;'>
 
         </div>
     </div>
@@ -320,10 +322,9 @@
         document.getElementById("bit-layouts-header").addEventListener('click', function() {
             if (bit_color_sub.style.display === 'none') {
                 bit_color_sub.style.display = "grid";
-                $('#color-customizations').animate({'height': '20vh'}, 'fast');
+                $('#bit-color-customizations').animate({'height': '30vh'}, 'fast');
             } else {
-                bit_color_sub.style.display = "none";
-                $('#color-customizations').animate({'height': '0vh'}, 'fast');
+                $('#bit-color-customizations').animate({'height': '0vh'}, 'fast');
                 setTimeout(hideElement, 200, bit_color_sub)
             }
         });
