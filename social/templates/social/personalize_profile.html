@@ -303,7 +303,7 @@
         document.getElementById("color-option-header").addEventListener('click', function() {
             if (color_sub.style.display === 'none') {
                 color_sub.style.display = "grid";
-                $('#color-customizations').animate({'height': '15vh'}, 'fast');
+                $('#color-customizations').animate({'height': '20vh'}, 'fast');
             } else {
                 $('#color-customizations').animate({'height': '0vh'}, 'fast');
                 setTimeout(hideElement, 200, color_sub)
@@ -320,8 +320,11 @@
         document.getElementById("bit-layouts-header").addEventListener('click', function() {
             if (bit_color_sub.style.display === 'none') {
                 bit_color_sub.style.display = "grid";
+                $('#color-customizations').animate({'height': '20vh'}, 'fast');
             } else {
                 bit_color_sub.style.display = "none";
+                $('#color-customizations').animate({'height': '0vh'}, 'fast');
+                setTimeout(hideElement, 200, bit_color_sub)
             }
         });
 
@@ -334,7 +337,7 @@
 
                 reader.addEventListener('load', function() {
                     image_preview.setAttribute('src', this.result);
-                    updateCustom('image_upload', 'background_image', this.result)
+                    updateCustom('image_upload', 'background_image', image_loaded)
                 });
 
                 reader.readAsDataURL(image_loaded);
@@ -351,7 +354,7 @@
 
                 reader.addEventListener('load', function() {
                     user_image_preview.setAttribute('src', this.result);
-                    updateCustom('image_upload', 'profile_image', this.result)
+                    updateCustom('image_upload', 'profile_image', image_loaded)
                 });
 
                 reader.readAsDataURL(image_loaded);
