@@ -927,6 +927,7 @@ class GetNotifications(View):
                     )
 
                 elif notification.notification_type == 2:
+                    print('A comment')
                     from_user_profile = notification.from_user
                     from_user = from_user_profile.user
                     first_name = from_user.first_name
@@ -955,6 +956,7 @@ class GetNotifications(View):
                     )
 
                 elif notification.notification_type == 3:
+                    print('A follow')
                     from_user_profile = notification.from_user
                     from_user = from_user_profile.user
                     first_name = from_user.first_name

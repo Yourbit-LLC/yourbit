@@ -110,7 +110,8 @@ function getNotifications() {
             success: function(data) {
                 let notifications = Object.keys(data);
                 let notification_length = Object.keys(notifications).length
-                
+                console.log(notifications)
+                console.log(notification_length)
                 let notification = '';
                 let x = 0;
                 if (width > 700){
@@ -139,7 +140,7 @@ function getNotifications() {
                 } else {
                     $('#menu-notification-container').empty();
                     for (let i = 0; i < notification_length; i++) {
-                        notification = notifications[x];
+                        notification = notifications[i];
                         let notification_info = data[notification];
                         let user_name = notification_info['from_user'];
                         let type = notification_info['type']
