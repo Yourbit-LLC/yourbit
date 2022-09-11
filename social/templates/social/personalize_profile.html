@@ -354,6 +354,8 @@
 
                 reader.addEventListener('load', function() {
                     user_image_preview.setAttribute('src', this.result);
+                    let profile_pic = document.getElementById('profile-pic');
+                    profile_pic.setAttribute('src', this.result);
                     updateCustom('image_upload', 'profile_image', image_loaded)
                 });
 
@@ -387,6 +389,7 @@
             let border2 = document.getElementById('bit-profile-image');
             border1.style.borderColor = this.value;
             border2.style.borderColor = this.value;
+            $('#profile-pic').css({'border-color': this.value})
             updateCustom('color_change', 'secondary', this.value)
         });
 
@@ -412,6 +415,9 @@
             let space_icon6 = document.getElementById('icon-image-6').style.fill = this.value;
             let space_icon7 = document.getElementById('icon-image-7').style.fill = this.value;
             let space_icon8 = document.getElementById('icon-image-8').style.fill = this.value;
+            $('.space-button-icon').css({'fill':this.value});
+            $('.mobile-floating-actions-path').css({'fill': this.value});
+            $('.mobile-floating-actions').css({'border-color': this.value});
             updateCustom('color_change', 'icon', this.value);
             
         });
