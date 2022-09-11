@@ -144,7 +144,7 @@ function getNotifications() {
                         let user_name = notification_info['from_user'];
                         let type = notification_info['type']
                         let username = notification_info['username'];
-                        
+                        let profile_id = notification_info['profile_id'];
                         console.log(username)
                         if (type === 'rate'){
                             let bit = notification_info['bit'];
@@ -159,7 +159,7 @@ function getNotifications() {
                             let text = notification_info['comment'];
                             $('#menu-notification-container').append(`
                                 <div class='mobile-notification' id='mobile-friend-request' style="color:white;">
-                                    <p class="mobile-interaction-notification-text">${user_name} commented on your post:<br><q></q>!</p>
+                                    <p class="mobile-interaction-notification-text">${user_name} commented on your post:<br><q>${text}</q>!</p>
                                     <span data-username="${username}" data-name="${user_name}" data-catid="${profile_id}" class="mobile-notification-link" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display:block; z-index:2;"></span>
                                 </div>
                         `)};
@@ -172,7 +172,6 @@ function getNotifications() {
                                 </div>
                         `)};
                         if (type === 'connect'){
-                            let profile_id = notification_info['profile_id'];
                             let notif_id = notification_info['id'];
                             let send_list = [username, user_name, profile_id, notif_id];
                             $('#menu-notification-container').append(`

@@ -909,6 +909,7 @@ class GetNotifications(View):
                     name = first_name + last_name
                     username = from_user.username
                     bit = notification.bit
+                    bit = bit.id
                     time = notification.date
                     iteration += 1
                     rate_notification = 'notification' + str(iteration)
@@ -933,9 +934,10 @@ class GetNotifications(View):
                     name = first_name + last_name
                     username = from_user.username
                     bit = notification.bit
+                    bit = bit.id
                     time = notification.date
                     comment = notification.comment
-                    comment_text = comment.body
+                    comment_text = comment.comment
                     iteration += 1
                     comment_notification = 'notification' + str(iteration)
                     notifications_list.update(
