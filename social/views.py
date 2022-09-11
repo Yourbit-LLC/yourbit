@@ -188,7 +188,7 @@ class Personalization(LoginRequiredMixin, View):
                 user_profile.save()
 
             if option == 'profile_image':
-                user_profile.profile_image = value
+                user_profile.image = value
                 user_profile.save()
 
 
