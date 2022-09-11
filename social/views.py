@@ -172,37 +172,59 @@ class Personalization(LoginRequiredMixin, View):
 
         }
         return render(request, "social/personalize_profile.html", context)
-
+    
     def post(self, request, *args, **kwargs):
         profile_image_form = ProfilePictureUpload()
         background_image_form = BackgroundPictureUpload()
+        action = request.POST.get('action')
+        user_profile = Profile.objects.get(user = request.user)
+        print(action)
+        if action == 'image_upload':
+            option = request.POST.get('field')
+            value = request.FILES.get('value')
 
-        if 'profile_image_button' in request.POST:
-            profile_image_form = ProfilePictureUpload(request.POST, request.FILES, instance=request.user.profile)
-            if profile_image_form.is_valid():
-                profile_image_form.save()
-                return redirect("personalize")
+            if option == 'background_image':
+                user_profile.background_image = value
+                user_profile.save()
 
-        if 'background_image_button' in request.POST:
-            background_image_form = BackgroundPictureUpload(request.POST, request.FILES, instance=request.user.profile)
-            if background_image_form.is_valid():
-                background_image_form.save()
-                return redirect("personalize")
-
-        if 'colors' in request.POST:
-            color_form = ColorForm(request.POST, instance=request.user.profile)
-            if color_form.is_valid():
-                color_form.save()
-                return redirect("personalize")
-
-        context = {
-            'profile_image_form': profile_image_form,
-            'background_image_form' : background_image_form,
-            'color_form':color_form,
+            if option == 'profile_image':
+                user_profile.profile_image = value
+                user_profile.save()
 
 
-        }
-        return redirect("personalize")
+        if action == 'color_change': 
+            option = request.POST.get('field')
+            value = request.POST.get('value')
+            print(option)
+            if option == 'primary':
+                user_profile.bit_background = value
+                user_profile.save()
+            
+            if option == 'secondary':
+                user_profile.accent_color = value
+                user_profile.save()
+
+            if option == 'icon':
+                user_profile.icon_color = value
+                user_profile.save()
+
+            if option == 'feedback_icon':
+                user_profile.feedback_icon_color = value
+                user_profile.save()
+
+            if option == 'feedback_icon_background':
+                user_profile.feedback_background_color = value
+                user_profile.save()
+
+            if option == 'paragraph_font':
+                user_profile.text_color = value
+                user_profile.save()
+
+            if option == 'title_font':
+                user_profile.title_color = value
+                user_profile.save()
+
+        return JsonResponse({'success':'success'})
 
 
 #Legacy like and dislike view, delete later
@@ -1117,9 +1139,12 @@ class Onboarding(View):
             background_image_form = BackgroundPictureUpload(instance=request.user)
             profile_image = request.FILES.get('profile_image')
             background_image = request.FILES.get('background_image')
-            user_profile.image = profile_image
-            user_profile.background_image = background_image
-            user_profile.save() 
+            if profile_image != '':
+                user_profile.image = profile_image
+                user_profile.save()
+            if background_image != '':
+                user_profile.background_image = background_image
+                user_profile.save() 
             
 
         if page == 1:
@@ -1128,7 +1153,6 @@ class Onboarding(View):
             user_profile.gender = gender
             user_profile.user_bio = bio
             user_profile.save()
-
 
 
         if page == 2:

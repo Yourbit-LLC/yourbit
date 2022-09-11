@@ -919,6 +919,23 @@ only be used for object transforms (shaping and scaling)
         display: none;
     }
 
+    input::-webkit-input-placeholder {
+        color: rgb(176, 176, 176) !important;
+        }
+         
+    input:-moz-placeholder { /* Firefox 18- */
+        color: rgb(176, 176, 176) !important;  
+    }
+        
+    input::-moz-placeholder {  /* Firefox 19+ */
+        color: rgb(176, 176, 176) !important;  
+    }
+        
+    input:-ms-input-placeholder {  
+        color: rgb(176, 176, 176) !important;  
+        }
+
+
 /*Linear Content Container*/
 
 /*Grid Content Container*/
@@ -1840,6 +1857,22 @@ only be used for object transforms (shaping and scaling)
         width: 100vw;
         height: 75px;
     }
+
+    input::-webkit-input-placeholder {
+        color: rgb(176, 176, 176) !important;
+        }
+         
+    input:-moz-placeholder { /* Firefox 18- */
+        color: rgb(176, 176, 176) !important;  
+    }
+        
+    input::-moz-placeholder {  /* Firefox 19+ */
+        color: rgb(176, 176, 176) !important;  
+    }
+        
+    input:-ms-input-placeholder {  
+        color: rgb(176, 176, 176) !important;  
+        }
 
 
     /*Linear Content Container*/

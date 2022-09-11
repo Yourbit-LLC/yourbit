@@ -48,7 +48,9 @@ class Profile(models.Model):
     bit_background = models.CharField(max_length=50, default = "#4b4b4b")
     title_color = models.CharField(max_length=50, default="#ffffff")
     text_color = models.CharField(max_length=50, default="#ffffff")
-    feedback_icon_color = models.CharField(max_length=50, default="#313131")
+    feedback_icon_color = models.CharField(max_length=50, default="#ffffff")
+    feedback_background_color = models.CharField(max_length=50, default="#313131")
+    
 
     #UI
     background_color = models.CharField(max_length=50, default="#323232")

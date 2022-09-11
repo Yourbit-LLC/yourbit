@@ -52,6 +52,7 @@ def Customization(request):
         icon_color = custom.icon_color
         feedback_icon_color = custom.feedback_icon_color
         background_color = custom.background_color
+        feedback_background_color = custom.feedback_background_color
 
         #Community customization
         bit_background = custom.bit_background
@@ -74,6 +75,7 @@ def Customization(request):
             'text_color':text_color,
             'user_colors_on':user_colors_on,
             'default_theme_on':default_theme_on,
+            'feedback_background_color':feedback_background_color,
 
         }
 
