@@ -215,7 +215,7 @@
     grid-gap: 1%;
     z-index: 5;
 }
-#chat-bit-profile-picture-link {
+.chat-bit-profile-picture-link {
     position: relative;
     grid-column: 1;
     width: 100%;
@@ -224,12 +224,13 @@
 
 }
 
-#chat-bit-profile-picture {
+.chat-bit-profile-picture {
     width: 100%;
     border: 2px solid white;
     border-radius: 180px;
     margin: auto;
     object-fit: contain;
+    pointer-events: none;
 }
 
 #chat-bit-user-info {
@@ -646,8 +647,9 @@
     }
 
     
-    #chat-bit-profile-picture-link {
+    .chat-bit-profile-picture-link {
         position: relative;
+        display: block;
         grid-column: 1;
         width: 100%;
         margin: auto;
@@ -655,13 +657,14 @@
     
     }
     
-    #chat-bit-profile-picture {
+    .chat-bit-profile-picture {
         width: 30;
         height: 30;
         border: 2px solid white;
         border-radius: 180px;
         margin: auto;
         object-fit: contain;
+        pointer-events: none;
     }
     
     #chat-bit-user-info {
