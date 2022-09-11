@@ -912,7 +912,18 @@ class GetNotifications(View):
                     time = notification.date
                     iteration += 1
                     rate_notification = 'notification' + str(iteration)
-                    notifications_list.update({rate_notification : {'id' : notification.id, 'time' : time, 'from_user': name, 'type' : 'rate', 'bit' : bit}})
+                    notifications_list.update(
+                        {
+                            rate_notification : 
+                                {
+                                    'id' : notification.id, 
+                                    'time' : time,
+                                    'from_user': name, 
+                                    'type' : 'rate', 
+                                    'bit' : bit
+                                }
+                        }
+                    )
 
                 elif notification.notification_type == 2:
                     from_user_profile = notification.from_user
@@ -927,7 +938,19 @@ class GetNotifications(View):
                     comment_text = comment.body
                     iteration += 1
                     comment_notification = 'notification' + str(iteration)
-                    notifications_list.update({comment_notification : {'id' : notification.id, 'time' : time, 'from_user': name, 'type' : 'comment', 'bit' : bit, 'comment': comment_text}})
+                    notifications_list.update(
+                        {
+                            comment_notification : 
+                            {
+                                'id' : notification.id, 
+                                'time' : time, 
+                                'from_user': name, 
+                                'type' : 'comment', 
+                                'bit' : bit, 
+                                'comment': comment_text
+                            }
+                        }
+                    )
 
                 elif notification.notification_type == 3:
                     from_user_profile = notification.from_user
@@ -939,7 +962,17 @@ class GetNotifications(View):
                     time = notification.date
                     iteration += 1
                     follow_notification = 'notification' + str(iteration)
-                    notifications_list.update({follow_notification : {'id' : notification.id, 'time' : time, 'from_user': name, 'type' : 'follow'}})       
+                    notifications_list.update(
+                        {
+                            follow_notification : 
+                            {
+                                'id' : notification.id, 
+                                'time' : time, 
+                                'from_user': name, 
+                                'type' : 'follow'
+                            }
+                        }
+                    )       
                 
                 elif notification.notification_type == 4:
                     from_user_profile = notification.from_user
@@ -952,7 +985,19 @@ class GetNotifications(View):
                     time = notification.date
                     iteration += 1
                     connect_notification = 'notification' + str(iteration)
-                    notifications_list.update({connect_notification : {'id' : notification.id, 'time' : time, 'username':username, 'type': 'connect', 'from_name': name, 'profile_id':profile_id}})
+                    notifications_list.update(
+                        {
+                            connect_notification : 
+                            {
+                                'id' : notification.id, 
+                                'time' : time, 
+                                'username':username, 
+                                'type': 'connect', 
+                                'from_user': name, 
+                                'profile_id':profile_id
+                            }
+                        }
+                    )
                 
 
                 elif notification.notification_type == 5:
@@ -965,7 +1010,17 @@ class GetNotifications(View):
                     time = notification.date
                     iteration += 1
                     accept_notification = 'notification' + str(iteration)
-                    notifications_list.update({accept_notification : {'id' : notification.id, 'time' : time, 'from_user' : name, 'type' : 'accept_request'}})
+                    notifications_list.update(
+                        {
+                            accept_notification : 
+                            {
+                                'id' : notification.id, 
+                                'time' : time, 
+                                'from_user' : name, 
+                                'type' : 'accept_request'
+                            }
+                        }
+                    )
 
                 else:
                     from_user_profile = notification.from_user
@@ -977,7 +1032,17 @@ class GetNotifications(View):
                     time = notification.date
                     iteration += 1
                     message_notification = 'notification' + str(iteration)
-                    notifications_list.update({accept_notification : {'id' : notification.id, 'time' : time, 'from_user' : name, 'type' : 'message'}})
+                    notifications_list.update(
+                        {
+                            accept_notification : 
+                            {
+                                'id' : notification.id, 
+                                'time' : time, 
+                                'from_user' : name, 
+                                'type' : 'message',
+                            }
+                        }
+                    )
 
 
         return JsonResponse(notifications_list)

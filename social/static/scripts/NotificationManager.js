@@ -141,18 +141,56 @@ function getNotifications() {
                     for (let i = 0; i < notification_length; i++) {
                         notification = notifications[x];
                         let notification_info = data[notification];
+                        let user_name = notification_info['from_user'];
+                        let type = notification_info['type']
                         let username = notification_info['username'];
-                        let user_name = notification_info['from_name'];
-                        let profile_id = notification_info['profile_id'];
-                        let notif_id = notification_info['id'];
-                        let send_list = [username, user_name, profile_id, notif_id];
+                        
                         console.log(username)
-                        $('#menu-notification-container').append(`
-                            <div class='mobile-notification' id='mobile-friend-request' style="color:white;">
-                                <p class="mobile-interaction-notification-text">${user_name} wants to be your friend!</p>
-                                <span data-username="${username}" data-name="${user_name}" data-catid="${profile_id}" onclick="viewNotification('${send_list}')" class="mobile-notification-link" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display:block; z-index:2;"></span>
-                            </div>
-                        `)
+                        if (type === 'rate'){
+                            let bit = notification_info['bit'];
+                            $('#menu-notification-container').append(`
+                                <div class='mobile-notification' id='mobile-friend-request' style="color:white;">
+                                    <p class="mobile-interaction-notification-text">${user_name} commented on your post:<br><q></q>!</p>
+                                    <span data-username="${username}" data-name="${user_name}" data-catid="${profile_id}" class="mobile-notification-link" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display:block; z-index:2;"></span>
+                                </div>
+                        `)};
+                        if (type === 'comment'){
+                            let bit = notification_info['bit'];
+                            let text = notification_info['comment'];
+                            $('#menu-notification-container').append(`
+                                <div class='mobile-notification' id='mobile-friend-request' style="color:white;">
+                                    <p class="mobile-interaction-notification-text">${user_name} commented on your post:<br><q></q>!</p>
+                                    <span data-username="${username}" data-name="${user_name}" data-catid="${profile_id}" class="mobile-notification-link" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display:block; z-index:2;"></span>
+                                </div>
+                        `)};
+                        if (type === 'follow'){
+
+                            $('#menu-notification-container').append(`
+                                <div class='mobile-notification' id='mobile-friend-request' style="color:white;">
+                                    <p class="mobile-interaction-notification-text">${user_name} followed you!</p>
+                                    <span data-username="${username}" data-name="${user_name}" data-catid="${profile_id}" href="${base_url}/social/profile/${username}" class="mobile-notification-link" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display:block; z-index:2;"></span>
+                                </div>
+                        `)};
+                        if (type === 'connect'){
+                            let profile_id = notification_info['profile_id'];
+                            let notif_id = notification_info['id'];
+                            let send_list = [username, user_name, profile_id, notif_id];
+                            $('#menu-notification-container').append(`
+                                <div class='mobile-notification' id='mobile-friend-request' style="color:white;">
+                                    <p class="mobile-interaction-notification-text">${user_name} wants to be your friend!</p>
+                                    <span data-username="${username}" data-name="${user_name}" data-catid="${profile_id}" onclick="viewNotification('${send_list}')" class="mobile-notification-link" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display:block; z-index:2;"></span>
+                                </div>
+                        `)}
+                        if (type === 'accept_request') {
+                            $('#menu-notification-container').append(`
+                                <div class='mobile-notification' id='mobile-friend-request' style="color:white;">
+                                    <p class="mobile-interaction-notification-text">${user_name} accepted your friend request!</p>
+                                    <span data-username="${username}" data-name="${user_name}" data-catid="${profile_id}" href="${base_url}/social/profile/${username}" class="mobile-notification-link" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display:block; z-index:2;"></span>
+                                </div>
+                            `
+                            )
+                        }
+
                     }
                 }
             }
