@@ -299,22 +299,22 @@ function denyFriend(profile_id) {
 function showNotification(callback1, body) {
     $('#non-interactive-notification-modal').show();
     $('#non-interactive-notification-modal').animate({'top': '70px', 'opacity':'1'}, 'fast');
-    showText(body);
-    setTimeout(callback1, 1000);
+    setTimeout(callback1, 1000, showText, body);
 };
 
-function expandNotification() {
-    $('#non-interactive-notification-modal').animate({'width':'400px'}, 'fast');
+function expandNotification(callback, body) {
+    $('#non-interactive-notification-modal').animate({'width':'300px'}, 'fast');
     $('non-interactive-notification-modal').html(`
     
     `);
+    callback(body);
     setTimeout(contractNotification, 5000);
     
 };
 
 function showText(body) {
     $('#non-interactive-notification-modal').html(`
-        <p>${body}</p>
+        <p style='display:block; position: relative; margin: auto; top:50%; left: 50%; transform:translate(-50%, -50%); margin-left: 20px;'>${body}</p>
     `);
 }
 

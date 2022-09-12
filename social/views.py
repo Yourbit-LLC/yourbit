@@ -1215,10 +1215,10 @@ class Onboarding(View):
             background_image_form = BackgroundPictureUpload(instance=request.user)
             profile_image = request.FILES.get('profile_image')
             background_image = request.FILES.get('background_image')
-            if profile_image != '':
+            if profile_image != None:
                 user_profile.image = profile_image
                 user_profile.save()
-            if background_image != '':
+            if background_image != None:
                 user_profile.background_image = background_image
                 user_profile.save() 
             

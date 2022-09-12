@@ -293,6 +293,10 @@ $('.feedback-icon').click(function(){
                     $('#dislike-icon-' + catid).css("fill", "white");
                     $('#like-count' + catid).replaceWith(`<p id="like-count${catid}" class="counter" style="grid-column: 2; color: lightgreen; margin-top: auto; margin-bottom: auto;">${like_count}</p>`);
                     $('#dislike-count' + catid).replaceWith(`<p id="dislike-count${catid}" class="counter" style="grid-column: 4; color: lightgreen; margin-top: auto; margin-bottom: auto;">${dislike_count}</p>`);
+                    let to_user = json_file.to_user;
+                    let from_user = json_file.from_user;
+                    let type = 1;
+                    parent.Notify(type, from_user, to_user);
                 } else {
                     let like_count = json_file.like_count
                     let dislike_count = json_file.dislike_count
@@ -305,10 +309,6 @@ $('.feedback-icon').click(function(){
                     $('#like-count' + catid).replaceWith(`<p id="like-count${catid}" class="counter" style="grid-column: 2; color: lightgreen; margin-top: auto; margin-bottom: auto;">${like_count}</p>`);
                     $('#dislike-count' + catid).replaceWith(`<p id="dislike-count${catid}" class="counter" style="grid-column: 4; color: lightgreen; margin-top: auto; margin-bottom: auto;">${dislike_count}</p>`);                   
                 }
-                let to_user = json_file.to_user;
-                let from_user = json_file.from_user;
-                let type = 1;
-                Notify(type, from_user, to_user);
 
             }
 
@@ -449,6 +449,10 @@ $('.feedback-icon-active').click(function(){
                     console.log(like_count)
                     $('#like-count' + catid).replaceWith(`<p id="like-count${catid}" class="counter" style="grid-column: 2; color: lightgreen; margin-top: auto; margin-bottom: auto;">${like_count}</p>`);
                     $('#dislike-count' + catid).replaceWith(`<p id="dislike-count${catid}" class="counter" style="grid-column: 4; color: lightgreen; margin-top: auto; margin-bottom: auto;">${dislike_count}</p>`);
+                    let to_user = json_file.to_user;
+                    let from_user = json_file.from_user;
+                    let type = 1;
+                    parent.Notify(type, from_user, to_user);
                 } else {
                     let like_count = json_file.like_count
                     let dislike_count = json_file.dislike_count
@@ -461,10 +465,6 @@ $('.feedback-icon-active').click(function(){
                     $('#like-count' + catid).replaceWith(`<p id="like-count${catid}" class="counter" style="grid-column: 2; color: lightgreen; margin-top: auto; margin-bottom: auto;">${like_count}</p>`);
                     $('#dislike-count' + catid).replaceWith(`<p id="dislike-count${catid}" class="counter" style="grid-column: 4; color: lightgreen; margin-top: auto; margin-bottom: auto;">${dislike_count}</p>`);                   
                 }
-                let to_user = json_file.to_user;
-                let from_user = json_file.from_user;
-                let type = 1;
-                Notify(type, from_user, to_user);
 
             }
 
@@ -500,7 +500,7 @@ $('.feedback-icon-active').click(function(){
                         $('#like-icon-' + catid).css("fill", "white");
                         $('#like-count' + catid).replaceWith(`<p id="like-count${catid}" class="counter" style="grid-column: 2; color: lightgreen; margin-top: auto; margin-bottom: auto;">${like_count}</p>`);
                         $('#dislike-count' + catid).replaceWith(`<p id="dislike-count${catid}" class="counter" style="grid-column: 4; color: lightgreen; margin-top: auto; margin-bottom: auto;">${dislike_count}</p>`);
-                        showNotification(expandNotification, `Disliked ${user_name}'s bit`);  
+                        parent.showNotification(expandNotification, `Disliked ${user_name}'s bit`);  
                     } else {
                         let like_count = json_file.like_count
                         let dislike_count = json_file.dislike_count
@@ -512,7 +512,7 @@ $('.feedback-icon-active').click(function(){
                         $('#dislike-icon-' + catid).css("fill", "white");
                         $('#like-count' + catid).replaceWith(`<p id="like-count${catid}" class="counter" style="grid-column: 2; color: lightgreen; margin-top: auto; margin-bottom: auto;">${like_count}</p>`);
                         $('#dislike-count' + catid).replaceWith(`<p id="dislike-count${catid}" class="counter" style="grid-column: 4; color: lightgreen; margin-top: auto; margin-bottom: auto;">${dislike_count}</p>`);                            
-                        showNotification(expandNotification, `Undisliked ${user_name}'s bit`);
+                        parent.showNotification(expandNotification, `Undisliked ${user_name}'s bit`);
                     }
                     
                 }
@@ -575,7 +575,7 @@ function Comment(catid) {
                 let type = 2;
                 let from_user = json_file.from_user;
                 let to_user = json_file.to_user;
-                Notify(type, from_user, to_user);
+                parent.Notify(type, from_user, to_user);
 
                 
                 
