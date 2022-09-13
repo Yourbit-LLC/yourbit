@@ -382,7 +382,7 @@
     position: relative;
     margin-bottom: 7px;
     margin-top: 0px;
-    text-shadow: 1px 1px 5px;
+    text-shadow: 1px 1px 2px black;
 }
 #comment-time {
     position: relative;
@@ -990,7 +990,7 @@
         position: relative;
         margin-bottom: 7px;
         margin-top: 0px;
-        text-shadow: 1px 1px 5px;
+        text-shadow: 1px 1px 2px black;
     }
     /* #write-comment-button {
         grid-column: 2;
