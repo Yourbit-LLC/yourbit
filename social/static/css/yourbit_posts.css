@@ -918,14 +918,10 @@
     #chat-comment-display-right {
         width: fit-content;
         opacity: 0.8;
-        padding: 5px;
         border-radius: 10px;
         margin-left: auto;
         margin-right: 0;
         font-size: 14px;
-        
-        filter: brightness(70%);
-        -webkit-filter: brightness(70%);
     
     
     
@@ -934,11 +930,8 @@
     #comment-display-left {
         background-color: rgb(100, 100, 100, 0.5);
         width: fit-content;
-        padding: 5px;
         border-radius: 10px;
         font-size: 14px;
-        filter: brightness(80%);
-        -webkit-filter: brightness(80%);
     
     
     }
@@ -989,6 +982,15 @@
         background-color: rgb(35,35,35);
         border-radius: 20px;
     }
+    .comment-text-container {
+        position: relative;
+        display: block;
+        padding: 5px;
+        backdrop-filter: brightness(80%);
+        -webkit-backdrop-filter: brightness(80%);
+        width: 100%;
+        height: 100%;
+    }
 
     .comment-text {
         display: block;
@@ -996,8 +998,7 @@
         margin-bottom: 7px;
         margin-top: 0px;
         text-shadow: 0.5px 0.5px 1px black;
-        filter: brightness(130%) !important;
-        -webkit-filter: brightness(130%) !important;
+
     }
     /* #write-comment-button {
         grid-column: 2;
