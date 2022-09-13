@@ -923,6 +923,9 @@
         margin-left: auto;
         margin-right: 0;
         font-size: 14px;
+        
+        filter: brightness(70%);
+        -webkit-filter: brightness(70%);
     
     
     
@@ -934,6 +937,8 @@
         padding: 5px;
         border-radius: 10px;
         font-size: 14px;
+        filter: brightness(70%);
+        -webkit-filter: brightness(70%);
     
     
     }
@@ -990,7 +995,7 @@
         position: relative;
         margin-bottom: 7px;
         margin-top: 0px;
-        text-shadow: 1px 1px 2px black;
+        text-shadow: 0.5px 0.5px 1px black;
     }
     /* #write-comment-button {
         grid-column: 2;
