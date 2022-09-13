@@ -15,46 +15,6 @@
     <a data-catid="{{profile.id}}" id = "photo-space-button" class = "space-button"><svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path id='photo-space-button-path' class='space-button-path' style="fill:{{profile.icon_color}}" d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-4.86 8.86l-3 3.87L9 13.14 6 17h12l-3.86-5.14z"/></svg></svg></a>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            let profle_icon_color = $('space-button-icon-color').val();
-            $('.space-button-path').css({'fill': icon_color});
-        });
-        var iframe = document.getElementById("profile-feed-content-container");
-        $('#global-space-button').click(function() {
-            iframe.src = "{% url 'feed' type='profile' id='profile.id' %}";
-            document.getElementById('global-space-button').className = "space-button-active";
-            document.getElementById('text-space-button').className = "space-button";
-            document.getElementById('video-space-button').className = "space-button";
-            document.getElementById('photo-space-button').className = "space-button";
-        });
-
-        $('#text-space-button').click(function() {
-            iframe.src = "{% url 'feed' type='profile-chatspace' id=profile.id %}";
-            document.getElementById('text-space-button').className = "space-button-active";
-            document.getElementById('photo-space-button').className = "space-button";
-            document.getElementById('video-space-button').className = "space-button";
-            document.getElementById('global-space-button').className = "space-button";
-        });
-
-        $('#photo-space-button').click(function() {
-            iframe.src = "{% url 'feed' type='profile-photospace' id=profile.id %}";
-            document.getElementById('photo-space-button').className = "space-button-active";
-            document.getElementById('text-space-button').className = "space-button";
-            document.getElementById('video-space-button').className = "space-button";
-            document.getElementById('global-space-button').className = "space-button";
-
-        });
-
-        $('#video-space-button').click(function() {
-            iframe.src = "{% url 'feed' type='profile-videospace' id=profile.id %}";
-            document.getElementById('video-space-button').className = "space-button-active";
-            document.getElementById('photo-space-button').className = "space-button";
-            document.getElementById('global-space-button').className = "space-button";
-            document.getElementById('text-space-button').className = "space-button";
-        });
-        
-    </script>
 {% endblock %}
 {% block content %}
 <input type="hidden" id='profile-icon-color' value="{{profile.icon_color}}">
@@ -125,12 +85,50 @@
 <script type="text/javascript" src="{% static 'scripts/ProfileManager.js' %}"></script>
 <script type='text/javascript'>
     
+$(document).ready(function() {
+    
+    let icon_color = $('#profile-icon-color').val();
+    $('.mobile-floating-actions').css({'border-color': icon_color});
+    $('.mobile-floating-actions-path').css({'fill': icon_color});
+});
     $(document).ready(function() {
-        
-        let icon_color = $('#profile-icon-color').val();
-        $('.mobile-floating-actions').css({'border-color': icon_color});
-        $('.mobile-floating-actions-path').css({'fill': icon_color});
+        let profle_icon_color = $('space-button-icon-color').val();
+        $('.space-button-path').css({'fill': icon_color});
     });
+    let iframe = document.getElementById("profile-feed-content-container");
+    $('#global-space-button').click(function() {
+        iframe.src = "{% url 'feed' type='profile' id=profile.id %}";
+        document.getElementById('global-space-button').className = "space-button-active";
+        document.getElementById('text-space-button').className = "space-button";
+        document.getElementById('video-space-button').className = "space-button";
+        document.getElementById('photo-space-button').className = "space-button";
+    });
+
+    $('#text-space-button').click(function() {
+        iframe.src = "{% url 'feed' type='profile-chatspace' id=profile.id %}";
+        document.getElementById('text-space-button').className = "space-button-active";
+        document.getElementById('photo-space-button').className = "space-button";
+        document.getElementById('video-space-button').className = "space-button";
+        document.getElementById('global-space-button').className = "space-button";
+    });
+
+    $('#photo-space-button').click(function() {
+        iframe.src = "{% url 'feed' type='profile-photospace' id=profile.id %}";
+        document.getElementById('photo-space-button').className = "space-button-active";
+        document.getElementById('text-space-button').className = "space-button";
+        document.getElementById('video-space-button').className = "space-button";
+        document.getElementById('global-space-button').className = "space-button";
+
+    });
+
+    $('#video-space-button').click(function() {
+        iframe.src = "{% url 'feed' type='profile-videospace' id=profile.id %}";
+        document.getElementById('video-space-button').className = "space-button-active";
+        document.getElementById('photo-space-button').className = "space-button";
+        document.getElementById('global-space-button').className = "space-button";
+        document.getElementById('text-space-button').className = "space-button";
+    });
+
 </script>
 {% endblock %}
 
