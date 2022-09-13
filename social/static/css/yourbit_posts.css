@@ -996,8 +996,8 @@
         margin-bottom: 7px;
         margin-top: 0px;
         text-shadow: 0.5px 0.5px 1px black;
-        filter: brightness(100%);
-        -webkit-filter: brightness(100%);
+        filter: brightness(130%);
+        -webkit-filter: brightness(130%);
     }
     /* #write-comment-button {
         grid-column: 2;
