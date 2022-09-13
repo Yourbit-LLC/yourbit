@@ -937,8 +937,8 @@
         padding: 5px;
         border-radius: 10px;
         font-size: 14px;
-        filter: brightness(70%);
-        -webkit-filter: brightness(70%);
+        filter: brightness(80%);
+        -webkit-filter: brightness(80%);
     
     
     }
@@ -996,8 +996,8 @@
         margin-bottom: 7px;
         margin-top: 0px;
         text-shadow: 0.5px 0.5px 1px black;
-        filter: brightness(130%);
-        -webkit-filter: brightness(130%);
+        filter: brightness(130%) !important;
+        -webkit-filter: brightness(130%) !important;
     }
     /* #write-comment-button {
         grid-column: 2;

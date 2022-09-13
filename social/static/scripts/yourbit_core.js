@@ -2,7 +2,7 @@ var base_url = window.location.origin;
 var width = screen.width;
 var notifications_last = 0;
 var first_load = true;
-var iframe = document.getElementById('feed-content-container');
+var home_feed = document.getElementById('feed-content-container');
 
 var postList = document.getElementById("content-container-feed");
 
@@ -246,9 +246,9 @@ $('.checkbox').change(function() {
             },
             success: function(data){
                 let file = data;
-                iframe = document.getElementById('feed-content-container');
+                home_feed = document.getElementById('feed-content-container');
                 if(button_name === "bitColor"){
-                    iframe.contentWindow.location.reload();
+                    home_feed.contentWindow.location.reload();
                 }
                 if(button_name === "wallpaper") {
                     if(file.toggle === 'off') {
@@ -258,7 +258,7 @@ $('.checkbox').change(function() {
                     }
                 }if(button_name === "defaultThemeS") {
                     $('.bg-image').replaceWith('<div class="bg-image" style="background-color: rgb(95, 95, 95)"></div>');
-                    iframe.contentWindow.location.reload();
+                    home_feed.contentWindow.location.reload();
                 }
                 
                 updateVisibilitySwitches(file);
