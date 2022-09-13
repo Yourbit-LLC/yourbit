@@ -22,7 +22,7 @@
         });
         var iframe = document.getElementById("profile-feed-content-container");
         $('#global-space-button').click(function() {
-            iframe.src = "{% url 'feed' 'global' '0' %}";
+            iframe.src = "{% url 'feed' type='profile' id='profile.id' %}";
             document.getElementById('global-space-button').className = "space-button-active";
             document.getElementById('text-space-button').className = "space-button";
             document.getElementById('video-space-button').className = "space-button";
@@ -30,7 +30,7 @@
         });
 
         $('#text-space-button').click(function() {
-            iframe.src = "{% url 'feed' 'chatspace' '0' %}";
+            iframe.src = "{% url 'feed' type='profile-chatspace' id=profile.id %}";
             document.getElementById('text-space-button').className = "space-button-active";
             document.getElementById('photo-space-button').className = "space-button";
             document.getElementById('video-space-button').className = "space-button";
@@ -38,7 +38,7 @@
         });
 
         $('#photo-space-button').click(function() {
-            iframe.src = "{% url 'feed' 'photospace' '0' %}";
+            iframe.src = "{% url 'feed' type='profile-photospace' id=profile.id %}";
             document.getElementById('photo-space-button').className = "space-button-active";
             document.getElementById('text-space-button').className = "space-button";
             document.getElementById('video-space-button').className = "space-button";
@@ -47,7 +47,7 @@
         });
 
         $('#video-space-button').click(function() {
-            iframe.src = "{% url 'feed' 'videospace' '0' %}";
+            iframe.src = "{% url 'feed' type='profile-videospace' id=profile.id %}";
             document.getElementById('video-space-button').className = "space-button-active";
             document.getElementById('photo-space-button').className = "space-button";
             document.getElementById('global-space-button').className = "space-button";
@@ -91,7 +91,7 @@
         <hr style="margin-top: 10px; background-color:{{accent_color}}; border-color:{{accent_color}};">
     <!--Check if profile is public before proceeding as this is the highest form of exposure -->
 
-    {% if profile.is_public%}
+    {% if profile.is_public %}
             <iframe id='profile-feed-content-container' src="{% url 'feed' type='profile' id=profile.id %}" sandbox="allow-top-navigation allow-scripts allow-forms allow-same-origin">
             </iframe>
 

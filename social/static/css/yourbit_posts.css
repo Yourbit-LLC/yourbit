@@ -377,11 +377,12 @@
     background-color: rgb(35,35,35);
     border-radius: 20px;
 }
-#comment-text {
+.comment-text {
     display: block;
     position: relative;
     margin-bottom: 7px;
     margin-top: 0px;
+    text-shadow: 1px 1px 5px;
 }
 #comment-time {
     position: relative;
@@ -976,11 +977,20 @@
         top:4px;
     }
     
+    
     #write-comment-button:hover {
         filter: brightness(150%);
         -webkit-filter: brightness(150%);
         background-color: rgb(35,35,35);
         border-radius: 20px;
+    }
+
+    .comment-text {
+        display: block;
+        position: relative;
+        margin-bottom: 7px;
+        margin-top: 0px;
+        text-shadow: 1px 1px 5px;
     }
     /* #write-comment-button {
         grid-column: 2;

@@ -87,14 +87,14 @@
                                 {% if user.id == comment.user.id %}
                                         <div id="right-comment-display-wrapper">
                                             <div id="chat-comment-display-right" style="background-color: {{bit.user.profile.accent_color}}">
-                                                <p id="comment-text"> <strong>{{ comment.user.first_name }} {{comment.user.last_name}}</strong>: {{ comment.comment }}</p>
+                                                <p class="comment-text"> <strong>{{ comment.user.first_name }} {{comment.user.last_name}}</strong>: {{ comment.comment }}</p>
                                                 <weak id="comment-time">{{comment.created_on}}</weak>
                                             </div>
                                         </div>
                                     <br>
                                 {% else %}
                                     <div id="comment-display-left">
-                                        <p id="comment-text"> <strong>{{ comment.user.first_name }} {{comment.user.last_name}}</strong>: {{ comment.comment }}</p>
+                                        <p class="comment-text"> <strong>{{ comment.user.first_name }} {{comment.user.last_name}}</strong>: {{ comment.comment }}</p>
                                         <weak id="comment-time">{{comment.created_on}}</weak>
                                     </div>
                                     <br>
@@ -160,14 +160,14 @@
                             {% if user.id == comment.user.id %}
                                     <div id="right-comment-display-wrapper">
                                         <div id="chat-comment-display-right" style="background-color: {{bit.user.profile.accent_color}}">
-                                            <p id="comment-text"> <strong>{{ comment.user.first_name }} {{comment.user.last_name}}</strong>: {{ comment.comment }}</p>
+                                            <p class="comment-text"> <strong>{{ comment.user.first_name }} {{comment.user.last_name}}</strong>: {{ comment.comment }}</p>
                                             <weak id="comment-time">{{comment.created_on}}</weak>
                                         </div>
                                     </div>
                                 <br>
                             {% else %}
                                 <div id="comment-display-left">
-                                    <p id="comment-text"> <strong>{{ comment.user.first_name }} {{comment.user.last_name}}</strong>: {{ comment.comment }}</p>
+                                    <p class="comment-text"> <strong>{{ comment.user.first_name }} {{comment.user.last_name}}</strong>: {{ comment.comment }}</p>
                                     <weak id="comment-time">{{comment.created_on}}</weak>
                                 </div>
                                 <br>
@@ -242,14 +242,14 @@
                                 {% if user.id == comment.user.id %}
                                         <div id="right-comment-display-wrapper">
                                             <div id="chat-comment-display-right" style="background-color: {{bit.user.profile.accent_color}}">
-                                                <p id="comment-text"> <strong>{{ comment.user.first_name }} {{comment.user.last_name}}</strong>: {{ comment.comment }}</p>
+                                                <p class="comment-text"> <strong>{{ comment.user.first_name }} {{comment.user.last_name}}</strong>: {{ comment.comment }}</p>
                                                 <weak id="comment-time">{{comment.created_on}}</weak>
                                             </div>
                                         </div>
                                     <br>
                                 {% else %}
                                     <div id="comment-display-left">
-                                        <p id="comment-text"> <strong>{{ comment.user.first_name }} {{comment.user.last_name}}</strong>: {{ comment.comment }}</p>
+                                        <p class="comment-text"> <strong>{{ comment.user.first_name }} {{comment.user.last_name}}</strong>: {{ comment.comment }}</p>
                                         <weak id="comment-time">{{comment.created_on}}</weak>
                                     </div>
                                     <br>
@@ -320,14 +320,14 @@
                             {% if user.id == comment.user.id %}
                                     <div id="right-comment-display-wrapper">
                                         <div id="chat-comment-display-right" style="background-color: {{bit.user.profile.accent_color}}">
-                                            <p id="comment-text"> <strong>{{ comment.user.first_name }} {{comment.user.last_name}}</strong>: {{ comment.comment }}</p>
+                                            <p class="comment-text"> <strong>{{ comment.user.first_name }} {{comment.user.last_name}}</strong>: {{ comment.comment }}</p>
                                             <weak id="comment-time">{{comment.created_on}}</weak>
                                         </div>
                                     </div>
                                 <br>
                             {% else %}
                                 <div id="comment-display-left">
-                                    <p id="comment-text"> <strong>{{ comment.user.first_name }} {{comment.user.last_name}}</strong>: {{ comment.comment }}</p>
+                                    <p class="comment-text"> <strong>{{ comment.user.first_name }} {{comment.user.last_name}}</strong>: {{ comment.comment }}</p>
                                     <weak id="comment-time">{{comment.created_on}}</weak>
                                 </div>
                                 <br>
