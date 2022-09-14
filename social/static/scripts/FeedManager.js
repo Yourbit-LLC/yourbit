@@ -11,11 +11,11 @@ $(document).ready(function() {
 
 function scaleFeed() {
     if (width > 700){
-        postList.style.paddingTop = "70px"
+        postList.style.paddingTop = "40px"
         topSpacer.style.display = "none"
         
     } else {
-        postList.style.paddingTop = "45px"
+        postList.style.paddingTop = "8vh"
     }
 }
 function post_fly_in(postList) {
