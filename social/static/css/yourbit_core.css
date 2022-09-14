@@ -1162,7 +1162,7 @@ only be used for object transforms (shaping and scaling)
 
     /*Navigation Bar */
     #content-container {
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 0px;
         z-index: 3;
