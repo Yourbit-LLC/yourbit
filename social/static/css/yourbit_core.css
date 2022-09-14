@@ -1124,8 +1124,8 @@ only be used for object transforms (shaping and scaling)
     #mobile-header {
         position: absolute;
         display: block;
-        top: 0;
-        left: 0;
+        top: 0vh;
+        left: 0vw;
         width: 100vw;
         z-index: 20;
         height: 50px;
