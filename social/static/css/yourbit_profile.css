@@ -40,9 +40,10 @@ Profile Page
     .profile-info {
         display:grid;
         grid-template-columns: 115px 100px 100px 100px;
-        grid-template-rows: 50px 50px 20px;
+        grid-template-rows: 50px 50px 20px 10px;
         column-gap: 10px;
         row-gap: 5px;
+        width: 100vw;
 
 
     }
