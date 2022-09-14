@@ -967,6 +967,8 @@ only be used for object transforms (shaping and scaling)
         background-position: center;
         z-index: 1;
         transition: 1s;
+        filter: blur(20px);
+        backdrop-filter: blur(20px);
     
     }
 
@@ -1170,8 +1172,6 @@ only be used for object transforms (shaping and scaling)
         overflow-y: scroll;
         transition: 1s;
         overflow-x: hidden;
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
     }
     
     .navigation-bar {    
