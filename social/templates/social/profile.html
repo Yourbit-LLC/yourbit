@@ -20,7 +20,7 @@
 <input type="hidden" id='profile-icon-color' value="{{profile.icon_color}}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/yourbit_profile.css' %}"/>
 <div id="content-container" style="padding-top: 75px; overflow-y:scroll;">
-    <div class="profile-info" style = "box-shadow: 0px 2px 5px {{accent_color}}">
+    <div class="profile-info" style = "box-shadow: 0px 3px 8px {{accent_color}}">
         <input type='hidden' id="profile_id" value="{{profile.id}}">
         <div id="profile-image-profile" ><img style="border-color: {{profile.accent_color}}" src="{{ profile.image.url }}" class="profile-image-large" id="profile-image-profile-image"></div>
         <div id="user-name-profile"> <p id="profile-first-last-name"><strong>{{profile.user.first_name}} {{profile.user.last_name}}</strong> <small>@{{profile.user.username}}</small></p></div>
@@ -48,7 +48,8 @@
             {% endif %}
             
         </div>
-        <svg style="position: relative; display: block; grid-row: 3; grid-column-start: 1; grid-column-end: 5; left: -5px; margin: auto; -ms-grid-column-span: 4;" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill: {{icon_color}}" d="M6 14q-.825 0-1.412-.588Q4 12.825 4 12t.588-1.413Q5.175 10 6 10t1.412.587Q8 11.175 8 12q0 .825-.588 1.412Q6.825 14 6 14Zm6 0q-.825 0-1.412-.588Q10 12.825 10 12t.588-1.413Q11.175 10 12 10t1.413.587Q14 11.175 14 12q0 .825-.587 1.412Q12.825 14 12 14Zm6 0q-.825 0-1.413-.588Q16 12.825 16 12t.587-1.413Q17.175 10 18 10q.825 0 1.413.587Q20 11.175 20 12q0 .825-.587 1.412Q18.825 14 18 14Z"/></svg>
+        <svg style="position: relative; display: block; grid-row: 3; grid-column-start: 1; grid-column-end: 5; left: -5px; margin: auto; -ms-grid-column-span: 4;" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="M9.125 22.458q-1.042 0-1.75-.729T6.667 20q0-1 .729-1.729.729-.729 1.729-.729t1.708.729q.709.729.709 1.729t-.709 1.729q-.708.729-1.708.729Zm10.875 0q-1 0-1.729-.729Q17.542 21 17.542 20t.729-1.729Q19 17.542 20 17.542t1.729.729q.729.729.729 1.729t-.729 1.729q-.729.729-1.729.729Zm10.875 0q-1 0-1.708-.729Q28.458 21 28.458 20t.709-1.729q.708-.729 1.708-.729 1.042 0 1.75.729T33.333 20q0 1-.729 1.729-.729.729-1.729.729Z"/></svg>
+        
     </div>
     
         
