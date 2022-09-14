@@ -39,6 +39,7 @@ Profile Page
 
     .profile-info {
         display:grid;
+        z-index: 5;
         grid-template-columns: 115px 100px 100px 100px;
         grid-template-rows: 50px 50px 20px 10px;
         column-gap: 10px;
