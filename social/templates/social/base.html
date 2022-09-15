@@ -199,6 +199,7 @@
                             function swipeIn(this_iframe, next_iframe, current_iframe, new_source, splash) {
                                 console.log('function ran')
                                 $(`#${next_iframe}`).animate({'left' : '0vw'});
+                                $('.splash-page').hide();
                                 $(splash).show();
                                 showSpaceSplash(splash);
                                 setTimeout(hideIframe, 300, this_iframe, current_iframe);
