@@ -283,5 +283,15 @@ Profile Page
         background-color: rgba(0,0,0,0);
     }
 
+    .large-profile-image {
+        width: 40vw;
+        height: 40vw;
+        border-radius: 50%;
+        object-fit: contain;
+        border-radius: 180px;
+        margin-top: 15px;
+        border: 3px solid white;
+    }
+
 
 }

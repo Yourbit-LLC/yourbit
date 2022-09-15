@@ -17,6 +17,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 {% endblock %}
 {% block content %}
+<div class='splash-page' id='profile-page-splash'>
+    <div class='space-splash-label'>
+        <img class='large-profile-image' src="{{profile.image.url}}">
+        <h2>{{profile.user.first_name}} {{profile.user.last_name}}</h2>
+        <h3>@{{profile.user.username}}</h3>
+    </div>
+</div>
 <input type="hidden" id='profile-icon-color' value="{{profile.icon_color}}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/yourbit_profile.css' %}"/>
 <div id="content-container" style="padding-top: 75px; overflow-y:scroll;">
