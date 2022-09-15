@@ -573,7 +573,7 @@
 @media screen and (max-width: 700px) {
 
     
-    #feed-content-container {
+    .feed-content-container {
         position: fixed;
         display: block;
         bottom: 0;

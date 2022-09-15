@@ -6,7 +6,13 @@
 
 
 <script type="text/javascript" src="{% static 'scripts/yourbit_core.js' %}"></script>
-<iframe id='feed-content-container' name = "global" src="{% url 'feed' 'global' '0' %}" sandbox="allow-top-navigation allow-scripts allow-forms allow-same-origin allow-top-navigation-by-user-activation allow-presentation allow-popups">
+<iframe id = 'global-feed' class='feed-content-container' name = "global" src="{% url 'feed' 'global' '0' %}" sandbox="allow-top-navigation allow-scripts allow-forms allow-same-origin allow-top-navigation-by-user-activation allow-presentation allow-popups">
+</iframe>
+<iframe id = 'chat-feed' style='display:none;' class='feed-content-container' name = "chat" src="" sandbox="allow-top-navigation allow-scripts allow-forms allow-same-origin allow-top-navigation-by-user-activation allow-presentation allow-popups">
+</iframe>
+<iframe id = 'video-feed' style='display:none;' class='feed-content-container' name = "video" src="" sandbox="allow-top-navigation allow-scripts allow-forms allow-same-origin allow-top-navigation-by-user-activation allow-presentation allow-popups">
+</iframe>
+<iframe id = 'photo-feed' style='display:none;' class='feed-content-container' name = "photo" src="" sandbox="allow-top-navigation allow-scripts allow-forms allow-same-origin allow-top-navigation-by-user-activation allow-presentation allow-popups">
 </iframe>
 <div id="mobile-spacer">
 

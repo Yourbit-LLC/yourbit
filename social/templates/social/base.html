@@ -84,7 +84,7 @@
                 <img id = "logo-image" style="-webkit-filter: drop-shadow(0px 0px 10px black); filter: drop-shadow(0px 0px 10px black);" src="{% static 'images/yourbit-logo-modern.png' %}" href="{% url 'home' %}">
                 <p id="logo-name" style="text-shadow: 0px 0px 5px black;">Yourbit</p>
                 
-                
+                <script type="text/javascript" src="{% static 'scripts/spaceTracker.js' %}"></script>
                 <div class = "space-navigator">
                     <!--Space navigator allows people to switch between content types on the network-->
                 {% block space_navigator %}
@@ -99,42 +99,113 @@
                         
                         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
                         <script type="text/javascript">
-                            var iframe = document.getElementById("feed-content-container");
+                            var iframe;
+                            var space = 0;
+                            var space_list = ['global-feed', 'chat-feed', 'video-feed', 'photo-feed']
+                            const global_feed_container = document.getElementById('global-feed');
+                            const chat_feed_container = document.getElementById('chat-feed');
+                            const video_feed_container = document.getElementById('video-feed');
+                            const photo_feed_container = document.getElementById('photo-feed');
                             $('#global-space-button').click(function() {
-                                iframe.src = "{% url 'feed' 'global' '0' %}";
+                                let new_source = "{% url 'feed' 'global' '0' %}";
+                                let next_iframe = 'global-feed'
+                                let this_iframe = space_list[space];
                                 document.getElementById('global-space-button').className = "space-button-active";
                                 document.getElementById('text-space-button').className = "space-button";
                                 document.getElementById('video-space-button').className = "space-button";
                                 document.getElementById('photo-space-button').className = "space-button";
+                                setFirstSpace();
+                                if (space > 0) {
+                                    swipeAwaySpaceRight(swipeIn, this_iframe, next_iframe, new_source);
+                                } else {
+                                    swipeAwaySpaceLeft(swipeIn, this_iframe, next_iframe, new_source);
+                                }
+                                space = 0;
                             });
 
                             $('#text-space-button').click(function() {
-                                iframe.src = "{% url 'feed' 'chatspace' '0' %}";
+                                let new_source = "{% url 'feed' 'chatspace' '0' %}";
+                                let next_iframe = 'chat-feed'
+                                let this_iframe = space_list[space];
                                 document.getElementById('text-space-button').className = "space-button-active";
                                 document.getElementById('photo-space-button').className = "space-button";
                                 document.getElementById('video-space-button').className = "space-button";
                                 document.getElementById('global-space-button').className = "space-button";
+                                setFirstSpace();
+                                if (space > 1) {
+                                    swipeAwaySpaceRight(swipeIn, this_iframe, next_iframe, new_source);
+                                } else {
+                                    swipeAwaySpaceLeft(swipeIn, this_iframe, next_iframe, new_source);
+                                }
+                                space = 1;
                             });
 
                             $('#photo-space-button').click(function() {
-                                iframe.src = "{% url 'feed' 'photospace' '0' %}";
+                                let new_source = "{% url 'feed' 'photospace' '0' %}";
+                                let next_iframe = 'photo-feed';
+                                let this_iframe = space_list[space];
                                 document.getElementById('photo-space-button').className = "space-button-active";
                                 document.getElementById('text-space-button').className = "space-button";
                                 document.getElementById('video-space-button').className = "space-button";
                                 document.getElementById('global-space-button').className = "space-button";
-
+                                setFirstSpace();
+                                swipeAwaySpaceLeft(swipeIn, this_iframe, next_iframe, new_source);
+                                space = 3; 
                             });
 
                             $('#video-space-button').click(function() {
-                                iframe.src = "{% url 'feed' 'videospace' '0' %}";
+                                let new_source = "{% url 'feed' 'videospace' '0' %}";
+                                let next_iframe = 'video-feed';
+                                let this_iframe = space_list[space];
                                 document.getElementById('video-space-button').className = "space-button-active";
                                 document.getElementById('photo-space-button').className = "space-button";
                                 document.getElementById('global-space-button').className = "space-button";
                                 document.getElementById('text-space-button').className = "space-button";
+                                setFirstSpace();
+                               
+                                if (space > 2) {
+                                    swipeAwaySpaceRight(swipeIn, this_iframe, next_iframe, new_source);
+                                } else {
+                                    swipeAwaySpaceLeft(swipeIn, this_iframe, next_iframe, new_source);
+                                }
+                                space = 2;
                             });
-                            
+
+                            function swipeAwaySpaceLeft(reposition, this_iframe, next_iframe, new_source) {
+                                $(`#${this_iframe}`).animate({'left': '-100vw'}, 'fast');
+                                $(`#${next_iframe}`).css({'left' : '100vw'})
+                                $(`#${next_iframe}`).show();
+                                let current_iframe = document.getElementById(this_iframe)
+                                let iframe = document.getElementById(next_iframe)
+                                iframe.src = new_source;
+                                reposition(this_iframe, next_iframe);
+                            }
+                            function swipeAwaySpaceRight(reposition, this_iframe, next_iframe, new_source) {
+                                $(`#${this_iframe}`).animate({'left': '100vw'}, 'fast');
+                                $(`#${next_iframe}`).css({'left' : '-100vw'})
+                                $(`#${next_iframe}`).show();
+                                let current_iframe = document.getElementById(this_iframe)
+                                let iframe = document.getElementById(next_iframe)
+                                iframe.src = new_source;
+                                reposition(this_iframe, next_iframe);
+                            }
+
+                            function swipeIn(this_iframe, next_iframe) {
+                                console.log('function ran')
+                                $(`#${next_iframe}`).animate({'left' : '0vw'});
+                                setTimeout(hideIframe, 300, this_iframe);
+                                let current_iframe = document.getElementById(this_iframe);
+                                current_iframe.src = '';
+
+                                
+                            }
+
+                            function hideIframe(this_iframe) {
+                                $(`#${this_iframe}`).hide()
+                            }
                         </script>
                 {% endblock %}
+                
                 <div id='back-to-home' class='center-popout-button' style="display: none;">
                     <svg id='back-to-home-icon'xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m12 20-8-8 8-8 1.425 1.4-5.6 5.6H20v2H7.825l5.6 5.6Z"/></svg>
                     <p id='back-to-home-label'>Back to Feed</p>

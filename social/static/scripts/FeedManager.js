@@ -4,9 +4,15 @@ var postList = document.getElementById("content-container");
 var topSpacer = document.getElementById("mobile-spacer-top")
 var width = screen.width;
 $(document).ready(function() {
-    post_fly_in(postList);
+    console.log(parent.getFirstSpace())
+    if (parent.getFirstSpace() === true){
+        post_fly_in();
+    } else {
+        postList.style.transition = "0s";
+        postList.style.top = "2vh";
+    }
+    setTimeout(spaceTagIn, 100)
     scaleFeed();
-    setTimeout(spaceTagIn, 200)
     console.log('ready')
 });
 
@@ -19,12 +25,16 @@ function scaleFeed() {
         postList.style.paddingTop = "8vh"
     }
 }
-function post_fly_in(postList) {
+function post_fly_in() {
     console.log('trigger post animation')
-    postList.style.transform = 'translate(0, -100vh)';
+    $('#content-container').animate({'top':'2vh'}, 'fast');
 
 };
 
+
 function spaceTagIn() {
-    $('#space-identifier-tag').fadeIn('slow');
+    const space_tag = document.getElementById('space-identifier-tag');
+    if (space_tag.style.display === 'none'){
+        $('#space-identifier-tag').fadeIn('slow');
+    }
 }
