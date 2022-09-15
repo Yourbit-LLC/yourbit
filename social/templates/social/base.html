@@ -193,15 +193,15 @@
                             function swipeIn(this_iframe, next_iframe) {
                                 console.log('function ran')
                                 $(`#${next_iframe}`).animate({'left' : '0vw'});
-                                setTimeout(hideIframe, 300, this_iframe);
+                                setTimeout(hideIframe, 300, this_iframe, current_iframe);
                                 let current_iframe = document.getElementById(this_iframe);
-                                current_iframe.src = '';
 
                                 
                             }
 
-                            function hideIframe(this_iframe) {
-                                $(`#${this_iframe}`).hide()
+                            function hideIframe(this_iframe, current_iframe) {
+                                $(`#${this_iframe}`).hide();
+                                current_iframe.src = '';
                             }
                         </script>
                 {% endblock %}
