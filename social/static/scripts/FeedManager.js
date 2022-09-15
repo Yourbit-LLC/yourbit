@@ -4,14 +4,9 @@ var postList = document.getElementById("content-container");
 var topSpacer = document.getElementById("mobile-spacer-top")
 var width = screen.width;
 $(document).ready(function() {
-    console.log(parent.getFirstSpace())
-    if (parent.getFirstSpace() === true){
-        post_fly_in();
-    } else {
-        postList.style.transition = "0s";
-        postList.style.top = "2vh";
-    }
+    post_fly_in();
     setTimeout(spaceTagIn, 100)
+    setTimeout(parent.hideSplash, 1500)
     scaleFeed();
     console.log('ready')
 });
