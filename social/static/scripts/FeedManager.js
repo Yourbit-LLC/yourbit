@@ -6,6 +6,7 @@ var width = screen.width;
 $(document).ready(function() {
     post_fly_in(postList);
     scaleFeed();
+    setTimeout(spaceTagIn, 200)
     console.log('ready')
 });
 
@@ -23,3 +24,7 @@ function post_fly_in(postList) {
     postList.style.transform = 'translate(0, -100vh)';
 
 };
+
+function spaceTagIn() {
+    $('#space-identifier-tag').fadeIn('slow');
+}
