@@ -178,7 +178,7 @@
                                 let current_iframe = document.getElementById(this_iframe)
                                 let iframe = document.getElementById(next_iframe)
                                 iframe.src = new_source;
-                                reposition(this_iframe, next_iframe);
+                                reposition(this_iframe, next_iframe, current_iframe);
                             }
                             function swipeAwaySpaceRight(reposition, this_iframe, next_iframe, new_source) {
                                 $(`#${this_iframe}`).animate({'left': '100vw'}, 'fast');
@@ -187,14 +187,14 @@
                                 let current_iframe = document.getElementById(this_iframe)
                                 let iframe = document.getElementById(next_iframe)
                                 iframe.src = new_source;
-                                reposition(this_iframe, next_iframe);
+                                reposition(this_iframe, next_iframe, current_iframe);
                             }
 
-                            function swipeIn(this_iframe, next_iframe) {
+                            function swipeIn(this_iframe, next_iframe, current_iframe) {
                                 console.log('function ran')
                                 $(`#${next_iframe}`).animate({'left' : '0vw'});
                                 setTimeout(hideIframe, 300, this_iframe, current_iframe);
-                                let current_iframe = document.getElementById(this_iframe);
+                                
 
                                 
                             }
