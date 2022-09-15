@@ -666,6 +666,7 @@ class Feed(View):
             private_bit_pool = Bit.objects.filter(user__in = friend_pool).order_by('-created_at')
             follow_bit_pool = Bit.objects.filter(user__in = following_pool, is_public = True).order_by('-created_at')
             profile = False
+            feed_type = 'Global Space'
 
         if type == 'chatspace':
             friends = profile.connections.all()        
@@ -680,6 +681,7 @@ class Feed(View):
             private_bit_pool = Bit.objects.filter(user__in = friend_pool, bit_type = 'chat').order_by('-created_at')
             follow_bit_pool = Bit.objects.filter(user__in = following_pool, is_public = True, bit_type = 'chat').order_by('-created_at')
             profile = False
+            feed_type = 'Chat Space'
 
         if type == 'photospace':
             friends = profile.connections.all()        
@@ -694,7 +696,7 @@ class Feed(View):
             private_bit_pool = Bit.objects.filter(user__in = friend_pool, bit_type='photo').order_by('-created_at')
             follow_bit_pool = Bit.objects.filter(user__in = following_pool, is_public = True, bit_type = 'photo').order_by('-created_at')
             profile = False
-
+            feed_type = 'Photo Space'
         if type == 'videospace':
             friends = profile.connections.all()        
             following = profile.follows.all()
@@ -708,31 +710,42 @@ class Feed(View):
             private_bit_pool = Bit.objects.filter(Q(bit_type='video')|Q(bit_type='video_link'), user__in = friend_pool).order_by('-created_at')
             follow_bit_pool = Bit.objects.filter(Q(bit_type='video')|Q(bit_type='video_link'), user__in = following_pool, is_public = True).order_by('-created_at')
             profile = False
+            feed_type = 'Video Space'
 
         if type == "profile":
             private_bit_pool = Bit.objects.filter(user=id, is_public = False).order_by('-created_at')
             follow_bit_pool = Bit.objects.filter(user=id, is_public = True).order_by('-created_at')
             profile = True
+            user = User.objects.get(id=id)
+            feed_type = user.first_name + "'s Global Space"
         
         if type == 'profile-global':
             private_bit_pool = Bit.objects.filter(user=id, is_public = False).order_by('-created_at')
             follow_bit_pool = Bit.objects.filter(user=id, is_public = True).order_by('-created_at')
             profile = True
+            user = User.objects.get(id=id)
+            feed_type = user.first_name + "'s Global Space"
 
         if type == 'profile-chatspace':
             private_bit_pool = Bit.objects.filter(user=id, is_public = False, bit_type = 'chat').order_by('-created_at')
             follow_bit_pool = Bit.objects.filter(user=id, is_public = True, bit_type='chat').order_by('-created_at')
             profile = True
+            user = User.objects.get(id=id)
+            feed_type = user.first_name + "'s Chat Space"
 
         if type == 'profile-photospace':
             private_bit_pool = Bit.objects.filter(user=id, is_public = False, bit_type = 'photo').order_by('-created_at')
             follow_bit_pool = Bit.objects.filter(user=id, is_public = True, bit_type='photo').order_by('-created_at')
             profile = True
+            user = User.objects.get(id=id)
+            feed_type = user.first_name + "'s Photo Space"
 
         if type == 'profile-videospace':
             private_bit_pool = Bit.objects.filter(user=id, is_public = False, bit_type = 'video').order_by('-created_at')
             follow_bit_pool = Bit.objects.filter(user=id, is_public = True, bit_type='video').order_by('-created_at')
             profile = True
+            user = User.objects.get(id=id)
+            feed_type = user.first_name + "'s Video Space"
 
         bit_pool = sorted(
             chain(private_bit_pool, follow_bit_pool), key=attrgetter('created_at'), reverse=True
@@ -752,6 +765,7 @@ class Feed(View):
             'bit_pool':bit_pool,
             'private_bit_pool': private_bit_pool,
             'public_bit_pool' : follow_bit_pool,
+            'feed_type': feed_type,
             'profile':profile,
             'user_colors_on': user_colors_on,
             'wallpaper_on': wallpaper_on,
