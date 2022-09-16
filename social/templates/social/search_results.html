@@ -3,19 +3,24 @@
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/search_results.css' %}"/>
 <div id="content-container">
-    <form class="back-form" method="POST">
-        <a id="back-button" href="{{ last_page }}">Go back</a>
-    </form>
-    {% if result_count == 1 %}
-        <p>Showing {{ result_count }} result for "{{ searched }}" </p>
-    {% else %}
-        <p>Showing {{ result_count }} results for "{{ searched }}" </p>
-    {% endif %}
+    <div id='mobile-spacer-top' style='position:relative; display: block; height: 8.5vh; width: 100vw; text-align:center;'><h2 id='space-identifier-tag' style="color: gray; top: -2px; text-shadow: 0.5px 0.5px 3px black; margin: auto; display:none;">Search Results</h2></div>
     {% for result in user_results %}
         <div style="display: block; position: relative; color: white; background-color: black; border-radius: 20px; height: 50px; width: 95vw; margin-bottom: 10px;">
+            <p style="display: block; position: relative; margin: auto;">{{result.first_name}} {{result.last_name}}</p>
         </div>
     {% endfor %}
 </div>
+<script type='text/javascript'>
+    $(document).ready(function() {
+        $('#back-to-home').fadeIn('slow');
+        $('#back-to-home').animate({'bottom': '90px'});
+        
+    });
+    
+    $('#back-to-home').click(function() {
+        window.location.href = `${base_url}/social/home`
+    });
+</script>
 
     
 {% endblock %}

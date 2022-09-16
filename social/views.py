@@ -1306,10 +1306,14 @@ class Maintenance(View):
 class PreSearch(View):
     def post(self, request, *args, **kwargs):
         #stuff
-        searched = request.POST['query']
+        if "submit-search" in request.POST:
+            searched = request.POST.get('query')
+        else:
+            searched = request.POST['query']
         print(searched)
         user_results_working = []
         user_results = {}
+        end_results = {}
         user_first_name_filter = User.objects.filter(first_name__icontains = searched)
         for result in user_first_name_filter:
             if result not in user_results_working:
@@ -1349,7 +1353,7 @@ class PreSearch(View):
         print(user_results)
         response = {'user_results': user_results}
         if "submit-search" in request.POST:
-            context = user_results
+            context = {"user_results" : user_results_working}
             return render(request, 'social/search_results.html', context)
         else:
             return JsonResponse(response)
