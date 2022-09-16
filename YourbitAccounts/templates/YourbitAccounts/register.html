@@ -136,6 +136,9 @@
                         $('#yb-password2-field-container').fadeIn('fast');
                         stage_number += 1;
                     } else {
+                        if (stage_number === 6){
+                            $('#yb-password-field-container').hide();
+                        }
                         let current_field = field_list[stage_number];
                         let next_field_pos = stage_number + 1;
                         let next_field = field_list[next_field_pos];
