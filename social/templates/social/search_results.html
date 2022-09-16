@@ -5,8 +5,17 @@
 <div id="content-container">
     <div id='mobile-spacer-top' style='position:relative; display: block; height: 8.5vh; width: 100vw; text-align:center;'><h2 id='space-identifier-tag' style="color: gray; top: -2px; text-shadow: 0.5px 0.5px 3px black; margin: auto; display:none;">Search Results</h2></div>
     {% for result in user_results %}
-        <div style="display: block; position: relative; color: white; background-color: black; border-radius: 20px; height: 50px; width: 95vw; margin-bottom: 10px;">
-            <p style="display: block; position: relative; margin: auto;">{{result.first_name}} {{result.last_name}}</p>
+        <div class='full-result' style="background-color: {{result.profile.bit_background}}">
+            <div class = 'full-result-image-container'>
+                <img class='full-result-image' src="{{result.profile.image.url}}">
+            </div>
+            <div class='full-result-name-container'>
+                <p class = 'full-result-name'><strong>{{result.first_name}} {{result.last_name}}</strong></p>
+                <p class = 'full-result-username'>
+                    <small>@{{result.username}}</small>
+                </p>
+                <a id='profile-search-link' href="{% url 'profile' result.username %}"></a>
+            </div>
         </div>
     {% endfor %}
 </div>
