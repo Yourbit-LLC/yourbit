@@ -1348,7 +1348,12 @@ class PreSearch(View):
 
         print(user_results)
         response = {'user_results': user_results}
-        return JsonResponse(response)
+        if "submit-search" in request.POST:
+            context = user_results
+            return render(request, 'social/search_results.html', context)
+        else:
+            return JsonResponse(response)
+
 
 ############################## 
 #                            #

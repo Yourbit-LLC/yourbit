@@ -11,7 +11,7 @@ $('#mobile-search-icon').click(function() {
 
 function showSearch() {
     let search = document.getElementById('search-mobile');
-    $('#search-mobile').show();
+    $('#search-mobile').fadeIn('fast');
     search.style.transform = 'translate(0, -100vh)';
     $('#mobile-searchbar').focus();
 }
@@ -21,10 +21,14 @@ function searchFocus() {
     
 }
 
-function dropSearch() {
+function dropSearch(hide) {
     let search = document.getElementById('search-mobile');
-    search.style.transform = 'translate(0, 0vh)';
-    $('#search-mobile').hide()
+    search.style.transform = 'translate(0, 100vh)';
+    setTimeout(hide, 200);
+}
+
+function hideSearch() {
+    $('#search-mobile').hide();
 }
 
 $('#mobile-searchbar').on('change keyup', function() {
@@ -89,3 +93,6 @@ function profileNavigate(user) {
     
 };
 
+$('#cancel-search').click(function() {
+    dropSearch(hideSearch);
+})
