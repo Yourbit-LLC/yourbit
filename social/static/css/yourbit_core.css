@@ -1926,6 +1926,13 @@ only be used for object transforms (shaping and scaling)
         text-align: center;
         border-radius: 20px;
     }
+    #mobile-spacer {
+        display: block;
+        position: relative;
+        height: 150px;
+        bottom: 0px;
+    }
+    
     /*Linear Content Container*/
 
     /*Grid Content Container*/
