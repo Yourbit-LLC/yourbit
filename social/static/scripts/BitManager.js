@@ -15,10 +15,9 @@
 */
 
 /* Get necessary platform information */
-function getIframe(){
-    iframe = document.getElementById('feed-content-container');
-}
-var width = screen.width;
+
+var iframe = document.getElementById('feed-content-container');
+
 
 /*
 --Create Bit Functions for mobile--
