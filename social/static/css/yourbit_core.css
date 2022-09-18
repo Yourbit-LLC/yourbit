@@ -1698,7 +1698,8 @@ only be used for object transforms (shaping and scaling)
     }
 
     .slide-up-button-container {
-        position: relative;
+        position: absolute;
+        bottom: 0;
         width: fit-content;
         display: grid;
         grid-template-columns: auto auto;

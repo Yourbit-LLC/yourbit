@@ -15,7 +15,9 @@
 */
 
 /* Get necessary platform information */
-var iframe = document.getElementById('feed-content-container');
+function getIframe(){
+    iframe = document.getElementById('feed-content-container');
+}
 var width = screen.width;
 
 /*
@@ -565,7 +567,6 @@ function Comment(catid) {
                     <br>`
 
                     )
-                $('')
                 $('#field-write-comment' + catid).val('');
                 $(`#comment-count${catid}`).replaceWith(`<p id="comment-count${catid}" class="counter">${comment_count}</p>`);
                 $(`#comments-display-label${catid}`).show();
