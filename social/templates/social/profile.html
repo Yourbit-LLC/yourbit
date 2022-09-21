@@ -27,7 +27,7 @@
 <input type="hidden" id='profile-icon-color' value="{{profile.icon_color}}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/yourbit_profile.css' %}"/>
 <div id="content-container" style="padding-top: 75px; overflow-y:scroll;">
-    <div class="profile-info" style = "box-shadow: 0px 3px 8px {{accent_color}}">
+    <div class="profile-info" style = "box-shadow: 0px 3px 8px {{profile.accent_color}}">
         <input type='hidden' id="profile_id" value="{{profile.id}}">
         <div id="profile-image-profile" ><img style="border-color: {{profile.accent_color}}" src="{{ profile.image.url }}" class="profile-image-large" id="profile-image-profile-image"></div>
         <div id="user-name-profile"> <p id="profile-first-last-name"><strong>{{profile.user.first_name}} {{profile.user.last_name}}</strong> <small>@{{profile.user.username}}</small></p></div>
