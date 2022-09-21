@@ -22,7 +22,7 @@ function scaleFeed() {
 }
 function post_fly_in() {
     console.log('trigger post animation')
-    $('#content-container').animate({'top':'2vh'}, 'fast');
+    $('#content-container').animate({'top':'0vh'}, 'fast');
 
 };
 
