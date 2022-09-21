@@ -205,3 +205,10 @@ class Customization(models.Model):
     user_colors_on = models.BooleanField(default=True)
     wallpaper_on = models.BooleanField(default=True)
     default_theme_on = models.BooleanField(default=False)
+
+class Receipts(models.Model):
+    user = models.ForeignKey(User, related_name = 'receipts', blank = True, on_delete=models.CASCADE)
+    date_generated = models.DateTimeField(default = timezone.now)
+    amount = models.FloatField(default=0.00)
+    item = models.CharField(max_length=150, blank = True)
+    

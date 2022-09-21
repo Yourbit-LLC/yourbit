@@ -1,3 +1,4 @@
+from locale import currency
 import profile
 from django.forms import RadioSelect
 from django.shortcuts import render, redirect
@@ -11,6 +12,13 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.views.generic.base import ContextMixin
 from django.db.models import Q
+from django.views.decorators.csrf import csrf_exempt
+
+
+import stripe
+from django.conf import settings
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
 #from PIL import Image
 
 # Create your views here. 
@@ -1368,3 +1376,46 @@ class PreSearch(View):
 class DynamicFeedTest(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'social/test-feed-page.html')
+
+
+class StripeIntent(View):
+    def post(self, request, *args, **kwargs):
+        user = request.user
+        user_profile = Profile.objects.get(user=user)
+        amount = self.kwargs["amount"]
+        print(amount)
+        try:
+            intent = stripe.PaymentIntent.create(
+                amount=amount,
+                currency='usd'
+            )
+
+            return JsonResponse({
+                'clientSecret': intent['client_secret']
+            })
+
+        except Exception as e:
+            return JsonResponse({'error': str(e)})
+
+
+class Checkout(View):
+    def get(self, request, *args, **kwargs):
+        amount = self.kwargs["amount"]
+        print(amount)
+        context = {'amount':amount}
+        return render(request, 'social/checkout.html', context)
+
+class Donate(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'social/donate.html')
+
+class ConnectionList(View):
+    def get(self, request, *args, **kwargs):
+        profile = Profile.objects.get(user=request.user)
+        connections = profile.connections.all()
+        following = profile.follows.all()
+        context = {
+            'connections':connections,
+            'following':following,
+        }
+        return render(request, 'social/connections.html', context)

@@ -1,0 +1,36 @@
+{% extends 'social/base.html' %}
+{% load static %}
+{% block content %}
+<div id='content-container' style='padding-top: 80px; text-align: center; color: white; background-color: rgba(0, 0, 0, 0.7)'>
+    
+  <h2>Thank You!</h2>
+  <p>We are undoubtedly grateful for your generosity.<br> How much would you like to donate?</p>
+  <div style='display:grid; position: absolute; grid-template-columns: 60px 60px 60px 60px 60px; left: 50%; transform: translate(-50%, 0); text-align: center;'>
+        <button data-amount = "100" style="color: lightgreen; background-color: green; border-color: lightgreen;" class='yb-hz-option'>$1</button>
+        <button data-amount = "500" style="color: lightgreen; background-color: green; border-color: lightgreen;" class='yb-hz-option'>$5</button>
+        <button data-amount = "1000" style="color: lightgreen; background-color: green; border-color: lightgreen;" class='yb-hz-option'>$10</button>
+        <button data-amount = "2500" style="color: lightgreen; background-color: green; border-color: lightgreen;" class='yb-hz-option'>$25</button>
+        <button data-amount = "any" style="color: lightgreen; background-color: green; border-color: lightgreen;" class='yb-hz-option'>Custom</button>
+      
+  </div>
+  <p class='yb-form-disclaimer' style='margin-top: 80px;'><small><em>
+    Yourbit LLC is not a non-profit company. Donations will
+    be allocated to supporting technical operations and for
+    providing financial support to contributing members of Yourbit 
+    in order to put forth the effort needed to sustain a stable 
+    operation.
+  </em></small></p>
+
+
+
+{% endblock %}
+
+{% block appendedScripts %}
+<script type='text/javascript'>
+  $('.yb-hz-option').click(function(){
+    let yourbit = getBaseURL();
+    let amount = $(this).attr('data-amount');
+    window.location.href = `${yourbit}/social/checkout/${amount}`;
+  });
+</script>
+{% endblock %}

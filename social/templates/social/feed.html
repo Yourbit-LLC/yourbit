@@ -8,16 +8,37 @@
 
 </head>
 <body>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     {% if profile %}
         <div id="content-container" style="top: 100vh; padding-top: 0px;">
     {% else %}
         <div id="content-container" style="top: 102vh; padding-top: 8vh; padding-bottom: 100px;">
-            <div id='mobile-spacer-top' style='position:relative; display: block; height: 8.5vh; width: 100vw; text-align:center;'><h2 id='space-identifier-tag' style="color: gray; top: -2px; text-shadow: 0.5px 0.5px 3px black; margin: auto; display:none;">{{feed_type}}</h2></div>
+            <div id='mobile-spacer-top' style='position:relative; display: block; height: 8vh; width: 100vw; text-align:center;'><h2 id='space-identifier-tag' style="color: gray; top: -2px; text-shadow: 0.5px 0.5px 3px black; margin: auto; display:none;">{{feed_type}}</h2></div>
+            <div id='donation-prompt' class='yb-pinned-prompt' style='display: block; background-color: green; color: white; width: 99vw; height: 135px; border-radius: 25px; margin-bottom: 20px; margin-top: 0px;'>
+                <h4 style='text-align: center; top: 10px; position: relative; display: block;'>Hey {{user.first_name}}!</h4>
+                <p style='margin-left: 10px; margin-right: 10px'>
+                    Thanks for using Yourbit!
+                    We could use your help, be a part of 
+                    the revolution and donate to Yourbit!
+                </p>
+                <div style='display: grid; grid-template-columns: 50% 50%; width: 70%; height: 40px; text-align: center; margin-left: auto; margin-right: auto;'>
+                    <button style='grid-column: 1; border-radius: 20px; background-color: darkgreen; height: 25px; width: 100px; color: white; border-width: 0px; margin: auto;' class='yb-prompt-button' id='yb-prompt-decline'>No Thanks!</button>
+                    <button style='grid-column: 2; border-radius: 20px; background-color: darkgreen; height: 25px; width: 100px; color: white; border-width: 0px; margin: auto;' class = 'yb-prompt-button' id='yb-prompt-accept'>Contribute!</button>
+                </div>
+            </div>
+            <script type='text/javascript'>
+                $('#yb-prompt-decline').click(function() {
+                    let prompt = document.getElementById('donation-prompt');
+                    prompt.style.display = 'none';
+                })
+                $('#yb-prompt-accept').click(function() {
+                    let yourbit = parent.getBaseURL();
+                    window.location.href = `${yourbit}/social/donate`;
+                })
+            </script>
     {% endif %}
-    
 
-    
+
         {% if bit_pool %}
         {% for bit in bit_pool %}
 
@@ -370,9 +391,9 @@
 
         </div>
         </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script type="text/javascript" src="{% static 'scripts/BitManager.js' %}"></script>
         <script type="text/javascript" src="{% static 'scripts/FeedManager.js' %}"></script>
+
 
 
 

@@ -8,7 +8,7 @@
 @media screen and (min-width: 700px) {
 
 #feed-content-container {
-    position: fixed;
+    position: absolute;
     top: 0;
     z-index: 3;
     width: 100vw;
@@ -29,6 +29,7 @@
     overflow-y: scroll;
     transition: 0.25s;
     overflow-x: hidden;
+    background-color: rgba(0,0,0,0);
 }
 
 #large-post-iframe {

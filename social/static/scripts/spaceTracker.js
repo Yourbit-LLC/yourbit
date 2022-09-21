@@ -7,6 +7,15 @@
 
 var first_space = true; //Used to track first load for animation purposes
 var space_id = 0; //Space_id stores the space that the user is currently active in
+var iframe; //
+
+function setIframe(new_iframe) {
+    iframe = document.getElementById(new_iframe);
+}
+
+function getIframe() {
+    return iframe;
+}
 
 function getSpaceId() {
     //returns space ID to front end documents requesting it

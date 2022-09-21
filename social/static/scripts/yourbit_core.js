@@ -10,6 +10,9 @@ $('#logo-image').click(function(){
     window.location.href = `${base_url}`;
 })
 
+function getBaseURL() {
+    return base_url;
+}
 var menu = document.getElementById("profile-menu");
 function show_profile_menu() {
     let width = screen.width;

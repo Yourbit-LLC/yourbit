@@ -84,7 +84,7 @@ only be used for object transforms (shaping and scaling)
     }
     /* UI background image */
     .bg-image {
-        position: fixed;
+        position: absolute;
         top: 0;
         left: 0;
         min-width: 100%;
@@ -1931,6 +1931,17 @@ only be used for object transforms (shaping and scaling)
         position: relative;
         height: 200px;
         bottom: 0px;
+    }
+
+    .yb-hz-option {
+        position: relative;
+        display: block;
+        width: 100%;
+        border-radius: 20px;
+        height: 40px;
+        border: 2px solid white;
+        margin-left: auto;
+        margin-right: auto;
     }
     
     /*Linear Content Container*/

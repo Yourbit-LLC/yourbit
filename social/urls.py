@@ -29,5 +29,9 @@ urlpatterns = [
     path('publish/', Publish.as_view(), name="publish"),
     path('follow/', Follow.as_view(), name='follow'),
     path('add_friend/', AddFriend.as_view(), name='add-friend'),
-    path('notify/', Notify.as_view(), name='notify')
+    path('notify/', Notify.as_view(), name='notify'),
+    path('create-payment-intent/<int:amount>', StripeIntent.as_view(), name='create-payment-intent'),
+    path('donate/', Donate.as_view(), name='donate'),
+    path('checkout/<int:amount>', Checkout.as_view(), name = 'checkout'),
+    path('connections/', ConnectionList.as_view(), name='connections')
 ]
