@@ -745,7 +745,7 @@ only be used for object transforms (shaping and scaling)
         visibility: hidden;
         transform: translate(17em);
         transition: 0.5s;
-        grid-template-rows: 340px 50px 40px;
+        grid-template-rows: 340px 40px 150px 40px;
         grid-row-gap: 20px;
     }
     
@@ -779,91 +779,128 @@ only be used for object transforms (shaping and scaling)
         margin-top: 2px;
     }
 
-    #menu-rewards-balance {
-        margin-top: 0px;
-        font-size: 16px;
-        background-color: rgba(0, 0, 0, 0.4);
-        padding: 4px;
-        border-radius: 5px;
-        width: fit-content;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    #menu-options {
+    #rewards-container {
         display: grid;
         position: relative;
-        grid-row: 2;
-        width: 100%;
-        grid-template-columns: 50px 50px 50px 50px;
-        grid-template-rows: 50px 50px;
-        column-gap: 5px;
-        row-gap: 5px;
-        left: 12px;
-
-    }
-    
-    #profile-name-label {
-        margin-top: 10px;
-        margin-bottom: 2px;
-    }
-    
-    .profile-menu-link {
-        width: 50px;
-        height: 50px;
-        background-color: rgba(0, 0, 0, 0.801);
-        color: white;
+        width: 95%;
+        height: 40px;
+        background-color: rgba(0, 0, 0, 0.5);
+        margin-left: auto;
+        margin-right: auto;
         border-radius: 10px;
-        transition: 0.3s;
-    }
-    .profile-menu-link:hover {
-        background-color: rgba(102, 102, 102, 0.3);
-        color: white;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-    .profile-menu-icon {
-        position: relative;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%)
-
-    }
-
-    #home-link {
-  
-        grid-column: 1;
-        grid-row: 1;
-    }
-
-    #stuff-link {
-
-        grid-column: 2;
-        grid-row: 1;
-    }
-
-    #history-link {
-
-        grid-column: 3;
-    }
-
-    #settings-link {
-
-        grid-column: 4;
-        grid-row: 1;
-    }
-
-    #rewards-link {
-        grid-column: 2;
         grid-row: 2;
     }
 
-    .profile-menu-label {
-        text-decoration: none;
-        color: white;
-        text-shadow: 2px 2px 1em black;
-        
+    #balance-label {
+        grid-column: 1;
     }
+    #menu-rewards-balance {
+        grid-column: 2;
+    }
+
+    .menu-profile-background-link {
+        z-index: 3;
+        position: relative;
+        display: block;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+    }
+
+    #menu-options{
+        display: grid;
+        grid-template-columns: 120px 120px;
+        grid-template-rows: 30px 30px 30px 30px 30px;
+        width: auto;
+        margin-left: auto;
+        margin-right: auto;
+        height: 60px;
+        column-gap: 3px;
+        row-gap: 3px;
+        grid-row: 3;
+        font-size: 14px;
+        z-index: 2;
+
+    }
+        .profile-menu-link-text {
+            display: block;
+            position: relative;
+            margin-left: 5px;
+            margin-top: auto;
+            margin-bottom: auto;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+
+        }
+
+        .profile-menu-link{
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 2px;
+            text-align: left;
+            text-decoration: none;
+            line-height: 1.75;
+        }
+
+        .profile-menu-label {
+            display: grid;
+            grid-template-columns: 25px 95px;
+        }
+
+            .profile-menu-icon{
+                display: block;
+                position: absolute;
+            }
+
+            #home-link {
+                display: block;
+                grid-row: 1;
+                grid-column: 1;
+            }
+
+            #messages-link {
+                grid-row: 1;
+                grid-column: 2;
+            }
+
+            #stuff-link {
+                grid-row: 2;
+                grid-column: 1;
+            }
+
+            #history-link {
+                grid-row: 2;
+                grid-column: 2;
+            }
+
+            #rewards-link {
+                grid-row: 3;
+                grid-column: 1;
+            }
+
+            #settings-link {
+                grid-row: 3;
+                grid-column: 2;
+            }
+
+            #community-link {
+                grid-row: 4;
+                grid-column: 1;
+            }
+            #connections-link {
+                grid-row: 4;
+                grid-column: 2;
+            }
+
+            #more-link {
+                grid-row: 5;
+                grid-column: 1;
+
+            }
+
 
 
     .logout-button {
@@ -871,7 +908,7 @@ only be used for object transforms (shaping and scaling)
         padding: 5px;
         text-align: center;
         background-color: rgb(194, 0, 0);
-        grid-row: 3;
+        grid-row: 4;
         width: 80%;
         height: fit-content;
         border-radius: 20px;
@@ -1498,45 +1535,54 @@ only be used for object transforms (shaping and scaling)
                     display: block;
                     grid-column: 1;
                     grid-row: 1;
+                    text-decoration: none;
                 }
 
                 #messages-link {
                     grid-row: 2;
                     grid-column: 1;
+                    text-decoration: none;
                 }
 
                 #stuff-link {
                     grid-row: 3;
                     grid-column: 1;
+                    text-decoration: none;
                 }
 
                 #history-link {
                     grid-row: 1;
                     grid-column: 2;
+                    text-decoration: none;
                 }
 
                 #rewards-link {
                     grid-row: 2;
                     grid-column: 2;
+                    text-decoration: none;
                 }
 
                 #settings-link {
                     grid-row: 3;
                     grid-column: 2;
+                    text-decoration: none;
                 }
 
                 #community-link {
                     grid-row: 1;
                     grid-column: 3;
+                    text-decoration: none;
                 }
                 #connections-link {
                     grid-row: 2;
                     grid-column: 3;
+                    text-decoration: none;
                 }
 
                 #more-link {
                     grid-row: 3;
                     grid-column: 3;
+                    text-decoration: none;
 
                 }
 
