@@ -59,3 +59,15 @@
     bottom: 0px;
 }
 
+.filter-button {
+    position: relative;
+    display: block;
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 2px solid white;
+    color: white;
+    border-radius: 20px;
+    height: 26px;
+    margin: auto;
+    width: 80px
+}
+
