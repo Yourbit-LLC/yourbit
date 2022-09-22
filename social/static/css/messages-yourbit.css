@@ -148,7 +148,7 @@
         border-radius: 20px;
         height: 60px;
         margin-bottom: 4px;
-        box-shadow: 1px 1px 3px black;
+        box-shadow: 1px 1px 5px black;
     }
 
     .profile-image-medium {
@@ -222,8 +222,7 @@
         display: none; 
         width: 100vw; 
         left: 0; 
-        top: 0; 
-        top: 50px; 
+        bottom: 0px; 
         height: 100vh; 
         background-color: rgba(0, 0, 0, 0.4); 
         backdrop-filter:blur(80px); 
@@ -233,7 +232,7 @@
     .mobile-search-recipents-form {
         display:grid;
         position: absolute;
-        bottom: 50px;
+        bottom: 0px;
         width: 100vw;
         grid-template-columns: 85vw 15vw;
 
