@@ -1,5 +1,6 @@
 var base_url = window.location.origin;
 
+
 $(document).ready(function() {
     $('#back-to-home').fadeIn('slow');
     $('#back-to-home').animate({'bottom': '90px'});
@@ -37,7 +38,7 @@ $('.profile-interact-icon').click(function() {
 
 function requestFriend(action, user_id) {
     let cookie = document.cookie;
-    let csrfToken = cookie.substring(cookie.indexOf('=') + 1);
+    let csrfToken = getCSRF();
     let friend_request = new FormData()
     friend_request.append('user_id', user_id)
     friend_request.append('action', action)
@@ -64,7 +65,7 @@ function requestFriend(action, user_id) {
 }
 function follow() {
     let cookie = document.cookie;
-    let csrfToken = cookie.substring(cookie.indexOf('=') + 1);
+    let csrfToken = getCSRF();
     $.ajax(
         {
         type: "POST",

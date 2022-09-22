@@ -11,6 +11,7 @@ var first_load = true;
 var width = screen.width;
 var base_url = window.location.origin;
 
+
 /*
 --On document load get notifications, load bits, get messages, update rewards points--
 */
@@ -98,7 +99,7 @@ function notificationIconUpdate() {
 
 function getNotifications() {
     let cookie = document.cookie;
-    let csrfToken = cookie.substring(cookie.indexOf('=') + 1);
+    let csrfToken = getCSRF();
     $.ajax(
         {
             type: 'POST',
@@ -227,7 +228,7 @@ function growBubbleSmall(user_name, username, profile_id, notif_id) {
 
 function acceptFriend(notif_id) {
     let cookie = document.cookie;
-    let csrfToken = cookie.substring(cookie.indexOf('=') + 1);
+    let csrfToken = getCSRF();
     let friend_request = new FormData()
     let action = 'accept_friend'
     let id = notif_id
@@ -262,7 +263,7 @@ function acceptFriend(notif_id) {
 
 function denyFriend(profile_id) {
     let cookie = document.cookie;
-    let csrfToken = cookie.substring(cookie.indexOf('=') + 1);
+    let csrfToken = getCSRF();
     let friend_request = new FormData()
     let action = 'deny_request'
     let user_id = profile_id
@@ -334,7 +335,7 @@ function Notify(type, from_user, to_user) {
     notification.append('from_user', from_user);
     notification.append('to_user', to_user);
     let cookie = document.cookie;
-    let csrfToken = cookie.substring(cookie.indexOf('=') + 1);
+    let csrfToken = getCSRF();
 
     $.ajax(
         {

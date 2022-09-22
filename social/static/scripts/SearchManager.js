@@ -4,6 +4,7 @@
 
 var base_url = window.location.origin;
 
+
 $('#mobile-search-icon').click(function() {
     showSearch();
 });
@@ -46,7 +47,7 @@ $('#mobile-searchbar').on('change keyup', function() {
 
 function fetchResults(callback, query) {
     let cookie = document.cookie;
-    let csrfToken = cookie.substring(cookie.indexOf('=') + 1);
+    let csrfToken = getCSRF();
     $.ajax( {
         type: 'POST',
         headers: {

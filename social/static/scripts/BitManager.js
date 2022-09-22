@@ -219,7 +219,7 @@ function gatherMobileBit(type, callback) {
 
 function submitBit(new_bit) {
     let cookie = document.cookie;
-    let csrfToken = cookie.substring(cookie.indexOf('=') + 1);
+    let csrfToken = getCSRF();
     $.ajax(
         {
             type: 'POST',
@@ -264,7 +264,8 @@ $('.feedback-icon').click(function(){
     button_name = $(this).attr("name");
 
     let cookie = document.cookie;
-    let csrfToken = cookie.substring(cookie.indexOf('=') + 1);
+    let csrfToken = parent.getCSRF()
+    console.log('csrf:' + csrfToken)
 
     if (button_name === "like"){
         $.ajax(
@@ -420,7 +421,7 @@ $('.feedback-icon-active').click(function(){
     button_name = $(this).attr("name");
 
     let cookie = document.cookie;
-    let csrfToken = cookie.substring(cookie.indexOf('=') + 1);
+    let csrfToken = parent.getCSRF();
 
     if (button_name === "like"){
         $.ajax(
@@ -533,7 +534,7 @@ $('.send-comment').click(function() {
 
 function Comment(catid) {
     let cookie = document.cookie;
-    let csrfToken = cookie.substring(cookie.indexOf('=') + 1);
+    let csrfToken = parent.getCSRF();
 
     let form_value = $('#field-write-comment' + catid).val();
     console.log(form_value)

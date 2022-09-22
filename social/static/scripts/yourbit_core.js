@@ -234,9 +234,7 @@ Change Visibility Settings
 $('.checkbox').change(function() {
     let button_name = $(this).attr("name");
 
-    let cookie = document.cookie;
-    let csrfToken = cookie.substring(cookie.indexOf('=') + 1);
-    
+    let csrfToken = getCSRF();
     $.ajax(
         {
             type:'POST',
