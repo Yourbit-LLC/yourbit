@@ -3,8 +3,22 @@
 
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/messages-yourbit.css' %}"/>
-<div id = 'content-container' style='padding-top:70px;'>
+<div id = 'content-container' style='padding-top: 70px;'>
+    <div id='create-new-conversation' style='overflow-y: scroll; padding-top: 110px;'>
+        <div class='mobile-search-recipents-form'>
+            <input type = 'text' id='mobile-searchbar-messages' class='single-line-input' placeholder='Search Friends' >
+        </div>  
+        <div id='message-connection-list'>
+        {% for connection in connections%}
+            <div id="user-list-container"style="background-color: {{connection.user.profile.bit_background}};">
+                <img class="profile-image-medium" src="{{connection.user.profile.image.url}}">
+                <p class="list-user-name"  ><b>{{connection.user.first_name}} {{connection.user.last_name}}</b></p>
+                <div class="active-status"></div>
+            </div>
+        {% endfor %}
+        </div>
     
+        </div>
     
 
 
@@ -17,22 +31,7 @@
 
 </div>
 
-<div id='create-new-conversation' >
-    
-    <div id='list-friends' style='overflow: scroll; left: 0px; bottom: 0px; display: block; position: absolute; height: 90vh; width: 100vw; padding-top: 50px;'>
-        {% for connection in connections%}
-        <div id="user-list-container">
-            <img class="profile-image-medium" style="background-color: {{connection.user.profile.bit_background}};" src="{{connection.user.profile.image.url}}">
-            <p class="list-user-name"><b>{{connection.user.first_name}} {{connection.user.last_name}}</b></p>
-            <div class="active-status"></div>
-        </div>
-        {% endfor %}
 
-    </div>
-    <div class='mobile-search-recipents-form'>
-        <input type = 'text' id='mobile-searchbar-messages' class='single-line-input' placeholder='Search Friends' >
-    </div>
-</div>
 
 {% endblock %}
 

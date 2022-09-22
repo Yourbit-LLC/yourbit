@@ -208,12 +208,12 @@
     }
 
     #mobile-searchbar-messages {
-        width: 80vw !important;
+        width: 95% !important;
+        top: 10px;
+        display: block;
         position: relative;
-        left: 5px;
-        bottom: 5px;
-        grid-column: 1;
-
+        margin: auto;
+        
     }
 
     #create-new-conversation {
@@ -222,7 +222,7 @@
         display: none; 
         width: 100vw; 
         left: 0; 
-        bottom: 0px; 
+        top: 0px; 
         height: 100vh; 
         background-color: rgba(0, 0, 0, 0.4); 
         backdrop-filter:blur(80px); 
@@ -230,11 +230,12 @@
         z-index: 19;
     }
     .mobile-search-recipents-form {
-        display:grid;
-        position: absolute;
-        bottom: 0px;
+        display:block;
+        position: fixed;
+        top: 50px;
         width: 100vw;
-        grid-template-columns: 85vw 15vw;
+        background-color: rgba(0, 0 ,0, 0.5);
+        height: 50px;
 
     }
 
