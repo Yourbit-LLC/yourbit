@@ -1,100 +1,207 @@
-.write-message-button-bkd {
-    background-color: rgba(0, 0 ,0, 0.5);
-    width: 50px;
-    height: 50px;
-    display: block;
-    padding: 10px;
-    border-radius: 20px;
+@media screen and (min-width: 600px) {
+    .write-message-button-bkd {
+        background-color: rgba(0, 0 ,0, 0.5);
+        width: 50px;
+        height: 50px;
+        display: block;
+        padding: 10px;
+        border-radius: 20px;
+    }
+
+    #write-message-button-icon {
+        position: relative;
+        display:block;
+        width: 100%;
+
+    }
+
+    .write-message-button-bkd:hover {
+        background-color: rgba(255, 255 ,255, 0.5);
+        width: 50px;
+        height: 50px;
+        display: block;
+        padding: 10px;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+
+    #messages-friends-display {
+        display: block;
+        position: relative;
+        width: 300px;
+        height: 70vh;
+        background-color: black;
+        border-radius: 30px;
+        padding: 10px;
+    }
+
+    #user-list-container {
+        display: grid;
+        position: relative;
+        grid-template-columns: 50px auto 10px;
+        background-color: rgb(55, 55, 55);
+        padding: 10px;
+        border-radius: 20px;
+        height: 60px;
+    }
+
+    .profile-image-medium {
+        width: 40px;
+        border-radius: 90px;
+        border: 2px solid white;
+        grid-column: 1;
+        margin: auto;
+    }
+
+    .list-user-name {
+        font-size: medium;
+        margin-top:auto;
+        margin-left: 10px;
+        margin-bottom: auto;
+        grid-column: 2;
+
+    }
+
+    .active-status {
+        position: relative;
+        display: block;
+        border-radius: 90px;
+        background-color: red;
+        width: 10px;
+        height: 10px;
+        margin-top: auto;
+        margin-bottom: auto;
+        float: left;
+        grid-column: 3;
+
+    }
+
+    #message-friends-search {
+        margin-top: auto;
+        margin-bottom: auto;
+        height: 35px;
+        color: white;
+        background-color: rgb(55, 55, 55);
+        border: none;
+        border-radius: 20px;
+        padding: 5px;
+    }
+
+    #content-container{
+        margin-left: 75px;
+        margin-right: 75px;
+    }
+
+    #friends-messages-actions {
+        display: grid;
+        position: relative;
+        grid-template-columns: 230px 50px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
-#write-message-button-icon {
-    position: relative;
-    display:block;
-    width: 100%;
+@media screen and (max-width: 600px) {
+    .write-message-button-bkd {
+        background-color: rgba(0, 0 ,0, 0.5);
+        width: 26px;
+        height: 26px;
+        display: block;
+        padding: 10px;
+        border-radius: 50%;
+        margin: auto;
+    }
 
-}
+    #write-message-button-icon {
+        position: relative;
+        display:block;
+        width: 100%;
 
-.write-message-button-bkd:hover {
-    background-color: rgba(255, 255 ,255, 0.5);
-    width: 50px;
-    height: 50px;
-    display: block;
-    padding: 10px;
-    border-radius: 20px;
-    cursor: pointer;
-}
+    }
 
-#messages-friends-display {
-    display: block;
-    position: relative;
-    width: 300px;
-    height: 70vh;
-    background-color: black;
-    border-radius: 30px;
-    padding: 10px;
-}
+    .write-message-button-bkd:hover {
+        background-color: rgba(255, 255 ,255, 0.5);
+        width: 50px;
+        height: 50px;
+        display: block;
+        padding: 10px;
+        border-radius: 20px;
+        cursor: pointer;
+    }
 
-#user-list-container {
-    display: grid;
-    position: relative;
-    grid-template-columns: 50px auto 10px;
-    background-color: rgb(55, 55, 55);
-    padding: 10px;
-    border-radius: 20px;
-    height: 60px;
-}
+    #messages-friends-display {
+        display: block;
+        position: relative;
+        width: 300px;
+        height: 70vh;
+        background-color: black;
+        border-radius: 30px;
+        padding: 10px;
+    }
 
-.profile-image-medium {
-    width: 40px;
-    border-radius: 90px;
-    border: 2px solid white;
-    grid-column: 1;
-    margin: auto;
-}
+    #user-list-container {
+        display: grid;
+        position: relative;
+        grid-template-columns: 50px auto 10px;
+        background-color: rgb(55, 55, 55);
+        padding: 10px;
+        border-radius: 20px;
+        height: 60px;
+    }
 
-.list-user-name {
-    font-size: medium;
-    margin-top:auto;
-    margin-left: 10px;
-    margin-bottom: auto;
-    grid-column: 2;
+    .profile-image-medium {
+        width: 40px;
+        border-radius: 90px;
+        border: 2px solid white;
+        grid-column: 1;
+        margin: auto;
+    }
 
-}
+    .list-user-name {
+        font-size: medium;
+        margin-top:auto;
+        margin-left: 10px;
+        margin-bottom: auto;
+        grid-column: 2;
 
-.active-status {
-    position: relative;
-    display: block;
-    border-radius: 90px;
-    background-color: red;
-    width: 10px;
-    height: 10px;
-    margin-top: auto;
-    margin-bottom: auto;
-    float: left;
-    grid-column: 3;
+    }
 
-}
+    .active-status {
+        position: relative;
+        display: block;
+        border-radius: 90px;
+        background-color: red;
+        width: 10px;
+        height: 10px;
+        margin-top: auto;
+        margin-bottom: auto;
+        float: left;
+        grid-column: 3;
 
-#message-friends-search {
-    margin-top: auto;
-    margin-bottom: auto;
-    height: 35px;
-    color: white;
-    background-color: rgb(55, 55, 55);
-    border: none;
-    border-radius: 20px;
-    padding: 5px;
-}
+    }
 
-#content-container{
-    margin-left: 75px;
-    margin-right: 75px;
-}
+    #message-friends-search {
+        margin-top: auto;
+        margin-bottom: auto;
+        height: 35px;
+        color: white;
+        background-color: rgb(55, 55, 55);
+        border: none;
+        border-radius: 20px;
+        padding: 5px;
+    }
 
-#friends-messages-actions {
-    display: grid;
-    position: relative;
-    grid-template-columns: 230px 50px;
-    margin-left: auto;
-    margin-right: auto;
+
+    #friends-messages-actions {
+        display: grid;
+        position: relative;
+        grid-template-columns: 80vw 50px;
+        width: 95vw;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        background-color: black;
+        border-radius: 25px;
+        padding: 5px;
+    }
 }
