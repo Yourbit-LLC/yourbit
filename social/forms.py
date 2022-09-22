@@ -130,10 +130,15 @@ class NewMessage(forms.ModelForm):
             }
         )
     )
-    to_user = forms.CharField()
+    thread = forms.CharField()
     class Meta:
         model = Message
         fields=['body']
+
+class CreateConversation(forms.ModelForm):
+    username = forms.CharField(label='', max_length=100)
+    
+
 
 class ColorForm(forms.ModelForm):
     bit_background = forms.CharField(

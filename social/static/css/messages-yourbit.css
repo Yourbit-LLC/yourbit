@@ -147,6 +147,8 @@
         padding: 10px;
         border-radius: 20px;
         height: 60px;
+        margin-bottom: 4px;
+        box-shadow: 1px 1px 3px black;
     }
 
     .profile-image-medium {
@@ -204,4 +206,45 @@
         border-radius: 25px;
         padding: 5px;
     }
+
+    #mobile-searchbar-messages {
+        width: 80vw !important;
+        position: relative;
+        left: 5px;
+        bottom: 5px;
+        grid-column: 1;
+
+    }
+
+    #create-new-conversation {
+        position: fixed; 
+        overflow: hidden; 
+        display: none; 
+        width: 100vw; 
+        left: 0; 
+        top: 0; 
+        top: 50px; 
+        height: 100vh; 
+        background-color: rgba(0, 0, 0, 0.4); 
+        backdrop-filter:blur(80px); 
+        -webkit-backdrop-filter:blur(80px); 
+        z-index: 19;
+    }
+    .mobile-search-recipents-form {
+        display:grid;
+        position: absolute;
+        bottom: 50px;
+        width: 100vw;
+        grid-template-columns: 85vw 15vw;
+
+    }
+
+    .single-line-input {
+        background-color: rgba(0, 0, 0, 0.4);
+        border-radius: 10px;
+        border-width: 0px;
+        width: 90vw;
+        height: 30px;
+    }
 }
+

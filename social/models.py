@@ -160,7 +160,7 @@ class Notification(models.Model):
     user_has_seen = models.BooleanField(default=False)
 
 class Conversation(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="+")
+    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name="+")
     reciever = models.ForeignKey(User, on_delete=models.CASCADE, related_name="+")
 
 class Message(models.Model):
@@ -168,8 +168,9 @@ class Message(models.Model):
     body = models.CharField(max_length = 1500)
     video = models.FileField(upload_to='media/message_attachments', blank=True)
     image = models.ImageField(upload_to='media/message_attachments', blank=True, null=True)
-    to_user = models.ForeignKey(User, related_name='message_to', on_delete=models.CASCADE, null=True)
-    from_user = models.ForeignKey(User, related_name='message_from', on_delete=models.CASCADE)
+    document = models.FileField(upload_to='media/message_files')
+    sender = models.ForeignKey(User, related_name='message_to', on_delete=models.CASCADE, null=True)
+    receiver_user = models.ForeignKey(User, related_name='message_from', on_delete=models.CASCADE)
     date = models.DateTimeField(default=timezone.now)
     is_read = models.BooleanField(default=False)
 

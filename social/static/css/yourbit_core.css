@@ -1844,6 +1844,15 @@ only be used for object transforms (shaping and scaling)
 
     }
 
+    #mobile-searchbar-messages {
+        width: 80vw !important;
+        position: relative;
+        left: 5px;
+        bottom: 5px;
+        grid-column: 1;
+
+    }
+
     #mobile-submit-search-button {
         display: block;
         position: relative;

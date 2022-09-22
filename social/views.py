@@ -380,7 +380,6 @@ class SearchResults(View):
         return render(request, "social/search_results.html", context)
 
 #Render messages page
-
 class Messages(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         user = request.user
@@ -396,14 +395,38 @@ class Messages(LoginRequiredMixin, View):
             }
         return render(request, 'social/messages.html', context)
 
-    def post(self, request, pk, *args, **kwargs):
-        message_form = NewMessage(request.POST)
-        if message_form.is_valid():
-            from_user = request.user
-            to_user = User.objects.get(pk=pk)
-            from_user_profile = Profile.objects.get(user=from_user)
-            to_user_profile = Profile.objects.get(user=to_user)
-            
+
+
+class NewConversation(View):
+    def post(self, request, *args, **kwargs):
+        form = NewConversation(request.POST)
+        
+        username = request.POST.get('username')
+
+        try:
+
+            receiver_user = User.objects.get(username=username)
+            if Conversation.objects.filter(sender=request.user, receiver_user=receiver_user).exists():
+                conversation = Conversation.objects.filter(sender=request.user, receiver_user=receiver_user)
+                return redirect('conversation', pk=conversation.pk)
+            elif Conversation.objects.filter(sender=receiver_user, receiver_user = request.user).exists():
+                conversation = Conversation.objects.filter(sender=receiver_user, receiver_user=request.user)
+                return redirect('conversation', pk=conversation.pk)
+
+            if form.is_valid():
+                coversation = Conversation(
+                    user=request.user,
+                    receiver = receiver_user
+
+                )
+                conversation.save()
+
+                return redirect('conversation', pk=conversation.pk)
+        
+        except:
+            return redirect('create-thread')
+
+
 #Render mystuff page
 
 class MyStuff(LoginRequiredMixin, View):

@@ -33,5 +33,6 @@ urlpatterns = [
     path('create-payment-intent/<int:amount>', StripeIntent.as_view(), name='create-payment-intent'),
     path('donate/', Donate.as_view(), name='donate'),
     path('checkout/<int:amount>', Checkout.as_view(), name = 'checkout'),
-    path('connections/', ConnectionList.as_view(), name='connections')
+    path('connections/', ConnectionList.as_view(), name='connections'),
+    path('create-conversation', NewConversation.as_view(), name = 'new-conversation'),
 ]
