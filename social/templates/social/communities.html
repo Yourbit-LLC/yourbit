@@ -1,0 +1,36 @@
+
+{% extends 'social/base.html' %}
+{% load static %}
+
+{% block content %}
+<div id='content-container' style='padding-top: 70px;'>
+    <div id='community-list-header' style='text-align:center; color: white;'>
+        <h3>Communities</h3>
+        <p>Connect with your favorite organizations or like minded groups</p>
+        <input type = 'text' id='mobile-searchbar-messages' class='single-line-input' placeholder='Search Communities' >
+        <div class='filter-options' style='
+        display: grid; 
+        grid-template-columns: auto auto auto; 
+        column-gap: 4px; 
+        position: relative;
+        z-index: 3; 
+        top: 20px; 
+        margin-bottom: 10px; 
+        margin-left: auto;
+        margin-right: auto;
+        width: 95vw; 
+        border-radius: 28px;
+        height: 35px; 
+        backdrop-filter: blur(40px);
+        -webkit-backdrop-filter: blur(40px);
+        overflow: hidden;
+        '>
+        <button class='filter-button' style='width: 120px;'>My Communities</button>
+        <button class='filter-button'>Following</button>
+        <button class='filter-button'>Visited</button>
+
+    </div>
+    </div>
+    
+</div>
+{% endblock %}

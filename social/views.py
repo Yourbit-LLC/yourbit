@@ -1452,3 +1452,9 @@ class ConnectionList(View):
             'following':following,
         }
         return render(request, 'social/connections.html', context)
+
+class CommunityList(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'social/communities.html')
+    
+    

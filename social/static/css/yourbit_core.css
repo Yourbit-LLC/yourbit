@@ -1703,6 +1703,18 @@ only be used for object transforms (shaping and scaling)
         transform: translate(-50%, -50%);
     }
 
+    .filter-button {
+        position: relative;
+        display: block;
+        background-color: rgba(255, 255, 255, 0.4);
+        border: 2px solid white;
+        color: white;
+        border-radius: 20px;
+        height: 26px;
+        margin: auto;
+        width: 80px;
+    }
+
     .single-line-input {
         background-color: rgba(0, 0, 0, 0.4);
         border-radius: 10px;

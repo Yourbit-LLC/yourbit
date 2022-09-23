@@ -35,4 +35,6 @@ urlpatterns = [
     path('checkout/<int:amount>', Checkout.as_view(), name = 'checkout'),
     path('connections/', ConnectionList.as_view(), name='connections'),
     path('create-conversation', NewConversation.as_view(), name = 'new-conversation'),
+    path('communities/', CommunityList.as_view(), name='list-communities')
+    
 ]
