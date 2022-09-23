@@ -1706,9 +1706,21 @@ only be used for object transforms (shaping and scaling)
     .filter-button {
         position: relative;
         display: block;
+        background-color: rgba(150, 150, 150, 0.4);
+        border: 2px solid rgb(200, 200, 200);
+        color: rgb(200, 200, 200);
+        border-radius: 20px;
+        height: 26px;
+        margin: auto;
+        width: 80px;
+    }
+
+    .filter-button-active {
+        position: relative;
+        display: block;
         background-color: rgba(255, 255, 255, 0.4);
-        border: 2px solid white;
-        color: white;
+        border: 2px solid rgb(255, 255, 255);
+        color: rgb(255, 255, 255);
         border-radius: 20px;
         height: 26px;
         margin: auto;
