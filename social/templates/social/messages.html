@@ -4,21 +4,7 @@
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/messages-yourbit.css' %}"/>
 <div id = 'content-container' style='padding-top: 70px;'>
-    <div id='create-new-conversation' style='padding-top: 110px;  overflow: scroll;'>
-        <div class='mobile-search-recipents-form'>
-            <input type = 'text' id='mobile-searchbar-messages' class='single-line-input' placeholder='Search Friends' >
-        </div>  
-        <div id='message-connection-list'>
-        {% for connection in connections%}
-            <div id="user-list-container"style="background-color: {{connection.user.profile.bit_background}};">
-                <img class="profile-image-medium" src="{{connection.user.profile.image.url}}">
-                <p class="list-user-name"  ><b>{{connection.user.first_name}} {{connection.user.last_name}}</b></p>
-                <div class="active-status"></div>
-            </div>
-        {% endfor %}
-        </div>
-    
-        </div>
+
     
 
 
@@ -53,7 +39,7 @@
     });
     
     $('.write-message-button-bkd').click(function() {
-        $('#create-new-conversation').fadeIn('slow');
+        window.location.href = `${base_url}/social/create-conversation`
     });
 
 </script>

@@ -398,9 +398,19 @@ class Messages(LoginRequiredMixin, View):
 
 
 class NewConversation(View):
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        user_profile = Profile.objects.get(user=user)
+        connections = user.profile.connections.all()
+        form = NewConversation()
+        context = {
+            'form' : form,
+            'connections':connections,
+
+        }
+        return render(request, 'social/create_conversation.html', context)
     def post(self, request, *args, **kwargs):
         form = NewConversation(request.POST)
-        
         username = request.POST.get('username')
 
         try:
