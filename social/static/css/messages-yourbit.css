@@ -209,7 +209,7 @@
 
     #mobile-searchbar-messages {
         width: 95% !important;
-        top: 10px;
+        top: 15px;
         display: block;
         position: relative;
         margin: auto;
@@ -232,8 +232,10 @@
         position: fixed;
         top: 50px;
         width: 100vw;
-        background-color: rgba(0, 0 ,0, 0.5);
-        height: 50px;
+        background-color: rgba(0, 0 ,0, 0.4);
+        backdrop-filter: blur(40px);
+        -webkit-backdrop-filter: blur(40px);
+        height: 120px;
         z-index: 3;
 
     }
@@ -245,6 +247,29 @@
         width: 90vw;
         height: 30px;
     }
+
+    .message-user-list-link {
+        position: absolute;
+        display: block;
+        width:100%;
+        height:100%;
+        top: 0px;
+        left: 0px;
+        z-index: 3;
+    }
+
+    .filter-button {
+        position: relative;
+        display: block;
+        background-color: rgba(255, 255, 255, 0.4);
+        border: 2px solid white;
+        color: white;
+        border-radius: 20px;
+        height: 26px;
+        margin: auto;
+        width: 80px;
+    }
+    
 
 }
 
