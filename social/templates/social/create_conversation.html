@@ -6,7 +6,7 @@
     <div class='mobile-search-recipents-form'>
         <input type = 'text' id='mobile-searchbar-messages' class='single-line-input' placeholder='Search Friends' >
     </div>  
-    <div id='message-connection-list'>
+
         {% for connection in connections%}
             <div id="user-list-container"style="background-color: {{connection.user.profile.bit_background}};">
                 <img class="profile-image-medium" src="{{connection.user.profile.image.url}}">
@@ -14,7 +14,9 @@
                 <div class="active-status"></div>
             </div>
         {% endfor %}
-    </div>
+        <div id="mobile-spacer" style='height: 200px;'>
+
+        </div>
 </div>
 
 {% endblock %}
