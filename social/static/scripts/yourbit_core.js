@@ -233,7 +233,7 @@ Change Visibility Settings
 
 $('.checkbox').change(function() {
     let button_name = $(this).attr("name");
-
+    let iframe = getIframe();
     let csrfToken = getCSRF();
     $.ajax(
         {
@@ -247,9 +247,9 @@ $('.checkbox').change(function() {
             },
             success: function(data){
                 let file = data;
-                home_feed = document.getElementById('feed-content-container');
+                iframe = document.getElementById('feed-content-container');
                 if(button_name === "bitColor"){
-                    home_feed.contentWindow.location.reload();
+                    iframe.contentWindow.location.reload();
                 }
                 if(button_name === "wallpaper") {
                     if(file.toggle === 'off') {
@@ -259,7 +259,7 @@ $('.checkbox').change(function() {
                     }
                 }if(button_name === "defaultThemeS") {
                     $('.bg-image').replaceWith('<div class="bg-image" style="background-color: rgb(95, 95, 95)"></div>');
-                    home_feed.contentWindow.location.reload();
+                    iframe.contentWindow.location.reload();
                 }
                 
                 updateVisibilitySwitches(file);

@@ -1683,6 +1683,20 @@ only be used for object transforms (shaping and scaling)
         left: 7px;
     }
 
+    .create-option {
+        display: block;
+        position: relative;
+        width: 70vw;
+        height: 35px;
+        background-color: rgba(0, 0, 0, 0.4);
+        margin-bottom: 5px;
+        color: white;
+        border-radius: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        border: 2px solid rgb(65, 65, 65);
+    }
+
     #mobile-search-button {
         right: 7px;
     }

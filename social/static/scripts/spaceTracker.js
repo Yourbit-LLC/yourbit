@@ -7,13 +7,25 @@
 
 var first_space = true; //Used to track first load for animation purposes
 var space_id = 0; //Space_id stores the space that the user is currently active in
-var iframe; //
+var iframe; 
 
-function setIframe(new_iframe) {
-    iframe = document.getElementById(new_iframe);
-}
 
 function getIframe() {
+    if (space_id === 0) {
+        iframe = document.getElementById('global-feed');
+    }
+    if (space_id === 1) {
+        iframe = document.getElementById('chat-feed');
+    }
+
+    if (space_id === 2) {
+        iframe = document.getElementById('video-feed');
+    }
+
+    if (space_id === 3) {
+        iframe = document.getElementById('video-feed');
+    }
+
     return iframe;
 }
 
