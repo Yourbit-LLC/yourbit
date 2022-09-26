@@ -33,3 +33,40 @@ function spaceTagIn() {
         $('#space-identifier-tag').fadeIn('slow');
     }
 }
+
+function getFeed() {
+    let csrfToken = parent.getCSRF();
+    let spaceId = getSpaceId();
+    let type = 0
+    if (spaceId === 0) {
+        type = 'global';
+    }
+    if (spaceId === 1) {
+        type = 'chatspace';
+    }
+    if (spaceId === 2) {
+        type = 'photospace';
+    }
+    if (spaceId === 3){
+        type = 'videospace';
+    }
+    $.ajax(
+        $.ajax(
+            {
+                type:"POST",
+                headers: {
+                    'X-CSRFToken': csrfToken
+                  },
+                //zero just used as placeholder for profile ID outside of profile feeds
+                url: `/social/feed/${type}/0`, 
+                
+                success: function(data){
+                    let bitstream = data;
+
+                }
+    
+            }
+    
+        )
+    )
+}

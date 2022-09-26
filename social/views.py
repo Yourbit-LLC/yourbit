@@ -691,6 +691,7 @@ class Feed(View):
         for friend in friends:
             friend_pool.append(friend.user)   
         friend_pool.append(request.user)
+        bitstream = {}
         
         print("id: " + id)
 
@@ -704,8 +705,8 @@ class Feed(View):
             for friend in friends:
                 friend_pool.append(friend.user)   
             friend_pool.append(request.user)
-            private_bit_pool = Bit.objects.filter(user__in = friend_pool).order_by('-created_at')
-            follow_bit_pool = Bit.objects.filter(user__in = following_pool, is_public = True).order_by('-created_at')
+            private_bit_pool = Bit.objects.select_related('user').filter(user__in = friend_pool).order_by('-created_at')
+            follow_bit_pool = Bit.objects.select_related('user').filter(user__in = following_pool, is_public = True).order_by('-created_at')
             profile = False
             feed_type = 'Global Space'
 
@@ -719,8 +720,8 @@ class Feed(View):
             for friend in friends:
                 friend_pool.append(friend.user)   
             friend_pool.append(request.user)
-            private_bit_pool = Bit.objects.filter(user__in = friend_pool, bit_type = 'chat').order_by('-created_at')
-            follow_bit_pool = Bit.objects.filter(user__in = following_pool, is_public = True, bit_type = 'chat').order_by('-created_at')
+            private_bit_pool = Bit.objects.select_related('user').filter(user__in = friend_pool, bit_type = 'chat').order_by('-created_at')
+            follow_bit_pool = Bit.objects.select_related('user').filter(user__in = following_pool, is_public = True, bit_type = 'chat').order_by('-created_at')
             profile = False
             feed_type = 'Chat Space'
 
@@ -734,8 +735,8 @@ class Feed(View):
             for friend in friends:
                 friend_pool.append(friend.user)   
             friend_pool.append(request.user)
-            private_bit_pool = Bit.objects.filter(user__in = friend_pool, bit_type='photo').order_by('-created_at')
-            follow_bit_pool = Bit.objects.filter(user__in = following_pool, is_public = True, bit_type = 'photo').order_by('-created_at')
+            private_bit_pool = Bit.objects.select_related('user').filter(user__in = friend_pool, bit_type='photo').order_by('-created_at')
+            follow_bit_pool = Bit.objects.select_related('user').filter(user__in = following_pool, is_public = True, bit_type = 'photo').order_by('-created_at')
             profile = False
             feed_type = 'Photo Space'
         if type == 'videospace':
@@ -748,50 +749,85 @@ class Feed(View):
             for friend in friends:
                 friend_pool.append(friend.user)   
             friend_pool.append(request.user)
-            private_bit_pool = Bit.objects.filter(Q(bit_type='video')|Q(bit_type='video_link'), user__in = friend_pool).order_by('-created_at')
-            follow_bit_pool = Bit.objects.filter(Q(bit_type='video')|Q(bit_type='video_link'), user__in = following_pool, is_public = True).order_by('-created_at')
+            private_bit_pool = Bit.objects.select_related('user').filter(Q(bit_type='video')|Q(bit_type='video_link'), user__in = friend_pool).order_by('-created_at')
+            follow_bit_pool = Bit.objects.select_related('user').filter(Q(bit_type='video')|Q(bit_type='video_link'), user__in = following_pool, is_public = True).order_by('-created_at')
             profile = False
             feed_type = 'Video Space'
 
         if type == "profile":
-            private_bit_pool = Bit.objects.filter(user=id, is_public = False).order_by('-created_at')
-            follow_bit_pool = Bit.objects.filter(user=id, is_public = True).order_by('-created_at')
+            private_bit_pool = Bit.objects.select_related('user').filter(user=id, is_public = False).order_by('-created_at')
+            follow_bit_pool = Bit.objects.select_related('user').filter(user=id, is_public = True).order_by('-created_at')
             profile = True
             user = User.objects.get(id=id)
             feed_type = user.first_name + "'s Global Space"
         
         if type == 'profile-global':
-            private_bit_pool = Bit.objects.filter(user=id, is_public = False).order_by('-created_at')
-            follow_bit_pool = Bit.objects.filter(user=id, is_public = True).order_by('-created_at')
+            private_bit_pool = Bit.objects.select_related('user').filter(user=id, is_public = False).order_by('-created_at')
+            follow_bit_pool = Bit.objects.select_related('user').filter(user=id, is_public = True).order_by('-created_at')
             profile = True
             user = User.objects.get(id=id)
             feed_type = user.first_name + "'s Global Space"
 
         if type == 'profile-chatspace':
-            private_bit_pool = Bit.objects.filter(user=id, is_public = False, bit_type = 'chat').order_by('-created_at')
-            follow_bit_pool = Bit.objects.filter(user=id, is_public = True, bit_type='chat').order_by('-created_at')
+            private_bit_pool = Bit.objects.select_related('user').filter(user=id, is_public = False, bit_type = 'chat').order_by('-created_at')
+            follow_bit_pool = Bit.objects.select_related('user').filter(user=id, is_public = True, bit_type='chat').order_by('-created_at')
             profile = True
             user = User.objects.get(id=id)
             feed_type = user.first_name + "'s Chat Space"
 
         if type == 'profile-photospace':
-            private_bit_pool = Bit.objects.filter(user=id, is_public = False, bit_type = 'photo').order_by('-created_at')
-            follow_bit_pool = Bit.objects.filter(user=id, is_public = True, bit_type='photo').order_by('-created_at')
+            private_bit_pool = Bit.objects.select_related('user').filter(user=id, is_public = False, bit_type = 'photo').order_by('-created_at')
+            follow_bit_pool = Bit.objects.select_related('user').filter(user=id, is_public = True, bit_type='photo').order_by('-created_at')
             profile = True
             user = User.objects.get(id=id)
             feed_type = user.first_name + "'s Photo Space"
 
         if type == 'profile-videospace':
-            private_bit_pool = Bit.objects.filter(user=id, is_public = False, bit_type = 'video').order_by('-created_at')
-            follow_bit_pool = Bit.objects.filter(user=id, is_public = True, bit_type='video').order_by('-created_at')
+            private_bit_pool = Bit.objects.select_related('user').filter(user=id, is_public = False, bit_type = 'video').order_by('-created_at')
+            follow_bit_pool = Bit.objects.select_related('user').filter(user=id, is_public = True, bit_type='video').order_by('-created_at')
             profile = True
             user = User.objects.get(id=id)
             feed_type = user.first_name + "'s Video Space"
 
+        #Organize pool by date before being packaged for delivery. 
         bit_pool = sorted(
             chain(private_bit_pool, follow_bit_pool), key=attrgetter('created_at'), reverse=True
             )
+        
+        #Prepare for delivery via json response
+        # for bit in bit_pool:
+        #     bit_id = bit.id
+        #     bit_user = bit.user
+        #     bit_profile = Profile.objects.get(user = bit_user)
+        #     first_name = bit_user.first_name
+        #     last_name = bit_user.last_name
+        #     name = first_name + " " + last_name
+        #     username = bit_user.username
+        #     primary_color = bit_profile.bit_background
+        #     secondary_color = bit_profile.accent_color
+        #     feedback_icon_color = bit_profile.feedback_icon_color
+        #     feedback_background_color = bit_profile.feedback_background_color
+        #     body = bit.body
+        #     bit_type = bit.bit_type
             
+        #     bitstream.update(
+        #         {
+        #             bit_id:
+        #             {
+        #                 'name':name,
+        #                 'bit_type': bit_type,
+        #                 'username':username,
+        #                 'primary_color':primary_color,
+        #                 'secondary_color':secondary_color,
+        #                 'feedback_icon_color':feedback_icon_color,
+        #                 'feedback_background_color': feedback_background_color,
+        #                 'body': body,
+
+
+        #             }
+        #         }
+        #     )
+
 
         print("""
     
