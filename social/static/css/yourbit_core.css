@@ -1771,6 +1771,60 @@ only be used for object transforms (shaping and scaling)
         height: 30px;
     }
 
+    #create-bit-header {
+        position: relative;
+        display: grid;
+        width: 95%;
+        grid-template-columns: auto 120px;
+        height: 40px;
+        text-align: left;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+
+    #bit-scope-options {
+        position: relative;
+        display: grid;
+        grid-column: 2;
+        grid-template-columns: 60px 60px;
+        margin-top: 5px;
+    }
+
+    .half-toggle-left {
+        display: block;
+        position: relative;
+        height: 25px;
+        width: 60px;
+        grid-column: 1;
+        border-radius: 10px 0px 0px 10px;
+
+    }
+
+    .half-toggle-right {
+        display: block;
+        position: relative;
+        height: 25px;
+        width: 60px;
+        grid-column: 2;
+        border-radius: 0px 10px 10px 0px;
+
+    }
+
+    #bit-private {
+        border: 2px solid darkred;
+        background-color: rgba(255, 0, 0, 0.4);
+        color: red;
+
+    }
+
+    #bit-public {
+        border: 2px solid darkgreen;
+        background-color: rgba(0, 255, 0, 0.4);
+        color: rgb(100, 255, 100);
+    }
+
+
     #mobile-body {
         width: 90vw;
         height: 150px;
@@ -1789,6 +1843,8 @@ only be used for object transforms (shaping and scaling)
         margin-left: auto;
         margin-right: auto;
         column-gap: 10px;
+        background-color: rgba(0, 0, 0, 0.4);
+        border-radius: 15px;
     }
 
     #create-bit-type-mobile {
@@ -1838,12 +1894,13 @@ only be used for object transforms (shaping and scaling)
         border-radius: 10px;
         height: 37px;
         width: 70px;
-        color: white;
+        color: gray;
         font-size: 14px;
         font-weight: 600;
         text-align: center;
         grid-column: 2;
         margin: auto;
+        text-align: center;
     }
 
     #search-mobile {

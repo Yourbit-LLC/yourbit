@@ -502,9 +502,14 @@
                         <button type='button' class='create-option' name='message'>Message</button>
                      </div>
                     <div id='create-container' style='position:relative; width:100%; display:none;'>
-
-                        <h3 id='create-bit-header' style="margin-top:10px; margin-bottom: 10px;">Create Chat Bit</h3>
-                        <input type="hidden" id="bit-type-hidden-field" value="chat">
+                        <div id='create-bit-header'>
+                            <h4 id='create-bit-header-text' style="margin-top:10px; margin-bottom: 10px;">Create Chat Bit</h4>
+                            <input type="hidden" id="bit-type-hidden-field" value="chat">
+                            <div id='bit-scope-options'>
+                                <button class='half-toggle-left' id='bit-private'>Private</button>
+                                <button class='half-toggle-right' id='bit-public'>Public</button>
+                            </div>
+                        </div>
                         <!--Chat Bit Input Fields-->
                         <div id="mobile-bit-inputs" >
                             <input type="text" class="single-line-input" id="mobile-title" placeholder="Title (Optional)" style="color:white; font-size: 16px; font-weight: 600;">

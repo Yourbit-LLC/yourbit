@@ -594,7 +594,7 @@ $('.create-option').click(function() {
         type_field.value = 'chat';
         $('#create-options').fadeOut();
         $('#create-container').fadeIn();
-        $('#create-bit-header').html('Create Chat Bit');
+        $('#create-bit-header-text').html('Create Chat Bit');
         form.innerHTML = `
             <input type="text" class="single-line-input" id="mobile-to" placeholder="To: (Optional)" style="color:white; font-size: 16px; font-weight: 600;"><br><br>                          
             <input type="text" class="single-line-input" id="mobile-title" placeholder="Title (Optional)" style="color:white; font-size: 16px; font-weight: 600;">
@@ -609,7 +609,7 @@ $('.create-option').click(function() {
         $('#create-options').fadeOut();
         $('#create-container').fadeIn();
         type_field.value = 'video';
-        $('#create-bit-header').html('Create Video Bit');
+        $('#create-bit-header-text').html('Create Video Bit');
         form.innerHTML = `
             <input type="text" class="single-line-input" id="mobile-to" placeholder="To: (Optional)" style="color:white; font-size: 16px; font-weight: 600;"><br><br>
             <input type="text" class="single-line-input" id="mobile-title" placeholder="Title (Optional)" style="color:white; font-size: 16px; font-weight: 600;">
@@ -625,7 +625,7 @@ $('.create-option').click(function() {
         $('#create-options').fadeOut();
         $('#create-container').fadeIn();
         type_field.value = 'photo';
-        $('#create-bit-header').html('Create Photo Bit');
+        $('#create-bit-header-text').html('Create Photo Bit');
         form.innerHTML = `
             <input type="text" class="single-line-input" id="mobile-to" placeholder="To: (Optional)" style="color:white; font-size: 16px; font-weight: 600;"><br><br>
             <input type="text" class="single-line-input" id="mobile-title" placeholder="Title (Optional)" style="color:white; font-size: 16px; font-weight: 600;">
