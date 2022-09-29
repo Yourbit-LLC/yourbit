@@ -1219,7 +1219,6 @@ class Publish(View):
 
             
             new_bit.body = body 
-            
 
         elif type == 'photo':
             image = request.FILES.get('photo')
@@ -1232,6 +1231,7 @@ class Publish(View):
             new_bit.video = video
         
         new_bit.user = request.user 
+        new_bit.profile = user_profile
         
         #Apply Customizations from profile
         new_bit.bit_background = user_profile.bit_background
