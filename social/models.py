@@ -142,7 +142,6 @@ class Bit(models.Model):
     feedback_icon_color = models.CharField(max_length=50, default="#ffffff")
     feedback_background_color = models.CharField(max_length=50, default="#313131")
     paragraph_align = models.CharField(max_length=10, default='left')
-    test_field = models.CharField(max_length = 20)
 
     #UI
     accent_color = models.CharField(max_length=50, default="#ffffff")
