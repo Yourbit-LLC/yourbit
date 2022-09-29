@@ -755,36 +755,36 @@ class Feed(View):
             feed_type = 'Video Space'
 
         if type == "profile":
-            private_bit_pool = Bit.objects.select_related('user').filter(user=id, is_public = False).order_by('-created_at')
-            follow_bit_pool = Bit.objects.select_related('user').filter(user=id, is_public = True).order_by('-created_at')
+            private_bit_pool = Bit.objects.select_related('user', 'profile').filter(user=id, is_public = False).order_by('-created_at')
+            follow_bit_pool = Bit.objects.select_related('user', 'profile').filter(user=id, is_public = True).order_by('-created_at')
             profile = True
             user = User.objects.get(id=id)
             feed_type = user.first_name + "'s Global Space"
         
         if type == 'profile-global':
-            private_bit_pool = Bit.objects.select_related('user').filter(user=id, is_public = False).order_by('-created_at')
-            follow_bit_pool = Bit.objects.select_related('user').filter(user=id, is_public = True).order_by('-created_at')
+            private_bit_pool = Bit.objects.select_related('user', 'profile').filter(user=id, is_public = False).order_by('-created_at')
+            follow_bit_pool = Bit.objects.select_related('user', 'profile').filter(user=id, is_public = True).order_by('-created_at')
             profile = True
             user = User.objects.get(id=id)
             feed_type = user.first_name + "'s Global Space"
 
         if type == 'profile-chatspace':
-            private_bit_pool = Bit.objects.select_related('user').filter(user=id, is_public = False, bit_type = 'chat').order_by('-created_at')
-            follow_bit_pool = Bit.objects.select_related('user').filter(user=id, is_public = True, bit_type='chat').order_by('-created_at')
+            private_bit_pool = Bit.objects.select_related('user', 'profile').filter(user=id, is_public = False, bit_type = 'chat').order_by('-created_at')
+            follow_bit_pool = Bit.objects.select_related('user', 'profile').filter(user=id, is_public = True, bit_type='chat').order_by('-created_at')
             profile = True
             user = User.objects.get(id=id)
             feed_type = user.first_name + "'s Chat Space"
 
         if type == 'profile-photospace':
-            private_bit_pool = Bit.objects.select_related('user').filter(user=id, is_public = False, bit_type = 'photo').order_by('-created_at')
-            follow_bit_pool = Bit.objects.select_related('user').filter(user=id, is_public = True, bit_type='photo').order_by('-created_at')
+            private_bit_pool = Bit.objects.select_related('user', 'profile').filter(user=id, is_public = False, bit_type = 'photo').order_by('-created_at')
+            follow_bit_pool = Bit.objects.select_related('user', 'profile').filter(user=id, is_public = True, bit_type='photo').order_by('-created_at')
             profile = True
             user = User.objects.get(id=id)
             feed_type = user.first_name + "'s Photo Space"
 
         if type == 'profile-videospace':
-            private_bit_pool = Bit.objects.select_related('user').filter(user=id, is_public = False, bit_type = 'video').order_by('-created_at')
-            follow_bit_pool = Bit.objects.select_related('user').filter(user=id, is_public = True, bit_type='video').order_by('-created_at')
+            private_bit_pool = Bit.objects.select_related('user', 'profile').filter(user=id, is_public = False, bit_type = 'video').order_by('-created_at')
+            follow_bit_pool = Bit.objects.select_related('user', 'profile').filter(user=id, is_public = True, bit_type='video').order_by('-created_at')
             profile = True
             user = User.objects.get(id=id)
             feed_type = user.first_name + "'s Video Space"
@@ -793,9 +793,16 @@ class Feed(View):
         bit_pool = sorted(
             chain(private_bit_pool, follow_bit_pool), key=attrgetter('created_at'), reverse=True
             )
-        
-        #Prepare for delivery via json response
+
         # for bit in bit_pool:
+        #     bit_number = 0
+        #     bitstream.update({bit_number: bit.user})
+        #     bit_number += 1
+        #     print(bit)
+        
+        # #Prepare for delivery via json response
+        # for bit in bit_pool:
+        #     session_bit_id = 0
         #     bit_id = bit.id
         #     bit_user = bit.user
         #     bit_profile = Profile.objects.get(user = bit_user)
@@ -809,11 +816,23 @@ class Feed(View):
         #     feedback_background_color = bit_profile.feedback_background_color
         #     body = bit.body
         #     bit_type = bit.bit_type
+        #     like_count = bit.likes.count()
+        #     dislike_count = bit.dislikes.count()
+        #     comment_count = bit.comments.count()
+        #     attachment = ''
+        #     is_liked = False
+
+        #     if bit_type == 'photo':
+        #         attachment = bit.image
+
+        #     if bit_type == 'video':
+        #         attachment = bit.video
             
         #     bitstream.update(
         #         {
-        #             bit_id:
+        #             session_bit_id:
         #             {
+        #                 'bit_id' : bit_id,
         #                 'name':name,
         #                 'bit_type': bit_type,
         #                 'username':username,
@@ -822,11 +841,16 @@ class Feed(View):
         #                 'feedback_icon_color':feedback_icon_color,
         #                 'feedback_background_color': feedback_background_color,
         #                 'body': body,
+        #                 'attachment': attachment,
+        #                 'like_count': like_count,
+        #                 'dislike_count': dislike_count,
+        #                 'comment_count':comment_count,
 
 
         #             }
         #         }
         #     )
+        #     session_bit_id += 1
 
 
         print("""
@@ -1207,11 +1231,24 @@ class Publish(View):
             video = request.FILES.get('video')
             new_bit.video = video
         
-        new_bit.user = request.user
+        new_bit.user = request.user 
+        
+        #Apply Customizations from profile
+        new_bit.bit_background = user_profile.bit_background
+        new_bit.title_color = user_profile.title_color
+        new_bit.text_color = user_profile.text_color
+        new_bit.feedback_icon_color = user_profile.feedback_icon_color
+        new_bit.feedback_background_color = user_profile.feedback_icon_color
+        new_bit.paragraph_align = user_profile.paragraph_align
+        new_bit.profile_image = user_profile.image
+
+        new_bit.accent_color = user_profile.accent_color
         if contains_video_link:
             new_bit.bit_type = new_type
         else:
             new_bit.bit_type = type
+
+       
         new_bit.save()
 
         

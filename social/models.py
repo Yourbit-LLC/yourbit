@@ -111,6 +111,10 @@ class Bit(models.Model):
     user = models.ForeignKey(
         User, related_name="bits", on_delete=models.DO_NOTHING, default=None
     )
+    profile = models.ForeignKey(
+        'Profile', related_name="profile_bits", on_delete=models.DO_NOTHING, default=None, null=True, blank=True
+    )
+    profile_image = models.CharField(max_length=1000, blank=True)
     title = models.CharField(max_length=140, blank=True)
     image = models.ImageField(blank = True, upload_to='media/')
     video = models.FileField(blank = True, upload_to = 'media/')
@@ -131,6 +135,16 @@ class Bit(models.Model):
     contains_web_link = models.BooleanField(default=False)
     extend_widget = models.CharField(max_length = 1000, blank=True)
     video_widget = models.CharField(max_length = 1000, blank=True)
+    #bits
+    bit_background = models.CharField(max_length=50, default = "#4b4b4b")
+    title_color = models.CharField(max_length=50, default="#ffffff")
+    text_color = models.CharField(max_length=50, default="#ffffff")
+    feedback_icon_color = models.CharField(max_length=50, default="#ffffff")
+    feedback_background_color = models.CharField(max_length=50, default="#313131")
+    paragraph_align = models.CharField(max_length=10, default='left')
+
+    #UI
+    accent_color = models.CharField(max_length=50, default="#ffffff")
     #customization = models.ManyToManyField("Customizations", related_name="custom", blank=True)
 
     def __str__(self):
