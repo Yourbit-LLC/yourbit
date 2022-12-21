@@ -1,0 +1,121 @@
+body {
+    overflow: hidden;
+    background-color: rgb(25,25,25);
+
+}
+
+#page-container {
+    display: block;
+    position: absolute;
+    width:100vw;
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    left: 0px;
+    bottom: 0px;
+}
+
+#message-input {
+    text-align: center;
+    position: absolute;
+    height: 37px;
+    width: 100vw;
+    bottom: 0px;
+    background-color: black;
+    padding-top: 5px;
+    
+}
+
+#message-container {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 96vh;
+    display: flex;       
+    overflow: auto;
+    flex-direction: column-reverse;
+    
+}
+
+#message-field {
+    width: 80%;
+    background-color: rgba(55, 55, 55);
+    border-width: 0px;
+    border-radius: 10px;
+    height: 29px;
+}
+
+#send-button {
+    width: 60px;
+    height: 30px;
+    border-radius: 10px;
+    border-width: 0px;
+    color: white;
+    background-color: green;
+}
+
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 70px;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#yb-list-item {
+    width: 80%;
+    background-color: rgb(75, 75, 75);
+
+}
+
+.message-wrapper{
+    width: 100vw;
+    position: relative;
+    display: block;
+    height: auto;
+    left: 0px;
+
+    
+}
+
+.message-bubble-right{
+    background-color: rgb(75,75,75);
+    position: relative;
+    display: block;
+    width: fit-content;
+    min-width: 70px;
+    max-width: 50%;
+    height: auto;
+    margin-right: 10px;
+    margin-left: auto;
+    min-height: 40px;
+    color: white;
+    border-radius: 20px;
+    line-height: 2;
+    margin-bottom: -17px;
+    
+}
+
+.message-bubble-left{
+    display: block;
+    position: relative;
+    width: auto;
+    max-width: 50%;
+    height: fit-content;
+    left: 10px;
+    background-color: rgb(105, 0, 119);
+    color: white;
+    min-height: 40px;
+    margin-bottom: 0px;
+    border-radius: 20px;
+    margin-bottom: -17px;
+    min-width: 70px;
+}
+
+.message-text-content {
+    padding: 7px;
+
+}
+
+

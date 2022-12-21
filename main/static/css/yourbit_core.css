@@ -1,0 +1,2273 @@
+/* This is Yourbits main style sheet which controls the appearance of all pages of yourbit. 
+Refer to the interactive codex for current style guidelines for Yourbit*/
+
+/* -- Scrollbar Settings -- */
+
+/* width */
+::-webkit-scrollbar {
+    width: 0.5em;    
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0);
+    backdrop-filter: brightness(150%) saturate(150%);
+
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(56, 56, 56);
+    border-radius: 10px;
+
+    
+}
+
+@media screen and (min-width: 700px) {
+/*
+-- Universal --
+
+All universal methods define styling for classes of elements.  For further modification
+of an element in a specific circumstance, such as a specifically colored wide button
+please refer to the child elements to the following classes. Universal methods should
+only be used for object transforms (shaping and scaling)
+*/
+
+    .wide-button {
+        /*Wide button is typically used for confirmation and back buttons a similar
+        styling is used for the login and sign-up page buttons */
+        width: 100px; 
+        height: 25px;
+        border-radius: 20px;
+        border-width: 0px;
+        box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+        background-color: white;
+
+    }
+
+    .icon-rect-large:hover {
+        background-color: rgba(255, 255, 255, 0.6);
+        transition: 0.3s;
+        cursor: pointer;
+    }
+    /*
+    .interaction-button {
+        /* Interaction buttons are used for user generated content feedback, these will be
+        consistent across all content types on yourbit. 
+
+    }
+
+    .selector-tile {
+        /* Selector tiles are commonly used for color selection options throughout yourbit
+        the color will be changed in the CSS method for the color ID. This method should
+        only apply universal scaling 
+
+    }
+
+    .checkbox {
+        /* The checkboxes on yourbit are consistent across the entire site 
+
+    }*/
+    
+
+
+    body, html {
+        height: 100%;
+        color: white;
+        font-family:Arial, Helvetica, sans-serif; 
+        overflow: hidden;
+        
+    }
+
+    #mobile-create-bit {
+        display: none; 
+    }
+    /* UI background image */
+    .bg-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        min-width: 100%;
+        /* The image used */
+      
+        /* Add the blur effect */
+        filter: blur(30px);
+        -webkit-filter: blur(30px) brightness(80%) saturate(150%);
+        /* Full height */
+        max-height: 100%;
+      
+        /* Center and scale the image nicely */
+        background-position: center;
+        z-index: 1;
+        transition: 1s;
+    
+    }
+    ::placeholder {
+        color: rgb(150, 150, 150);
+        opacity: 1; /* Firefox */
+      }
+      
+      :-ms-input-placeholder { /* Internet Explorer 10-11 */
+       color: rgb(150, 150, 150);;
+      }
+      
+      ::-ms-input-placeholder { /* Microsoft Edge */
+       color: rgb(150, 150, 150);;
+      }
+
+    #content-container {
+        position: fixed;
+        top: 100vh;
+        z-index: 3;
+        width: 100vw;
+        height: 100vh;
+        overflow-y: scroll;
+        transition: 1s;
+        padding: 70px;
+    }
+
+
+
+    * {
+        box-sizing: border-box;
+    }
+
+    /* Switches */
+
+    /* The switch - the box around the slider */
+    .switch {
+        position: relative;
+        margin-left: 5px;
+        display: inline-block;
+        width: 21px;
+        height: 13.5px;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+    
+    /* Hide default HTML checkbox */
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+    
+    /* The slider */
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #6f00b9;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 11px;
+        width: 11px;
+        left: 1.5px;
+        bottom: 1.5px;
+        background-color: rgb(200, 200, 200);
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    input:checked + .slider {
+        background-color: rgb(1, 179, 16);
+    }
+    
+    input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+    
+    input:checked + .slider:before {
+        -webkit-transform: translateX(7.5px);
+        -ms-transform: translateX(7.5px);
+        transform: translateX(7.5px);
+        transition: 0.5s;
+    }
+    
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 27px;
+    }
+    
+    .slider.round:before {
+        border-radius: 50%;
+    }
+    /*
+
+        Helpers
+
+    */
+
+    .helper {
+        display:none;
+        position: relative;
+        top: 10px;
+        width: fit-content;
+        padding: 5px;
+        background-color: rgba(0, 0, 0, 0.801);
+        font-size:13px;
+        height: fit-content;
+        border-radius: 5px;
+        padding-bottom: 7px;
+        color: white;
+        text-decoration: none;
+        
+    }
+    #global-space-button:hover #global-helper {
+        display: block;
+        transition: 0.5s;
+    }
+
+    #text-space-button:hover #chat-helper {
+        display: block;
+    }
+    
+    #photo-space-button:hover #photo-helper {
+        display: block;
+    }
+
+    #video-space-button:hover #video-helper {
+        display: block;
+    }
+    #notifications-quick:hover #notification-helper {
+        display: block;
+    }
+    #messages-quick:hover #messages-helper {
+        display: block;
+    }
+    #create-post-button:hover #create-helper {
+        display: block;
+    }
+    #visibility:hover #visibility-helper {
+        display: block;
+    }
+
+/* -- 
+    
+    --Navigation Bar--
+    The following 100 lines refer to different
+    elements in the navigation header on the top of the page.
+    This section is for desktop browsers. Mobile contains a 
+    split navigation bar as a header and footer. See mobile
+    styling for further adjustments.
+    
+-- */
+
+    .mobile-floating-actions {
+        display: none;
+    }
+
+    .navigation-bar {    
+        /* Navigation bar contains the logo, space navigator, search bar, quick action panel 
+        (notifications, messages, and quick appearance settings), and the user menu */
+        position: fixed;
+        display: grid;
+        grid-template-columns: 55px 70px 250px auto 50px 200px 50px;
+        z-index: 4;
+        top: 0;
+        left: 0;
+        margin: 0px;
+        height: auto;
+        width: 100%;
+        box-sizing: border-box;
+        padding-left: 2%;
+        backdrop-filter: brightness(200%) blur(50px);
+        background-color: rgba(255, 255, 255, 0.1);
+        padding-bottom: 0;
+    }
+
+    /* -- Logo Set -- */
+    
+    #logo-image {
+        /* Orbiting planets graphic on logo wide*/
+        grid-row: 1;
+        grid-column: 1;
+        float: left;
+        width: 60px;
+        margin-top: 0.75em;
+    }
+
+    #logo-image:hover{
+        cursor: pointer;
+    }
+
+    
+    #logo-name {
+        /* Yourbit text on logo wide */
+        grid-column: 2;
+        float: left;
+        font-weight: 600;
+        font-size: 1.2em;
+        height: 5%;
+        margin-right: 0px;
+        margin-left: 10px;
+    }
+
+    /* -- Content Type Navigation -- */
+
+    .space-navigator {
+        /*The space container contains content type buttons, currently global, 
+        text, video, and photo but available spaces are subject to change */
+        display: grid;
+        grid-column: 3;
+        grid-template-columns: auto auto auto auto; 
+        float: left;
+        position: absolute;
+        margin-left: 1.7%;
+        margin-right: 5%;
+        margin-top: 15px;
+        border-radius: 10px;
+        background-color: rgba(0,0,0,0.5);
+    }
+
+    .space-button {
+        /* These are the content type buttons seen on the Space Navigator */
+        position: relative;
+        width: 40px;
+        height: 30px;
+        background-color: rgba(0,0,0,0.4);
+        border-width: 0px;
+        border-radius: 10px;
+        padding: 4px;
+        margin: 2px;
+        transition: 0.3s;
+    }
+
+    .space-button-active {
+        /* These are the content type buttons seen on the Space Navigator */
+        width: 40px;
+        height: 30px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-width: 0px;
+        border-radius: 10px;
+        margin: 2px;
+
+        transition: 0.3s;
+    }
+
+    .space-button-image {
+        /* The image identifying content type inside of each space button */
+        width: 24px;
+        height: 24px;
+        display: block;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .space-button:hover {
+        /* Button increases brightness on hover */
+        background-color: rgba(150, 150, 150, 0.6);
+        transition: 0.3s;
+        cursor: pointer;
+
+    }
+    .space-button:hover svg{
+        -webkit-filter: drop-shadow(1px 1px 5px white); 
+        filter: drop-shadow(1px 1px 5px white);
+    }
+    .space-button-image:hover {
+        border-color: black;
+        border-width: 0.25em;
+        transition: 0.3s;
+    }
+
+    
+
+    /* -- Search Interface -- */
+
+    .search {
+        /*This element contains the search text input field and the search action
+        button */
+        grid-column: 4;
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: 35px auto;
+        margin-top: 0.9em;
+        width: 100%;
+        height: fit-content;
+        margin-right: 1%;
+    } 
+
+    .search-bar{
+        /*This is the search text input field element */
+        grid-column: 1;
+        width: 100%;
+        height: 35px;
+        background-color: rgba(0,0,0,0.6);
+        border-width: 0px;
+        font-weight: 700;
+        font-size: 1.1em;
+        padding-left: 1em;
+        border-radius: 0.5em;
+        color: rgb(255, 255, 255);
+        transition: 0.5s;
+        grid-row: 1;
+    }
+
+    .search-bar:hover {
+        box-shadow: 1px 1px 20px rgba(255, 255, 255, 0.6);
+        background-color: rgba(50,50,50,0.6);
+    }
+
+    #search-button {
+        /* Search action button, will search content within text input on press */
+        grid-column: 2;
+        border-width: 0px;
+        background-color: rgba(0,0,0,0.4);
+        border-radius: 10px;
+        height: 35px;
+        width: 50px;
+        margin-left: 0.5em;
+        transition: 0.4s;
+        grid-row: 1;
+    }
+
+    #search-button:hover {
+        /* Search action button, will search content within text input on press */
+        grid-column: 2;
+        border-width: 0px;
+        background-color: rgba(255, 255, 255, 0.4);
+        border-radius: 10px;
+        height: 35px;
+        width: 50px;
+        margin-left: 0.5em;
+        transition: 0.4s;
+        grid-row: 1;
+        cursor: pointer;
+    }
+    .search-button:hover svg{
+        -webkit-filter: drop-shadow(1px 1px 5px white); 
+        filter: drop-shadow(1px 1px 5px white);
+    }
+
+    .search-arrow {
+        /* Arrow graphic contained within the search action button. */
+        width: 100%;
+        margin-top: 0.28em;
+        grid-row: 1;
+    }
+
+    #search-options {
+        position: relative;
+        display: none;
+        grid-template-columns: 50px 60px 60px 50px 60px 60px 85px;
+        height: 30px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        grid-row: 2;
+        background-color: rgba(0, 0, 0, 0.401);
+        border-radius: 10px;
+        padding-left: 5px;
+        grid-column-gap: 2px;
+    }
+
+    #search-options-label {
+        position: relative;
+        margin-top: auto;
+        margin-bottom: auto;
+
+    }
+
+    .search-filter-option {
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 25px;
+        padding-left: 1px;
+        padding-right: 1px;
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.4);
+        border-radius: 10px;
+        text-align: center;
+        font-size: small;
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 27px;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+    #global-search {
+        grid-column: 1;
+    }
+    #chat-search {
+        grid-column: 2;
+    }
+    #video-search {
+        grid-column: 3;
+    }
+    #photo-search {
+        grid-column: 4;
+    }
+    #people-search {
+        grid-column: 5;
+    }
+    #histoy-search {
+        grid-column: 6;
+    }
+    #community-search {
+        grid-column: 7;
+    }
+    #visibility {
+        position: relative;
+        grid-column: 5;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+        height: 35px;
+        width: 35px;
+        margin-top: auto;
+        margin-bottom: auto;
+        float: left;
+        transition: 0.5s;
+    }
+
+    #visibility:hover {
+        position: relative;
+        grid-column: 5;
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 10px;
+        height: 35px;
+        width: 35px;
+        margin-top: auto;
+        margin-bottom: auto;
+        float: left;
+        transition: 0.5s;
+        cursor: pointer;
+    }
+    #visibility:hover svg{
+        -webkit-filter: drop-shadow(1px 1px 5px white); 
+        filter: drop-shadow(1px 1px 5px white);
+    }
+    
+    #visibility-icon {
+        display: block;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #visibility-dropdown {
+        position: absolute;
+        top: 40px;
+        left: -55px;
+        background-color: rgb(0, 0, 0, 0.9);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        height: 10px;
+        width: 150px;
+        border-radius: 20px;
+        padding: 5px;
+        padding-left: 10px;
+        text-align: left;
+
+    }
+
+    #options-container {
+        display: grid;
+        position: relative;
+        grid-template-columns: auto auto;
+        width: 100%;
+        margin: auto;
+    }
+
+    .vis-option-text {
+        grid-column: 1;
+    }
+
+    .all-settings-shortcut-container {
+        position: relative;
+        width: 100%;
+        text-align: center;
+    }
+
+    .all-settings-shortcut {
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 10px;
+        border-width: 0px;
+        color: white;
+        background-color: rgb(56, 56, 56);
+        padding: 5px;
+    
+    }
+    /* -- Quick Action Container -- */
+
+    #quick-actions {
+        /* Quick actions contain quick visibility adjustments, messages access,
+        and notification access */
+        position: absolute;
+        right: 7vw;
+        grid-column: 6;
+        background-color:rgba(0,0,0,0.5) ;
+        margin-top: 0.75em;
+        border-radius: 0.5em;
+        display: grid;
+
+    
+    }
+
+    .quick-button {
+        /* The shape, size, and color of a quick action button */
+        position: relative;
+        display: block;
+        margin: 3px;
+        height: 35px;
+        width: 35px;
+        background-color: rgba(0,0,0,0.4);
+        border-width: 0px;
+        border-radius: 0.5em;
+        transition: 0.3s;
+        padding: 5px;
+    
+    }
+
+    .quick-button-background {
+        /* icon contained within the quick action button */
+        position: relative;
+        display: block;
+        width: 100%;
+    }
+
+
+        
+    .quick-button:hover {
+        background-color: rgba(255, 255, 255, 0.6);
+        transition: 0.3s;
+        cursor: pointer;
+        
+    }
+
+    .quick-button:hover svg{
+        -webkit-filter: drop-shadow(1px 1px 5px white); 
+        filter: drop-shadow(1px 1px 5px white);
+    }
+    
+    
+    .quick-button-background:hover {
+        border-color: black;
+        border-width: 0.5em;
+        transition: 0.3s;
+    }
+    #messages-quick {
+        grid-column: 1;
+    }
+    #notifications-quick {
+        grid-column: 2
+    }
+
+    #create-post-button {
+        grid-column: 3;
+    }
+
+    /*Dropdown Header for quick actions*/
+
+
+
+    /* -- User Menu Button */
+    path {
+        fill: white;
+    }
+    #profile-icon {
+        width: auto;
+        float: right;
+        position: fixed;
+        right: 20%;
+        grid-column: 7;
+        z-index: 10;
+    
+    }
+    #profile-pic {
+        border-radius: 100%;
+        position: fixed;
+        width: 42px;
+        right: 2%;
+        float: right;
+        margin-top: 0.6em;
+        height: 42px;
+        border-color: white;
+        border-width: 0.15em;
+        object-fit: contain;
+        border-style: solid;
+        transition: 0.8s;
+        z-index: 10;
+    
+    }
+    
+    #profile-pic:hover {
+        border-radius: 100%;
+        position: fixed;
+        width: 44px;
+        right: 2%;
+        float: right;
+        margin-top: 0.6em;
+        height: 44px;
+        border-color: white;
+        object-fit: contain;
+        border-width: 0.15em;
+        border-style: solid;
+        box-shadow: 0.1em 0.1em 0.5em black;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+    /*------------------------------------------------------*/
+
+        /* -- User Menu -- */
+
+    /*-----------------------------------------------------*/
+    
+    #menu-profile-image {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+        object-fit: contain;
+        height:190px;
+        width: 190px;
+    }
+
+    #profile-menu {
+        position: fixed;
+        top: 3.75em;
+        background-color: rgba(155, 155, 155, 0.1);
+        z-index: 8;
+        right: 0px;
+        height: 100%;
+        width: 17em;
+        backdrop-filter: saturate(300%) brightness(125%) blur(20px);
+        display: grid;
+        visibility: hidden;
+        transform: translate(17em);
+        transition: 0.5s;
+        grid-template-rows: 340px 40px 150px 40px;
+        grid-row-gap: 20px;
+    }
+    
+    #profile-name {
+        display: grid;
+        background-color: rgba(255, 255, 255, 0);
+        backdrop-filter: brightness(200%);
+        margin-top: 10px;
+        margin-left:auto;
+        margin-right: auto;
+        width:95%;
+        font-size: 16px;
+        text-align: center;
+        font-weight: 600;
+        color: white;
+        border-radius: 20px;
+        grid-row: 1;
+        text-decoration: none;
+    
+    }
+
+    .menu-profile-background-link {
+        position: absolute;
+        width: 100%;
+        height:100%;
+        z-index: 2;
+    } 
+
+    #menu-username {
+        font-size: 12px;
+        margin-top: 2px;
+    }
+
+    #rewards-container {
+        display: grid;
+        position: relative;
+        width: 95%;
+        height: 40px;
+        background-color: rgba(0, 0, 0, 0.5);
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 10px;
+        grid-row: 2;
+    }
+
+    #balance-label {
+        grid-column: 1;
+    }
+    #menu-rewards-balance {
+        grid-column: 2;
+    }
+
+    .menu-profile-background-link {
+        z-index: 3;
+        position: relative;
+        display: block;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+    }
+
+    #menu-options{
+        display: grid;
+        grid-template-columns: 120px 120px;
+        grid-template-rows: 30px 30px 30px 30px 30px;
+        width: auto;
+        margin-left: auto;
+        margin-right: auto;
+        height: 60px;
+        column-gap: 3px;
+        row-gap: 3px;
+        grid-row: 3;
+        font-size: 14px;
+        z-index: 2;
+
+    }
+        .profile-menu-link-text {
+            display: block;
+            position: relative;
+            margin-left: 5px;
+            margin-top: auto;
+            margin-bottom: auto;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+
+        }
+
+        .profile-menu-link{
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 2px;
+            text-align: left;
+            text-decoration: none;
+            line-height: 1.75;
+        }
+
+        .profile-menu-label {
+            display: grid;
+            grid-template-columns: 25px 95px;
+        }
+
+            .profile-menu-icon{
+                display: block;
+                position: absolute;
+            }
+
+            #home-link {
+                display: block;
+                grid-row: 1;
+                grid-column: 1;
+            }
+
+            #messages-link {
+                grid-row: 1;
+                grid-column: 2;
+            }
+
+            #stuff-link {
+                grid-row: 2;
+                grid-column: 1;
+            }
+
+            #history-link {
+                grid-row: 2;
+                grid-column: 2;
+            }
+
+            #rewards-link {
+                grid-row: 3;
+                grid-column: 1;
+            }
+
+            #settings-link {
+                grid-row: 3;
+                grid-column: 2;
+            }
+
+            #community-link {
+                grid-row: 4;
+                grid-column: 1;
+            }
+            #connections-link {
+                grid-row: 4;
+                grid-column: 2;
+            }
+
+            #more-link {
+                grid-row: 5;
+                grid-column: 1;
+
+            }
+
+
+
+    .logout-button {
+        position: relative;
+        padding: 5px;
+        text-align: center;
+        background-color: rgb(194, 0, 0);
+        grid-row: 4;
+        width: 80%;
+        height: fit-content;
+        border-radius: 20px;
+        font-size: 20px;
+        margin: auto;
+        cursor: pointer;
+        
+    }
+
+    #logout-link {
+        text-decoration: none;
+        color: white;
+    }
+
+    .logout-button:hover {
+        filter: brightness(200%);
+        -webkit-filter: brightness(200%);
+    }
+
+    #mobile-header {
+        display: none;
+    }
+
+    .status-indicator {
+        position: absolute;
+        display: block;
+        border-radius: 50%;
+        height: 8px;
+        width: 8px;
+        top: 2px;
+        right: 2px;
+        background-color: red;
+        z-index: 3;
+    }
+
+    #create-bit-mobile {
+        display: none;
+    }
+
+    #menu-notification-container {
+        display: none;
+    }
+
+    #back-to-home {
+        display: none;
+    }
+
+    input::-webkit-input-placeholder {
+        color: rgb(176, 176, 176) !important;
+        }
+         
+    input:-moz-placeholder { /* Firefox 18- */
+        color: rgb(176, 176, 176) !important;  
+    }
+        
+    input::-moz-placeholder {  /* Firefox 19+ */
+        color: rgb(176, 176, 176) !important;  
+    }
+        
+    input:-ms-input-placeholder {  
+        color: rgb(176, 176, 176) !important;  
+        }
+
+    #search-mobile {
+        display: none;
+    }
+
+/*Linear Content Container*/
+
+/*Grid Content Container*/
+
+/*Video Content*/
+
+/*Photo Content*/
+
+/*Settings Page*/
+    }
+
+/*
+
+    Mobile Styling
+
+*/
+
+@media screen and (max-width: 700px) {
+    /*Universal*/
+    .bg-image {
+        position: fixed;
+        min-height: 100vh;
+        /* The image used */
+      
+        /* Add the blur effect */
+        /* Full height */
+        width: 100%;
+        /* Center and scale the image nicely */
+        background-position: center;
+        z-index: 1;
+        transition: 1s;
+        filter: blur(20px);
+        backdrop-filter: blur(20px);
+    
+    }
+
+    /*Core Interface*/
+    body, html {
+        display: grid;
+        font-family: Arial, Helvetica, sans-serif;
+        overflow: hidden;
+
+    }
+
+        /* Switches */
+
+    /* The switch - the box around the slider */
+    .switch {
+        position: relative;
+        margin-left: 5px;
+        display: inline-block;
+        width: 42px;
+        height: 27px;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+    
+    /* Hide default HTML checkbox */
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+    
+    /* 
+    
+        The slider 
+        
+    */
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #6f00b9;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 22px;
+        width: 22px;
+        left: 3px;
+        bottom: 3px;
+        background-color: rgb(200, 200, 200);
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    input:checked + .slider {
+        background-color: rgb(1, 179, 16);
+    }
+    
+    input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+    
+    input:checked + .slider:before {
+        -webkit-transform: translateX(15px);
+        -ms-transform: translateX(15px);
+        transform: translateX(15px);
+        transition: 0.5s;
+    }
+    
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 27px;
+    }
+    
+    .slider.round:before {
+        border-radius: 50%;
+    }
+    #visibility {
+        display: none;
+    }
+
+    #visibility-mobile {
+        display: block;
+        position: absolute;
+        right: 15px;
+        top: 25px;
+    }
+    
+    #visibility-icon-mobile {
+        display: block;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #visibility-dropdown-mobile {
+        position: absolute;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        top: 20px;
+        left: -140px;
+        background-color: rgb(0, 0, 0, 0.9);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        height: 10px;
+        width: 160px;
+        border-radius: 20px;
+        padding: 5px;
+        padding-left: 10px;
+        text-align: left;
+
+    }
+
+    #options-container-mobile {
+        display: grid;
+        position: relative;
+        grid-template-columns: auto auto;
+        grid-template-rows: 50px 50px 50px auto;
+        width: 100%;
+        margin: auto;
+        font-size: 16px;
+    }
+
+    .vis-option-text {
+        grid-column: 1;
+    }
+
+    .all-settings-shortcut-container {
+        position: relative;
+        width: 100%;
+        text-align: center;
+    }
+
+    .all-settings-shortcut {
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 10px;
+        border-width: 0px;
+        color: white;
+        background-color: rgb(56, 56, 56);
+        padding: 5px;
+        margin-top: 20px;
+    
+    }
+
+    #mobile-header {
+        position: absolute;
+        display: block;
+        top: -70px;
+        left: 0vw;
+        width: 100vw;
+        z-index: 20;
+        height: 50px;
+        background-color: rgba(0, 0, 0, 0);
+        backdrop-filter: blur(20px) brightness(150%);
+        -webkit-backdrop-filter: blur(20px) brightness(200%);
+
+    }
+
+    #yb-browse-nav {
+        position: sticky; 
+        display: block;
+        top: -20px; 
+        height: 40px; 
+        z-index: 20; 
+        width: 95vw;
+        border-radius: 20px; 
+        background-color: rgba(0,0,0,0.8); 
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        margin-left: auto;
+        margin-right: auto;
+        
+    }
+    
+    #mobile-logo {
+        position: relative;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        top: 13px;
+        height: 30px;
+    }
+
+    .wide-button {
+        /*Wide button is typically used for confirmation and back buttons a similar
+        styling is used for the login and sign-up page buttons */
+        width: 100px; 
+        height: 25px;
+        border-radius: 20px;
+        border-width: 0px;
+        box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+        background-color: white;
+
+    }
+
+    path {
+        fill: white;
+    }
+
+    /*Navigation Bar */
+    #content-container {
+        position: fixed;
+        top: 100vh;
+        left: 0px;
+        z-index: 3;
+        width: 100vw;
+        height: 100vh;
+        overflow-y: scroll;
+        transition: 1s;
+        overflow-x: hidden;
+        padding-top: 70px;
+    }
+    
+    .navigation-bar {    
+        /* Navigation bar contains the logo, space navigator, search bar, quick action panel 
+        (notifications, messages, and quick appearance settings), and the user menu */
+        position: fixed;
+        z-index: 10;
+        bottom: 0vh;
+        left: 0vw;
+        margin: 0px;
+        height: 50px;
+        width: 100%;
+        box-sizing: border-box;
+        background-color: rgba(0, 0, 0, 0.6);
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        padding-bottom: 0;
+    }
+
+    #logo-image {
+        /* Orbiting planets graphic on logo wide*/
+        grid-row: 1;
+        grid-column: 1;
+        float: left;
+        width: 60px;
+        margin-top: 0.75em;
+        display: none;
+    }
+
+    #logo-name {
+        /* Yourbit text on logo wide */
+        display: none;
+    }    
+    /* 
+        Mobile Space Buttons
+        These are the content type buttons seen on the Space Navigator 
+        
+        Tags: space button mobile space button mobile content button type mobile content selector mobile content navigator content type button
+            
+            SECTION CONTAINS:
+                .space-button
+                .space-button-active
+                .space-button-image
+                #global-space-button
+                #text-space-button
+                #video-space-button
+                #photo-space-button
+    */
+
+    .minibar {
+        position: absolute;
+        display: block;
+        z-index: 2;
+        max-width: 222px;
+        width: auto;
+        display: grid;
+        position: absolute;
+        grid-template-columns: auto auto auto auto auto;
+        left: 50%;
+        transform: translate(-50%, 0);
+        text-align: center;
+        border-radius: 40px;
+        color: white;
+        height: 45px;
+        bottom: 95px;
+        background-color: black;
+        padding-right: 2.5px;
+        transition: 0.5s;
+        -webkit-filter: drop-shadow(2px 2px 5px black);
+        filter: drop-shadow(2px 2px 5px black);
+    }
+
+    .task-icon{
+        position: relative;
+        display: block;
+        width: 0px;
+        height: 0px;
+        background-color: rgb(75, 75, 75);
+        border-radius: 50%;
+        top: 2.5px;
+        left: 2.5px;
+        margin-right: 5px;
+        overflow: hidden;
+        transition: 0.5s;
+    }
+    .task-icon-svg{
+        position: absolute;
+        display: block;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .mini-widget {
+        position: absolute;
+        bottom: 95px;
+        left: 2.5vw;
+        height: 350px;
+        width: 95vw;
+        border-radius: 20px;
+        background-color: black;
+        margin-left: auto;
+        margin-right: auto;
+        
+    }
+    .space-navigator {
+        /*The space container contains content type buttons, currently global, 
+        text, video, and photo but available spaces are subject to change */
+        display: grid;
+        position: absolute;
+        grid-template-columns: auto auto 80px auto auto; 
+        width: 100vw;
+        bottom: 0px;
+        height: 100%;
+        margin: auto;
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        
+    }
+
+        .space-button {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background-color: rgba(0,0,0,0.5);
+            border-width: 0px;
+            border-radius: 0.25em;
+            padding: 4px;
+            transition: 0.3s;
+            margin: auto;
+        }
+        
+
+            .space-button-active {
+                /* These are the content type buttons seen on the Space Navigator */
+                position: relative;
+                width: 60px;
+                height: 30px;
+                background-color: rgba(255,255,255,0.5);
+                border-width: 0px;
+                border-radius: 0.25em;
+                padding: 4px;
+                transition: 0.3s;
+                margin: auto;
+            }
+
+        .space-button-image {
+            /* The image identifying content type inside of each space button */
+            position: absolute;
+            display: block;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+    .search {
+        display: none;
+    }
+
+
+    #quick-actions {
+        display: none;
+    }
+
+    /*Below Contains styling for the profile menu button */
+
+        /*This is the icon on mobile footer that shows the profile image*/
+        #profile-icon {
+            display: block;
+            position: absolute;
+            left: 50vw;
+            transform: translate(-50%, 0);
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            z-index: 11;
+            bottom: 0px;
+            grid-column: 3;
+        }
+
+        /*This is the Profile Pic that appears on the profile menu button */
+        #profile-pic {
+            position: relative;
+            display: block;
+            width: 70px;
+            height: 70px;
+            border-radius: 180px;
+            border: 3px solid white;
+            object-fit: contain;
+
+        }
+
+/* 
+
+    ---Mobile Profile Menu styling below---
+        -Profile-menu
+        -Profile-name
+        -profile-name-label
+        -Menu profile image
+        -menu-name-label
+        -menu-username
+        -rewards-container
+        -balance-label
+        -menu-rewards-balance
+
+*/
+        #profile-menu {
+            /*Contains styling for profile menu background- starts at bottom -100vw for animation purposes */
+            bottom: -100vh;
+            width: 95vw;
+            height: auto;          
+            position: fixed;
+            z-index: 25;
+            background-color: rgba(0, 0, 0, 0.0);
+            -webkit-backdrop-filter: blur(40px);
+            backdrop-filter: blur(40px);
+            left: 1.5vw;
+            box-shadow: -1px -1px 10px black;
+            text-align: center;
+            color: white;
+            transition: 0.5s;
+            border-radius: 20px;
+            display: grid;
+            grid-template-rows: auto 25px 95px 85px 35px 35px 15px;
+            row-gap: 10px;
+        }
+
+
+        #profile-name {        
+        /* 
+        
+            Not simply profile name but is the container that stores user identity info such as:
+            -Profile Pic
+            -Profile Name
+            -Profile Username
+        
+        */
+            text-decoration: none;
+            width: 90vw;
+            height: 80px;
+            margin-left: auto;
+            margin-right: auto;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            margin-bottom: 0px;
+            display: grid;
+            grid-template-columns: 70px 150px;
+            grid-template-rows: 30px 30px;
+            line-height: 20px;
+            text-align: left;
+            column-gap: 10px;
+            grid-row: 4;
+            padding: 2px;
+        }
+
+        #profile-name-label {
+        /*
+            -User first and last name
+        */
+            font-size: auto;
+            font-weight: 700;
+            grid-row:1;
+            grid-column: 2;
+        }
+
+        #menu-username {
+            grid-row: 2;
+            grid-column: 2;
+        }
+
+        #menu-profile-image {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid white;
+            margin: auto;
+            object-fit: contain;
+            grid-row-start: 1;
+            grid-row-end:2;
+            grid-column: 1;
+            margin-top: 8px;
+            margin-left: 6px;
+        }
+
+        #rewards-container {
+            display: grid;
+            position: relative;
+            width: 90vw;
+            height: 35px;
+            background-color: rgba(0, 0, 0, 0.5);
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 10px;
+            grid-row: 5;
+        }
+
+        #balance-label {
+            grid-column: 1;
+        }
+        #menu-rewards-balance {
+            grid-column: 2;
+        }
+
+        #menu-notification-container {
+            display: none;
+            grid-row: 1;
+            height: auto;
+            width: 95vw;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #no-notifications-message {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            line-height: 110px;
+        }
+
+
+        .menu-profile-background-link {
+            z-index: 3;
+            position: relative;
+            display: block;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+        }
+
+        #menu-options{
+            display: grid;
+            grid-template-columns: 115px 115px 115px;
+            grid-template-rows: 30px 30px 30px;
+            width: 90vw;
+            margin-left: auto;
+            margin-right: auto;
+            height: 60px;
+            column-gap: 3px;
+            row-gap: 3px;
+            grid-row: 3;
+            font-size: 14px;
+            z-index: 2;
+
+        }
+            .profile-menu-link-text {
+                display: block;
+                position: relative;
+                margin-left: 5px;
+                margin-top: auto;
+                margin-bottom: auto;
+                text-decoration: none;
+                color: white;
+                font-weight: 500;
+
+            }
+
+            .profile-menu-link{
+                position: relative;
+                background-color: rgba(0, 0, 0, 0.5);
+                border-radius: 10px;
+                padding: 2px;
+                text-align: left;
+                text-decoration: none;
+                line-height: 1.75;
+            }
+
+            .profile-menu-label {
+                display: grid;
+                grid-template-columns: 25px 95px;
+            }
+
+                .profile-menu-icon{
+                    display: block;
+                    position: absolute;
+                }
+
+                #home-link {
+                    display: block;
+                    grid-column: 1;
+                    grid-row: 1;
+                    text-decoration: none;
+                }
+
+                #messages-link {
+                    grid-row: 2;
+                    grid-column: 1;
+                    text-decoration: none;
+                }
+
+                #stuff-link {
+                    grid-row: 3;
+                    grid-column: 1;
+                    text-decoration: none;
+                }
+
+                #history-link {
+                    grid-row: 1;
+                    grid-column: 2;
+                    text-decoration: none;
+                }
+
+                #rewards-link {
+                    grid-row: 2;
+                    grid-column: 2;
+                    text-decoration: none;
+                }
+
+                #settings-link {
+                    grid-row: 3;
+                    grid-column: 2;
+                    text-decoration: none;
+                }
+
+                #community-link {
+                    grid-row: 1;
+                    grid-column: 3;
+                    text-decoration: none;
+                }
+                #connections-link {
+                    grid-row: 2;
+                    grid-column: 3;
+                    text-decoration: none;
+                }
+
+                #more-link {
+                    grid-row: 3;
+                    grid-column: 3;
+                    text-decoration: none;
+
+                }
+
+    .logout-button {
+        position: relative;
+        padding: 2px;
+        text-align: center;
+        background-color: rgb(194, 0, 0);
+        width: 80%;
+        height: fit-content;
+        border-radius: 20px;
+        margin: auto;
+        cursor: pointer;
+        margin-bottom: 5px;
+        grid-row: 6;
+        
+    }
+
+    
+        #logout-link {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            font-size: 20px;
+        }
+
+    /* Profile Menu Exit Button Mobile (tags: exit menu mobile exit) */
+    #mobile-exit-button {
+        display: none;
+        color: white;
+        border-radius: 50%;
+        border: 2px solid white;
+        font-size: 30px;
+        top: 30px;
+        height: 45px;
+        width: 45px;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        line-height: 50px;
+        grid-row: 5;
+    }
+
+/* _____________________________________________
+
+            End Profile Menu Styles
+
+*/
+
+    /* SPace buttons at the top of page */
+
+    #global-space-button {
+        grid-column: 1;
+    }
+
+    #text-space-button {
+        grid-column: 2;
+    }
+
+    #video-space-button {
+        grid-column: 4;
+    }
+
+    #photo-space-button {
+        grid-column: 5;
+    }
+
+    /* Create bit space type buttons */
+    #text-type-button {
+        grid-column: 1;
+    }
+
+    #video-type-button {
+        grid-column: 2;
+    }
+
+    #photo-type-button {
+        grid-column: 3;
+    }
+
+    /* Searcg and create bit icons on mobile */
+    .mobile-floating-actions {
+        position: fixed;
+        display: block;
+        z-index: 15;
+        border-radius: 180px;
+        width: 60px;
+        height: 60px;
+        background-color: rgb(34, 34, 34);
+        bottom: 57px;
+        -webkit-filter: drop-shadow(2px 2px 3px black);
+        filter: drop-shadow(2px 2px 3px black) brightness(80%);
+        border: 3px solid black;
+        line-height: 30px;
+        text-align: center;
+    }
+
+    #mobile-create-button {
+        left: 7px;
+    }
+
+    .create-option {
+        display: block;
+        position: relative;
+        width: 70vw;
+        height: 35px;
+        background-color: rgba(0, 0, 0, 0.4);
+        margin-bottom: 5px;
+        color: white;
+        border-radius: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        border: 2px solid rgb(65, 65, 65);
+    }
+
+    #mobile-search-button {
+        right: 7px;
+    }
+
+    #mobile-search-icon {
+        position: relative;
+        display: block;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #mobile-create-icon {
+        position: relative;
+        display: block;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .filter-button {
+        position: relative;
+        display: block;
+        background-color: rgba(150, 150, 150, 0.4);
+        border: 2px solid rgb(150, 150, 150);
+        color: rgb(150, 150, 150);
+        border-radius: 20px;
+        height: 26px;
+        margin: auto;
+        width: 80px;
+    }
+
+    .filter-button-wide-active {
+        position: relative;
+        display: block;
+        background-color: rgba(255, 255, 255, 0.4);
+        border: 2px solid rgb(255, 255, 255);
+        color: rgb(255, 255, 255);
+        border-radius: 20px;
+        height: 26px;
+        margin: auto;
+        width: 80px;
+    }
+    .filter-button-wide-active:focus {
+        position: relative;
+        display: block;
+        background-color: rgba(0, 0, 0, 0.4);
+        border: 2px solid rgb(255, 255, 255);
+        color: rgb(255, 255, 255);
+        border-radius: 20px;
+        height: 27px;
+        margin: auto;
+        width: 80px;
+    }
+
+    .filter-button-active {
+        position: relative;
+        display: block;
+        background-color: rgba(255, 255, 255, 0.4);
+        border: 2px solid rgb(255, 255, 255);
+        color: rgb(255, 255, 255);
+        border-radius: 20px;
+        height: 27px;
+        margin: auto;
+        width: 45px;
+        transition: 0.5s;
+    } 
+    
+    .filter-button-active:focus {
+        position: relative;
+        display: block;
+        background-color: rgba(0, 0, 0, 0.4);
+        border: 2px solid rgb(255, 255, 255);
+        color: rgb(255, 255, 255);
+        border-radius: 20px;
+        height: 26px;
+        margin: auto;
+        width: 80px;
+        transition: 0.5s;
+    }
+
+    .filter-button-icon {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+    }
+
+    .dropdown-menu {
+        position: absolute;
+        transform: translate(-50%, 0);
+        
+        height: 200px;
+        width: 150px;
+        border-radius: 20px;
+        
+        top: 35px;
+    }
+
+    #splash-dropdown{
+        background-color: gray;
+    }
+
+
+
+    .single-line-input {
+        background-color: rgba(0, 0, 0, 0.4);
+        border-radius: 10px;
+        border-width: 0px;
+        width: 90vw;
+        height: 30px;
+    }
+
+    .yb-card {
+        visibility: hidden;
+        top: 100vh;
+        width: 95vw;
+        height: 80vh;          
+        position: fixed;
+        z-index: 25;
+        background-color: rgba(0, 0, 0, 0.0);
+        -webkit-backdrop-filter: blur(40px);
+        backdrop-filter: blur(40px);
+        left: 50%;
+        transform: translate(-50%, 0);
+        box-shadow: -1px -1px 10px black;
+        text-align: center;
+        color: white;
+        transition: 0.5s;
+        border-radius: 40px;
+        
+
+    }
+
+    .button-panel-close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        height: 25px;
+        width: 25px;
+        font-size: 30px;
+        font-weight: 300;
+        border-radius: 50%;
+        background-color: gray;
+        border-width: 0px;
+        line-height: 1;
+        text-align: center;
+        
+
+    }
+
+    #create-bit-header {
+        position: relative;
+        display: grid;
+        width: 95%;
+        grid-template-columns: auto 120px;
+        height: 40px;
+        text-align: left;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+
+    #bit-scope-options {
+        position: relative;
+        display: grid;
+        grid-column: 2;
+        grid-template-columns: 60px 60px;
+        margin-top: 5px;
+    }
+
+    .half-toggle-left {
+        display: block;
+        position: relative;
+        height: 25px;
+        width: 60px;
+        grid-column: 1;
+        border-radius: 10px 0px 0px 10px;
+
+    }
+
+    .half-toggle-right {
+        display: block;
+        position: relative;
+        height: 25px;
+        width: 60px;
+        grid-column: 2;
+        border-radius: 0px 10px 10px 0px;
+
+    }
+
+    #bit-private {
+        border: 2px solid darkred;
+        background-color: rgba(255, 0, 0, 0.4);
+        color: red;
+
+    }
+
+    #bit-public {
+        border: 2px solid darkgreen;
+        background-color: rgba(0, 255, 0, 0.4);
+        color: rgb(100, 255, 100);
+    }
+
+
+    #mobile-body {
+        width: 90vw;
+        height: 150px;
+        border-radius: 10px;
+        margin-top: 10px;
+        background-color: rgba(0, 0, 0, 0.4);
+        border-width: 0px;
+        padding: 4px;
+    }
+
+    .slide-up-button-container {
+        position: relative;
+        width: fit-content;
+        display: grid;
+        grid-template-columns: auto auto;
+        margin-left: auto;
+        margin-right: auto;
+        column-gap: 10px;
+        background-color: rgba(0, 0, 0, 0.4);
+        border-radius: 15px;
+    }
+
+    #create-bit-type-mobile {
+        grid-column: 1;
+        display: grid;
+        position: relative;
+        width: fit-content;
+        margin-top:auto;
+        margin-bottom: auto;
+
+    }
+
+    .type-button {
+        position: relative;
+        width: 60px;
+        height: 30px;
+        background-color: rgba(0,0,0,0.3);
+        border-width: 0px;
+        border-radius: 10px;
+        padding: 4px;
+        margin: 2px;
+        transition: 0.3s;
+    }
+
+    .type-button-active {
+        position: relative;
+        width: 60px;
+        height: 30px;
+        background-color: rgba(255,255,255,0.3);
+        border-width: 0px;
+        border-radius: 10px;
+        padding: 4px;
+        margin: 2px;
+        transition: 0.3s;
+    }
+
+    #mobile-file-field {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        background-color: rgba(0,0,0,0.5);
+        border-radius: 10px;
+    }
+
+    #mobile-publish-bit {
+        position: relative;
+        border-width: 0px;
+        border-radius: 10px;
+        height: 37px;
+        width: 70px;
+        color: gray;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center;
+        grid-column: 2;
+        margin: auto;
+        text-align: center;
+    }
+
+    #search-mobile {
+        display: none;
+        top: 100vh;
+        width: 100vw;
+        height: 100%;
+        transition: 0.5s;
+        position: fixed;
+        z-index: 16;
+        background-color: rgba(0, 0, 0, 0.0);
+        -webkit-backdrop-filter: blur(40px);
+        backdrop-filter: blur(40px);
+        left: 0;
+        bottom: 0px;
+        box-shadow: -1px -1px 10px black;
+        text-align: center;
+        color: white;
+    }
+
+    .mobile-search-form {
+        display:grid;
+        position: absolute;
+        bottom: 0vh;
+        width: 100vw;
+        grid-template-columns: 85vw 15vw;
+
+    }
+
+    #mobile-searchbar {
+        width: 80vw !important;
+        position: relative;
+        left: 5px;
+        bottom: 5px;
+        grid-column: 1;
+
+    }
+
+    #mobile-searchbar-messages {
+        width: 80vw !important;
+        position: relative;
+        left: 5px;
+        bottom: 5px;
+        grid-column: 1;
+
+    }
+
+    #mobile-submit-search-button {
+        display: block;
+        position: relative;
+        grid-column: 2;
+        bottom: 6px;
+        margin-right: 3px;
+        border-radius: 10px;
+        height: 33px;
+        border-width: 0px;
+    }
+
+
+
+    .large-bubble {
+        background-color: rgba(0, 0, 0, 1);
+        position: fixed;
+        z-index: 1000;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 40px;
+        padding: 5px;
+        color: white;
+
+    }
+
+    .helper {
+        display: none;
+    }
+
+    .center-popout-button {
+        display: grid;
+        position: absolute;
+        grid-template-columns: 25px auto;
+        left: 50%;
+        transform: translate(-50%, 0);
+        border: 2px solid white;
+        text-align: center;
+        border-radius: 40px;
+        color: white;
+        
+        font-size: 16px;
+
+        -webkit-filter: drop-shadow(2px 2px 5px black);
+        filter: drop-shadow(2px 2px 5px black);
+    }
+    #back-to-home {
+        line-height: 0.7;
+        bottom: -90px;
+        height: 45px;
+        width: 155px;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    #cancel-search {
+        line-height: 0.4;
+        bottom: 55px;
+        height: 35px;
+        width: 135px;
+        background-color: rgba(0, 0, 0, 0);
+
+    }
+
+    #back-to-home-icon {
+        display: block;
+        position: relative;
+        grid-column: 1;
+        margin-left: 10px;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    #back-to-home-text {
+        display: block;
+        position: relative;
+        grid-column: 2;
+    }
+
+    #gradiant-overlay {
+        pointer-events: none;
+        display: block;
+        position: absolute;
+        bottom: 50px;
+        left: 0px;
+        background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.85));
+        width: 100vw;
+        height: 75px;
+    }
+
+    input::-webkit-input-placeholder {
+        color: rgb(176, 176, 176) !important;
+        }
+         
+    input:-moz-placeholder { /* Firefox 18- */
+        color: rgb(176, 176, 176) !important;  
+    }
+        
+    input::-moz-placeholder {  /* Firefox 19+ */
+        color: rgb(176, 176, 176) !important;  
+    }
+        
+    input:-ms-input-placeholder {  
+        color: rgb(176, 176, 176) !important;  
+        }
+
+    .splash-page {
+        display: block;
+        position: fixed;
+        height: 100vh;
+        width: 100vw;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        backdrop-filter: blur(20px) brightness(50%);
+        -webkit-backdrop-filter: blur(20px) brightness(50%);
+
+    }
+
+    .space-splash-label {
+        display: block;
+        position: absolute;
+        color: white;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        border-radius: 20px;
+    }
+    #mobile-spacer {
+        display: block;
+        position: relative;
+        height: 200px;
+        bottom: 0px;
+    }
+
+    .yb-hz-option {
+        position: relative;
+        display: block;
+        width: 100%;
+        border-radius: 20px;
+        height: 40px;
+        border: 2px solid white;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    /*Linear Content Container*/
+
+    /*Grid Content Container*/
+
+    /*Video Content*/
+
+    /*Photo Content*/
+
+    /*Text Content*/
+
+    /*Profile Page*/
+
+    /*Settings Page*/
+    }
+

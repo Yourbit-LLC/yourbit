@@ -1,0 +1,92 @@
+
+<link rel="stylesheet" type="text/css" href="/static/css/messages-yourbit.css/"/>
+<div id = 'content-container' style='padding-top: 70px;'>
+
+    
+
+
+    <h2 style='text-align: center; color: white; text-shadow: 1px 1px 3px rgba(0,0,0,0.5);'>Messages</h2>
+    <div id="friends-messages-actions">
+        <input type="text-field" id="message-friends-search" placeholder="Search Messages">
+        <a class="write-message-button-bkd"><svg xmlns="http://www.w3.org/2000/svg" id='write-message-icon'height="24" width="24"><path d="M5 23.7q-.825 0-1.413-.588Q3 22.525 3 21.7v-14q0-.825.587-1.413Q4.175 5.7 5 5.7h8.925l-2 2H5v14h14v-6.95l2-2v8.95q0 .825-.587 1.412-.588.588-1.413.588Zm7-9Zm4.175-8.425 1.425 1.4-6.6 6.6V15.7h1.4l6.625-6.625 1.425 1.4-7.2 7.225H9v-4.25Zm4.275 4.2-4.275-4.2 2.5-2.5q.6-.6 1.438-.6.837 0 1.412.6l1.4 1.425q.575.575.575 1.4T22.925 8Z"/></svg></a>
+    </div>
+    <hr>
+    <br>
+    <div class='filter-options' style='
+        display: grid; 
+        grid-template-columns: auto auto auto auto; 
+        column-gap: 4px; 
+        position: sticky; 
+        z-index: 3; 
+        top: -20px; 
+        margin-bottom: 10px; 
+        margin-left: auto;
+        margin-right: auto;
+        
+        width: 95vw; 
+        border-radius: 28px;
+        height: 35px; 
+        background-color: rgba(0,0,0, 0.6); 
+        backdrop-filter: blur(40px);
+        -webkit-backdrop-filter: blur(40px);
+        overflow-y: hidden;
+        overflow-x: hidden;
+    '>
+        <button class='filter-button-active'>All</button>
+        <button class='filter-button'>Friends</button>
+        <button class='filter-button'>Public</button>
+        <button class='filter-button'>Community</button>
+    
+    </div>
+    <div style = 'position:relative; height: 300px; width: 100vw; margin: auto; text-align: center; color: white;'>
+        {% if is_conversation %}
+            {% for conversation in conversations %}
+                <div  class='full-result' style="color: white; background-color: {{conversation.receiver_user.profile.custom.bit_background}};">
+                    <div class = 'full-result-image-container'>
+                        <img class='full-result-image' src="{{conversation.receiver_user.profile.custom.image.url}}">
+                    </div>
+                    <div class='full-result-name-container' style="color: white;">
+                        <p class = 'full-result-name'><strong>{{conversation.receiver_user.first_name}} {{conversation.receiver_user.last_name}}</strong></p>
+                        <p class = 'full-result-username'>
+                            <small>@{{conversation.receiver_user.username}}</small>
+                        </p>
+                    
+                    </div>
+                    <a class='profile-search-link' href="{% url 'conversation' conversation.id %}"></a>
+        
+                </div>
+            {% endfor %}
+        {% else %}
+        <h2>No active conversations</h2>
+        <button>Send Message</button>
+        {% endif %}
+    </div>
+
+</div>
+
+
+
+
+
+
+
+{% block appendedScripts %}
+<script type='text/javascript'>        
+    var base_url = window.location.origin;
+    
+    $(document).ready(function() {
+        $('#back-to-home').fadeIn('slow');
+        $('#back-to-home').animate({'bottom': '90px'});
+        
+    });
+    
+    $('#back-to-home').click(function() {
+        window.location.href = `${base_url}/bitstream/home/`
+    });
+    
+    $('.write-message-button-bkd').click(function() {
+        window.location.href = `${base_url}/messages/create-conversation/`
+    });
+
+</script>
+{% endblock %}

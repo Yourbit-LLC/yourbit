@@ -1,0 +1,73 @@
+{% extends 'main/base.html' %}
+{% load static %}
+<!--Block title for head>title-->
+{% block title %}Feed Settings | Yourbit{% endblock %}
+{% block content %}
+<!--All base extended pages must be contained in content container-->
+<div id='content-container'>
+    <h2>Feed Settings</h2>
+    <!--Scope-->
+        <!--Default: Public/Followers+Friends/FriendsOnly-->
+            <select type="text" class='single-line-input' name="yb-align-text" id="yb-align-text" style='color: white;' placeholder="Paragraph Align">
+                <option value="e">Public</option>
+                <option value="ff">Friends and Following</option>
+                <option value="f">Friends</option>
+            </select>
+            <!--dropdown-->
+        <!--Exclude External Links-->
+            <!--dropdown-->
+        <!--Exclude Shared Posts-->
+        <label class="yb-switch-round" id="yb-exclude-shared" style="grid-column: 2;">
+            <input type="checkbox" class="checkbox" name="exclude_shared" id="yb-check-exclude-shared">
+            <span class="slider round"></span>
+        </label>
+        <!--Show Group Connections-->
+        <!--Show Group Posts-->
+    
+    <!--Moderation-->
+        <!--Keyword Filters-->
+        <!--Resricted Content-->
+        <!--Smart Filters-->
+        <label class="yb-switch-round" id="yb-sf-all" style="grid-column: 2;">
+            <input type="checkbox" class="checkbox" name="sf_all" id="yb-check-sf-all">
+            <span class="slider round"></span>
+        </label>
+            <!--Politics Filter-->
+            <label class="yb-switch-round" id="yb-sf-politics" style="grid-column: 2;">
+                <input type="checkbox" class="checkbox" name="sf_politics" id="yb-check-sf-politics">
+                <span class="slider round"></span>
+            </label>
+            <!--News Filter-->
+            <label class="yb-switch-round" id="yb-sf-news" style="grid-column: 2;">
+                <input type="checkbox" class="checkbox" name="sf_news" id="yb-check-sf-news">
+                <span class="slider round"></span>
+            </label>
+            <!--Custom Source Extension: Internal/External-->
+            <!--Foul Language-->
+            <label class="yb-switch-round" id="yb-sf-language" style="grid-column: 2;">
+                <input type="checkbox" class="checkbox" name="sf-language" id="yb-check-sf-language">
+                <span class="slider round"></span>
+            </label>
+            <!--Custom Keyword Extension-->
+            <input type="text" class="yb-single-line-field"></input>
+        <!--Blocked Users-->
+        <!--Muted Users-->
+
+    <!--Default Space: Global, Chat, Video, Photo-->
+    <!--Feed Groups-->
+        <!--Default Groups-->
+            <!--Toggle: On/Off-->
+            <label class="yb-switch-round" id="yb-default-groups" style="grid-column: 2;">
+                <input type="checkbox" class="checkbox" name="default-groups" id="yb-check-default-group">
+                <span class="slider round"></span>
+            </label>
+            <!--Select Default-->
+                <!--Dropdown-->
+        <!--Create Group-->
+            <!--Add Community/Friend/Following to group-->
+
+            <!--Group Type (Optional)-->
+
+    
+</div>
+{% endblock %}

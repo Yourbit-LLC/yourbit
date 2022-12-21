@@ -1,0 +1,50 @@
+
+<h1 style="text-align: center; color:gray;">My Stuff</h1>
+
+<div id='yb-browse-nav' style='display:grid; grid-template-columns: auto auto auto auto auto;' data-dataset="all" data-cluster = "none">
+    <button type="text" class='filter-button-wide-active' name="#profile-images" id="yb-filter-dropdown" style='color: white;' value="all">
+        All
+    </button>
+    <button type="text" class='filter-button-wide-active' name="#ui-colors" id="yb-sort-dropdown" style='color: white;' value="chrono">
+        Clusters
+    </button>
+    <button class='filter-button-wide-active' name = '#bits'>
+        Chats
+    </button>
+    <button class='filter-button-wide-active' name='#fonts'>
+        Photos
+    </button>
+
+</div>
+
+<script>
+    $(document).ready(function() {
+        let dataset = $("#yb-browse-nav").attr("data-dataset"); 
+        let cluster = $("#yb-browse-nav").attr("data-cluster");
+        console.log("cluster:" + cluster);
+        let is_cluster;
+        let filter = getSessionValues("filter");
+        let sort = getSessionValues("sort");
+        let type = getSessionValues("space");
+    
+
+        if (cluster === "none") {
+            is_cluster = false;
+        } else {
+            is_cluster = true;
+        }
+
+        let data = {
+            "type": type,
+            "dataset":dataset,
+            "is_cluster": is_cluster,
+            "filter": filter,
+            "sort": sort,
+
+        }
+
+        getFeed(data, hideSplash, true);
+
+
+    });
+</script>

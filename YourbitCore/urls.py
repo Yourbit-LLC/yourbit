@@ -15,15 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from django.conf import settings
+from django.conf.urls.static import static
 from YourbitAccounts.views import (
     registration_view,
     login_view,
     logout_view,
+    Onboarding
 )
 
-import social.views as social
-
+import main.views as social
+from api.router import router
 
 urlpatterns = [
     path('', login_view, name="login"),
@@ -31,5 +33,17 @@ urlpatterns = [
     path('register/', registration_view, name="register"),
     path('login/', login_view, name="login"),
     path('logout/', logout_view, name="logout"),
-    path('social/', include('social.urls')),
-]
+    path('bitstream/', include('feed.urls')),
+    path('profile/', include('user_profile.urls')),
+    path('messages/', include('messenger.urls')),
+    path('notifications/', include('notifications.urls')),
+    path('rewards/', include('rewards.urls')),
+    path('pay/', include('payment.urls')),
+    path('search/', include('search.urls')),
+    path('settings/', include('settings.urls')),
+    path('onboarding/', Onboarding.as_view(), name='onboarding'),
+    path('community/', include('community.urls')),
+    path('api/', include(router.urls)),
+    path('core/', include('main.urls'))
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

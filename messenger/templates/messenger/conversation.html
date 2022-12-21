@@ -1,0 +1,66 @@
+<!DOCTYPE html>    
+{% load static %}
+<html>
+
+    <head>
+        <title>Messages | Yourbit</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/conversations.css' %}"/>
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1">
+    </head>
+    <body>
+        {% if user.is_authenticated %}
+            {% if user == conversation.sender_user or user == conversation.receiver_user %}
+                <div id="page-container">
+                    <div id='header' style='text-align:center; color: white;'>
+                        <h3 style="margin-top:15px; margin-bottom: 2px;">{{ conversation.receiver_user.first_name }} {{ conversation.receiver_user.last_name }}</h3>
+                        <p style='margin-top:0px;'><small>offline</small></p>
+                    </div>
+                    <div id='message-container'>
+                        <br>
+                        {% for message in messages %}
+                        
+                            {% if message.sender_user == request.user%}
+                                <div class='message-wrapper'>
+                                    <div class='message-bubble-right'>
+                                        
+                                        <p class='message-text-content'>{{message.body}}</p>
+                                    </div>
+                                    <p style='text-align: right; left; color: white; margin-bottom: 0px; margin-right: 14px;'><small>{{message.time}}</small></p>
+                                </div>
+
+
+                            {% else %}
+                                <div class='message-wrapper'>
+                                    <div class='message-bubble-left'>
+                                        <p class='message-text-content'>{{message.body}}</p>
+                                    </div>
+                                    <p style='text-align: left; color: white; margin-bottom: 0px; margin-left: 14px;'><small>{{message.time}}</small></p>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div id='message-input'>
+                        {% csrf_token %}
+                        <input id='message-field' type='text' placeholder='Write Message'>
+                        <button id='send-button' data-username="{{conversation.receiver_user.username}}" data-id="{{conversation.id}}" type='button'>Send</button>
+                    </div>
+                </div>
+            {% else %}
+                You Look Lost.
+                <br> 
+                There's nothing here.
+                <br>
+                <br>
+                <button>Go Home</button>
+            {% endif %}
+        {% else %}
+            This is not the page you are looking for.
+            <br>
+            <br>
+            <button>Login</button>
+        {% endif %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script type='text/javascript' type="text/css" src="{% static 'scripts/messenger.js' %}"></script>
+    </body>
+
+</html>

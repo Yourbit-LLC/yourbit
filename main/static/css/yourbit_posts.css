@@ -1,0 +1,1056 @@
+/*
+    Universal Post Styles
+        -Feedback Icons
+        -Base post container
+        -Comment Design
+    
+*/
+@media screen and (min-width: 700px) {
+
+.feed-content-container {
+    position: fixed;
+    top: 0;
+    z-index: 3;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+    transition: 0.25s;
+    border-width: 0px;
+    background-color: rgba(0,0,0,0);
+}
+
+.content-container-feed {
+    position: fixed;
+    top: 100vh;
+    left: 0px;
+    z-index: 3;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+    transition: 0.25s;
+    overflow-x: hidden;
+    background-color: rgba(0,0,0,0);
+}
+
+#large-post-iframe {
+    position: relative;
+    display: block;
+    margin: auto;
+    top: 70px;
+    height: 80%;
+    width: 45%;
+    border-width: 0px;
+}
+
+.post-wrapper {
+    position: relative;
+    width: 50vw;
+    left: 50%;
+    transform: translate(-50%);
+    border-radius: 35px;
+    transition: 0.3s;
+    cursor: pointer;
+    padding: 5px;
+    margin-bottom: 5px;
+    background-color: rgb(50, 50, 50);
+}
+
+.post-wrapper:hover {
+    width: 50.5vw;
+    filter: brightness(110%);
+    -webkit-filter: brightness(110%);
+    transition: 0.5s;
+
+}
+
+.large-post-wrapper {
+    position: fixed;
+    width: 60vw;
+    background-color: rgba(0, 0, 0, 0.9);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 35px;
+    z-index: 4;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.post-background-link {
+    position: absolute;
+    width: 100%;
+    height:100%;
+    z-index: 2;
+}
+
+/*
+    
+    Feedback
+
+*/
+.post-interaction-container {
+    display: grid;
+    position: relative;
+    grid-template-columns: 40px auto 40px auto 40px auto 40px auto 40px;
+    column-gap: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 40px;
+    line-height: 0px;
+    border-radius: 20px;
+    transition: 1s;
+}
+
+.feedback-icon {
+    background-color: rgba(0, 0, 0, 0.0);
+    position: relative;
+    border-radius: 50px;
+    padding: 8px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-width: 0px;
+    display: block;
+}
+
+.feedback-icon:hover {
+    filter: brightness(150%);
+    -webkit-filter: brightness(150%);
+    background-color: rgba(35, 35, 35, 0.5);
+    transition: 0.3s;
+}
+.feedback-icon:hover svg{
+    -webkit-filter: drop-shadow(0px 0px 10px white); 
+    filter: drop-shadow(0px 0px 10px white);
+}
+
+
+.feedback-icon-active {
+    position: relative;
+    display: block;
+    background-color: rgb(185, 185, 185);
+    border-radius: 50px;
+    padding: 8px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-width: 0px;
+}
+
+#smiley-post-button {
+    grid-column: 1;
+
+}
+
+#frowny-post-button {
+    grid-column: 3;
+
+}
+
+#share-post-button {
+    grid-column: 5;
+
+}
+
+#comment-post-button {
+    grid-column: 7;
+}
+
+#donate-post-button {
+    grid-column: 9;
+}
+
+.post-feedback-icon {
+    position: relative;
+    width: 100%;
+    margin: auto;
+}
+
+.counter {
+    font-size: 16px;
+    font-weight: 400;
+    color: white;
+}
+
+#dislike-count {
+    grid-column: 4;
+    color: lightcoral;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+#share-count {
+    grid-column: 6;
+    color: lightblue;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#comment-count {
+    grid-column: 8;
+    color: lightgoldenrodyellow;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+/*
+
+    Text Content
+
+*/
+.container-bit-chat {
+    display: grid;
+    grid-template-rows: 40px auto auto auto auto auto auto;
+    grid-gap: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+}
+
+#chat-bit-name-date {
+    grid-row: 1;
+    display: grid;
+    grid-template-columns: 3% 40% 50%;
+    grid-gap: 1%;
+    z-index: 5;
+}
+.chat-bit-profile-picture-link {
+    position: relative;
+    grid-column: 1;
+    width: 100%;
+    margin: auto;
+
+
+}
+
+.chat-bit-profile-picture {
+    width: 100%;
+    border: 2px solid white;
+    border-radius: 50%;
+    margin: auto;
+    object-fit:fill;
+    pointer-events: none;
+}
+
+.bit-user-info {
+    position: relative;
+    grid-column: 2;
+}
+
+#chat-bit-time-label {
+    position: relative;
+    grid-column: 3;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: right;
+}
+
+#chat-bit-title {
+    grid-row: 2;
+    width: 100%;
+    height: fit-content;
+    text-align: center;
+}
+
+#chat-bit-feedback-container {
+    grid-row: 4;
+    z-index: 3;
+}
+
+.comments-display-label {
+    font-size: small;
+    grid-row: 5;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#chat-bit-display-description {
+    position: relative;
+    background-color:rgba(49, 49, 49, 0.5);
+    border-radius: 20px;
+    padding-left: 10px;
+    font-size: 14px;
+    grid-row: 3;
+    z-index:3;
+}
+
+#field-write-comment {
+    position: relative;
+    grid-row: 7;
+    width: 100%;
+    grid-template-rows: 80% 20%;
+    z-index: 5;
+    display: block;
+}
+
+.write-comment-field-text {
+    position: relative;
+    padding: 10px;
+    grid-column: 1;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-color: rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    width: 100%;
+    
+
+}
+#write-comment-button {
+    grid-column: 2;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 5px;
+    
+
+}
+
+.no-comments {
+    text-align: center;
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+/*
+
+    Comments
+
+*/
+
+.chat-comment-display-container {
+    color: white;
+    grid-row: 6;
+    background-color: rgba(49, 49, 49, 0.5);
+    padding: 10px;
+    border-radius: 20px;
+    margin-top: 10px;
+    overflow: auto;
+    flex-direction: column-reverse;
+    height:fit-content;
+    max-height: 100px;
+    z-index: 7;
+    
+}
+
+#chat-comment-display-right {
+    width: fit-content;
+    opacity: 0.8;
+    padding: 5px;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: 0;
+    font-size: 14px;
+
+
+
+}
+
+#comment-display-left {
+    background-color: rgb(100, 100, 100, 0.5);
+    width: fit-content;
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 14px;
+
+
+}
+
+#right-comment-display-wrapper {
+    position: relative;
+    width: 100%;
+    
+}
+
+#write-comment-button {
+    border-radius: 30px;
+    border-width: 0px;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    position: absolute;
+}
+
+#write-comment-button:hover {
+    filter: brightness(150%);
+    -webkit-filter: brightness(150%);
+    background-color: rgb(35,35,35);
+    border-radius: 20px;
+}
+.comment-text {
+    display: block;
+    position: relative;
+    margin-bottom: 7px;
+    margin-top: 0px;
+    text-shadow: 1px 1px 2px black;
+}
+#comment-time {
+    position: relative;
+    display: block;
+    font-size: 12px;
+    text-align: right;
+}
+
+
+/*
+    Photo Content
+    -Additional styling adjustments for posts that contain photos
+*/
+
+#photo-post-wrapper {
+    display: grid;
+    grid-template-rows: 50px auto auto auto;
+}
+
+#photo-user-name {
+    display: grid;
+    grid-row: 1;
+    grid-template-columns: 30px auto;
+    column-gap: 10px;
+    margin-left: 10px;
+
+}
+
+#photo-bit-profile-picture-link {
+    grid-column: 1;
+    margin: auto;
+    width: 100%;
+}
+
+#photo-user-name-text {
+    grid-column: 2;
+}
+
+.photobit {
+    display: grid;
+    left: 5%;
+    top: 20px;
+    z-index: 5;
+    border: 3px solid white;
+    box-shadow: 0.5px 0.5px 10px black;
+    border-radius: 20px;
+    grid-row: 2;
+    width: auto;
+    min-width: 60%;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    max-height:800px;
+    
+}
+
+#photo-title {
+    color: white;
+    margin-bottom: 0px;
+    grid-row: 3;
+    
+    
+}
+
+#photo-caption {
+    grid-row: 4;
+    color: rgb(202, 202, 202);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 6px;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    margin-top: 5px;
+}
+
+/*
+
+    -Video Bit-
+
+*/
+
+
+.profile-image-large {
+    border: 3px solid white;
+    border-radius: 180px;
+    width: 70%;
+}
+
+
+
+#video-post-wrapper {
+    display: grid;
+    grid-template-rows: 50px auto 50px 40px fit-content 75px fit-content 50px;
+    grid-row-gap: 5px;
+    text-align: center;
+    padding: 5px;
+}
+
+#videobit {
+    display: block;
+    position: relative;
+    border-radius: 20px;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid rgb(70, 70, 70);
+    grid-row: 2;
+    
+}
+
+#video-user-name {
+    position: relative;
+    display: block;
+    text-align: left;
+    left: 10px;
+}
+
+#video-bit-name-date {
+    position: relative;
+    display: grid;
+    grid-template-columns: 30px auto;
+    left: 10px;
+    grid-row: 1;
+}
+
+#video-show-description-button {
+    margin-left: auto;
+    margin-right: auto;
+    color: lightblue;
+    background-color: rgb(40, 40, 40);
+    border-radius: 10px;
+    border-width: 0px;
+    width: 150px;
+    padding: 2px;
+}
+
+#video-title {
+    grid-row: 3;
+    margin-bottom: 6px;
+}
+#video-show-description-button {
+    margin-top: 0px;
+    height: auto;
+    grid-row: 4;
+}
+
+#video-show-description-button:hover {
+    background-color: aliceblue;
+}
+
+.video-caption {
+    grid-row: 5;
+}
+
+#video-feedback-interaction-container {
+    grid-row: 6;
+    margin-bottom: 10px;
+}
+
+.video-comment-display-container {
+    color: white;
+    grid-row: 7;
+    background-color: rgba(49, 49, 49, 0.5);
+    padding: 10px;
+    border-radius: 20px;
+    margin-top: 10px;
+    overflow: auto;
+    flex-direction: column-reverse;
+    height:fit-content;
+    max-height: 100px;
+    z-index: 7;
+    
+}
+
+#video-field-write-comment {
+    position: relative;
+    grid-row: 8;
+    width: 100%;
+    grid-template-rows: 80% 20%;
+    z-index: 5;
+    display: block;
+}
+
+
+}
+/*
+#########################################################
+
+            Mobile
+
+#########################################################
+*/
+
+@media screen and (max-width: 700px) {
+
+    
+    .feed-content-container {
+        position: fixed;
+        display: block;
+        bottom: 0;
+        left: 0px;
+        z-index: 2;
+        width: 100vw;
+        height: 100vh;
+        overflow-y: scroll;
+        transition: 0.25s;
+        border-width: 0px;
+    }
+
+    #content-container-feed {
+        position: fixed;
+        left: 0vw;
+        top: 100vh;
+        z-index: 3;
+        width: 100vw;
+        height: 100vh;
+        overflow-y: scroll;
+        transition: 1s;
+        overflow-x: hidden;
+        padding-top:40px;
+    }
+
+    #large-post-iframe {
+        position: relative;
+        display: block;
+        margin: auto;
+        top: 70px;
+        height: 80%;
+        width: 45%;
+        border-width: 0px;
+    }
+
+    .post-wrapper {
+        position: relative;
+        border-radius: 25px;
+        transition: 0.3s;
+        cursor: pointer;
+        padding: 2px;
+        margin-bottom: 8px;
+        background-color: rgb(70, 70, 70);
+        box-shadow: 0px 1px 5px black;
+    }
+
+    .container-bit-chat {
+        display: grid;
+        grid-template-rows: 60px auto auto 48px;
+        grid-gap: 2px;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-top: 2px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 95vw;
+    }
+    
+    .header-bit {
+        grid-row: 1;
+        display: grid;
+        grid-template-columns: 30px 40% 42%;
+        column-gap: 10px;
+        z-index: 5;
+        margin-bottom: 0px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    h3 {
+        margin-top: 3px;
+        margin-bottom: 3px;
+        font-size: 18px;
+    }
+
+    
+    .image-thumbnail-small {
+        position: relative;
+        display: block;
+        height: 30px;
+        width:30px;
+        object-fit: contain;
+        margin: auto;
+        
+    
+    }
+    
+    .container-image-tiny {
+        grid-column: 1;
+        height: 30px;
+        width: 30px;
+        border: 2px solid white;
+        border-radius: 180px;
+        margin: auto;
+        pointer-events: none;
+    }
+    
+    .bit-user-info {
+        position: relative;
+        grid-column: 2;
+        font-size: 15px;
+        margin-left: 2px;
+    }
+    
+    .bit-time-label {
+        position: relative;
+        grid-column: 3;
+        margin-top: auto;
+        margin-bottom: auto;
+        text-align: right;
+        font-size: 12px;
+    }
+    
+    #chat-bit-title {
+        grid-row: 2;
+        height: fit-content;
+        margin-top: 0px;
+        width: 100%;
+        text-align: center;
+    }
+    
+    #bit-feedback-chat {
+        grid-row: 4;
+        z-index: 3;
+    }
+    
+    .comments-display-label {
+        font-size: small;
+        grid-row: 5;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+    
+    .description-bit-chat {
+        position: relative;
+        background-color:rgba(49, 49, 49, 0.7);
+        border-radius: 20px;
+        padding: 5px;
+        font-size: 14px;
+        grid-row: 3;
+        z-index:3;
+        margin-bottom: 2px;
+    }
+
+    .attached-photo {
+        display: block;
+        left: 5%;
+        top: 20px;
+        z-index: 5;
+        border: 1px solid black;
+        box-shadow: 0.5px 0.5px 8px rgba(0, 0, 0, 0.7);
+        border-radius: 20px;
+        grid-row: 2;
+        width: auto;
+        min-width: 350px;
+        max-width: 350px;
+        margin-left: auto;
+        margin-right: auto;
+        max-height:350px;
+        object-fit: contain;
+        color: white;
+
+        
+    }
+
+    #photo-post-wrapper {
+        display: grid;
+        grid-template-rows: 50px auto auto auto 50px auto auto;
+    }
+    
+    #photo-user-name {
+        display: grid;
+        grid-row: 1;
+        grid-template-columns: 30px auto;
+        column-gap: 10px;
+        margin-left: 10px;
+    
+    }
+    
+    #photo-bit-profile-picture-link {
+        grid-column: 1;
+        margin: auto;
+        width: 100%;
+    }
+    
+    #photo-user-name-text {
+        grid-column: 2;
+    }
+
+    #photo-info {
+        height: fit-content;
+        grid-row: 3;
+    }
+
+    #photo-caption {
+        background-color: rgba(0, 0, 0, 0.5);
+        width: 85%;
+        border-radius: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        height: fit-content;
+    }
+
+    #video-post-wrapper {
+        display: grid;
+        grid-template-rows: 30px auto 30px 20px fit-content 10px fit-content 50px auto auto;
+        grid-row-gap: 3px;
+        text-align: center;
+        padding: 10px;
+        background-color: black;
+        width: 90vw;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    #videobit {
+        display: block;
+        position: relative;
+        border-radius: 20px;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        border: 2px solid rgb(70, 70, 70);
+        grid-row: 2;
+        
+    }
+    
+    #video-user-name {
+        position: relative;
+        display: block;
+        text-align: left;
+        left: 10px;
+    }
+    
+    #video-bit-name-date {
+        position: relative;
+        display: grid;
+        grid-template-columns: 30px auto;
+        left: 10px;
+        grid-row: 1;
+    }
+    
+
+    .container-feedback-bit {
+        display: grid;
+        position: relative;
+        grid-template-columns: 50px auto 50px auto 50px auto 50px auto 50px;
+        column-gap: 3px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+        height: 50px;
+        border-radius: 40px;
+        transition: 1s;
+    }
+
+    .feedback-icon {
+        background-color: rgba(0, 0, 0, 0.0);
+        position: relative;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        padding: auto;
+        cursor: pointer;
+        transition: 0.3s;
+        border-width: 0px;
+        display: block;
+        line-height: 60px;
+    }
+
+
+    .feedback-icon-active {
+        position: relative;
+        display: block;
+        background-color: rgb(125, 125, 125);
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        transition: 0.3s;
+        border-width: 0px;
+        line-height: 60px;
+    }
+
+    #smiley-post-button {
+        grid-column: 1;
+    
+    }
+    
+    #frowny-post-button {
+        grid-column: 3;
+    
+    }
+    
+    #share-post-button {
+        grid-column: 5;
+    
+    }
+    
+    #comment-post-button {
+        grid-column: 7;
+    }
+    
+    #donate-post-button {
+        grid-column: 9;
+    }
+    
+    .post-feedback-icon {
+        position: relative;
+        width: 100%;
+        margin: auto;
+    }
+    
+    .counter {
+        font-size: 16px;
+        font-weight: 400;
+        color: white;
+    }
+
+    #like-count {
+        grid-column: 2;
+        color: lightgreen;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+    
+    #dislike-count {
+        grid-column: 4;
+        color: lightcoral;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+    #share-count {
+        grid-column: 6;
+        color: lightblue;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+    
+    .comment-count {
+        grid-column: 8;
+        color: lightgoldenrodyellow;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    .chat-comment-display-container {
+        color: white;
+        grid-row: 6;
+        background-color: rgba(49, 49, 49, 0.5);
+        padding: 10px;
+        border-radius: 20px;
+        margin-top: 10px;
+ 
+        height:fit-content;
+        max-height: 100px;
+        z-index: 7;
+        display: flex;       
+        overflow: auto;
+        flex-direction: column-reverse;
+        
+    }
+
+    #chat-comment-display-right {
+        width: fit-content;
+        opacity: 0.8;
+        border-radius: 10px;
+        margin-left: auto;
+        margin-right: 0;
+        font-size: 14px;
+    
+    
+    
+    }
+    
+    #comment-display-left {
+        background-color: rgb(100, 100, 100, 0.5);
+        width: fit-content;
+        border-radius: 10px;
+        font-size: 14px;
+    
+    
+    }
+    
+    #right-comment-display-wrapper {
+        position: relative;
+        width: 100%;
+        
+    }
+
+    .comment-field-container {
+        position: relative;
+        grid-row: 7;
+        margin-top: 10px;
+        margin-bottom: 5px;
+        width: 100%;
+        grid-template-rows: 80% 20%;
+        z-index: 5;
+        display: block;
+    }
+    
+    .write-comment-field-text {
+        position: relative;
+        padding: 10px;
+        grid-column: 1;
+        margin: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-color: rgba(0, 0, 0, 0.5);
+        border-radius: 20px;
+        width: 93%;
+        
+    
+    }
+
+    .send-comment {
+        border-radius: 30px;
+        border-width: 0px;
+        height: 30px;
+        width: 30px;
+        cursor: pointer;
+        position: absolute;
+        right: 7px;
+        top:4px;
+    }
+    
+    
+    #write-comment-button:hover {
+        filter: brightness(150%);
+        -webkit-filter: brightness(150%);
+        background-color: rgb(35,35,35);
+        border-radius: 20px;
+    }
+    .comment-text-container {
+        position: relative;
+        display: block;
+        padding: 5px;
+        backdrop-filter: brightness(90%);
+        -webkit-backdrop-filter: brightness(90%);
+        width: 100%;
+        height: 100%;
+    }
+
+    .comment-text {
+        display: block;
+        position: relative;
+        margin-bottom: 7px;
+        margin-top: 0px;
+        text-shadow: 0.5px 0.5px 1px black;
+
+    }
+    /* #write-comment-button {
+        grid-column: 2;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        padding: 5px;
+        
+    
+    }
+    #field-write-comment {
+        display: none;
+    }
+
+    #video-field-write-comment {
+        display: none;
+    } */
+    
+
+
+
+}
+

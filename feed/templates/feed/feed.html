@@ -1,0 +1,15 @@
+<script type="text/javascript" src="/static/scripts/yb-home.js/"></script>
+<script>
+    $(document).ready(function() {
+        let type = getSessionValues("space");
+        console.log("home initialized")
+        showSpaceSplash('#yourbit-splash');
+        data = {
+            "type":"global",
+            "filter":"all",
+            "sort":"chrono",
+        }
+        getFeed(data, hideMainSplash, true);
+        $(`#${type}-space-button`).attr("class", "space-button-active");
+    });
+</script>

@@ -1,0 +1,25 @@
+<link rel="stylesheet" type="text/css" href="/static/css/yourbit_profile.css/">
+
+<script type="text/javascript" src="/static/scripts/yb-profiles.js/">
+
+</script>
+
+<script>
+    $(document).ready(function() {
+        let user_id = getUserID();
+        console.log(user_id);
+        let url = `${base_url}/api/profiles/${user_id}/`
+        fetch(url)
+        .then((resp) => resp.json())
+        .then(function(data){
+
+            console.log("response: " + data);
+            let show_profile = buildProfile(data);
+            
+            $("#content-container").append(show_profile.data);
+            $("#content-container").append(show_profile.splash);
+            setLoaded(false);
+        });
+        
+    });
+</script>
