@@ -8,8 +8,16 @@ from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.db.models import Q
 from django.views.decorators.csrf import csrf_exempt
 from .models import TaskManager
-
-
+from django.core.mail import send_mail
+class EmailTest(View):
+    def get(self, request, *args, **kwargs):
+        send_mail(
+            'Hello from Yourbit!',
+            "This is a test of Yourbit's Email System",
+            "test@yourbit.me",
+            ['aus.chaney@gmail.com'],
+            fail_silently=False,
+        )
 class GetTasks(View):
     def get(self, request, *args, **kwargs):
         user = request.user

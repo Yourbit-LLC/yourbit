@@ -18,7 +18,7 @@ class Conversation(models.Model):
     #Made messages many to many from conversation, so that each conversation can have its own set of messages,
     # allowing one user to delete without deleting both conversations.
     messages = models.ManyToManyField('Message', blank = True, related_name='messages')
-
+    receiver_custom = models.ForeignKey('user_profile.Custom', on_delete=models.CASCADE, related_name='receiver_custom')
 #Message is contained in a conversation
 class Message(models.Model):
     sender = models.ForeignKey(User, related_name='message_to', on_delete=models.CASCADE, null=True)
@@ -28,6 +28,7 @@ class Message(models.Model):
     image = models.ImageField(upload_to='media/message_attachments', blank=True, null=True)
     document = models.FileField(upload_to='media/message_files', blank=True)
     time = models.DateTimeField(default=timezone.now)
+    sender_custom = models.ForeignKey('user_profile.Custom', on_delete=models.CASCADE, related_name="+")
     is_read = models.BooleanField(default=False)
 
 

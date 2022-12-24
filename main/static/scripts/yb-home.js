@@ -3,6 +3,16 @@ var bitstream_index = [];
 var bits_visible = [];
 var videos = [];
 
+function getBitByIndex(index) {
+    return bitstream_index[index];
+}
+function getLenBitIndex() {
+    return bitstream_index.length - 1;
+}
+
+function yb_getBitOnScreen(index) {
+    return bits_visible[index];
+}
 //Page Base URL
 var base_url = window.location.origin;
 

@@ -11,9 +11,16 @@ class MessageViewSet(viewsets.ViewSet):
 
         queryset = Message.objects.filter(sender=request.user)
 
-        serializer_class = MessageSerializer(queryset, many=True)
+        if len(queryset) > 1:
+            serializer_class = MessageSerializer(queryset, many=True)
+            this_response = {"convos_found":True, "convos":serializer_class.data}
+        elif len(queryset) == 1:
+            serializer_class = MessageSerializer(queryset, many=False)
+            this_response = {"convos_found":True, "convos":serializer_class.data}
+        else:
+            this_response = {"convos_found":False, "message":"No conversations found."}
 
-        return Response(serializer_class.data)
+        return Response(this_response)
 
     def create(self, request):
         new_message = Message()
@@ -34,11 +41,21 @@ class MessageViewSet(viewsets.ViewSet):
         return Response(new_message)
 
     def destroy(self, request, pk=None):
+        from api.dialogue_processors import getDialogue
         this_message = Message.objects.get(id=pk)
+        this_sender = this_message.sender
+        if this_sender == request.user:
+            this_user = request.user
+            that_user = this_message.receiver
 
+        else:
+            this_user = request.user
+            that_user = request.user
+
+        this_message = getDialogue('delete', 'message', this_user, that_user)
         this_message.delete()
 
-        return Response('Message Successfully Deleted.')
+        return Response({"Message": 'Message Successfully Deleted.'})
 
 class ConversationViewSet(viewsets.ViewSet):
     def list(self, request):

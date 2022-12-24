@@ -9,6 +9,10 @@ $('#mobile-publish-bit').click(function() {
     gatherMobileBit(type, submitBit);
 });
 
+$("#mobile-title").click(function(){
+    console.log("clicked")
+})
+
 
 function gatherMobileBit(type, callback) {
     //Create form data for new bit
@@ -87,43 +91,6 @@ function gatherMobileBit(type, callback) {
     if (is_valid === true) {
         callback(new_bit);
     }
-}
-
-function submitBit(this_bit) {
-    let cookie = document.cookie;
-    let csrfToken = getCSRF();
-    
-    
-    let base_url = window.location.origin;
-
-    let url = `${base_url}/api/bits/`
-
-    fetch(url,{
-        method:'POST',
-        headers: {
-            'Content-type' : 'application/json',
-            'X-CSRFToken':csrfToken
-        },
-        body: JSON.stringify(this_bit)
-    })
-    .then((resp) => resp.json())
-    .then(function(data){
-
-        //Data is blueprint for bit
-        let blueprint = data;
-        
-        //Clear and hide form
-        clearBitForm();
-        dropCreateBit(hideCreateBit);
-
-        //Pass blueprint to bit builder to generate new bit
-        let new_bit = buildBit(blueprint);
-
-        //Prepend new bit to bit container, in future change to append before next sibling for dynachron.
-        $('#bit-container').prepend(new_bit);
-    });
-    
-    
 }
 
 

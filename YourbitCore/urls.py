@@ -24,7 +24,7 @@ from YourbitAccounts.views import (
     Onboarding
 )
 
-import main.views as social
+from main.views import EmailTest
 from api.router import router
 
 urlpatterns = [
@@ -44,6 +44,7 @@ urlpatterns = [
     path('onboarding/', Onboarding.as_view(), name='onboarding'),
     path('community/', include('community.urls')),
     path('api/', include(router.urls)),
-    path('core/', include('main.urls'))
+    path('core/', include('main.urls')),
+    path('emailtest/', EmailTest.as_view(), name="emailtest")
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

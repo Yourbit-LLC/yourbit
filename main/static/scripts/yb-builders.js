@@ -11,7 +11,7 @@
 */
 
 //Profile Page
-function buildProfile(profile_data){
+function yb_BuildProfile(profile_data){
 
     //Get profile user id from data
     let user = profile_data.user
@@ -282,24 +282,25 @@ function BuildBit(bit){
 }
 
 //Function for generating list items
-function BuildListItem(result){
+function BuildListItem(result, type){
     let primary_color = result.primary_color
     let image = result.image
+    let name = result.name
     let handle = result.username
-    let link = result.link
+    let element_id = `${type}-${id}`
     let html_snippet =`
-        <div class='full-result' style="background-color: ${primary_color}">
+        <div data-catid="${result.this_id}" class='full-result' id="${element_id}" style="background-color: ${primary_color}">
             <div class = 'full-result-image-container'>
                 <img class='full-result-image' src="${image}">
             </div>
             <div class='full-result-name-container'>
-                <p class = 'full-result-name'><strong>{name}</strong></p>
+                <p class = 'full-result-name'><strong>${name}</strong></p>
                 <p class = 'full-result-username'>
                     <small>@${handle}</small>
                 </p>
             
             </div>
-            <a class='profile-search-link' href="${link}"></a>
+
 
         </div>
     `
@@ -307,16 +308,19 @@ function BuildListItem(result){
 }
 
 //Function for generating message bubbles
-function BuildMessage(message, is_sender){
+function BuildMessage(message){
     let id= message.id
     let time = message.time
     let sender_name = message.first_name + " " + message.last_name
     let body = message.body
+    let profile_image = message.image
+
 
     if (is_sender){
         let html_snippet = `
-            <div class = "message-bubble-right" id="message-${id}">
-                <p class='message-name'>${sender_name}</p>
+            
+            <div class = "message-bubble-right" data-catid="${id}" id="message-${id}">
+                <img class="message-hangover-left"></img>
                 <p class='message-body'>${body}</p>
                 <p class='time-message'>${time}</p>
             </div>
@@ -325,9 +329,9 @@ function BuildMessage(message, is_sender){
     } else {
 
         let html_snippet=`
-            <div class ="message-bubble-left" id="message-${id}">
-                <p class="message-name">${sender_name}</p>
-                <p class="message-body">${sender_name}</p>
+            <div class="message-hangover-right" data-catid="${id}" id="message-${id}">
+                <img></img>
+                <p class="message-body">${body}</p>
                 <p class="time-message">${time}</p>
             </div>
         `

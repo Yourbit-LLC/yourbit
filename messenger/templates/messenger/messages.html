@@ -1,6 +1,6 @@
 
 <link rel="stylesheet" type="text/css" href="/static/css/messages-yourbit.css/"/>
-<div id = 'content-container' style='padding-top: 70px;'>
+
 
     
 
@@ -36,41 +36,25 @@
         <button class='filter-button'>Friends</button>
         <button class='filter-button'>Public</button>
         <button class='filter-button'>Community</button>
-    
-    </div>
-    <div style = 'position:relative; height: 300px; width: 100vw; margin: auto; text-align: center; color: white;'>
-        {% if is_conversation %}
-            {% for conversation in conversations %}
-                <div  class='full-result' style="color: white; background-color: {{conversation.receiver_user.profile.custom.bit_background}};">
-                    <div class = 'full-result-image-container'>
-                        <img class='full-result-image' src="{{conversation.receiver_user.profile.custom.image.url}}">
-                    </div>
-                    <div class='full-result-name-container' style="color: white;">
-                        <p class = 'full-result-name'><strong>{{conversation.receiver_user.first_name}} {{conversation.receiver_user.last_name}}</strong></p>
-                        <p class = 'full-result-username'>
-                            <small>@{{conversation.receiver_user.username}}</small>
-                        </p>
-                    
-                    </div>
-                    <a class='profile-search-link' href="{% url 'conversation' conversation.id %}"></a>
         
-                </div>
-            {% endfor %}
-        {% else %}
+    </div>
+
+    <div style = 'position:relative; height: 300px; width: 100vw; margin: auto; text-align: center; color: white;'>
+        <div id="bit-container">
+
+        </div>
         <h2>No active conversations</h2>
         <button>Send Message</button>
-        {% endif %}
+    <script>
+        $(document).ready(function() {
+            let base_url = window.location.origin;
+            getMessages();
+        })
+    </script>
+
     </div>
 
-</div>
 
-
-
-
-
-
-
-{% block appendedScripts %}
 <script type='text/javascript'>        
     var base_url = window.location.origin;
     
@@ -89,4 +73,3 @@
     });
 
 </script>
-{% endblock %}

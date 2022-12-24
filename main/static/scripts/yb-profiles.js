@@ -48,7 +48,7 @@ $('.swipe-up-element').click(function() {
 
     console.log(new_feed)
 
-    getFeed(new_feed, "none", false);
+    yb_getFeed(new_feed, "none", false);
     
 });
 

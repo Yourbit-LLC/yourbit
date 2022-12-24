@@ -14,7 +14,7 @@
         .then(function(data){
 
             console.log("response: " + data);
-            let show_profile = buildProfile(data);
+            let show_profile = yb_BuildProfile(data);
             
             $("#content-container").append(show_profile.data);
             $("#content-container").append(show_profile.splash);

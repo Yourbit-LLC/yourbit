@@ -9,113 +9,8 @@
 //Used when getting a page that doesn't require data submission
 //Html Response
 var temp_data;
-function requestGetFeed(url){
-    let csrfToken = getCSRF();
-    
-    return $.ajax (
-        {
-            type: 'GET',
-            headers: {
-                'X-CSRFToken': csrfToken
-            },
-            url: url,
 
-            success: function(data) {
-                let html = data.html
-                $('#bit-container').html('')
-                $('#bit-container').append(html + '<div id="mobile-spacer"></div>');
-                
-            }
-        }
-    )
-
-}
-
-function requestPage(url){
-    let csrfToken = getCSRF();
-    
-    $.ajax (
-        {
-            type: 'GET',
-            headers: {
-                'X-CSRFToken': csrfToken
-            },
-            url: url,
-
-            success: function(data) {
-                let html = data.html
-                $('#content-container').html('')
-                $('#content-container').html(html);
-            }
-        }
-    )
-
-}
-
-//Used when updating info on a page
-//Html Response
-function requestPostHtml(data, url) {
-    let csrfToken = getCSRF();
-    $.ajax (
-        {
-            type: 'POST',
-            contentType: false,
-            // The following is necessary so jQuery won't try to convert the object into a string
-            processData: false,
-            headers: {
-                'X-CSRFToken': csrfToken
-            },
-            url: url,
-            data: data,
-
-            success: function(html) {
-                return html
-            }
-        }
-    )
-}
-
-//Used when getting specific information from the database without data submission
-//No html responses
-function requestGetData(url) {
-    $.ajax (
-        {
-            type: 'GET',
-            headers: {
-                'X-CSRFToken': csrfToken
-            },
-            url: url,
-
-            success: function(response) {
-                return response
-            }
-        }
-    )
-}
-
-//Used when updating specific information on page with data submission
-//No html
-function requestPostData(data, url) {
-    let csrfToken = getCSRF();
-    $.ajax (
-        {
-            type: 'POST',
-            contentType: false,
-            // The following is necessary so jQuery won't try to convert the object into a string
-            processData: false,
-            headers: {
-                'X-CSRFToken': csrfToken
-            },
-            url: url,
-            data: data,
-
-            success: function(response) {
-                return response
-            }
-        }
-    )
-}
-function getFeed(new_feed, callback, session_start){
+function yb_getFeed(new_feed, callback, session_start){
     let user_tz = Intl.DateTimeFormat().resolvedOptions().timeZone
     let tz_slash = user_tz.indexOf('/');
     let replace_tz = user_tz[tz_slash];
@@ -263,4 +158,144 @@ function getFeed(new_feed, callback, session_start){
         }
         
     })
+}
+
+function submitBit(this_bit) {
+    let cookie = document.cookie;
+    let csrfToken = getCSRF();
+    
+    
+    let base_url = window.location.origin;
+
+    let url = `${base_url}/api/bits/`
+
+    fetch(url,{
+        method:'POST',
+        headers: {
+            'Content-type' : 'application/json',
+            'X-CSRFToken':csrfToken
+        },
+        body: JSON.stringify(this_bit)
+    })
+    .then((resp) => resp.json())
+    .then(function(data){
+
+        //Data is blueprint for bit
+        let blueprint = data;
+        let bit_container = document.getElementById('bit-container');
+        let end_bit = getLenBitIndex();
+        let first_bit_id = yb_getBitOnScreen(1);
+        first_bit_id = first_bit_id.substring(1);
+        console.log(first_bit_id)
+        let first_bit = document.getElementById(first_bit_id)
+        //Clear and hide form
+        clearBitForm();
+        dropCreateBit(hideCreateBit);
+
+        //Pass blueprint to bit builder to generate new bit
+        let new_bit = BuildBit(blueprint);
+
+        //Prepend new bit to bit container, in future change to append before next sibling for dynachron.
+        bit_container.insertBefore(new_bit.built_bit, first_bit);
+    });
+    
+    
+}
+
+
+
+function yb_getConversations(){
+    let url = `${base_url}/api/conversations/`
+    fetch(url)
+    .then((resp) => resp.json())
+    .then(function(data){
+        if (data.convos_found == true){
+            let this_list = data.convos;
+            for (var item in this_list){
+                let this_item = this_list[item]
+                let receiver = this_item.receiver;
+                let receiver_name = receiver.first_name + " " + receiver.last_name
+                let custom = this_item.receiver_custom
+
+
+                let this_blueprint = {
+                    "this_id":this_item.id,
+                    "name": receiver_name,
+                    "username": receiver.username,
+                    "time": this_item.time,
+                    "image": custom.image,
+                    "primary_color": custom.primary_color,
+                    "title_color": custom.title_color,
+                }
+                let bit_container = document.getElementById('bit-container');
+                let display_conversation = BuildListItem(this_blueprint, "conversation");
+                bit_container.appendChild(display_conversation)
+                
+            }
+        } else {
+            $("#bit-container").append(`<h2><h2>`)
+        }
+
+
+    });
+}
+
+function yb_deleteConvo(id){
+    var url = `${base_url}/api/conversation/${id}/`
+    let csrfToken = getCSRF();
+    fetch(url, {
+        method:'DELETE',
+        headers: {
+            'Content-type' : 'application/json',
+            'X-CSRFToken': csrfToken
+        }
+    }).then((resp) => resp.json())
+    .then(function(data) {
+        let id = data.id
+        $(`#conversation-${id}`).animate({transform: 'scale(-100%, -100%)'})
+        $(`#conversation-${id}`).fadeOut('slow');
+    })
+}
+
+
+function yb_getMessages(id) {
+    let url=`${base_url}/api/conversations/${id}/`;
+    fetch(url)
+    .then((resp) => resp.json())
+    .then(function(data){
+        let messages = data;
+        let bit_container = document.getElementById("bit-container");
+        for (var message in messages){
+            let this_message = messages[message];
+
+            let this_blueprint = {
+                "id": this_message.id,
+                "sender":this_message.sender,
+                "time": this_message.time,
+                "body": this_message.body,
+                "image": this_message.image
+            }
+
+            let display_message = BuildMessage(this_blueprint);
+            bit_container.appendChild(display_message);
+
+        }
+    });
+
+function yb_deleteMessage(id) {
+    var url = `${base_url}/api/messages/${id}/`
+    let csrfToken = getCSRF();
+    fetch(url, {
+        method:'DELETE',
+        headers: {
+            'Content-type' : 'application/json',
+            'X-CSRFToken': csrfToken
+        }
+    }).then((resp) => resp.json())
+    .then(function(data) {
+        let id = data.id
+        $(`#message-${id}`).animate({transform: 'scale(-100%, -100%)'})
+        $(`#message-${id}`).fadeOut('slow');
+    })
+}
 }
