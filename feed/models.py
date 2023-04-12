@@ -1,14 +1,15 @@
 from django.db import models
 from YourbitAccounts.models import Account as User
-from user_profile.models import Profile, Bit
+from user_profile.models import Profile, Bit, Custom
 from django.utils import timezone
 
 # Create your models here.
 class Comment(models.Model):
     body = models.CharField(max_length=1000, blank=True, default=None)
     time = models.DateTimeField(default=timezone.now)
-    sender = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     bit = models.ForeignKey(Bit, on_delete=models.CASCADE)
+    custom = models.ForeignKey(Custom, on_delete=models.CASCADE, blank=True, null=True)
 
 class Interaction(models.Model):
     from_user = models.ForeignKey(
@@ -51,7 +52,7 @@ class Interaction(models.Model):
     
     #If type in bit category
     bit = models.ForeignKey(
-        Bit, related_name="bit_interacted_with", on_delete=models.DO_NOTHING, default=None
+        Bit, related_name="bit_interacted_with", on_delete=models.CASCADE, default=None
     )
 
     #If type in video category
@@ -83,4 +84,6 @@ class InteractionHistory(models.Model):
     unfed_bits = models.ManyToManyField(Bit, related_name="unfed_bits", blank=True)
     unseen_bits = models.ManyToManyField(Bit, related_name="unseen_bits", blank=True)
     watched = models.ManyToManyField(Bit, related_name = "watched_bits", blank=True)
-    seen_bit = models.ManyToManyField(Bit, related_name = "bits_seen", blank=True)
+    seen_bits = models.ManyToManyField(Bit, related_name = "bits_seen", blank=True)
+
+    saved_bits = models.ManyToManyField(Bit, related_name="saved_bits", blank=True)

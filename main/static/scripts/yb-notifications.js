@@ -17,7 +17,7 @@ var base_url = window.location.origin;
 */
 $(document).ready(function() {
     updateNotificationStatus();
-    getNotifications();
+    yb_getNotificationCounts();
 });
 
 
@@ -93,109 +93,49 @@ function notificationIconUpdate() {
         
     )
 };
+
+
+function yb_removeNotification(notification_id) {
+    let csrfToken = getCSRF();
+    $.ajax(
+        {   
+            type: 'DELETE',
+            headers: {
+                'X-CSRFToken': csrfToken
+            },
+            url: `/api/notifications/${notification_id}/`,
+
+            success: function(data) {
+                $("#notification-" + notification_id).remove();
+            }
+        }
+    )
+}
+
 /*
     --Function For displaying notifications--
 */
 
-function getNotifications() {
+function yb_getNotificationCounts() {
     let cookie = document.cookie;
     let csrfToken = getCSRF();
+    console.log("function ran")
     $.ajax(
-        {
-            type: 'POST',
+        {   
+            type: 'GET',
             headers: {
                 'X-CSRFToken': csrfToken
             },
-            url: '/notifications/update/',
+            url: '/notifications/counts/',
 
             success: function(data) {
-                let notifications = Object.keys(data);
-                let notification_length = Object.keys(notifications).length
-                console.log(notifications)
-                console.log(notification_length)
-                let notification = '';
-                let x = 0;
-                if (width > 700){
-                    for (let i = 0; i < notification_length; i++) {
-                        notification = notifications[x];
-                        let notification_info = data[notification];
-                        
-                        let user_name = notification_info['from_name'];
-                        $('#notifications-dropdown').empty();
-
-                        $('#notifications-dropdown').append(
-                            `
-                            <div class="interaction-notification" id="friend-request">
-                                <img class="notification-profile-image" src="">
-                                <p class="interaction-notification-text">${user_name} wants to be your friend!</p>
-                                <div class="notification-response-button-container">
-                                    <button type="button" name="accept_friend" class="friend-request-response-button">Accept</button>
-                                    <button type="button" name="decline_friend" class="friend-request-response-button">Decline</button>
-                                <div>
-                            </div>
-                            
-                            `
-                        );
-                    }
-                    
-                } else {
-                    $('#menu-notification-container').empty();
-                    for (let i = 0; i < notification_length; i++) {
-                        notification = notifications[i];
-                        let notification_info = data[notification];
-                        let user_name = notification_info['from_user'];
-                        let type = notification_info['type']
-                        let username = notification_info['username'];
-                        let profile_id = notification_info['profile_id'];
-                        console.log(username)
-                        if (type === 'rate'){
-                            let bit = notification_info['bit'];
-                            $('#menu-notification-container').append(`
-                                <div class='mobile-notification' id='mobile-friend-request' style="color:white;">
-                                    <p class="mobile-interaction-notification-text">${user_name} commented on your post:<br><q></q>!</p>
-                                    <span data-username="${username}" data-name="${user_name}" data-catid="${profile_id}" class="mobile-notification-link" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display:block; z-index:2;"></span>
-                                </div>
-                        `)};
-                        if (type === 'comment'){
-                            let bit = notification_info['bit'];
-                            let text = notification_info['comment'];
-                            $('#menu-notification-container').append(`
-                                <div class='mobile-notification' id='mobile-friend-request' style="color:white;">
-                                    <p class="mobile-interaction-notification-text">${user_name} commented on your post:<br><q>${text}</q>!</p>
-                                    <span data-username="${username}" data-name="${user_name}" data-catid="${profile_id}" class="mobile-notification-link" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display:block; z-index:2;"></span>
-                                </div>
-                        `)};
-                        if (type === 'follow'){
-
-                            $('#menu-notification-container').append(`
-                                <div class='mobile-notification' id='mobile-friend-request' style="color:white;">
-                                    <p class="mobile-interaction-notification-text">${user_name} followed you!</p>
-                                    <span data-username="${username}" data-name="${user_name}" data-catid="${profile_id}" href="${base_url}/social/profile/${username}" class="mobile-notification-link" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display:block; z-index:2;"></span>
-                                </div>
-                        `)};
-                        if (type === 'connect'){
-                            let notif_id = notification_info['id'];
-                            let send_list = [username, user_name, profile_id, notif_id];
-                            $('#menu-notification-container').append(`
-                                <div class='mobile-notification' id='mobile-friend-request' style="color:white;">
-                                    <p class="mobile-interaction-notification-text">${user_name} wants to be your friend!</p>
-                                    <span data-username="${username}" data-name="${user_name}" data-catid="${profile_id}" onclick="viewNotification('${send_list}')" class="mobile-notification-link" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display:block; z-index:2;"></span>
-                                </div>
-                        `)}
-                        if (type === 'accept_request') {
-                            $('#menu-notification-container').append(`
-                                <div class='mobile-notification' id='mobile-friend-request' style="color:white;">
-                                    <p class="mobile-interaction-notification-text">${user_name} accepted your friend request!</p>
-                                    <span data-username="${username}" data-name="${user_name}" data-catid="${profile_id}" href="${base_url}/social/profile/${username}" class="mobile-notification-link" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display:block; z-index:2;"></span>
-                                </div>
-                            `
-                            )
-                        }
-
-                    }
-                }
+                let message_count = data.message_count;
+                let connection_count = data.connection_count;
+                let general_count = data.general_count;
+                $("#display-notification-count").html(general_count);
+                $("#display-message-count").html(message_count);
+                $("#display-new-connection-count").html(connection_count);
             }
-
         }
     )
 };
@@ -243,7 +183,7 @@ function acceptFriend(notif_id) {
             headers: {
                 'X-CSRFToken': csrfToken
             },
-            url: '/profile/add_friend/',
+            url: '/profile/api/add_friend/',
             data: friend_request,
 
             success: function(data) {
@@ -278,7 +218,7 @@ function denyFriend(profile_id) {
             headers: {
                 'X-CSRFToken': csrfToken
             },
-            url: '/profile/add_friend/',
+            url: '/profile/api/add_friend/',
             data: friend_request,
 
             success: function(data) {

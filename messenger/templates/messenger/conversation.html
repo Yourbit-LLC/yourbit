@@ -1,66 +1,37 @@
-<!DOCTYPE html>    
-{% load static %}
-<html>
 
-    <head>
-        <title>Messages | Yourbit</title>
-        <link rel="stylesheet" type="text/css" href="{% static 'css/conversations.css' %}"/>
-        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1">
-    </head>
-    <body>
-        {% if user.is_authenticated %}
-            {% if user == conversation.sender_user or user == conversation.receiver_user %}
-                <div id="page-container">
-                    <div id='header' style='text-align:center; color: white;'>
-                        <h3 style="margin-top:15px; margin-bottom: 2px;">{{ conversation.receiver_user.first_name }} {{ conversation.receiver_user.last_name }}</h3>
-                        <p style='margin-top:0px;'><small>offline</small></p>
-                    </div>
-                    <div id='message-container'>
-                        <br>
-                        {% for message in messages %}
-                        
-                            {% if message.sender_user == request.user%}
-                                <div class='message-wrapper'>
-                                    <div class='message-bubble-right'>
-                                        
-                                        <p class='message-text-content'>{{message.body}}</p>
-                                    </div>
-                                    <p style='text-align: right; left; color: white; margin-bottom: 0px; margin-right: 14px;'><small>{{message.time}}</small></p>
-                                </div>
+<link rel="stylesheet" type="text/css" href="/static/css/conversations.css"/>
+<div id='header' style='text-align:center; color: white;'>
+    <svg id="back-to-convos" xmlns="http://www.w3.org/2000/svg" style="position: absolute; left: 15px; top: 50%; transform: translate(0, -50%);" height="24" width="24"><path d="M10 22 0 12 10 2l1.775 1.775L3.55 12l8.225 8.225Z"/></svg>
+    <h3 id="receiver-name" style="margin-top:15px; margin-bottom: 2px;"></h3>
+    <p style='margin-top:0px;'><small>offline</small></p>
+    <svg xmlns="http://www.w3.org/2000/svg" style = "position: absolute; right: 15px; top: 50%; transform: translate(0, -50%);" height="24" width="24"><path d="M12 20q-.825 0-1.412-.587Q10 18.825 10 18q0-.825.588-1.413Q11.175 16 12 16t1.413.587Q14 17.175 14 18q0 .825-.587 1.413Q12.825 20 12 20Zm0-6q-.825 0-1.412-.588Q10 12.825 10 12t.588-1.413Q11.175 10 12 10t1.413.587Q14 11.175 14 12q0 .825-.587 1.412Q12.825 14 12 14Zm0-6q-.825 0-1.412-.588Q10 6.825 10 6t.588-1.412Q11.175 4 12 4t1.413.588Q14 5.175 14 6t-.587 1.412Q12.825 8 12 8Z"/></svg>
+</div>
+
+<div id='message-container'>
+    <!--Messages are appended here-->
+</div>
+
+<div id='message-input'>    
+    <input id='message-field' type='text' placeholder='Write Message'>
+    <!--Username is the username of the other user and data id is the conversation ID to attach the message to-->
+    <button id='send-button' data-username="" data-id="" type='button'>Send</button>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type='text/javascript' type="text/css" src="/static/scripts/messenger.js/"></script>
+<script>
+    $(document).ready(function(){
+        let back_button = document.getElementById("back-to-convos");
+        console.log("conversation loaded!")
+        yb_hideUI();
+        let this_id = yb_getSessionValues("conversation");
+        yb_getMessages(this_id);
+
+        back_button.addEventListener("click", function() {
+            console.log("Go back")
+            messages_inbox_url();
+        })
+    });
 
 
-                            {% else %}
-                                <div class='message-wrapper'>
-                                    <div class='message-bubble-left'>
-                                        <p class='message-text-content'>{{message.body}}</p>
-                                    </div>
-                                    <p style='text-align: left; color: white; margin-bottom: 0px; margin-left: 14px;'><small>{{message.time}}</small></p>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                    <div id='message-input'>
-                        {% csrf_token %}
-                        <input id='message-field' type='text' placeholder='Write Message'>
-                        <button id='send-button' data-username="{{conversation.receiver_user.username}}" data-id="{{conversation.id}}" type='button'>Send</button>
-                    </div>
-                </div>
-            {% else %}
-                You Look Lost.
-                <br> 
-                There's nothing here.
-                <br>
-                <br>
-                <button>Go Home</button>
-            {% endif %}
-        {% else %}
-            This is not the page you are looking for.
-            <br>
-            <br>
-            <button>Login</button>
-        {% endif %}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <script type='text/javascript' type="text/css" src="{% static 'scripts/messenger.js' %}"></script>
-    </body>
-
-</html>
+</script>

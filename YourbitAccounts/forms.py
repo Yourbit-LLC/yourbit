@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
+from captcha.fields import ReCaptchaField
 
 from YourbitAccounts.models import Account
 
@@ -10,16 +11,17 @@ class DateInput(forms.DateInput):
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(max_length=60, help_text='*Required')
     dob = forms.DateField(help_text='*Required',widget=DateInput)
-
+    phone_number = forms.CharField(max_length=15, help_text='*Required')
     class Meta:
         model = Account
-        fields = ("email", "username", "first_name", "last_name", "dob", "password1", "password2")
+        fields = ("email", "phone_number", "username", "first_name", "last_name", "dob", "password1", "password2")
 
     def __init__(self, *args, **kwargs):
         super(RegistrationForm, self).__init__(*args, **kwargs)
 
         #Classes
         self.fields['email'].widget.attrs.update({'class': 'field'})
+        self.fields['phone_number'].widget.attrs.update({'class': 'field'})
         self.fields['username'].widget.attrs.update({'class': 'field'})
         self.fields['first_name'].widget.attrs.update({'class': 'field'})
         self.fields['last_name'].widget.attrs.update({'class': 'field'})
@@ -29,6 +31,7 @@ class RegistrationForm(UserCreationForm):
 
         #Placeholders
         self.fields['email'].widget.attrs.update({'placeholder': 'Email'})
+        self.fields['phone_number'].widget.attrs.update({'placeholder': 'Phone Number'})
         self.fields['username'].widget.attrs.update({'placeholder': 'Username'})
         self.fields['first_name'].widget.attrs.update({'placeholder': 'First Name'})
         self.fields['last_name'].widget.attrs.update({'placeholder': 'Last Name'})
@@ -37,6 +40,7 @@ class RegistrationForm(UserCreationForm):
         self.fields['password2'].widget.attrs.update({'placeholder': 'Confirm Password'})
         
         #Types
+        self.fields['phone_number'].widget.attrs.update({'type': 'tel'})
         self.fields['dob'].widget.attrs.update({'type': 'date'})
 
 class LoginForm(forms.ModelForm):

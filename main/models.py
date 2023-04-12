@@ -10,6 +10,7 @@ class TaskManager(models.Model):
     last_task = models.IntegerField(default = 0)
     last_url = models.CharField(max_length=500)
     
+    is_tasks = models.BooleanField(default = False)
     home_task = models.BooleanField(default = False)
     comment_task = models.BooleanField(default = False)
     message_task = models.BooleanField(default = False)

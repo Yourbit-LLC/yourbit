@@ -11,7 +11,7 @@ def FeedUI(request):
         profile = Profile.objects.get(user=request.user)
         interactions = InteractionHistory.objects.get(profile=profile)
 
-        notifications = Notification.objects.filter(to_user = profile)
+        notifications = Notification.objects.filter(to_user = request.user)
         notification_length = len(notifications)
         liked_bits = interactions.liked_bits.all()
         disliked_bits = interactions.disliked_bits.all()

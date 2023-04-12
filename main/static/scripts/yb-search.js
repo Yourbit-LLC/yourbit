@@ -4,6 +4,9 @@
 
 var base_url = window.location.origin;
 
+var query;
+var type = "none";
+
 
 $('#mobile-search-icon').click(function() {
     showSearch();
@@ -32,7 +35,9 @@ function hideSearch() {
     $('#search-mobile').hide();
 }
 
-$('#mobile-searchbar').on('change keyup', function() {
+$('#mobile-searchbar').on('change keyup', function(e) {
+    let event_type = e.input;
+    console.log(event_type)
     let searchBar = document.getElementById('mobile-searchbar');
     let query = searchBar.value;
     $('#mobile-instant-results').empty();
@@ -44,6 +49,51 @@ $('#mobile-searchbar').on('change keyup', function() {
     }
     
 });
+
+$("#mobile-submit-search-button").click(function() {
+    let entry_field = document.getElementById('mobile-searchbar');
+    query = entry_field.value;
+    search_url(query);
+
+});
+
+function yb_getSearchResults() {
+    let query = getQuery();
+    let type = getType();
+    console.log(query);
+    console.log(type);
+    $.ajax({
+            type: 'GET',
+            url: `/search/results/query=${query}/type=${type}/`,
+        
+        success: function(data) {
+            let results = data.results;
+            for (let i = 0; i < results.length; i++) {
+                let result = results[i];
+                let display_result = BuildListItem(result);
+                let result_container = document.getElementById('result-container');
+                result_container.appendChild(display_result);
+                display_result.addEventListener('click', function(e) {
+                    let this_element = e.currentTarget;
+                    let username = this_element.getAttribute('data-username');
+                    console.log(username);
+                    let new_data = {"username": username};
+                    profile_url(new_data)
+                });
+                dropSearch(hideSearch);
+
+            }
+        }
+})
+}
+
+function getType() {
+    return type;
+}
+
+function getQuery() {
+    return query;
+}
 
 function fetchResults(callback, query) {
     let cookie = document.cookie;
@@ -75,11 +125,13 @@ function displayResults(response) {
         console.log(x)
         user = users[x];
         console.log(user)
-        user_info = results[user];
+        let profile_info = results[user];
+        let user_info = profile_info.user
+        let custom = profile_info.custom
         console.log(user_info)
-        user_name = user_info['name'];
-        image = user_info['image'];
-        $('#mobile-instant-results').append(`<div data-username = "${user}" class="quick-result"><img data-username = "${user}" class="quick-result-image" src="${image}"> <p data-username = "${user}" class="quick-result-label" >${user_name}</p><a href="${base_url}/profile/user/${user}/" class="profile-result-link"></a></div>`);
+        user_name = user_info['first_name'] + ' ' + user_info['last_name'];
+        image = custom['image'];
+        $('#mobile-instant-results').append(`<div data-username = "${user}" class="quick-result"><img data-username = "${user}" class="quick-result-image" src="${image}"> <p data-username = "${user}" class="quick-result-label" >${user_name}</p><a href="${base_url}/profile/${user}/" class="profile-result-link"></a></div>`);
         x = x + 1;
         console.log(x)
     }
@@ -94,6 +146,6 @@ function profileNavigate(user) {
     
 };
 
-$('#cancel-search').click(function() {
+$('#cancel-button').click(function() {
     dropSearch(hideSearch);
 })

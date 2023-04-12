@@ -2,11 +2,12 @@ $(document).ready(function() {
     
     let element = document.getElementById("session_values");
     let location = element.getAttribute("data-location");
-
+    $(document).on('contextmenu', function(e) {
+        return false;
+    });
     headerDropIn();
 
     console.log(location);
-    
 
     //Load page url and attach script corresponding to location to page script
     if (location === "home") {
@@ -39,7 +40,8 @@ $(document).ready(function() {
         let space = element.getAttribute('data-space');
 
         if (space === "global") {
-            profile_url("get")
+            let this_username = yb_getSessionValues("username");
+            profile_url({"username": this_username})
         }
 
         if (space === "chat") {
@@ -58,6 +60,14 @@ $(document).ready(function() {
     
         }
 
+    }
+
+    if (location === "stuff") {
+        stuff_url("get");
+    }
+
+    if (location === "history") {
+        history_url("get");
     }
 
     if (location === "connections"){

@@ -12,10 +12,6 @@ $('#mobile-publish-bit').click(function() {
         //and redirect functions
         createCommunity(initializeCommunity)
     }
-    if (option === 'message') {
-        createMessage(sendMessage)
-
-    }
 
 });
 
@@ -38,29 +34,11 @@ function createMessage(callback) {
     callback(new_message);
 }
 
-function sendMessage(new_message) {
-    let csrfToken = getCSRF();
-    let base_url = window.location.origin;
-    $.ajax(
-        {
-            type: 'POST',
-            contentType: false,
-            // The following is necessary so jQuery won't try to convert the object into a string
-            processData: false,
-            headers: {
-                'X-CSRFToken': csrfToken
-            },
-            url: `${base_url}/messages/send/`,
-            data: new_message,
-            success: function(handle){
-                
-            }
-        }
-    )
-}
+
 
 function clearField(field) {
     if (width < 700) {
         $(field).val('');
     }
 }
+

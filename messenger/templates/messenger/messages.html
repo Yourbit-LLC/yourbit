@@ -32,44 +32,56 @@
         overflow-y: hidden;
         overflow-x: hidden;
     '>
-        <button class='filter-button-active'>All</button>
-        <button class='filter-button'>Friends</button>
-        <button class='filter-button'>Public</button>
-        <button class='filter-button'>Community</button>
+        <button class='filter-button-active' name="all">All</button>
+        <button class='filter-button' name="friends">Friends</button>
+        <button class='filter-button' name="following">Following</button>
+        <button class='filter-button' name="public">Public</button>
         
     </div>
 
     <div style = 'position:relative; height: 300px; width: 100vw; margin: auto; text-align: center; color: white;'>
+        <div id="nothing-message">
+            <h2>No active conversations</h2>
+            <button id="beginner-new-conversation">Send Message</button>
+        </div>
         <div id="bit-container">
 
         </div>
-        <h2>No active conversations</h2>
-        <button>Send Message</button>
-    <script>
-        $(document).ready(function() {
-            let base_url = window.location.origin;
-            getMessages();
-        })
-    </script>
 
     </div>
 
+<script>
+    $(document).ready(function() {
+        let base_url = window.location.origin;
+        yb_showMiniBar();
+        yb_showMenuTask();   
+        yb_hideSpaceBar();
+        let bit_container = document.getElementById("bit-container");
+        yb_getConversations(bit_container, "all");
+        yb_endTask("#message-task"); 
+    })
 
+    $(".filter-button").click(function(){
+        $("#bit-container").empty();
+        let base_url = getBaseURL();
+        let filter = $(this).attr("name");
+        $(".filter-button-wide-active").attr("class", "filter-button");
+        $(this).attr("class", "filter-button-active");
+        let bit_container = document.getElementById("bit-container");
+        yb_getConversations(bit_container, filter);
+        
+    });
+</script>
 <script type='text/javascript'>        
     var base_url = window.location.origin;
     
-    $(document).ready(function() {
-        $('#back-to-home').fadeIn('slow');
-        $('#back-to-home').animate({'bottom': '90px'});
-        
-    });
-    
-    $('#back-to-home').click(function() {
-        window.location.href = `${base_url}/bitstream/home/`
-    });
+    $('#beginner-new-conversation').click(function() {
+        messages_new_conversation_url();      
+    })
     
     $('.write-message-button-bkd').click(function() {
-        window.location.href = `${base_url}/messages/create-conversation/`
+        showCreateBit(raiseCreateBit);
+        yb_showMessageForm();
     });
 
 </script>

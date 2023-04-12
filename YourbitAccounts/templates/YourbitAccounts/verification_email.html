@@ -1,0 +1,61 @@
+{% load static %}
+<html>
+  <head>
+    <title>Yourbit Account Verification</title>
+  </head>
+  <body>
+    <img src="{% static 'main/images/logo-flat.png' %}">
+    <h1>Welcome to Yourbit!</h1>
+    <div id="text-container">
+        <p>
+            
+            Thanks for joining us in Yourbit. You can see the whole world from up here.
+            Before we can finish creating your account, we have to verify that you are the owner of this email address. Luckily that's easy...
+
+        </p>
+        <br>
+        <p><b>All you have to do is press this button below:</b></p>
+        <p id="verify-button"><a style="text-decoration: none; color: white; font-weight: 600;" href="{{ protocol }}://{{ domain }}{% url 'verify_email' token=token %}">Verify Email</a></p>
+        <br>
+        <p>If you didn't sign up for Yourbit, you can safely ignore this email.</p>
+        <p>See you among the stars,</p>
+        <p>The Yourbit team</p>
+    </div>
+        
+</body>
+</html>
+
+<style>
+    body {
+        background-color: rgb(10, 10, 10);
+        color: white;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.5;
+    }
+    #verify-button{
+        position: relative;
+        color: white;
+        background-color: blueviolet;
+        border: 2px solid rgb(105, 0, 153);
+        border-radius: 25px;
+        width: 200px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 20px;
+    }
+
+    #text-container{
+        position: relative;
+        width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: black;
+        border-radius: 20px;
+        padding: 10px;
+
+
+    }
+
+
+</style>

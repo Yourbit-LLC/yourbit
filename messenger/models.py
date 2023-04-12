@@ -19,6 +19,7 @@ class Conversation(models.Model):
     # allowing one user to delete without deleting both conversations.
     messages = models.ManyToManyField('Message', blank = True, related_name='messages')
     receiver_custom = models.ForeignKey('user_profile.Custom', on_delete=models.CASCADE, related_name='receiver_custom')
+
 #Message is contained in a conversation
 class Message(models.Model):
     sender = models.ForeignKey(User, related_name='message_to', on_delete=models.CASCADE, null=True)
@@ -31,5 +32,21 @@ class Message(models.Model):
     sender_custom = models.ForeignKey('user_profile.Custom', on_delete=models.CASCADE, related_name="+")
     is_read = models.BooleanField(default=False)
 
+class GroupMessage(models.Model):
+    sender = models.ForeignKey(User, related_name='group_message_to', on_delete=models.CASCADE, null=True)
+    body = models.CharField(max_length = 1500)
+    video = models.FileField(upload_to='media/message_attachments', blank=True)
+    image = models.ImageField(upload_to='media/message_attachments', blank=True, null=True)
+    document = models.FileField(upload_to='media/message_files', blank=True)
+    time = models.DateTimeField(default=timezone.now)
+    sender_custom = models.ForeignKey('user_profile.Custom', on_delete=models.CASCADE, related_name="+")
+    read_by = models.ManyToManyField(User, related_name='read_by')
 
+class GroupConversation(models.Model):
+    name = models.CharField(max_length=100)
+    members = models.ManyToManyField(User, related_name='group_members')
+    messages = models.ManyToManyField('GroupMessage', blank = True, related_name='group_messages')
+    time = models.DateTimeField(default=timezone.now)
+    time_modified = models.DateTimeField(default=timezone.now)
+    is_public = models.BooleanField(default=False)
     

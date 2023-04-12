@@ -21,9 +21,9 @@
     $(document).ready(function() {
         let dataset = $("#yb-browse-nav").attr("data-dataset"); 
         
-        let filter = getSessionValues("filter");
-        let sort = getSessionValues("sort");
-        let type = getSessionValues("space");
+        let filter = yb_getSessionValues("filter");
+        let sort = yb_getSessionValues("sort");
+        let type = yb_getSessionValues("space");
 
 
         let data = {

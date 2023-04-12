@@ -23,6 +23,13 @@ Refer to the interactive codex for current style guidelines for Yourbit*/
     
 }
 
+/* Define the animation keyframes */
+@keyframes bounce {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+
 @media screen and (min-width: 700px) {
 /*
 -- Universal --
@@ -118,6 +125,7 @@ only be used for object transforms (shaping and scaling)
     #content-container {
         position: fixed;
         top: 100vh;
+        left: 0px;
         z-index: 3;
         width: 100vw;
         height: 100vh;
@@ -135,7 +143,7 @@ only be used for object transforms (shaping and scaling)
     /* Switches */
 
     /* The switch - the box around the slider */
-    .switch {
+    .yb-switch-round {
         position: relative;
         margin-left: 5px;
         display: inline-block;
@@ -146,7 +154,7 @@ only be used for object transforms (shaping and scaling)
     }
     
     /* Hide default HTML checkbox */
-    .switch input {
+    .yb-switch-round input {
         opacity: 0;
         width: 0;
         height: 0;
@@ -195,6 +203,7 @@ only be used for object transforms (shaping and scaling)
     /* Rounded sliders */
     .slider.round {
         border-radius: 27px;
+        height: 14px;
     }
     
     .slider.round:before {
@@ -494,6 +503,11 @@ only be used for object transforms (shaping and scaling)
         line-height: 27px;
         margin-top: auto;
         margin-bottom: auto;
+    }
+    .search-filter-option.active {
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 10px;
+
     }
     #global-search {
         grid-column: 1;
@@ -1010,7 +1024,6 @@ only be used for object transforms (shaping and scaling)
         transition: 1s;
         filter: blur(20px);
         backdrop-filter: blur(20px);
-    
     }
 
     /*Core Interface*/
@@ -1024,7 +1037,7 @@ only be used for object transforms (shaping and scaling)
         /* Switches */
 
     /* The switch - the box around the slider */
-    .switch {
+    .yb-switch-round {
         position: relative;
         margin-left: 5px;
         display: inline-block;
@@ -1035,7 +1048,7 @@ only be used for object transforms (shaping and scaling)
     }
     
     /* Hide default HTML checkbox */
-    .switch input {
+    .yb-switch-round input {
         opacity: 0;
         width: 0;
         height: 0;
@@ -1189,15 +1202,17 @@ only be used for object transforms (shaping and scaling)
         -webkit-backdrop-filter: blur(20px);
         margin-left: auto;
         margin-right: auto;
+        overflow: hidden;
         
     }
     
     #mobile-logo {
-        position: relative;
+        position: absolute;
         display: block;
-        margin-left: auto;
-        margin-right: auto;
-        top: 13px;
+
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         height: 30px;
     }
 
@@ -1223,7 +1238,7 @@ only be used for object transforms (shaping and scaling)
         top: 100vh;
         left: 0px;
         z-index: 3;
-        width: 100vw;
+        width: 102vw;
         height: 100vh;
         overflow-y: scroll;
         transition: 1s;
@@ -1326,13 +1341,14 @@ only be used for object transforms (shaping and scaling)
         position: absolute;
         bottom: 95px;
         left: 2.5vw;
-        height: 350px;
+        height: 370px;
         width: 95vw;
         border-radius: 20px;
         background-color: black;
+        -webkit-filter: drop-shadow(2px 2px 5px black);
+        filter: drop-shadow(2px 2px 5px black);
         margin-left: auto;
         margin-right: auto;
-        
     }
     .space-navigator {
         /*The space container contains content type buttons, currently global, 
@@ -1439,7 +1455,7 @@ only be used for object transforms (shaping and scaling)
             /*Contains styling for profile menu background- starts at bottom -100vw for animation purposes */
             bottom: -100vh;
             width: 95vw;
-            height: auto;          
+            height: auto;
             position: fixed;
             z-index: 25;
             background-color: rgba(0, 0, 0, 0.0);
@@ -1452,7 +1468,7 @@ only be used for object transforms (shaping and scaling)
             transition: 0.5s;
             border-radius: 20px;
             display: grid;
-            grid-template-rows: auto 25px 95px 85px 35px 35px 15px;
+            grid-template-rows: auto 40px 95px 85px 35px 35px 15px;
             row-gap: 10px;
         }
 
@@ -1563,6 +1579,74 @@ only be used for object transforms (shaping and scaling)
             width: 100%;
             height: 100%;
             background-color: black;
+        }
+        .menu-widget-container {
+            position: relative;
+            display: grid;
+            width: 96%;
+            height: 30px;
+            grid-template-columns: 83px 83px 83px 83px;
+            column-gap: 5px;
+            margin-left:auto;
+            margin-right: auto;
+
+        }
+
+        .menu-widget {
+            display: grid;
+            
+            grid-template-columns: 35px 40px;
+            text-align: center;
+            width: 100%;
+            height: 40px;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .count-icon {
+            margin-left: 5px;
+        }
+
+        #rewards-balance {
+            position: relative;
+            grid-column: 1;
+            
+        }
+
+        #display-rewards-balance {
+            grid-column: 2;
+            font-size: 14px;
+        }
+        #notification-count {
+            position: relative;
+            grid-column: 2;
+
+        }
+        #display-notification-count {
+            grid-column: 2;
+            font-size: 14px;
+        }
+
+        #message-count {
+            position: relative;
+            grid-column: 3;
+
+        }
+        #display-message-count {
+            grid-column: 2;
+            font-size: 14px;
+        }
+
+
+
+        #new-connection-count {
+            position: relative;
+            grid-column: 4;
+
+        }
+        #display-new-connection-count {
+            grid-column: 2;
+            font-size: 14px;
         }
 
         #menu-options{
@@ -1809,7 +1893,7 @@ only be used for object transforms (shaping and scaling)
         border-radius: 20px;
         height: 26px;
         margin: auto;
-        width: 80px;
+        width: 87px;
     }
 
     .filter-button-wide-active {
@@ -1844,7 +1928,7 @@ only be used for object transforms (shaping and scaling)
         border-radius: 20px;
         height: 27px;
         margin: auto;
-        width: 45px;
+        width: 75px;
         transition: 0.5s;
     } 
     
@@ -1887,19 +1971,39 @@ only be used for object transforms (shaping and scaling)
 
 
 
-    .single-line-input {
+    .yb-single-line-input {
         background-color: rgba(0, 0, 0, 0.4);
         border-radius: 10px;
         border-width: 0px;
         width: 90vw;
         height: 30px;
+        margin-top: 10px;
+        color:white;
+    }
+
+    .yb-form-button {
+        background-color: black;
+        border: 2px solid white;
+        border-radius: 10px;
+        color: white;
+        padding: 5px 7px 5px 7px;
+        min-width: 60px;
+    }
+
+    #file-upload-button {
+        background-color: black;
+        border: 2px solid white;
+        border-radius: 10px;
+        color: white;
+        padding: 5px 7px 5px 7px;
+        min-width: 60px;
     }
 
     .yb-card {
         visibility: hidden;
         top: 100vh;
         width: 95vw;
-        height: 80vh;          
+        height: 80vh;
         position: fixed;
         z-index: 25;
         background-color: rgba(0, 0, 0, 0.0);
@@ -1911,15 +2015,14 @@ only be used for object transforms (shaping and scaling)
         text-align: center;
         color: white;
         transition: 0.5s;
-        border-radius: 40px;
-        
-
+        border-radius: 20px;
+        overflow-x: hidden;
     }
 
-    .button-panel-close {
+    .yb-button-close {
         position: absolute;
         top: 10px;
-        right: 15px;
+        right: 0px;
         height: 25px;
         width: 25px;
         font-size: 30px;
@@ -1927,62 +2030,83 @@ only be used for object transforms (shaping and scaling)
         border-radius: 50%;
         background-color: gray;
         border-width: 0px;
-        line-height: 1;
         text-align: center;
-        
-
+        line-height: 0.85;
+    }
+    #close-label{
+        position: absolute;
+        top: 50%;
+        left: 50%;
     }
 
     #create-bit-header {
         position: relative;
         display: grid;
-        width: 95%;
-        grid-template-columns: auto 120px;
-        height: 40px;
+        width: 100%;
+        grid-template-rows: 40px 60px;
+        grid-template-columns: 25px auto auto;
+        height: 70px;
         text-align: left;
         margin-left: auto;
         margin-right: auto;
-
     }
 
-    #bit-scope-options {
+  
+
+    #scope-options {
         position: relative;
+        right: 5px;
         display: grid;
-        grid-column: 2;
+        grid-row: 2;
         grid-template-columns: 60px 60px;
         margin-top: 5px;
+        width: 125px;
     }
 
     .half-toggle-left {
         display: block;
-        position: relative;
+
         height: 25px;
         width: 60px;
-        grid-column: 1;
+
         border-radius: 10px 0px 0px 10px;
 
     }
 
     .half-toggle-right {
         display: block;
-        position: relative;
+
         height: 25px;
         width: 60px;
-        grid-column: 2;
+
         border-radius: 0px 10px 10px 0px;
 
     }
 
     #bit-private {
         border: 2px solid darkred;
-        background-color: rgba(255, 0, 0, 0.4);
+        background-color: rgb(38, 0, 0);
         color: red;
 
     }
 
-    #bit-public {
+    
+    #bit-private-active {
+        border: 2px solid darkred;
+        background-color: rgb(151, 0, 0);
+        color: rgb(255, 127, 127);
+
+    }
+
+    #bit-public-active {
         border: 2px solid darkgreen;
-        background-color: rgba(0, 255, 0, 0.4);
+        background-color: rgb(0, 151, 0);
+        color: rgb(100, 255, 100);
+    }
+
+    #bit-public {
+        border: 2px solid rgb(0, 165, 0);
+        background-color: rgb(0, 50, 0);
         color: rgb(100, 255, 100);
     }
 
@@ -2004,10 +2128,17 @@ only be used for object transforms (shaping and scaling)
         grid-template-columns: auto auto;
         margin-left: auto;
         margin-right: auto;
-        column-gap: 10px;
+        /* column-gap: 10px; */
         background-color: rgba(0, 0, 0, 0.4);
-        border-radius: 15px;
+        border-radius: 10px;
+        padding: 2px 3px 2px 2px;
     }
+
+
+
+.slide-up-button-container {
+    margin-top: 10px;
+}
 
     #create-bit-type-mobile {
         grid-column: 1;
@@ -2088,17 +2219,50 @@ only be used for object transforms (shaping and scaling)
         position: absolute;
         bottom: 0vh;
         width: 100vw;
+        grid-template-rows: 35px 45px;
         grid-template-columns: 85vw 15vw;
+        background-color: black;
 
     }
 
     #mobile-searchbar {
-        width: 80vw !important;
+        width: 95% !important;
         position: relative;
-        left: 5px;
-        bottom: 5px;
         grid-column: 1;
+        grid-row: 2;
+        margin: auto;
 
+    }
+    .search-options {
+        display: grid;
+        position: relative;
+        grid-template-columns: 1fr 4fr;
+        width: 100%;
+        grid-column: 1/3;
+        grid-row: 1;
+    }
+    .search-filter-option {
+        position: relative;
+        border-radius: 15px;
+        width: 90%;
+        height: 25px;
+        
+        margin: auto;
+
+    }
+    .search-filter-option.active {
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 15px;
+        width: 90%;
+
+    }
+
+    .option-buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-column: 2;
+        margin: auto;
+        width: 100%;
     }
 
     #mobile-searchbar-messages {
@@ -2107,6 +2271,7 @@ only be used for object transforms (shaping and scaling)
         left: 5px;
         bottom: 5px;
         grid-column: 1;
+        
 
     }
 
@@ -2114,11 +2279,14 @@ only be used for object transforms (shaping and scaling)
         display: block;
         position: relative;
         grid-column: 2;
-        bottom: 6px;
-        margin-right: 3px;
+        /* bottom: 6px; */
+        /* margin-right: 3px; */
         border-radius: 10px;
         height: 33px;
         border-width: 0px;
+        margin: auto;
+        width: 90%;
+        grid-row: 2;
     }
 
 
@@ -2130,7 +2298,7 @@ only be used for object transforms (shaping and scaling)
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        border-radius: 40px;
+        border-radius: 20px;
         padding: 5px;
         color: white;
 
@@ -2157,9 +2325,9 @@ only be used for object transforms (shaping and scaling)
         filter: drop-shadow(2px 2px 5px black);
     }
     #back-to-home {
-        line-height: 0.7;
+        line-height: 0.1;
         bottom: -90px;
-        height: 45px;
+        height: 33px;
         width: 155px;
         background-color: rgba(0, 0, 0, 0.8);
     }
@@ -2238,6 +2406,10 @@ only be used for object transforms (shaping and scaling)
         text-align: center;
         border-radius: 20px;
     }
+
+    .space-splash-label.profile {
+        transform:translate(-50%, -90%)
+    }
     #mobile-spacer {
         display: block;
         position: relative;
@@ -2255,6 +2427,279 @@ only be used for object transforms (shaping and scaling)
         margin-left: auto;
         margin-right: auto;
     }
+
+    .title-container {
+        position: relative; 
+        color:white; 
+        font-family: Arial, Helvetica, sans-serif; 
+        padding: 5px 5px 5px 5px; 
+        width: 95vw; 
+        margin-left: auto; 
+        margin-right: auto; 
+        background-color: rgba(0, 0, 0, 0.8); 
+        border-radius: 20px;
+    }
+
+    .sub-filter-container {
+        position: relative; 
+        color:white; 
+        display: grid;
+        font-family: Arial, Helvetica, sans-serif; 
+        padding: 5px 5px 5px 5px; 
+        grid-column-start: 1;
+        grid-column-end: 6;
+        width: 90%; 
+        margin-left: auto; 
+        margin-right: auto; 
+        height: fit-content;
+        background-color: rgba(0, 0, 0, 0.8); 
+        border-radius: 20px;
+        grid-template-rows: auto auto;
+        grid-template-columns: 33% 33% 33%;
+        text-align: center;
+        font-size:x-small;
+        
+
+    }
+
+    .filter-option-label {
+        color: #282828;
+        font-size: 10px;
+        font-weight: bold;
+    }
+
+    .filter-option-status {
+        color: #282828;
+    }
+
+    .filter-option-1 {
+        position: relative;
+        display: block;
+        grid-row: 1;
+        grid-column: 1;
+    }
+
+    .filter-option-2 {
+        display: block;
+        position: relative;
+        grid-row: 1;
+        grid-column: 2;
+    }
+
+    .filter-option-3 {
+        display: block;
+        position: relative;
+        grid-row: 1;
+        grid-column: 3;
+    }
+    .filter-option-4{
+        display: block;
+        position: relative;
+        grid-row: 2;
+        grid-column: 1;
+    }
+    .filter-option-5{
+        display: block;
+        position: relative;
+        grid-row: 2;
+        grid-column: 2;
+    }
+
+    .list-item-notification {
+        display: grid;
+        position: relative;
+        width: 95%;
+        height: auto;
+        max-height: 100px;
+        min-height: 40px;
+        background-color: rgba(0, 0, 0, 0.8);
+        border-radius: 20px;
+        padding: 5px;
+        margin-bottom: 5px;
+        margin-left: auto;
+        margin-right: auto;
+        color: white;
+        font-size: 12px;
+        font-family: Arial, Helvetica, sans-serif;
+        grid-template-columns: 40px auto;
+        grid-template-rows: auto 25px;
+        text-align: left;
+        column-gap: 15px;
+    }
+    .button-container-list-item {
+        display: grid;
+        position: relative;
+        width: 70%;
+        grid-template-columns: 50% 50%;
+        grid-column: 1/3;
+        grid-row: 2;
+        text-align: right;
+        margin-left: auto;
+        margin-right: auto;
+        
+        
+    }
+
+    #notification-accept-button {
+        display: block;
+        position: relative;
+        grid-column: 1;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: auto;
+        margin-bottom: auto;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0);
+        border-width: 0px 0px 0px;
+        color: rgb(0, 81, 255);
+        font-weight: bold;
+        font-size: small;
+        font-size: 12px;
+        
+
+
+    }
+
+    #notification-ignore-button {
+        display: block;
+        position: relative;
+        grid-column: 2;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: auto;
+        margin-bottom: auto;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0);
+        border-width: 0px;
+        color: rgb(255, 0, 0);
+        font-weight: 700;
+        border-width: 0px 0px 0px 2px;
+        font-size: 12px;
+        border-color: rgb(0, 0, 0);
+    }
+
+    .icon-notification-type{
+        position: relative;
+        display: block;
+        grid-column: 1;
+        grid-row: 1/3;
+        margin: auto;
+    }
+
+    .large-profile-image {
+        width: 40vw;
+        height: 40vw;
+        border-radius: 50%;
+        object-fit: contain;
+        border-radius: 180px;
+        margin-top: 5px;
+        border: 3px solid white;
+    }
+
+    .profile-preview-bio-container {
+        position: relative;
+        display: block;
+        width: 80%;
+        height: auto;
+        min-height: 60px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding: 10px 10px 10px 10px;
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 20px;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: left;
+    }
+
+    #message-widget-container{
+        width: 100%;
+    }
+
+    .yb-widget-sub-container {
+        position: relative;
+        display: block;
+        width: 90%;
+        height: 200px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding: 10px 10px 10px 10px;
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 20px;
+        background-color: rgb(25,25,25);
+
+
+    }
+    .yb-panel-wide {
+        position: relative;
+        width: 90vw;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding: 3px 10px 3px 10px;
+        background-color: rgba(0, 0, 0, 0.95);
+        border-radius: 20px;
+        text-align: center; 
+    }
+
+    .yb-panel-header.wide {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        width: 100%;
+        height: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 5px;
+        margin-bottom: 20px;
+
+
+
+    }
+
+    .yb-three-part-icon-active {
+        fill: black;
+    }
+
+    .yb-three-part-left-active {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+        grid-column: 1;
+        border-radius: 20px 0 0 20px;
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .photo-viewer {
+        position: fixed;
+        display: block;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 1000;
+        background-color: black;
+    }
+
+    .full-screen-image {
+        position: relative;
+        display: block;
+        max-width: 100%;
+        max-height: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+    }
+
     
     /*Linear Content Container*/
 

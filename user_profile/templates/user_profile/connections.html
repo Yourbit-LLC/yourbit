@@ -5,7 +5,7 @@
     <h2 style='text-align: center; color: gray; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);'>Connections</h2>
     <p style='text-align: center; color: white;'>
         These are all the people you're connected with on Yourbit!<br><br>
-        <button>Learn More</button>
+        <button class="wide-button">Learn More</button>
     </p>
     <div class='filter-options' style='
         display: grid; 
@@ -26,10 +26,10 @@
         -webkit-backdrop-filter: blur(40px);
         overflow-y: scroll;
         '>
-        <button class='filter-button'>All</button>
-        <button class='filter-button'>Friends</button>
-        <button class='filter-button'>Followers</button>
-        <button class='filter-button'>Following</button>
+        <button id="filter-all" class='filter-button' name="all">All</button>
+        <button id="filter-freinds" class='filter-button' name="friends">Friends</button>
+        <button id="filter-followers" class='filter-button' name="followers">Followers</button>
+        <button id="filter-following" class='filter-button' name="following">Following</button>
         
     </div>
     <div id = "list-container">
@@ -40,20 +40,46 @@
     </div>
 
 <script>
-    
+
     $(document).ready(function() {
+        yb_showMiniBar(); 
+        yb_showMenuTask();   
+        yb_hideSpaceBar();
+        $("#filter-all").attr("class", "filter-button-wide-active");
         let base_url = getBaseURL();
-        let url = `${base_url}/api/profiles/`
+
+        let url = `${base_url}/api/profiles/?filter=all`
+        yb_getConnections(url);
+        
+    });
+
+    $(".filter-button").click(function(){
+        $("#list-container").empty();
+        let base_url = getBaseURL();
+        let filter = $(this).attr("name");
+        $(".filter-button-wide-active").attr("class", "filter-button");
+        $(this).attr("class", "filter-button-wide-active");
+        let url = `${base_url}/api/profiles/?filter=${filter}`
+        yb_getConnections(url);
+        
+    });
+
+
+    function yb_getConnections(url){
         fetch(url)
         .then((resp) => resp.json())
         .then(function(data){
             let connections = data
-
+            let results = connections.results
+            console.log(connections)
             if (connections.results_found === true) {
-                for (var connection in connections) {
+                
+                for (var connection in results) {
                     $(".feed-message").remove();
+                    
 
-                    let this_item = connections[connection];
+                    let this_item = results[connection];
+                    console.log(this_item)
                     let user = this_item.user;
                     let custom = this_item.custom
 
@@ -94,7 +120,11 @@
                 `
                 $('#list-container').append(message);
             }
-
+        
         });
+    }
+
+    $('#back-to-home').click(function() {
+        window.location.href = `${base_url}/bitstream/home/`
     });
 </script>

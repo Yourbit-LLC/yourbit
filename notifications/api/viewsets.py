@@ -1,28 +1,62 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
 from ..models import Notification
-from .serializers import NotificationSerializer
+from .serializers import NotificationSerializer, MessageNotificationSerializer
+from itertools import chain
+from operator import attrgetter
+
 
 class NotificationViewset(viewsets.ViewSet):
 
     #Get query set from query params to filter only notifications for user
     def get_queryset(self, request):
-        if request.query_params:
-            type=request.query_params.get("type")
-            queryset = Notification.objects.get(to_user = request.user, type = type)
 
-            serializer_class = NotificationSerializer(queryset, many = True)
+
+        user_profile = request.user
+        if request.query_params:
+            type=request.query_params.get("filter")
+            if type == "connections":
+                print("connections")
+                queryset_1 = Notification.objects.filter(to_user = user_profile, type = 3)
+                queryset_2 = Notification.objects.filter(to_user = user_profile, type = 4)
+                queryset_3 = Notification.objects.filter(to_user = user_profile, type = 5)
+
+                print(queryset_3)
+                queryset = sorted(chain(queryset_1, queryset_2, queryset_3), key=attrgetter('time'), reverse=True)            
+
+                print(queryset)
+            elif type == "bits":
+                queryset_1 = Notification.objects.filter(to_user = user_profile, type = 1)
+                queryset_2 = Notification.objects.filter(to_user = user_profile, type = 2)
+                queryset = sorted(chain(queryset_1, queryset_2), key=attrgetter('time'), reverse=True)              
+
+            elif type == "messages":
+                queryset = Notification.objects.filter(to_user = user_profile, type = 6).order_by('-time')
+
+
 
         else:
-            queryset = Notification.objects.get(to_user = request.user)
+            queryset = Notification.objects.filter(to_user = user_profile).order_by('-time')
+
+
+        return queryset
 
     #Serialize and list results from query set
     def list(self, request):
-        queryset = self.get_queryset()
-
-        serializer_class = NotificationSerializer(queryset, many=True)
-
-        return Response(serializer_class.data)
+        queryset = self.get_queryset(request)
+        type=request.query_params.get("filter")
+        if len(queryset) == 0:
+            return Response({"found_notifications": False, "message": "No notifications found."})
+        
+        else:
+            if type == "messages":
+                serializer_class = MessageNotificationSerializer(queryset, many=True)
+                return Response({"found_notifications": True, "list" : serializer_class.data, "type": "messages"})
+            
+            else: 
+                serializer_class = NotificationSerializer(queryset, many=True)
+                print(serializer_class.data)
+                return Response({"found_notifications": True, "list" : serializer_class.data})
 
     #Retrieve a specific notification by ID
     def retrieve(self, request, pk=None):

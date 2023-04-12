@@ -5,16 +5,23 @@ from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill, SmartResize
 
 
+
 # Create your models here.
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE)
-    field = models.CharField(max_length=150, default='hey')
-    follows = models.ManyToManyField(
+    
+    followers = models.ManyToManyField(
         "self",
         related_name="followed_by",
         symmetrical=False,
         blank = True
+    )
+    follows = models.ManyToManyField(
+        "self",
+        related_name="following",
+        symmetrical=False,
+        blank=True
     )
     connections = models.ManyToManyField(
         "self",
@@ -59,6 +66,8 @@ class Profile(models.Model):
     wallpaper_on = models.BooleanField(default=True)
     default_theme_on = models.BooleanField(default=False)
 
+    #System information
+    current_timezone = models.CharField(max_length=150, default="America/NewYork")
     alerted_notifications = models.BooleanField(default=False)
 
     def __str__(self):
@@ -81,11 +90,11 @@ class Bit(models.Model):
     
     #Model for a Bit: A post on Yourbit
     profile = models.ForeignKey(
-        'Profile', related_name="bits", on_delete=models.DO_NOTHING, default=None
+        'Profile', related_name="bits", on_delete=models.CASCADE, default=None
     )
 
     user = models.ForeignKey(
-        User, related_name="bits", on_delete=models.DO_NOTHING, default=None
+        User, related_name="bits", on_delete=models.CASCADE, default=None
     )
     to_users = models.ManyToManyField(
         User,  blank=True, related_name='mentioned'
@@ -107,12 +116,27 @@ class Bit(models.Model):
     shares = models.ManyToManyField(User, blank=True,related_name="shares")
     share_count = models.IntegerField(default=0)
     comment_count = models.IntegerField(default = 0)
+
+    #View Counts track the total amount of times a bit has been within the viewport for longer than 1.5s
+    view_count = models.IntegerField(default = 0)
+
+    #New Views track the amount of non-repeat views of this bit
+    new_views = models.IntegerField(default=0)
+
+    #Watch count tracks the amount of times a video bit has been watched for at least 80% length
+    watch_count = models.IntegerField(default = 0)
+    ## VIDEO BIT ONLY ##
     
+    #New watches tracks the amount of non-repeat watches of this Video Bit
+    new_watches = models.IntegerField(default=0)
+    ## VIDEO BIT ONLY ##
+    
+    #Options booleans
     is_public = models.BooleanField(default=False)
     is_tips = models.BooleanField(default=False)
     is_title =models.CharField(max_length=10, default='none')
 
-
+    #Links and widgets
     contains_video_link = models.BooleanField(default=False)
     contains_news_link = models.BooleanField(default=False)
     contains_web_link = models.BooleanField(default=False)
@@ -130,10 +154,18 @@ class Bit(models.Model):
 #Bit media attachments
 class Photo(models.Model):
     #Model for attached photo to bit
-    image = models.ImageField(blank = True, upload_to='media/profile/%Y/%m/%d/%H:%M')
+    image = models.ImageField(blank = True, upload_to='media/profile/source_photos/%Y/%m/%d/%H:%M')
     user = models.ForeignKey(User, related_name = "photo", on_delete=models.DO_NOTHING, blank=True)
-    feed_thumbnail = ImageSpecField(source='image', processors=[SmartResize(600, 600)], format='PNG')
-    grid_thumbnail = ImageSpecField(source='image', processors=[SmartResize(125, 125)], format='PNG')
+    small_thumbnail = models.ImageField(blank = True, upload_to='media/profile/small_thumbnails/%Y/%m/%d/%H:%M')
+    medium_thumbnail = models.ImageField(blank = True, upload_to='media/profile/medium_thumbnails/%Y/%m/%d/%H:%M')
+    large_thumbnail =  models.ImageField(blank = True, upload_to='media/profile/large_thumbnails/%Y/%m/%d/%H:%M')
+    uploaded = models.DateTimeField(default=timezone.now)
+
+class Video(models.Model):
+    #Model for attached video to bit
+    video = models.FileField(blank = True, upload_to='media/profile/videos/%Y/%m/%d/%H:%M')
+    user = models.ForeignKey(User, related_name = "video", on_delete=models.DO_NOTHING, blank=True)
+    thumbnail_image = models.ImageField(blank = True, upload_to='media/profile/videos/thumbnails/%Y/%m/%d/%H:%M')
     uploaded = models.DateTimeField(default=timezone.now)
 
 class Custom(models.Model):
@@ -144,10 +176,10 @@ class Custom(models.Model):
     #Profile Images
     image_uploaded = models.BooleanField(default=False)
     image = models.ImageField(upload_to='profile/image/%Y/%m/%d', default="media/blenderlogo.png")
-    image_thumbnail_large = ImageSpecField(source='image', processors=[SmartResize(75, 75)], format='PNG')
-    image_thumbnail_small = ImageSpecField(source='image', processors=[SmartResize(25, 25)], format='PNG')
+    image_thumbnail_large = models.ImageField(upload_to='profile/image/compressed/%Y/%m/%d', default="media/blenderlogo.png")
+    image_thumbnail_small = models.ImageField(upload_to='profile/image/compressed/%Y/%m/%d', default="media/blenderlogo.png")
     background_image = models.ImageField(upload_to='profile/background/%Y/%m/%d', blank=True, default="media/aqua_default_theme.png")
-    background_mobile = ImageSpecField(source='background_image', processors=[SmartResize(877.5, 1899)], format='PNG')
+    background_mobile = models.ImageField(upload_to='profile/background/%Y/%m/%d', blank=True, default="media/aqua_default_theme.png")
     background_desktop = ImageSpecField(source='background_image', processors=[SmartResize(1280, 720)], format='PNG')
 
     #bits
@@ -167,3 +199,18 @@ class Custom(models.Model):
     user_colors_on = models.BooleanField(default=True)
     wallpaper_on = models.BooleanField(default=True)
     default_theme_on = models.BooleanField(default=False)
+    only_my_colors = models.BooleanField(default=False)
+    ui_colors_on = models.BooleanField(default=True)
+    text_colors_on = models.BooleanField(default=True)
+    bit_colors_on = models.BooleanField(default=True)
+
+
+class Continuum(models.Model):
+    user = models.ForeignKey(User, related_name = "continuum", on_delete=models.DO_NOTHING, blank=True)
+    
+    title = models.CharField(max_length=100, default="Untitled Continuum")
+
+    bits = models.ManyToManyField(Bit, related_name = "continuum", blank=True)
+    created = models.DateTimeField(default=timezone.now)
+    updated = models.DateTimeField(default=timezone.now)
+    subscribers = models.ManyToManyField(User, related_name = "subscribed_users", blank=True)

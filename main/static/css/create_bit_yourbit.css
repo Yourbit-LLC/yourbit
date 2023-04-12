@@ -52,7 +52,7 @@
     grid-area: 'header';
     grid-row: 1;
     display: grid;
-    grid-template-columns: 550px 50px;;
+    grid-template-columns: 500px 80px;;
     text-align: left;
 }
 

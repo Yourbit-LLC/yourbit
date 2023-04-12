@@ -43,8 +43,31 @@ def createComment(request):
     return Response(serialized_comment.data)
 
 
-
+@api_view(["POST"])
+def updateBitSeen(request):
+    from user_profile.models import Bit, Profile
+    from feed.models import InteractionHistory
+    from user_profile.api.serializers import BitSerializer
     
+    this_profile = Profile.objects.get(user = request.user)
+    user_tz = this_profile.current_timezone
+    this_id = request.data.get("bit_id")
+    this_bit = Bit.objects.get(id=this_id)
+
+    these_interactions = InteractionHistory.objects.get(user = request.user)
+
+    if this_bit not in these_interactions.seen_bits.all():
+        this_bit.new_views += 1
+        these_interactions.seen_bits.add(this_bit)
+        
+    this_bit.view_count += 1
+
+    serialized_bit = BitSerializer(this_bit, many=False, context={'user_tz':user_tz})
+    return Response(serialized_bit.data)
+
+
+
+
 
 
 

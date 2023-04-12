@@ -13,32 +13,67 @@ class MessageViewSet(viewsets.ViewSet):
 
         if len(queryset) > 1:
             serializer_class = MessageSerializer(queryset, many=True)
-            this_response = {"convos_found":True, "convos":serializer_class.data}
+            this_response = {"messages_found":True, "messages":serializer_class.data}
         elif len(queryset) == 1:
             serializer_class = MessageSerializer(queryset, many=False)
-            this_response = {"convos_found":True, "convos":serializer_class.data}
+            this_response = {"messages_found":True, "messages":serializer_class.data}
         else:
-            this_response = {"convos_found":False, "message":"No conversations found."}
-
+            this_response = {"messages_found":False, "messages":"No conversations found."}
+        
         return Response(this_response)
 
     def create(self, request):
+        from notifications.models import Notification
+        from user_profile.models import Custom, Profile
         new_message = Message()
-        new_message.body = request.POST.get("body")
+        new_message.body = request.data.get("body")
         new_message.sender = request.user
-        receiver = request.POST.get("receiver")
+      
+        this_username = request.data.get("receiver")
+
+        num_commas = this_username.count(",")
+        
+        if num_commas == 1:
+            print(num_commas, " comma found")
+            this_username = this_username.replace(",", "")
+            this_username = this_username.replace(" ", "")
+            print("id: ", "'",this_username,"'")
+
+        sender_profile = Profile.objects.get(user = request.user)
+        custom = Custom.objects.get(profile = sender_profile)
+        
+        new_message.sender_custom = custom
+        print("username: ", this_username)
+        receiver = User.objects.get(username = this_username)
+
         new_message.receiver = receiver
         new_message.save()
 
-        conversation1 = Conversation.objects.get_or_create(sender = request.user, receiver = receiver)
-        conversation2 = Conversation.objects.get_or_create(receiver = request.user, sender = receiver)
 
-        conversation1.add(new_message)
-        conversation2.add(new_message)
+
+        if request.data.get("new_conversation") == False:
+            this_conversation = Conversation.objects.get(sender = request.user, receiver = receiver)
+            that_conversation = Conversation.objects.get(receiver = request.user, sender = receiver)
+        else:
+            this_conversation = Conversation.objects.create(sender = request.user, receiver = receiver, receiver_custom = custom)
+            that_conversation = Conversation.objects.create(receiver = request.user, sender = receiver, receiver_custom = receiver.profile.custom)
+
+        print(this_conversation)
+        print(that_conversation)
         
-        serializer_class = MessageSerializer(new_message, many = False)
+        this_conversation.messages.add(new_message)
+        this_conversation.save()
+        that_conversation.messages.add(new_message)
+        that_conversation.save()
 
-        return Response(new_message)
+        
+        new_notification = Notification(from_user = request.user, to_user = receiver, type = 6, message = new_message, conversation=that_conversation)
+        new_notification.save()
+
+        this_conversation_serialized = ConversationSerializer(this_conversation, many = False)
+        message_serializer_class = MessageSerializer(new_message, many = False)
+
+        return Response({"conversation": this_conversation_serialized.data, "message": message_serializer_class.data})
 
     def destroy(self, request, pk=None):
         from api.dialogue_processors import getDialogue
@@ -58,12 +93,49 @@ class MessageViewSet(viewsets.ViewSet):
         return Response({"Message": 'Message Successfully Deleted.'})
 
 class ConversationViewSet(viewsets.ViewSet):
+    def get_queryset(self):
+        filter_param = self.request.query_params.get('filter')
+        if filter_param == "all":
+            queryset = Conversation.objects.filter(sender=self.request.user)
+
+        elif filter_param == "friends":
+            from user_profile.models import Profile
+            this_profile = Profile.objects.get(user = self.request.user)
+            this_friends = this_profile.connections.all()
+            this_friends_accounts = [x.user for x in this_friends]
+            queryset = Conversation.objects.filter(sender=self.request.user, receiver__in = this_friends_accounts)
+
+        elif filter_param == "following":
+            from user_profile.models import Profile
+            this_profile = Profile.objects.get(user = self.request.user)
+            this_following = this_profile.follows.all()
+            this_following_accounts = [x.user for x in this_following]
+            queryset = Conversation.objects.filter(sender=self.request.user, receiver__in = this_following_accounts)
+
+        elif filter_param == "public":
+            from user_profile.models import Profile
+            this_profile = Profile.objects.get(user = self.request.user)
+            queryset = Conversation.objects.filter(sender=self.request.user)
+
+        return queryset
+    
     def list(self, request):
-        queryset = Conversation.objects.filter(sender = request.user)
+        queryset = self.get_queryset()
 
-        serializer_class = ConversationSerializer(queryset, many=True)
+        
 
-        return Response(serializer_class.data)
+        if len(queryset) > 1:
+            serializer_class = ConversationSerializer(queryset, many=True)
+            this_response = {"convos_found":True, "convos":serializer_class.data}
+        elif len(queryset) == 1:
+            serializer_class = ConversationSerializer(queryset, many=True)
+            print(serializer_class.data)
+            this_response = {"convos_found":True, "convos":serializer_class.data}
+        else:
+            this_response = {"convos_found":False, "message":"No conversations found."}
+        
+        return Response(this_response)
+        
 
     def destroy(self, request, pk=None):
         this_conversation = Conversation.objects.get(id = pk)
@@ -74,10 +146,15 @@ class ConversationViewSet(viewsets.ViewSet):
     
     def retrieve(self, request, pk=None):
         this_conversation = Conversation.objects.get(id=pk)
+        this_receiver = this_conversation.receiver
+        this_receiver = this_receiver.first_name + " " + this_receiver.last_name
+        these_messages = this_conversation.messages.all().order_by("-time")
 
-        serializer_class = ConversationSerializer(this_conversation, many=False)
 
-        return Response(serializer_class.data)
+
+        serializer_class = MessageSerializer(these_messages, many=True)
+
+        return Response({"receiver": this_receiver, "messages": serializer_class.data})
 
 
 

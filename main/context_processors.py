@@ -32,7 +32,7 @@ def Customization(request):
         #Quick Appearance
         wallpaper_on = custom.wallpaper_on
         if wallpaper_on:
-            wallpaper = custom.background_image
+            wallpaper = custom.background_mobile.url
         user_colors_on = custom.user_colors_on
         default_theme_on = custom.default_theme_on
         return {

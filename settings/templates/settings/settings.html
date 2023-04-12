@@ -22,6 +22,16 @@
             </p>
             <div class="edit-button-container" name="account"><a class="editSetting">Edit</a></div>  
         </div>
+
+        <div class="settingsBox" id="profile-settings">
+            <div class="setting-header-container" id="profile-settings-header-container">
+                <h3 class="setting-header" id="profile-settings-header"> Profile information </h3>
+            </div>
+            <p id="account-settings-description" class="setting-description">
+                Change information about you on your profile.
+            </p>
+            <div class="edit-button-container" name="profile"><a class="editSetting">Edit</a></div>  
+        </div>
         
         <div class="settingsBox" id="personalization">
             <h3 class="setting-header" id="personalize-header">Personalization</h3>
@@ -63,9 +73,10 @@
     var base_url = window.location.origin;
         
     $(document).ready(function() {
-        $('#back-to-home').fadeIn('slow');
-        $('#back-to-home').animate({'bottom': '90px'});
-        $('#content-container').animate({'top':'0px'})
+        yb_showMiniBar(); 
+        yb_showMenuTask();  
+        $('#content-container').animate({'top':'0px'});
+        yb_hideSpaceBar();
         
     });
     
@@ -100,6 +111,10 @@
         if (action === "privacy") {
             settings_privacy_url();
 
+        }
+
+        if (action === "profile"){
+            settings_profile_url();
         }
 
         if (action === "money") {

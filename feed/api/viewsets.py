@@ -34,6 +34,8 @@ class CommentViewSet(viewsets.ViewSet):
     def create(self, request):
         this_id = request.POST.get("this_id")
 
+        this_profile = Profile.objects.get(user = request.user)
+
         body = request.POST.get("body")
 
         this_bit = Bit.objects.get(pk=this_id)
@@ -50,7 +52,9 @@ class CommentViewSet(viewsets.ViewSet):
 
         new_comment.save()
 
-        serializer_class = CommentSerializer(new_comment, many=False)
+        current_timezone = this_profile.current_timezone
+
+        serializer_class = CommentSerializer(new_comment, many=False, context = {"user_tz": current_timezone})
 
         return Response(serializer_class.data)
 
@@ -73,6 +77,22 @@ class CommentViewSet(viewsets.ViewSet):
         this_comment.delete()
 
         return Response('Comment Deleted Successfully.')
+
+    def retrieve(self, request, pk=None):
+        this_bit = Bit.objects.get(id = pk)
+
+        these_comments = Comment.objects.filter(bit = this_bit).order_by("-time")
+        this_profile = Profile.objects.get(user = request.user)
+        current_timezone = this_profile.current_timezone
+
+        serializer_class = CommentSerializer(these_comments, many = True, context = {"user_tz": current_timezone})
+
+        if these_comments:
+            is_comments = True
+        else:
+            is_comments = False
+
+        return Response({"is_comments": is_comments, "comments": serializer_class.data})
 
 class InteractionViewSet(viewsets.ViewSet):
     def list(self, request):

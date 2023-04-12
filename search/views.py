@@ -9,7 +9,8 @@ from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 # Create your views here.
 
 class SearchResults(View):
-    def post(self, request, query, *args, **kwargs):
+    def get(self, request, query, type, *args, **kwargs):
+        from YourbitAccounts.api.serializers import UserSerializer
         print(query)
         last_page = request.GET.get('last_page', '/')
         searched = query
@@ -42,62 +43,80 @@ class SearchResults(View):
             'bit_results': bit_results, 
             'last_page': last_page,
         }
-        return render(request, "search/search_results.html", context)
+        serialized_users = UserSerializer(user_results, many=True).data
+        return JsonResponse({'results_found': True, 'result_count':result_count, 'results':serialized_users})
 
-class PreSearch(View):
+class ContextSearch(View):
+    #Context search takes user information into account to breakdown the most relevant results
     def post(self, request, *args, **kwargs):
-        #stuff
-        if "submit-search" in request.POST:
-            searched = request.POST.get('query')
-        else:
-            searched = request.POST['query']
-        print(searched)
-        user_results_working = []
-        user_results = {}
-        end_results = {}
-        user_first_name_filter = User.objects.select_related('profile').filter(first_name__icontains = searched)
-        for result in user_first_name_filter:
-            if result not in user_results_working:
-                user_results_working.append(result)
-                first_name = result.first_name
-                last_name = result.last_name
-                username = result.username
-                profile = result.profile
-                custom  = profile.custom
-                image = custom.image.url
-                name = first_name + " " + last_name
-                user_results.update({username: {'name' : name, 'image' : image}})
+        from itertools import chain
+        query = request.POST.get('query')
+        applied_filter = "user"
+        
+        if applied_filter == "all" or applied_filter == "bits":
+            bit_results = []
+            bit_body_filter = Bit.objects.filter(body__icontains = query)
+            for result in bit_body_filter:
+                if result not in bit_results:
+                    bit_results.append(result)
+            bit_title_filter = Bit.objects.filter(title__icontains = query)
+            for result in bit_title_filter:
+                if result not in bit_results:   
+                    bit_results.append(result)
+            
+            if bit_results:
+                results_found = True
+            
+            else:
+                results_found = False
 
-        user_last_name_filter = User.objects.select_related('profile').filter(last_name__icontains = searched)
-        for result in user_last_name_filter:
-            if result not in user_results_working:
-                user_results_working.append(result)
-                first_name = result.first_name
-                last_name = result.last_name
-                username = result.username
-                profile = result.profile
-                custom  = profile.custom
-                image = custom.image.url
-                name = first_name + " " + last_name
-                user_results.update({username: {'name' : name, 'image' : image}})
+            return JsonResponse({'results_found': results_found, 'bit_results': bit_results})
 
-        username_filter = User.objects.select_related('profile').filter(username__icontains = searched)
-        for result in username_filter:
-            if result not in user_results_working:
-                user_results_working.append(result)
-                first_name = result.first_name
-                last_name = result.last_name
-                username = result.username
-                profile = result.profile
-                custom  = profile.custom
-                image = custom.image.url
-                name = first_name + " " + last_name
-                user_results.update({username: {'name' : name, 'image' : image}})
+        if applied_filter == "all" or applied_filter == "user":
+            from YourbitAccounts.api.serializers import UserSerializer
+            from user_profile.api.serializers import ProfileResultSerializer
+            user_results = []
+            user_first_name_filter = User.objects.filter(first_name__icontains = query)
+            for result in user_first_name_filter:
+                if result not in user_results:
+                    user_results.append(result.profile)
+            user_last_name_filter = User.objects.filter(last_name__icontains = query)
+            for result in user_last_name_filter:
+                if result not in user_results:
+                    user_results.append(result.profile)
 
-        print(user_results)
-        response = {'user_results': user_results}
-        if "submit-search" in request.POST:
-            context = {"user_results" : user_results_working}
-            return render(request, 'search/search_results.html', context)
-        else:
-            return JsonResponse(response)
+            if user_results:
+                results_found = True
+            else: 
+                results_found = False
+
+            user_results = ProfileResultSerializer(user_results, many=True).data
+
+            return JsonResponse({'results_found': results_found, 'user_results': user_results})
+
+        if applied_filter == "all" or applied_filter == "comments":
+            from feed.models import InteractionHistory
+            
+            comment_results = []
+            user_profile = Profile.objects.get(user = request.user)
+
+            these_interactions = InteractionHistory.objects.filter(user = user_profile)
+            commented_bits = these_interactions.commented_on.all()
+
+
+            comment_body_filter = Comment.objects.filter(bit__in = commented_bits, body__icontains = query)
+            for result in comment_body_filter:
+                if result not in comment_results:
+                    comment_results.append(result)
+
+            if comment_results.length > 0:
+                results_found = True
+            else:
+                results_found = False
+
+            return JsonResponse({'results_found': results_found, 'comment_results': comment_results})
+
+        
+
+    
+

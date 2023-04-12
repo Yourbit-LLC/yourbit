@@ -41,10 +41,12 @@ urlpatterns = [
     path('pay/', include('payment.urls')),
     path('search/', include('search.urls')),
     path('settings/', include('settings.urls')),
+    path('support/', include('support.urls')),
     path('onboarding/', Onboarding.as_view(), name='onboarding'),
     path('community/', include('community.urls')),
     path('api/', include(router.urls)),
     path('core/', include('main.urls')),
-    path('emailtest/', EmailTest.as_view(), name="emailtest")
+    path('emailtest/', EmailTest.as_view(), name="emailtest"),
+    path('accounts/', include('YourbitAccounts.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

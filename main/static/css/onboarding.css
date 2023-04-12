@@ -44,7 +44,7 @@ body {
     border: 2px solid white;
 }
 
-.profile-image-preview {
+.profile-image-preview-main {
     position: absolute;
     z-index: 2;
     border: 4px solid white;

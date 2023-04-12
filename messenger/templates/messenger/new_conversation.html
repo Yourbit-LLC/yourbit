@@ -1,0 +1,106 @@
+<link rel="stylesheet" type="text/css" href="/static/css/conversations.css"/>
+<div id='header' style='text-align:center; color: white;'>
+    <svg id="back-to-convos" xmlns="http://www.w3.org/2000/svg" style="position: absolute; left: 15px; top: 50%; transform: translate(0, -50%);" height="24" width="24"><path d="M10 22 0 12 10 2l1.775 1.775L3.55 12l8.225 8.225Z"/></svg>
+    <h3 id="receiver-name" style="margin-top:15px; margin-bottom: 2px;">New Message</h3>
+    <svg xmlns="http://www.w3.org/2000/svg" style = "position: absolute; right: 15px; top: 50%; transform: translate(0, -50%);" height="24" width="24"><path d="M12 20q-.825 0-1.412-.587Q10 18.825 10 18q0-.825.588-1.413Q11.175 16 12 16t1.413.587Q14 17.175 14 18q0 .825-.587 1.413Q12.825 20 12 20Zm0-6q-.825 0-1.412-.588Q10 12.825 10 12t.588-1.413Q11.175 10 12 10t1.413.587Q14 11.175 14 12q0 .825-.587 1.412Q12.825 14 12 14Zm0-6q-.825 0-1.412-.588Q10 6.825 10 6t.588-1.412Q11.175 4 12 4t1.413.588Q14 5.175 14 6t-.587 1.412Q12.825 8 12 8Z"/></svg>
+    <input type="text" id="contact-entry" class="yb-single-line-input" style = "position: absolute; top: 70px; left: 5vw;" placeholder="Send a message to...">
+
+
+</div>
+
+<div id='connection-container' style = "margin-top: 60px;">    
+    <div class='filter-options' style='
+        display: grid; 
+        grid-template-columns: auto auto auto auto; 
+        column-gap: 4px; 
+        position: sticky; 
+        z-index: 3; 
+        top: -20px; 
+        margin-bottom: 10px; 
+        margin-left: auto;
+        margin-right: auto;
+
+        width: 95vw; 
+        border-radius: 28px;
+        height: 35px; 
+        background-color: rgba(0,0,0, 0.6); 
+        backdrop-filter: blur(40px);
+        -webkit-backdrop-filter: blur(40px);
+        overflow-y: scroll;
+        '>
+            <button id="filter-all" class='filter-button' name="all">All</button>
+            <button id="filter-freinds" class='filter-button' name="friends">Friends</button>
+            <button id="filter-followers" class='filter-button' name="followers">Followers</button>
+            <button id="filter-following" class='filter-button' name="following">Following</button>
+
+    </div>
+    <!--Messages are appended here-->
+</div>
+
+<div id='message-input' style="display: none;">    
+    <input id='message-field' type='text' placeholder='Write Message'>
+    <!--Username is the username of the other user and data id is the conversation ID to attach the message to-->
+    <button id='send-button' data-username="" data-id="" type='button'>Send</button>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type='text/javascript' type="text/css" src="/static/scripts/messenger.js/"></script>
+<script>
+    function yb_getMessageConnections(url){
+        let base_url = getBaseURL();
+        let this_url = `${base_url}/api/profiles/?filter=all`
+        fetch(this_url)
+        .then((resp) => resp.json())
+        .then(function(data){
+            let connections = data
+            let results = connections.results
+            console.log(connections)
+            if (connections.results_found === true) {
+                
+                for (var connection in results) {
+                    $(".feed-message").remove();
+                    
+
+                    let this_item = results[connection];
+                    console.log(this_item)
+                    let user = this_item.user;
+                    let custom = this_item.custom
+
+                    let name = user.first_name + " " + user.last_name
+                    
+                    $("#connection-container").append(
+                        `<div class='full-result' style="background-color: ${custom.primary_color}">
+                            <div class = 'full-result-image-container'>
+                                <img class='full-result-image' src="${custom.image}">
+                            </div>
+                            <div class='full-result-name-container'>
+                                <p class = 'full-result-name'><strong>${name}</strong></p>
+                                <p class = 'full-result-username'>
+                                    <small>@${user.username}</small>
+                                </p>
+                            
+                            </div>
+                            <a class='profile-search-link' href="/profile/${user.username}/"></a>
+                
+                        </div>`
+                    )
+                    
+                }
+            
+            } 
+        });
+    }
+    $(document).ready(function(){
+        let back_button = document.getElementById("back-to-convos");
+        yb_hideUI();
+
+        back_button.addEventListener("click", function() {
+            console.log("Go back")
+            messages_inbox_url();
+        })
+        yb_getMessageConnections();
+
+    });
+
+
+</script>

@@ -7,28 +7,20 @@ from .forms import *
 from .models import *
 from user_profile.models import Profile
 from django.db.models import Q
-
+from rest_framework.decorators import api_view
 
 # Create your views here.
 #Render messages page
 class Messages(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
-        user = request.user
-        user_profile = Profile.objects.get(user=user)
-        conversations = Conversation.objects.select_related('receiver_user').filter(Q(sender_user = user)|Q(receiver_user = user))
-        is_conversation = False
-        if conversations.count != 0:
-            is_conversation = True
-        connections = user.profile.connections.all()
-        message_form = NewMessage()
-
         context = {
-            "is_conversation": is_conversation,
-            "conversations" : conversations,
-            "connections" : connections,
-            
-            }
-        return render(request, 'messenger/messages.html', context)
+            "location": "inbox",
+            'space':'global',
+            'filter':'all',
+            'sort':'chrono'
+        }
+
+        return render(request, 'main/home.html', context)
 
 class SendMessage(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
@@ -94,3 +86,26 @@ class NewConversationView(View):
         except:
             return redirect('new-conversation')
 
+@api_view(['GET'])
+def check_existing_conversation(request, username):
+    num_commas = username.count(",")
+    
+    if num_commas == 1:
+        print(num_commas, " comma found")
+        username = username.replace(",", "")
+        username = username.replace(" ", "")
+        print("id: ", "'",username,"'")
+
+
+    user = request.user
+    receiver_user = User.objects.get(username=username)
+
+    try:
+        conversation = Conversation.objects.get(sender=user, receiver=receiver_user)
+        response = {'is_conversation':True, "conversation_recipient":receiver_user.username, "conversation_id":conversation.id}
+    
+    except Conversation.DoesNotExist:
+        response = {"is_conversation":False}
+
+   
+    return JsonResponse(response)

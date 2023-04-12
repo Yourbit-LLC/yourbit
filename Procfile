@@ -1,0 +1,1 @@
+web: gunicorn YourbitCore.wsgi --log-file -

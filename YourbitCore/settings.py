@@ -58,10 +58,15 @@ INSTALLED_APPS = [
     'search.apps.SearchConfig',
     'settings.apps.SettingsConfig',
     'community.apps.CommunityConfig',
+    'support.apps.SupportConfig',
+    'channels',
     'storages',
     'stripe',
     'imagekit',
     'rest_framework',
+    'store',
+    'captcha',
+    # "online_status",
 
 ]
 
@@ -73,6 +78,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'online_status.middleware.UserOnlineMiddleware',
 ]
 
 ROOT_URLCONF = 'YourbitCore.urls'
@@ -169,6 +175,7 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
 #STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 CSRF_TRUSTED_ORIGINS = ['https://yourbit.me']
@@ -209,3 +216,6 @@ STRIPE_WEBHOOK_SECRET = ""
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
+SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
+RECAPTCHA_SITE_KEY='6LeH1dYkAAAAAF3mUakcwhmAVS6tc7CnAqcsRlLQ'
+RECAPTCHA_SECRET_KEY='6LeH1dYkAAAAAJ0v0SojumA_Y9_eX7f3PFbhaxs4'

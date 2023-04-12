@@ -2,6 +2,6 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
-    path('', PreSearch.as_view(), name="search"),
-    path('search/results/<str:query>', SearchResults.as_view(), name='search-results'),
+    path('', ContextSearch.as_view(), name="search"),
+    path('results/query=<str:query>/type=<str:type>/', SearchResults.as_view(), name='search-results'),
 ]

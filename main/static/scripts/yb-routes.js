@@ -60,13 +60,20 @@ function yb_applyStyle(source){
 function home_url(data){
     console.log("home routed")
     //clear screen
-    $("#content-container").empty();
+    $("#content-container").html("");
     $("#page-header").remove();
     $("#content-container").load(`${base_url}/feed/templates/feed/feed.html`);
+    let menu = document.getElementById("profile-menu");
+    
+    if (menu.style.visibility === "visible") {
+        yb_show_profile_menu();
+    }
+    
+    
     //set url
     history.pushState({}, "", "/bitstream/");
 
-    setSessionValues("location", "home");
+    yb_setSessionValues("location", "home");
 
     //load source
 
@@ -78,8 +85,8 @@ function home_chat_url(data){
     $("#content-container").empty();
     $("#page-header").remove();
     history.pushState({}, "", "/bitstream/chat/")
-    setSessionValues("location", "home");
-    setSessionValues("space", "chat");
+    yb_setSessionValues("location", "home");
+    yb_setSessionValues("space", "chat");
 
     //load source
     
@@ -94,8 +101,8 @@ function home_video_url(data){
     $("#page-header").remove();
     //set url
     history.pushState({}, "", "/bitstream/video/")
-    setSessionValues("location", "home");
-    setSessionValues("space", "video");
+    yb_setSessionValues("location", "home");
+    yb_setSessionValues("space", "video");
     //load source
     
     
@@ -107,8 +114,8 @@ function home_photo_url(data){
     $("#page-header").remove();
     history.pushState({}, "", "/bitstream/photo/")
 
-    setSessionValues("location", "home");
-    setSessionValues("space", "photo");
+    yb_setSessionValues("location", "home");
+    yb_setSessionValues("space", "photo");
 
     //load source
     
@@ -134,9 +141,11 @@ function getProfile() {
 
 //profile
 function profile_url(data){
+    
     console.log("reached url");
-    setSessionValues("location", "profile");
-    setSessionValues("space", "global")
+    yb_setSessionValues("location", "profile");
+    yb_setSessionValues("space", "global");
+    yb_setSessionValues("profile-username", data.username)
     $("#content-container").empty();
     $("#content-container").load(`${base_url}/user_profile/templates/user_profile/profile.html`)
     $("#page-header").remove();
@@ -146,8 +155,8 @@ function profile_url(data){
 
 //profile chat
 function profile_chat_url(data){
-    setSessionValues("location", "profile")
-    setSessionValues("space","chat")
+    yb_setSessionValues("location", "profile")
+    yb_setSessionValues("space","chat")
     $("#content-container").html('');
     history.pushState({}, "", `/profile/${data.username}/chat/`)
     PAGE_SCRIPT.src = setSource("profile")
@@ -157,8 +166,8 @@ function profile_chat_url(data){
 //profile video
 function profile_video_url(data){
     $("#content-container").html('');
-    setSessionValues("location", "profile")
-    setSessionValues("space","video")
+    yb_setSessionValues("location", "profile")
+    yb_setSessionValues("space","video")
     history.pushState({}, "", `/profile/${data.username}/video/`)
     PAGE_SCRIPT.src = setSource("profile")
 
@@ -167,8 +176,8 @@ function profile_video_url(data){
 //profile photo
 function profile_photo_url(data){
     $("#content-container").html('');
-    setSessionValues("location", "profile")
-    setSessionValues("space","photo")
+    yb_setSessionValues("location", "profile")
+    yb_setSessionValues("space","photo")
     history.pushState({}, "", `/profile/${data.username}/photo/`)
     PAGE_SCRIPT.src = setSource("profile")
 
@@ -181,16 +190,16 @@ function connections_url(data){
     console.log("url located");
     let base_url = getBaseURL();
 
-    setSessionValues("location","connections");
+    yb_setSessionValues("location","connections");
     
 
     $("#content-container").html('');
     $("#content-container").load(`${base_url}/user_profile/templates/user_profile/connections.html`)
-    history.pushState({}, "", `/connections/`);
+    history.pushState({}, "", `/profile/connections/`);
     let menu = document.getElementById("profile-menu");
     
     if (menu.style.visibility === "visible") {
-        show_profile_menu();
+        yb_show_profile_menu();
     }
     
     
@@ -202,8 +211,8 @@ function connections_url(data){
 function connections_friends_url(data){
     $("#content-container").html('');
 
-    setSessionValues("location", "connections_friends");
-    setSessionValues("filter", "friends")
+    yb_setSessionValues("location", "connections_friends");
+    yb_setSessionValues("filter", "friends")
     history.pushState({}, "", `/connections/friends/`);
     PAGE_SCRIPT.src = setSource("connections");
 
@@ -213,8 +222,8 @@ function connections_friends_url(data){
 //connections following
 function connections_following_url(data){
     $("#content-container").html('');
-    setSessionValues("location", "connections_following");
-    setSessionValues("filter", "following");
+    yb_setSessionValues("location", "connections_following");
+    yb_setSessionValues("filter", "following");
     history.pushState({}, "", `/connections/following/`);
 
 
@@ -222,8 +231,8 @@ function connections_following_url(data){
 
 //connections followers
 function connections_followers_url(data){
-    setSessionValues("location", "connections_followers");
-    setSessionValues("filter", "followers");
+    yb_setSessionValues("location", "connections_followers");
+    yb_setSessionValues("filter", "followers");
     $("#content-container").html('');
     history.pushState({}, "", `/connections/followers/`)
     
@@ -234,8 +243,8 @@ function connections_followers_url(data){
 //connections community
 function connections_community_url(data){
     $("#content-container").html('');
-    setSessionValues("location", "connections_community");
-    setSessionValues("filter", "community")
+    yb_setSessionValues("location", "connections_community");
+    yb_setSessionValues("filter", "community")
     history.pushState({}, "", `/connections/community/`);
     
 
@@ -245,8 +254,13 @@ function connections_community_url(data){
 function settings_url(data){
     $("#content-container").html('');
     $("#content-container").load(`${base_url}/settings/templates/settings/settings.html/`);
-    setSessionValues("location", "settings")
-    show_profile_menu();
+    yb_setSessionValues("location", "settings")
+    let menu = document.getElementById("profile-menu");
+    
+    if (menu.style.visibility === "visible") {
+        yb_show_profile_menu();
+    }
+    
     history.pushState({}, "", `/settings/`)
     
 
@@ -255,8 +269,8 @@ function settings_url(data){
 //feed settings
 function settings_feed_url(data){
     $("#content-container").html('');
-    $("#content-container").load(`${base_url}/settings/templates/settings/feed-settings.html/`);
-    setSessionValues("location", "settings_feed");
+    $("#content-container").load(`${base_url}/settings/templates/settings/feed_settings.html/`);
+    yb_setSessionValues("location", "settings_feed");
     history.pushState({}, "", `/settings/feed/`)
 
 }
@@ -264,9 +278,9 @@ function settings_feed_url(data){
 //account settings
 function settings_account_url(data){
     $("#content-container").html('');
-    $("#content-container").load(`${base_url}/settings/templates/settings/feed-settings.html/`);
-    setSessionValues("location","settings_account");
-    history.pushState({}, "", `/settings/feed/`);
+    $("#content-container").load(`${base_url}/settings/templates/settings/account_settings.html/`);
+    yb_setSessionValues("location","settings_account");
+    history.pushState({}, "", `/settings/account/`);
     
 }
 
@@ -275,7 +289,7 @@ function customize_url(data){
     console.log("function");
     $("#content-container").empty();
     $("#content-container").load(`${base_url}/user_profile/templates/user_profile/personalize_profile.html/`);
-    setSessionValues("location","customize");
+    yb_setSessionValues("location","customize");
     history.pushState({}, "", `/profile/customize/`);
     
 
@@ -284,8 +298,8 @@ function customize_url(data){
 //profile info
 function settings_profile_url(data){
     $("#content-container").html('');
-    $("#content-container").load(`${base_url}/settings/templates/settings/profile-settings.html/`);
-    setSessionValues("location","settings_profile");
+    $("#content-container").load(`${base_url}/settings/templates/settings/profile_info.html/`);
+    yb_setSessionValues("location","settings_profile");
     history.pushState({}, "", `/settings/profile/`)
 
 }
@@ -295,7 +309,8 @@ function settings_profile_url(data){
 //privacy settings
 function settings_privacy_url(data){
     $("#content-container").html('');
-    setSessionValues("location","settings_privacy");
+    $("#content-container").load(`${base_url}/settings/templates/settings/privacy_settings.html/`);
+    yb_setSessionValues("location","settings_privacy");
     history.pushState({}, "", `/settings/privacy/`)
     
 
@@ -304,7 +319,8 @@ function settings_privacy_url(data){
 //subscription
 function settings_subscription_url(data){
     $("#content-container").html('');
-    setSessionValues("location","settings_subscription");
+    yb_setSessionValues("location","settings_subscription");
+    $("#content-container").load(`${base_url}/settings/templates/settings/subscription_settings.html/`);
     history.pushState({}, "", `/settings/subscriptions/`);
     
 }
@@ -313,7 +329,7 @@ function settings_subscription_url(data){
 function settings_money_url(data){
     $("#content-container").html('');
     $("#content-container").load(`${base_url}/settings/templates/settings/feed-settings.html/`);
-    setSessionValues("location","settings_money");
+    yb_setSessionValues("location","settings_money");
     history.pushState({}, "", `/settings/feed/`);
     
 
@@ -321,12 +337,22 @@ function settings_money_url(data){
 }
 
 //Messages
-function messages_inbox_url(data){
+function messages_inbox_url(){
     $("#content-container").html('');
     $("#content-container").load(`${base_url}/messenger/templates/messenger/messages.html/`);
-    setSessionValues("location","inbox");
+    yb_setSessionValues("location","inbox");
     yb_createScript("messages");
-    show_profile_menu();
+    let menu = document.getElementById("profile-menu");
+    
+    if (menu.style.visibility === "visible") {
+        yb_show_profile_menu();
+    }
+
+    let ui_status = yb_getSessionValues("ui")
+    
+    if (ui_status === "hidden") {
+        headerDropIn();
+    }
     history.pushState({}, "", '/messages/inbox/');
     
 }
@@ -334,7 +360,7 @@ function messages_inbox_url(data){
 //Private Inbox
 function messages_public_inbox_url(data){
     $("#content-container").html('');
-    setSessionValues("location","public_inbox");
+    yb_setSessionValues("location","public_inbox");
     history.pushState({}, "", '/messages/inbox/public/');
     
 
@@ -342,21 +368,31 @@ function messages_public_inbox_url(data){
 
 //Public Inbox
 function messages_private_inbox_url(data){
-    $("#content-container").html('');
-    setSessionValues("location","privacy_inbox");
+    $("#content-container").load(`${base_url}/messenger/templates/messenger/conversation.html/`)
+    yb_setSessionValues("location","private_inbox");
     history.pushState({}, "", '/messages/inbox/private/')
     
 }
 
 //Conversation
-function messages_conversation_url(data){
-    $("#content-container").html('');
-    setSessionValues("location","conversation");
-    history.pushState({}, "", `/conversation/${data.id}/`)
+function messages_conversation_url(id, username){
+    yb_setSessionValues("conversation", id)
+    yb_setSessionValues("that-username", username)
+    $("#content-container").load(`${base_url}/messenger/templates/messenger/conversation.html/`);
+    yb_setSessionValues("location","conversation");
+    history.pushState({}, "", `/conversation/${id}/`)
     
 }
 
-//rewards
+//New conversation
+function messages_new_conversation_url(data){
+    $("#content-container").empty();
+    $("#content-container").load(`${base_url}/messenger/templates/messenger/new_conversation.html/`);
+    yb_setSessionValues("location","new_conversation");
+    history.pushState({}, "", `/messages/new/`)
+}
+
+//Rewards
 function yb_initPageData(user_id) {
     let url = `/api/rewards/${user_id}/`
     fetch(url)
@@ -388,9 +424,9 @@ function rewards_url(data){
     $("#content-container").html('');
     $("#content-container").load(`${base_url}/rewards/templates/rewards/rewards.html/`);
     
-    let user_id = getSessionValues("id");
+    let user_id = yb_getSessionValues("id");
 
-    setSessionValues("location","rewards");
+    yb_setSessionValues("location","rewards");
     
     yb_initPageData(user_id);
     yb_createScript("rewards")
@@ -399,7 +435,7 @@ function rewards_url(data){
 
         
     if (menu.style.visibility === "visible") {
-        show_profile_menu();
+        yb_show_profile_menu();
     }
     
 
@@ -408,7 +444,7 @@ function rewards_url(data){
 //Browse perks
 function rewards_browse_url(data){
     $("#content-container").html('');
-    setSessionValues("location","browse_perks");
+    yb_setSessionValues("location","browse_perks");
     history.pushState({}, "", '/rewards/browse/')
     
 }
@@ -416,7 +452,7 @@ function rewards_browse_url(data){
 //Redeem rewards
 function rewards_redeem_url(data){
     $("#content-container").html('');
-    setSessionValues("location","redeem_rewards");
+    yb_setSessionValues("location","redeem_rewards");
     history.pushState({}, "", `/rewards/redeem/${data.perk}/`);
     
 }
@@ -425,26 +461,42 @@ function rewards_redeem_url(data){
 function history_url() {
     $("#content-container").empty();
     $("#content-container").load(`${base_url}/user_profile/templates/user_profile/history.html/`);
-    setSessionValues("location", "history");
-    history.pushState({}, "", "/history/");
+    yb_setSessionValues("location", "history");
+    history.pushState({}, "", "/profile/history/all/");
 
             
     if (menu.style.visibility === "visible") {
-        show_profile_menu();
+        yb_show_profile_menu();
     }
     
 }
 
 function stuff_url() {
     $("#content-container").empty();
-    setSessionValues("location", "stuff");
+    yb_setSessionValues("location", "stuff");
     $("#content-container").load(`${base_url}/user_profile/templates/user_profile/my_stuff.html/`);
     
-    history.pushState({}, "", "/stuff/");
+    history.pushState({}, "", "/profile/stuff/");
 
             
     if (menu.style.visibility === "visible") {
-        show_profile_menu();
+        yb_show_profile_menu();
     }
     
+
+}
+
+function search_url(this_query) {
+    $("#content-container").empty();
+    yb_setSessionValues("location", "search");
+    $("#content-container").load(`${base_url}/search/templates/search/search_results.html/`);
+    
+    history.pushState({}, "", `/search/?query=${this_query}`);
+
+            
+    if (menu.style.visibility === "visible") {
+        yb_show_profile_menu();
+    }
+    
+
 }

@@ -1,11 +1,12 @@
 from django.urls import path, re_path
 from . import views
 from .views import *
-from feed.api import views as api_views
+import feed.api.views as api_views
 
 
 urlpatterns = [
-    path('api-widget/get/unfed/', api_views.checkUnfed, name="get-unfed"),
+    path('widget/api/get/unfed/', api_views.checkUnfed, name="get-unfed"),
+    path('widget/api/put/seen_bit/', api_views.updateBitSeen, name="update-seen"),
     path('chat/', ChatSpace.as_view(), name='chatspace'),
     path('video/', VideoSpace.as_view(), name='videospace'),
     path('photo/', PhotoSpace.as_view(), name='photospace'),

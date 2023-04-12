@@ -1,7 +1,7 @@
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from YourbitAccounts.models import Account as User
-from settings.models import MySettings, FeedSettings, PrivacySettings
+from settings.models import MySettings, FeedSettings, PrivacySettings, NotificationSettings
 from user_profile.models import Custom, Profile, Bit
 from main.models import TaskManager
 from feed.models import InteractionHistory
@@ -28,6 +28,8 @@ def create_profile(sender, instance, created, **kwargs):
         feed.save()
         privacy = PrivacySettings(settings = settings)
         privacy.save()
+        notifications = NotificationSettings(settings = settings)
+        notifications.save()
         rewards = Rewards(user=instance)
         rewards.save()
         history = InteractionHistory(user=instance, profile=user_profile)
@@ -37,24 +39,28 @@ def create_profile(sender, instance, created, **kwargs):
         task_manager = TaskManager(user = instance)
         task_manager.save()
         user_profile.follows.add(instance.profile)
+        user_profile.followers.add(instance.profile)
         user_profile.save()
 
-# @receiver(post_save, sender=Bit)
-# def update_feeds(sender, instance, created, **kwargs):
-#     user_profile = instance.profile
-#     # followers = Profile.objects.prefetch_related("interaction_history").filter( = user_profile)
-#     friends_list = user_profile.connections.all()
-#     friends = Profile.objects.filter(profile__in = friends_list)
+@receiver(post_save, sender=Bit)
+def update_feeds(sender, instance, created, **kwargs):
+    user_profile = instance.profile
+    followers_list = user_profile.followers.all()
+    followers = InteractionHistory.objects.filter(profile__in = followers_list)
+    friends_list = user_profile.connections.all()
+    friends = InteractionHistory.objects.filter(profile__in = friends_list)
 
-#     # for follower in followers:
-#     #     interaction_history = follower.interactions
-#     #     interaction_history.unfed_bits.add(instance)
-#     #     interaction_history.unseen_bits.add(instance)
+    if len(followers) > 0:
 
-#     for friend in friends:
-#         friend_user = friend.user
-#         interaction_history = friend_user.interaction_history
-#         interaction_history.unfed_bits.add(instance)
-#         interaction_history.unseen_bits.add(instance)
+        for follower in followers:
+            
+            follower.unfed_bits.add(instance)
+            follower.unseen_bits.add(instance)
+
+    if len(friends) > 0:
+        for friend in friends:
+            
+            friend.unfed_bits.add(instance)
+            friend.unseen_bits.add(instance)
 
 

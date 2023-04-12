@@ -103,4 +103,15 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        yb_showMiniBar(); 
+        yb_showMenuTask();   
+        yb_hideSpaceBar();
 
+
+    });
+    $('#back-to-home').click(function() {
+        window.location.href = `${base_url}/bitstream/home/`
+    });
+</script>

@@ -10,11 +10,6 @@
 
 
 
-function ShowComments(bit_id, label_id) {
-    $(`#${bit_id}`).show();
-    $(`#${label_id}`).show();
-
-}
 
 function hideComments(bit_id, label_id) {
     $(`#${bit_id}`).hide();

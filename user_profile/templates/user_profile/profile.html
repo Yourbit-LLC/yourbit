@@ -5,21 +5,4 @@
 </script>
 
 <script>
-    $(document).ready(function() {
-        let user_id = getUserID();
-        console.log(user_id);
-        let url = `${base_url}/api/profiles/${user_id}/`
-        fetch(url)
-        .then((resp) => resp.json())
-        .then(function(data){
-
-            console.log("response: " + data);
-            let show_profile = yb_BuildProfile(data);
-            
-            $("#content-container").append(show_profile.data);
-            $("#content-container").append(show_profile.splash);
-            setLoaded(false);
-        });
-        
-    });
-</script>
+</script> 

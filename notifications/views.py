@@ -3,6 +3,7 @@ from django.views import View
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from user_profile.models import Profile, Bit
+from django.db.models import Q
 from .models import *
 
 
@@ -241,3 +242,23 @@ class GetNotifications(View):
 
 
         return JsonResponse(notifications_list)
+
+
+class Count(View):
+    def get(self, request, *args, **kwargs):
+       
+        user = request.user
+        profile = Profile.objects.get(user=user)
+        
+        message_notifications = Notification.objects.filter(to_user=user, type=6).count()
+        
+        connection_notifications = Notification.objects.filter(to_user=user, type=4).count()
+        connection_notifications += Notification.objects.filter(to_user=user, type=5).count()
+        connection_notifications += Notification.objects.filter(to_user=user, type=3).count()
+        
+        print("\n\n" + "Connection Notifications: " + str(connection_notifications) + "\n\n")
+        general_notifications = Notification.objects.filter(to_user=user, type=1).count()
+        general_notifications += Notification.objects.filter(to_user=user, type=2).count()
+        general_notifications += Notification.objects.filter(to_user=user, type=7).count()
+
+        return JsonResponse({'message_count': message_notifications, 'connection_count': connection_notifications, 'general_count': general_notifications})
