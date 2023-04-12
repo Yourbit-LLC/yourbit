@@ -62,7 +62,17 @@ function home_url(data){
     //clear screen
     $("#content-container").html("");
     $("#page-header").remove();
-    $("#content-container").load(`${base_url}/templates/feed/feed.html`);
+    let container = document.getElementByIletd('content-container');
+    let htmlUrl = `${base_url}/feed/feed-html/`
+    let request = new XMLHttpRequest();
+    request.open('GET', htmlUrl, true);
+    request.onload = function() {
+    if (request.status >= 200 && request.status < 400) {
+        container.innerHTML = request.responseText;
+    }
+    };
+    request.send();
+    
     let menu = document.getElementById("profile-menu");
     
     if (menu.style.visibility === "visible") {
