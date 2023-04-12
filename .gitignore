@@ -20,3 +20,6 @@ settings.py
 __pycache__/
 
 conf/
+
+YourbitCore/.env
+YourbitCore/settings.py
