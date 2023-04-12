@@ -4,8 +4,9 @@ import json
 from pathlib import Path
 
 #initialize environment variables
-
-
+import environ
+env = environ.Env()
+environ.Env.read_env()
 
 
 """
@@ -30,7 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-^zc$$x0jyl*k8he7htbv8fckfy2c6bm-!sysku5f9398&)b2y#"
+SECRET_KEY = 'django-insecure-^zc$$x0jyl*k8he7htbv8fckfy2c6bm-!sysku5f9398&)b2y#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -112,8 +113,12 @@ WSGI_APPLICATION = 'YourbitCore.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'yourbit',
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST'),
+        'PORT': env('DB_PORT'),
     }
 }
 
@@ -164,19 +169,13 @@ DATE_INPUT_FORMATS = [
     '%d %B, %Y',  # '25 October, 2006'
 ]
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.0/howto/static-files/
-
-STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-#STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 CSRF_TRUSTED_ORIGINS = ['https://yourbit.me']
 # AWS_ACCESS_KEY_ID = env('BUCKET_ACCESS_KEY')
@@ -186,10 +185,32 @@ CSRF_TRUSTED_ORIGINS = ['https://yourbit.me']
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
+#SMTP Configuration
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+
+#Yourbit Payments with Stripe
+
+STRIPE_PUBLIC_KEY = env('STRIPE_PUBLIC_KEY')
+STRIPE_SECRET_KEY = env('STRIPE_SECRET_KEY')
+STRIPE_WEBHOOK_SECRET = ""
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+}
+SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
+RECAPTCHA_SITE_KEY=env('RECAPTCHA_ACCESS_KEY')
+RECAPTCHA_SECRET_KEY=env('RECAPTCHA_SECRET_KEY')
+
 LINODE_BUCKET = "objects-in-yourbit"
 LINODE_BUCKET_REGION = "us-southeast-1"
-LINODE_BUCKET_ACCESS_KEY = "INCRW2V5B6ZZB6Y43B0W"
-LINODE_BUCKET_SECRET_KEY = "hWS5eBpG4qDioKLwpj2BaOcCvFi1mzSbC6PnC36h"
+LINODE_BUCKET_ACCESS_KEY = env('LINODE_BUCKET_ACCESS_KEY')
+LINODE_BUCKET_SECRET_KEY = env('LINODE_BUCKET_SECRET_KEY')
 
 AWS_S3_ENDPOINT_URL = f'https://{LINODE_BUCKET_REGION}.linodeobjects.com'
 AWS_ACCESS_KEY_ID = LINODE_BUCKET_ACCESS_KEY
@@ -198,24 +219,17 @@ AWS_S3_REGION_NAME = LINODE_BUCKET_REGION
 AWS_S3_USE_SSL = True
 AWS_STORAGE_BUCKET_NAME = LINODE_BUCKET
 
-#SMTP Configuration
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = "achaney@yourbit.me"
-EMAIL_HOST_PASSWORD = "lwqohkrgwvrjrmaw"
+STATIC_URL = '/static/'
 
-#Yourbit Payments with Stripe
+#STATIC_ROOT = BASE_DIR / 'static'
 
-STRIPE_PUBLIC_KEY = "pk_live_51KnSJ0CW2Yi3UPlDE3A7LBcyMgGQdbudj0XDpH9mLknM9nuZ7AoolNLokEcVFas6cKzQZFNF5CuvajM3sgiMznEI00dOsg7KTY"
-STRIPE_SECRET_KEY = "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"
-STRIPE_WEBHOOK_SECRET = ""
+MEDIA_URL = '/media/'
 
-REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
-}
-SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
-RECAPTCHA_SITE_KEY='6LeH1dYkAAAAAF3mUakcwhmAVS6tc7CnAqcsRlLQ'
-RECAPTCHA_SECRET_KEY='6LeH1dYkAAAAAJ0v0SojumA_Y9_eX7f3PFbhaxs4'
+#MEDIA_ROOT = BASE_DIR / 'media'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'

@@ -62,7 +62,7 @@ function home_url(data){
     //clear screen
     $("#content-container").html("");
     $("#page-header").remove();
-    $("#content-container").load(`${base_url}/feed/templates/feed/feed.html`);
+    $("#content-container").load(`${base_url}/templates/feed/feed.html`);
     let menu = document.getElementById("profile-menu");
     
     if (menu.style.visibility === "visible") {
