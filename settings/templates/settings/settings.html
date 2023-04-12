@@ -1,0 +1,125 @@
+
+    <link rel="stylesheet" type="text/css" href="static/css/yourbit_settings.css/"/>
+    <h2 style="color:white; text-align: center;">Yourbit Settings</h2>
+    <p style="color:white; text-align: center;">Manage account, content, and privacy settings here.</p>
+    <div id="settings-container">
+        
+        <div class="settingsBox" id="void-subscription">
+            <h3 class="setting-header">Subscription</h3>
+            <p class="setting-description">
+                Manage your paid subscriptions and payment methods on yourbit
+            </p>
+            <div class="edit-button-container" name="subscription"><a class="editSetting"> Edit </a></div>
+            
+        </div>
+
+        <div class="settingsBox" id="account-settings">
+            <div class="setting-header-container" id="account-settings-header-container">
+                <h3 class="setting-header" id="account-settings-header"> Account </h3>
+            </div>
+            <p id="account-settings-description" class="setting-description">
+                Change account settings, like username, email, and name.
+            </p>
+            <div class="edit-button-container" name="account"><a class="editSetting">Edit</a></div>  
+        </div>
+
+        <div class="settingsBox" id="profile-settings">
+            <div class="setting-header-container" id="profile-settings-header-container">
+                <h3 class="setting-header" id="profile-settings-header"> Profile information </h3>
+            </div>
+            <p id="account-settings-description" class="setting-description">
+                Change information about you on your profile.
+            </p>
+            <div class="edit-button-container" name="profile"><a class="editSetting">Edit</a></div>  
+        </div>
+        
+        <div class="settingsBox" id="personalization">
+            <h3 class="setting-header" id="personalize-header">Personalization</h3>
+                <p class="setting-description">
+                    Edit profile colors, profile, image, background image, fonts, bio, gender, and default spaces.
+                </p>
+            <div class="edit-button-container" name="personalize"><a class="editSetting"> Edit </a></div>
+        </div>
+
+        <div class="settingsBox" id="privacy">
+            <h3 class="setting-header">Privacy</h3>
+            <p class="setting-description">Manage your privacy and exposure settings here, like who you wish to see your posts, what information do friends and followers have access to, and how your data is used.</p>
+            <div class="edit-button-container" name="privacy"><a class="editSetting"> Edit </a></div>
+        </div>
+
+        <div class="settingsBox" id="moderation-bot">
+            <h3 class="setting-header">Feed/Reccomendation Control</h3>
+            <p class="setting-description">Modify feed algorithms to tailor yourbit feeds to your liking, create presets and use quick visibility settings to jump to various feed settings depending on your mood.</p>
+            <div class="edit-button-container" name="feed"><a class="editSetting"> Edit </a></div>
+        </div>
+
+        <div class="settingsBox" id="monetization">
+            <h3 class="setting-header">Monetization</h3>
+            <p class="setting-description">Manage settings for sending and recieving tips, promotional monetization coming soon.</p>
+            <div class="edit-button-container" name="money"><a class="editSetting"> Edit </a></div>
+        </div>
+
+    </div>
+    <div class="settingFormContainer" id="subscription-form-container">
+        <div id="subscription-form-box">
+            <form id="subscription-form">
+                
+            </form>
+        </div>
+    </div>
+    <div id="mobile-spacer">
+    </div>
+<script type="text/javascript">
+    var base_url = window.location.origin;
+        
+    $(document).ready(function() {
+        yb_showMiniBar(); 
+        yb_showMenuTask();  
+        $('#content-container').animate({'top':'0px'});
+        yb_hideSpaceBar();
+        
+    });
+    
+    $('#back-to-home').click(function() {
+        window.location.href = `${base_url}/bitstream/home/`
+    });
+
+    $('.edit-button-container').click(function() {
+        console.log("click")
+        
+        let action = $(this).attr("name");
+
+        console.log(action)
+        if (action === "personalize") {
+            console.log("if")
+            customize_url("");
+        }
+
+        if (action === "subscription") {
+            settings_subscription_url("");
+        }
+
+        if (action === "account"){
+            settings_account_url("");
+        }
+
+        if (action === "feed") {
+            settings_feed_url("");
+
+        }
+
+        if (action === "privacy") {
+            settings_privacy_url();
+
+        }
+
+        if (action === "profile"){
+            settings_profile_url();
+        }
+
+        if (action === "money") {
+            settings_money_url();
+        }
+    })
+
+</script>

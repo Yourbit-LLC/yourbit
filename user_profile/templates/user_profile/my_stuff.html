@@ -1,0 +1,62 @@
+
+<h1 style="text-align: center; color:gray;">My Stuff</h1>
+
+<div id='yb-browse-nav' style='display:grid; grid-template-columns: auto auto auto auto auto;' data-dataset="all" data-cluster = "none">
+    <button type="text" class='filter-button-wide-active' name="#profile-images" id="yb-filter-dropdown" style='color: white;' value="all">
+        Clusters
+    </button>
+    <button type="text" class='filter-button' name="#ui-colors" id="yb-sort-dropdown"  value="chrono">
+        Continuums
+    </button>
+    <button class='filter-button' name = '#bits'>
+        For Later
+    </button>
+    <button class='filter-button' name='#fonts'>
+        Comments
+    </button>
+
+</div>
+<div class="bit-container" id="bit-container">
+    <br>
+    <br>
+    <div style="position: relative; margin-left: auto; margin-right: auto; padding: 8px 8px 8px 8px; text-align: center; color: white; background-color:rgba(0, 0, 0, 0.8); border-radius:20px; width: 95vw;" id="no-content-container">
+        <h3>Oops! <br> Looks like you haven't created any clusters...</h3>
+        <p>Click the button below to create one, then add bits that you want to keep to the cluster.</p>
+        <br>
+        <button type="button" class="yb-form-button"><b>+ </b>Create a Cluster</button>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        yb_showMiniBar(); 
+        yb_showMenuTask();   
+        let dataset = $("#yb-browse-nav").attr("data-dataset"); 
+        let cluster = $("#yb-browse-nav").attr("data-cluster");
+        console.log("cluster:" + cluster);
+        let is_cluster;
+        let filter = yb_getSessionValues("filter");
+        let sort = yb_getSessionValues("sort");
+        let type = yb_getSessionValues("space");
+    
+
+        if (cluster === "none") {
+            is_cluster = false;
+        } else {
+            is_cluster = true;
+        }
+
+        let data = {
+            "type": type,
+            "dataset":dataset,
+            "is_cluster": is_cluster,
+            "filter": filter,
+            "sort": sort,
+
+        }
+
+        yb_getFeed(data, hideSplash, true);
+
+
+    });
+</script>

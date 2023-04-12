@@ -1,0 +1,526 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+
+<html>
+    {% load static %}
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/onboarding.css' %}"/>
+        <title>Welcome, {{ user.first_name }}</title>
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1">
+    </head>
+    <body>
+        <img id='background-preview' style='opacity:0;' class='bg-image' src=''>
+        <div id='onboard-welcome' style='position: absolute; z-index: 2; width: 95%; margin-top: 100px; margin-left: auto; margin-right: auto; text-align: center;'>
+            <p>
+                <h3>Welcome aboard, {{user.first_name}}!</h3>
+                You are almost to Yourbit. On our way, we're going to configure
+                your initial profile settings with your preferences. Yourbit has
+                a ton of options for managing appearance, your exposure, and what
+                you see, this step will introduce you to the most important concepts.
+                <br>
+                <br>
+                <button class="yb-pages-next" data-step = '0'>OK!</button>
+            </p>
+        </div>
+        <div id='profile-images' style="position:absolute; z-index: 2; text-align: center; display:none; left: 100vw;">
+            <h3 style="text-align: center;">Profile Images</h3>
+            <p style="text-align: center;">You can upload a profile image and a background image to personalize your space</p>
+            <div class='image-preview'>
+                <div class='profile-image-preview'>
+                    <img id='profile-image-preview-image' class='profile-image-preview-image' src="{{user_image.url}}">
+                </div>
+
+            </div>                
+            <form method="POST" class='upload-field' enctype="multipart/form-data" style="background-color: rgba(0, 0, 0, 0.5); position: relative; width: 90vw; left: 50%; transform: translate(-50%, 0);">
+                    {% csrf_token %}
+                    <p>Profile Picture</p>
+                    {{ profile_image_form.image }}
+            </form>
+            <form class='upload-field' method="POST" enctype="multipart/form-data" style="background-color: rgba(0, 0, 0, 0.5); position: relative; width: 90vw; left: 50%; transform: translate(-50%, 0);">
+                {% csrf_token %}
+                <p>Profile Background</p> 
+                {{ background_image_form.background_image }}
+                <br><br>                       
+                <label for="blur-radius">Blur</label>
+                <input type="range" id="blur-radius">
+                <br>
+                <label for="dim-intensity">Dim Intensity</label>
+                <input type="range" id="dim-intensity">
+                <br><br>
+                
+            </form>
+            <button class="yb-pages-back" data-step = '1'>Back</button>
+            <button style='margin-left: auto; margin-right: auto;' class="yb-pages-next" data-step = '1';>Next</button>
+        </div>
+        <div id="profile-setup" style="position:absolute; z-index: 2; display:none; text-align: center; width: 100vw; left: 100vw;">
+            <h2>Profile Info</h2>
+            <p>Let's get to know you a little more</p>
+            <br>
+            <label for='gender-field' name='gender'>Gender</label>
+            <br>
+            <input type='text'class='yb-form-single-line-field' id='gender-field'>
+            <br>
+            <br>
+            <label for='bio-field' >Bio</label>
+            <br>
+            <textarea  type="text" name='bio' class='yb-form-multi-line-field' id="bio-field" placeholder="Bio" style="color:white; font-size: 14px;"></textarea>
+            <br>
+            <br>
+            <button class="yb-pages-back" data-step = '2'>Back</button>
+            <button class="yb-pages-next" data-step = '2'>Next</button>
+            
+        </div>
+        <div id='profile-privacy' style='position:absolute; left: 100vw; display:none; z-index: 2; text-align: center;'>
+            <h2>Privacy</h2>
+            <p>
+                Yourbit has many ways of managing your privacy
+                precisely how you want to, here we'll get the basics
+                set up for you.
+            </p>
+            <br>
+            <label for='community-scope-check' >Who is this community for?</label>
+            <br>
+            <input type="text" id='community-scope-check' class='yb-form-single-line-field' autocomplete="off" placeholder='Select One...' list="name-visible-options">
+            <datalist id="name-visible-options">
+                <option value="Everyone">
+                <option value="Friends Only">
+                <option value="Invite Only">
+            </datalist>
+            <br>
+            <br>
+            <label for='message-check' >Who can message you?</label>
+            <br>
+            <input id='message-check' type="text" class='yb-form-single-line-field' autocomplete="off" placeholder='Select One...' list="message-options">
+            <datalist id="message-options">
+                <option value="Everyone">
+                <option value="Friends and Following">
+                <option value="Friends Only">
+                <option value="Messages Off">
+            </datalist>
+            <br>
+            <div style='width:90vw; margin-left:auto; margin-right:auto; position: relative; height: fit-content; text-align:left;'>
+                <br>
+                <br>
+                <input type='checkbox'class='yb-form-checkbox' id='visibility-check'>
+                <label for='visibility-check'>Hide real name in search?</label>
+                <br>
+                <br>
+                <input type='checkbox' class='yb-form-checkbox' id='toggle-followers' checked>
+                <label for='toggle-followers'>Enable Followers</label>
+            </div>
+            <br>
+            <br>
+            <button class="yb-pages-back" data-step = '3'>Back</button>
+            <button class="yb-pages-next" data-step = '3'>Next</button>
+        </div>
+        <div id='profile-personalization' style="position: absolute; z-index: 2; display:none; left: 100vw; text-align: center;">
+            <h2>Personalization</h3>
+            <p>Let's get started customizing color options, toggle colors on if you'd like to customize.</p>
+            <hr>
+            <h3 style='margin-top: 3px; margin-bottom: 3px;'>Preview</h3>
+            <div id='preview-area'>
+                <div id='accent-color-preview' class='profile-image-preview'>
+                    <img class='profile-image-preview-image' id='profile-image-preview-image2' src=''>
+                </div>
+                <div id='bit-colors-preview' class='bit-preview' style='background-color: #4b4b4b; display: none;'>
+                    <div id='bit-user-info'>
+                        <div id='bit-profile-image'>
+                            <img id = 'bit-profile-image-image_preview.setAttribute' src=''> 
+                        </div>
+                        <p id='preview-name'><strong>{{user.first_name}} {{user.last_name}}</strong></p>
+                        <p id='preview-username'>@{{user.username}}</p>
+                    </div>
+
+                    
+                    <h3 id='preview-title' style='width: 100%;'><hr>Test<hr></h3>
+                    
+                    <p id='preview-paragraph'>This a test sentence for preview purposes</p>
+                    <div id='preview-feedback-container'>
+                        <div class='preview-feedback-button' id='button1'></div>
+                        <div class='preview-feedback-button' id='button2'></div>
+                        <div class='preview-feedback-button' id='button3'></div>
+                        <div class='preview-feedback-button' id='button4'></div>
+                        <div class='preview-feedback-button' id='button5'></div>
+                    </div>
+                    
+                </div>
+                <div id='icon-color-preview' style='display:none;'>
+                    <div id='space-icon-grid'>
+                        <div class='space-icon-preview-active' id='space-icon-1'>
+                            <svg class="space-button-image"xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path id='icon-image-1' style="fill:{{icon_color}}" d="M5.35 17.9q-2.45 0-4.175-1.725-1.725-1.725-1.725-4.2 0-2.45 1.713-4.188Q2.875 6.05 5.35 6.05q1 0 1.937.325Q8.225 6.7 8.95 7.4l1.525 1.475L8.5 10.65 7.15 9.4q-.375-.35-.838-.525Q5.85 8.7 5.35 8.7q-1.35 0-2.3.962-.95.963-.95 2.338 0 1.35.95 2.3.95.95 2.3.95.5 0 .962-.175.463-.175.838-.525l7.9-7.15q.725-.7 1.663-1.025.937-.325 1.937-.325 2.45 0 4.175 1.725Q24.55 9.5 24.55 11.95q0 2.475-1.713 4.212Q21.125 17.9 18.65 17.9q-1 0-1.937-.325-.938-.325-1.663-1.025l-1.525-1.425 2-1.8 1.325 1.225q.375.35.838.525.462.175.962.175 1.35 0 2.3-.963.95-.962.95-2.337 0-1.35-.95-2.3-.95-.95-2.3-.95-.5 0-.962.175-.463.175-.838.525l-7.9 7.15q-.725.7-1.663 1.025-.937.325-1.937.325Z"/></svg>
+                        </div>
+                        <div class='space-icon-preview' id='space-icon-2'>
+                            <svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path id='icon-image-2' style="fill:{{icon_color}}" d="M3 18v-2h12v2Zm0-5v-2h18v2Zm0-5V6h18v2Z"/></svg>
+                        </div>
+                        <div class='space-icon-preview' id='space-icon-3'>
+                            <svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path id='icon-image-3' style="fill:{{icon_color}}" d="m9.15 17.15 8-5.15-8-5.15ZM12 22.8q-2.25 0-4.213-.85-1.962-.85-3.424-2.312Q2.9 18.175 2.05 16.212 1.2 14.25 1.2 12t.85-4.225Q2.9 5.8 4.363 4.338q1.462-1.463 3.424-2.301Q9.75 1.2 12 1.2t4.225.837q1.975.838 3.438 2.301 1.462 1.462 2.299 3.437Q22.8 9.75 22.8 12q0 2.25-.838 4.212-.837 1.963-2.299 3.426Q18.2 21.1 16.225 21.95q-1.975.85-4.225.85Zm0-2.65q3.425 0 5.788-2.363Q20.15 15.425 20.15 12t-2.362-5.788Q15.425 3.85 12 3.85q-3.425 0-5.787 2.362Q3.85 8.575 3.85 12q0 3.425 2.363 5.787Q8.575 20.15 12 20.15ZM12 12Z"/></svg>
+                        </div>
+                        <div class='space-icon-preview' id='space-icon-4'>
+                            <svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path id='icon-image-4' style="fill:{{icon_color}}" d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-4.86 8.86l-3 3.87L9 13.14 6 17h12l-3.86-5.14z"/></svg>
+                        </div>
+                    </div>
+                    <div id='profile-icon-grid'>
+                        <div class='profile-icon-preview' id='profile-icon-1'>
+                            <svg class="profile-interact-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path id='icon-image-5' style="fill:{{profile.bit_background}};" d="M5 19h1.4l8.625-8.625-1.4-1.4L5 17.6ZM19.3 8.925l-4.25-4.2 1.4-1.4q.575-.575 1.413-.575.837 0 1.412.575l1.4 1.4q.575.575.6 1.388.025.812-.55 1.387ZM17.85 10.4 7.25 21H3v-4.25l10.6-10.6Zm-3.525-.725-.7-.7 1.4 1.4Z"/></svg>
+                        </div>
+                        <div class='profile-icon-preview' id='profile-icon-2'>
+                            <svg name = "request_friend" data-catid="{{profile.id}}" class='profile-interact-icon' xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path id='icon-image-6' style="fill:black" d="M18 14v-3h-3V9h3V6h2v3h3v2h-3v3Zm-9-2q-1.65 0-2.825-1.175Q5 9.65 5 8q0-1.65 1.175-2.825Q7.35 4 9 4q1.65 0 2.825 1.175Q13 6.35 13 8q0 1.65-1.175 2.825Q10.65 12 9 12Zm-8 8v-2.8q0-.85.438-1.563.437-.712 1.162-1.087 1.55-.775 3.15-1.163Q7.35 13 9 13t3.25.387q1.6.388 3.15 1.163.725.375 1.162 1.087Q17 16.35 17 17.2V20Zm2-2h12v-.8q0-.275-.137-.5-.138-.225-.363-.35-1.35-.675-2.725-1.013Q10.4 15 9 15t-2.775.337Q4.85 15.675 3.5 16.35q-.225.125-.362.35-.138.225-.138.5Zm6-8q.825 0 1.413-.588Q11 8.825 11 8t-.587-1.412Q9.825 6 9 6q-.825 0-1.412.588Q7 7.175 7 8t.588 1.412Q8.175 10 9 10Zm0-2Zm0 7Z"/></svg>
+                        </div>
+                        <div class='profile-icon-preview' id='profile-icon-3'>
+                            <svg class="profile-interact-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path id='icon-image-7' style="fill:{{profile.bit_background}};" d="M1 20v-4q0-.85.588-1.425Q2.175 14 3 14h3.275q.5 0 .95.25.45.25.725.675.725.975 1.788 1.525Q10.8 17 12 17q1.225 0 2.288-.55 1.062-.55 1.762-1.525.325-.425.762-.675.438-.25.913-.25H21q.85 0 1.425.575Q23 15.15 23 16v4h-7v-2.275q-.875.625-1.887.95Q13.1 19 12 19q-1.075 0-2.1-.337-1.025-.338-1.9-.963V20Zm11-4q-.95 0-1.8-.438-.85-.437-1.425-1.212-.425-.625-1.062-.987Q7.075 13 6.325 13q.55-.925 2.325-1.463Q10.425 11 12 11q1.575 0 3.35.537 1.775.538 2.325 1.463-.725 0-1.375.363-.65.362-1.075.987-.55.8-1.4 1.225Q12.975 16 12 16Zm-8-3q-1.25 0-2.125-.875T1 10q0-1.275.875-2.138Q2.75 7 4 7q1.275 0 2.138.862Q7 8.725 7 10q0 1.25-.862 2.125Q5.275 13 4 13Zm16 0q-1.25 0-2.125-.875T17 10q0-1.275.875-2.138Q18.75 7 20 7q1.275 0 2.138.862Q23 8.725 23 10q0 1.25-.862 2.125Q21.275 13 20 13Zm-8-3q-1.25 0-2.125-.875T9 7q0-1.275.875-2.138Q10.75 4 12 4q1.275 0 2.137.862Q15 5.725 15 7q0 1.25-.863 2.125Q13.275 10 12 10Z"/></svg>
+                        </div>
+                        <div class='profile-icon-preview' id='profile-icon-4'>
+                            <svg class="profile-interact-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path id='icon-image-8' style="fill:{{profile.bit_background}};" d="M4 20q-.825 0-1.412-.587Q2 18.825 2 18V6q0-.825.588-1.412Q3.175 4 4 4h16q.825 0 1.413.588Q22 5.175 22 6v12q0 .825-.587 1.413Q20.825 20 20 20Zm8-7L4 8v10h16V8Zm0-2 8-5H4ZM4 8V6v12Z"/></svg>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <br>
+            <div style="width: 100vw; position: relative; text-align: left;">
+                <input type='checkbox' class='yb-form-checkbox' style='margin-left: 5vw;' id='toggle-colors'>
+                <label for='toggle-colors'>Use Custom Colors</label>
+            </div>
+            <br>
+            <div id='color-customizations' style='position: relative; display: none; height: 0vh; text-align: left;'>
+                                <input class="color-selector" id="accent-color-select" type="color" name='accent_color' value="{{accent_color}}">
+                <label class="color-select-label" for="accent-color-select">Accent Color</label>
+                <br>
+                <br>
+                <input class="color-selector" id="primary-color-select" type="color" name='primary_color' value="{{bit_background}}">
+                <label class="color-select-label" for="primary-color-select">Primary Color</label>
+                <br>
+                <br>
+                <input class="color-selector" id="feedback-icon-color-select" type="color" name='feedback_icon_color' value="{{feedback_icon_color}}">
+                <label class="color-select-label" for="feedback-icon-color-select">Feedback Icon Selected Color</label>
+                <br>
+                <br>
+                <input class="color-selector" id="tfont-color-select" type="color" name='title_color' value="{{title_color}}">
+                <label class="color-select-label" for="tfont-color-select">Title Color</label>
+                <br>
+                <br>
+                <input class="color-selector" id="pfont-color-select" type="color" name='text_color' value="{{text_color}}">
+                <label class="color-select-label" for="pfont-color-select" >Paragraph Font Color</label>
+                <br>
+                <br>
+                <input class="color-selector" id="icon-color-select" type="color" name='icon_color' value="{{icon_color}}">
+                <label class="color-select-label" for="icon-color-select">Icon Color</label>
+            </div>
+            <button class="yb-pages-back" data-step = '4'>Back</button>
+            <button class="yb-pages-next" data-step = '4'>Finish</button>
+        </div>
+        
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>
+        //List of pages to iterate through with each yb-pages-next button press
+        var page_list = ['#onboard-welcome', '#profile-images', '#profile-setup', '#profile-privacy', '#profile-personalization'];
+        
+        //No function is first in list because there is no request submitted on the first page of onboarding
+        var function_list = ['no-function','updateImages','updateInfo', 'updatePrivacy', 'updateCustom']
+        
+        var profile_image_loaded;
+
+        var preview_stage = 0;
+
+        var base_url = window.location.origin;
+
+        $('.yb-pages-next').click(function() {
+            let step = $(this).attr('data-step');
+            let current_page = page_list[parseInt(step)];
+            if (step != 0) {
+                packageRequest(function_list[parseInt(step)])
+            }
+            if (step < 4) {
+                console.log(current_page)
+                let next_page_interval = parseInt(step) + 1;
+                let next_page = page_list[next_page_interval];
+                let motion = 1;
+                nextPage(motion, current_page, next_page);
+            }
+        });
+
+        $('.yb-pages-back').click(function() {
+            let step = $(this).attr('data-step');
+            let current_page = page_list[parseInt(step)];
+            let previous_page_interval = parseInt(step) - 1;
+            let previous_page = page_list[previous_page_interval];
+            let motion = 0;
+            nextPage(motion, current_page, previous_page);
+        });
+
+        $('#toggle-colors').change(function() {
+            $('#color-customizations').show();
+            $('#color-customizations').animate({'height': '35vh'}, 'slow');
+        });
+        
+        function nextPage(motion, current_page, next_page) {
+            
+            $(next_page).show();
+            if (motion === 0) {
+                $(current_page).animate({'left': '100vw'});
+                $(next_page).animate({'left':'0vw'});
+
+            }
+            if (motion === 1) {
+                $(current_page).animate({'left':'-100vw'});
+                $(next_page).animate({'left': '0vw'});
+            }
+            $(current_page).hide();
+        }
+
+        const primary_color_field = document.getElementById('primary-color-select')
+        primary_color_field.addEventListener("change", function() {
+            let bit_background = document.getElementById('bit-colors-preview');
+            bit_background.style.backgroundColor = this.value;
+        });
+
+        const accent_color_field = document.getElementById('accent-color-select')
+        accent_color_field.addEventListener("change", function() {
+            let border1 = document.getElementById('accent-color-preview');
+            let border2 = document.getElementById('bit-profile-image');
+            border1.style.borderColor = this.value;
+            border2.style.borderColor = this.value;
+        });
+
+        const feedback_icon_field = document.getElementById('feedback-icon-color-select');
+        feedback_icon_field.addEventListener('change', function() {
+            let feedback_preview1 = document.getElementById('button1').style.backgroundColor = this.value;
+            let feedback_preview2 = document.getElementById('button2').style.backgroundColor = this.value;
+            let feedback_preview3 = document.getElementById('button3').style.backgroundColor = this.value;
+            let feedback_preview4 = document.getElementById('button4').style.backgroundColor = this.value;
+            let feedback_preview5 = document.getElementById('button5').style.backgroundColor = this.value;
+            
+        });
+
+        
+        const icon_field = document.getElementById('icon-color-select');
+        icon_field.addEventListener('change', function() {
+            let space_icon1 = document.getElementById('icon-image-1').style.fill = this.value;
+            let space_icon2 = document.getElementById('icon-image-2').style.fill = this.value;
+            let space_icon3 = document.getElementById('icon-image-3').style.fill = this.value;
+            let space_icon4 = document.getElementById('icon-image-4').style.fill = this.value;
+            let space_icon5 = document.getElementById('icon-image-5').style.fill = this.value;
+            let space_icon6 = document.getElementById('icon-image-6').style.fill = this.value;
+            let space_icon7 = document.getElementById('icon-image-7').style.fill = this.value;
+            let space_icon8 = document.getElementById('icon-image-8').style.fill = this.value;
+            
+        });
+
+        const text_color_field = document.getElementById('pfont-color-select');
+        text_color_field.addEventListener('change', function() {
+            let text_color_preview = document.getElementById('preview-paragraph');
+            text_color_preview.style.color = this.value;
+        });
+
+        const title_color_field = document.getElementById('tfont-color-select');
+        title_color_field.addEventListener('change', function() {
+            let title_color_preview = document.getElementById('preview-title');
+            title_color_preview.style.color = this.value;
+        });
+
+        accent_color_field.addEventListener('click', function() {
+            if (preview_stage === 1) {
+                $('#bit-colors-preview').fadeOut();
+                $('#accent-color-preview').fadeIn();
+            }
+            if (preview_stage === 2) {
+                $('#icon-color-preview').fadeOut();
+                $('#accent-color-preview').fadeIn();
+            }
+
+            preview_stage = 0
+        });
+
+        icon_field.addEventListener('click', function() {
+            if (preview_stage === 0) {
+                $('#accent-color-preview').fadeOut();
+                $('#icon-color-preview').fadeIn();
+            }
+            if (preview_stage === 1) {
+                $('#bit-colors-preview').fadeOut();
+                $('#icon-color-preview').fadeIn();
+            }
+            preview_stage = 2
+        });
+
+        title_color_field.addEventListener('click', function() {
+            if (preview_stage === 0) {
+                $('#accent-color-preview').fadeOut();
+                $('#bit-colors-preview').fadeIn();
+            }
+            if (preview_stage === 2) {
+                $('#icon-color-preview').fadeOut();
+                $('#bit-colors-preview').fadeIn();
+            }
+            preview_stage = 1
+        });
+
+        text_color_field.addEventListener('click', function() {
+            if (preview_stage === 0) {
+                $('#accent-color-preview').fadeOut();
+                $('#bit-colors-preview').fadeIn();
+            }
+            if (preview_stage === 2) {
+                $('#icon-color-preview').fadeOut();
+                $('#bit-colors-preview').fadeIn();
+            }
+            preview_stage = 1
+        });
+
+        feedback_icon_field.addEventListener('click', function() {
+            if (preview_stage === 0) {
+                $('#accent-color-preview').fadeOut();
+                $('#bit-colors-preview').fadeIn();
+            }
+            if (preview_stage === 2) {
+                $('#icon-color-preview').fadeOut();
+                $('#bit-colors-preview').fadeIn();
+            }
+            preview_stage = 1
+        });
+        primary_color_field.addEventListener('click', function() {
+            if (preview_stage === 0) {
+                $('#accent-color-preview').fadeOut();
+                $('#bit-colors-preview').fadeIn();
+            }
+            if (preview_stage === 2) {
+                $('#icon-color-preview').fadeOut();
+                $('#bit-colors-preview').fadeIn();
+            }
+            preview_stage = 1
+        });
+
+
+
+
+        
+        function packageRequest(form_request) {
+            let request = new FormData();
+            let page;
+            if (form_request === 'updateImages') {
+                page = 0;
+                let profile_image = $('#profile-image-field')[0].files[0];
+                let background_image = $('#bkd-image-field')[0].files[0];
+                request.append('page', page);
+                request.append('profile_image', profile_image);
+                request.append('background_image', background_image);
+            }
+            if (form_request == 'updateInfo') {
+                let gender = $('#gender-field').val();
+                let bio = $('bio-field').val();
+                
+                page=1;
+                request.append('page', page);
+                request.append('gender', gender);
+                request.append('bio', bio);
+
+            } 
+            if (form_request == 'updatePrivacy') {
+                let name_visibility = $('#name-check').val();
+                let message_availability = $('#message-check').val();
+                let publicity = $('#public-check').val();
+                let search_visibility = $('#visibility-check').val();
+                let followers_enabled = $('#toggle-followers').val();
+
+                page=2;
+                request.append('page', page);
+                request.append('name_visibility', name_visibility);
+                request.append('message_availability', message_availability);
+                request.append('publicity', publicity);
+                request.append('search_visibility', search_visibility)
+                request.append('followers_enabled', followers_enabled)
+            }
+            if (form_request == 'updateCustom') {
+                let user_colors_on = $('#toggle-colors').val();
+                let primary_color = $('#primary-color-select').val();
+                let accent_color = $('#accent-color-select').val();
+                let icon_color = $('#icon-color-select').val();
+                let feedback_icon_color = $('#feedback-icon-color-select').val();
+                let title_color = $('#title-color-icon-select').val();
+                let text_color = $('#pfont_color-select').val();
+                page = 3;
+                request.append('page', page)
+                request.append('primary_color', primary_color);
+                request.append('accent_color', accent_color);
+                request.append('icon_color', icon_color);
+                request.append('feedback_icon_color', feedback_icon_color);
+                request.append('title_color', title_color);
+                request.append('text_color', text_color);
+
+                
+            }
+            console.log(page)
+            sendRequest(request, page)
+            
+        }
+
+        function sendRequest(request, page) {
+            console.log(page)
+            let cookie = document.cookie;
+            let csrfToken = cookie.substring(cookie.indexOf('=') + 1);
+            $.ajax(
+                {
+                    type: 'POST',
+                    contentType: false,
+                    // The following is necessary so jQuery won't try to convert the object into a string
+                    processData: false,
+                    headers: {
+                        'X-CSRFToken': csrfToken
+                    },
+                    url: '/social/onboarding/',
+                    data: request,
+        
+                    success: function(response) {
+                        console.log('Successfully Updated Information')
+                        if (page === 3) {
+                            window.location.href = `${base_url}/social/home`;
+                        }
+                    }
+
+                }
+            )
+
+        }
+
+
+        
+        let profile_img_field = document.getElementById('profile-image-field');
+        let profile_bkd_field = document.getElementById('bkd-image-field');
+        profile_bkd_field.addEventListener("change", function() {
+            let image_preview = document.getElementById('background-preview');
+            const image_loaded = this.files[0];
+            if (image_loaded) {
+                const reader = new FileReader();
+
+                reader.addEventListener('load', function() {
+                    image_preview.setAttribute('src', this.result);
+                    $('#background-preview').animate({'opacity':'1'}, 'fast');
+                });
+
+                reader.readAsDataURL(image_loaded);
+
+            }
+        });
+        profile_img_field.addEventListener("change", function() {
+            let user_image_preview = document.getElementById('profile-image-preview-image');
+            let user_image_preview2 = document.getElementById('profile-image-preview-image2');
+            const image_loaded = this.files[0];
+            if (image_loaded) {
+                const reader = new FileReader();
+
+                reader.addEventListener('load', function() {
+                    user_image_preview.setAttribute('src', this.result);
+                    user_image_preview2.setAttribute('src', this.result);
+                });
+
+                reader.readAsDataURL(image_loaded);
+
+            }
+        });
+    </script>
+</html>
+{% endblock %}

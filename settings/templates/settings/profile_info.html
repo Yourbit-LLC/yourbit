@@ -1,0 +1,215 @@
+
+<link rel="stylesheet" href="/static/css/yourbit_settings.css/">
+<div class="title-container">
+    <h2 style="text-align: center;">Profile Info</h2>
+    <p style="font-size: small; text-align: center;">
+        Manage the information about you on your profile. All information is 
+        set to private by default. If you'd like to make this information available
+        to friends or followers, you can do so in Privacy Settings
+    </p>
+</div>
+<div class="settings-container" style="color:white; text-align: center;">
+    <!--Connecting groups will create a link to the group on the profile page-->
+    <!--General-->
+        <!--Profile Bio-->
+            <!--TextArea-->
+        <!--Gender-->
+            <!--Dropdown-->
+        <!--Change Profile Image-->
+
+    <!--Contact Info-->
+    <br>
+        <div class="setting-sub-container">
+            <h3 style="position: relative; margin-left: auto; margin-right: auto; line-height:2; background-color:black; width: 200px; height: 35px; border-radius: 10px;">Contact Info</h3>
+            <!--Phone Number-->
+                <p class="yb-select-label">Phone Number</p>
+                <!--TextInput-->
+                <input type='text' id='phone-number' style="background-color: rgba(255,255,255,0.5); color: white;" class='yb-single-line-input'>
+            <!--Address-->
+                <p class="yb-select-label">Address</p>
+                <input type='text' id='street-address' class='yb-single-line-input' style="background-color: rgba(255,255,255,0.5); color: white;">
+            <!--Hometown-->
+                <!--Town-->
+                <p class="yb-select-label">Hometown</p>
+                <input type='text' id='town' class='yb-single-line-input' style="background-color: rgba(255,255,255,0.5); color: white;">
+                <!--Connect Group-->
+            <!--Email Address-->
+                <p class="yb-select-label">Display Email <small><i>*If not the same as account email</i></small></p>
+                <input type='text' id='email-address' class='yb-single-line-input' style="background-color: rgba(255,255,255,0.5); color: white;">
+        </div>
+    <!--Occupation-->
+        <!--Workplace-->
+
+        <div class="setting-sub-container">
+            <h3 style="position: relative; margin-left: auto; margin-right: auto; line-height:2; background-color:black; width: 200px; height: 35px; border-radius: 10px;">Work Info</h3>
+            <br>
+            <br>
+            <!--Name-->
+            <p class="yb-select-label">Employer Name</p>
+            <input type='text' id='workplace-name' placeholder="Product Sales, Inc." class='yb-single-line-input' style="background-color: rgba(255,255,255,0.5); color: white;">
+            <br>
+            <br>
+            <!--Industry-->
+            <p class="yb-select-label">Industry</p>
+            <input type='text' id='industry-name' placeholder="Retail" class='yb-single-line-input' style="background-color: rgba(255,255,255,0.5); color: white;">
+            <br>
+            <br>
+            <!--Role-->
+            <p class="yb-select-label">Role</p>
+            <input type='text' id='workplace-role' placeholder="Shift Manager" class='yb-single-line-input' style="background-color: rgba(255,255,255,0.5); color: white;">
+            <br>
+            <br>
+            <!--Year Started-->
+            <p class="yb-select-label">Start Date</p>
+            <input type="date" class="yb-single-line-input" id="input-job-start-date" style="background-color: rgba(255,255,255,0.5); color: white;">
+            
+            <!--Connect Group-->
+            <br>
+            <br>
+            Check if your employer has an existing group. Link to the group to join in
+            on discussions with your colleagues.
+            <br>
+            <br>
+            <button type="button" class="yb-form-button"><b><strong>+</strong></b> Connect Group</button>
+            <br> 
+            <br>
+            <br>
+            <br>
+
+        </div>            
+        <div class = "setting-sub-container">
+            <h3>Education Info</h3>
+                <br>
+                <br>
+            <!--High School-->
+                <!--Name-->
+                <p class="yb-select-label">High School Name</p>
+                <input type='text' id='hs-name' style="background-color: rgba(255,255,255,0.5); color: white;" placeholder="Ex. 'Weeby High'" class='yb-single-line-input'>
+                <br>
+                <br>
+                <!--Attending Status-->
+                    Did your graduate?
+                    <select type="text" class='yb-single-line-input' name="yb-align-text" id="yb-align-text" style="background-color: rgba(255,255,255,0.5); color: white;" placeholder="Paragraph Align">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                        <option value="ny">Not Yet</option>
+                    </select>
+                    <br>
+                    <br>
+                    <!--Year Graduated-->
+                    What Year?
+                    <input type="text" class="yb-single-line-input" placeholder="Ex. '2023'" style="background-color: rgba(255,255,255,0.5); color: white;" name="year_graduated">
+                    <br>
+                    <br>
+                <!--Connect Group-->
+                <p>Check if your school has an existing group. Link to the group to join in
+                    on discussions with your peers.
+                </p>
+                <button type="button" class="yb-form-button"><b><strong>+</strong></b> Connect Group</button>
+                <br>
+                <br>
+            <!--College-->
+                <!--Name-->
+                <p class="yb-select-label">College Name</p>
+                <input type='text' id='college-name' placeholder="Ex. 'Weeby University'" style="background-color: rgba(255,255,255,0.5); color: white;" class='yb-single-line-input'>
+                <br>
+                <br>
+                <!--Field of Study-->
+                <p class="yb-select-label">Field of Study</p>
+                <input type='text' id='field-of-study' placeholder="Ex. 'Computer Science'" style="background-color: rgba(255,255,255,0.5); color: white;" class='yb-single-line-input'>
+                <br>
+                <br>
+                <!--Attending Status-->
+                    Did your graduate?
+
+                    <select type="text" class='yb-single-line-input' name="yb-align-text" id="yb-align-text" style="background-color: rgba(255,255,255,0.5); color: white;" placeholder="Paragraph Align">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                        <option value="ny">Not Yet</option>
+                    </select>
+                    <br>
+                    <br>
+                    <!--Year Graduated-->
+                    What Year?
+                    <input type="text" class="yb-single-line-input" placeholder="Ex. '2023'" name="year_graduated">
+                <!--Connect Group-->
+                <p>Check if your school has an existing group. Link to the group to join in
+                    on discussions with your peers.</p>
+                <button type="button" class="yb-form-button"><b><strong>+</strong></b> Connect Group</button>
+                <br>
+                <br>
+                <br>
+        </div>
+        <div class="setting-sub-container">
+        <!--Hobbies-->
+        <h3 style="position: relative; margin-left: auto; margin-right: auto; line-height:2; background-color:black; width: 200px; height: 35px; border-radius: 10px;">Interest/Hobbies</h3>
+            <br>
+            <!--Name-->  
+            <b>Hobby Name</b>
+            <input type='text' id='hobby-name' placeholder="Ex. 'Video Games'" style="background-color: rgba(255,255,255,0.5); color: white;" class='yb-single-line-input'>
+            <!--Connect Group-->
+            <p>Check if your hobby has an existing group. Link to the group to join in
+                on discussions with your peers.</p>
+            <button type="button" class="yb-form-button"><b><strong>+</strong></b> Connect Group</button>
+            <br>
+            <br>
+    <!--Faith-->
+        <!--Religion-->
+            
+            <!--Name-->
+            <p class="yb-select-label">Religion Name</p>
+            <input type='text' id='religion-name' style="background-color: rgba(255,255,255,0.5); color: white;" placeholder="Ex. 'Christianity'" class='yb-single-line-input'>
+            <!--Connect Group-->
+            <p>Check if your religion has an existing group. Link to the group to join in
+                on discussions with your peers.</p>
+            <button type="button" class="yb-form-button"><b><strong>+</strong></b> Connect Group</button>
+            <br>
+            <br>
+        <!--Place of Worship-->
+            <!--Name-->
+            <p class="yb-select-label">Place of Worship Name</p>
+            <input type='text' id='place-of-worship-name' style="background-color: rgba(255,255,255,0.5); color: white;" placeholder="Ex. 'Church of the Holy Spirit'" class='yb-single-line-input'>
+            <!--Connect Group-->
+            <p>Check if your place of worship has an existing group. Link to the group to join in
+                on discussions with your peers.</p>
+            <button type="button" class="yb-form-button"><b><strong>+</strong></b> Connect Group</button>
+
+    <!--Family-->
+        <!--Family Tree-->
+            <!--Add static members-->
+            <!--Connect accounts-->
+
+    <!--Default Space-->
+
+    <!--Default Photos Layout-->
+
+    <!--Pinned Bits-->
+        <!--Standard-->
+        <!--Smart Pinned-->
+
+    </div>
+</div>
+<script class="page-script">
+
+    $(document).ready(function(){
+        yb_showBackTask();
+        //Get the user ID from session values
+        let this_id = yb_getSessionValues("username");
+        //Get user data
+        $.ajax({
+            url: `/api/profiles/${username}/`,
+            type: "GET",
+            dataType: "json",
+            success: function(data){
+                console.log(data);
+                
+                
+            },
+            error: function(data){
+                console.log(data);
+            }
+        });
+    });
+</script>
+<div id="mobile-spacer">
+</div>

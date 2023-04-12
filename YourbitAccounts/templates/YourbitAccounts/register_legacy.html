@@ -1,0 +1,313 @@
+
+            <div id="logo-container"><img src="{% static 'images/logo-flat.png' %}" width="30%" id="logo"></div>
+            <h3 id="form-title">Create an Account</h3>
+            <!--Box around form-->
+            {% csrf_token %}
+            <div id="register-container"  class="register-container">
+
+                <div id='yb-dob-field-container' style="position: absolute; left: 100vw; width: 95vw;">
+                    <p id='dob-label'>
+                        Before we do anything drastic, like launch you into Yourbit, we need to verify that you are old enough.
+                        <b>You must be 13 or older</b><br><br> Enter your birthdate below:
+                    </p>
+                    
+                    {{registration_form.dob}}
+                    <div id="yb-validation-response0"></div>
+                    <br>
+                    <br>
+                    <!--Submit-->
+                    <button class='yb-form-next' type="button" data-stage='id_dob'>Next</button>
+                </div>
+                <div id='yb-email-field-container' style="position: absolute; left: 100vw; display: none; width: 95vw;">
+                    <p id='email-label'>Now for the email address</p>
+                    {{registration_form.email}}
+                    <div id="yb-validation-response1"></div>
+                    <button class='yb-form-next' type="button" data-stage='id_email'>Next</button>
+
+
+                </div>
+                <div id="yb-phone-field-container" style="position:absolute; left: 100vw; display:none; width: 95vw;">
+                    <p id='phone-number-label'>Now for the phone number</p>
+                    {{registration_form.phone_number}}
+                    <div id="yb-validation-response7"></div>
+                    <button class='yb-form-next' type="button" data-stage='id_phone_number'>Next</button>
+                </div>
+                <div id='yb-fname-field-container' style="position: absolute; left: 100vw; top: 15vh; display: none; width: 95vw;">
+                    <p id='first_name-label'>What's your first name?</p>
+                    <br>
+                    {{registration_form.first_name}}
+                    <div id="yb-validation-response2"></div>
+                    <br>
+                    <br>
+                    <!--submit-->
+                    <button class='yb-form-next' type="button" data-stage='id_first_name'>Next</button>
+                </div>
+                <div id='yb-lname-field-container' style="position: absolute; left: 100vw; top: 15vh; display: none; width: 95vw;">
+                    <p id='last_name-label'></p>
+                    {{registration_form.last_name}}
+                    <div id="yb-validation-response3"></div>
+                    <button class='yb-form-next' type="button" data-stage='id_password2'>Next</button>
+                </div>
+                <div id='yb-username-field-container' style="position: absolute; left: 100vw; top: 15vh; display: none; width: 95vw;">
+                    <p id='username-label'>Now for the username</p>
+                    {{registration_form.username}}
+                    <div id="yb-validation-response4"></div>
+                    <p id='username-explanation'>
+                        Usernames have a lot of functions! They can be used in place
+                        of your name on your public posts or your profile. They can also act
+                        as an alternate ID to refer to yourself as and find you on Yourbit. If
+                        you have a public profile, it may be possible that you'd use a username
+                        versus your actual name.
+                    </p>
+                    <!--submit-->
+                    <button class='yb-form-next' type="button" data-stage='id_username'>Next</button>
+                </div>
+                <div id='yb-password-field-container' style="position: absolute; left: 100vw; top: 15vh; display: none; width: 95vw;">
+                    <p id='password1-label'>Now for the most important part, this'll grant you access to the station -- The Password:</p>
+                    <small style="text-align:left;"><small>
+                        <b>Password Requirements:</b>
+                        <br>
+                        <ul>
+                            <li>The password must contain at least 8 characters.</li>
+                            <li>The password must not be entirely numeric.</li>
+                            <li>The password must not be a common password.</li>
+                            <li>The password must contain at least one uppercase letter, one lowercase letter, and one digit.</li>
+                            <li>The password must not contain more than 3 consecutive identical characters.</li>
+                        </ul>
+                    </small></small>
+                    
+                    {{registration_form.password1}}
+                    <div id="yb-validation-response5"></div>
+                    <br>
+                    <br>
+                    <button class='yb-form-next' type="button" id='password1-next'data-stage='id_password1'>Next</button>
+                    <div id='yb-password2-field-container' style="display:none; width=100%;">
+                        <p id='password2-label'>Let's just make sure its right, would suck to get locked out on your first day in Yourbit.</p>
+                        {{registration_form.password2}}
+                        <div id="yb-validation-response6"></div>
+                        <br>
+                        <br>
+                        <button class='yb-form-next' type="button" data-stage='id_password2'>Next</button>
+                    </div>
+                </div>
+                <div id='yb-terms-container' style="position: absolute; left: 100vw; top: 15vh; display: none; width: 95vw;">
+                    <p id='terms-label'>
+                        Now, we need you to accept our legal jargon. Feel free to read it, we did work hard to establish
+                        a fair and clear, no bs user policy.
+                        
+                        Hit 'agree' at the bottom of this page if you agree to our conditions and you'll be ready to launch.
+                    </p>
+                    <div id='terms-doc'>
+                        <p id='terms-text'>
+
+                        </p>
+                    </div>
+                    <button id='yb-decline-button' class='yb-form-next'>Decline</p>
+                    <button type = 'button' id='yb-agree-button' class='yb-form-next'>Accept</p>
+                </div>
+                <div id="recaptcha-container" style="position: absolute; left: 100vw; top: 15vh; display: none; width: 95vw;">
+                    <p id='recaptcha-label'>Alright! Lets get started, click this box right here and we're gonna run some tests on you, just to make sure your human.</p>
+                    <div style="position: relative; width: 303px; box-shadow:1px 1px 15px black; height: 78px; margin-left: auto; margin-right: auto;">
+                        {{registration_form.captcha}}
+                    </div>
+                    <div id="yb-validation-response8"></div>
+                    <br>
+                    <br>
+                    <button class='yb-auth' type="button" data-stage='id_recaptcha'>Launch</button>
+                </div>
+                <br>
+            </div>
+            <br>
+
+<script>
+    var stage_number = 0;
+    var field_container_list = [
+        '#yb-dob-field-container', 
+        '#yb-email-field-container',
+        '#yb-phone-field-container',
+        '#yb-fname-field-container', 
+        '#yb-lname-field-container', 
+        '#yb-username-field-container', 
+        '#yb-password-field-container',
+        '#yb-password2-field-container',
+        '#yb-terms-container',
+        '#recaptcha-container',
+    ];
+    var field_list = [
+        '#id_dob',
+        '#id_email',
+        '#id_phone_number',
+        '#id_first_name',
+        '#id_last_name',
+        '#id_username',
+        '#id_password1',
+        '#id_password2',
+        '#id_terms',
+        '#id_recaptcha',
+
+    ];
+
+    $(document).ready(function() {
+        $('#yb-dob-field-container').show();
+        $('#yb-dob-field-container').animate({'left': '0vw'});
+    });
+    function yb_incrementStage() {
+        stage_number += 1;
+        console.log("ran increment stage")
+    }
+    $('.yb-form-next').click(function() {
+        let validation;
+        validateField()
+        
+
+
+
+    });
+
+
+    function hideLastField(showNext, last_field, next_field) {
+        $(last_field).animate({'left' : '-100vw'});
+        showNext(last_field, next_field);
+    }
+
+    function showNextField(last_field, next_field) {
+        $(last_field).hide();
+        $(next_field).show();
+        if (next_field === '#yb-lname-field-container') {
+            let first_name = $('#id_first_name').val();
+            $('#last_name-label').html(`Nice to meet you, ${first_name}! <br><br> What's your last name?`)
+        }
+        $(next_field).animate({'left': '0vw'});
+
+    }
+
+    function yb_validateField(stage_number, field, value){
+        //Ajax call to validate field
+        let base_url = window.location.origin;
+        let url = `${base_url}/accounts/api/validation/signup/`
+        let form_data = new FormData();
+        form_data.append('field', field);
+        form_data.append('value', value);
+        console.log("field: " + field)
+        let csrfToken = getCSRF();
+        console.log(csrfToken)
+        $("#yb-validation-response" + stage_number).empty();
+        $.ajax( {
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            headers: {
+                'X-CSRFToken': csrfToken
+            },
+            url: url,
+            data: form_data,
+            success: function(response) {
+                console.log(response)
+                let success;
+                if (response.success === true){
+                    console.log(stage_number)
+                    if (stage_number === 6){
+                        success = false;
+                        $('#password1-next').hide();
+                        $('#yb-password2-field-container').fadeIn('fast');
+                        yb_incrementStage();
+                    } else if (stage_number === 7){
+                        password1 = $('#id_password1').val();
+                        password2 = $('#id_password2').val();
+                        if (password1 === password2){
+                            $('#yb-password-field-container').hide();
+                            $('#yb-password2-field-container').hide();
+                            success = true;
+                            yb_incrementStage();
+                        } else {
+                            $('#yb-validation-response6').html(`<p style="color: red;">Passwords do not match!</p>`);
+                        } 
+                    } else {
+                        console.log("correct action")
+                        success = true;
+                        yb_incrementStage();
+                    }
+
+                }
+                if (success === true){
+                    let current_field_container = field_container_list[stage_number];
+                    let next_field_pos = stage_number + 1;
+                    let next_field = field_container_list[next_field_pos];
+                    console.log(next_field);
+                    console.log(stage_number)
+                    hideLastField(showNextField, current_field_container, next_field);
+
+                }
+                else {
+                    console.log(response.message)
+                    $(`#yb-validation-response${stage_number}`).html(`<p style="color: red;">${response.error}</p>`);
+                }
+            }
+        })
+        
+    }
+
+    //Create a function to validate each form field
+    function validateField() {
+
+        //Declare variables for field, value, and validation result
+        let field = field_list[stage_number];
+        console.log(field)
+        let value = $(field).val();
+        console.log(value)
+        let validation_result;
+        
+        //Identify field and validate accordingly
+        if (field === "#id_recaptcha") {
+            
+            //As long as field is not empty and more than 1 character
+            let current_field_container = field_container_list[stage_number];
+            
+            let next_field_pos = stage_number + 1;
+            yb_incrementStage();
+            let next_field = field_container_list[next_field_pos];
+            console.log(next_field);
+            console.log(stage_number)
+            hideLastField(showNextField, current_field_container, next_field);
+
+        }
+        
+        else if (field === "#id_dob") {
+            //Checks with server side to ensure user is above the age of 13 and the date entered is valid
+            yb_validateField(stage_number, "dob", value);
+        }
+        else if (field === "#id_email") {
+            //Checks with serverside to ensure email is not already in use and is valid
+            yb_validateField(stage_number, "email", value);
+        }
+
+        else if (field === "#id_phone_number") {
+            //Checks with serverside to ensure phone number is not already in use and is valid
+            yb_validateField(stage_number, "phone_number", value);
+        }
+        
+        else if (field === "#id_first_name") {
+            //As long as field is not empty and more than 1 character
+            yb_validateField(stage_number, "first_name", value);
+        }
+        else if (field === "#id_last_name") {
+            //As long as field is not empty and more than 1 character
+            yb_validateField(stage_number, "last_name", value);
+        }
+        else if (field === "#id_username") {
+            //Checks with serverside to ensure username is not already in use and is valid
+            yb_validateField(stage_number, "username", value);
+        }
+        else if (field === "#id_password1") {
+            //This will actually use server side to validate that all requirements are met
+            yb_validateField(stage_number, "password1", value);
+        }
+        else if (field === "#id_password2") {
+            //Just needs to ensure it matches password one
+            yb_validateField(stage_number, "password2", value);
+        }
+
+
+    }
+    
+</script>

@@ -1,0 +1,227 @@
+    <link rel="stylesheet" href="/static/css/yourbit_settings.css/">
+    
+    <div class="title-container" style="position: relative; font-family: Arial, Helvetica, sans-serif; padding: 5px 5px 5px 5px; width: 95vw; margin-left: auto; margin-right: auto; background-color: rgba(0, 0, 0, 0.8); border-radius: 20px;">
+        <!--Page Title Header-->
+        <h2 style="color:white; text-align:center;">Privacy Settings</h2>
+        <!--Page Introduction-->
+        <p style="color:white; text-align:center; font-size: small;">
+            Here you can manage access permissions to your profile,
+            default bit reach, who can message you, and what information
+            others can see about you. Yourbit is proud to offer the highest number
+            privacy options of any social media site in the world. If you need some help,
+            or see something missing, please don't hesitate to contact support.
+        </p>
+    </div>
+    <div class='settings-container' id="privacy-form" style="color:white; text-align:center; font-family: Arial, Helvetica, sans-serif;">
+        <!--All settings should include an explanation with a question
+             mark symbol used for activation located right of the label
+            
+             NOTE: All information privacy settings are set to Private
+             until set public by user. 
+        -->
+
+        <!--Profile Publicity: Private/Public (Default Private)-->
+            <!--Switch-->
+            <br>
+            
+            <div class="setting-sub-container">
+                <h3>Profile</h3>
+                <div class = "yb-switch-container-grid">
+                    <div>
+                        
+                        <p class="yb-switch-label">Allow followers</p>
+                        <label class="yb-switch-round" id="yb-exclude-shared" >
+                            <input type="checkbox" class="checkbox" name="enable_followers" id="yb-check-enable-follow">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>     
+                    <div>
+                        <p class="yb-switch-label">Show Reputation</p>
+                        <label class="yb-switch-round" id="yb-exclude-shared" >
+                            <input type="checkbox" class="checkbox" name="show_rep" id="yb-check-show-rep">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <div>
+                        <p class="yb-switch-label">Seach by real name</p>
+                        <label class="yb-switch-round" id="yb-real-search" style="grid-column: 2;">
+                            <input type="checkbox" class="checkbox" name="exclude_shared" id="yb-check-real-search">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <div>
+                    <!--Real name in search: Allow match and allow result display-->
+                    <!--Allow match (doesn't show name but matches on name search)-->
+                        <!--Switch-->
+                        <p class="yb-switch-label">Use Alias in Search Results</p>
+                        <label class="yb-switch-round" id="yb-real-search" style="grid-column: 2;">
+                            <input type="checkbox" class="checkbox" name="exclude_shared" id="yb-check-real-search">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    
+                </div>
+                <!--Real name visibility: Everyone/FriendsOnly/Hide-->
+                <!--dropdown-->
+                <br>
+                
+                <p class="yb-select-label">Show my real name to:</p>
+                <select type="text" class='yb-single-line-input' name="yb-real-name" id="yb-select-real-name" style='color: white; background-color: rgba(255,255,255,0.5);' placeholder="Paragraph Align">
+                    <option value="e">Everyone</option>
+                    <option value="fr">Friends Only</option>
+                    <option value="no">Nobody</option>
+                </select>
+
+                <!--Show Birthday: Everyone/FriendsOnly/Hide-->
+                <!--Dropdown-->
+                <br>
+                <br>
+                <p class="yb-select-label">Show Birthday:</p>
+                <select type="text" class='yb-single-line-input' name="yb-select-birthday" id="yb-select-birthday" style='color: white; background-color: rgba(255, 255, 255, 0.5);' placeholder="Paragraph Align">
+                    <option value="e">Everyone</option>
+                    <option value="fr">Friends Only</option>
+                    <option value="no">Nobody</option>
+                </select>
+
+                <!--Display Phone Number: Everyone/FriendsOnly/Hide-->
+                <!--Dropdown-->
+                <br>
+                <br>
+                <p class="yb-select-label">Display Phone Number</p>
+                <select type="text" class='yb-single-line-input' name="yb-phone-number-select" id="yb-phone-number-select" style='color: white; background-color: rgba(255, 255, 255, 0.5);' placeholder="Paragraph Align">
+                    <option value="e">Everyone</option>
+                    <option value="fr">Friends Only</option>
+                    <option value="no">Nobody</option>
+                </select>
+
+                <!--Display Email: Everyone/FriendsOnly/Hide-->
+                <!--Dropdown-->
+                <br>
+                <br>
+                <p class="yb-select-label">Display Email</p>
+                <select type="text" class='yb-single-line-input' name="yb-select-email" id="yb-select-email" style='color: white; background-color: rgba(255, 255, 255, 0.5);' placeholder="Paragraph Align">
+                    <option value="e">Everyone</option>
+                    <option value="fr">Friends Only</option>
+                    <option value="no">Nobody</option>
+                </select>
+                            <!--Show Friend Count: Everyone/FriendsOnly/Hide-->
+                <!--dropdown-->
+                <br>
+                <br>
+                <p class="yb-select-label">Show Friend Count</p>
+                <select type="text" class='yb-single-line-input' name="yb-select-friend-count" id="yb-select-friend-count" style='color: white; background-color:rgba(255, 255, 255, 0.5);' placeholder="Paragraph Align">
+                    <option value="e">Everyone</option>
+                    <option value="fr">Friends Only</option>
+                    <option value="no">Nobody</option>
+                </select>
+            <!--Show Follower Count: Everyone/FriendsOnly/Hide-->
+                <!--dropdown-->
+                <br>
+                <br>
+                <p class="yb-select-label">Show Follower Count</p>
+                <select type="text" class='yb-single-line-input' name="yb-select-follow-count" id="yb-select-follow-count" style='color: white; background-color:rgba(255, 255, 255, 0.5);' placeholder="Paragraph Align">
+                    <option value="e">Everyone</option>
+                    <option value="fr">Friends Only</option>
+                    <option value="no">Nobody</option>
+                </select>
+            
+
+                <!--Mailing Address Visibility: Everyone/FriendsOnly/Private-->
+                <!--Dropdown-->
+                <br>
+                <br>
+                <div>
+                    <b>Mailing Address</b>
+                    <p><i>
+                        Austin Chaney
+                        <br>
+                        354 Darbyhurst rd.
+                        <br>
+                        Columbus, OH
+                        <br>
+                        43228
+                    </i>
+                    </p>
+                    <button type='button' class="wide-button">Edit</button>
+                    <p class="yb-select-label">Display Mailing Address</p>
+                    <select type="text" class='yb-single-line-input' name="yb-align-text" id="yb-align-text" style='color: white; background-color: rgba(255,255,255,0.5);' placeholder="Paragraph Align">
+                        <option value="e">Everyone</option>
+                        <option value="fr">Friends Only</option>
+                        <option value="no">Nobody</option>
+                    </select>
+                </div>
+            </div>
+        <!--Display Reputation (Default False)-->
+            <!--Switch-->
+
+        <!--Bits (Default Private)-->
+            <!--Bit publicity: Private/Public-->
+                <!--Switch-->
+            <!--Friends of Friends: On/Off-->
+                <!--Switch--> 
+            
+            <div class = "setting-sub-container">
+                <h3>Bits</h3>
+                <!--Bit Sharing: On/Off-->
+                <!--Switch-->
+                <div class="yb-switch-container-grid">
+                    <div>
+                        <p class="yb-switch-label">Allow Sharing</p>
+                        <label class="yb-switch-round" id="yb-exclude-shared" >
+                            <input type="checkbox" class="checkbox" name="enable_share" id="yb-check-enable-share">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <div>
+                        <p class="yb-switch-label">Allow Friends of Friends</p>
+                        <label class="yb-switch-round" id="yb-exclude-shared" >
+                            <input type="checkbox" class="checkbox" name="exclude_shared" id="yb-check-exclude-shared">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <div>
+                        <p class="yb-switch-label">Default Publish Public</p>
+                        <label class="yb-switch-round" id="yb-exclude-shared" >
+                            <input type="checkbox" class="checkbox" name="default_public" id="yb-check-default-public">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>       
+                </div>
+            </div>
+        
+        <!--Personal Info (Default Private)-->
+
+        <div class = "setting-sub-container">
+            <!--Addresses-->
+                <!--Mailing Address: Edit-->
+                    <!--Button-->
+                <h3>Messaging</h3>
+
+        
+        <!--Messaging (Default Friends Only)-->
+            <!--Messages: Everyone/Followers+Friends/FriendsOnly-->
+                <!--dropdown-->
+
+                <div>
+                <p class="yb-select-label">Allow Messages From:</p>
+                    <select type="text" class='yb-single-line-input' name="yb-align-text" id="yb-align-text" style='color: white; background-color: rgba(255,255,255,0.5);' placeholder="Paragraph Align">
+                        <option value="e">Everyone</option>
+                        <option value="fr">Friends Only</option>
+                        <option value="no">Nobody</option>
+                    </select>
+                </div>
+            </div>
+
+        <!--Disclaimer-->
+        <p>
+            Yourbit does not track your activity outside of the Yourbit app,
+            cookies are used for session only. Messages, personal information, 
+            and, private bits are encrypted in the database and cannot be read
+            by site administration.
+        </p>
+
+        <script type='text/javascript' type="text/css" src="/static/scripts/yb-privacy.js/"></script>
+    </div>
+    <div id="mobile-spacer">
+    </div>

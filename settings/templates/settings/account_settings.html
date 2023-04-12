@@ -1,0 +1,100 @@
+
+<link rel="stylesheet" href="/static/css/yourbit_settings.css/">
+<div class='title-container'>
+    <h2 style="text-align:center;">Account Settings</h2>
+    <p style="text-align:center; font-size: small;">
+        Welcome to your Account settings, here you can change
+        general account information like you name, email address, 
+        username, or password.
+    </p>
+
+</div>    
+
+<div class="settings-container" style="color:white; text-align: center;">
+    <div class = "setting-sub-container">
+        <h4>Account Information</h4>
+        <!--Edit Name-->
+        <p class="yb-select-label">First Name</p>
+        <input id='field-first-name' style="background-color: rgba(255,255,255, 0.5); color: white;" class="yb-single-line-input">
+        <br>
+        <br>
+        <p class="yb-select-label">Last Name</p>
+        <input id='field-last-name' style="background-color: rgba(255,255,255, 0.5); color: white;" class="yb-single-line-input">
+        <br>
+        <br>
+        <!--Edit Email Address-->
+        <p class="yb-select-label">Email Address</p>
+        <input id='field-email-address' style="background-color: rgba(255,255,255, 0.5); color: white;" class="yb-single-line-input">
+        <br>
+        <br>
+        <!--Edit Username-->
+        <p class="yb-select-label">Username</p>
+        <input id='field-username' style="background-color: rgba(255,255,255, 0.5); color: white;" class="yb-single-line-input">
+        <br>
+        <br>
+        <!--Edit Phone Number-->
+        <p class="yb-select-label">Phone Number</p>
+        <input id='field-phone-number' style="background-color: rgba(255,255,255, 0.5); color: white;" class="yb-single-line-input">
+    </div>
+
+    <div class = "setting-sub-container">
+        <b>Change Password</b>
+        <p style="font-size: small;">
+            <b><small>Password Tips:</small></b>
+            <br>
+            Never share your password with anyone and try to change it every 30 days.
+            Click the button below to change your password.
+        </p>
+        <br>
+        <button type="button" style="width:150px;" class="wide-button">Change Password</button>
+        <br>
+        <br>
+        <input id="checkbox-password-reminder" style="background-color: rgba(255,255,255, 0.5); color: white;" type="checkbox">
+        <label for="checkbox-password-reminder">Send me reminders to update my password</label>
+    </div>
+    <div class="setting-sub-container">
+        <b>Delete Account</b>
+        <p style="font-size: small;"> The big red button below will eject you from Yourbit, along with all of your belongings,
+            and Yourbit won't remember a single shred of your existence.
+            <br>
+            <br>
+            <small>
+            As harsh as that sounds, its necessary in this case. We believe in protecting your privacy and
+            anonymity. This means that all of your public and private data on Yourbit will be violently obliterated.
+            <br><br>
+            
+            </small>
+            We hope you return to Yourbit soon!
+        </p>
+        <br>
+        <br>
+        <button type="button" style="width:150px; background-color:red; color: white; box-shadow: 0px 0px 10px red;" class="wide-button"><b>Delete Account<b></button>
+    </div>
+</div>
+<div id="mobile-spacer">
+</div>
+<script>
+    $(document).ready(function(){
+        //Get the user ID from session values
+        let this_id = yb_getSessionValues("id");
+        yb_showBackTask();
+        //Get user data
+        $.ajax({
+            url: `/api/users/${this_id}/`,
+            type: "GET",
+            dataType: "json",
+            success: function(data){
+                console.log(data);
+                $("#field-first-name").val(data.first_name);
+                $("#field-last-name").val(data.last_name);
+                $("#field-email-address").val(data.email);
+                $("#field-phone-number").val(data.phone_number);
+                $("#field-username").val(data.username);
+                
+            },
+            error: function(data){
+                console.log(data);
+            }
+        });
+    });
+</script>
