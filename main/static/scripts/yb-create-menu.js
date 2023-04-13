@@ -94,6 +94,8 @@ function yb_chatBitForm(form, type_field, option_field, script_source) {
         //Set header to corresponding creation
         $('#create-bit-header-text').html(`Create Chat Bit`);
 
+        $("#mobile-publish-bit").attr("name", "publish")
+
         //On creation of bits show type options (text, photo, video)
         $('#create-bit-type-mobile').fadeIn();
 
