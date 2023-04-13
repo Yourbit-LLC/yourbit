@@ -257,7 +257,7 @@ function connections_community_url(data){
 //settings
 function settings_url(data){
     $("#content-container").html('');
-    $("#content-container").load(`${base_url}/settings/templates/settings/settings.html/`);
+    $("#content-container").load(`${base_url}/settings/templates/settings-html/`);
     yb_setSessionValues("location", "settings")
     let menu = document.getElementById("profile-menu");
     
@@ -273,7 +273,7 @@ function settings_url(data){
 //feed settings
 function settings_feed_url(data){
     $("#content-container").html('');
-    $("#content-container").load(`${base_url}/settings/templates/settings/feed_settings.html/`);
+    $("#content-container").load(`${base_url}/settings/templates/feed-settings-html/`);
     yb_setSessionValues("location", "settings_feed");
     history.pushState({}, "", `/settings/feed/`)
 
@@ -282,7 +282,7 @@ function settings_feed_url(data){
 //account settings
 function settings_account_url(data){
     $("#content-container").html('');
-    $("#content-container").load(`${base_url}/settings/templates/settings/account_settings.html/`);
+    $("#content-container").load(`${base_url}/settings/templates/account-settings-html/`);
     yb_setSessionValues("location","settings_account");
     history.pushState({}, "", `/settings/account/`);
     
@@ -292,7 +292,7 @@ function settings_account_url(data){
 function customize_url(data){
     console.log("function");
     $("#content-container").empty();
-    $("#content-container").load(`${base_url}/user_profile/templates/user_profile/personalize_profile.html/`);
+    $("#content-container").load(`${base_url}/user_profile/templates/customize-html/`);
     yb_setSessionValues("location","customize");
     history.pushState({}, "", `/profile/customize/`);
     
@@ -302,7 +302,7 @@ function customize_url(data){
 //profile info
 function settings_profile_url(data){
     $("#content-container").html('');
-    $("#content-container").load(`${base_url}/settings/templates/settings/profile_info.html/`);
+    $("#content-container").load(`${base_url}/settings/templates/profile-info-html/`);
     yb_setSessionValues("location","settings_profile");
     history.pushState({}, "", `/settings/profile/`)
 
@@ -313,7 +313,7 @@ function settings_profile_url(data){
 //privacy settings
 function settings_privacy_url(data){
     $("#content-container").html('');
-    $("#content-container").load(`${base_url}/settings/templates/settings/privacy_settings.html/`);
+    $("#content-container").load(`${base_url}/settings/templates/privacy-settings-html/`);
     yb_setSessionValues("location","settings_privacy");
     history.pushState({}, "", `/settings/privacy/`)
     
@@ -324,7 +324,7 @@ function settings_privacy_url(data){
 function settings_subscription_url(data){
     $("#content-container").html('');
     yb_setSessionValues("location","settings_subscription");
-    $("#content-container").load(`${base_url}/settings/templates/settings/subscription_settings.html/`);
+    $("#content-container").load(`${base_url}/settings/templates/subscription-settings-html/`);
     history.pushState({}, "", `/settings/subscriptions/`);
     
 }
@@ -388,14 +388,6 @@ function messages_conversation_url(id, username){
     
 }
 
-//New conversation
-function messages_new_conversation_url(data){
-    $("#content-container").empty();
-    $("#content-container").load(`${base_url}/messenger/templates/messenger/new_conversation.html/`);
-    yb_setSessionValues("location","new_conversation");
-    history.pushState({}, "", `/messages/new/`)
-}
-
 //Rewards
 function yb_initPageData(user_id) {
     let url = `/api/rewards/${user_id}/`
@@ -426,7 +418,7 @@ function yb_initPageData(user_id) {
 function rewards_url(data){
     
     $("#content-container").html('');
-    $("#content-container").load(`${base_url}/rewards/templates/rewards/rewards.html/`);
+    $("#content-container").load(`${base_url}/rewards/templates/rewards-html/`);
     
     let user_id = yb_getSessionValues("id");
 
@@ -493,7 +485,7 @@ function stuff_url() {
 function search_url(this_query) {
     $("#content-container").empty();
     yb_setSessionValues("location", "search");
-    $("#content-container").load(`${base_url}/search/templates/search/search_results.html/`);
+    $("#content-container").load(`${base_url}/search/templates/search-results-html/`);
     
     history.pushState({}, "", `/search/?query=${this_query}`);
 
