@@ -3,6 +3,31 @@ var bitstream_index = [];
 var bits_visible = [];
 var videos = [];
 
+$(document).ready(function() {
+    let type = yb_getSessionValues("space");
+    console.log("home initialized")
+    let is_loaded = yb_getLoaded();
+    if (is_loaded == true) {
+        console.log("home already loaded")
+
+    } else {
+        showSpaceSplash('#yourbit-splash');
+    }
+
+    data = {
+        "type":"global",
+        "filter":"all",
+        "sort":"chrono",
+    }
+    yb_getFeed(data, hideMainSplash, yb_getDisplay, true);
+    setTimeout(initUI, 100);
+    yb_showMenuTask(); 
+
+
+
+});
+
+
 function getBitByIndex(index) {
     return bitstream_index[index];
 }

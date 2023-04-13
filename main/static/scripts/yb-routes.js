@@ -60,18 +60,12 @@ function yb_applyStyle(source){
 function home_url(data){
     console.log("home routed")
     //clear screen
+    
     $("#content-container").html("");
     $("#page-header").remove();
     let container = document.getElementById('content-container');
-    let htmlUrl = `${base_url}/bitstream/feed-html/`
-    let request = new XMLHttpRequest();
-    request.open('GET', htmlUrl, true);
-    request.onload = function() {
-    if (request.status >= 200 && request.status < 400) {
-        container.innerHTML = request.responseText;
-    }
-    };
-    request.send();
+
+    $('#content-container').load('/bitstream/feed-html/');
     
     let menu = document.getElementById("profile-menu");
     
