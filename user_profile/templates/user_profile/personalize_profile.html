@@ -199,17 +199,17 @@
                         <div>
                             <input class="color-selector" id="primary-color-select" type="color" name='primary_color' style="display:none;" value="{{bit_background}}">
                             
-                            <div class="color-circle" id="color-circle-primary" style="width: 30px; height: 30px; border-radius: 50%;"></div>
+                            <div name="primary" class="color-circle" id="color-circle-primary" style="width: 30px; height: 30px; border-radius: 50%;"></div>
                             <label class="color-select-label" for="primary-color-select">Primary</label>
                         </div>
                         <div>
                             <input style="display:none;" class="color-selector" id="accent-color-select" type="color" name='accent_color' value="{{accent_color}}">
-                            <div class="color-circle" id="color-circle-secondary" style="width: 30px; height: 30px; border-radius: 50%;"></div>
+                            <div name="secondary" class="color-circle" id="color-circle-secondary" style="width: 30px; height: 30px; border-radius: 50%;"></div>
                             <label class="color-select-label" for="accent-color-select">Secondary</label>
                         </div>
                         <div>
                             <input style="display:none;" class="color-selector" id="icon-color-select" type="color" name='icon_color' value="{{icon_color}}">
-                            <div class="color-circle" id="color-circle-icon" style="width: 30px; height: 30px; border-radius: 50%;"></div>
+                            <div name="icon" class="color-circle" id="color-circle-icon" style="width: 30px; height: 30px; border-radius: 50%;"></div>
                             <label class="color-select-label" for="icon-color-select">Icon</label>
                         </div>                    
                     </div>
@@ -518,6 +518,13 @@
 
 
             });
+
+        $('.color-circle').click(function(){
+            let this_name = $(this).attr("name");
+            if (this_name === "primary"){
+                showColorOption('#primary-color-select', focusIn)
+            }
+        })
             
         //Event listener for image select button
         let profile_image_edit_button = document.getElementById("edit-profile-img");
