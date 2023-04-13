@@ -63,7 +63,7 @@ function home_url(data){
     $("#content-container").html("");
     $("#page-header").remove();
     let container = document.getElementById('content-container');
-    let htmlUrl = `${base_url}/feed/feed-html/`
+    let htmlUrl = `${base_url}/bitstream/feed-html/`
     let request = new XMLHttpRequest();
     request.open('GET', htmlUrl, true);
     request.onload = function() {
