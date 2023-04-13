@@ -332,7 +332,7 @@ function settings_subscription_url(data){
 //money settings
 function settings_money_url(data){
     $("#content-container").html('');
-    $("#content-container").load(`${base_url}/settings/templates/settings/feed-settings.html/`);
+    $("#content-container").load(`${base_url}/settings/payments-settings-html/`);
     yb_setSessionValues("location","settings_money");
     history.pushState({}, "", `/settings/feed/`);
     

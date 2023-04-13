@@ -497,7 +497,7 @@ lang="en"
                             </div>
                             <button  id="mobile-publish-bit" style="background-color: {{icon_color}};" type="button">Publish</button>
                         </div>
-                        <script id='create-script'></script>
+                        <script id='create-script' src="{% static 'scripts/yb-create-bit.js' %}"></script>
                     </div>
                 </form>
 <!--
@@ -558,6 +558,7 @@ lang="en"
         
         <!--Jquery CDN-->
         
+
         <script type="text/javascript" src="{% static 'scripts/jquerymobile-swipeupdown.js' %}"></script>
         <script type="text/javascript" src="{% static 'scripts/yb-ajax.js' %}"></script>
         <!--Notification Manager Script-->
