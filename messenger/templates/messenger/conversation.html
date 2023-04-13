@@ -1,5 +1,5 @@
-
-<link rel="stylesheet" type="text/css" href="/static/css/conversations.css"/>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/conversations.css' %}"/>
 <div id='header' style='text-align:center; color: white;'>
     <svg id="back-to-convos" xmlns="http://www.w3.org/2000/svg" style="position: absolute; left: 15px; top: 50%; transform: translate(0, -50%);" height="24" width="24"><path d="M10 22 0 12 10 2l1.775 1.775L3.55 12l8.225 8.225Z"/></svg>
     <h3 id="receiver-name" style="margin-top:15px; margin-bottom: 2px;"></h3>
@@ -18,7 +18,7 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script type='text/javascript' type="text/css" src="/static/scripts/messenger.js/"></script>
+<script type='text/javascript' type="text/css" src="{% static 'scripts/messenger.js' %}"></script>
 <script>
     $(document).ready(function(){
         let back_button = document.getElementById("back-to-convos");
