@@ -253,24 +253,24 @@
                     <div id='bit-color-customizations' style='position: relative; width: 280px; margin-left: auto; margin-right: auto; text-align: center;  display:grid; grid-template-columns: 70px 70px 70px 70px;'>
                         <div>
                             <input style="display:none;" class="color-selector" id="tfont-color-select" type="color" name='title_color' value="{{title_color}}">
-                            <div class="color-circle" id="color-circle-title" style="width: 30px; height: 30px; border-radius: 50%;"></div>
+                            <div name="title" class="color-circle" id="color-circle-title" style="width: 30px; height: 30px; border-radius: 50%;"></div>
                             <label class="color-select-label" for="tfont-color-select">Title</label>
                         </div>
                         <div>
                             <input style="display:none;" class="color-selector" id="pfont-color-select" type="color" name='text_color' value="{{text_color}}">
-                            <div class="color-circle" id="color-circle-text" style="width: 30px; height: 30px; border-radius: 50%;"></div>
+                            <div name="text" class="color-circle" id="color-circle-text" style="width: 30px; height: 30px; border-radius: 50%;"></div>
                             <label class="color-select-label" for="pfont-color-select" >Paragraph</label>
                         </div>
                         <div>
 
                             <input style="display:none;" class="color-selector" id="feedback-background-color-select" type="color" name='feedback_icon_color' value="{{feedback_icon_color}}">
-                            <div class="color-circle" id="color-circle-fb-background" style="background-color: white; width: 30px; height: 30px; border-radius: 50%;"></div>
+                            <div name="fb_background" class="color-circle" id="color-circle-fb-background" style="background-color: white; width: 30px; height: 30px; border-radius: 50%;"></div>
                             <label class="color-select-label" for="feedback-icon-color-select">Selected Button</label>
                         </div>
 
                         <div>
                             <input style="display:none;" class="color-selector" id="feedback-icon-color-select" type="color" name='feedback_icon_color' value="{{feedback_icon_color}}">
-                            <div class="color-circle" id="color-circle-fb-icon" style="background-color: black; width: 30px; height: 30px; border-radius: 50%;"></div>
+                            <div name="fb_icon" class="color-circle" id="color-circle-fb-icon" style="background-color: black; width: 30px; height: 30px; border-radius: 50%;"></div>
                             <label class="color-select-label" for="feedback-icon-color-select">Selected Icon</label>
 
                         </div>
@@ -522,8 +522,28 @@
         $('.color-circle').click(function(){
             let this_name = $(this).attr("name");
             if (this_name === "primary"){
-                showColorOption('#primary-color-select', focusIn)
+                showColorOption('#primary-color-select', focusIn);
             }
+            else if (this_name === "secondary"){
+                showColorOption("#accent-color-select", focusIn);
+            }
+            else if (this_name === "icon"){
+                showColorOption("#icon-color-select", focusIn);
+            } 
+            else if (this_name === "title"){
+                showColorOption("#title-color-select", focusIn);
+            }
+            else if (this_name === "text"){
+                showColorOption("#text-color-select", focusIn);
+            }
+            else if (this_name === "fb_icon"){
+                showColorOption("#feedback-icon-color-select", focus);
+
+            } else if (this_name === "fb_background"){
+                showColorOption('feedback-background-color-select');
+
+            }
+
         })
             
         //Event listener for image select button
@@ -621,6 +641,14 @@
             $(field).focus();
         }
         
+        function hideColorOption(field) {
+            $(field).hide();
+        }
+        function focusOut(field){
+            $(field).blur();
+        }
+        
+
         var profile_image_loaded;
 
         var preview_stage = 0;
@@ -719,6 +747,7 @@
             
             $("#color-circle-primary").css("transition", "0.5s");
             $("#color-circle-primary").css("background-color", this.value);
+            hideColorOption('#primary-color-select');
 
 
 
@@ -737,6 +766,7 @@
 
             $("#color-circle-secondary").css("transition", "0.5s");
             $("#color-circle-secondary").css("background-color", this.value);
+            hideColorOption('#accent-color-select');
            
         });
 
@@ -750,6 +780,7 @@
             let feedback_preview4 = document.getElementById('button4').style.backgroundColor = this.value;
             let feedback_preview5 = document.getElementById('button5').style.backgroundColor = this.value;
             updateCustom('color_change', 'feedback_icon', this.value);
+            hideColorOption('#feedback-icon-color-select');
             
         });
 
@@ -770,6 +801,7 @@
             $('.mobile-floating-actions-path').css({'fill': this.value});
             $('.mobile-floating-actions').css({'border-color': this.value});
             updateCustom('color_change', 'icon', this.value);
+            hideColorOption('#icon-color-select');
             
         });
 
@@ -780,6 +812,7 @@
             let text_color_preview = document.getElementById('preview-paragraph');
             text_color_preview.style.color = this.value;
             updateCustom('color_change', 'paragraph_font', this.value);
+            hideColorOption('#text-color-select');
         });
 
         const title_color_field = document.getElementById('tfont-color-select');
@@ -789,12 +822,14 @@
             let title_color_preview = document.getElementById('preview-title');
             title_color_preview.style.color = this.value;
             updateCustom('color_change', 'title_font', this.value);
+            hideColorOption('#tfont-color-select');
         });
 
         const paragraph_align_field = document.getElementById('yb-align-text');
         paragraph_align_field.addEventListener('change', function() {
             $('#preview-paragraph').css({'text-align': this.value});
             updateCustom('text_edit', 'para-align', this.value);
+            
         });
 
         accent_color_field.addEventListener('click', function() {
