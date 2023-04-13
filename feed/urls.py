@@ -2,7 +2,7 @@ from django.urls import path, re_path
 from . import views
 from .views import *
 import feed.api.views as api_views
-#from django.views.generic import TemplateView
+from django.views.generic import TemplateView
 
 
 urlpatterns = [
@@ -16,7 +16,7 @@ urlpatterns = [
     path('interact/dislike/', DislikeBit.as_view(), name='dislike'),
     path('interact/comment/', AddComment.as_view(), name='addComment'),
     path('bit/<int:pk>', BitDetailView.as_view(), name='bit-detail'),
-    #path('feed-html/', TemplateView.as_view(template_name='feed.html')),
+    path('feed-html/', TemplateView.as_view(template_name='feed.html')),
     path('home/', Home.as_view(), name='home'),
     path('', Home.as_view(), name='home'),
     # path('session/<str:type>/<int:id>/', Feed.as_view(), name='load-session-feed'),
