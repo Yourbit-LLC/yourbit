@@ -10,12 +10,7 @@ $('#profile-name').click(function() {
 $('.profile-menu-link').click(function() {
     console.log("clicked");
     let location = yb_getSessionValues("location");
-    if (location === "home") {
-        let content_container = document.getElementById("content-container");
-        content_container.removeEventListener("scroll", debounced_function);
-        let script = document.getElementById("home-script");
-        script.remove();
-    }
+
     let button_pressed = $(this).attr("name");
 
     if (button_pressed === "home") {
