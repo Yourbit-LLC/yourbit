@@ -1,7 +1,7 @@
 from django.urls import path, re_path
 from .views import *
 from user_profile.api.viewsets import follow, requestFriend, updateTimezone, likeBit, dislikeBit, commentBit, shareBit
-
+from django.views.generic import TemplateView
 from YourbitAccounts.views import Onboarding
 
 urlpatterns = [
@@ -15,6 +15,7 @@ urlpatterns = [
         path('api/interact/comment/', commentBit, name="comment_bit"),
         path('api/add_friend/', acceptFriend, name="add_friend"),
         path('api/create/cluster/', CreateCluster.as_view(), name="create_cluster"),
+        path('templates/profile/', TemplateView.as_view(template_name='feed/feed.html')),
         path('connections/', ConnectionList.as_view(), name='connections'),
         path('publish/', Publish.as_view(), name="publish"),
         path('edit/', EditBit.as_view(), name="edit-bit"),

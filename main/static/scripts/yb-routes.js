@@ -151,7 +151,7 @@ function profile_url(data){
     yb_setSessionValues("space", "global");
     yb_setSessionValues("profile-username", data.username)
     $("#content-container").empty();
-    $("#content-container").load(`${base_url}/user_profile/templates/user_profile/profile.html`)
+    $("#content-container").load(`${base_url}/profile/templates/profile/`)
     $("#page-header").remove();
     history.pushState({}, "", `/profile/${data.username}/`)
 
@@ -343,7 +343,7 @@ function settings_money_url(data){
 //Messages
 function messages_inbox_url(){
     $("#content-container").html('');
-    $("#content-container").load(`${base_url}/messenger/templates/messenger/messages.html/`);
+    $("#content-container").load(`${base_url}/messages/templates/messages-html/`);
     yb_setSessionValues("location","inbox");
     yb_createScript("messages");
     let menu = document.getElementById("profile-menu");
@@ -382,7 +382,7 @@ function messages_private_inbox_url(data){
 function messages_conversation_url(id, username){
     yb_setSessionValues("conversation", id)
     yb_setSessionValues("that-username", username)
-    $("#content-container").load(`${base_url}/messenger/templates/messenger/conversation.html/`);
+    $("#content-container").load(`${base_url}/messages/templates/conversation-html/`);
     yb_setSessionValues("location","conversation");
     history.pushState({}, "", `/conversation/${id}/`)
     
