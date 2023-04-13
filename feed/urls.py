@@ -2,7 +2,7 @@ from django.urls import path, re_path
 from . import views
 from .views import *
 import feed.api.views as api_views
-from django.views.generic import TemplateView
+#from django.views.generic import TemplateView
 
 
 urlpatterns = [
