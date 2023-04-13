@@ -198,7 +198,7 @@ function connections_url(data){
     
 
     $("#content-container").html('');
-    $("#content-container").load(`${base_url}/user_profile/templates/user_profile/connections.html`)
+    $("#content-container").load(`${base_url}/user_profile/templates/connections-html/`)
     history.pushState({}, "", `/profile/connections/`);
     let menu = document.getElementById("profile-menu");
     
@@ -388,32 +388,6 @@ function messages_conversation_url(id, username){
     
 }
 
-//Rewards
-function yb_initPageData(user_id) {
-    let url = `/api/rewards/${user_id}/`
-    fetch(url)
-    .then((resp) => resp.json())
-    .then(function(data){
-
-        let point_balance = data.point_balance
-        if (point_balance < 1) {
-            point_balance = 0;
-        }
-        //Set point balance
-        $("#points-balance").html(`
-        ${data.point_balance}<small>pts</small>
-        `)
-        //set level progress
-        $("#level-progress").html(`
-        ${data.rewards_earned}/1500
-        `)
-        //update progress bar
-        $("#progress-container").html(`
-            Level ${data.level}  <progress max="1500" value="${data.rewards_earned}"></progress>  Level ${data.level+1}
-        `)
-
-    });
-}
 
 function rewards_url(data){
     
@@ -423,9 +397,6 @@ function rewards_url(data){
     let user_id = yb_getSessionValues("id");
 
     yb_setSessionValues("location","rewards");
-    
-    yb_initPageData(user_id);
-    yb_createScript("rewards")
 
     history.pushState({}, "", '/rewards/');
 
@@ -456,7 +427,7 @@ function rewards_redeem_url(data){
 //history
 function history_url() {
     $("#content-container").empty();
-    $("#content-container").load(`${base_url}/user_profile/templates/user_profile/history.html/`);
+    $("#content-container").load(`${base_url}/user_profile/templates/history-html/`);
     yb_setSessionValues("location", "history");
     history.pushState({}, "", "/profile/history/all/");
 
@@ -470,7 +441,7 @@ function history_url() {
 function stuff_url() {
     $("#content-container").empty();
     yb_setSessionValues("location", "stuff");
-    $("#content-container").load(`${base_url}/user_profile/templates/user_profile/my_stuff.html/`);
+    $("#content-container").load(`${base_url}/user_profile/templates/my-stuff-html/`);
     
     history.pushState({}, "", "/profile/stuff/");
 

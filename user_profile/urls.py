@@ -20,6 +20,9 @@ urlpatterns = [
         #Templates
         path('templates/profile/', TemplateView.as_view(template_name='user_profile/profile.html')),
         path('templates/customize-html/', TemplateView.as_view(template_name = 'user_profile/personalize_profile.html')),
+        path('templates/connections-html/', TemplateView.as_view(template_name='user_profile/connections.html')),
+        path('templates/my-stuff-html/', TemplateView.as_view(template_name='user_profile/my_stuff.html')),
+        path('templates/history-html/', TemplateView.as_view(template_name="user_profile/my_stuff.html")),
         
         #Django Views
         path('connections/', ConnectionList.as_view(), name='connections'),
