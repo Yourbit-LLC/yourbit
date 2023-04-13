@@ -62,7 +62,7 @@ function home_url(data){
     //clear screen
     $("#content-container").html("");
     $("#page-header").remove();
-    let container = document.getElementByIletd('content-container');
+    let container = document.getElementById('content-container');
     let htmlUrl = `${base_url}/feed/feed-html/`
     let request = new XMLHttpRequest();
     request.open('GET', htmlUrl, true);
