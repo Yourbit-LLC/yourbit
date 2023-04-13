@@ -198,7 +198,7 @@ function connections_url(data){
     
 
     $("#content-container").html('');
-    $("#content-container").load(`${base_url}/user_profile/templates/connections-html/`)
+    $("#content-container").load(`${base_url}/profile/templates/connections-html/`)
     history.pushState({}, "", `/profile/connections/`);
     let menu = document.getElementById("profile-menu");
     
@@ -292,7 +292,7 @@ function settings_account_url(data){
 function customize_url(data){
     console.log("function");
     $("#content-container").empty();
-    $("#content-container").load(`${base_url}/user_profile/templates/customize-html/`);
+    $("#content-container").load(`${base_url}/profile/templates/customize-html/`);
     yb_setSessionValues("location","customize");
     history.pushState({}, "", `/profile/customize/`);
     
@@ -427,7 +427,7 @@ function rewards_redeem_url(data){
 //history
 function history_url() {
     $("#content-container").empty();
-    $("#content-container").load(`${base_url}/user_profile/templates/history-html/`);
+    $("#content-container").load(`${base_url}/profile/templates/history-html/`);
     yb_setSessionValues("location", "history");
     history.pushState({}, "", "/profile/history/all/");
 
@@ -441,7 +441,7 @@ function history_url() {
 function stuff_url() {
     $("#content-container").empty();
     yb_setSessionValues("location", "stuff");
-    $("#content-container").load(`${base_url}/user_profile/templates/my-stuff-html/`);
+    $("#content-container").load(`${base_url}/profile/templates/my-stuff-html/`);
     
     history.pushState({}, "", "/profile/stuff/");
 
