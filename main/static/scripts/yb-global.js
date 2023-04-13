@@ -34,6 +34,18 @@ var isInViewport = function (elem) {
         bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
     );
 };
+
+function debounce(func, delay) {
+    let timer;
+    return function() {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        func.apply(this, arguments);
+      }, delay);
+    }
+  }
+
+
 function yb_hideUI(){
     let screen_width = screen.width;
     if (screen_width < 600) {

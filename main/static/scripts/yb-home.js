@@ -1,7 +1,11 @@
-//List that keeps track of all bit elements in feed
-var bitstream_index = [];
-var bits_visible = [];
-var videos = [];
+/****************************************
+ *                                      *
+ *     Global Variable Declarations     *
+ *                                      *
+ ****************************************/
+
+//Page Base URL
+var base_url = window.location.origin;
 
 $(document).ready(function() {
     let type = yb_getSessionValues("space");
@@ -26,82 +30,6 @@ $(document).ready(function() {
 
 
 });
-
-
-function getBitByIndex(index) {
-    return bitstream_index[index];
-}
-function getLenBitIndex() {
-    return bitstream_index.length - 1;
-}
-
-function yb_lenBitsOnScreen(){
-    return bits_visible.length - 1;
-}
-
-function yb_getBitOnScreen(index) {
-    return bits_visible[index];
-}
-//Page Base URL
-var base_url = window.location.origin;
-
-function debounce(func, delay) {
-    let timer;
-    return function() {
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        func.apply(this, arguments);
-      }, delay);
-    }
-  }
-
-var CONTAINER = document.getElementById("content-container");
-function yb_getDisplay() {
-    bits_visible = [];
-    for (var bit in bitstream_index) {
-        let element = bitstream_index[bit];
-        if (isInViewport(element)){
-            let type = $(element).attr('data-type');
-            let id = $(element).attr('data-id');
-            
-            let button_bkd = $(element).attr('data-button-color');
-            let button_color = $(element).attr('data-icon-color');
-            yb_updateSeenBits(id);
-
-            if (type==='video'){
-                let content_url = $(element).attr('data-content');
-                $(`#yb-player-bs-${id}`).attr('src') = content_url;
-            }
-
-            if (type==='photo'){
-                let content_url = $(element).attr('data-content');
-                $(`#yb-viewer-bs-${id}`).attr('src') = content_url
-            }
-            bits_visible.push(element)
-
-        } else {
-            if (element in bits_visible) {
-                bits_visible.pop(element)
-                if (type==='video'){
-                    let content_url = $(element).attr('data-content');
-                    $(`#yb-player-bs-${id}`).attr('src',"");
-                }
-
-                if (type==='photo'){
-                    let content_url = $(element).attr('data-content');
-                    $(`#yb-viewer-bs-${id}`).attr('src',"");
-                }
-            }
-        }
-
-    }
-    console.log("Bits Loaded: " + bitstream_index);
-    console.log("Bits Visible: " + bits_visible);
-}
-
-var debounced_function = debounce(yb_getDisplay, 500);
-CONTAINER.addEventListener("scroll", debounced_function);
-
 
 /*          
                 Home Feed Filters
@@ -147,10 +75,6 @@ function yb_toggleOff(container) {
     checkbox.checked = false;
     icon.style.fill = "#282828";
     text.style.color = "#282828";
-
-
-
-
 
 }
 
