@@ -492,6 +492,8 @@ function BuildBit(bit, liked_bits, disliked_bits){
         } else {
                     console.log("scroll in progress...")
         }
+
+        event.preventDefault();
         
     });
 

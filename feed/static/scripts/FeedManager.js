@@ -65,15 +65,14 @@ function yb_getDisplay() {
 }
 
 function yb_EventPause(){
-    let content_container = document.getElementById("content-container")
     scrolling = true;
-    console.log("scrolling set to: " + scrolling)
-  
-    content_container.requestAnimationFrame(() => {
-      scrolling = false;
-      console.log("scrolling set to: "+scrolling)
-    });
+    console.log("scrolling: " + scrolling)
+    setTimeout(function(){
+        scrolling = false;
+        console.log("scrolling: " + scrolling)
+    }, 200)
 }
+
 
 
 function yb_setIsScrolling(option){
