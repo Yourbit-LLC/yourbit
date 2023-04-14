@@ -8,6 +8,25 @@
 var base_url = window.location.origin;
 
 $(document).ready(function() {
+    if (document.readyState === "complete") {
+        // all scripts have finished loading
+        // do something here
+        yb_InitializeHome()
+      } else {
+        // scripts are still loading
+        // wait for them to finish loading
+        document.addEventListener("DOMContentLoaded", function() {
+          // all scripts have finished loading
+          // do something here
+          yb_InitializeHome()
+        });
+      }
+
+
+
+});
+
+function yb_InitializeHome(){
     let type = yb_getSessionValues("space");
     console.log("home initialized")
     let is_loaded = yb_getLoaded();
@@ -26,10 +45,7 @@ $(document).ready(function() {
     yb_getFeed(data, hideMainSplash, yb_getDisplay, true);
     setTimeout(initUI, 100);
     yb_showMenuTask(); 
-
-
-
-});
+}
 
 /*          
                 Home Feed Filters
