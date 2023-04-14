@@ -350,10 +350,11 @@ function BuildBit(bit, liked_bits, disliked_bits){
 
     new_bit.addEventListener("pointerdown", function(event) {
         console.log("mousedown");
-    
+        let scrolling = yb_isScrolling();
+        console.log(scrolling)
         let this_element = event.currentTarget;
         timer = setTimeout(function() {
-            if (yb_isScrolling === false) {
+            if (scrolling === false) {
                 console.log("bit held");
             
                 let bit_id = this_element.getAttribute("data-id");

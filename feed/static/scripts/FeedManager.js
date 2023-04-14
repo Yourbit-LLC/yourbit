@@ -73,6 +73,10 @@ function yb_EventPause(){
     }, 100)
 }
 
+function yb_setIsScrolling(option){
+    scrolling = option;
+}
+
 function yb_isScrolling() {
     return scrolling;
 }
