@@ -11,7 +11,7 @@ var videos = [];
  ****************************/
 
 //Setup variables
-var scrolling = false; //Scrolling is false by default, variable is used to prevent issues with context menus on scroll
+var isScrolling = false; //Scrolling is false by default, variable is used to prevent issues with context menus on scroll
 var CONTAINER = document.getElementById("content-container"); //used var instead of const to avoid event listener getting stuck
 
 
@@ -68,7 +68,7 @@ function yb_EventPause(){
     scrolling = true;
     console.log("scrolling: " + scrolling)
     setTimeout(function(){
-        scrolling = false;
+        isScrolling = false;
         console.log("scrolling: " + scrolling)
     }, 200)
 }
@@ -80,7 +80,7 @@ function yb_setIsScrolling(option){
 }
 
 function yb_isScrolling() {
-    return scrolling;
+    return isScrolling;
 }
 
 var debounced_function = debounce(yb_getDisplay, 500);
