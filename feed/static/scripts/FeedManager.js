@@ -70,7 +70,7 @@ function yb_EventPause(){
     setTimeout(function(){
         scrolling = false;
         console.log("scrolling: " + scrolling)
-    }, 100)
+    }, 300)
 }
 
 function yb_setIsScrolling(option){
