@@ -350,7 +350,7 @@ function BuildBit(bit, liked_bits, disliked_bits){
 
     new_bit.addEventListener("pointerdown", function(event) {
         console.log("mousedown");
-        let scrolling = yb_isScrolling();
+        let scrolling = setTimeout(yb_isScrolling, 50);
         console.log(scrolling)
         if (scrolling === false){       
         
@@ -493,7 +493,7 @@ function BuildBit(bit, liked_bits, disliked_bits){
                     console.log("scroll in progress...")
         }
 
-        event.preventDefault();
+        
         
     });
 
