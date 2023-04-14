@@ -8,6 +8,8 @@
 var base_url = window.location.origin;
 
 $(document).ready(function() {
+    console.log("document ready function ran");
+    console.log(document.readyState)
     if (document.readyState === "complete") {
         // all scripts have finished loading
         // do something here
