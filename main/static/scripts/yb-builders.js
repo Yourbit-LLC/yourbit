@@ -348,153 +348,9 @@ function BuildBit(bit, liked_bits, disliked_bits){
 
     let timer;
 
-    new_bit.addEventListener("pointerdown", setTimeout(function(event) {
-        console.log("mousedown");
-        
-        let scrolling = yb_isScrolling();
-        let this_element = event.currentTarget;
-        console.log(scrolling)
-
-        if (scrolling === false){
-            timer = setTimeout(function() {
-                
-            
-                console.log("bit held");
-            
-                let bit_id = this_element.getAttribute("data-id");
-
-                let this_user = yb_getSessionValues("id");
-                let bit_user = this_element.getAttribute("data-userid");
-                let content_container = document.getElementById("content-container")
-                context_menu = yb_createElement("div", `bit-context-${bit_id}`, "bit-context-menu");
-                
-                divider = yb_createElement("div", `context-backdrop-${bit_id}`, "bit-context-backdrop");
-                divider.setAttribute("data-bit-id", this_element.id)
-                
-                this_element.appendChild(divider);
-                this_element.appendChild(context_menu);
-                this_element.style.zIndex = "7";
-                console.log("this user: " + this_user);
-                console.log("bit user: " + bit_user);
 
 
-                exit_menu = yb_createElement("div", "context-menu-exit", "context-menu-exit");
-                exit_menu.setAttribute("data-bit-id", this_element.id)
-                
-
-                content_container.appendChild(exit_menu);
-                if (this_user === bit_user){
-
-                    
-                    edit_option = yb_createElement("div", `bit-edit`, "bit-context-option");
-                    edit_option.setAttribute("data-id", bit_id)
-                    edit_option.setAttribute("data-bit-id", `bit-${bit_id}`)
-                    
-                    edit_option.innerHTML=`
-                        <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M5 19h1.4l8.625-8.625-1.4-1.4L5 17.6ZM19.3 8.925l-4.25-4.2 1.4-1.4q.575-.575 1.413-.575.837 0 1.412.575l1.4 1.4q.575.575.6 1.388.025.812-.55 1.387ZM17.85 10.4 7.25 21H3v-4.25l10.6-10.6Zm-3.525-.725-.7-.7 1.4 1.4Z"/></svg>
-                        <p>Edit Bit</p>
-                    `
-                    context_menu.appendChild(edit_option);
-                    edit_option.addEventListener("click", function() {
-                        yb_handleEditBit(this);
-                        hideContextMenu("close", this);
-
-                    });
-
-                    add_to_cluster = yb_createElement("div", `bit-add`, "bit-context-option");
-                    add_to_cluster.setAttribute("data-id", bit_id);
-                    add_to_cluster.innerHTML= `
-                        <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M13 14h2v-3h3V9h-3V6h-2v3h-3v2h3Zm-5 4q-.825 0-1.412-.587Q6 16.825 6 16V4q0-.825.588-1.413Q7.175 2 8 2h12q.825 0 1.413.587Q22 3.175 22 4v12q0 .825-.587 1.413Q20.825 18 20 18Zm0-2h12V4H8v12Zm-4 6q-.825 0-1.412-.587Q2 20.825 2 20V6h2v14h14v2ZM8 4v12V4Z"/></svg>
-                        <p>Add to Cluster</p>
-                    `;
-                    context_menu.appendChild(add_to_cluster);
-                    add_to_cluster.addEventListener("click", function() {
-
-                        let this_id = this.getAttribute("data-id");
-                        console.log("click on option on bit: " + bit_id)
-
-                        let this_menu = document.getElementById("bit-context-"+ this_id);
-                        $(`#bit-context-${this_id}`).animate({"width":"70vw", "height": "200px"}, "fast")
-                        $(`#bit-context-${this_id}`).empty()
-                        $(`#bit-context-${this_id}`).html(`
-                            <h4 style="color: white; margin-left:10px; grid-row: 1;">Add to...</h4>
-                        `);
-                        create_cluster = yb_createElement("div", `list-create-cluster`, "bit-context-option");
-                        
-                        create_cluster.innerHTML = `
-                            <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M11 19v-6H5v-2h6V5h2v6h6v2h-6v6Z"/></svg>
-                            <p>New Cluster</p>
-                        `
-                        $(`#bit-context-${this_id}`).append(create_cluster);
-                        
-
-                    });
-                    
-                    hide_option = yb_createElement("div", `bit-hide`, "bit-context-option");
-                    hide_option.setAttribute("data-id", bit_id);
-                    hide_option.setAttribute("data-bit-id", this_element.id);
-                    hide_option.innerHTML = `
-                        <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m16.1 13.3-1.45-1.45q.225-1.175-.675-2.2-.9-1.025-2.325-.8L10.2 7.4q.425-.2.862-.3Q11.5 7 12 7q1.875 0 3.188 1.312Q16.5 9.625 16.5 11.5q0 .5-.1.938-.1.437-.3.862Zm3.2 3.15-1.45-1.4q.95-.725 1.688-1.588.737-.862 1.262-1.962-1.25-2.525-3.588-4.013Q14.875 6 12 6q-.725 0-1.425.1-.7.1-1.375.3L7.65 4.85q1.025-.425 2.1-.638Q10.825 4 12 4q3.775 0 6.725 2.087Q21.675 8.175 23 11.5q-.575 1.475-1.512 2.738Q20.55 15.5 19.3 16.45Zm.5 6.15-4.2-4.15q-.875.275-1.762.413Q12.95 19 12 19q-3.775 0-6.725-2.087Q2.325 14.825 1 11.5q.525-1.325 1.325-2.463Q3.125 7.9 4.15 7L1.4 4.2l1.4-1.4 18.4 18.4ZM5.55 8.4q-.725.65-1.325 1.425T3.2 11.5q1.25 2.525 3.587 4.012Q9.125 17 12 17q.5 0 .975-.062.475-.063.975-.138l-.9-.95q-.275.075-.525.112Q12.275 16 12 16q-1.875 0-3.188-1.312Q7.5 13.375 7.5 11.5q0-.275.037-.525.038-.25.113-.525Zm7.975 2.325ZM9.75 12.6Z"/></svg>
-                        <p>Hide Bit</p>
-                    `
-                    context_menu.appendChild(hide_option);
-                    hide_option.addEventListener("click", function() {
-                        let this_id = this.getAttribute("data-id");
-                        let this_element = `#bit-context-${this_id}`;
-                        
-                        yb_handleHideBit(bit_id);
-                        
-                        hideContextMenu("close", this_element);
-                    })
-                    
-                    delete_option = yb_createElement("div", `bit-delete`, "bit-context-option");
-                    delete_option.innerHTML = `
-                        <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill: red;" d="M7 21q-.825 0-1.412-.587Q5 19.825 5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413Q17.825 21 17 21ZM17 6H7v13h10ZM9 17h2V8H9Zm4 0h2V8h-2ZM7 6v13Z"/></svg>
-                        <p style="color:red;">Delete Bit</p>
-                    `
-                    delete_option.setAttribute("data-bit-id", this_element.id);
-                    delete_option.addEventListener("click", function(event) {
-
-                        yb_deleteBit(bit_id);
-                        this_element = event.currentTarget;
-                        hideContextMenu("delete", this_element);
-                    });
-                    context_menu.appendChild(delete_option);
-                } else {
-                    add_to_cluster = yb_createElement("div", `bit-add`, "bit-context-option");
-                    add_to_cluster.innerHTML= `
-                        <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M13 14h2v-3h3V9h-3V6h-2v3h-3v2h3Zm-5 4q-.825 0-1.412-.587Q6 16.825 6 16V4q0-.825.588-1.413Q7.175 2 8 2h12q.825 0 1.413.587Q22 3.175 22 4v12q0 .825-.587 1.413Q20.825 18 20 18Zm0-2h12V4H8v12Zm-4 6q-.825 0-1.412-.587Q2 20.825 2 20V6h2v14h14v2ZM8 4v12V4Z"/></svg>
-                        <p>Add to Cluster</p>
-                    `
-                    context_menu.appendChild(add_to_cluster);
-
-                    hide_option = yb_createElement("div", `bit-edit`, "bit-context-option");
-                    hide_option.innerHTML = `
-                        <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m16.1 13.3-1.45-1.45q.225-1.175-.675-2.2-.9-1.025-2.325-.8L10.2 7.4q.425-.2.862-.3Q11.5 7 12 7q1.875 0 3.188 1.312Q16.5 9.625 16.5 11.5q0 .5-.1.938-.1.437-.3.862Zm3.2 3.15-1.45-1.4q.95-.725 1.688-1.588.737-.862 1.262-1.962-1.25-2.525-3.588-4.013Q14.875 6 12 6q-.725 0-1.425.1-.7.1-1.375.3L7.65 4.85q1.025-.425 2.1-.638Q10.825 4 12 4q3.775 0 6.725 2.087Q21.675 8.175 23 11.5q-.575 1.475-1.512 2.738Q20.55 15.5 19.3 16.45Zm.5 6.15-4.2-4.15q-.875.275-1.762.413Q12.95 19 12 19q-3.775 0-6.725-2.087Q2.325 14.825 1 11.5q.525-1.325 1.325-2.463Q3.125 7.9 4.15 7L1.4 4.2l1.4-1.4 18.4 18.4ZM5.55 8.4q-.725.65-1.325 1.425T3.2 11.5q1.25 2.525 3.587 4.012Q9.125 17 12 17q.5 0 .975-.062.475-.063.975-.138l-.9-.95q-.275.075-.525.112Q12.275 16 12 16q-1.875 0-3.188-1.312Q7.5 13.375 7.5 11.5q0-.275.037-.525.038-.25.113-.525Zm7.975 2.325ZM9.75 12.6Z"/></svg>
-                        <p>Hide Bit</p>
-                    `
-                    context_menu.appendChild(hide_option);
-                    
-                    block_option = yb_createElement("div", `bit-block`, "bit-context-option");
-
-                    report_option = yb_createElement("div", `bit-report`, "bit-context-option");
-
-                }
-                exit_menu.addEventListener("click", function(e) {
-                    this_element = e.currentTarget;
-                    hideContextMenu("close", this_element);
-                    
-                });
-
-                divider.addEventListener("click", function(e) {
-                    this_element = e.currentTarget;
-                    hideContextMenu("close", this_element);
-                });
-            }, 1250); // time in milliseconds
-        } else {
-            console.log("scroll in progress...")
-        }
-    }, 100));
+    new_bit.addEventListener("pointerdown", setTimeout(handleHoldBit, 100, e));
 
 
     new_bit.addEventListener("pointerup", function() {
@@ -505,6 +361,156 @@ function BuildBit(bit, liked_bits, disliked_bits){
     return {'element_id':element_id, 'built_bit':new_bit}
 
 
+}
+
+function handleHoldBit(e){
+    
+    console.log("mousedown");
+        
+    let scrolling = yb_isScrolling();
+    let this_element = event.currentTarget;
+    console.log(scrolling)
+
+    if (scrolling === false){
+        timer = setTimeout(function() {
+            
+        
+            console.log("bit held");
+        
+            let bit_id = this_element.getAttribute("data-id");
+
+            let this_user = yb_getSessionValues("id");
+            let bit_user = this_element.getAttribute("data-userid");
+            let content_container = document.getElementById("content-container")
+            context_menu = yb_createElement("div", `bit-context-${bit_id}`, "bit-context-menu");
+            
+            divider = yb_createElement("div", `context-backdrop-${bit_id}`, "bit-context-backdrop");
+            divider.setAttribute("data-bit-id", this_element.id)
+            
+            this_element.appendChild(divider);
+            this_element.appendChild(context_menu);
+            this_element.style.zIndex = "7";
+            console.log("this user: " + this_user);
+            console.log("bit user: " + bit_user);
+
+
+            exit_menu = yb_createElement("div", "context-menu-exit", "context-menu-exit");
+            exit_menu.setAttribute("data-bit-id", this_element.id)
+            
+
+            content_container.appendChild(exit_menu);
+            if (this_user === bit_user){
+
+                
+                edit_option = yb_createElement("div", `bit-edit`, "bit-context-option");
+                edit_option.setAttribute("data-id", bit_id)
+                edit_option.setAttribute("data-bit-id", `bit-${bit_id}`)
+                
+                edit_option.innerHTML=`
+                    <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M5 19h1.4l8.625-8.625-1.4-1.4L5 17.6ZM19.3 8.925l-4.25-4.2 1.4-1.4q.575-.575 1.413-.575.837 0 1.412.575l1.4 1.4q.575.575.6 1.388.025.812-.55 1.387ZM17.85 10.4 7.25 21H3v-4.25l10.6-10.6Zm-3.525-.725-.7-.7 1.4 1.4Z"/></svg>
+                    <p>Edit Bit</p>
+                `
+                context_menu.appendChild(edit_option);
+                edit_option.addEventListener("click", function() {
+                    yb_handleEditBit(this);
+                    hideContextMenu("close", this);
+
+                });
+
+                add_to_cluster = yb_createElement("div", `bit-add`, "bit-context-option");
+                add_to_cluster.setAttribute("data-id", bit_id);
+                add_to_cluster.innerHTML= `
+                    <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M13 14h2v-3h3V9h-3V6h-2v3h-3v2h3Zm-5 4q-.825 0-1.412-.587Q6 16.825 6 16V4q0-.825.588-1.413Q7.175 2 8 2h12q.825 0 1.413.587Q22 3.175 22 4v12q0 .825-.587 1.413Q20.825 18 20 18Zm0-2h12V4H8v12Zm-4 6q-.825 0-1.412-.587Q2 20.825 2 20V6h2v14h14v2ZM8 4v12V4Z"/></svg>
+                    <p>Add to Cluster</p>
+                `;
+                context_menu.appendChild(add_to_cluster);
+                add_to_cluster.addEventListener("click", function() {
+
+                    let this_id = this.getAttribute("data-id");
+                    console.log("click on option on bit: " + bit_id)
+
+                    let this_menu = document.getElementById("bit-context-"+ this_id);
+                    $(`#bit-context-${this_id}`).animate({"width":"70vw", "height": "200px"}, "fast")
+                    $(`#bit-context-${this_id}`).empty()
+                    $(`#bit-context-${this_id}`).html(`
+                        <h4 style="color: white; margin-left:10px; grid-row: 1;">Add to...</h4>
+                    `);
+                    create_cluster = yb_createElement("div", `list-create-cluster`, "bit-context-option");
+                    
+                    create_cluster.innerHTML = `
+                        <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M11 19v-6H5v-2h6V5h2v6h6v2h-6v6Z"/></svg>
+                        <p>New Cluster</p>
+                    `
+                    $(`#bit-context-${this_id}`).append(create_cluster);
+                    
+
+                });
+                
+                hide_option = yb_createElement("div", `bit-hide`, "bit-context-option");
+                hide_option.setAttribute("data-id", bit_id);
+                hide_option.setAttribute("data-bit-id", this_element.id);
+                hide_option.innerHTML = `
+                    <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m16.1 13.3-1.45-1.45q.225-1.175-.675-2.2-.9-1.025-2.325-.8L10.2 7.4q.425-.2.862-.3Q11.5 7 12 7q1.875 0 3.188 1.312Q16.5 9.625 16.5 11.5q0 .5-.1.938-.1.437-.3.862Zm3.2 3.15-1.45-1.4q.95-.725 1.688-1.588.737-.862 1.262-1.962-1.25-2.525-3.588-4.013Q14.875 6 12 6q-.725 0-1.425.1-.7.1-1.375.3L7.65 4.85q1.025-.425 2.1-.638Q10.825 4 12 4q3.775 0 6.725 2.087Q21.675 8.175 23 11.5q-.575 1.475-1.512 2.738Q20.55 15.5 19.3 16.45Zm.5 6.15-4.2-4.15q-.875.275-1.762.413Q12.95 19 12 19q-3.775 0-6.725-2.087Q2.325 14.825 1 11.5q.525-1.325 1.325-2.463Q3.125 7.9 4.15 7L1.4 4.2l1.4-1.4 18.4 18.4ZM5.55 8.4q-.725.65-1.325 1.425T3.2 11.5q1.25 2.525 3.587 4.012Q9.125 17 12 17q.5 0 .975-.062.475-.063.975-.138l-.9-.95q-.275.075-.525.112Q12.275 16 12 16q-1.875 0-3.188-1.312Q7.5 13.375 7.5 11.5q0-.275.037-.525.038-.25.113-.525Zm7.975 2.325ZM9.75 12.6Z"/></svg>
+                    <p>Hide Bit</p>
+                `
+                context_menu.appendChild(hide_option);
+                hide_option.addEventListener("click", function() {
+                    let this_id = this.getAttribute("data-id");
+                    let this_element = `#bit-context-${this_id}`;
+                    
+                    yb_handleHideBit(bit_id);
+                    
+                    hideContextMenu("close", this_element);
+                })
+                
+                delete_option = yb_createElement("div", `bit-delete`, "bit-context-option");
+                delete_option.innerHTML = `
+                    <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill: red;" d="M7 21q-.825 0-1.412-.587Q5 19.825 5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413Q17.825 21 17 21ZM17 6H7v13h10ZM9 17h2V8H9Zm4 0h2V8h-2ZM7 6v13Z"/></svg>
+                    <p style="color:red;">Delete Bit</p>
+                `
+                delete_option.setAttribute("data-bit-id", this_element.id);
+                delete_option.addEventListener("click", function(event) {
+
+                    yb_deleteBit(bit_id);
+                    this_element = event.currentTarget;
+                    hideContextMenu("delete", this_element);
+                });
+                context_menu.appendChild(delete_option);
+            } else {
+                add_to_cluster = yb_createElement("div", `bit-add`, "bit-context-option");
+                add_to_cluster.innerHTML= `
+                    <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M13 14h2v-3h3V9h-3V6h-2v3h-3v2h3Zm-5 4q-.825 0-1.412-.587Q6 16.825 6 16V4q0-.825.588-1.413Q7.175 2 8 2h12q.825 0 1.413.587Q22 3.175 22 4v12q0 .825-.587 1.413Q20.825 18 20 18Zm0-2h12V4H8v12Zm-4 6q-.825 0-1.412-.587Q2 20.825 2 20V6h2v14h14v2ZM8 4v12V4Z"/></svg>
+                    <p>Add to Cluster</p>
+                `
+                context_menu.appendChild(add_to_cluster);
+
+                hide_option = yb_createElement("div", `bit-edit`, "bit-context-option");
+                hide_option.innerHTML = `
+                    <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m16.1 13.3-1.45-1.45q.225-1.175-.675-2.2-.9-1.025-2.325-.8L10.2 7.4q.425-.2.862-.3Q11.5 7 12 7q1.875 0 3.188 1.312Q16.5 9.625 16.5 11.5q0 .5-.1.938-.1.437-.3.862Zm3.2 3.15-1.45-1.4q.95-.725 1.688-1.588.737-.862 1.262-1.962-1.25-2.525-3.588-4.013Q14.875 6 12 6q-.725 0-1.425.1-.7.1-1.375.3L7.65 4.85q1.025-.425 2.1-.638Q10.825 4 12 4q3.775 0 6.725 2.087Q21.675 8.175 23 11.5q-.575 1.475-1.512 2.738Q20.55 15.5 19.3 16.45Zm.5 6.15-4.2-4.15q-.875.275-1.762.413Q12.95 19 12 19q-3.775 0-6.725-2.087Q2.325 14.825 1 11.5q.525-1.325 1.325-2.463Q3.125 7.9 4.15 7L1.4 4.2l1.4-1.4 18.4 18.4ZM5.55 8.4q-.725.65-1.325 1.425T3.2 11.5q1.25 2.525 3.587 4.012Q9.125 17 12 17q.5 0 .975-.062.475-.063.975-.138l-.9-.95q-.275.075-.525.112Q12.275 16 12 16q-1.875 0-3.188-1.312Q7.5 13.375 7.5 11.5q0-.275.037-.525.038-.25.113-.525Zm7.975 2.325ZM9.75 12.6Z"/></svg>
+                    <p>Hide Bit</p>
+                `
+                context_menu.appendChild(hide_option);
+                
+                block_option = yb_createElement("div", `bit-block`, "bit-context-option");
+
+                report_option = yb_createElement("div", `bit-report`, "bit-context-option");
+
+            }
+            exit_menu.addEventListener("click", function(e) {
+                this_element = e.currentTarget;
+                hideContextMenu("close", this_element);
+                
+            });
+
+            divider.addEventListener("click", function(e) {
+                this_element = e.currentTarget;
+                hideContextMenu("close", this_element);
+            });
+        }, 1250); // time in milliseconds
+    } else {
+        console.log("scroll in progress...")
+    }
+        
 }
 
 //Function for generating list items
