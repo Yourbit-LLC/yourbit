@@ -73,6 +73,10 @@ function yb_EventPause(){
     }, 100)
 }
 
+function yb_isScrolling() {
+    return scrolling;
+}
+
 var debounced_function = debounce(yb_getDisplay, 500);
 
 CONTAINER.addEventListener("scroll", yb_EventPause);
