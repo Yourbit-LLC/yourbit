@@ -12,6 +12,7 @@ $(document).ready(function() {
         // all scripts have finished loading
         // do something here
         yb_InitializeHome()
+        console.log("not ready")
       } else {
         // scripts are still loading
         // wait for them to finish loading
@@ -19,6 +20,7 @@ $(document).ready(function() {
           // all scripts have finished loading
           // do something here
           yb_InitializeHome()
+          console.log("ready")
         });
       }
 
