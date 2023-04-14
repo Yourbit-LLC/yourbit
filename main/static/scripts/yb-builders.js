@@ -348,7 +348,7 @@ function BuildBit(bit, liked_bits, disliked_bits){
 
     let timer;
 
-    new_bit.addEventListener("pointerdown", setTimout(function(event) {
+    new_bit.addEventListener("pointerdown", setTimeout(function(event) {
         console.log("mousedown");
         
         let scrolling = yb_isScrolling();
