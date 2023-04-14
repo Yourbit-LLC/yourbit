@@ -496,7 +496,7 @@ function BuildBit(bit, liked_bits, disliked_bits){
                 console.log("scroll in progress...")
             }
         })
-    }, 100);
+    }, 200);
 
     new_bit.addEventListener("pointerup", function() {
         console.log("mouseup");
