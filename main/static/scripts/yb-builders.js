@@ -353,9 +353,11 @@ function BuildBit(bit, liked_bits, disliked_bits){
         
         let scrolling = yb_isScrolling();
         let this_element = event.currentTarget;
+        console.log(scrolling)
+
         if (scrolling === false){
             timer = setTimeout(function() {
-                console.log(scrolling)
+                
             
                 console.log("bit held");
             
