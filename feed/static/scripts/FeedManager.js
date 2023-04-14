@@ -83,10 +83,10 @@ function yb_isScrolling() {
     return isScrolling;
 }
 
-var debounced_function = debounce(yb_getDisplay, 500);
-
-CONTAINER.addEventListener("scroll", yb_EventPause);
-CONTAINER.addEventListener("scroll", debounced_function);
+var debounced_getDisplay = debounce(yb_getDisplay, 500);
+var debounced_eventPause = debounce(yb_EventPause, 100);
+CONTAINER.addEventListener("scroll", debounced_eventPause);
+CONTAINER.addEventListener("scroll", debounced_getDisplay);
 
 
 //Tracker functions
