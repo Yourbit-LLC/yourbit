@@ -65,10 +65,13 @@ function yb_getDisplay() {
 }
 
 function yb_EventPause(){
+    let content_container = document.getElementById("content-container")
     scrolling = true;
+    console.log("scrolling set to: " + scrolling)
   
-    window.requestAnimationFrame(() => {
+    content_container.requestAnimationFrame(() => {
       scrolling = false;
+      console.log("scrolling set to: "+scrolling)
     });
 }
 
