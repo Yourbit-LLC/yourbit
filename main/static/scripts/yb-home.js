@@ -7,24 +7,15 @@
 //Page Base URL
 var base_url = window.location.origin;
 
-$(document).ready(function() {
+document.addEventListener("DOMContentLoaded", function() {
     console.log("document ready function ran");
     console.log(document.readyState)
-    if (document.readyState === "complete") {
-        // all scripts have finished loading
-        // do something here
-        yb_InitializeHome()
-        console.log("not ready")
-      } else {
-        // scripts are still loading
-        // wait for them to finish loading
-        document.addEventListener("DOMContentLoaded", function() {
-          // all scripts have finished loading
-          // do something here
-          yb_InitializeHome()
-          console.log("ready")
-        });
-      }
+
+    // all scripts have finished loading
+    // do something here
+    yb_InitializeHome()
+    console.log("not ready")
+
 
 
 
