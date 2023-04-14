@@ -350,13 +350,13 @@ function BuildBit(bit, liked_bits, disliked_bits){
 
     new_bit.addEventListener("pointerdown", function(event) {
         console.log("mousedown");
-        
+        let scrolling = yb_isScrolling();
+        console.log(scrolling)
+        if (scrolling === false){       
         
         let this_element = event.currentTarget;
         timer = setTimeout(function() {
-            let scrolling = yb_isScrolling();
-            console.log(scrolling)
-            if (scrolling === false){
+
                 console.log("bit held");
             
                 let bit_id = this_element.getAttribute("data-id");
@@ -488,9 +488,10 @@ function BuildBit(bit, liked_bits, disliked_bits){
                     this_element = e.currentTarget;
                     hideContextMenu("close", this_element);
                 });
+        }, 1250); // time in milliseconds        
         } else {
-            console.log("scroll in progress...")
-        }}, 1250); // time in milliseconds
+                    console.log("scroll in progress...")
+        }
         
     });
 
