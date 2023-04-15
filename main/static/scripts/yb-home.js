@@ -7,19 +7,29 @@
 //Page Base URL
 var base_url = window.location.origin;
 
-document.addEventListener("DOMContentLoaded", function() {
+$(document).ready(function() {
     console.log("document ready function ran");
     console.log(document.readyState)
 
+    if (document.readyState === 'interactive') {
+        // DOM is still loading
+          // DOM is ready
+          // execute your code here
+          yb_InitializeHome();
+    }
+
     // all scripts have finished loading
     // do something here
-    yb_InitializeHome()
-    console.log("not ready")
+    
+    setTimeout(console.log(document.readyState), 200)
+    
 
 
 
 
 });
+
+
 
 function yb_InitializeHome(){
     let type = yb_getSessionValues("space");
