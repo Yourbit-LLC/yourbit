@@ -99,6 +99,8 @@ Profile Page
     .profile-interact-icon {
         position: relative;
         display: block;
+        margin: auto;
+
 
     }
 
