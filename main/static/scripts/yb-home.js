@@ -6,11 +6,24 @@
 
 //Page Base URL
 var base_url = window.location.origin;
+var feed_script = document.getElementById("feed-script")
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("load", function() {
     console.log("document ready function ran");
     console.log(document.readyState)
 
+    if (document.readyState === 'interactive') {
+        // DOM is still loading
+        document.addEventListener('DOMContentLoaded', function() {
+          // DOM is ready
+          // execute your code here
+        });
+      } else {
+        // DOM is already loaded
+        // execute your code here
+        yb_InitializeHome()
+        
+      }
     // all scripts have finished loading
     // do something here
     yb_InitializeHome()
