@@ -12,11 +12,12 @@ $(document).ready(function() {
     console.log("document ready function ran");
     console.log(document.readyState)
 
-    if (document.readyState === 'interactive') {
+    if (document.readyState === 'loading') {
         // DOM is still loading
           // DOM is ready
           // execute your code here
-          yb_InitializeHome();
+    } else {
+        yb_InitializeHome();
     }
 
     // all scripts have finished loading
