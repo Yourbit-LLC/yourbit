@@ -17,7 +17,7 @@ $(document).ready(function() {
           // DOM is ready
           // execute your code here
     } else {
-        yb_InitializeHome();
+        setTimeout(yb_InitializeHome, 200);
     }
 
     // all scripts have finished loading
