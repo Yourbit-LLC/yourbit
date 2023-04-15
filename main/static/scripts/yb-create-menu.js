@@ -649,14 +649,14 @@ $('#mobile-publish-bit').click(function() {
         console.log(private_toggle)
         let public_toggle = document.getElementsByName("toggle-public");
         gatherMobileBit(type, yb_submitBit);
-    } else {
+    } else if (action === "edit") {
         let type = document.getElementById('bit-type-hidden-field').value;
         let private_toggle = document.getElementsByName("toggle-private")[1];
         console.log(private_toggle)
         let public_toggle = document.getElementsByName("toggle-public");
         gatherMobileBit(type, yb_editBit);
         
-    }
+    } 
 });
 
 $("#mobile-title").click(function(){
