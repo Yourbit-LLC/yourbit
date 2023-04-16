@@ -42,6 +42,7 @@ back_button.addEventListener("click", function() {
 function showCreateBit(callback) {
     let create_bit = document.getElementById('create-bit-mobile');
     create_bit.style.visibility='visible';
+    create_bit.load("/profile/templates/create-menu-html");
     // let current_url = document.getElementById('current_url').value;
     callback(titleFocus);
     // history.pushState({}, "", `${current_url}/create/`);
@@ -81,6 +82,9 @@ function hideCreateBit() {
 }
 
 function yb_chatBitForm(form, type_field, option_field, script_source) {
+        let sub_function_script = document.getElementById("sub-function-script")
+        let this_source = document.getElementById("create-bit-source").value;
+        sub_function_script.src = this_source;
 
         //hide options
         $('#create-options').fadeOut();
@@ -157,90 +161,97 @@ function yb_chatBitForm(form, type_field, option_field, script_source) {
 }
 
 function yb_videoBitForm(form, type_field, option_field, script_source) {
-        //hide options
-        $('#create-options').fadeOut();
+    let sub_function_script = document.getElementById("sub-function-script")
+    let this_source = document.getElementById("create-bit-source").value;
+    sub_function_script.src = this_source;
 
-        //Show Form
-        $('#create-container').fadeIn();
+    //hide options
+    $('#create-options').fadeOut();
 
-        //On creation of bits show scope options
-        $('#scope-options').fadeIn();
+    //Show Form
+    $('#create-container').fadeIn();
 
-        //On creation of bits show type options (text, photo, video)
-        $('#create-bit-type-mobile').fadeIn();
+    //On creation of bits show scope options
+    $('#scope-options').fadeIn();
 
-        //Set header to corresponding creation
-        $('#create-bit-header-text').html('Create Video Bit');
+    //On creation of bits show type options (text, photo, video)
+    $('#create-bit-type-mobile').fadeIn();
 
-        //Set hidden form field to describe bit type on submission
-        type_field.value = 'video';
-        option_field.value='bit';
+    //Set header to corresponding creation
+    $('#create-bit-header-text').html('Create Video Bit');
 
-        let to_field = yb_createInput("input", "yb-single-line-input", "mobile-to",  "To: (optional)");
-        let title_field = yb_createInput("input", "yb-single-line-input", "mobile-title",  "Title");
-        let body_field = yb_createInput("textarea","yb-text-area", "mobile-body");
-        let meta_tags = yb_createInput("input", "yb-single-line-input", "mobile-tags", "Meta Tags (separate by comma)");
-        let upload_field = yb_createInput("file", "yb-file-field", "mobile-file-field", "none");
+    //Set hidden form field to describe bit type on submission
+    type_field.value = 'video';
+    option_field.value='bit';
 
-        //Change form fields to correspond with creation
-        form.innerHTML = ``
-        
-        form.appendChild(to_field);
-        form.appendChild(title_field);
-        form.appendChild(body_field);
-        form.appendChild(upload_field)
-        form.appendChild(meta_tags);
-        
-        
-        //Change up type buttons
-        $('#text-type-button').replaceWith(`<a id = "text-type-button" onclick="changeBitForm('chat')" class = "type-button" name = "chat"><svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M.95 17.8V1.85q0-.5.325-.825Q1.6.7 2.1.7h14.25q.5 0 .825.325.325.325.325.825V12q0 .5-.325.825-.325.325-.825.325H5.6Zm5.8.9q-.5 0-.825-.325-.325-.325-.325-.825v-2.4h13.9V5.4h2.4q.5 0 .825.325.325.325.325.825v16.8L18.4 18.7Zm8.1-15.35H3.6v8.05l.9-.9h10.35Zm-11.25 0v8.05Z"/></svg></a>`);
-        $('#photo-type-button').replaceWith(`<a id = "photo-type-button" onclick="changeBitForm('photo')" class = "type-button" name = "photo"><svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M12 17.75q1.925 0 3.263-1.337Q16.6 15.075 16.6 13.15q0-1.925-1.337-3.263Q13.925 8.55 12 8.55q-1.925 0-3.262 1.337Q7.4 11.225 7.4 13.15q0 1.925 1.338 3.263Q10.075 17.75 12 17.75Zm0-2.65q-.8 0-1.375-.575t-.575-1.375q0-.8.575-1.375T12 11.2q.8 0 1.375.575t.575 1.375q0 .8-.575 1.375T12 15.1Zm-8.15 6.725q-1.1 0-1.875-.775-.775-.775-.775-1.875V7.125q0-1.1.775-1.875.775-.775 1.875-.775h3.025l2.05-2.25h6.15l2.05 2.25h3.025q1.1 0 1.875.775.775.775.775 1.875v12.05q0 1.1-.775 1.875-.775.775-1.875.775Zm16.3-2.65V7.125h-4.2l-2.05-2.25h-3.8l-2.05 2.25h-4.2v12.05ZM12 13.15Z"/></svg></a>`);
-        $('#video-type-button').replaceWith(`<a id = "video-type-button" class = "type-button-active" name = "video"><svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m9.15 17.15 8-5.15-8-5.15ZM12 22.8q-2.25 0-4.213-.85-1.962-.85-3.424-2.312Q2.9 18.175 2.05 16.212 1.2 14.25 1.2 12t.85-4.225Q2.9 5.8 4.363 4.338q1.462-1.463 3.424-2.301Q9.75 1.2 12 1.2t4.225.837q1.975.838 3.438 2.301 1.462 1.462 2.299 3.437Q22.8 9.75 22.8 12q0 2.25-.838 4.212-.837 1.963-2.299 3.426Q18.2 21.1 16.225 21.95q-1.975.85-4.225.85Zm0-2.65q3.425 0 5.788-2.363Q20.15 15.425 20.15 12t-2.362-5.788Q15.425 3.85 12 3.85q-3.425 0-5.787 2.362Q3.85 8.575 3.85 12q0 3.425 2.363 5.787Q8.575 20.15 12 20.15ZM12 12Z"/></svg></a>`);
+    let to_field = yb_createInput("input", "yb-single-line-input", "mobile-to",  "To: (optional)");
+    let title_field = yb_createInput("input", "yb-single-line-input", "mobile-title",  "Title");
+    let body_field = yb_createInput("textarea","yb-text-area", "mobile-body");
+    let meta_tags = yb_createInput("input", "yb-single-line-input", "mobile-tags", "Meta Tags (separate by comma)");
+    let upload_field = yb_createInput("file", "yb-file-field", "mobile-file-field", "none");
+
+    //Change form fields to correspond with creation
+    form.innerHTML = ``
+    
+    form.appendChild(to_field);
+    form.appendChild(title_field);
+    form.appendChild(body_field);
+    form.appendChild(upload_field)
+    form.appendChild(meta_tags);
+    
+    
+    //Change up type buttons
+    $('#text-type-button').replaceWith(`<a id = "text-type-button" onclick="changeBitForm('chat')" class = "type-button" name = "chat"><svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M.95 17.8V1.85q0-.5.325-.825Q1.6.7 2.1.7h14.25q.5 0 .825.325.325.325.325.825V12q0 .5-.325.825-.325.325-.825.325H5.6Zm5.8.9q-.5 0-.825-.325-.325-.325-.325-.825v-2.4h13.9V5.4h2.4q.5 0 .825.325.325.325.325.825v16.8L18.4 18.7Zm8.1-15.35H3.6v8.05l.9-.9h10.35Zm-11.25 0v8.05Z"/></svg></a>`);
+    $('#photo-type-button').replaceWith(`<a id = "photo-type-button" onclick="changeBitForm('photo')" class = "type-button" name = "photo"><svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M12 17.75q1.925 0 3.263-1.337Q16.6 15.075 16.6 13.15q0-1.925-1.337-3.263Q13.925 8.55 12 8.55q-1.925 0-3.262 1.337Q7.4 11.225 7.4 13.15q0 1.925 1.338 3.263Q10.075 17.75 12 17.75Zm0-2.65q-.8 0-1.375-.575t-.575-1.375q0-.8.575-1.375T12 11.2q.8 0 1.375.575t.575 1.375q0 .8-.575 1.375T12 15.1Zm-8.15 6.725q-1.1 0-1.875-.775-.775-.775-.775-1.875V7.125q0-1.1.775-1.875.775-.775 1.875-.775h3.025l2.05-2.25h6.15l2.05 2.25h3.025q1.1 0 1.875.775.775.775.775 1.875v12.05q0 1.1-.775 1.875-.775.775-1.875.775Zm16.3-2.65V7.125h-4.2l-2.05-2.25h-3.8l-2.05 2.25h-4.2v12.05ZM12 13.15Z"/></svg></a>`);
+    $('#video-type-button').replaceWith(`<a id = "video-type-button" class = "type-button-active" name = "video"><svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m9.15 17.15 8-5.15-8-5.15ZM12 22.8q-2.25 0-4.213-.85-1.962-.85-3.424-2.312Q2.9 18.175 2.05 16.212 1.2 14.25 1.2 12t.85-4.225Q2.9 5.8 4.363 4.338q1.462-1.463 3.424-2.301Q9.75 1.2 12 1.2t4.225.837q1.975.838 3.438 2.301 1.462 1.462 2.299 3.437Q22.8 9.75 22.8 12q0 2.25-.838 4.212-.837 1.963-2.299 3.426Q18.2 21.1 16.225 21.95q-1.975.85-4.225.85Zm0-2.65q3.425 0 5.788-2.363Q20.15 15.425 20.15 12t-2.362-5.788Q15.425 3.85 12 3.85q-3.425 0-5.787 2.362Q3.85 8.575 3.85 12q0 3.425 2.363 5.787Q8.575 20.15 12 20.15ZM12 12Z"/></svg></a>`);
 }
 
 function yb_photoBitForm(form, type_field, option_field, script_source) {
-        //hide options
-        $('#create-options').fadeOut();
+    let sub_function_script = document.getElementById("sub-function-script")
+    let this_source = document.getElementById("create-bit-source").value;
+    sub_function_script.src = this_source;
+    //hide options
+    $('#create-options').fadeOut();
 
-        //Show form
-        $('#create-container').fadeIn();
+    //Show form
+    $('#create-container').fadeIn();
 
-        //On creation of bits show scope options
-        $('#scope-options').fadeIn();
+    //On creation of bits show scope options
+    $('#scope-options').fadeIn();
 
-        //On creation of bits show type options (text, photo, video)
-        $('#create-bit-type-mobile').fadeIn();
+    //On creation of bits show type options (text, photo, video)
+    $('#create-bit-type-mobile').fadeIn();
 
-        //Set header to corresponding creation
-        $('#create-bit-header-text').html('Create Photo Bit');
+    //Set header to corresponding creation
+    $('#create-bit-header-text').html('Create Photo Bit');
 
-        //Set hidden form field to describe bit type on submission
-        type_field.value = 'photo';
-        option_field.value='bit';
+    //Set hidden form field to describe bit type on submission
+    type_field.value = 'photo';
+    option_field.value='bit';
 
-        let to_field = yb_createInput("text", "yb-single-line-input", "mobile-to", "To: (optional)");
-        let title_field = yb_createInput("text", "yb-single-line-input", "mobile-title", "Caption");
-        let body_field = yb_createInput("textarea", "yb-text-area", "mobile-body", "Description");
-        let upload_field = yb_createInput("file", "yb-file-field", "mobile-file-field", "none")
-        //Change form fields to correspond with creation
-        form.innerHTML = ``;
+    let to_field = yb_createInput("text", "yb-single-line-input", "mobile-to", "To: (optional)");
+    let title_field = yb_createInput("text", "yb-single-line-input", "mobile-title", "Caption");
+    let body_field = yb_createInput("textarea", "yb-text-area", "mobile-body", "Description");
+    let upload_field = yb_createInput("file", "yb-file-field", "mobile-file-field", "none")
+    //Change form fields to correspond with creation
+    form.innerHTML = ``;
 
-        form.appendChild(to_field);
-        form.appendChild(title_field);
-        form.appendChild(body_field);
-        form.appendChild(upload_field);
+    form.appendChild(to_field);
+    form.appendChild(title_field);
+    form.appendChild(body_field);
+    form.appendChild(upload_field);
 
-        
-        //Change up type buttons
-        $('#text-type-button').replaceWith(`<a id = "text-type-button" onclick="changeBitForm('chat')" class = "type-button" name = "chat"><svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M.95 17.8V1.85q0-.5.325-.825Q1.6.7 2.1.7h14.25q.5 0 .825.325.325.325.325.825V12q0 .5-.325.825-.325.325-.825.325H5.6Zm5.8.9q-.5 0-.825-.325-.325-.325-.325-.825v-2.4h13.9V5.4h2.4q.5 0 .825.325.325.325.325.825v16.8L18.4 18.7Zm8.1-15.35H3.6v8.05l.9-.9h10.35Zm-11.25 0v8.05Z"/></svg></a>`);
-        $('#photo-type-button').replaceWith(`<a id = "photo-type-button" class = "type-button-active" name = "photo"><svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M12 17.75q1.925 0 3.263-1.337Q16.6 15.075 16.6 13.15q0-1.925-1.337-3.263Q13.925 8.55 12 8.55q-1.925 0-3.262 1.337Q7.4 11.225 7.4 13.15q0 1.925 1.338 3.263Q10.075 17.75 12 17.75Zm0-2.65q-.8 0-1.375-.575t-.575-1.375q0-.8.575-1.375T12 11.2q.8 0 1.375.575t.575 1.375q0 .8-.575 1.375T12 15.1Zm-8.15 6.725q-1.1 0-1.875-.775-.775-.775-.775-1.875V7.125q0-1.1.775-1.875.775-.775 1.875-.775h3.025l2.05-2.25h6.15l2.05 2.25h3.025q1.1 0 1.875.775.775.775.775 1.875v12.05q0 1.1-.775 1.875-.775.775-1.875.775Zm16.3-2.65V7.125h-4.2l-2.05-2.25h-3.8l-2.05 2.25h-4.2v12.05ZM12 13.15Z"/></svg></a>`);
-        $('#video-type-button').replaceWith(
-            `<a id = "video-type-button" onclick="changeBitForm('video')" class = "type-button" name = "video">
-                <svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
-                    <path d="m9.15 17.15 8-5.15-8-5.15ZM12 22.8q-2.25 0-4.213-.85-1.962-.85-3.424-2.312Q2.9 18.175 2.05 16.212 1.2 14.25 1.2 12t.85-4.225Q2.9 5.8 4.363 4.338q1.462-1.463 3.424-2.301Q9.75 1.2 12 1.2t4.225.837q1.975.838 3.438 2.301 1.462 1.462 2.299 3.437Q22.8 9.75 22.8 12q0 2.25-.838 4.212-.837 1.963-2.299 3.426Q18.2 21.1 16.225 21.95q-1.975.85-4.225.85Zm0-2.65q3.425 0 5.788-2.363Q20.15 15.425 20.15 12t-2.362-5.788Q15.425 3.85 12 3.85q-3.425 0-5.787 2.362Q3.85 8.575 3.85 12q0 3.425 2.363 5.787Q8.575 20.15 12 20.15ZM12 12Z"/>
-                </svg>
-            </a>`
-        );
+    
+    //Change up type buttons
+    $('#text-type-button').replaceWith(`<a id = "text-type-button" onclick="changeBitForm('chat')" class = "type-button" name = "chat"><svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M.95 17.8V1.85q0-.5.325-.825Q1.6.7 2.1.7h14.25q.5 0 .825.325.325.325.325.825V12q0 .5-.325.825-.325.325-.825.325H5.6Zm5.8.9q-.5 0-.825-.325-.325-.325-.325-.825v-2.4h13.9V5.4h2.4q.5 0 .825.325.325.325.325.825v16.8L18.4 18.7Zm8.1-15.35H3.6v8.05l.9-.9h10.35Zm-11.25 0v8.05Z"/></svg></a>`);
+    $('#photo-type-button').replaceWith(`<a id = "photo-type-button" class = "type-button-active" name = "photo"><svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M12 17.75q1.925 0 3.263-1.337Q16.6 15.075 16.6 13.15q0-1.925-1.337-3.263Q13.925 8.55 12 8.55q-1.925 0-3.262 1.337Q7.4 11.225 7.4 13.15q0 1.925 1.338 3.263Q10.075 17.75 12 17.75Zm0-2.65q-.8 0-1.375-.575t-.575-1.375q0-.8.575-1.375T12 11.2q.8 0 1.375.575t.575 1.375q0 .8-.575 1.375T12 15.1Zm-8.15 6.725q-1.1 0-1.875-.775-.775-.775-.775-1.875V7.125q0-1.1.775-1.875.775-.775 1.875-.775h3.025l2.05-2.25h6.15l2.05 2.25h3.025q1.1 0 1.875.775.775.775.775 1.875v12.05q0 1.1-.775 1.875-.775.775-1.875.775Zm16.3-2.65V7.125h-4.2l-2.05-2.25h-3.8l-2.05 2.25h-4.2v12.05ZM12 13.15Z"/></svg></a>`);
+    $('#video-type-button').replaceWith(
+        `<a id = "video-type-button" onclick="changeBitForm('video')" class = "type-button" name = "video">
+            <svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                <path d="m9.15 17.15 8-5.15-8-5.15ZM12 22.8q-2.25 0-4.213-.85-1.962-.85-3.424-2.312Q2.9 18.175 2.05 16.212 1.2 14.25 1.2 12t.85-4.225Q2.9 5.8 4.363 4.338q1.462-1.463 3.424-2.301Q9.75 1.2 12 1.2t4.225.837q1.975.838 3.438 2.301 1.462 1.462 2.299 3.437Q22.8 9.75 22.8 12q0 2.25-.838 4.212-.837 1.963-2.299 3.426Q18.2 21.1 16.225 21.95q-1.975.85-4.225.85Zm0-2.65q3.425 0 5.788-2.363Q20.15 15.425 20.15 12t-2.362-5.788Q15.425 3.85 12 3.85q-3.425 0-5.787 2.362Q3.85 8.575 3.85 12q0 3.425 2.363 5.787Q8.575 20.15 12 20.15ZM12 12Z"/>
+            </svg>
+        </a>`
+    );
 }
 
 

@@ -23,6 +23,7 @@ urlpatterns = [
         path('templates/connections-html/', TemplateView.as_view(template_name='user_profile/connections.html')),
         path('templates/my-stuff-html/', TemplateView.as_view(template_name='user_profile/my_stuff.html')),
         path('templates/history-html/', TemplateView.as_view(template_name="user_profile/my_stuff.html")),
+        path('templates/create-menu-html/', TemplateView.as_view(template_name="user_profile/create_menu.html")),
         
         #Django Views
         path('connections/', ConnectionList.as_view(), name='connections'),
