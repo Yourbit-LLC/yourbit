@@ -42,7 +42,7 @@ back_button.addEventListener("click", function() {
 function showCreateBit(callback) {
     let create_bit = document.getElementById('create-bit-mobile');
     create_bit.style.visibility='visible';
-    $(create_bit).load("/profile/templates/create-menu-html");
+    $(create_bit).load("/profile/templates/create-menu-html/");
     // let current_url = document.getElementById('current_url').value;
     callback(titleFocus);
     // history.pushState({}, "", `${current_url}/create/`);
