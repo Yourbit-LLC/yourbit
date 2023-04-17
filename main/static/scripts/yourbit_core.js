@@ -909,3 +909,53 @@ function yb_openImage(source, index, this_id){
 
     
 }
+
+//Opening the menu on click of create icon
+$('#mobile-create-icon').click(function() {
+    $('#cb-divider').show();
+    showCreateBit(raiseCreateBit);
+});
+
+//Closing the menu
+$('#bit-panel-close').click(function() {
+    dropCreateBit(hideCreateBit);
+});
+
+
+
+/* Function to set display of create bit to block */
+function showCreateBit(callback) {
+    let create_bit = document.getElementById('create-bit-mobile');
+    create_bit.style.visibility='visible';
+    $(create_bit).load("/profile/templates/create-menu-html/");
+    // let current_url = document.getElementById('current_url').value;
+    callback(titleFocus);
+    // history.pushState({}, "", `${current_url}/create/`);
+}
+
+/* Function to animate create bit onto the screen */
+function raiseCreateBit(callback){
+    let create_bit = document.getElementById('create-bit-mobile');
+    create_bit.style.transition = '0.5s';
+    create_bit.style.transform = 'translate(-50%, -90vh)';
+    setTimeout(callback, 500);
+}
+
+
+/* Before hiding create bit, ru a drop animation followUp = hideCreateBit() */
+function dropCreateBit(followUp) {
+    let create_bit = document.getElementById('create-bit-mobile');
+    create_bit.style.transition = '0.25s';
+    create_bit.style.transform = 'translate(-50%, 0vh)';
+    followUp();
+}
+
+/* Hide Create bit after drop down animation */
+function hideCreateBit() {
+    let create_bit = document.getElementById('create-bit-mobile');
+    create_bit.style.visibility='hidden';
+    // let current_url = document.getElementById('current_url').value;
+    // history.pushState({}, "", `${current_url}/`);
+    $('#cb-divider').hide();
+
+}
