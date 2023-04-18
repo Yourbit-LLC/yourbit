@@ -150,7 +150,7 @@ function getBaseURL() {
 
 function post_fly_in(callback) {
     console.log('trigger post animation');
-    $('#content-container').animate({'top':'1vh'}, 'fast');
+    $('#content-container').animate({'top':'0vh'}, 'fast');
     setTimeout(callback, 1000);
 };
 
