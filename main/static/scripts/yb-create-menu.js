@@ -16,6 +16,135 @@ var stored_message_contacts = [];
 
 var total_width_bit = 0;
 
+$(document).ready(function() {
+
+    
+
+    //Get chatbit button from document
+    let chatbit_button = document.getElementById("button-chatbit");
+    //Add event listener to chatbit button
+    chatbit_button.addEventListener('click',function() {
+        let option = $(this).attr('name');
+        //set variables for forms
+        let form = document.getElementById('mobile-create-inputs');
+        let type_field = document.getElementById('bit-type-hidden-field');
+        let scope_field = document.getElementById('bit-scope-hidden-field');
+        let option_field = document.getElementById('create-option-hidden-field');
+        let private_toggle = document.getElementsByName("toggle-private")[0];
+        let public_toggle = document.getElementsByName("toggle-public")[0];
+        let script_source = document.getElementById('create-script');
+        yb_chatBitForm(form, type_field, option_field, script_source);
+    });
+    
+    //Get photobit button from document
+    let photobit_button = document.getElementById("button-photobit");
+    //Add event listener to photo bit button
+    photobit_button.addEventListener('click', function() {
+        let option = $(this).attr('name');
+        //set variables for forms
+        let form = document.getElementById('mobile-create-inputs');
+        let type_field = document.getElementById('bit-type-hidden-field');
+        let scope_field = document.getElementById('bit-scope-hidden-field');
+        let option_field = document.getElementById('create-option-hidden-field');
+        let private_toggle = document.getElementsByName("toggle-private")[0];
+        let public_toggle = document.getElementsByName("toggle-public")[0];
+        let script_source = document.getElementById('create-script');
+        yb_photoBitForm(form, type_field, option_field, script_source);
+    })
+    
+    //Get video bit button from document
+    let videobit_button = document.getElementById("button-videobit");
+    //Add event listner to video bit button
+    videobit_button.addEventListener('click', function() {
+        let option = $(this).attr('name');
+        //set variables for forms
+        let form = document.getElementById('mobile-create-inputs');
+        let type_field = document.getElementById('bit-type-hidden-field');
+        let scope_field = document.getElementById('bit-scope-hidden-field');
+        let option_field = document.getElementById('create-option-hidden-field');
+        let private_toggle = document.getElementsByName("toggle-private")[0];
+        let public_toggle = document.getElementsByName("toggle-public")[0];
+        let script_source = document.getElementById('create-script');
+        yb_videoBitForm(form, type_field, option_field, script_source);
+    });
+
+    //Get cluster button from document
+    let cluster_button = document.getElementById("button-cluster");
+    //Add event listener to cluster button
+    cluster_button.addEventListener('click', function() {
+        $('#create-bit-header-text').html('Create a Cluster');
+        //Hide options container
+        $('#create-options').fadeOut();
+        //Show create container
+        $('#create-container').fadeIn();
+
+        $("#mobile-publish-bit").html("Create");
+
+        let description = yb_createElement("p", "mobile-cluster-description", "yb-card-intro");
+        description.innerHTML = "A Cluster is a folder containing your saved Bits.<br><br> You can access the clusters you have created by navigating to your inventory from the profile menu."
+        let name_field = yb_createInput("text", "yb-single-line-input", "mobile-cluster-name",  "Cluster Name");
+
+
+        option_field.value = 'cluster';
+        
+        //change form fields to correspond with creation
+        form.innerHTML = ``;
+        form.appendChild(description);
+        form.appendChild(name_field);
+
+        document.getElementById('mobile-publish-bit').addEventListener("click", function(){
+            let name_field = document.getElementById('mobile-cluster-name');
+            let name = name_field.value;
+            name_field.value = "";
+            
+            console.log(name);
+            yb_createCluster(name);
+            
+        });
+
+        script_source.src = "/static/scripts/yb-create-community.js"
+    })
+
+    //Get community button from document
+    let community_button = document.getElementById("button-community");
+    //Add event listener to commnity button
+    community_button.addEventListener('click', function() {
+        $('#create-bit-header-text').html('Create a Community');
+        //Hide options container
+        $('#create-options').fadeOut();
+        //Show create container
+        $('#create-container').fadeIn();
+
+        $("#mobile-publish-bit").html("Create");
+
+        let name_field = yb_createInput("text", "yb-single-line-input", "mobile-community-name",  "Name");
+        let handle_field = yb_createInput("text", "yb-single-line-input", "mobile-community-handle",  "Handle");
+
+
+        option_field.value = 'community';
+        
+        //change form fields to correspond with creation
+        form.innerHTML = ``;
+
+        form.appendChild(name_field);
+        form.appendChild(handle_field);
+
+        script_source.src = "/static/scripts/yb-create-community.js/"
+    
+    });
+
+    //Get new message button from document
+    let new_message_button = document.getElementById("button-new-message");
+    //Add event listener to new_message_button
+    new_message_button.addEventListener('click', function(){
+        $("#scope-options").hide();
+        $("#create-bit-type-mobile").hide();
+        $("#create-bit-header").css({"height": "50px"});
+        yb_showMessageForm();
+    });
+
+});
+
 
 
 function yb_resetCreate(){
@@ -325,120 +454,6 @@ function yb_displayContacts(response) {
 
 
 }
-
-
-//User selects an option for object to create
-$('.create-option').click(function() {
-
-    //get user selected option from button name
-    let option = $(this).attr('name');
-
-    //set variables for forms
-    let form = document.getElementById('mobile-create-inputs');
-    let type_field = document.getElementById('bit-type-hidden-field');
-    let scope_field = document.getElementById('bit-scope-hidden-field');
-    let option_field = document.getElementById('create-option-hidden-field');
-    let private_toggle = document.getElementsByName("toggle-private")[0];
-    let public_toggle = document.getElementsByName("toggle-public")[0];
-    let script_source = document.getElementById('create-script');
-
-    private_toggle.addEventListener("click", function(){
-        scope_field.value = "private";
-        private_toggle.id = "bit-private-active";
-        public_toggle.id = "bit-public";
-
-    });
-
-    public_toggle.addEventListener("click", function(){
-        scope_field.value = "public";
-        public_toggle.id = "bit-public-active";
-        private_toggle.id = "bit-private";
-    })
-    //Creating a chatbit option
-    if (option === 'chat' ){
-        yb_chatBitForm(form, type_field, option_field, script_source);
-    }
-
-    //Create video bit option
-    if (option === 'video'){
-        yb_videoBitForm(form, type_field, option_field, script_source);
-    }
-
-    //create photobit option
-    if (option === 'photo'){
-        yb_photoBitForm(form, type_field, option_field, script_source);
-    
-    }
-
-    //Create community option
-    if (option === 'community'){
-        $('#create-bit-header-text').html('Create a Community');
-        //Hide options container
-        $('#create-options').fadeOut();
-        //Show create container
-        $('#create-container').fadeIn();
-
-        $("#mobile-publish-bit").html("Create");
-
-        let name_field = yb_createInput("text", "yb-single-line-input", "mobile-community-name",  "Name");
-        let handle_field = yb_createInput("text", "yb-single-line-input", "mobile-community-handle",  "Handle");
-
-
-        option_field.value = 'community';
-        
-        //change form fields to correspond with creation
-        form.innerHTML = ``;
-
-        form.appendChild(name_field);
-        form.appendChild(handle_field);
-
-        script_source.src = "/static/scripts/yb-create-community.js/"
-    }
-
-    //Create Message Option
-    if (option === 'message'){
-        $("#scope-options").hide();
-        $("#create-bit-type-mobile").hide();
-        $("#create-bit-header").css({"height": "50px"});
-        yb_showMessageForm();
-
-    }
-
-    if (option === 'cluster'){
-        $('#create-bit-header-text').html('Create a Cluster');
-        //Hide options container
-        $('#create-options').fadeOut();
-        //Show create container
-        $('#create-container').fadeIn();
-
-        $("#mobile-publish-bit").html("Create");
-
-        let description = yb_createElement("p", "mobile-cluster-description", "yb-card-intro");
-        description.innerHTML = "A Cluster is a folder containing your saved Bits.<br><br> You can access the clusters you have created by navigating to your inventory from the profile menu."
-        let name_field = yb_createInput("text", "yb-single-line-input", "mobile-cluster-name",  "Cluster Name");
-
-
-        option_field.value = 'community';
-        
-        //change form fields to correspond with creation
-        form.innerHTML = ``;
-        form.appendChild(description);
-        form.appendChild(name_field);
-
-        document.getElementById('mobile-publish-bit').addEventListener("click", function(){
-            let name_field = document.getElementById('mobile-cluster-name');
-            let name = name_field.value;
-            name_field.value = "";
-            
-            console.log(name);
-            yb_createCluster(name);
-            
-        });
-
-        script_source.src = "/static/scripts/yb-create-community.js"
-    }
-})
-
 
 
 function yb_showMessageForm(){
