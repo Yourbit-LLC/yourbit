@@ -315,7 +315,7 @@ function yb_displayContacts(response) {
 function yb_showMessageForm(){
     let form = document.getElementById('mobile-create-inputs');
     let option_field = document.getElementById('create-option-hidden-field');
-    let script_source = document.getElementById('create-script');
+    let script_element = document.getElementById('sub-function-script');
 
     let submit_button = document.getElementById('mobile-publish-bit');
 
@@ -384,8 +384,9 @@ function yb_showMessageForm(){
     form.appendChild(to_field_container);
     form.appendChild(result_container);
     form.appendChild(body_field);
+    let script_source = document.getElementById("send-message-source");
 
-    script_source.src = "/static/scripts/yb-send-message.js"
+    script_element.src = script_source;
 
     submit_button.addEventListener("click", function(){
         let body = document.getElementById("mobile-body").value;
