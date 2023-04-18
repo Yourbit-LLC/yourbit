@@ -1238,7 +1238,7 @@ only be used for object transforms (shaping and scaling)
         top: 100vh;
         left: 0px;
         z-index: 3;
-        width: 102vw;
+        width: 100vw;
         height: calc(100vh - 70px);
         overflow-y: scroll;
         transition: 1s;
