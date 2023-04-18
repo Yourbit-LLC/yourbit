@@ -1239,7 +1239,7 @@ only be used for object transforms (shaping and scaling)
         left: 0px;
         z-index: 3;
         width: 102vw;
-        height: 100vh;
+        height: calc(100vh - 70px);
         overflow-y: scroll;
         transition: 1s;
         overflow-x: hidden;
