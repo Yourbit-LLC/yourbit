@@ -328,8 +328,6 @@ function yb_hideComments(bit_id) {
     $(`#comment-container-${bit_id}`).hide();
     $(`#comment-label-${bit_id}`).hide();
     $(`#comment-container-${bit_id}`).empty();
-
-
 }
 
 
