@@ -68,7 +68,7 @@ def registration_view(request):
             from_email = 'no-reply@yourbit.me'
             send_mail(subject, strip_tags(html_message), from_email, recipient_list, html_message=html_message)
 
-            return render(request, 'YourbitAccounts/email_confirmation.html')
+            return redirect('email_confirmation')
 
     
         else:
@@ -79,6 +79,21 @@ def registration_view(request):
         context['registration_form'] = form
     
     return render(request, 'YourbitAccounts/register.html', context)
+
+class EmailConfirmation(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'YourbitAccounts/email_confirmation.html')
+    
+    def post(self, request, *args, **kwargs):
+        user = request.user
+        if user.is_authenticated:
+            this_key = request.POST.get('verification_key')
+            user_key = user.verification_token
+            if this_key == user_key:
+                return redirect('onboarding')
+            else:
+                return redirect('verify_error')
+    
 
 def login_view(request):
 

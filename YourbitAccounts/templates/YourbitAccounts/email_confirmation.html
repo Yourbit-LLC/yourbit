@@ -5,14 +5,19 @@
     <body>
         <img src="">
         <h1>Welcome to Yourbit!</h1>
-        <h3>We sent you a confirmation email!</h3>
+        <h3>We sent a code to your email</h3>
 
-        <div id="text-container">
-            <p>Thanks for signing up to join us in orbit around the social media universe. An email confirmation has been sent to your email address. <b>Please check your email</b> and follow the instructions to complete the sign up process and get your account off the ground.</p>
-            <p>If you don't receive the email within a few minutes, please check your spam folder and make sure that emails from our domain are not being blocked.</p>
-            <p>See you among the stars,</p>
-            <p>The Yourbit team</p>
-        </div>
+        <p>Check your email for a verification code and enter it below.</p>
+        <i>Didn't receive a code? <a href="">Resend</a></i>
+        <br>
+        <br>
+        <b>**Please note, we are a new site so you may have to check your spam or junk folders.</b>
+
+        <form id="text-container" method="POST">
+            {% csrf_token %}
+            <input id="code-input" name="verification_key" type="text" placeholder="Enter code here">
+            <button type = "submit" id="verify-button">Verify</button>
+        </form>
     </body>
   </html>
   
