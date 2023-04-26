@@ -82,7 +82,12 @@ def registration_view(request):
 
 class EmailConfirmation(View):
     def get(self, request, *args, **kwargs):
-        return render(request, 'YourbitAccounts/email_confirmation.html')
+        context={
+            "yourbit_logo": "https://objects-in-yourbit.us-southeast-1.linodeobjects.com/images/logo-flat.png",
+
+        }
+
+        return render(request, 'YourbitAccounts/email_confirmation.html', context)
     
     def post(self, request, *args, **kwargs):
         user = request.user

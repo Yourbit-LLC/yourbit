@@ -3,19 +3,21 @@
       <title>Yourbit Email Confirmation</title>
     </head>
     <body>
-        <img src="">
+        <img width="50%" src="{{yourbit_logo}}">
         <h1>Welcome to Yourbit!</h1>
         <h3>We sent a code to your email</h3>
 
         <p>Check your email for a verification code and enter it below.</p>
-        <i>Didn't receive a code? <a href="">Resend</a></i>
+        <i>Didn't receive a code? <br><a href="">Resend</a></i>
         <br>
         <br>
         <b>**Please note, we are a new site so you may have to check your spam or junk folders.</b>
 
         <form id="text-container" method="POST">
             {% csrf_token %}
-            <input id="code-input" name="verification_key" type="text" placeholder="Enter code here">
+            <input id="code-input" name="verification_key" type="text" placeholder="Enter code">
+            <br>
+            <br>
             <button type = "submit" id="verify-button">Verify</button>
         </form>
     </body>
@@ -24,23 +26,32 @@
   
   <style>
     body {
-        background-color: rgb(10, 10, 10);
+        background-color: rgb(35, 35, 35);
         color: white;
         text-align: center;
         font-family: Arial, Helvetica, sans-serif;
         line-height: 1.35;
-        font-weight: 525;
+        font-weight: 500;
+        font-size: 14px;
     }
+
+    #code-input{
+        border-radius: 10px;
+        width: 90px;
+        text-align: center;
+    }
+
+
     #verify-button{
         position: relative;
         color: white;
         background-color: blueviolet;
         border: 2px solid rgb(105, 0, 153);
         border-radius: 25px;
-        width: 200px;
+        width: 40%;
         margin-left: auto;
         margin-right: auto;
-        padding: 20px;
+        height: 30px;
     }
 
     #text-container{
