@@ -30,6 +30,12 @@ def generate_verification_token():
     letters_and_digits = string.ascii_letters + string.digits
     return ''.join(random.choices(letters_and_digits, k=length))
 
+def generate_verification_key():
+    """Generates a random string of characters to use as a verification token."""
+    length = 8
+    letters_and_digits = string.ascii_letters + string.digits
+    return ''.join(random.choices(letters_and_digits, k=length))
+
 def registration_view(request):
     context = {}
     if request.POST:
@@ -43,17 +49,19 @@ def registration_view(request):
             login(request, account)
         
             # Generate a verification token for the user
-            token = generate_verification_token()
+            verification_key = generate_verification_key()
 
             # Set the token for the user account and save it to the database
-            account.verification_token = token
+            account.verification_token = verification_key
             account.save()
 
             # Send a verification email to the user
             subject = 'Yourbit Account Verification'
+            
             message = render_to_string('YourbitAccounts/verification_email.html', {
                 'user': account,
-                'token': token,
+                'verification_key': verification_key,
+                'logo_image':"https://objects-in-yourbit.us-southeast-1.linodeobjects.com/images/logo-flat.png",
             })
             html_message = message
             recipient_list = [account.email]
