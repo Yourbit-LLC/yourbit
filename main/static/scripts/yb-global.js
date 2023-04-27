@@ -182,6 +182,7 @@ function initUI() {
 }
 
 function hideContextMenu(type, this_element){
+    
     let target_element_name = this_element.getAttribute("data-bit-id");
     let this_id = this_element.getAttribute("data-id");
     let target_element = document.getElementById(target_element_name);
