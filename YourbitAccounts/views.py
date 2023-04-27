@@ -101,7 +101,7 @@ class EmailConfirmation(View):
 
 
 def terms_view(request):
-    file_path = '/YourbitAccounts/templates/register/yb-terms.htm/'
+    file_path = '/YourbitAccounts/templates/YourbitAccounts/yb-terms.htm/'
     return FileResponse(open(file_path, 'rb'))
     
 def login_view(request):
