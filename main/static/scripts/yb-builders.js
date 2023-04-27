@@ -404,7 +404,8 @@ function yb_buildContextMenu(this_element){
 
 
     exit_menu = yb_createElement("div", "context-menu-exit", "context-menu-exit");
-    exit_menu.setAttribute("data-id", this_element.id)
+    exit_menu.setAttribute("data-bit-id", this_element.id);
+    exit_menu.setAttribute("data-id", bit_id);
     
 
     content_container.appendChild(exit_menu);

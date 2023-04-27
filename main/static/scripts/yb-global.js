@@ -185,6 +185,7 @@ function hideContextMenu(type, this_element){
     
     let target_element_name = this_element.getAttribute("data-bit-id");
     let this_id = this_element.getAttribute("data-id");
+    console.log(this_id)
     let target_element = document.getElementById(target_element_name);
     let context_menu = document.getElementById(`bit-context-${this_id}`);
     let exit_menu = document.getElementById(`context-menu-exit`);
