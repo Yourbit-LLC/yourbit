@@ -243,7 +243,7 @@ function termsStage(){
     terms_window.setAttribute('style', 'margin-left: auto; margin-right: auto; background-color: #ffffff; border-radius: 20px; overflow: scroll; filter: drop-shadow(0px 0px 5px #000000); -webkit-filter: drop-shadow(0px 0px 5px #000000);')
 
 
-    terms_window.setAttribute('src', `${base_url}/YourbitAccounts/templates/YourbitAccounts/yb-terms.htm`);
+    terms_window.setAttribute('src', `${base_url}/accounts/documents/terms/`);
 
     
     

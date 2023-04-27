@@ -17,7 +17,7 @@ from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 
-
+from django.http import FileResponse
 
 # Create your views here.
 
@@ -98,7 +98,6 @@ class EmailConfirmation(View):
                 return redirect('onboarding')
             else:
                 return redirect('verify_error')
-    
 
 def login_view(request):
 
