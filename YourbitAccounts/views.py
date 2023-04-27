@@ -99,6 +99,11 @@ class EmailConfirmation(View):
             else:
                 return redirect('verify_error')
 
+
+def terms_view(request):
+    file_path = '/YourbitAccounts/templates/register/yb-terms.htm/'
+    return FileResponse(open(file_path, 'rb'))
+    
 def login_view(request):
 
     context = {}
