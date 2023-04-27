@@ -14,7 +14,7 @@ from django.core.exceptions import ValidationError
 import phonenumbers
 from phonenumbers import carrier, geocoder, timezone
 from django.core.mail import send_mail
-from django.template.loader import render_to_string
+from django.template.loader import render_to_string, get_template
 from django.utils.html import strip_tags
 
 from django.http import FileResponse
@@ -101,8 +101,8 @@ class EmailConfirmation(View):
 
 
 def terms_view(request):
-    file_path = '/YourbitAccounts/templates/YourbitAccounts/yb-terms.htm'
-    return FileResponse(open(file_path, 'rb'))
+    template = get_template('YourbitAccounts/yb-terms.htm')
+    return HttpResponse(template.template.source, content_type='text/html')
     
 def login_view(request):
 
