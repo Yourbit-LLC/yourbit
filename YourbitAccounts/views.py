@@ -3,7 +3,7 @@ from django.contrib.auth import login, authenticate, logout
 from YourbitAccounts.forms import RegistrationForm, LoginForm
 from django.contrib import messages
 from django.views import View
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from user_profile.forms import *
 from user_profile.models import Bit, Profile
 from settings.models import PrivacySettings
@@ -101,7 +101,8 @@ class EmailConfirmation(View):
 
 
 def terms_view(request):
-    template = get_template('YourbitAccounts/yb-terms.htm')
+    template = get_template('YourbitAccounts/yb-terms.html')
+    
     return HttpResponse(template.template.source, content_type='text/html')
     
 def login_view(request):
