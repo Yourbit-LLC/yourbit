@@ -239,7 +239,7 @@ function termsStage(){
     terms_window.setAttribute('frameborder', '0');
     terms_window.setAttribute('scrolling', 'yes');
     terms_window.setAttribute('width', '98%');
-    terms_window.setAttribute('height', '600px');
+    terms_window.setAttribute('height', '70%');
     terms_window.setAttribute('style', 'margin-left: auto; margin-right: auto; background-color: #ffffff; border-radius: 20px; overflow: scroll; filter: drop-shadow(0px 0px 5px #000000); -webkit-filter: drop-shadow(0px 0px 5px #000000);')
 
 
