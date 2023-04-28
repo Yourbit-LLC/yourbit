@@ -37,7 +37,7 @@
             <form method="POST" class='upload-field' enctype="multipart/form-data" style="background-color: rgba(0, 0, 0, 0.5); position: relative; width: 90vw; left: 50%; transform: translate(-50%, 0);">
                     {% csrf_token %}
                     <h4>Profile Picture</h4>
-                    <img id="profile-image-preview" style=" object-fit: contain;max-width:100%; max-height: 250px; margin-left: auto; margin-right: auto;"/>
+                    <img id="profile-image-preview" style="position: fixed; top:50%;, left: 50%; transform: translate(-50%, -50%); object-fit: contain; max-width:100%; max-height: 250px;"/>
                     <input type="hidden" id="cropper-output" value="">
                     <div id="profile-cropper-submission-controls" style="display:none; width:100%; background-color: rgba(0, 0, 0, 0.5);">
                         <button id="profile-advanced-options-button" style="margin-top: 2px; position: absolute; left: 5px;" class = "yb-form-button">Show Advanced Options</button>
