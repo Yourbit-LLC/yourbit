@@ -17,6 +17,13 @@ body {
 
 }
 
+.cropper-container {
+    position: fixed; 
+    top:50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+}
+
 .yb-pages-back {
     border-radius: 10px;
     height: 40px;
