@@ -37,13 +37,23 @@
             
             <div class="cb-divider" style = "display: none; top: 0; left: 0; width: 100vw; height: 100vh; position: fixed; z-index: 24; -webkit-backdrop-filter: brightness(30%); backdrop-filter: brightness(30%);">
             </div>
-            <div class="profile-image-cropper-container">
+            <div class="yb-cropper-container profile-image">
                 <img id="profile-image-preview" style="object-fit: contain; max-width:100%; max-height: 250px;"/>
                 <input type="hidden" id="cropper-output" value="">
                 <div id="profile-cropper-submission-controls" style="display:none; width:100%; background-color: rgba(0, 0, 0, 0.5);">
                     <button id="profile-advanced-options-button" style="margin-top: 2px; position: absolute; left: 5px;" class = "yb-form-button">Show Advanced Options</button>
                     <button id="profile-image-cropper-save" class="yb-form-button" type = "button" style="background-color: darkgreen; position: absolute; right: 5px;" onclick="uploadImage('profile-image')">Save</button>
                 </div>  
+            </div>
+            <div class="yb-cropper-container background">
+                <img id="background-image-preview" style="object-fit: contain; display: none; max-width:100%; max-height: 250px; margin-left: auto; margin-right: auto;"/>
+                <input type="hidden" id="cropper-output" value="">
+                <div id="background-cropper-submission-controls" style="display:none; width:100%; text-align:center;">
+                    
+                    <button id="background-advanced-options-button" style="margin-top: 2px; position: absolute; left: 5px;" class = "yb-form-button">Show Advanced Options</button>
+                    <button id="background-image-cropper-save" class="yb-form-button" type="button" style="background-color: darkgreen; position: absolute; right: 5px;" onclick="uploadImage('background-image')">Save</button>
+                    
+                </div>
             </div>
             <form method="POST" class='upload-field' enctype="multipart/form-data" style="background-color: rgba(0, 0, 0, 0.5); position: relative; width: 90vw; left: 50%; transform: translate(-50%, 0);">
                     {% csrf_token %}
@@ -81,14 +91,6 @@
             <form class='upload-field' id="background-image-onboard-container" method="POST" enctype="multipart/form-data" style="background-color: rgba(0, 0, 0, 0.5); position: relative; width: 90vw; left: 50%; transform: translate(-50%, 0);">
                 {% csrf_token %}
                 <h4>Profile Skin</h4> 
-                <img id="background-image-preview" style="object-fit: contain; display: none; max-width:100%; max-height: 250px; margin-left: auto; margin-right: auto;"/>
-                <input type="hidden" id="cropper-output" value="">
-                <div id="background-cropper-submission-controls" style="display:none; width:100%; text-align:center;">
-                    
-                    <button id="background-advanced-options-button" style="margin-top: 2px; position: absolute; left: 5px;" class = "yb-form-button">Show Advanced Options</button>
-                    <button id="background-image-cropper-save" class="yb-form-button" type="button" style="background-color: darkgreen; position: absolute; right: 5px;" onclick="uploadImage('background-image')">Save</button>
-                    
-                </div>
                 <input type="file" id="background-image-input" style="width:225px;" />
                 <br><br>                       
                 <label for="blur-radius">Blur</label>
