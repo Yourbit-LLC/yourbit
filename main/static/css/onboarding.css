@@ -19,6 +19,7 @@ body {
 
 .profile-image-cropper-container {
     position: fixed;
+    pointer-events: none;
     width: 98%;
     height: 70%;
     top: 50%;
