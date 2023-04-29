@@ -52,7 +52,7 @@ function previewImage(type) {
     var reader = new FileReader();
     console.log(this_window)
     reader.onload = function(e) {
-        $("profile-image-cropper-container").attr("pointer-events", "auto");
+        $(".profile-image-cropper-container").attr("pointer-events", "auto");
         this_window.src = e.target.result;
         cropper = new Cropper(this_window, {
         aspectRatio: target_ratio,
