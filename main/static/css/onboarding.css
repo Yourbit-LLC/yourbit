@@ -386,5 +386,10 @@ body {
     transform: translate(-50%, -50%);
 }
 
+.cropper-container {
+    border-radius: 20px;
+
+}
+
 
 
