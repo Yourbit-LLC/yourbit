@@ -52,6 +52,7 @@ function previewImage(type) {
     var reader = new FileReader();
     console.log(this_window)
     reader.onload = function(e) {
+        $(".cb-divider").fadeIn();
         $(".profile-image-cropper-container").css("pointer-events", "auto");
         this_window.src = e.target.result;
         cropper = new Cropper(this_window, {
