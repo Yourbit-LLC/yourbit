@@ -21,7 +21,7 @@ function showUpload(type){
     
 }
 function previewImage(type) {
-    let target_ratio
+    let target_ratio;
     console.log(type);
     $("#profile-advanced-options-button").fadeIn();
     if (type === "profile-image") {
