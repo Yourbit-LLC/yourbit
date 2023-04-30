@@ -22,11 +22,13 @@ function showUpload(type){
 }
 function previewImage(type) {
     let target_ratio;
+    let this_element;
     console.log(type);
     $("#profile-advanced-options-button").fadeIn();
     if (type === "profile-image") {
         target_ratio = 1;
         element = 'profile-image-input';
+        this_element = ".yb-cropper-container.profile-image"
         $("#profile-cropper-submission-controls").fadeIn();
         this_window = profile_crop;
     } else if (type === "desktop-background") {
@@ -38,6 +40,7 @@ function previewImage(type) {
     } else if (type === "mobile-background") {
             element = 'background-image-input';
             target_ratio = 9/19.5;
+            this_element = ".yb-cropper-container.background"
             $("#background-cropper-submission-controls").fadeIn();
             this_window = background_crop;
             
@@ -53,7 +56,7 @@ function previewImage(type) {
     console.log(this_window)
     reader.onload = function(e) {
         $(".cb-divider").fadeIn();
-        $(".profile-image-cropper-container").css("pointer-events", "auto");
+        $(this_element).css("pointer-events", "auto");
         this_window.src = e.target.result;
         cropper = new Cropper(this_window, {
         aspectRatio: target_ratio,
