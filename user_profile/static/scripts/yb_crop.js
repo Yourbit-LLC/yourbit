@@ -116,7 +116,7 @@ function dataURItoBlob(dataURI, unique_name) {
 
     image_blob.name = unique_name;
 
-    console.log(unique_name);
+    console.log(image_blob.name);
 
     return image_blob;
     
