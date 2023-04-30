@@ -89,6 +89,14 @@ function cropImage(type) {
     
 }
 
+function generateUniqueFileName(originalFileName) {
+    const timestamp = new Date().getTime();
+    const randomNumber = Math.floor(Math.random() * 1000000);
+    const fileExtension = originalFileName.split('.').pop();
+    const uniqueFileName = `${timestamp}_${randomNumber}.${fileExtension}`;
+    return uniqueFileName;
+  }
+
 function dataURItoBlob(dataURI) {
     // convert base64/URLEncoded data component to raw binary data held in a string
     var byteString;
@@ -103,7 +111,16 @@ function dataURItoBlob(dataURI) {
     for (var i = 0; i < byteString.length; i++) {
         ia[i] = byteString.charCodeAt(i);
     }
-    return new Blob([ia], {type:mimeString});
+
+    image_blob = new Blob([ia], {type:mimeString});
+
+    let unique_name = generateUniqueFileName(image_blob.name);
+    image_blob.name = unique_name;
+
+    console.log(unique_name);
+
+    return image_blob;
+    
 }
 
 function uploadImage(type){
