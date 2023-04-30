@@ -17,7 +17,7 @@ body {
 
 }
 
-.profile-image-cropper-container {
+.yb-cropper-container {
     position: fixed;
     pointer-events: none;
     width: 98%;
