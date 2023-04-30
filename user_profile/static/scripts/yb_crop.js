@@ -51,6 +51,7 @@ function previewImage(type) {
     console.log(element)
     var input = document.getElementById(element);
     console.log(input)
+    var file = input.files[0];
     var reader = new FileReader();
     console.log(this_window)
     reader.onload = function(e) {
@@ -58,16 +59,16 @@ function previewImage(type) {
         $(this_element).css("pointer-events", "auto");
         this_window.src = e.target.result;
         cropper = new Cropper(this_window, {
-        aspectRatio: target_ratio,
-        viewMode: 2,
-        crop: function(event) {
-            console.log(event.detail.width);
-            console.log(event.detail.height);
-            setTimeout(cropImage,100, type);
-        }
+            aspectRatio: target_ratio,
+            viewMode: 2,
+            crop: function(event) {
+                console.log(event.detail.width);
+                console.log(event.detail.height);
+                setTimeout(cropImage,100, type);
+            }
         });
-};
-reader.readAsDataURL(file);
+    };
+    reader.readAsDataURL(file);
 }
 
 function cropImage(type) {
@@ -142,7 +143,7 @@ function uploadImage(type){
         updateCustom('image_upload', 'background_image', file);
     }
     this_canvas.remove();
-    /* fetch(`/customize/`, {
+    /* fetch(`/customize/`, {s
         method: 'POST',
         contentType: false,
         // The following is necessary so jQuery won't try to convert the object into a string
