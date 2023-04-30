@@ -51,7 +51,6 @@ function previewImage(type) {
     console.log(element)
     var input = document.getElementById(element);
     console.log(input)
-    var file = input.files[0];
     var reader = new FileReader();
     console.log(this_window)
     reader.onload = function(e) {
@@ -97,7 +96,7 @@ function generateUniqueFileName(originalFileName) {
     return uniqueFileName;
   }
 
-function dataURItoBlob(dataURI) {
+function dataURItoBlob(dataURI, unique_name) {
     // convert base64/URLEncoded data component to raw binary data held in a string
     var byteString;
     if (dataURI.split(',')[0].indexOf('base64') >= 0)
@@ -114,7 +113,6 @@ function dataURItoBlob(dataURI) {
 
     image_blob = new Blob([ia], {type:mimeString});
 
-    let unique_name = generateUniqueFileName(image_blob.name);
     image_blob.name = unique_name;
 
     console.log(unique_name);
@@ -124,11 +122,19 @@ function dataURItoBlob(dataURI) {
 }
 
 function uploadImage(type){
+    let input_field = document.getElementById(`${type}-input`);
+    let file_source = input_field.files[0];
+    console.log(file_source.name);
+
+    let unique_name = generateUniqueFileName(file_source.name);
+    console.log(unique_name);
+
     var this_canvas = cropper.getCroppedCanvas();
-    console.log(this_canvas)
+    console.log(this_canvas);
+
     var img = this_canvas.toDataURL(); 
-    var file = dataURItoBlob(img)
-    console.log(img)
+    var file = dataURItoBlob(img, unique_name);
+    console.log(img);
 
     if (type === "profile-image"){
         updateCustom('image_upload', 'profile_image', file);

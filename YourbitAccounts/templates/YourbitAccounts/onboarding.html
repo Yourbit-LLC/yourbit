@@ -44,6 +44,36 @@
                     <button id="profile-advanced-options-button" style="margin-top: 2px; position: absolute; left: 5px;" class = "yb-form-button">Show Advanced Options</button>
                     <button id="profile-image-cropper-save" class="yb-form-button" type = "button" style="background-color: darkgreen; position: absolute; right: 5px;" onclick="uploadImage('profile-image')">Save</button>
                 </div>  
+                <script>
+                    let input = document.getElementById('profile-image-input');
+                    let save_button = document.getElementById('profile-image-cropper-save');
+                    save_button.addEventListener('click', function(){
+                        
+                        let profile_image_preview = document.getElementById('profile-image-preview');
+                        let profile_cropper_controls = document.getElementById('profile-cropper-submission-controls');
+                        let cropper = document.querySelector('.cropper-container'); 
+                        let input_field = document.getElementById('profile-image-input');
+                        let form = document.querySelector('.upload-field');
+
+                        input_field.style.display = 'none';
+                        profile_image_preview.style.display = 'none';
+                        profile_cropper_controls.style.display = 'none';
+                        cropper.style.display = 'none';
+                        
+                        let complete_container = yb_createElement('div', 'profile-image-upload-complete', 'complete_message');
+                        complete_container.style.width = 'fit-content';
+                        complete_container.style.marginLeft = 'auto';
+                        complete_container.style.marginRight = 'auto';
+                        complete_container.style.marginTop = '10px';
+                        $(".cb-divider").fadeOut();
+
+
+                        let icon = `<svg style="position: relative; grid-column: 1; margin:auto;" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" width="24"><path style="fill:green" d="m424 760 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197 859q-54-54-85.5-127T80 576q0-83 31.5-156T197 293q54-54 127-85.5T480 176q83 0 156 31.5T763 293q54 54 85.5 127T880 576q0 83-31.5 156T763 859q-54 54-127 85.5T480 976Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>`
+                        complete_container.innerHTML = `<div style="display:grid; grid-template-columns: 30px 130px;">${icon} <p style="grid-column: 2; margin: auto;">Image Uploaded!</p></div>`;
+                        form.appendChild(complete_container);
+
+                    });
+                </script>
             </div>
 
             <div class="yb-cropper-container background">
@@ -55,57 +85,6 @@
                     <button id="background-image-cropper-save" class="yb-form-button" type="button" style="background-color: darkgreen; position: absolute; right: 5px;" onclick="uploadImage('background-image')">Save</button>
                     
                 </div>
-            </div>
-            <form method="POST" class='upload-field' enctype="multipart/form-data" style="background-color: rgba(0, 0, 0, 0.5); position: relative; width: 90vw; left: 50%; transform: translate(-50%, 0);">
-                    {% csrf_token %}
-                    <h4>Profile Picture</h4>
-                    
-                    <input type="file" id="profile-image-input" style="width:225px;" onchange="previewImage('profile-image')" />
-
-
-                    <script>
-                        let input = document.getElementById('profile-image-input');
-                        let save_button = document.getElementById('profile-image-cropper-save');
-                        save_button.addEventListener('click', function(){
-                            
-                            let profile_image_preview = document.getElementById('profile-image-preview');
-                            let profile_cropper_controls = document.getElementById('profile-cropper-submission-controls');
-                            let cropper = document.querySelector('.cropper-container'); 
-                            let input_field = document.getElementById('profile-image-input');
-                            let form = document.querySelector('.upload-field');
-
-                            input_field.style.display = 'none';
-                            profile_image_preview.style.display = 'none';
-                            profile_cropper_controls.style.display = 'none';
-                            cropper.style.display = 'none';
-                            
-                            let complete_container = yb_createElement('div', 'profile-image-upload-complete', 'complete_message');
-                            complete_container.style.width = 'fit-content';
-                            complete_container.style.marginLeft = 'auto';
-                            complete_container.style.marginRight = 'auto';
-                            complete_container.style.marginTop = '10px';
-                            $(".cb-divider").fadeOut();
-
-
-                            let icon = `<svg style="position: relative; grid-column: 1; margin:auto;" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" width="24"><path style="fill:green" d="m424 760 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197 859q-54-54-85.5-127T80 576q0-83 31.5-156T197 293q54-54 127-85.5T480 176q83 0 156 31.5T763 293q54 54 85.5 127T880 576q0 83-31.5 156T763 859q-54 54-127 85.5T480 976Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>`
-                            complete_container.innerHTML = `<div style="display:grid; grid-template-columns: 30px 130px;">${icon} <p style="grid-column: 2; margin: auto;">Image Uploaded!</p></div>`;
-                            form.appendChild(complete_container);
-
-                        });
-                    </script>
-
-            </form>
-            <form class='upload-field' id="background-image-onboard-container" method="POST" enctype="multipart/form-data" style="background-color: rgba(0, 0, 0, 0.5); position: relative; width: 90vw; left: 50%; transform: translate(-50%, 0);">
-                {% csrf_token %}
-                <h4>Profile Skin</h4> 
-                <input type="file" id="background-image-input" style="width:225px;" />
-                <br><br>                       
-                <label for="blur-radius">Blur</label>
-                <input type="range" id="blur-radius">
-                <br>
-                <label for="dim-intensity">Dim Intensity</label>
-                <input type="range" id="dim-intensity">
-                <br><br>
                 <script>
                     let background_preview = document.getElementById('background-image-preview');
                     let background_input = document.getElementById('background-image-input');
@@ -119,6 +98,8 @@
                         let profile_cropper_controls = document.getElementById('background-cropper-submission-controls');
                         let cropper = document.querySelectorAll('.cropper-container'); 
                         console.log(cropper)
+
+
                         
                         let input_field = document.getElementById('background-image-input');
                         let form = document.getElementById('background-image-onboard-container');
@@ -142,6 +123,27 @@
                     })
                     
                 </script>
+            </div>
+            <form method="POST" class='upload-field' enctype="multipart/form-data" style="background-color: rgba(0, 0, 0, 0.5); position: relative; width: 90vw; left: 50%; transform: translate(-50%, 0);">
+                    {% csrf_token %}
+                    <h4>Profile Picture</h4>
+                    
+                    <input type="file" id="profile-image-input" style="width:225px;" onchange="previewImage('profile-image')" />
+
+
+            </form>
+            <form class='upload-field' id="background-image-onboard-container" method="POST" enctype="multipart/form-data" style="background-color: rgba(0, 0, 0, 0.5); position: relative; width: 90vw; left: 50%; transform: translate(-50%, 0);">
+                {% csrf_token %}
+                <h4>Profile Skin</h4> 
+                <input type="file" id="background-image-input" style="width:225px;" />
+                <br><br>                       
+                <label for="blur-radius">Blur</label>
+                <input type="range" id="blur-radius">
+                <br>
+                <label for="dim-intensity">Dim Intensity</label>
+                <input type="range" id="dim-intensity">
+                <br><br>
+
                 
             </form>
             <button class="yb-pages-back" data-step = '1'>Back</button>
