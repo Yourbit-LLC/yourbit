@@ -114,9 +114,9 @@ function dataURItoBlob(dataURI, unique_name) {
 
     image_blob = new Blob([ia], {type:mimeString});
 
-    image_blob.name = unique_name;
+    image_blob.key = unique_name;
 
-    console.log(image_blob.name);
+    console.log(image_blob.key);
 
     return image_blob;
     
