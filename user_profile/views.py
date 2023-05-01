@@ -465,6 +465,7 @@ class Personalization(LoginRequiredMixin, View):
             if option == 'profile_image':
                 source_file = Image.open(value)
 
+
                 #Create large thumbnail
                 large_image = source_file.copy()
                 thumb_io = BytesIO()
@@ -491,8 +492,19 @@ class Personalization(LoginRequiredMixin, View):
                 inmemory_uploaded_file = InMemoryUploadedFile(thumb_io, None, this_filename, 'image/png', thumb_io.tell(), None)
                 custom.image_thumbnail_small = inmemory_uploaded_file
 
-                #Save full size image
-                custom.image = value
+                #Rename and save full sized image
+                
+                full_image = source_file.copy()
+                full_io = BytesIO()
+                label = "non_compressed"
+                full_image.save(full_io, format='PNG', quality=80)
+                this_username = request.user.username
+                this_uid = request.user.id
+                timestamp = dateformat.format(timezone.now(), '%Y%m%d%-H:i-s')
+                this_filename = this_username + str(this_uid) + timestamp + label + ".png"
+                inmemory_uploaded_file = InMemoryUploadedFile(thumb_io, None, this_filename, 'image/png', thumb_io.tell(), None)
+                custom.image = inmemory_uploaded_file
+
                 custom.save()
 
 

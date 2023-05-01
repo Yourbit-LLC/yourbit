@@ -89,15 +89,9 @@ function cropImage(type) {
     
 }
 
-function generateUniqueFileName(originalFileName) {
-    const timestamp = new Date().getTime();
-    const randomNumber = Math.floor(Math.random() * 1000000);
-    const fileExtension = originalFileName.split('.').pop();
-    const uniqueFileName = `${timestamp}_${randomNumber}.${fileExtension}`;
-    return uniqueFileName;
-  }
 
-function dataURItoBlob(dataURI, unique_name) {
+
+function dataURItoBlob(dataURI) {
     // convert base64/URLEncoded data component to raw binary data held in a string
     var byteString;
     if (dataURI.split(',')[0].indexOf('base64') >= 0)
@@ -112,29 +106,17 @@ function dataURItoBlob(dataURI, unique_name) {
         ia[i] = byteString.charCodeAt(i);
     }
 
-    image_blob = new Blob([ia], {type:mimeString});
-
-    image_blob.Key = unique_name;
-
-    console.log(image_blob.Key);
-
-    return image_blob;
+    return new Blob([ia], {type:mimeString});
     
 }
 
 function uploadImage(type){
-    let input_field = document.getElementById(`${type}-input`);
-    let file_source = input_field.files[0];
-    console.log(file_source.name);
-
-    let unique_name = generateUniqueFileName(file_source.name);
-    console.log(unique_name);
 
     var this_canvas = cropper.getCroppedCanvas();
     console.log(this_canvas);
 
     var img = this_canvas.toDataURL(); 
-    var file = dataURItoBlob(img, unique_name);
+    var file = dataURItoBlob(img);
     console.log(img);
 
     if (type === "profile-image"){
