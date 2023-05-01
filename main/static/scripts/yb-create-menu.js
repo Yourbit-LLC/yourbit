@@ -16,6 +16,14 @@ var stored_message_contacts = [];
 
 var total_width_bit = 0;
 
+$(document).ready(function() {
+    let close_button = document.getElementById("cb-panel-close");
+    close_button.addEventListener("click", function() {
+        yb_resetCreate();
+        dropCreateBit(hideCreateBit);
+    });
+});
+
 function yb_chatBitForm(form, type_field, option_field, script_source) {
         let sub_function_script = document.getElementById("sub-function-script")
         let this_source = document.getElementById("create-bit-source").value;

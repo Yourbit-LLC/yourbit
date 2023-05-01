@@ -921,6 +921,7 @@ $('#bit-panel-close').click(function() {
 
 function yb_resetCreate(){
     $("#create-container").fadeOut();
+    $("#create-container").empty();
     $("#create-options").fadeIn();
 }
 
