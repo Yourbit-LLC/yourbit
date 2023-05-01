@@ -102,7 +102,7 @@ function yb_BuildProfile(profile_data){
             dropdown.appendChild(add_friend_button);
             
             //Create dropdown item click event for add friend
-            dropdown_item.addEventListener("click", function(){
+            add_friend_button.addEventListener("click", function(){
                 yb_addFriend(user_id);
             });
 
