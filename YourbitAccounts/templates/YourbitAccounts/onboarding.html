@@ -86,11 +86,7 @@
                     
                 </div>
                 <script>
-                    let background_preview = document.getElementById('background-image-preview');
-                    let background_input = document.getElementById('background-image-input');
-                    background_input.addEventListener('change', function(){
-                        previewImage('mobile-background')
-                    });
+
                     let save_button_2 = document.getElementById('background-image-cropper-save');
                     save_button_2.addEventListener("click", function() {
                         
@@ -135,7 +131,7 @@
             <form class='upload-field' id="background-image-onboard-container" method="POST" enctype="multipart/form-data" style="background-color: rgba(0, 0, 0, 0.5); position: relative; width: 90vw; left: 50%; transform: translate(-50%, 0);">
                 {% csrf_token %}
                 <h4>Profile Skin</h4> 
-                <input type="file" id="background-image-input" style="width:225px;" />
+                <input type="file" id="background-image-input" onchange = "previewImage('background-image')" style="width:225px;" />
                 <br><br>                       
                 <label for="blur-radius">Blur</label>
                 <input type="range" id="blur-radius">
