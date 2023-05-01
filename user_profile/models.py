@@ -189,6 +189,7 @@ class Custom(models.Model):
     feedback_icon_color = models.CharField(max_length=50, default="#000000")
     feedback_background_color = models.CharField(max_length=50, default="#ffffff")
     paragraph_align = models.CharField(max_length=10, default = 'left')
+    comment_text_color = models.CharField(max_length=50, default="#ffffff")
 
     #UI
     background_color = models.CharField(max_length=50, default="#323232")

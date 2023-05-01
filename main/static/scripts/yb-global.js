@@ -255,3 +255,24 @@ function yb_handleHideBit(bit_id) {
     setTimeout(animateAwayFeedMessage, 2000)
 }
 
+function yb_recolorText(parentElement) {
+    const computedStyle = window.getComputedStyle(parentElement);
+    const backgroundColor = computedStyle.backgroundColor;
+    const grayscaleColor = rgbToGrayscale(backgroundColor);
+  
+    const textColor = computedStyle.color;
+    const oppositeGrayscaleColor = rgbToGrayscale(textColor) === 0 ? 255 : 0;
+  
+    const newTextColor = `rgb(${oppositeGrayscaleColor}, ${oppositeGrayscaleColor}, ${oppositeGrayscaleColor})`;
+    parentElement.style.color = newTextColor;
+  }
+  
+  function yb_rgbToGrayscale(rgbColor) {
+    const colorValues = rgbColor.replace(/[^\d,]/g, '').split(',');
+    const red = parseInt(colorValues[0]);
+    const green = parseInt(colorValues[1]);
+    const blue = parseInt(colorValues[2]);
+    const grayscale = 0.299 * red + 0.587 * green + 0.114 * blue;
+    return grayscale;
+  }
+  
