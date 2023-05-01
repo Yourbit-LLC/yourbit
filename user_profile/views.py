@@ -468,10 +468,10 @@ class Personalization(LoginRequiredMixin, View):
 
                 #Create large thumbnail
                 large_image = source_file.copy()
-                thumb_io = BytesIO()
+                lthumb_io = BytesIO()
                 label = "thumbnail_large"
                 large_thumbnail = large_image.resize((128, 128))
-                large_thumbnail.save(thumb_io, format='PNG', quality=80)
+                large_thumbnail.save(lthumb_io, format='PNG', quality=80)
                 this_username = request.user.username
                 this_uid = request.user.id
                 timestamp = dateformat.format(timezone.now(), '%Y%m%d%-H:i-s')
@@ -481,10 +481,10 @@ class Personalization(LoginRequiredMixin, View):
 
                 #Create small thumbnail
                 small_image = source_file.copy()
-                thumb_io = BytesIO()
+                sthumb_io = BytesIO()
                 label = "thumbnail_small"
                 small_thumbnail = small_image.resize((64, 64))
-                small_thumbnail.save(thumb_io, format='PNG', quality=80)
+                small_thumbnail.save(sthumb_io, format='PNG', quality=80)
                 this_username = request.user.username
                 this_uid = request.user.id
                 timestamp = dateformat.format(timezone.now(), '%Y%m%d%-H:i-s')
