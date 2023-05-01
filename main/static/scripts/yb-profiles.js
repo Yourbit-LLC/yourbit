@@ -94,6 +94,8 @@ function yb_BuildProfile(profile_data){
             let dropdown = yb_createElement("div", "add-friend-link", "adaptive-dropdown");
             dropdown.setAttribute("style", `position: absolute; overflow:hidden; top: 45px; left: 0px; border-radius: 20px; background-color:#222222; width: 90px; height: 0px;  box-shadow: 2px 2px 4px black;`);
             profile_button_connect.appendChild(dropdown);
+            //Animate dropdown
+            $(dropdown).animate({"height": "60px"}, 200);
             
             //Create dropdown items
             let add_friend_button = yb_createElement("div", "adaptive-dropdown-item", "adaptive-dropdown-item");
