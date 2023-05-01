@@ -99,7 +99,7 @@ function yb_BuildProfile(profile_data){
             let add_friend_button = yb_createElement("div", "adaptive-dropdown-item", "adaptive-dropdown-item");
             add_friend_button.setAttribute("style", `color: ${custom.text_color};`);
             add_friend_button.innerHTML = "Add friend";
-            add_friend_button.appendChild(add_friend_button);
+            dropdown.appendChild(add_friend_button);
             
             //Create dropdown item click event for add friend
             dropdown_item.addEventListener("click", function(){
@@ -110,7 +110,7 @@ function yb_BuildProfile(profile_data){
             follow_button.setAttribute("style", `background-color: ${custom.primary_color}; color: ${custom.title_color};`);
             follow_button.setAttribute("data-id", user_id);
             follow_button.innerHTML = "Follow";
-            follow_button.appendChild(follow_button);
+            dropdown.appendChild(follow_button);
         
             profile_button_follow.addEventListener("click", function(){
                 yb_addFollow(user_id);
