@@ -181,7 +181,7 @@ class BitViewSet(viewsets.ViewSet):
                             friends_bits = Bit.objects.prefetch_related('custom', 'user').filter(profile__in = user_profile.connections.all()).order_by("-time")
                             for bit in friends_bits:
                                 if bit not in unsorted_list:
-                                    unsorted_list.append(bit)    
+                                    unsorted_list.append(bit)
                         if this_filter == "following" or this_filter == "all":
                             follow_bits = Bit.objects.prefetch_related('custom', 'user').filter(profile__in = user_profile.connections.all()).order_by("-time")
                             for bit in follow_bits:
