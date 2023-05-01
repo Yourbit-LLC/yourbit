@@ -575,7 +575,7 @@ function yb_buildContactItem(result, type){
         messages_conversation_url(id, handle);
         yb_endTask("#message-task")
         yb_hideWidget()
-        $(".minibar").animate({"bottom":"140px"});
+        $(".minibar").animate({"bottom":"-60px"}).fadeOut();
 
     })
     return new_item
