@@ -119,8 +119,8 @@ function uploadImage(type){
     var file = dataURItoBlob(img);
     console.log(img);
 
-    let cropper = document.querySelectorAll('.cropper-container');
-    cropper.forEach(function(element){
+    let this_cropper = document.querySelectorAll('.cropper-container');
+    this_cropper.forEach(function(element){
         element.remove();
     });
 
