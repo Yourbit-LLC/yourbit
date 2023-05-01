@@ -476,7 +476,7 @@ class Personalization(LoginRequiredMixin, View):
                 this_uid = request.user.id
                 timestamp = dateformat.format(timezone.now(), '%Y%m%d%-H:i-s')
                 this_filename = this_username + str(this_uid) + timestamp + label + ".png"
-                inmemory_uploaded_file = InMemoryUploadedFile(lthumb_io, None, this_filename, 'image/png', thumb_io.tell(), None)
+                inmemory_uploaded_file = InMemoryUploadedFile(lthumb_io, None, this_filename, 'image/png', lthumb_io.tell(), None)
                 custom.image_thumbnail_large = inmemory_uploaded_file
 
                 #Create small thumbnail
@@ -489,7 +489,7 @@ class Personalization(LoginRequiredMixin, View):
                 this_uid = request.user.id
                 timestamp = dateformat.format(timezone.now(), '%Y%m%d%-H:i-s')
                 this_filename = this_username + str(this_uid) + timestamp + label + ".png"
-                inmemory_uploaded_file = InMemoryUploadedFile(sthumb_io, None, this_filename, 'image/png', thumb_io.tell(), None)
+                inmemory_uploaded_file = InMemoryUploadedFile(sthumb_io, None, this_filename, 'image/png', sthumb_io.tell(), None)
                 custom.image_thumbnail_small = inmemory_uploaded_file
 
                 #Rename and save full sized image
@@ -502,7 +502,7 @@ class Personalization(LoginRequiredMixin, View):
                 this_uid = request.user.id
                 timestamp = dateformat.format(timezone.now(), '%Y%m%d%-H:i-s')
                 this_filename = this_username + str(this_uid) + timestamp + label + ".png"
-                inmemory_uploaded_file = InMemoryUploadedFile(full_io, None, this_filename, 'image/png', thumb_io.tell(), None)
+                inmemory_uploaded_file = InMemoryUploadedFile(full_io, None, this_filename, 'image/png', full_io.tell(), None)
                 custom.image = inmemory_uploaded_file
 
                 custom.save()
