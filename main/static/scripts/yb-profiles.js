@@ -112,7 +112,7 @@ function yb_BuildProfile(profile_data){
             follow_button.innerHTML = "Follow";
             dropdown.appendChild(follow_button);
         
-            profile_button_follow.addEventListener("click", function(){
+            follow_button.addEventListener("click", function(){
                 yb_addFollow(user_id);
             });
         });
