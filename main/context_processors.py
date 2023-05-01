@@ -15,6 +15,8 @@ def Customization(request):
         profile = Profile.objects.get(user=request.user)
         custom = Custom.objects.get(profile=profile)
         user_image = custom.image
+        user_image_small = custom.image_thumbnail_small
+        user_image_large = custom.image_thumbnail_large
 
         #UI Settings
         accent_color = custom.accent_color
@@ -49,6 +51,8 @@ def Customization(request):
             'default_theme_on':default_theme_on,
             'feedback_background_color':feedback_background_color,
             'user_wallpaper':wallpaper,
+            'user_image_small':user_image_small,
+            'user_image_large':user_image_large,
 
         }
 

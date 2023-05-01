@@ -207,7 +207,7 @@ lang="en"
 
                 -->
                 <div class="profile-icon" id = "profile-icon">
-                    <img src="{{user.profile.custom.image.url}}" class="profile-icon" style="border-color: {{accent_color}};" id="profile-pic">
+                    <img src="{{user.profile.custom.image_thumbnail_small.url}}" class="profile-icon" style="border-color: {{accent_color}};" id="profile-pic">
                 </div>
 
                 <form class = "nav-element" id="quick-actions" method="GET" action="{% url 'publish' %}">
@@ -276,7 +276,7 @@ lang="en"
                     </div>
                     <!--Link to profile-->
                     <div class="profile-name" data-username="{{user.username}}" id="profile-name">                    
-                        <img style="border-color:{{user.profile.custom.accent_color}};" src="{{user.profile.custom.image_thumbnail_large.url}}" class="profile-image-large" id="menu-profile-image">
+                        <img style="border-color:{{user.profile.custom.accent_color}};" src="{{user.profile.custom.image_thumbnail_small.url}}" class="profile-image-large" id="menu-profile-image">
 
                         <p id="profile-name-label">{{user.first_name}} {{user.last_name}}</p>
                         <p id="menu-username">@{{user.username}}</p>

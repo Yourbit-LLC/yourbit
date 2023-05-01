@@ -10,6 +10,8 @@ class CustomBitSerializer(serializers.ModelSerializer):
         model = Custom
         fields = [
             'image',
+            'image_thumbnail_large',
+            'image_thumbnail_small',
             'primary_color', 
             'accent_color',
             'title_color', 
@@ -56,6 +58,7 @@ class CustomResultSerializer(serializers.ModelSerializer):
         fields = [
             'image',
             'image_thumbnail_large',
+            'image_thumbnail_small',
             'primary_color',
             'accent_color',
             'title_color'
