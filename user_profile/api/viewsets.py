@@ -174,6 +174,8 @@ class BitViewSet(viewsets.ViewSet):
                     #Check type param, if global get all post types, if else, get post based on type
                     if type == "global":
                         unsorted_list = []
+                        
+                        my_bits = Bit.objects.filter(profile = user_profile)
 
                         if this_filter == "friends" or this_filter == "all":
                             friends_bits = Bit.objects.prefetch_related('custom', 'user').filter(profile__in = user_profile.connections.all()).order_by("-time")
@@ -194,11 +196,11 @@ class BitViewSet(viewsets.ViewSet):
                         #Aggregate and sort posts into pool
                         if this_filter == "all":
                             bit_pool = sorted(
-                                chain(unsorted_list), key=attrgetter('time'), reverse=True)
+                                chain(my_bits, unsorted_list), key=attrgetter('time'), reverse=True)
                         
                         elif this_filter == "friends":
                              bit_pool = sorted(
-                                chain(friends_bits), key=attrgetter('time'), reverse=True)
+                                chain(my_bits, friends_bits), key=attrgetter('time'), reverse=True)
                         
                         elif this_filter == "following":
                              bit_pool = sorted(

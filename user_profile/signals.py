@@ -38,8 +38,6 @@ def create_profile(sender, instance, created, **kwargs):
         custom.save()
         task_manager = TaskManager(user = instance)
         task_manager.save()
-        user_profile.follows.add(instance.profile)
-        user_profile.followers.add(instance.profile)
         user_profile.save()
 
 @receiver(post_save, sender=Bit)
