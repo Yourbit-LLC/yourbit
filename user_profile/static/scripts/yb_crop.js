@@ -119,6 +119,11 @@ function uploadImage(type){
     var file = dataURItoBlob(img);
     console.log(img);
 
+    let cropper = document.querySelectorAll('.cropper-container');
+    cropper.forEach(function(element){
+        element.remove();
+    });
+
     if (type === "profile-image"){
         updateCustom('image_upload', 'profile_image', file);
     } else {
