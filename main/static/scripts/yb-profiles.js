@@ -34,7 +34,7 @@ function yb_BuildProfile(profile_data){
     //Get profile image from data
     let custom = profile_data.custom;
 
-    let profile_image = custom.image;
+    let profile_image = custom.image_thumbnail_large;
     
     //Get profile name from data 
     let profile_first_name = user.first_name;
