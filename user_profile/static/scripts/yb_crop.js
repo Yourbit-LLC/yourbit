@@ -124,6 +124,12 @@ function uploadImage(type){
         element.remove();
     });
 
+    let cropper_container = document.querySelectorAll('.yb-cropper-container');
+    cropper_container.forEach(function(element){
+        element.style.pointerEvents = "none";
+    });
+
+
     if (type === "profile-image"){
         updateCustom('image_upload', 'profile_image', file);
     } else {
