@@ -79,29 +79,7 @@ function hideCreateBit() {
     Scroll UI
 
 ##################################################################################################################*/
-var prevScrollPos = content_container.scrollTop;
 
-content_container.onscroll =  function() {
-    yb_scrollAwayUI();
-}
-
-function yb_scrollAwayUI() {
-    let currentScrollPos = content_container.scrollTop;
-    if (prevScrollPos > currentScrollPos) {
-      // User is scrolling up
-      setTimeout(yb_showSpaceBar, 500);
-      console.log("scrolling up");
-      console.log("pos: " + currentScrollPos);
-      
-    } else {
-      // User is scrolling down
-      console.log("scrolling down");
-      console.log("pos: " + currentScrollPos);
-      setTimeout(yb_hideSpaceBar, 500);
-      
-    }
-    prevScrollPos = currentScrollPos;
-};
 
 $(".button-support").click(function(){
     $("#cb-divider").fadeIn();
