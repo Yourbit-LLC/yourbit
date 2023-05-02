@@ -85,7 +85,7 @@ content_container.onscroll =  function() {
     let currentScrollPos = content_container.scrollTop;
     if (prevScrollPos > currentScrollPos) {
       // User is scrolling up
-      initUI();
+      yb_showSpaceBar();
       console.log("scrolling up");
       console.log("pos: " + currentScrollPos);
       

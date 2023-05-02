@@ -160,6 +160,12 @@ function headerDropIn(){
     
 };
 
+function yb_showSpaceBar() {
+    $(".navigation-bar").animate({'bottom':'0'}, 'slow');
+    $("#mobile-create-button").animate({'left':'8px'}, 'slow');
+    $("#mobile-search-button").animate({'right':'8px'}, 'slow');
+
+}
 function initUI() {
     $(".navigation-bar").animate({'bottom':'0'}, 'slow');
     $("#mobile-create-button").animate({'left':'8px'}, 'slow');
@@ -173,7 +179,7 @@ function initUI() {
     yb_setSessionValues("ui", "visible");
 
     if (tasks.length > 0) {
-        setTimeout(yb_showMiniBar, 1200);
+        yb_showMiniBar();
     } else {
         $(".minibar").hide();
     }
