@@ -328,4 +328,10 @@ Profile Page
         height: 40px;
     }
 
+    .profile-interact-icon {
+        position: relative;
+        display: block;
+        margin: auto;
+    }
+
 }   
