@@ -161,9 +161,9 @@ function headerDropIn(){
 };
 
 function yb_showSpaceBar() {
-    $(".navigation-bar").animate({'bottom':'0'}, 'slow');
-    $("#mobile-create-button").animate({'left':'8px'}, 'slow');
-    $("#mobile-search-button").animate({'right':'8px'}, 'slow');
+    $(".navigation-bar").animate({'bottom':'0'}, 'fast');
+    $("#mobile-create-button").animate({'left':'8px'}, 'fast');
+    $("#mobile-search-button").animate({'right':'8px'}, 'fast');
 
 }
 function initUI() {

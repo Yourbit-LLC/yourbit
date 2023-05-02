@@ -82,6 +82,10 @@ function hideCreateBit() {
 let prevScrollPos = window.pageYOffset;
 
 content_container.onscroll =  function() {
+    setTimeout(yb_scrollAwayUI, 100);
+}
+
+function yb_scrollAwayUI() {
     let currentScrollPos = content_container.scrollTop;
     if (prevScrollPos > currentScrollPos) {
       // User is scrolling up
