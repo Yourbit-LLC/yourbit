@@ -72,6 +72,22 @@ function hideCreateBit() {
     $('#cb-divider').hide();
 }
 
+let prevScrollPos = window.pageYOffset;
+window.onscroll = function() {
+  let currentScrollPos = window.pageYOffset;
+  if (prevScrollPos > currentScrollPos) {
+    // User is scrolling up
+    initUI();
+    
+  } else {
+    // User is scrolling down
+    console.log("scrolling down");
+    yb_hideUI();
+    
+  }
+  prevScrollPos = currentScrollPos;
+}
+
 
 $(".button-support").click(function(){
     $("#cb-divider").fadeIn();
