@@ -82,14 +82,14 @@ function hideCreateBit() {
 var prevScrollPos = content_container.scrollTop;
 
 content_container.onscroll =  function() {
-    setTimeout(yb_scrollAwayUI, 100);
+    yb_scrollAwayUI();
 }
 
 function yb_scrollAwayUI() {
     let currentScrollPos = content_container.scrollTop;
     if (prevScrollPos > currentScrollPos) {
       // User is scrolling up
-      yb_showSpaceBar();
+      setTimeout(yb_showSpaceBar, 500);
       console.log("scrolling up");
       console.log("pos: " + currentScrollPos);
       
@@ -97,7 +97,7 @@ function yb_scrollAwayUI() {
       // User is scrolling down
       console.log("scrolling down");
       console.log("pos: " + currentScrollPos);
-      yb_hideSpaceBar();
+      setTimeout(yb_hideSpaceBar, 500);
       
     }
     prevScrollPos = currentScrollPos;
