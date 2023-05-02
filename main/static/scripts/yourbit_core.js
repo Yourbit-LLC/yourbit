@@ -86,10 +86,13 @@ content_container.onscroll = function() {
   if (prevScrollPos > currentScrollPos) {
     // User is scrolling up
     initUI();
+    console.log("scrolling up");
+    console.log("pos: " + currentScrollPos);
     
   } else {
     // User is scrolling down
     console.log("scrolling down");
+    console.log("pos: " + currentScrollPos);
     yb_hideUI();
     
   }
