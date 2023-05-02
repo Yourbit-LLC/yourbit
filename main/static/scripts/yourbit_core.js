@@ -70,8 +70,6 @@ function hideCreateBit() {
     // let current_url = document.getElementById('current_url').value;
     // history.pushState({}, "", `${current_url}/`);
     $('#cb-divider').hide();
-    $(create_bit).html("");
-
 }
 
 
