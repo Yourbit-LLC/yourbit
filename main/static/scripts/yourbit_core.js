@@ -3,6 +3,7 @@ var width = screen.width;
 var notifications_last = 0;
 var first_load = true;
 var home_feed = document.getElementById('feed-content-container');
+var content_container = document.getElementById('content-container');
 
 var postList = document.getElementById("content-container-feed");
 
@@ -72,8 +73,15 @@ function hideCreateBit() {
     $('#cb-divider').hide();
 }
 
+
+/*################################################################################################################
+
+    Scroll UI
+
+##################################################################################################################*/
 let prevScrollPos = window.pageYOffset;
-window.onscroll = function() {
+
+content_container.onscroll = function() {
   let currentScrollPos = window.pageYOffset;
   if (prevScrollPos > currentScrollPos) {
     // User is scrolling up
