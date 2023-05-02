@@ -79,7 +79,7 @@ function hideCreateBit() {
     Scroll UI
 
 ##################################################################################################################*/
-let prevScrollPos = window.pageYOffset;
+var prevScrollPos = content_container.scrollTop;
 
 content_container.onscroll =  function() {
     setTimeout(yb_scrollAwayUI, 100);
