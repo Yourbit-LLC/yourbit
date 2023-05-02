@@ -86,7 +86,7 @@ content_container.onscroll =  function() {
 };
 
 function yb_scrollUI() {
-  let currentScrollPos = content_container.pageYOffset;
+  let currentScrollPos = content_container.scrollTop;
   if (prevScrollPos > currentScrollPos) {
     // User is scrolling up
     initUI();
