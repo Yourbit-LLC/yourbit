@@ -28,12 +28,6 @@ $('#bit-panel-close').click(function() {
     dropCreateBit(hideCreateBit);
 });
 
-function yb_resetCreate(){
-    $("#create-container").fadeOut();
-    $("#create-container").empty();
-    $("#create-options").fadeIn();
-}
-
 /* Places the cursor in the title field on reveal */
 function titleFocus() {
     let create_bit = document.getElementById('create-bit-mobile');

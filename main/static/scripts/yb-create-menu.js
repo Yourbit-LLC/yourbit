@@ -24,6 +24,12 @@ $(document).ready(function() {
     });
 });
 
+
+function yb_resetCreate(){
+    $("#create-container").remove();
+    $("#create-options").fadeIn();
+}
+
 function yb_chatBitForm(form, type_field, option_field, script_source) {
         let sub_function_script = document.getElementById("sub-function-script")
         let this_source = document.getElementById("create-bit-source").value;
