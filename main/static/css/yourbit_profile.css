@@ -329,9 +329,11 @@ Profile Page
     }
 
     .profile-interact-icon {
-        position: relative;
+        position: absolute;
         display: block;
-        margin: auto;
+        top:50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 
 }   
