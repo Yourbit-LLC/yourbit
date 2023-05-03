@@ -7,7 +7,6 @@ from main.models import TaskManager
 from feed.models import InteractionHistory
 from rewards.models import Rewards
 
-
 # def create_profile(sender, instance, created, **kwargs):
 #     if created:
 #         user_profile = Profile(user=instance)
@@ -60,5 +59,4 @@ def update_feeds(sender, instance, created, **kwargs):
             
             friend.unfed_bits.add(instance)
             friend.unseen_bits.add(instance)
-
 

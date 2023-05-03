@@ -480,10 +480,10 @@ function yb_buildContextMenu(this_element){
         `
         delete_option.setAttribute("data-bit-id", this_element.id);
         delete_option.addEventListener("click", function(event) {
-
+            hideContextMenu("delete", this_element);
             yb_deleteBit(bit_id);
             this_element = event.currentTarget;
-            hideContextMenu("delete", this_element);
+            
         });
         context_menu.appendChild(delete_option);
     } else {

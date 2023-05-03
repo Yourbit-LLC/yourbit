@@ -967,9 +967,6 @@ function yb_openImage(source, index, this_id){
 
                 viewer.appendChild(interaction_container);
                 $('.photo-viewer').fadeIn(200);
-
-
-                
                 
             }
         } 
