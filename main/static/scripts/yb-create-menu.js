@@ -755,13 +755,14 @@ function yb_submitBit(this_bit) {
                         yb_getDisplay();
 
                     } else {
-                        
+
                         $("#no-bits-message").remove();
                         bit_container.appendChild(new_bit.built_bit);
                         setTimeout(() => {
                             new_bit.built_bit.classList.add('animate');
                             }, 100);
                         yb_getDisplay();
+                        
                     }
 
                 }

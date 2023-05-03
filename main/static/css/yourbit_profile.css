@@ -326,6 +326,7 @@ Profile Page
         font-size: 15px;
         font-weight: 550;
         height: 40px;
+        z-index: 5;
     }
 
     .profile-interact-icon {

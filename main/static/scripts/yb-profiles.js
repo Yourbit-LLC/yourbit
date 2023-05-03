@@ -98,7 +98,7 @@ function yb_BuildProfile(profile_data){
             $(dropdown).animate({"height": "60px"}, 200);
             
             //Create dropdown items
-            let add_friend_button = yb_createElement("div", "adaptive-dropdown-item", "adaptive-dropdown-item");
+            let add_friend_button = yb_createElement("div", "adaptive-dropdown-item-add-friend", "adaptive-dropdown-item");
             add_friend_button.setAttribute("style", `color: ${custom.text_color};`);
             add_friend_button.innerHTML = "Add friend";
             dropdown.appendChild(add_friend_button);
@@ -108,7 +108,7 @@ function yb_BuildProfile(profile_data){
                 yb_addFriend(user_id);
             });
 
-            let follow_button = yb_createElement("button", "button-profile-interaction", "button-profile-interaction");
+            let follow_button = yb_createElement("button", "adaptive-dropdown-item-follow", "adaptive-dropdown-item");
             follow_button.setAttribute("style", `background-color: ${custom.primary_color}; color: ${custom.title_color};`);
             follow_button.setAttribute("data-id", user_id);
             follow_button.innerHTML = "Follow";
@@ -269,22 +269,6 @@ $("#profile-button-connect").click(function() {
     } else {
         $("#connect-dropdown").animate({"height": "90px"});    
     }
-});
-
-$("#profile-button-message").click(function() {
-
-
-
-});
-
-
-
-$("#profile-button-message").click(function() {
-    
-});
-
-$("#profile-button-about").click(function() {
-    
 });
 
 $("#add-friend-link").click(function(){
