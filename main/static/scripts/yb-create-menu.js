@@ -585,6 +585,7 @@ $('#mobile-publish-bit').click(function() {
         let private_toggle = document.getElementsByName("toggle-private")[1];
         console.log(private_toggle)
         let public_toggle = document.getElementsByName("toggle-public");
+        $(this).css("pointer-events", "none");
         gatherMobileBit(type, yb_submitBit);
     } else if (action === "edit") {
         let type = document.getElementById('bit-type-hidden-field').value;
@@ -725,25 +726,45 @@ function yb_submitBit(this_bit) {
                 //Data is blueprint for bit
                 let blueprint = response;
                 let bit_container = document.getElementById('bit-container');
-                let end_bit = getLenBitIndex();
-                let first_bit_id = yb_getBitOnScreen(1);
-                first_bit_id = first_bit_id.substring(1);
-                console.log(first_bit_id)
-                let first_bit = document.getElementById(first_bit_id)
+
                 //Clear and hide form
                 clearBitForm();
                 dropCreateBit(hideCreateBit);
 
                 //Pass blueprint to bit builder to generate new bit
                 let new_bit = BuildBit(blueprint);
+                let location = yb_getSessionValues('location');
+                if (location === 'profile' || location === 'home') {
+                    let bits_on_screen = yb_getBitsOnScreen();
 
-                //Prepend new bit to bit container, in future change to append before next sibling for dynachron.
-                bit_container.insertBefore(new_bit.built_bit, first_bit);
-                // Add the animation class to the element after a short delay
-                setTimeout(() => {
-                    new_bit.built_bit.classList.add('animate');
-                    }, 100);
-                yb_getDisplay();
+                    if (bits_on_screen.length > 0) {
+                        
+                        let end_bit = getLenBitIndex();
+                        let first_bit_id = yb_getBitOnScreen(1);
+                        first_bit_id = first_bit_id.substring(1);
+                        console.log(first_bit_id)
+                        let first_bit = document.getElementById(first_bit_id)
+
+                        //Prepend new bit to bit container, in future change to append before next sibling for dynachron.
+                        bit_container.insertBefore(new_bit.built_bit, first_bit);
+                        // Add the animation class to the element after a short delay
+                        setTimeout(() => {
+                            new_bit.built_bit.classList.add('animate');
+                            }, 100);
+
+                        yb_getDisplay();
+
+                    } else {
+                        
+                        $("#no-bits-message").remove();
+                        bit_container.appendChild(new_bit.built_bit);
+                        setTimeout(() => {
+                            new_bit.built_bit.classList.add('animate');
+                            }, 100);
+                        yb_getDisplay();
+                    }
+
+                }
 
             }   
         }   

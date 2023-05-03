@@ -98,9 +98,13 @@ function getLenBitIndex() {
 }
 
 function yb_lenBitsOnScreen(){
-    return bits_visible.length - 1;
+    return bits_visible.length;
 }
 
 function yb_getBitOnScreen(index) {
     return bits_visible[index];
+}
+
+function yb_getBitsOnScreen() {
+    return bits_visible;
 }
