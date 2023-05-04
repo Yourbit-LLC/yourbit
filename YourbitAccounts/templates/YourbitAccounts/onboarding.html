@@ -248,7 +248,7 @@
             let step = $(this).attr('data-step');
             let current_page = page_list[parseInt(step)];
             
-            if (step != 0) {
+            if (step != 0 && step != 4) {
                 packageRequest(function_list[parseInt(step)])
             }
             if (step < 4) {
