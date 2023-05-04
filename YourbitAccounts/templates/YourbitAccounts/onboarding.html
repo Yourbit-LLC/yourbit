@@ -461,26 +461,7 @@
                 request.append('followers_enabled', followers_enabled)
             }
             if (form_request === 'updateCustom') {
-                let user_colors_on = $('#toggle-colors').val();
-                if (user_colors_on === 'on') {
-                    user_colors_on = true;
-                } else {
-                    user_colors_on = false;
-                }
-                let primary_color = $('#primary-color-select').val();
-                let accent_color = $('#accent-color-select').val();
-                let icon_color = $('#icon-color-select').val();
-                let feedback_icon_color = $('#feedback-icon-color-select').val();
-                let title_color = $('#title-color-icon-select').val();
-                let text_color = $('#pfont_color-select').val();
-                page = 3;
-                request.append('page', page)
-                request.append('primary_color', primary_color);
-                request.append('accent_color', accent_color);
-                request.append('icon_color', icon_color);
-                request.append('feedback_icon_color', feedback_icon_color);
-                request.append('title_color', title_color);
-                request.append('text_color', text_color);
+                console.log("Redirecting...")
 
                 
             }
@@ -510,7 +491,7 @@
                     success: function(response) {
                         console.log('Successfully Updated Information')
                         if (page === 3) {
-                            window.location.href = `${base_url}/bitstream/`;
+                            window.location.href = `${base_url}/profile/customize/`;
                         }
                     }
 
