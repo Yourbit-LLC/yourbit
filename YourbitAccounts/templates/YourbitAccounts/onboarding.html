@@ -251,7 +251,13 @@
             if (step != 0) {
                 packageRequest(function_list[parseInt(step)])
             }
-            if (step === 4) {
+            if (step < 4) {
+                console.log(current_page)
+                let next_page_interval = parseInt(step) + 1;
+                let next_page = page_list[next_page_interval];
+                let motion = 1;
+                nextPage(motion, current_page, next_page);
+            } else if (step === 4){
                 window.location.href = `${base_url}/profile/customize/`;
             }
         });
