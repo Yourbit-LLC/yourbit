@@ -3,25 +3,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" />
 
+    <!--Hidden input for any necessary page data to be initialized on load-->
     <input type="hidden" class="page-data" data-id-isnew = "{{custom.is_new_user}}">
+    
+    <!--Image selection container: Where results are laid out on a grid when the user chooses to select a preexisting photo-->
     <div class="large-bubble" id="image-selector" style="display:none; overflow: hidden; text-align: center; box-shadow: 1px 1px 10px black; background-color: rgb(50,50,50);Z-index:28; height: 0vh; width: 0vw;">
+        
         <h4>Select from Uploads</h4>
+        
         <div id="image-grid-container" style="height: 80%;">
         </div>
+
         <div>
             <button id="cancel-button">Cancel</button>
             <button id="select-button">Select</button>
-
-        
         </div>
+        
     </div>            
-    <script>
-        let cancel_button = document.getElementById("cancel-button");
-        cancel_button.addEventListener("click", function() {
-            let selector_container = document.getElementById("image-selector");
-            $("#image-selector").animate({"height": "0vh", "width":"0vw"}, "fast").fadeOut();
-        });
-    </script>
     <div id='preview-area' style="display:none;">
         <div id='accent-color-preview' class='profile-image-preview'>
             <img class='profile-image-preview-image' id='profile-image-preview-image' src="">
@@ -51,23 +49,7 @@
                 </div>
 
             </div>
-            <script>
-                let profile_image_back_button = document.getElementById("profile-cropper-back");
-                profile_image_back_button.addEventListener("click", function() {
-                    console.log("clicked")
-                    let state = this.getAttribute("data-state");
-                    console.log(state)
-                    if (state === "0"){
-                        $("#profile-cropper").fadeOut();
-                        $("#background-cropper").fadeOut();
-                        $("#profile-images").fadeIn();
-                    } else {
-                        $("#profile-cropper-select-button").fadeIn();
-                        $("#upload-button").fadeIn();
-                        $("#profile-image-input").hide();
-                    }
-                });
-            </script>
+
             <div class="dropdown-large" id="background-cropper" style="display:none; left: 2.5px; position: relative; margin-left: auto; margin-right: auto;">
                 <button id="background-cropper-back" class="yb-form-button" style="background-color: darkred;" data-state="0">Back</button>
                 <button id="background-cropper-select-button" class="yb-form-button" onclick="showImageSelection()">Select from Uploads</button>
@@ -199,17 +181,17 @@
                         <div>
                             <input class="color-selector" id="primary-color-select" type="color" name='primary_color' style="display:none;" value="{{bit_background}}">
                             
-                            <div name="primary" class="color-circle" id="color-circle-primary" style="color: {{primary_color}}; width: 30px; height: 30px; border-radius: 50%;"></div>
+                            <div name="primary" class="color-circle" id="color-circle-primary" style="background-color: {{primary_color}}; width: 30px; height: 30px; border-radius: 50%;"></div>
                             <label class="color-select-label" for="primary-color-select">Primary</label>
                         </div>
                         <div>
                             <input style="display:none;" class="color-selector" id="accent-color-select" type="color" name='accent_color' value="{{accent_color}}">
-                            <div name="secondary" class="color-circle" id="color-circle-secondary" style="color: {{accent_color}}; width: 30px; height: 30px; border-radius: 50%;"></div>
+                            <div name="secondary" class="color-circle" id="color-circle-secondary" style="background-color: {{accent_color}}; width: 30px; height: 30px; border-radius: 50%;"></div>
                             <label class="color-select-label" for="accent-color-select">Secondary</label>
                         </div>
                         <div>
                             <input style="display:none;" class="color-selector" id="icon-color-select" type="color" name='icon_color' value="{{icon_color}}">
-                            <div name="icon" class="color-circle" id="color-circle-icon" style="color: {{icon_color}}; width: 30px; height: 30px; border-radius: 50%;"></div>
+                            <div name="icon" class="color-circle" id="color-circle-icon" style="background-color: {{icon_color}}; width: 30px; height: 30px; border-radius: 50%;"></div>
                             <label class="color-select-label" for="icon-color-select">Icon</label>
                         </div>                    
                     </div>
@@ -249,7 +231,11 @@
                         </div>
                         
                     </div>
+
+
                     <!--<p style="width: 100%; text-align: center; font-size: 14px; margin-top: 10px;" for='yb-align-text'>Colors</p> -->
+                    
+                    <!-- Horizontal container for color customization options for bits-->
                     <div id='bit-color-customizations' style='position: relative; width: 280px; margin-left: auto; margin-right: auto; text-align: center;  display:grid; grid-template-columns: 70px 70px 70px 70px;'>
                         <div>
                             <input style="display:none;" class="color-selector" id="tfont-color-select" type="color" name='title_color' value="{{title_color}}">
@@ -258,7 +244,7 @@
                         </div>
                         <div>
                             <input style="display:none;" class="color-selector" id="pfont-color-select" type="color" name='text_color' value="{{text_color}}">
-                            <div name="text" class="color-circle" id="color-circle-text" style="color: {{text_color}}; width: 30px; height: 30px; border-radius: 50%;"></div>
+                            <div name="text" class="color-circle" id="color-circle-text" style="background-color: {{text_color}}; width: 30px; height: 30px; border-radius: 50%;"></div>
                             <label class="color-select-label" for="pfont-color-select" >Paragraph</label>
                         </div>
                         <div>
@@ -276,18 +262,23 @@
                         </div>
                     </div>
                     
+                    <!--Dropdown for title font styles-->
                     <p style="width: 100%; text-align: left; font-size: 14px; margin-top: 10px; margin-bottom: 4px;" for='yb-align-text'>Title Font Style</p>
                     <select type="text" class='yb-single-line-input' name="yb-align-text" id="yb-align-text" style='color: white;'>
                         <option value="arial">Arial</option>
                         <option value="times">Times New Roman</option>
                         <option value="add">Add Fonts</option>
                     </select>
+
+                    <!--Drop down for paragraph font styles-->
                     <p style="width: 100%; text-align: left; font-size: 14px; margin-top: 10px; margin-bottom: 4px;" for='yb-align-text'>Paragraph Font Style</p>
                     <select type="text" class='yb-single-line-input' name="yb-align-text" id="yb-align-text" style='color: white;'>
                         <option value="arial">Arial</option>
                         <option value="times">Times New Roman</option>
                         <option value="add">Add Fonts</option>
                     </select>
+
+                    <!--Container for text alignment options-->
                     <p style="width: 100%; text-align: left; font-size: 14px; margin-top: 10px;" for='yb-align-text'>Paragraph Alignment</p>
                     <div class = "three-part-button-container">
                         <div class = "yb-three-part-left-active">
