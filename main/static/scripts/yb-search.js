@@ -131,7 +131,7 @@ function displayResults(response) {
         console.log(user_info)
         user_name = user_info['first_name'] + ' ' + user_info['last_name'];
         image = custom['image'];
-        $('#mobile-instant-results').append(`<div data-username = "${user}" class="quick-result"><img data-username = "${user}" class="quick-result-image" src="${image}"> <p data-username = "${user}" class="quick-result-label" >${user_name}</p><a href="${base_url}/profile/${user}/" class="profile-result-link"></a></div>`);
+        $('#mobile-instant-results').append(`<div data-username = "${user.username}" class="quick-result"><img data-username = "${user.username}" class="quick-result-image" src="${image}"> <p data-username = "${user.username}" class="quick-result-label" >${user_name}</p><a href="${base_url}/profile/${user.username}/" class="profile-result-link"></a></div>`);
         x = x + 1;
         console.log(x)
     }
