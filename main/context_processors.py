@@ -29,7 +29,7 @@ def Customization(request):
         bit_background = custom.primary_color
         title_color = custom.title_color
         text_color = custom.text_color
-        
+        is_new_user = custom.is_new_user
 
         #Quick Appearance
         wallpaper_on = custom.wallpaper_on

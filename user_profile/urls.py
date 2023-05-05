@@ -33,6 +33,7 @@ urlpatterns = [
         path('collection/', MyStuff.as_view(), name="stuff"),
         path('publish/', Publish.as_view(), name="publish"),
         path('customize/', Personalization.as_view(), name="personalize"),
+        path('custom/first_visit/', CustomNewUser.as_view(), name="onboarding"),
         path('stuff/', MyStuff.as_view(), name="stuff"),
         path('visibility/', QuickVisibility.as_view(), name="get-visibility"),
         path('<str:username>/', ProfileView.as_view(), name="view-profile"),

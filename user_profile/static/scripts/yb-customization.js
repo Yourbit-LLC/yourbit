@@ -51,9 +51,20 @@ var custom_data = {}
 
 //Document ready function
 $(document).ready(function() {
-    
-    $('#back-to-home').fadeIn('slow');
-    $('#back-to-home').animate({'bottom': '110px'});
+    let page_data = document.getElementById("page-data");
+    let is_new = page_data.getAttribute("data-new");
+    if (is_new === "true") {
+        $('#back-to-home').fadeIn('slow');
+        $('#back-to-home').animate({'bottom': '110px'});
+        $(".minibar").hide();
+        $.ajax({
+            type: 'GET',
+            url: `${base_url}/profile/custom/first_visit/`,
+            success: function(data) {
+                page_data.setAttribute("data-new", "false");
+            }
+        })
+    }
     $('#content-container').animate({'top':'0px'});
     yb_hideSpaceBar();
 
