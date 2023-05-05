@@ -53,7 +53,7 @@ var custom_data = {}
 $(document).ready(function() {
     let page_data = document.getElementById("page-data");
     let is_new = page_data.getAttribute("data-new");
-    if (is_new === "true") {
+    if (is_new === "True") {
         $('#back-to-home').fadeIn('slow');
         $('#back-to-home').animate({'bottom': '110px'});
         $(".minibar").hide();
@@ -61,7 +61,7 @@ $(document).ready(function() {
             type: 'GET',
             url: `${base_url}/profile/custom/first_visit/`,
             success: function(data) {
-                page_data.setAttribute("data-new", "false");
+                page_data.setAttribute("data-new", "False");
             }
         })
     }
