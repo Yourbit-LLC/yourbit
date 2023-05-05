@@ -669,4 +669,5 @@ class CustomNewUser(View):
         profile = Profile.objects.get(user=request.user)
         custom_object = Custom.objects.get(profile = profile)
         custom_object.is_new_user = False
+        print("Object value: " + custom_object.is_new_user)
         return JsonResponse({'success':'success'})
