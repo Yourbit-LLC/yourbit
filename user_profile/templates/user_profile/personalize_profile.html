@@ -139,7 +139,7 @@
 
                         <div style="background-color: rgb(20, 20, 20);  padding: 2px 10px 1px 4px; border-radius: 0px 20px 20px 0px;  display: grid; margin-top: 0px; column-gap: 10px; grid-template-columns: 50px auto; position: absolute; text-align: left; right: 0px;">
                             <label class="yb-switch-round" id="yb-custom-colors" style="margin-top: 8px; grid-column: 1;">
-                                <input type="checkbox" class="checkbox" name="custom_colors" id="yb-check-custom-colors">
+                                <input type="checkbox" class="checkbox" name="custom_colors" id="yb-check-custom-colors" {% if user.profile.custom.ui_colors_on %}checked{% endif %}>
                                 <span class="slider round"></span>
                             </label>
                             <p style="grid-column: 2; margin-top: 12px;">Use Custom Colors</p>
@@ -202,7 +202,7 @@
                         <h3 style="margin: 15px auto;">Bits</h3>
                         <div style="background-color: rgb(20, 20, 20); padding: 2px 10px 1px 4px; border-radius: 0px 20px 20px 0px;  display: grid; margin-top: 0px; column-gap: 10px; grid-template-columns: 50px auto; position: absolute; text-align: left; right: 0px;">
                             <label class="yb-switch-round" id="yb-custom-colors" style="margin-top: 8px; grid-column: 1;">
-                                <input type="checkbox" class="checkbox" name="custom_colors" id="yb-check-custom-colors">
+                                <input type="checkbox" class="checkbox" name="custom_colors" id="yb-check-custom-colors" {% if user.profile.custom.bit_colors_on %}checked{% endif %}>
                                 <span class="slider round"></span>
                             </label>
                             <p style="grid-column: 2; margin-top: 12px;">Use Custom Colors</p>

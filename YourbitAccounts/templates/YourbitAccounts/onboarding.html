@@ -3,19 +3,41 @@
 <html>
     {% load static %}
     <head>
+        <!--Link CSS documents for styling-->
         <link rel="stylesheet" type="text/css" href="{% static 'css/onboarding.css' %}"/>
         <link rel="stylesheet" type="text/css" href="{% static 'css/yourbit_core.css' %}"/>
+        
+        <!--Page title welcoming user-->
         <title>Welcome, {{ user.first_name }}</title>
+        
+        <!--
+            
+            Maximum scale is set to 1 to prevent zooming when form fields are selected in the web version, 
+            tests found traditional zooming is not prevented on any browser with setting enabled.
+        
+        -->
         <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1">
+
     </head>
+
+    <!--Import cropper js and styling-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" />
+    
+    <!--Global script on top because all functions are only used by other scripts-->
     <script type="text/javascript" src="{% static 'scripts/yb-global.js' %}"></script>
+    
+    
     <body>
+
+        <!--Background image element-->
         <img id='bg-image' style='opacity:0;' class='bg-image' src=''>
+
+        <!--Opening message introducing user to the onboarding section of signup-->
         <div id='onboard-welcome' style='position: absolute; z-index: 2; width: 95%; margin-top: 100px; margin-left: auto; margin-right: auto; text-align: center;'>
             <p>
                 <h3>Welcome aboard, {{user.first_name}}!</h3>
+                
                 You are almost to Yourbit. On our way, we're going to configure
                 your initial profile settings with your preferences. Yourbit has
                 a ton of options for managing appearance, your exposure, and what
@@ -25,6 +47,14 @@
                 <button class="yb-pages-next" data-step = '0'>OK!</button>
             </p>
         </div>
+
+<!--
+
+    Onboarding step 1: Profile Images
+    This step consists of uploading a profile picture and a background picture
+
+-->
+
         <div id='profile-images' style="position:absolute; z-index: 2; text-align: center; display:none; left: 100vw;">
             <h3 style="text-align: center;">Profile Images</h3>
             <p style="text-align: center;">You can upload a profile image and a background image to personalize your space</p>
@@ -35,8 +65,11 @@
 
             </div>      
             
+            <!--Place a cb-divider, which is a yourbit element used to dim the background between a pop up element-->
             <div class="cb-divider" style = "display: none; top: 0; left: 0; width: 100vw; height: 100vh; position: fixed; z-index: 24; -webkit-backdrop-filter: brightness(30%); backdrop-filter: brightness(30%);">
             </div>
+
+            <!--Cropper container, this contains the area that the cropper will be placed for profile images on upload-->
             <div class="yb-cropper-container profile-image">
                 <img id="profile-image-preview" style="object-fit: contain; max-width:100%; max-height: 250px;"/>
                 <input type="hidden" id="cropper-output" value="">
@@ -76,6 +109,7 @@
                 </script>
             </div>
 
+            <!--Cropper container background, this contains the area that the cropper will be placed in when a background image is loaded-->
             <div class="yb-cropper-container background">
                 <img id="background-image-preview" style="object-fit: contain; display: none; max-width:100%; max-height: 250px; margin-left: auto; margin-right: auto;"/>
                 <input type="hidden" id="cropper-output" value="">
@@ -143,6 +177,9 @@
             <button class="yb-pages-back" data-step = '1'>Back</button>
             <button style='margin-left: auto; margin-right: auto;' class="yb-pages-next" data-step = '1';>Next</button>
         </div>
+
+
+        <!--Profile Information Section-->
         <div id="profile-setup" style="position:absolute; z-index: 2; display:none; text-align: center; width: 100vw; left: 100vw;">
             <h2>Profile Info</h2>
             <p>Let's get to know you a little more</p>
@@ -170,16 +207,38 @@
             <button class="yb-pages-next" data-step = '2'>Next</button>
             
         </div>
+
+<!--
+    
+    Onboarding Step 3: Privacy Options
+    This step allows users to configure important initial privacy settings
+    such as who can see their real name, who can message them, etc.
+
+    Scope Identifiers:
+        - E: Everyone
+        - F2: Friends Of Friends
+        - FF: Friends and Followers
+        - FO: Friends Only
+        - NO: No One
+        
+-->
+
         <div id='profile-privacy' style='position:absolute; left: 100vw; display:none; z-index: 2; text-align: center;'>
+            <!--Section Header-->
             <h2>Privacy</h2>
+            
+            <!--Introductory description-->
             <p>
                 Yourbit has many ways of managing your privacy
                 precisely how you want to, here we'll get the basics
                 set up for you.
             </p>
             <br>
+
+            <!--Choose who can see your real name-->
             <label for='name-check' >Who can see your real name?</label>
             <br>
+            <!--Dropdown selection of 3 different options-->
             <select type="text" class='yb-single-line-input' name="yb-name-check" id="name-check" style='color: white;' placeholder="Select from list:">
                 <option value="E">Everyone</option>
                 <option value="FO">Friends Only</option>
@@ -188,8 +247,11 @@
 
             <br>
             <br>
+
+            <!--Specify who can message you-->
             <label for='message-check' >Who can message you?</label>
             <br>
+            <!--Dropdown selection containing 4 different options-->
             <select type="text" class='yb-single-line-input' name="yb-name-check" id="message-check" style='color: white;' placeholder="Select from list:">
                 <option value="E">Everyone</option>
                 <option value="FF">Friends and Following</option>
@@ -212,6 +274,12 @@
             <button class="yb-pages-back" data-step = '3'>Back</button>
             <button class="yb-pages-next" data-step = '3'>Next</button>
         </div>
+
+<!--
+    
+    Onboarding Step 4: Profile Personalization Section
+
+-->
         <div id='profile-personalization' style="position: absolute; z-index: 2; display:none; left: 100vw; text-align: center;">
             <h4>Personalization</h4>
             <p>
@@ -228,282 +296,10 @@
         </div>
         
     </body>
+
+    <!--Page scripts-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script type="text/javascript" src="{% static 'scripts/yb_crop.js' %}"></script>
     <script type="text/javascript" src="{% static 'scripts/yb-ajax.js' %}"></script>
-    <script>
-        //List of pages to iterate through with each yb-pages-next button press
-        var page_list = ['#onboard-welcome', '#profile-images', '#profile-setup', '#profile-privacy', '#profile-personalization'];
-        
-        //No function is first in list because there is no request submitted on the first page of onboarding
-        var function_list = ['no-function','updateImages','updateInfo', 'updatePrivacy', 'updateCustom']
-        
-        var profile_image_loaded;
-
-        var preview_stage = 0;
-
-        var base_url = window.location.origin;
-
-        $('.yb-pages-next').click(function() {
-            let step = $(this).attr('data-step');
-            let current_page = page_list[parseInt(step)];
-            console.log("clicked")
-            console.log(step);
-            if (step != 0 && step != 4) {
-                packageRequest(function_list[parseInt(step)])
-            }
-            if (step < 4) {
-                console.log(current_page)
-                let next_page_interval = parseInt(step) + 1;
-                let next_page = page_list[next_page_interval];
-                let motion = 1;
-                nextPage(motion, current_page, next_page);
-            }
-            if (step === '4'){
-                console.log("button identified");
-                window.location.href = `${base_url}/profile/customize/`;
-            }
-        });
-
-        $('.yb-pages-back').click(function() {
-            let step = $(this).attr('data-step');
-            let current_page = page_list[parseInt(step)];
-            let previous_page_interval = parseInt(step) - 1;
-            let previous_page = page_list[previous_page_interval];
-            let motion = 0;
-            nextPage(motion, current_page, previous_page);
-        });
-
-        $('#toggle-colors').change(function() {
-            $('#color-customizations').show();
-            $('#color-customizations').animate({'height': '35vh'}, 'slow');
-        });
-        
-        function nextPage(motion, current_page, next_page) {
-            
-            $(next_page).show();
-            if (motion === 0) {
-                $(current_page).animate({'left': '100vw'});
-                $(next_page).animate({'left':'0vw'});
-
-            }
-            if (motion === 1) {
-                $(current_page).animate({'left':'-100vw'});
-                $(next_page).animate({'left': '0vw'});
-            }
-            $(current_page).hide();
-        }
-
-        const primary_color_field = document.getElementById('primary-color-select')
-        primary_color_field.addEventListener("change", function() {
-            let bit_background = document.getElementById('bit-colors-preview');
-            bit_background.style.backgroundColor = this.value;
-        });
-
-        const accent_color_field = document.getElementById('accent-color-select')
-        accent_color_field.addEventListener("change", function() {
-            let border1 = document.getElementById('profile-image-preview-image2');
-            let border2 = document.getElementById('bit-profile-image');
-            border1.style.borderColor = this.value;
-            border2.style.borderColor = this.value;
-        });
-
-        const feedback_icon_field = document.getElementById('feedback-icon-color-select');
-        feedback_icon_field.addEventListener('change', function() {
-            let feedback_preview1 = document.getElementById('button1').style.backgroundColor = this.value;
-            let feedback_preview2 = document.getElementById('button2').style.backgroundColor = this.value;
-            let feedback_preview3 = document.getElementById('button3').style.backgroundColor = this.value;
-            let feedback_preview4 = document.getElementById('button4').style.backgroundColor = this.value;
-            let feedback_preview5 = document.getElementById('button5').style.backgroundColor = this.value;
-            
-        });
-
-        
-        const icon_field = document.getElementById('icon-color-select');
-        icon_field.addEventListener('change', function() {
-            let space_icon1 = document.getElementById('icon-image-1').style.fill = this.value;
-            let space_icon2 = document.getElementById('icon-image-2').style.fill = this.value;
-            let space_icon3 = document.getElementById('icon-image-3').style.fill = this.value;
-            let space_icon4 = document.getElementById('icon-image-4').style.fill = this.value;
-            let space_icon5 = document.getElementById('icon-image-5').style.fill = this.value;
-            let space_icon6 = document.getElementById('icon-image-6').style.fill = this.value;
-            let space_icon7 = document.getElementById('icon-image-7').style.fill = this.value;
-            let space_icon8 = document.getElementById('icon-image-8').style.fill = this.value;
-            
-        });
-
-        const text_color_field = document.getElementById('pfont-color-select');
-        text_color_field.addEventListener('change', function() {
-            let text_color_preview = document.getElementById('preview-paragraph');
-            text_color_preview.style.color = this.value;
-        });
-
-        const title_color_field = document.getElementById('tfont-color-select');
-        title_color_field.addEventListener('change', function() {
-            let title_color_preview = document.getElementById('preview-title');
-            title_color_preview.style.color = this.value;
-        });
-
-        accent_color_field.addEventListener('click', function() {
-            if (preview_stage === 1) {
-                $('#bit-colors-preview').fadeOut();
-                $('#accent-color-preview').fadeIn();
-            }
-            if (preview_stage === 2) {
-                $('#icon-color-preview').fadeOut();
-                $('#accent-color-preview').fadeIn();
-            }
-
-            preview_stage = 0
-        });
-
-        icon_field.addEventListener('click', function() {
-            if (preview_stage === 0) {
-                $('#accent-color-preview').fadeOut();
-                $('#icon-color-preview').fadeIn();
-            }
-            if (preview_stage === 1) {
-                $('#bit-colors-preview').fadeOut();
-                $('#icon-color-preview').fadeIn();
-            }
-            preview_stage = 2
-        });
-
-        title_color_field.addEventListener('click', function() {
-            if (preview_stage === 0) {
-                $('#accent-color-preview').fadeOut();
-                $('#bit-colors-preview').fadeIn();
-            }
-            if (preview_stage === 2) {
-                $('#icon-color-preview').fadeOut();
-                $('#bit-colors-preview').fadeIn();
-            }
-            preview_stage = 1
-        });
-
-        text_color_field.addEventListener('click', function() {
-            if (preview_stage === 0) {
-                $('#accent-color-preview').fadeOut();
-                $('#bit-colors-preview').fadeIn();
-            }
-            if (preview_stage === 2) {
-                $('#icon-color-preview').fadeOut();
-                $('#bit-colors-preview').fadeIn();
-            }
-            preview_stage = 1
-        });
-
-        feedback_icon_field.addEventListener('click', function() {
-            if (preview_stage === 0) {
-                $('#accent-color-preview').fadeOut();
-                $('#bit-colors-preview').fadeIn();
-            }
-            if (preview_stage === 2) {
-                $('#icon-color-preview').fadeOut();
-                $('#bit-colors-preview').fadeIn();
-            }
-            preview_stage = 1
-        });
-        primary_color_field.addEventListener('click', function() {
-            if (preview_stage === 0) {
-                $('#accent-color-preview').fadeOut();
-                $('#bit-colors-preview').fadeIn();
-            }
-            if (preview_stage === 2) {
-                $('#icon-color-preview').fadeOut();
-                $('#bit-colors-preview').fadeIn();
-            }
-            preview_stage = 1
-        });
-
-
-
-
-        
-        function packageRequest(form_request) {
-            let request = new FormData();
-            let page;
-            console.log(form_request)
-            if (form_request === 'updateInfo') {
-                let gender = $('#gender-field').val();
-                console.log(gender)
-                let bio = $('#bio-field').val();
-                let motto = $('#motto-field').val();
-                console.log("update_info")
-                page=1;
-                console.log(page)
-                request.append('page', page);
-                request.append('motto', motto);
-                request.append('gender', gender);
-                request.append('bio', bio);
-                console.log(request)
-            } 
-            if (form_request === 'updatePrivacy') {
-                let name_visibility = $('#name-check').val();
-                let message_availability = $('#message-check').val();
-                let publicity = $('#public-check').val();
-                let search_visibility = $('#visibility-check').val();
-                if (search_visibility === 'on') {
-                    search_visibility = true;
-                } else {
-                    search_visibility = false;
-                }
-                let followers_enabled = $('#toggle-followers').val();
-                if (followers_enabled === 'on') {
-                    followers_enabled = true;
-                } else {
-                    followers_enabled = false;
-                }
-                page=2;
-                request.append('page', page);
-                request.append('name_visibility', name_visibility);
-                request.append('message_availability', message_availability);
-                console.log(message_availability)
-                request.append('publicity', publicity);
-                request.append('search_visibility', search_visibility)
-                request.append('followers_enabled', followers_enabled)
-            }
-            if (form_request === 'updateCustom') {
-                console.log("Redirecting...")
-
-                
-            }
-            console.log(page)
-            yb_sendRequest(request, page)
-            
-        }
-
-        function yb_sendRequest(request, page) {
-            console.log(page)
-            let cookie = document.cookie;
-            let csrfToken = cookie.substring(cookie.indexOf('=') + 1);
-            
-            $.ajax(
-                {
-                    type: 'POST',
-                    contentType: false,
-                    // The following is necessary so jQuery won't try to convert the object into a string
-                    processData: false,
-                    headers: {
-
-                        'X-CSRFToken': csrfToken,
-                    },
-                    url: '/onboarding/',
-                    data: request,
-        
-                    success: function(response) {
-                        console.log('Successfully Updated Information')
-                        if (page === 3) {
-                            window.location.href = `${base_url}/profile/customize/`;
-                        }
-                    }
-
-                }
-            )
-
-        }
-
-
-    
-    </script>
+    <script type="text/javascript" src="{% static 'scripts/onboarding.js' %}"></script>
 </html>
