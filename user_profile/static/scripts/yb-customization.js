@@ -61,7 +61,7 @@ $(document).ready(function() {
             type: 'GET',
             url: `${base_url}/profile/custom/first_visit/`,
             success: function(data) {
-                page_data.setAttribute("data-new", "False");
+                page_data.setAttribute("data-is-new", "False");
             }
         })
     }
