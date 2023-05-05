@@ -3,7 +3,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" />
 
-    <input type="hidden" class="page-data" data-id-isnew = "{{is_new_user}}">
+    <input type="hidden" class="page-data" data-id-isnew = "{{custom.is_new_user}}">
     <div class="large-bubble" id="image-selector" style="display:none; overflow: hidden; text-align: center; box-shadow: 1px 1px 10px black; background-color: rgb(50,50,50);Z-index:28; height: 0vh; width: 0vw;">
         <h4>Select from Uploads</h4>
         <div id="image-grid-container" style="height: 80%;">
@@ -405,7 +405,7 @@
                         </p>
                     </div>
                     <hr width="100%" style="position: relative;">
-                    <div id="mini-bit" style="background-color: {{ bit_background }};" class="mini-bit">
+                    <div id="mini-bit" style="background-color: {{bit_background }};" class="mini-bit">
                         <div id="mini-user-info"></div>
                         <div id="mini-title">Title Preview</div>
                         <div id="mini-paragraph" style="color:{{text_color}};">This is a paragraph preview, it is a preview of paragraph text in paragraphs.</div>
