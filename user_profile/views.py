@@ -667,5 +667,5 @@ class CreateCluster(View):
 class CustomNewUser(View):
     def get(self, request, *args, **kwargs):
         custom_object = Profile.objects.get(user=request.user)
-        custom_object.custom.new_user = False
+        custom_object.custom.is_new_user = False
         return JsonResponse({'success':'success'})
