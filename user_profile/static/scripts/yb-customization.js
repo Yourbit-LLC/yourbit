@@ -130,39 +130,45 @@ $(document).ready(function() {
 
         //Primary color circle pressed
         if (this_name === "primary"){
-            change_history.append({"#primary-color-select": {"old": PRIMARY_COLOR_INPUT.value, "new": "awaiting user input..."}});
+            change_history["#primary-color-select"] = {"old": PRIMARY_COLOR_INPUT.value, "new": "awaiting user input..."};
             showColorOption('#primary-color-select', focusIn);
 
         }
         //Secondary color circle pressed
         else if (this_name === "secondary"){
-            change_history.append({"#accent-color-select": {"old": SECONDARY_COLOR_INPUT.value, "new": "awaiting user input..."}});
+            change_history["#accent-color-select"] = {"old": SECONDARY_COLOR_INPUT.value, "new": "awaiting user input..."};
+            
             showColorOption("#accent-color-select", focusIn);
         }
         //Icon color circle pressed
         else if (this_name === "icon"){
-            change_history.append({"#icon-color-select": {"old": ICON_COLOR_INPUT.value, "new": "awaiting user input..."}});
+            
+            change_history["#icon-color-select"] = {"old": ICON_COLOR_INPUT.value, "new": "awaiting user input..."};
+            
             showColorOption("#icon-color-select", focusIn);
         } 
         //Title color circle pressed
         else if (this_name === "title"){
-            change_history.append({"#title-color-select": {"old": TITLE_COLOR_INPUT.value, "new": "awaiting user input..."}});
+            change_history["#title-color-select"] = {"old": TITLE_COLOR_INPUT.value, "new": "awaiting user input..."};
+            
             showColorOption("#title-color-select", focusIn);
         }
         //Text color circle pressed
         else if (this_name === "text"){
-            change_history.append({"#text-color-select": {"old": TEXT_COLOR_INPUT.value, "new": "awaiting user input..."}});
+            change_history["#text-color-select"] = {"old": TEXT_COLOR_INPUT.value, "new": "awaiting user input..."};
+            
             showColorOption("#text-color-select", focusIn);
         }
         //Feedback icon color circle pressed
         else if (this_name === "fb_icon"){
-            change_history.append({"#feedback-icon-color-select": {"old": FEEDBACK_ICON_COLOR_INPUT.value, "new": "awaiting user input..."}});
+            change_history["#feedback-icon-color-select"] = {"old": FEEDBACK_ICON_COLOR_INPUT.value, "new": "awaiting user input..."};
+
             showColorOption("#feedback-icon-color-select", focus);
 
         }
         //Feedback background color circle pressed
         else if (this_name === "fb_background"){
-            change_history.append({"#feedback-background-color-select": {"old": FEEDBACK_BACKGROUND_COLOR_INPUT.value, "new": "awaiting user input..."}});
+            change_history["#feedback-background-color-select"] = {"old": FEEDBACK_BACKGROUND_COLOR_INPUT.value, "new": "awaiting user input..."};
             showColorOption('feedback-background-color-select');
 
         }
