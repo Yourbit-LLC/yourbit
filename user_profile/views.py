@@ -662,3 +662,10 @@ class CreateCluster(View):
         cluster.save()
         
         return JsonResponse({'success':'success', "name": cluster_name, "id": cluster.id})
+
+
+class CustomNewUser(View):
+    def get(self, request, *args, **kwargs):
+        custom_object = Profile.objects.get(user=request.user)
+        custom_object.custom.new_user = False
+        return JsonResponse({'success':'success'})
