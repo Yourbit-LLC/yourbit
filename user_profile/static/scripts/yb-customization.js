@@ -80,10 +80,6 @@ $(document).ready(function() {
             "text_color":custom.text_color,
         }
 
-        
-        MINI_USER_IMAGE.setAttribute("src", custom_data.profile_image);
-        MINI_USER_IMAGE_CONTAINER.style.borderColor = custom_data.secondary_color;
-        BIT_PROFILE_IMAGE.setAttribute("src", custom_data.profile_image);
         BIT_PROFILE_IMAGE.style.borderColor = custom_data.secondary_color;
         MINI_BIT.style.backgroundColor = custom_data.primary_color;
         MINI_BIT_MOBILE.style.backgroundColor = custom_data.primary_color;
