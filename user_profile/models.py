@@ -172,6 +172,7 @@ class Custom(models.Model):
 
     #Profile Connections
     profile = models.OneToOneField('Profile', related_name='custom', blank=True, on_delete=models.CASCADE)
+    is_new_user = models.BooleanField(default=True)
 
     #Profile Images
     image_uploaded = models.BooleanField(default=False)

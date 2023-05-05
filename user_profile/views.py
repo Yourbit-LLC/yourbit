@@ -391,6 +391,7 @@ class Personalization(LoginRequiredMixin, View):
         profile_image_form = ProfilePictureUpload()
         background_image_form = BackgroundPictureUpload()
         color_form = ColorForm(instance=request.user.profile)
+        is_new_user = request.user.profile.custom.is_new_user
         context = {
             'profile_image_form': profile_image_form,
             'background_image_form' : background_image_form,
@@ -399,6 +400,7 @@ class Personalization(LoginRequiredMixin, View):
             "space":"global",
             "filter":"all",
             "sort":"chrono",
+            "is_new_user": is_new_user,
 
 
         }
