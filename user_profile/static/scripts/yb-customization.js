@@ -52,7 +52,7 @@ var custom_data = {}
 //Document ready function
 $(document).ready(function() {
     let page_data = document.getElementById("page-data");
-    let is_new = page_data.getAttribute("data-new");
+    let is_new = page_data.getAttribute("data-is-new");
     if (is_new === "True") {
         $('#back-to-home').fadeIn('slow');
         $('#back-to-home').animate({'bottom': '110px'});
