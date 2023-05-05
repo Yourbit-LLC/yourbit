@@ -2,7 +2,7 @@ from django.urls import path, re_path
 from .views import *
 from user_profile.api.viewsets import follow, requestFriend, updateTimezone, likeBit, dislikeBit, commentBit, shareBit
 from django.views.generic import TemplateView
-from YourbitAccounts.views import Onboarding
+from YourbitAccounts.views import Onboarding, CustomNewUser
 
 urlpatterns = [
         #REST API EndPoints
