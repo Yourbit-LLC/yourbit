@@ -256,7 +256,7 @@
 
                         <div>
                             <input style="display:none;" class="color-selector" id="feedback-icon-color-select" type="color" name='feedback_icon_color' value="{{feedback_icon_color}}">
-                            <div name="fb_icon" class="color-circle" id="color-circle-fb-icon" style="background-color: {{feedback_icon_color}}; width: 30px; height: 30px; border-radius: 50%;"></div>
+                            <div name="fb_icon" class="color-circle" id="color-circle-fb-icon" style="background-color: {{feedback_icon_color}}; {% if feedback_icon_color == "#000000" %} border: 2px solid white; {% endif %} width: 30px; height: 30px; border-radius: 50%;"></div>
                             <label class="color-select-label" for="feedback-icon-color-select">Selected Icon</label>
 
                         </div>
