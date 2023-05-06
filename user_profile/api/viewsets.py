@@ -123,18 +123,24 @@ class BitViewSet(viewsets.ViewSet):
                 this_username = self.request.query_params.get("profile")
                 this_user = User.objects.get(username = this_username)
                 this_profile = Profile.objects.get(user = this_user)
+                
+                request_profile = Profile.objects.get(user=request_user)
+                
+                if this_profile in request_profile.connections.all:
 
                 #Check if type = global, there is no global classification for bits in database, this means get bits of all types
-                if type == "global":
-                    bit_pool = Bit.objects.filter(profile = this_profile).order_by("-time")
-
-                #If bits aren't global use data from query params to filter bit by type
+                    if type == "global":
+                        bit_pool = Bit.objects.filter(profile = this_profile).order_by("-time")
+    
+                    #If bits aren't global use data from query params to filter bit by type
+                    else:
+                        bit_pool = Bit.objects.filter(profile = user_profile, type=type).order_by("-time")
+    
+                        bit_pool = sorted(
+                            chain(my_bits, friends_bits, follow_bits, all_bits), key=attrgetter('time'), reverse=True
+                    )
                 else:
-                    bit_pool = Bit.objects.filter(profile = user_profile, type=type).order_by("-time")
-
-                    bit_pool = sorted(
-                        chain(my_bits, friends_bits, follow_bits, all_bits), key=attrgetter('time'), reverse=True
-                )
+                    bit_pool = Bit.objects.filter(profile = user_profile, is_public = True).order_by("-time")
 
             else:
                 #Dataset is used for aggregating results based on filters within saved or interacted bits
