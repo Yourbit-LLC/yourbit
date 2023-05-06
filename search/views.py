@@ -46,6 +46,7 @@ class SearchResults(View):
         serialized_users = UserSerializer(user_results, many=True).data
         return JsonResponse({'results_found': True, 'result_count':result_count, 'results':serialized_users})
 
+
 class ContextSearch(View):
     #Context search takes user information into account to breakdown the most relevant results
     def post(self, request, *args, **kwargs):

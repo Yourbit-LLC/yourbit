@@ -19,6 +19,7 @@ class Conversation(models.Model):
     # allowing one user to delete without deleting both conversations.
     messages = models.ManyToManyField('Message', blank = True, related_name='messages')
     receiver_custom = models.ForeignKey('user_profile.Custom', on_delete=models.CASCADE, related_name='receiver_custom')
+    unseen_messages = models.ManyToManyField('Message', blank = True, related_name='unseen_messages')
 
 #Message is contained in a conversation
 class Message(models.Model):

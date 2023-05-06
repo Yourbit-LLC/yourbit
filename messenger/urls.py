@@ -12,7 +12,7 @@ urlpatterns = [
     path('api/check_existing/<str:username>/', check_existing_conversation, name='check-existing'),
     path('templates/messages-html/', TemplateView.as_view(template_name='messenger/messages.html')),
     path('templates/conversation-html/', TemplateView.as_view(template_name='messenger/conversation.html')),
-    
+    path('check/<int:id>/', check_new_messages, name='check-new-messages'),
     
     
 ]

@@ -48,6 +48,16 @@ class ConversationView(View):
         messages = Message.objects.filter(conversation = conversation).order_by('-time')
         context={'messages':messages, 'conversation':conversation}
 
+        unseen_messages = conversation.unseen_messages.all()
+
+        for message in unseen_messages:
+            if message.receiver_user == request.user:
+                if message.is_read == False:
+                    message.is_read = True
+                    message.save()
+
+        conversation.unseen_messages.clear()
+
         return render(request, 'messenger/conversation.html', context)
 
 class NewConversationView(View):
@@ -108,4 +118,22 @@ def check_existing_conversation(request, username):
         response = {"is_conversation":False}
 
    
+    return JsonResponse(response)
+
+@api_view(['GET'])
+def check_new_messages(request, id):
+    from .api.serializers import MessageSerializer
+    user = request.user
+    this_conversation = Conversation.objects.get(id=id)
+    new_messages = this_conversation.unseen_messages.all()
+
+    
+
+    this_conversation.unseen_messages.clear()
+
+    if len(new_messages) > 0:
+        messages_serialized = MessageSerializer(new_messages, many=True)
+        response = {"is_messages":True, "messages":messages_serialized.data}
+    else:
+        response = {"is_messages":False}
     return JsonResponse(response)
