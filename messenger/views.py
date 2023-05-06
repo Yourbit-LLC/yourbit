@@ -40,6 +40,8 @@ class SendMessage(LoginRequiredMixin, View):
         new_message.body = body
         new_message.save()
         created_at = new_message.time
+        
+        new_notification = Notification.objects.create(to_user = receiver, from_user = request.user, message = new_message, type=6);
         return JsonResponse({'user_name':user_name, 'body':body, 'created_at':created_at})
 
 class ConversationView(View):
