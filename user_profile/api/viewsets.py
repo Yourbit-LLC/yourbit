@@ -125,8 +125,9 @@ class BitViewSet(viewsets.ViewSet):
                 this_profile = Profile.objects.get(user = this_user)
                 
                 request_profile = Profile.objects.get(user=self.request.user)
+                user_connections = request_profile.connections.all()
                 
-                if this_profile in request_profile.connections.all:
+                if this_profile in user_connections:
 
                 #Check if type = global, there is no global classification for bits in database, this means get bits of all types
                     if type == "global":
