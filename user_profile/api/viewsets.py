@@ -124,7 +124,7 @@ class BitViewSet(viewsets.ViewSet):
                 this_user = User.objects.get(username = this_username)
                 this_profile = Profile.objects.get(user = this_user)
                 
-                request_profile = Profile.objects.get(user=request_user)
+                request_profile = Profile.objects.get(user=self.request.user)
                 
                 if this_profile in request_profile.connections.all:
 
