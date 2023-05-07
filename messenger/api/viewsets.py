@@ -62,6 +62,7 @@ class MessageViewSet(viewsets.ViewSet):
         print(that_conversation)
         
         this_conversation.messages.add(new_message)
+        that_conversation.unseen_messages.add(new_message)
         this_conversation.save()
         that_conversation.messages.add(new_message)
         that_conversation.save()
