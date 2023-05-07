@@ -141,8 +141,9 @@ function displayResults(response) {
             let this_element = e.currentTarget;
             let username = this_element.getAttribute('data-username');
             console.log(username);
+            data = {"username": username}
             hideSearch();
-            profile_url(username);
+            profile_url(data);
         });
         
         result_container.appendChild(result_object);
