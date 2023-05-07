@@ -673,7 +673,6 @@ function yb_getMessages(id) {
             console.log(this_message.sender);
             let is_sender;
 
-
             if (this_message.sender === parseInt(user_id)) {
                 is_sender = true;
             } else {

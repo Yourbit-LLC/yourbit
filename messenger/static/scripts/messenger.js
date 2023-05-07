@@ -13,7 +13,7 @@ $(document).ready(function(){
         yb_sendMessage(body, this_id, that_user)
     })
 
-    setInterval(yb_checkMessages, 500);
+    setInterval(yb_checkMessages, 1000);
 
 });
 

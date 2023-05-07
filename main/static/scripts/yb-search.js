@@ -51,7 +51,9 @@ $('#mobile-searchbar').on('change keyup', function(e) {
 });
 
 $("#mobile-submit-search-button").click(function() {
+
     let entry_field = document.getElementById('mobile-searchbar');
+
     query = entry_field.value;
     search_url(query);
 
@@ -84,8 +86,7 @@ function yb_getSearchResults() {
 
             }
         }
-})
-}
+})}
 
 function getType() {
     return type;
@@ -122,30 +123,40 @@ function displayResults(response) {
     let user = '';
     let x = 0;
     for (let i = 0; i < users.length; i++) {
-        console.log(x)
+        let result_container = document.getElementById('mobile-instant-results');
+        console.log(x);
         user = users[x];
-        console.log(user)
+        console.log(user);
         let profile_info = results[user];
-        let user_info = profile_info.user
-        let custom = profile_info.custom
-        console.log(user_info)
+        let user_info = profile_info.user;
+        let custom = profile_info.custom;
+        console.log(user_info);
         user_name = user_info['first_name'] + ' ' + user_info['last_name'];
         image = custom['image'];
-        $('#mobile-instant-results').append(`<div data-username = "${user_info.username}" class="quick-result"><img data-username = "${user_info.username}" class="quick-result-image" src="${image}"> <p data-username = "${user_info.username}" class="quick-result-label" >${user_name}</p><a href="${base_url}/profile/${user_info.username}/" class="profile-result-link"></a></div>`);
+        result_object = yb_createElement('div', `quick-result-${user_info.id}`, 'quick-result');
+        result_object.setAttribute('data-username', user_info.username);
+        result_object.innerHTML = `<img class="quick-result-image" src="${image}"> <p data-username = "${user_info.username}" class="quick-result-label" >${user_name}</p>`;
+        
+        result_object.addEventListener('click', function(e) {
+            let this_element = e.currentTarget;
+            let username = this_element.getAttribute('data-username');
+            console.log(username);
+            hideSearch();
+            profile_url(username);
+        });
+        
+        result_container.appendChild(result_object);
+        
         x = x + 1;
-        console.log(x)
+        console.log(x);
     }
-
-
 }
 
 function profileNavigate(user) {
     let username = user;
-
     window.location.href = `${base_url}/social/profile/${username}`;
-    
 };
 
 $('#cancel-button').click(function() {
     dropSearch(hideSearch);
-})
+});

@@ -411,43 +411,44 @@ $('#logo-image').click(function(){
 function getBaseURL() {
     return base_url;
 }
-var touchstartX = 0;
-var touchstartY = 0;
-var touchendX = 0;
-var touchendY = 0;
 
-var gesturedZone = document.getElementById('profile-menu');
+// var touchstartX = 0;
+// var touchstartY = 0;
+// var touchendX = 0;
+// var touchendY = 0;
 
-gesturedZone.addEventListener('touchstart', function(event) {
-    touchstartX = event.screenX;
-    touchstartY = event.screenY;
-}, {passive: true});
+// var gesturedZone = document.getElementById('profile-menu');
 
-gesturedZone.addEventListener('touchend', function(event) {
-    touchendX = event.screenX;
-    touchendY = event.screenY;
-    handleGesure();
-},{passive: true}); 
+// gesturedZone.addEventListener('touchstart', function(event) {
+//     touchstartX = event.screenX;
+//     touchstartY = event.screenY;
+// }, {passive: true});
 
-function handleGesure() {
-    var swiped = 'swiped: ';
-    if (touchendX < touchstartX) {
+// gesturedZone.addEventListener('touchend', function(event) {
+//     touchendX = event.screenX;
+//     touchendY = event.screenY;
+//     handleGesure();
+// },{passive: true}); 
+
+// function handleGesure() {
+//     var swiped = 'swiped: ';
+//     if (touchendX < touchstartX) {
         
-    }
-    if (touchendX > touchstartX) {
+//     }
+//     if (touchendX > touchstartX) {
         
-    }
-    if (touchendY < touchstartY) {
+//     }
+//     if (touchendY < touchstartY) {
         
-        show_profile_menu()
-    }
-    if (touchendY > touchstartY) {
+//         show_profile_menu()
+//     }
+//     if (touchendY > touchstartY) {
         
-    }
-    if (touchendY == touchstartY) {
+//     }
+//     if (touchendY == touchstartY) {
         
-    }
-}
+//     }
+// }
 
 var menu = document.getElementById("profile-menu");
 var profile_icon = document.getElementById("profile-icon");
@@ -974,3 +975,68 @@ function yb_openImage(source, index, this_id){
 
     
 }
+
+const menuContainer = document.querySelector('.menu-container');
+const menu = document.querySelector('.menu');
+
+let isDragging = false;
+let startY = 0;
+let currentY = 0;
+let startTranslateY = 0;
+let currentTranslateY = 0;
+
+const MENU_SNAP_POINTS = [0, -102]; // set your own snapping points
+const EXPANDED_POSITION = MENU_SNAP_POINTS[0];
+const HIDDEN_POSITION = SNAP_POINTS[SNAP_POINTS.length - 1];
+
+function handleDragStart(e) {
+  isDragging = true;
+  startY = e.touches ? e.touches[0].clientY : e.clientY;
+  startTranslateY = currentTranslateY;
+}
+
+function handleDragMove(e) {
+  if (!isDragging) return;
+
+  currentY = e.touches ? e.touches[0].clientY : e.clientY;
+  currentTranslateY = startTranslateY + (currentY - startY);
+
+  // clamp currentTranslateY to snap points range
+  currentTranslateY = Math.max(Math.min(currentTranslateY, EXPANDED_POSITION), HIDDEN_POSITION);
+
+  menuContainer.style.transform = `translateY(${currentTranslateY}px)`;
+}
+
+function handleDragEnd(e) {
+  isDragging = false;
+
+  // snap to nearest snap point
+  const closestSnapPoint = SNAP_POINTS.reduce((prev, curr) => {
+    return Math.abs(curr - currentTranslateY) < Math.abs(prev - currentTranslateY) ? curr : prev;
+  });
+  currentTranslateY = closestSnapPoint;
+
+  menuContainer.style.transform = `translateY(${currentTranslateY}px)`;
+}
+
+function handleSwipeUp() {
+  currentTranslateY = EXPANDED_POSITION;
+  menuContainer.style.transform = `translateY(${currentTranslateY}px)`;
+}
+
+function handleSwipeDown() {
+  currentTranslateY = HIDDEN_POSITION;
+  menuContainer.style.transform = `translateY(${currentTranslateY}px)`;
+}
+
+// add event listeners
+menuContainer.addEventListener('touchstart', handleDragStart);
+menuContainer.addEventListener('touchmove', handleDragMove);
+menuContainer.addEventListener('touchend', handleDragEnd);
+menuContainer.addEventListener('mousedown', handleDragStart);
+menuContainer.addEventListener('mousemove', handleDragMove);
+menuContainer.addEventListener('mouseup', handleDragEnd);
+menuContainer.addEventListener('mouseleave', handleDragEnd);
+menuContainer.addEventListener('animationend', () => {
+  menuContainer.classList.remove('animate');
+});
