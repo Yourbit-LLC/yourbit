@@ -976,67 +976,67 @@ function yb_openImage(source, index, this_id){
     
 }
 
-const menuContainer = document.querySelector('.menu-container');
-const menu = document.querySelector('.menu');
+// const menuContainer = document.querySelector('.menu-container');
+// const menu = document.querySelector('.menu');
 
-let isDragging = false;
-let startY = 0;
-let currentY = 0;
-let startTranslateY = 0;
-let currentTranslateY = 0;
+// let isDragging = false;
+// let startY = 0;
+// let currentY = 0;
+// let startTranslateY = 0;
+// let currentTranslateY = 0;
 
-const MENU_SNAP_POINTS = [0, -102]; // set your own snapping points
-const EXPANDED_POSITION = MENU_SNAP_POINTS[0];
-const HIDDEN_POSITION = SNAP_POINTS[SNAP_POINTS.length - 1];
+// const MENU_SNAP_POINTS = [0, -102]; // set your own snapping points
+// const EXPANDED_POSITION = MENU_SNAP_POINTS[0];
+// const HIDDEN_POSITION = SNAP_POINTS[SNAP_POINTS.length - 1];
 
-function handleDragStart(e) {
-  isDragging = true;
-  startY = e.touches ? e.touches[0].clientY : e.clientY;
-  startTranslateY = currentTranslateY;
-}
+// function handleDragStart(e) {
+//   isDragging = true;
+//   startY = e.touches ? e.touches[0].clientY : e.clientY;
+//   startTranslateY = currentTranslateY;
+// }
 
-function handleDragMove(e) {
-  if (!isDragging) return;
+// function handleDragMove(e) {
+//   if (!isDragging) return;
 
-  currentY = e.touches ? e.touches[0].clientY : e.clientY;
-  currentTranslateY = startTranslateY + (currentY - startY);
+//   currentY = e.touches ? e.touches[0].clientY : e.clientY;
+//   currentTranslateY = startTranslateY + (currentY - startY);
 
-  // clamp currentTranslateY to snap points range
-  currentTranslateY = Math.max(Math.min(currentTranslateY, EXPANDED_POSITION), HIDDEN_POSITION);
+//   // clamp currentTranslateY to snap points range
+//   currentTranslateY = Math.max(Math.min(currentTranslateY, EXPANDED_POSITION), HIDDEN_POSITION);
 
-  menuContainer.style.transform = `translateY(${currentTranslateY}px)`;
-}
+//   menuContainer.style.transform = `translateY(${currentTranslateY}px)`;
+// }
 
-function handleDragEnd(e) {
-  isDragging = false;
+// function handleDragEnd(e) {
+//   isDragging = false;
 
-  // snap to nearest snap point
-  const closestSnapPoint = SNAP_POINTS.reduce((prev, curr) => {
-    return Math.abs(curr - currentTranslateY) < Math.abs(prev - currentTranslateY) ? curr : prev;
-  });
-  currentTranslateY = closestSnapPoint;
+//   // snap to nearest snap point
+//   const closestSnapPoint = SNAP_POINTS.reduce((prev, curr) => {
+//     return Math.abs(curr - currentTranslateY) < Math.abs(prev - currentTranslateY) ? curr : prev;
+//   });
+//   currentTranslateY = closestSnapPoint;
 
-  menuContainer.style.transform = `translateY(${currentTranslateY}px)`;
-}
+//   menuContainer.style.transform = `translateY(${currentTranslateY}px)`;
+// }
 
-function handleSwipeUp() {
-  currentTranslateY = EXPANDED_POSITION;
-  menuContainer.style.transform = `translateY(${currentTranslateY}px)`;
-}
+// function handleSwipeUp() {
+//   currentTranslateY = EXPANDED_POSITION;
+//   menuContainer.style.transform = `translateY(${currentTranslateY}px)`;
+// }
 
-function handleSwipeDown() {
-  currentTranslateY = HIDDEN_POSITION;
-  menuContainer.style.transform = `translateY(${currentTranslateY}px)`;
-}
+// function handleSwipeDown() {
+//   currentTranslateY = HIDDEN_POSITION;
+//   menuContainer.style.transform = `translateY(${currentTranslateY}px)`;
+// }
 
-// add event listeners
-menuContainer.addEventListener('touchstart', handleDragStart);
-menuContainer.addEventListener('touchmove', handleDragMove);
-menuContainer.addEventListener('touchend', handleDragEnd);
-menuContainer.addEventListener('mousedown', handleDragStart);
-menuContainer.addEventListener('mousemove', handleDragMove);
-menuContainer.addEventListener('mouseup', handleDragEnd);
-menuContainer.addEventListener('mouseleave', handleDragEnd);
-menuContainer.addEventListener('animationend', () => {
-  menuContainer.classList.remove('animate');
-});
+// // add event listeners
+// menuContainer.addEventListener('touchstart', handleDragStart);
+// menuContainer.addEventListener('touchmove', handleDragMove);
+// menuContainer.addEventListener('touchend', handleDragEnd);
+// menuContainer.addEventListener('mousedown', handleDragStart);
+// menuContainer.addEventListener('mousemove', handleDragMove);
+// menuContainer.addEventListener('mouseup', handleDragEnd);
+// menuContainer.addEventListener('mouseleave', handleDragEnd);
+// menuContainer.addEventListener('animationend', () => {
+//   menuContainer.classList.remove('animate');
+// });
