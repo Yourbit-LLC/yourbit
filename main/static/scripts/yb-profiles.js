@@ -105,10 +105,10 @@ function yb_BuildProfile(profile_data){
             
             //Create dropdown item click event for add friend
             add_friend_button.addEventListener("click", function(){
-                yb_addFriend(user_id);
+                yb_addFriend(handle);
             });
 
-            let follow_button = yb_createElement("button", "adaptive-dropdown-item-follow", "adaptive-dropdown-item");
+            let follow_button = yb_createElement("div", "adaptive-dropdown-item-follow", "adaptive-dropdown-item");
             follow_button.setAttribute("style", `background-color: ${custom.primary_color}; color: ${custom.title_color};`);
             follow_button.setAttribute("data-id", user_id);
             follow_button.innerHTML = "Follow";
@@ -272,7 +272,7 @@ $("#profile-button-connect").click(function() {
 });
 
 $("#add-friend-link").click(function(){
-    let this_profile = yb_getSessionValues("username");
+    let this_profile = yb_getSessionValues("profile-username");
     yb_addFriend(this_profile);
 });
 
