@@ -24,7 +24,7 @@ function yb_checkMessages(){
     console.log("checking messages...");
     $.ajax({
         type: 'GET',
-        url: `/messages/check/${this_id}/}`,
+        url: `/messages/check/${this_id}/`,
         success: function(data){
 
             if (data.is_messages == true){
