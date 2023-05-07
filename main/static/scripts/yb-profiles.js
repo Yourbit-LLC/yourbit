@@ -91,6 +91,8 @@ function yb_BuildProfile(profile_data){
             //Create event listener for profile connect button shows a dropdown box for adding as friends or following
         profile_button_connect.addEventListener("click", function(){
             //Create dropdown
+
+            profile_button_connect.style.pointerEvents = "auto";
             let dropdown = yb_createElement("div", "add-friend-link", "adaptive-dropdown");
             dropdown.setAttribute("style", `position: absolute; overflow:hidden; top: 45px; left: 0px; border-radius: 20px; background-color:#222222; width: 90px; height: 0px;  box-shadow: 2px 2px 4px black;`);
             profile_button_connect.appendChild(dropdown);
@@ -99,7 +101,7 @@ function yb_BuildProfile(profile_data){
             
             //Create dropdown items
             let add_friend_button = yb_createElement("div", "adaptive-dropdown-item-add-friend", "adaptive-dropdown-item");
-            add_friend_button.setAttribute("style", `color: ${custom.text_color};`);
+            add_friend_button.setAttribute("style", `color: ${custom.text_color}; height: 30px;`);
             add_friend_button.innerHTML = "Add friend";
             dropdown.appendChild(add_friend_button);
             
@@ -109,7 +111,7 @@ function yb_BuildProfile(profile_data){
             });
 
             let follow_button = yb_createElement("div", "adaptive-dropdown-item-follow", "adaptive-dropdown-item");
-            follow_button.setAttribute("style", `background-color: ${custom.primary_color}; color: ${custom.title_color};`);
+            follow_button.setAttribute("style", `color: ${custom.title_color}; height:30px`);
             follow_button.setAttribute("data-id", user_id);
             follow_button.innerHTML = "Follow";
             dropdown.appendChild(follow_button);
