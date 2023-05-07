@@ -21,6 +21,7 @@ $(document).ready(function(){
 
 function yb_checkMessages(){
     let this_id = yb_getSessionValues("conversation");
+    console.log("checking messages...");
     $.ajax({
         type: 'GET',
         url: `/messages/check/${this_id}/}`,

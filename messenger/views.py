@@ -24,6 +24,7 @@ class Messages(LoginRequiredMixin, View):
 
 class SendMessage(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
+        from notifications.models import Notification
         conversation = request.POST.get("conversation")
         receiver = request.POST.get("receiver")
         receiver = User.objects.get(username=receiver)
@@ -128,8 +129,6 @@ def check_new_messages(request, id):
     user = request.user
     this_conversation = Conversation.objects.get(id=id)
     new_messages = this_conversation.unseen_messages.all()
-
-    
 
     this_conversation.unseen_messages.clear()
 
