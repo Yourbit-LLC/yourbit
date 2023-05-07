@@ -130,11 +130,15 @@ def check_new_messages(request, id):
     this_conversation = Conversation.objects.get(id=id)
     new_messages = this_conversation.unseen_messages.all()
 
-    this_conversation.unseen_messages.clear()
+    
 
     if len(new_messages) > 0:
         messages_serialized = MessageSerializer(new_messages, many=True)
         response = {"is_messages":True, "messages":messages_serialized.data}
     else:
         response = {"is_messages":False}
+    
+    this_conversation.unseen_messages.clear()
+    
     return JsonResponse(response)
+
