@@ -93,7 +93,7 @@ function yb_BuildProfile(profile_data){
         profile_button_connect.addEventListener("click", function() {
             yb_handleConnectButton(profile_button_connect, profile_data);
         });
-        
+
     } else {
         let profile_button_edit = yb_createElement("div", "button-profile-interaction", "button-profile-interaction");
         profile_button_edit.setAttribute("style", `background-color: ${custom.primary_color}; color: ${custom.title_color};`);
@@ -330,7 +330,7 @@ function requestFriend(action, user_id) {
             headers: {
                 'X-CSRFToken': csrfToken
             },
-            url: '/profile/add_friend/',
+            url: '/profile/connect/friend/',
             data: friend_request,
 
             success: function(data) {
