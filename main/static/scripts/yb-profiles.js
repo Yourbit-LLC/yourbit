@@ -315,7 +315,7 @@ function yb_handleConnectButton(profile_button_connect, profile) {
 
     // });
 
-function requestFriend(action, user_id) {
+function yb_requestFriend(action, user_id) {
     let cookie = document.cookie;
     let csrfToken = getCSRF();
     let friend_request = new FormData()
