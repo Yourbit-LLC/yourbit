@@ -106,7 +106,7 @@ def acceptFriend(request):
     from notifications.models import Notification
     from YourbitAccounts.models import Account as User
     that_id = request.data.get("this_id")
-    print(that_id)
+    print("user id: " + that_id)
     to_user = User.objects.get(id=that_id)
 
     this_profile = Profile.objects.get(user = request.user)

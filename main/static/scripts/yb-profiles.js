@@ -321,6 +321,7 @@ function yb_requestFriend(action, user_id) {
     let friend_request = new FormData()
     friend_request.append('user_id', user_id)
     friend_request.append('action', action)
+    console.log(user_id)
     $.ajax (
         {
             type: 'POST',
@@ -331,11 +332,11 @@ function yb_requestFriend(action, user_id) {
                 'X-CSRFToken': csrfToken
             },
             url: '/profile/api/connect/friend/',
-            data: JSON.stringify(friend_request),
+            data: friend_request,
 
-            success: function(data) {
-                let response = data;
-                let to_user = data.name;
+            success: function(response) {
+                let response = response;
+                let to_user = response.name;
                 let body = `Friend request to ${response.to_user} sent`;
                 showNotification(expandNotification, body);
             }
