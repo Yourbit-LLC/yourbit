@@ -82,7 +82,7 @@ function yb_BuildProfile(profile_data){
 
     
     if (active_id != user_id){
-        let profile_button_connect = yb_createElement("button", "button-profile-interaction", "button-profile-interaction");
+        let profile_button_connect = yb_createElement("div", "button-profile-interaction", "button-profile-interaction");
         profile_button_connect.setAttribute("style", `background-color: ${custom.primary_color}; color: ${custom.title_color};`);
         profile_button_connect.setAttribute("id", "profile-button-connect");
         profile_button_connect.setAttribute("data-id", user_id);
@@ -92,7 +92,7 @@ function yb_BuildProfile(profile_data){
         //Create event listener for profile connect button shows a dropdown box for adding as friends or following
         profile_button_connect.addEventListener("click", yb_handleConnectButton(profile_button_connect, profile_data));
     } else {
-        let profile_button_edit = yb_createElement("button", "button-profile-interaction", "button-profile-interaction");
+        let profile_button_edit = yb_createElement("div", "button-profile-interaction", "button-profile-interaction");
         profile_button_edit.setAttribute("style", `background-color: ${custom.primary_color}; color: ${custom.title_color};`);
         profile_button_edit.setAttribute("id", "profile-button-edit");
         profile_button_edit.setAttribute("data-id", user_id);
