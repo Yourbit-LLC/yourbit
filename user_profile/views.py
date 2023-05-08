@@ -90,19 +90,6 @@ class AddFriend(View):
             return JsonResponse({'name' : from_user})
 
 @api_view(["POST"])
-def requestFriend(request):
-    from notifications.models import Notification
-    from YourbitAccounts.models import Account as User
-    that_username = request.data.get("user_id")
-    print("user id: " + that_username)
-    
-    to_user = User.objects.get(username=that_username)
-    new_notification = Notification(type = 4, to_user=to_user, from_user = request.user)
-    new_notification.save()
-
-    return Response(to_user)
-
-@api_view(["POST"])
 def acceptFriend(request):
     from notifications.models import Notification
     from YourbitAccounts.models import Account as User
@@ -133,27 +120,7 @@ def acceptFriend(request):
         return JsonResponse("No friend request found.")
 
 
-    
-@api_view(["POST"])
-def follow(request):
-    from notifications.models import Notification
-    from YourbitAccounts.models import Account as User
-    that_id = request.data.get("this_id")
-    that_user = User.objects.get(username = that_id)
 
-    this_profile = Profile.objects.get(user = request.user)
-    that_profile = Profile.objects.get(user = that_user)
-
-    this_profile.follows.add(that_profile)
-    this_profile.save()
-
-    that_profile.followers.add(this_profile)
-    that_profile.save()
-    
-    new_notification = Notification(type = 3, to_user = that_user, from_user = request.user)
-    new_notification.save()
-
-    return Response(that_user)
 class MyStuff(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         context = {

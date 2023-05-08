@@ -724,7 +724,7 @@ def requestFriend(request):
     from YourbitAccounts.models import Account as User
     username = request.data.get("user_id")
     to_user = User.objects.get(username=username)
-    new_notification = Notification(type = 4, to_user=to_user.profile, from_user = request.user.profile)
+    new_notification = Notification(type = 4, to_user=to_user, from_user = request.user)
     new_notification.save()
     return Response({"Response":"Added user as friend"})
     
