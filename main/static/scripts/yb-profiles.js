@@ -90,7 +90,7 @@ function yb_BuildProfile(profile_data){
         profile_interaction_container.appendChild(profile_button_connect);
         
         //Create event listener for profile connect button shows a dropdown box for adding as friends or following
-        profile_button_connect.addEventListener("click", yb_handleConnectButton(profile_button_connect, profile_data));
+        //profile_button_connect.addEventListener("click", yb_handleConnectButton(profile_button_connect, profile_data));
     } else {
         let profile_button_edit = yb_createElement("div", "button-profile-interaction", "button-profile-interaction");
         profile_button_edit.setAttribute("style", `background-color: ${custom.primary_color}; color: ${custom.title_color};`);
