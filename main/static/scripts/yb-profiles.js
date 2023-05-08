@@ -88,7 +88,8 @@ function yb_BuildProfile(profile_data){
         profile_button_connect.setAttribute("data-id", user_id);
         profile_button_connect.innerHTML = "Connect";
         profile_interaction_container.appendChild(profile_button_connect);
-            //Create event listener for profile connect button shows a dropdown box for adding as friends or following
+        
+        //Create event listener for profile connect button shows a dropdown box for adding as friends or following
         profile_button_connect.addEventListener("click", yb_handleConnectButton(profile_button_connect, profile_data));
     } else {
         let profile_button_edit = yb_createElement("button", "button-profile-interaction", "button-profile-interaction");
@@ -254,6 +255,7 @@ $("#follow-link").click(function() {
 });
 
 function yb_handleConnectButton(profile_button_connect, profile) {
+        console.log("clicked")
         let custom = profile.custom;
         let user = profile.user;
         let handle = user.handle;
