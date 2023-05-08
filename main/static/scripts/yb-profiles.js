@@ -317,12 +317,12 @@ function yb_handleConnectButton(profile_button_connect) {
 
     // });
 
-function yb_requestFriend(action, user_id) {
+function yb_requestFriend(user_id) {
     let cookie = document.cookie;
     let csrfToken = getCSRF();
     let friend_request = new FormData()
     friend_request.append('user_id', user_id)
-    friend_request.append('action', action)
+
     console.log(user_id)
     $.ajax (
         {
