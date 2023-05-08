@@ -334,8 +334,8 @@ function yb_requestFriend(action, user_id) {
             url: '/profile/api/connect/friend/',
             data: friend_request,
 
-            success: function(response) {
-                let response = response;
+            success: function(data) {
+                let response = data;
                 let to_user = response.name;
                 let body = `Friend request to ${response.to_user} sent`;
                 showNotification(expandNotification, body);
