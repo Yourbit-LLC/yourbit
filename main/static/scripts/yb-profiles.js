@@ -243,6 +243,7 @@ function yb_handleConnectButton(profile_button_connect, profile) {
         let custom = profile.custom;
         let user = profile.user;
         let handle = user.handle;
+        console.log(handle);
         let user_id = user.id;
     
         //Create dropdown
