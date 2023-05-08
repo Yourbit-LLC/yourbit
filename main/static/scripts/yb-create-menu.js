@@ -18,6 +18,10 @@ var total_width_bit = 0;
 
 $(document).ready(function() {
     let close_button = document.getElementById("cb-panel-close");
+    let go_back = document.getElementById("back-create");
+    go_back.addEventListener("click", function() {
+        yb_resetCreate();
+    });
     close_button.addEventListener("click", function() {
         yb_resetCreate();
         dropCreateBit(hideCreateBit);
@@ -443,7 +447,7 @@ function yb_showMessageForm(){
     to_field_container.appendChild(to_field);
     let body_field = yb_createInput("textarea", "yb-text-area", "mobile-body", "Message")
     let result_container = yb_createElement("div", "cm-contact-result-container", "yb-list-widget");
-    result_container.setAttribute("style", "background-color:rgba(0,0,0,0.5); height: auto; overflow-y: scroll;max-height: 200px; width: 95%; margin: 0 auto; border-radius: 10px; margin-top: 10px;");
+    result_container.setAttribute("style", "background-color:rgba(0,0,0,0.5); color:white; height: auto; overflow-y: scroll;max-height: 200px; width: 95%; margin: 0 auto; border-radius: 10px; margin-top: 10px;");
     
     to_field.addEventListener("keyup", function(e){
         //Set query to this value
