@@ -86,12 +86,14 @@ function yb_BuildProfile(profile_data){
         profile_button_connect.setAttribute("style", `background-color: ${custom.primary_color}; color: ${custom.title_color};`);
         profile_button_connect.setAttribute("id", "profile-button-connect");
         profile_button_connect.setAttribute("data-id", user_id);
+        profile_button_connect.setAttribute("data-username", handle);
+        profile_button_connect.setAttribute("data-name", profile_name);
         profile_button_connect.innerHTML = "Connect";
         profile_interaction_container.appendChild(profile_button_connect);
         
         //Create event listener for profile connect button shows a dropdown box for adding as friends or following
         profile_button_connect.addEventListener("click", function() {
-            yb_handleConnectButton(profile_button_connect, profile_data);
+            yb_handleConnectButton(profile_button_connect);
         });
 
     } else {
@@ -238,13 +240,12 @@ $('#back-to-home').click(function() {
     window.location.href = `${base_url}/bitstream/home/`
 });
 
-function yb_handleConnectButton(profile_button_connect, profile) {
+function yb_handleConnectButton(profile_button_connect) {
         console.log("clicked")
-        let custom = profile.custom;
-        let user = profile.user;
-        let handle = user.handle;
+        let user = profile_button_connect.getAttribute("data-name");
+        let handle = profile_button_connect.getAttribute("data-username");
         console.log(handle);
-        let user_id = user.id;
+        let user_id = profile_button_connect.getAttribute("data-id");
     
         //Create dropdown
 
@@ -257,7 +258,7 @@ function yb_handleConnectButton(profile_button_connect, profile) {
         
         //Create dropdown items
         let add_friend_button = yb_createElement("div", "adaptive-dropdown-item-add-friend", "adaptive-dropdown-item");
-        add_friend_button.setAttribute("style", `color: ${custom.text_color}; height: 50px;`);
+        add_friend_button.setAttribute("style", `color: white; height: 50px;`);
         add_friend_button.innerHTML = "Add friend";
         dropdown.appendChild(add_friend_button);
         
@@ -267,7 +268,7 @@ function yb_handleConnectButton(profile_button_connect, profile) {
         });
 
         let follow_button = yb_createElement("div", "adaptive-dropdown-item-follow", "adaptive-dropdown-item");
-        follow_button.setAttribute("style", `color: ${custom.title_color}; height:50px`);
+        follow_button.setAttribute("style", `color: white; height:50px`);
         follow_button.setAttribute("data-id", user_id);
         follow_button.innerHTML = "Follow";
         dropdown.appendChild(follow_button);
