@@ -94,6 +94,7 @@ def requestFriend(request):
     from notifications.models import Notification
     from YourbitAccounts.models import Account as User
     that_username = request.data.get("this_id")
+    print(that_username)
     to_user = User.objects.get(username=that_username)
     new_notification = Notification(type = 4, to_user=to_user, from_user = request.user)
     new_notification.save()
