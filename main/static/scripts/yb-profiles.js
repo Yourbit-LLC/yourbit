@@ -235,25 +235,6 @@ $('#back-to-home').click(function() {
     window.location.href = `${base_url}/bitstream/home/`
 });
 
-$("#profile-button-connect").click(function() {
-    let this_dropdown = document.getElementById("connect-dropdown");
-    if (this_dropdown.style.height === "90px"){
-        $("#connect-dropdown").animate({"height": "0px"});
-    } else {
-        $("#connect-dropdown").animate({"height": "90px"});    
-    }
-});
-
-$("#add-friend-link").click(function(){
-    let this_profile = yb_getSessionValues("profile-username");
-    yb_addFriend(this_profile);
-});
-
-$("#follow-link").click(function() {
-    let this_profile = $(this).attr("data-id");
-    yb_follow(this_profile);
-});
-
 function yb_handleConnectButton(profile_button_connect, profile) {
         console.log("clicked")
         let custom = profile.custom;
