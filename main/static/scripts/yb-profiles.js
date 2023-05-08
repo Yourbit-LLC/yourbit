@@ -89,37 +89,7 @@ function yb_BuildProfile(profile_data){
         profile_button_connect.innerHTML = "Connect";
         profile_interaction_container.appendChild(profile_button_connect);
             //Create event listener for profile connect button shows a dropdown box for adding as friends or following
-        profile_button_connect.addEventListener("click", function(){
-            //Create dropdown
-
-            
-            let dropdown = yb_createElement("div", "add-friend-link", "adaptive-dropdown");
-            dropdown.setAttribute("style", `position: absolute; overflow:hidden; top: 45px; left: 0px; border-radius: 20px; background-color:#222222; width: 90px; height: 0px;  box-shadow: 2px 2px 4px black;`);
-            profile_button_connect.appendChild(dropdown);
-            //Animate dropdown
-            $(dropdown).animate({"height": "60px"}, 200);
-            
-            //Create dropdown items
-            let add_friend_button = yb_createElement("div", "adaptive-dropdown-item-add-friend", "adaptive-dropdown-item");
-            add_friend_button.setAttribute("style", `color: ${custom.text_color}; height: 50px;`);
-            add_friend_button.innerHTML = "Add friend";
-            dropdown.appendChild(add_friend_button);
-            
-            //Create dropdown item click event for add friend
-            add_friend_button.addEventListener("click", function(){
-                yb_addFriend(handle);
-            });
-
-            let follow_button = yb_createElement("div", "adaptive-dropdown-item-follow", "adaptive-dropdown-item");
-            follow_button.setAttribute("style", `color: ${custom.title_color}; height:50px`);
-            follow_button.setAttribute("data-id", user_id);
-            follow_button.innerHTML = "Follow";
-            dropdown.appendChild(follow_button);
-        
-            follow_button.addEventListener("click", function(){
-                yb_addFollow(user_id);
-            });
-        });
+        profile_button_connect.addEventListener("click", yb_handleConnectButton(profile_button_connect, profile_data));
     } else {
         let profile_button_edit = yb_createElement("button", "button-profile-interaction", "button-profile-interaction");
         profile_button_edit.setAttribute("style", `background-color: ${custom.primary_color}; color: ${custom.title_color};`);
@@ -282,6 +252,46 @@ $("#follow-link").click(function() {
     let this_profile = $(this).attr("data-id");
     yb_follow(this_profile);
 });
+
+function yb_handleConnectButton(profile_button_connect, profile) {
+        let custom = profile.custom;
+        let user = profile.user;
+        let handle = user.handle;
+        let user_id = user.id;
+    
+        //Create dropdown
+
+        profile_button_connect.removeEventListener();
+        let dropdown = yb_createElement("div", "add-friend-link", "adaptive-dropdown");
+        dropdown.setAttribute("style", `position: absolute; overflow:hidden; top: 45px; left: 0px; border-radius: 20px; background-color:#222222; width: 90px; height: 0px;  box-shadow: 2px 2px 4px black;`);
+        profile_button_connect.appendChild(dropdown);
+        //Animate dropdown
+        $(dropdown).animate({"height": "60px"}, 200);
+        
+        //Create dropdown items
+        let add_friend_button = yb_createElement("div", "adaptive-dropdown-item-add-friend", "adaptive-dropdown-item");
+        add_friend_button.setAttribute("style", `color: ${custom.text_color}; height: 50px;`);
+        add_friend_button.innerHTML = "Add friend";
+        dropdown.appendChild(add_friend_button);
+        
+        //Create dropdown item click event for add friend
+        add_friend_button.addEventListener("click", function(){
+            yb_addFriend(handle);
+        });
+
+        let follow_button = yb_createElement("div", "adaptive-dropdown-item-follow", "adaptive-dropdown-item");
+        follow_button.setAttribute("style", `color: ${custom.title_color}; height:50px`);
+        follow_button.setAttribute("data-id", user_id);
+        follow_button.innerHTML = "Follow";
+        dropdown.appendChild(follow_button);
+    
+        follow_button.addEventListener("click", function(){
+            yb_addFollow(user_id);
+        });
+
+
+}
+
 
 
 // $('.button-profile-interaction').click(function() {
