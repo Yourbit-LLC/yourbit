@@ -331,7 +331,7 @@ function yb_requestFriend(action, user_id) {
                 'X-CSRFToken': csrfToken
             },
             url: '/profile/api/connect/friend/',
-            data: friend_request,
+            data: JSON.stringify(friend_request),
 
             success: function(data) {
                 let response = data;
