@@ -262,7 +262,7 @@ function yb_handleConnectButton(profile_button_connect, profile) {
         
         //Create dropdown item click event for add friend
         add_friend_button.addEventListener("click", function(){
-            yb_addFriend(handle);
+            yb_requestFriend(handle);
         });
 
         let follow_button = yb_createElement("div", "adaptive-dropdown-item-follow", "adaptive-dropdown-item");
