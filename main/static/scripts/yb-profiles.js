@@ -261,7 +261,7 @@ function yb_handleConnectButton(profile_button_connect, profile) {
     
         //Create dropdown
 
-        profile_button_connect.removeEventListener();
+        profile_button_connect.removeEventListener("click", yb_handleConnectButton);
         let dropdown = yb_createElement("div", "add-friend-link", "adaptive-dropdown");
         dropdown.setAttribute("style", `position: absolute; overflow:hidden; top: 45px; left: 0px; border-radius: 20px; background-color:#222222; width: 90px; height: 0px;  box-shadow: 2px 2px 4px black;`);
         profile_button_connect.appendChild(dropdown);
