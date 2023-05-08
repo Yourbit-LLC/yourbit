@@ -330,7 +330,7 @@ function yb_requestFriend(action, user_id) {
             headers: {
                 'X-CSRFToken': csrfToken
             },
-            url: '/profile/connect/friend/',
+            url: '/profile/api/connect/friend/',
             data: friend_request,
 
             success: function(data) {
