@@ -90,7 +90,7 @@ function yb_buildSubmissionBar(form, type=null) {
 
     let name;
     let label;
-
+    console.log(form);
     if (form === "bit-form") {
         name = "publish";
         let bit_type_select = yb_buildTypeSelector(type);
@@ -128,9 +128,6 @@ function yb_chatBitForm(form, type_field, option_field, script_source) {
         
         //Show Form
         $('#create-container').fadeIn();
-
-        //On creation of bits show type options (text, photo, video)
-        $('#create-bit-type-mobile').fadeIn();
 
         let create_inputs = yb_createElement("div", "mobile-create-inputs", "create-inputs");
         create_inputs.setAttribute("style", "position: relative; margin-left: auto; margin-right: auto;")
