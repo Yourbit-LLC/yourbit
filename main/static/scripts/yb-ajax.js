@@ -74,7 +74,7 @@ function yb_getFeed(new_feed, callback, callback2, session_start){
             content_container.appendChild(bit_container);
             
         } 
-        if (location == "home") {
+        else if (location == "home") {
             
             let title = new_feed.type.charAt(0).toUpperCase() + new_feed.type.slice(1);
             let title_display = document.getElementById("page-title-display")
@@ -86,7 +86,13 @@ function yb_getFeed(new_feed, callback, callback2, session_start){
 
             content_container.appendChild(bit_container);
  
-        } 
+        } else {
+            var bit_container =  yb_createElement("div", "bit-container", "yb-sub-container")
+            bit_container.setAttribute("style", "top:100vh;");
+
+            content_container.appendChild(bit_container);
+
+        }
         
   
             
