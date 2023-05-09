@@ -123,6 +123,8 @@ function yb_chatBitForm(form, type_field, option_field, script_source) {
         let this_source = document.getElementById("create-bit-source").value;
         sub_function_script.src = this_source;
 
+        form.innerHTML = '';
+
         //hide options
         $('#create-options').fadeOut();
         
@@ -130,6 +132,7 @@ function yb_chatBitForm(form, type_field, option_field, script_source) {
         $('#create-container').fadeIn();
 
         let form_header = yb_createElement("div", "create-bit-header", "header-create-form");
+        
         let go_back = yb_createElement("div", "back-create", "back-create");
         go_back.innerHTML = `
             <svg id="back-create" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M10 22 0 12 10 2l1.775 1.775L3.55 12l8.225 8.225Z"/></svg>
@@ -170,7 +173,7 @@ function yb_chatBitForm(form, type_field, option_field, script_source) {
         let body_field = yb_createInput("textarea", "yb-single-line-input", "mobile-body", "Body"); 
 
         //Append each form field to the form
-        form.innerHTML = ''
+        
         form.appendChild(to_field);
         form.appendChild(title_field);
         form.appendChild(body_field);
