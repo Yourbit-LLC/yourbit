@@ -39,6 +39,7 @@ function yb_buildTypeSelector(type) {
     let bit_type_select = yb_createElement("div", "create-bit-type-mobile", "create-bit-type");
     
     let bit_type_text = yb_createElement("div", "text-type-button", "create-bit-type-text");
+    bit_type_text.setAttribute("name", "chat");
     bit_type_text.innerHTML = `<svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M.95 17.8V1.85q0-.5.325-.825Q1.6.7 2.1.7h14.25q.5 0 .825.325.325.325.325.825V12q0 .5-.325.825-.325.325-.825.325H5.6Zm5.8.9q-.5 0-.825-.325-.325-.325-.325-.825v-2.4h13.9V5.4h2.4q.5 0 .825.325.325.325.325.825v16.8L18.4 18.7Zm8.1-15.35H3.6v8.05l.9-.9h10.35Zm-11.25 0v8.05Z"/></svg>`
     
     //If type is equal to chat set the button to active
@@ -46,9 +47,16 @@ function yb_buildTypeSelector(type) {
         bit_type_text.classList.add("active");
     }
 
+    
+    bit_type_text.addEventListener("click", function() {
+        changeBitForm("chat");
+    });
+    
+
     bit_type_select.appendChild(bit_type_text);
 
     let bit_type_video = yb_createElement("div", "video-type-button", "create-bit-type-video");
+    bit_type_video.setAttribute("name", "video");
     bit_type_video.innerHTML = `<svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m9.15 17.15 8-5.15-8-5.15ZM12 22.8q-2.25 0-4.213-.85-1.962-.85-3.424-2.312Q2.9 18.175 2.05 16.212 1.2 14.25 1.2 12t.85-4.225Q2.9 5.8 4.363 4.338q1.462-1.463 3.424-2.301Q9.75 1.2 12 1.2t4.225.837q1.975.838 3.438 2.301 1.462 1.462 2.299 3.437Q22.8 9.75 22.8 12q0 2.25-.838 4.212-.837 1.963-2.299 3.426Q18.2 21.1 16.225 21.95q-1.975.85-4.225.85Zm0-2.65q3.425 0 5.788-2.363Q20.15 15.425 20.15 12t-2.362-5.788Q15.425 3.85 12 3.85q-3.425 0-5.787 2.362Q3.85 8.575 3.85 12q0 3.425 2.363 5.787Q8.575 20.15 12 20.15ZM12 12Z"/></svg>`
     
     //If the type is equal to video set the button to active
@@ -58,15 +66,24 @@ function yb_buildTypeSelector(type) {
 
     bit_type_select.appendChild(bit_type_video);
 
+    type_button_video.addEventListener("click", function() {
+        changeBitForm("video");
+    });
+
     let bit_type_photo = yb_createElement("div", "photo-type-button", "create-bit-type-photo");
+    bit_type_photo.setAttribute("name", "photo");
     bit_type_photo.innerHTML = `<svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M12 17.75q1.925 0 3.263-1.337Q16.6 15.075 16.6 13.15q0-1.925-1.337-3.263Q13.925 8.55 12 8.55q-1.925 0-3.262 1.337Q7.4 11.225 7.4 13.15q0 1.925 1.338 3.263Q10.075 17.75 12 17.75Zm0-2.65q-.8 0-1.375-.575t-.575-1.375q0-.8.575-1.375T12 11.2q.8 0 1.375.575t.575 1.375q0 .8-.575 1.375T12 15.1Zm-8.15 6.725q-1.1 0-1.875-.775-.775-.775-.775-1.875V7.125q0-1.1.775-1.875.775-.775 1.875-.775h3.025l2.05-2.25h6.15l2.05 2.25h3.025q1.1 0 1.875.775.775.775.775 1.875v12.05q0 1.1-.775 1.875-.775.775-1.875.775Zm16.3-2.65V7.125h-4.2l-2.05-2.25h-3.8l-2.05 2.25h-4.2v12.05ZM12 13.15Z"/></svg>`
-    
+
     //If the type is equal to photo set the button to active
     if (type === "photo") {
         bit_type_photo.classList.add("active");
     }
 
     bit_type_select.appendChild(bit_type_photo);
+
+    type_button_photo.addEventListener("click", function(){
+        changeBitForm("photo");
+    });
 
     return bit_type_select;
 }
@@ -164,45 +181,7 @@ function yb_chatBitForm(form, type_field, option_field, script_source) {
         form.appendChild(title_field);
         form.appendChild(body_field);
 
-        //Attach script
-
-        //Append type buttons
-        let type_grid = document.getElementById("create-bit-type-mobile");
-
-
-        let type_button_text = yb_createElement("a", "text-type-button", "type-button-active");
-        type_button_text.innerHTML = `
-            <svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M.95 17.8V1.85q0-.5.325-.825Q1.6.7 2.1.7h14.25q.5 0 .825.325.325.325.325.825V12q0 .5-.325.825-.325.325-.825.325H5.6Zm5.8.9q-.5 0-.825-.325-.325-.325-.325-.825v-2.4h13.9V5.4h2.4q.5 0 .825.325.325.325.325.825v16.8L18.4 18.7Zm8.1-15.35H3.6v8.05l.9-.9h10.35Zm-11.25 0v8.05Z"/></svg>
-        `
-        type_button_text.setAttribute("name", "chat")
-
-        type_button_text.addEventListener("click", function() {
-            changeBitForm("chat");
-        });
-        
-
-        let type_button_photo = yb_createElement("a", "photo-type-button", "type-button");
-        type_button_photo.innerHTML = `
-            <svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M12 17.75q1.925 0 3.263-1.337Q16.6 15.075 16.6 13.15q0-1.925-1.337-3.263Q13.925 8.55 12 8.55q-1.925 0-3.262 1.337Q7.4 11.225 7.4 13.15q0 1.925 1.338 3.263Q10.075 17.75 12 17.75Zm0-2.65q-.8 0-1.375-.575t-.575-1.375q0-.8.575-1.375T12 11.2q.8 0 1.375.575t.575 1.375q0 .8-.575 1.375T12 15.1Zm-8.15 6.725q-1.1 0-1.875-.775-.775-.775-.775-1.875V7.125q0-1.1.775-1.875.775-.775 1.875-.775h3.025l2.05-2.25h6.15l2.05 2.25h3.025q1.1 0 1.875.775.775.775.775 1.875v12.05q0 1.1-.775 1.875-.775.775-1.875.775Zm16.3-2.65V7.125h-4.2l-2.05-2.25h-3.8l-2.05 2.25h-4.2v12.05ZM12 13.15Z"/></svg>
-        `
-        type_button_photo.setAttribute("name", "photo")
-        type_button_photo.addEventListener("click", function(){
-            changeBitForm("photo");
-        });
-        
-        let type_button_video = yb_createElement("a", "video-type-button", "type-button");
-        type_button_video.innerHTML = `
-            <svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m9.15 17.15 8-5.15-8-5.15ZM12 22.8q-2.25 0-4.213-.85-1.962-.85-3.424-2.312Q2.9 18.175 2.05 16.212 1.2 14.25 1.2 12t.85-4.225Q2.9 5.8 4.363 4.338q1.462-1.463 3.424-2.301Q9.75 1.2 12 1.2t4.225.837q1.975.838 3.438 2.301 1.462 1.462 2.299 3.437Q22.8 9.75 22.8 12q0 2.25-.838 4.212-.837 1.963-2.299 3.426Q18.2 21.1 16.225 21.95q-1.975.85-4.225.85Zm0-2.65q3.425 0 5.788-2.363Q20.15 15.425 20.15 12t-2.362-5.788Q15.425 3.85 12 3.85q-3.425 0-5.787 2.362Q3.85 8.575 3.85 12q0 3.425 2.363 5.787Q8.575 20.15 12 20.15ZM12 12Z"/></svg>
-        `
-        type_button_video.setAttribute("name", "video")
-        type_button_video.addEventListener("click", function() {
-            changeBitForm("video");
-        });
-    
-        type_grid.appendChild(type_button_text);
-        type_grid.appendChild(type_button_photo);
-        type_grid.appendChild(type_button_video);
-
+        //Attach script to form
         let enhance_button = yb_createButton("button", "yb-enhance-button", "enhance-button", '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" width="24"><path d="m800 376-38-82-82-38 82-38 38-82 38 82 82 38-82 38-38 82Zm-460 0-38-82-82-38 82-38 38-82 38 82 82 38-82 38-38 82Zm460 460-38-82-82-38 82-38 38-82 38 82 82 38-82 38-38 82ZM204 964 92 852q-12-12-12-29t12-29l446-446q12-12 29-12t29 12l112 112q12 12 12 29t-12 29L262 964q-12 12-29 12t-29-12Zm30-84 286-288-56-56-288 286 58 58Z"/></svg>Enhance');
         enhance_button.setAttribute("type", "button");
         enhance_button.setAttribute("style", "background-color: rgba(0, 0, 0, 0.5); border-width: 0px; border-radius: 10px; color: white; text-align: center;");
@@ -236,6 +215,9 @@ function yb_chatBitForm(form, type_field, option_field, script_source) {
             // yb_enhanceText(length, type, text);
             
         }
+
+        let submission_bar = yb_buildSubmissionBar("bit-form", "chat");
+        this_form.appendChild(submission_bar);
 }
 
 function yb_videoBitForm(form, type_field, option_field, script_source) {
@@ -304,41 +286,8 @@ function yb_videoBitForm(form, type_field, option_field, script_source) {
     form.appendChild(meta_tags);
     
     //Append type buttons
-    let type_grid = document.getElementById("create-bit-type-mobile");
-    
-    
-    let type_button_text = yb_createElement("a", "text-type-button", "type-button");
-    type_button_text.innerHTML = `
-        <svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M.95 17.8V1.85q0-.5.325-.825Q1.6.7 2.1.7h14.25q.5 0 .825.325.325.325.325.825V12q0 .5-.325.825-.325.325-.825.325H5.6Zm5.8.9q-.5 0-.825-.325-.325-.325-.325-.825v-2.4h13.9V5.4h2.4q.5 0 .825.325.325.325.325.825v16.8L18.4 18.7Zm8.1-15.35H3.6v8.05l.9-.9h10.35Zm-11.25 0v8.05Z"/></svg>
-    `
-    type_button_text.setAttribute("name", "chat")
-
-    type_button_text.addEventListener("click", function() {
-        changeBitForm("chat");
-    });
-    
-
-    let type_button_photo = yb_createElement("a", "photo-type-button", "type-button");
-    type_button_photo.innerHTML = `
-        <svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M12 17.75q1.925 0 3.263-1.337Q16.6 15.075 16.6 13.15q0-1.925-1.337-3.263Q13.925 8.55 12 8.55q-1.925 0-3.262 1.337Q7.4 11.225 7.4 13.15q0 1.925 1.338 3.263Q10.075 17.75 12 17.75Zm0-2.65q-.8 0-1.375-.575t-.575-1.375q0-.8.575-1.375T12 11.2q.8 0 1.375.575t.575 1.375q0 .8-.575 1.375T12 15.1Zm-8.15 6.725q-1.1 0-1.875-.775-.775-.775-.775-1.875V7.125q0-1.1.775-1.875.775-.775 1.875-.775h3.025l2.05-2.25h6.15l2.05 2.25h3.025q1.1 0 1.875.775.775.775.775 1.875v12.05q0 1.1-.775 1.875-.775.775-1.875.775Zm16.3-2.65V7.125h-4.2l-2.05-2.25h-3.8l-2.05 2.25h-4.2v12.05ZM12 13.15Z"/></svg>
-    `
-    type_button_photo.setAttribute("name", "photo")
-    type_button_photo.addEventListener("click", function(){
-        changeBitForm("photo");
-    });
-    
-    let type_button_video = yb_createElement("a", "video-type-button", "type-button-active");
-    type_button_video.innerHTML = `
-        <svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m9.15 17.15 8-5.15-8-5.15ZM12 22.8q-2.25 0-4.213-.85-1.962-.85-3.424-2.312Q2.9 18.175 2.05 16.212 1.2 14.25 1.2 12t.85-4.225Q2.9 5.8 4.363 4.338q1.462-1.463 3.424-2.301Q9.75 1.2 12 1.2t4.225.837q1.975.838 3.438 2.301 1.462 1.462 2.299 3.437Q22.8 9.75 22.8 12q0 2.25-.838 4.212-.837 1.963-2.299 3.426Q18.2 21.1 16.225 21.95q-1.975.85-4.225.85Zm0-2.65q3.425 0 5.788-2.363Q20.15 15.425 20.15 12t-2.362-5.788Q15.425 3.85 12 3.85q-3.425 0-5.787 2.362Q3.85 8.575 3.85 12q0 3.425 2.363 5.787Q8.575 20.15 12 20.15ZM12 12Z"/></svg>
-    `
-    type_button_video.setAttribute("name", "video")
-    type_button_video.addEventListener("click", function() {
-        changeBitForm("video");
-    });
-
-    type_grid.appendChild(type_button_text);
-    type_grid.appendChild(type_button_photo);
-    type_grid.appendChild(type_button_video);
+    let submission_bar = yb_buildSubmissionBar("bit-form", "video");
+    this_form.appendChild(submission_bar);
 
 }
 
@@ -402,43 +351,10 @@ function yb_photoBitForm(form, type_field, option_field, script_source) {
     form.appendChild(title_field);
     form.appendChild(body_field);
     form.appendChild(upload_field);
+    
     //Append type buttons
-    let type_grid = document.getElementById("create-bit-type-mobile");
-
-
-    let type_button_text = yb_createElement("a", "text-type-button", "type-button");
-    type_button_text.innerHTML = `
-        <svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M.95 17.8V1.85q0-.5.325-.825Q1.6.7 2.1.7h14.25q.5 0 .825.325.325.325.325.825V12q0 .5-.325.825-.325.325-.825.325H5.6Zm5.8.9q-.5 0-.825-.325-.325-.325-.325-.825v-2.4h13.9V5.4h2.4q.5 0 .825.325.325.325.325.825v16.8L18.4 18.7Zm8.1-15.35H3.6v8.05l.9-.9h10.35Zm-11.25 0v8.05Z"/></svg>
-    `
-    type_button_text.setAttribute("name", "chat")
-
-    type_button_text.addEventListener("click", function() {
-        changeBitForm("chat");
-    });
-    
-
-    let type_button_photo = yb_createElement("a", "photo-type-button", "type-button-active");
-    type_button_photo.innerHTML = `
-        <svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M12 17.75q1.925 0 3.263-1.337Q16.6 15.075 16.6 13.15q0-1.925-1.337-3.263Q13.925 8.55 12 8.55q-1.925 0-3.262 1.337Q7.4 11.225 7.4 13.15q0 1.925 1.338 3.263Q10.075 17.75 12 17.75Zm0-2.65q-.8 0-1.375-.575t-.575-1.375q0-.8.575-1.375T12 11.2q.8 0 1.375.575t.575 1.375q0 .8-.575 1.375T12 15.1Zm-8.15 6.725q-1.1 0-1.875-.775-.775-.775-.775-1.875V7.125q0-1.1.775-1.875.775-.775 1.875-.775h3.025l2.05-2.25h6.15l2.05 2.25h3.025q1.1 0 1.875.775.775.775.775 1.875v12.05q0 1.1-.775 1.875-.775.775-1.875.775Zm16.3-2.65V7.125h-4.2l-2.05-2.25h-3.8l-2.05 2.25h-4.2v12.05ZM12 13.15Z"/></svg>
-    `
-    type_button_photo.setAttribute("name", "photo")
-    type_button_photo.addEventListener("click", function(){
-        changeBitForm("photo");
-    });
-    
-    let type_button_video = yb_createElement("a", "video-type-button", "type-button");
-    type_button_video.innerHTML = `
-        <svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m9.15 17.15 8-5.15-8-5.15ZM12 22.8q-2.25 0-4.213-.85-1.962-.85-3.424-2.312Q2.9 18.175 2.05 16.212 1.2 14.25 1.2 12t.85-4.225Q2.9 5.8 4.363 4.338q1.462-1.463 3.424-2.301Q9.75 1.2 12 1.2t4.225.837q1.975.838 3.438 2.301 1.462 1.462 2.299 3.437Q22.8 9.75 22.8 12q0 2.25-.838 4.212-.837 1.963-2.299 3.426Q18.2 21.1 16.225 21.95q-1.975.85-4.225.85Zm0-2.65q3.425 0 5.788-2.363Q20.15 15.425 20.15 12t-2.362-5.788Q15.425 3.85 12 3.85q-3.425 0-5.787 2.362Q3.85 8.575 3.85 12q0 3.425 2.363 5.787Q8.575 20.15 12 20.15ZM12 12Z"/></svg>
-    `
-    type_button_video.setAttribute("name", "video")
-    type_button_video.addEventListener("click", function() {
-        changeBitForm("video");
-    });
-
-    type_grid.appendChild(type_button_text);
-    type_grid.appendChild(type_button_photo);
-    type_grid.appendChild(type_button_video);
-    
+    let submission_bar = yb_buildSubmissionBar("bit-form", "photo");
+    this_form.appendChild(submission_bar);
 
 }
 
