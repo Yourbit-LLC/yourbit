@@ -222,6 +222,8 @@ function yb_videoBitForm(form, type_field, option_field, script_source) {
     let this_source = document.getElementById("create-bit-source").value;
     sub_function_script.src = this_source;
 
+    form.innerHTML = ``
+
     //hide options
     $('#create-options').fadeOut();
     
@@ -274,7 +276,6 @@ function yb_videoBitForm(form, type_field, option_field, script_source) {
     let upload_field = yb_createInput("file", "yb-file-field", "mobile-file-field", "none");
 
     //Change form fields to correspond with creation
-    form.innerHTML = ``
     
     form.appendChild(to_field);
     form.appendChild(title_field);
@@ -292,7 +293,7 @@ function yb_photoBitForm(form, type_field, option_field, script_source) {
     let sub_function_script = document.getElementById("sub-function-script")
     let this_source = document.getElementById("create-bit-source").value;
     sub_function_script.src = this_source;
-
+    form.innerHTML = ``;
     //hide options
     $('#create-options').fadeOut();
     
@@ -342,7 +343,6 @@ function yb_photoBitForm(form, type_field, option_field, script_source) {
     let body_field = yb_createInput("textarea", "yb-text-area", "mobile-body", "Description");
     let upload_field = yb_createInput("file", "yb-file-field", "mobile-file-field", "none")
     //Change form fields to correspond with creation
-    form.innerHTML = ``;
 
     form.appendChild(to_field);
     form.appendChild(title_field);
