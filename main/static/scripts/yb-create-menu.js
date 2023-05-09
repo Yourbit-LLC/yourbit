@@ -129,12 +129,6 @@ function yb_chatBitForm(form, type_field, option_field, script_source) {
         //Show Form
         $('#create-container').fadeIn();
 
-        let create_inputs = yb_createElement("div", "mobile-create-inputs", "create-inputs");
-        create_inputs.setAttribute("style", "position: relative; margin-left: auto; margin-right: auto;")
-        //Set hidden form field to describe bit type on submission
-        type_field.value = 'chat';
-        option_field.value='bit';
-
         let form_header = yb_createElement("div", "create-bit-header", "header-create-form");
         let go_back = yb_createElement("div", "back-create", "back-create");
         go_back.innerHTML = `
@@ -147,6 +141,12 @@ function yb_chatBitForm(form, type_field, option_field, script_source) {
         form_header.appendChild(header_text);
 
         form.appendChild(form_header);
+
+        let create_inputs = yb_createElement("div", "mobile-create-inputs", "create-inputs");
+        create_inputs.setAttribute("style", "position: relative; margin-left: auto; margin-right: auto;")
+        //Set hidden form field to describe bit type on submission
+        type_field.value = 'chat';
+        option_field.value='bit';
 
         //Create scope options elements
         let scope_options = yb_createElement("div", "scope-options", "scope-options");
