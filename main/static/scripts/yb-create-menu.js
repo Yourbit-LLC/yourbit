@@ -30,8 +30,78 @@ $(document).ready(function() {
 
 
 function yb_resetCreate(){
-    $("#create-container").remove();
+    $("#create-container").fadeOut();
+    $("#sub-function-script").attr("src", "");
     $("#create-options").fadeIn();
+}
+
+function yb_buildTypeSelector(type) {
+    let bit_type_select = yb_createElement("div", "create-bit-type-mobile", "create-bit-type");
+    
+    let bit_type_text = yb_createElement("div", "text-type-button", "create-bit-type-text");
+    bit_type_text.innerHTML = `<svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M.95 17.8V1.85q0-.5.325-.825Q1.6.7 2.1.7h14.25q.5 0 .825.325.325.325.325.825V12q0 .5-.325.825-.325.325-.825.325H5.6Zm5.8.9q-.5 0-.825-.325-.325-.325-.325-.825v-2.4h13.9V5.4h2.4q.5 0 .825.325.325.325.325.825v16.8L18.4 18.7Zm8.1-15.35H3.6v8.05l.9-.9h10.35Zm-11.25 0v8.05Z"/></svg>`
+    
+    //If type is equal to chat set the button to active
+    if (type === "chat") {
+        bit_type_text.classList.add("active");
+    }
+
+    bit_type_select.appendChild(bit_type_text);
+
+    let bit_type_video = yb_createElement("div", "video-type-button", "create-bit-type-video");
+    bit_type_video.innerHTML = `<svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m9.15 17.15 8-5.15-8-5.15ZM12 22.8q-2.25 0-4.213-.85-1.962-.85-3.424-2.312Q2.9 18.175 2.05 16.212 1.2 14.25 1.2 12t.85-4.225Q2.9 5.8 4.363 4.338q1.462-1.463 3.424-2.301Q9.75 1.2 12 1.2t4.225.837q1.975.838 3.438 2.301 1.462 1.462 2.299 3.437Q22.8 9.75 22.8 12q0 2.25-.838 4.212-.837 1.963-2.299 3.426Q18.2 21.1 16.225 21.95q-1.975.85-4.225.85Zm0-2.65q3.425 0 5.788-2.363Q20.15 15.425 20.15 12t-2.362-5.788Q15.425 3.85 12 3.85q-3.425 0-5.787 2.362Q3.85 8.575 3.85 12q0 3.425 2.363 5.787Q8.575 20.15 12 20.15ZM12 12Z"/></svg>`
+    
+    //If the type is equal to video set the button to active
+    if (type === "video") {
+        bit_type_video.classList.add("active");
+    }
+
+    bit_type_select.appendChild(bit_type_video);
+
+    let bit_type_photo = yb_createElement("div", "photo-type-button", "create-bit-type-photo");
+    bit_type_photo.innerHTML = `<svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M12 17.75q1.925 0 3.263-1.337Q16.6 15.075 16.6 13.15q0-1.925-1.337-3.263Q13.925 8.55 12 8.55q-1.925 0-3.262 1.337Q7.4 11.225 7.4 13.15q0 1.925 1.338 3.263Q10.075 17.75 12 17.75Zm0-2.65q-.8 0-1.375-.575t-.575-1.375q0-.8.575-1.375T12 11.2q.8 0 1.375.575t.575 1.375q0 .8-.575 1.375T12 15.1Zm-8.15 6.725q-1.1 0-1.875-.775-.775-.775-.775-1.875V7.125q0-1.1.775-1.875.775-.775 1.875-.775h3.025l2.05-2.25h6.15l2.05 2.25h3.025q1.1 0 1.875.775.775.775.775 1.875v12.05q0 1.1-.775 1.875-.775.775-1.875.775Zm16.3-2.65V7.125h-4.2l-2.05-2.25h-3.8l-2.05 2.25h-4.2v12.05ZM12 13.15Z"/></svg>`
+    
+    //If the type is equal to photo set the button to active
+    if (type === "photo") {
+        bit_type_photo.classList.add("active");
+    }
+
+    bit_type_select.appendChild(bit_type_photo);
+
+    return bit_type_select;
+}
+
+function yb_buildSubmissionBar(form, type=null) {
+    let button_container = yb_createElement("div", "create-button-container", "slide-up-button-container");
+
+    let name;
+    let label;
+
+    if (form === "bit-form") {
+        name = "publish";
+        let bit_type_select = yb_buildTypeSelector(type);
+        button_container.appendChild(bit_type_select);
+    } else if (form === "message-form") {
+        name = "send_message";
+
+    } else if (form === "community-form") {
+        name = "create_community";
+
+    } else if (form === "cluster-form") {
+        name = "create_cluster";
+    }
+
+    let publish_button = yb_createButton(name, "publish-button", "mobile-publish-bit");
+    publish_button.setAttribute("type", "submit");
+    button_container.appendChild(publish_button);
+
+    publish_button.addEventListener("click", function(e) {
+        let current_element = e.target;
+        yb_handleCreateSubmit(current_element);
+    });
+
+    return button_container;
+
 }
 
 function yb_chatBitForm(form, type_field, option_field, script_source) {
@@ -45,20 +115,43 @@ function yb_chatBitForm(form, type_field, option_field, script_source) {
         //Show Form
         $('#create-container').fadeIn();
 
-        //On creation of bits show scope options
-        $('#scope-options').fadeIn();
-        
-        //Set header to corresponding creation
-        $('#create-bit-header-text').html(`Create Chat Bit`);
-
-        $("#mobile-publish-bit").attr("name", "publish")
-
         //On creation of bits show type options (text, photo, video)
         $('#create-bit-type-mobile').fadeIn();
 
+        let create_inputs = yb_createElement("div", "mobile-create-inputs", "create-inputs");
+        create_inputs.setAttribute("style", "position: relative; margin-left: auto; margin-right: auto;")
         //Set hidden form field to describe bit type on submission
         type_field.value = 'chat';
         option_field.value='bit';
+
+        let form_header = yb_createElement("div", "create-bit-header", "header-create-form");
+        let go_back = yb_createElement("div", "back-create", "back-create");
+        go_back.innerHTML = `
+            <svg id="back-create" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M10 22 0 12 10 2l1.775 1.775L3.55 12l8.225 8.225Z"/></svg>
+        `
+        form_header.appendChild(go_back);
+
+        let header_text = yb_createElement("div", "create-bit-header-text", "create-bit-header-text");
+        header_text.innerHTML = "Create Chat Bit";
+        form_header.appendChild(header_text);
+
+        form.appendChild(form_header);
+
+        //Create scope options elements
+        let scope_options = yb_createElement("div", "scope-options", "scope-options");
+        
+        //Define scope options buttons
+        let private_button = yb_createButton("toggle_private", "half-toggle-left", "bit-private active");
+        private_button.innerHTML = "Private";
+        let public_button = yb_createButton("toggle_public", "half-toggle-right", "bit-public");
+        public_button.innerHTML = "Public";
+        
+        //Append scope options to scope option element
+        scope_options.appendChild(private_button);
+        scope_options.appendChild(public_button);
+
+        //Append scope options to form
+        form.appendChild(scope_options);
 
         //Create form fields to correspond with creation
         let to_field = yb_createInput("text", "yb-single-line-input", "mobile-to", "Send To: (optional)");
@@ -152,22 +245,48 @@ function yb_videoBitForm(form, type_field, option_field, script_source) {
 
     //hide options
     $('#create-options').fadeOut();
-
+    
     //Show Form
     $('#create-container').fadeIn();
-
-    //On creation of bits show scope options
-    $('#scope-options').fadeIn();
 
     //On creation of bits show type options (text, photo, video)
     $('#create-bit-type-mobile').fadeIn();
 
-    //Set header to corresponding creation
-    $('#create-bit-header-text').html('Create Video Bit');
-
+    let create_inputs = yb_createElement("div", "mobile-create-inputs", "create-inputs");
+    create_inputs.setAttribute("style", "position: relative; margin-left: auto; margin-right: auto;")
     //Set hidden form field to describe bit type on submission
     type_field.value = 'video';
     option_field.value='bit';
+
+    let form_header = yb_createElement("div", "create-bit-header", "header-create-form");
+    let go_back = yb_createElement("div", "back-create", "back-create");
+    go_back.innerHTML = `
+        <svg id="back-create" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M10 22 0 12 10 2l1.775 1.775L3.55 12l8.225 8.225Z"/></svg>
+    `
+    form_header.appendChild(go_back);
+
+    let header_text = yb_createElement("div", "create-bit-header-text", "create-bit-header-text");
+    header_text.innerHTML = "Create Video Bit";
+    form_header.appendChild(header_text);
+
+    form.appendChild(form_header);
+
+    //Create scope options elements
+    let scope_options = yb_createElement("div", "scope-options", "scope-options");
+    
+    //Define scope options buttons
+    let private_button = yb_createButton("toggle_private", "half-toggle-left", "bit-private active");
+    private_button.innerHTML = "Private";
+    let public_button = yb_createButton("toggle_public", "half-toggle-right", "bit-public");
+    public_button.innerHTML = "Public";
+    
+    //Append scope options to scope option element
+    scope_options.appendChild(private_button);
+    scope_options.appendChild(public_button);
+
+    //Append scope options to form
+    form.appendChild(scope_options);
+
 
     let to_field = yb_createInput("input", "yb-single-line-input", "mobile-to",  "To: (optional)");
     let title_field = yb_createInput("input", "yb-single-line-input", "mobile-title",  "Title");
@@ -227,24 +346,50 @@ function yb_photoBitForm(form, type_field, option_field, script_source) {
     let sub_function_script = document.getElementById("sub-function-script")
     let this_source = document.getElementById("create-bit-source").value;
     sub_function_script.src = this_source;
+
     //hide options
     $('#create-options').fadeOut();
-
-    //Show form
+    
+    //Show Form
     $('#create-container').fadeIn();
-
-    //On creation of bits show scope options
-    $('#scope-options').fadeIn();
 
     //On creation of bits show type options (text, photo, video)
     $('#create-bit-type-mobile').fadeIn();
 
-    //Set header to corresponding creation
-    $('#create-bit-header-text').html('Create Photo Bit');
-
+    let create_inputs = yb_createElement("div", "mobile-create-inputs", "create-inputs");
+    create_inputs.setAttribute("style", "position: relative; margin-left: auto; margin-right: auto;")
     //Set hidden form field to describe bit type on submission
     type_field.value = 'photo';
     option_field.value='bit';
+
+    let form_header = yb_createElement("div", "create-bit-header", "header-create-form");
+    let go_back = yb_createElement("div", "back-create", "back-create");
+    go_back.innerHTML = `
+        <svg id="back-create" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M10 22 0 12 10 2l1.775 1.775L3.55 12l8.225 8.225Z"/></svg>
+    `
+    form_header.appendChild(go_back);
+
+    let header_text = yb_createElement("div", "create-bit-header-text", "create-bit-header-text");
+    header_text.innerHTML = "Create Photo Bit";
+    form_header.appendChild(header_text);
+
+    form.appendChild(form_header);
+
+    //Create scope options elements
+    let scope_options = yb_createElement("div", "scope-options", "scope-options");
+    
+    //Define scope options buttons
+    let private_button = yb_createButton("toggle_private", "half-toggle-left", "bit-private active");
+    private_button.innerHTML = "Private";
+    let public_button = yb_createButton("toggle_public", "half-toggle-right", "bit-public");
+    public_button.innerHTML = "Public";
+    
+    //Append scope options to scope option element
+    scope_options.appendChild(private_button);
+    scope_options.appendChild(public_button);
+
+    //Append scope options to form
+    form.appendChild(scope_options);
 
     let to_field = yb_createInput("text", "yb-single-line-input", "mobile-to", "To: (optional)");
     let title_field = yb_createInput("text", "yb-single-line-input", "mobile-title", "Caption");
@@ -492,40 +637,13 @@ function yb_showMessageForm(){
     form.appendChild(to_field_container);
     form.appendChild(result_container);
     form.appendChild(body_field);
+
+    yb_buildSubmissionBar("message-form");
+
     let script_source = document.getElementById("send-message-source");
 
     script_element.src = script_source;
 
-    submit_button.addEventListener("click", function(){
-        let body = document.getElementById("mobile-body").value;
-        let to = document.getElementById("hidden-to").value;
-        
-        $.ajax({
-            url: `/messages/api/check_existing/${to}/`,
-            type: "GET",
-            success: function(data){
-                let is_conversation = data.is_conversation;
-
-
-                dropCreateBit(hideCreateBit);
-
-                if(is_conversation){                
-                    let this_id = data.conversation_id;
-                    let that_user = data.conversation_recipient;
-                    console.log(that_user)
-                    console.log(this_id)
-                    messages_conversation_url(this_id, that_user);
-                    yb_sendMessage(body, this_id, that_user);
-
-                }else{
-                    console.log(to)
-                    yb_newConversation(to, body);
-                    
-                }
-            }
-        })
-
-    });
 }
 
 
@@ -580,26 +698,54 @@ function changeBitForm(button_name) {
     }
 };
 
-/* Publish bit button listener mobile */
-$('#mobile-publish-bit').click(function() {
-    let action = $(this).attr("name")
-    
-    if (action === "publish") {
-        let type = document.getElementById('bit-type-hidden-field').value;
-        let private_toggle = document.getElementsByName("toggle-private")[1];
-        console.log(private_toggle)
-        let public_toggle = document.getElementsByName("toggle-public");
-        $(this).css("pointer-events", "none");
-        gatherMobileBit(type, yb_submitBit);
-    } else if (action === "edit") {
-        let type = document.getElementById('bit-type-hidden-field').value;
-        let private_toggle = document.getElementsByName("toggle-private")[1];
-        console.log(private_toggle)
-        let public_toggle = document.getElementsByName("toggle-public");
-        gatherMobileBit(type, yb_editBit);
+function yb_handleCreateSubmit(this_element){
+    let action = this_element.getAttribute("name");
+    let type = document.getElementById('bit-type-hidden-field').value;
+    let private_toggle = document.getElementsByName("toggle-private")[1];
+    console.log(private_toggle)
+    let public_toggle = document.getElementsByName("toggle-public");
+    console.log(public_toggle)
+    $(this_element).css("pointer-events", "none");
+
+    if (action === "publish_bit") {
         
-    } 
-});
+        gatherMobileBit(type, yb_submitBit);
+
+    } else if (action === "edit") {
+        
+        gatherMobileBit(type, yb_editBit);
+
+    } else if (action === "send_message") {
+        let body = document.getElementById("mobile-body").value;
+        let to = document.getElementById("hidden-to").value;
+        
+        $.ajax({
+            url: `/messages/api/check_existing/${to}/`,
+            type: "GET",
+            success: function(data){
+                let is_conversation = data.is_conversation;
+
+
+                dropCreateBit(hideCreateBit);
+
+                if (is_conversation) {                
+                    let this_id = data.conversation_id;
+                    let that_user = data.conversation_recipient;
+                    console.log(that_user)
+                    console.log(this_id)
+                    messages_conversation_url(this_id, that_user);
+                    yb_sendMessage(body, this_id, that_user);
+
+                } else {
+                    console.log(to)
+                    yb_newConversation(to, body);
+                    
+                }
+            }
+        })
+    }
+
+}
 
 $("#mobile-title").click(function(){
     console.log("clicked")
