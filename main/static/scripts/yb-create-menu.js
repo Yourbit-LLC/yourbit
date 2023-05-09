@@ -854,7 +854,7 @@ $(document).ready(function() {
     chatbit_button.addEventListener('click',function() {
         let option = $(this).attr('name');
         //set variables for forms
-        let form = document.getElementById('mobile-create-inputs');
+        let form = document.getElementById('create-container');
         let type_field = document.getElementById('bit-type-hidden-field');
         let scope_field = document.getElementById('bit-scope-hidden-field');
         let option_field = document.getElementById('create-option-hidden-field');
@@ -870,7 +870,7 @@ $(document).ready(function() {
     photobit_button.addEventListener('click', function() {
         let option = $(this).attr('name');
         //set variables for forms
-        let form = document.getElementById('mobile-create-inputs');
+        let form = document.getElementById('create-container');
         let type_field = document.getElementById('bit-type-hidden-field');
         let scope_field = document.getElementById('bit-scope-hidden-field');
         let option_field = document.getElementById('create-option-hidden-field');
@@ -886,7 +886,7 @@ $(document).ready(function() {
     videobit_button.addEventListener('click', function() {
         let option = $(this).attr('name');
         //set variables for forms
-        let form = document.getElementById('mobile-create-inputs');
+        let form = document.getElementById('create-container');
         let type_field = document.getElementById('bit-type-hidden-field');
         let scope_field = document.getElementById('bit-scope-hidden-field');
         let option_field = document.getElementById('create-option-hidden-field');
