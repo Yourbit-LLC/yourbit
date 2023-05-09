@@ -217,7 +217,7 @@ function yb_chatBitForm(form, type_field, option_field, script_source) {
         }
 
         let submission_bar = yb_buildSubmissionBar("bit-form", "chat");
-        this_form.appendChild(submission_bar);
+        form.appendChild(submission_bar);
 }
 
 function yb_videoBitForm(form, type_field, option_field, script_source) {
@@ -287,7 +287,7 @@ function yb_videoBitForm(form, type_field, option_field, script_source) {
     
     //Append type buttons
     let submission_bar = yb_buildSubmissionBar("bit-form", "video");
-    this_form.appendChild(submission_bar);
+    form.appendChild(submission_bar);
 
 }
 
@@ -354,7 +354,7 @@ function yb_photoBitForm(form, type_field, option_field, script_source) {
     
     //Append type buttons
     let submission_bar = yb_buildSubmissionBar("bit-form", "photo");
-    this_form.appendChild(submission_bar);
+    form.appendChild(submission_bar);
 
 }
 
