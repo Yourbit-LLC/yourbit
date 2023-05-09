@@ -1459,8 +1459,8 @@ only be used for object transforms (shaping and scaling)
             position: fixed;
             z-index: 25;
             background-color: rgba(0, 0, 0, 0.0);
-            -webkit-backdrop-filter: blur(40px);
-            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px) brightness(200%);
+            backdrop-filter: blur(40px) brightness(200%);
             left: 1.5vw;
             box-shadow: -1px -1px 10px black;
             text-align: center;
