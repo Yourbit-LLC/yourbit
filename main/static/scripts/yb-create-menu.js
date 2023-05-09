@@ -26,12 +26,131 @@ $(document).ready(function() {
 });
 
 
+//Function for fetchning contacts from yourbits user database
+function yb_fetchContacts(callback, query) {
+    let cookie = document.cookie;
+    let csrfToken = getCSRF();
+    if (query == "") {
+        let container = document.getElementById('cm-contact-result-container');
+        container.innerHTML = '';
+    } else {
+        $.ajax( {
+            type: 'POST',
+            headers: {
+                'X-CSRFToken': csrfToken
+            },
+            url: '/search/',
+            data: { 
+                
+                query: query,
+
+            },
+            success: function(data){
+                let response = data;
+                callback(response);
+            }
+        })
+    }
+};
+
+//Function for displaying contacts retrieved using fetch contacts
+function yb_displayContacts(response) {
+    let results = response.user_results;
+    let users = Object.keys(results);
+    let user = '';
+    let x = 0;
+    for (let i = 0; i < users.length; i++) {
+        console.log(x)
+        user = users[x];
+        console.log(user)
+        user_profile = results[user];
+        user_info = user_profile.user;
+        console.log(user_info)
+        user_name = user_info.first_name + ' ' + user_info.last_name;
+        custom = user_profile.custom;
+        image = custom.image;
+
+        let container = document.getElementById('cm-contact-result-container');
+
+        let quick_result = yb_createElement('div', `quick-result-${user_info.id}`, 'quick-result');
+        quick_result.setAttribute('data-username', user_info.username);
+        quick_result.setAttribute('data-id', user_info.id);
+        let quick_result_image = yb_createElement('img', `quick-result-image-${user_info.id}`, 'quick-result-image');
+        quick_result_image.setAttribute('src', image);
+        quick_result.appendChild(quick_result_image);
+       
+        let quick_result_label = yb_createElement('p', `quick-result-label-${user_info.id}`, 'quick-result-label');
+        quick_result_label.innerHTML = user_name;
+        quick_result.appendChild(quick_result_label);
+
+        
+        container.appendChild(quick_result);
+
+        quick_result.addEventListener('click', function(e) {
+            console.log("clicked")
+            let this_element = e.currentTarget;
+            let this_element_id = this_element.getAttribute('id');
+            let this_user_id = this_element.getAttribute('data-id');
+            let hidden_field = document.getElementById('hidden-to');
+
+            this_element = document.getElementById(this_element_id);
+
+            let this_text = this_element.querySelector('.quick-result-label');
+            this_text = this_text.innerHTML;
+            let this_username = this_element.getAttribute('data-username');
+
+            let this_entry = yb_createElement('div', `contact-entry-${message_contact_object_id}`, 'contact-entry');
+            this_entry.setAttribute("style", `position: absolute;  color: white; width: fit-content; background-color: black; height: 18px; z-index: 2; top: 13px; left: ${total_width_message + 8}px; border-radius: 10px; height: 25px;`);
+            
+            let entry_label = yb_createElement('div', `entry-label`, 'entry-label');
+            entry_label.setAttribute('style', "display: grid; grid-template-columns: auto 20px; margin: 0; padding: 0; margin-right: 5px; line-height: 0.5;");
+            entry_label.innerHTML = `<p style="font-size: 12px; margin-left: 10px; margin-top: 10px;">${this_text}</p>` + '<svg style="position: relative; left:50%; top: 50%; transform: translate(-50%, -51%);" xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path style="fill:red;" d="M6.062 15 5 13.938 8.938 10 5 6.062 6.062 5 10 8.938 13.938 5 15 6.062 11.062 10 15 13.938 13.938 15 10 11.062Z"/></svg>';
+            this_entry.appendChild(entry_label);
+
+            to_field = document.getElementById('mobile-to');
+            to_field.value = ''; 
+            container.innerHTML = '';
+
+            let to_summary = document.getElementById('mobile-to-container');
+            hidden_field.value = "";
+            hidden_field.value += `${this_username},`;
+            to_summary.appendChild(this_entry);
+
+
+            let style = this_entry.getBoundingClientRect();
+            let width = style.width;
+            total_width_message += width;
+
+            to_field.style.textIndent = `${total_width_message + 8}px`;
+
+            
+            console.log(width)
+            console.log(`The width of the element's content is ${width}px`);
+
+            
+            to_field.setAttribute('placeholder', '');
+            to_field.focus();
+
+            message_contact_object_id += 1;
+        });
+        x = x + 1;
+        console.log(x)
+    }
+
+
+}
+
+
+
+//Fuction for clearing the form from the create menu and going back to create options
 function yb_resetCreate(){
     $("#create-container").fadeOut();
     $("#sub-function-script").attr("src", "");
+    $("#create-button-container").remove();
     $("#create-options").fadeIn();
 }
 
+//Generates the type selector element based on the create option selected
 function yb_buildTypeSelector(type) {
     let bit_type_select = yb_createElement("div", "create-bit-type-mobile", "create-bit-type");
     
@@ -85,6 +204,7 @@ function yb_buildTypeSelector(type) {
     return bit_type_select;
 }
 
+//Generates the submission bar and assigns a value to the publish button based on option
 function yb_buildSubmissionBar(form, type=null) {
     let button_container = yb_createElement("div", "create-button-container", "slide-up-button-container");
 
@@ -122,6 +242,7 @@ function yb_buildSubmissionBar(form, type=null) {
 
 }
 
+//Function for dynamically generating form for creating a charbit
 function yb_chatBitForm(form, type_field, option_field, script_source) {
         let sub_function_script = document.getElementById("sub-function-script")
         let this_source = document.getElementById("create-bit-source").value;
@@ -223,8 +344,49 @@ function yb_chatBitForm(form, type_field, option_field, script_source) {
 
         let submission_bar = yb_buildSubmissionBar("bit-form", "chat");
         form.appendChild(submission_bar);
+
+        to_field.addEventListener("keyup", function(e){
+            //Set query to this value
+            let query = this.value;
+            //Clear previous results from container
+            result_container.innerHTML = ``;
+    
+            //Fetch contacts by updated query
+            yb_fetchContacts(yb_displayContacts, query);
+            
+            let cursorPosition = this.selectionStart;
+            console.log(cursorPosition);
+    
+            //If backspace and no pending value clear recipient
+            if (e.keyCode === 8) {
+                //Check Cursor Position
+                if (cursorPosition === 0){
+                    if (message_contact_object_id > 0){
+                        let contact_object = document.getElementById(`contact-entry-${message_contact_object_id - 1}`);
+                        
+                        let style = contact_object.getBoundingClientRect();
+                        let width = style.width;
+                        total_width_message -= width;
+    
+                        message_contact_object_id -= 1;
+                        
+                        contact_object.remove();
+    
+                        to_field.style.textIndent = `${total_width_message + 8}px`;
+                        if (message_contact_object_id === 0){
+                            to_field.setAttribute("placeholder", "Search Users");
+                        }
+    
+                    }
+                }
+                console.log('Backspace key pressed');
+            }
+    
+    
+        });
 }
 
+//Function for dynamically generating form for creating a video bit
 function yb_videoBitForm(form, type_field, option_field, script_source) {
     let sub_function_script = document.getElementById("sub-function-script")
     let this_source = document.getElementById("create-bit-source").value;
@@ -269,9 +431,9 @@ function yb_videoBitForm(form, type_field, option_field, script_source) {
     let scope_options = yb_createElement("div", "scope-options", "scope-options");
     
     //Define scope options buttons
-    let private_button = yb_createButton("toggle_private", "half-toggle-left", "bit-private active");
+    let private_button = yb_createButton("toggle_private", "bit-private", "half-toggle-left");
     private_button.innerHTML = "Private";
-    let public_button = yb_createButton("toggle_public", "half-toggle-right", "bit-public");
+    let public_button = yb_createButton("toggle_public", "bit-public", "half-toggle-right");
     public_button.innerHTML = "Public";
     
     //Append scope options to scope option element
@@ -303,6 +465,7 @@ function yb_videoBitForm(form, type_field, option_field, script_source) {
 
 }
 
+//Function for dynamically generating form for creating a photo bit
 function yb_photoBitForm(form, type_field, option_field, script_source) {
     let sub_function_script = document.getElementById("sub-function-script")
     let this_source = document.getElementById("create-bit-source").value;
@@ -343,9 +506,9 @@ function yb_photoBitForm(form, type_field, option_field, script_source) {
     let scope_options = yb_createElement("div", "scope-options", "scope-options");
     
     //Define scope options buttons
-    let private_button = yb_createButton("toggle_private", "half-toggle-left", "bit-private active");
+    let private_button = yb_createButton("toggle_private", "bit-private", "half-toggle-left");
     private_button.innerHTML = "Private";
-    let public_button = yb_createButton("toggle_public", "half-toggle-right", "bit-public");
+    let public_button = yb_createButton("toggle_public", "bit-public", "half-toggle-right");
     public_button.innerHTML = "Public";
     
     //Append scope options to scope option element
@@ -379,120 +542,6 @@ $('.type-button').click(function() {
     console.log(button_name);
     changeBitForm(button_name);
 });
-
-function yb_fetchContacts(callback, query) {
-    let cookie = document.cookie;
-    let csrfToken = getCSRF();
-    if (query == "") {
-        let container = document.getElementById('cm-contact-result-container');
-        container.innerHTML = '';
-    } else {
-        $.ajax( {
-            type: 'POST',
-            headers: {
-                'X-CSRFToken': csrfToken
-            },
-            url: '/search/',
-            data: { 
-                
-                query: query,
-
-            },
-            success: function(data){
-                let response = data;
-                callback(response);
-            }
-        })
-    }
-};
-
-
-
-function yb_displayContacts(response) {
-    let results = response.user_results;
-    let users = Object.keys(results);
-    let user = '';
-    let x = 0;
-    for (let i = 0; i < users.length; i++) {
-        console.log(x)
-        user = users[x];
-        console.log(user)
-        user_profile = results[user];
-        user_info = user_profile.user;
-        console.log(user_info)
-        user_name = user_info.first_name + ' ' + user_info.last_name;
-        custom = user_profile.custom;
-        image = custom.image;
-
-        let container = document.getElementById('cm-contact-result-container');
-
-        let quick_result = yb_createElement('div', `quick-result-${user_info.id}`, 'quick-result');
-        quick_result.setAttribute('data-username', user_info.username);
-        quick_result.setAttribute('data-id', user_info.id);
-        let quick_result_image = yb_createElement('img', `quick-result-image-${user_info.id}`, 'quick-result-image');
-        quick_result_image.setAttribute('src', image);
-        quick_result.appendChild(quick_result_image);
-       
-        let quick_result_label = yb_createElement('p', `quick-result-label-${user_info.id}`, 'quick-result-label');
-        quick_result_label.innerHTML = user_name;
-        quick_result.appendChild(quick_result_label);
-
-        
-        container.appendChild(quick_result);
-
-        quick_result.addEventListener('click', function(e) {
-            console.log("clicked")
-            let this_element = e.currentTarget;
-            let this_element_id = this_element.getAttribute('id');
-            let this_user_id = this_element.getAttribute('data-id');
-            let hidden_field = document.getElementById('hidden-to');
-
-            this_element = document.getElementById(this_element_id);
-
-            let this_text = this_element.querySelector('.quick-result-label');
-            this_text = this_text.innerHTML;
-            let this_username = this_element.getAttribute('data-username');
-
-            let this_entry = yb_createElement('div', `contact-entry-${message_contact_object_id}`, 'contact-entry');
-            this_entry.setAttribute("style", `position: absolute;  color: white; width: fit-content; background-color: black; height: 18px; z-index: 2; top: 13px; left: ${total_width_message + 8}px; border-radius: 10px; height: 25px;`);
-            
-            let entry_label = yb_createElement('div', `entry-label`, 'entry-label');
-            entry_label.setAttribute('style', "display: grid; grid-template-columns: auto 20px; margin: 0; padding: 0; margin-right: 5px; line-height: 0.5;");
-            entry_label.innerHTML = `<p style="font-size: 12px; margin-left: 10px; margin-top: 10px;">${this_text}</p>` + '<svg style="position: relative; left:50%; top: 50%; transform: translate(-50%, -51%);" xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path style="fill:red;" d="M6.062 15 5 13.938 8.938 10 5 6.062 6.062 5 10 8.938 13.938 5 15 6.062 11.062 10 15 13.938 13.938 15 10 11.062Z"/></svg>';
-            this_entry.appendChild(entry_label);
-
-            to_field = document.getElementById('mobile-to');
-            to_field.value = ''; 
-            container.innerHTML = '';
-
-            let to_summary = document.getElementById('mobile-to-container');
-            hidden_field.value = "";
-            hidden_field.value += `${this_username},`;
-            to_summary.appendChild(this_entry);
-
-
-            let style = this_entry.getBoundingClientRect();
-            let width = style.width;
-            total_width_message += width;
-
-            to_field.style.textIndent = `${total_width_message + 8}px`;
-
-            
-            console.log(width)
-            console.log(`The width of the element's content is ${width}px`);
-
-            
-            to_field.setAttribute('placeholder', '');
-            to_field.focus();
-
-            message_contact_object_id += 1;
-        });
-        x = x + 1;
-        console.log(x)
-    }
-
-
-}
 
 
 function yb_showMessageForm(){
