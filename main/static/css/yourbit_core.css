@@ -2135,6 +2135,12 @@ only be used for object transforms (shaping and scaling)
         padding: 2px 3px 2px 2px;
     }
 
+    #create-bit-inputs {
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
 
 
 .slide-up-button-container {
@@ -2164,7 +2170,7 @@ only be used for object transforms (shaping and scaling)
         transition: 0.3s;
     }
 
-    .type-button-active {
+    .type-button.active {
         position: relative;
         width: 60px;
         height: 30px;

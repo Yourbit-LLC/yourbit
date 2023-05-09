@@ -154,7 +154,7 @@ function yb_resetCreate(){
 function yb_buildTypeSelector(type) {
     let bit_type_select = yb_createElement("div", "create-bit-type-mobile", "create-bit-type");
     
-    let bit_type_text = yb_createElement("div", "text-type-button", "type-button-active");
+    let bit_type_text = yb_createElement("div", "text-type-button", "type-button");
     bit_type_text.setAttribute("name", "chat");
     bit_type_text.innerHTML = `<svg class="space-button-image" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M.95 17.8V1.85q0-.5.325-.825Q1.6.7 2.1.7h14.25q.5 0 .825.325.325.325.325.825V12q0 .5-.325.825-.325.325-.825.325H5.6Zm5.8.9q-.5 0-.825-.325-.325-.325-.325-.825v-2.4h13.9V5.4h2.4q.5 0 .825.325.325.325.325.825v16.8L18.4 18.7Zm8.1-15.35H3.6v8.05l.9-.9h10.35Zm-11.25 0v8.05Z"/></svg>`
     
