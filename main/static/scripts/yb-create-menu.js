@@ -159,9 +159,9 @@ function yb_chatBitForm(form, type_field, option_field, script_source) {
         let scope_options = yb_createElement("div", "scope-options", "scope-options");
         
         //Define scope options buttons
-        let private_button = yb_createButton("toggle_private", "half-toggle-left", "bit-private active");
+        let private_button = yb_createButton("toggle_private", "bit-private", "half-toggle-left");
         private_button.innerHTML = "Private";
-        let public_button = yb_createButton("toggle_public", "half-toggle-right", "bit-public");
+        let public_button = yb_createButton("toggle_public", "bit-public", "half-toggle-right");
         public_button.innerHTML = "Public";
         
         //Append scope options to scope option element
@@ -293,8 +293,9 @@ function yb_videoBitForm(form, type_field, option_field, script_source) {
     form.appendChild(meta_tags);
     
     //Append type buttons
+    let create_bit = document.getElementById("create-bit-mobile");
     let submission_bar = yb_buildSubmissionBar("bit-form", "video");
-    form.appendChild(submission_bar);
+    create_bit.appendChild(submission_bar);
 
 }
 
