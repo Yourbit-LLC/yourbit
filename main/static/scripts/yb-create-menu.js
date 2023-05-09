@@ -19,9 +19,6 @@ var total_width_bit = 0;
 $(document).ready(function() {
     let close_button = document.getElementById("cb-panel-close");
     let go_back = document.getElementById("back-create");
-    go_back.addEventListener("click", function() {
-        yb_resetCreate();
-    });
     close_button.addEventListener("click", function() {
         yb_resetCreate();
         dropCreateBit(hideCreateBit);
