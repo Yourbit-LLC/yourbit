@@ -139,6 +139,10 @@ function yb_chatBitForm(form, type_field, option_field, script_source) {
         `
         form_header.appendChild(go_back);
 
+        go_back.addEventListener("click", function() {
+            yb_resetCreate();
+        });    
+
         let header_text = yb_createElement("h4", "create-bit-header-text", "create-bit-header-text");
         header_text.innerHTML = "Create Chat Bit";
         form_header.appendChild(header_text);
@@ -246,6 +250,11 @@ function yb_videoBitForm(form, type_field, option_field, script_source) {
     `
     form_header.appendChild(go_back);
 
+    go_back.addEventListener("click", function() {
+        yb_resetCreate();
+    });
+
+
     let header_text = yb_createElement("div", "create-bit-header-text", "create-bit-header-text");
     header_text.innerHTML = "Create Video Bit";
     form_header.appendChild(header_text);
@@ -315,6 +324,9 @@ function yb_photoBitForm(form, type_field, option_field, script_source) {
         <svg id="back-create" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M10 22 0 12 10 2l1.775 1.775L3.55 12l8.225 8.225Z"/></svg>
     `
     form_header.appendChild(go_back);
+    go_back.addEventListener("click", function() {
+        yb_resetCreate();
+    });
 
     let header_text = yb_createElement("div", "create-bit-header-text", "create-bit-header-text");
     header_text.innerHTML = "Create Photo Bit";
