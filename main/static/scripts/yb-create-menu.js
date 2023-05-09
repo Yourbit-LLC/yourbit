@@ -66,7 +66,7 @@ function yb_buildTypeSelector(type) {
 
     bit_type_select.appendChild(bit_type_video);
 
-    type_button_video.addEventListener("click", function() {
+    bit_type_video.addEventListener("click", function() {
         changeBitForm("video");
     });
 
@@ -81,7 +81,7 @@ function yb_buildTypeSelector(type) {
 
     bit_type_select.appendChild(bit_type_photo);
 
-    type_button_photo.addEventListener("click", function(){
+    bit_type_photo.addEventListener("click", function(){
         changeBitForm("photo");
     });
 
