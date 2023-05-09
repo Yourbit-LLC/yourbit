@@ -12,11 +12,10 @@ $(document).ready(function() {
     console.log("document ready function ran");
     console.log(document.readyState)
 
-    if (document.readyState === 'complete') {
+    if (document.readyState === 'loading') {
         // DOM is still loading
           // DOM is ready
           // execute your code here
-        yb_InitializeHome();
     } else {
         setTimeout(yb_InitializeHome, 500);
     }
@@ -24,11 +23,6 @@ $(document).ready(function() {
     // all scripts have finished loading
     // do something here
     
-    
-    
-
-
-
 
 });
 
