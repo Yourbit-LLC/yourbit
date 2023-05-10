@@ -17,6 +17,6 @@ $(document).ready(function() {
     yb_getFeed(data, hideSplash, true);
 
     yb_showSpaceBar();
-    yb_headerDropIn();
+    headerDropIn();
 
 });
