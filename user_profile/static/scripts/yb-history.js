@@ -35,7 +35,7 @@ $(document).ready(function() {
         let new_type = yb_getSessionValues("space");
 
         //remove active class from all buttons
-        let buttons = document.getElementsByClassName("yb-history-button");
+        let buttons = document.getElementsByClassName("filter-button");
         for (let i = 0; i < buttons.length; i++){
             buttons[i].classList.remove("active");
         }
@@ -62,7 +62,7 @@ $(document).ready(function() {
         let new_type = yb_getSessionValues("space");
 
         //remove active class from all buttons
-        let buttons = document.getElementsByClassName("yb-history-button");
+        let buttons = document.getElementsByClassName("filter-button");
         for (let i = 0; i < buttons.length; i++){
             buttons[i].classList.remove("active");
         }
@@ -89,7 +89,7 @@ $(document).ready(function() {
         let new_type = yb_getSessionValues("space");
 
         //remove active class from all buttons
-        let buttons = document.getElementsByClassName("yb-history-button");
+        let buttons = document.getElementsByClassName("filter-button");
         for (let i = 0; i < buttons.length; i++){
             buttons[i].classList.remove("active");
         }
@@ -116,7 +116,7 @@ $(document).ready(function() {
         let new_type = yb_getSessionValues("space");
 
         //remove active class from all buttons
-        let buttons = document.getElementsByClassName("yb-history-button");
+        let buttons = document.getElementsByClassName("filter-button");
         for (let i = 0; i < buttons.length; i++){
             buttons[i].classList.remove("active");
         }
