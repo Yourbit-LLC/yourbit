@@ -28,7 +28,8 @@ $(document).ready(function() {
     liked_button.addEventListener("click", function(e){
 
         let current_element = e.currentTarget;
-        yb_setSessionValues("filter", "liked");
+        let new_dataset = "liked"
+        current_element.setAttribute("data-dataset", new_dataset);
         let new_filter = yb_getSessionValues("filter");
         let new_sort = yb_getSessionValues("sort");
         let new_type = yb_getSessionValues("space");
@@ -54,7 +55,8 @@ $(document).ready(function() {
     disliked_button.addEventListener("click", function(e){
             
         let current_element = e.currentTarget;
-        yb_setSessionValues("filter", "disliked");
+        let new_dataset = "disliked"
+        current_element.setAttribute("data-dataset", new_dataset);
         let new_filter = yb_getSessionValues("filter");
         let new_sort = yb_getSessionValues("sort");
         let new_type = yb_getSessionValues("space");
@@ -80,7 +82,8 @@ $(document).ready(function() {
     commented_button.addEventListener("click", function(e){
                 
         let current_element = e.currentTarget;
-        yb_setSessionValues("filter", "commented");
+        let new_dataset = "commented"
+        current_element.setAttribute("data-dataset", new_dataset);
         let new_filter = yb_getSessionValues("filter");
         let new_sort = yb_getSessionValues("sort");
         let new_type = yb_getSessionValues("space");
@@ -106,7 +109,8 @@ $(document).ready(function() {
     shared_button.addEventListener("click", function(e){
                         
         let current_element = e.currentTarget;
-        yb_setSessionValues("filter", "shared");
+        let new_dataset = "shared"
+        current_element.setAttribute("data-dataset", new_dataset);
         let new_filter = yb_getSessionValues("filter");
         let new_sort = yb_getSessionValues("sort");
         let new_type = yb_getSessionValues("space");
