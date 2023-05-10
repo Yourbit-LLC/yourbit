@@ -2,16 +2,16 @@
 {% load static %}
 <h1 style="text-align: center; color:gray;">History</h1>
 <div id='yb-browse-nav' style='display:grid; grid-template-columns: auto auto auto auto auto;' data-dataset="liked">
-    <button type="text" class='filter-button' name="#profile-images" id="yb-liked-bits" style='color: white;' value="all">
+    <button type="text" class='filter-button active' name="#profile-images" id="yb-liked-bits">
         Liked
     </button>
-    <button type="text" class='filter-button' name="#ui-colors" id="yb-sort-dropdown" style='color: white;' value="chrono">
+    <button type="text" class='filter-button' name="#ui-colors" id="yb-disliked-bits">
         Disliked
     </button>
-    <button class='filter-button' name = '#bits'>
+    <button class='filter-button' name = '#bits' id="yb-commented-bits">
         Comments
     </button>
-    <button class='filter-button' name='#fonts'>
+    <button class='filter-button' name='#fonts' id="yb-shared-bits">
         Shared
     </button>
 
