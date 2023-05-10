@@ -1895,6 +1895,17 @@ only be used for object transforms (shaping and scaling)
         margin: auto;
         width: 87px;
     }
+    .filter-button.active {
+        position: relative;
+        display: block;
+        background-color: rgba(255, 255, 255, 0.4);
+        border: 2px solid rgb(255, 255, 255);
+        color: rgb(255, 255, 255);
+        border-radius: 20px;
+        height: 26px;
+        margin: auto;
+        width: 87px;
+    }
 
     .filter-button-wide-active {
         position: relative;
