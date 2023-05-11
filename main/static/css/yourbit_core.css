@@ -2723,12 +2723,15 @@ only be used for object transforms (shaping and scaling)
         position: relative;
         
         display: grid;
-        grid-template-columns: 24px 66px;
+        grid-template-columns: 24px 71px;
         column-gap: 5px;
         
         height: 25px;
-        width: 90px;
+        width: 95px;
         border-radius: 20px;
+        border-width: 0px;
+        margin-top: 10px;
+        margin-bottom: 5px;
 
         background-color: rgba(0, 0, 0, 0.8);
         color: white;
