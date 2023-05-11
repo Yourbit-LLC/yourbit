@@ -2723,11 +2723,11 @@ only be used for object transforms (shaping and scaling)
         position: relative;
         
         display: grid;
-        grid-template-columns: 24px 100px;
+        grid-template-columns: 24px 76px;
         column-gap: 5px;
         
         height: 25px;
-        width: 132px;
+        width: 103px;
         border-radius: 20px;
         border-width: 0px;
         margin-top: 10px;
