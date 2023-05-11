@@ -297,7 +297,13 @@ function yb_chatBitForm(form, type_field, option_field, script_source) {
         form.appendChild(scope_options);
 
         //Create form fields to correspond with creation
+        let recipient_button = yb_createButton("add_recipient", "button-add-recipient", "button-mini");
+        recipient_button.innerHTML = "Add Recipient";
+        form.appendChild(recipient_button);
+
         let to_field = yb_createInput("text", "yb-single-line-input", "mobile-to", "Send To: (optional)");
+        to_field.setAttribute("display", "none");
+        
         let title_field = yb_createInput("text","yb-single-line-input", "mobile-title", "Title (optional)");
         let body_field = yb_createInput("textarea", "yb-single-line-input", "mobile-body", "Body"); 
 

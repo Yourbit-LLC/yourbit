@@ -69,6 +69,7 @@ class Profile(models.Model):
     #System information
     current_timezone = models.CharField(max_length=150, default="America/NewYork")
     alerted_notifications = models.BooleanField(default=False)
+    user_events = models.ManyToManyField('UserEvent', related_name='user_events', blank=True)
 
     def __str__(self):
         return self.user.username
@@ -216,3 +217,39 @@ class Continuum(models.Model):
     created = models.DateTimeField(default=timezone.now)
     updated = models.DateTimeField(default=timezone.now)
     subscribers = models.ManyToManyField(User, related_name = "subscribed_users", blank=True)
+
+class UserEvent(models.Model):
+    user = models.ForeignKey(User, related_name = "user_event", on_delete=models.DO_NOTHING, blank=True)
+    
+    """
+        Event Types: 
+            0 = Logged In
+            1 = Logged Out
+            2 = Followed 
+            3 = Gained Follower
+            4 = Added Friend
+            5 = Searched
+            6 = Sent Message
+            7 = Read Notification
+            8 = Closed Notification
+            9 = Changed Color
+            10 = Updated Profile Photo
+            11 = Updated Profile Background
+            12 = Changed Account Settings
+            13 = Changed Profile Settings
+            14 = Changed Feed Settings
+            15 = Changed Notification Settings
+            16 = Changed Privacy Settings
+            17 = Changed Password
+            18 = Changed Email
+            19 = Changed Username
+            20 = Changed Name
+            21 = Changed Bio
+            22 = New Continuum 
+            23 = New Bit   
+
+    """    
+    type = models.IntegerField(default=0)
+    created = models.DateTimeField(default=timezone.now)
+    updated = models.DateTimeField(default=timezone.now)
+    subscribers = models.ManyToManyField(User, related_name = "subscribed_users_event", blank=True)
