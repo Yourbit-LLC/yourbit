@@ -212,7 +212,7 @@ function yb_buildSubmissionBar(form, type=null) {
     let label;
     console.log(form);
     if (form === "bit-form") {
-        name = "publish";
+        name = "publish_bit";
         let bit_type_select = yb_buildTypeSelector(type);
         button_container.appendChild(bit_type_select);
         label = "Publish";
