@@ -551,7 +551,7 @@ $('.type-button').click(function() {
 
 
 function yb_showMessageForm(){
-    let form = document.getElementById('mobile-create-inputs');
+    let form = document.getElementById('create-container');
     let option_field = document.getElementById('create-option-hidden-field');
     let script_element = document.getElementById('sub-function-script');
 
