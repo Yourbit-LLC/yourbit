@@ -302,7 +302,7 @@ function yb_chatBitForm(form, type_field, option_field, script_source) {
         form.appendChild(recipient_button);
 
         let to_field = yb_createInput("text", "yb-single-line-input", "mobile-to", "Send To: (optional)");
-        to_field.setAttribute("display", "none");
+        to_field.setAttribute("style", "display: none;");
         
         let title_field = yb_createInput("text","yb-single-line-input", "mobile-title", "Title (optional)");
         let body_field = yb_createInput("textarea", "yb-single-line-input", "mobile-body", "Body"); 
@@ -451,6 +451,7 @@ function yb_videoBitForm(form, type_field, option_field, script_source) {
 
 
     let to_field = yb_createInput("input", "yb-single-line-input", "mobile-to",  "To: (optional)");
+    to_field.setAttribute("style", "display: none;");
     let title_field = yb_createInput("input", "yb-single-line-input", "mobile-title",  "Title");
     let body_field = yb_createInput("textarea","yb-text-area", "mobile-body");
     let meta_tags = yb_createInput("input", "yb-single-line-input", "mobile-tags", "Meta Tags (separate by comma)");
@@ -525,6 +526,7 @@ function yb_photoBitForm(form, type_field, option_field, script_source) {
     form.appendChild(scope_options);
 
     let to_field = yb_createInput("text", "yb-single-line-input", "mobile-to", "To: (optional)");
+    to_field.setAttribute("style", "display: none;");
     let title_field = yb_createInput("text", "yb-single-line-input", "mobile-title", "Caption");
     let body_field = yb_createInput("textarea", "yb-text-area", "mobile-body", "Description");
     let upload_field = yb_createInput("file", "yb-file-field", "mobile-file-field", "none")
