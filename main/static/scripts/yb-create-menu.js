@@ -230,7 +230,7 @@ function yb_buildSubmissionBar(form, type=null) {
     }
 
     let publish_button = yb_createButton(name, "mobile-publish-bit", "mobile-publish-bit", label);
-    publish_button.setAttribute("type", "submit");
+    publish_button.setAttribute("type", "button");
     button_container.appendChild(publish_button);
 
     publish_button.addEventListener("click", function(e) {
