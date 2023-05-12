@@ -571,18 +571,19 @@ function yb_showMessageForm(user=null){
     });    
 
     let header_text = yb_createElement("h4", "create-bit-header-text", "create-bit-header-text");
-    header_text.innerHTML = "Create Chat Bit";
+    header_text.innerHTML = "Create New Message";
     form_header.appendChild(header_text);
 
     form.appendChild(form_header);
 
     let create_inputs = yb_createElement("div", "mobile-create-inputs", "create-inputs");
     create_inputs.setAttribute("style", "position: relative; margin-left: auto; margin-right: auto;");
+    form.appendChild(create_inputs);
 
     option_field.value = 'message';
 
     let hidden_to_field = yb_createInput("hidden", "hidden-text", "hidden-to",  "none");
-    form.appendChild(hidden_to_field);
+    create_inputs.appendChild(hidden_to_field);
 
     
     let to_field_container = yb_createElement("div", "mobile-to-container", "smart-input-container");
@@ -636,9 +637,9 @@ function yb_showMessageForm(user=null){
 
     });
 
-    form.appendChild(to_field_container);
-    form.appendChild(result_container);
-    form.appendChild(body_field);
+    create_inputs.appendChild(to_field_container);
+    create_inputs.appendChild(result_container);
+    create_inputs.appendChild(body_field);
 
     let submission_bar = yb_buildSubmissionBar("message-form");
     form.appendChild(submission_bar);
