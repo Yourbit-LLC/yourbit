@@ -552,7 +552,7 @@ $('.type-button').click(function() {
 
 function yb_showMessageForm(user=null){
     let sub_function_script = document.getElementById("sub-function-script")
-
+    let form = document.getElementById("create-container");
     form.innerHTML = ``;
     
     $('#create-options').fadeOut();
