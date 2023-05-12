@@ -275,7 +275,7 @@ function yb_chatBitForm(form, type_field, option_field, script_source) {
         form.appendChild(form_header);
 
         let create_inputs = yb_createElement("div", "mobile-create-inputs", "create-inputs");
-        create_inputs.setAttribute("style", "position: relative; margin-left: auto; margin-right: auto;")
+        create_inputs.setAttribute("style", "position: relative; margin-left: auto; margin-right: auto;");
         //Set hidden form field to describe bit type on submission
         type_field.value = 'chat';
         option_field.value='bit';
@@ -550,18 +550,35 @@ $('.type-button').click(function() {
 });
 
 
-function yb_showMessageForm(){
-    let form = document.getElementById('create-container');
-    let option_field = document.getElementById('create-option-hidden-field');
-    let script_element = document.getElementById('sub-function-script');
+function yb_showMessageForm(user=null){
+    let sub_function_script = document.getElementById("sub-function-script")
 
-    let submit_button = document.getElementById('mobile-publish-bit');
-
-    submit_button.innerHTML = "Send";
     form.innerHTML = ``;
-    $('#create-bit-header-text').html('Create a Message');
+    
     $('#create-options').fadeOut();
     $('#create-container').fadeIn();
+
+    let form_header = yb_createElement("div", "create-bit-header", "header-create-form");
+        
+    let go_back = yb_createElement("div", "back-create", "back-create");
+    go_back.innerHTML = `
+        <svg id="back-create" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M10 22 0 12 10 2l1.775 1.775L3.55 12l8.225 8.225Z"/></svg>
+    `
+    form_header.appendChild(go_back);
+
+    go_back.addEventListener("click", function() {
+        yb_resetCreate();
+    });    
+
+    let header_text = yb_createElement("h4", "create-bit-header-text", "create-bit-header-text");
+    header_text.innerHTML = "Create Chat Bit";
+    form_header.appendChild(header_text);
+
+    form.appendChild(form_header);
+
+    let create_inputs = yb_createElement("div", "mobile-create-inputs", "create-inputs");
+    create_inputs.setAttribute("style", "position: relative; margin-left: auto; margin-right: auto;");
+
     option_field.value = 'message';
 
     let hidden_to_field = yb_createInput("hidden", "hidden-text", "hidden-to",  "none");
@@ -623,11 +640,11 @@ function yb_showMessageForm(){
     form.appendChild(result_container);
     form.appendChild(body_field);
 
-    yb_buildSubmissionBar("message-form");
+    let submission_bar = yb_buildSubmissionBar("message-form");
+    form.appendChild(submission_bar);
 
-    let script_source = document.getElementById("send-message-source");
-
-    script_element.src = script_source;
+    let this_source = document.getElementById("send-message-source").value;
+    sub_function_script.src = this_source;
 
 }
 
