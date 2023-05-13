@@ -242,6 +242,54 @@ function yb_buildSubmissionBar(form, type=null) {
 
 }
 
+function yb_handleContactSuggestion(this_element) {
+    //Set query to this value
+    let query = this_element.value;
+    //Clear previous results from container
+    result_container.innerHTML = ``;
+
+    //Fetch contacts by updated query
+    yb_fetchContacts(yb_displayContacts, query);
+    
+    let cursorPosition = this_element.selectionStart;
+    console.log(cursorPosition);
+
+    //If backspace and no pending value clear recipient
+    if (e.keyCode === 8) {
+        //Check Cursor Position
+        if (cursorPosition === 0){
+            if (message_contact_object_id > 0){
+                let contact_object = document.getElementById(`contact-entry-${message_contact_object_id - 1}`);
+                
+                let style = contact_object.getBoundingClientRect();
+                let width = style.width;
+                total_width_message -= width;
+
+                message_contact_object_id -= 1;
+                
+                contact_object.remove();
+
+                to_field.style.textIndent = `${total_width_message + 8}px`;
+                if (message_contact_object_id === 0){
+                    to_field.setAttribute("placeholder", "Search Users");
+                }
+
+            }
+        }
+        console.log('Backspace key pressed');
+    }
+}
+
+function yb_handleAddRecipient(){
+    let to_field = document.getElementById("to-field");
+    let add_recipient_button = document.getElementById("button-add-recipient");
+    to_field.style.display = "block";
+    to_field.focus();
+    to_field.setAttribute("placeholder", "Search Users");
+    add_recipient_button.style.display = "none";
+
+}
+
 //Function for dynamically generating form for creating a charbit
 function yb_chatBitForm(form, type_field, option_field, script_source) {
         let sub_function_script = document.getElementById("sub-function-script")
@@ -276,6 +324,10 @@ function yb_chatBitForm(form, type_field, option_field, script_source) {
 
         let create_inputs = yb_createElement("div", "mobile-create-inputs", "create-inputs");
         create_inputs.setAttribute("style", "position: relative; margin-left: auto; margin-right: auto;");
+        
+        let hidden_to_field = yb_createInput("hidden", "hidden-text", "hidden-to",  "none");
+        create_inputs.appendChild(hidden_to_field);
+        
         //Set hidden form field to describe bit type on submission
         type_field.value = 'chat';
         option_field.value='bit';
@@ -352,42 +404,7 @@ function yb_chatBitForm(form, type_field, option_field, script_source) {
         form.appendChild(submission_bar);
 
         to_field.addEventListener("keyup", function(e){
-            //Set query to this value
-            let query = this.value;
-            //Clear previous results from container
-            result_container.innerHTML = ``;
-    
-            //Fetch contacts by updated query
-            yb_fetchContacts(yb_displayContacts, query);
-            
-            let cursorPosition = this.selectionStart;
-            console.log(cursorPosition);
-    
-            //If backspace and no pending value clear recipient
-            if (e.keyCode === 8) {
-                //Check Cursor Position
-                if (cursorPosition === 0){
-                    if (message_contact_object_id > 0){
-                        let contact_object = document.getElementById(`contact-entry-${message_contact_object_id - 1}`);
-                        
-                        let style = contact_object.getBoundingClientRect();
-                        let width = style.width;
-                        total_width_message -= width;
-    
-                        message_contact_object_id -= 1;
-                        
-                        contact_object.remove();
-    
-                        to_field.style.textIndent = `${total_width_message + 8}px`;
-                        if (message_contact_object_id === 0){
-                            to_field.setAttribute("placeholder", "Search Users");
-                        }
-    
-                    }
-                }
-                console.log('Backspace key pressed');
-            }
-    
+            yb_handleContactSuggestion(this);
     
         });
 }
@@ -411,6 +428,10 @@ function yb_videoBitForm(form, type_field, option_field, script_source) {
 
     let create_inputs = yb_createElement("div", "mobile-create-inputs", "create-inputs");
     create_inputs.setAttribute("style", "position: relative; margin-left: auto; margin-right: auto;")
+
+    let hidden_to_field = yb_createInput("hidden", "hidden-text", "hidden-to",  "none");
+    create_inputs.appendChild(hidden_to_field);
+    
     //Set hidden form field to describe bit type on submission
     type_field.value = 'video';
     option_field.value='bit';
@@ -457,6 +478,8 @@ function yb_videoBitForm(form, type_field, option_field, script_source) {
     let meta_tags = yb_createInput("input", "yb-single-line-input", "mobile-tags", "Meta Tags (separate by comma)");
     let upload_field = yb_createInput("file", "yb-file-field", "mobile-file-field", "none");
 
+    
+
     //Change form fields to correspond with creation
     
     form.appendChild(to_field);
@@ -470,6 +493,10 @@ function yb_videoBitForm(form, type_field, option_field, script_source) {
     let submission_bar = yb_buildSubmissionBar("bit-form", "video");
     create_bit.appendChild(submission_bar);
 
+    to_field.addEventListener("keyup", function(e){
+        yb_handleContactSuggestion(this);
+
+    });
 }
 
 //Function for dynamically generating form for creating a photo bit
@@ -484,11 +511,12 @@ function yb_photoBitForm(form, type_field, option_field, script_source) {
     //Show Form
     $('#create-container').fadeIn();
 
-    //On creation of bits show type options (text, photo, video)
-    $('#create-bit-type-mobile').fadeIn();
-
     let create_inputs = yb_createElement("div", "mobile-create-inputs", "create-inputs");
     create_inputs.setAttribute("style", "position: relative; margin-left: auto; margin-right: auto;")
+
+    let hidden_to_field = yb_createInput("hidden", "hidden-text", "hidden-to",  "none");
+    create_inputs.appendChild(hidden_to_field);    
+    
     //Set hidden form field to describe bit type on submission
     type_field.value = 'photo';
     option_field.value='bit';
@@ -530,8 +558,9 @@ function yb_photoBitForm(form, type_field, option_field, script_source) {
     let title_field = yb_createInput("text", "yb-single-line-input", "mobile-title", "Caption");
     let body_field = yb_createInput("textarea", "yb-text-area", "mobile-body", "Description");
     let upload_field = yb_createInput("file", "yb-file-field", "mobile-file-field", "none")
+    
+    
     //Change form fields to correspond with creation
-
     form.appendChild(to_field);
     form.appendChild(title_field);
     form.appendChild(body_field);
@@ -540,6 +569,11 @@ function yb_photoBitForm(form, type_field, option_field, script_source) {
     //Append type buttons
     let submission_bar = yb_buildSubmissionBar("bit-form", "photo");
     form.appendChild(submission_bar);
+
+    to_field.addEventListener("keyup", function(e){
+        yb_handleContactSuggestion(this);
+
+    });
 
 }
 
