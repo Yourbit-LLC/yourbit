@@ -245,7 +245,7 @@ function yb_buildSubmissionBar(form, type=null) {
 function yb_handleContactSuggestion(this_element) {
     //Set query to this value
     let query = this_element.value;
-
+    let to_field = document.getElementById("mobile-to");
     let result_container = document.getElementById("cm-contact-result-container");
     //Clear previous results from container
     result_container.innerHTML = ``;
@@ -378,7 +378,7 @@ function yb_chatBitForm(form, type_field, option_field, script_source) {
 
         //Append each form field to the form
         
-        create_inputs.appendChild(to_field);
+        create_inputs.appendChild(to_field_container);
         create_inputs.appendChild(result_container);
         create_inputs.appendChild(title_field);
         create_inputs.appendChild(body_field);
@@ -524,7 +524,7 @@ function yb_videoBitForm(form, type_field, option_field, script_source) {
 
     //Change form fields to correspond with creation
     
-    create_inputs.appendChild(to_field);
+    create_inputs.appendChild(to_field_container);
     create_inputs.appendChild(result_container);
     create_inputs.appendChild(title_field);
     create_inputs.appendChild(body_field);
@@ -622,7 +622,7 @@ function yb_photoBitForm(form, type_field, option_field, script_source) {
     
     
     //Change form fields to correspond with creation
-    create_inputs.appendChild(to_field);
+    create_inputs.appendChild(to_field_container);
     create_inputs.appendChild(result_container);
     create_inputs.appendChild(title_field);
     create_inputs.appendChild(body_field);
