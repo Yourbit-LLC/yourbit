@@ -366,9 +366,11 @@ function yb_chatBitForm(form, type_field, option_field, script_source) {
 
         //Append each form field to the form
         
-        form.appendChild(to_field);
-        form.appendChild(title_field);
-        form.appendChild(body_field);
+        create_inputs.appendChild(to_field);
+        create_inputs.appendChild(title_field);
+        create_inputs.appendChild(body_field);
+
+        form.appendChild(create_inputs);
 
         //Attach script to form
         let enhance_button = yb_createButton("button", "yb-enhance-button", "enhance-button", '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" width="24"><path d="m800 376-38-82-82-38 82-38 38-82 38 82 82 38-82 38-38 82Zm-460 0-38-82-82-38 82-38 38-82 38 82 82 38-82 38-38 82Zm460 460-38-82-82-38 82-38 38-82 38 82 82 38-82 38-38 82ZM204 964 92 852q-12-12-12-29t12-29l446-446q12-12 29-12t29 12l112 112q12 12 12 29t-12 29L262 964q-12 12-29 12t-29-12Zm30-84 286-288-56-56-288 286 58 58Z"/></svg>Enhance');
