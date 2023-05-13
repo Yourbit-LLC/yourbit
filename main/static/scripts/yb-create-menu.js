@@ -316,7 +316,7 @@ function yb_chatBitForm(form, type_field, option_field, script_source) {
             yb_resetCreate();
         });    
 
-        let header_text = yb_createElement("h4", "create-bit-header-text", "create-bit-header-text");
+        let header_text = yb_createElement("div", "create-bit-header-text", "create-bit-header-text");
         header_text.innerHTML = "Create Chat Bit";
         form_header.appendChild(header_text);
 
