@@ -201,7 +201,7 @@ function BuildBit(bit, liked_bits, disliked_bits){
     like_button.addEventListener("click", function(e){
 
         let this_element = e.currentTarget;
-        let cat_id = bit.getAttribute("data-catid");
+        let cat_id = this_element.getAttribute("data-catid");
         let this_icon = document.getElementById(`like-icon-${cat_id}`);
         yb_Interact("like", this_element, "none");
         
