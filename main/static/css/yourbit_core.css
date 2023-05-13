@@ -2108,14 +2108,14 @@ only be used for object transforms (shaping and scaling)
     }
 
     
-    #bit-private-active {
+    #bit-private.active {
         border: 2px solid darkred;
         background-color: rgb(151, 0, 0);
         color: rgb(255, 127, 127);
 
     }
 
-    #bit-public-active {
+    #bit-public.active {
         border: 2px solid darkgreen;
         background-color: rgb(0, 151, 0);
         color: rgb(100, 255, 100);
