@@ -350,6 +350,7 @@ function yb_chatBitForm(form, type_field, option_field, script_source) {
 
         //Create form fields to correspond with creation
         let recipient_button = yb_createButton("add_recipient", "button-add-recipient", "button-mini");
+        recipient_button.setAttribute("type", "button");
         recipient_button.innerHTML = "<p style='font-size: 18px; position: relative; margin: auto;'><b>+</b></p><p style='position: relative; margin: auto;'>Add Recipient</p>";
         form.appendChild(recipient_button);
 
@@ -477,6 +478,7 @@ function yb_videoBitForm(form, type_field, option_field, script_source) {
     
     //Create form fields to correspond with creation
     let recipient_button = yb_createButton("add_recipient", "button-add-recipient", "button-mini");
+    recipient_button.setAttribute("type", "button");
     recipient_button.innerHTML = "<p style='font-size: 18px; position: relative; margin: auto;'><b>+</b></p><p style='position: relative; margin: auto;'>Add Recipient</p>";
     form.appendChild(recipient_button);
 
@@ -570,6 +572,7 @@ function yb_photoBitForm(form, type_field, option_field, script_source) {
 
     //Create form fields to correspond with creation
     let recipient_button = yb_createButton("add_recipient", "button-add-recipient", "button-mini");
+    recipient_button.setAttribute("type", "button");
     recipient_button.innerHTML = "<p style='font-size: 18px; position: relative; margin: auto;'><b>+</b></p><p style='position: relative; margin: auto;'>Add Recipient</p>";
     form.appendChild(recipient_button);
 
