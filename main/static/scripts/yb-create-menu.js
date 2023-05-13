@@ -500,11 +500,13 @@ function yb_videoBitForm(form, type_field, option_field, script_source) {
 
     //Change form fields to correspond with creation
     
-    form.appendChild(to_field);
-    form.appendChild(title_field);
-    form.appendChild(body_field);
-    form.appendChild(upload_field)
-    form.appendChild(meta_tags);
+    create_inputs.appendChild(to_field);
+    create_inputs.appendChild(title_field);
+    create_inputs.appendChild(body_field);
+    create_inputs.appendChild(upload_field)
+    create_inputs.appendChild(meta_tags);
+
+    form.appendChild(create_inputs);
     
     //Append type buttons
     let create_bit = document.getElementById("create-bit-mobile");
@@ -590,10 +592,12 @@ function yb_photoBitForm(form, type_field, option_field, script_source) {
     
     
     //Change form fields to correspond with creation
-    form.appendChild(to_field);
-    form.appendChild(title_field);
-    form.appendChild(body_field);
-    form.appendChild(upload_field);
+    create_inputs.appendChild(to_field);
+    create_inputs.appendChild(title_field);
+    create_inputs.appendChild(body_field);
+    create_inputs.appendChild(upload_field);
+
+    form.appendChild(create_inputs);
     
     //Append type buttons
     let submission_bar = yb_buildSubmissionBar("bit-form", "photo");
