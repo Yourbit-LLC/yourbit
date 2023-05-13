@@ -281,7 +281,7 @@ function yb_handleContactSuggestion(this_element) {
 }
 
 function yb_handleAddRecipient(){
-    let to_field = document.getElementById("to-field");
+    let to_field = document.getElementById("mobile-to");
     let add_recipient_button = document.getElementById("button-add-recipient");
     to_field.style.display = "block";
     to_field.focus();
