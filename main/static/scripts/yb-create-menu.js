@@ -423,8 +423,8 @@ function yb_chatBitForm(form, type_field, option_field, script_source) {
         let submission_bar = yb_buildSubmissionBar("bit-form", "chat");
         form.appendChild(submission_bar);
 
-        to_field.addEventListener("keyup", function(e){
-            let this_element = e.currentTarget;
+        to_field.addEventListener("keyup", function(event){
+            let this_element = event.currentTarget;
             yb_handleContactSuggestion(this_element);
     
         });
@@ -538,8 +538,9 @@ function yb_videoBitForm(form, type_field, option_field, script_source) {
     let submission_bar = yb_buildSubmissionBar("bit-form", "video");
     create_bit.appendChild(submission_bar);
 
-    to_field.addEventListener("keyup", function(e){
-        yb_handleContactSuggestion(this);
+    to_field.addEventListener("keyup", function(event){
+        let this_element = event.currentTarget;
+        yb_handleContactSuggestion(this_element);
 
     });
 }
@@ -633,8 +634,9 @@ function yb_photoBitForm(form, type_field, option_field, script_source) {
     let submission_bar = yb_buildSubmissionBar("bit-form", "photo");
     form.appendChild(submission_bar);
 
-    to_field.addEventListener("keyup", function(e){
-        yb_handleContactSuggestion(this);
+    to_field.addEventListener("keyup", function(event){
+        let this_element = event.currentTarget;
+        yb_handleContactSuggestion(this_element);
 
     });
 
