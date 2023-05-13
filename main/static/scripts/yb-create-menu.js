@@ -411,7 +411,8 @@ function yb_chatBitForm(form, type_field, option_field, script_source) {
         form.appendChild(submission_bar);
 
         to_field.addEventListener("keyup", function(e){
-            yb_handleContactSuggestion(this);
+            let this_element = e.currentTarget;
+            yb_handleContactSuggestion(this_element);
     
         });
 }
