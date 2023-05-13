@@ -353,6 +353,10 @@ function yb_chatBitForm(form, type_field, option_field, script_source) {
         recipient_button.innerHTML = "<p style='font-size: 18px; position: relative; margin: auto;'><b>+</b></p><p style='position: relative; margin: auto;'>Add Recipient</p>";
         form.appendChild(recipient_button);
 
+        recipient_button.addEventListener("click", function() {
+            yb_handleAddRecipient();
+        });
+
         let to_field = yb_createInput("text", "yb-single-line-input", "mobile-to", "Send To: (optional)");
         to_field.setAttribute("style", "display: none;");
         
@@ -470,6 +474,16 @@ function yb_videoBitForm(form, type_field, option_field, script_source) {
     //Append scope options to form
     form.appendChild(scope_options);
 
+    
+    //Create form fields to correspond with creation
+    let recipient_button = yb_createButton("add_recipient", "button-add-recipient", "button-mini");
+    recipient_button.innerHTML = "<p style='font-size: 18px; position: relative; margin: auto;'><b>+</b></p><p style='position: relative; margin: auto;'>Add Recipient</p>";
+    form.appendChild(recipient_button);
+
+    recipient_button.addEventListener("click", function() {
+        yb_handleAddRecipient();
+    });
+
 
     let to_field = yb_createInput("input", "yb-single-line-input", "mobile-to",  "To: (optional)");
     to_field.setAttribute("style", "display: none;");
@@ -552,6 +566,16 @@ function yb_photoBitForm(form, type_field, option_field, script_source) {
 
     //Append scope options to form
     form.appendChild(scope_options);
+
+
+    //Create form fields to correspond with creation
+    let recipient_button = yb_createButton("add_recipient", "button-add-recipient", "button-mini");
+    recipient_button.innerHTML = "<p style='font-size: 18px; position: relative; margin: auto;'><b>+</b></p><p style='position: relative; margin: auto;'>Add Recipient</p>";
+    form.appendChild(recipient_button);
+
+    recipient_button.addEventListener("click", function() {
+        yb_handleAddRecipient();
+    });
 
     let to_field = yb_createInput("text", "yb-single-line-input", "mobile-to", "To: (optional)");
     to_field.setAttribute("style", "display: none;");
