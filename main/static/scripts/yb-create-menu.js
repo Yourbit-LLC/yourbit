@@ -379,6 +379,7 @@ function yb_chatBitForm(form, type_field, option_field, script_source) {
         //Append each form field to the form
         
         create_inputs.appendChild(to_field);
+        create_inputs.appendChild(result_container);
         create_inputs.appendChild(title_field);
         create_inputs.appendChild(body_field);
 
@@ -524,6 +525,7 @@ function yb_videoBitForm(form, type_field, option_field, script_source) {
     //Change form fields to correspond with creation
     
     create_inputs.appendChild(to_field);
+    create_inputs.appendChild(result_container);
     create_inputs.appendChild(title_field);
     create_inputs.appendChild(body_field);
     create_inputs.appendChild(upload_field)
@@ -620,6 +622,7 @@ function yb_photoBitForm(form, type_field, option_field, script_source) {
     
     //Change form fields to correspond with creation
     create_inputs.appendChild(to_field);
+    create_inputs.appendChild(result_container);
     create_inputs.appendChild(title_field);
     create_inputs.appendChild(body_field);
     create_inputs.appendChild(upload_field);
