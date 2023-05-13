@@ -402,6 +402,7 @@ function yb_Interact(action, bit, data) {
             console.log(cat_id);
             console.log(response.interaction)
             if (response.interaction === "added")  {
+                
                 like_counter = document.getElementById(`like-count-${cat_id}`);
                 dislike_counter = document.getElementById(`dislike-count-${cat_id}`);
                 let this_button = document.getElementById(`${action}-${cat_id}`);
@@ -423,6 +424,7 @@ function yb_Interact(action, bit, data) {
                     let like_icon = document.getElementById(`like-icon-${cat_id}`);
                     like_button.style.backgroundColor = "rgba(0,0,0,0)";
                     like_icon.style.fill = "white";
+                    like_icon.classList.remove('flash');
                 
                 //If action is dislike, check if like button is active, if so, deactivate it.
                 } else if (action === "like") {
@@ -430,6 +432,7 @@ function yb_Interact(action, bit, data) {
                     let dislike_icon = document.getElementById(`dislike-icon-${cat_id}`);
                     dislike_button.style.backgroundColor = "rgba(0,0,0,0)";
                     dislike_icon.style.fill = "white";
+                    like_icon.classList.remove('flash');
                 }
 
         
@@ -439,6 +442,7 @@ function yb_Interact(action, bit, data) {
                 
                 this_button.style.backgroundColor = "rgba(0,0,0,0)";
                 this_icon.style.fill = "white";
+                like_icon.classList.remove('flash');
                 like_counter.innerHTML = response.like_count;
                 dislike_counter.innerHTML = response.dislike_count;
 

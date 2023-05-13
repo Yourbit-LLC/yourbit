@@ -1,6 +1,45 @@
 /* This is Yourbits main style sheet which controls the appearance of all pages of yourbit. 
 Refer to the interactive codex for current style guidelines for Yourbit*/
 
+
+/*####################################################
+
+        ---Keyframes---
+
+####################################################*/
+/* Define the animation keyframes */
+@keyframes bounce {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+
+@keyframes yb-flash {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes yb-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes yb-shake {
+    0% { transform: translate(0px, 0px); }
+    25% { transform: translate(5px, 0px); }
+    50% { transform: translate(0px, 0px); }
+    75% { transform: translate(-5px, 0px); }
+    100% { transform: translate(0px, 0px); }
+}
+
+@keyframes yb-slide-in {
+    0% { transform: translate(0px, 100vh); }
+    100% { transform: translate(0px, 0px); }
+}
+
+
 /* -- Scrollbar Settings -- */
 
 /* width */
@@ -22,13 +61,6 @@ Refer to the interactive codex for current style guidelines for Yourbit*/
 
     
 }
-
-/* Define the animation keyframes */
-@keyframes bounce {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-  }
 
 @media screen and (min-width: 700px) {
 /*
