@@ -245,6 +245,8 @@ function yb_buildSubmissionBar(form, type=null) {
 function yb_handleContactSuggestion(this_element) {
     //Set query to this value
     let query = this_element.value;
+
+    let result_container = document.getElementById("cm-contact-result-container");
     //Clear previous results from container
     result_container.innerHTML = ``;
 
