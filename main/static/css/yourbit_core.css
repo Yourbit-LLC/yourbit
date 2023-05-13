@@ -2067,12 +2067,17 @@ only be used for object transforms (shaping and scaling)
 
     #scope-options {
         position: relative;
-        right: 5px;
+        margin-left: 5px;
         display: grid;
         grid-row: 2;
         grid-template-columns: 60px 60px;
         margin-top: 5px;
         width: 125px;
+    }
+
+    #button-add-recipient {
+        position: relative;
+        margin-left: 5px;
     }
 
     .half-toggle-left {
