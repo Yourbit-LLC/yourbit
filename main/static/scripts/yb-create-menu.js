@@ -358,8 +358,18 @@ function yb_chatBitForm(form, type_field, option_field, script_source) {
             yb_handleAddRecipient();
         });
 
-        let to_field = yb_createInput("text", "yb-single-line-input", "mobile-to", "Send To: (optional)");
-        to_field.setAttribute("style", "display: none;");
+
+    
+        let to_field_container = yb_createElement("div", "mobile-to-container", "smart-input-container");
+        to_field_container.setAttribute("style", "position: relative; margin-left: auto; margin-right: auto; width: 100%; margin-top: 10px;");
+        
+    
+        let to_field = yb_createInput("text", "yb-single-line-input", "mobile-to", "Search Users");
+        to_field.setAttribute("style", "z-index: 1; display:none;");
+        to_field_container.appendChild(to_field);
+        let result_container = yb_createElement("div", "cm-contact-result-container", "yb-list-widget");
+        result_container.setAttribute("style", "background-color:rgba(0,0,0,0.5); color:white; height: auto; overflow-y: scroll;max-height: 200px; width: 95%; margin: 0 auto; border-radius: 10px; margin-top: 10px;");
+        
         
         let title_field = yb_createInput("text","yb-single-line-input", "mobile-title", "Title (optional)");
         let body_field = yb_createInput("textarea", "yb-single-line-input", "mobile-body", "Body"); 
@@ -490,8 +500,18 @@ function yb_videoBitForm(form, type_field, option_field, script_source) {
     });
 
 
-    let to_field = yb_createInput("input", "yb-single-line-input", "mobile-to",  "To: (optional)");
-    to_field.setAttribute("style", "display: none;");
+    
+    let to_field_container = yb_createElement("div", "mobile-to-container", "smart-input-container");
+    to_field_container.setAttribute("style", "position: relative; margin-left: auto; margin-right: auto; width: 100%; margin-top: 10px;");
+    
+
+    let to_field = yb_createInput("text", "yb-single-line-input", "mobile-to", "Search Users");
+    to_field.setAttribute("style", "z-index: 1; display:none;");
+    to_field_container.appendChild(to_field);
+    
+    let result_container = yb_createElement("div", "cm-contact-result-container", "yb-list-widget");
+    result_container.setAttribute("style", "background-color:rgba(0,0,0,0.5); color:white; height: auto; overflow-y: scroll;max-height: 200px; width: 95%; margin: 0 auto; border-radius: 10px; margin-top: 10px;");
+    
     let title_field = yb_createInput("input", "yb-single-line-input", "mobile-title",  "Title");
     let body_field = yb_createInput("textarea","yb-text-area", "mobile-body");
     let meta_tags = yb_createInput("input", "yb-single-line-input", "mobile-tags", "Meta Tags (separate by comma)");
@@ -584,9 +604,13 @@ function yb_photoBitForm(form, type_field, option_field, script_source) {
     recipient_button.addEventListener("click", function() {
         yb_handleAddRecipient();
     });
-
-    let to_field = yb_createInput("text", "yb-single-line-input", "mobile-to", "To: (optional)");
-    to_field.setAttribute("style", "display: none;");
+    let to_field = yb_createInput("text", "yb-single-line-input", "mobile-to", "Search Users");
+    to_field.setAttribute("style", "z-index: 1; display:none;");
+    to_field_container.appendChild(to_field);
+    
+    let result_container = yb_createElement("div", "cm-contact-result-container", "yb-list-widget");
+    result_container.setAttribute("style", "background-color:rgba(0,0,0,0.5); color:white; height: auto; overflow-y: scroll;max-height: 200px; width: 95%; margin: 0 auto; border-radius: 10px; margin-top: 10px;");
+    
     let title_field = yb_createInput("text", "yb-single-line-input", "mobile-title", "Caption");
     let body_field = yb_createInput("textarea", "yb-text-area", "mobile-body", "Description");
     let upload_field = yb_createInput("file", "yb-file-field", "mobile-file-field", "none")
