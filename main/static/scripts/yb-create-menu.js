@@ -609,6 +609,11 @@ function yb_photoBitForm(form, type_field, option_field, script_source) {
     recipient_button.addEventListener("click", function() {
         yb_handleAddRecipient();
     });
+    
+    let to_field_container = yb_createElement("div", "mobile-to-container", "smart-input-container");
+    to_field_container.setAttribute("style", "position: relative; margin-left: auto; margin-right: auto; width: 100%; margin-top: 10px;");
+    
+
     let to_field = yb_createInput("text", "yb-single-line-input", "mobile-to", "Search Users");
     to_field.setAttribute("style", "z-index: 1; display:none;");
     to_field_container.appendChild(to_field);

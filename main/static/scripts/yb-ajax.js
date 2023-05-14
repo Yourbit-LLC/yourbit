@@ -422,6 +422,7 @@ function yb_Interact(action, bit, data) {
                 if (action === "dislike"){
                     let like_button = document.getElementById(`like-${cat_id}`);
                     let like_icon = document.getElementById(`like-icon-${cat_id}`);
+                    let dislike_icon = document.getElementById(`dislike-icon-${cat_id}`);
                     like_button.style.backgroundColor = "rgba(0,0,0,0)";
                     like_icon.style.fill = "white";
                     like_icon.classList.remove('flash');
@@ -430,6 +431,7 @@ function yb_Interact(action, bit, data) {
                 } else if (action === "like") {
                     let dislike_button = document.getElementById(`dislike-${cat_id}`);
                     let dislike_icon = document.getElementById(`dislike-icon-${cat_id}`);
+                    let like_icon = document.getElementById(`like-icon-${cat_id}`);
                     dislike_button.style.backgroundColor = "rgba(0,0,0,0)";
                     dislike_icon.style.fill = "white";
                     like_icon.classList.remove('flash');
