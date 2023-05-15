@@ -106,6 +106,10 @@ function emailStage() {
     next_button.onclick = function () {
         yb_ValidateField();
     };
+
+    let line_break = document.createElement('br');
+    email_field_container.appendChild(line_break);
+
     email_field_container.appendChild(next_button);
 
     return email_field_container;
@@ -126,6 +130,10 @@ function phoneStage() {
     next_button.onclick = function () {
         yb_ValidateField();
     };
+
+    let line_break = document.createElement('br');
+    phone_field_container.appendChild(line_break);
+
     phone_field_container.appendChild(next_button);
 
     return phone_field_container;
@@ -166,6 +174,10 @@ function lnameStage() {
     next_button.onclick = function () {
         yb_ValidateField();
     };
+
+    let line_break = document.createElement('br');
+    lname_field_container.appendChild(line_break);
+
     lname_field_container.appendChild(next_button);
 
     return lname_field_container;
@@ -186,6 +198,10 @@ function unameStage(){
     next_button.onclick = function () {
         yb_ValidateField();
     };
+
+    let line_break = document.createElement('br');
+    uname_field_container.appendChild(line_break);
+
     uname_field_container.appendChild(next_button);
 
     return uname_field_container;
@@ -200,6 +216,9 @@ function passwordStage1(){
     password_label.innerHTML = 'Password';
     password_field_container.appendChild(password_label);
     password_field_container.appendChild(password_field);
+
+    let line_break = document.createElement('br');
+    dob_field_container.appendChild(line_break);
 
     let next_button = yb_createElement('button', 'password1-next', 'yb-form-next', 'Next');
     
@@ -219,6 +238,9 @@ function passwordStage2(){
     password_label.innerHTML = 'Confirm Password';
     password_field_container.appendChild(password_label);
     password_field_container.appendChild(password_field);
+
+    let line_break = document.createElement('br');
+    password_field_container.appendChild(line_break);
 
     let next_button = yb_createElement('button', 'next-button', 'yb-form-next', 'Next');
     
