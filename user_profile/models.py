@@ -35,6 +35,12 @@ class Profile(models.Model):
     motto = models.CharField(max_length = 100, blank=True)
     user_bio = models.CharField(max_length = 500, blank=True)
 
+    #System information
+    current_timezone = models.CharField(max_length=150, default="America/NewYork")
+    alerted_notifications = models.BooleanField(default=False)
+    user_events = models.ManyToManyField('UserEvent', related_name='user_events', blank=True)
+
+
 
     def __str__(self):
         return self.user.username
@@ -109,11 +115,6 @@ class Bit(models.Model):
     extend_widget = models.CharField(max_length = 1000, blank=True)
     video_widget = models.CharField(max_length = 1000, blank=True)
     custom = models.ForeignKey('Custom', on_delete=models.CASCADE, default=None)
-
-    #System information
-    current_timezone = models.CharField(max_length=150, default="America/NewYork")
-    alerted_notifications = models.BooleanField(default=False)
-    user_events = models.ManyToManyField('UserEvent', related_name='user_events', blank=True)
 
     def __str__(self):
         return (
