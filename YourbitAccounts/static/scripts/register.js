@@ -73,7 +73,7 @@ function birthdayStage() {
     dob_field_container.appendChild(line_break);
     
 
-    let next_button = yb_createElement('button', 'next-button', 'paginated-form-button');
+    let next_button = yb_createElement('button', 'next-button', 'yb-form-next');
     next_button.innerHTML = 'Next';
     next_button.onclick = function () {
         yb_ValidateField();
@@ -101,7 +101,7 @@ function emailStage() {
     email_field_container.appendChild(email_label);
     email_field_container.appendChild(email_field);
 
-    let next_button = yb_createElement('button', 'next-button', 'paginated-form-button');
+    let next_button = yb_createElement('button', 'next-button', 'yb-form-next');
     next_button.innerHTML = 'Next';
     next_button.onclick = function () {
         yb_ValidateField();
