@@ -229,10 +229,10 @@ class CommunityProfileInfo(models.Model):
     community_name = models.CharField(max_length=150, default="Untitled Community")
 
     #Community Types: 1 = Generic, 2 = School, 3 = Business, 4 = Religion, 5 = Organization, 7 = Entertainment Media, 8 = Information Media, 9 = Government, 10 = Other
-    community_type = models.IntegerField(max_length=150, default=1)
+    community_type = models.IntegerField(default=1)
 
     #Privacy Levels: Public, Friends, Invite Only
-    privacy_level = models.IntegerField(max_length=150, default="Public")
+    privacy_level = models.CharField(max_length=150, default="Public")
 
 
 
