@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login
 from user_profile.forms import BitForm
 from search.forms import SearchBar
 from user_profile.models import Profile, Custom
+from settings.models import MySettings
 
 def CoreUI(request):
     bit_form = BitForm()
@@ -30,6 +31,9 @@ def Customization(request):
         title_color = custom.title_color
         text_color = custom.text_color
         is_new_user = custom.is_new_user
+
+        settings = MySettings.objects.get(profile=profile)
+        default_public = settings.privacy.default_public
 
         #Quick Appearance
         wallpaper_on = custom.wallpaper_on

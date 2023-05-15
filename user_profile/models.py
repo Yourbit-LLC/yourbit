@@ -35,41 +35,6 @@ class Profile(models.Model):
     motto = models.CharField(max_length = 100, blank=True)
     user_bio = models.CharField(max_length = 500, blank=True)
 
-    #Education
-    currently_attending_hs = models.BooleanField(default=False)
-    high_school = models.CharField(max_length = 150)
-    year_graduated_hs = models.IntegerField(default = 0)
-    currently_attending_u = models.BooleanField(default=False)
-    college = models.CharField(max_length = 150, blank=True)
-    year_graduated_u = models.IntegerField(default = 0)
-    field_of_study = models.CharField(max_length = 150)
-
-    #Location
-    hometown = models.CharField(max_length = 150)
-    country = models.CharField(max_length = 150)
-    country_of_origin = models.CharField(max_length = 150)
-
-    #Religion
-    religion = models.CharField(max_length=150)
-    place_of_worship = models.CharField(max_length = 150)
-
-    #Workplace
-    occupation = models.CharField(max_length=150)
-    company = models.CharField(max_length=150)
-    year_started = models.IntegerField(default = 0)
-
-    #Relationships
-    relationship_status = models.CharField(max_length = 100, default = 'Single')
-
-    #Quick Appearance Settings
-    user_colors_on = models.BooleanField(default=True)
-    wallpaper_on = models.BooleanField(default=True)
-    default_theme_on = models.BooleanField(default=False)
-
-    #System information
-    current_timezone = models.CharField(max_length=150, default="America/NewYork")
-    alerted_notifications = models.BooleanField(default=False)
-    user_events = models.ManyToManyField('UserEvent', related_name='user_events', blank=True)
 
     def __str__(self):
         return self.user.username
@@ -210,6 +175,7 @@ class Custom(models.Model):
 
 class Continuum(models.Model):
     user = models.ForeignKey(User, related_name = "continuum", on_delete=models.DO_NOTHING, blank=True)
+    profile = models.ForeignKey('Profile', related_name='continuum', blank=True, on_delete=models.CASCADE)
     
     title = models.CharField(max_length=100, default="Untitled Continuum")
 
@@ -217,6 +183,58 @@ class Continuum(models.Model):
     created = models.DateTimeField(default=timezone.now)
     updated = models.DateTimeField(default=timezone.now)
     subscribers = models.ManyToManyField(User, related_name = "subscribed_users", blank=True)
+
+class UserProfileInfo(models.Model):
+    profile = models.OneToOneField('Profile', related_name='user_profile_info', blank=True, on_delete=models.CASCADE)
+
+    #Education
+    currently_attending_hs = models.BooleanField(default=False)
+    high_school = models.CharField(max_length = 150)
+    year_graduated_hs = models.IntegerField(default = 0)
+    currently_attending_u = models.BooleanField(default=False)
+    college = models.CharField(max_length = 150, blank=True)
+    year_graduated_u = models.IntegerField(default = 0)
+    field_of_study = models.CharField(max_length = 150)
+
+    #Location
+    hometown = models.CharField(max_length = 150)
+    country = models.CharField(max_length = 150)
+    country_of_origin = models.CharField(max_length = 150)
+
+    #Religion
+    religion = models.CharField(max_length=150)
+    place_of_worship = models.CharField(max_length = 150)
+
+    #Workplace
+    occupation = models.CharField(max_length=150)
+    company = models.CharField(max_length=150)
+    year_started = models.IntegerField(default = 0)
+
+    #Relationships
+    relationship_status = models.CharField(max_length = 100, default = 'Single')
+
+    #Quick Appearance Settings
+    user_colors_on = models.BooleanField(default=True)
+    wallpaper_on = models.BooleanField(default=True)
+    default_theme_on = models.BooleanField(default=False)
+
+    #System information
+    current_timezone = models.CharField(max_length=150, default="America/NewYork")
+    alerted_notifications = models.BooleanField(default=False)
+    user_events = models.ManyToManyField('UserEvent', related_name='user_events', blank=True)
+
+class CommunityProfileInfo(models.Model):
+    profile = models.OneToOneField('Profile', related_name='community_profile_info', blank=True, on_delete=models.CASCADE)
+
+    community_name = models.CharField(max_length=150, default="Untitled Community")
+
+    #Community Types: 1 = Generic, 2 = School, 3 = Business, 4 = Religion, 5 = Organization, 7 = Entertainment Media, 8 = Information Media, 9 = Government, 10 = Other
+    community_type = models.IntegerField(max_length=150, default=1)
+
+    #Privacy Levels: Public, Friends, Invite Only
+    privacy_level = models.IntegerField(max_length=150, default="Public")
+
+
 
 class UserEvent(models.Model):
     user = models.ForeignKey(User, related_name = "user_event", on_delete=models.DO_NOTHING, blank=True)

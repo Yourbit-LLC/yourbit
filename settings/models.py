@@ -50,7 +50,20 @@ class FeedSettings(models.Model):
 
 class NotificationSettings(models.Model):
     settings = models.OneToOneField('MySettings', related_name='notifications', on_delete=models.CASCADE, null=True)
-    email_notifications = models.BooleanField(default=True)
-    push_notifications = models.BooleanField(default=True)
-    email_frequency = models.CharField(max_length = 50, default='d')
-    push_frequency = models.CharField(max_length = 50, default='d')
+
+    #New Post Notifications
+    bits_from_friends = models.BooleanField(default=True)
+    bits_from_followers = models.BooleanField(default=True)
+    bits_from_communities = models.BooleanField(default=True)
+    
+    custom_list =  models.ManyToManyField(Profile, blank=True, related_name='custom_list')
+
+    #Comment Notifications 
+    my_bit_comments = models.BooleanField(default=True)
+    my_comment_replies = models.BooleanField(default=True)
+    bits_commented_on = models.BooleanField(default=True)
+
+    #High Profile Management
+    follow_notifications = models.BooleanField(default=True)
+    batched_notifications = models.BooleanField(default=True)
+    batched_notification_interval = models.IntegerField(default=1)

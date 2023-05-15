@@ -2,7 +2,7 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from YourbitAccounts.models import Account as User
 from settings.models import MySettings, FeedSettings, PrivacySettings, NotificationSettings
-from user_profile.models import Custom, Profile, Bit
+from user_profile.models import Custom, Profile, Bit, UserProfileInfo, CommunityProfileInfo
 from main.models import TaskManager
 from feed.models import InteractionHistory
 from rewards.models import Rewards
@@ -35,6 +35,8 @@ def create_profile(sender, instance, created, **kwargs):
         history.save()
         custom = Custom(profile=user_profile)
         custom.save()
+        profile_info = UserProfileInfo(profile=user_profile)
+        profile_info.save()
         task_manager = TaskManager(user = instance)
         task_manager.save()
         user_profile.save()

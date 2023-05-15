@@ -292,6 +292,22 @@ function yb_handleAddRecipient(){
 
 }
 
+function yb_toggleScope(this_element){
+    let action = this_element.getAttribute("name");
+    let scope_field = document.getElementById("bit-scope-hidden-field");
+
+    if (action === "toggle_private" && scope_field.value != "private"){
+        this_element.classList.add("active");
+        document.getElementById("bit-public").classList.remove("active");
+        scope_field.value = "private";
+    } else if (action === "toggle_public" && scope_field.value != "public"){
+        this_element.classList.add("active");
+        document.getElementById("bit-private").classList.remove("active");
+        scope_field.value = "public";
+    }
+
+}
+
 //Function for dynamically generating form for creating a charbit
 function yb_chatBitForm(form, type_field, option_field, script_source) {
         let sub_function_script = document.getElementById("sub-function-script")
@@ -336,12 +352,30 @@ function yb_chatBitForm(form, type_field, option_field, script_source) {
 
         //Create scope options elements
         let scope_options = yb_createElement("div", "scope-options", "scope-options");
-        
+        let default_public = yb_getSessionValues("default-public");
+        let private_toggle_class;
+        let public_toggle_class;
+
+        //Check default post scope from provided context in session values
+        if (default_public === "true"){
+            private_toggle_class = "half-toggle-right";
+            public_toggle_class = "half-toggle-left active";
+            option_field.value = "public";
+        } else {
+            private_toggle_class = "half-toggle-right active";
+            public_toggle_class = "half-toggle-left";
+            option_field.value = "private";
+        }
         //Define scope options buttons
-        let private_button = yb_createButton("toggle_private", "bit-private", "half-toggle-left");
-        private_button.innerHTML = "Private";
-        let public_button = yb_createButton("toggle_public", "bit-public", "half-toggle-right");
-        public_button.innerHTML = "Public";
+        let private_button = yb_createButton("toggle_private", "bit-private", "half-toggle-left", "Private");
+        private_button.addEventListener("click", function() {
+            yb_toggleScope(this);
+        });
+
+        let public_button = yb_createButton("toggle_public", "bit-public", "half-toggle-right", "Public");
+        public_button.addEventListener("click", function() {
+            yb_toggleScope(this);
+        });
         
         //Append scope options to scope option element
         scope_options.appendChild(private_button);
@@ -444,9 +478,6 @@ function yb_videoBitForm(form, type_field, option_field, script_source) {
     //Show Form
     $('#create-container').fadeIn();
 
-    //On creation of bits show type options (text, photo, video)
-    $('#create-bit-type-mobile').fadeIn();
-
     let create_inputs = yb_createElement("div", "mobile-create-inputs", "create-inputs");
     create_inputs.setAttribute("style", "position: relative; margin-left: auto; margin-right: auto;")
 
@@ -477,12 +508,31 @@ function yb_videoBitForm(form, type_field, option_field, script_source) {
 
     //Create scope options elements
     let scope_options = yb_createElement("div", "scope-options", "scope-options");
+    let default_public = yb_getSessionValues("default-public");
+    let private_toggle_class;
+    let public_toggle_class;
+
     
+    //Check default post scope from provided context in session values
+    if (default_public === "true"){
+        private_toggle_class = "half-toggle-right";
+        public_toggle_class = "half-toggle-left active";
+        option_field.value = "public";
+    } else {
+        private_toggle_class = "half-toggle-right active";
+        public_toggle_class = "half-toggle-left";
+        option_field.value = "private";
+    }
     //Define scope options buttons
-    let private_button = yb_createButton("toggle_private", "bit-private", "half-toggle-left");
-    private_button.innerHTML = "Private";
-    let public_button = yb_createButton("toggle_public", "bit-public", "half-toggle-right");
-    public_button.innerHTML = "Public";
+    let private_button = yb_createButton("toggle_private", "bit-private", "half-toggle-left", "Private");
+    private_button.addEventListener("click", function() {
+        yb_toggleScope(this);
+    });
+
+    let public_button = yb_createButton("toggle_public", "bit-public", "half-toggle-right", "Public");
+    public_button.addEventListener("click", function() {
+        yb_toggleScope(this);
+    });
     
     //Append scope options to scope option element
     scope_options.appendChild(private_button);
@@ -585,12 +635,31 @@ function yb_photoBitForm(form, type_field, option_field, script_source) {
 
     //Create scope options elements
     let scope_options = yb_createElement("div", "scope-options", "scope-options");
-    
+    let default_public = yb_getSessionValues("default-public");
+    let private_toggle_class;
+    let public_toggle_class;
+
+
+    //Check default post scope from provided context in session values
+    if (default_public === "true"){
+        private_toggle_class = "half-toggle-right";
+        public_toggle_class = "half-toggle-left active";
+        option_field.value = "public";
+    } else {
+        private_toggle_class = "half-toggle-right active";
+        public_toggle_class = "half-toggle-left";
+        option_field.value = "private";
+    }
     //Define scope options buttons
-    let private_button = yb_createButton("toggle_private", "bit-private", "half-toggle-left");
-    private_button.innerHTML = "Private";
-    let public_button = yb_createButton("toggle_public", "bit-public", "half-toggle-right");
-    public_button.innerHTML = "Public";
+    let private_button = yb_createButton("toggle_private", "bit-private", "half-toggle-left", "Private");
+    private_button.addEventListener("click", function() {
+        yb_toggleScope(this);
+    });
+
+    let public_button = yb_createButton("toggle_public", "bit-public", "half-toggle-right", "Public");
+    public_button.addEventListener("click", function() {
+        yb_toggleScope(this);
+    });
     
     //Append scope options to scope option element
     scope_options.appendChild(private_button);
@@ -867,11 +936,18 @@ function gatherMobileBit(type, callback) {
     let new_bit = {};
     var is_valid = true; /*Is valid verifies if forms are complete, initial value = true */ 
     console.log("gather_bit_step1")
+
     //Compile information from fields to append to new_bit
     let title_field = document.getElementById('mobile-title');
     let body_field = document.getElementById("mobile-body");
-    new_bit.type = type;
+    let scope = document.getElementById("bit-scope-hidden-field").value;
+    let to_summary = document.getElementById("hidden-to").value;
     
+    //Bit configuration options
+    new_bit.type = type;
+    new_bit.scope = scope;
+    new_bit.to_summary = to_summary;
+
     /*Check bit type in order to properly validate form and transmit data */
     if (type === 'chat') {
 
