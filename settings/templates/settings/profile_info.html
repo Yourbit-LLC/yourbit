@@ -62,7 +62,7 @@
             <br>
             <!--Year Started-->
             <p class="yb-select-label">Start Date</p>
-            <input type="date" class="yb-single-line-input" id="input-job-start-date" style="background-color: rgba(255,255,255,0.5); color: white;" value="{{}}">
+            <input type="date" class="yb-single-line-input" id="input-job-start-date" style="background-color: rgba(255,255,255,0.5); color: white;" value="{{request.user.profile.user_profile_info.year_started}}">
             
             <!--Connect Group-->
             <br>
@@ -85,12 +85,12 @@
             <!--High School-->
                 <!--Name-->
                 <p class="yb-select-label">High School Name</p>
-                <input type='text' id='hs-name' style="background-color: rgba(255,255,255,0.5); color: white;" placeholder="Ex. 'Weeby High'" class='yb-single-line-input'>
+                <input type='text' id='hs-name' style="background-color: rgba(255,255,255,0.5); color: white;" placeholder="Ex. 'Weeby High'" class='yb-single-line-input' value="{{request.user.profile.user_profile_info.high_school}}">
                 <br>
                 <br>
                 <!--Attending Status-->
-                    Did your graduate?
-                    <select type="text" class='yb-single-line-input' name="yb-align-text" id="yb-align-text" style="background-color: rgba(255,255,255,0.5); color: white;" placeholder="Paragraph Align">
+                    Did you graduate?
+                    <select type="text" class='yb-single-line-input' name="yb-align-text" id="yb-align-text" style="background-color: rgba(255,255,255,0.5); color: white;" placeholder="Paragraph Align" value="{{request.user.profile.user_profile_info.graduated_hs}}">
                         <option value="yes">Yes</option>
                         <option value="no">No</option>
                         <option value="ny">Not Yet</option>
@@ -99,7 +99,7 @@
                     <br>
                     <!--Year Graduated-->
                     What Year?
-                    <input type="text" class="yb-single-line-input" placeholder="Ex. '2023'" style="background-color: rgba(255,255,255,0.5); color: white;" name="year_graduated">
+                    <input type="text" class="yb-single-line-input" placeholder="Ex. '2023'" style="background-color: rgba(255,255,255,0.5); color: white;" name="year_graduated" value="{{request.user.profile.user_profile_info.year_graduated_hs}}">
                     <br>
                     <br>
                 <!--Connect Group-->
@@ -112,18 +112,18 @@
             <!--College-->
                 <!--Name-->
                 <p class="yb-select-label">College Name</p>
-                <input type='text' id='college-name' placeholder="Ex. 'Weeby University'" style="background-color: rgba(255,255,255,0.5); color: white;" class='yb-single-line-input'>
+                <input type='text' id='college-name' placeholder="Ex. 'Weeby University'" style="background-color: rgba(255,255,255,0.5); color: white;" class='yb-single-line-input' value="{{request.user.profile.user_profile_info.college}}">
                 <br>
                 <br>
                 <!--Field of Study-->
                 <p class="yb-select-label">Field of Study</p>
-                <input type='text' id='field-of-study' placeholder="Ex. 'Computer Science'" style="background-color: rgba(255,255,255,0.5); color: white;" class='yb-single-line-input'>
+                <input type='text' id='field-of-study' placeholder="Ex. 'Computer Science'" style="background-color: rgba(255,255,255,0.5); color: white;" class='yb-single-line-input' value="{{request.user.profile.user_profile_info.field_of_study}}">
                 <br>
                 <br>
                 <!--Attending Status-->
-                    Did your graduate?
+                    Did you graduate?
 
-                    <select type="text" class='yb-single-line-input' name="yb-align-text" id="yb-align-text" style="background-color: rgba(255,255,255,0.5); color: white;" placeholder="Paragraph Align">
+                    <select type="text" class='yb-single-line-input' name="yb-align-text" id="yb-align-text" style="background-color: rgba(255,255,255,0.5); color: white;" placeholder="Paragraph Align" value="{{request.user.user_profile_info.currently_attanding_u}}">
                         <option value="yes">Yes</option>
                         <option value="no">No</option>
                         <option value="ny">Not Yet</option>
@@ -132,7 +132,7 @@
                     <br>
                     <!--Year Graduated-->
                     What Year?
-                    <input type="text" class="yb-single-line-input" placeholder="Ex. '2023'" name="year_graduated">
+                    <input type="text" class="yb-single-line-input" placeholder="Ex. '2023'" name="year_graduated" value="{{request.user.profile.user_profile_info.year_graduated_u}}">
                 <!--Connect Group-->
                 <p>Check if your school has an existing group. Link to the group to join in
                     on discussions with your peers.</p>
