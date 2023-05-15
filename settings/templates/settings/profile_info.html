@@ -47,17 +47,17 @@
             <br>
             <!--Name-->
             <p class="yb-select-label">Employer Name</p>
-            <input type='text' id='workplace-name' placeholder="Product Sales, Inc." class='yb-single-line-input' style="background-color: rgba(255,255,255,0.5); color: white;">
+            <input type='text' id='workplace-name' placeholder="Product Sales, Inc." class='yb-single-line-input' style="background-color: rgba(255,255,255,0.5); color: white;" value="{{request.user.profile.user_profile_info.company}}">
             <br>
             <br>
             <!--Industry-->
             <p class="yb-select-label">Industry</p>
-            <input type='text' id='industry-name' placeholder="Retail" class='yb-single-line-input' style="background-color: rgba(255,255,255,0.5); color: white;">
+            <input type='text' id='industry-name' placeholder="Retail" class='yb-single-line-input' style="background-color: rgba(255,255,255,0.5); color: white;" value="{{request.user.profile.user_profile_info.industry}}">
             <br>
             <br>
             <!--Role-->
             <p class="yb-select-label">Role</p>
-            <input type='text' id='workplace-role' placeholder="Shift Manager" class='yb-single-line-input' style="background-color: rgba(255,255,255,0.5); color: white;">
+            <input type='text' id='workplace-role' placeholder="Shift Manager" class='yb-single-line-input' style="background-color: rgba(255,255,255,0.5); color: white;" value="{{request.user.profile.user_profile_info.occupation}}">
             <br>
             <br>
             <!--Year Started-->

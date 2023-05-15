@@ -109,7 +109,12 @@ class Bit(models.Model):
     extend_widget = models.CharField(max_length = 1000, blank=True)
     video_widget = models.CharField(max_length = 1000, blank=True)
     custom = models.ForeignKey('Custom', on_delete=models.CASCADE, default=None)
-    
+
+    #System information
+    current_timezone = models.CharField(max_length=150, default="America/NewYork")
+    alerted_notifications = models.BooleanField(default=False)
+    user_events = models.ManyToManyField('UserEvent', related_name='user_events', blank=True)
+
     def __str__(self):
         return (
             f"{self.user}"
@@ -206,6 +211,7 @@ class UserProfileInfo(models.Model):
     place_of_worship = models.CharField(max_length = 150)
 
     #Workplace
+    industry = models.CharField(max_length=150)
     occupation = models.CharField(max_length=150)
     company = models.CharField(max_length=150)
     year_started = models.IntegerField(default = 0)
@@ -213,15 +219,6 @@ class UserProfileInfo(models.Model):
     #Relationships
     relationship_status = models.CharField(max_length = 100, default = 'Single')
 
-    #Quick Appearance Settings
-    user_colors_on = models.BooleanField(default=True)
-    wallpaper_on = models.BooleanField(default=True)
-    default_theme_on = models.BooleanField(default=False)
-
-    #System information
-    current_timezone = models.CharField(max_length=150, default="America/NewYork")
-    alerted_notifications = models.BooleanField(default=False)
-    user_events = models.ManyToManyField('UserEvent', related_name='user_events', blank=True)
 
 class CommunityProfileInfo(models.Model):
     profile = models.OneToOneField('Profile', related_name='community_profile_info', blank=True, on_delete=models.CASCADE)
