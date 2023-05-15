@@ -191,4 +191,8 @@
         background-color: rgb(125, 125, 125);
     
     }
+
+    #next-button {
+        margin-top: 10px;
+    }
 }
