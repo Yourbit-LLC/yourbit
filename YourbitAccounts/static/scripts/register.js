@@ -73,7 +73,7 @@ function birthdayStage() {
     dob_field_container.appendChild(line_break);
     
 
-    let next_button = yb_createElement('button', 'next-button', 'yb-form-next');
+    let next_button = yb_createButton('id_dob', 'next-button', 'yb-form-next', 'Next');
     next_button.innerHTML = 'Next';
     next_button.onclick = function () {
         yb_ValidateField();
@@ -101,7 +101,7 @@ function emailStage() {
     email_field_container.appendChild(email_label);
     email_field_container.appendChild(email_field);
 
-    let next_button = yb_createElement('button', 'next-button', 'yb-form-next', 'Next');
+    let next_button = yb_createButton('id_email', 'next-button', 'yb-form-next', 'Next');
     
     next_button.onclick = function () {
         yb_ValidateField();
@@ -125,7 +125,7 @@ function phoneStage() {
     phone_field_container.appendChild(phone_label);
     phone_field_container.appendChild(phone_field);
 
-    let next_button = yb_createElement('button', 'next-button', 'yb-form-next', "Next");
+    let next_button = yb_createButton('id_phone_number', 'next-button', 'yb-form-next', "Next");
     
     next_button.onclick = function () {
         yb_ValidateField();
@@ -149,7 +149,7 @@ function fnameStage() {
     fname_field_container.appendChild(fname_label);
     fname_field_container.appendChild(fname_field);
 
-    let next_button = yb_createElement('button', 'next-button', 'yb-form-next', 'Next');
+    let next_button = yb_createButton('id_first_name', 'next-button', 'yb-form-next', 'Next');
     
     next_button.onclick = function () {
         yb_ValidateField();
@@ -169,7 +169,7 @@ function lnameStage() {
     lname_field_container.appendChild(lname_label);
     lname_field_container.appendChild(lname_field);
 
-    let next_button = yb_createElement('button', 'next-button', 'yb-form-next', 'Next');
+    let next_button = yb_createButton('id_last_name', 'next-button', 'yb-form-next', 'Next');
     
     next_button.onclick = function () {
         yb_ValidateField();
@@ -193,7 +193,7 @@ function unameStage(){
     uname_field_container.appendChild(uname_label);
     uname_field_container.appendChild(uname_field);
 
-    let next_button = yb_createElement('button', 'next-button', 'yb-form-next', 'Next');
+    let next_button = yb_createButton('id_username', 'next-button', 'yb-form-next', 'Next');
     
     next_button.onclick = function () {
         yb_ValidateField();
