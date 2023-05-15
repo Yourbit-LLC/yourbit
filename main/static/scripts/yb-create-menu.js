@@ -828,7 +828,7 @@ function yb_showMessageForm(user=null){
 function yb_showClusterForm(){
     let sub_function_script = document.getElementById("sub-function-script")
     let form = document.getElementById("create-container");
-
+    let option_field = document.getElementById("create-option-hidden-field");
     form.innerHTML = ``;
 
     //Hide options container
