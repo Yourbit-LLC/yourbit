@@ -1,18 +1,19 @@
-
+{% load static %}
 <h1 style="text-align: center; color:gray;">My Stuff</h1>
+<input type="hidden" id="page-data" data-set="cluster">
 
 <div id='yb-browse-nav' style='display:grid; grid-template-columns: auto auto auto auto auto;' data-dataset="all" data-cluster = "none">
-    <button type="text" class='filter-button-wide-active' name="#profile-images" id="yb-filter-dropdown" style='color: white;' value="all">
+    <button type="text" class='filter-button-wide-active' name="cluster" id="yb-button-cluster">
         Clusters
     </button>
-    <button type="text" class='filter-button' name="#ui-colors" id="yb-sort-dropdown"  value="chrono">
+    <button type="text" class='filter-button' name="continuum" id="yb-button-continuum">
         Continuums
     </button>
-    <button class='filter-button' name = '#bits'>
+    <button class='filter-button' name = 'for_later' id="yb-button-continuum">
         For Later
     </button>
-    <button class='filter-button' name='#fonts'>
-        Comments
+    <button class='filter-button' name='saved_bits' id="yb-button-saved">
+        Saved
     </button>
 
 </div>
@@ -23,40 +24,8 @@
         <h3>Oops! <br> Looks like you haven't created any clusters...</h3>
         <p>Click the button below to create one, then add bits that you want to keep to the cluster.</p>
         <br>
-        <button type="button" class="yb-form-button"><b>+ </b>Create a Cluster</button>
+        <button type="button" id="button-create-cluster" class="yb-form-button"><b>+ </b>Create a Cluster</button>
     </div>
 </div>
+<script id = "page-script" type="text/javascript" src="{% static 'scripts/yb-stuff.js' %}"></script>
 
-<script>
-    $(document).ready(function() {
-        yb_showMiniBar(); 
-        yb_showMenuTask();   
-        let dataset = $("#yb-browse-nav").attr("data-dataset"); 
-        let cluster = $("#yb-browse-nav").attr("data-cluster");
-        console.log("cluster:" + cluster);
-        let is_cluster;
-        let filter = yb_getSessionValues("filter");
-        let sort = yb_getSessionValues("sort");
-        let type = yb_getSessionValues("space");
-    
-
-        if (cluster === "none") {
-            is_cluster = false;
-        } else {
-            is_cluster = true;
-        }
-
-        let data = {
-            "type": type,
-            "dataset":dataset,
-            "is_cluster": is_cluster,
-            "filter": filter,
-            "sort": sort,
-
-        }
-
-        yb_getFeed(data, hideSplash, true);
-
-
-    });
-</script>

@@ -825,6 +825,54 @@ function yb_showMessageForm(user=null){
 
 }
 
+function yb_showClusterForm(){
+    let sub_function_script = document.getElementById("sub-function-script")
+    let form = document.getElementById("create-container");
+
+    form.innerHTML = ``;
+
+    //Hide options container
+    $('#create-options').fadeOut();
+    //Show create container
+    $('#create-container').fadeIn();
+
+    let form_header = yb_createElement("div", "create-bit-header", "header-create-form");
+        
+    let go_back = yb_createElement("div", "back-create", "back-create");
+    go_back.innerHTML = `
+        <svg id="back-create" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M10 22 0 12 10 2l1.775 1.775L3.55 12l8.225 8.225Z"/></svg>
+    `
+    form_header.appendChild(go_back);
+
+    go_back.addEventListener("click", function() {
+        yb_resetCreate();
+    });    
+
+    let header_text = yb_createElement("div", "create-bit-header-text", "create-bit-header-text");
+    header_text.innerHTML = "Create Cluster";
+    form_header.appendChild(header_text);
+
+    form.appendChild(form_header);
+
+    let create_inputs = yb_createElement("div", "mobile-create-inputs", "create-inputs");
+    form.appendChild(create_inputs);
+
+    let description = yb_createElement("p", "mobile-cluster-description", "yb-card-intro");
+    description.innerHTML = "A Cluster is a folder containing your saved Bits.<br><br> You can access the clusters you have created by navigating to your inventory from the profile menu."
+    let name_field = yb_createInput("text", "yb-single-line-input", "mobile-cluster-name",  "Cluster Name");
+
+
+    option_field.value = 'cluster';
+    
+    //change form fields to correspond with creation
+    create_inputs.appendChild(description);
+    create_inputs.appendChild(name_field);
+
+    let submission_bar = yb_buildSubmissionBar("cluster-form");
+    form.appendChild(submission_bar);
+
+}
+
 
 
 /*
@@ -922,6 +970,14 @@ function yb_handleCreateSubmit(this_element){
                 }
             }
         })
+    } else if (action === "create_cluster") {
+        let name_field = document.getElementById('mobile-cluster-name');
+        let name = name_field.value;
+        name_field.value = "";
+        
+        console.log(name);
+        yb_createCluster(name);
+
     }
 
 }
@@ -1173,37 +1229,7 @@ $(document).ready(function() {
     let cluster_button = document.getElementById("button-cluster");
     //Add event listener to cluster button
     cluster_button.addEventListener('click', function() {
-        $('#create-bit-header-text').html('Create a Cluster');
-        //Hide options container
-        $('#create-options').fadeOut();
-        //Show create container
-        $('#create-container').fadeIn();
-
-        $("#mobile-publish-bit").html("Create");
-
-        let description = yb_createElement("p", "mobile-cluster-description", "yb-card-intro");
-        description.innerHTML = "A Cluster is a folder containing your saved Bits.<br><br> You can access the clusters you have created by navigating to your inventory from the profile menu."
-        let name_field = yb_createInput("text", "yb-single-line-input", "mobile-cluster-name",  "Cluster Name");
-
-
-        option_field.value = 'cluster';
-        
-        //change form fields to correspond with creation
-        form.innerHTML = ``;
-        form.appendChild(description);
-        form.appendChild(name_field);
-
-        document.getElementById('mobile-publish-bit').addEventListener("click", function(){
-            let name_field = document.getElementById('mobile-cluster-name');
-            let name = name_field.value;
-            name_field.value = "";
-            
-            console.log(name);
-            yb_createCluster(name);
-            
-        });
-
-        script_source.src = "/static/scripts/yb-create-community.js"
+        yb_showClusterForm();
     })
 
     //Get community button from document
