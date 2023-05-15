@@ -855,7 +855,7 @@ function yb_showClusterForm(){
     form.appendChild(form_header);
 
     let create_inputs = yb_createElement("div", "mobile-create-inputs", "create-inputs");
-    form.appendChild(create_inputs);
+    
 
     let description = yb_createElement("p", "mobile-cluster-description", "yb-card-intro");
     description.innerHTML = "A Cluster is a folder containing your saved Bits.<br><br> You can access the clusters you have created by navigating to your inventory from the profile menu."
@@ -867,6 +867,7 @@ function yb_showClusterForm(){
     //change form fields to correspond with creation
     create_inputs.appendChild(description);
     create_inputs.appendChild(name_field);
+    form.appendChild(create_inputs);
 
     let submission_bar = yb_buildSubmissionBar("cluster-form");
     form.appendChild(submission_bar);
