@@ -96,7 +96,7 @@ function emailStage() {
     FORM.innerHTML = '';
     let email_field_container = yb_createElement('div', 'email-field-container', 'paginated-form-field-container');
     let email_label = yb_createElement('p', 'email-label', 'paginated-form-label');
-    let email_field = yb_createInput('email', 'field', 'email-field');
+    let email_field = yb_createInput('email', 'field', 'email-field', "ex. 'myemail@yourbit.me'");
     email_label.innerHTML = 'Email';
     email_field_container.appendChild(email_label);
     email_field_container.appendChild(email_field);
@@ -120,7 +120,7 @@ function phoneStage() {
     FORM.innerHTML = '';
     let phone_field_container = yb_createElement('div', 'phone-field-container', 'paginated-form-field-container');
     let phone_label = yb_createElement('p', 'phone-label', 'paginated-form-label');
-    let phone_field = yb_createInput('tel', 'field', 'phone-field');
+    let phone_field = yb_createInput('tel', 'field', 'phone-field', "ex. '+1123-456-7890'");
     phone_label.innerHTML = 'Phone';
     phone_field_container.appendChild(phone_label);
     phone_field_container.appendChild(phone_field);
@@ -144,7 +144,7 @@ function fnameStage() {
     FORM.innerHTML = '';
     let fname_field_container = yb_createElement('div', 'fname-field-container', 'paginated-form-field-container');
     let fname_label = yb_createElement('p', 'fname-label', 'paginated-form-label');
-    let fname_field = yb_createInput('text', 'field', 'fname-field');
+    let fname_field = yb_createInput('text', 'field', 'fname-field', "ex. 'John'");
     fname_label.innerHTML = 'First Name';
     fname_field_container.appendChild(fname_label);
     fname_field_container.appendChild(fname_field);
@@ -163,7 +163,7 @@ function fnameStage() {
 function lnameStage() {
     FORM.innerHTML = '';
     let lname_field_container = yb_createElement('div', 'lname-field-container', 'paginated-form-field-container');
-    let lname_label = yb_createElement('p', 'lname-label', 'paginated-form-label');
+    let lname_label = yb_createElement('p', 'lname-label', 'paginated-form-label', "ex. 'Doe'");
     let lname_field = yb_createInput('text', 'field', 'lname-field');
     lname_label.innerHTML = 'Last Name';
     lname_field_container.appendChild(lname_label);
@@ -188,7 +188,7 @@ function unameStage(){
     FORM.innerHTML = '';
     let uname_field_container = yb_createElement('div', 'uname-field-container', 'paginated-form-field-container');
     let uname_label = yb_createElement('p', 'uname-label', 'paginated-form-label');
-    let uname_field = yb_createInput('text', 'field', 'uname-field');
+    let uname_field = yb_createInput('text', 'field', 'uname-field', "ex. 'johndoe'");
     uname_label.innerHTML = 'Username';
     uname_field_container.appendChild(uname_label);
     uname_field_container.appendChild(uname_field);
@@ -212,7 +212,7 @@ function passwordStage1(){
     FORM.innerHTML = '';
     let password_field_container = yb_createElement('div', 'password-field-container', 'paginated-form-field-container');
     let password_label = yb_createElement('p', 'password-label', 'paginated-form-label');
-    let password_field = yb_createInput('password', 'field', 'password1-field');
+    let password_field = yb_createInput('password', 'field', 'password1-field', "ex. 'password123'");
     password_label.innerHTML = 'Password';
     password_field_container.appendChild(password_label);
     password_field_container.appendChild(password_field);
@@ -234,7 +234,7 @@ function passwordStage1(){
 function passwordStage2(){
     let password_field_container = yb_createElement('div', 'password-field-container', 'paginated-form-field-container');
     let password_label = yb_createElement('p', 'password-label', 'paginated-form-label');
-    let password_field = yb_createInput('password', 'field', 'password2-field');
+    let password_field = yb_createInput('password', 'field', 'password2-field', "ex. 'password123'");
     password_label.innerHTML = 'Confirm Password';
     password_field_container.appendChild(password_label);
     password_field_container.appendChild(password_field);
