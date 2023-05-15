@@ -174,8 +174,8 @@ class Custom(models.Model):
 
 
 class Continuum(models.Model):
-    user = models.ForeignKey(User, related_name = "continuum", on_delete=models.DO_NOTHING, blank=True)
-    profile = models.ForeignKey('Profile', related_name='continuum', blank=True, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, related_name = "continuum", on_delete=models.DO_NOTHING, blank=True)
+    profile = models.OneToOneField('Profile', related_name='continuum', blank=True, on_delete=models.CASCADE)
     
     title = models.CharField(max_length=100, default="Untitled Continuum")
 
