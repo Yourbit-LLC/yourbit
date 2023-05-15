@@ -121,7 +121,7 @@ function phoneStage() {
     phone_field_container.appendChild(phone_label);
     phone_field_container.appendChild(phone_field);
 
-    let next_button = yb_createElement('button', 'next-button', 'paginated-form-button');
+    let next_button = yb_createElement('button', 'next-button', 'yb-form-next');
     next_button.innerHTML = 'Next';
     next_button.onclick = function () {
         yb_ValidateField();
@@ -141,7 +141,7 @@ function fnameStage() {
     fname_field_container.appendChild(fname_label);
     fname_field_container.appendChild(fname_field);
 
-    let next_button = yb_createElement('button', 'next-button', 'paginated-form-button');
+    let next_button = yb_createElement('button', 'next-button', 'yb-form-next');
     next_button.innerHTML = 'Next';
     next_button.onclick = function () {
         yb_ValidateField();
@@ -161,7 +161,7 @@ function lnameStage() {
     lname_field_container.appendChild(lname_label);
     lname_field_container.appendChild(lname_field);
 
-    let next_button = yb_createElement('button', 'next-button', 'paginated-form-button');
+    let next_button = yb_createElement('button', 'next-button', 'yb-form-next');
     next_button.innerHTML = 'Next';
     next_button.onclick = function () {
         yb_ValidateField();
@@ -181,7 +181,7 @@ function unameStage(){
     uname_field_container.appendChild(uname_label);
     uname_field_container.appendChild(uname_field);
 
-    let next_button = yb_createElement('button', 'next-button', 'paginated-form-button');
+    let next_button = yb_createElement('button', 'next-button', 'yb-form-next');
     next_button.innerHTML = 'Next';
     next_button.onclick = function () {
         yb_ValidateField();
@@ -201,7 +201,7 @@ function passwordStage1(){
     password_field_container.appendChild(password_label);
     password_field_container.appendChild(password_field);
 
-    let next_button = yb_createElement('button', 'next-button', 'paginated-form-button');
+    let next_button = yb_createElement('button', 'next-button', 'yb-form-next');
     next_button.innerHTML = 'Next';
     next_button.onclick = function () {
         yb_ValidateField();
@@ -220,7 +220,7 @@ function passwordStage2(){
     password_field_container.appendChild(password_label);
     password_field_container.appendChild(password_field);
 
-    let next_button = yb_createElement('button', 'next-button', 'paginated-form-button');
+    let next_button = yb_createElement('button', 'next-button', 'yb-form-next');
     next_button.innerHTML = 'Next';
     next_button.onclick = function () {
         let next_stage = termsStage();
