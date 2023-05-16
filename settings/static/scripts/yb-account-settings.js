@@ -30,6 +30,16 @@ $(document).ready(function(){
     });
 
     //Handle input change
+    const FIRST_NAME_FIELD = document.getElementById("field-first-name");
+    var fname_keyup_ran = false;
+    FIRST_NAME_FIELD.addEventListener("change keyup", function(){
+        if (fname_keyup_ran) {
+            return;
+        } else {
+            yb_handleInputChange("first-name");
+            fname_keyup_ran = true;
+        }
+    });
 
     const LAST_NAME_FIELD = document.getElementById("field-last-name");
     var lname_keyup_ran = false;
@@ -82,15 +92,4 @@ $(document).ready(function(){
     );
 
 
-});
-
-var fname_keyup_ran = false;
-$('#field-first-name').on('change keyup', function(e){
-    console.log("keyup");
-    if (fname_keyup_ran) {
-        return;
-    } else {
-        yb_handleInputChange("first-name");
-        fname_keyup_ran = true;
-    }
 });
