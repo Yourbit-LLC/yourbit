@@ -64,7 +64,8 @@ function yb_handleInputChange(field_label) {
     field_container.appendChild(save_button);
     save_button.addEventListener("click", function() {
         let field_label = this.getAttribute("name");
-        yb_saveField(field_label);
+        let value = document.getElementById(`field-${field_label}`).value;
+        yb_saveField(field_label, value);
     }
     );
 }
