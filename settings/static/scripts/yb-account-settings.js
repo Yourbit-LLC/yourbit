@@ -10,10 +10,10 @@ function yb_saveField(field_label, value){
         headers: {
             'X-CSRFToken': csrfToken
         },
-        data: JSON.stringify({
+        data: {
             "field": field_label,
             "value": value
-        }),
+        },
         success: function(data) {
             let response = data;
             if (response["success"] === true) {
