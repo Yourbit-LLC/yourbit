@@ -26,6 +26,30 @@ $(document).ready(function() {
 });
 
 
+function yb_createFormHeader(header_label){
+    
+
+    //Create header element
+    let form_header = yb_createElement("div", "create-bit-header", "header-create-form");
+
+    //Create back button
+    let go_back = yb_createElement("div", "back-create", "back-create");
+    go_back.innerHTML = `
+        <svg id="back-create" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M10 22 0 12 10 2l1.775 1.775L3.55 12l8.225 8.225Z"/></svg>
+    `
+    form_header.appendChild(go_back);
+    go_back.addEventListener("click", function() {
+        yb_resetCreate();
+    });
+
+    //Create header text
+    let header_text = yb_createElement("div", "create-bit-header-text", "create-bit-header-text");
+    header_text.innerHTML = header_label;
+    form_header.appendChild(header_text);
+
+    return form_header;
+}
+
 //Function for fetchning contacts from yourbits user database
 function yb_fetchContacts(callback, query) {
     let cookie = document.cookie;
@@ -140,6 +164,45 @@ function yb_displayContacts(response) {
 
 }
 
+function yb_createFormHeader(form){
+    //Initialize Label
+    let header_label;
+
+    //Get form type and set label
+    if (form === "chatbit") {
+        header_label = "Create Chat Bit";
+    } else if (form === "videobit") {
+        header_label = "Create Video Bit";
+    } else if (form === "photobit") {
+        header_label = "Create Photo Bit";
+    } else if(form === "cluster") {
+        header_label = "Create Cluster";
+    } else if (form === "message") {
+        header_label = "Create Message";
+    } else if (form === "community") {
+        header_label = "Create Community";
+    }
+
+    //Create header element
+    let form_header = yb_createElement("div", "create-bit-header", "header-create-form");
+
+    //Create back button
+    let go_back = yb_createElement("div", "back-create", "back-create");
+    go_back.innerHTML = `
+        <svg id="back-create" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M10 22 0 12 10 2l1.775 1.775L3.55 12l8.225 8.225Z"/></svg>
+    `
+    form_header.appendChild(go_back);
+    go_back.addEventListener("click", function() {
+        yb_resetCreate();
+    });
+
+    //Create header text
+    let header_text = yb_createElement("div", "create-bit-header-text", "create-bit-header-text");
+    header_text.innerHTML = header_label;
+    form_header.appendChild(header_text);
+
+    return form_header;
+}
 
 
 //Fuction for clearing the form from the create menu and going back to create options
@@ -329,21 +392,7 @@ function yb_chatBitForm(form, type_field, option_field, script_source) {
         //Show Form
         $('#create-container').fadeIn();
 
-        let form_header = yb_createElement("div", "create-bit-header", "header-create-form");
-        
-        let go_back = yb_createElement("div", "back-create", "back-create");
-        go_back.innerHTML = `
-            <svg id="back-create" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M10 22 0 12 10 2l1.775 1.775L3.55 12l8.225 8.225Z"/></svg>
-        `
-        form_header.appendChild(go_back);
-
-        go_back.addEventListener("click", function() {
-            yb_resetCreate();
-        });    
-
-        let header_text = yb_createElement("div", "create-bit-header-text", "create-bit-header-text");
-        header_text.innerHTML = "Create Chat Bit";
-        form_header.appendChild(header_text);
+        let form_header = yb_createFormHeader("Create Chat Bit");
 
         form.appendChild(form_header);
 
@@ -495,21 +544,7 @@ function yb_videoBitForm(form, type_field, option_field, script_source) {
     type_field.value = 'video';
     option_field.value='bit';
 
-    let form_header = yb_createElement("div", "create-bit-header", "header-create-form");
-    let go_back = yb_createElement("div", "back-create", "back-create");
-    go_back.innerHTML = `
-        <svg id="back-create" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M10 22 0 12 10 2l1.775 1.775L3.55 12l8.225 8.225Z"/></svg>
-    `
-    form_header.appendChild(go_back);
-
-    go_back.addEventListener("click", function() {
-        yb_resetCreate();
-    });
-
-
-    let header_text = yb_createElement("div", "create-bit-header-text", "create-bit-header-text");
-    header_text.innerHTML = "Create Video Bit";
-    form_header.appendChild(header_text);
+    let form_header = yb_createFormHeader("Create VideoBit");
 
     form.appendChild(form_header);
 
@@ -624,19 +659,7 @@ function yb_photoBitForm(form, type_field, option_field, script_source) {
     type_field.value = 'photo';
     option_field.value='bit';
 
-    let form_header = yb_createElement("div", "create-bit-header", "header-create-form");
-    let go_back = yb_createElement("div", "back-create", "back-create");
-    go_back.innerHTML = `
-        <svg id="back-create" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M10 22 0 12 10 2l1.775 1.775L3.55 12l8.225 8.225Z"/></svg>
-    `
-    form_header.appendChild(go_back);
-    go_back.addEventListener("click", function() {
-        yb_resetCreate();
-    });
-
-    let header_text = yb_createElement("div", "create-bit-header-text", "create-bit-header-text");
-    header_text.innerHTML = "Create Photo Bit";
-    form_header.appendChild(header_text);
+    let form_header = yb_createFormHeader("Create PhotoBit")
 
     form.appendChild(form_header);
 
@@ -741,21 +764,7 @@ function yb_showMessageForm(user=null){
     $('#create-options').fadeOut();
     $('#create-container').fadeIn();
 
-    let form_header = yb_createElement("div", "create-bit-header", "header-create-form");
-        
-    let go_back = yb_createElement("div", "back-create", "back-create");
-    go_back.innerHTML = `
-        <svg id="back-create" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M10 22 0 12 10 2l1.775 1.775L3.55 12l8.225 8.225Z"/></svg>
-    `
-    form_header.appendChild(go_back);
-
-    go_back.addEventListener("click", function() {
-        yb_resetCreate();
-    });    
-
-    let header_text = yb_createElement("h4", "create-bit-header-text", "create-bit-header-text");
-    header_text.innerHTML = "Create New Message";
-    form_header.appendChild(header_text);
+    let form_header = yb_createFormHeader("Create Message");
 
     form.appendChild(form_header);
 
@@ -843,22 +852,7 @@ function yb_showClusterForm(){
     //Show create container
     $('#create-container').fadeIn();
 
-    let form_header = yb_createElement("div", "create-bit-header", "header-create-form");
-        
-    let go_back = yb_createElement("div", "back-create", "back-create");
-    go_back.innerHTML = `
-        <svg id="back-create" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M10 22 0 12 10 2l1.775 1.775L3.55 12l8.225 8.225Z"/></svg>
-    `
-    form_header.appendChild(go_back);
-
-    go_back.addEventListener("click", function() {
-        yb_resetCreate();
-    });    
-
-    let header_text = yb_createElement("div", "create-bit-header-text", "create-bit-header-text");
-    header_text.innerHTML = "Create Community";
-    form_header.appendChild(header_text);
-
+    let form_header = yb_createFormHeader("Create a Cluster");
     form.appendChild(form_header);
 
     let create_inputs = yb_createElement("div", "mobile-create-inputs", "create-inputs");
@@ -891,23 +885,9 @@ function yb_showCommunityForm(){
     //Show create container
     $('#create-container').fadeIn();
 
+    form.innerHTML = ``;
     
-    let form_header = yb_createElement("div", "create-bit-header", "header-create-form");
-        
-    let go_back = yb_createElement("div", "back-create", "back-create");
-    go_back.innerHTML = `
-        <svg id="back-create" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M10 22 0 12 10 2l1.775 1.775L3.55 12l8.225 8.225Z"/></svg>
-    `
-    form_header.appendChild(go_back);
-
-    go_back.addEventListener("click", function() {
-        yb_resetCreate();
-    });    
-
-    let header_text = yb_createElement("div", "create-bit-header-text", "create-bit-header-text");
-    header_text.innerHTML = `Create A Community`;
-    form_header.appendChild(header_text);
-
+    let form_header = yb_createFormHeader("Create a Community");
     form.appendChild(form_header);
 
     let create_inputs = yb_createElement("div", "mobile-create-inputs", "create-inputs");
@@ -921,7 +901,6 @@ function yb_showCommunityForm(){
     option_field.value = 'community';
     
     //change form fields to correspond with creation
-    form.innerHTML = ``;
 
     create_inputs.appendChild(name_field);
     create_inputs.appendChild(handle_field);
