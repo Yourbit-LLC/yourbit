@@ -4,7 +4,7 @@ function yb_handleInputChange(field_label) {
     field_container.classList.add("changed");
     field_input.classList.add("changed");
 
-    let save_button = yb_createButton(field_label, "button-save", "button-save", "yb-form-button", "Save");
+    let save_button = yb_createButton(field_label, "button-save", "yb-form-button", "Save");
     field_container.appendChild(save_button);
 }
 
