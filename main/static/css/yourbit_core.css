@@ -2776,6 +2776,25 @@ only be used for object transforms (shaping and scaling)
         font-size: 12px;
     }
 
+    .yb-field-container{
+        display: block;
+        position: relative;
+        height: auto;
+        width: 100%;
+    }
+
+    .yb-field-container.changed {
+        display: grid;
+        grid-template-columns: 4fr 1fr;
+        column-gap: 5px;
+
+    }
+
+    .yb-single-line-input.changed {
+        grid-column: 1;
+        
+    }
+
     
     /*Linear Content Container*/
 
