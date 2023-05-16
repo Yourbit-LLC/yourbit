@@ -2787,7 +2787,7 @@ only be used for object transforms (shaping and scaling)
 
     .yb-field-container.changed {
         display: grid;
-        grid-template-columns: 4fr 1fr;
+        grid-template-columns: 4fr 1fr 1fr;
         column-gap: 5px;
         text-align: center;
 
