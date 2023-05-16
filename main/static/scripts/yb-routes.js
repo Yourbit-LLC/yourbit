@@ -64,9 +64,12 @@ function yb_purgeScripts(){
 
 //home
 function home_url(data){
-    
-    //Remove Scripts
-    yb_purgeScripts();
+    let first_load = yb_getLoaded();
+
+    if (!first_load) {
+        //Remove Scripts
+        yb_purgeScripts();
+    }
     
     //Clear Screen
     $("#content-container").html("");
