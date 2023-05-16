@@ -150,6 +150,11 @@ function yb_resetCreate(){
     $("#create-options").fadeIn();
 }
 
+function yb_cleanForms(){
+    $("#sub-function-script").attr("src", "");
+    $("#create-button-container").remove();
+}
+
 //Generates the type selector element based on the create option selected
 function yb_buildTypeSelector(type) {
     let bit_type_select = yb_createElement("div", "create-bit-type-mobile", "create-bit-type");
@@ -874,6 +879,59 @@ function yb_showClusterForm(){
 
 }
 
+function yb_showCommunityForm(){
+    let sub_function_script = document.getElementById("sub-function-script")
+    let form = document.getElementById("create-container");
+    let option_field = document.getElementById("create-option-hidden-field");
+   
+    //Hide options container
+    $('#create-options').fadeOut();
+    //Show create container
+    $('#create-container').fadeIn();
+
+    
+    let form_header = yb_createElement("div", "create-bit-header", "header-create-form");
+        
+    let go_back = yb_createElement("div", "back-create", "back-create");
+    go_back.innerHTML = `
+        <svg id="back-create" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M10 22 0 12 10 2l1.775 1.775L3.55 12l8.225 8.225Z"/></svg>
+    `
+    form_header.appendChild(go_back);
+
+    go_back.addEventListener("click", function() {
+        yb_resetCreate();
+    });    
+
+    let header_text = yb_createElement("div", "create-bit-header-text", "create-bit-header-text");
+    header_text.innerHTML = `Create A Community`;
+    form_header.appendChild(header_text);
+
+    form.appendChild(form_header);
+
+    let create_inputs = yb_createElement("div", "mobile-create-inputs", "create-inputs");
+    create_inputs.setAttribute("style", "position: relative; margin-left: auto; margin-right: auto;");
+    form.appendChild(create_inputs);
+
+    let name_field = yb_createInput("text", "yb-single-line-input", "mobile-community-name",  "Name");
+    let handle_field = yb_createInput("text", "yb-single-line-input", "mobile-community-handle",  "Handle");
+
+
+    option_field.value = 'community';
+    
+    //change form fields to correspond with creation
+    form.innerHTML = ``;
+
+    create_inputs.appendChild(name_field);
+    create_inputs.appendChild(handle_field);
+
+    form.appendChild(create_inputs);
+    
+    let submission_bar = yb_buildSubmissionBar("community-form");
+    form.appendChild(submission_bar);
+
+    
+}
+
 
 
 /*
@@ -912,16 +970,19 @@ function changeBitForm(button_name) {
     
     if (button_name === 'chat') {
         type_field.value = 'chat';
+        yb_cleanForms();
         yb_chatBitForm(form, type_field, option_field, script_source);
     }
     
     if (button_name === 'video') {
         type_field.value = 'video';
+        yb_cleanForms();
         yb_videoBitForm(form, type_field, option_field, script_source);
     }
 
     if (button_name === 'photo') {
         type_field.value = 'photo';
+        yb_cleanForms();
         yb_photoBitForm(form, type_field, option_field, script_source);
     }
 };
@@ -1237,27 +1298,7 @@ $(document).ready(function() {
     let community_button = document.getElementById("button-community");
     //Add event listener to commnity button
     community_button.addEventListener('click', function() {
-        $('#create-bit-header-text').html('Create a Community');
-        //Hide options container
-        $('#create-options').fadeOut();
-        //Show create container
-        $('#create-container').fadeIn();
-
-        $("#mobile-publish-bit").html("Create");
-
-        let name_field = yb_createInput("text", "yb-single-line-input", "mobile-community-name",  "Name");
-        let handle_field = yb_createInput("text", "yb-single-line-input", "mobile-community-handle",  "Handle");
-
-
-        option_field.value = 'community';
-        
-        //change form fields to correspond with creation
-        form.innerHTML = ``;
-
-        form.appendChild(name_field);
-        form.appendChild(handle_field);
-
-        script_source.src = "/static/scripts/yb-create-community.js/"
+        yb_showCommunityForm();
     
     });
 
