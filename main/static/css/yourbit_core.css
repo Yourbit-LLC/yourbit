@@ -2022,6 +2022,7 @@ only be used for object transforms (shaping and scaling)
         height: 30px;
         margin-top: 10px;
         color:white;
+        transition: 0.5s;
     }
 
     .yb-form-button {
@@ -2787,11 +2788,15 @@ only be used for object transforms (shaping and scaling)
         display: grid;
         grid-template-columns: 4fr 1fr;
         column-gap: 5px;
+        text-align: center;
 
     }
 
     .yb-single-line-input.changed {
+        position: relative;
         grid-column: 1;
+        margin-left: auto;
+        margin-right: auto;
         
     }
 
