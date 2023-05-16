@@ -30,9 +30,9 @@ $(document).ready(function(){
     });
 
     //Handle input change
-    const FIRST_NAME_FIELD = document.getElementById("field-first-name");
+    
     var fname_keyup_ran = false;
-    FIRST_NAME_FIELD.addEventListener("keyup", function(){
+    $("#field-first-name").on("change keyup", function(){
         if (fname_keyup_ran) {
             return;
         } else {
