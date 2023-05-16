@@ -5,7 +5,7 @@ function yb_handleInputChange(field_label) {
     field_input.classList.add("changed");
 
     let save_button = yb_createButton(field_label, "button-save", "yb-form-button", "Save");
-    save_button.setAttribute("style", "height: 32px; color: green;");
+    save_button.setAttribute("style", "height: 32px; background-color: green; margin: auto;");
     field_container.appendChild(save_button);
 }
 
