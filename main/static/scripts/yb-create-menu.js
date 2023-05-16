@@ -173,12 +173,6 @@ function yb_resetCreate(){
     $("#create-options").fadeIn();
 }
 
-function yb_cleanForms(callback){
-    $("#sub-function-script").attr("src", "");
-    $("#create-button-container").remove();
-    $("#create-bit-header").remove();
-    callback();
-}
 
 //Generates the type selector element based on the create option selected
 function yb_buildTypeSelector(type) {
@@ -899,6 +893,13 @@ function hide_create_post() {
 /*
     ------- Function Change Mobile Bit form ----------
 */
+function yb_cleanForms(callback, form, type_field, option_field, script_source){
+    $("#sub-function-script").attr("src", "");
+    $("#create-button-container").remove();
+    $("#create-bit-header").remove();
+    callback(form, type_field, option_field, script_source);
+}
+
 
 function changeBitForm(button_name) {
 
@@ -911,21 +912,21 @@ function changeBitForm(button_name) {
     
     if (button_name === 'chat') {
         type_field.value = 'chat';
-        yb_cleanForms(yb_chatBitForm(form, type_field, option_field, script_source));
-        
+        yb_cleanForms(yb_chatBitForm, form, type_field, option_field, script_source);
+        ;
         
     }
     
     if (button_name === 'video') {
         type_field.value = 'video';
-        yb_cleanForms(yb_videoBitForm(form, type_field, option_field, script_source));
+        yb_cleanForms(yb_videoBitForm, form, type_field, option_field, script_source);
         
         
     }
 
     if (button_name === 'photo') {
         type_field.value = 'photo';
-        yb_cleanForms(yb_photoBitForm(form, type_field, option_field, script_source));
+        yb_cleanForms(yb_photoBitForm, form, type_field, option_field, script_source);
         
         
     }
