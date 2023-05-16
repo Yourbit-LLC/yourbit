@@ -2798,6 +2798,7 @@ only be used for object transforms (shaping and scaling)
         grid-column: 1;
         margin-left: auto;
         margin-right: auto;
+        width: 95%;
         
     }
 
