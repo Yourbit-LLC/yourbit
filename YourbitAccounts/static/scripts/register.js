@@ -149,6 +149,9 @@ function fnameStage() {
     fname_field_container.appendChild(fname_label);
     fname_field_container.appendChild(fname_field);
 
+    let line_break = document.createElement('br');
+    fname_field_container.appendChild(line_break);
+
     let next_button = yb_createButton('id_first_name', 'next-button', 'yb-form-next', 'Next');
     
     next_button.onclick = function () {
@@ -218,7 +221,7 @@ function passwordStage1(){
     password_field_container.appendChild(password_field);
 
     let line_break = document.createElement('br');
-    dob_field_container.appendChild(line_break);
+    password_field_container.appendChild(line_break);
 
     let next_button = yb_createElement('button', 'password1-next', 'yb-form-next', 'Next');
     
