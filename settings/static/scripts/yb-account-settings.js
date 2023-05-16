@@ -54,7 +54,7 @@ $(document).ready(function(){
     original_values["last-name"] = $("#field-last-name").val();
     keyup_ran["last-name"] = false;
     $("#field-last-name").on("change keyup", function(){
-        if (keyup_ran["first-name"]) {
+        if (keyup_ran["last-name"]) {
             return;
         } else {
             yb_handleInputChange("last-name");
