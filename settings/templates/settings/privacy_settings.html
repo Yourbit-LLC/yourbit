@@ -67,64 +67,76 @@
                 <br>
                 
                 <p class="yb-select-label">Show my real name to:</p>
-                <select type="text" class='yb-single-line-input' name="yb-real-name" id="yb-field-real-name" style='color: white; background-color: rgba(255,255,255,0.5);' placeholder="Paragraph Align">
-                    <option value="e">Everyone</option>
-                    <option value="fr">Friends Only</option>
-                    <option value="no">Nobody</option>
-                </select>
+                <div id="yb-field-container-real-name">
 
+                    <select type="text" class='yb-single-line-input' name="yb-real-name" id="yb-field-real-name" style='color: white; background-color: rgba(255,255,255,0.5);' placeholder="Paragraph Align">
+                        <option value="e">Everyone</option>
+                        <option value="fr">Friends Only</option>
+                        <option value="no">Nobody</option>
+                    </select>
+                </div>
                 <!--Show Birthday: Everyone/FriendsOnly/Hide-->
                 <!--Dropdown-->
                 <br>
                 <br>
                 <p class="yb-select-label">Show Birthday:</p>
-                <select type="text" class='yb-single-line-input' name="yb-select-birthday" id="yb-field-birthday" style='color: white; background-color: rgba(255, 255, 255, 0.5);' placeholder="Paragraph Align">
-                    <option value="e">Everyone</option>
-                    <option value="fr">Friends Only</option>
-                    <option value="no">Nobody</option>
-                </select>
+                <div id="yb-field-container-birthday">
+                    <select type="text" class='yb-single-line-input' name="yb-select-birthday" id="yb-field-birthday" style='color: white; background-color: rgba(255, 255, 255, 0.5);' placeholder="Paragraph Align">
+                        <option value="e">Everyone</option>
+                        <option value="fr">Friends Only</option>
+                        <option value="no">Nobody</option>
+                    </select>
+                </div>
 
                 <!--Display Phone Number: Everyone/FriendsOnly/Hide-->
                 <!--Dropdown-->
                 <br>
                 <br>
                 <p class="yb-select-label">Display Phone Number</p>
-                <select type="text" class='yb-single-line-input' name="yb-phone-number-select" id="yb-field-phone-number" style='color: white; background-color: rgba(255, 255, 255, 0.5);' placeholder="Paragraph Align">
-                    <option value="e">Everyone</option>
-                    <option value="fr">Friends Only</option>
-                    <option value="no">Nobody</option>
-                </select>
+                <div id="yb-field-container-phone-number">
+                    <select type="text" class='yb-single-line-input' name="yb-phone-number-select" id="yb-field-phone-number" style='color: white; background-color: rgba(255, 255, 255, 0.5);' placeholder="Paragraph Align">
+                        <option value="e">Everyone</option>
+                        <option value="fr">Friends Only</option>
+                        <option value="no">Nobody</option>
+                    </select>
+                </div>
 
                 <!--Display Email: Everyone/FriendsOnly/Hide-->
                 <!--Dropdown-->
                 <br>
                 <br>
                 <p class="yb-select-label">Display Email</p>
-                <select type="text" class='yb-single-line-input' name="yb-select-email" id="yb-field-email" style='color: white; background-color: rgba(255, 255, 255, 0.5);' placeholder="Paragraph Align">
-                    <option value="e">Everyone</option>
-                    <option value="fr">Friends Only</option>
-                    <option value="no">Nobody</option>
-                </select>
+                <div id="yb-field-container-email">
+                    <select type="text" class='yb-single-line-input' name="yb-select-email" id="yb-field-email" style='color: white; background-color: rgba(255, 255, 255, 0.5);' placeholder="Paragraph Align">
+                        <option value="e">Everyone</option>
+                        <option value="fr">Friends Only</option>
+                        <option value="no">Nobody</option>
+                    </select>
+                </div>
                             <!--Show Friend Count: Everyone/FriendsOnly/Hide-->
                 <!--dropdown-->
                 <br>
                 <br>
                 <p class="yb-select-label">Show Friend Count</p>
-                <select type="text" class='yb-single-line-input' name="yb-select-friend-count" id="yb-field-friend-count" style='color: white; background-color:rgba(255, 255, 255, 0.5);' placeholder="Paragraph Align">
-                    <option value="e">Everyone</option>
-                    <option value="fr">Friends Only</option>
-                    <option value="no">Nobody</option>
-                </select>
+                <div id="yb-field-container-friend-count">
+                    <select type="text" class='yb-single-line-input' name="yb-select-friend-count" id="yb-field-friend-count" style='color: white; background-color:rgba(255, 255, 255, 0.5);' placeholder="Paragraph Align">
+                        <option value="e">Everyone</option>
+                        <option value="fr">Friends Only</option>
+                        <option value="no">Nobody</option>
+                    </select>
+                </div>
             <!--Show Follower Count: Everyone/FriendsOnly/Hide-->
                 <!--dropdown-->
                 <br>
                 <br>
                 <p class="yb-select-label">Show Follower Count</p>
-                <select type="text" class='yb-single-line-input' name="yb-select-follow-count" id="yb-field-follow-count" style='color: white; background-color:rgba(255, 255, 255, 0.5);' placeholder="Paragraph Align">
-                    <option value="e">Everyone</option>
-                    <option value="fr">Friends Only</option>
-                    <option value="no">Nobody</option>
-                </select>
+                <div id="yb-field-container-follow-count">
+                    <select type="text" class='yb-single-line-input' name="yb-select-follow-count" id="yb-field-follow-count" style='color: white; background-color:rgba(255, 255, 255, 0.5);' placeholder="Paragraph Align">
+                        <option value="e">Everyone</option>
+                        <option value="fr">Friends Only</option>
+                        <option value="no">Nobody</option>
+                    </select>
+                </div>              
             
 
                 <!--Mailing Address Visibility: Everyone/FriendsOnly/Private-->
@@ -145,11 +157,13 @@
                     </p>
                     <button type='button' class="wide-button">Edit</button>
                     <p class="yb-select-label">Display Mailing Address</p>
-                    <select type="text" class='yb-single-line-input' name="yb-align-text" id="yb-field-align-text" style='color: white; background-color: rgba(255,255,255,0.5);' placeholder="Paragraph Align">
-                        <option value="e">Everyone</option>
-                        <option value="fr">Friends Only</option>
-                        <option value="no">Nobody</option>
-                    </select>
+                    <div id="yb-field-container-align-text">
+                        <select type="text" class='yb-single-line-input' name="yb-align-text" id="yb-field-align-text" style='color: white; background-color: rgba(255,255,255,0.5);' placeholder="Paragraph Align">
+                            <option value="e">Everyone</option>
+                            <option value="fr">Friends Only</option>
+                            <option value="no">Nobody</option>
+                        </select>
+                    </div>  
                 </div>
             </div>
         <!--Display Reputation (Default False)-->
@@ -205,11 +219,13 @@
 
                 <div>
                 <p class="yb-select-label">Allow Messages From:</p>
+                <div id="yb-field-container-align-text">
                     <select type="text" class='yb-single-line-input' name="yb-align-text" id="yb-align-text" style='color: white; background-color: rgba(255,255,255,0.5);' placeholder="Paragraph Align">
                         <option value="e">Everyone</option>
                         <option value="fr">Friends Only</option>
                         <option value="no">Nobody</option>
                     </select>
+                </div>
                 </div>
             </div>
 
