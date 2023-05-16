@@ -86,6 +86,7 @@ $(document).ready(function(){
 
 var fname_keyup_ran = false;
 $("#field-first-name").on("change keyup", function(){
+    console.log("keyup");
     if (fname_keyup_ran) {
         return;
     } else {
