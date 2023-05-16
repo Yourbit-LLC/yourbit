@@ -54,22 +54,22 @@ function yb_applyStyle(source){
 }
 
 function yb_purgeScripts(){
-    //Remove any page scripts
-    let page_script = document.getElementById("page-script");
-    page_script.remove();
+    let loaded = yb_getLoaded();
 
+    if (loaded) {
+        //Remove any page scripts
+        let page_script = document.getElementById("page-script");
+        page_script.remove();
+    }
 }
 
 
 
 //home
 function home_url(data){
-    let loaded = yb_getLoaded();
 
-    if (loaded) {
-        //Remove Scripts
-        yb_purgeScripts();
-    }
+    yb_purgeScripts();
+    
     
     //Clear Screen
     $("#content-container").html("");
