@@ -911,22 +911,22 @@ function changeBitForm(button_name) {
     
     if (button_name === 'chat') {
         type_field.value = 'chat';
-        yb_cleanForms();
-        yb_chatBitForm(form, type_field, option_field, script_source);
+        yb_cleanForms(yb_chatBitForm(form, type_field, option_field, script_source));
+        
         
     }
     
     if (button_name === 'video') {
         type_field.value = 'video';
-        yb_cleanForms();
-        yb_videoBitForm(form, type_field, option_field, script_source);
+        yb_cleanForms(yb_videoBitForm(form, type_field, option_field, script_source));
+        
         
     }
 
     if (button_name === 'photo') {
         type_field.value = 'photo';
-        yb_cleanForms();
-        yb_photoBitForm(form, type_field, option_field, script_source);
+        yb_cleanForms(yb_photoBitForm(form, type_field, option_field, script_source));
+        
         
     }
 };
