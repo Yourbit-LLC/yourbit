@@ -3,7 +3,7 @@ var original_values = {}
 var keyup_ran = {}
 
 function yb_saveField(field_label, value){
-    let csrfToken = getCookie('csrftoken');
+    let csrfToken = getCSRF();
     $.ajax({
         url: "/settings/account/",
         type: "POST",
