@@ -100,3 +100,40 @@ class UpdatePrivacySettings(View):
             privacy_settings.save()
             return JsonResponse({"message":"success"}, safe=False)
 
+        elif field == "friend-count":
+            privacy_settings.friend_count_visibility = value
+            privacy_settings.save()
+            return JsonResponse({"message":"success"}, safe=False)
+        elif field == "follow-count":
+            privacy_settings.follower_count_visibility = value
+            privacy_settings.save()
+            return JsonResponse({"message":"success"}, safe=False)
+
+        elif field == "default-public":
+            privacy_settings.default_public = value
+            privacy_settings.save()
+            return JsonResponse({"message":"success"}, safe=False)
+        
+        elif field == "enable-share":
+            privacy_settings.enable_share = value
+            privacy_settings.save()
+            return JsonResponse({"message":"success"}, safe=False)
+        
+        elif field == "show-rep":
+            privacy_settings.show_reputation = value
+            privacy_settings.save()
+            return JsonResponse({"message":"success"}, safe=False)
+
+        elif field == "reach":
+            privacy_settings.friends_of_friends = value
+            privacy_settings.save()
+            return JsonResponse({"message":"success"}, safe=False)
+
+        elif field == "real-search":
+            privacy_settings.search_by_name = value
+            privacy_settings.save()
+            return JsonResponse({"message":"success"}, safe=False)
+            
+
+
+

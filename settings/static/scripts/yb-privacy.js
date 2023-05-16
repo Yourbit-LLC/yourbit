@@ -33,6 +33,39 @@ function yb_saveField(field_label, value){
 
 }
 
+function yb_saveCheck(field_label, value) {
+    let csrfToken = getCSRF();
+    $.ajax({
+        url: "/settings/privacy/",
+        type: "POST",
+        headers: {
+            'X-CSRFToken': csrfToken
+        },
+        data: {
+            "field": field_label,
+            "value": value
+        },
+        success: function(data) {
+            let response = data;
+            if (response["message"] === "success") {
+                original_values[field_label] = value;
+                
+                let body = `Change Saved Successfully`;
+                showNotification(expandNotification, body);
+            } else {
+                console.log("Error saving field");
+                let body = `Error Saving Change`;
+                if (value === true) {
+                    document.getElementById(`yb-check-${field_label}`).checked = false;
+                } else {
+                    document.getElementById(`yb-check-${field_label}`).checked = true;
+                }
+                showNotification(expandNotification, body);
+            }
+        }
+    });
+}
+
 function yb_resetField(field_label){
     let field_container = document.getElementById(`field-container-${field_label}`);
     let field_input = document.getElementById(`field-${field_label}`);
@@ -91,9 +124,8 @@ function PrefillForm() {
             $("#yb-check-enable-share").prop("checked", data.enable_share);
             $("#yb-check-show-rep").prop("checked", data.show_reputation);
             $("#yb-check-reach").prop("checked", data.friends_of_friends);
-            
-
             $("#yb-check-real-search").prop("checked", data.search_by_name);
+
             const REAL_NAME_SELECT = document.getElementById("yb-select-real-name");
             REAL_NAME_SELECT.value = data.real_name_visibility;
             REAL_NAME_SELECT.addEventListener("change", function() {
@@ -131,8 +163,44 @@ function PrefillForm() {
             FOLLOW_COUNT_SELECT.value = data.follower_count_visibility;
             FOLLOW_COUNT_SELECT.addEventListener("change", function() {
                 yb_handleInputChange("follow-count");
+            });
+
+            const ENABLE_FOLLOW_SELECT = document.getElementById("yb-check-enable-follow");
+            ENABLE_FOLLOW_SELECT.addEventListener("change", function() {
+                yb_saveCheck("enable-follow", this.checked);
+            });
+
+            const DEFAULT_PUBLIC_SELECT = document.getElementById("yb-check-default-public");
+            DEFAULT_PUBLIC_SELECT.addEventListener("change", function() {
+                yb_saveCheck("default-public", this.checked);
             }
             );
+
+            const ENABLE_SHARE_SELECT = document.getElementById("yb-check-enable-share");
+            ENABLE_SHARE_SELECT.addEventListener("change", function() {
+                yb_saveCheck("enable-share", this.checked);
+            }
+            );
+
+            const SHOW_REP_SELECT = document.getElementById("yb-check-show-rep");
+            SHOW_REP_SELECT.addEventListener("change", function() {
+                yb_saveCheck("show-rep", this.checked);
+            }
+            );
+
+            const REACH_SELECT = document.getElementById("yb-check-reach");
+            REACH_SELECT.addEventListener("change", function() {
+                yb_saveCheck("reach", this.checked);
+            }
+            );
+
+            const REAL_SEARCH_SELECT = document.getElementById("yb-check-real-search");
+            REAL_SEARCH_SELECT.addEventListener("change", function() {
+                yb_saveCheck("real-search", this.checked);
+            }
+            );
+            
+
 
 
 
