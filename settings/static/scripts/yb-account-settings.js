@@ -5,6 +5,7 @@ function yb_handleInputChange(field_label) {
     field_input.classList.add("changed");
 
     let save_button = yb_createButton(field_label, "button-save", "yb-form-button", "Save");
+    save_button.setAttribute("style", "height: 32px; color: green;");
     field_container.appendChild(save_button);
 }
 
@@ -13,27 +14,8 @@ $(document).ready(function(){
     //Get the user ID from session values
     let this_id = yb_getSessionValues("id");
     yb_showBackTask();
-    //Get user data
-    $.ajax({
-        url: `/api/users/${this_id}/`,
-        type: "GET",
-        dataType: "json",
-        success: function(data){
-            console.log(data);
-            $("#field-first-name").val(data.first_name);
-            $("#field-last-name").val(data.last_name);
-            $("#field-email-address").val(data.email);
-            $("#field-phone-number").val(data.phone_number);
-            $("#field-username").val(data.username);
-            
-        },
-        error: function(data){
-            console.log(data);
-        }
-    });
-
-    //Handle input change
     
+    //Handle input change
     var fname_keyup_ran = false;
     $("#field-first-name").on("change keyup", function(){
         console.log("ran keyup")
@@ -45,9 +27,9 @@ $(document).ready(function(){
         }
     });
 
-    const LAST_NAME_FIELD = document.getElementById("field-last-name");
+    
     var lname_keyup_ran = false;
-    LAST_NAME_FIELD.addEventListener("change keyup", function(){
+    $("#field-last-name").on("change keyup", function(){
         if (lname_keyup_ran) {
             return;
         } else {
@@ -58,9 +40,9 @@ $(document).ready(function(){
     }
     );
 
-    const EMAIL_FIELD = document.getElementById("field-email-address");
+    
     var email_keyup_ran = false;
-    EMAIL_FIELD.addEventListener("change keyup", function(){
+    $("#field-email-address").on("change keyup", function(){
         if (email_keyup_ran) {
             return;
         } else {
@@ -70,9 +52,9 @@ $(document).ready(function(){
     }
     );
 
-    const PHONE_FIELD = document.getElementById("field-phone-number");
+    
     var phone_keyup_ran = false;
-    PHONE_FIELD.addEventListener("change", function(){
+    $("#field-phone-number").on("change keyup", function(){
         if (phone_keyup_ran) {
             return;
         } else {
@@ -82,9 +64,9 @@ $(document).ready(function(){
     }
     );
 
-    const USERNAME_FIELD = document.getElementById("field-username");
+    
     var username_keyup_ran = false;
-    USERNAME_FIELD.addEventListener("change", function(){
+    $("#field-username").on("change keyup", function(){
         if (username_keyup_ran) {
             
             return;
