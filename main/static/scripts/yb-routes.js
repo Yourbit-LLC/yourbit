@@ -64,9 +64,9 @@ function yb_purgeScripts(){
 
 //home
 function home_url(data){
-    let first_load = yb_getLoaded();
+    let loaded = yb_getLoaded();
 
-    if (!first_load) {
+    if (loaded) {
         //Remove Scripts
         yb_purgeScripts();
     }
