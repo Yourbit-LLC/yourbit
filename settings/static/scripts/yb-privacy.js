@@ -67,8 +67,8 @@ function yb_saveCheck(field_label, value) {
 }
 
 function yb_resetField(field_label){
-    let field_container = document.getElementById(`field-container-${field_label}`);
-    let field_input = document.getElementById(`field-${field_label}`);
+    let field_container = document.getElementById(`yb-field-container-${field_label}`);
+    let field_input = document.getElementById(`yb-field-${field_label}`);
     field_container.classList.remove("changed");
     field_input.classList.remove("changed");
     let cancel_button = document.getElementById(`button-cancel-${field_label}`);
@@ -82,8 +82,8 @@ function yb_resetField(field_label){
 }
 
 function yb_handleInputChange(field_label) {
-    let field_container = document.getElementById(`field-container-${field_label}`);
-    let field_input = document.getElementById(`field-${field_label}`);
+    let field_container = document.getElementById(`yb-field-container-${field_label}`);
+    let field_input = document.getElementById(`yb-field-${field_label}`);
     field_container.classList.add("changed");
     field_input.classList.add("changed");
     let cancel_button = yb_createButton(field_label, `button-cancel-${field_label}`, "yb-form-button", '<svg style="fill:white;" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 96 960 960" width="20"><path d="M288 864v-72h288q50 0 85-35t35-85q0-50-35-85t-85-35H330l93 93-51 51-180-180 180-180 51 51-93 93h246q80 0 136 56t56 136q0 80-56 136t-136 56H288Z"/></svg>');
@@ -99,7 +99,7 @@ function yb_handleInputChange(field_label) {
     field_container.appendChild(save_button);
     save_button.addEventListener("click", function() {
         let field_label = this.getAttribute("name");
-        let value = document.getElementById(`field-${field_label}`).value;
+        let value = document.getElementById(`yb-field-${field_label}`).value;
         yb_saveField(field_label, value);
     }
     );
