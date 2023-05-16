@@ -12,6 +12,7 @@ function yb_resetField(field_label){
     field_container.removeChild(cancel_button);
     field_container.removeChild(save_button);
     field_input.value = original_values[field_label];
+    keyup_ran[field_label] = false;
 
 
 }
