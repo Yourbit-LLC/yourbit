@@ -58,8 +58,13 @@ function yb_purgeScripts(){
 
     if (loaded) {
         //Remove any page scripts
-        let page_script = document.getElementById("page-script");
-        page_script.remove();
+        let scripts = document.getElementsByClassName("page-script");
+        let script_count = scripts.length;
+        for (let i = 0; i < script_count; i++) {
+            let script = scripts[i];
+            script.remove();
+        }
+
     }
 }
 
