@@ -69,7 +69,7 @@
                 <p class="yb-select-label">Show my real name to:</p>
                 <div id="yb-field-container-real-name">
 
-                    <select type="text" class='yb-single-line-input' name="yb-real-name" id="yb-field-real-name" style='color: white; background-color: rgba(255,255,255,0.5);' placeholder="Paragraph Align">
+                    <select type="text" class='yb-single-line-input' value="{{settings.privacy.real_name_visibility}}" name="yb-real-name" id="yb-field-real-name" style='color: white; background-color: rgba(255,255,255,0.5);' placeholder="Paragraph Align">
                         <option value="e">Everyone</option>
                         <option value="fr">Friends Only</option>
                         <option value="no">Nobody</option>
@@ -81,7 +81,7 @@
                 <br>
                 <p class="yb-select-label">Show Birthday:</p>
                 <div id="yb-field-container-birthday">
-                    <select type="text" class='yb-single-line-input' name="yb-select-birthday" id="yb-field-birthday" style='color: white; background-color: rgba(255, 255, 255, 0.5);' placeholder="Paragraph Align">
+                    <select type="text" class='yb-single-line-input' name="yb-select-birthday" value="{{settings.privacy.birthday_visibility}}" id="yb-field-birthday" style='color: white; background-color: rgba(255, 255, 255, 0.5);' placeholder="Paragraph Align">
                         <option value="e">Everyone</option>
                         <option value="fr">Friends Only</option>
                         <option value="no">Nobody</option>
@@ -94,7 +94,7 @@
                 <br>
                 <p class="yb-select-label">Display Phone Number</p>
                 <div id="yb-field-container-phone-number">
-                    <select type="text" class='yb-single-line-input' name="yb-phone-number-select" id="yb-field-phone-number" style='color: white; background-color: rgba(255, 255, 255, 0.5);' placeholder="Paragraph Align">
+                    <select type="text" class='yb-single-line-input' name="yb-phone-number-select" value="{{settings.privacy.phone_number_visibility}}" id="yb-field-phone-number" style='color: white; background-color: rgba(255, 255, 255, 0.5);' placeholder="Paragraph Align">
                         <option value="e">Everyone</option>
                         <option value="fr">Friends Only</option>
                         <option value="no">Nobody</option>
@@ -107,7 +107,7 @@
                 <br>
                 <p class="yb-select-label">Display Email</p>
                 <div id="yb-field-container-email">
-                    <select type="text" class='yb-single-line-input' name="yb-select-email" id="yb-field-email" style='color: white; background-color: rgba(255, 255, 255, 0.5);' placeholder="Paragraph Align">
+                    <select type="text" class='yb-single-line-input' name="yb-select-email" id="yb-field-email" value="{{settings.privacy.email_visibility}}" style='color: white; background-color: rgba(255, 255, 255, 0.5);' placeholder="Paragraph Align">
                         <option value="e">Everyone</option>
                         <option value="fr">Friends Only</option>
                         <option value="no">Nobody</option>
@@ -119,7 +119,7 @@
                 <br>
                 <p class="yb-select-label">Show Friend Count</p>
                 <div id="yb-field-container-friend-count">
-                    <select type="text" class='yb-single-line-input' name="yb-select-friend-count" id="yb-field-friend-count" style='color: white; background-color:rgba(255, 255, 255, 0.5);' placeholder="Paragraph Align">
+                    <select type="text" class='yb-single-line-input' name="yb-select-friend-count" id="yb-field-friend-count" value="{{settings.privacy.friend_count_visibility}}" style='color: white; background-color:rgba(255, 255, 255, 0.5);' placeholder="Paragraph Align">
                         <option value="e">Everyone</option>
                         <option value="fr">Friends Only</option>
                         <option value="no">Nobody</option>
@@ -131,7 +131,7 @@
                 <br>
                 <p class="yb-select-label">Show Follower Count</p>
                 <div id="yb-field-container-follow-count">
-                    <select type="text" class='yb-single-line-input' name="yb-select-follow-count" id="yb-field-follow-count" style='color: white; background-color:rgba(255, 255, 255, 0.5);' placeholder="Paragraph Align">
+                    <select type="text" class='yb-single-line-input' name="yb-select-follow-count" id="yb-field-follow-count" value="{{settings.privacy.follower_count_visibility}}" style='color: white; background-color:rgba(255, 255, 255, 0.5);' placeholder="Paragraph Align">
                         <option value="e">Everyone</option>
                         <option value="fr">Friends Only</option>
                         <option value="no">Nobody</option>
@@ -157,8 +157,8 @@
                     </p>
                     <button type='button' class="wide-button">Edit</button>
                     <p class="yb-select-label">Display Mailing Address</p>
-                    <div id="yb-field-container-align-text">
-                        <select type="text" class='yb-single-line-input' name="yb-align-text" id="yb-field-align-text" style='color: white; background-color: rgba(255,255,255,0.5);' placeholder="Paragraph Align">
+                    <div id="yb-field-container-display-mailing">
+                        <select type="text" class='yb-single-line-input' name="yb-align-text" id="yb-field-display-mailing" style='color: white; background-color: rgba(255,255,255,0.5);' placeholder="Paragraph Align">
                             <option value="e">Everyone</option>
                             <option value="fr">Friends Only</option>
                             <option value="no">Nobody</option>

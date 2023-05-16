@@ -127,40 +127,40 @@ function PrefillForm() {
             $("#yb-check-real-search").prop("checked", data.search_by_name);
 
             const REAL_NAME_SELECT = document.getElementById("yb-field-real-name");
-            REAL_NAME_SELECT.value = data.real_name_visibility;
+            
             REAL_NAME_SELECT.addEventListener("change", function() {
                 yb_handleInputChange("real-name");
             });
 
             const BIRTHDAY_SELECT = document.getElementById("yb-field-birthday");
-            BIRTHDAY_SELECT.value = data.birthday_visibility;
+            
             BIRTHDAY_SELECT.addEventListener("change", function() {
                 yb_handleInputChange("birthday");
             });
 
             const PHONE_NUM_SELECT = document.getElementById("yb-field-phone-number");
-            PHONE_NUM_SELECT.value = data.phone_number_visibility;
+            
             PHONE_NUM_SELECT.addEventListener("change", function() {
                 yb_handleInputChange("phone-number");
             });
 
 
             const EMAIL_SELECT = document.getElementById("yb-field-email");
-            EMAIL_SELECT.value = data.email_visibility;
+            
             EMAIL_SELECT.addEventListener("change", function() {
                 yb_handleInputChange("email");
             });
 
 
             const FRIEND_COUNT_SELECT = document.getElementById("yb-field-friend-count");
-            FRIEND_COUNT_SELECT.value = data.friend_count_visibility;
+            
             FRIEND_COUNT_SELECT.addEventListener("change", function() {
                 yb_handleInputChange("friend-count");
             });
 
 
             const FOLLOW_COUNT_SELECT = document.getElementById("yb-field-follow-count");
-            FOLLOW_COUNT_SELECT.value = data.follower_count_visibility;
+            
             FOLLOW_COUNT_SELECT.addEventListener("change", function() {
                 yb_handleInputChange("follow-count");
             });

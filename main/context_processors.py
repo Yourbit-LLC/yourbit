@@ -15,6 +15,7 @@ def CoreUI(request):
         'bit_form': bit_form, 
         'search_bar': search_bar,
         'default_public': default_public,
+        'settings': settings
         }
 
 def Customization(request):
