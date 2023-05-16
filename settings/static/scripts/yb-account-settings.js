@@ -2,6 +2,35 @@
 var original_values = {}
 var keyup_ran = {}
 
+function yb_saveField(field_label, value){
+    let csrfToken = getCookie('csrftoken');
+    $.ajax({
+        url: "/settings/account/",
+        type: "POST",
+        headers: {
+            'X-CSRFToken': csrfToken
+        },
+        data: {
+            "field": field_label,
+            "value": value
+        },
+        success: function(data) {
+            let response = data;
+            if (response["success"] === true) {
+                original_values[field_label] = value;
+                yb_resetField(field_label);
+                let body = `Change Saved Successfully`;
+                showNotification(expandNotification, body);
+            } else {
+                console.log("Error saving field");
+                let body = `Error Saving Change`;
+                showNotification(expandNotification, body);
+            }
+        }
+    });
+
+}
+
 function yb_resetField(field_label){
     let field_container = document.getElementById(`field-container-${field_label}`);
     let field_input = document.getElementById(`field-${field_label}`);
@@ -32,6 +61,10 @@ function yb_handleInputChange(field_label) {
     let save_button = yb_createButton(field_label, `button-save-${field_label}`, "yb-form-button", '<svg style="fill:white;" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 96 960 960" width="20"><path d="M816 384v456q0 29.7-21.15 50.85Q773.7 912 744 912H216q-29.7 0-50.85-21.15Q144 869.7 144 840V312q0-29.7 21.15-50.85Q186.3 240 216 240h456l144 144Zm-72 30L642 312H216v528h528V414ZM480 804q45 0 76.5-31.5T588 696q0-45-31.5-76.5T480 588q-45 0-76.5 31.5T372 696q0 45 31.5 76.5T480 804ZM264 504h336V360H264v144Zm-48-77v413-528 115Z"/></svg>');
     save_button.setAttribute("style", "height: 32px; width: 40px !important; background-color: green; margin: auto;");
     field_container.appendChild(save_button);
+    save_button.addEventListener("click", function() {
+        yb_saveField(field_label);
+    }
+    );
 }
 $(document).ready(function(){
     //Get the user ID from session values

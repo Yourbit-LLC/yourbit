@@ -47,3 +47,25 @@ class GetFeedSettings(LoginRequiredMixin, View):
 
         return JsonResponse(settings_serialized.data, safe=False)
     
+class UpdateAccountSettings(View):
+    def post(self, request, *args, **kwargs):
+        field = request.POST.get("field")
+        value = request.POST.get("value")
+        this_user = User.objects.get(username=request.user.username)
+
+        if field == "first-name":
+            this_user.first_name = value
+            this_user.save()
+            return JsonResponse({"message":"success"}, safe=False)
+        elif field == "last-name":
+            this_user.last_name = value
+            this_user.save()
+            return JsonResponse({"message":"success"}, safe=False)
+        elif field == "email-address":
+            this_user.email = value
+            this_user.save()
+            return JsonResponse({"message":"success"}, safe=False)
+        elif field == "username":
+            this_user.username = value
+            this_user.save()
+            return JsonResponse({"message":"success"}, safe=False)
