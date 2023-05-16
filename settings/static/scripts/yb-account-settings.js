@@ -16,7 +16,7 @@ function yb_saveField(field_label, value){
         },
         success: function(data) {
             let response = data;
-            if (response["success"] === true) {
+            if (response["message"] === "success") {
                 original_values[field_label] = value;
                 yb_resetField(field_label);
                 let body = `Change Saved Successfully`;
