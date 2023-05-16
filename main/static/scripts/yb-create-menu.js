@@ -164,46 +164,6 @@ function yb_displayContacts(response) {
 
 }
 
-function yb_createFormHeader(form){
-    //Initialize Label
-    let header_label;
-
-    //Get form type and set label
-    if (form === "chatbit") {
-        header_label = "Create Chat Bit";
-    } else if (form === "videobit") {
-        header_label = "Create Video Bit";
-    } else if (form === "photobit") {
-        header_label = "Create Photo Bit";
-    } else if(form === "cluster") {
-        header_label = "Create Cluster";
-    } else if (form === "message") {
-        header_label = "Create Message";
-    } else if (form === "community") {
-        header_label = "Create Community";
-    }
-
-    //Create header element
-    let form_header = yb_createElement("div", "create-bit-header", "header-create-form");
-
-    //Create back button
-    let go_back = yb_createElement("div", "back-create", "back-create");
-    go_back.innerHTML = `
-        <svg id="back-create" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M10 22 0 12 10 2l1.775 1.775L3.55 12l8.225 8.225Z"/></svg>
-    `
-    form_header.appendChild(go_back);
-    go_back.addEventListener("click", function() {
-        yb_resetCreate();
-    });
-
-    //Create header text
-    let header_text = yb_createElement("div", "create-bit-header-text", "create-bit-header-text");
-    header_text.innerHTML = header_label;
-    form_header.appendChild(header_text);
-
-    return form_header;
-}
-
 
 //Fuction for clearing the form from the create menu and going back to create options
 function yb_resetCreate(){
