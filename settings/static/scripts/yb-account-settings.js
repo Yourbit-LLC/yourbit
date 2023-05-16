@@ -8,8 +8,8 @@ function yb_resetField(field_label){
     field_input.classList.remove("changed");
     let cancel_button = document.getElementById(`button-cancel-${field_label}`);
     let save_button = document.getElementById(`button-save-${field_label}`);
-    field_container.removeChild(cancel_button);
-    field_container.removeChild(save_button);
+    cancel_button.remove();
+    save_button.remove();
     field_input.value = original_values[field_label];
 
 
