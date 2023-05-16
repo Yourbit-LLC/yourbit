@@ -1,5 +1,6 @@
 //Store original values of fields
 var original_values = {}
+var keyup_ran = {}
 
 function yb_resetField(field_label){
     let field_container = document.getElementById(`field-container-${field_label}`);
@@ -38,63 +39,63 @@ $(document).ready(function(){
     
     //Handle input change
     original_values["first-name"] = $("#field-first-name").val();
-    var fname_keyup_ran = false;
+    keyup_ran["first-name"] = false;
     $("#field-first-name").on("change keyup", function(){
         console.log("ran keyup")
-        if (fname_keyup_ran) {
+        if (keyup_ran["first-name"]) {
             return;
         } else {
             yb_handleInputChange("first-name");
-            fname_keyup_ran = true;
+            keyup_ran["first-name"] = true;
         }
     });
 
     original_values["last-name"] = $("#field-last-name").val();
-    var lname_keyup_ran = false;
+    keyup_ran["last-name"] = false;
     $("#field-last-name").on("change keyup", function(){
-        if (lname_keyup_ran) {
+        if (keyup_ran["first-name"]) {
             return;
         } else {
             yb_handleInputChange("last-name");
-            lname_keyup_ran = true;
+            keyup_ran["last-name"] = true;
         }
 
     }
     );
 
     original_values["email-address"] = $("#field-email-address").val();
-    var email_keyup_ran = false;
+    keyup_ran["email-address"] = false;
     $("#field-email-address").on("change keyup", function(){
-        if (email_keyup_ran) {
+        if (keyup_ran["email-address"]) {
             return;
         } else {
             yb_handleInputChange("email-address");
-            email_keyup_ran = true;
+            keyup_ran["email-address"] = true;
         }
     }
     );
 
     original_values["phone-number"] = $("#field-phone-number").val();
-    var phone_keyup_ran = false;
+    keyup_ran["phone-number"] = false;
     $("#field-phone-number").on("change keyup", function(){
-        if (phone_keyup_ran) {
+        if (keyup_ran["phone-number"]) {
             return;
         } else {
             yb_handleInputChange("phone-number");
-            phone_keyup_ran = true;
+            keyup_ran["phone-number"] = true;
         }
     }
     );
 
     original_values["username"] = $("#field-username").val();
-    var username_keyup_ran = false;
+    keyup_ran["username"] = false;
     $("#field-username").on("change keyup", function(){
-        if (username_keyup_ran) {
+        if (keyup_ran["username"]) {
             
             return;
         } else {
             yb_handleInputChange("username");
-            username_keyup_ran = true;
+            keyup_ran["username"] = true;
         }
     }
     );
