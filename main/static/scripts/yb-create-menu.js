@@ -153,6 +153,7 @@ function yb_resetCreate(){
 function yb_cleanForms(){
     $("#sub-function-script").attr("src", "");
     $("#create-button-container").remove();
+    $("#create-bit-header").remove();
 }
 
 //Generates the type selector element based on the create option selected
