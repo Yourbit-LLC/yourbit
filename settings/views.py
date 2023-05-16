@@ -69,3 +69,34 @@ class UpdateAccountSettings(View):
             this_user.username = value
             this_user.save()
             return JsonResponse({"message":"success"}, safe=False)
+
+class UpdatePrivacySettings(View):
+    def post(self, request, *args, **kwargs):
+        field = request.POST.get("field")
+        value = request.POST.get("value")
+
+        this_profile = request.user.profile
+        
+        my_settings = MySettings.objects.get(profile=this_profile)
+        privacy_settings = PrivacySettings.objects.get(settings=my_settings)
+
+        if field == "real-name":
+            privacy_settings.real_name_visibility = value
+            privacy_settings.save()
+            return JsonResponse({"message":"success"}, safe=False)
+        
+        elif field == "birthday":
+            privacy_settings.birthday_visibility = value
+            privacy_settings.save()
+            return JsonResponse({"message":"success"}, safe=False)
+
+        elif field == "phone-number":
+            privacy_settings.phone_number_visibility = value
+            privacy_settings.save()
+            return JsonResponse({"message":"success"}, safe=False)
+
+        elif field == "email":
+            privacy_settings.email_visibility = value
+            privacy_settings.save()
+            return JsonResponse({"message":"success"}, safe=False)
+

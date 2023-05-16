@@ -9,6 +9,7 @@ urlpatterns = [
     path('api/privacy/', GetPrivacySettings.as_view(), name="get_privacy_settings"),
     path('api/feed/', GetFeedSettings.as_view(), name="get_feed_settings"),
     path('account/', UpdateAccountSettings.as_view(), name="update_account_settings"),
+    path('privacy/', UpdatePrivacySettings.as_view(), name="update_privacy_settings"),
     
     #Templates
     path('templates/settings-html/', TemplateView.as_view(template_name='settings/settings.html')),

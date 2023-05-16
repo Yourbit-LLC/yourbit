@@ -53,17 +53,24 @@ function yb_applyStyle(source){
 
 }
 
+function yb_purgeScripts(){
+    //Remove any page scripts
+    let page_script = document.getElementById("page-script");
+    page_script.remove();
+
+}
 
 
 
 //home
 function home_url(data){
-    console.log("home routed")
-    //clear screen
     
+    //Remove Scripts
+    yb_purgeScripts();
+    
+    //Clear Screen
     $("#content-container").html("");
     $("#page-header").remove();
-    let container = document.getElementById('content-container');
 
     $('#content-container').load('/bitstream/feed-html/');
     
@@ -86,8 +93,10 @@ function home_url(data){
 
 //home chat
 function home_chat_url(data){
+
     $("#content-container").empty();
     $("#page-header").remove();
+
     history.pushState({}, "", "/bitstream/chat/")
     yb_setSessionValues("location", "home");
     yb_setSessionValues("space", "chat");
@@ -103,6 +112,7 @@ function home_video_url(data){
     //clear content
     $("#content-container").empty();
     $("#page-header").remove();
+
     //set url
     history.pushState({}, "", "/bitstream/video/")
     yb_setSessionValues("location", "home");
@@ -133,23 +143,17 @@ function home_photo_url(data){
 */
 
 
-
-function getProfile() {
-    let user_id = getUserID();
-    console.log(user_id)
-    let url = `${base_url}/api/profiles/${user_id}/`
-
-
-
-}
-
 //profile
 function profile_url(data){
     
-    console.log("reached url");
     yb_setSessionValues("location", "profile");
     yb_setSessionValues("space", "global");
-    yb_setSessionValues("profile-username", data.username)
+    yb_setSessionValues("profile-username", data.username);
+
+    let base_url = getBaseURL();
+
+    yb_purgeScripts();
+
     $("#content-container").empty();
     $("#content-container").load(`${base_url}/profile/templates/profile/`)
     $("#page-header").remove();
@@ -191,11 +195,14 @@ function profile_photo_url(data){
 
 //connections
 function connections_url(data){
-    console.log("url located");
+    
     let base_url = getBaseURL();
 
     yb_setSessionValues("location","connections");
-    
+
+    //Remove any page scripts
+    let page_script = document.getElementById("page-script");
+    page_script.remove();
 
     $("#content-container").html('');
     $("#content-container").load(`${base_url}/profile/templates/connections-html/`)
@@ -256,6 +263,10 @@ function connections_community_url(data){
 
 //settings
 function settings_url(data){
+    //Remove any page scripts
+    yb_purgeScripts();
+
+    //Clear Screen
     $("#content-container").html('');
     $("#content-container").load(`${base_url}/settings/templates/settings-html/`);
     yb_setSessionValues("location", "settings")
@@ -342,10 +353,13 @@ function settings_money_url(data){
 
 //Messages
 function messages_inbox_url(){
+    let base_url = getBaseURL();
+    yb_purgeScripts();
+
     $("#content-container").html('');
     $("#content-container").load(`${base_url}/messages/templates/messages-html/`);
     yb_setSessionValues("location","inbox");
-    yb_createScript("messages");
+
     let menu = document.getElementById("profile-menu");
     
     if (menu.style.visibility === "visible") {

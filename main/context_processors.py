@@ -9,7 +9,13 @@ from settings.models import MySettings
 def CoreUI(request):
     bit_form = BitForm()
     search_bar = SearchBar()
-    return {'bit_form': bit_form, 'search_bar': search_bar}
+    settings = MySettings.objects.get(profile=request.user.profile)
+    default_public = settings.privacy.default_public
+    return {
+        'bit_form': bit_form, 
+        'search_bar': search_bar,
+        'default_public': default_public,
+        }
 
 def Customization(request):
     if request.user.is_authenticated:
@@ -31,9 +37,6 @@ def Customization(request):
         title_color = custom.title_color
         text_color = custom.text_color
         is_new_user = custom.is_new_user
-
-        settings = MySettings.objects.get(profile=profile)
-        default_public = settings.privacy.default_public
 
         #Quick Appearance
         wallpaper_on = custom.wallpaper_on
