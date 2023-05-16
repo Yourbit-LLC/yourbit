@@ -856,7 +856,7 @@ function yb_showClusterForm(){
     });    
 
     let header_text = yb_createElement("div", "create-bit-header-text", "create-bit-header-text");
-    header_text.innerHTML = "Create Cluster";
+    header_text.innerHTML = "Create Community";
     form_header.appendChild(header_text);
 
     form.appendChild(form_header);
@@ -972,19 +972,22 @@ function changeBitForm(button_name) {
     
     if (button_name === 'chat') {
         type_field.value = 'chat';
-        yb_cleanForms(yb_chatBitForm(form, type_field, option_field, script_source));
+        yb_cleanForms();
+        yb_chatBitForm(form, type_field, option_field, script_source);
         
     }
     
     if (button_name === 'video') {
         type_field.value = 'video';
-        yb_cleanForms(yb_videoBitForm(form, type_field, option_field, script_source));
+        yb_cleanForms();
+        yb_videoBitForm(form, type_field, option_field, script_source);
         
     }
 
     if (button_name === 'photo') {
         type_field.value = 'photo';
-        yb_cleanForms(yb_photoBitForm(form, type_field, option_field, script_source));
+        yb_cleanForms();
+        yb_photoBitForm(form, type_field, option_field, script_source);
         
     }
 };
