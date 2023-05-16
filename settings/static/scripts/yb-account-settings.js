@@ -55,7 +55,7 @@ function yb_handleInputChange(field_label) {
     cancel_button.setAttribute("style", "height: 32px; width: 40px !important; background-color: red; margin: auto;");
     field_container.appendChild(cancel_button);
     cancel_button.addEventListener("click", function() {
-        let field_label = this.getAttribute("data-field");
+        let field_label = this.getAttribute("name");
         yb_resetField(field_label);
     });
 
@@ -63,7 +63,7 @@ function yb_handleInputChange(field_label) {
     save_button.setAttribute("style", "height: 32px; width: 40px !important; background-color: green; margin: auto;");
     field_container.appendChild(save_button);
     save_button.addEventListener("click", function() {
-        let field_label = this.getAttribute("data-field");
+        let field_label = this.getAttribute("name");
         yb_saveField(field_label);
     }
     );
