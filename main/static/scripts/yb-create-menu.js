@@ -378,11 +378,13 @@ function yb_chatBitForm(form, type_field, option_field, script_source) {
         }
         //Define scope options buttons
         let private_button = yb_createButton("toggle_private", "bit-private", private_toggle_class, "Private");
+        private_button.setAttribute("type","button");
         private_button.addEventListener("click", function() {
             yb_toggleScope(this);
         });
 
         let public_button = yb_createButton("toggle_public", "bit-public", public_toggle_class, "Public");
+        public_button.setAttribute("type","button");
         public_button.addEventListener("click", function() {
             yb_toggleScope(this);
         });
