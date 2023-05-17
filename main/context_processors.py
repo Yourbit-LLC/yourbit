@@ -9,8 +9,13 @@ from settings.models import MySettings
 def CoreUI(request):
     bit_form = BitForm()
     search_bar = SearchBar()
-    settings = MySettings.objects.get(profile=request.user.profile)
-    default_public = settings.privacy.default_public
+    settings = None
+    default_public = False
+    
+    if request.user.is_authenticated:
+        settings = MySettings.objects.get(profile=request.user.profile)
+        default_public = settings.privacy.default_public
+    
     return {
         'bit_form': bit_form, 
         'search_bar': search_bar,
