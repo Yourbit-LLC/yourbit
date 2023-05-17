@@ -368,12 +368,12 @@ function yb_chatBitForm(form, type_field, option_field, script_source) {
 
         //Check default post scope from provided context in session values
         if (default_public === "true"){
-            private_toggle_class = "half-toggle-right";
-            public_toggle_class = "half-toggle-left active";
+            private_toggle_class = "half-toggle-left";
+            public_toggle_class = "half-toggle-right active";
             option_field.value = "public";
         } else {
-            private_toggle_class = "half-toggle-right active";
-            public_toggle_class = "half-toggle-left";
+            private_toggle_class = "half-toggle-left active";
+            public_toggle_class = "half-toggle-right";
             option_field.value = "private";
         }
         //Define scope options buttons
