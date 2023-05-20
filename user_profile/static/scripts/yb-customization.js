@@ -162,15 +162,15 @@ $(document).ready(function() {
         } 
         //Title color circle pressed
         else if (this_name === "title"){
-            change_history["#title-color-select"] = {"old": TITLE_COLOR_INPUT.value, "new": "awaiting user input..."};
+            change_history["#tfont-color-select"] = {"old": TITLE_COLOR_INPUT.value, "new": "awaiting user input..."};
             
-            showColorOption("#title-color-select", focusIn);
+            showColorOption("#tfont-color-select", focusIn);
         }
         //Text color circle pressed
         else if (this_name === "text"){
-            change_history["#text-color-select"] = {"old": TEXT_COLOR_INPUT.value, "new": "awaiting user input..."};
+            change_history["#pfont-color-select"] = {"old": TEXT_COLOR_INPUT.value, "new": "awaiting user input..."};
             
-            showColorOption("#text-color-select", focusIn);
+            showColorOption("#pfont-color-select", focusIn);
         }
         //Feedback icon color circle pressed
         else if (this_name === "fb_icon"){
