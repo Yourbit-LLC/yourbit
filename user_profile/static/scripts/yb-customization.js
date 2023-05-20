@@ -180,7 +180,7 @@ $(document).ready(function() {
         //Feedback background color circle pressed
         else if (this_name === "fb_background"){
             change_history["#feedback-background-color-select"] = {"old": FEEDBACK_BACKGROUND_COLOR_INPUT.value, "new": "awaiting user input..."};
-            showColorOption('feedback-background-color-select');
+            showColorOption('#feedback-background-color-select');
 
         }
 
@@ -382,7 +382,7 @@ primary_color_field.addEventListener("change", function() {
     hideColorOption('#primary-color-select');
 
     //Update history
-    change_history["primary-color-select"]["new"] = this.value; 
+    change_history["#primary-color-select"]["new"] = this.value; 
 
     //Update bit background color
     bit_background.style.backgroundColor = this.value;
