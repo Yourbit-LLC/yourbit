@@ -176,13 +176,13 @@ $(document).ready(function() {
         else if (this_name === "fb_icon"){
             change_history["#feedback-icon-color-select"] = {"old": FEEDBACK_ICON_COLOR_INPUT.value, "new": "awaiting user input..."};
 
-            showColorOption("#feedback-icon-color-select", focus);
+            showColorOption("#feedback-icon-color-select", focusIn);
 
         }
         //Feedback background color circle pressed
         else if (this_name === "fb_background"){
             change_history["#feedback-background-color-select"] = {"old": FEEDBACK_BACKGROUND_COLOR_INPUT.value, "new": "awaiting user input..."};
-            showColorOption('#feedback-background-color-select');
+            showColorOption('#feedback-background-color-select', focusIn);
 
         }
 
