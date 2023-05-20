@@ -259,6 +259,7 @@ function yb_buildSubmissionBar(form, type=null) {
 
     publish_button.addEventListener("click", function(e) {
         let current_element = e.target;
+        this.disabled = true;
         yb_handleCreateSubmit(current_element);
     });
 
