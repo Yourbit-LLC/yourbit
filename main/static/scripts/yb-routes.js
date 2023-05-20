@@ -72,8 +72,12 @@ function yb_purgeScripts(){
 
 //home
 function home_url(data){
-
-    yb_purgeScripts();
+    try {
+        yb_purgeScripts();
+    } catch (error) {
+        console.log(error);
+    }
+    
     
     
     //Clear Screen
@@ -102,6 +106,11 @@ function home_url(data){
 //home chat
 function home_chat_url(data){
 
+    try {
+        yb_purgeScripts();
+    } catch (error) {
+        console.log(error);
+    }
     $("#content-container").empty();
     $("#page-header").remove();
 
@@ -116,6 +125,11 @@ function home_chat_url(data){
 
 //home video
 function home_video_url(data){
+    try {
+        yb_purgeScripts();
+    } catch (error) {
+        console.log(error);
+    }
     
     //clear content
     $("#content-container").empty();
@@ -132,6 +146,11 @@ function home_video_url(data){
 
 //home photo
 function home_photo_url(data){
+    try {
+        yb_purgeScripts();
+    } catch (error) {
+        console.log(error);
+    }
     $("#content-container").empty();
     $("#page-header").remove();
     history.pushState({}, "", "/bitstream/photo/")
@@ -159,8 +178,11 @@ function profile_url(data){
     yb_setSessionValues("profile-username", data.username);
 
     let base_url = getBaseURL();
-
-    yb_purgeScripts();
+    try {
+        yb_purgeScripts();
+    } catch (error) {
+        console.log(error);
+    }
 
     $("#content-container").empty();
     $("#content-container").load(`${base_url}/profile/templates/profile/`)
@@ -209,8 +231,11 @@ function connections_url(data){
     yb_setSessionValues("location","connections");
 
     //Remove any page scripts
-    let page_script = document.getElementById("page-script");
-    page_script.remove();
+    try {
+        yb_purgeScripts();
+    } catch (error) {
+        console.log(error);
+    }
 
     $("#content-container").html('');
     $("#content-container").load(`${base_url}/profile/templates/connections-html/`)
@@ -272,7 +297,11 @@ function connections_community_url(data){
 //settings
 function settings_url(data){
     //Remove any page scripts
-    yb_purgeScripts();
+    try {
+        yb_purgeScripts();
+    } catch (error) {
+        console.log(error);
+    }
 
     //Clear Screen
     $("#content-container").html('');
@@ -309,6 +338,11 @@ function settings_account_url(data){
 
 //customize
 function customize_url(data){
+    try {
+        yb_purgeScripts();
+    } catch (error) {
+        console.log(error);
+    }
     console.log("function");
     $("#content-container").empty();
     $("#content-container").load(`${base_url}/profile/templates/customize-html/`);
@@ -362,7 +396,11 @@ function settings_money_url(data){
 //Messages
 function messages_inbox_url(){
     let base_url = getBaseURL();
-    yb_purgeScripts();
+    try {
+        yb_purgeScripts();
+    } catch (error) {
+        console.log(error);
+    }
 
     $("#content-container").html('');
     $("#content-container").load(`${base_url}/messages/templates/messages-html/`);
@@ -412,7 +450,12 @@ function messages_conversation_url(id, username){
 
 
 function rewards_url(data){
-    
+    try {
+        yb_purgeScripts();
+    } catch (error) {
+        console.log(error);
+    }
+
     $("#content-container").html('');
     $("#content-container").load(`${base_url}/rewards/templates/rewards-html/`);
     
@@ -448,6 +491,11 @@ function rewards_redeem_url(data){
 
 //history
 function history_url() {
+    try {
+        yb_purgeScripts();
+    } catch (error) {
+        console.log(error);
+    }
     $("#content-container").empty();
     $("#content-container").load(`${base_url}/profile/templates/history-html/`);
     yb_setSessionValues("location", "history");
@@ -461,6 +509,11 @@ function history_url() {
 }
 
 function stuff_url() {
+    try {
+        yb_purgeScripts();
+    } catch (error) {
+        console.log(error);
+    }
     $("#content-container").empty();
     yb_setSessionValues("location", "stuff");
     $("#content-container").load(`${base_url}/profile/templates/my-stuff-html/`);
@@ -476,6 +529,11 @@ function stuff_url() {
 }
 
 function search_url(this_query) {
+    try {
+        yb_purgeScripts();
+    } catch (error) {
+        console.log(error);
+    }
     $("#content-container").empty();
     yb_setSessionValues("location", "search");
     $("#content-container").load(`${base_url}/search/templates/search-results-html/`);
