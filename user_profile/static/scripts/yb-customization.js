@@ -421,6 +421,22 @@ SECONDARY_COLOR_INPUT.addEventListener("change", function() {
     
 });
 
+FEEDBACK_BACKGROUND_COLOR_INPUT.addEventListener("change", function() {
+    //Update color circle to match color setting
+    $("#color-circle-fb-background").css("transition", "0.5s");
+    $("#color-circle-fb-background").css("background-color", this.value);
+    
+        
+    //Update customizations ajax
+    updateCustom('color_change', 'feedback_icon_background', this.value);
+
+    //Hide the color selection field
+    hideColorOption('#feedback-background-color-select');
+
+    //Update history
+    change_history["#feedback-background-color-select"]["new"] = this.value;
+});
+
 //Change event listener for text color field
 
 FEEDBACK_ICON_COLOR_INPUT.addEventListener('change', function() {
@@ -438,10 +454,6 @@ FEEDBACK_ICON_COLOR_INPUT.addEventListener('change', function() {
     
     //Update customizations ajax
     updateCustom('color_change', 'feedback_icon', this.value);
-
-    //Update history
-    change_history["#feedback-icon-color-select"]["new"] = this.value;
-
     //Hide the color selection field
     hideColorOption('#feedback-icon-color-select');
 
