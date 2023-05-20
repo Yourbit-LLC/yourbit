@@ -422,8 +422,8 @@ SECONDARY_COLOR_INPUT.addEventListener("change", function() {
 });
 
 //Change event listener for text color field
-const feedback_icon_field = document.getElementById('feedback-icon-color-select');
-feedback_icon_field.addEventListener('change', function() {
+
+FEEDBACK_ICON_COLOR_INPUT.addEventListener('change', function() {
     
     //Update color circle to match color setting
     $("#color-circle-fb-icon").css("transition", "0.5s");
@@ -451,8 +451,7 @@ feedback_icon_field.addEventListener('change', function() {
 });
 
 
-const icon_field = document.getElementById('icon-color-select');
-icon_field.addEventListener('change', function() {
+ICON_COLOR_INPUT.addEventListener('change', function() {
 
     //Update color circle to match color setting
     $("#color-circle-icon").css("transition", "0.5s");
@@ -483,8 +482,8 @@ icon_field.addEventListener('change', function() {
 });
 
 //Change event listener for text color field
-const text_color_field = document.getElementById('pfont-color-select');
-text_color_field.addEventListener('change', function() {
+
+TEXT_COLOR_INPUT.addEventListener('change', function() {
     //Update color circle to match color setting
     $("#color-circle-text").css("transition", "0.5s");
     $("#color-circle-text").css("background-color", this.value);
@@ -502,8 +501,8 @@ text_color_field.addEventListener('change', function() {
 });
 
 //Change event listener for text color field
-const title_color_field = document.getElementById('tfont-color-select');
-title_color_field.addEventListener('change', function() {
+
+TITLE_COLOR_INPUT.addEventListener('change', function() {
     //Update color circle to match color setting
     $("#color-circle-title").css("transition", "0.5s");
     $("#color-circle-title").css("background-color", this.value);
@@ -558,7 +557,7 @@ SECONDARY_COLOR_INPUT.addEventListener('click', function() {
 });
 
 
-icon_field.addEventListener('click', function() {
+ICON_COLOR_INPUT.addEventListener('click', function() {
     if (preview_stage === 0) {
         $('#accent-color-preview').fadeOut();
         $('#icon-color-preview').fadeIn();
@@ -571,7 +570,7 @@ icon_field.addEventListener('click', function() {
 });
 
 
-title_color_field.addEventListener('click', function() {
+TITLE_COLOR_INPUT.addEventListener('click', function() {
     if (preview_stage === 0) {
         $('#accent-color-preview').fadeOut();
         $('#bit-colors-preview').fadeIn();
@@ -584,7 +583,7 @@ title_color_field.addEventListener('click', function() {
 });
 
 
-text_color_field.addEventListener('click', function() {
+TEXT_COLOR_INPUT.addEventListener('click', function() {
     if (preview_stage === 0) {
         $('#accent-color-preview').fadeOut();
         $('#bit-colors-preview').fadeIn();
@@ -596,7 +595,7 @@ text_color_field.addEventListener('click', function() {
     preview_stage = 1
 });
 
-feedback_icon_field.addEventListener('click', function() {
+FEEDBACK_ICON_COLOR_INPUT.addEventListener('click', function() {
     if (preview_stage === 0) {
         $('#accent-color-preview').fadeOut();
         $('#bit-colors-preview').fadeIn();
@@ -609,7 +608,7 @@ feedback_icon_field.addEventListener('click', function() {
 });
 
 
-primary_color_field.addEventListener('click', function() {
+PRIMARY_COLOR_INPUT.addEventListener('click', function() {
     if (preview_stage === 0) {
         $('#accent-color-preview').fadeOut();
         $('#bit-colors-preview').fadeIn();
