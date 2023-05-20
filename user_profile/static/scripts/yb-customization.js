@@ -28,8 +28,10 @@ const BACKGROUND_IMAGE_INPUT = document.getElementById("background-image-input")
 const PRIMARY_COLOR_INPUT = document.getElementById("primary-color-select");
 const SECONDARY_COLOR_INPUT = document.getElementById("accent-color-select");
 const ICON_COLOR_INPUT = document.getElementById("icon-color-select");
+const TEXT_COLOR_INPUT = document.getElementById("pfont-color-select");
+const TITLE_COLOR_INPUT = document.getElementById("tfont-color-select");
 const FEEDBACK_ICON_COLOR_INPUT = document.getElementById("feedback-icon-color-select");
-const FEEDBACK_ICON_BACKGROUND_INPUT = document.getElementById("feedback-icon-background-select");
+const FEEDBACK_BACKGROUND_COLOR_INPUT = document.getElementById("feedback-background-color-select");
 const BLUR_RADIUS_INPUT = document.getElementById("blur-radius-select");
 
 
@@ -368,8 +370,8 @@ function yb_ContrastColor(value){
 ##############################################################################*/
 
 //Change event listener for primary color field
-const primary_color_field = document.getElementById('primary-color-select')
-primary_color_field.addEventListener("change", function() {
+
+PRIMARY_COLOR_INPUT.addEventListener("change", function() {
 
     //Set preview element = to bit background
     let bit_background = document.getElementById('bit-colors-preview');
@@ -392,8 +394,8 @@ primary_color_field.addEventListener("change", function() {
 });
 
 //Change event listener for secondary color field
-const accent_color_field = document.getElementById('accent-color-select')
-accent_color_field.addEventListener("change", function() {
+
+SECONDARY_COLOR_INPUT.addEventListener("change", function() {
 
     //Set preview elements
     let border1 = document.getElementById('accent-color-preview');
