@@ -544,7 +544,7 @@ function yb_closeImageSelection(){
 }
 
 //Legacy Code for the old color picker to be removed after any potential conflicts ruled out
-accent_color_field.addEventListener('click', function() {
+SECONDARY_COLOR_INPUT.addEventListener('click', function() {
     if (preview_stage === 1) {
         $('#bit-colors-preview').fadeOut();
         $('#accent-color-preview').fadeIn();
