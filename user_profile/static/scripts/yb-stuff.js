@@ -39,7 +39,7 @@ $(document).ready(function() {
 });
 
 function yb_listClusters() {
-    let url = "api/clusters/";
+    let url = "/api/clusters/";
     $.ajax({
         url: url,
         type: "GET",
