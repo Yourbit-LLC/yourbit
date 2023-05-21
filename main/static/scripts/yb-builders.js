@@ -1076,5 +1076,5 @@ function yb_buildFolder(blueprint){
         </div>
     `
 
-    return list_item
+    return list_item;
 }

@@ -41,7 +41,26 @@ function yb_listClusters() {
         url: url,
         type: "GET",
         success: function(data) {
-            console.log(data);
+            let is_clusters = data.is_clusters
+
+            //Check if there are clusters for this user
+            if (is_clusters === true) {
+
+                //If there are clusters, show them
+                let this_container = document.getElementById("bit-container");
+                this_container.innerHTML = "";
+                let clusters = data.cluster_list;
+
+                //For each cluster send blueprint to build function
+                for (let i = 0; i < clusters.length; i++) {
+
+                    let blueprint = clusters[i];
+                    let this_item = yb_buildFolder(blueprint);
+
+                    //Append this item to this container
+                    this_container.appendChild(this_item);
+                }
+            }
         }
     })
 

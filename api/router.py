@@ -1,5 +1,5 @@
 from rest_framework import routers
-from user_profile.api.viewsets import BitViewSet, ProfileViewSet, PhotoViewSet, CustomizationViewSet
+from user_profile.api.viewsets import BitViewSet, ProfileViewSet, PhotoViewSet, CustomizationViewSet, ClusterVS
 from feed.api.viewsets import CommentViewSet, InteractionViewSet
 from messenger.api.viewsets import ConversationViewSet, MessageViewSet
 from rewards.api.viewsets import RewardsViewSet
@@ -15,6 +15,7 @@ router = routers.DefaultRouter()
 
 router.register('users', UserViewSet, basename='user')
 router.register('bits', BitViewSet, basename='bit')
+router.register('clusters', ClusterVS, basename='cluster')
 router.register('profiles', ProfileViewSet, basename='profile')
 router.register('photos', PhotoViewSet, basename='photo')
 router.register('custom', CustomizationViewSet, basename='custom')
