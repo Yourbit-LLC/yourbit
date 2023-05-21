@@ -16,22 +16,25 @@ $(document).ready(function() {
         is_cluster = true;
     }
 
-    let data = {
-        "type": type,
-        "dataset":dataset,
-        "is_cluster": is_cluster,
-        "filter": filter,
-        "sort": sort,
+    // let data = {
+    //     "type": type,
+    //     "dataset":dataset,
+    //     "is_cluster": is_cluster,
+    //     "filter": filter,
+    //     "sort": sort,
 
-    }
+    // }
 
-    yb_getFeed(data, hideSplash, true);
+    // yb_getFeed(data, hideSplash, true);
+
 
     let create_cluster_button = document.getElementById("button-create-cluster");
     create_cluster_button.addEventListener("click", function() {
         showCreateBit(raiseCreateBit);
         yb_showClusterForm();
     });
+
+    yb_listClusters();
 
 });
 
