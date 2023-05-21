@@ -1035,6 +1035,7 @@ function yb_buildFolder(blueprint){
     let title = blueprint.title;
     let count = blueprint.item_count;
     let type = blueprint.type;
+    let primary_color = yb_getSessionValues("primary-color");
     
     let image;
     
