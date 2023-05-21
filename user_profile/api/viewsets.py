@@ -717,7 +717,41 @@ class CustomizationViewSet(viewsets.ViewSet):
 
         return Response('Customization Settings Successfully Updated!')
 
+class ClusterVS(viewsets.ViewSet):
+    def list(self, request):
+        user_profile = Profile.objects.get(user = request.user)
+        clusters = Cluster.objects.filter(profile = user_profile)
+        
+        if len(clusters) > 0:
+        
+            serializer_class = ClusterSerializer(clusters, many = True)
 
+
+            return Response({"is_clusters" : True, "cluster_list": serializer_class.data})
+        
+        else:
+            return Response({"is_clusters" : False})
+
+    def retrieve(self, request, pk=None):
+        user_profile = Profile.objects.get(user = request.user)
+        cluster = Cluster.objects.get(id=pk)
+        serializer_class = ClusterSerializer(cluster, many = False)
+
+        return Response(serializer_class.data)
+
+    def create(self, request):
+        user_profile = Profile.objects.get(user = request.user)
+        cluster = Cluster(profile = user_profile)
+        cluster.save()
+
+        return Response('Cluster Created Successfully!')
+
+    def destroy(self, request, pk=None):
+        cluster = Cluster.objects.get(id=pk)
+        cluster.delete()
+
+        return Response('Cluster Deleted Successfully!')
+    
 @api_view(["POST"])
 def requestFriend(request):
     from notifications.models import Notification

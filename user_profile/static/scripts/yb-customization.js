@@ -144,7 +144,7 @@ $(document).ready(function() {
         //Primary color circle pressed
         if (this_name === "primary"){
             change_history["#primary-color-select"] = {"old": PRIMARY_COLOR_INPUT.value, "new": "awaiting user input..."};
-            showColorOption('#primary-color-select', focusIn);
+            showColorOption("#primary-color-select", focusIn);
 
         }
         //Secondary color circle pressed

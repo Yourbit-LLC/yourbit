@@ -4,6 +4,7 @@ from ..models import *
 import pytz
 from datetime import datetime
 
+
 class CustomBitSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -87,3 +88,11 @@ class CustomizeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Custom
         fields="__all__"
+
+class ClusterSerializer(serializers.ModelSerializer):
+    user = UserResultSerializer(many=False, read_only = True)
+    custom = CustomResultSerializer(many=False, read_only=True)
+    class Meta:
+        model = Cluster
+        fields = '__all__'
+
