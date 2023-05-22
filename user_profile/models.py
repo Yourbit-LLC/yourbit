@@ -51,6 +51,7 @@ class Cluster(models.Model):
     type = models.CharField(max_length=100, default="all")
     bits = models.ManyToManyField('Bit', related_name = 'clustered_bit', blank=True)
     custom = models.OneToOneField('Custom', on_delete=models.CASCADE, related_name='cluster', null=True)
+    bit_count = models.IntegerField(default=0)
 
 class Group(models.Model):
     #types: 1=Famly 2=Friends 3=Work Group 4=School Group

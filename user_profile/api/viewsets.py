@@ -736,6 +736,7 @@ class ClusterVS(viewsets.ViewSet):
         user_profile = Profile.objects.get(user = request.user)
         cluster = Cluster.objects.get(id=pk)
         serializer_class = ClusterSerializer(cluster, many = False)
+        
 
         return Response(serializer_class.data)
 

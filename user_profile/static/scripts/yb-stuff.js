@@ -58,6 +58,7 @@ function yb_listClusters() {
                 for (let i = 0; i < clusters.length; i++) {
 
                     let blueprint = clusters[i];
+                    console.log(blueprint);
                     let this_item = yb_buildFolder(blueprint);
 
                     //Append this item to this container
