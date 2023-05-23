@@ -823,8 +823,11 @@ function yb_showClusterForm(){
     let option1 = yb_createElement("option", "option-type-cb-all", "yb-option");
     option1.setAttribute("value", "all");
     let option2 = yb_createElement("option", "option-type-cb-chat", "yb-option");
+    option2.setAttribute("value", "chat");
     let option3 = yb_createElement("option", "option-type-cb-photo", "yb-option");
+    option3.setAttribute("value", "photo");
     let option4 = yb_createElement("option", "option-type-cb-video", "yb-option");
+    option4.setAttribute("value", "video");
 
     option_field.value = 'cluster';
     
