@@ -818,7 +818,13 @@ function yb_showClusterForm(){
     let description = yb_createElement("p", "mobile-cluster-description", "yb-card-intro");
     description.innerHTML = "A Cluster is a folder containing your saved Bits.<br><br> You can access the clusters you have created by navigating to your inventory from the profile menu."
     let name_field = yb_createInput("text", "yb-single-line-input", "mobile-cluster-name",  "Cluster Name");
-
+    
+    let type_field = yb_createElement("select", "select-type-cb", "yb-single-line-input");
+    let option1 = yb_createElement("option", "option-type-cb-all", "yb-option");
+    option1.setAttribute("value", "all");
+    let option2 = yb_createElement("option", "option-type-cb-chat", "yb-option");
+    let option3 = yb_createElement("option", "option-type-cb-photo", "yb-option");
+    let option4 = yb_createElement("option", "option-type-cb-video", "yb-option");
 
     option_field.value = 'cluster';
     
