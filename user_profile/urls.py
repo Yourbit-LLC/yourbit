@@ -24,6 +24,7 @@ urlpatterns = [
         path('templates/my-stuff-html/', TemplateView.as_view(template_name='user_profile/my_stuff.html')),
         path('templates/history-html/', TemplateView.as_view(template_name="user_profile/history.html")),
         path('templates/create-menu-html/', TemplateView.as_view(template_name="user_profile/create_menu.html")),
+        path('templates/cluster-html/', TemplateView.as_view(template_name="user_profile/cluster_view.html")),
         
         #Django Views
         path('connections/', ConnectionList.as_view(), name='connections'),
