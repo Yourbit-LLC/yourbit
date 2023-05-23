@@ -1063,6 +1063,7 @@ function yb_buildFolder(blueprint){
 
     let list_item = yb_createElement('div', `list-item-${id}`, 'full-result');
     list_item.setAttribute("data-id", id);
+    list_item.setAttribute("name", title);
     list_item.setAttribute("style", `background-color: ${primary_color}; margin-top: 10px;`);
 
     list_item.innerHTML =`

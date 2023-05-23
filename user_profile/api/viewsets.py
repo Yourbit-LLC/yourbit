@@ -172,11 +172,13 @@ class BitViewSet(viewsets.ViewSet):
                         bit_pool = these_interactions.shared_bits.all().order_by("-time")
                     
                     #If dataset=saved get folder param, then retrieve bits in saved folder
-                    if dataset == "saved":
+                    if dataset == "cluster":
                         from user_profile.models import Cluster
                         cluster_id = self.request.query_params.get("cluster")
                         this_cluster = Cluster.objects.get(id = cluster_id)
                         bit_pool = this_cluster.bits.all().order_by("-time")
+                    
+
 
 
 

@@ -528,6 +528,27 @@ function stuff_url() {
 
 }
 
+function cluster_url(cluster_id, cluster_name) {
+    try {
+        yb_purgeScripts();
+    } catch (error) {
+        console.log(error);
+    }
+    $("#content-container").empty();
+    yb_setSessionValues("location", "stuff");
+    yb_setSessionValues("cluster", cluster_id);
+
+    let this_username = yb_getSessionValues("username");
+    $("#content-container").load(`${base_url}/profile/templates/cluster-html/`);
+    
+    history.pushState({}, "", `/profile/${this_username}/cluster/${cluster_name}`);
+
+            
+    if (menu.style.visibility === "visible") {
+        yb_show_profile_menu();
+    }
+}
+
 function search_url(this_query) {
     try {
         yb_purgeScripts();
