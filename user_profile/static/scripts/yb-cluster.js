@@ -10,6 +10,7 @@ $(document).ready(function() {
     let type = yb_getSessionValues("space");
 
     let new_feed = {
+        "is_cluster": true,
         "dataset": "cluster",
         "type": type,
         "cluster": cluster,

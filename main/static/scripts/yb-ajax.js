@@ -43,7 +43,7 @@ function yb_getFeed(new_feed, callback, callback2, session_start){
     if (location === "stuff"){
         if (new_feed.is_cluster === true) {
             url = `
-            ${base_url}/api/stuff/?cluster=${new_feed.cluster}&type=${new_feed.type}&filter=${new_feed.filter}&sort=${new_feed.sort}&start=${start.toString()}
+            ${base_url}/api/bits/?cluster=${new_feed.cluster}&type=${new_feed.type}&filter=${new_feed.filter}&sort=${new_feed.sort}&start=${start.toString()}
             `
         } else {
             url = `
