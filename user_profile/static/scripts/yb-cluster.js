@@ -3,6 +3,7 @@ $(document).ready(function() {
     yb_showMenuTask();   
     let dataset = $("#yb-browse-nav").attr("data-dataset"); 
     let cluster = yb_getSessionValues("cluster")
+    let cluster_name = yb_getSessionValues("cluster-name")
     console.log("cluster:" + cluster);
 
     let filter = yb_getSessionValues("filter");
@@ -21,6 +22,6 @@ $(document).ready(function() {
     
     yb_showSpaceBar();
     headerDropIn();
-
+    $("#page-title-display").html(cluster_name);
     yb_getFeed(new_feed, hideSplash, false);
 })

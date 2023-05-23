@@ -537,6 +537,7 @@ function cluster_url(cluster_id, cluster_name) {
     $("#content-container").empty();
     yb_setSessionValues("location", "stuff");
     yb_setSessionValues("cluster", cluster_id);
+    yb_setSessionValues("cluster-name", cluster_id);
 
     let this_username = yb_getSessionValues("username");
     $("#content-container").load(`${base_url}/profile/templates/cluster-html/`);
