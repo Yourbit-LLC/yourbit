@@ -626,7 +626,8 @@ class CreateCluster(View):
     def post(self, request):
         cluster_name = request.POST.get('name')
         print(cluster_name)
-        cluster = Cluster.objects.create(name=cluster_name, profile = request.user.profile)
+        type = request.POST.get("type")
+        cluster = Cluster.objects.create(name=cluster_name, type=type, profile = request.user.profile)
 
         cluster.save()
         
