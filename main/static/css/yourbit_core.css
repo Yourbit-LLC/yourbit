@@ -2804,6 +2804,13 @@ only be used for object transforms (shaping and scaling)
     }
 
     
+    option {
+        color: rgb(150, 150, 150);
+        font-weight: 550;
+        background-color: black;
+    }
+
+    
     /*Linear Content Container*/
 
     /*Grid Content Container*/

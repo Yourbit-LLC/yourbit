@@ -203,10 +203,4 @@
         text-align:left; 
         font-size: 14px;
     }
-
-    option {
-        color: rgb(150, 150, 150);
-        font-weight: 550;
-        background-color: black;
-    }
 }

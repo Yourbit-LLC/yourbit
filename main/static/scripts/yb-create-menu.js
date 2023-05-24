@@ -833,6 +833,13 @@ function yb_showClusterForm(){
     let option4 = yb_createElement("option", "option-type-cb-video", "yb-option");
     option4.setAttribute("value", "video");
 
+
+
+    option_field.value = 'cluster';
+    
+    //change form fields to correspond with creation
+    create_inputs.appendChild(description);
+    create_inputs.appendChild(name_field);
     //append all options to select field
     type_field.appendChild(option1);
     type_field.appendChild(option2);
@@ -843,11 +850,7 @@ function yb_showClusterForm(){
     create_inputs.appendChild(type_field);
     type_field.value = 'all';
 
-    option_field.value = 'cluster';
-    
-    //change form fields to correspond with creation
-    create_inputs.appendChild(description);
-    create_inputs.appendChild(name_field);
+
     form.appendChild(create_inputs);
 
     let submission_bar = yb_buildSubmissionBar("cluster-form");
