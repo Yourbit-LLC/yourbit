@@ -823,15 +823,20 @@ function yb_showClusterForm(){
     
     //Type Field
     let type_field = yb_createElement("select", "select-type-cb", "yb-single-line-input");
+    type_field.setAttribute("value","all");
     //Type Opptions
     let option1 = yb_createElement("option", "option-type-cb-all", "yb-option");
     option1.setAttribute("value", "all");
+    option1.innerHTML = "All Types";
     let option2 = yb_createElement("option", "option-type-cb-chat", "yb-option");
     option2.setAttribute("value", "chat");
+    option2.innerHTML = "ChatBits";
     let option3 = yb_createElement("option", "option-type-cb-photo", "yb-option");
     option3.setAttribute("value", "photo");
+    option3.innerHTML = "PhotoBits";
     let option4 = yb_createElement("option", "option-type-cb-video", "yb-option");
     option4.setAttribute("value", "video");
+    option4.innerHTML = "VideoBits";
 
 
 
