@@ -814,12 +814,16 @@ function yb_showClusterForm(){
 
     let create_inputs = yb_createElement("div", "mobile-create-inputs", "create-inputs");
     
-
+    //Description field
     let description = yb_createElement("p", "mobile-cluster-description", "yb-card-intro");
     description.innerHTML = "A Cluster is a folder containing your saved Bits.<br><br> You can access the clusters you have created by navigating to your inventory from the profile menu."
+    
+    //name field
     let name_field = yb_createInput("text", "yb-single-line-input", "mobile-cluster-name",  "Cluster Name");
     
+    //Type Field
     let type_field = yb_createElement("select", "select-type-cb", "yb-single-line-input");
+    //Type Opptions
     let option1 = yb_createElement("option", "option-type-cb-all", "yb-option");
     option1.setAttribute("value", "all");
     let option2 = yb_createElement("option", "option-type-cb-chat", "yb-option");
@@ -828,6 +832,16 @@ function yb_showClusterForm(){
     option3.setAttribute("value", "photo");
     let option4 = yb_createElement("option", "option-type-cb-video", "yb-option");
     option4.setAttribute("value", "video");
+
+    //append all options to select field
+    type_field.appendChild(option1);
+    type_field.appendChild(option2);
+    type_field.appendChild(option3);
+    type_field.appendChild(option4);
+
+    //Append select field to create inputs
+    create_inputs.appendChild(type_field);
+    type_field.value = 'all';
 
     option_field.value = 'cluster';
     
