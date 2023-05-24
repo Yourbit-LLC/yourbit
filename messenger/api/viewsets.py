@@ -55,8 +55,8 @@ class MessageViewSet(viewsets.ViewSet):
             this_conversation = Conversation.objects.get(sender = request.user, receiver = receiver)
             that_conversation = Conversation.objects.get(receiver = request.user, sender = receiver)
         else:
-            this_conversation = Conversation.objects.create(sender = request.user, receiver = receiver, receiver_custom = custom)
-            that_conversation = Conversation.objects.create(receiver = request.user, sender = receiver, receiver_custom = receiver.profile.custom)
+            this_conversation = Conversation.objects.create(sender = request.user, receiver = receiver, receiver_custom = receiver.profile.custom)
+            that_conversation = Conversation.objects.create(receiver = request.user, sender = receiver, receiver_custom = custom)
 
         print(this_conversation)
         print(that_conversation)
