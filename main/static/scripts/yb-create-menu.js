@@ -1014,10 +1014,12 @@ function yb_handleCreateSubmit(this_element){
     } else if (action === "create_cluster") {
         let name_field = document.getElementById('mobile-cluster-name');
         let name = name_field.value;
+        let type_setting = document.getElementById('select-type-cb').value;
+        
         name_field.value = "";
         
         console.log(name);
-        yb_createCluster(name);
+        yb_createCluster(name, type_setting);
 
     }
 
