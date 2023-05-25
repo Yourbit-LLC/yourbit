@@ -942,11 +942,13 @@ function yb_submitReport(type){
 
 }
 
-function yb_createCluster(name){
+function yb_createCluster(name, type){
     let csrfToken = getCSRF();
     let url = `${base_url}/profile/api/create/cluster/`;
     let request = new FormData();
     request.append('name', name);
+    request.append('type', type);
+    
     $.ajax({
         type: 'POST',
         contentType: false,

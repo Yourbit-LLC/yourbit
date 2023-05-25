@@ -458,6 +458,11 @@ function yb_buildContextMenu(this_element){
             `
             $(`#bit-context-${this_id}`).append(create_cluster);
             
+            create_cluster.addEventListener("click", function() {
+               showCreateBit(raiseCreateBit);
+               yb_showClusterForm();
+            })
+            
 
         });
         
