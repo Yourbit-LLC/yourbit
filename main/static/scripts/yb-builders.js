@@ -629,7 +629,7 @@ function BuildMessage(this_message){
         new_time.innerHTML = `<small>${time}</small>`;
         new_element.appendChild(new_time);
 
-        new_avatar = yb_renderImage(profile_image, "message-hangover-right", new_element);
+        new_avatar = yb_renderImage(profile_image, "message-hangover-left", new_element);
         new_avatar.style.display = "none";
         new_avatar.style.marginRight = "10px";
         new_element.appendChild(new_avatar);
