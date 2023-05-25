@@ -267,23 +267,6 @@ function yb_createImageGrid(data) {
 }
 
 
-//Legacy functions to be migrated to scrapyard
-$(".filter-button").click(function() {
-    let this_name = $(this).attr("name");
-    $(".dropdown-large").fadeOut();
-    $(".filter-button-wide-active").attr("class","filter-button");
-    $(this_name).fadeIn();
-    $(this).attr("class","filter-button-wide-active");
-});
-
-$(".filter-button-wide-active").click(function() {
-    let this_name = $(this).attr("name");
-    $(".dropdown-large").fadeOut();
-    $(".filter-button-wide-active").attr("class","filter-button");
-    $(this_name).fadeIn();
-    $(this).attr("class","filter-button-wide-active");
-});
-
 $('#back-to-home').click(function() {
     window.location.href = `${base_url}/bitstream/home/`
 });

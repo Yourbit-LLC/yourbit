@@ -179,7 +179,7 @@
 
                     <div id='color-customizations' style='position: relative; text-align: center; display:grid; grid-template-columns: 70px 70px 70px; margin-bottom: 10px; width: 210px; margin-left: auto; margin-right: auto;'>
                         <div>
-                            <input class="color-selector" id="primary-color-select" type="color" name='primary_color'  value="{{bit_background}}">
+                            <input class="color-selector" id="primary-color-select" type="color" name='primary_color' value="{{bit_background}}">
                             <br>
                             <label class="color-select-label" for="primary-color-select">Primary</label>
                         </div>
@@ -207,7 +207,7 @@
                             <p style="grid-column: 2; margin-top: 12px;">Use Custom Colors</p>
                         </div>
                     </div>
-                    <div id='bit-colors-preview' class='bit-preview' style="background-color: {{bit_background}}; display: block; margin-top: 10px;">                        
+                    <div id='bit-colors-preview' class='bit-preview' style="background-color: {{bit_background}}; display: block; margin-top: 10px; pointer-events:none;">                        
                         <input id='advanced-color-bit-background' type = "color" style='display: none; position: absolute; z-index: 3; top: 50%; left:50%; transform: translate(-50%, -50%)'>
                         <div id='bit-user-info'>
                             <div id='bit-profile-image'>
@@ -235,7 +235,7 @@
                     <!--<p style="width: 100%; text-align: center; font-size: 14px; margin-top: 10px;" for='yb-align-text'>Colors</p> -->
                     
                     <!-- Horizontal container for color customization options for bits-->
-                    <div id='bit-color-customizations' style='position: relative; width: 280px; margin-left: auto; margin-right: auto; text-align: center;  display:grid; grid-template-columns: 70px 70px 70px 70px;'>
+                    <div id='bit-color-customizations' style='position: relative; width: 280px; margin-left: auto; margin-right: auto; text-align: center;  display:grid; grid-template-columns: 70px 70px 70px 70px; pointer-events:auto;'>
                         <div>
                             <input class="color-selector" id="tfont-color-select" type="color" name='title_color' value="{{title_color}}">
                             <br>
