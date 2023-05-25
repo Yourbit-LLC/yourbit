@@ -140,6 +140,7 @@ $(document).ready(function() {
     //Event listener for color select
     $('.color-circle').click(function(){
         let this_name = $(this).attr("name");
+        console.log("clicked " + name);
 
         //Primary color circle pressed
         if (this_name === "primary"){
