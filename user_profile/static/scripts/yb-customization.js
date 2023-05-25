@@ -138,10 +138,10 @@ $(document).ready(function() {
 
 
     //Event listener for color select
-    var color_circles = document.getElementsByClassName("color-circle");
+    var color_circles = document.getElementsByClassName("color-selector");
     for (let i = 0; i < color_circles.length; i++){
         color_circles[i].addEventListener("click", function() {
-            yb_handleColorCircle(this);
+            yb_handleColorSelector(this);
         });
     }
 
@@ -175,45 +175,45 @@ function yb_handleColorCircle(this_object){
     //Primary color circle pressed
     if (this_name === "primary"){
         change_history["#primary-color-select"] = {"old": PRIMARY_COLOR_INPUT.value, "new": "awaiting user input..."};
-        showColorOption("#primary-color-select", focusIn);
+        
 
     }
     //Secondary color circle pressed
     else if (this_name === "secondary"){
         change_history["#accent-color-select"] = {"old": SECONDARY_COLOR_INPUT.value, "new": "awaiting user input..."};
         
-        showColorOption("#accent-color-select", focusIn);
+     
     }
     //Icon color circle pressed
     else if (this_name === "icon"){
         
         change_history["#icon-color-select"] = {"old": ICON_COLOR_INPUT.value, "new": "awaiting user input..."};
         
-        showColorOption("#icon-color-select", focusIn);
+        
     } 
     //Title color circle pressed
     else if (this_name === "title"){
         change_history["#tfont-color-select"] = {"old": TITLE_COLOR_INPUT.value, "new": "awaiting user input..."};
         
-        showColorOption("#tfont-color-select", focusIn);
+        
     }
     //Text color circle pressed
     else if (this_name === "text"){
         change_history["#pfont-color-select"] = {"old": TEXT_COLOR_INPUT.value, "new": "awaiting user input..."};
         
-        showColorOption("#pfont-color-select", focusIn);
+        
     }
     //Feedback icon color circle pressed
     else if (this_name === "fb_icon"){
         change_history["#feedback-icon-color-select"] = {"old": FEEDBACK_ICON_COLOR_INPUT.value, "new": "awaiting user input..."};
 
-        showColorOption("#feedback-icon-color-select", focusIn);
+        
 
     }
     //Feedback background color circle pressed
     else if (this_name === "fb_background"){
         change_history["#feedback-background-color-select"] = {"old": FEEDBACK_BACKGROUND_COLOR_INPUT.value, "new": "awaiting user input..."};
-        showColorOption('#feedback-background-color-select', focusIn);
+        
 
     }
 
@@ -294,11 +294,6 @@ $('#bit-colors-preview').click(function() {
     
 });
 
-//Show color option ("#field-id", callback_function)
-function showColorOption(field, callback) {
-    $(field).show();
-    callback(field);
-}
 
 //Focus on field for color option to reveal selector ("#field-id")
 function focusIn(field){
@@ -385,10 +380,7 @@ PRIMARY_COLOR_INPUT.addEventListener("change", function() {
     //Set preview element = to bit background
     let bit_background = document.getElementById('bit-colors-preview');
     
-    //Update color circle to match color setting
-    $("#color-circle-primary").css("transition", "0.5s");
-    $("#color-circle-primary").css("background-color", this.value);
-    
+
     //Hide the color selection field
     hideColorOption('#primary-color-select');
 
@@ -421,9 +413,6 @@ SECONDARY_COLOR_INPUT.addEventListener("change", function() {
     //Update history
     change_history["#accent-color-select"]["new"] = this.value;
 
-    //Update color circle to match color setting
-    $("#color-circle-secondary").css("transition", "0.5s");
-    $("#color-circle-secondary").css("background-color", this.value);
     
     //Hide the color selection field
     hideColorOption('#accent-color-select');
@@ -431,11 +420,7 @@ SECONDARY_COLOR_INPUT.addEventListener("change", function() {
 });
 
 FEEDBACK_BACKGROUND_COLOR_INPUT.addEventListener("change", function() {
-    //Update color circle to match color setting
-    $("#color-circle-fb-background").css("transition", "0.5s");
-    $("#color-circle-fb-background").css("background-color", this.value);
-    
-        
+
     //Update customizations ajax
     updateCustom('color_change', 'feedback_icon_background', this.value);
 
@@ -449,10 +434,6 @@ FEEDBACK_BACKGROUND_COLOR_INPUT.addEventListener("change", function() {
 //Change event listener for text color field
 
 FEEDBACK_ICON_COLOR_INPUT.addEventListener('change', function() {
-    
-    //Update color circle to match color setting
-    $("#color-circle-fb-icon").css("transition", "0.5s");
-    $("#color-circle-fb-icon").css("background-color", this.value);
 
     //Update preview elements
     let feedback_preview1 = document.getElementById('button1').style.backgroundColor = this.value;
@@ -473,10 +454,6 @@ FEEDBACK_ICON_COLOR_INPUT.addEventListener('change', function() {
 
 
 ICON_COLOR_INPUT.addEventListener('change', function() {
-
-    //Update color circle to match color setting
-    $("#color-circle-icon").css("transition", "0.5s");
-    $("#color-circle-icon").css("background-color", this.value);
 
     //Update preview elements
     let space_icon1 = document.getElementById('icon-image-1').style.fill = this.value;
@@ -505,9 +482,7 @@ ICON_COLOR_INPUT.addEventListener('change', function() {
 //Change event listener for text color field
 
 TEXT_COLOR_INPUT.addEventListener('change', function() {
-    //Update color circle to match color setting
-    $("#color-circle-text").css("transition", "0.5s");
-    $("#color-circle-text").css("background-color", this.value);
+
     let text_color_preview = document.getElementById('preview-paragraph');
     text_color_preview.style.color = this.value;
 
@@ -524,9 +499,7 @@ TEXT_COLOR_INPUT.addEventListener('change', function() {
 //Change event listener for text color field
 
 TITLE_COLOR_INPUT.addEventListener('change', function() {
-    //Update color circle to match color setting
-    $("#color-circle-title").css("transition", "0.5s");
-    $("#color-circle-title").css("background-color", this.value);
+
 
     //Update preview elements
     let title_color_preview = document.getElementById('preview-title');
