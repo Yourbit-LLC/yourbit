@@ -364,9 +364,6 @@ PRIMARY_COLOR_INPUT.addEventListener("change", function() {
     let bit_background = document.getElementById('bit-colors-preview');
     
 
-    //Hide the color selection field
-    hideColorOption('#primary-color-select');
-
     //Update history
     change_history["#primary-color-select"]["new"] = this.value; 
 
@@ -397,18 +394,12 @@ SECONDARY_COLOR_INPUT.addEventListener("change", function() {
     change_history["#accent-color-select"]["new"] = this.value;
 
     
-    //Hide the color selection field
-    hideColorOption('#accent-color-select');
-    
 });
 
 FEEDBACK_BACKGROUND_COLOR_INPUT.addEventListener("change", function() {
 
     //Update customizations ajax
     updateCustom('color_change', 'feedback_icon_background', this.value);
-
-    //Hide the color selection field
-    hideColorOption('#feedback-background-color-select');
 
     //Update history
     change_history["#feedback-background-color-select"]["new"] = this.value;
@@ -427,8 +418,6 @@ FEEDBACK_ICON_COLOR_INPUT.addEventListener('change', function() {
     
     //Update customizations ajax
     updateCustom('color_change', 'feedback_icon', this.value);
-    //Hide the color selection field
-    hideColorOption('#feedback-icon-color-select');
 
     //Update history
     change_history["#feedback-icon-color-select"]["new"] = this.value;
@@ -457,8 +446,6 @@ ICON_COLOR_INPUT.addEventListener('change', function() {
     //Update customizations ajax
     updateCustom('color_change', 'icon', this.value);
     
-    //Hide the color selection field
-    hideColorOption('#icon-color-select');
     
 });
 
@@ -475,8 +462,6 @@ TEXT_COLOR_INPUT.addEventListener('change', function() {
     //Update customizations ajax
     updateCustom('color_change', 'paragraph_font', this.value);
 
-    //Hide the color selection field
-    hideColorOption('#text-color-select');
 });
 
 //Change event listener for text color field
@@ -494,8 +479,6 @@ TITLE_COLOR_INPUT.addEventListener('change', function() {
     //Update customizations ajax
     updateCustom('color_change', 'title_font', this.value);
 
-    //Hide the color selection field
-    hideColorOption('#tfont-color-select');
 });
 
 //Change event listener for text color field
