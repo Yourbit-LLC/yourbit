@@ -160,6 +160,7 @@ function yb_handleAlignButton(this_element){
 
     //Set hidden input value
     PARAGRAPH_ALIGN_HIDDEN.value = this_value;
+    console.log(this_value);
 
     //Add to change history
     change_history["#hidden-field-alignParagraph"] = {"old": old_value, "new": this_value};
