@@ -674,11 +674,11 @@
         padding: 5px;
     }
 
-    #sticky-preview-image-container {
+    .yb-panel.light.sticky {
         position: sticky;
         display: block;
-        width: 98%;
         height: 25vh;
+        z-index: 10;
         border-radius: 20px;
         overflow: hidden;
         -webkit-backdrop-filter: blur(10px);
