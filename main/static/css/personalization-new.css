@@ -641,6 +641,13 @@
 
     }
 
+    .yb-three-part-left.active {
+        
+        background-color: rgba(155, 155, 155, 0.5);
+
+
+    }
+
     .yb-three-part-center {
         position: relative;
         display: block;
@@ -651,6 +658,13 @@
 
 
     }
+    .yb-three-part-center.active {
+        
+        background-color: rgba(155, 155, 155, 0.5);
+
+
+    }
+
 
     .yb-three-part-right {
         position: relative;
@@ -664,6 +678,14 @@
 
 
     }
+
+    .yb-three-part-right.active {
+        
+        background-color: rgba(155, 155, 155, 0.5);
+
+
+    }
+
 
     #profile-image-panel {
         display: grid;
