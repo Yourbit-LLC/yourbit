@@ -329,6 +329,7 @@
         border-radius: 20px;
         transition: 0.5s;
         
+        
     }
     
     #bit-user-info {
@@ -687,6 +688,8 @@
         backdrop-filter: blur(10px);
         top: -20px;
         background-color: #4b4b4b;
+        margin-left: auto;
+        margin-right: auto;
     }
 
 }
