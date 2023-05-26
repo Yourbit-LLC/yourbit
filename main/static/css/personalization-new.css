@@ -679,7 +679,7 @@
     .yb-panel.light.sticky {
         position: sticky;
         display: block;
-        height: 27vh;
+        height: fit-content;
         width: 98vw;
         z-index: 10;
         border-radius: 20px;
