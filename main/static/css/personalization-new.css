@@ -674,6 +674,17 @@
         padding: 5px;
     }
 
-    
+    #sticky-preview-image-container {
+        position: sticky;
+        display: block;
+        width: 98%;
+        height: 25vh;
+        border-radius: 20px;
+        overflow: hidden;
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        top: 20px;
+        background-color: #4b4b4b;
+    }
 
 }

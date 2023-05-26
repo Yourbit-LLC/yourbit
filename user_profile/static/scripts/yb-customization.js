@@ -4,23 +4,25 @@
             This file contains the core functions needed for the profile personalization page to work.
             This file should be attached to the personalize profile page.
 
+            Updated: 5/26/2023
+
 ####################################################################################################################*/
 
 //Declare base URL
 var base_url = window.location.origin;
 
 //Declare constants for all preview elements
-MINI_USER_IMAGE_CONTAINER = document.getElementById("accent-color-preview");
-MINI_USER_IMAGE = document.getElementById("profile-image-preview-image");
-MINI_USER_NAME = document.getElementById("preview-name");
-MINI_USERNAME = document.getElementById("preview-username");
-MINI_BIT = document.getElementById("mini-bit");
-MINI_BIT_MOBILE = document.getElementById("bit-colors-preview");
-MINI_TITLE = document.getElementById("mini-title");
-MINI_TITLE_MOBILE = document.getElementById("preview-title");
-MINI_PARAGRAPH = document.getElementById("mini-paragraph");
-MINI_PARAGRAPH_MOBILE = document.getElementById("preview-paragraph");
-BIT_PROFILE_IMAGE = document.getElementById("bit-profile-image-image");
+const MINI_USER_IMAGE_CONTAINER = document.getElementById("accent-color-preview");
+const MINI_USER_IMAGE = document.getElementById("profile-image-preview-image");
+const MINI_USER_NAME = document.getElementById("preview-name");
+const MINI_USERNAME = document.getElementById("preview-username");
+const MINI_BIT = document.getElementById("mini-bit");
+const MINI_BIT_MOBILE = document.getElementById("bit-colors-preview");
+const MINI_TITLE = document.getElementById("mini-title");
+const MINI_TITLE_MOBILE = document.getElementById("preview-title");
+const MINI_PARAGRAPH = document.getElementById("mini-paragraph");
+const MINI_PARAGRAPH_MOBILE = document.getElementById("preview-paragraph");
+const BIT_PROFILE_IMAGE = document.getElementById("bit-profile-image-image");
 
 //Declare constants for all input elements
 const PROFILE_IMAGE_INPUT = document.getElementById("profile-image-input");
@@ -32,8 +34,15 @@ const TEXT_COLOR_INPUT = document.getElementById("pfont-color-select");
 const TITLE_COLOR_INPUT = document.getElementById("tfont-color-select");
 const FEEDBACK_ICON_COLOR_INPUT = document.getElementById("feedback-icon-color-select");
 const FEEDBACK_BACKGROUND_COLOR_INPUT = document.getElementById("feedback-background-color-select");
+const PARAGRAPH_ALIGN_HIDDEN = document.getElementById("hidden-field-alignParagraph");
 const BLUR_RADIUS_INPUT = document.getElementById("blur-radius-select");
 
+//Declare constants for buttons
+const ALIGN_BUTTONS = {
+    "left": document.getElementById("button-align-left"),
+    "center": document.getElementById("button-align-center"),
+    "right": document.getElementById("button-align-right")
+}
 
 /*################################ 
 
@@ -72,70 +81,30 @@ $(document).ready(function() {
 
     let id = yb_getSessionValues("id");
 
-    let url = `${base_url}/api/custom/${id}/`
-
-    //Fetch customization data on page load
-    fetch(url)
-    .then((resp) => resp.json())
-    .then(function(data){
-        let custom = data;
-        custom_data = {
-            "profile_image":custom.image,
-            "wallpaper":custom.wallpaper,
-            "primary_color":custom.primary_color,
-            "secondary_color":custom.accent_color,
-            "icon_color": custom.icon_color,
-            "feedback_icon_color": custom.feedback_icon_color,
-            "feedback_icon_background": custom.feedback_icon_background,
-            "blur_radius": custom.blur_radius,
-            "background_dim": custom.background_dim,
-            "title_color": custom.title_color,
-            "text_color":custom.text_color,
-        }
-
-        BIT_PROFILE_IMAGE.style.borderColor = custom_data.secondary_color;
-        MINI_BIT.style.backgroundColor = custom_data.primary_color;
-        MINI_BIT_MOBILE.style.backgroundColor = custom_data.primary_color;
-
-        //Fill UI colors
-        $("#primary-color-select").attr("value", custom_data.primary_color);
-        $("#accent-color-select").attr("value", custom_data.secondary_color);
-        $("#icon-color-select").attr("value", custom_data.secondary_color);
-
-        //Fill Bit Colors
-        $("#tfont-color-select").attr("value",custom.title_color);
-        $("#pfont-color-select").attr("value", custom.text_color);
-        $("#feedback-background-color-select").attr("value", custom.feedback_icon_background);
-        $("#feedback-icon-color-select").attr("value", custom.feedback_icon_color);
-
     //Add event listeners
 
-        //Event listener for cancel button inside image selection containt
-        let selection_cancel_button = document.getElementById("cancel-button");
-        selection_cancel_button.addEventListener("click", function() {
-            yb_closeImageSelection();
-        });
-
-        //Event listener for navigating back one step on image options
-        let profile_image_back_button = document.getElementById("profile-cropper-back");
-        profile_image_back_button.addEventListener("click", function() {
-            console.log("clicked")
-            let state = this.getAttribute("data-state");
-            console.log(state)
-            if (state === "0"){
-                $("#profile-cropper").fadeOut();
-                $("#background-cropper").fadeOut();
-                $("#profile-images").fadeIn();
-            } else {
-                $("#profile-cropper-select-button").fadeIn();
-                $("#upload-button").fadeIn();
-                $("#profile-image-input").hide();
-            }
-        });
-
+    //Event listener for cancel button inside image selection containt
+    let selection_cancel_button = document.getElementById("cancel-button");
+    selection_cancel_button.addEventListener("click", function() {
+        yb_closeImageSelection();
     });
 
-
+    //Event listener for navigating back one step on image options
+    let profile_image_back_button = document.getElementById("profile-cropper-back");
+    profile_image_back_button.addEventListener("click", function() {
+        console.log("clicked")
+        let state = this.getAttribute("data-state");
+        console.log(state)
+        if (state === "0"){
+            $("#profile-cropper").fadeOut();
+            $("#background-cropper").fadeOut();
+            $("#profile-images").fadeIn();
+        } else {
+            $("#profile-cropper-select-button").fadeIn();
+            $("#upload-button").fadeIn();
+            $("#profile-image-input").hide();
+        }
+    });
 
     //Event listener for color select
     var color_circles = document.getElementsByClassName("color-selector");
@@ -144,8 +113,6 @@ $(document).ready(function() {
             yb_handleColorSelector(this);
         });
     }
-
-
         
     //Event listener for profile image upload button
     let profile_image_edit_button = document.getElementById("edit-profile-img");
@@ -153,7 +120,6 @@ $(document).ready(function() {
         $("#profile-images").fadeOut();
         $("#yb-browse-nav").animate({"top":"-100px"}, "fast").fadeOut("slow");
         $("#profile-cropper").fadeIn();
-
     });
 
     //Event listener for background image upload button
@@ -162,13 +128,60 @@ $(document).ready(function() {
         $("#profile-images").fadeOut();
         $("#yb-browse-nav").animate({"top":"-100px"},"fast").fadeOut("slow");
         $("#background-cropper").fadeIn();
-
     });
 
+    ALIGN_BUTTONS[PARAGRAPH_ALIGN_HIDDEN.value].classList.add("active");
 
-    
+    //Event listener for align buttons
+    for (let i = 0; i < Object.keys(ALIGN_BUTTONS).length; i++){
+        ALIGN_BUTTONS[Object.keys(ALIGN_BUTTONS)[i]].addEventListener("click", function() {
+            yb_handleAlignButton(this);
+        });
+    }
+
 });
 
+function yb_updatePreview(this_element, style_attr, style_value) {
+    $(this_element).css(style_attr, style_value);
+}
+
+function yb_handleAlignButton(this_element){
+    let this_id = this_element.getAttribute("id");
+    let this_value = this_element.getAttribute("name");
+    let old_value = PARAGRAPH_ALIGN_HIDDEN.value;
+
+    //Remove active class from all buttons
+    for (let i = 0; i < Object.keys(ALIGN_BUTTONS).length; i++){
+        ALIGN_BUTTONS[Object.keys(ALIGN_BUTTONS)[i]].classList.remove("active");
+    }
+
+    //Add active class to this button
+    this_element.classList.add("active");
+
+    //Set hidden input value
+    PARAGRAPH_ALIGN_HIDDEN.value = this_value;
+
+    //Add to change history
+    change_history["#hidden-field-alignParagraph"] = {"old": old_value, "new": this_value};
+
+    //Update custom
+    yb_updateCustom("text_edit", "p_align", this_value);
+
+    //Update preview
+    yb_updatePreview("#preview-paragraph", "text-align", this_value);
+}
+function yb_handleSlider(this_element){
+    let this_slider = this_element.getAttribute("name");
+    let this_value = this_element.value;
+
+    if (this_slider === "background_blur"){
+        yb_updatePreview("#bg-image", "-webkit-filter", `blur(${this_value}px)`);
+        yb_updatePreview("#bg-image", "filter", `blur(${this_value}px)`);
+        updateCustom("background_effect", "blur", this_value);
+    }
+
+
+}
 function yb_handleColorCircle(this_object){
     let this_name = $(this_object).attr("name");
 
@@ -302,17 +315,6 @@ function hideElement(sub_setting) {
     sub_setting.style.display = "none";
 }
 
-//Event listener for global toggle colors switch
-$('#toggle-colors').change(function() {
-    let color_option = document.getElementById('color-customizations');
-    if ( color_option.style.display === 'none') {
-        $('#color-customizations').animate({'height': '15vh'}, 'slow');
-    }
-    else {
-        $('#color-customizations').animate({'height': '0vh'}, 'slow');
-    }
-}); 
-
 //AI contrast color request, may be replaced by built in function
 function yb_ContrastColor(value){
     let csrfToken = getCSRF();
@@ -360,15 +362,11 @@ function yb_ContrastColor(value){
 
 PRIMARY_COLOR_INPUT.addEventListener("change", function() {
 
-    //Set preview element = to bit background
-    let bit_background = document.getElementById('bit-colors-preview');
-    
-
     //Update history
     change_history["#primary-color-select"]["new"] = this.value; 
 
-    //Update bit background color
-    bit_background.style.backgroundColor = this.value;
+    //Update Preview
+    yb_updatePreview("#bit-colors-preview", "background-color" ,this.value);
     
     //Update customizations ajax
     updateCustom('color_change', 'primary', this.value)
@@ -381,11 +379,12 @@ SECONDARY_COLOR_INPUT.addEventListener("change", function() {
     //Set preview elements
     let border1 = document.getElementById('accent-color-preview');
     let border2 = document.getElementById('bit-profile-image');
+    let bit_pic = document.getElementById('profile-pic');
 
-    //Update border colors of preview elements
-    border1.style.borderColor = this.value;
-    border2.style.borderColor = this.value;
-    $('#profile-pic').css({'border-color': this.value});
+    //Update Previews
+    yb_updatePreview(border1, "border-color" ,this.value);
+    yb_updatePreview(border2, "border-color" ,this.value);
+    yb_updatePreview(bit_pic, "border-color" ,this.value)
     
     //Update customizations ajax
     updateCustom('color_change', 'secondary', this.value);
@@ -397,6 +396,10 @@ SECONDARY_COLOR_INPUT.addEventListener("change", function() {
 });
 
 FEEDBACK_BACKGROUND_COLOR_INPUT.addEventListener("change", function() {
+    let feedback_buttons = document.getElementsByClassName('preview-feedback-button');
+    for (let i = 0; i < feedback_buttons.length; i++){
+        feedback_buttons[i].style.backgroundColor = this.value;
+    }
 
     //Update customizations ajax
     updateCustom('color_change', 'feedback_icon_background', this.value);
@@ -410,12 +413,10 @@ FEEDBACK_BACKGROUND_COLOR_INPUT.addEventListener("change", function() {
 FEEDBACK_ICON_COLOR_INPUT.addEventListener('change', function() {
 
     //Update preview elements
-    let feedback_preview1 = document.getElementById('button1').style.backgroundColor = this.value;
-    let feedback_preview2 = document.getElementById('button2').style.backgroundColor = this.value;
-    let feedback_preview3 = document.getElementById('button3').style.backgroundColor = this.value;
-    let feedback_preview4 = document.getElementById('button4').style.backgroundColor = this.value;
-    let feedback_preview5 = document.getElementById('button5').style.backgroundColor = this.value;
-    
+    let feedback_icons = document.getElementsByClassName('preview-feedback-icon');
+    for (let i = 0; i < feedback_icons.length; i++){
+        feedback_icons[i].style.fill = this.value;
+    }
     //Update customizations ajax
     updateCustom('color_change', 'feedback_icon', this.value);
 

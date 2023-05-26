@@ -514,8 +514,15 @@ class Personalization(LoginRequiredMixin, View):
         if action == 'text_edit':
             option = request.POST.get('field')
             value = request.POST.get('value')
-            if option == 'para-align':
+            if option == 'p_align':
                 custom.paragraph_align = value
+                custom.save()
+
+        if action == 'background_effect':
+            option = request.POST.get('field')
+            value = request.POST.get('value')
+            if option == 'blur':
+                custom.background_blur = value
                 custom.save()
 
         return JsonResponse({'success':'success'})
