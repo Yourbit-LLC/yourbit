@@ -165,7 +165,7 @@ function yb_handleAlignButton(this_element){
     change_history["#hidden-field-alignParagraph"] = {"old": old_value, "new": this_value};
 
     //Update custom
-    yb_updateCustom("text_edit", "p_align", this_value);
+    updateCustom("text_edit", "p_align", this_value);
 
     //Update preview
     yb_updatePreview("#preview-paragraph", "text-align", this_value);
