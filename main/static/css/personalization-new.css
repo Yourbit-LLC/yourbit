@@ -677,13 +677,14 @@
     .yb-panel.light.sticky {
         position: sticky;
         display: block;
-        height: 25vh;
+        height: 27vh;
+        width: 98vw;
         z-index: 10;
         border-radius: 20px;
         overflow: hidden;
         -webkit-backdrop-filter: blur(10px);
         backdrop-filter: blur(10px);
-        top: 10px;
+        top: -20px;
         background-color: #4b4b4b;
     }
 
