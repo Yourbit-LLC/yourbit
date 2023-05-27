@@ -59,9 +59,12 @@ function yb_purgeScripts(){
     if (loaded) {
         //Remove any page scripts
         let scripts = document.getElementsByClassName("page-script");
+        console.log(scripts)
         let script_count = scripts.length;
+        console.log(script_count)
         for (let i = 0; i < script_count; i++) {
             let script = scripts[i];
+            console.log(script);
             script.remove();
         }
 
