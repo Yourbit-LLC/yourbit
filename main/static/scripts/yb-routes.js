@@ -55,7 +55,8 @@ function yb_applyStyle(source){
 
 function yb_purgeScripts(callback){
     let loaded = yb_getLoaded();
-
+    let location = yb_getSessionValues("location");
+    let content_container = document.getElementById("content-container");
     if (loaded) {
         //Remove any page scripts
         let scripts = document.getElementsByClassName("page-script");
@@ -65,6 +66,9 @@ function yb_purgeScripts(callback){
         for (let i = script_count - 1; i >= 0; i--) {
             let script = scripts[i];
             console.log(script);
+            if (location === "home" || location === "profile") {
+                content_container.removeEventListener("scroll", debounced_getDisplay);
+            }
             script.disabled = true;
             script.parentNode.removeChild(script);
 
