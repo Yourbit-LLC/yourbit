@@ -67,6 +67,7 @@ function yb_purgeScripts(callback){
             let script = scripts[i];
             console.log(script);
             if (location === "home" || location === "profile") {
+                content_container.removeEventListener("scroll", debounced_eventPause);
                 content_container.removeEventListener("scroll", debounced_getDisplay);
             }
             script.disabled = true;
