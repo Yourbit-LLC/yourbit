@@ -71,7 +71,8 @@ function yb_purgeScripts(callback){
         }
 
         //Invoke callback
-        callback();
+        let run_function = callback();
+        run_function;
 
     }
 }
