@@ -62,7 +62,7 @@ function yb_purgeScripts(callback){
         console.log(scripts)
         let script_count = scripts.length;
         console.log(script_count)
-        for (let i = 0; i < script_count; i++) {
+        for (let i = script_count - 1; i >= 0; i--) {
             let script = scripts[i];
             console.log(script);
             
@@ -71,8 +71,7 @@ function yb_purgeScripts(callback){
         }
 
         //Invoke callback
-        setTimeout(callback, 100);
-        
+        callback();
 
     }
 }
