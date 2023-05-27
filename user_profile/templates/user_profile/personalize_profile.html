@@ -107,7 +107,7 @@
                 
                 <h3 id='preview-title' style='width: 100%;'><hr>Test<hr></h3>
                 
-                <p id='preview-paragraph'>This a test sentence for preview purposes</p>
+                <p id='preview-paragraph' style="text-align:{{user.profile.custom.paragraph_align}};">This a test sentence for preview purposes</p>
                 <div id='preview-feedback-container'>
                     <div class='preview-feedback-button' id='button1' style="background-color:{{feedback_background_color}}"></div>
                     <div class='preview-feedback-button' id='button2' style="background-color:{{feedback_background_color}}"></div>
@@ -377,7 +377,7 @@
             <!--//////    Text Alignment Options    //////-->
             <div class = "three-part-button-container">
                 <!--Left Alignment Option-->
-                <div class = "yb-three-part-left active" name="left" id="button-align-left">
+                <div class = "yb-three-part-left" name="left" id="button-align-left">
                     <svg style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" width="24"><path class="three-part-icon-active" d="M120 936v-80h720v80H120Zm0-160v-80h480v80H120Zm0-160v-80h720v80H120Zm0-160v-80h480v80H120Zm0-160v-80h720v80H120Z"/></svg>
                 </div>
                 <!--Center Alignment Option-->
