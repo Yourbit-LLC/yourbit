@@ -53,7 +53,7 @@ function yb_applyStyle(source){
 
 }
 
-function yb_purgeScripts(){
+function yb_purgeScripts(callback){
     let loaded = yb_getLoaded();
 
     if (loaded) {
@@ -68,24 +68,27 @@ function yb_purgeScripts(){
             script.remove();
         }
 
+        //Invoke callback
+        callback();
+
     }
 }
 
-
+function yb_clearContainer(){
+    $("#content-container").empty();
+    $("#page-header").remove();
+    
+}
 
 //home
 function home_url(data){
     try {
-        yb_purgeScripts();
+        yb_purgeScripts(yb_clearContainer);
     } catch (error) {
         console.log(error);
     }
     
-    
-    
-    //Clear Screen
-    $("#content-container").html("");
-    $("#page-header").remove();
+    //load content
 
     $('#content-container').load('/bitstream/feed-html/');
     
@@ -182,12 +185,12 @@ function profile_url(data){
 
     let base_url = getBaseURL();
     try {
-        yb_purgeScripts();
+        yb_purgeScripts(yb_clearContainer);
     } catch (error) {
         console.log(error);
     }
 
-    $("#content-container").empty();
+    
     $("#content-container").load(`${base_url}/profile/templates/profile/`)
     $("#page-header").remove();
     history.pushState({}, "", `/profile/${data.username}/`)
@@ -235,12 +238,11 @@ function connections_url(data){
 
     //Remove any page scripts
     try {
-        yb_purgeScripts();
+        yb_purgeScripts(yb_clearContainer);
     } catch (error) {
         console.log(error);
     }
 
-    $("#content-container").html('');
     $("#content-container").load(`${base_url}/profile/templates/connections-html/`)
     history.pushState({}, "", `/profile/connections/`);
     let menu = document.getElementById("profile-menu");
@@ -301,13 +303,13 @@ function connections_community_url(data){
 function settings_url(data){
     //Remove any page scripts
     try {
-        yb_purgeScripts();
+        yb_purgeScripts(yb_clearContainer);
     } catch (error) {
         console.log(error);
     }
 
     //Clear Screen
-    $("#content-container").html('');
+    
     $("#content-container").load(`${base_url}/settings/templates/settings-html/`);
     yb_setSessionValues("location", "settings")
     let menu = document.getElementById("profile-menu");
@@ -342,12 +344,12 @@ function settings_account_url(data){
 //customize
 function customize_url(data){
     try {
-        yb_purgeScripts();
+        yb_purgeScripts(yb_clearContainer);
     } catch (error) {
         console.log(error);
     }
     console.log("function");
-    $("#content-container").empty();
+    
     $("#content-container").load(`${base_url}/profile/templates/customize-html/`);
     yb_setSessionValues("location","customize");
     history.pushState({}, "", `/profile/customize/`);
@@ -400,12 +402,12 @@ function settings_money_url(data){
 function messages_inbox_url(){
     let base_url = getBaseURL();
     try {
-        yb_purgeScripts();
+        yb_purgeScripts(yb_clearContainer);
     } catch (error) {
         console.log(error);
     }
 
-    $("#content-container").html('');
+    
     $("#content-container").load(`${base_url}/messages/templates/messages-html/`);
     yb_setSessionValues("location","inbox");
 
@@ -454,12 +456,12 @@ function messages_conversation_url(id, username){
 
 function rewards_url(data){
     try {
-        yb_purgeScripts();
+        yb_purgeScripts(yb_clearContainer);
     } catch (error) {
         console.log(error);
     }
 
-    $("#content-container").html('');
+    
     $("#content-container").load(`${base_url}/rewards/templates/rewards-html/`);
     
     let user_id = yb_getSessionValues("id");
@@ -495,11 +497,11 @@ function rewards_redeem_url(data){
 //history
 function history_url() {
     try {
-        yb_purgeScripts();
+        yb_purgeScripts(yb_clearContainer);
     } catch (error) {
         console.log(error);
     }
-    $("#content-container").empty();
+    
     $("#content-container").load(`${base_url}/profile/templates/history-html/`);
     yb_setSessionValues("location", "history");
     history.pushState({}, "", "/profile/history/all/");
@@ -513,11 +515,11 @@ function history_url() {
 
 function stuff_url() {
     try {
-        yb_purgeScripts();
+        yb_purgeScripts(yb_clearContainer);
     } catch (error) {
         console.log(error);
     }
-    $("#content-container").empty();
+    
     yb_setSessionValues("location", "stuff");
     $("#content-container").load(`${base_url}/profile/templates/my-stuff-html/`);
     
@@ -533,11 +535,11 @@ function stuff_url() {
 
 function cluster_url(cluster_id, cluster_name) {
     try {
-        yb_purgeScripts();
+        yb_purgeScripts(yb_clearContainer);
     } catch (error) {
         console.log(error);
     }
-    $("#content-container").empty();
+    
     yb_setSessionValues("location", "stuff");
     yb_setSessionValues("cluster", cluster_id);
     yb_setSessionValues("cluster-name", cluster_name);
@@ -555,11 +557,11 @@ function cluster_url(cluster_id, cluster_name) {
 
 function search_url(this_query) {
     try {
-        yb_purgeScripts();
+        yb_purgeScripts(yb_clearContainer);
     } catch (error) {
         console.log(error);
     }
-    $("#content-container").empty();
+    
     yb_setSessionValues("location", "search");
     $("#content-container").load(`${base_url}/search/templates/search-results-html/`);
     
