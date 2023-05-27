@@ -166,7 +166,7 @@ $(document).ready(function() {
     var color_circles = document.getElementsByClassName("color-selector");
     for (let i = 0; i < color_circles.length; i++){
         color_circles[i].addEventListener("click", function() {
-            yb_handleColorSelector(this);
+            yb_handleColorCircle(this);
         });
     }
         
