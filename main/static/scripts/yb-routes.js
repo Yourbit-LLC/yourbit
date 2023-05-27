@@ -65,7 +65,9 @@ function yb_purgeScripts(callback){
         for (let i = 0; i < script_count; i++) {
             let script = scripts[i];
             console.log(script);
-            script.remove();
+            
+            script.parentNode.removeChild(script);
+
         }
 
         //Invoke callback
