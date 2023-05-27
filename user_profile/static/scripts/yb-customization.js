@@ -66,7 +66,7 @@ function yb_handleColorCircle(this_object){
     //Primary color circle pressed
     if (this_name === "primary"){
         change_history["#primary-color-select"] = {"old": PRIMARY_COLOR_INPUT.value, "new": "awaiting user input..."};
-        $(".yb-preview-subcontainer").fadeOut("fast");
+        $("#sticky-preview-icon-container").fadeOut("fast");
         $("#bit-colors-preview").fadeIn("fast");
 
     }
@@ -80,28 +80,28 @@ function yb_handleColorCircle(this_object){
     else if (this_name === "icon"){
         
         change_history["#icon-color-select"] = {"old": ICON_COLOR_INPUT.value, "new": "awaiting user input..."};
-        $(".yb-preview-subcontainer").fadeOut("fast");
+        $("#bit-colors-preview").fadeOut("fast");
         $("#sticky-preview-icon-container").fadeIn("fast");
         
     } 
     //Title color circle pressed
     else if (this_name === "title"){
         change_history["#tfont-color-select"] = {"old": TITLE_COLOR_INPUT.value, "new": "awaiting user input..."};
-        $(".yb-preview-subcontainer").fadeOut("fast");
+        $("#sticky-preview-icon-container").fadeOut("fast");
         $("#bit-colors-preview").fadeIn("fast");
         
     }
     //Text color circle pressed
     else if (this_name === "text"){
         change_history["#pfont-color-select"] = {"old": TEXT_COLOR_INPUT.value, "new": "awaiting user input..."};
-        $(".yb-preview-subcontainer").fadeOut("fast");
+        $("#sticky-preview-icon-container").fadeOut("fast");
         $("#bit-colors-preview").fadeIn("fast");
         
     }
     //Feedback icon color circle pressed
     else if (this_name === "fb_icon"){
         change_history["#feedback-icon-color-select"] = {"old": FEEDBACK_ICON_COLOR_INPUT.value, "new": "awaiting user input..."};
-        $(".yb-preview-subcontainer").fadeOut("fast");
+        $("#sticky-preview-icon-container").fadeOut("fast");
         $("#bit-colors-preview").fadeIn("fast");
         
 
