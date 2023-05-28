@@ -246,6 +246,7 @@ function BuildBit(bit, liked_bits, disliked_bits){
 
     
     });
+
     //Comment Label
     let comment_label = yb_createElement("p", `comment-label-${id}`, "comment-label");
     comment_label.innerHTML = "Comments";
@@ -458,6 +459,8 @@ function yb_buildContextMenu(this_element){
                 <p>New Cluster</p>
             `
             $(`#bit-context-${this_id}`).append(create_cluster);
+
+            yb_listClusters(this_id);
             
             create_cluster.addEventListener("click", function() {
                showCreateBit(raiseCreateBit);

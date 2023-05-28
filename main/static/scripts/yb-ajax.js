@@ -1081,3 +1081,65 @@ function yb_updateFeedSettings(data) {
     })
 
 }
+
+function yb_listClusters(bit_id=null) {
+    let url = "/api/clusters/";
+    $.ajax({
+        url: url,
+        type: "GET",
+        success: function(data) {
+            let is_clusters = data.is_clusters
+
+            //Check if there are clusters for this user
+            if (is_clusters === true) {
+
+                //If there are clusters, show them
+                
+                this_container.innerHTML = "";
+                let clusters = data.cluster_list;
+                let location = yb_getSessionValues("location")
+                let this_container;
+                
+                if (location === "stuff"){
+                    this_container = document.getElementById("bit-container");
+                    //For each cluster send blueprint to build function
+                    for (let i = 0; i < clusters.length; i++) {
+
+                        let blueprint = clusters[i];
+                        console.log(blueprint);
+                        let this_item = yb_buildFolder(blueprint);
+
+                        //Append this item to this container
+                        this_container.appendChild(this_item);
+
+                        this_item.addEventListener("click", function() {
+                            let this_cluster = this_item.getAttribute("data-id");
+                            let cluster_name = this_item.getAttribute("data-name");
+                            cluster_url(this_cluster, cluster_name);
+                        });
+                    }
+                } else if (location === "home" || location === "profile"){
+                    this_container = document.getElementById(`bit-context-${bit_id}`);
+                    //For each cluster send blueprint to build function
+                    for (let i = 0; i < clusters.length; i++) {
+
+                        let text = clusters[i].name;
+                        let id = clusters[i].id;
+                        let this_item = yb_createElement("p", `list-option-${id}`, "bit-context-option");
+                        this_item.innerHTML = text;
+
+                        //Append this item to this container
+                        this_container.appendChild(this_item);
+
+                        this_item.addEventListener("click", function() {
+                            let this_cluster = this_item.getAttribute("data-id");
+                            let cluster_name = this_item.getAttribute("data-name");
+                            cluster_url(this_cluster, cluster_name);
+                        });
+                    }
+                }
+            }
+        }
+    })
+
+}
