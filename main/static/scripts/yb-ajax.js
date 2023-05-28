@@ -1095,13 +1095,13 @@ function yb_listClusters(bit_id=null) {
 
                 //If there are clusters, show them
                 
-                this_container.innerHTML = "";
                 let clusters = data.cluster_list;
                 let location = yb_getSessionValues("location")
                 let this_container;
                 
                 if (location === "stuff"){
                     this_container = document.getElementById("bit-container");
+                    this_container.innerHTML = "";
                     //For each cluster send blueprint to build function
                     for (let i = 0; i < clusters.length; i++) {
 
