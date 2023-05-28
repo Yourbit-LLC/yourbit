@@ -640,6 +640,18 @@ class CreateCluster(View):
         
         return JsonResponse({'success':'success', "name": cluster_name, "id": cluster.id})
 
+class AddToCluster(View):
+    def post(self, request):
+        cluster_id = request.POST.get('cluster_id')
+        post_id = request.POST.get('bit_id')
+        cluster = Cluster.objects.get(id=cluster_id)
+        bit = Bit.objects.get(id=post_id)
+        cluster.bits.add(bit)
+        cluster.bit_count = cluster.bit_count + 1
+        cluster.save()
+
+        return JsonResponse({'success':'success'})
+
 
 class CustomNewUser(View):
     def get(self, request, *args, **kwargs):

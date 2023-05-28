@@ -1154,3 +1154,33 @@ function yb_listClusters(bit_id=null) {
     })
 
 }
+
+function yb_addToCluster(bit_id, cluster_id){
+    let csrfToken = getCSRF();
+    let url = `${base_url}/profile/api/cluster/add/`;
+    let request = new FormData();
+    request.append('bit_id', bit_id);
+    request.append('cluster_id', cluster_id);
+    
+    $.ajax({
+        type: 'POST',
+        contentType: false,
+        // The following is necessary so jQuery won't try to convert the object into a string
+        processData: false,
+        headers: {
+            'X-CSRFToken': csrfToken
+        },
+        url: url,
+        data: request,
+        success: function(response) {
+            
+            if (response.success === "success"){
+                let body = `Added bit to ${response.name}`;
+                showNotification(expandNotification, body);
+            } else {
+                let body = `Oops! Something went wrong. Please try again.`;
+                showNotification(expandNotification, body);
+            }
+        }
+    });
+}
