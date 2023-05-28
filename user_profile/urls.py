@@ -16,6 +16,7 @@ urlpatterns = [
         path('api/interact/comment/', commentBit, name="comment_bit"),
         path('api/add_friend/', acceptFriend, name="add_friend"),
         path('api/create/cluster/', CreateCluster.as_view(), name="create_cluster"),
+        path('api/cluster/add/', AddToCluster.as_view(), name="add_to_cluster"),
         
         #Templates
         path('templates/profile/', TemplateView.as_view(template_name='user_profile/profile.html')),
