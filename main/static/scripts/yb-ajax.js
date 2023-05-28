@@ -1143,9 +1143,7 @@ function yb_listClusters(bit_id=null) {
                         this_container.appendChild(this_item);
 
                         this_item.addEventListener("click", function() {
-                            let this_cluster = this_item.getAttribute("data-id");
-                            let cluster_name = this_item.getAttribute("data-name");
-                            cluster_url(this_cluster, cluster_name);
+                            yb_addToCluster(bit_id, id);
                         });
                     }
                 }
