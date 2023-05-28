@@ -173,7 +173,7 @@ $(document).ready(function() {
     //Event listener for profile image upload button
     let profile_image_edit_button = document.getElementById("edit-profile-img");
     profile_image_edit_button.addEventListener("click", function(){
-        $("#profile-images").fadeOut();
+        $(".yb-panel-wide").fadeOut();
         $("#yb-browse-nav").animate({"top":"-100px"}, "fast").fadeOut("slow");
         $("#profile-cropper").fadeIn();
     });
