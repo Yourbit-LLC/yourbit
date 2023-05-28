@@ -1128,7 +1128,7 @@ function yb_listClusters(bit_id=null) {
                         let this_item = yb_createElement("p", `list-option-${id}`, "bit-context-option");
                         this_item.innerHTML = text;
                         this_item.setAttribute("data-id", id);
-                        this_item.setAttribute("style", "margin-top: 3px; margin-bottom: 3px; margin-left: 5px; width: 98%;");
+                        this_item.setAttribute("style", "margin-top: 4px; margin-left: 5px; width: 98%;");
                         //Append this item to this container
                         this_container.appendChild(this_item);
 
