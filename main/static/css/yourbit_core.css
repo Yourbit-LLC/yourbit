@@ -305,7 +305,8 @@ only be used for object transforms (shaping and scaling)
 
 #yb-browse-nav {
     position: sticky; 
-    display: block;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     top: -20px; 
     height: 40px; 
     z-index: 20; 
@@ -376,7 +377,7 @@ only be used for object transforms (shaping and scaling)
     border-radius: 20px;
     height: 27px;
     margin: auto;
-    width: 75px;
+    width: 100%;
     transition: 0.5s;
 } 
 
