@@ -161,9 +161,15 @@ function headerDropIn(){
 };
 
 function yb_showSpaceBar() {
-    $(".navigation-bar").animate({'bottom':'0'}, 'fast');
-    $("#mobile-create-button").animate({'left':'8px'}, 'fast');
-    $("#mobile-search-button").animate({'right':'8px'}, 'fast');
+    let width = screen.width;
+    if (width < 600) {
+        $(".navigation-bar").animate({'bottom':'0'}, 'fast');
+        $("#mobile-create-button").animate({'left':'8px'}, 'fast');
+        $("#mobile-search-button").animate({'right':'8px'}, 'fast');
+    } else {
+        $(".navigation-bar").animate({'top':'0'}, 'fast');
+
+    }
 
 }
 function initUI() {
