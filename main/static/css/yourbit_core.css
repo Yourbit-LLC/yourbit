@@ -39,6 +39,18 @@ Refer to the interactive codex for current style guidelines for Yourbit*/
     100% { transform: translate(0px, 0px); }
 }
 
+#main-splash-image {
+    display:block; 
+    width: 80%; 
+    margin-left: auto; 
+    margin-right: auto;
+}
+
+@media screen and (min-width: 700px) {
+    #main-splash-image {
+        width: 40%;
+    }
+}
 
 /* -- Scrollbar Settings -- */
 
@@ -71,6 +83,19 @@ of an element in a specific circumstance, such as a specifically colored wide bu
 please refer to the child elements to the following classes. Universal methods should
 only be used for object transforms (shaping and scaling)
 */
+
+.splash-page {
+    display: block;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    backdrop-filter: blur(20px) brightness(50%);
+    -webkit-backdrop-filter: blur(20px) brightness(50%);
+
+}
 
     .wide-button {
         /*Wide button is typically used for confirmation and back buttons a similar
