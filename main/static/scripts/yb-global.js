@@ -162,7 +162,7 @@ function headerDropIn(){
 
 function yb_showSpaceBar() {
     let width = screen.width;
-    if (width < 600) {
+    if (width < 700) {
         $(".navigation-bar").animate({'bottom':'0'}, 'fast');
         $("#mobile-create-button").animate({'left':'8px'}, 'fast');
         $("#mobile-search-button").animate({'right':'8px'}, 'fast');
@@ -173,17 +173,27 @@ function yb_showSpaceBar() {
 
 }
 function initUI() {
-    $(".navigation-bar").animate({'bottom':'0'}, 'slow');
-    $("#mobile-create-button").animate({'left':'8px'}, 'slow');
-    $("#mobile-search-button").animate({'right':'8px'}, 'slow');
+    let width = screen.width;
+    if (width < 700) {
+        $(".navigation-bar").animate({'bottom':'0'}, 'slow');
+        $("#mobile-create-button").animate({'left':'8px'}, 'slow');
+        $("#mobile-search-button").animate({'right':'8px'}, 'slow');
+
+        let tasks = yb_getRunningTasks();
+
+        yb_setSessionValues("ui", "visible");
+    } else {
+        $(".navigation-bar").animate({'top':'0'}, 'slow');
+
+    }
     $('#main-splash-text').animate({'bottom': '0'}, 200);
     $('#main-splash-image').animate({'top':'0px'},200);
     $("#menu-task").animate({'height':'0px', 'width':'0px'}, 200);
     $("#menu-task").hide();
+
     let tasks = yb_getRunningTasks();
 
     yb_setSessionValues("ui", "visible");
-
     if (tasks.length > 0) {
         yb_showMiniBar();
     } else {
