@@ -1143,7 +1143,9 @@ function yb_listClusters(bit_id=null) {
                         this_container.appendChild(this_item);
 
                         this_item.addEventListener("click", function() {
+                            let this_bit = document.getElementById(`bit-${bit_id}`);
                             yb_addToCluster(bit_id, id);
+                            hideContextMenu("close", this_bit);
                         });
                     }
                 }
@@ -1175,9 +1177,11 @@ function yb_addToCluster(bit_id, cluster_id){
             if (response.success === "success"){
                 let body = `Added bit to ${response.name}`;
                 showNotification(expandNotification, body);
+                
             } else {
                 let body = `Oops! Something went wrong. Please try again.`;
                 showNotification(expandNotification, body);
+                
             }
         }
     });
