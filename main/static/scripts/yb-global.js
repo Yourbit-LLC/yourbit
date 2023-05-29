@@ -221,7 +221,7 @@ function hideContextMenu(type, this_element){
 }
 
 function yb_handleEditBit(this_element) {
-    let form = document.getElementById('mobile-create-inputs');
+    let form = document.getElementById('create-container');
     let type_field = document.getElementById('bit-type-hidden-field');
     let option_field = document.getElementById('create-option-hidden-field');
     let script_source = document.getElementById('create-script');
