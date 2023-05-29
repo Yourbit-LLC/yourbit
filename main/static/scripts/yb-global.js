@@ -225,13 +225,12 @@ function yb_handleEditBit(this_element) {
     let type_field = document.getElementById('bit-type-hidden-field');
     let option_field = document.getElementById('create-option-hidden-field');
     let script_source = document.getElementById('create-script');
-    let publish_button = document.getElementById("mobile-publish-bit");
     let header_text = document.getElementById("create-bit-header-text");
     let this_id = this_element.getAttribute("data-id");
     let container = document.getElementById("create-container");
     
 
-    publish_button.setAttribute("name", "update");
+    
     
     showCreateBit(raiseCreateBit);
 
@@ -241,6 +240,8 @@ function yb_handleEditBit(this_element) {
     hidden_field.setAttribute("value", this_id);
     form.appendChild(hidden_field);
 
+    let publish_button = document.getElementById("mobile-publish-bit");
+    publish_button.setAttribute("name", "update");
     header_text.innerHTML = "Edit Bit";
     header_text.style.marginLeft = "10px";
     header_text.style.marginTop = "6px";
