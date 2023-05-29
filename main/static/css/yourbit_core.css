@@ -303,6 +303,87 @@ only be used for object transforms (shaping and scaling)
     
 -- */
 
+.filter-button {
+    position: relative;
+    display: block;
+    background-color: rgba(150, 150, 150, 0.4);
+    border: 2px solid rgb(150, 150, 150);
+    color: rgb(150, 150, 150);
+    border-radius: 20px;
+    height: 26px;
+    margin: auto;
+    width: 87px;
+}
+.filter-button.active {
+    position: relative;
+    display: block;
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 2px solid rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    border-radius: 20px;
+    height: 26px;
+    margin: auto;
+    width: 87px;
+}
+
+.filter-button-wide-active {
+    position: relative;
+    display: block;
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 2px solid rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    border-radius: 20px;
+    height: 26px;
+    margin: auto;
+    width: 80px;
+}
+.filter-button-wide-active:focus {
+    position: relative;
+    display: block;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 2px solid rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    border-radius: 20px;
+    height: 27px;
+    margin: auto;
+    width: 80px;
+}
+
+.filter-button-active {
+    position: relative;
+    display: block;
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 2px solid rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    border-radius: 20px;
+    height: 27px;
+    margin: auto;
+    width: 75px;
+    transition: 0.5s;
+} 
+
+.filter-button-active:focus {
+    position: relative;
+    display: block;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 2px solid rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    border-radius: 20px;
+    height: 26px;
+    margin: auto;
+    width: 80px;
+    transition: 0.5s;
+}
+
+.filter-button-icon {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
     .mobile-floating-actions {
         display: none;
     }
@@ -1278,6 +1359,8 @@ only be used for object transforms (shaping and scaling)
         overflow-x: hidden;
         padding-top: 70px;
     }
+
+    
     
     .navigation-bar {    
         /* Navigation bar contains the logo, space navigator, search bar, quick action panel 
