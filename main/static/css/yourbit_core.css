@@ -160,7 +160,7 @@ only be used for object transforms (shaping and scaling)
         left: 0px;
         z-index: 3;
         width: 100vw;
-        height: calc(100vh - 70px);
+        height: 100vh;
         overflow-y: scroll;
         transition: 1s;
         padding: 70px;
