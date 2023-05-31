@@ -906,6 +906,7 @@ only be used for object transforms (shaping and scaling)
         object-fit: contain;
         height:190px;
         width: 190px;
+        border-radius: 50%;
     }
 
     #profile-menu {
