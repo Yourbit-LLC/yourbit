@@ -910,7 +910,7 @@ only be used for object transforms (shaping and scaling)
     }
 
     .mobile-menu-header {
-        display: none;
+        display: none !important;
     }
 
     #profile-menu {
