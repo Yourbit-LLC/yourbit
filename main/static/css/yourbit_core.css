@@ -1352,6 +1352,8 @@ only be used for object transforms (shaping and scaling)
 
     #yb-browse-nav {
         position: sticky;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
         top: -20px; 
         height: 40px; 
         z-index: 20; 
