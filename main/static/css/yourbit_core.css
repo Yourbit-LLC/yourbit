@@ -1672,6 +1672,7 @@ only be used for object transforms (shaping and scaling)
         */
             font-size: auto;
             font-weight: 700;
+            padding: 0px;
             grid-row:1;
             grid-column: 2;
         }
