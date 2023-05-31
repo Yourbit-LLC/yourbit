@@ -334,7 +334,7 @@ function yb_toggleScope(this_element){
 }
 
 //Function for dynamically generating form for creating a charbit
-function yb_chatBitForm(form, type_field, option_field, script_source) {
+function yb_chatBitForm(form, type_field, option_field, script_source, edit_mode = false) {
         let sub_function_script = document.getElementById("sub-function-script")
         let this_source = document.getElementById("create-bit-source").value;
         sub_function_script.src = this_source;
@@ -478,7 +478,7 @@ function yb_chatBitForm(form, type_field, option_field, script_source) {
 }
 
 //Function for dynamically generating form for creating a video bit
-function yb_videoBitForm(form, type_field, option_field, script_source) {
+function yb_videoBitForm(form, type_field, option_field, script_source, edit_mode = false) {
     let sub_function_script = document.getElementById("sub-function-script")
     let this_source = document.getElementById("create-bit-source").value;
     sub_function_script.src = this_source;
@@ -595,7 +595,7 @@ function yb_videoBitForm(form, type_field, option_field, script_source) {
 }
 
 //Function for dynamically generating form for creating a photo bit
-function yb_photoBitForm(form, type_field, option_field, script_source) {
+function yb_photoBitForm(form, type_field, option_field, script_source, edit_mode = false) {
     let sub_function_script = document.getElementById("sub-function-script")
     let this_source = document.getElementById("create-bit-source").value;
     sub_function_script.src = this_source;
