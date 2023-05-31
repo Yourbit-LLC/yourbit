@@ -921,7 +921,7 @@ only be used for object transforms (shaping and scaling)
         visibility: hidden;
         transform: translate(17em);
         transition: 0.5s;
-        grid-template-rows: 340px 40px auto 150px 40px;
+        grid-template-rows: 340px 40px 150px 40px;
         grid-row-gap: 10px;
     }
     
@@ -940,6 +940,7 @@ only be used for object transforms (shaping and scaling)
         border-radius: 20px;
         grid-row: 1;
         text-decoration: none;
+        grid-template-rows: 200px 25px 15px;
     
     }
 
