@@ -909,10 +909,7 @@ only be used for object transforms (shaping and scaling)
         border-radius: 50%;
     }
 
-    #menu-panel-close {
-        display: none;
-    }
-    .menu-header-label {
+    .mobile-menu-header {
         display: none;
     }
 
