@@ -134,6 +134,12 @@ $(document).ready(function() {
     }
     $('#content-container').animate({'top':'0px'});
     yb_hideSpaceBar();
+    let is_loaded = yb_getLoaded();
+    if (!is_loaded) {
+        yb_setLoaded(true);
+        yb_showMiniBar();
+    }
+    yb_showBackTask();
 
     let id = yb_getSessionValues("id");
 
