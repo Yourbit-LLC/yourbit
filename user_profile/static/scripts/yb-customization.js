@@ -138,8 +138,9 @@ $(document).ready(function() {
     if (!is_loaded) {
         yb_setLoaded(true);
         yb_showMiniBar();
+    } else {
+        yb_showBackTask();
     }
-    yb_showBackTask();
 
     let id = yb_getSessionValues("id");
 

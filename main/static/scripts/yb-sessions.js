@@ -563,7 +563,7 @@ function yb_showBackTask() {
         }
 
         if (this_location === "customize") {
-            customize_url();
+            settings_url();
         }  
         
     });
