@@ -940,7 +940,7 @@ only be used for object transforms (shaping and scaling)
         border-radius: 20px;
         grid-row: 1;
         text-decoration: none;
-        grid-template-rows: 200px 25px 15px;
+        grid-template-rows: 200px 35px 20px;
     
     }
 
