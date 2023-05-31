@@ -909,6 +909,13 @@ only be used for object transforms (shaping and scaling)
         border-radius: 50%;
     }
 
+    #menu-panel-close {
+        display: none;
+    }
+    .menu-header-label {
+        display: none;
+    }
+
     #profile-menu {
         position: fixed;
         top: 3.75em;
