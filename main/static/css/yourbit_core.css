@@ -921,8 +921,8 @@ only be used for object transforms (shaping and scaling)
         visibility: hidden;
         transform: translate(17em);
         transition: 0.5s;
-        grid-template-rows: 340px 40px 150px 40px;
-        grid-row-gap: 20px;
+        grid-template-rows: 340px 40px auto 150px 40px;
+        grid-row-gap: 10px;
     }
     
     #profile-name {
