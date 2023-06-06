@@ -19,7 +19,7 @@ class TaskManager(models.Model):
     
     last_video = models.ManyToManyField('user_profile.Bit', related_name = 'last_video', blank=True)
     last_space = models.CharField(max_length = 10, blank=True)
-    feed_filters = models.CharField(max_length = 10, default='-fr-fo-me-c-p', blank=True)
+    feed_filters = models.CharField(max_length = 30, default='-fr-fo-me-c-p', blank=True)
     video = models.ManyToManyField('user_profile.Bit', related_name='videos', blank=True)
     recent_comment = models.ManyToManyField('user_profile.Bit', related_name = 'comment_sections', blank=True)
     conversation = models.ManyToManyField('messenger.Conversation', related_name = 'conversations', blank=True)
