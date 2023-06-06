@@ -222,7 +222,7 @@ function yb_BuildProfile(profile_data){
         let new_feed = {
             "type": "global",
             "id": profile_id,
-            "filter":"all",
+            "filter":"-fo-fr-me-p-c",
             "sort":"chrono",
         };
     

@@ -36,6 +36,7 @@ class ProfileViewSet(viewsets.ViewSet):
 
             elif filter == "followers":
                 profile_list = this_profile.followers.all()
+                
 
         if self.request.query_params.get("user"):
             this_id = self.request.query_params.get("user")
@@ -190,38 +191,41 @@ class BitViewSet(viewsets.ViewSet):
                         
                         my_bits = Bit.objects.filter(profile = user_profile)
 
-                        if this_filter == "friends" or this_filter == "all":
-                            friends_bits = Bit.objects.prefetch_related('custom', 'user').filter(profile__in = user_profile.connections.all()).order_by("-time")
-                            for bit in friends_bits:
-                                if bit not in unsorted_list:
-                                    unsorted_list.append(bit)
-                        if this_filter == "following" or this_filter == "all":
-                            follow_bits = Bit.objects.prefetch_related('custom', 'user').filter(profile__in = user_profile.connections.all()).order_by("-time")
-                            for bit in follow_bits:
-                                if bit not in unsorted_list:
-                                    unsorted_list.append(bit)
-                        if this_filter == "all" or this_filter == "public":
-                            all_bits = Bit.objects.prefetch_related('custom', 'user').filter(is_public = True).order_by('-like_count')[start:end]
-                            for bit in all_bits:
-                                if bit not in unsorted_list:
-                                    unsorted_list.append(bit)
-                        
-                        #Aggregate and sort posts into pool
-                        if this_filter == "all":
-                            bit_pool = sorted(
-                                chain(my_bits, unsorted_list), key=attrgetter('time'), reverse=True)
-                        
-                        elif this_filter == "friends":
-                             bit_pool = sorted(
-                                chain(my_bits, friends_bits), key=attrgetter('time'), reverse=True)
-                        
-                        elif this_filter == "following":
-                             bit_pool = sorted(
-                                chain(follow_bits), key=attrgetter('time'), reverse=True)
+                        if this_filter != None:
+                            #split filter by hyphens
+                            this_filter = this_filter.split("-")
+                            print("filter list: " + this_filter)
 
-                        elif this_filter == "public":
-                             bit_pool = sorted(
-                                chain(all_bits), key=attrgetter('time'), reverse=True)
+                            for i in this_filter:
+                                if this_filter[i] == "fr":
+                                    friends_bits = Bit.objects.prefetch_related('custom', 'user').filter(profile__in = user_profile.connections.all()).order_by("-time")
+                                    for bit in friends_bits:
+                                        if bit not in unsorted_list:
+                                            unsorted_list.append(bit)
+                                    
+
+                                if this_filter[i] == "ff":
+                                    follow_bits = Bit.objects.prefetch_related('custom', 'user').filter(profile__in = user_profile.connections.all()).order_by("-time")
+                                    for bit in follow_bits:
+                                        if bit not in unsorted_list:
+                                            unsorted_list.append(bit)
+
+                                if this_filter[i] == "p":
+                                    public_bits = Bit.objects.prefetch_related('custom', 'user').filter(is_public = True).order_by("-time")
+                                    for bit in public_bits:
+                                        if bit not in unsorted_list:
+                                            unsorted_list.append(bit)
+
+                                if this_filter[i] == "me":
+                                    my_bits = Bit.objects.prefetch_related('custom', 'user').filter(profile = user_profile).order_by("-time")
+                                    for bit in my_bits:
+                                        if bit not in unsorted_list:
+                                            unsorted_list.append(bit)
+                        else:
+                            print("filter query error")
+
+                        bit_pool = sorted(
+                            chain(unsorted_list), key=attrgetter('time'), reverse=True)
 
                     else:
                         my_bits = Bit.objects.filter(profile = user_profile, type=type)

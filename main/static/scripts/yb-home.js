@@ -26,8 +26,6 @@ $(document).ready(function() {
 
 });
 
-
-
 function yb_InitializeHome(){
     let type = yb_getSessionValues("space");
     console.log("home initialized")
@@ -41,7 +39,7 @@ function yb_InitializeHome(){
 
     data = {
         "type":"global",
-        "filter":"all",
+        "filter":"-fr-fo-p-c-me",
         "sort":"chrono",
     }
     yb_getFeed(data, hideMainSplash, yb_getDisplay, true);
@@ -54,26 +52,6 @@ function yb_InitializeHome(){
 
 
 */
-
-
-$('.filter-button-wide-active').change(function() {
-
-    //Create form data to send to yourbit request function
-
-    let filter = document.getElementById('yb-filter-dropdown').value;
-    let sort = document.getElementById('yb-sort-dropdown').value;
-    let type = yb_getSessionValues("space");
-    let location = yb_getSessionValues("location");
-    let this_data = {
-        "filter": filter,
-        "sort":sort,
-        "type":type,
-
-    }
-
-    yb_getFeed(this_data, hideSplash, 0);
-
-});
 
 function yb_toggleOff(container) {
     if (container.getAttribute("name") === "time" || container.getAttribute("name") === "best" || container.getAttribute("name") === "trendiest") {
@@ -109,8 +87,8 @@ function yb_toggleOn(container) {
         status.style.color = "green";
     }
 
-    console.log("toggle on")
-    console.log(container)
+    console.log("toggle on");
+    console.log(container);
     let icon = container.querySelector("path");
     let text = container.querySelector("p");
     let checkbox = container.querySelector("input");
@@ -124,7 +102,7 @@ function yb_toggleOn(container) {
 function yb_resetButtons() {
     let container = document.querySelector(".sub-filter-container");
     let buttons = container.querySelectorAll("div");
-    console.log(buttons)
+    console.log(buttons);
     for (var i = 0; i < buttons.length; i++) {
         
         yb_toggleOff(buttons[i]);
@@ -171,14 +149,50 @@ $('.filter-button-active').click(function() {
                 <p class = "filter-option-label">Friends</p>
                 <p class="filter-option-status" style="color:red; font-weight:bold;">OFF</p>
             `
-           
+
             friend_check.addEventListener("click", function() {
                 let current_status = friend_check.getAttribute("data-status");
+                let filter;
                 if (current_status === "unchecked") {
+                    
                     yb_toggleOn(friend_check);
+                    filter = "-fr";
+                    
+                    if (follow_check.getAttribute("data-status") === "checked") {
+                        filter += "-fo";
+                    } 
+
+                    if (public_check.getAttribute("data-status") === "checked") {
+                        filter += "-p";
+                    }
+
+                    if (community_check.getAttribute("data-status") === "checked") {
+                        filter += "-co";
+                    }
+
+                    if (my_bits_check.getAttribute("data-status") === "checked") {
+                        filter += "-me";
+                    }
+
                     
                 } else {
                     yb_toggleOff(friend_check);
+                    filter = "";
+                    if (follow_check.getAttribute("data-status") === "checked") {
+                        filter += "-fo";
+                    } 
+
+                    if (public_check.getAttribute("data-status") === "checked") {
+                        filter += "-p";
+                    }
+
+                    if (community_check.getAttribute("data-status") === "checked") {
+                        filter += "-co";
+                    }
+
+                    if (my_bits_check.getAttribute("data-status") === "checked") {
+                        filter += "-me";
+                    }
                 }
             });
 
@@ -191,10 +205,45 @@ $('.filter-button-active').click(function() {
 
             follow_check.addEventListener("click", function() {
                 let current_state = $(this).attr("data-status");
+                let filter;
                 if (current_state === "unchecked") {
                     yb_toggleOn(this);
+                    filter = "-fo";
+                    if (friend_check.getAttribute("data-status") === "checked") {
+                        filter += "-fr";
+                    }
+
+                    if (public_check.getAttribute("data-status") === "checked") {
+                        filter += "-p";
+                    }
+
+                    if (community_check.getAttribute("data-status") === "checked") {
+                        filter += "-co";
+                    }
+
+                    if (my_bits_check.getAttribute("data-status") === "checked") {
+                        filter += "-me";
+                    }
+
                 } else {
                     yb_toggleOff(this);
+                    filter = "";
+                    if (friend_check.getAttribute("data-status") === "checked") {
+                        filter += "-fr";
+                    }
+
+                    if (public_check.getAttribute("data-status") === "checked") {
+                        filter += "-p";
+                    }
+
+                    if (community_check.getAttribute("data-status") === "checked") {
+                        filter += "-co";
+                    }
+
+                    if (my_bits_check.getAttribute("data-status") === "checked") {
+                        filter += "-me";
+                    }
+
                 }
             })
 
@@ -233,6 +282,43 @@ $('.filter-button-active').click(function() {
             `
             new_container.appendChild(hide_me_check);
 
+            
+            follow_check.addEventListener("click", function() {
+                let current_state = $(this).attr("data-status");
+                let filter;
+                if (current_state === "unchecked") {
+                    yb_toggleOn(this);
+                    filter = "-me";
+                    if (friend_check.getAttribute("data-status") === "checked") {
+                        filter += "-fr";
+                    }
+
+                    if (public_check.getAttribute("data-status") === "checked") {
+                        filter += "-p";
+                    }
+
+                    if (community_check.getAttribute("data-status") === "checked") {
+                        filter += "-co";
+                    }
+
+                } else {
+                    yb_toggleOff(this);
+                    filter = "";
+                    if (friend_check.getAttribute("data-status") === "checked") {
+                        filter += "-fr";
+                    }
+
+                    if (public_check.getAttribute("data-status") === "checked") {
+                        filter += "-p";
+                    }
+
+                    if (community_check.getAttribute("data-status") === "checked") {
+                        filter += "-co";
+                    }
+
+                }
+            })
+
             let show_links_check = yb_createElement("div", "show-links-container", "filter-option-5");
             
             show_links_check.setAttribute("data-status", "unchecked");
@@ -252,7 +338,7 @@ $('.filter-button-active').click(function() {
         }
 
         if (this_button === "sort-filter"){
-            $(this).attr("data-state", "expanded")
+            $(this).attr("data-state", "expanded");
 
             $("#button-filter-options").attr("data-state", "contracted");
             $("#button-filter-customize").attr("data-state", "contracted");
@@ -260,8 +346,8 @@ $('.filter-button-active').click(function() {
 
             $("#yb-browse-nav").attr("data-state", "sort-filter");
             $("#yb-browse-nav").animate({"height":"200px"}, "fast");
-            $(".filter-button-active").css({"margin-top":"7px"});
-            $(".filter-button-wide-active").css({"margin-top":"7px"});
+            $(".filter-button-active").css({"margin-top": "7px"});
+            $(".filter-button-wide-active").css({"margin-top": "7px"});
             
             let header = yb_createElement("h4", "sub-feed-filters", "container-header");
             header.setAttribute("style", "color:white; text-align:center; margin-top:10px; margin-bottom:10px; grid-column:1/6;");
@@ -469,10 +555,16 @@ $('.filter-button-active').click(function() {
             only_my_colors_check.addEventListener("click", function() {
                 let current_status = this.getAttribute("data-status");
                 if (current_status === "unchecked") {
+                    
                     yb_toggleOn(this);
+                    updateCustom('toggle', 'only_my_colors', true);
+                    yb_applyMyColors();
+                                        
                 
                 } else {
                     yb_toggleOff(this);
+                    updateCustom('toggle', 'only_my_colors', false);
+                    yb_applyMyColors();
                 }
             });
 
@@ -490,9 +582,13 @@ $('.filter-button-active').click(function() {
                 let current_status = this.getAttribute("data-status");
                 if (current_status === "unchecked") {
                     yb_toggleOn(this);
+                    updateCustom('toggle', 'ui_color', true);
+                    yb_applyMyColors();
                     
                 } else {
                     yb_toggleOff(this);
+                    updateCustom('toggle', 'ui_color', false);
+                    yb_applyMyColors();
                 }
             });
 
@@ -510,9 +606,13 @@ $('.filter-button-active').click(function() {
                 let current_status = this.getAttribute("data-status");
                 if (current_status === "unchecked") {
                     yb_toggleOn(this);
+                    updateCustom('toggle', 'text_color', true);
+                    yb_applyTextColors();
 
                 } else {
                     yb_toggleOff(this);
+                    updateCustom('toggle', 'text_color', false);
+                    yb_applyTextColors();
                 }
             });
             

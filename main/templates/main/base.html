@@ -34,7 +34,7 @@ lang="en"
     <body style="background-color:rgb(25,25,25); overflow-x:hidden;">
         <input id='csrf-token' type='hidden' value={{csrf_token}}>
         <input type='hidden' id='session_values' data-location="{{location}}" data-primary-color="{{bit_background}}" data-default-public= "{{default_public}}" data-ui="visible" data-space="{{space}}" data-filter="{{filter}}" data-sort = "{{sort}}" data-username="{{request.user.username}}" data-id="{{request.user.id}}" data-profile-username = "">
-        
+        <input type='hidden' id='custom_values' data-primary-color="{{bit_background}}" data-secondary-color="{{accent_color}}" data-text-color="{{text_color}}" data-title-color="{{title_color}}" data-fb-icon-color="{{feedback_icon_color}}" data-fb-background-color="{{feedback_icon_color}}">
         <div class="notification-pop-up" id="non-interactive-notification-modal" style="color:white;">
 
         </div>

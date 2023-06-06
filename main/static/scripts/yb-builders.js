@@ -117,7 +117,7 @@ function BuildBit(bit, liked_bits, disliked_bits){
 
     let user_info = yb_createElement("p", `bit-info-${id}`, "bit-user-info");
 
-    user_info.innerHTML = `<strong id="chat-user-name" style="color:${title_color};">${name}</strong> <small style="color:${text_color};">@${username}</small>`
+    user_info.innerHTML = `<strong id="chat-user-name" class="bit-name" style="color:${title_color};">${name}</strong> <small class="bit-username" style="color:${text_color};">@${username}</small>`
     header.appendChild(user_info)
 
     //Prepare time for viewing by splitting at "/" place the 2 pieces in the corresponding areas
@@ -159,10 +159,12 @@ function BuildBit(bit, liked_bits, disliked_bits){
         video_player.setAttribute("playsinline", "true");
 
         new_bit.appendChild(video_player);
+
+        video_player.addEventListener("click", yb_initVideoUI());
     }
     
 
-    let text_content = yb_createElement("div", `description-bit-${id}`, `description-bit-${type}`)
+    let text_content = yb_createElement("div", `description-bit-${id}`, `description-bit-${type} bit-description`)
     
     text_content.innerHTML = `
             <p style="color: ${text_color}; text-align:${paragraph_align}">${body}</p>

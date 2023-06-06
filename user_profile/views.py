@@ -525,6 +525,58 @@ class Personalization(LoginRequiredMixin, View):
                 custom.background_blur = value
                 custom.save()
 
+        if action == 'toggle':
+            option = request.POST.get('field')
+            value = request.POST.get('value')
+            if option == 'bit_colors':
+                if value == 'true':
+                    custom.bit_colors_on = True
+                    custom.save()
+                else:
+                    custom.bit_colors_on = False
+                    custom.save()
+            
+            elif option == 'ui_colors':
+                if value == 'true':
+                    custom.ui_colors_on = True
+                    custom.save()
+                else:
+                    custom.ui_colors_on = False
+                    custom.save()
+            
+            elif option == 'wallpaper':
+                if value == 'true':
+                    custom.wallpaper_on = True
+                    custom.save()
+                else:
+                    custom.wallpaper_on = False
+                    custom.save()
+            
+            elif option == 'default_theme':
+                if value == 'true':
+                    custom.default_theme_on = True
+                    custom.save()
+                else:
+                    custom.default_theme_on = False
+                    custom.save()
+            
+            elif option == 'only_my_colors':
+                if value == 'true':
+                    custom.only_my_colors = True
+                    custom.save()
+                else:
+                    custom.only_my_colors = False
+                    custom.save()
+
+            elif option == 'text_colors':
+                if value == 'true':
+                    custom.text_colors_on = True
+                    custom.save()
+                else:
+                    custom.text_colors_on = False
+                    custom.save()
+
+
         return JsonResponse({'success':'success'})
 
 

@@ -45,6 +45,79 @@ function debounce(func, delay) {
     }
   }
 
+function yb_applyMyColors() {
+
+    let primary_color = yb_getSessionValues("primary-color");
+    let secondary_color = yb_getSessionValues("secondary-color");
+    let text_color = yb_getSessionValues("text-color");
+    let title_color = yb_getSessionValues("title-color");
+    let feedback_icon_color = yb_getSessionValues("feedback-icon-color");
+    let feedback_text_color = yb_getSessionValues("feedback-text-color");
+
+    let bits = document.getElementsByClassName("post-wrapper");
+
+    for (let i = 0; i < bits.length; i++) {
+
+        //Set current iteration to this_bit
+        let this_bit = bits[i];
+        
+        //Get all information in bit and set colors
+        let name = this_bit.querySelector(".bit-name");
+        let username = this_bit.querySelector(".bit-username");
+        let title = this_bit.querySelector(".bit-title");
+        let text = this_bit.querySelector(".bit-description");
+        
+        //Set all buttons in bit
+        let feedback_buttons = this_bit.querySelectorAll(".feedback-button");
+        for (let i = 0; i < feedback_buttons.length; i++) {
+            let this_button = feedback_buttons[i];
+            this_button.style.backgroundColor = primary_color;
+        }
+
+        //Set all icons in bit
+        let feedback_icons = this_bit.querySelectorAll(".feedback-icon");
+        for (let i = 0; i < feedback_icons.length; i++) {
+            let this_icon = feedback_icons[i];
+            this_icon.style.color = feedback_icon_color;
+        }
+
+        this_bit.style.backgroundColor = primary_color;
+
+        name.style.color = title_color;
+        username.style.color = text_color;
+        
+        title.style.color = title_color;
+        text.style.color = text_color;    
+
+    }
+}
+
+function yb_applyTextColors(toggle=true) {
+    if (toggle) {
+        
+        let bits = document.getElementsByClassName("post-wrapper");
+
+        for (let i = 0; i < bits.length; i++) {
+            let this_bit = bits[i];
+            let text = this_bit.querySelector(".bit-description");
+            let title = this_bit.querySelector(".bit-title");
+            let this_text_color = this_bit.getAttribute("data-text-color");
+            let this_title_color = this_bit.getAttribute("data-title-color");
+            title.style.color = this_text_color;
+            text.style.color = this_title_color;
+
+        }
+    } else {
+
+        let bits = document.getElementsByClassName("post-wrapper");
+        for (let i = 0; i < bits.length; i++) {
+            let this_bit = bits[i];
+            let text = this_bit.querySelector(".bit-description");
+            text.style.color = "white";
+        }
+    }
+
+}
 
 function yb_hideUI(){
     let screen_width = screen.width;

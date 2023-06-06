@@ -4,10 +4,7 @@ from YourbitAccounts.models import Account as User
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill, SmartResize
 
-
-
 # Create your models here.
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE)
     
@@ -182,7 +179,6 @@ class Custom(models.Model):
     text_colors_on = models.BooleanField(default=True)
     bit_colors_on = models.BooleanField(default=True)
 
-
 class Continuum(models.Model):
     user = models.OneToOneField(User, related_name = "continuum", on_delete=models.DO_NOTHING, blank=True)
     profile = models.OneToOneField('Profile', related_name='continuum', blank=True, on_delete=models.CASCADE)
@@ -223,7 +219,6 @@ class UserProfileInfo(models.Model):
 
     #Relationships
     relationship_status = models.CharField(max_length = 100, default = 'Single')
-
 
 class CommunityProfileInfo(models.Model):
     profile = models.OneToOneField('Profile', related_name='community_profile_info', blank=True, on_delete=models.CASCADE)
