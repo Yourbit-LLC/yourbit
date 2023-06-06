@@ -196,27 +196,27 @@ class BitViewSet(viewsets.ViewSet):
                             this_filter = this_filter.split("-")
                             print(this_filter)
 
-                            for i in this_filter:
-                                if this_filter[i] == "fr":
+                            for item in this_filter:
+                                if item == "fr":
                                     friends_bits = Bit.objects.prefetch_related('custom', 'user').filter(profile__in = user_profile.connections.all()).order_by("-time")
                                     for bit in friends_bits:
                                         if bit not in unsorted_list:
                                             unsorted_list.append(bit)
                                     
 
-                                if this_filter[i] == "ff":
+                                if item == "ff":
                                     follow_bits = Bit.objects.prefetch_related('custom', 'user').filter(profile__in = user_profile.connections.all()).order_by("-time")
                                     for bit in follow_bits:
                                         if bit not in unsorted_list:
                                             unsorted_list.append(bit)
 
-                                if this_filter[i] == "p":
+                                if item == "p":
                                     public_bits = Bit.objects.prefetch_related('custom', 'user').filter(is_public = True).order_by("-time")
                                     for bit in public_bits:
                                         if bit not in unsorted_list:
                                             unsorted_list.append(bit)
 
-                                if this_filter[i] == "me":
+                                if item == "me":
                                     my_bits = Bit.objects.prefetch_related('custom', 'user').filter(profile = user_profile).order_by("-time")
                                     for bit in my_bits:
                                         if bit not in unsorted_list:
