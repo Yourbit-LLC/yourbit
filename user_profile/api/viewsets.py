@@ -194,7 +194,7 @@ class BitViewSet(viewsets.ViewSet):
                         if this_filter != None:
                             #split filter by hyphens
                             this_filter = this_filter.split("-")
-                            print("filter list: " + this_filter)
+                            print(this_filter)
 
                             for i in this_filter:
                                 if this_filter[i] == "fr":
