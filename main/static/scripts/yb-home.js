@@ -162,9 +162,9 @@ $('.filter-button-active').click(function() {
                         filter += "-fo";
                     } 
 
-                    if (public_check.getAttribute("data-status") === "checked") {
-                        filter += "-p";
-                    }
+                    // if (public_check.getAttribute("data-status") === "checked") {
+                    //     filter += "-p";
+                    // }
 
                     if (community_check.getAttribute("data-status") === "checked") {
                         filter += "-co";
@@ -182,9 +182,9 @@ $('.filter-button-active').click(function() {
                         filter += "-fo";
                     } 
 
-                    if (public_check.getAttribute("data-status") === "checked") {
-                        filter += "-p";
-                    }
+                    // if (public_check.getAttribute("data-status") === "checked") {
+                    //     filter += "-p";
+                    // }
 
                     if (community_check.getAttribute("data-status") === "checked") {
                         filter += "-co";
@@ -213,9 +213,9 @@ $('.filter-button-active').click(function() {
                         filter += "-fr";
                     }
 
-                    if (public_check.getAttribute("data-status") === "checked") {
-                        filter += "-p";
-                    }
+                    // if (public_check.getAttribute("data-status") === "checked") {
+                    //     filter += "-p";
+                    // }
 
                     if (community_check.getAttribute("data-status") === "checked") {
                         filter += "-co";
@@ -232,9 +232,9 @@ $('.filter-button-active').click(function() {
                         filter += "-fr";
                     }
 
-                    if (public_check.getAttribute("data-status") === "checked") {
-                        filter += "-p";
-                    }
+                    // if (public_check.getAttribute("data-status") === "checked") {
+                    //     filter += "-p";
+                    // }
 
                     if (community_check.getAttribute("data-status") === "checked") {
                         filter += "-co";
@@ -293,9 +293,9 @@ $('.filter-button-active').click(function() {
                         filter += "-fr";
                     }
 
-                    if (public_check.getAttribute("data-status") === "checked") {
-                        filter += "-p";
-                    }
+                    // if (public_check.getAttribute("data-status") === "checked") {
+                    //     filter += "-p";
+                    // }
 
                     if (community_check.getAttribute("data-status") === "checked") {
                         filter += "-co";
@@ -308,9 +308,9 @@ $('.filter-button-active').click(function() {
                         filter += "-fr";
                     }
 
-                    if (public_check.getAttribute("data-status") === "checked") {
-                        filter += "-p";
-                    }
+                    // if (public_check.getAttribute("data-status") === "checked") {
+                    //     filter += "-p";
+                    // }
 
                     if (community_check.getAttribute("data-status") === "checked") {
                         filter += "-co";
