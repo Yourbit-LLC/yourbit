@@ -150,104 +150,12 @@ $('.filter-button-active').click(function() {
                 <p class="filter-option-status" style="color:red; font-weight:bold;">OFF</p>
             `
 
-            friend_check.addEventListener("click", function() {
-                let current_status = friend_check.getAttribute("data-status");
-                let filter;
-                if (current_status === "unchecked") {
-                    
-                    yb_toggleOn(friend_check);
-                    filter = "-fr";
-                    
-                    if (follow_check.getAttribute("data-status") === "checked") {
-                        filter += "-fo";
-                    } 
-
-                    // if (public_check.getAttribute("data-status") === "checked") {
-                    //     filter += "-p";
-                    // }
-
-                    if (community_check.getAttribute("data-status") === "checked") {
-                        filter += "-co";
-                    }
-
-                    if (my_bits_check.getAttribute("data-status") === "checked") {
-                        filter += "-me";
-                    }
-
-                    
-                } else {
-                    yb_toggleOff(friend_check);
-                    filter = "";
-                    if (follow_check.getAttribute("data-status") === "checked") {
-                        filter += "-fo";
-                    } 
-
-                    // if (public_check.getAttribute("data-status") === "checked") {
-                    //     filter += "-p";
-                    // }
-
-                    if (community_check.getAttribute("data-status") === "checked") {
-                        filter += "-co";
-                    }
-
-                    if (my_bits_check.getAttribute("data-status") === "checked") {
-                        filter += "-me";
-                    }
-                }
-            });
-
             new_container.appendChild(friend_check);
 
 
             let follow_check = yb_createElement("div", "follow-container", "filter-option-2");
             
             follow_check.setAttribute("data-status", "unchecked");
-
-            follow_check.addEventListener("click", function() {
-                let current_state = $(this).attr("data-status");
-                let filter;
-                if (current_state === "unchecked") {
-                    yb_toggleOn(this);
-                    filter = "-fo";
-                    if (friend_check.getAttribute("data-status") === "checked") {
-                        filter += "-fr";
-                    }
-
-                    // if (public_check.getAttribute("data-status") === "checked") {
-                    //     filter += "-p";
-                    // }
-
-                    if (community_check.getAttribute("data-status") === "checked") {
-                        filter += "-co";
-                    }
-
-                    if (my_bits_check.getAttribute("data-status") === "checked") {
-                        filter += "-me";
-                    }
-
-                } else {
-                    yb_toggleOff(this);
-                    filter = "";
-                    if (friend_check.getAttribute("data-status") === "checked") {
-                        filter += "-fr";
-                    }
-
-                    // if (public_check.getAttribute("data-status") === "checked") {
-                    //     filter += "-p";
-                    // }
-
-                    if (community_check.getAttribute("data-status") === "checked") {
-                        filter += "-co";
-                    }
-
-                    if (my_bits_check.getAttribute("data-status") === "checked") {
-                        filter += "-me";
-                    }
-
-                }
-            })
-
-            
 
             follow_check.innerHTML = `
             <input type="checkbox" style="display:none" id="follow-filter" name="follow-filter" value="follow">
@@ -282,8 +190,100 @@ $('.filter-button-active').click(function() {
             `
             new_container.appendChild(hide_me_check);
 
-            
+            friend_check.addEventListener("click", function() {
+                let current_status = friend_check.getAttribute("data-status");
+                let filter;
+                if (current_status === "unchecked") {
+                    
+                    yb_toggleOn(friend_check);
+                    filter = "-fr";
+                    
+                    if (follow_check.getAttribute("data-status") === "checked") {
+                        filter += "-fo";
+                    } 
+
+                    // if (public_check.getAttribute("data-status") === "checked") {
+                    //     filter += "-p";
+                    // }
+
+                    if (community_check.getAttribute("data-status") === "checked") {
+                        filter += "-co";
+                    }
+
+                    if (hide_me_check.getAttribute("data-status") === "checked") {
+                        filter += "-me";
+                    }
+
+                    
+                } else {
+                    yb_toggleOff(friend_check);
+                    filter = "";
+                    if (follow_check.getAttribute("data-status") === "checked") {
+                        filter += "-fo";
+                    } 
+
+                    // if (public_check.getAttribute("data-status") === "checked") {
+                    //     filter += "-p";
+                    // }
+
+                    if (community_check.getAttribute("data-status") === "checked") {
+                        filter += "-co";
+                    }
+
+                    if (hide_me_check.getAttribute("data-status") === "checked") {
+                        filter += "-me";
+                    }
+                }
+            });
+
             follow_check.addEventListener("click", function() {
+                let current_state = $(this).attr("data-status");
+                let filter;
+                if (current_state === "unchecked") {
+                    yb_toggleOn(this);
+                    filter = "-fo";
+                    if (friend_check.getAttribute("data-status") === "checked") {
+                        filter += "-fr";
+                    }
+
+                    // if (public_check.getAttribute("data-status") === "checked") {
+                    //     filter += "-p";
+                    // }
+
+                    if (community_check.getAttribute("data-status") === "checked") {
+                        filter += "-co";
+                    }
+
+                    if (hide_me_check.getAttribute("data-status") === "checked") {
+                        filter += "-me";
+                    }
+
+                } else {
+                    yb_toggleOff(this);
+                    filter = "";
+                    if (friend_check.getAttribute("data-status") === "checked") {
+                        filter += "-fr";
+                    }
+
+                    // if (public_check.getAttribute("data-status") === "checked") {
+                    //     filter += "-p";
+                    // }
+
+                    if (community_check.getAttribute("data-status") === "checked") {
+                        filter += "-co";
+                    }
+
+                    if (my_bits_check.getAttribute("data-status") === "checked") {
+                        filter += "-me";
+                    }
+
+                }
+            })
+
+            
+
+            
+            hide_me_check.addEventListener("click", function() {
                 let current_state = $(this).attr("data-status");
                 let filter;
                 if (current_state === "unchecked") {
