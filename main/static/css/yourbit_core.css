@@ -2485,7 +2485,15 @@ only be used for object transforms (shaping and scaling)
         grid-row: 2;
     }
 
-
+    .universal-bottom-form-container {
+        display:grid;
+        position: absolute;
+        bottom: 0vh;
+        width: 100vw;
+        grid-template-rows: 35px 45px;
+        grid-template-columns: 1fr 3fr 1fr;
+        background-color: black;
+    }
 
     .large-bubble {
         background-color: rgba(0, 0, 0, 1);

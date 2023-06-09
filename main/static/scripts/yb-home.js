@@ -197,7 +197,7 @@ $('.filter-button-active').click(function() {
                 let filter;
                 if (current_status === "unchecked") {
                     
-                    yb_toggleOn(friend_check);
+                    yb_toggleOn(this);
                     filter = "-fr";
                     
                     if (follow_check.getAttribute("data-status") === "checked") {
@@ -228,7 +228,7 @@ $('.filter-button-active').click(function() {
                     yb_getFeed(data, hideMainSplash, yb_getDisplay, false);
 
                 } else {
-                    yb_toggleOff(friend_check);
+                    yb_toggleOff(this);
                     filter = "";
                     if (follow_check.getAttribute("data-status") === "checked") {
                         filter += "-fo";

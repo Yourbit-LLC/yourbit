@@ -1040,3 +1040,21 @@ function yb_openImage(source, index, this_id){
 // menuContainer.addEventListener('animationend', () => {
 //   menuContainer.classList.remove('animate');
 // });
+
+function yb_showUniversalInput() {
+    let search = document.getElementById('container-input-universal-bottom');
+    $('#container-input-universal-bottom').fadeIn('fast');
+    search.style.transform = 'translate(0, -100vh)';
+    
+}
+
+
+function yb_dropUniversalInput(hide) {
+    let input = document.getElementById('container-input-universal-bottom');
+    input.style.transform = 'translate(0, 100vh)';
+    setTimeout(hide, 200);
+}
+
+function yb_hideUniversalInput() {
+    $('#container-input-universal-bottom').hide();
+}

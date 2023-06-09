@@ -30,10 +30,46 @@
 
         back_button.addEventListener("click", function() {
             console.log("Go back")
+            clearInterval(yb_checkMessages);
             messages_inbox_url();
             $('.minibar').animate({"bottom": "95px"}).fadeIn();
-            clearInterval(yb_checkMessages);
-        })
+
+        });
+
+        //Get universal form container
+        let universal_form = document.getElementById("universal-bottom-form-container")
+        
+        //Attachments button
+        let attach_button = yb_createButton("add-attachment", "attach-button", "yb-button-round");
+        attach_button.innerHTML = "<svg xmlns='http://www.w3.org/2000/svg' height='24' width='24'><path d='M20 6H4V4h16v2Zm0 4H4v2h16v-2Zm0 4H4v2h16v-2Zm0 4H4v2h16v-2Z'/></svg>";
+        attach_button.addEventListener("click", function() {
+            console.log("Attach file");
+        });
+        universal_form.appendChild(attach_button);
+
+        //Input field
+        let input_field = yb_createInput("text", "yb-single-line-input", "input-text-messenger", "type message");
+        universal_form.appendChild(input_field);
+
+        //Send button
+        let send_button = yb_createButton("send-message", "send-button", "yb-button-round", "Send");
+        send_button.addEventListener("click", function() {
+            let text_field = document.getElementById("message-field")
+            let this_id = yb_getSessionValues("conversation");
+            let that_user = yb_getSessionValues("that-username")
+            let body = text_field.value;
+        
+            //This ID refers to conversation id
+            yb_sendMessage(body, this_id, that_user)
+        });
+        universal_form.appendChild(send_button);
+        
+        yb_showUniversalInput();
+
+
+
+
+
     });
 
 
