@@ -190,6 +190,8 @@ $('.filter-button-active').click(function() {
             `
             new_container.appendChild(hide_me_check);
 
+            //Add event listeners
+
             friend_check.addEventListener("click", function() {
                 let current_status = friend_check.getAttribute("data-status");
                 let filter;
@@ -214,7 +216,17 @@ $('.filter-button-active').click(function() {
                         filter += "-me";
                     }
 
-                    
+                    let current_space = yb_getSessionValues("space");
+                    let current_sort = yb_getSessionValues("sort");
+
+                    data = {
+                        "type":current_space,
+                        "filter":filter,
+                        "sort":current_sort,
+                    }
+
+                    yb_getFeed(data, hideMainSplash, yb_getDisplay, false);
+
                 } else {
                     yb_toggleOff(friend_check);
                     filter = "";
@@ -233,6 +245,18 @@ $('.filter-button-active').click(function() {
                     if (hide_me_check.getAttribute("data-status") === "checked") {
                         filter += "-me";
                     }
+
+                    
+                    let current_space = yb_getSessionValues("space");
+                    let current_sort = yb_getSessionValues("sort");
+
+                    data = {
+                        "type":current_space,
+                        "filter":filter,
+                        "sort":current_sort,
+                    }
+                    
+                    yb_getFeed(data, hideMainSplash, yb_getDisplay, false);
                 }
             });
 
@@ -258,6 +282,18 @@ $('.filter-button-active').click(function() {
                         filter += "-me";
                     }
 
+                    
+                    let current_space = yb_getSessionValues("space");
+                    let current_sort = yb_getSessionValues("sort");
+
+                    data = {
+                        "type":current_space,
+                        "filter":filter,
+                        "sort":current_sort,
+                    }
+                    
+                    yb_getFeed(data, hideMainSplash, yb_getDisplay, false);
+
                 } else {
                     yb_toggleOff(this);
                     filter = "";
@@ -273,9 +309,21 @@ $('.filter-button-active').click(function() {
                         filter += "-co";
                     }
 
-                    if (my_bits_check.getAttribute("data-status") === "checked") {
+                    if (hide_me_check.getAttribute("data-status") === "checked") {
                         filter += "-me";
                     }
+
+                    
+                    let current_space = yb_getSessionValues("space");
+                    let current_sort = yb_getSessionValues("sort");
+
+                    data = {
+                        "type":current_space,
+                        "filter":filter,
+                        "sort":current_sort,
+                    }
+                    
+                    yb_getFeed(data, hideMainSplash, yb_getDisplay, false);
 
                 }
             })
@@ -301,6 +349,18 @@ $('.filter-button-active').click(function() {
                         filter += "-co";
                     }
 
+                    
+                    let current_space = yb_getSessionValues("space");
+                    let current_sort = yb_getSessionValues("sort");
+
+                    data = {
+                        "type":current_space,
+                        "filter":filter,
+                        "sort":current_sort,
+                    }
+                    
+                    yb_getFeed(data, hideMainSplash, yb_getDisplay, false);
+
                 } else {
                     yb_toggleOff(this);
                     filter = "";
@@ -315,6 +375,18 @@ $('.filter-button-active').click(function() {
                     if (community_check.getAttribute("data-status") === "checked") {
                         filter += "-co";
                     }
+
+                    
+                    let current_space = yb_getSessionValues("space");
+                    let current_sort = yb_getSessionValues("sort");
+
+                    data = {
+                        "type":current_space,
+                        "filter":filter,
+                        "sort":current_sort,
+                    }
+                    
+                    yb_getFeed(data, hideMainSplash, yb_getDisplay, false);
 
                 }
             })
