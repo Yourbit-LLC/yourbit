@@ -2392,7 +2392,7 @@ only be used for object transforms (shaping and scaling)
         text-align: center;
     }
 
-    .mobile-slide-up-panel {
+    #search-mobile {
         display: none;
         top: 100vh;
         width: 100vw;
@@ -2403,6 +2403,22 @@ only be used for object transforms (shaping and scaling)
         background-color: rgba(0, 0, 0, 0.0);
         -webkit-backdrop-filter: blur(40px);
         backdrop-filter: blur(40px);
+        left: 0;
+        bottom: 0px;
+        box-shadow: -1px -1px 10px black;
+        text-align: center;
+        color: white;
+    }
+
+    #container-input-universal-bottom {
+        display: none;
+        top: 100vh;
+        width: 100vw;
+        height: 100%;
+        transition: 0.5s;
+        position: fixed;
+        z-index: 16;
+        pointer-events: auto;
         left: 0;
         bottom: 0px;
         box-shadow: -1px -1px 10px black;
