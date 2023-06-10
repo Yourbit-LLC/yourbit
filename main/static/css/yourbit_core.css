@@ -2392,7 +2392,7 @@ only be used for object transforms (shaping and scaling)
         text-align: center;
     }
 
-    #search-mobile {
+    .mobile-slide-up-panel {
         display: none;
         top: 100vh;
         width: 100vw;
@@ -2408,7 +2408,9 @@ only be used for object transforms (shaping and scaling)
         box-shadow: -1px -1px 10px black;
         text-align: center;
         color: white;
+
     }
+
 
     .mobile-search-form {
         display:grid;
