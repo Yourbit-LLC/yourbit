@@ -114,6 +114,7 @@ $('.filter-button-active').click(function() {
     let current_state = $(this).attr("data-state");
     let browse_nav = document.getElementById("yb-browse-nav");
     $(".container-header").remove();
+    
     if (current_state === "contracted") {
         //If this button is the more filters button
 

@@ -1016,6 +1016,10 @@ function yb_loadInclusionFilter(){
                     let element = document.getElementById("community-container");
                     yb_toggleOn(element);
                 }
+                if (response.show_my_bits){
+                    let element = document.getElementById("hide-me-container");
+                    yb_toggleOn(element);
+                }
 
             }
         }

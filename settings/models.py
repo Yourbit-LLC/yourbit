@@ -33,6 +33,7 @@ class FeedSettings(models.Model):
     show_friends = models.BooleanField(default=True)
     show_following = models.BooleanField(default=True)
     show_communities = models.BooleanField(default=True)
+    show_my_bits = models.BooleanField(default=True)
     show_public = models.BooleanField(default=True)
     show_shared_bits = models.BooleanField(default=True)
     muted_users = models.ManyToManyField(User, blank=True, related_name='muted')
