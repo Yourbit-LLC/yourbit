@@ -2418,7 +2418,7 @@ only be used for object transforms (shaping and scaling)
         transition: 0.5s;
         position: fixed;
         z-index: 16;
-        pointer-events: auto;
+        pointer-events: none;
         left: 0;
         bottom: 0px;
         box-shadow: -1px -1px 10px black;
@@ -2508,7 +2508,7 @@ only be used for object transforms (shaping and scaling)
         position: absolute;
         bottom: 0vh;
         width: 100vw;
-        grid-template-rows: 35px 45px;
+        height: 50px;
         grid-template-columns: 1fr 3fr 1fr;
         background-color: black;
     }

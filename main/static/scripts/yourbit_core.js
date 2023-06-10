@@ -1044,7 +1044,7 @@ function yb_openImage(source, index, this_id){
 function yb_showUniversalInput() {
     let search = document.getElementById('container-input-universal-bottom');
     console.log("function ran")
-    $('#container-input-universal-bottom').fadeIn('fast');
+    $('#container-input-universal-bottom').css({"display": "grid"});
     search.style.transform = 'translate(0, -100vh)';
     
 }
