@@ -20,6 +20,11 @@
         console.log("conversation loaded!")
         yb_hideUI();
         let this_id = yb_getSessionValues("conversation");
+
+        let message_container = document.getElementById("message-container");
+        let mobile_spacer = yb_createElement("div", "mobile-spacer", "mobile-spacer");
+        message_container.appendChild(mobile_spacer);
+
         yb_getMessages(this_id);
 
         back_button.addEventListener("click", function() {
