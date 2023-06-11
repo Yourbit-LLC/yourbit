@@ -1043,12 +1043,10 @@ function yb_openImage(source, index, this_id){
 
 function yb_showUniversalInput() {
     let search = document.getElementById('container-input-universal-bottom');
-    console.log("function ran")
+    console.log("function ran");
     $('#container-input-universal-bottom').css({"display": "grid"});
     search.style.transform = 'translate(0, -100vh)';
-    
 }
-
 
 function yb_dropUniversalInput(hide) {
     let input = document.getElementById('container-input-universal-bottom');
