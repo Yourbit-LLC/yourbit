@@ -10,7 +10,7 @@ var container_function_list = [
     passwordStage1,
     passwordStage2,
     termsStage,
-    submitStage
+    
 
 
 ];
@@ -24,7 +24,7 @@ var invisible_field_list = [
     '#id_password1',
     '#id_password2',
     '#id_terms',
-    '#id_recaptcha',
+    
 
 ];
 
@@ -42,6 +42,7 @@ var field_list = [
 
 const INVISIBLE_FORM = document.getElementById('invisible-form');
 const FORM = document.getElementById('form');
+const ERROR_BOX = document.getElementById('error-message');
 $(document).ready(function () {
     let current_container = birthdayStage();
     
@@ -60,6 +61,7 @@ $(document).ready(function () {
 //Function to display birthdate entry stage
 function birthdayStage() {
     FORM.innerHTML = '';
+    ERROR_BOX.innerHTML = '';
     let dob_field_container = yb_createElement('div', 'dob-field-container', 'paginated-form-field-container');
     let dob_label = yb_createElement('p', 'dob-label', 'paginated-form-label');
     let dob_field = yb_createInput('date', 'field',  'dob-field');
@@ -91,6 +93,7 @@ function birthdayStage() {
 //Function to display email entry stage
 function emailStage() {
     FORM.innerHTML = '';
+    ERROR_BOX.innerHTML = '';
     let email_field_container = yb_createElement('div', 'email-field-container', 'paginated-form-field-container');
     let email_label = yb_createElement('p', 'email-label', 'paginated-form-label');
     let email_field = yb_createInput('email', 'field', 'email-field', "ex. 'myemail@yourbit.me'");
@@ -115,6 +118,7 @@ function emailStage() {
 //Function to display first name entry stage
 function fnameStage() {
     FORM.innerHTML = '';
+    ERROR_BOX.innerHTML = '';
     let fname_field_container = yb_createElement('div', 'fname-field-container', 'paginated-form-field-container');
     let fname_label = yb_createElement('p', 'fname-label', 'paginated-form-label');
     let fname_field = yb_createInput('text', 'field', 'fname-field', "ex. 'John'");
@@ -138,7 +142,7 @@ function fnameStage() {
 //Function to display last name entry stage
 function lnameStage() {
     FORM.innerHTML = '';
-
+    ERROR_BOX.innerHTML = '';
     let lname_field_container = yb_createElement('div', 'lname-field-container', 'paginated-form-field-container');
     let lname_label = yb_createElement('p', 'lname-label', 'paginated-form-label', "ex. 'Doe'");
     let lname_field = yb_createInput('text', 'field', 'lname-field');
@@ -163,6 +167,7 @@ function lnameStage() {
 //Function to display username entry stage
 function unameStage(){
     FORM.innerHTML = '';
+    ERROR_BOX.innerHTML = '';
     let uname_field_container = yb_createElement('div', 'uname-field-container', 'paginated-form-field-container');
     let uname_label = yb_createElement('p', 'uname-label', 'paginated-form-label');
     let uname_field = yb_createInput('text', 'field', 'uname-field', "ex. 'johndoe'");
@@ -187,6 +192,7 @@ function unameStage(){
 //Function to display password entry stage
 function passwordStage1(){
     FORM.innerHTML = '';
+    ERROR_BOX.innerHTML = '';
     let password_field_container = yb_createElement('div', 'password-field-container', 'paginated-form-field-container');
     let password_label = yb_createElement('p', 'password-label', 'paginated-form-label');
     let password_field = yb_createInput('password', 'field', 'password1-field', "ex. 'password123'");
@@ -211,6 +217,7 @@ function passwordStage1(){
 
 //Function to display password confirmation entry stage
 function passwordStage2(){
+    ERROR_BOX.innerHTML = '';
     let password_field_container = yb_createElement('div', 'password-field-container', 'paginated-form-field-container');
     let password_label = yb_createElement('p', 'password-label', 'paginated-form-label');
     let password_field = yb_createInput('password', 'field', 'password2-field', "ex. 'password123'");
@@ -235,6 +242,7 @@ function passwordStage2(){
 //Function to display terms and conditions stage
 function termsStage(){
     FORM.innerHTML = '';
+    ERROR_BOX.innerHTML = '';
     let base_url = window.location.origin;
     let terms_field_container = yb_createElement('div', 'terms-field-container', 'paginated-form-field-container');
     let terms_window = yb_createElement('iframe', 'terms-window', 'terms-window');
@@ -267,32 +275,6 @@ function termsStage(){
     terms_field_container.appendChild(next_button);
 
     return terms_field_container;
-}
-
-//Function to display submit stage
-function submitStage(){
-    FORM.innerHTML = '';
-    let submit_field_container = yb_createElement('div', 'submit-field-container', 'paginated-form-field-container');
-    let header = yb_createElement('h3', 'submit-header', 'paginated-form-header');
-    header.innerHTML = 'You are almost done!';
-    submit_field_container.appendChild(header);
-
-    let paragraph = yb_createElement('p', 'submit-paragraph', 'paginated-form-paragraph');
-    paragraph.setAttribute('style', 'padding: 5px 5px 5px 5px;')
-    paragraph.innerHTML = `
-        We just need you to verify your email address. 
-        We will send you a verification email to the address you provided. 
-        Please click the link in the email to complete your registration. 
-        When you are done, come back and click the "finished" 
-        button below to continue.`;
-
-    submit_field_container.appendChild(paragraph);
-    let next_button = yb_createButton('next', 'paginated-form-button', 'yb-form-next', 'Finished');
-
-    submit_field_container.appendChild(next_button);
-
-
-    return submit_field_container;
 }
 
 //Function to validate fields
