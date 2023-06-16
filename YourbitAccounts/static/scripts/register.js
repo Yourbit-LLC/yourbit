@@ -203,7 +203,7 @@ function passwordStage1(){
     let line_break = document.createElement('br');
     password_field_container.appendChild(line_break);
 
-    let next_button = yb_createElement('button', 'password1-next', 'yb-form-next', 'Next');
+    let next_button = yb_createButton('nect', 'password1-next', 'yb-form-next', 'Next');
     
     next_button.onclick = function () {
         $(this).remove();
@@ -228,7 +228,7 @@ function passwordStage2(){
     let line_break = document.createElement('br');
     password_field_container.appendChild(line_break);
 
-    let next_button = yb_createElement('button', 'next-button', 'yb-form-next', 'Next');
+    let next_button = yb_createButton('nect', 'password1-next', 'yb-form-next', 'Next');
     password_field_container.appendChild(next_button);
     
     next_button.onclick = function () {
