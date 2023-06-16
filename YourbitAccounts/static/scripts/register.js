@@ -332,8 +332,7 @@ function yb_ValidateField() {
                 FORM.appendChild(next_container);
             } else {
                 let error_message = document.getElementById('error-message');
-                error_message.innerHTML = response.message;
-                current_container.appendChild(error_message);
+                error_message.innerHTML = response.error;
             } 
 
         }
