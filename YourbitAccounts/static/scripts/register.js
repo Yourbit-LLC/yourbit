@@ -4,7 +4,6 @@ var current_container;
 var container_function_list = [
     birthdayStage,
     emailStage,
-    phoneStage,
     fnameStage,
     lnameStage,
     unameStage,
@@ -19,7 +18,6 @@ var container_function_list = [
 var invisible_field_list = [
     '#id_dob',
     '#id_email',
-    '#id_phone_number',
     '#id_first_name',
     '#id_last_name',
     '#id_username',
@@ -33,7 +31,6 @@ var invisible_field_list = [
 var field_list = [
     'dob-field',
     'email-field',
-    'phone-field',
     'fname-field',
     'lname-field',
     'uname-field',
@@ -115,30 +112,6 @@ function emailStage() {
     return email_field_container;
 }
 
-//Function to display phone number entry stage
-function phoneStage() {
-    FORM.innerHTML = '';
-    let phone_field_container = yb_createElement('div', 'phone-field-container', 'paginated-form-field-container');
-    let phone_label = yb_createElement('p', 'phone-label', 'paginated-form-label');
-    let phone_field = yb_createInput('tel', 'field', 'phone-field', "ex. '+1123-456-7890'");
-    phone_label.innerHTML = 'Phone';
-    phone_field_container.appendChild(phone_label);
-    phone_field_container.appendChild(phone_field);
-
-    let next_button = yb_createButton('id_phone_number', 'next-button', 'yb-form-next', "Next");
-    
-    next_button.onclick = function () {
-        yb_ValidateField();
-    };
-
-    let line_break = document.createElement('br');
-    phone_field_container.appendChild(line_break);
-
-    phone_field_container.appendChild(next_button);
-
-    return phone_field_container;
-}
-
 //Function to display first name entry stage
 function fnameStage() {
     FORM.innerHTML = '';
@@ -165,6 +138,7 @@ function fnameStage() {
 //Function to display last name entry stage
 function lnameStage() {
     FORM.innerHTML = '';
+
     let lname_field_container = yb_createElement('div', 'lname-field-container', 'paginated-form-field-container');
     let lname_label = yb_createElement('p', 'lname-label', 'paginated-form-label', "ex. 'Doe'");
     let lname_field = yb_createInput('text', 'field', 'lname-field');
@@ -226,7 +200,9 @@ function passwordStage1(){
     let next_button = yb_createElement('button', 'password1-next', 'yb-form-next', 'Next');
     
     next_button.onclick = function () {
+        $(this).remove();
         yb_ValidateField();
+
     };
     password_field_container.appendChild(next_button);
 
@@ -246,6 +222,7 @@ function passwordStage2(){
     password_field_container.appendChild(line_break);
 
     let next_button = yb_createElement('button', 'next-button', 'yb-form-next', 'Next');
+    password_field_container.appendChild(next_button);
     
     next_button.onclick = function () {
         let next_stage = termsStage();
@@ -354,7 +331,7 @@ function yb_ValidateField() {
                 
                 FORM.appendChild(next_container);
             } else {
-                let error_message = yb_createElement('p', 'error-message', 'error-message');
+                let error_message = document.getElementById('error-message');
                 error_message.innerHTML = response.message;
                 current_container.appendChild(error_message);
             } 

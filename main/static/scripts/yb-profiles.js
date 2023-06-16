@@ -1,4 +1,5 @@
 var base_url = window.location.origin;
+
 $(document).ready(function() {
     let user_id = yb_getSessionValues("profile-username");
     console.log(user_id)

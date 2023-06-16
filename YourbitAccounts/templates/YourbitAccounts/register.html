@@ -13,7 +13,6 @@
             {% csrf_token %}
             {{registration_form.dob}}
             {{registration_form.email}}
-            {{registration_form.phone_number}}
             {{registration_form.first_name}}
             {{registration_form.last_name}}
             {{registration_form.username}}
@@ -23,15 +22,16 @@
         </form>
         <div id="logo-container"><img src="{% static 'images/logo-flat.png' %}" width="30%" id="logo"></div>
         <h3 id="form-title" style="color:white; text-align:center;">Create an Account</h3>
-        
+        <div id="error-message" class="error-message">
+            <p id="error-message-text"></p>
+        </div>
 
         <div method='POST' class='form-group' id="form" >
             
         </div>
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script type="text/javascript" src="{% static 'scripts/yb-ajax.js' %}"></script>
         <script type="text/javascript" src="{% static 'scripts/register.js' %}"></script>
- 
-
     </body>
 </html>

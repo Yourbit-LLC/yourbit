@@ -169,6 +169,7 @@ class Custom(models.Model):
     background_color = models.CharField(max_length=50, default="#323232")
     accent_color = models.CharField(max_length=50, default="#ffffff")
     icon_color = models.CharField(max_length=50, default="#ffffff")
+    ui_theme_mode = models.CharField(max_length=50, default="dark")
 
     #Quick Appearance Settings
     user_colors_on = models.BooleanField(default=True)

@@ -11,8 +11,6 @@ from .models import *
 from django.contrib.auth.password_validation import validate_password
 from django.core.validators import EmailValidator
 from django.core.exceptions import ValidationError
-import phonenumbers
-from phonenumbers import carrier, geocoder, timezone
 from django.core.mail import send_mail
 from django.template.loader import render_to_string, get_template
 from django.utils.html import strip_tags
@@ -300,20 +298,6 @@ class ValidateField(View):
                     return JsonResponse({'success':True})
             except ValidationError as e:
                 return JsonResponse({'success':False, 'error':'Invalid email address!', 'message':e.message})
-            
-        elif field == 'phone-field':
-            try:
-                # Parse the phone number using the phonenumbers library
-                parsed_number = phonenumbers.parse(value, None)
-
-                # Check if the phone number is valid
-                is_valid = phonenumbers.is_valid_number(parsed_number)
-
-                if is_valid:
-                    return JsonResponse({'success':True})
-            except phonenumbers.NumberParseException:
-            # If the phone number cannot be parsed, return False
-                return JsonResponse({'success':False, 'error':'Invalid phone number!'})
             
         elif field == 'uname-field':
             if User.objects.filter(username=value).exists():

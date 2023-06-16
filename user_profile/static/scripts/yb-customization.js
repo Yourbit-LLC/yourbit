@@ -12,17 +12,17 @@
 var base_url = window.location.origin;
 
 //Declare constants for all preview elements
-const MINI_USER_IMAGE_CONTAINER = document.getElementById("accent-color-preview");
-const MINI_USER_IMAGE = document.getElementById("profile-image-preview-image");
-const MINI_USER_NAME = document.getElementById("preview-name");
-const MINI_USERNAME = document.getElementById("preview-username");
-const MINI_BIT = document.getElementById("mini-bit");
-const MINI_BIT_MOBILE = document.getElementById("bit-colors-preview");
-const MINI_TITLE = document.getElementById("mini-title");
-const MINI_TITLE_MOBILE = document.getElementById("preview-title");
-const MINI_PARAGRAPH = document.getElementById("mini-paragraph");
-const MINI_PARAGRAPH_MOBILE = document.getElementById("preview-paragraph");
-const BIT_PROFILE_IMAGE = document.getElementById("bit-profile-image-image");
+var MINI_USER_IMAGE_CONTAINER = document.getElementById("accent-color-preview");
+var MINI_USER_IMAGE = document.getElementById("profile-image-preview-image");
+var MINI_USER_NAME = document.getElementById("preview-name");
+var MINI_USERNAME = document.getElementById("preview-username");
+var MINI_BIT = document.getElementById("mini-bit");
+var MINI_BIT_MOBILE = document.getElementById("bit-colors-preview");
+var MINI_TITLE = document.getElementById("mini-title");
+var MINI_TITLE_MOBILE = document.getElementById("preview-title");
+var MINI_PARAGRAPH = document.getElementById("mini-paragraph");
+var MINI_PARAGRAPH_MOBILE = document.getElementById("preview-paragraph");
+var BIT_PROFILE_IMAGE = document.getElementById("bit-profile-image-image");
 
 //Declare constants for all input elements
 const PROFILE_IMAGE_INPUT = document.getElementById("profile-image-input");
