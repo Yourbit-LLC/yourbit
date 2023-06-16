@@ -203,14 +203,14 @@ function passwordStage1(){
     let line_break = document.createElement('br');
     password_field_container.appendChild(line_break);
 
-    let next_button = yb_createButton('nect', 'password1-next', 'yb-form-next', 'Next');
+    let next_button = yb_createButton('next', 'password1-next', 'yb-form-next', 'Next');
+    password_field_container.appendChild(next_button);
     
     next_button.onclick = function () {
-        $(this).remove();
         yb_ValidateField();
 
     };
-    password_field_container.appendChild(next_button);
+    
 
     return password_field_container;
 }
@@ -218,6 +218,7 @@ function passwordStage1(){
 //Function to display password confirmation entry stage
 function passwordStage2(){
     ERROR_BOX.innerHTML = '';
+    $('#password1-next').remove();
     let password_field_container = yb_createElement('div', 'password-field-container', 'paginated-form-field-container');
     let password_label = yb_createElement('p', 'password-label', 'paginated-form-label');
     let password_field = yb_createInput('password', 'field', 'password2-field', "ex. 'password123'");
@@ -228,7 +229,7 @@ function passwordStage2(){
     let line_break = document.createElement('br');
     password_field_container.appendChild(line_break);
 
-    let next_button = yb_createButton('nect', 'password1-next', 'yb-form-next', 'Next');
+    let next_button = yb_createButton('next', 'password1-next', 'yb-form-next', 'Next');
     password_field_container.appendChild(next_button);
     
     next_button.onclick = function () {
