@@ -229,10 +229,11 @@ function passwordStage2(){
     let line_break = document.createElement('br');
     password_field_container.appendChild(line_break);
 
-    let next_button = yb_createButton('next', 'password1-next', 'yb-form-next', 'Next');
+    let next_button = yb_createButton('next', 'password2-next', 'yb-form-next', 'Next');
     password_field_container.appendChild(next_button);
     
     next_button.onclick = function () {
+        yb_ValidateField();
         let next_stage = termsStage();
         FORM.appendChild(next_stage);
     };
