@@ -120,17 +120,18 @@ function fetchResults(callback, query) {
 function displayResults(response) {
     let results = response.user_results;
     let users = Object.keys(results);
+    console.log(users);
     let user = '';
-    let x = 0;
+    console.log(users.length)
     for (let i = 0; i < users.length; i++) {
         let result_container = document.getElementById('mobile-instant-results');
-        console.log(x);
-        user = users[x];
-        console.log(user);
+        
+        user = users[i];
+        
         let profile_info = results[user];
         let user_info = profile_info.user;
         let custom = profile_info.custom;
-        console.log(user_info);
+        
         user_name = user_info['first_name'] + ' ' + user_info['last_name'];
         image = custom['image'];
         result_object = yb_createElement('div', `quick-result-${user_info.id}`, 'quick-result');
@@ -147,9 +148,7 @@ function displayResults(response) {
         });
         
         result_container.appendChild(result_object);
-        
-        x = x + 1;
-        console.log(x);
+
     }
 }
 
