@@ -4,13 +4,16 @@
       <title>Yourbit Email Confirmation</title>
     </head>
     <body style="overflow-x: hidden;">
-        <img width="25%" src="{{yourbit_logo}}">
-        <h1 style="font-size: 56px;">Welcome to Yourbit!</h1>
+        <img width="30%" src="{{yourbit_logo}}">
+        <h1 style="font-size: 60px;">Welcome to Yourbit!</h1>
         <h3 style="font-size: 28px;">We sent a code to your email</h3>
+        <br>
+        <br>   
         <form id="text-container" method="POST">
             {% csrf_token %}
             
             <p>Check your email for a verification code and enter it below.</p>
+            <br>
             <i>Didn't receive a code? <br><a href="">Resend</a></i>
             <br>
             <br>
