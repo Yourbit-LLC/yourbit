@@ -267,8 +267,10 @@ function termsStage(){
     let next_button = yb_createButton('next', 'next-button', 'yb-form-next', 'Accept');
     next_button.setAttribute('style', 'color:green;');
     next_button.onclick = function () {
+        let next_stage = submitStage();
         let this_response = INVISIBLE_FORM.submit();
         console.log(this_response);
+        FORM.appendChild(next_stage);
     };
     terms_field_container.appendChild(cancel_button);
     terms_field_container.appendChild(next_button);

@@ -65,15 +65,17 @@ def registration_view(request):
             recipient_list = [account.email]
             from_email = 'no-reply@yourbit.me'
             send_mail(subject, strip_tags(html_message), from_email, recipient_list, html_message=html_message)
-
+            print("Status:\n\nForm Valid")
             return redirect('email_confirmation')
 
     
         else:
+            print("Status:\n\nForm Invalid")
             context['registration_form'] = form
             return render(request, 'YourbitAccounts/register.html', context)
         
     else:
+        print("Status:\n\nWrong Request Method")
         form = RegistrationForm()
         context['registration_form'] = form
     
