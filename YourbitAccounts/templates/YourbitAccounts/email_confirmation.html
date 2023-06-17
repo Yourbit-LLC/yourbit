@@ -5,8 +5,8 @@
     </head>
     <body style="overflow-x: hidden;">
         <img width="25%" src="{{yourbit_logo}}">
-        <h1 style="font-size: 48px;">Welcome to Yourbit!</h1>
-        <h3 style="font-size: 36px;">We sent a code to your email</h3>
+        <h1 style="font-size: 56px;">Welcome to Yourbit!</h1>
+        <h3 style="font-size: 28px;">We sent a code to your email</h3>
         <form id="text-container" method="POST">
             {% csrf_token %}
             
@@ -14,7 +14,7 @@
             <i>Didn't receive a code? <br><a href="">Resend</a></i>
             <br>
             <br>
-            <p style="font-size: 12px;"><b>**Please note, we are a new site so you may have to check your spam or junk folders.</b></p>
+            <p style="font-size: 14px;"><b>**Please note, we are a new site so you may have to check your spam or junk folders.</b></p>
 
             <input id="code-input" name="verification_key" type="text" placeholder="Enter code">
             <br>
@@ -37,9 +37,9 @@
 
     #code-input{
         border-radius: 10px;
-        width: 130px;
-        height: 50px;
-        font-size: 18px;
+        width: 25%;
+        height: 100px;
+        font-size: 24px;
         color: gray;
         text-align: center;
     }
@@ -54,7 +54,7 @@
         width: 40%;
         margin-left: auto;
         margin-right: auto;
-        height: 30px;
+        height: 80px;
     }
 
     #text-container{
