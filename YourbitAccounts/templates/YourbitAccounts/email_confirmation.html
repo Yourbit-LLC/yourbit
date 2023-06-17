@@ -7,15 +7,15 @@
         <img width="25%" src="{{yourbit_logo}}">
         <h1>Welcome to Yourbit!</h1>
         <h3>We sent a code to your email</h3>
-
-        <p>Check your email for a verification code and enter it below.</p>
-        <i>Didn't receive a code? <br><a href="">Resend</a></i>
-        <br>
-        <br>
-        <p><b>**Please note, we are a new site so you may have to check your spam or junk folders.</b></p>
-
         <form id="text-container" method="POST">
             {% csrf_token %}
+            
+            <p>Check your email for a verification code and enter it below.</p>
+            <i>Didn't receive a code? <br><a href="">Resend</a></i>
+            <br>
+            <br>
+            <p><b>**Please note, we are a new site so you may have to check your spam or junk folders.</b></p>
+
             <input id="code-input" name="verification_key" type="text" placeholder="Enter code">
             <br>
             <br>
