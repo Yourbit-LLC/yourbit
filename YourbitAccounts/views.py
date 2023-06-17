@@ -71,6 +71,8 @@ def registration_view(request):
     
         else:
             print("Status:\n\nForm Invalid")
+            for field_name, error_messages in form.errors.items():
+                print(f"Errors for field '{field_name}': {', '.join(error_messages)}")
             context['registration_form'] = form
             return render(request, 'YourbitAccounts/register.html', context)
         
