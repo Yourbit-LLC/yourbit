@@ -71,12 +71,13 @@ def registration_view(request):
     
         else:
             context['registration_form'] = form
+            return render(request, 'YourbitAccounts/register.html', context)
         
     else:
         form = RegistrationForm()
         context['registration_form'] = form
     
-    return render(request, 'YourbitAccounts/register.html', context)
+        return render(request, 'YourbitAccounts/register.html', context)
 
 class EmailConfirmation(View):
     def get(self, request, *args, **kwargs):
