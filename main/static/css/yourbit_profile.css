@@ -217,8 +217,9 @@ Profile Page
         text-align: center;
         color: auto;
         height: 40px;
-
     }
+
+    
     .profile-header-link {
         display: block;
         position: relative;
@@ -327,6 +328,8 @@ Profile Page
         font-weight: 550;
         height: 40px;
         z-index: 5;
+        line-height: 2.5;
+        text-align: center;
     }
 
     .profile-interact-icon {
