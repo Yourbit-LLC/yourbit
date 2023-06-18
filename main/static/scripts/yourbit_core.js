@@ -863,6 +863,8 @@ function visibilityClose(dropdown) {
     }  
 };
 
+
+
 function yb_openImage(source, index, this_id){
     let viewer = yb_createElement('div', 'photo-viewer', 'photo-viewer');
     viewer.setAttribute("style", "display: none");
@@ -972,7 +974,6 @@ function yb_openImage(source, index, this_id){
             
                 // Retrieve the #photo-viewer element
                 var photoViewer = document.getElementById("photo-viewer");
-
                 // Attach an event listener for touchstart event
                 photoViewer.addEventListener("touchstart", yb_touchDetect);
                     
@@ -985,7 +986,7 @@ function yb_openImage(source, index, this_id){
 
 function yb_touchDetect(e) {
     var initialY = e.touches[0].clientY;
-
+    var photoViewer = document.getElementById("photo-viewer");
     // Add an event listener for touchend event
     photoViewer.addEventListener("touchend", function(event) {
         yb_swipeDown("photo-viewer", e, initialY);
