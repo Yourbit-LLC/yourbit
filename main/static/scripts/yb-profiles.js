@@ -255,11 +255,11 @@ function yb_handleConnectButton(profile_button_connect) {
         dropdown.setAttribute("style", `position: absolute; overflow:hidden; top: 45px; left: 0px; border-radius: 20px; background-color:#222222; width: 90px; height: 0px;  box-shadow: 2px 2px 4px black;`);
         profile_button_connect.appendChild(dropdown);
         //Animate dropdown
-        $(dropdown).animate({"height": "60px"}, 200);
+        $(dropdown).animate({"height": "70px"}, 200);
         
         //Create dropdown items
-        let add_friend_button = yb_createElement("div", "adaptive-dropdown-item-add-friend", "adaptive-dropdown-item");
-        add_friend_button.setAttribute("style", `color: white; height: 50px;`);
+        let add_friend_button = yb_createElement("p", "adaptive-dropdown-item-add-friend", "adaptive-dropdown-item");
+        add_friend_button.setAttribute("style", `color: white; height: 35px; margin-top: 0px; margin-bottom: 0px;`);
         add_friend_button.innerHTML = "Add friend";
         dropdown.appendChild(add_friend_button);
         
@@ -268,8 +268,8 @@ function yb_handleConnectButton(profile_button_connect) {
             yb_requestFriend(handle);
         });
 
-        let follow_button = yb_createElement("div", "adaptive-dropdown-item-follow", "adaptive-dropdown-item");
-        follow_button.setAttribute("style", `color: white; height:50px`);
+        let follow_button = yb_createElement("p", "adaptive-dropdown-item-follow", "adaptive-dropdown-item");
+        follow_button.setAttribute("style", `color: white; height:35px; margin-top: 0px; margin-bottom: 0px;`);
         follow_button.setAttribute("data-id", user_id);
         follow_button.innerHTML = "Follow";
         dropdown.appendChild(follow_button);
