@@ -975,7 +975,10 @@ function yb_openImage(source, index, this_id){
                 // Retrieve the #photo-viewer element
                 var photoViewer = document.getElementById("photo-viewer");
                 // Attach an event listener for touchstart event
-                photoViewer.addEventListener("touchstart", yb_touchDetect);
+                photoViewer.addEventListener("touchstart", (e) => {
+                    yb_touchDetect(e);
+                  });
+                  
                     
             }
         } 
