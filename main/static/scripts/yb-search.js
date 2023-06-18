@@ -43,7 +43,7 @@ $('#mobile-searchbar').on('change keyup', function(e) {
     $('#mobile-instant-results').empty();
     console.log(query);
     if (query != 0) {
-        fetchResults(displayResults, query);
+        setTimeout(fetchResults, 100, displayResults, query);
     } else {
         $('#mobile-instant-results').empty();
     }
@@ -125,6 +125,8 @@ function displayResults(response) {
     console.log(users.length)
     for (let i = 0; i < users.length; i++) {
         let result_container = document.getElementById('mobile-instant-results');
+
+        result_container.innerHTML = '';
         
         user = users[i];
         
