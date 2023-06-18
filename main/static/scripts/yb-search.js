@@ -123,10 +123,11 @@ function displayResults(response) {
     console.log(users);
     let user = '';
     console.log(users.length)
-    for (let i = 0; i < users.length; i++) {
-        let result_container = document.getElementById('mobile-instant-results');
+    let result_container = document.getElementById('mobile-instant-results');
 
-        result_container.innerHTML = '';
+    result_container.innerHTML = '';
+    
+    for (let i = 0; i < users.length; i++) {
         
         user = users[i];
         
