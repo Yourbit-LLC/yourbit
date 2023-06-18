@@ -117,7 +117,7 @@ function yb_BuildProfile(profile_data){
 
     if (active_id != user_id){
         let profile_button_message = yb_createElement("button", "button-profile-interaction", "button-profile-interaction");
-        profile_button_message.setAttribute("style", `background-color: ${custom.primary_color}; color: ${custom.title_color};`);
+        profile_button_message.setAttribute("style", `background-color: ${custom.primary_color}; color: ${custom.title_color}; margin: 0px;`);
         profile_button_message.setAttribute("id", "profile-button-message");
         profile_button_message.setAttribute("data-id", user_id);
         profile_button_message.innerHTML = "Message";
