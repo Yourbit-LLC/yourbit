@@ -83,9 +83,9 @@ function yb_BuildProfile(profile_data){
 
     
     if (active_id != user_id){
-        let profile_button_connect = yb_createElement("div", "button-profile-interaction", "button-profile-interaction");
+        let profile_button_connect = yb_createElement("div", "profile-button-connect", "button-profile-interaction");
         profile_button_connect.setAttribute("style", `background-color: ${custom.primary_color}; color: ${custom.title_color};`);
-        profile_button_connect.setAttribute("id", "profile-button-connect");
+        
         profile_button_connect.setAttribute("data-id", user_id);
         profile_button_connect.setAttribute("data-username", handle);
         profile_button_connect.setAttribute("data-name", profile_name);
@@ -98,9 +98,9 @@ function yb_BuildProfile(profile_data){
         });
 
     } else {
-        let profile_button_edit = yb_createElement("div", "button-profile-interaction", "button-profile-interaction");
+        let profile_button_edit = yb_createElement("div", "profile-button-edit", "button-profile-interaction");
         profile_button_edit.setAttribute("style", `background-color: ${custom.primary_color}; color: ${custom.title_color};`);
-        profile_button_edit.setAttribute("id", "profile-button-edit");
+        
         profile_button_edit.setAttribute("data-id", user_id);
         profile_button_edit.innerHTML = "Customize";
         profile_interaction_container.appendChild(profile_button_edit);
