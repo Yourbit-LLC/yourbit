@@ -968,6 +968,27 @@ function yb_openImage(source, index, this_id){
 
                 viewer.appendChild(interaction_container);
                 $('.photo-viewer').fadeIn(200);
+                // Retrieve the #photo-viewer element
+                var photoViewer = document.getElementById("photo-viewer");
+
+                // Attach an event listener for touchstart event
+                photoViewer.addEventListener("touchstart", function(event) {
+                var initialY = event.touches[0].clientY;
+
+                // Add an event listener for touchend event
+                photoViewer.addEventListener("touchend", function(event) {
+                    var finalY = event.changedTouches[0].clientY;
+                    var deltaY = finalY - initialY;
+
+                    // Check if the user has swiped down
+                    if (deltaY > 0) {
+                    // Perform actions to exit fullscreen
+                    // Add your code here to handle fullscreen exit
+                    console.log("Swiped down to exit fullscreen!");
+                    alert("Swiped down to exit fullscreen!");
+                    }
+                });
+});
                 
             }
         } 
