@@ -974,22 +974,22 @@ function yb_openImage(source, index, this_id){
                 var photoViewer = document.getElementById("photo-viewer");
 
                 // Attach an event listener for touchstart event
-                photoViewer.addEventListener("touchstart", function(event) {
-                    var initialY = event.touches[0].clientY;
-
-                    // Add an event listener for touchend event
-                    photoViewer.addEventListener("touchend", function(event) {
-                        yb_swipeDown("photo-viewer", event, initialY);
-                    });
-
-                    
-                });
+                photoViewer.addEventListener("touchstart", yb_touchDetect(e));
                     
             }
         } 
     );
 
     
+}
+
+function yb_touchDetect(event) {
+    var initialY = event.touches[0].clientY;
+
+    // Add an event listener for touchend event
+    photoViewer.addEventListener("touchend", function(event) {
+        yb_swipeDown("photo-viewer", event, initialY);
+    });
 }
 
 function yb_swipeDown(option, event, initialY) {
@@ -1004,6 +1004,7 @@ function yb_swipeDown(option, event, initialY) {
             console.log("Swiped down to exit fullscreen!");
             $('.photo-viewer').animate({"top": "100vh"}, 200);
             $('.photo-viewer').fadeOut(200);
+            document.getElementById("photo-viewer").removeEventListener("touchstart", yb_touchDetect);
             $('.photo-viewer').remove();
         }
     }
