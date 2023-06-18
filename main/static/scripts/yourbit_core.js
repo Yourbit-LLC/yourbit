@@ -1004,6 +1004,7 @@ function yb_swipeDown(option, event, initialY) {
             console.log("Swiped down to exit fullscreen!");
             $('.photo-viewer').animate({"top": "100vh"}, 200);
             $('.photo-viewer').fadeOut(200);
+            $('.photo-viewer').remove();
         }
     }
 }
