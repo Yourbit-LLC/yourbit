@@ -863,8 +863,6 @@ function visibilityClose(dropdown) {
     }  
 };
 
-
-
 function yb_openImage(source, index, this_id){
     let viewer = yb_createElement('div', 'photo-viewer', 'photo-viewer');
     viewer.setAttribute("style", "display: none");
@@ -974,11 +972,29 @@ function yb_openImage(source, index, this_id){
             
                 // Retrieve the #photo-viewer element
                 var photoViewer = document.getElementById("photo-viewer");
+
                 // Attach an event listener for touchstart event
-                photoViewer.addEventListener("touchstart",
-                    yb_touchDetect
-                );
-                  
+                photoViewer.addEventListener("touchstart", function(event) {
+                    var initialY = event.touches[0].clientY;
+
+                    // Add an event listener for touchend event
+                    photoViewer.addEventListener("touchend", function(event) {
+                        var finalY = event.changedTouches[0].clientY;
+                        var deltaY = finalY - initialY;
+                
+                        // Check if the user has swiped down
+                        if (deltaY > 0) {
+                            // Perform actions to exit fullscreen
+                            // Add your code here to handle fullscreen exit
+                            console.log("Swiped down to exit fullscreen!");
+                            $('.photo-viewer').animate({"top": "100vh"}, 200);
+                            $('.photo-viewer').fadeOut(200);
+                            $('.photo-viewer').remove();
+                        }
+                    });
+
+                    
+                });
                     
             }
         } 
@@ -987,34 +1003,6 @@ function yb_openImage(source, index, this_id){
     
 }
 
-function yb_touchDetect(event) {
-    var initialY = event.touches[0].clientY;
-    var photoViewer = document.getElementById("photo-viewer");
-    // Add an event listener for touchend event
-    photoViewer.addEventListener("touchend", function(e) {
-        yb_swipeDown("photo-viewer", event, initialY);
-    });
-}
-
-function yb_swipeDown(option, this_event, initialY) {
-    if (option == "photo-viewer") {
-        var finalY = this_event.changedTouches[0].clientY;
-        var deltaY = finalY - initialY;
-
-        // Check if the user has swiped down
-        if (deltaY > 0) {
-            // Perform actions to exit fullscreen
-            // Add your code here to handle fullscreen exit
-            console.log("Swiped down to exit fullscreen!");
-            $('.photo-viewer').animate({"top": "100vh"}, 200);
-            $('.photo-viewer').fadeOut(200);
-            $('.photo-viewer').remove();
-
-            document.getElementById("photo-viewer").removeEventListener("touchstart", yb_touchDetect);
-            
-        }
-    }
-}
 
 // const menuContainer = document.querySelector('.menu-container');
 // const menu = document.querySelector('.menu');
