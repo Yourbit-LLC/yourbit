@@ -25,7 +25,7 @@ $(document).ready(function(){
                 console.log(deltaY)
                 // Perform actions to exit fullscreen
                 // Add your code here to handle fullscreen exit
-                setTimeout(yb_show_profile_menu, 100);
+                setTimeout(yb_hide_profile_menu, 100);
             }
         });
     });
@@ -491,6 +491,13 @@ function getBaseURL() {
 var menu = document.getElementById("profile-menu");
 var profile_icon = document.getElementById("profile-icon");
 profile_icon.addEventListener("click", yb_show_profile_menu);
+
+function yb_hide_profile_menu() {
+    menu.style.visibility='hidden';
+
+    menu.style.transform= 'translate(0, 0vh)';
+    $('#cb-divider').fadeOut();
+}
 
 //Expand Profile Menu
 function yb_show_profile_menu() {
