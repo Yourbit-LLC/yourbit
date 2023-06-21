@@ -22,11 +22,11 @@ $(document).ready(function(){
             var deltaY = finalY - initialY;
     
             // Check if the user has swiped down
-            if (deltaY > 0) {
+            if (deltaY > 100) {
                 console.log(deltaY)
                 // Perform actions to exit fullscreen
                 // Add your code here to handle fullscreen exit
-                setTimeout(yb_hide_profile_menu, 100);
+                setTimeout(yb_hide_profile_menu, 300);
             }
         });
     });
@@ -40,7 +40,7 @@ $(document).ready(function(){
             var deltaY = finalY - initialY;
     
             // Check if the user has swiped down
-            if (deltaY > 0) {
+            if (deltaY > 100) {
                 // Perform actions to exit fullscreen
                 // Add your code here to handle fullscreen exit
                 dropCreateBit(hideCreateBit);
@@ -59,7 +59,7 @@ $(document).ready(function(){
             var deltaY = finalY - initialY;
     
             // Check if the user has swiped down
-            if (deltaY > 0) {
+            if (deltaY > 100) {
                 // Perform actions to exit fullscreen
                 // Add your code here to handle fullscreen exit
                 yb_closeCard();
