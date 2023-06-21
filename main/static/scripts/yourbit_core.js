@@ -62,7 +62,7 @@ $(document).ready(function(){
             if (deltaY > 0) {
                 // Perform actions to exit fullscreen
                 // Add your code here to handle fullscreen exit
-                dropCreateBit(hideCreateBit);
+                yb_closeCard();
             }
         });
         
