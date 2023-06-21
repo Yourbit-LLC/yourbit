@@ -935,6 +935,9 @@ function yb_openImage(source, index, this_id){
     viewer.appendChild(viewing_image);
     document.body.appendChild(viewer);
 
+    $('.photo-viewer').fadeIn(200);
+    $('.photo-viewer').animate({"top": "0px"}, 200);
+
     $.ajax(
         {
             type: "GET",
@@ -1032,8 +1035,6 @@ function yb_openImage(source, index, this_id){
                 interaction_container.appendChild(donate_button);
 
                 viewer.appendChild(interaction_container);
-                $('.photo-viewer').fadeIn(200);
-                $('.photo-viewer').animate({"top": "0px"}, 200);
             
                 // Retrieve the #photo-viewer element
                 var photoViewer = document.getElementById("photo-viewer");
