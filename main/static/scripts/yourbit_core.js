@@ -6,6 +6,7 @@ var home_feed = document.getElementById('feed-content-container');
 var content_container = document.getElementById('content-container');
 const MAIN_MENU = document.getElementById('profile-menu');
 const CREATE_MENU = document.getElementById('create-bit-mobile');
+const GENERAL_CONTAINER = document.getElementById('general-ui-container');
 
 var postList = document.getElementById("content-container-feed");
 
@@ -35,6 +36,25 @@ $(document).ready(function(){
 
         // Add an event listener for touchend event
         CREATE_MENU.addEventListener("touchend", function(event) {
+            var finalY = event.changedTouches[0].clientY;
+            var deltaY = finalY - initialY;
+    
+            // Check if the user has swiped down
+            if (deltaY > 0) {
+                // Perform actions to exit fullscreen
+                // Add your code here to handle fullscreen exit
+                dropCreateBit(hideCreateBit);
+            }
+        });
+        
+    });
+
+
+    GENERAL_CONTAINER.addEventListener("touchstart", function(event) {
+        var initialY = event.touches[0].clientY;
+
+        // Add an event listener for touchend event
+        GENERAL_CONTAINER.addEventListener("touchend", function(event) {
             var finalY = event.changedTouches[0].clientY;
             var deltaY = finalY - initialY;
     
