@@ -22,9 +22,10 @@ $(document).ready(function(){
     
             // Check if the user has swiped down
             if (deltaY > 0) {
+                console.log(deltaY)
                 // Perform actions to exit fullscreen
                 // Add your code here to handle fullscreen exit
-                yb_show_profile_menu();
+                setTimeout(yb_show_profile_menu, 100);
             }
         });
     });
