@@ -50,7 +50,7 @@ class SendMessage(LoginRequiredMixin, View):
 class ConversationView(View):
     def get(self, request, id, *args, **kwargs):
         conversation = Conversation.objects.get(id=id)
-        messages = Message.objects.filter(conversation = conversation).order_by('-time')
+        messages = conversation.messages.all().order_by('time')
         context={'messages':messages, 'conversation':conversation}
 
         unseen_messages = conversation.unseen_messages.all()
