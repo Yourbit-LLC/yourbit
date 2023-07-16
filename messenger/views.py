@@ -60,8 +60,10 @@ class ConversationView(View):
                 if message.is_read == False:
                     message.is_read = True
                     message.save()
+                
+                unseen_messages.remove(message)
 
-        unseen_messages.clear()
+        
 
         return render(request, 'messenger/conversation.html', context)
 
