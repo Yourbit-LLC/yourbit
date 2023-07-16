@@ -1,66 +1,73 @@
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/conversations.css' %}"/>
+<html>
+    
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/conversations.css' %}"/>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1">
+    </head>
+    <body>
+    <div id='header' style='text-align:center; color: white;'>
+        <svg id="back-to-convos" xmlns="http://www.w3.org/2000/svg" style="position: absolute; left: 15px; top: 50%; transform: translate(0, -50%);" height="24" width="24"><path d="M10 22 0 12 10 2l1.775 1.775L3.55 12l8.225 8.225Z"/></svg>
+        <h3 id="receiver-name" style="margin-top:15px; margin-bottom: 2px;"></h3>
+        <p style='margin-top:0px;'><small>offline</small></p>
+        <svg xmlns="http://www.w3.org/2000/svg" style = "position: absolute; right: 15px; top: 50%; transform: translate(0, -50%);" height="24" width="24"><path d="M12 20q-.825 0-1.412-.587Q10 18.825 10 18q0-.825.588-1.413Q11.175 16 12 16t1.413.587Q14 17.175 14 18q0 .825-.587 1.413Q12.825 20 12 20Zm0-6q-.825 0-1.412-.588Q10 12.825 10 12t.588-1.413Q11.175 10 12 10t1.413.587Q14 11.175 14 12q0 .825-.587 1.412Q12.825 14 12 14Zm0-6q-.825 0-1.412-.588Q10 6.825 10 6t.588-1.412Q11.175 4 12 4t1.413.588Q14 5.175 14 6t-.587 1.412Q12.825 8 12 8Z"/></svg>
+    </div>
 
-<div id='header' style='text-align:center; color: white;'>
-    <svg id="back-to-convos" xmlns="http://www.w3.org/2000/svg" style="position: absolute; left: 15px; top: 50%; transform: translate(0, -50%);" height="24" width="24"><path d="M10 22 0 12 10 2l1.775 1.775L3.55 12l8.225 8.225Z"/></svg>
-    <h3 id="receiver-name" style="margin-top:15px; margin-bottom: 2px;"></h3>
-    <p style='margin-top:0px;'><small>offline</small></p>
-    <svg xmlns="http://www.w3.org/2000/svg" style = "position: absolute; right: 15px; top: 50%; transform: translate(0, -50%);" height="24" width="24"><path d="M12 20q-.825 0-1.412-.587Q10 18.825 10 18q0-.825.588-1.413Q11.175 16 12 16t1.413.587Q14 17.175 14 18q0 .825-.587 1.413Q12.825 20 12 20Zm0-6q-.825 0-1.412-.588Q10 12.825 10 12t.588-1.413Q11.175 10 12 10t1.413.587Q14 11.175 14 12q0 .825-.587 1.412Q12.825 14 12 14Zm0-6q-.825 0-1.412-.588Q10 6.825 10 6t.588-1.412Q11.175 4 12 4t1.413.588Q14 5.175 14 6t-.587 1.412Q12.825 8 12 8Z"/></svg>
-</div>
+    <div id='message-container'>
+        <!--Messages are appended here-->
+        {% for message in messages %}
+            {% if message.sender == request.user %}
+            <div class='message-wrapper' style='text-align:right;'>
+                <div class='message-bubble' style='background-color: #e2e2e2;'>
+                    <p>{{ message.body }}</p>
+                </div>
 
-<div id='message-container'>
-    <!--Messages are appended here-->
-    {% for message in messages %}
-        {% if message.sender == request.user %}
-        <div class='message-wrapper' style='text-align:right;'>
-            <div class='message-bubble' style='background-color: #e2e2e2;'>
-                <p>{{ message.body }}</p>
-            </div>
+                <div class='message-timestamp'>
+                    <p>{{ message.timestamp }}</p>
 
-            <div class='message-timestamp'>
-                <p>{{ message.timestamp }}</p>
-
-            </div>
-
-        </div>
-
-        {% else %}
-        <div class='message-wrapper' style='text-align:left;'>
-            <div class='message-bubble' style='background-color: #e2e2e2;'>
-                <p>{{ message.body }}</p>
-            </div>
-
-            <div class='message-timestamp'>
-                <p>{{ message.timestamp }}</p>
+                </div>
 
             </div>
-        </div>
 
-        {% endif %}
-    {% endfor %}
-</div>
+            {% else %}
+            <div class='message-wrapper' style='text-align:left;'>
+                <div class='message-bubble' style='background-color: #e2e2e2;'>
+                    <p>{{ message.body }}</p>
+                </div>
 
-<div id="message-input">
-    <form id="form-conversation" class="universal-container-form" style="display: none;">
-        <div>
-        
-            <button id="add-attachment" class="yb-button-round" style="width: 50px; height: 50px;">+</button>
-        
-        </div>
+                <div class='message-timestamp'>
+                    <p>{{ message.timestamp }}</p>
 
-        <div>
-        
-            <input id="message-field" type="text" class="yb-single-line-input" placeholder="Type message">
-        
-        </div>
+                </div>
+            </div>
 
-        <div>
-        
-            <button id="send-button" class="yb-button-round">Send</button>
-        
-        </div>
-    </form>
-</div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div id="message-input">
+        <form id="form-conversation" class="universal-container-form" style="display: none;">
+            <div>
+            
+                <button id="add-attachment" class="yb-button-round" style="width: 50px; height: 50px;">+</button>
+            
+            </div>
+
+            <div>
+            
+                <input id="message-field" type="text" class="yb-single-line-input" placeholder="Type message">
+            
+            </div>
+
+            <div>
+            
+                <button id="send-button" class="yb-button-round">Send</button>
+            
+            </div>
+        </form>
+    </div>
+</body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script class="page-script" type='text/javascript' type="text/css" src="{% static 'scripts/messenger.js' %}"></script>
@@ -90,3 +97,4 @@
 
 
 </script>
+</html>
