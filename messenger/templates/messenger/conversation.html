@@ -18,8 +18,8 @@
         <!--Messages are appended here-->
         {% for message in messages %}
             {% if message.sender == request.user %}
-            <div class='message-wrapper' style='text-align:right;'>
-                <div class='message-bubble' style='background-color: rgb(150, 150, 150);'>
+            
+                <div class='message-bubble message-bubble-right' style="background-color: {{user.profile.custom.primary_color}};">
                     <p>{{ message.body }}</p>
                 </div>
 
@@ -28,11 +28,11 @@
 
                 </div>
 
-            </div>
+            
 
             {% else %}
-            <div class='message-wrapper' style='text-align:left;'>
-                <div class='message-bubble' style="background-color: {{user.profile.custom.primary_color}};">
+            
+                <div class='message-bubble message-bubble-left' style="background-color: rgb(150, 150, 150);">
                     <p>{{ message.body }}</p>
                 </div>
 
@@ -40,7 +40,7 @@
                     <p>{{ message.timestamp }}</p>
 
                 </div>
-            </div>
+            
 
             {% endif %}
         {% endfor %}
