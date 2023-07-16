@@ -951,7 +951,7 @@ function changeBitForm(button_name) {
     if (button_name === 'chat') {
         type_field.value = 'chat';
         yb_cleanForms(yb_chatBitForm, form, type_field, option_field, script_source);
-        ;
+        
         
     }
     
@@ -1153,10 +1153,13 @@ function yb_collectBitData(type, callback) {
 
 //AJAX call to submit bit
 function yb_submitBit(this_bit) {
+    
     console.log("gather_bit_step3");
+    
     //Get CSRF token
     let csrfToken = getCSRF();
     console.log(this_bit)
+    
     //Get base url
     let base_url = window.location.origin;
     let url = `${base_url}/profile/publish/`

@@ -452,11 +452,7 @@ function messages_private_inbox_url(data){
 
 //Conversation
 function messages_conversation_url(id, username){
-    yb_setSessionValues("conversation", id)
-    yb_setSessionValues("that-username", username)
-    $("#content-container").load(`${base_url}/messages/templates/conversation-html/`);
-    yb_setSessionValues("location","conversation");
-    history.pushState({}, "", `/conversation/${id}/`)
+    window.location.href = `${base_url}/conversation/${id}/`;
     
 }
 
