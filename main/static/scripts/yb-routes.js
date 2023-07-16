@@ -452,7 +452,7 @@ function messages_private_inbox_url(data){
 
 //Conversation
 function messages_conversation_url(id, username){
-    window.location.href = `${base_url}/messages/conversation/${id}/`;
+    window.location.href = `${base_url}/messages/conversation/${id}`;
 
     
 }
