@@ -10,7 +10,7 @@
 
 <div id='message-container'>
     <!--Messages are appended here-->
-    {% for message in conversation %}
+    {% for message in messages %}
         {% if message.sender == request.user %}
         <div class='message-wrapper' style='text-align:right;'>
             <div class='message-bubble' style='background-color: #e2e2e2;'>

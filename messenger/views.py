@@ -51,7 +51,7 @@ class ConversationView(View):
     def get(self, request, id, *args, **kwargs):
         conversation = Conversation.objects.get(id=id)
         messages = conversation.messages.all().order_by('time')
-        context={'messages':messages, 'conversation':conversation}
+        
 
         unseen_messages = conversation.unseen_messages.all()
 
@@ -64,7 +64,7 @@ class ConversationView(View):
                 unseen_messages.remove(message)
 
         
-
+        context={'messages':messages, 'conversation':conversation}
         return render(request, 'messenger/conversation.html', context)
 
 class NewConversationView(View):
