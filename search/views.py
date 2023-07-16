@@ -52,18 +52,50 @@ class ContextSearch(View):
     def post(self, request, *args, **kwargs):
         from itertools import chain
         query = request.POST.get('query')
-        applied_filter = "user"
+        applied_filter = request.POST.get('applied_filter')
         
         if applied_filter == "all" or applied_filter == "bits":
+            bit_type = request.POST.get('bit_type')
             bit_results = []
-            bit_body_filter = Bit.objects.filter(body__icontains = query)
+            connections = request.user.profile.connections.all()
+            
+            if bit_type == "all":
+                bit_body_filter = Bit.objects.filter(body__icontains = query)
+                bit_title_filter = Bit.objects.filter(title__icontains = query)
+            
+            else:
+                bit_body_filter = Bit.objects.filter(body__icontains = query, type = bit_type)
+                bit_title_filter = Bit.objects.filter(title__icontains = query, type = bit_type)
+
             for result in bit_body_filter:
                 if result not in bit_results:
-                    bit_results.append(result)
-            bit_title_filter = Bit.objects.filter(title__icontains = query)
+
+                    if result.user in connections:
+                        bit_results.append(result)
+
+                    elif result.user == request.user:
+                        bit_results.append(result)
+
+                    elif result.is_public:
+                        bit_results.append(result)
+
+                    else:
+                        pass
+            
             for result in bit_title_filter:
-                if result not in bit_results:   
-                    bit_results.append(result)
+                if result not in bit_results:
+
+                    if result.user in connections:
+                        bit_results.append(result)
+
+                    elif result.user == request.user:
+                        bit_results.append(result)
+
+                    elif result.is_public:
+                        bit_results.append(result)
+
+                    else:
+                        pass
             
             if bit_results:
                 results_found = True

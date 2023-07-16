@@ -30,7 +30,6 @@ openai.api_key = "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"
 
 ##################################################################################################################
 
-
 #Profile Page
 class ProfileView(View):
     def get(self, request, username, *args, **kwargs):
@@ -200,13 +199,16 @@ class Publish(View):
         new_bit.custom = custom_object
 
         #Get scope
-        scope = request.POST.get('scope')
-        print(scope)
-        if scope == 'private':
+        is_public = request.POST.get('is_public')
+        print(is_public)
+        if is_public == 'is_public':
             new_bit.is_public = False
         else:
             new_bit.is_public = True
 
+        #Check if post hs title
+        has_title = request.POST.get('has_title')
+        
         #Get title from request.post
         title = request.POST.get('title')
         print(title)
@@ -227,8 +229,7 @@ class Publish(View):
         new_type = type
 
         if type == 'chat':
-            if title != 'yb-no-title':
-                new_bit.title = title
+            #Add in youtube integration for link conversion
             if 'youtube.com' in body or 'youtu.be' in body:
                 split_bit = body.split(' ')
                 print(split_bit)

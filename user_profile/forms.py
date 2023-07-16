@@ -121,5 +121,3 @@ class ColorForm(forms.ModelForm):
         model = Profile
         fields=['bit_background', 'accent_color', 'title_color','text_color']
 
-
-

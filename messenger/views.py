@@ -61,7 +61,7 @@ class ConversationView(View):
                     message.is_read = True
                     message.save()
 
-        conversation.unseen_messages.clear()
+        unseen_messages.clear()
 
         return render(request, 'messenger/conversation.html', context)
 

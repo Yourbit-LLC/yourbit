@@ -2226,12 +2226,17 @@ only be used for object transforms (shaping and scaling)
         position: relative;
         display: grid;
         width: 100%;
-        grid-template-rows: 40px 60px;
+        grid-template-rows: 40px;
         grid-template-columns: 25px auto auto;
-        height: 70px;
+
+        height: 45px;
         text-align: left;
         margin-left: auto;
-        margin-right: auto;
+        margin-right: 10px;
+    }
+
+    #create-bit-header-text {
+        line-height: 1.5;
     }
 
   
@@ -2328,8 +2333,6 @@ only be used for object transforms (shaping and scaling)
         margin-left: auto;
         margin-right: auto;
     }
-
-
 
 .slide-up-button-container {
     margin-top: 10px;

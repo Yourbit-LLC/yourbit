@@ -568,6 +568,8 @@ function yb_videoBitForm(form, type_field, option_field, script_source, edit_mod
     let body_field = yb_createInput("textarea","yb-text-area", "mobile-body");
     let meta_tags = yb_createInput("input", "yb-single-line-input", "mobile-tags", "Meta Tags (separate by comma)");
     let upload_field = yb_createInput("file", "yb-file-field", "mobile-file-field", "none");
+    //restrict upload field file types
+    upload_field.setAttribute("accept", "video/*");
 
     
 
@@ -680,6 +682,8 @@ function yb_photoBitForm(form, type_field, option_field, script_source, edit_mod
     let title_field = yb_createInput("text", "yb-single-line-input", "mobile-title", "Caption");
     let body_field = yb_createInput("textarea", "yb-text-area", "mobile-body", "Description");
     let upload_field = yb_createInput("file", "yb-file-field", "mobile-file-field", "none")
+    //restrict upload field to images
+    upload_field.setAttribute("accept", "image/*");
     
     
     //Change form fields to correspond with creation
@@ -966,62 +970,89 @@ function changeBitForm(button_name) {
     }
 };
 
+function yb_handleSubmit() {
+    let action = this_element.getAttribute("name");
+    
+    if (action === "publish_bit") {
+        
+        let type = document.getElementById('bit-type-hidden-field').value;
+        yb_collectBitData(type, yb_submitBit);
+
+    } else if (action === "edit") {
+        
+        yb_collectBitData(type, yb_editBit);
+
+    } else if (action === "send_message") {
+        
+        yb_createMessage();
+
+    } else if (action === "create_cluster") {
+
+        yb_collectSubmitClusterData();
+    }
+
+    
+
+}
+
+function yb_collectSubmitClusterData() {
+    
+    let name_field = document.getElementById('mobile-cluster-name');
+    let type_field = document.getElementById('yb-select-cluster-type');
+    let type = type_field.value;
+    let name = name_field.value;
+    
+    name_field.value = "";
+    
+    console.log(name);
+    yb_createCluster(name, type);
+
+}
+
+function yb_createMessage() {
+    
+    let body = document.getElementById("mobile-body").value;
+    let to = document.getElementById("hidden-to").value;
+    
+    $.ajax({
+        url: `/messages/api/check_existing/${to}/`,
+        type: "GET",
+        success: function(data){
+            let is_conversation = data.is_conversation;
+
+
+            dropCreateBit(hideCreateBit);
+
+            if (is_conversation) {                
+                let this_id = data.conversation_id;
+                let that_user = data.conversation_recipient;
+                console.log(that_user)
+                console.log(this_id)
+                messages_conversation_url(this_id, that_user);
+                yb_sendMessage(body, this_id, that_user);
+
+            } else {
+                console.log(to)
+                yb_newConversation(to, body);
+                
+            }
+        }
+    })
+
+}
+
+function yb_publishBit(this_element){
+
+}
+
 function yb_handleCreateSubmit(this_element){
     let action = this_element.getAttribute("name");
-    let type = document.getElementById('bit-type-hidden-field').value;
+    
     let private_toggle = document.getElementsByName("toggle-private")[1];
     console.log(private_toggle)
     let public_toggle = document.getElementsByName("toggle-public");
     console.log(public_toggle)
     $(this_element).css("pointer-events", "none");
-
-    if (action === "publish_bit") {
-        
-        gatherMobileBit(type, yb_submitBit);
-
-    } else if (action === "edit") {
-        
-        gatherMobileBit(type, yb_editBit);
-
-    } else if (action === "send_message") {
-        let body = document.getElementById("mobile-body").value;
-        let to = document.getElementById("hidden-to").value;
-        
-        $.ajax({
-            url: `/messages/api/check_existing/${to}/`,
-            type: "GET",
-            success: function(data){
-                let is_conversation = data.is_conversation;
-
-
-                dropCreateBit(hideCreateBit);
-
-                if (is_conversation) {                
-                    let this_id = data.conversation_id;
-                    let that_user = data.conversation_recipient;
-                    console.log(that_user)
-                    console.log(this_id)
-                    messages_conversation_url(this_id, that_user);
-                    yb_sendMessage(body, this_id, that_user);
-
-                } else {
-                    console.log(to)
-                    yb_newConversation(to, body);
-                    
-                }
-            }
-        })
-    } else if (action === "create_cluster") {
-        let name_field = document.getElementById('mobile-cluster-name');
-        let name = name_field.value;
-        let type_setting = document.getElementById('select-type-cb').value;
-        
-        name_field.value = "";
-        
-        console.log(name);
-        yb_createCluster(name, type_setting);
-
-    }
 
 }
 
@@ -1030,7 +1061,7 @@ $("#mobile-title").click(function(){
 })
 
 //Collect information from form fields
-function gatherMobileBit(type, callback) {
+function yb_collectBitData(type, callback) {
     //Create form data for new bit
     let new_bit = {};
     var is_valid = true; /*Is valid verifies if forms are complete, initial value = true */ 
@@ -1134,7 +1165,7 @@ function yb_submitBit(this_bit) {
     this_data.append('type', this_bit.type);
     this_data.append('title', this_bit.title);
     this_data.append('body', this_bit.body);
-    this_data.append('scope', scope);
+    this_data.append('is_public', scope);
     
     if (this_bit.type === 'photo') {
         this_data.append('photo', this_bit.photo);

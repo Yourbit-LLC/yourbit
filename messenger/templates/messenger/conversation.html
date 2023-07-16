@@ -10,6 +10,56 @@
 
 <div id='message-container'>
     <!--Messages are appended here-->
+    {% for message in conversation %}
+        {% if message.sender == request.user %}
+        <div class='message-wrapper' style='text-align:right;'>
+            <div class='message-bubble' style='background-color: #e2e2e2;'>
+                <p>{{ message.body }}</p>
+            </div>
+
+            <div class='message-timestamp'>
+                <p>{{ message.timestamp }}</p>
+
+            </div>
+
+        </div>
+
+        {% else %}
+        <div class='message-wrapper' style='text-align:left;'>
+            <div class='message-bubble' style='background-color: #e2e2e2;'>
+                <p>{{ message.body }}</p>
+            </div>
+
+            <div class='message-timestamp'>
+                <p>{{ message.timestamp }}</p>
+
+            </div>
+        </div>
+
+        {% endif %}
+    {% endfor %}
+</div>
+
+<div id="message-input">
+    <form id="form-conversation" class="universal-container-form" style="display: none;">
+        <div>
+        
+            <button id="add-attachment" class="yb-button-round" style="width: 50px; height: 50px;">+</button>
+        
+        </div>
+
+        <div>
+        
+            <input id="message-field" type="text" class="yb-single-line-input" placeholder="Type message">
+        
+        </div>
+
+        <div>
+        
+            <button id="send-button" class="yb-button-round">Send</button>
+        
+        </div>
+    </form>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -34,39 +84,6 @@
             $('.minibar').animate({"bottom": "95px"}).fadeIn();
 
         });
-
-        //Get universal form container
-        let universal_form = document.getElementById("universal-container-form-conversation")
-        
-        //Attachments button
-        let attach_button = yb_createButton("add-attachment", "attach-button", "yb-button-round");
-        attach_button.innerHTML = "<svg xmlns='http://www.w3.org/2000/svg' height='24' width='24'><path d='M20 6H4V4h16v2Zm0 4H4v2h16v-2Zm0 4H4v2h16v-2Zm0 4H4v2h16v-2Z'/></svg>";
-        attach_button.addEventListener("click", function() {
-            console.log("Attach file");
-        });
-        universal_form.appendChild(attach_button);
-
-        //Input field
-        let input_field = yb_createInput("text", "yb-single-line-input", "input-text-messenger", "type message");
-        universal_form.appendChild(input_field);
-
-        //Send button
-        let send_button = yb_createButton("send-message", "send-button", "yb-button-round", "Send");
-        send_button.addEventListener("click", function() {
-            let text_field = document.getElementById("message-field")
-            let this_id = yb_getSessionValues("conversation");
-            let that_user = yb_getSessionValues("that-username")
-            let body = text_field.value;
-        
-            //This ID refers to conversation id
-            yb_sendMessage(body, this_id, that_user)
-        });
-        universal_form.appendChild(send_button);
-        
-        yb_showUniversalInput();
-
-
-
 
 
     });
