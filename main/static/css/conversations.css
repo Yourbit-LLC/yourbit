@@ -57,7 +57,7 @@ body {
     border-radius: 10px;
     border-width: 0px;
     color: white;
-    background-color: green;
+    background-color: rgb(75, 75, 75);
 }
 
 #header {
