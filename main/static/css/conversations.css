@@ -56,7 +56,7 @@ body {
     border-radius: 10px;
     border-width: 0px;
     color: white;
-    background-color: rgb(75, 75, 75);
+    background-color: green;
 }
 
 #header {
@@ -112,7 +112,7 @@ body {
     border-radius: 10px;
     border-width: 0px;
     color: white;
-    background-color: green;
+    background-color: rgb(75, 75, 75);
   }
   
   .message-bubble-left {
