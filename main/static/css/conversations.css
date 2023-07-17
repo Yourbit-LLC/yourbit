@@ -57,6 +57,7 @@ body {
     border-width: 0px;
     color: white;
     background-color: green;
+    margin-right: 2px;
 }
 
 #header {
@@ -113,6 +114,7 @@ body {
     border-width: 0px;
     color: white;
     background-color: rgb(75, 75, 75);
+    margin-left: 2px;
   }
   
   .message-bubble-left {
