@@ -87,8 +87,9 @@ body {
     position: relative;
     display: inline-block;
     margin-bottom: 10px;
-    padding: 0px 5px 0px 5px;
     border-radius: 20px;
+    min-width: 50px;
+    max-width: 70%;
     box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
     white-space: pre-wrap;
     color: white;
@@ -98,13 +99,10 @@ body {
     background-color: rgb(75, 75, 75);
     margin-right: 10px;
     margin-left: auto;
-    max-width: 80%;
-    min-width: 100px;
     color: white;
     border-radius: 20px;
     box-shadow: 1px 1px 8px black;
-    margin-bottom: 5px;
-    margin-top: 5px;
+
   }
 
   #add-attachment {
@@ -121,21 +119,21 @@ body {
     background-color: rgb(105, 0, 119);
     margin-right: auto;
     margin-left: 10px;
-    max-width: 80%;
-    min-width: 100px;
+
     color: white;
     border-radius: 20px;
     box-shadow: 1px 1px 8px black;
-    margin-bottom: 5px;
-    margin-top: 5px;
+
   }
 
 .message-body {
     position: relative;
     display: inline-block;
     width: 99%;
-    top: 0px;
-    left: 0px;
+    margin-top: -15px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 0px;
     overflow: hidden;
 
 }
