@@ -20,7 +20,7 @@
         {% for message in messages %}
             {% if message.sender == request.user %}
             
-                <div class='message-bubble message-bubble-right' style="background-color: {{user.profile.custom.primary_color}};">
+                <div id="message-{{message.id}}" class='message-bubble message-bubble-right' style="background-color: {{user.profile.custom.primary_color}};">
                     <p>{{ message.body }}</p>
                 </div>
 
@@ -33,7 +33,7 @@
 
             {% else %}
             
-                <div class='message-bubble message-bubble-left' style="background-color: rgb(150, 150, 150);">
+                <div id="message-{{message.id}}" class='message-bubble message-bubble-left' style="background-color: rgb(150, 150, 150);">
                     <p>{{ message.body }}</p>
                 </div>
 
@@ -45,10 +45,12 @@
 
             {% endif %}
         {% endfor %}
+        <div id="mobile-spacer">
+        </div>
     </div>
 
     <div id="message-input">
-        <form id="form-conversation" class="universal-container-form" style="display: none;">
+        <form id="form-conversation" class="universal-container-form">
             <div>
             
                 <button id="add-attachment" class="yb-button-round" style="width: 50px; height: 50px;">+</button>
