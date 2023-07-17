@@ -21,7 +21,7 @@ body {
     width: 100vw;
     left: 0px;
     display: grid;
-    grid-template-columns: 1fr 5fr 1fr;
+    grid-template-columns: 40px 5fr 1fr;
     bottom: 0vh;
     background-color: black;
     padding-top: 5px;
@@ -114,7 +114,7 @@ body {
     border-width: 0px;
     color: white;
     background-color: rgb(75, 75, 75);
-    margin-left: 2px;
+    margin: auto;
   }
   
   .message-bubble-left {
