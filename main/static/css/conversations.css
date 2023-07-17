@@ -19,6 +19,9 @@ body {
     position: absolute;
     height: 37px;
     width: 100vw;
+    left: 0px;
+    display: grid;
+    grid-template-columns: 1fr 4fr 2fr;
     bottom: 0vh;
     background-color: black;
     padding-top: 5px;
