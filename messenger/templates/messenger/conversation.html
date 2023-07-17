@@ -13,6 +13,7 @@
         <h3 id="receiver-name" style="margin-top:15px; margin-bottom: 2px;">{{conversation.receiver}}</h3>
         <p style='margin-top:0px;'><small>offline</small></p>
         <svg xmlns="http://www.w3.org/2000/svg" style = "position: absolute; right: 15px; top: 50%; transform: translate(0, -50%);" height="24" width="24"><path d="M12 20q-.825 0-1.412-.587Q10 18.825 10 18q0-.825.588-1.413Q11.175 16 12 16t1.413.587Q14 17.175 14 18q0 .825-.587 1.413Q12.825 20 12 20Zm0-6q-.825 0-1.412-.588Q10 12.825 10 12t.588-1.413Q11.175 10 12 10t1.413.587Q14 11.175 14 12q0 .825-.587 1.412Q12.825 14 12 14Zm0-6q-.825 0-1.412-.588Q10 6.825 10 6t.588-1.412Q11.175 4 12 4t1.413.588Q14 5.175 14 6t-.587 1.412Q12.825 8 12 8Z"/></svg>
+        <div id="conversation-data" data-id="{{conversation.id}}"></div>
     </div>
 
     <div id='message-container' style="padding-bottom: 100px;">
@@ -21,11 +22,11 @@
             {% if message.sender == request.user %}
             
                 <div id="message-{{message.id}}" class='message-bubble message-bubble-right' style="background-color: {{user.profile.custom.primary_color}};">
-                    <p>{{ message.body }}</p>
+                    <p class = "message-body">{{ message.body }}</p>
                 </div>
 
-                <div class='message-timestamp'>
-                    <p>{{ message.timestamp }}</p>
+                <div class='message-timestamp' style="display:none;">
+                    <p class="message-time">{{ message.time }}</p>
 
                 </div>
 
@@ -34,11 +35,11 @@
             {% else %}
             
                 <div id="message-{{message.id}}" class='message-bubble message-bubble-left' style="background-color: rgb(75, 75, 75);">
-                    <p>{{ message.body }}</p>
+                    <p class = "message-body">{{ message.body }}</p>
                 </div>
 
-                <div class='message-timestamp'>
-                    <p>{{ message.timestamp }}</p>
+                <div class='message-timestamp' style="display: none;">
+                    <p class="message-time">{{ message.time }}</p>
 
                 </div>
             
@@ -72,12 +73,12 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script class="page-script" type='text/javascript' type="text/css" src="{% static 'scripts/messenger.js' %}"></script>
+<script class="page-script" type='text/javascript' type="text/css" src="{% static 'scripts/yb-routes.js' %}"></script>
 <script>
     $(document).ready(function(){
         let back_button = document.getElementById("back-to-convos");
         console.log("conversation loaded!")
         yb_hideUI();
-        let this_id = yb_getSessionValues("conversation");
 
         let message_container = document.getElementById("message-container");
         let mobile_spacer = yb_createElement("div", "mobile-spacer", "mobile-spacer");
