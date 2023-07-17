@@ -108,9 +108,9 @@ body {
   }
 
   #add-attachment {
-    width: 95%;
-    height: 95%;
-    border-radius: 10px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
     border-width: 0px;
     color: white;
     background-color: rgb(75, 75, 75);
