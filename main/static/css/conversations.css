@@ -76,7 +76,7 @@ body {
 
 }
 
-.message-wrapper{
+.message-box{
     width: 100vw;
     position: relative;
     display: block;
@@ -90,6 +90,7 @@ body {
     border-radius: 20px;
     min-width: 50px;
     max-width: 70%;
+    
     box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
     white-space: pre-wrap;
     color: white;
@@ -130,10 +131,7 @@ body {
     position: relative;
     display: inline-block;
     width: 99%;
-    margin-top: -15px;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-bottom: 0px;
+
     overflow: hidden;
 
 }
