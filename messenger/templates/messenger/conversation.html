@@ -20,7 +20,7 @@
         <!--Messages are appended here-->
         {% for message in messages %}
             {% if message.sender == request.user %}
-                <div class ="message-box">
+                
                     <div id="message-{{message.id}}" class='message-bubble message-bubble-right' style="background-color: {{user.profile.custom.primary_color}};">
                         {{ message.body }}
                     </div>
@@ -30,12 +30,12 @@
                         <p class="message-time">{{ message.time }}</p>
 
                     </div>
-                </div>
+                
 
             
 
             {% else %}
-                <div class="message-box">
+                
                     <div id="message-{{message.id}}" class='message-bubble message-bubble-left' style="background-color: rgb(75, 75, 75);">
                         {{ message.body }}
                     </div>
@@ -45,7 +45,7 @@
                         <p class="message-time">{{ message.time }}</p>
 
                     </div>
-                </div>
+                
             
 
             {% endif %}
