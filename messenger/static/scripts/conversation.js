@@ -11,8 +11,7 @@ $(document).ready(function(){
     console.log("conversation loaded!")
 
     let message_container = document.getElementById("message-container");
-    
-    message_container.appendChild(mobile_spacer);
+
 
     yb_getMessages(this_id);
 
