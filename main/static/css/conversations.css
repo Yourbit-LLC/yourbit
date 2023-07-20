@@ -131,11 +131,12 @@ body {
     position: relative;
     display: inline-block;
     width: 99%;
-    padding: 0px;
+    padding: 0px 0px 0px 0px;
     margin: -10px;
     margin-top: -20px;
     margin-left: 20px;
     overflow: hidden;
+    font-size: 13px;
 
 }
 
