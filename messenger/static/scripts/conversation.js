@@ -23,7 +23,7 @@ $(document).ready(function(){
 
     send_button.addEventListener('click', function(){
         let body = message_input.value;
-        let receiver = this_data.getAttribute('data-receiver');
+        let receiver = this_data.getAttribute('data-receiver-username');
         
         yb_sendMessage(body, conversation, receiver);
     });

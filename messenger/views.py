@@ -27,7 +27,7 @@ class SendMessage(LoginRequiredMixin, View):
         from notifications.models import Notification
         conversation = request.POST.get("conversation")
         receiver = request.POST.get("receiver")
-        receiver = User.objects.get(id=receiver)
+        receiver = User.objects.get(username=receiver)
         body = request.POST.get("body")
         sender = request.user
         user_first = sender.first_name
