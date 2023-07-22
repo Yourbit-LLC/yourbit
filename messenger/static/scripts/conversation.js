@@ -52,7 +52,7 @@ function yb_refreshConversation(){
         success: function(data){
             if (data.is_messages == true){
                 for (let i = 0; i < data.messages.length; i++){
-                    let message = data.messages[i];
+                    let this_message = data.messages[i];
                     let is_sender = false;
                     let this_blueprint = {
                         "id": this_message.id,
