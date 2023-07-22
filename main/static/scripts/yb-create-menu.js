@@ -67,8 +67,8 @@ function yb_fetchContacts(callback, query) {
             url: '/search/',
             data: { 
                 
-                "query": query,
-                "appled_filter": "user",
+                query: query,
+                appled_filter: "user",
 
             },
             success: function(data){
