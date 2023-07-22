@@ -45,6 +45,7 @@ $(document).ready(function(){
 
 
 function yb_refreshConversation(){
+    let message_container = document.getElementById("message-container");
     
     $.ajax({
         type: 'GET',
