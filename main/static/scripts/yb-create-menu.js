@@ -58,7 +58,7 @@ function yb_fetchContacts(callback, query) {
         let container = document.getElementById('cm-contact-result-container');
         container.innerHTML = '';
     } else {
-
+        
         $.ajax( {
             type: 'POST',
             headers: {
@@ -67,7 +67,8 @@ function yb_fetchContacts(callback, query) {
             url: '/search/',
             data: { 
                 
-                query: JSON.stringify({"query": query, "applied_filter": "user"}),
+                "query": query,
+                "appled_filter": "user",
 
             },
             success: function(data){
