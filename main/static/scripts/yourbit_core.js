@@ -40,7 +40,7 @@ $(document).ready(function(){
             var deltaY = finalY - initialY;
     
             // Check if the user has swiped down
-            if (deltaY > 450) {
+            if (deltaY > 350) {
                 console.log(deltaY);
                 // Perform actions to exit fullscreen
                 // Add your code here to handle fullscreen exit
