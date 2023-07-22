@@ -36,17 +36,15 @@ $(document).ready(function(){
         yb_sendMessage(body, conversation, receiver);
     });
 
-    // setInterval(function(){
-    //     yb_getMessages(conversation);
-    // }, 1000);
+    setInterval(function(){
+        yb_refreshConversation();
+    }, 1000);
     
 });
 
 
 
 function yb_refreshConversation(){
-    let message_list = $('#message-container');
-    let message_field = $('#message-field');
     
     $.ajax({
         type: 'GET',
