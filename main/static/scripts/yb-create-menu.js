@@ -68,7 +68,7 @@ function yb_fetchContacts(callback, query) {
             data: { 
                 
                 query: query,
-                appled_filter: "user",
+                applied_filter: "user",
 
             },
             success: function(data){
