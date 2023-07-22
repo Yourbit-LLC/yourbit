@@ -614,21 +614,25 @@ function BuildMessage(this_message){
     let new_element;
 
     if (is_sender === true){
+        let conversation_data = document.getElementById("conversation-data");
+        let user_color = conversation_data.getAttribute("data-primary-color");
+
         new_element = yb_createElement("div", `message-${id}`, "message-bubble message-bubble-right");
         new_element.setAttribute("data-id", id);
+        new_element.setAttribute("style", `background-color: ${user_color};`);
 
-        new_body = yb_createElement("p", `message-body-${id}`, "message-body");
+        new_body = yb_createElement("div", `message-body-${id}`, "message-body");
         new_body.innerHTML = body;
         new_element.appendChild(new_body);
 
-        new_time = yb_createElement("p", `message-time-${id}`, "message-time");
-        new_time.innerHTML = `<small>${time}</small>`;
-        new_element.appendChild(new_time);
+        // new_time = yb_createElement("p", `message-time-${id}`, "message-time");
+        // new_time.innerHTML = `<small>${time}</small>`;
+        // new_element.appendChild(new_time);
 
-        new_avatar = yb_renderImage(profile_image, "message-hangover-right", new_element);
-        new_avatar.style.display = "none";
-        new_avatar.style.marginRight = "10px";
-        new_element.appendChild(new_avatar);
+        // new_avatar = yb_renderImage(profile_image, "message-hangover-right", new_element);
+        // new_avatar.style.display = "none";
+        // new_avatar.style.marginRight = "10px";
+        // new_element.appendChild(new_avatar);
 
     } else {
         new_element = yb_createElement("div", `message-${id}`, "message-bubble message-bubble-left");
