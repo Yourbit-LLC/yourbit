@@ -618,6 +618,7 @@ function yb_sendMessage(body, conversation, receiver) {
         let this_message = data.message;
         let message_container = document.getElementById("message-container");
         let is_sender = true
+        let send_button = document.getElementById("send-button");
         let this_blueprint = {
             "id": this_message.id,
             "sender":this_message.sender,
@@ -629,6 +630,8 @@ function yb_sendMessage(body, conversation, receiver) {
         }
         let display_message = BuildMessage(this_blueprint);
         message_container.insertBefore(display_message, message_container.firstChild);
+        send_button.innerHTML = "Send";
+        send_button.disabled = false;
 
         
     });

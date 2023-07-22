@@ -25,6 +25,8 @@ $(document).ready(function(){
         let body = message_input.value;
         let receiver = this_data.getAttribute('data-receiver-username');
         
+        this.innerHTML = `<div class="loading-circle"></div>`;
+        this.disabled = true;
         yb_sendMessage(body, conversation, receiver);
     });
 
