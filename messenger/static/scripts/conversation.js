@@ -4,6 +4,7 @@ $(document).ready(function(){
     let message_list = $('#message-container');
     let message_field = $('#message-field');
     let options_button = document.getElementById('options-button');
+    let conversation = this_data.getAttribute('data-id');
 
     let this_data = document.getElementById("conversation-data");
 
@@ -25,7 +26,6 @@ $(document).ready(function(){
 
     send_button.addEventListener('click', function(){
         let body = message_input.value;
-        let conversation = this_data.getAttribute('data-id');
         let receiver = this_data.getAttribute('data-receiver');
         yb_sendMessage();
     });
