@@ -37,7 +37,7 @@ $(document).ready(function(){
     });
 
     setInterval(function(){
-        yb_refreshConversation();
+        yb_getMessages();
     }, 1000);
     
 });

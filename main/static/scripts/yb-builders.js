@@ -638,18 +638,18 @@ function BuildMessage(this_message){
         new_element = yb_createElement("div", `message-${id}`, "message-bubble message-bubble-left");
         new_element.setAttribute("data-id", id)
         
-        new_body = yb_createElement("p", `message-body-${id}`, "message-body");
+        new_body = yb_createElement("div", `message-body-${id}`, "message-body");
         new_body.innerHTML = body;
         new_element.appendChild(new_body);
 
-        new_time = yb_createElement("p", `message-time-${id}`, "message-time");
-        new_time.innerHTML = `<small>${time}</small>`;
-        new_element.appendChild(new_time);
+        // new_time = yb_createElement("p", `message-time-${id}`, "message-time");
+        // new_time.innerHTML = `<small>${time}</small>`;
+        // new_element.appendChild(new_time);
 
-        new_avatar = yb_renderImage(profile_image, "message-hangover-left", new_element);
-        new_avatar.style.display = "none";
-        new_avatar.style.marginRight = "10px";
-        new_element.appendChild(new_avatar);
+        // new_avatar = yb_renderImage(profile_image, "message-hangover-left", new_element);
+        // new_avatar.style.display = "none";
+        // new_avatar.style.marginRight = "10px";
+        // new_element.appendChild(new_avatar);
 
     }
 
