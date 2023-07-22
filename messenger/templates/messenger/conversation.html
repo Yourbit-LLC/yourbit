@@ -17,7 +17,7 @@
         <div id="conversation-data" data-id="{{conversation.id}}" data-primary-color = "{{request.user.profile.custom.primary_color}}" data-receiver-username="{{conversation.receiver.username}}" data-receiver="{{conversation.receiver.id}}"></div>
     </div>
 
-    <div id='message-container' style="padding-bottom: 100px;">
+    <div id='message-container' style="padding-bottom: 55px;">
         <!--Messages are appended here-->
         {% for message in messages reversed %}
             {% if message.sender == request.user %}
