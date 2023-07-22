@@ -59,6 +59,7 @@ body {
     background-color: green;
     margin-right: 2px;
     transition: 0.25s;
+    font-weight: 550;
 }
 
 #header {
