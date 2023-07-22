@@ -684,8 +684,9 @@ function yb_getMessages(id) {
 
         
         for (var message in messages){
+            let data = document.getElementById("conversation-data");
+            let user_id = data.getAttribute("data-user-id");
             
-            let user_id = yb_getSessionValues("id");
             console.log(user_id);
 
             let this_message = messages[message];
