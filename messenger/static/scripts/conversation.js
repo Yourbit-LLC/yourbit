@@ -4,9 +4,10 @@ $(document).ready(function(){
     let message_list = $('#message-container');
     let message_field = $('#message-field');
     let options_button = document.getElementById('options-button');
-    let conversation = this_data.getAttribute('data-id');
+    var this_data = document.getElementById("conversation-data");
+    var conversation = this_data.getAttribute('data-id');
 
-    let this_data = document.getElementById("conversation-data");
+    
 
     let back_button = document.getElementById("back-to-convos");
     console.log("conversation loaded!")
@@ -14,7 +15,7 @@ $(document).ready(function(){
     let message_container = document.getElementById("message-container");
 
 
-    yb_getMessages(this_id);
+    yb_getMessages(conversation);
 
     back_button.addEventListener("click", function() {
         console.log("Go back")
@@ -27,7 +28,8 @@ $(document).ready(function(){
     send_button.addEventListener('click', function(){
         let body = message_input.value;
         let receiver = this_data.getAttribute('data-receiver');
-        yb_sendMessage();
+        
+        yb_sendMessage(body, conversation, receiver);
     });
 
     setInterval(function(){
