@@ -600,6 +600,7 @@ function yb_getConversations(container, filter){
 
 
 function yb_sendMessage(body, conversation, receiver) {
+    let base_url = window.location.origin;
     var url = `${base_url}/api/messages/`
     let csrfToken = getCSRF();
     fetch(url, {
