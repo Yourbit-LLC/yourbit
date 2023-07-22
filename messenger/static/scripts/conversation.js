@@ -14,9 +14,6 @@ $(document).ready(function(){
 
     let message_container = document.getElementById("message-container");
 
-
-    yb_getMessages(conversation);
-
     back_button.addEventListener("click", function() {
         console.log("Go back")
         clearInterval(yb_checkMessages);
