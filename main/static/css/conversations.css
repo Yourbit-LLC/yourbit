@@ -58,6 +58,7 @@ body {
     color: white;
     background-color: green;
     margin-right: 2px;
+    transition: 0.25s;
 }
 
 #header {

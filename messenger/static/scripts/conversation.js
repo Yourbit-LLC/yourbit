@@ -27,6 +27,8 @@ $(document).ready(function(){
         
         this.innerHTML = `<div class="loading-circle"></div>`;
         this.disabled = true;
+        this.style.width = "33.25px";
+        this.style.height = "33.25px";
         yb_sendMessage(body, conversation, receiver);
     });
 

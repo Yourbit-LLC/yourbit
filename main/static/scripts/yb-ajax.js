@@ -632,6 +632,8 @@ function yb_sendMessage(body, conversation, receiver) {
         message_container.insertBefore(display_message, message_container.firstChild);
         send_button.innerHTML = "Send";
         send_button.disabled = false;
+        send_button.style.width = "95%";
+        send_button.style.height = "95%";
 
         
     });
