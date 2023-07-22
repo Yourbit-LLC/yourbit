@@ -147,6 +147,7 @@ body {
 }
 
 .loading-circle {
+    position: relative;
     width: 20px;
     height: 20px;
     border: 4px solid rgb(74, 74, 74);
@@ -154,7 +155,7 @@ body {
     border-top: 4px solid #00fa5c;
     animation: spin 1s linear infinite; /* The spin animation will rotate the circle */
     margin: auto;
-    position: relative;
+    
   }
   
   @keyframes spin {

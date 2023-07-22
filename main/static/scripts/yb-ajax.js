@@ -634,6 +634,7 @@ function yb_sendMessage(body, conversation, receiver) {
         send_button.disabled = false;
         send_button.style.width = "95%";
         send_button.style.height = "95%";
+        send_button.style.borderRadius = "10px";
 
         
     });

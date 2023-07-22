@@ -25,10 +25,13 @@ $(document).ready(function(){
         let body = message_input.value;
         let receiver = this_data.getAttribute('data-receiver-username');
         
-        this.innerHTML = `<div class="loading-circle"></div>`;
         this.disabled = true;
+
         this.style.width = "33.25px";
         this.style.height = "33.25px";
+        this.style.borderRadius = "50%";
+        this.innerHTML = `<div class="loading-circle"></div>`;
+
         yb_sendMessage(body, conversation, receiver);
     });
 
