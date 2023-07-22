@@ -635,7 +635,7 @@ function yb_sendMessage(body, conversation, receiver) {
         send_button.style.width = "95%";
         send_button.style.height = "95%";
         send_button.style.borderRadius = "10px";
-        this.style.backgroundColor = "green";
+        send_button.style.backgroundColor = "green";
 
         
     });
