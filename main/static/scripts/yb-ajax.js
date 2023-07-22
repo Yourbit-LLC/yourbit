@@ -657,6 +657,7 @@ function yb_newConversation(receiver, body) {
 }
 
 function yb_getMessages(id) {
+    let base_url = window.location.origin;
     let url=`${base_url}/api/conversations/${id}/`;
     fetch(url)
     .then((resp) => resp.json())
