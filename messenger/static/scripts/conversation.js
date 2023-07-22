@@ -1,13 +1,12 @@
+var this_data = document.getElementById("conversation-data");
+var conversation = this_data.getAttribute('data-id');
+
 $(document).ready(function(){
     let send_button = document.getElementById('send-button');
     let message_input = document.getElementById('message-field');
     let message_list = $('#message-container');
     let message_field = $('#message-field');
     let options_button = document.getElementById('options-button');
-    var this_data = document.getElementById("conversation-data");
-    var conversation = this_data.getAttribute('data-id');
-
-    
 
     let back_button = document.getElementById("back-to-convos");
     console.log("conversation loaded!")
@@ -40,10 +39,10 @@ $(document).ready(function(){
 function yb_refreshConversation(){
     let message_list = $('#message-container');
     let message_field = $('#message-field');
-    let this_id = yb_getSessionValues('conversation');
+    
     $.ajax({
         type: 'GET',
-        url: `/messages/check/${this_id}/`,
+        url: `/messages/check/${conversation}/`,
         success: function(data){
             if (data.is_messages == true){
                 for (let i = 0; i < data.messages.length; i++){
