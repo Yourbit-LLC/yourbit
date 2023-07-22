@@ -36,9 +36,9 @@ $(document).ready(function(){
         yb_sendMessage(body, conversation, receiver);
     });
 
-    setInterval(function(){
-        yb_getMessages(conversation);
-    }, 1000);
+    // setInterval(function(){
+    //     yb_getMessages(conversation);
+    // }, 1000);
     
 });
 
