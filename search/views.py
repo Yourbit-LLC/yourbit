@@ -53,6 +53,8 @@ class ContextSearch(View):
         from itertools import chain
         query = request.POST.get('query')
         applied_filter = request.POST.get('applied_filter')
+
+        print("filter" + applied_filter)
         
         if applied_filter == "all" or applied_filter == "bits":
             bit_type = request.POST.get('bit_type')
