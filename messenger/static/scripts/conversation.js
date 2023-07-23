@@ -14,11 +14,7 @@ $(document).ready(function(){
     let message_container = document.getElementById("message-container");
 
     back_button.addEventListener("click", function() {
-        console.log("Go back")
-        clearInterval(yb_checkMessages);
-        messages_inbox_url();
-        $('.minibar').animate({"bottom": "95px"}).fadeIn();
-
+        window.location.href = "/messages/inbox/";
     });
 
     send_button.addEventListener('click', function(){
