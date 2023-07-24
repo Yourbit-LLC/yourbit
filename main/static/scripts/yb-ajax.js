@@ -634,9 +634,9 @@ function yb_sendMessage(body, conversation, receiver) {
         message_container.insertBefore(display_message, message_container.firstChild);
 
         // Scroll to bottom
-        if (current_position == 0){
-            message_container.scrollTop = message_container.scrollHeight; 
-        }
+        
+        message_container.scrollTop = message_container.scrollHeight; 
+        
 
         send_button.innerHTML = "Send";
         send_button.disabled = false;
