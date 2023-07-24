@@ -603,6 +603,7 @@ function yb_sendMessage(body, conversation, receiver) {
     let base_url = window.location.origin;
     var url = `${base_url}/api/messages/`
     let csrfToken = getCSRF();
+    
     fetch(url, {
         method:'POST',
         headers: {
@@ -617,6 +618,7 @@ function yb_sendMessage(body, conversation, receiver) {
         message_field.value = "";
         let this_message = data.message;
         let message_container = document.getElementById("message-container");
+        let current_position = message_container.scrollTop;
         let is_sender = true
         let send_button = document.getElementById("send-button");
         let this_blueprint = {
@@ -630,6 +632,12 @@ function yb_sendMessage(body, conversation, receiver) {
         }
         let display_message = BuildMessage(this_blueprint);
         message_container.insertBefore(display_message, message_container.firstChild);
+
+        // Scroll to bottom
+        if (current_position == 0){
+            message_container.scrollTop = message_container.scrollHeight; 
+        }
+
         send_button.innerHTML = "Send";
         send_button.disabled = false;
         send_button.style.width = "95%";
