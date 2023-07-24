@@ -33,6 +33,7 @@ $(document).ready(function(){
     });
 
     setInterval(function(){
+        let current_position = message_container.scrollTop;
         yb_refreshConversation();
     }, 1000);
     
@@ -40,7 +41,7 @@ $(document).ready(function(){
 
 
 
-function yb_refreshConversation(){
+function yb_refreshConversation(current_position){
     let message_container = document.getElementById("message-container");
     
     $.ajax({
@@ -62,6 +63,12 @@ function yb_refreshConversation(){
                     }
                     let display_message = BuildMessage(this_blueprint);
                     message_container.insertBefore(display_message, message_container.firstChild);
+
+                    // Scroll to bottom
+                    if (current_position == 0){
+                        message_container.scrollTop = message_container.scrollHeight; 
+                    }
+                    
                 }
             }
         }
