@@ -5,7 +5,7 @@ $(document).ready(function(){
     let send_button = document.getElementById('send-button');
     let message_input = document.getElementById('message-field');
     let message_list = $('#message-container');
-    let message_field = $('#message-field');
+    
     let options_button = document.getElementById('options-button');
 
     let back_button = document.getElementById("back-to-convos");
@@ -15,6 +15,16 @@ $(document).ready(function(){
 
     back_button.addEventListener("click", function() {
         window.location.href = "/messages/inbox/";
+    });
+
+    message_input.addEventListener('keyup', function(event){
+        if (message_input.value.length > 0){
+            send_button.disabled = false;
+            send_button.style.backgroundColor = "green";
+        } else {
+            send_button.disabled = true;
+            send_button.style.backgroundColor = "rgb(75,75,75)";
+        }
     });
 
     send_button.addEventListener('click', function(){

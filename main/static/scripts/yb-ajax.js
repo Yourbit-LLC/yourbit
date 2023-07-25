@@ -618,7 +618,7 @@ function yb_sendMessage(body, conversation, receiver) {
         message_field.value = "";
         let this_message = data.message;
         let message_container = document.getElementById("message-container");
-        let current_position = message_container.scrollTop;
+        
         let is_sender = true
         let send_button = document.getElementById("send-button");
         let this_blueprint = {
