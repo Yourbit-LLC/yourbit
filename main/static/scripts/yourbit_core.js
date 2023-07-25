@@ -60,7 +60,7 @@ $(document).ready(function(){
             var deltaY = finalY - initialY;
     
             // Check if the user has swiped down
-            if (deltaY > 100) {
+            if (deltaY > 350) {
                 // Perform actions to exit fullscreen
                 // Add your code here to handle fullscreen exit
                 yb_closeCard();
