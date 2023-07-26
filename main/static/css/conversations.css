@@ -146,21 +146,3 @@ body {
     color: gray;
     display: none;
 }
-
-.loading-circle {
-    position: relative;
-    width: 20px;
-    height: 20px;
-    border: 4px solid rgb(74, 74, 74);
-    border-radius: 50%;
-    border-top: 4px solid #00fa5c;
-    animation: spin 1s linear infinite; /* The spin animation will rotate the circle */
-    margin: auto;
-    
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  

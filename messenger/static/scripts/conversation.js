@@ -37,7 +37,7 @@ $(document).ready(function(){
         this.style.width = "33.25px";
         this.style.height = "33.25px";
         this.style.borderRadius = "50%";
-        this.innerHTML = `<div class="loading-circle"></div>`;
+        this.innerHTML = `<div class="loading-circle msl"></div>`;
         this.style.backgroundColor = "transparent";
 
         yb_sendMessage(body, conversation, receiver);

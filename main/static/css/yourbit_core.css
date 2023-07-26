@@ -45,6 +45,31 @@ Refer to the interactive codex for current style guidelines for Yourbit*/
     margin: auto;
 }
 
+.loading-circle {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border: 4px solid rgb(74, 74, 74);
+    border-radius: 50%;
+    
+    animation: spin 1s linear infinite; /* The spin animation will rotate the circle */
+    margin: auto;
+    
+  }
+
+  .msl {
+    border-top: 4px solid #fadd00;
+  }
+
+  .cbl {
+    border-top: 4px solid #00fa5c;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
 @media screen and (min-width: 700px) {
     #main-splash-image {
         width: 25%;

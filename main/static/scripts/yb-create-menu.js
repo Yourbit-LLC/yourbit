@@ -262,6 +262,12 @@ function yb_buildSubmissionBar(form, type=null) {
     publish_button.addEventListener("click", function(e) {
         let current_element = e.target;
         this.disabled = true;
+
+        this.style.width = "33.25px";
+        this.style.height = "33.25px";
+        this.style.borderRadius = "50%";
+        this.innerHTML = `<div class="loading-circle cbl"></div>`;
+        this.style.backgroundColor = "transparent";
         yb_handleCreateSubmit(current_element);
     });
 
