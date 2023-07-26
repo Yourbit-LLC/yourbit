@@ -2376,8 +2376,8 @@ only be used for object transforms (shaping and scaling)
 
     .type-button {
         position: relative;
-
-        background-color: rgba(0,0,0,0.3);
+        width: 60px;
+        height: 35px;
         border-width: 0px;
         border-radius: 10px;
         padding: 4px;
@@ -2387,7 +2387,8 @@ only be used for object transforms (shaping and scaling)
 
     .type-button.active {
         position: relative;
-
+        width: 60px;
+        height: 35px;
         background-color: rgba(255,255,255,0.3);
         border-width: 0px;
         border-radius: 10px;
