@@ -61,7 +61,7 @@ class ConversationView(View):
                     message.is_read = True
                     message.save()
                 
-                unseen_messages.remove(message)
+                conversation.unseen_messages.remove(message)
 
         
         context={'messages':messages, 'conversation':conversation}
