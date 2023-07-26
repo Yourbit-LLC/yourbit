@@ -502,7 +502,7 @@ function yb_videoBitForm(form, type_field, option_field, script_source, edit_mod
     //Show Form
     $('#create-container').fadeIn();
 
-    let form_header = yb_createFormHeader("Create Chat Bit");
+    let form_header = yb_createFormHeader("Create Video Bit");
 
     title_entry.appendChild(form_header);
 
@@ -623,7 +623,7 @@ function yb_photoBitForm(form, type_field, option_field, script_source, edit_mod
     //Show Form
     $('#create-container').fadeIn();
 
-    let form_header = yb_createFormHeader("Create Chat Bit");
+    let form_header = yb_createFormHeader("Create Photo Bit");
 
     title_entry.appendChild(form_header);
 
