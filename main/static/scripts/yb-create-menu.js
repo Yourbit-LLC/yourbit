@@ -972,8 +972,8 @@ function changeBitForm(button_name) {
     }
 };
 
-function yb_handleSubmit() {
-    let action = this_element.getAttribute("name");
+function yb_handleSubmit(action) {
+    
     
     if (action === "publish_bit") {
         
@@ -1055,6 +1055,7 @@ function yb_handleCreateSubmit(this_element){
     let public_toggle = document.getElementsByName("toggle-public");
     console.log(public_toggle)
     $(this_element).css("pointer-events", "none");
+    yb_handleSubmit(action);
 
 }
 
