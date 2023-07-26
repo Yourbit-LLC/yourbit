@@ -14,6 +14,7 @@ $(document).ready(function(){
     let message_container = document.getElementById("message-container");
 
     back_button.addEventListener("click", function() {
+        
         window.location.href = "/messages/inbox/";
     });
 

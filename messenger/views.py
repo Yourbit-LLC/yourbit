@@ -56,7 +56,7 @@ class ConversationView(View):
         unseen_messages = conversation.unseen_messages.all()
 
         for message in unseen_messages:
-            if message.receiver_user == request.user:
+            if message.receiver == request.user:
                 if message.is_read == False:
                     message.is_read = True
                     message.save()
