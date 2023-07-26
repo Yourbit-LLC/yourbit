@@ -491,14 +491,19 @@ function yb_videoBitForm(form, type_field, option_field, script_source, edit_mod
     let sub_function_script = document.getElementById("sub-function-script")
     let this_source = document.getElementById("create-bit-source").value;
     sub_function_script.src = this_source;
+    let title_entry = document.getElementById("yb-title-cb");
 
-    form.innerHTML = ``
+    form.innerHTML = '';
 
     //hide options
     $('#create-options').fadeOut();
     
     //Show Form
     $('#create-container').fadeIn();
+
+    let form_header = yb_createFormHeader("Create Chat Bit");
+
+    title_entry.appendChild(form_header);
 
     let create_inputs = yb_createElement("div", "mobile-create-inputs", "create-inputs");
     create_inputs.setAttribute("style", "position: relative; margin-left: auto; margin-right: auto;")
@@ -510,9 +515,6 @@ function yb_videoBitForm(form, type_field, option_field, script_source, edit_mod
     type_field.value = 'video';
     option_field.value='bit';
 
-    let form_header = yb_createFormHeader("Create VideoBit");
-
-    form.appendChild(form_header);
 
     //Create scope options elements
     let scope_options = yb_createElement("div", "scope-options", "scope-options");
@@ -610,12 +612,19 @@ function yb_photoBitForm(form, type_field, option_field, script_source, edit_mod
     let sub_function_script = document.getElementById("sub-function-script")
     let this_source = document.getElementById("create-bit-source").value;
     sub_function_script.src = this_source;
-    form.innerHTML = ``;
+    let title_entry = document.getElementById("yb-title-cb");
+
+    form.innerHTML = '';
+
     //hide options
     $('#create-options').fadeOut();
     
     //Show Form
     $('#create-container').fadeIn();
+
+    let form_header = yb_createFormHeader("Create Chat Bit");
+
+    title_entry.appendChild(form_header);
 
     let create_inputs = yb_createElement("div", "mobile-create-inputs", "create-inputs");
     create_inputs.setAttribute("style", "position: relative; margin-left: auto; margin-right: auto;")
@@ -627,10 +636,7 @@ function yb_photoBitForm(form, type_field, option_field, script_source, edit_mod
     type_field.value = 'photo';
     option_field.value='bit';
 
-    let form_header = yb_createFormHeader("Create PhotoBit")
-
-    form.appendChild(form_header);
-
+    
     //Create scope options elements
     let scope_options = yb_createElement("div", "scope-options", "scope-options");
     let default_public = yb_getSessionValues("default-public");
