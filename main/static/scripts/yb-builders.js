@@ -895,7 +895,7 @@ function yb_buildNotification(notification){
         responses.appendChild(ignore_button);
         ignore_button.addEventListener("click", function(){
             let this_id = this.getAttribute("data-id");
-            $("#notification-" + this_id).animate({"height": "0px", "width":"0px"}, 500);
+            $("#notification-" + this_id).animate({"height": "0px", "width":"0px"}, 100);
             yb_removeNotification(this_id);
         });
 
