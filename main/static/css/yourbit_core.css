@@ -2256,8 +2256,9 @@ only be used for object transforms (shaping and scaling)
         height: 45px;
         text-align: left;
         margin-left: auto;
-        margin-left: 12px;
+        padding-left: 4px;
         padding-top: 10px;
+        
     }
 
     #create-bit-header-text {
