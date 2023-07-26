@@ -636,7 +636,6 @@ function yb_photoBitForm(form, type_field, option_field, script_source, edit_mod
     type_field.value = 'photo';
     option_field.value='bit';
 
-    
     //Create scope options elements
     let scope_options = yb_createElement("div", "scope-options", "scope-options");
     let default_public = yb_getSessionValues("default-public");
