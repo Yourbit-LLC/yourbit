@@ -2229,16 +2229,16 @@ only be used for object transforms (shaping and scaling)
 
     .yb-button-close {
         position: relative;
-        margin: auto;
-        height: 25px;
-        width: 25px;
+        margin: auto 2px auto auto;
+        height: 30px;
+        width: 30px;
         font-size: 30px;
         font-weight: 300;
         border-radius: 50%;
         background-color: gray;
         border-width: 0px;
         text-align: center;
-        line-height: 0.85;
+        line-height: 1;
     }
     #close-label{
         position: absolute;
@@ -2251,16 +2251,26 @@ only be used for object transforms (shaping and scaling)
         display: grid;
         width: 100%;
         grid-template-rows: 40px;
-        grid-template-columns: 25px auto auto;
-
+        grid-template-columns: 40px auto ;
+        padding-right: 5px;
         height: 45px;
         text-align: left;
         margin-left: auto;
-        margin-right: 10px;
+        margin-left: 12px;
+        padding-top: 10px;
     }
 
     #create-bit-header-text {
-        line-height: 1.5;
+        line-height: 2;
+        text-align: left;
+        margin-right: 10px;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    #back-create {
+        margin: auto;
+        grid-column: 1;
     }
 
   
