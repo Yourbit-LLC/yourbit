@@ -346,6 +346,7 @@ function yb_chatBitForm(form, type_field, option_field, script_source, edit_mode
         let sub_function_script = document.getElementById("sub-function-script")
         let this_source = document.getElementById("create-bit-source").value;
         sub_function_script.src = this_source;
+        let title_entry = document.getElementById("yb-title-cb");
 
         form.innerHTML = '';
 
@@ -357,7 +358,7 @@ function yb_chatBitForm(form, type_field, option_field, script_source, edit_mode
 
         let form_header = yb_createFormHeader("Create Chat Bit");
 
-        form.appendChild(form_header);
+        title_entry.appendChild(form_header);
 
         let create_inputs = yb_createElement("div", "mobile-create-inputs", "create-inputs");
         create_inputs.setAttribute("style", "position: relative; margin-left: auto; margin-right: auto;");
