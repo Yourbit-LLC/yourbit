@@ -2752,6 +2752,7 @@ only be used for object transforms (shaping and scaling)
         text-align: left;
         column-gap: 15px;
         overflow: hidden;
+        transition: 0.5s;
     }
     .button-container-list-item {
         display: grid;
