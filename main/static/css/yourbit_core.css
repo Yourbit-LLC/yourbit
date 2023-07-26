@@ -2368,7 +2368,7 @@ only be used for object transforms (shaping and scaling)
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         position: relative;
-        width: fit-content;
+        width: 100%;
         margin-top:auto;
         margin-bottom: auto;
         z-index: 4;
