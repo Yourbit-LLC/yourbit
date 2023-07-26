@@ -2751,6 +2751,7 @@ only be used for object transforms (shaping and scaling)
         grid-template-rows: auto 25px;
         text-align: left;
         column-gap: 15px;
+        overflow: hidden;
     }
     .button-container-list-item {
         display: grid;
