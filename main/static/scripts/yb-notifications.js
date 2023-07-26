@@ -106,8 +106,9 @@ function yb_removeNotification(notification_id) {
             url: `/api/notifications/${notification_id}/`,
 
             success: function(data) {
-                $("#notification-" + notification_id).animate({"height":"0px", "width":"0px"});
+                
                 $("#notification-" + notification_id).remove();
+                
             }
         }
     )
