@@ -2229,7 +2229,7 @@ only be used for object transforms (shaping and scaling)
 
     .yb-button-close {
         position: relative;
-        margin: auto 2px auto auto;
+        margin: 4px 4px auto auto;
         height: 30px;
         width: 30px;
         font-size: 30px;
