@@ -173,6 +173,7 @@ function yb_resetCreate(){
     $("#sub-function-script").attr("src", "");
     $("#create-button-container").remove();
     $("#create-options").fadeIn();
+    $("#yb-title-cb").html("");
 }
 
 
