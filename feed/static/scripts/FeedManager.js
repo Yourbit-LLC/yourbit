@@ -33,15 +33,6 @@ function yb_getDisplay() {
             let button_color = $(element).attr('data-icon-color');
             yb_updateSeenBits(id);
 
-            if (type==='video'){
-                let content_url = $(element).attr('data-content');
-                $(`#yb-player-bs-${id}`).attr('src') = content_url;
-            }
-
-            if (type==='photo'){
-                let content_url = $(element).attr('data-content');
-                $(`#yb-viewer-bs-${id}`).attr('src') = content_url
-            }
             bits_visible.push(element)
 
         } else {
