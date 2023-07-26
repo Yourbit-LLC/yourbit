@@ -1206,8 +1206,10 @@ function yb_submitBit(this_bit) {
                 let bit_container = document.getElementById('bit-container');
 
                 //Clear and hide form
-                clearBitForm();
+                yb_resetCreate();
                 dropCreateBit(hideCreateBit);
+
+
 
                 //Pass blueprint to bit builder to generate new bit
                 let new_bit = BuildBit(blueprint);
