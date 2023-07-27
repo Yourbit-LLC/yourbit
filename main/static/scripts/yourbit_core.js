@@ -33,11 +33,15 @@ $(document).ready(function(){
 
     CREATE_MENU.addEventListener("touchstart", function(event) {
         var initialY = event.touches[0].clientY;
+        var initialX = event.touches[0].clientX;
 
         // Add an event listener for touchend event
         CREATE_MENU.addEventListener("touchend", function(event) {
             var finalY = event.changedTouches[0].clientY;
             var deltaY = finalY - initialY;
+            var finalX = event.changedTouches[0].clientX;
+            var deltaX = finalX - initialX;
+            let current_state = $('#create-bit-mobile').attr('data-state');
     
             // Check if the user has swiped down
             if (deltaY > 350) {
@@ -45,6 +49,13 @@ $(document).ready(function(){
                 // Perform actions to exit fullscreen
                 // Add your code here to handle fullscreen exit
                 dropCreateBit(hideCreateBit);
+            } 
+            //swipe right to reset create bit
+            if (deltaX > 300) {
+                if (current_state==='1'){
+                    console.log(deltaX);
+                    yb_resetCreate();
+                }
             }
         });
         
