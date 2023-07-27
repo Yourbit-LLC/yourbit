@@ -102,6 +102,7 @@ function BuildBit(bit, liked_bits, disliked_bits){
         let options_element = event.currentTarget;
         let options_id = options_element.getAttribute("data-id");
         let this_element = document.getElementById(`bit-${options_id}`);
+        this_element.classList.add('animate');
         yb_buildContextMenu(this_element);
     });
 
@@ -395,6 +396,7 @@ function BuildBit(bit, liked_bits, disliked_bits){
 
 function yb_buildContextMenu(this_element){
     console.log("bit held");
+
 
     let bit_id = this_element.getAttribute("data-id");
 
