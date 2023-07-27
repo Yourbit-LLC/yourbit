@@ -51,7 +51,7 @@ $(document).ready(function(){
                 dropCreateBit(hideCreateBit);
             } 
             //swipe right to reset create bit
-            if (deltaX > 300) {
+            if (deltaX > 175) {
                 if (current_state==='1'){
                     console.log(deltaX);
                     yb_resetCreate();
