@@ -174,6 +174,8 @@ function yb_resetCreate(){
     $("#create-button-container").remove();
     $("#create-options").fadeIn();
     $("#yb-title-cb").html("");
+    let container = document.getElementById("create-bit-mobile");
+    container.setAttribute("data-state", "0");
 }
 
 
@@ -346,8 +348,12 @@ function yb_toggleScope(this_element){
 function yb_chatBitForm(form, type_field, option_field, script_source, edit_mode = false) {
         let sub_function_script = document.getElementById("sub-function-script")
         let this_source = document.getElementById("create-bit-source").value;
+        let container = document.getElementById("create-bit-mobile");
+        container.setAttribute("data-state", "1");
         sub_function_script.src = this_source;
+        
         let title_entry = document.getElementById("yb-title-cb");
+        
 
         form.innerHTML = '';
 
@@ -493,6 +499,8 @@ function yb_videoBitForm(form, type_field, option_field, script_source, edit_mod
     let this_source = document.getElementById("create-bit-source").value;
     sub_function_script.src = this_source;
     let title_entry = document.getElementById("yb-title-cb");
+    let container = document.getElementById("create-bit-mobile");
+    container.setAttribute("data-state", "1");
 
     form.innerHTML = '';
 
@@ -614,7 +622,8 @@ function yb_photoBitForm(form, type_field, option_field, script_source, edit_mod
     let this_source = document.getElementById("create-bit-source").value;
     sub_function_script.src = this_source;
     let title_entry = document.getElementById("yb-title-cb");
-
+    let container = document.getElementById("create-bit-mobile");
+    container.setAttribute("data-state", "1");
     form.innerHTML = '';
 
     //hide options
@@ -736,7 +745,8 @@ function yb_showMessageForm(user=null){
     let form = document.getElementById("create-container");
     let option_field = document.getElementById("create-option-hidden-field");
     let title_entry = document.getElementById("yb-title-cb");
-
+    let container = document.getElementById("create-bit-mobile");
+    container.setAttribute("data-state", "1");
     form.innerHTML = '';
 
     //hide options
@@ -827,7 +837,8 @@ function yb_showClusterForm(){
     let form = document.getElementById("create-container");
     let option_field = document.getElementById("create-option-hidden-field");
     let title_entry = document.getElementById("yb-title-cb");
-
+    let container = document.getElementById("create-bit-mobile");
+    container.setAttribute("data-state", "1");
     form.innerHTML = '';
 
     //hide options
@@ -896,7 +907,8 @@ function yb_showCommunityForm(){
     let form = document.getElementById("create-container");
     let option_field = document.getElementById("create-option-hidden-field");
     let title_entry = document.getElementById("yb-title-cb");
-
+    let container = document.getElementById("create-bit-mobile");
+    container.setAttribute("data-state", "1");
     form.innerHTML = '';
 
     //hide options
