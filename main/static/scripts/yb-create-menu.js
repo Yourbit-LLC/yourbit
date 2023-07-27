@@ -735,14 +735,19 @@ function yb_showMessageForm(user=null){
     let sub_function_script = document.getElementById("sub-function-script")
     let form = document.getElementById("create-container");
     let option_field = document.getElementById("create-option-hidden-field");
-    form.innerHTML = ``;
-    
+    let title_entry = document.getElementById("yb-title-cb");
+
+    form.innerHTML = '';
+
+    //hide options
     $('#create-options').fadeOut();
+    
+    //Show Form
     $('#create-container').fadeIn();
 
-    let form_header = yb_createFormHeader("Create Message");
+    let form_header = yb_createFormHeader("Create New Message");
 
-    form.appendChild(form_header);
+    title_entry.appendChild(form_header);
 
     let create_inputs = yb_createElement("div", "mobile-create-inputs", "create-inputs");
     create_inputs.setAttribute("style", "position: relative; margin-left: auto; margin-right: auto;");
@@ -821,15 +826,19 @@ function yb_showClusterForm(){
     let sub_function_script = document.getElementById("sub-function-script")
     let form = document.getElementById("create-container");
     let option_field = document.getElementById("create-option-hidden-field");
-    form.innerHTML = ``;
+    let title_entry = document.getElementById("yb-title-cb");
 
-    //Hide options container
+    form.innerHTML = '';
+
+    //hide options
     $('#create-options').fadeOut();
-    //Show create container
+    
+    //Show Form
     $('#create-container').fadeIn();
 
     let form_header = yb_createFormHeader("Create a Cluster");
-    form.appendChild(form_header);
+
+    title_entry.appendChild(form_header);
 
     let create_inputs = yb_createElement("div", "mobile-create-inputs", "create-inputs");
     
@@ -886,17 +895,19 @@ function yb_showCommunityForm(){
     let sub_function_script = document.getElementById("sub-function-script")
     let form = document.getElementById("create-container");
     let option_field = document.getElementById("create-option-hidden-field");
-   
-    //Hide options container
+    let title_entry = document.getElementById("yb-title-cb");
+
+    form.innerHTML = '';
+
+    //hide options
     $('#create-options').fadeOut();
-    //Show create container
+    
+    //Show Form
     $('#create-container').fadeIn();
 
-    form.innerHTML = ``;
-    
     let form_header = yb_createFormHeader("Create a Community");
-    form.appendChild(form_header);
 
+    title_entry.appendChild(form_header);
     let create_inputs = yb_createElement("div", "mobile-create-inputs", "create-inputs");
     create_inputs.setAttribute("style", "position: relative; margin-left: auto; margin-right: auto;");
     form.appendChild(create_inputs);
