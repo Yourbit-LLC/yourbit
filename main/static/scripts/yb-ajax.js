@@ -883,7 +883,7 @@ function updateCustom(action, option, value){
             data: request,
 
             success: function(response) {
-                showNotification(expandNotification, "Changes applied to" + option);
+                showNotification(expandNotification, "Changes applied to " + option);
                 console.log('Successfully Updated Information')
 
             }
