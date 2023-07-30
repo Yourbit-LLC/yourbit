@@ -384,10 +384,17 @@ function yb_createBitOptionsForm(option_field){
 
     bit_options.appendChild(scope_options);
 
+    let schedule_button = yb_createButton("toggle_schedule", "bit-schedule", "bit-options-button", "<p>Schedule</p>");
+    schedule_button.setAttribute("type","button");
+    schedule_button.addEventListener("click", function() {
+        console.log("clicked schedule");
+    });
+    bit_options.appendChild(schedule_button);
+
     //Attach script to form
-    let enhance_button = yb_createButton("button", "yb-enhance-button", "enhance-button", '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" width="24"><path d="m800 376-38-82-82-38 82-38 38-82 38 82 82 38-82 38-38 82Zm-460 0-38-82-82-38 82-38 38-82 38 82 82 38-82 38-38 82Zm460 460-38-82-82-38 82-38 38-82 38 82 82 38-82 38-38 82ZM204 964 92 852q-12-12-12-29t12-29l446-446q12-12 29-12t29 12l112 112q12 12 12 29t-12 29L262 964q-12 12-29 12t-29-12Zm30-84 286-288-56-56-288 286 58 58Z"/></svg><p>Enhance</p>');
+    let enhance_button = yb_createButton("button", "yb-enhance-button", "bit-options-button", '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" width="24"><path d="m800 376-38-82-82-38 82-38 38-82 38 82 82 38-82 38-38 82Zm-460 0-38-82-82-38 82-38 38-82 38 82 82 38-82 38-38 82Zm460 460-38-82-82-38 82-38 38-82 38 82 82 38-82 38-38 82ZM204 964 92 852q-12-12-12-29t12-29l446-446q12-12 29-12t29 12l112 112q12 12 12 29t-12 29L262 964q-12 12-29 12t-29-12Zm30-84 286-288-56-56-288 286 58 58Z"/></svg><p>Enhance</p>');
     enhance_button.setAttribute("type", "button");
-    enhance_button.setAttribute("style", "background-color: rgba(0, 0, 0, 0.5); display:grid; grid-template-columns: 1fr 3fr; border-width: 0px; border-radius: 10px; color: white; text-align: center;");
+    
     
     //Append enhance button to bit options
     bit_options.appendChild(enhance_button);
