@@ -344,7 +344,7 @@ function yb_toggleScope(this_element){
 
 }
 
-function yb_createBitOptionsForm(){
+function yb_createBitOptionsForm(option_field){
     //define bit_options
     let bit_options = yb_createElement("div", "bit-options", "bit-options");
 
@@ -496,7 +496,7 @@ function yb_chatBitForm(form, type_field, option_field, script_source, edit_mode
         create_inputs.appendChild(body_field);
 
         //Create bit options elements
-        let options_form = yb_createBitOptionsForm();
+        let options_form = yb_createBitOptionsForm(option_field);
         //Append scope options to form
         create_inputs.appendChild(options_form);
 
