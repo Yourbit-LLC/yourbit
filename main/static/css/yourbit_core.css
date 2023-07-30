@@ -2274,7 +2274,7 @@ only be used for object transforms (shaping and scaling)
         grid-column: 1;
     }
 
-    .bit-options {
+    .create-bit-options {
         position: relative;
         display: grid;
         grid-template-columns: 2fr 1fr 1fr 1fr;
