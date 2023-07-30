@@ -2287,11 +2287,13 @@ only be used for object transforms (shaping and scaling)
 
     .bit-options-button {
         background-color: rgba(0, 0, 0, 0.5); 
-        display:grid; 
-        grid-template-columns: 1fr 3fr; 
+        display: block;
         border-width: 0px; 
         border-radius: 10px; 
-        line-height: 0.5;
+        padding: 2px 2px 2px 2px;
+        margin: auto;
+        height: 28px;
+        width: 45px;
         color: white; 
         text-align: center;
     }
