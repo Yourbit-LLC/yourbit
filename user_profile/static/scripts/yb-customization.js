@@ -460,7 +460,7 @@ ICON_COLOR_INPUT.addEventListener('change', function() {
     //Update history
     change_history["#icon-color-select"]["new"] = this.value;
 
-    //Update customizations ajax
+    //Update customizations     
     updateCustom('color_change', 'icon', this.value);
     
     

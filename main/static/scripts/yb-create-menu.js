@@ -344,6 +344,91 @@ function yb_toggleScope(this_element){
 
 }
 
+function yb_createBitOptionsForm(){
+    //define bit_options
+    let bit_options = yb_createElement("div", "bit-options", "bit-options");
+
+    //Create scope options elements
+    let scope_options = yb_createElement("div", "scope-options", "scope-options");
+    let default_public = yb_getSessionValues("default-public");
+    let private_toggle_class;
+    let public_toggle_class;
+
+    //Check default post scope from provided context in session values
+    if (default_public === "true"){
+        private_toggle_class = "half-toggle-left";
+        public_toggle_class = "half-toggle-right active";
+        option_field.value = "public";
+    } else {
+        private_toggle_class = "half-toggle-left active";
+        public_toggle_class = "half-toggle-right";
+        option_field.value = "private";
+    }
+
+    //Define scope options buttons
+    let private_button = yb_createButton("toggle_private", "bit-private", private_toggle_class, "Private");
+    private_button.setAttribute("type","button");
+    private_button.addEventListener("click", function() {
+        yb_toggleScope(this);
+    });
+
+    let public_button = yb_createButton("toggle_public", "bit-public", public_toggle_class, "Public");
+    public_button.setAttribute("type","button");
+    public_button.addEventListener("click", function() {
+        yb_toggleScope(this);
+    });
+    
+    //Append scope options to scope option element
+    scope_options.appendChild(private_button);
+    scope_options.appendChild(public_button);
+
+    bit_options.appendChild(scope_options);
+
+    //Attach script to form
+    let enhance_button = yb_createButton("button", "yb-enhance-button", "enhance-button", '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" width="24"><path d="m800 376-38-82-82-38 82-38 38-82 38 82 82 38-82 38-38 82Zm-460 0-38-82-82-38 82-38 38-82 38 82 82 38-82 38-38 82Zm460 460-38-82-82-38 82-38 38-82 38 82 82 38-82 38-38 82ZM204 964 92 852q-12-12-12-29t12-29l446-446q12-12 29-12t29 12l112 112q12 12 12 29t-12 29L262 964q-12 12-29 12t-29-12Zm30-84 286-288-56-56-288 286 58 58Z"/></svg><p>Enhance</p>');
+    enhance_button.setAttribute("type", "button");
+    enhance_button.setAttribute("style", "background-color: rgba(0, 0, 0, 0.5); display:grid; grid-template-columns: 1fr 3fr; border-width: 0px; border-radius: 10px; color: white; text-align: center;");
+    
+    //Append enhance button to bit options
+    bit_options.appendChild(enhance_button);
+
+    //Add event listener to enhance button
+    enhance_button.onclick = function() {
+        console.log("click")
+        let this_parent = this.parentElement;
+        let this_form = this_parent.parentElement;
+        let context_menu = yb_createElement("div", "enhance-menu", "bit-context-menu");
+        
+        context_menu.setAttribute("style", "padding: 10px 4px 10px 4px; width: 50vw;");
+        
+        context_menu.innerHTML = "Enhance Options:";
+        let option_1 = yb_createElement("div", "enhance-option-1", "bit-context-option");
+        option_1.innerHTML = '<svg class="list-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" width="24"><path d="M38 628q-18-36-28-73T0 480q0-112 76-188t188-76q63 0 120 26.5t96 73.5q39-47 96-73.5T696 216q112 0 188 76t76 188q0 38-10 75t-28 73q-11-19-26-34t-35-24q9-23 14-45t5-45q0-78-53-131t-131-53q-81 0-124.5 44.5T480 440q-48-56-91.5-100T264 296q-78 0-131 53T80 480q0 23 5 45t14 45q-20 9-35 24t-26 34ZM0 976v-63q0-44 44.5-70.5T160 816q13 0 25 .5t23 2.5q-14 20-21 43t-7 49v65H0Zm240 0v-65q0-65 66.5-105T480 766q108 0 174 40t66 105v65H240Zm540 0v-65q0-26-6.5-49T754 819q11-2 22.5-2.5t23.5-.5q72 0 116 26.5t44 70.5v63H780ZM480 846q-57 0-102 15t-53 35h311q-9-20-53.5-35T480 846Zm-320-70q-33 0-56.5-23.5T80 696q0-34 23.5-57t56.5-23q34 0 57 23t23 57q0 33-23 56.5T160 776Zm640 0q-33 0-56.5-23.5T720 696q0-34 23.5-57t56.5-23q34 0 57 23t23 57q0 33-23 56.5T800 776Zm-320-40q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T600 616q0 50-34.5 85T480 736Zm0-160q-17 0-28.5 11.5T440 616q0 17 11.5 28.5T480 656q17 0 28.5-11.5T520 616q0-17-11.5-28.5T480 576Zm0 40Zm1 280Z"/></svg><p style="text-align: left;">Friendlier</p>'
+        context_menu.appendChild(option_1);
+
+        let option_2 = yb_createElement("div","enhance-option-2", "bit-context-option");
+        option_2.innerHTML = '<svg class="list-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" width="24"><path d="M160 936q-33 0-56.5-23.5T80 856V416q0-33 23.5-56.5T160 336h160v-80q0-33 23.5-56.5T400 176h160q33 0 56.5 23.5T640 256v80h160q33 0 56.5 23.5T880 416v440q0 33-23.5 56.5T800 936H160Zm0-80h640V416H160v440Zm240-520h160v-80H400v80ZM160 856V416v440Z"/></svg><p style="text-align: left;">More Professional</p>'
+        context_menu.appendChild(option_2);
+
+        let option_3 = yb_createElement("div", "enhance-option-3", "bit-context-option");
+        option_3.innerHTML = '<svg class="list-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" width="24"><path d="M182 856q-51 0-79-35.5T82 734l42-300q9-60 53.5-99T282 296h396q60 0 104.5 39t53.5 99l42 300q7 51-21 86.5T778 856q-21 0-39-7.5T706 826l-90-90H344l-90 90q-15 15-33 22.5t-39 7.5Zm16-86 114-114h336l114 114q2 2 16 6 11 0 17.5-6.5T800 752l-44-308q-4-29-26-48.5T678 376H282q-30 0-52 19.5T204 444l-44 308q-2 11 4.5 17.5T182 776q2 0 16-6Zm482-154q17 0 28.5-11.5T720 576q0-17-11.5-28.5T680 536q-17 0-28.5 11.5T640 576q0 17 11.5 28.5T680 616Zm-80-120q17 0 28.5-11.5T640 456q0-17-11.5-28.5T600 416q-17 0-28.5 11.5T560 456q0 17 11.5 28.5T600 496ZM310 616h60v-70h70v-60h-70v-70h-60v70h-70v60h70v70Zm170-40Z"/></svg><p style="text-align: left;">More Entertaining</p>'
+        context_menu.appendChild(option_3);
+
+        this_form.appendChild(context_menu);
+        
+        // this_form.appendChild(context_menu);
+        // let type = 'friendly';
+        // let length = 'up to 3 sentences';
+        // let text = $('#mobile-body').val();
+        // yb_enhanceText(length, type, text);
+        
+    }
+
+    return bit_options;
+
+}
+
+
 //Function for dynamically generating form for creating a charbit
 function yb_chatBitForm(form, type_field, option_field, script_source, edit_mode = false) {
         let sub_function_script = document.getElementById("sub-function-script")
@@ -376,42 +461,6 @@ function yb_chatBitForm(form, type_field, option_field, script_source, edit_mode
         //Set hidden form field to describe bit type on submission
         type_field.value = 'chat';
         option_field.value='bit';
-
-        //Create scope options elements
-        let scope_options = yb_createElement("div", "scope-options", "scope-options");
-        let default_public = yb_getSessionValues("default-public");
-        let private_toggle_class;
-        let public_toggle_class;
-
-        //Check default post scope from provided context in session values
-        if (default_public === "true"){
-            private_toggle_class = "half-toggle-left";
-            public_toggle_class = "half-toggle-right active";
-            option_field.value = "public";
-        } else {
-            private_toggle_class = "half-toggle-left active";
-            public_toggle_class = "half-toggle-right";
-            option_field.value = "private";
-        }
-        //Define scope options buttons
-        let private_button = yb_createButton("toggle_private", "bit-private", private_toggle_class, "Private");
-        private_button.setAttribute("type","button");
-        private_button.addEventListener("click", function() {
-            yb_toggleScope(this);
-        });
-
-        let public_button = yb_createButton("toggle_public", "bit-public", public_toggle_class, "Public");
-        public_button.setAttribute("type","button");
-        public_button.addEventListener("click", function() {
-            yb_toggleScope(this);
-        });
-        
-        //Append scope options to scope option element
-        scope_options.appendChild(private_button);
-        scope_options.appendChild(public_button);
-
-        //Append scope options to form
-        create_inputs.appendChild(scope_options);
 
         //Create form fields to correspond with creation
         let recipient_button = yb_createButton("add_recipient", "button-add-recipient", "button-mini");
@@ -446,42 +495,13 @@ function yb_chatBitForm(form, type_field, option_field, script_source, edit_mode
         create_inputs.appendChild(title_field);
         create_inputs.appendChild(body_field);
 
+        //Create bit options elements
+        let options_form = yb_createBitOptionsForm();
+        //Append scope options to form
+        create_inputs.appendChild(options_form);
+
         form.appendChild(create_inputs);
 
-        //Attach script to form
-        let enhance_button = yb_createButton("button", "yb-enhance-button", "enhance-button", '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" width="24"><path d="m800 376-38-82-82-38 82-38 38-82 38 82 82 38-82 38-38 82Zm-460 0-38-82-82-38 82-38 38-82 38 82 82 38-82 38-38 82Zm460 460-38-82-82-38 82-38 38-82 38 82 82 38-82 38-38 82ZM204 964 92 852q-12-12-12-29t12-29l446-446q12-12 29-12t29 12l112 112q12 12 12 29t-12 29L262 964q-12 12-29 12t-29-12Zm30-84 286-288-56-56-288 286 58 58Z"/></svg>Enhance');
-        enhance_button.setAttribute("type", "button");
-        enhance_button.setAttribute("style", "background-color: rgba(0, 0, 0, 0.5); border-width: 0px; border-radius: 10px; color: white; text-align: center;");
-        form.appendChild(enhance_button);
-        enhance_button.onclick = function() {
-            console.log("click")
-            let this_form = this.parentElement;
-            let context_menu = yb_createElement("div", "enhance-menu", "bit-context-menu");
-            
-            context_menu.setAttribute("style", "padding: 10px 4px 10px 4px; width: 50vw;");
-            
-            context_menu.innerHTML = "Enhance Options:";
-            let option_1 = yb_createElement("div", "enhance-option-1", "bit-context-option");
-            option_1.innerHTML = '<svg class="list-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" width="24"><path d="M38 628q-18-36-28-73T0 480q0-112 76-188t188-76q63 0 120 26.5t96 73.5q39-47 96-73.5T696 216q112 0 188 76t76 188q0 38-10 75t-28 73q-11-19-26-34t-35-24q9-23 14-45t5-45q0-78-53-131t-131-53q-81 0-124.5 44.5T480 440q-48-56-91.5-100T264 296q-78 0-131 53T80 480q0 23 5 45t14 45q-20 9-35 24t-26 34ZM0 976v-63q0-44 44.5-70.5T160 816q13 0 25 .5t23 2.5q-14 20-21 43t-7 49v65H0Zm240 0v-65q0-65 66.5-105T480 766q108 0 174 40t66 105v65H240Zm540 0v-65q0-26-6.5-49T754 819q11-2 22.5-2.5t23.5-.5q72 0 116 26.5t44 70.5v63H780ZM480 846q-57 0-102 15t-53 35h311q-9-20-53.5-35T480 846Zm-320-70q-33 0-56.5-23.5T80 696q0-34 23.5-57t56.5-23q34 0 57 23t23 57q0 33-23 56.5T160 776Zm640 0q-33 0-56.5-23.5T720 696q0-34 23.5-57t56.5-23q34 0 57 23t23 57q0 33-23 56.5T800 776Zm-320-40q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T600 616q0 50-34.5 85T480 736Zm0-160q-17 0-28.5 11.5T440 616q0 17 11.5 28.5T480 656q17 0 28.5-11.5T520 616q0-17-11.5-28.5T480 576Zm0 40Zm1 280Z"/></svg><p style="text-align: left;">Friendlier</p>'
-            context_menu.appendChild(option_1);
-
-            let option_2 = yb_createElement("div","enhance-option-2", "bit-context-option");
-            option_2.innerHTML = '<svg class="list-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" width="24"><path d="M160 936q-33 0-56.5-23.5T80 856V416q0-33 23.5-56.5T160 336h160v-80q0-33 23.5-56.5T400 176h160q33 0 56.5 23.5T640 256v80h160q33 0 56.5 23.5T880 416v440q0 33-23.5 56.5T800 936H160Zm0-80h640V416H160v440Zm240-520h160v-80H400v80ZM160 856V416v440Z"/></svg><p style="text-align: left;">More Professional</p>'
-            context_menu.appendChild(option_2);
-
-            let option_3 = yb_createElement("div", "enhance-option-3", "bit-context-option");
-            option_3.innerHTML = '<svg class="list-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" width="24"><path d="M182 856q-51 0-79-35.5T82 734l42-300q9-60 53.5-99T282 296h396q60 0 104.5 39t53.5 99l42 300q7 51-21 86.5T778 856q-21 0-39-7.5T706 826l-90-90H344l-90 90q-15 15-33 22.5t-39 7.5Zm16-86 114-114h336l114 114q2 2 16 6 11 0 17.5-6.5T800 752l-44-308q-4-29-26-48.5T678 376H282q-30 0-52 19.5T204 444l-44 308q-2 11 4.5 17.5T182 776q2 0 16-6Zm482-154q17 0 28.5-11.5T720 576q0-17-11.5-28.5T680 536q-17 0-28.5 11.5T640 576q0 17 11.5 28.5T680 616Zm-80-120q17 0 28.5-11.5T640 456q0-17-11.5-28.5T600 416q-17 0-28.5 11.5T560 456q0 17 11.5 28.5T600 496ZM310 616h60v-70h70v-60h-70v-70h-60v70h-70v60h70v70Zm170-40Z"/></svg><p style="text-align: left;">More Entertaining</p>'
-            context_menu.appendChild(option_3);
-
-            this_form.appendChild(context_menu);
-            
-            // this_form.appendChild(context_menu);
-            // let type = 'friendly';
-            // let length = 'up to 3 sentences';
-            // let text = $('#mobile-body').val();
-            // yb_enhanceText(length, type, text);
-            
-        }
 
         let submission_bar = yb_buildSubmissionBar("bit-form", "chat");
         form.appendChild(submission_bar);
