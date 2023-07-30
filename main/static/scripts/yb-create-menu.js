@@ -393,10 +393,16 @@ function yb_createBitOptionsForm(option_field){
     });
     bit_options.appendChild(schedule_button);
 
+    let auto_delete_button = yb_createButton("toggle_auto_delete", "bit-auto-delete", "bit-options-button", `<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M280-720v520-520Zm170 600H280q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v172q-17-5-39.5-8.5T680-560v-160H280v520h132q6 21 16 41.5t22 38.5Zm-90-160h40q0-63 20-103.5l20-40.5v-216h-80v360Zm160-230q17-11 38.5-22t41.5-16v-92h-80v130ZM680-80q-83 0-141.5-58.5T480-280q0-83 58.5-141.5T680-480q83 0 141.5 58.5T880-280q0 83-58.5 141.5T680-80Zm66-106 28-28-74-74v-112h-40v128l86 86Z"/></svg>`);
+    auto_delete_button.setAttribute("type","button");
+    auto_delete_button.style.gridColumn = "3";
+    auto_delete_button.addEventListener("click", function() {
+        console.log("clicked auto delete");
+    });
     //Attach script to form
     let enhance_button = yb_createButton("button", "yb-enhance-button", "bit-options-button", '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" width="24"><path d="m800 376-38-82-82-38 82-38 38-82 38 82 82 38-82 38-38 82Zm-460 0-38-82-82-38 82-38 38-82 38 82 82 38-82 38-38 82Zm460 460-38-82-82-38 82-38 38-82 38 82 82 38-82 38-38 82ZM204 964 92 852q-12-12-12-29t12-29l446-446q12-12 29-12t29 12l112 112q12 12 12 29t-12 29L262 964q-12 12-29 12t-29-12Zm30-84 286-288-56-56-288 286 58 58Z"/></svg>');
     enhance_button.setAttribute("type", "button");
-    enhance_button.style.gridColumn = "3";
+    enhance_button.style.gridColumn = "4";
     
     
     //Append enhance button to bit options
