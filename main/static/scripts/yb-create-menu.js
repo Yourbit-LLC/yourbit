@@ -345,7 +345,7 @@ function yb_toggleScope(this_element){
 }
 
 
-function yb_scheduleMenu() {
+function yb_scheduleMenu(this_element) {
     let menu_element = yb_createElement("div", "schedule-menu", "yb-options-up");
     menu_element.setAttribute("style", "width: 250px;");
 
