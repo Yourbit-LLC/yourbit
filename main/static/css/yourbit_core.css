@@ -2305,6 +2305,8 @@ only be used for object transforms (shaping and scaling)
         position:absolute;
         bottom: 40px;
         background-color: black;
+        left: 50%;
+        transform: translate(-50%, 0);
 
     }
   
