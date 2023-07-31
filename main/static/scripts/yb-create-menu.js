@@ -344,6 +344,38 @@ function yb_toggleScope(this_element){
 
 }
 
+
+function yb_scheduleMenu() {
+    let menu_element = yb_createElement("div", "schedule-menu", "yb-options-up");
+    menu_element.setAttribute("style", "width: 250px;");
+
+    let menu_header = yb_createElement("p", "schedule-menu-header", "yb-options-header");
+    menu_header.innerHTML = "Schedule";
+    menu_element.appendChild(menu_header);
+
+    let date_field = yb_createInput("date", "schedule-date", "schedule-date", "");
+    menu_element.appendChild(date_field);
+
+    let time_field = yb_createInput("time", "schedule-time", "schedule-time", "");
+    menu_element.appendChild(time_field);
+
+    this_element.appendChild(menu_element);
+}
+
+function yb_handleBitOption(this_element){
+    let this_button = this_element.getAttribute("name");
+    if (this_button === "schedule") {
+        yb_scheduleMenu(this_element);
+    } else if (this_button === "enhance") {
+        yb_enhanceMenu(this_element);
+    } else if (this_button === "monetize") {
+        yb_monetizeMenu(this_element);
+    } else if (this_button === "evaporate") {
+        yb_evaporateMenu(this_element);
+    }
+}
+
+
 function yb_createBitOptionsForm(option_field){
     //define bit_options
     let bit_options = yb_createElement("div", "create-bit-options", "create-bit-options");
@@ -390,27 +422,30 @@ function yb_createBitOptionsForm(option_field){
     schedule_button.style.gridColumn = "2";
     schedule_button.addEventListener("click", function() {
         console.log("clicked schedule");
+        yb_handleBitOption(this);
     });
     bit_options.appendChild(schedule_button);
 
-    let auto_delete_button = yb_createButton("toggle_auto_delete", "bit-auto-delete", "bit-options-button", `<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M280-720v520-520Zm170 600H280q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v172q-17-5-39.5-8.5T680-560v-160H280v520h132q6 21 16 41.5t22 38.5Zm-90-160h40q0-63 20-103.5l20-40.5v-216h-80v360Zm160-230q17-11 38.5-22t41.5-16v-92h-80v130ZM680-80q-83 0-141.5-58.5T480-280q0-83 58.5-141.5T680-480q83 0 141.5 58.5T880-280q0 83-58.5 141.5T680-80Zm66-106 28-28-74-74v-112h-40v128l86 86Z"/></svg>`);
+    let auto_delete_button = yb_createButton("evaporate", "yb-bit-evaporate", "bit-options-button", `<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M280-720v520-520Zm170 600H280q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v172q-17-5-39.5-8.5T680-560v-160H280v520h132q6 21 16 41.5t22 38.5Zm-90-160h40q0-63 20-103.5l20-40.5v-216h-80v360Zm160-230q17-11 38.5-22t41.5-16v-92h-80v130ZM680-80q-83 0-141.5-58.5T480-280q0-83 58.5-141.5T680-480q83 0 141.5 58.5T880-280q0 83-58.5 141.5T680-80Zm66-106 28-28-74-74v-112h-40v128l86 86Z"/></svg>`);
     auto_delete_button.setAttribute("type","button");
     auto_delete_button.style.gridColumn = "3";
     auto_delete_button.addEventListener("click", function() {
         console.log("clicked auto delete");
+        yb_handleBitOption(this);
     });
     bit_options.appendChild(auto_delete_button);
     
-    let monetization_option_button = yb_createButton("toggle_auto_delete", "bit-auto-delete", "bit-options-button", `<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M444-200h70v-50q50-9 86-39t36-89q0-42-24-77t-96-61q-60-20-83-35t-23-41q0-26 18.5-41t53.5-15q32 0 50 15.5t26 38.5l64-26q-11-35-40.5-61T516-710v-50h-70v50q-50 11-78 44t-28 74q0 47 27.5 76t86.5 50q63 23 87.5 41t24.5 47q0 33-23.5 48.5T486-314q-33 0-58.5-20.5T390-396l-66 26q14 48 43.5 77.5T444-252v52Zm36 120q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>`);
+    let monetization_option_button = yb_createButton("monetize", "yb-bit-monetize", "bit-options-button", `<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M444-200h70v-50q50-9 86-39t36-89q0-42-24-77t-96-61q-60-20-83-35t-23-41q0-26 18.5-41t53.5-15q32 0 50 15.5t26 38.5l64-26q-11-35-40.5-61T516-710v-50h-70v50q-50 11-78 44t-28 74q0 47 27.5 76t86.5 50q63 23 87.5 41t24.5 47q0 33-23.5 48.5T486-314q-33 0-58.5-20.5T390-396l-66 26q14 48 43.5 77.5T444-252v52Zm36 120q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>`);
     monetization_option_button.setAttribute("type","button");
     monetization_option_button.style.gridColumn = "4";
     monetization_option_button.addEventListener("click", function() {
-        console.log("clicked auto delete");
+        console.log("clicked monetize");
+        yb_handleBitOption(this);
     });
     bit_options.appendChild(monetization_option_button);
     
     //Attach script to form
-    let enhance_button = yb_createButton("button", "yb-enhance-button", "bit-options-button", '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" width="24"><path d="m800 376-38-82-82-38 82-38 38-82 38 82 82 38-82 38-38 82Zm-460 0-38-82-82-38 82-38 38-82 38 82 82 38-82 38-38 82Zm460 460-38-82-82-38 82-38 38-82 38 82 82 38-82 38-38 82ZM204 964 92 852q-12-12-12-29t12-29l446-446q12-12 29-12t29 12l112 112q12 12 12 29t-12 29L262 964q-12 12-29 12t-29-12Zm30-84 286-288-56-56-288 286 58 58Z"/></svg>');
+    let enhance_button = yb_createButton("enhance", "yb-bit-enhance", "bit-options-button", '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" width="24"><path d="m800 376-38-82-82-38 82-38 38-82 38 82 82 38-82 38-38 82Zm-460 0-38-82-82-38 82-38 38-82 38 82 82 38-82 38-38 82Zm460 460-38-82-82-38 82-38 38-82 38 82 82 38-82 38-38 82ZM204 964 92 852q-12-12-12-29t12-29l446-446q12-12 29-12t29 12l112 112q12 12 12 29t-12 29L262 964q-12 12-29 12t-29-12Zm30-84 286-288-56-56-288 286 58 58Z"/></svg>');
     enhance_button.setAttribute("type", "button");
     enhance_button.style.gridColumn = "5";
     
@@ -420,27 +455,8 @@ function yb_createBitOptionsForm(option_field){
 
     //Add event listener to enhance button
     enhance_button.onclick = function() {
-        console.log("click")
-        let this_parent = this.parentElement;
-        let this_form = this_parent.parentElement;
-        let context_menu = yb_createElement("div", "enhance-menu", "bit-context-menu");
-        
-        context_menu.setAttribute("style", "padding: 10px 4px 10px 4px; width: 50vw;");
-        
-        context_menu.innerHTML = "Enhance Options:";
-        let option_1 = yb_createElement("div", "enhance-option-1", "bit-context-option");
-        option_1.innerHTML = '<svg class="list-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" width="24"><path d="M38 628q-18-36-28-73T0 480q0-112 76-188t188-76q63 0 120 26.5t96 73.5q39-47 96-73.5T696 216q112 0 188 76t76 188q0 38-10 75t-28 73q-11-19-26-34t-35-24q9-23 14-45t5-45q0-78-53-131t-131-53q-81 0-124.5 44.5T480 440q-48-56-91.5-100T264 296q-78 0-131 53T80 480q0 23 5 45t14 45q-20 9-35 24t-26 34ZM0 976v-63q0-44 44.5-70.5T160 816q13 0 25 .5t23 2.5q-14 20-21 43t-7 49v65H0Zm240 0v-65q0-65 66.5-105T480 766q108 0 174 40t66 105v65H240Zm540 0v-65q0-26-6.5-49T754 819q11-2 22.5-2.5t23.5-.5q72 0 116 26.5t44 70.5v63H780ZM480 846q-57 0-102 15t-53 35h311q-9-20-53.5-35T480 846Zm-320-70q-33 0-56.5-23.5T80 696q0-34 23.5-57t56.5-23q34 0 57 23t23 57q0 33-23 56.5T160 776Zm640 0q-33 0-56.5-23.5T720 696q0-34 23.5-57t56.5-23q34 0 57 23t23 57q0 33-23 56.5T800 776Zm-320-40q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T600 616q0 50-34.5 85T480 736Zm0-160q-17 0-28.5 11.5T440 616q0 17 11.5 28.5T480 656q17 0 28.5-11.5T520 616q0-17-11.5-28.5T480 576Zm0 40Zm1 280Z"/></svg><p style="text-align: left;">Friendlier</p>'
-        context_menu.appendChild(option_1);
-
-        let option_2 = yb_createElement("div","enhance-option-2", "bit-context-option");
-        option_2.innerHTML = '<svg class="list-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" width="24"><path d="M160 936q-33 0-56.5-23.5T80 856V416q0-33 23.5-56.5T160 336h160v-80q0-33 23.5-56.5T400 176h160q33 0 56.5 23.5T640 256v80h160q33 0 56.5 23.5T880 416v440q0 33-23.5 56.5T800 936H160Zm0-80h640V416H160v440Zm240-520h160v-80H400v80ZM160 856V416v440Z"/></svg><p style="text-align: left;">More Professional</p>'
-        context_menu.appendChild(option_2);
-
-        let option_3 = yb_createElement("div", "enhance-option-3", "bit-context-option");
-        option_3.innerHTML = '<svg class="list-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" width="24"><path d="M182 856q-51 0-79-35.5T82 734l42-300q9-60 53.5-99T282 296h396q60 0 104.5 39t53.5 99l42 300q7 51-21 86.5T778 856q-21 0-39-7.5T706 826l-90-90H344l-90 90q-15 15-33 22.5t-39 7.5Zm16-86 114-114h336l114 114q2 2 16 6 11 0 17.5-6.5T800 752l-44-308q-4-29-26-48.5T678 376H282q-30 0-52 19.5T204 444l-44 308q-2 11 4.5 17.5T182 776q2 0 16-6Zm482-154q17 0 28.5-11.5T720 576q0-17-11.5-28.5T680 536q-17 0-28.5 11.5T640 576q0 17 11.5 28.5T680 616Zm-80-120q17 0 28.5-11.5T640 456q0-17-11.5-28.5T600 416q-17 0-28.5 11.5T560 456q0 17 11.5 28.5T600 496ZM310 616h60v-70h70v-60h-70v-70h-60v70h-70v60h70v70Zm170-40Z"/></svg><p style="text-align: left;">More Entertaining</p>'
-        context_menu.appendChild(option_3);
-
-        this_form.appendChild(context_menu);
+        console.log("clicked enhance");
+        yb_handleBitOption(this);
         
         // this_form.appendChild(context_menu);
         // let type = 'friendly';
@@ -452,36 +468,6 @@ function yb_createBitOptionsForm(option_field){
 
     return bit_options;
 
-}
-
-function yb_scheduleMenu() {
-    let menu_element = yb_createElement("div", "schedule-menu", "yb-options-up");
-    menu_element.setAttribute("style", "width: 250px;");
-
-    let menu_header = yb_createElement("p", "schedule-menu-header", "yb-options-header");
-    menu_header.innerHTML = "Schedule";
-    menu_element.appendChild(menu_header);
-
-    let date_field = yb_createInput("date", "schedule-date", "schedule-date", "");
-    menu_element.appendChild(date_field);
-
-    let time_field = yb_createInput("time", "schedule-time", "schedule-time", "");
-    menu_element.appendChild(time_field);
-
-    this_element.appendChild(menu_element);
-}
-
-function yb_handleBitOption(this_element){
-    let this_button = this_element.getAttribute("name");
-    if (this_button === "schedule") {
-        yb_scheduleMenu(this_element);
-    } else if (this_button === "enhance") {
-        yb_enhanceMenu(this_element);
-    } else if (this_button === "monetize") {
-        yb_monetizeMenu(this_element);
-    } else if (this_button === "evaporate") {
-        yb_evaporateMenu(this_element);
-    }
 }
 
 //Function for dynamically generating form for creating a charbit
