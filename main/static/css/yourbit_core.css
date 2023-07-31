@@ -2298,6 +2298,14 @@ only be used for object transforms (shaping and scaling)
         width: 45px;
         color: white; 
         text-align: center;
+        position: relative;
+    }
+
+    .yb-options-up {
+        position:absolute;
+        bottom: 40px;
+        background-color: black;
+
     }
   
 

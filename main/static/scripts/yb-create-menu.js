@@ -385,7 +385,7 @@ function yb_createBitOptionsForm(option_field){
 
     bit_options.appendChild(scope_options);
 
-    let schedule_button = yb_createButton("toggle_schedule", "bit-schedule", "bit-options-button", `<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M360-300q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29ZM200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm0 0v-80 80Z"/>`);
+    let schedule_button = yb_createButton("schedule", "bit-schedule", "bit-options-button", `<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M360-300q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29ZM200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm0 0v-80 80Z"/>`);
     schedule_button.setAttribute("type","button");
     schedule_button.style.gridColumn = "2";
     schedule_button.addEventListener("click", function() {
@@ -454,6 +454,35 @@ function yb_createBitOptionsForm(option_field){
 
 }
 
+function yb_scheduleMenu() {
+    let menu_element = yb_createElement("div", "schedule-menu", "yb-options-up");
+    menu_element.setAttribute("style", "width: 250px;");
+
+    let menu_header = yb_createElement("p", "schedule-menu-header", "yb-options-header");
+    menu_header.innerHTML = "Schedule";
+    menu_element.appendChild(menu_header);
+
+    let date_field = yb_createInput("date", "schedule-date", "schedule-date", "");
+    menu_element.appendChild(date_field);
+
+    let time_field = yb_createInput("time", "schedule-time", "schedule-time", "");
+    menu_element.appendChild(time_field);
+
+    this_element.appendChild(menu_element);
+}
+
+function yb_handleBitOption(this_element){
+    let this_button = this_element.getAttribute("name");
+    if (this_button === "schedule") {
+        yb_scheduleMenu(this_element);
+    } else if (this_button === "enhance") {
+        yb_enhanceMenu(this_element);
+    } else if (this_button === "monetize") {
+        yb_monetizeMenu(this_element);
+    } else if (this_button === "evaporate") {
+        yb_evaporateMenu(this_element);
+    }
+}
 
 //Function for dynamically generating form for creating a charbit
 function yb_chatBitForm(form, type_field, option_field, script_source, edit_mode = false) {
