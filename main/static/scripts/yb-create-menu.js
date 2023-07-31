@@ -403,7 +403,7 @@ function yb_createBitOptionsForm(option_field){
     
     let monetization_option_button = yb_createButton("toggle_auto_delete", "bit-auto-delete", "bit-options-button", `<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M444-200h70v-50q50-9 86-39t36-89q0-42-24-77t-96-61q-60-20-83-35t-23-41q0-26 18.5-41t53.5-15q32 0 50 15.5t26 38.5l64-26q-11-35-40.5-61T516-710v-50h-70v50q-50 11-78 44t-28 74q0 47 27.5 76t86.5 50q63 23 87.5 41t24.5 47q0 33-23.5 48.5T486-314q-33 0-58.5-20.5T390-396l-66 26q14 48 43.5 77.5T444-252v52Zm36 120q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>`);
     monetization_option_button.setAttribute("type","button");
-    monetization_option_button.style.gridColumn = "3";
+    monetization_option_button.style.gridColumn = "4";
     monetization_option_button.addEventListener("click", function() {
         console.log("clicked auto delete");
     });
@@ -412,7 +412,7 @@ function yb_createBitOptionsForm(option_field){
     //Attach script to form
     let enhance_button = yb_createButton("button", "yb-enhance-button", "bit-options-button", '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" width="24"><path d="m800 376-38-82-82-38 82-38 38-82 38 82 82 38-82 38-38 82Zm-460 0-38-82-82-38 82-38 38-82 38 82 82 38-82 38-38 82Zm460 460-38-82-82-38 82-38 38-82 38 82 82 38-82 38-38 82ZM204 964 92 852q-12-12-12-29t12-29l446-446q12-12 29-12t29 12l112 112q12 12 12 29t-12 29L262 964q-12 12-29 12t-29-12Zm30-84 286-288-56-56-288 286 58 58Z"/></svg>');
     enhance_button.setAttribute("type", "button");
-    enhance_button.style.gridColumn = "4";
+    enhance_button.style.gridColumn = "5";
     
     
     //Append enhance button to bit options
