@@ -349,7 +349,9 @@ var yb_closeBitOption = function (event) {
     this_element = event.currentTarget;
     let action = this_element.getAttribute("name");
     this_element.setAttribute("data-state", "0");
+    this_element.style.backgroundColor = "rgba(0,0,0,0.5)";
     this_element.removeEventListener("click", yb_closeBitOption);
+
     
     let menu_element = document.getElementsByClassName("yb-options-up")[0];
     menu_element.remove();
@@ -369,9 +371,7 @@ var yb_closeBitOption = function (event) {
     }
 
     //Event Listener for opening menu
-    this_element.addEventListener("click", function() {
-        yb_handleBitOption(this_element)
-    });
+    this_element.addEventListener("click", yb_handleBitOption);
 }
 
 
