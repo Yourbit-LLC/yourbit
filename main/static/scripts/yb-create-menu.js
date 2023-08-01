@@ -352,7 +352,7 @@ function yb_closeBitOption(this_element, menu_element) {
     this_element.removeEventListener("click", yb_closeBitOption);
     console.log(menu_element);
     
-    menu_element.remove();
+    document.remove(menu_element);
     
     if (action === "schedule"){
         
