@@ -350,7 +350,6 @@ var yb_closeBitOption = function (event) {
     let action = this_element.getAttribute("name");
     this_element.setAttribute("data-state", "0");
     this_element.removeEventListener("click", yb_closeBitOption);
-    console.log(menu_element);
     
     let menu_element = document.getElementsByClassName("yb-options-up")[0];
     menu_element.remove();
@@ -429,8 +428,8 @@ var yb_handleBitOption = function(event){
     this_element.setAttribute("data-state", "1");
     console.log(event.currentTarget)
     //Change icon to close
-    this_element.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>`;
-    
+    this_element.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path style="fill: red;" d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>`;
+    this_element.style.backgroundColor = "rgba(255,255,255,0.5)";
     //Create menu element based on action
     if (action === "schedule") {
         yb_scheduleMenu(this_element);
