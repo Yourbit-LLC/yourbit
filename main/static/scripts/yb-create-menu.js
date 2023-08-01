@@ -381,7 +381,7 @@ function yb_scheduleMenu(this_element) {
     menu_element.setAttribute("style", "width: 90%; margin: 0 auto;");
 
     //Event Listener for closing menu
-    this_element.removeEventListener("click", yb_handleBitOption(this));
+    this_element.removeEventListener("click", yb_handleBitOption);
     this_element.addEventListener("click", yb_closeBitOption);
 
     let parent_element = this_element.parentElement;
