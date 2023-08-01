@@ -347,7 +347,7 @@ function yb_toggleScope(this_element){
 
 function yb_closeBitOption(this_element, action, menu_element) {
     
-    
+    let action = this_element.getAttribute("name");
     this_element.setAttribute("data-state", "0");
     this_element.removeEventListener("click", yb_closeBitOption);
     menu_element.remove();
@@ -380,7 +380,7 @@ function yb_scheduleMenu(this_element) {
     //Event Listener for closing menu
     this_element.removeEventListener("click", yb_handleBitOption);
     this_element.addEventListener("click", function() {
-        yb_closeBitOption(this_element, action , menu_element)
+        yb_closeBitOption(this_element, menu_element)
     });
 
     let parent_element = this_element.parentElement;
