@@ -430,7 +430,7 @@ function yb_handleBitOption(event){
 
     //Change icon to close
     this_element.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>`;
-
+    console.log(event.target)
     //Create menu element based on action
     if (action === "schedule") {
         yb_scheduleMenu(this_element);
