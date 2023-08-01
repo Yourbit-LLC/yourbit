@@ -352,7 +352,7 @@ function yb_closeBitOption(this_element, menu_element) {
     this_element.removeEventListener("click", yb_closeBitOption);
     console.log(menu_element);
     
-    document.remove(menu_element);
+    menu_element.remove();
     
     if (action === "schedule"){
         
@@ -380,7 +380,9 @@ function yb_scheduleMenu(this_element) {
     menu_element.setAttribute("style", "width: 90%; margin: 0 auto;");
 
     //Event Listener for closing menu
-    this_element.removeEventListener("click", yb_handleBitOption);
+    this_element.removeEventListener("click", function() {
+        yb_handleBitOption(this);
+    });
     this_element.addEventListener("click", function() {
         yb_closeBitOption(this_element, menu_element)
     });
