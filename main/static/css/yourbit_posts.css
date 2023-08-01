@@ -244,7 +244,7 @@
     .attached-photo {
         display: block;
         position: relative;
-
+        background-color: black;
         top: 10px;
         z-index: 5;
         border: 1px solid black;
