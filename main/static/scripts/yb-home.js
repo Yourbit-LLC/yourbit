@@ -115,9 +115,10 @@ $('.filter-button-active').click(function() {
     let browse_nav = document.getElementById("yb-browse-nav");
     $(".container-header").remove();
     
+    
     if (current_state === "contracted") {
         //If this button is the more filters button
-
+        this.classList.add("yb-press-filter");
         if (this_button === "advanced-filter"){
             $(this).attr("data-state", "expanded")
             $("#button-filter-search").attr("data-state", "contracted");
@@ -128,6 +129,7 @@ $('.filter-button-active').click(function() {
             $("#yb-browse-nav").animate({"height":"300px"}, "fast");
             $(".filter-button-active").css({"margin-top":"7px"});
             $(".filter-button-wide-active").css({"margin-top":"7px"});
+            
 
             //Create a new container to hold the form
             let new_container = yb_createElement("form", "sub-feed-filters", "sub-filter-container");
@@ -734,6 +736,7 @@ $('.filter-button-active').click(function() {
         }
 
     } else {
+        this.classList.remove("yb-press-filter");
         $(".sub-filter-container").remove();
         $(this).attr("data-state", "contracted");
         $("#yb-browse-nav").attr("data-state", "contracted");

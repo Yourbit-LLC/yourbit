@@ -39,10 +39,40 @@ Refer to the interactive codex for current style guidelines for Yourbit*/
     100% { transform: translate(0px, 0px); }
 }
 
+@keyframes yb-press-filter {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(0.8);
+    }
+    100% {
+      transform: scale(1);
+      background-color: black;
+    }
+  }
+
+@keyframes yb-press {
+    0%, 100% {
+    transform: scale(1);
+    }
+    50% {
+    transform: scale(0.8);
+    }
+}
+
 #main-splash-image {
     display:block; 
     width: 80%; 
     margin: auto;
+}
+
+.yb-press-filter {
+    animation: yb-press-filter 0.3s linear 1;
+}
+
+.press-bit {
+    animation: yb-press 0.3s linear 1;
 }
 
 .loading-circle {
