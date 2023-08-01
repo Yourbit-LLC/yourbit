@@ -367,9 +367,10 @@ function yb_scheduleMenu(this_element) {
     let submission_button = yb_createButton("set_schedule", "yb-submit-button", "yb-form-button", "Schedule");
     submission_button.setAttribute("type", "button");
     submission_button.setAttribute("style", "margin-top: 10px; text-align: center;");
-    menu_element.appendChild(submission_button);
+    
     
     menu_element.appendChild(form_fields);
+    menu_element.appendChild(submission_button);
     this_element.appendChild(menu_element);
 }
 
