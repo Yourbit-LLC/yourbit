@@ -352,13 +352,22 @@ function yb_scheduleMenu(this_element) {
     let menu_header = yb_createElement("p", "schedule-menu-header", "yb-options-header");
     menu_header.innerHTML = "Schedule";
     menu_element.appendChild(menu_header);
+    
+    let form_fields = yb_createElement("div", "schedule-form-fields", "yb-options-form-fields");
+    
 
-    let date_field = yb_createInput("date", "schedule-date", "schedule-date", "");
-    menu_element.appendChild(date_field);
+    let date_field = yb_createInput("date", "yb-single-line-input", "schedule-date", "");
+    form_fields.appendChild(date_field);
 
-    let time_field = yb_createInput("time", "schedule-time", "schedule-time", "");
-    menu_element.appendChild(time_field);
-
+    let time_field = yb_createInput("time", "yb-single-line-input", "schedule-time", "");
+    form_fields.appendChild(time_field);
+    
+    let submission_button = yb_createButton("set_schedule", "yb-submit-button", "yb-submit-button", "Schedule");
+    submission_button.setAttribute("type", "button");
+    submission_button.setAttribute("style", "margin-top: 10px; text-align: center;");
+    form_fields.appendChild(submitssion_button);
+    
+    menu_element.appendChild(form_fields);
     this_element.appendChild(menu_element);
 }
 

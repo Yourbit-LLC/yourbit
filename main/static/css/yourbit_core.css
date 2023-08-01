@@ -2319,6 +2319,12 @@ only be used for object transforms (shaping and scaling)
         font-size: 16px;
         font-weight: 600;
     }
+
+    #schedule-form-fields {
+        display: grid;
+        position: relative;
+        grid-template: 2fr 1fr;
+    }
   
 
     #scope-options {
