@@ -375,6 +375,7 @@ var yb_closeBitOption = function (event) {
 }
 
 
+
 function yb_scheduleMenu(this_element) {
     let menu_element = yb_createElement("div", "schedule-menu", "yb-options-up");
     menu_element.setAttribute("style", "margin: 0 auto;");
@@ -420,6 +421,52 @@ function yb_scheduleMenu(this_element) {
     menu_element.appendChild(submission_button);
     parent_element.appendChild(menu_element);
     $("#schedule-menu").animate({opacity: 1}, 500);
+}
+
+function yb_evaporateMenu(this_element) {
+    let menu_element = yb_createElement("div", "evaporate-menu", "yb-options-up");
+    menu_element.setAttribute("style", "margin: 0 auto;");
+
+    //Event Listener for closing menu
+    this_element.removeEventListener("click", yb_handleBitOption);
+    this_element.addEventListener("click", yb_closeBitOption);
+
+    let parent_element = this_element.parentElement;
+
+    let menu_header = yb_createElement("p", "evaporate-menu-header", "yb-options-header");
+    menu_header.innerHTML = "Evaporate";
+    menu_element.appendChild(menu_header);
+    
+    let form_fields = yb_createElement("div", "evaporate-form-fields", "yb-options-form-fields");
+
+    let date_field = yb_createInput("text", "yb-single-line-input", "schedule-date", "Publish Date");
+    date_field.setAttribute("style", "grid-column: 1; background-color: rgba(255,255,255,0.5");
+    date_field.addEventListener("click", function(){
+        this.blur();
+        this.type = "date";
+        setTimeout(this.focus(), 100);
+    });
+    form_fields.appendChild(date_field);
+
+
+    let time_field = yb_createInput("text", "yb-single-line-input", "schedule-time", "Time");
+    time_field.setAttribute("style", "grid-column: 2; background-color: rgba(255,255,255,0.5");
+    time_field.addEventListener("click", function(){
+        this.blur();
+        this.type = "time";
+        setTimeout(this.focus(), 100);
+    });
+    form_fields.appendChild(time_field);
+    
+    let submission_button = yb_createButton("set_evaporate", "yb-submit-button", "yb-form-button", "Set");
+    submission_button.setAttribute("type", "button");
+    submission_button.setAttribute("style", "margin-top: 10px; text-align: center;");
+    
+    
+    menu_element.appendChild(form_fields);
+    menu_element.appendChild(submission_button);
+    parent_element.appendChild(menu_element);
+    $("#evaporate-menu").animate({opacity: 1}, 500);
 }
 
 var yb_handleBitOption = function(event){
