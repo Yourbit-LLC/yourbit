@@ -345,13 +345,14 @@ function yb_toggleScope(this_element){
 }
 
 
-function yb_closeBitOption(this_element, menu_element) {
-    
+function yb_closeBitOption(event) {
+    this_element = event.target;
     let action = this_element.getAttribute("name");
     this_element.setAttribute("data-state", "0");
     this_element.removeEventListener("click", yb_closeBitOption);
     console.log(menu_element);
     
+    let menu_element = document.getElementsByClassName("yb-options-up")[0];
     menu_element.remove();
     
     if (action === "schedule"){
@@ -383,9 +384,7 @@ function yb_scheduleMenu(this_element) {
     this_element.removeEventListener("click", function() {
         yb_handleBitOption(this);
     });
-    this_element.addEventListener("click", function() {
-        yb_closeBitOption(this_element, menu_element)
-    });
+    this_element.addEventListener("click", yb_closeBitOption);
 
     let parent_element = this_element.parentElement;
 
@@ -425,8 +424,8 @@ function yb_scheduleMenu(this_element) {
     parent_element.appendChild(menu_element);
 }
 
-function yb_handleBitOption(this_element){
-    
+function yb_handleBitOption(event){
+    let this_element = event.target;
     //Get button name to identify action
     let action = this_element.getAttribute("name");
     this_element.setAttribute("data-state", "1");
@@ -493,10 +492,7 @@ function yb_createBitOptionsForm(option_field){
     schedule_button.setAttribute("type","button");
     schedule_button.setAttribute("data-state","0");
     schedule_button.style.gridColumn = "2";
-    schedule_button.addEventListener("click", function() {
-
-        yb_handleBitOption(this);
-    });
+    schedule_button.addEventListener("click", yb_handleBitOption);
     bit_options.appendChild(schedule_button);
 
     //Options button for auto deleting bits
