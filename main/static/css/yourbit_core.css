@@ -2339,6 +2339,13 @@ only be used for object transforms (shaping and scaling)
         grid-template-columns: 2fr 1fr;
         column-gap: 5px;
     }
+
+    #evaporate-form-fields {
+        display: grid;
+        position: relative;
+        grid-template-columns: 2fr 1fr;
+        column-gap: 5px;
+    }
   
 
     #scope-options {
