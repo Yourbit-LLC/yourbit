@@ -388,8 +388,8 @@ function yb_scheduleMenu(this_element) {
 }
 
 function yb_closeBitOption(this_element) {
-    let menu_element = document.getElementById("yb-options-up");
-    menu_element.remove();
+    
+    this_element.remove();
     this_element.setAttribute("data-state", "0");
     this_element.removeEventListener("click", yb_closeBitOption);
     this_element.addEventListener("click", yb_handleBitOption);
