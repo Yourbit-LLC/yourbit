@@ -345,7 +345,7 @@ function yb_toggleScope(this_element){
 }
 
 
-function yb_closeBitOption(event) {
+var yb_closeBitOption = function (event) {
     this_element = event.target;
     let action = this_element.getAttribute("name");
     this_element.setAttribute("data-state", "0");
@@ -422,7 +422,7 @@ function yb_scheduleMenu(this_element) {
     parent_element.appendChild(menu_element);
 }
 
-function yb_handleBitOption(event){
+var yb_handleBitOption = function(event){
     let this_element = event.target;
     //Get button name to identify action
     let action = this_element.getAttribute("name");
