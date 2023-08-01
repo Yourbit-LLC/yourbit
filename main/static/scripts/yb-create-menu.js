@@ -358,11 +358,11 @@ function yb_scheduleMenu(this_element) {
     let form_fields = yb_createElement("div", "schedule-form-fields", "yb-options-form-fields");
     
 
-    let date_field = yb_createInput("date", "yb-single-line-input", "schedule-date", "");
+    let date_field = yb_createInput("date", "yb-single-line-input", "schedule-date", "Publish Date");
     date_field.setAttribute("style", "grid-column: 1; background-color: rgba(255,255,255,0.5");
     form_fields.appendChild(date_field);
 
-    let time_field = yb_createInput("time", "yb-single-line-input", "schedule-time", "");
+    let time_field = yb_createInput("time", "yb-single-line-input", "schedule-time", "Time");
     time_field.setAttribute("style", "grid-column: 2; background-color: rgba(255,255,255,0.5");
     form_fields.appendChild(time_field);
     
