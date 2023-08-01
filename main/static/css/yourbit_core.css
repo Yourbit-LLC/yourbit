@@ -2324,7 +2324,7 @@ only be used for object transforms (shaping and scaling)
     #schedule-form-fields {
         display: grid;
         position: relative;
-        grid-template: 2fr 1fr;
+        grid-template-columns: 2fr 1fr;
     }
   
 
