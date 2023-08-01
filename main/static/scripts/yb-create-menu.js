@@ -361,9 +361,9 @@ function yb_scheduleMenu(this_element) {
     let date_field = yb_createInput("text", "yb-single-line-input", "schedule-date", "Publish Date");
     date_field.setAttribute("style", "grid-column: 1; background-color: rgba(255,255,255,0.5");
     date_field.addEventListener("click", function(){
-        
+        this.blur();
         this.type = "date";
-        this.focus();
+        setTimeout(this.focus(), 100);
     });
     form_fields.appendChild(date_field);
 
@@ -371,8 +371,9 @@ function yb_scheduleMenu(this_element) {
     let time_field = yb_createInput("text", "yb-single-line-input", "schedule-time", "Time");
     time_field.setAttribute("style", "grid-column: 2; background-color: rgba(255,255,255,0.5");
     time_field.addEventListener("click", function(){
+        this.blur();
         this.type = "time";
-        this.focus();
+        setTimeout(this.focus(), 100);
     });
     form_fields.appendChild(time_field);
     
