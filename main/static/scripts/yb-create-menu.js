@@ -345,8 +345,8 @@ function yb_toggleScope(this_element){
 }
 
 
-function yb_closeBitOption(event) {
-    this_element = event.target;
+function yb_closeBitOption(e) {
+    this_element = e.currentTarget;
     let action = this_element.getAttribute("name");
     this_element.setAttribute("data-state", "0");
     this_element.removeEventListener("click", yb_closeBitOption);
@@ -381,9 +381,7 @@ function yb_scheduleMenu(this_element) {
     menu_element.setAttribute("style", "width: 90%; margin: 0 auto;");
 
     //Event Listener for closing menu
-    this_element.removeEventListener("click", function() {
-        yb_handleBitOption(this);
-    });
+    this_element.removeEventListener("click", yb_handleBitOption(this));
     this_element.addEventListener("click", yb_closeBitOption);
 
     let parent_element = this_element.parentElement;
@@ -424,8 +422,8 @@ function yb_scheduleMenu(this_element) {
     parent_element.appendChild(menu_element);
 }
 
-function yb_handleBitOption(event){
-    let this_element = event.target;
+function yb_handleBitOption(e){
+    let this_element = e.currentTarget;
     //Get button name to identify action
     let action = this_element.getAttribute("name");
     this_element.setAttribute("data-state", "1");
