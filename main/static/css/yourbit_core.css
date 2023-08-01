@@ -2320,7 +2320,7 @@ only be used for object transforms (shaping and scaling)
         border-radius: 10px;
         width: 90vw;
         height: 150px;
-        display: none;
+        opacity: 0;
 
     }
 

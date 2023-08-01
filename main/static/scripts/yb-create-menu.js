@@ -419,7 +419,7 @@ function yb_scheduleMenu(this_element) {
     menu_element.appendChild(form_fields);
     menu_element.appendChild(submission_button);
     parent_element.appendChild(menu_element);
-    menu_element.fadeIn();
+    $("#schedule-menu").animate({opacity: 1}, 500);
 }
 
 var yb_handleBitOption = function(event){
