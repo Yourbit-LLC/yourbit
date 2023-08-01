@@ -364,10 +364,10 @@ function yb_scheduleMenu(this_element) {
     time_field.setAttribute("style", "grid-column: 2; background-color: rgba(255,255,255,0.5");
     form_fields.appendChild(time_field);
     
-    let submission_button = yb_createButton("set_schedule", "yb-submit-button", "yb-submit-button", "Schedule");
+    let submission_button = yb_createButton("set_schedule", "yb-submit-button", "yb-form-button", "Schedule");
     submission_button.setAttribute("type", "button");
     submission_button.setAttribute("style", "margin-top: 10px; text-align: center;");
-    form_fields.appendChild(submission_button);
+    menu_element.appendChild(submission_button);
     
     menu_element.appendChild(form_fields);
     this_element.appendChild(menu_element);
