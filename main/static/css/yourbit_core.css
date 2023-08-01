@@ -575,6 +575,10 @@ only be used for object transforms (shaping and scaling)
         transition: 0.3s;
     }
 
+    svg {
+        pointer-events: none;
+    }
+
     
 
     /* -- Search Interface -- */
