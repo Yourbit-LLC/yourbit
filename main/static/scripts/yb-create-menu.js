@@ -369,7 +369,7 @@ function yb_scheduleMenu(this_element) {
 
     let time_field = yb_createInput("text", "yb-single-line-input", "schedule-time", "Time");
     time_field.setAttribute("style", "grid-column: 2; background-color: rgba(255,255,255,0.5");
-    date_field.addEventListener("click", function(){
+    time_field.addEventListener("click", function(){
         this.type = "time";
         this.focus();
     });
