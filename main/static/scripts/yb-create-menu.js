@@ -349,6 +349,8 @@ function yb_scheduleMenu(this_element) {
     let menu_element = yb_createElement("div", "schedule-menu", "yb-options-up");
     menu_element.setAttribute("style", "width: 250px;");
 
+    let parent_element = this_element.parentElement;
+
     let menu_header = yb_createElement("p", "schedule-menu-header", "yb-options-header");
     menu_header.innerHTML = "Schedule";
     menu_element.appendChild(menu_header);
@@ -371,7 +373,7 @@ function yb_scheduleMenu(this_element) {
     
     menu_element.appendChild(form_fields);
     menu_element.appendChild(submission_button);
-    this_element.appendChild(menu_element);
+    parent_element.appendChild(menu_element);
 }
 
 function yb_handleBitOption(this_element){

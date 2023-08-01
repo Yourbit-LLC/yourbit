@@ -2308,6 +2308,7 @@ only be used for object transforms (shaping and scaling)
         left: 50%;
         transform: translate(-50%, 0);
         padding: 5px 5px 5px 5px;
+        border-radius: 10px;
 
     }
 
