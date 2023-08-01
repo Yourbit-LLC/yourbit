@@ -418,7 +418,7 @@ function yb_handleBitOption(this_element){
     //Event Listener for closing menu
     this_element.removeEventListener("click", yb_handleBitOption);
     this_element.addEventListener("click", function() {
-        yb_closeBitOption(this_element)
+        yb_closeBitOption(this_element, action)
     });
 
     //Change icon to close
