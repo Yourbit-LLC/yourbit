@@ -377,7 +377,7 @@ var yb_closeBitOption = function (event) {
 
 function yb_scheduleMenu(this_element) {
     let menu_element = yb_createElement("div", "schedule-menu", "yb-options-up");
-    menu_element.setAttribute("style", "width: 90%; margin: 0 auto;");
+    menu_element.setAttribute("style", "margin: 0 auto;");
 
     //Event Listener for closing menu
     this_element.removeEventListener("click", yb_handleBitOption);
