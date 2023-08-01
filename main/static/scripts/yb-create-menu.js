@@ -398,10 +398,10 @@ function yb_closeBitOption(this_element) {
 function yb_handleBitOption(this_element){
     
     let this_button = this_element.getAttribute("name");
-    this_button.setAttribute("data-state", "1");
+    this_element.setAttribute("data-state", "1");
 
-    this_button.removeEventListener("click", yb_handleBitOption);
-    this_button.addEventListener("click", yb_closeBitOption);
+    this_element.removeEventListener("click", yb_handleBitOption);
+    this_element.addEventListener("click", yb_closeBitOption);
     this_element.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>`;
 
     if (this_button === "schedule") {
