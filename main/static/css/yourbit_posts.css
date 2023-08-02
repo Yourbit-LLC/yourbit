@@ -19,7 +19,7 @@
       transform: scale(1);
     }
     50% {
-    transform: scale(0.8);
+    transform: scale(0.9);
     }
     100% {
     transform: scale(1);
@@ -139,7 +139,7 @@
     }
 
     .post-wrapper.animate {
-        animation: yb-press-bit 0.4s;
+        animation: yb-press-bit 0.2s;
     }
 
     .container-bit-chat {
