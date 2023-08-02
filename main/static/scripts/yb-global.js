@@ -291,6 +291,7 @@ function hideContextMenu(type, this_element){
     if (type === "close"){
         target_element.style.zIndex = "1";
     }
+    this_element.classList.remove('animate')
 }
 
 function yb_handleEditBit(this_element) {
