@@ -74,10 +74,6 @@ Refer to the interactive codex for current style guidelines for Yourbit*/
     animation: yb-press-filter 0.3s linear 1;
 }
 
-.yb-press-bit {
-    animation: yb-press-bit 0.5s linear 1;
-}
-
 .loading-circle {
     position: relative;
     width: 20px;

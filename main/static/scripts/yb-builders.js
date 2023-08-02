@@ -102,7 +102,7 @@ function BuildBit(bit, liked_bits, disliked_bits){
         let options_element = event.currentTarget;
         let options_id = options_element.getAttribute("data-id");
         let this_element = document.getElementById(`bit-${options_id}`);
-        this_element.classList.add('press-bit');
+        this_element.classList.add('animate');
         yb_buildContextMenu(this_element);
     });
 
@@ -536,7 +536,7 @@ function yb_buildContextMenu(this_element){
         hideContextMenu("close", this_element);
     });
 
-    setTimeout(this_element.classList.remove('press-bit'), 1000);
+    setTimeout(this_element.classList.remove('animate'), 1000);
 
 }
 
