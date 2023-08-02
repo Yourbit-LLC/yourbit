@@ -536,7 +536,7 @@ function yb_buildContextMenu(this_element){
         hideContextMenu("close", this_element);
     });
 
-    // setTimeout(this_element.classList.remove('animate'), 1000);
+    setTimeout(this_element.classList.remove('animate'), 1000);
 
 }
 
