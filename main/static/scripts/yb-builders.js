@@ -28,7 +28,8 @@ function shrinkVideo(detail) {
     if (!video.paused && video.currentTime > 0 && containerBottom <= windowHeight) {
       const newHeight = windowHeight - containerTop;
       video.style.position = 'fixed';
-      video.style.bottom = '0';
+      video.style.bottom = '100px';
+      video.style.zIndex = '9999';
       video.style.width = '50%'; // You can adjust the width to your preference
       video.style.height = newHeight + 'px';
   
