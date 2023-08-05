@@ -31,9 +31,7 @@ function shrinkVideo(detail) {
       video.style.position = 'fixed';
       video.style.bottom = '0';
       video.style.width = '50%'; // You can adjust the width to your preference
-    } else {
-        clearInterval(check_interval);
-    }
+    } 
   }
 let check_interval;
 
