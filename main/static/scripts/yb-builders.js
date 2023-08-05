@@ -22,6 +22,9 @@ function shrinkVideo(detail) {
     let videoHeight = video.offsetHeight;
     let containerTop = container.offsetTop;
 
+    console.log("container top: " + containerTop + " video height: " + videoHeight);
+
+
     console.log("checking scroll position of video...")
   
     if (!video.paused && video.currentTime > 0 && containerTop + videoHeight <= 0) {
