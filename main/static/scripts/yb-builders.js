@@ -22,7 +22,7 @@ function shrinkVideo(detail) {
     let container = document.getElementById('content-container');
     let videoHeight = this_bit.offsetHeight;
     let containerTop = container.offsetTop;
-
+    console.log(this_id);
     console.log("container top: " + containerTop + " video height: " + videoHeight);
 
 
