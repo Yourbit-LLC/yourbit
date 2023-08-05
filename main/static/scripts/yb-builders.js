@@ -19,20 +19,21 @@ function shrinkVideo(detail) {
     let this_id = this_element.getAttribute('data-id');
     let video = document.getElementById('video-'+this_id);
     let container = document.getElementById('bit-'+this_id);
+    let containerRect = container.getBoundingClientRect();
     let videoHeight = video.offsetHeight;
-    let containerTop = container.offsetTop;
-    console.log(this_id);
-    console.log("container top: " + containerTop + " video height: " + videoHeight);
-
-
-    console.log("checking scroll position of video...")
+    let containerTop = containerRect.top + window.scrollY;
+    let containerBottom = containerTop + videoHeight;
+    let windowHeight = window.innerHeight;
   
-    if (!video.paused && video.currentTime > 0 && containerTop + videoHeight <= 0) {
+    if (!video.paused && video.currentTime > 0 && containerBottom <= windowHeight) {
+      const newHeight = windowHeight - containerTop;
       video.style.position = 'fixed';
       video.style.bottom = '0';
       video.style.width = '50%'; // You can adjust the width to your preference
-    } 
-  }
+      video.style.height = newHeight + 'px';
+  
+    }
+}
 let check_interval;
 
 const yb_enableScrollDetect = function(event) {
