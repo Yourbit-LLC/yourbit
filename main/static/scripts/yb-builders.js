@@ -17,10 +17,9 @@ function showProfileImage(){
 function shrinkVideo(detail) {
     let this_element = detail.target;
     let this_id = this_element.getAttribute('data-id');
-    let this_bit = document.getElementById('bit-'+this_id);
     let video = document.getElementById('video-'+this_id);
-    let container = document.getElementById('content-container');
-    let videoHeight = this_bit.offsetHeight;
+    let container = document.getElementById('bit-'+this_id);
+    let videoHeight = video.offsetHeight;
     let containerTop = container.offsetTop;
     console.log(this_id);
     console.log("container top: " + containerTop + " video height: " + videoHeight);
