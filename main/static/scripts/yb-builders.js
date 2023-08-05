@@ -161,7 +161,7 @@ function BuildBit(bit, liked_bits, disliked_bits){
 
         new_bit.appendChild(video_player);
 
-        video_player.addEventListener("click", yb_initVideoUI());
+        // video_player.addEventListener("click", yb_initVideoUI());
     }
     
 

@@ -176,6 +176,22 @@ function yb_createScript(source){
     return new_script;
 }
 
+function shrinkVideo() {
+    const video = document.getElementById('myVideo');
+    const container = document.querySelector('.video-container');
+    const videoHeight = video.offsetHeight;
+    const containerTop = container.offsetTop;
+  
+    if (!video.paused && video.currentTime > 0 && containerTop + videoHeight <= 0) {
+      video.style.position = 'fixed';
+      video.style.bottom = '0';
+      video.style.width = '50%'; // You can adjust the width to your preference
+    } else {
+      video.style.position = 'static';
+      video.style.width = '100%';
+    }
+  }
+
 
 function yb_createButton(name, yb_id, yb_class, label) {
     let new_element = yb_createElement("button", yb_id, yb_class);
@@ -291,7 +307,7 @@ function hideContextMenu(type, this_element){
     if (type === "close"){
         target_element.style.zIndex = "1";
     }
-    this_element.classList.remove('animate')
+    this_element.classList.remove('animate');
 }
 
 function yb_handleEditBit(this_element) {
@@ -308,7 +324,7 @@ function yb_handleEditBit(this_element) {
     
     showCreateBit(raiseCreateBit);
 
-    yb_chatBitForm(form, type_field, option_field, script_source);
+    yb_chatBitForm(form, type_field, option_field, script_source, true, this_id);
 
     let hidden_field = yb_createInput("hidden", "none", "bit-id-hidden-field", "none");
     hidden_field.setAttribute("value", this_id);

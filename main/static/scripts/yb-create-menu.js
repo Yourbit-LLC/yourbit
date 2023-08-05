@@ -584,7 +584,7 @@ function yb_createBitOptionsForm(option_field){
 }
 
 //Function for dynamically generating form for creating a charbit
-function yb_chatBitForm(form, type_field, option_field, script_source, edit_mode = false) {
+function yb_chatBitForm(form, type_field, option_field, script_source, edit_mode = false, bit_id = null) {
         let sub_function_script = document.getElementById("sub-function-script")
         let this_source = document.getElementById("create-bit-source").value;
         let container = document.getElementById("create-bit-mobile");
