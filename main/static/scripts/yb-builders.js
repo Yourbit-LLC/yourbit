@@ -189,7 +189,7 @@ function BuildBit(bit, liked_bits, disliked_bits){
 
         // video_player.addEventListener("click", yb_initVideoUI());
         // Event listener to call the function on video play
-        const video = document.getElementById('myVideo');
+        let video = document.getElementById('video-'+id);
         video.addEventListener('play', yb_enableScrollDetect);
     }
     
