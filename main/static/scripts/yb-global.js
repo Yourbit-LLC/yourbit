@@ -176,22 +176,6 @@ function yb_createScript(source){
     return new_script;
 }
 
-function shrinkVideo() {
-    const video = document.getElementById('myVideo');
-    const container = document.querySelector('.video-container');
-    const videoHeight = video.offsetHeight;
-    const containerTop = container.offsetTop;
-  
-    if (!video.paused && video.currentTime > 0 && containerTop + videoHeight <= 0) {
-      video.style.position = 'fixed';
-      video.style.bottom = '0';
-      video.style.width = '50%'; // You can adjust the width to your preference
-    } else {
-      video.style.position = 'static';
-      video.style.width = '100%';
-    }
-  }
-
 
 function yb_createButton(name, yb_id, yb_class, label) {
     let new_element = yb_createElement("button", yb_id, yb_class);

@@ -14,6 +14,32 @@ function showProfileImage(){
     
 }
 
+function shrinkVideo(detail) {
+    let this_element = detail.target;
+    let this_id = this_element.getAttribute('data-id');
+    let video = document.getElementById('video-'+this_id);
+    let container = document.getElementById('content-container');
+    let videoHeight = video.offsetHeight;
+    let containerTop = container.offsetTop;
+
+    console.log("checking scroll position of video...")
+  
+    if (!video.paused && video.currentTime > 0 && containerTop + videoHeight <= 0) {
+      video.style.position = 'fixed';
+      video.style.bottom = '0';
+      video.style.width = '50%'; // You can adjust the width to your preference
+    } else {
+        clearInterval(check_interval);
+    }
+  }
+let check_interval;
+
+const yb_enableScrollDetect = function(event) {
+
+    check_interval = setInterval(shrinkVideo, 200, event);
+
+}
+
 //Function for generating bits
 function BuildBit(bit, liked_bits, disliked_bits){
    
@@ -158,10 +184,13 @@ function BuildBit(bit, liked_bits, disliked_bits){
         video_player.setAttribute("src", bit_video);
         video_player.setAttribute("controls", "true");
         video_player.setAttribute("playsinline", "true");
-
+        video_player.setAttribute("data-id", id);
         new_bit.appendChild(video_player);
 
         // video_player.addEventListener("click", yb_initVideoUI());
+        // Event listener to call the function on video play
+        const video = document.getElementById('myVideo');
+        video.addEventListener('play', yb_enableScrollDetect);
     }
     
 
