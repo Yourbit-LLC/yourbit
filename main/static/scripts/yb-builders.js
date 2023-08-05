@@ -196,7 +196,7 @@ function BuildBit(bit, liked_bits, disliked_bits){
         // Event listener to call the function on video play
         
         video_player.addEventListener('play', yb_enableScrollDetect);
-        video_player.addEventListener('play', yb_enableScrollDetect);
+        video_player.addEventListener('pause', yb_disableScrollDetect);
     }
     
 
