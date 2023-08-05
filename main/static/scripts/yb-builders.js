@@ -17,9 +17,10 @@ function showProfileImage(){
 function shrinkVideo(detail) {
     let this_element = detail.target;
     let this_id = this_element.getAttribute('data-id');
+    let this_bit = document.getElementById('bit-'+this_id);
     let video = document.getElementById('video-'+this_id);
     let container = document.getElementById('content-container');
-    let videoHeight = video.offsetHeight;
+    let videoHeight = this_bit.offsetHeight;
     let containerTop = container.offsetTop;
 
     console.log("container top: " + containerTop + " video height: " + videoHeight);
@@ -37,10 +38,13 @@ let check_interval;
 
 const yb_enableScrollDetect = function(event) {
 
-    check_interval = setInterval(shrinkVideo, 200, event);
+    check_interval = setInterval(shrinkVideo, 500, event);
 
 }
 
+function yb_disableScrollDetect() {
+    clearInterval(check_interval);
+}
 //Function for generating bits
 function BuildBit(bit, liked_bits, disliked_bits){
    
@@ -191,6 +195,7 @@ function BuildBit(bit, liked_bits, disliked_bits){
         // video_player.addEventListener("click", yb_initVideoUI());
         // Event listener to call the function on video play
         
+        video_player.addEventListener('play', yb_enableScrollDetect);
         video_player.addEventListener('play', yb_enableScrollDetect);
     }
     
