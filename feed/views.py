@@ -22,6 +22,9 @@ import markdown
 import pytz
 import os
 import requests
+import boto3
+from botocore.exceptions import ClientError
+
 
 #Internal Imports
 from user_profile.models import Profile, Bit
