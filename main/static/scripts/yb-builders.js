@@ -38,7 +38,7 @@ function shrinkVideo(entries, observer) {
       
         video.style.position = 'absolute';
         video.style.bottom = '100px';
-        video.style.width = '45%'; // You can adjust the width to your preference
+        video.style.width = '50%'; // You can adjust the width to your preference
         video.style.height = 'auto';
         video.style.left = '50%';
         video.style.transform = 'translateX(-50%)';
