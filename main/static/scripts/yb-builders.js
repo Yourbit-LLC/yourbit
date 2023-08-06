@@ -9,43 +9,35 @@
 
 
 */
+
 function showProfileImage(){
     $(".large-profile-image").animate({"height": "150px", "width":"150px"}, 'fast');
     
 }
 
-function shrinkVideo(detail) {
-    let this_element = detail.target;
-    let this_id = this_element.getAttribute('data-id');
-    let video = document.getElementById('video-'+this_id);
-    let container = document.getElementById('bit-'+this_id);
-    let containerRect = container.getBoundingClientRect();
-    let videoHeight = video.offsetHeight;
-    let containerTop = containerRect.top + window.scrollY;
-    let containerBottom = containerTop + videoHeight;
-    let windowHeight = window.innerHeight;
+const video_observer = new IntersectionObserver(shrinkVideo, { threshold: 0.5 });
+
+function shrinkVideo(entries, observer) {
+    const video = entries[0].target;
+    const videoHeight = video.offsetHeight;
+    const containerTop = entries[0].boundingClientRect.top;
+    const windowHeight = window.innerHeight;
   
-    if (!video.paused && video.currentTime > 0 && containerBottom <= windowHeight) {
-      const newHeight = windowHeight - containerTop;
-      video.style.position = 'fixed';
+    if (!video.paused && video.currentTime > 0 && containerTop + videoHeight <= windowHeight) {
+      
+      video.style.position = 'absolute';
       video.style.bottom = '100px';
-      video.style.zIndex = '9999';
-      video.style.width = '50%'; // You can adjust the width to your preference
-      video.style.height = newHeight + 'px';
-  
+      video.style.width = '35%'; // You can adjust the width to your preference
+      video.style.height = 'auto';
+
+
+    } else {
+      video.style.position = 'static';
+      video.style.width = '100%';
+      video.style.height = 'auto';
     }
-}
-let check_interval;
+  }
 
-const yb_enableScrollDetect = function(event) {
-
-    check_interval = setInterval(shrinkVideo, 500, event);
-
-}
-
-function yb_disableScrollDetect() {
-    clearInterval(check_interval);
-}
 //Function for generating bits
 function BuildBit(bit, liked_bits, disliked_bits){
    
@@ -193,11 +185,8 @@ function BuildBit(bit, liked_bits, disliked_bits){
         video_player.setAttribute("data-id", id);
         new_bit.appendChild(video_player);
 
-        // video_player.addEventListener("click", yb_initVideoUI());
-        // Event listener to call the function on video play
-        
-        video_player.addEventListener('play', yb_enableScrollDetect);
-        video_player.addEventListener('pause', yb_disableScrollDetect);
+        //Add an observer to the video
+        video_observer.observe(video_player);
     }
     
 
