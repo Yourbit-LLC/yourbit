@@ -722,7 +722,7 @@ def video_stream(request, video_url):
     # Check if the request was successful and the content is available
     if response.status_code == 200:
         # Set the 'Accept-Ranges' header to enable byte range requests
-        response = FileResponse(response.content, content_type='video/mp4')
+        response = FileResponse(response.content, content_type='video/mov')
         response['Accept-Ranges'] = 'bytes'
         return response
     else:
