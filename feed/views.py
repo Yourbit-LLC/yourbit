@@ -713,18 +713,32 @@ class BitDetailView(View):
         write_comment = CommentForm()
 
 def video_stream(request, video_id):
-    # You may want to add some validation or security checks on the video_url parameter
-    # before using it to retrieve the video content.
     this_bit = Bit.objects.get(pk=video_id)
+    video_path = this_bit.video.path
+    video_file = open(video_path, 'rb')
+    response = FileResponse(video_file, content_type='video/mp4')
 
-    # Check if the request was successful and the content is available
-    if response.status_code == 200:
-        # Set the 'Accept-Ranges' header to enable byte range requests
-        response = FileResponse(this_bit.video, content_type='video/mov')
-        response['Accept-Ranges'] = 'bytes'
+    # Set the 'Accept-Ranges' header to enable byte range requests
+    response['Accept-Ranges'] = 'bytes'
+
+    # Check for byte range requests
+    if 'HTTP_RANGE' in request.META:
+        range_header = request.META.get('HTTP_RANGE')
+        video_size = os.path.getsize(video_path)
+        start, end = parse_byte_range(range_header, video_size)
+
+        if start is None:
+            return HttpResponse(status=416)  # Requested range not satisfiable
+        if start == 0 and end == video_size - 1:
+            return response
+
+        response.status_code = 206  # Partial Content
+        response['Content-Range'] = f'bytes {start}-{end}/{video_size}'
+        response['Content-Length'] = str(end - start + 1)
+        video_file.seek(start)
         return response
-    else:
-        return HttpResponse(status=404)  # Video not found or inaccessible
+
+    return response
 
 def parse_byte_range(range_header, video_size):
     _, byte_range = range_header.split('=')
