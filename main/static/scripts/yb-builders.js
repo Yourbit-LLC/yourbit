@@ -199,7 +199,7 @@ function BuildBit(bit, liked_bits, disliked_bits){
     if (type === 'video'){
         let bit_video = bit.video
         let video_player = yb_createElement("video", `video-${id}`, "attached-video");
-        video_player.setAttribute("src", `/bitstream/video/${bit_video}/`);
+        video_player.setAttribute("src", `/bitstream/video/${bit_id}/`);
         video_player.setAttribute("controls", "true");
         video_player.setAttribute("playsinline", "true");
         video_player.setAttribute("data-id", id);

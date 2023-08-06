@@ -712,12 +712,14 @@ class BitDetailView(View):
     def post(self, request, pk, *args, **kwargs):
         write_comment = CommentForm()
 
-def video_stream(request, video_url):
+def video_stream(request, video_id):
     # You may want to add some validation or security checks on the video_url parameter
     # before using it to retrieve the video content.
+    this_bit = Bit.objects.get(pk=video_id)
+
 
     # Fetch the video content from the external URL
-    response = requests.get(video_url)
+    response = requests.get(this_bit.video.url)
 
     # Check if the request was successful and the content is available
     if response.status_code == 200:
