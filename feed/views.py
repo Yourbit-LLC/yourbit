@@ -717,14 +717,10 @@ def video_stream(request, video_id):
     # before using it to retrieve the video content.
     this_bit = Bit.objects.get(pk=video_id)
 
-
-    # Fetch the video content from the external URL
-    response = requests.get(this_bit.video)
-
     # Check if the request was successful and the content is available
     if response.status_code == 200:
         # Set the 'Accept-Ranges' header to enable byte range requests
-        response = FileResponse(response.content, content_type='video/mov')
+        response = FileResponse(this_bit.video, content_type='video/mov')
         response['Accept-Ranges'] = 'bytes'
         return response
     else:
