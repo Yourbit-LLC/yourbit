@@ -719,7 +719,7 @@ def video_stream(request, video_id):
 
 
     # Fetch the video content from the external URL
-    response = requests.get(this_bit.video.url)
+    response = requests.get(this_bit.video)
 
     # Check if the request was successful and the content is available
     if response.status_code == 200:
