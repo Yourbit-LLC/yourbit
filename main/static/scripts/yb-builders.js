@@ -17,24 +17,37 @@ function showProfileImage(){
 
 const video_observer = new IntersectionObserver(shrinkVideo, { threshold: 0.5 });
 
+// Function to reparent the video element to a new parent
+function yb_videoToNav(video) {
+    
+    let newParent = document.getElementById('nav');
+    
+    newParent.appendChild(video);
+    // Or you can use the insertBefore method to insert before a specific element within newParent
+    // newParent.insertBefore(video, newParent.firstChild);
+  }
+  
+
 function shrinkVideo(entries, observer) {
-    const video = entries[0].target;
-    const videoHeight = video.offsetHeight;
-    const containerTop = entries[0].boundingClientRect.top;
-    const windowHeight = window.innerHeight;
+    let video = entries[0].target;
+    let videoHeight = video.offsetHeight;
+    let containerTop = entries[0].boundingClientRect.top;
+    let windowHeight = window.innerHeight;
   
     if (!video.paused && video.currentTime > 0 && containerTop + videoHeight <= windowHeight) {
       
-      video.style.position = 'absolute';
-      video.style.bottom = '100px';
-      video.style.width = '35%'; // You can adjust the width to your preference
-      video.style.height = 'auto';
+        video.style.position = 'absolute';
+        video.style.bottom = '100px';
+        video.style.width = '35%'; // You can adjust the width to your preference
+        video.style.height = 'auto';
+
+        yb_videoToNav(video);
 
 
     } else {
-      video.style.position = 'static';
-      video.style.width = '100%';
-      video.style.height = 'auto';
+        video.style.position = 'static';
+        video.style.width = '100%';
+        video.style.height = 'auto';
     }
   }
 
