@@ -40,6 +40,10 @@ function shrinkVideo(entries, observer) {
         video.style.bottom = '100px';
         video.style.width = '35%'; // You can adjust the width to your preference
         video.style.height = 'auto';
+        video.style.left = '50%';
+        video.style.transform = 'translateX(-50%)';
+        video.style.zIndex = '1000';
+
 
         yb_videoToNav(video);
 
