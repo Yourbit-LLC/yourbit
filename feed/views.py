@@ -714,7 +714,7 @@ class BitDetailView(View):
 
 def video_stream(request, video_id):
     this_bit = Bit.objects.get(pk=video_id)
-    video_path = this_bit.video.url
+    video_path = this_bit.video
     video_file = open(video_path, 'rb')
     response = FileResponse(video_file, content_type='video/mov')
 
