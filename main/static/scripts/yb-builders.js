@@ -38,11 +38,14 @@ function shrinkVideo(entries, observer) {
       
         video.style.position = 'absolute';
         video.style.bottom = '100px';
-        video.style.width = '35%'; // You can adjust the width to your preference
+        video.style.width = '45%'; // You can adjust the width to your preference
         video.style.height = 'auto';
         video.style.left = '50%';
         video.style.transform = 'translateX(-50%)';
         video.style.zIndex = '1000';
+        video.style.borderRadius = '10px';
+        video.style.boxShadow = '0px 0px 10px 0px rgba(0,0,0,0.75)';
+        video.style.borderColor = 'black';
 
 
         yb_videoToNav(video);
