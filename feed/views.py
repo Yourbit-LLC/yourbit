@@ -12,13 +12,16 @@
 from cgitb import text
 from django.shortcuts import render
 from django.views import View
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, FileResponse
+from django.views.decorators.http import condition
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from itertools import chain
 from operator import attrgetter
 from django.db.models import Q
 import markdown
 import pytz
+import os
+import requests
 
 #Internal Imports
 from user_profile.models import Profile, Bit
@@ -708,3 +711,30 @@ class BitDetailView(View):
 
     def post(self, request, pk, *args, **kwargs):
         write_comment = CommentForm()
+
+def video_stream(request, video_url):
+    # You may want to add some validation or security checks on the video_url parameter
+    # before using it to retrieve the video content.
+
+    # Fetch the video content from the external URL
+    response = requests.get(video_url)
+
+    # Check if the request was successful and the content is available
+    if response.status_code == 200:
+        # Set the 'Accept-Ranges' header to enable byte range requests
+        response = FileResponse(response.content, content_type='video/mp4')
+        response['Accept-Ranges'] = 'bytes'
+        return response
+    else:
+        return HttpResponse(status=404)  # Video not found or inaccessible
+
+def parse_byte_range(range_header, video_size):
+    _, byte_range = range_header.split('=')
+    start, end = byte_range.split('-')
+    start = int(start) if start else 0
+    end = int(end) if end else video_size - 1
+
+    if start >= video_size or end >= video_size or start < 0 or end < 0 or start > end:
+        return None, None
+
+    return start, end
