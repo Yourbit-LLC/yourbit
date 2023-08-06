@@ -716,7 +716,7 @@ def video_stream(request, video_id):
     this_bit = Bit.objects.get(pk=video_id)
     video_path = this_bit.video.path
     video_file = open(video_path, 'rb')
-    response = FileResponse(video_file, content_type='video/mp4')
+    response = FileResponse(video_file, content_type='video/mov')
 
     # Set the 'Accept-Ranges' header to enable byte range requests
     response['Accept-Ranges'] = 'bytes'
