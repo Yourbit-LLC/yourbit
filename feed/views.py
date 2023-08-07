@@ -23,6 +23,8 @@ import pytz
 import os
 import requests
 import boto3
+import environ
+
 from botocore.exceptions import ClientError
 
 
@@ -31,6 +33,7 @@ from user_profile.models import Profile, Bit
 from YourbitAccounts.models import Account as User
 from .builders import BuildBit
 from .forms import *
+
 
 # Create your views here.
 class Home(View):
@@ -716,12 +719,15 @@ class BitDetailView(View):
         write_comment = CommentForm()
 
 def video_stream(request, video_id):
+    env = environ.Env()
+    environ.Env.read_env()
+
     this_bit = Bit.objects.get(pk=video_id)
     video_key = this_bit.video_key
 
     #Read AWS credentials from environment variables
-    aws_access_key_id = os.environ.get('BUCKET_ACCESS_KEY')
-    aws_secret_access_key = os.environ.get('BUCKET_SECRET_KEY')
+    aws_access_key_id = env('LINODE_BUCKET_ACCESS_KEY')
+    aws_secret_access_key = env('LINODE_BUCKET_SECRET_KEY')
 
     s3 = boto3.client('s3', aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key)
 
@@ -743,30 +749,30 @@ def video_stream(request, video_id):
         return HttpResponse(str(e), status=404)
         
 
-    video_file = open(video_path, 'rb')
-    response = FileResponse(video_file, content_type='video/mov')
+    # video_file = open(video_path, 'rb')
+    # response = FileResponse(video_file, content_type='video/mov')
 
-    # Set the 'Accept-Ranges' header to enable byte range requests
-    response['Accept-Ranges'] = 'bytes'
+    # # Set the 'Accept-Ranges' header to enable byte range requests
+    # response['Accept-Ranges'] = 'bytes'
 
-    # Check for byte range requests
-    if 'HTTP_RANGE' in request.META:
-        range_header = request.META.get('HTTP_RANGE')
-        video_size = os.path.getsize(video_path)
-        start, end = parse_byte_range(range_header, video_size)
+    # # Check for byte range requests
+    # if 'HTTP_RANGE' in request.META:
+    #     range_header = request.META.get('HTTP_RANGE')
+    #     video_size = os.path.getsize(video_path)
+    #     start, end = parse_byte_range(range_header, video_size)
 
-        if start is None:
-            return HttpResponse(status=416)  # Requested range not satisfiable
-        if start == 0 and end == video_size - 1:
-            return response
+    #     if start is None:
+    #         return HttpResponse(status=416)  # Requested range not satisfiable
+    #     if start == 0 and end == video_size - 1:
+    #         return response
 
-        response.status_code = 206  # Partial Content
-        response['Content-Range'] = f'bytes {start}-{end}/{video_size}'
-        response['Content-Length'] = str(end - start + 1)
-        video_file.seek(start)
-        return response
+    #     response.status_code = 206  # Partial Content
+    #     response['Content-Range'] = f'bytes {start}-{end}/{video_size}'
+    #     response['Content-Length'] = str(end - start + 1)
+    #     video_file.seek(start)
+    #     return response
 
-    return response
+    # return response
 
 def parse_byte_range(range_header, video_size):
     _, byte_range = range_header.split('=')
