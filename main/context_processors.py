@@ -38,6 +38,7 @@ def Customization(request):
         background_color = custom.background_color
         feedback_background_color = custom.feedback_background_color
         background_blur = custom.background_blur
+        background_brightness = custom.background_brightness
         #Community customization
         bit_background = custom.primary_color
         title_color = custom.title_color

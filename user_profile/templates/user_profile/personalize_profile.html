@@ -247,8 +247,11 @@
                 <hr>
                 <p>Effects Options</p>
                 <br>
-                <label for="profile-image-blur-slider">Blur</label>
+                <label for="background-image-blur-slider">Blur</label>
                 <input type = "range" id = "background-image-blur-slider" class = "yb-slider" min = "0" max = "80" value = "{{request.user.profile.custom.background_blur}}" step = "1">
+                <br>
+                <label for="background-image-brightness-slider">Brightness</label>
+                <input type = "range" id = "background-image-brightness-slider" class = "yb-slider" min = "0" max = "80" value = "{{background_brightness}}" step = "1">
             </div>
         </div>
 

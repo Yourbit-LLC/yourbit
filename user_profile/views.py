@@ -537,6 +537,10 @@ class Personalization(LoginRequiredMixin, View):
                 custom.background_blur = value
                 custom.save()
 
+            if option == 'brightness':
+                custom.background_brightness = value
+                custom.save()
+
         if action == 'toggle':
             option = request.POST.get('field')
             value = request.POST.get('value')

@@ -180,12 +180,21 @@ $(document).ready(function() {
         let value = this.value;
 
         BACKGROUND_ELEMENT.style.filter = `blur(${value}px)`;
+        
         change_history["#background-image-blur-slider"] = {"old": BACKGROUND_ELEMENT.style.filter, "new": `${value}`};
         updateCustom("background_effect", "blur", value);
 
     });
-        
 
+    let brightness_slider = document.getElementById("background-image-brightness-slider");
+    brightness_slider.addEventListener("change", function() {
+        let value = this.value;
+        BACKGROUND_ELEMENT.style.filter = `brightness(${value}%)`;
+
+        change_history["#background-image-brightness-slider"] = {"old": BACKGROUND_ELEMENT.style.filter, "new": `${value}`};
+        updateCustom("background_effect", "brightness", value);
+        
+    });
     //Event listener for color select
     var color_circles = document.getElementsByClassName("color-selector");
     for (let i = 0; i < color_circles.length; i++){
