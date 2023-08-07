@@ -1228,6 +1228,8 @@ only be used for object transforms (shaping and scaling)
     /*Universal*/
     .bg-image {
         position: fixed;
+        top:0px;
+        left: 0px;
         min-height: 100vh;
         /* The image used */
       
