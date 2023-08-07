@@ -731,8 +731,14 @@ def video_stream(request, video_id):
     aws_access_key_id = env('LINODE_BUCKET_ACCESS_KEY')
     aws_secret_access_key = env('LINODE_BUCKET_SECRET_KEY')
     bucket_region = env('LINODE_BUCKET_REGION')
-    
-    s3 = boto3.client('s3', region_name=bucket_region, aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key)
+
+    s3 = boto3.client(
+        's3',
+        region_name=bucket_region, 
+        aws_access_key_id=aws_access_key_id, 
+        endpoint_url=f'https://{bucket_region}.linodeobjects.com',
+        aws_secret_access_key=aws_secret_access_key
+    )
 
     try:
         #Fetch the video object from the bucket
