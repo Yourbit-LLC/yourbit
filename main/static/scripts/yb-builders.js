@@ -16,7 +16,7 @@ function showProfileImage(){
 }
 
 const video_observer = new IntersectionObserver(shrinkVideo, { threshold: 0.5 });
-
+const bit_observer = new IntersectionObserver(yb_initBit, {threshold: 0.2});
 // Function to reparent the video element to a new parent
 let checkControlsVisibility = function() {
     clearTimeout(controlsTimeout);
