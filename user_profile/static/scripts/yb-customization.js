@@ -27,22 +27,22 @@ var BIT_PROFILE_IMAGE = document.getElementById("bit-profile-image-image");
 var BACKGROUND_ELEMENT = document.getElementById("bg-image");
 
 //Declare constants for all input elements
-const PROFILE_IMAGE_INPUT = document.getElementById("profile-image-input");
-const BACKGROUND_IMAGE_INPUT = document.getElementById("background-image-input");
-const PRIMARY_COLOR_INPUT = document.getElementById("primary-color-select");
-const SECONDARY_COLOR_INPUT = document.getElementById("accent-color-select");
-const ICON_COLOR_INPUT = document.getElementById("icon-color-select");
-const TEXT_COLOR_INPUT = document.getElementById("pfont-color-select");
-const TITLE_COLOR_INPUT = document.getElementById("tfont-color-select");
-const FEEDBACK_ICON_COLOR_INPUT = document.getElementById("feedback-icon-color-select");
-const FEEDBACK_BACKGROUND_COLOR_INPUT = document.getElementById("feedback-background-color-select");
-const PARAGRAPH_ALIGN_HIDDEN = document.getElementById("hidden-field-alignParagraph");
-const BLUR_RADIUS_INPUT = document.getElementById("blur-radius-select");
+var PROFILE_IMAGE_INPUT = document.getElementById("profile-image-input");
+var BACKGROUND_IMAGE_INPUT = document.getElementById("background-image-input");
+var PRIMARY_COLOR_INPUT = document.getElementById("primary-color-select");
+var SECONDARY_COLOR_INPUT = document.getElementById("accent-color-select");
+var ICON_COLOR_INPUT = document.getElementById("icon-color-select");
+var TEXT_COLOR_INPUT = document.getElementById("pfont-color-select");
+var TITLE_COLOR_INPUT = document.getElementById("tfont-color-select");
+var FEEDBACK_ICON_COLOR_INPUT = document.getElementById("feedback-icon-color-select");
+var FEEDBACK_BACKGROUND_COLOR_INPUT = document.getElementById("feedback-background-color-select");
+var PARAGRAPH_ALIGN_HIDDEN = document.getElementById("hidden-field-alignParagraph");
+var BLUR_RADIUS_INPUT = document.getElementById("blur-radius-select");
 
 
 
-//Declare constants for buttons
-const ALIGN_BUTTONS = {
+//Declare varants for buttons
+var ALIGN_BUTTONS = {
     "left": document.getElementById("button-align-left"),
     "center": document.getElementById("button-align-center"),
     "right": document.getElementById("button-align-right")
