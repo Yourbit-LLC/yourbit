@@ -83,7 +83,7 @@ lang="en"
             {% if user.is_authenticated %}
                 {% if user.profile.custom.background_image %}
                     {% if wallpaper_on %}
-                        <img class="bg-image" id="bg-image" src = "{{user_wallpaper}}">
+                        <img class="bg-image" id="bg-image" style="filter: {{request.user.profile.custom.background_blur}}px; -webkit-filter: {{request.user.profile.custom.background_blur}}px;" src = "{{user_wallpaper}}">
                     {% else %}
                         <div class="bg-image" style="background-color: rgb(25, 25, 25)"></div>
                     {% endif %}
