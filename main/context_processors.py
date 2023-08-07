@@ -37,7 +37,7 @@ def Customization(request):
         feedback_icon_color = custom.feedback_icon_color
         background_color = custom.background_color
         feedback_background_color = custom.feedback_background_color
-
+        background_blur = custom.background_blur
         #Community customization
         bit_background = custom.primary_color
         title_color = custom.title_color
@@ -66,6 +66,7 @@ def Customization(request):
             'user_wallpaper':wallpaper,
             'user_image_small':user_image_small,
             'user_image_large':user_image_large,
+            'background_blur':background_blur,
 
         }
 
