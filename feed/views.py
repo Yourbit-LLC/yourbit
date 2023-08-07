@@ -778,7 +778,9 @@ def video_stream(request, video_id):
             response.status_code = 206  # Partial Content
             response['Content-Range'] = f'bytes {start}-{end}/{video_size}'
             response['Content-Length'] = str(end - start + 1)
-            video_content.seek(start)
+
+            # Seek to the requested position in the video stream
+            video_stream.seek(start)
             return response
 
         return response
