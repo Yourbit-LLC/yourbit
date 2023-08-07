@@ -747,7 +747,7 @@ def video_stream(request, video_id):
         
         #Get the video content and set appropriate headers
         video_content = response['Body'].read()
-        content_type = response['Content-Type']
+        content_type = response['ContentType']
         print(content_type)
         # Create and return the file response
         response = FileResponse(video_content, content_type=content_type)
