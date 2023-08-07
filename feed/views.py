@@ -736,7 +736,7 @@ def video_stream(request, video_id):
         's3',
         region_name=bucket_region, 
         aws_access_key_id=aws_access_key_id, 
-        endpoint_url=f'https://objects-in-yourbit.{bucket_region}.linodeobjects.com',
+        endpoint_url=f'https://{bucket_region}.linodeobjects.com',
         aws_secret_access_key=aws_secret_access_key
     )
 
@@ -751,7 +751,27 @@ def video_stream(request, video_id):
 
         # Create and return the file response
         response = FileResponse(video_content, content_type=content_type)
+            
+        # Set the 'Accept-Ranges' header to enable byte range requests
         response['Accept-Ranges'] = 'bytes'
+
+        # Check for byte range requests
+        if 'HTTP_RANGE' in request.META:
+            range_header = request.META.get('HTTP_RANGE')
+            video_size = os.path.getsize(video_content)
+            start, end = parse_byte_range(range_header, video_size)
+
+            if start is None:
+                return HttpResponse(status=416)  # Requested range not satisfiable
+            if start == 0 and end == video_size - 1:
+                return response
+
+            response.status_code = 206  # Partial Content
+            response['Content-Range'] = f'bytes {start}-{end}/{video_size}'
+            response['Content-Length'] = str(end - start + 1)
+            video_content.seek(start)
+            return response
+
         return response
 
     except ClientError as e:
