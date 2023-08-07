@@ -748,7 +748,7 @@ def video_stream(request, video_id):
         #Get the video content and set appropriate headers
         video_content = response['Body'].read()
         content_type = response['Content-Type'] = response['ContentType']
-
+        print(content_type)
         # Create and return the file response
         response = FileResponse(video_content, content_type=content_type)
             
@@ -758,7 +758,7 @@ def video_stream(request, video_id):
         # Check for byte range requests
         if 'HTTP_RANGE' in request.META:
             range_header = request.META.get('HTTP_RANGE')
-            video_size = os.path.getsize(video_content)
+            video_size = os.path.getsize(response)
             start, end = parse_byte_range(range_header, video_size)
 
             if start is None:
