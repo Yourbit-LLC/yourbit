@@ -724,6 +724,7 @@ def video_stream(request, video_id):
 
     this_bit = Bit.objects.get(pk=video_id)
     video_key = this_bit.video_key
+    print(video_key)
 
     #Read AWS credentials from environment variables
     aws_access_key_id = env('LINODE_BUCKET_ACCESS_KEY')
