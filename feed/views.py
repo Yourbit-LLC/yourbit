@@ -724,13 +724,15 @@ def video_stream(request, video_id):
 
     this_bit = Bit.objects.get(pk=video_id)
     video_key = this_bit.video_key
+
     print(video_key)
 
     #Read AWS credentials from environment variables
     aws_access_key_id = env('LINODE_BUCKET_ACCESS_KEY')
     aws_secret_access_key = env('LINODE_BUCKET_SECRET_KEY')
-
-    s3 = boto3.client('s3', aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key)
+    bucket_region = env('LINODE_BUCKET_REGION')
+    
+    s3 = boto3.client('s3', region_name=bucket_region, aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key)
 
     try:
         #Fetch the video object from the bucket
