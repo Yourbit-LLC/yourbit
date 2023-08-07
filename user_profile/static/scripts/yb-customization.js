@@ -176,7 +176,7 @@ $(document).ready(function() {
     //event listener for blur slider
     let blur_slider = document.getElementById("background-image-blur-slider");
     
-    blur_slider.addEventListener("change", function() {
+    blur_slider.addEventListener("input", function() {
         let value = this.value;
 
         BACKGROUND_ELEMENT.style.filter = `blur(${value}px)`;
