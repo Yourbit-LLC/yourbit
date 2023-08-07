@@ -174,22 +174,23 @@ $(document).ready(function() {
     });
 
     //event listener for blur slider
-    let blur_slider = document.getElementById("background-image-blur-slider");
+    var blur_slider = document.getElementById("background-image-blur-slider");
+    var brightness_slider = document.getElementById("background-image-brightness-slider");
     
     blur_slider.addEventListener("change", function() {
         let value = this.value;
 
-        BACKGROUND_ELEMENT.style.filter = `blur(${value}px)`;
+        BACKGROUND_ELEMENT.style.filter = `blur(${value}px) brightness(${brightness_slider.value}%)`;
         
         change_history["#background-image-blur-slider"] = {"old": BACKGROUND_ELEMENT.style.filter, "new": `${value}`};
         updateCustom("background_effect", "blur", value);
 
     });
 
-    let brightness_slider = document.getElementById("background-image-brightness-slider");
+    
     brightness_slider.addEventListener("change", function() {
         let value = this.value;
-        BACKGROUND_ELEMENT.style.filter = `brightness(${value}%)`;
+        BACKGROUND_ELEMENT.style.filter = `blur(${blur_slider.value}px) brightness(${value}%)`;
 
         change_history["#background-image-brightness-slider"] = {"old": BACKGROUND_ELEMENT.style.filter, "new": `${value}`};
         updateCustom("background_effect", "brightness", value);
