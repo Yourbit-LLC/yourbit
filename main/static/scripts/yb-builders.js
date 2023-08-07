@@ -205,7 +205,7 @@ function BuildBit(bit, liked_bits, disliked_bits){
         video_player.setAttribute("data-id", id);
 
         let video_source = yb_createElement("source", `video-source-${id}`, "video-source");
-        video_source.setAttribute("src", `/bitstream/video/${id}/`);
+        video_source.setAttribute("src", `${bit_video}`);
         
         video_player.appendChild(video_source);
         new_bit.appendChild(video_player);
