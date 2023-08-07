@@ -352,6 +352,7 @@
         border: 2px solid rgb(70, 70, 70);
         grid-row: 3;
         background-color: black;
+        transition: 0.5s;
         
     }
     
