@@ -736,13 +736,14 @@ def video_stream(request, video_id):
         's3',
         region_name=bucket_region, 
         aws_access_key_id=aws_access_key_id, 
-        endpoint_url=f'https://{bucket_region}.linodeobjects.com',
+        endpoint_url=f'https://objects-in-yourbit.{bucket_region}.linodeobjects.com',
         aws_secret_access_key=aws_secret_access_key
     )
 
     try:
         #Fetch the video object from the bucket
         response = s3.get_object(Bucket='objects-in-yourbit', Key='media/' + video_key)
+
         
         #Get the video content and set appropriate headers
         video_content = response['Body'].read()
