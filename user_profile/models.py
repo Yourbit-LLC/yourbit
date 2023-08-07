@@ -155,7 +155,7 @@ class Custom(models.Model):
     background_image = models.ImageField(upload_to='profile/background/%Y/%m/%d', blank=True, default="media/aqua_default_theme.png")
     background_mobile = models.ImageField(upload_to='profile/background/%Y/%m/%d', blank=True, default="media/aqua_default_theme.png")
     background_desktop = ImageSpecField(source='background_image', processors=[SmartResize(1280, 720)], format='PNG')
-    background_blur = models.CharField(max_length=10, default="0")
+    background_blur = models.CharField(max_length=10, default="20")
     
     #bits
     primary_color = models.CharField(max_length=50, default = "#4b4b4b")

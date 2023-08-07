@@ -24,6 +24,8 @@ var MINI_PARAGRAPH = document.getElementById("mini-paragraph");
 var MINI_PARAGRAPH_MOBILE = document.getElementById("preview-paragraph");
 var BIT_PROFILE_IMAGE = document.getElementById("bit-profile-image-image");
 
+var BACKGROUND_ELEMENT = document.getElementById("bg-image");
+
 //Declare constants for all input elements
 const PROFILE_IMAGE_INPUT = document.getElementById("profile-image-input");
 const BACKGROUND_IMAGE_INPUT = document.getElementById("background-image-input");
@@ -36,6 +38,8 @@ const FEEDBACK_ICON_COLOR_INPUT = document.getElementById("feedback-icon-color-s
 const FEEDBACK_BACKGROUND_COLOR_INPUT = document.getElementById("feedback-background-color-select");
 const PARAGRAPH_ALIGN_HIDDEN = document.getElementById("hidden-field-alignParagraph");
 const BLUR_RADIUS_INPUT = document.getElementById("blur-radius-select");
+
+
 
 //Declare constants for buttons
 const ALIGN_BUTTONS = {
@@ -168,6 +172,19 @@ $(document).ready(function() {
             $("#profile-image-input").hide();
         }
     });
+
+    //event listener for blur slider
+    let blur_slider = document.getElementById("background-image-blur-slider");
+    
+    blur_slider.addEventListener("change", function() {
+        let value = this.value;
+
+        BACKGROUND_ELEMENT.style.filter = `blur(${value}px)`;
+        change_history["#background-image-blur-slider"] = {"old": BACKGROUND_ELEMENT.style.filter, "new": `${value}`};
+        updateCustom("background_effect", "blur", value);
+
+    });
+        
 
     //Event listener for color select
     var color_circles = document.getElementsByClassName("color-selector");
