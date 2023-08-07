@@ -17,6 +17,8 @@ import requests
 from settings.models import PrivacySettings
 from django.utils import dateformat, timezone
 import openai
+import uuid
+import os
 
 openai.api_key = "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"
 
@@ -294,7 +296,16 @@ class Publish(View):
             
         else:
             video = request.FILES.get('video')
+            # Generate a unique file name using uuid or any other logic
+            unique_filename = str(uuid.uuid4()) + os.path.splitext(video.name)[1]
+
+            new_bit.video.save(unique_filename, video)
+
+            new_bit.video_key = unique_filename
             new_bit.video = video
+
+            
+
          
         new_bit.body = body
         new_bit.type = new_type

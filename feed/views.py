@@ -717,7 +717,32 @@ class BitDetailView(View):
 
 def video_stream(request, video_id):
     this_bit = Bit.objects.get(pk=video_id)
-    video_path = this_bit.video
+    video_key = this_bit.video_key
+
+    #Read AWS credentials from environment variables
+    aws_access_key_id = os.environ.get('AWS_ACCESS_KEY_ID')
+    aws_secret_access_key = os.environ.get('AWS_SECRET_ACCESS_KEY')
+
+    s3 = boto3.client('s3', aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key)
+
+    try:
+        #Fetch the video object from the bucket
+        response = s3.get_object(Bucket='objects-in-yourbit', Key=video_key)
+        
+        #Get the video content and set appropriate headers
+        video_content = response['Body'].read()
+        content_type = response['Content-Type'] = response['ContentType']
+
+        # Create and return the file response
+        response = FileResponse(video_content, content_type=content_type)
+        response['Accept-Ranges'] = 'bytes'
+        return response
+
+    except ClientError as e:
+        
+        return HttpResponse(str(e), status=404)
+        
+
     video_file = open(video_path, 'rb')
     response = FileResponse(video_file, content_type='video/mov')
 
