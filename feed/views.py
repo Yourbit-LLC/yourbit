@@ -719,7 +719,7 @@ class BitDetailView(View):
         write_comment = CommentForm()
 
 def video_stream(request, video_id):
-    
+    import io
     env = environ.Env()
     environ.Env.read_env()
 
@@ -752,6 +752,9 @@ def video_stream(request, video_id):
         print(content_type)
         # Create and return the file response
         response = FileResponse(video_content, content_type=content_type)
+
+        # Create a file-like object using io.BytesIO
+        video_stream = io.BytesIO(video_content)
             
         # Set the 'Accept-Ranges' header to enable byte range requests
         response['Accept-Ranges'] = 'bytes'
