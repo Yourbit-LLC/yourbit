@@ -25,6 +25,12 @@ function yb_videoToNav(video) {
     newParent.appendChild(video);
     // Or you can use the insertBefore method to insert before a specific element within newParent
     // newParent.insertBefore(video, newParent.firstChild);
+    video.addEventListener("focus", function(){
+        video.style.transform = "scale(1.1)";
+    });
+    video.addEventListener("blur", function(){
+        video.style.transform = "scale(1)";
+    });
   }
   
 
@@ -38,7 +44,7 @@ function shrinkVideo(entries, observer) {
       
         video.style.position = 'absolute';
         video.style.bottom = '100px';
-        video.style.width = '50%'; // You can adjust the width to your preference
+        video.style.width = '40%'; // You can adjust the width to your preference
         video.style.height = 'auto';
         video.style.left = '50%';
         video.style.transform = 'translateX(-50%)';
@@ -47,6 +53,7 @@ function shrinkVideo(entries, observer) {
         video.style.boxShadow = '0px 0px 10px 0px rgba(0,0,0,0.75)';
         video.style.borderColor = 'black';
 
+        
 
         yb_videoToNav(video);
 
