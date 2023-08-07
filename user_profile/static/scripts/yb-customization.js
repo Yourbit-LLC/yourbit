@@ -303,7 +303,7 @@ function showImageSelection() {
 
 //Function for laying images out on a grid
 function yb_createImageGrid(data) {
-    const container = document.querySelector('.image-grid-container');
+    var container = document.querySelector('.image-grid-container');
     data.forEach(item => {
         let image = yb_renderImage(item.image, `yb-photo-${item.id}`, "yb-photo-tile");
         image.src = item.image;
@@ -516,7 +516,7 @@ TITLE_COLOR_INPUT.addEventListener('change', function() {
 });
 
 //Change event listener for text color field
-const paragraph_align_field = document.getElementById('yb-align-text');
+var paragraph_align_field = document.getElementById('yb-align-text');
 paragraph_align_field.addEventListener('change', function() {
 
     //Update preview elements
