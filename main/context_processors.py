@@ -68,6 +68,7 @@ def Customization(request):
             'user_image_small':user_image_small,
             'user_image_large':user_image_large,
             'background_blur':background_blur,
+            'background_brightness':background_brightness,
 
         }
 
