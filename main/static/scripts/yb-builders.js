@@ -26,15 +26,19 @@ function yb_videoToNav(video) {
     // Or you can use the insertBefore method to insert before a specific element within newParent
     // newParent.insertBefore(video, newParent.firstChild);
     video.addEventListener("click", function(){
+        clearTimeout(controlsTimeout);
+
         if (video.controls) {
-            // Increase the scale of the video player when controls are shown
-            video.style.transform = 'translate(-50%) scale(1.2)'; // Adjust the scale value as needed
-          } else {
-            // Reset the scale when controls are hidden
-            video.style.transform = 'translate(-50%) scale(1)';
-          }
-        
-    });
+          // Apply the scale transformation when controls are visible
+          video.style.transform = 'scale(1.2)'; // Adjust the scale value as needed
+        } else {
+          // Reset the scale when controls are not visible
+          video.style.transform = 'scale(1)';
+        }
+      
+        // Set a timeout to check the visibility again after 200 milliseconds
+        controlsTimeout = setTimeout(checkControlsVisibility, 200);
+      });
 
   }
   
