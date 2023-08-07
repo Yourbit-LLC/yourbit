@@ -25,12 +25,17 @@ function yb_videoToNav(video) {
     newParent.appendChild(video);
     // Or you can use the insertBefore method to insert before a specific element within newParent
     // newParent.insertBefore(video, newParent.firstChild);
-    video.addEventListener("focus", function(){
-        video.style.transform = "scale(1.1)";
+    video.addEventListener("click", function(){
+        if (video.controls) {
+            // Increase the scale of the video player when controls are shown
+            video.style.transform = 'scale(1.2)'; // Adjust the scale value as needed
+          } else {
+            // Reset the scale when controls are hidden
+            video.style.transform = 'scale(1)';
+          }
+        
     });
-    video.addEventListener("blur", function(){
-        video.style.transform = "scale(1)";
-    });
+
   }
   
 
