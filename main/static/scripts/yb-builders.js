@@ -18,6 +18,24 @@ function showProfileImage(){
 const video_observer = new IntersectionObserver(shrinkVideo, { threshold: 0.5 });
 
 // Function to reparent the video element to a new parent
+let checkControlsVisibility = function() {
+    clearTimeout(controlsTimeout);
+
+    if (video.controls) {
+      // Apply the scale transformation when controls are visible
+      video.style.transform = 'scale(1.2)'; // Adjust the scale value as needed
+    } else {
+      // Reset the scale when controls are not visible
+      video.style.transform = 'scale(1)';
+
+    }
+
+          
+    // Set a timeout to check the visibility again after 200 milliseconds
+    controlsTimeout = setTimeout(checkControlsVisibility, 200);
+    };
+
+
 function yb_videoToNav(video) {
     
     let newParent = document.getElementById('nav');
@@ -25,20 +43,7 @@ function yb_videoToNav(video) {
     newParent.appendChild(video);
     // Or you can use the insertBefore method to insert before a specific element within newParent
     // newParent.insertBefore(video, newParent.firstChild);
-    video.addEventListener("click", function(){
-        clearTimeout(controlsTimeout);
-
-        if (video.controls) {
-          // Apply the scale transformation when controls are visible
-          video.style.transform = 'scale(1.2)'; // Adjust the scale value as needed
-        } else {
-          // Reset the scale when controls are not visible
-          video.style.transform = 'scale(1)';
-        }
-      
-        // Set a timeout to check the visibility again after 200 milliseconds
-        controlsTimeout = setTimeout(checkControlsVisibility, 200);
-      });
+    video.addEventListener("click", checkControlsVisibility);
 
   }
   
