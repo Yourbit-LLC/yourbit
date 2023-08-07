@@ -719,6 +719,7 @@ class BitDetailView(View):
         write_comment = CommentForm()
 
 def video_stream(request, video_id):
+    
     env = environ.Env()
     environ.Env.read_env()
 
@@ -758,7 +759,15 @@ def video_stream(request, video_id):
         # Check for byte range requests
         if 'HTTP_RANGE' in request.META:
             range_header = request.META.get('HTTP_RANGE')
-            video_size = response['Content-Length']  # Correctly retrieve the video size
+
+            # Try to get video size from 'Content-Length' header
+            video_size = response.get('Content-Length', None)
+
+            # If 'Content-Length' header is not available, try to get video size from S3 object metadata
+            if video_size is None:
+                video_info = s3.head_object(Bucket='objects-in-yourbit', Key='media/' + video_key)
+                video_size = video_info['ContentLength']
+
             start, end = parse_byte_range(range_header, video_size)
 
             if start is None:
@@ -771,6 +780,7 @@ def video_stream(request, video_id):
             response['Content-Length'] = str(end - start + 1)
             video_content.seek(start)
             return response
+
         return response
 
     except ClientError as e:
