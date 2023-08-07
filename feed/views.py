@@ -734,7 +734,7 @@ def video_stream(request, video_id):
 
     try:
         #Fetch the video object from the bucket
-        response = s3.get_object(Bucket='objects-in-yourbit', Key=video_key)
+        response = s3.get_object(Bucket='objects-in-yourbit', Key='media/' + video_key)
         
         #Get the video content and set appropriate headers
         video_content = response['Body'].read()
