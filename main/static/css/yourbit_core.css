@@ -552,7 +552,7 @@ only be used for object transforms (shaping and scaling)
         transition: 0.3s;
     }
 
-    .space-button-active {
+    .space-button.active {
         /* These are the content type buttons seen on the Space Navigator */
         width: 40px;
         height: 30px;
