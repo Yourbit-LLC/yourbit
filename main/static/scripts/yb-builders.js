@@ -458,18 +458,18 @@ function BuildBit(bit, liked_bits, disliked_bits){
 
     let timer;
 
-    new_bit.addEventListener("pointerdown", function(event) {
+    // new_bit.addEventListener("pointerdown", function(event) {
 
-        let this_element = event.currentTarget;
-        timer = setTimeout(yb_buildContextMenu, 1250, this_element); // time in milliseconds 
+    //     let this_element = event.currentTarget;
+    //     timer = setTimeout(yb_buildContextMenu, 1250, this_element); // time in milliseconds 
         
-    });
+    // });
 
 
-    new_bit.addEventListener("pointerup", function() {
-        console.log("mouseup");
-        clearTimeout(timer);
-    });
+    // new_bit.addEventListener("pointerup", function() {
+    //     console.log("mouseup");
+    //     clearTimeout(timer);
+    // });
 
     bit_observer.observe(new_bit, {attributes: true, childList: true, subtree: true});
 
