@@ -37,16 +37,12 @@
         <button class='filter-button' name="public">Public</button>
         
     </div>
-
-    
-
-    <div id="bit-container">
-        <div id="nothing-message">
-            <h2>No active conversations</h2>
-            <button id="beginner-new-conversation">Send Message</button>
-        </div>
+    <div id = "list-container">
     </div>
+    
+    <div id="mobile-spacer">
 
+    </div>
     
 
 <script>
@@ -55,7 +51,7 @@
         yb_showMiniBar();
         yb_showMenuTask();   
         yb_hideSpaceBar();
-        let bit_container = document.getElementById("bit-container");
+        let bit_container = document.getElementById("list-container");
         yb_getConversations(bit_container, "all");
         yb_endTask("#message-task"); 
     })
