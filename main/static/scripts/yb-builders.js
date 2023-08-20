@@ -63,7 +63,7 @@ function yb_videoToNav(video) {
 
 function yb_initBit(id) {
     let type = $(element).attr('data-type');
-    let id = $(element).attr('data-id');
+    
     yb_updateSeenBits(id);
 }
   
