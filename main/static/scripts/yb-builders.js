@@ -23,7 +23,7 @@ const bit_observer = new IntersectionObserver(entries => {
       if (entry.isIntersecting) {
         let this_bit = entry.target;
         let id = this_bit.getAttribute('data-id');
-        yb_initBit(id);
+        yb_initBit(this_bit);
         // This is the specific post in the viewport
         // Now you can perform actions specific to the post
         // For example, you might add a CSS class or trigger some JavaScript logic
@@ -61,9 +61,9 @@ function yb_videoToNav(video) {
 
 }
 
-function yb_initBit(id) {
-    let type = $(element).attr('data-type');
+function yb_initBit(this_bit) {
     
+    let id = this_bit.getAttribute('data-id');
     yb_updateSeenBits(id);
 }
   
