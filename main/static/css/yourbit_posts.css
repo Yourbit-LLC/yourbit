@@ -340,6 +340,8 @@
 
         margin-left: auto;
         margin-right: auto;
+        width: 95vw;
+        max-width: 650px;
     }
     
     .attached-video {

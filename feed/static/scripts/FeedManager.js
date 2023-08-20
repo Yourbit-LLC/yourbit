@@ -14,6 +14,9 @@ var videos = [];
 var isScrolling = false; //Scrolling is false by default, variable is used to prevent issues with context menus on scroll
 var CONTAINER = document.getElementById("content-container"); //used var instead of const to avoid event listener getting stuck
 
+function yb_addBitVisible(element){
+    bits_visible.push(element);
+}
 
 function yb_getDisplay() {
 
@@ -26,12 +29,7 @@ function yb_getDisplay() {
         
         //Check if element is in viewport
         if (isInViewport(element)){
-            let type = $(element).attr('data-type');
-            let id = $(element).attr('data-id');
-            
-            let button_bkd = $(element).attr('data-button-color');
-            let button_color = $(element).attr('data-icon-color');
-            yb_updateSeenBits(id);
+
 
             bits_visible.push(element)
 

@@ -15,8 +15,22 @@ function showProfileImage(){
     
 }
 
+
+
 const video_observer = new IntersectionObserver(shrinkVideo, { threshold: 0.5 });
-const bit_observer = new IntersectionObserver(yb_initBit, {threshold: 0.2});
+const bit_observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        let this_bit = entry.target;
+        let id = this_bit.getAttribute('data-id');
+        yb_initBit(id);
+        // This is the specific post in the viewport
+        // Now you can perform actions specific to the post
+        // For example, you might add a CSS class or trigger some JavaScript logic
+      }
+    });
+  }, { threshold: 0.5 });
+
 // Function to reparent the video element to a new parent
 let checkControlsVisibility = function() {
     clearTimeout(controlsTimeout);
@@ -45,7 +59,13 @@ function yb_videoToNav(video) {
     // newParent.insertBefore(video, newParent.firstChild);
     video.addEventListener("click", checkControlsVisibility);
 
-  }
+}
+
+function yb_initBit(id) {
+    let type = $(element).attr('data-type');
+    let id = $(element).attr('data-id');
+    yb_updateSeenBits(id);
+}
   
 
 function shrinkVideo(entries, observer) {
@@ -459,6 +479,9 @@ function BuildBit(bit, liked_bits, disliked_bits){
         console.log("mouseup");
         clearTimeout(timer);
     });
+
+    bit_observer.observe(new_bit, {attributes: true, childList: true, subtree: true});
+
 
     return {'element_id':element_id, 'built_bit':new_bit}
 
