@@ -9,6 +9,7 @@ var base_url = window.location.origin;
 var feed_script = document.getElementById("feed-script")
 
 $(document).ready(function() {
+
     console.log("document ready function ran");
     console.log(document.readyState)
 
@@ -19,6 +20,7 @@ $(document).ready(function() {
     } else {
         setTimeout(yb_InitializeHome, 500);
     }
+    
 
     // all scripts have finished loading
     // do something here
@@ -28,7 +30,12 @@ $(document).ready(function() {
 
 function yb_InitializeHome(){
     let type = yb_getSessionValues("space");
+
+    let active_space_button = document.getElementById(`${type}-space-button`);
+    active_space_button.classList.add("active");
+
     console.log("home initialized")
+    
     let is_loaded = yb_getLoaded();
     if (is_loaded == true) {
         console.log("home already loaded")
@@ -45,6 +52,7 @@ function yb_InitializeHome(){
     yb_getFeed(data, hideMainSplash, yb_getDisplay, true);
     setTimeout(initUI, 100);
     yb_showMenuTask(); 
+
 }
 
 /*          

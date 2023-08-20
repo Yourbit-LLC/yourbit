@@ -1599,7 +1599,7 @@ only be used for object transforms (shaping and scaling)
         }
         
 
-            .space-button-active {
+            .space-button.active {
                 /* These are the content type buttons seen on the Space Navigator */
                 position: relative;
                 width: 60px;
