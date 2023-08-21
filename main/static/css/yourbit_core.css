@@ -1214,7 +1214,6 @@ only be used for object transforms (shaping and scaling)
         max-width: 222px;
         width: auto;
         display: grid;
-        position: absolute;
         grid-template-columns: auto auto auto auto auto;
         left: 50%;
         transform: translate(-50%, 0);
