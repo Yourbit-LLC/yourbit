@@ -331,3 +331,8 @@ def verify_email(request, token):
         return redirect('login')
     except:
         return redirect('verify_email_error')
+
+
+class WelcomeTest(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'registration/welcome.html')
