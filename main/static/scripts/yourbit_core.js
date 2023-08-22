@@ -29,7 +29,9 @@ $(document).ready(function(){
                 setTimeout(yb_hide_profile_menu, 300);
             }
         });
+
     });
+
 
     CREATE_MENU.addEventListener("touchstart", function(event) {
         var initialY = event.touches[0].clientY;
@@ -79,6 +81,18 @@ $(document).ready(function(){
         });
         
     });
+
+    let search_filters = document.querySelectorAll('.search-filter');
+    search_filters.forEach(filter => {
+        filter.addEventListener('click', function(){
+            let filter_type = this.getAttribute('data-filter');
+            let type_input = document.getElementById('search-type');
+            type_input.value = filter_type;
+            
+        })
+    });
+
+
 
 })
 

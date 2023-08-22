@@ -5,7 +5,7 @@
 var base_url = window.location.origin;
 
 var query;
-var type = "none";
+var type;
 
 
 $('#mobile-search-icon').click(function() {
@@ -53,9 +53,10 @@ $('#mobile-searchbar').on('change keyup', function(e) {
 $("#mobile-submit-search-button").click(function() {
 
     let entry_field = document.getElementById('mobile-searchbar');
-
+    let type_field = document.getElementById('search-type');
+    type = type_field.value;
     query = entry_field.value;
-    search_url(query);
+    search_url(query, type);
 
 });
 

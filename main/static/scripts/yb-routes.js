@@ -559,7 +559,7 @@ function cluster_url(cluster_id, cluster_name) {
     }
 }
 
-function search_url(this_query) {
+function search_url(this_query, this_type) {
     try {
         yb_purgeScripts(yb_clearContainer);
     } catch (error) {
@@ -569,7 +569,7 @@ function search_url(this_query) {
     yb_setSessionValues("location", "search");
     $("#content-container").load(`${base_url}/search/templates/search-results-html/`);
     
-    history.pushState({}, "", `/search/?query=${this_query}`);
+    history.pushState({}, "", `/search/?query=${this_query}&type=${this_type}`);
 
             
     if (menu.style.visibility === "visible") {
