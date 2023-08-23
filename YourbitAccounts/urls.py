@@ -8,4 +8,5 @@ urlpatterns = [
     path('verify_error/', verify_email, name='verify_email_error'),
     path('email_confirmation/', EmailConfirmation.as_view(), name='email_confirmation'),
     path('documents/terms/', TemplateView.as_view(template_name='YourbitAccounts/yb-terms.html'), name='terms'),
+    path('welcometest/', WelcomeTest.as_view(), name='welcome_test'),
 ]
