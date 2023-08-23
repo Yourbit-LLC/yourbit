@@ -115,9 +115,7 @@ def login_view(request):
     user = request.user
     if user.is_authenticated:
         return redirect('home')
-
-    elif request.subdomain == "support":
-        return redirect('support')
+        
 
     if request.POST:
         form = LoginForm(request.POST)
