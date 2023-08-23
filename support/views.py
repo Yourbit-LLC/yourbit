@@ -47,3 +47,8 @@ class CreateUserReport(View):
         user_report.save()
 
         return JsonResponse({'success': True})
+
+class Support(View):
+    
+        def get(self, request):
+            return render(request, 'support/support_home.html')

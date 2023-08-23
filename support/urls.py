@@ -4,7 +4,9 @@ from user_profile.api.viewsets import follow, requestFriend, updateTimezone, lik
 
 
 urlpatterns = [
+    
     path('api/submit/bug/', CreateBugReport.as_view()),
     path('api/submit/feature/', CreateFeatureRequest.as_view()),
     path('api/submit/user/', CreateUserReport.as_view()),
+    path('', Support.as_view(), name='support'),
 ]
