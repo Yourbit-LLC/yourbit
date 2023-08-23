@@ -1,4 +1,4 @@
-class SubdomainMiddleware:
+class SubdomainMiddleware():
     """ Make the subdomain publicly available to classes """
 
     def process_request(self, request):
