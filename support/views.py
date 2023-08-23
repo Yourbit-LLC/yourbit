@@ -51,4 +51,4 @@ class CreateUserReport(View):
 class Support(View):
     
         def get(self, request):
-            return render(request, 'support/support_home.html')
+            return render(request, 'support/templates/support_home.html')
