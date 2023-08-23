@@ -3,11 +3,11 @@ from django.views import View
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 
 from .models import *
-from .utils import subdomain_reverse
+# from .utils import subdomain_reverse
 
-support_home_url = subdomain_reverse('', subdomain='support')
-support_faq_url = subdomain_reverse('faq', subdomain='support')
-support_contact_url = subdomain_reverse('contact', subdomain='support')
+# support_home_url = subdomain_reverse('', subdomain='support')
+# support_faq_url = subdomain_reverse('faq', subdomain='support')
+# support_contact_url = subdomain_reverse('contact', subdomain='support')
 # Create your views here.
 class CreateBugReport(View):
 
