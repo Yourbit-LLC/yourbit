@@ -101,13 +101,22 @@
             if (!isScrolling) {
                 if (e.deltaY > 0) {
                     scrollToNextSection();
-                    isScrolling = true;
-                    setTimeout(() => {
-                        isScrolling = false;
-                    }, scrollDelay);
+                } else {
+                    scrollToPreviousSection();
                 }
+                isScrolling = true;
+                setTimeout(() => {
+                    isScrolling = false;
+                }, scrollDelay);
             }
         });
+        
+        function scrollToPreviousSection() {
+            if (currentSection > 0) {
+                currentSection--;
+                sections[currentSection].scrollIntoView({ behavior: 'smooth' });
+            }
+        }
     </script>
 </body>
 </html>
