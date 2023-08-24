@@ -47,16 +47,19 @@
             
             <br>
 
-            <!--Describe personalization functionality-->
-            <h3>Color Your World</h3>
 
-            <p>With Yourbit, you can customize your UI and your profile. 
-                Incorporate captivating background images, infuse vibrant splashes of color,
-                 and showcase your distinctive personality to all who explore your profile.
-            </p>
 
-            <br>
+    </div>
+    <div class = "yb-section-container">
+        <!--Describe personalization functionality-->
+        <h3>Color Your World</h3>
 
+        <p>With Yourbit, you can customize your UI and your profile. 
+            Incorporate captivating background images, infuse vibrant splashes of color,
+            and showcase your distinctive personality to all who explore your profile.
+        </p>
+
+        <br>
     </div>
     <div class="yb-section-container">
         <!-- Section 3 content here -->
@@ -99,6 +102,11 @@
         let isScrolling = false;
         const scrollDelay = 800; // Adjust this value to set the delay between section transitions
 
+        // ... (previous code)
+
+        let startY = 0;
+        let endY = 0;
+
         document.addEventListener('wheel', (e) => {
             if (!isScrolling) {
                 if (e.deltaY > 0) {
@@ -112,6 +120,38 @@
                 }, scrollDelay);
             }
         });
+
+        document.addEventListener('touchstart', (e) => {
+            startY = e.touches[0].clientY;
+        });
+
+        document.addEventListener('touchmove', (e) => {
+            endY = e.touches[0].clientY;
+        });
+
+        document.addEventListener('touchend', () => {
+            if (!isScrolling) {
+                if (endY < startY) {
+                    scrollToNextSection();
+                } else {
+                    scrollToPreviousSection();
+                }
+                isScrolling = true;
+                setTimeout(() => {
+                    isScrolling = false;
+                }, scrollDelay);
+            }
+        });
+
+        function scrollToPreviousSection() {
+            if (currentSection > 0) {
+                currentSection--;
+                sections[currentSection].scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // ...
+
         
         function scrollToPreviousSection() {
             if (currentSection > 0) {
