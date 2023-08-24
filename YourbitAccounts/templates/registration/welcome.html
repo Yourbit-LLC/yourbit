@@ -1,17 +1,29 @@
 <!DOCTYPE html>
 {% load static %}
-<html style="overflow-y: scroll !important;">
-    <head>
-        <title>Welcome to Yourbit</title>
-        <link rel="stylesheet" type="text/css" href="{% static 'css/yourbit_core.css'%}">
-        <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.ico'%}">
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
-    </head>
-    <body style="overflow: visible; background-color: rgb(0,0,0); color: white; text-align:center; ">
-        
-        <section>
-            <img src="{% static 'images/logo-flat.png' %}" style="margin-left: auto; margin-right: auto; width: 40vw; max-width: 500px; margin-top: 10vh; margin-bottom: 10vh;">
+<html>
+<head>
+    <title>Welcome to Yourbit</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/yourbit_core.css'%}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.ico'%}">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <style>
+        /* Set up full-screen sections */
+        .yb-section-container {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body style="margin: 0; overflow: hidden;">
+    <div class="yb-section-container" id="yb-sect1">
+        <img src="{% static 'images/logo-flat.png' %}" style="margin-left: auto; margin-right: auto; width: 40vw; max-width: 500px; margin-top: 10vh; margin-bottom: 10vh;">
             <h2>Welcome to YOURBiT!</h2>
             <p>The revolutionary new social platform centered around you.</p>
             <div style="text-align: center;">
@@ -20,11 +32,11 @@
                 <button class="wide-button" style = "width: 20vw;">Sign Up</button>
                 <br>
             </div>
-        </section>
-        <section>
-            
-            <!--Describe modular functionality-->
-            <h3>Mold your Social Landscape</h3>
+        <!-- Section 1 content here -->
+    </div>
+    <div class="yb-section-container">
+        <!-- Section 2 content here -->
+        <h3>Mold your Social Landscape</h3>
 
             <p>Yourbit's modular design empowers you to finely craft your experience. 
                 Toggle features on and off at your discretion, allowing you to define 
@@ -43,23 +55,59 @@
 
             <br>
 
-            <!--Describe privacy features-->
-            <h3>A Revolution in Privacy</h3>
+    </div>
+    <div class="yb-section-container">
+        <!-- Section 3 content here -->
+        <h3>A Revolution in Privacy</h3>
 
             <p>Yourbit sets the gold standard for privacy, surpassing all other social platforms. 
                 Take charge of your messaging preferences, refine discoverability settings, and control the visibility of data showcased on your profile. 
                 With Yourbit, you'll receive alerts whenever your data is transmitted beyond the site for third-party processing. 
                 This unwavering transparency ensures you're constantly informed about your data's journey and maintains your authority over access rights.
             </p>
+    </div>
 
-            <!---->
-        </section>
-
-        <br>
-  
-    </body>
-
-    <footer style="background-color: rgb(35,35,35); width: 100vw; bottom: 0px;">
+    <footer style="background-color: rgb(35,35,35); width: 100vw; position: absolute; bottom: 0;">
         <p>© 2021 Yourbit, LLC. All rights reserved.</p>
     </footer>
+
+    <script>
+        const sections = document.querySelectorAll('.yb-section-container');
+        let currentSection = 0;
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowDown') {
+                scrollToNextSection();
+            }
+        });
+
+        document.addEventListener('wheel', (e) => {
+            if (e.deltaY > 0) {
+                scrollToNextSection();
+            }
+        });
+
+        function scrollToNextSection() {
+            if (currentSection < sections.length - 1) {
+                currentSection++;
+                sections[currentSection].scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        let isScrolling = false;
+        const scrollDelay = 800; // Adjust this value to set the delay between section transitions
+
+        document.addEventListener('wheel', (e) => {
+            if (!isScrolling) {
+                if (e.deltaY > 0) {
+                    scrollToNextSection();
+                    isScrolling = true;
+                    setTimeout(() => {
+                        isScrolling = false;
+                    }, scrollDelay);
+                }
+            }
+        });
+    </script>
+</body>
 </html>
