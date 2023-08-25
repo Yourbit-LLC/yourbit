@@ -69,7 +69,7 @@
     <div class = "yb-section-container">
         <!--Describe personalization functionality-->
         <h3>Color Your World</h3>
-        <video autoplay muted loop playsinline class="section-video">
+        <video class="section-video" id="video-color-your-world" autoplay muted loop playsinline>
             <source src="{% static 'videos/color_your_world_bkd_DONE0001-0031.avi'%}" type="video/mp4">
         </video>
         <div class="section-content">
@@ -117,6 +117,11 @@
             if (currentSection < sections.length - 1) {
                 currentSection++;
                 sections[currentSection].scrollIntoView({ behavior: 'smooth' });
+
+                if (currentSection == 2) {
+                    let video = document.getElementById("video-color-your-world");
+                    video.play();
+                }
             }
         }
 
