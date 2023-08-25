@@ -36,9 +36,9 @@
             z-index: 2;
             /* Your content styles here */
 
-        #terrain-scan-video {
-            filter: blur(10px);
-            -webkit-filter: blur(10px);
+        #video-terrain-scan {
+            filter: blur(20px);
+            -webkit-filter: blur(20px);
         }
             
         }     
@@ -59,18 +59,20 @@
         <!-- Section 1 content here -->
     </div>
     <div class="yb-section-container">
-        <video class="section-video" id="terrain-scan-video" autoplay muted loop playsinline>
-            <source src="{% static 'videos/color_your_world_bkd_DONE0001-0031.avi'%}" type="video/avi">
+        <video class="section-video" id="video-terrain-scan" autoplay muted loop playsinline>
+            <source src="{% static 'videos/terrainscan0001-0070.avi'%}" type="video/avi">
         </video>
         <!-- Section 2 content here -->
-        <h3>Mold your Social Landscape</h3>
+        <div class="section-content">
+            <h3>Mold your Social Landscape</h3>
 
-            <p>Yourbit's modular design empowers you to finely craft your experience. 
-                Toggle features on and off at your discretion, allowing you to define 
-                and curate your own unique social setting.
-            </p>
-            
-            <br>
+                <p>Yourbit's modular design empowers you to finely craft your experience. 
+                    Toggle features on and off at your discretion, allowing you to define 
+                    and curate your own unique social setting.
+                </p>
+                
+                <br>
+        </div>
 
 
 
