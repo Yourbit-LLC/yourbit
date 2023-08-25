@@ -8,8 +8,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <style>
-        /* Set up full-screen sections */
         .yb-section-container {
+            position: relative;
             height: 100vh;
             width: 100vw;
             display: flex;
@@ -18,12 +18,28 @@
             align-items: center;
             text-align: center;
             overflow: hidden;
-            background-color: black;
+            padding: 2px 2px 2px 2px;
             color: white;
         }
+        
+        .section-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+        
+        .section-content {
+            z-index: 2;
+            /* Your content styles here */
+        }     
+        
     </style>
 </head>
-<body style="margin: 0; overflow: hidden;">
+<body style="margin: 0; overflow: hidden; background-color:black;">
     <div class="yb-section-container" id="yb-sect1">
         <img src="{% static 'images/logo-flat.png' %}" style="margin-left: auto; margin-right: auto; width: 40vw; max-width: 500px; margin-top: 10vh; margin-bottom: 10vh;">
             <h2>Welcome to YOURBiT!</h2>
@@ -53,13 +69,18 @@
     <div class = "yb-section-container">
         <!--Describe personalization functionality-->
         <h3>Color Your World</h3>
+        <video autoplay muted loop playsinline class="section-video">
+            <source src="{% static 'videos/video1.mp4' %}" type="video/mp4">
+        </video>
+        <div class="section-content">
+            <!-- Section 1 content here -->
+            <p>With Yourbit, you can customize your UI and your profile. 
+                Incorporate captivating background images, infuse vibrant splashes of color,
+                and showcase your distinctive personality to all who explore your profile.
+            </p>
 
-        <p>With Yourbit, you can customize your UI and your profile. 
-            Incorporate captivating background images, infuse vibrant splashes of color,
-            and showcase your distinctive personality to all who explore your profile.
-        </p>
+        </div>
 
-        <br>
     </div>
     <div class="yb-section-container">
         <!-- Section 3 content here -->
