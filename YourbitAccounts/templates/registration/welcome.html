@@ -35,6 +35,11 @@
         .section-content {
             z-index: 2;
             /* Your content styles here */
+
+        #terrain-scan-video {
+            filter: blur(10px);
+            -webkit-filter: blur(10px);
+        }
             
         }     
         
@@ -54,6 +59,9 @@
         <!-- Section 1 content here -->
     </div>
     <div class="yb-section-container">
+        <video class="section-video" id="terrain-scan-video" autoplay muted loop playsinline>
+            <source src="{% static 'videos/color_your_world_bkd_DONE0001-0031.avi'%}" type="video/avi">
+        </video>
         <!-- Section 2 content here -->
         <h3>Mold your Social Landscape</h3>
 
@@ -120,8 +128,11 @@
             if (currentSection < sections.length - 1) {
                 currentSection++;
                 sections[currentSection].scrollIntoView({ behavior: 'smooth' });
-
-                if (currentSection == 2) {
+                if (currentSection == 1) {
+                    let video = document.getElementById("terrain-scan-video");
+                    video.play();
+                }
+                else if (currentSection == 2) {
                     let video = document.getElementById("video-color-your-world");
                     video.play();
                 }
