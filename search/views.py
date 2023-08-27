@@ -52,7 +52,7 @@ class ContextSearch(View):
     def post(self, request, *args, **kwargs):
         from itertools import chain
         query = request.POST.get('query')
-        applied_filter = request.POST.get('applied_filter')
+        applied_filter = request.POST.get('type')
 
         print("filter" + applied_filter)
         
