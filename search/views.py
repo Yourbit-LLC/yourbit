@@ -105,7 +105,7 @@ class ContextSearch(View):
             else:
                 results_found = False
 
-            return JsonResponse({'results_found': results_found, 'bit_results': bit_results})
+            
 
         if applied_filter == "all" or applied_filter == "user":
             from YourbitAccounts.api.serializers import UserSerializer
