@@ -115,6 +115,7 @@ function fetchResults(callback, query) {
         },
         success: function(data){
             let response = data;
+            console.log(response);
             callback(response);
         }
     })
