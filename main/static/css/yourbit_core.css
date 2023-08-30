@@ -1951,7 +1951,7 @@ only be used for object transforms (shaping and scaling)
                 text-decoration: none;
                 color: white;
                 font-weight: 500;
-
+                grid-column: 2;
             }
 
             .profile-menu-link{
