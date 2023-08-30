@@ -16,8 +16,10 @@ $(document).ready(function(){
     back_button.addEventListener("click", function() {
         let header = document.getElementById("header");
         let message_input = document.getElementById("message-input");
+        let message_list = document.getElementById("message-container");
         message_input.style.transform = "translateY(100%)";
         header.style.transform = "translateY(-100%)";
+        message_container.style.transform = "translateY(100%)";
 
         window.location.href = "/messages/inbox/";
     });

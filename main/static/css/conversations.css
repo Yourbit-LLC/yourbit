@@ -39,6 +39,7 @@ body {
     overflow-y: scroll;
     overflow-x: hidden;
     top: 70px;
+    transition: 0.5s;
     
 }
 
