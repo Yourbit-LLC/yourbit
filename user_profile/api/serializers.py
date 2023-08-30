@@ -65,21 +65,22 @@ class CustomResultSerializer(serializers.ModelSerializer):
             'title_color'
         ]
 
-class ProfileSerializer(serializers.ModelSerializer):
-    user = UserResultSerializer(many=False, read_only = True)
-    custom = CustomResultSerializer(many=False, read_only=True)
-    class Meta:
-        model = Profile
-        fields = '__all__'
-
 class CustomizeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Custom
         fields="__all__"
 
-class ProfileResultSerializer(serializers.ModelSerializer):
+
+class ProfileSerializer(serializers.ModelSerializer):
     user = UserResultSerializer(many=False, read_only = True)
     custom = CustomizeSerializer(many=False, read_only=True)
+    class Meta:
+        model = Profile
+        fields = '__all__'
+
+class ProfileResultSerializer(serializers.ModelSerializer):
+    user = UserResultSerializer(many=False, read_only = True)
+    custom = CustomResultSerializer(many=False, read_only=True)
     class Meta:
         model = Profile
         fields = [
