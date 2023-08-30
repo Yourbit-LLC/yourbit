@@ -49,13 +49,14 @@ let checkControlsVisibility = function() {
     controlsTimeout = setTimeout(checkControlsVisibility, 200);
     };
 
-
+//Move video to mini bar on scroll off screen
 function yb_videoToMini(video) {
     
     let newParent = document.getElementById('minibar');
     
     yb_showMiniBar();
     newParent.appendChild(video);
+    newParent.style.width = '55vw'
     
     
     // Or you can use the insertBefore method to insert before a specific element within newParent

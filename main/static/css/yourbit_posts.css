@@ -361,7 +361,7 @@
     .attached-video.mini {
         position: absolute;
         display: block;
-        bottom: 100px;
+        bottom: 50px;
         left: 50%;
         transform: translateX(-50%);
         z-index: 1000;
@@ -371,7 +371,7 @@
         border-color: black;
         
         height: auto;
-        width: 40%;
+        width: 50vw;
 
     }
 
