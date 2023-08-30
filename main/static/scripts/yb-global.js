@@ -135,8 +135,32 @@ function yb_revertCustom() {
     let background_image = yb_getUserCustom("wallpaper");
     let blur_radius = yb_getUserCustom("background-blur");
     let brightness = yb_getUserCustom("background-brightness");
+    let icon_color = yb_getUserCustom("icon-color");
+    let accent_color = yb_getUserCustom("secondary-color");
+
     background_element.setAttribute("style", `filter: blur(${blur_radius}px) brightness(${brightness}%); -webkit-filter: blur(${blur_radius}px) brightness(${brightness}%);`);
     background_element.setAttribute("src", background_image);
+
+    
+    let ui_labels = document.getElementsByClassName("yb-ui-label");
+    for (let i = 0; i < ui_elements.length; i++) {
+        ui_labels[i].setAttribute("style", `color:${icon_color} !important;`);
+    }
+
+    let ui_icons = document.getElementsByClassName("yb-ui-icon");
+    for (let i = 0; i < ui_icons.length; i++) {
+        ui_icons[i].setAttribute("style", `color:${icon_color} !important;`);
+    }
+
+    let accent_buttons = document.getElementsByClassName("yb-accent-button");
+    for (let i = 0; i < accent_buttons.length; i++) {
+        accent_buttons[i].setAttribute("style", `border-color:${icon_color} !important;`);
+    }
+
+    let accented_elements = document.getElementsByClassName("yb-element-accent");
+    for (let i = 0; i < accented_elements.length; i++) {
+        accented_elements[i].setAttribute("style", `border-color:${accent_color} !important;`);
+    }
 }
 
 

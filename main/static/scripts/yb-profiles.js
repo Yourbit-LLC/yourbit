@@ -20,6 +20,36 @@ $(document).ready(function() {
 
 });
 
+function yb_setProfileUI(custom) {
+    let background_image = document.getElementById("bg-image");
+    background_image.setAttribute("src", profile_background);
+    background_image.setAttribute("style", custom.background_blur);
+
+    let ui_labels = document.getElementsByClassName("yb-ui-label");
+    for (let i = 0; i < ui_elements.length; i++) {
+        ui_labels[i].setAttribute("style", `color:${custom.ui_color} !important;`);
+    }
+
+    let ui_icons = document.getElementsByClassName("yb-ui-icon");
+    for (let i = 0; i < ui_icons.length; i++) {
+        ui_icons[i].setAttribute("style", `color:${custom.ui_color} !important;`);
+    }
+
+    let accent_buttons = document.getElementsByClassName("yb-accent-button");
+    for (let i = 0; i < accent_buttons.length; i++) {
+        accent_buttons[i].setAttribute("style", `border-color:${custom.ui_color} !important;`);
+    }
+
+    let accented_elements = document.getElementsByClassName("yb-element-accent");
+    for (let i = 0; i < accented_elements.length; i++) {
+        accented_elements[i].setAttribute("style", `border-color:${custom.accent_color} !important;`);
+    }
+
+    
+
+
+}
+
 
 //Profile Page
 function yb_BuildProfile(profile_data){
@@ -34,13 +64,12 @@ function yb_BuildProfile(profile_data){
     let user_id = user.id
     //Get profile image from data
     let custom = profile_data.custom;
+    yb_setProfileUI(custom);
 
     let profile_image = custom.image_thumbnail_large;
     let profile_background = custom.background_mobile;
 
-    let background_image = document.getElementById("bg-image");
-    background_image.setAttribute("src", profile_background);
-    background_image.setAttribute("style", custom.background_blur);
+
     
     //Get profile name from data 
     let profile_first_name = user.first_name;
