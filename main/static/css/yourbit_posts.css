@@ -343,8 +343,8 @@
         width: 95vw;
         max-width: 650px;
     }
-    
-    .attached-video {
+
+    .attached-video.preview {
         display: block;
         position: relative;
         border-radius: 20px;
@@ -355,22 +355,23 @@
         grid-row: 3;
         background-color: black;
         transition: 0.5s;
-        
+
     }
-    
-    #video-user-name {
-        position: relative;
+
+    .attached-video.mini {
+        position: absolute;
         display: block;
-        text-align: left;
-        left: 10px;
-    }
-    
-    #video-bit-name-date {
-        position: relative;
-        display: grid;
-        grid-template-columns: 30px auto;
-        left: 10px;
-        grid-row: 1;
+        bottom: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+        border-color: black;
+        
+        height: auto;
+        width: 40%;
+
     }
 
     .description-bit-video {
@@ -411,7 +412,7 @@
         transition: 1s;
     }
 
-    .feedback-icon {
+    .yb-feedback-button {
         background-color: rgba(0, 0, 0, 0.0);
         position: relative;
         border-radius: 50%;
@@ -425,14 +426,14 @@
         line-height: 60px;
     }
 
-    .feedback-icon.flash {
+    .yb-feedback-button.flash {
         animation-name: yb-flash;
         animation-duration: 1s;
         animation-iteration-count: infinite;
     }
 
 
-    .feedback-icon-active {
+    .yb-feedback-button.active {
         position: relative;
         display: block;
         background-color: rgb(125, 125, 125);
@@ -468,12 +469,7 @@
         grid-column: 9;
     }
     
-    .post-feedback-icon {
-        position: relative;
-        width: 100%;
-        margin: auto;
-    }
-    
+
     .counter {
         font-size: 12px;
         font-weight: 400;
@@ -547,7 +543,7 @@
         margin-bottom: 10px;
     }
 
-    .image-hang-left {
+    .image-hang.left {
         position: absolute;
         left: -32px;
         top: 3px;
@@ -556,7 +552,7 @@
         filter: drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.5));
     }
 
-    .image-hang-right {
+    .image-hang.right {
         position: absolute;
         left: -32px;
         top: 3px;
@@ -565,16 +561,14 @@
         filter: drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.5));
     }
     
-    .comment-bubble-left {
+    .yb-comment-bubble.left {
         background-color: rgb(100, 100, 100, 0.5);
         width: fit-content;
         border-radius: 10px;
         font-size: 14px;
-    
-    
     }
     
-    .comment-wrapper-right {
+    .yb-comment-wrapper.right {
         position: relative;
         width: 100%;
         

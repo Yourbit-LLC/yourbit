@@ -57,7 +57,7 @@ function yb_videoToNav(video) {
     newParent.appendChild(video);
     // Or you can use the insertBefore method to insert before a specific element within newParent
     // newParent.insertBefore(video, newParent.firstChild);
-    video.addEventListener("click", checkControlsVisibility);
+
 
 }
 
@@ -65,6 +65,16 @@ function yb_initBit(this_bit) {
     
     let id = this_bit.getAttribute('data-id');
     yb_updateSeenBits(id);
+}
+
+function yb_videoToBit(video) {
+    let this_id = video.getAttribute('data-id');
+    let new_parent = document.getElementById('bit-' + this_id);
+    
+    new_parent.appendChild(video);
+    // Or you can use the insertBefore method to insert before a specific element within newParent
+    // newParent.insertBefore(video, newParent.firstChild);
+
 }
   
 
@@ -87,6 +97,25 @@ function shrinkVideo(entries, observer) {
         video.style.boxShadow = '0px 0px 10px 0px rgba(0,0,0,0.75)';
         video.style.borderColor = 'black';
 
+        video.addEventListener("touchstart", function(event) {
+            var initialY = event.touches[0].clientY;
+    
+            // Add an event listener for touchend event
+            video.addEventListener("touchend", function(event) {
+                var finalY = event.changedTouches[0].clientY;
+                var deltaY = finalY - initialY;
+        
+                // Check if the user has swiped down
+                if (deltaY > 250) {
+                    // Perform actions to exit fullscreen
+                    // Add your code here to handle fullscreen exit
+
+                    console.log(swipe);
+                    
+                }
+            });
+            
+        });
         
 
         yb_videoToNav(video);
@@ -137,14 +166,13 @@ function BuildBit(bit, liked_bits, disliked_bits){
     let paragraph_align = custom.paragraph_align;
     
     //Prepare new bit by creating an element
-    new_bit = document.createElement("div");
+    new_bit = yb_createElement("div", `bit-${id}`, `yb-element-background post-wrapper container-bit-${type}`)
 
     //Apply All Attributes: element id, element class, data type, data-id, data-button-color, data icon color, data background color, style
-    new_bit.setAttribute("id", `bit-${id}`); //Assign ID
-    new_bit.setAttribute("class", `post-wrapper container-bit-${type}`); //Assign class
     new_bit.setAttribute("data-type", `${type}`);
     new_bit.setAttribute("data-id", `${id}`);
     new_bit.setAttribute("data-userid", `${user.id}`);
+    new_bit.setAttribute("data-username", `${username}`);
     new_bit.setAttribute("data-button-color", `${feedback_background_color}`);
     new_bit.setAttribute("data-icon-color", `${feedback_icon_color}`);
     new_bit.setAttribute("data-secondary-color", `${accent_color}`);
@@ -195,7 +223,7 @@ function BuildBit(bit, liked_bits, disliked_bits){
 
     let header = yb_createElement("div", `header-bit-${id}`, "header-bit");
 
-    let profile_image_container = yb_createElement("div", `profile-image-${id}`, "container-image-tiny");
+    let profile_image_container = yb_createElement("div", `profile-image-${id}`, "element-accent container-image-tiny");
     profile_image_container.setAttribute("data-username", username);
     profile_image_container.setAttribute("style", `border-color: ${accent_color};`);
     profile_image_container.innerHTML = `<img class="image-thumbnail-small" style="object-fit:fill; border-radius: 50%;" src="${profile_image}">`
@@ -223,7 +251,7 @@ function BuildBit(bit, liked_bits, disliked_bits){
     if (type === 'photo'){
         let index = 0;
         let photo = bit.photos[index]
-        let attachment = yb_createElement("img", `photo-bit-${id}`, "attached-photo");
+        let attachment = yb_createElement("img", `photo-bit-${id}`, "attached-photo preview");
         attachment.setAttribute("src", photo.image);
         attachment.setAttribute('data-id', id);
         attachment.setAttribute('data-index', index);
@@ -239,7 +267,7 @@ function BuildBit(bit, liked_bits, disliked_bits){
 
     if (type === 'video'){
         let bit_video = bit.video
-        let video_player = yb_createElement("video", `video-${id}`, "attached-video");
+        let video_player = yb_createElement("video", `video-${id}`, "attached-video preview");
         
         video_player.setAttribute("controls", "true");
         video_player.setAttribute("playsinline", "true");
@@ -269,7 +297,7 @@ function BuildBit(bit, liked_bits, disliked_bits){
     let bit_interactions = yb_createElement("div", `bit-feedback-${type}`, `container-feedback-bit-${type}`);
     
     //Likes
-    let like_button = yb_createButton("like", `like-${id}`, "feedback-icon");
+    let like_button = yb_createButton("like", `like-${id}`, "yb-feedback-button");
     like_button.setAttribute("data-catid", id)
     like_button.innerHTML = `<svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path id="like-icon-${id}" style="fill:" d="M15.5 11Q16.15 11 16.575 10.575Q17 10.15 17 9.5Q17 8.85 16.575 8.425Q16.15 8 15.5 8Q14.85 8 14.425 8.425Q14 8.85 14 9.5Q14 10.15 14.425 10.575Q14.85 11 15.5 11ZM8.5 11Q9.15 11 9.575 10.575Q10 10.15 10 9.5Q10 8.85 9.575 8.425Q9.15 8 8.5 8Q7.85 8 7.425 8.425Q7 8.85 7 9.5Q7 10.15 7.425 10.575Q7.85 11 8.5 11ZM12 17.5Q13.775 17.5 15.137 16.525Q16.5 15.55 17.1 14H15.45Q14.925 14.9 14.025 15.45Q13.125 16 12 16Q10.875 16 9.975 15.45Q9.075 14.9 8.55 14H6.9Q7.5 15.55 8.863 16.525Q10.225 17.5 12 17.5ZM12 22Q9.925 22 8.1 21.212Q6.275 20.425 4.925 19.075Q3.575 17.725 2.788 15.9Q2 14.075 2 12Q2 9.925 2.788 8.1Q3.575 6.275 4.925 4.925Q6.275 3.575 8.1 2.787Q9.925 2 12 2Q14.075 2 15.9 2.787Q17.725 3.575 19.075 4.925Q20.425 6.275 21.212 8.1Q22 9.925 22 12Q22 14.075 21.212 15.9Q20.425 17.725 19.075 19.075Q17.725 20.425 15.9 21.212Q14.075 22 12 22ZM12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12ZM12 20Q15.325 20 17.663 17.663Q20 15.325 20 12Q20 8.675 17.663 6.337Q15.325 4 12 4Q8.675 4 6.338 6.337Q4 8.675 4 12Q4 15.325 6.338 17.663Q8.675 20 12 20Z"/></svg>`;
 
@@ -278,7 +306,7 @@ function BuildBit(bit, liked_bits, disliked_bits){
 
         let value = liked_bits[key];
         if (value.id === id){
-            like_button.innerHTML = `<svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path id="like-icon-${id}" style="fill: ${feedback_icon_color}" d="M15.5 11Q16.15 11 16.575 10.575Q17 10.15 17 9.5Q17 8.85 16.575 8.425Q16.15 8 15.5 8Q14.85 8 14.425 8.425Q14 8.85 14 9.5Q14 10.15 14.425 10.575Q14.85 11 15.5 11ZM8.5 11Q9.15 11 9.575 10.575Q10 10.15 10 9.5Q10 8.85 9.575 8.425Q9.15 8 8.5 8Q7.85 8 7.425 8.425Q7 8.85 7 9.5Q7 10.15 7.425 10.575Q7.85 11 8.5 11ZM12 17.5Q13.775 17.5 15.137 16.525Q16.5 15.55 17.1 14H15.45Q14.925 14.9 14.025 15.45Q13.125 16 12 16Q10.875 16 9.975 15.45Q9.075 14.9 8.55 14H6.9Q7.5 15.55 8.863 16.525Q10.225 17.5 12 17.5ZM12 22Q9.925 22 8.1 21.212Q6.275 20.425 4.925 19.075Q3.575 17.725 2.788 15.9Q2 14.075 2 12Q2 9.925 2.788 8.1Q3.575 6.275 4.925 4.925Q6.275 3.575 8.1 2.787Q9.925 2 12 2Q14.075 2 15.9 2.787Q17.725 3.575 19.075 4.925Q20.425 6.275 21.212 8.1Q22 9.925 22 12Q22 14.075 21.212 15.9Q20.425 17.725 19.075 19.075Q17.725 20.425 15.9 21.212Q14.075 22 12 22ZM12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12ZM12 20Q15.325 20 17.663 17.663Q20 15.325 20 12Q20 8.675 17.663 6.337Q15.325 4 12 4Q8.675 4 6.338 6.337Q4 8.675 4 12Q4 15.325 6.338 17.663Q8.675 20 12 20Z"/></svg>`;
+            like_button.innerHTML = `<svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path id="like-icon-${id}" class="yb-bit-icon" style="fill: ${feedback_icon_color}" d="M15.5 11Q16.15 11 16.575 10.575Q17 10.15 17 9.5Q17 8.85 16.575 8.425Q16.15 8 15.5 8Q14.85 8 14.425 8.425Q14 8.85 14 9.5Q14 10.15 14.425 10.575Q14.85 11 15.5 11ZM8.5 11Q9.15 11 9.575 10.575Q10 10.15 10 9.5Q10 8.85 9.575 8.425Q9.15 8 8.5 8Q7.85 8 7.425 8.425Q7 8.85 7 9.5Q7 10.15 7.425 10.575Q7.85 11 8.5 11ZM12 17.5Q13.775 17.5 15.137 16.525Q16.5 15.55 17.1 14H15.45Q14.925 14.9 14.025 15.45Q13.125 16 12 16Q10.875 16 9.975 15.45Q9.075 14.9 8.55 14H6.9Q7.5 15.55 8.863 16.525Q10.225 17.5 12 17.5ZM12 22Q9.925 22 8.1 21.212Q6.275 20.425 4.925 19.075Q3.575 17.725 2.788 15.9Q2 14.075 2 12Q2 9.925 2.788 8.1Q3.575 6.275 4.925 4.925Q6.275 3.575 8.1 2.787Q9.925 2 12 2Q14.075 2 15.9 2.787Q17.725 3.575 19.075 4.925Q20.425 6.275 21.212 8.1Q22 9.925 22 12Q22 14.075 21.212 15.9Q20.425 17.725 19.075 19.075Q17.725 20.425 15.9 21.212Q14.075 22 12 22ZM12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12ZM12 20Q15.325 20 17.663 17.663Q20 15.325 20 12Q20 8.675 17.663 6.337Q15.325 4 12 4Q8.675 4 6.338 6.337Q4 8.675 4 12Q4 15.325 6.338 17.663Q8.675 20 12 20Z"/></svg>`;
             like_button.style.backgroundColor = feedback_background_color;
             break;
         } 
@@ -307,7 +335,7 @@ function BuildBit(bit, liked_bits, disliked_bits){
     });
     
     //Dislikes
-    let dislike_button = yb_createButton("dislike", `dislike-${id}`, "feedback-icon");
+    let dislike_button = yb_createButton("dislike", `dislike-${id}`, "yb-feedback-button");
     dislike_button.setAttribute("data-catid", id);
 
     let dislike_html = `<svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path id="dislike-icon-${id}" style="fill:white;" d="M620-520q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm-280 0q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-400Zm0 320q133 0 226.5-93.5T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160ZM325-280q7 0 14.5-4t11.5-10q22-30 55-48t74-18q41 0 74 18t55 48q4 6 11 10t14 4q18 0 26.5-16t-3.5-34q-26-39-73-64.5T480-420q-57 0-104 25.5T302-328q-11 17-2.5 32.5T325-280Z"/></svg>`
@@ -317,7 +345,7 @@ function BuildBit(bit, liked_bits, disliked_bits){
         let value = disliked_bits[key];
         if (value.id === id){
             dislike_button.innerHTML = `
-            <svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path id="dislike-icon-${id}" style="fill:${feedback_icon_color}" d="M620-520q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm-280 0q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-400Zm0 320q133 0 226.5-93.5T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160ZM325-280q7 0 14.5-4t11.5-10q22-30 55-48t74-18q41 0 74 18t55 48q4 6 11 10t14 4q18 0 26.5-16t-3.5-34q-26-39-73-64.5T480-420q-57 0-104 25.5T302-328q-11 17-2.5 32.5T325-280Z"/></svg>
+            <svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path id="dislike-icon-${id}" style="fill:${feedback_icon_color}" class="yb-bit-icon" d="M620-520q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm-280 0q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-400Zm0 320q133 0 226.5-93.5T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160ZM325-280q7 0 14.5-4t11.5-10q22-30 55-48t74-18q41 0 74 18t55 48q4 6 11 10t14 4q18 0 26.5-16t-3.5-34q-26-39-73-64.5T480-420q-57 0-104 25.5T302-328q-11 17-2.5 32.5T325-280Z"/></svg>
             `;
             dislike_button.style.backgroundColor = feedback_background_color;
 
@@ -354,7 +382,7 @@ function BuildBit(bit, liked_bits, disliked_bits){
     new_bit.appendChild(comment_container);
 
     //Comments
-    let comment_button = yb_createButton("show-comment", `show-comment-${id}`, "feedback-icon");
+    let comment_button = yb_createButton("show-comment", `show-comment-${id}`, "yb-feedback-button");
     comment_button.setAttribute("data-catid", id)
     comment_button.setAttribute("data-state", "show")
     comment_button.innerHTML = `<svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path id="comment-icon-${id}" d="M6 14H18V12H6ZM6 11H18V9H6ZM6 8H18V6H6ZM22 22 18 18H4Q3.175 18 2.588 17.413Q2 16.825 2 16V4Q2 3.175 2.588 2.587Q3.175 2 4 2H20Q20.825 2 21.413 2.587Q22 3.175 22 4ZM4 4V16Q4 16 4 16Q4 16 4 16H18.825L20 17.175V4Q20 4 20 4Q20 4 20 4H4Q4 4 4 4Q4 4 4 4ZM4 4V17.175V16Q4 16 4 16Q4 16 4 16V4Q4 4 4 4Q4 4 4 4Q4 4 4 4Q4 4 4 4Z"/></svg>`
@@ -392,7 +420,7 @@ function BuildBit(bit, liked_bits, disliked_bits){
     bit_interactions.appendChild(comment_counter);
 
     //Shares
-    let share_button = yb_createButton("share", `share-${id}`, "feedback-icon");
+    let share_button = yb_createButton("share", `share-${id}`, "yb-feedback-button");
     share_button.innerHTML = `<svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M6 23Q5.175 23 4.588 22.413Q4 21.825 4 21V10Q4 9.175 4.588 8.587Q5.175 8 6 8H9V10H6Q6 10 6 10Q6 10 6 10V21Q6 21 6 21Q6 21 6 21H18Q18 21 18 21Q18 21 18 21V10Q18 10 18 10Q18 10 18 10H15V8H18Q18.825 8 19.413 8.587Q20 9.175 20 10V21Q20 21.825 19.413 22.413Q18.825 23 18 23ZM11 16V4.825L9.4 6.425L8 5L12 1L16 5L14.6 6.425L13 4.825V16Z"/></svg>`
     bit_interactions.appendChild(share_button);
 
@@ -401,7 +429,7 @@ function BuildBit(bit, liked_bits, disliked_bits){
     bit_interactions.appendChild(share_counter);
 
     //Dontation
-    let donate_button = yb_createButton("donate", `donate-bit-${id}`, "feedback-icon");
+    let donate_button = yb_createButton("donate", `donate-bit-${id}`, "yb-feedback-button");
     donate_button.innerHTML = `<svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M11.025 21V18.85Q9.7 18.55 8.738 17.7Q7.775 16.85 7.325 15.3L9.175 14.55Q9.55 15.75 10.288 16.375Q11.025 17 12.225 17Q13.25 17 13.963 16.538Q14.675 16.075 14.675 15.1Q14.675 14.225 14.125 13.712Q13.575 13.2 11.575 12.55Q9.425 11.875 8.625 10.938Q7.825 10 7.825 8.65Q7.825 7.025 8.875 6.125Q9.925 5.225 11.025 5.1V3H13.025V5.1Q14.275 5.3 15.088 6.012Q15.9 6.725 16.275 7.75L14.425 8.55Q14.125 7.75 13.575 7.35Q13.025 6.95 12.075 6.95Q10.975 6.95 10.4 7.438Q9.825 7.925 9.825 8.65Q9.825 9.475 10.575 9.95Q11.325 10.425 13.175 10.95Q14.9 11.45 15.788 12.537Q16.675 13.625 16.675 15.05Q16.675 16.825 15.625 17.75Q14.575 18.675 13.025 18.9V21Z"/></svg>`
     bit_interactions.appendChild(donate_button);
 
@@ -1041,12 +1069,12 @@ function yb_buildComment(comment){
     //Build comment bubble right side for sender and left side for receiver
     if (is_sender === true){
         //Build comment bubble for sender
-        comment_wrapper = yb_createElement("div", `comment-wrapper-${comment_id}`, "comment-wrapper-right");
+        comment_wrapper = yb_createElement("div", `comment-wrapper-${comment_id}`, "yb-comment-wrapper right");
         comment_bubble = yb_createElement("div", `comment-${comment_id}`, "comment-bubble-right");
         comment_bubble.setAttribute("data-cat-id", comment_id);
         comment_bubble.setAttribute("style", `background-color: ${primary_color}`);
         //Create profile image
-        rendered_image = yb_renderImage(profile_image, "image-hang-left", "yb-comment-image");
+        rendered_image = yb_renderImage(profile_image, "image-hang left", "yb-comment-image");
         rendered_image.setAttribute("style", `border: 2px solid ${secondary_color}`)
         comment_bubble.appendChild(rendered_image);
         
@@ -1069,11 +1097,11 @@ function yb_buildComment(comment){
 
     } else {
         //Create comment bubble
-        comment_bubble = yb_createElement("div", `comment-${comment_id}`, "comment-bubble-left");
+        comment_bubble = yb_createElement("div", `comment-${comment_id}`, "yb-comment-bubble left");
         comment_bubble.setAttribute("data-cat-id", comment_id);
 
         //Create comment image
-        rendered_image = yb_renderImage(profile_image, "image-hang-right", "yb-comment-image");
+        rendered_image = yb_renderImage(profile_image, "image-hang right", "yb-comment-image");
         comment_bubble.appendChild(rendered_image);
 
         //Create comment name

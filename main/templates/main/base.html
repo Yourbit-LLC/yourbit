@@ -31,6 +31,7 @@ lang="en"
         <script type="text/javascript" src="{% static 'scripts/yb-pages.js' %}"></script>
         <script type="text/javascript" src="{% static 'scripts/yb-builders.js' %}"></script>
     </head>
+
     <body style="background-color:rgb(25,25,25); overflow-x:hidden;">
         <input id='csrf-token' type='hidden' value={{csrf_token}}>
         <input type='hidden' id='session_values' data-location="{{location}}" data-primary-color="{{bit_background}}" data-default-public= "{{default_public}}" data-ui="visible" data-space="{{space}}" data-filter="{{filter}}" data-sort = "{{sort}}" data-username="{{request.user.username}}" data-id="{{request.user.id}}" data-profile-username = "">
@@ -311,65 +312,67 @@ lang="en"
                     <div id="menu-options">
                         <div class="profile-menu-link" id = "home-link" name="home" ><a class="profile-menu-label">                         
                             <svg class='profile-menu-icon' style="grid-column: 1;" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
-                                <path style="fill: {{icon_color}};" d="M4 21V9l8-6 8 6v12h-6v-7h-4v7Zm2-2h2v-7h8v7h2v-9l-6-4.5L6 10Zm6-6.75Z"/></svg>
-                            <p class='profile-menu-link-text' style="grid-column: 2; text-decoration: none; color:{{icon_color}};">Home</p>
+                                <path class='yb-ui-icon' style="fill: {{icon_color}};" d="M4 21V9l8-6 8 6v12h-6v-7h-4v7Zm2-2h2v-7h8v7h2v-9l-6-4.5L6 10Zm6-6.75Z"/></svg>
+                                <p class='yb-ui-label profile-menu-link-text' style="grid-column: 2; text-decoration: none; color:{{icon_color}};">Home</p>
                         </a></div>
+
                         <div class="profile-menu-link" id = "message-link" name="messages"><a class="profile-menu-label">
-                            <svg class='profile-menu-icon' style="grid-column: 1;" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path class='profile-menu-icon' style="fill:{{icon_color}};" d="M4 20q-.825 0-1.412-.587Q2 18.825 2 18V6q0-.825.588-1.412Q3.175 4 4 4h16q.825 0 1.413.588Q22 5.175 22 6v12q0 .825-.587 1.413Q20.825 20 20 20Zm8-7L4 8v10h16V8Zm0-2 8-5H4ZM4 8V6v12Z"/></svg>
-                            <p class='profile-menu-link-text' style="grid-column: 2; text-decoration: none;  color:{{icon_color}};">Messages</p>
+                            <svg class='profile-menu-icon' style="grid-column: 1;" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path class='yb-ui-icon' style="fill:{{icon_color}};" d="M4 20q-.825 0-1.412-.587Q2 18.825 2 18V6q0-.825.588-1.412Q3.175 4 4 4h16q.825 0 1.413.588Q22 5.175 22 6v12q0 .825-.587 1.413Q20.825 20 20 20Zm8-7L4 8v10h16V8Zm0-2 8-5H4ZM4 8V6v12Z"/></svg>
+                            <p class='yb-ui-label profile-menu-link-text' style="grid-column: 2; text-decoration: none;  color:{{icon_color}};">Messages</p>
                         </a></div> 
+
                         <div class="profile-menu-link" id= "stuff-link" name="stuff">
                             <div class="profile-menu-label">
                             
-                                <svg class='profile-menu-icon' style="grid-column: 1;" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path class='profile-menu-icon' style="fill:{{icon_color}};" d="M4 20q-.825 0-1.412-.587Q2 18.825 2 18V6q0-.825.588-1.412Q3.175 4 4 4h6l2 2h8q.825 0 1.413.588Q22 7.175 22 8H11.175l-2-2H4v12l2.4-8h17.1l-2.575 8.575q-.2.65-.737 1.038Q19.65 20 19 20Zm2.1-2H19l1.8-6H7.9Zm0 0 1.8-6-1.8 6ZM4 8V6v2Z"/></svg>
-                                <p class='profile-menu-link-text' style="grid-column: 2; text-decoration: none; color:{{icon_color}};">Inventory</p>
+                                <svg class='profile-menu-icon' style="grid-column: 1;" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path class='yb-ui-icon' style="fill:{{icon_color}};" d="M4 20q-.825 0-1.412-.587Q2 18.825 2 18V6q0-.825.588-1.412Q3.175 4 4 4h6l2 2h8q.825 0 1.413.588Q22 7.175 22 8H11.175l-2-2H4v12l2.4-8h17.1l-2.575 8.575q-.2.65-.737 1.038Q19.65 20 19 20Zm2.1-2H19l1.8-6H7.9Zm0 0 1.8-6-1.8 6ZM4 8V6v2Z"/></svg>
+                                <p class='yb-ui-label profile-menu-link-text' style="grid-column: 2; text-decoration: none; color:{{icon_color}};">Inventory</p>
                             </div>
                         </div>
                         
                         <!--Profile menu history button-->
                         <div class="profile-menu-link" id="history-link" name="history">
                             <div class="profile-menu-label">
-                                <svg class='profile-menu-icon' style="grid-column: 1;" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path class='profile-menu-icon' style="fill:{{icon_color}};" d="M12 21q-3.45 0-6.012-2.288Q3.425 16.425 3.05 13H5.1q.35 2.6 2.312 4.3Q9.375 19 12 19q2.925 0 4.962-2.038Q19 14.925 19 12t-2.038-4.963Q14.925 5 12 5q-1.725 0-3.225.8T6.25 8H9v2H3V4h2v2.35q1.275-1.6 3.113-2.475Q9.95 3 12 3q1.875 0 3.513.712 1.637.713 2.85 1.925 1.212 1.213 1.925 2.85Q21 10.125 21 12t-.712 3.512q-.713 1.638-1.925 2.85-1.213 1.213-2.85 1.926Q13.875 21 12 21Zm2.8-4.8L11 12.4V7h2v4.6l3.2 3.2Z"/></svg>
-                                <p class='profile-menu-link-text' style="grid-column: 2; text-decoration: none;  color:{{icon_color}};">History</p>
+                                <svg class='profile-menu-icon' style="grid-column: 1;" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path class='yb-ui-icon' style="fill:{{icon_color}};" d="M12 21q-3.45 0-6.012-2.288Q3.425 16.425 3.05 13H5.1q.35 2.6 2.312 4.3Q9.375 19 12 19q2.925 0 4.962-2.038Q19 14.925 19 12t-2.038-4.963Q14.925 5 12 5q-1.725 0-3.225.8T6.25 8H9v2H3V4h2v2.35q1.275-1.6 3.113-2.475Q9.95 3 12 3q1.875 0 3.513.712 1.637.713 2.85 1.925 1.212 1.213 1.925 2.85Q21 10.125 21 12t-.712 3.512q-.713 1.638-1.925 2.85-1.213 1.213-2.85 1.926Q13.875 21 12 21Zm2.8-4.8L11 12.4V7h2v4.6l3.2 3.2Z"/></svg>
+                                <p class='yb-ui-label profile-menu-link-text' style="grid-column: 2; text-decoration: none;  color:{{icon_color}};">History</p>
                             </div>
                         </div>
                         
                         <!--Profile menu rewards button-->
                         <div class="profile-menu-link" id= "rewards-link" name = "rewards">
                             <a class="profile-menu-label">
-                                <svg class='profile-menu-icon' style="grid-column: 1;" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path class='profile-menu-icon' style="fill:{{icon_color}};"d="m8.85 17.825 3.15-1.9 3.15 1.925-.825-3.6 2.775-2.4-3.65-.325-1.45-3.4-1.45 3.375-3.65.325 2.775 2.425ZM5.825 22l1.625-7.025L2 10.25l7.2-.625L12 3l2.8 6.625 7.2.625-5.45 4.725L18.175 22 12 18.275ZM12 13.25Z"/></svg>
-                                <p class='profile-menu-link-text' style="grid-column: 2; text-decoration: none;  color:{{icon_color}};">Rewards</p>
+                                <svg class='profile-menu-icon' style="grid-column: 1;" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path class='yb-ui-icon' style="fill:{{icon_color}};"d="m8.85 17.825 3.15-1.9 3.15 1.925-.825-3.6 2.775-2.4-3.65-.325-1.45-3.4-1.45 3.375-3.65.325 2.775 2.425ZM5.825 22l1.625-7.025L2 10.25l7.2-.625L12 3l2.8 6.625 7.2.625-5.45 4.725L18.175 22 12 18.275ZM12 13.25Z"/></svg>
+                                <p class='yb-ui-label profile-menu-link-text' style="grid-column: 2; text-decoration: none;  color:{{icon_color}};">Rewards</p>
                             </a>
                         </div>
                         
                         <!--Profile menu settings button-->
                         <div class="profile-menu-link" id="settings-link" name="settings">
                             <div class="profile-menu-label">
-                                <svg class='profile-menu-icon' style="grid-column: 1;" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill:{{icon_color}};" d="m9.25 22-.4-3.2q-.325-.125-.612-.3-.288-.175-.563-.375L4.7 19.375l-2.75-4.75 2.575-1.95Q4.5 12.5 4.5 12.337v-.675q0-.162.025-.337L1.95 9.375l2.75-4.75 2.975 1.25q.275-.2.575-.375.3-.175.6-.3l.4-3.2h5.5l.4 3.2q.325.125.613.3.287.175.562.375l2.975-1.25 2.75 4.75-2.575 1.95q.025.175.025.337v.675q0 .163-.05.338l2.575 1.95-2.75 4.75-2.95-1.25q-.275.2-.575.375-.3.175-.6.3l-.4 3.2Zm2.8-6.5q1.45 0 2.475-1.025Q15.55 13.45 15.55 12q0-1.45-1.025-2.475Q13.5 8.5 12.05 8.5q-1.475 0-2.488 1.025Q8.55 10.55 8.55 12q0 1.45 1.012 2.475Q10.575 15.5 12.05 15.5Zm0-2q-.625 0-1.062-.438-.438-.437-.438-1.062t.438-1.062q.437-.438 1.062-.438t1.063.438q.437.437.437 1.062t-.437 1.062q-.438.438-1.063.438ZM12 12Zm-1 8h1.975l.35-2.65q.775-.2 1.438-.588.662-.387 1.212-.937l2.475 1.025.975-1.7-2.15-1.625q.125-.35.175-.738.05-.387.05-.787t-.05-.788q-.05-.387-.175-.737l2.15-1.625-.975-1.7-2.475 1.05q-.55-.575-1.212-.963-.663-.387-1.438-.587L13 4h-1.975l-.35 2.65q-.775.2-1.437.587-.663.388-1.213.938L5.55 7.15l-.975 1.7 2.15 1.6q-.125.375-.175.75-.05.375-.05.8 0 .4.05.775t.175.75l-2.15 1.625.975 1.7 2.475-1.05q.55.575 1.213.962.662.388 1.437.588Z"/></svg>
-                                <p class='profile-menu-link-text' style="grid-column: 2; text-decoration: none; color:{{icon_color}};">Settings</p>
+                                <svg class='profile-menu-icon' style="grid-column: 1;" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path class='yb-ui-icon' style="fill:{{icon_color}};" d="m9.25 22-.4-3.2q-.325-.125-.612-.3-.288-.175-.563-.375L4.7 19.375l-2.75-4.75 2.575-1.95Q4.5 12.5 4.5 12.337v-.675q0-.162.025-.337L1.95 9.375l2.75-4.75 2.975 1.25q.275-.2.575-.375.3-.175.6-.3l.4-3.2h5.5l.4 3.2q.325.125.613.3.287.175.562.375l2.975-1.25 2.75 4.75-2.575 1.95q.025.175.025.337v.675q0 .163-.05.338l2.575 1.95-2.75 4.75-2.95-1.25q-.275.2-.575.375-.3.175-.6.3l-.4 3.2Zm2.8-6.5q1.45 0 2.475-1.025Q15.55 13.45 15.55 12q0-1.45-1.025-2.475Q13.5 8.5 12.05 8.5q-1.475 0-2.488 1.025Q8.55 10.55 8.55 12q0 1.45 1.012 2.475Q10.575 15.5 12.05 15.5Zm0-2q-.625 0-1.062-.438-.438-.437-.438-1.062t.438-1.062q.437-.438 1.062-.438t1.063.438q.437.437.437 1.062t-.437 1.062q-.438.438-1.063.438ZM12 12Zm-1 8h1.975l.35-2.65q.775-.2 1.438-.588.662-.387 1.212-.937l2.475 1.025.975-1.7-2.15-1.625q.125-.35.175-.738.05-.387.05-.787t-.05-.788q-.05-.387-.175-.737l2.15-1.625-.975-1.7-2.475 1.05q-.55-.575-1.212-.963-.663-.387-1.438-.587L13 4h-1.975l-.35 2.65q-.775.2-1.437.587-.663.388-1.213.938L5.55 7.15l-.975 1.7 2.15 1.6q-.125.375-.175.75-.05.375-.05.8 0 .4.05.775t.175.75l-2.15 1.625.975 1.7 2.475-1.05q.55.575 1.213.962.662.388 1.437.588Z"/></svg>
+                                <p class='yb-ui-label profile-menu-link-text' style="grid-column: 2; text-decoration: none; color:{{icon_color}};">Settings</p>
                             </div>
                         </div>
                         <!--Profile menu connections button-->
                         <div class="profile-menu-link" id="connections-link" name="connections">
                             <a class="profile-menu-label">
-                                <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill:{{icon_color}};" d="M1 20v-2.8q0-.85.438-1.563.437-.712 1.162-1.087 1.55-.775 3.15-1.163Q7.35 13 9 13t3.25.387q1.6.388 3.15 1.163.725.375 1.162 1.087Q17 16.35 17 17.2V20Zm18 0v-3q0-1.1-.612-2.113-.613-1.012-1.738-1.737 1.275.15 2.4.512 1.125.363 2.1.888.9.5 1.375 1.112Q23 16.275 23 17v3ZM9 12q-1.65 0-2.825-1.175Q5 9.65 5 8q0-1.65 1.175-2.825Q7.35 4 9 4q1.65 0 2.825 1.175Q13 6.35 13 8q0 1.65-1.175 2.825Q10.65 12 9 12Zm10-4q0 1.65-1.175 2.825Q16.65 12 15 12q-.275 0-.7-.062-.425-.063-.7-.138.675-.8 1.037-1.775Q15 9.05 15 8q0-1.05-.363-2.025Q14.275 5 13.6 4.2q.35-.125.7-.163Q14.65 4 15 4q1.65 0 2.825 1.175Q19 6.35 19 8ZM3 18h12v-.8q0-.275-.137-.5-.138-.225-.363-.35-1.35-.675-2.725-1.013Q10.4 15 9 15t-2.775.337Q4.85 15.675 3.5 16.35q-.225.125-.362.35-.138.225-.138.5Zm6-8q.825 0 1.413-.588Q11 8.825 11 8t-.587-1.412Q9.825 6 9 6q-.825 0-1.412.588Q7 7.175 7 8t.588 1.412Q8.175 10 9 10Zm0 8ZM9 8Z"/></svg>
-                                <p class='profile-menu-link-text' style="grid-column: 2; text-decoration: none; color:{{icon_color}};">Connections</p>
+                                <svg class="profile-menu-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path class='yb-ui-icon' style="fill:{{icon_color}};" d="M1 20v-2.8q0-.85.438-1.563.437-.712 1.162-1.087 1.55-.775 3.15-1.163Q7.35 13 9 13t3.25.387q1.6.388 3.15 1.163.725.375 1.162 1.087Q17 16.35 17 17.2V20Zm18 0v-3q0-1.1-.612-2.113-.613-1.012-1.738-1.737 1.275.15 2.4.512 1.125.363 2.1.888.9.5 1.375 1.112Q23 16.275 23 17v3ZM9 12q-1.65 0-2.825-1.175Q5 9.65 5 8q0-1.65 1.175-2.825Q7.35 4 9 4q1.65 0 2.825 1.175Q13 6.35 13 8q0 1.65-1.175 2.825Q10.65 12 9 12Zm10-4q0 1.65-1.175 2.825Q16.65 12 15 12q-.275 0-.7-.062-.425-.063-.7-.138.675-.8 1.037-1.775Q15 9.05 15 8q0-1.05-.363-2.025Q14.275 5 13.6 4.2q.35-.125.7-.163Q14.65 4 15 4q1.65 0 2.825 1.175Q19 6.35 19 8ZM3 18h12v-.8q0-.275-.137-.5-.138-.225-.363-.35-1.35-.675-2.725-1.013Q10.4 15 9 15t-2.775.337Q4.85 15.675 3.5 16.35q-.225.125-.362.35-.138.225-.138.5Zm6-8q.825 0 1.413-.588Q11 8.825 11 8t-.587-1.412Q9.825 6 9 6q-.825 0-1.412.588Q7 7.175 7 8t.588 1.412Q8.175 10 9 10Zm0 8ZM9 8Z"/></svg>
+                                <p class= 'yb-ui-label profile-menu-link-text' style="grid-column: 2; text-decoration: none; color:{{icon_color}};">Connections</p>
                             </a>
                         </div>
 
                         <!--Profile menu community link-->
                         <div class="profile-menu-link" id="community-link" name="community">
                             <a class="profile-menu-label">
-                                <svg class='profile-menu-icon' xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill:{{icon_color}};"d="M1 20v-4q0-.85.588-1.425Q2.175 14 3 14h3.275q.5 0 .95.25.45.25.725.675.725.975 1.788 1.525Q10.8 17 12 17q1.225 0 2.288-.55 1.062-.55 1.762-1.525.325-.425.762-.675.438-.25.913-.25H21q.85 0 1.425.575Q23 15.15 23 16v4h-7v-2.275q-.875.625-1.887.95Q13.1 19 12 19q-1.075 0-2.1-.337-1.025-.338-1.9-.963V20Zm11-4q-.95 0-1.8-.438-.85-.437-1.425-1.212-.425-.625-1.062-.987Q7.075 13 6.325 13q.55-.925 2.325-1.463Q10.425 11 12 11q1.575 0 3.35.537 1.775.538 2.325 1.463-.725 0-1.375.363-.65.362-1.075.987-.55.8-1.4 1.225Q12.975 16 12 16Zm-8-3q-1.25 0-2.125-.875T1 10q0-1.275.875-2.138Q2.75 7 4 7q1.275 0 2.138.862Q7 8.725 7 10q0 1.25-.862 2.125Q5.275 13 4 13Zm16 0q-1.25 0-2.125-.875T17 10q0-1.275.875-2.138Q18.75 7 20 7q1.275 0 2.138.862Q23 8.725 23 10q0 1.25-.862 2.125Q21.275 13 20 13Zm-8-3q-1.25 0-2.125-.875T9 7q0-1.275.875-2.138Q10.75 4 12 4q1.275 0 2.137.862Q15 5.725 15 7q0 1.25-.863 2.125Q13.275 10 12 10Z"/></svg>
-                                <p class='profile-menu-link-text' style="grid-column: 2; text-decoration: none; color:{{icon_color}};">Communities</p>
+                                <svg class='profile-menu-icon' xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path class='yb-ui-icon' style="fill:{{icon_color}};"d="M1 20v-4q0-.85.588-1.425Q2.175 14 3 14h3.275q.5 0 .95.25.45.25.725.675.725.975 1.788 1.525Q10.8 17 12 17q1.225 0 2.288-.55 1.062-.55 1.762-1.525.325-.425.762-.675.438-.25.913-.25H21q.85 0 1.425.575Q23 15.15 23 16v4h-7v-2.275q-.875.625-1.887.95Q13.1 19 12 19q-1.075 0-2.1-.337-1.025-.338-1.9-.963V20Zm11-4q-.95 0-1.8-.438-.85-.437-1.425-1.212-.425-.625-1.062-.987Q7.075 13 6.325 13q.55-.925 2.325-1.463Q10.425 11 12 11q1.575 0 3.35.537 1.775.538 2.325 1.463-.725 0-1.375.363-.65.362-1.075.987-.55.8-1.4 1.225Q12.975 16 12 16Zm-8-3q-1.25 0-2.125-.875T1 10q0-1.275.875-2.138Q2.75 7 4 7q1.275 0 2.138.862Q7 8.725 7 10q0 1.25-.862 2.125Q5.275 13 4 13Zm16 0q-1.25 0-2.125-.875T17 10q0-1.275.875-2.138Q18.75 7 20 7q1.275 0 2.138.862Q23 8.725 23 10q0 1.25-.862 2.125Q21.275 13 20 13Zm-8-3q-1.25 0-2.125-.875T9 7q0-1.275.875-2.138Q10.75 4 12 4q1.275 0 2.137.862Q15 5.725 15 7q0 1.25-.863 2.125Q13.275 10 12 10Z"/></svg>
+                                <p class='yb-ui-label profile-menu-link-text' style="grid-column: 2; text-decoration: none; color:{{icon_color}};">Communities</p>
                             </a>
                         </div>
 
                         <!--Profile menu more link-->
                         <div class="profile-menu-link" id="more-link" >
                             <a class="profile-menu-label" href="{% url 'mysettings' %}">
-                                <svg class='profile-menu-icon' xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill:{{icon_color}}" d="M6 14q-.825 0-1.412-.588Q4 12.825 4 12t.588-1.413Q5.175 10 6 10t1.412.587Q8 11.175 8 12q0 .825-.588 1.412Q6.825 14 6 14Zm6 0q-.825 0-1.412-.588Q10 12.825 10 12t.588-1.413Q11.175 10 12 10t1.413.587Q14 11.175 14 12q0 .825-.587 1.412Q12.825 14 12 14Zm6 0q-.825 0-1.413-.588Q16 12.825 16 12t.587-1.413Q17.175 10 18 10q.825 0 1.413.587Q20 11.175 20 12q0 .825-.587 1.412Q18.825 14 18 14Z"/></svg>
-                                <p class='profile-menu-link-text' style="grid-column: 2; text-decoration: none; color:{{icon_color}};">More</p>
+                                <svg class='profile-menu-icon' xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path class='yb-ui-icon' style="fill:{{icon_color}}" d="M6 14q-.825 0-1.412-.588Q4 12.825 4 12t.588-1.413Q5.175 10 6 10t1.412.587Q8 11.175 8 12q0 .825-.588 1.412Q6.825 14 6 14Zm6 0q-.825 0-1.412-.588Q10 12.825 10 12t.588-1.413Q11.175 10 12 10t1.413.587Q14 11.175 14 12q0 .825-.587 1.412Q12.825 14 12 14Zm6 0q-.825 0-1.413-.588Q16 12.825 16 12t.587-1.413Q17.175 10 18 10q.825 0 1.413.587Q20 11.175 20 12q0 .825-.587 1.412Q18.825 14 18 14Z"/></svg>
+                                <p class='yb-ui-label profile-menu-link-text' style="grid-column: 2; text-decoration: none; color:{{icon_color}};">More</p>
                             </a>
                         </div>
                             
