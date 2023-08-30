@@ -50,11 +50,14 @@ let checkControlsVisibility = function() {
     };
 
 
-function yb_videoToNav(video) {
+function yb_videoToMini(video) {
     
-    let newParent = document.getElementById('nav');
+    let newParent = document.getElementById('minibar');
     
+    yb_showMiniBar();
     newParent.appendChild(video);
+    
+    
     // Or you can use the insertBefore method to insert before a specific element within newParent
     // newParent.insertBefore(video, newParent.firstChild);
 
@@ -72,9 +75,27 @@ function yb_videoToBit(video) {
     let new_parent = document.getElementById('bit-' + this_id);
     
     new_parent.appendChild(video);
+    video.classList.remove('mini');
+    video.classList.add('preview');
     // Or you can use the insertBefore method to insert before a specific element within newParent
     // newParent.insertBefore(video, newParent.firstChild);
 
+}
+
+function yb_MiniTouchStart(event) {
+    var initialY = event.touches[0].clientY;
+    
+    video.addEventListener("touchend", function handleTouchEnd(event) {
+        var finalY = event.changedTouches[0].clientY;
+        var deltaY = finalY - initialY;
+        
+        if (deltaY > 250) {
+            yb_videoToBit(); // Call the function to transition to Bit view
+        }
+        
+        video.removeEventListener("touchend", handleTouchEnd); // Remove the event listener
+        video.removeEventListener("touchstart", yb_MiniTouchStart); // Remove the event listener
+    });
 }
   
 
@@ -85,40 +106,14 @@ function shrinkVideo(entries, observer) {
     let windowHeight = window.innerHeight;
   
     if (!video.paused && video.currentTime > 0 && containerTop + videoHeight <= windowHeight) {
-      
-        video.style.position = 'absolute';
-        video.style.bottom = '100px';
-        video.style.width = '40%'; // You can adjust the width to your preference
-        video.style.height = 'auto';
-        video.style.left = '50%';
-        video.style.transform = 'translateX(-50%)';
-        video.style.zIndex = '1000';
-        video.style.borderRadius = '10px';
-        video.style.boxShadow = '0px 0px 10px 0px rgba(0,0,0,0.75)';
-        video.style.borderColor = 'black';
-
-        video.addEventListener("touchstart", function(event) {
-            var initialY = event.touches[0].clientY;
-    
-            // Add an event listener for touchend event
-            video.addEventListener("touchend", function(event) {
-                var finalY = event.changedTouches[0].clientY;
-                var deltaY = finalY - initialY;
         
-                // Check if the user has swiped down
-                if (deltaY > 250) {
-                    // Perform actions to exit fullscreen
-                    // Add your code here to handle fullscreen exit
+        video.classList.remove('preview');
+        video.classList.add('mini');
 
-                    console.log(swipe);
-                    
-                }
-            });
-            
-        });
+        video.addEventListener("touchstart", yb_MiniTouchStart);
         
 
-        yb_videoToNav(video);
+        yb_videoToMini(video);
 
 
     } else {
