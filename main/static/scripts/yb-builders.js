@@ -55,6 +55,7 @@ function yb_videoToMini(video) {
     let newParent = document.getElementById('minibar');
     
     yb_showMiniBar();
+    yb_updateWidgetTask('video');
     newParent.appendChild(video);
     newParent.style.width = '55vw'
     
