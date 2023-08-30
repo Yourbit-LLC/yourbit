@@ -28,17 +28,17 @@ function yb_setProfileUI(custom) {
 
     let ui_labels = document.getElementsByClassName("yb-ui-label");
     for (let i = 0; i < ui_labels.length; i++) {
-        ui_labels[i].setAttribute("style", `color:${custom.ui_color} !important;`);
+        ui_labels[i].setAttribute("style", `color:${custom.icon_color} !important;`);
     }
 
     let ui_icons = document.getElementsByClassName("yb-ui-icon");
     for (let i = 0; i < ui_icons.length; i++) {
-        ui_icons[i].setAttribute("style", `color:${custom.ui_color} !important;`);
+        ui_icons[i].setAttribute("style", `color:${custom.icon_color} !important;`);
     }
 
     let accent_buttons = document.getElementsByClassName("yb-accent-button");
     for (let i = 0; i < accent_buttons.length; i++) {
-        accent_buttons[i].setAttribute("style", `border-color:${custom.ui_color} !important;`);
+        accent_buttons[i].setAttribute("style", `border-color:${custom.icon_color} !important;`);
     }
 
     let accented_elements = document.getElementsByClassName("yb-element-accent");
