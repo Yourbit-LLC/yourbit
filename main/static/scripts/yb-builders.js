@@ -116,11 +116,7 @@ function shrinkVideo(entries, observer) {
         yb_videoToMini(video);
 
 
-    } else {
-        video.style.position = 'static';
-        video.style.width = '100%';
-        video.style.height = 'auto';
-    }
+    } 
   }
 
 //Function for generating bits
