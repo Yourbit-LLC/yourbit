@@ -133,6 +133,9 @@ function yb_getUserCustom(key) {
 function yb_revertCustom() {
     let background_element = document.getElementById("bg-image");
     let background_image = yb_getUserCustom("wallpaper");
+    let blur_radius = yb_getUserCustom("background-blur");
+    let brightness = yb_getUserCustom("background-brightness");
+    background_element.setAttribute("style", `filter: blur(${blur_radius}px) brightness(${background_brightness}%);`);
     background_element.setAttribute("src", background_image);
 }
 
