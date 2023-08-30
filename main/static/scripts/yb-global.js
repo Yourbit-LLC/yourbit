@@ -120,8 +120,23 @@ function yb_applyTextColors(toggle=true) {
 }
 
 function yb_changeBackground(image) {
-    
+    let background_element = document.getElementById("bg-image");
+    background_element.setAttribute("src", image);
 }
+
+function yb_getUserCustom(key) {
+    let this_data = document.getElementById("custom_values");
+    let response = this_data.getAttribute(`data-${key}`);
+    return response
+}
+
+function yb_revertCustom() {
+    let background_element = document.getElementById("bg-image");
+    let background_image = yb_getUserCustom("wallpaper");
+    background_element.setAttribute("src", background_image);
+}
+
+
 
 function yb_hideUI(){
     let screen_width = screen.width;

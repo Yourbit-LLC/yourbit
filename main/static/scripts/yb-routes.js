@@ -578,3 +578,57 @@ function search_url(this_query, this_type) {
     
 
 }
+
+function yb_navigateTo(destination, data=null) {
+    let current_location = yb_getSessionValues("location");
+    let current_space = yb_getSessionValues("space");
+
+    if (current_location === "profile") {
+        yb_updatePageTask("home");
+        yb_revertCustom();
+    }
+
+    if (destination === "home") {
+        yb_updatePageTask("rewards");
+        home_url();
+
+    } else if (destination === "profile") {
+        yb_updatePageTask("profile");
+        profile_url(data);
+
+    } else if (destination === "search") {
+        yb_updatePageTask("search");
+        search_url(data);
+
+    } else if (destination === "customize") {
+        yb_updatePageTask("customize");
+        customize_url();
+
+        
+    } else if (destination === "connections") {
+        yb_updatePageTask("connections");
+        connections_url();
+    } else if (destination === "settings") {
+        yb_updatePageTask("settings");
+        settings_url();
+
+    } else if (destination === "messages") {
+        yb_updatePageTask("messages");
+        messages_inbox_url();
+
+    } else if (destination === "rewards") {
+        yb_updatePageTask("rewards");
+        rewards_url();
+
+    } else if (destination === "cluster") {
+        yb_updatePageTask("cluster");
+        cluster_url();
+    } else if (destination === "history") {
+        yb_updatePageTask("history");
+        history_url();
+    } else if (destination === "stuff") {
+        yb_updatePageTask("stuff");
+        stuff_url();
+    } 
+
+}
