@@ -166,7 +166,7 @@ function BuildBit(bit, liked_bits, disliked_bits){
     let paragraph_align = custom.paragraph_align;
     
     //Prepare new bit by creating an element
-    new_bit = yb_createElement("div", `bit-${id}`, `yb-element-background post-wrapper container-bit ${type}`)
+    new_bit = yb_createElement("div", `bit-${id}`, `yb-element-background post-wrapper container-bit-${type}`)
 
     //Apply All Attributes: element id, element class, data type, data-id, data-button-color, data icon color, data background color, style
     new_bit.setAttribute("data-type", `${type}`);
