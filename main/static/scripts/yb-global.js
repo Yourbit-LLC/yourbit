@@ -119,6 +119,10 @@ function yb_applyTextColors(toggle=true) {
 
 }
 
+function yb_changeBackground(image) {
+    
+}
+
 function yb_hideUI(){
     let screen_width = screen.width;
     if (screen_width < 600) {
