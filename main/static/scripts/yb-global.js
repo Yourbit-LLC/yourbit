@@ -149,7 +149,7 @@ function yb_revertCustom() {
 
     let ui_icons = document.getElementsByClassName("yb-ui-icon");
     for (let i = 0; i < ui_icons.length; i++) {
-        ui_icons[i].setAttribute("style", `color:${icon_color} !important;`);
+        ui_icons[i].setAttribute("style", `fill:${icon_color} !important;`);
     }
 
     let accent_buttons = document.getElementsByClassName("yb-accent-button");
