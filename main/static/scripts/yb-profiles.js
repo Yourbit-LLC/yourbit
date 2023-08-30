@@ -24,7 +24,7 @@ function yb_setProfileUI(custom) {
     let background_image = document.getElementById("bg-image");
     background_image.setAttribute("src", custom.background_mobile);
     
-    background_image.setAttribute("style", `filter: blur(${custom.background_blur}px) brightness(${custom.background_brightness}%); -webkit-filter: blur(${blur_radius}px) brightness(${brightness}%);`);
+    background_image.setAttribute("style", `filter: blur(${custom.background_blur}px) brightness(${custom.background_brightness}%); -webkit-filter: blur(${custom.background_blur}px) brightness(${custom.background_brightness}%);`);
 
     let ui_labels = document.getElementsByClassName("yb-ui-label");
     for (let i = 0; i < ui_labels.length; i++) {
