@@ -22,7 +22,7 @@ $(document).ready(function() {
 
 function yb_setProfileUI(custom) {
     let background_image = document.getElementById("bg-image");
-    background_image.setAttribute("src", profile_background);
+    background_image.setAttribute("src", background_image);
     background_image.setAttribute("style", custom.background_blur);
 
     let ui_labels = document.getElementsByClassName("yb-ui-label");
