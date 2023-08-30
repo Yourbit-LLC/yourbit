@@ -40,6 +40,7 @@ function yb_BuildProfile(profile_data){
 
     let background_image = document.getElementById("bg-image");
     background_image.setAttribute("src", profile_background);
+    background_image.setAttribute("style", custom.background_blur);
     
     //Get profile name from data 
     let profile_first_name = user.first_name;
