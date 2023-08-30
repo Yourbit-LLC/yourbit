@@ -60,6 +60,7 @@ class CustomResultSerializer(serializers.ModelSerializer):
             'image',
             'image_thumbnail_large',
             'image_thumbnail_small',
+            'background_mobile',
             'primary_color',
             'accent_color',
             'title_color'

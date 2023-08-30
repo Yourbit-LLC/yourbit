@@ -37,6 +37,9 @@ function yb_BuildProfile(profile_data){
 
     let profile_image = custom.image_thumbnail_large;
     let profile_background = custom.background_mobile;
+
+    let background_image = document.getElementById("bg-image");
+    background_image.setAttribute("src", profile_background);
     
     //Get profile name from data 
     let profile_first_name = user.first_name;
@@ -254,8 +257,7 @@ function yb_BuildProfile(profile_data){
         let profile_splash = document.getElementById("profile-page-splash");
         let image = document.getElementById("profile-image-splash");
         let profile_id = yb_getSessionValues("profile-username");
-        let background_image = document.getElementById("bg-image");
-        background_image.setAttribute("src", profile_background);
+
         
     
         $("#profile-splash-label").animate({"height": "80px", "top":"100px", "width": "100%"});
