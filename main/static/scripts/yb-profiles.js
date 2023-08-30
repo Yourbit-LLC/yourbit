@@ -26,7 +26,7 @@ function yb_setProfileUI(custom) {
     background_image.setAttribute("style", custom.background_blur);
 
     let ui_labels = document.getElementsByClassName("yb-ui-label");
-    for (let i = 0; i < ui_elements.length; i++) {
+    for (let i = 0; i < ui_labels.length; i++) {
         ui_labels[i].setAttribute("style", `color:${custom.ui_color} !important;`);
     }
 
