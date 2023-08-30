@@ -35,13 +35,30 @@
         .section-content {
             z-index: 2;
             /* Your content styles here */
-
+        }
         #video-terrain-scan {
             filter: blur(20px);
             -webkit-filter: blur(20px);
         }
+        
+        .yb-container-floatingAction.center {
+            display: grid;
+            position: fixed;
+            bottom: 150px;
+            left: 50%;
+            transform: translate(-50%);
+            height: 40px;
+            width: 70vw;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 5px;
             
-        }     
+            border-radius: 30px;
+            padding: 2px 2px 2px 2px;
+            background-color: black;
+            
+        }
+            
+        
         
     </style>
 </head>
