@@ -33,7 +33,7 @@ function yb_setProfileUI(custom) {
 
     let ui_icons = document.getElementsByClassName("yb-ui-icon");
     for (let i = 0; i < ui_icons.length; i++) {
-        ui_icons[i].setAttribute("style", `fill:${custom.icon_color} !important;`);
+        $(ui_icons[i]).css({"fill": `${custom.icon_color} !important`});
     }
 
     let accent_buttons = document.getElementsByClassName("yb-accent-button");
@@ -43,7 +43,7 @@ function yb_setProfileUI(custom) {
 
     let accented_elements = document.getElementsByClassName("yb-element-accent");
     for (let i = 0; i < accented_elements.length; i++) {
-        accented_elements[i].setAttribute("style", `border-color:${custom.accent_color} !important;`);
+        $(ui_icons[i]).css({"fill": `${custom.icon_color} !important`});
     }
 
     
