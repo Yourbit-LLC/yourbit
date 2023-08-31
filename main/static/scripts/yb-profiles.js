@@ -92,6 +92,9 @@ function yb_enterProfile() {
 
     let bit_container = document.getElementById("bit-container");
     $(bit_container).animate({"top":"0vh"}, "slow");
+    setTimeout(function(){
+        $(bit_container).css({"pointer-events":"auto"});
+    }, 200);
     yb_showMiniBar(); 
     yb_showMenuTask();   
     
@@ -139,6 +142,7 @@ function yb_BuildProfile(profile_data){
 
     let profile_splash = yb_createElement("div", "profile-page-splash", "splash-page");
     profile_splash.setAttribute("data-id", profile_id);
+    profile_splash.setAttribute("style", "z-index:16;");
 
 
     let profile_info = yb_createElement("div", "profile-splash-label", "space-splash-label profile");
