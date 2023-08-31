@@ -310,10 +310,8 @@ Profile Page
     }
 
     #profile-loading {
-        position: absolute;
+        
         bottom: 140px;
-        text-align: center;
-        width: 100%;
         color: white;
     }
 
