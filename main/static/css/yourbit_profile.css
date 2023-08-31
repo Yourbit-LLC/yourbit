@@ -7,10 +7,6 @@ Profile Page
 */
 
 .bobbing-object {
-    width: 100px;
-    height: 100px;
-    background-color: #3498db;
-    position: relative;
     animation: bobbing 2s infinite ease-in-out;
   }
 
@@ -311,6 +307,14 @@ Profile Page
         top: 60px;
         left: 0px;
 
+    }
+
+    #profile-loading {
+        position: absolute;
+        bottom: 140px;
+        text-align: center;
+        width: 100%;
+        color: white;
     }
 
     .swipe-up-element {
