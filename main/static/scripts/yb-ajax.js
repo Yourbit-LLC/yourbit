@@ -69,7 +69,7 @@ function yb_getFeed(new_feed, callback, callback2, session_start){
         if (location === "profile") {
             
             var bit_container =  yb_createElement("div", "bit-container", "yb-sub-container")
-            bit_container.setAttribute("style", "position: absolute; top:100vh; padding-top:130px;");
+            bit_container.setAttribute("style", "position: absolute; top:100vh; padding-top:130px; pointer-events: none;");
 
             content_container.appendChild(bit_container);
 
@@ -121,7 +121,7 @@ function yb_getFeed(new_feed, callback, callback2, session_start){
                 if (location === "profile") {
 
                     if (bit == bitstream.length - 1){
-                        bit_container.setAttribute("style", "pointer-events: none;");
+                        
                         let load_indicator = document.getElementById("profile-loading");
                         load_indicator.remove();
                         $("#swipe-up-element").fadeIn();
