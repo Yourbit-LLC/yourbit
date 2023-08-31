@@ -219,7 +219,7 @@ function yb_BuildProfile(profile_data){
 
     let new_feed = {
         "type": "global",
-        "id": profile_id,
+        "id": handle,
         "filter":"-fo-fr-me-p-c",
         "sort":"chrono",
     };
