@@ -2815,7 +2815,7 @@ only be used for object transforms (shaping and scaling)
     }
 
     .space-splash-label.profile {
-        transform:translate(-50%, -90%)
+        transform:translate(-50%, -65%)
     }
     #mobile-spacer {
         display: block;

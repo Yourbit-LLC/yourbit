@@ -172,8 +172,8 @@ function yb_hideUI(){
     
         $("#mobile-header").animate({"top":"-70px"});
         $("#nav").animate({"bottom": "-95px"});
-        $("#mobile-search-button").animate({"right": "-100px"});
-        $("#mobile-create-button").animate({"left":"-100px"});
+        $("#mobile-search-button").animate({"right": "-100%"});
+        $("#mobile-create-button").animate({"left":"-100%"});
         $("#back-to-home").hide();
         yb_setSessionValues("ui", "hidden")
         
