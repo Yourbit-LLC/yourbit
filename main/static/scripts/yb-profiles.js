@@ -89,7 +89,8 @@ function yb_enterProfile() {
 
     initUI();
     headerDropIn();
-
+    let bitstream = document.getElementById("bit-container");
+    bitstream.setAttribute("style", "overflow-y: hidden;");
 
     console.log(new_feed)
     yb_showMiniBar(); 

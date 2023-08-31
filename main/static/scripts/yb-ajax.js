@@ -121,7 +121,8 @@ function yb_getFeed(new_feed, callback, callback2, session_start){
                 if (location === "profile") {
                     if (bit == 1) {
                         let bitstream = document.getElementById("bit-container");
-                        bitstream.setAttribute("style", "padding-top: 100vh;");
+                        bitstream.setAttribute("style", "overflow-y: hidden;");
+                        
                     }
                     if (bit == bitstream.length - 1){
                         let load_indicator = document.getElementById("profile-loading");
