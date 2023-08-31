@@ -217,6 +217,14 @@ function yb_BuildProfile(profile_data){
     swipe_up_text.innerHTML = "Slide Up for Bitstream";
     swipe_up_element.appendChild(swipe_up_text);
 
+    let new_feed = {
+        "type": "global",
+        "id": profile_id,
+        "filter":"-fo-fr-me-p-c",
+        "sort":"chrono",
+    };
+
+    yb_getFeed(new_feed, "none", false);
     
     swipe_up_element.addEventListener("touchstart", function(event) {
         var initialY = event.touches[0].clientY;
@@ -267,17 +275,12 @@ function yb_BuildProfile(profile_data){
         
                 initUI();
                 headerDropIn();
-                let new_feed = {
-                    "type": "global",
-                    "id": profile_id,
-                    "filter":"-fo-fr-me-p-c",
-                    "sort":"chrono",
-                };
+
             
                 console.log(new_feed)
                 yb_showMiniBar(); 
                 yb_showMenuTask();   
-                yb_getFeed(new_feed, "none", false);
+                
             }
         });
         
