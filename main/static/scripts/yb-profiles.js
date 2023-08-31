@@ -251,11 +251,17 @@ function yb_BuildProfile(profile_data){
     }
     bio_container.appendChild(profile_bio);
 
-    let swipe_up_element = yb_createElement("div", "swipe-up-element", "swipe-up-element");
+    let swipe_up_element = yb_createElement("div", "swipe-up-element", "swipe-up-element bobbing-object");
+    swipe_up_element.setAttribute("style", `display:none;`);
+    
     profile_splash.appendChild(swipe_up_element);
     
+    let loading_indicator = yb_createElement("div", "profile-loading", "loading-circle");
+    profile_splash.appendChild(loading_indicator);
+
+    
     let swipe_up_icon = yb_createElement("svg", "swipe-up-icon", "swipe-up-icon");
-    swipe_up_icon.innerHTML = `<svg class='swipe-up-icon' xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M14.15 30.75 12 28.6l12-12 12 11.95-2.15 2.15L24 20.85Z"/></svg>`;
+    swipe_up_icon.innerHTML = `<svg class='swipe-up-icon' xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path style="fill:${custom.text_color}" d="M14.15 30.75 12 28.6l12-12 12 11.95-2.15 2.15L24 20.85Z"/></svg>`;
 
     swipe_up_element.appendChild(swipe_up_icon);
 

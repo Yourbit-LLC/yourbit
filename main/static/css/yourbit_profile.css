@@ -5,6 +5,24 @@
 Profile Page
 
 */
+
+.bobbing-object {
+    width: 100px;
+    height: 100px;
+    background-color: #3498db;
+    position: relative;
+    animation: bobbing 2s infinite ease-in-out;
+  }
+
+@keyframes bobbing {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }   
+}
+
 @media screen and (min-width: 700px){
     #profile-image-profile {
         width: 200px;
@@ -149,6 +167,7 @@ Profile Page
         
         tags: mobile profile image mobile profile header image mobile profile picture header mobile profile picture on mobile profile
     */
+
 
     
     #profile-image-profile {

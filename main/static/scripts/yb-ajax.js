@@ -72,6 +72,7 @@ function yb_getFeed(new_feed, callback, callback2, session_start){
             bit_container.setAttribute("style", "top:100vh; padding-top:60px;");
 
             content_container.appendChild(bit_container);
+
             
         } 
         else if (location == "home") {
@@ -117,9 +118,18 @@ function yb_getFeed(new_feed, callback, callback2, session_start){
                 bit_container.appendChild(new_bit)
                 
                 bitstream_index.push(packaged_bit.element_id);
-
+                if (location === "profile") {
+                    if (bit == bitstream.length - 1){
+                        let load_indicator = document.getElementById("profile-loading");
+                        load_indicator.remove();
+                        $("#swipe-up-element").fadeIn();
+                        
+                    }
+                }
 
             }
+
+
 
         } else {
             $(".feed-message").remove();
