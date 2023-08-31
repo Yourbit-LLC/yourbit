@@ -69,7 +69,7 @@ function yb_getFeed(new_feed, callback, callback2, session_start){
         if (location === "profile") {
             
             var bit_container =  yb_createElement("div", "bit-container", "yb-sub-container")
-            bit_container.setAttribute("style", "top:100vh; padding-top:60px;");
+            bit_container.setAttribute("style", "position: absolute; top:100vh; padding-top:130px;");
 
             content_container.appendChild(bit_container);
 
