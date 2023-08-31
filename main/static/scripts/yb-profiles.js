@@ -258,6 +258,7 @@ function yb_BuildProfile(profile_data){
     profile_splash.appendChild(swipe_up_element);
     
     let loading_indicator = yb_createElement("div", "profile-loading", "loading-circle");
+    loading_indicator.style.borderTop = "4px solid #fadd00"
     profile_splash.appendChild(loading_indicator);
 
     

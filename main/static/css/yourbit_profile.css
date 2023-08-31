@@ -312,7 +312,8 @@ Profile Page
     #profile-loading {
         position: absolute;
         bottom: 140px;
-        color: white;
+        left: 50%;
+        transform: translate(-50%);
     }
 
     .swipe-up-element {
