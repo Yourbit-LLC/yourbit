@@ -38,7 +38,7 @@ function yb_setProfileUI(custom) {
 
     let accent_buttons = document.getElementsByClassName("yb-accent-button");
     for (let i = 0; i < accent_buttons.length; i++) {
-        accent_buttons[i].setAttribute("style", `border-color:${custom.icon_color} !important;`);
+        $(accent_buttons[i]).css({"border-color": `${custom.icon_color} !important;`});
     }
 
     let accented_elements = document.getElementsByClassName("yb-element-accent");
