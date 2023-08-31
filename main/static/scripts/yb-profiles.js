@@ -60,7 +60,7 @@ function yb_enterProfile() {
 
     $("#profile-splash-label").animate({"height": "80px", "top":"100px", "width": "100%"});
     $("#splash-bio-container").css({"display": "none"});
-    $("#profile-splash-label").css({"display": "grid", "text-align":"left", "grid-template-columns":"60px auto 120px", "padding-top":"230px"});
+    $("#profile-splash-label").css({"display": "grid", "text-align":"left", "grid-template-columns":"60px auto 120px"});
     $("#profile-name-header").css({"font-size":"15px", "margin-left":"10px", "margin-top":"10px"});
     $("#profile-handle-label").css({"font-size":"12px", "margin-left":"10px"});
 
@@ -142,8 +142,6 @@ function yb_BuildProfile(profile_data){
 
     let profile_splash = yb_createElement("div", "profile-page-splash", "splash-page");
     profile_splash.setAttribute("data-id", profile_id);
-    profile_splash.setAttribute("style", "z-index:16;");
-
 
     let profile_info = yb_createElement("div", "profile-splash-label", "space-splash-label profile");
     profile_splash.appendChild(profile_info);

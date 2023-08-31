@@ -2797,7 +2797,7 @@ only be used for object transforms (shaping and scaling)
         width: 100vw;
         top: 0;
         left: 0;
-        z-index: 10;
+        z-index: 16;
         backdrop-filter: blur(20px) brightness(50%);
         -webkit-backdrop-filter: blur(20px) brightness(50%);
 
