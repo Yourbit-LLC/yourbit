@@ -89,10 +89,9 @@ function yb_enterProfile() {
 
     initUI();
     headerDropIn();
-    let bitstream = document.getElementById("bit-container");
-    bitstream.setAttribute("style", "overflow-y: hidden;");
 
-    console.log(new_feed)
+
+    $(bit_container).animate({"top":"0px"})
     yb_showMiniBar(); 
     yb_showMenuTask();   
     
@@ -102,6 +101,8 @@ function yb_enterProfile() {
 
 //Profile Page
 function yb_BuildProfile(profile_data){
+    let bitstream = document.getElementById("bit-container");
+    bitstream.setAttribute("style", "top: 100vh;");
     //Get active user id from session
     let active_id = yb_getSessionValues("id");
 

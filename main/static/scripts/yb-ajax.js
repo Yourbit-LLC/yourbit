@@ -122,7 +122,7 @@ function yb_getFeed(new_feed, callback, callback2, session_start){
                     if (bit == 1) {
                         let bitstream = document.getElementById("bit-container");
                         bitstream.setAttribute("style", "overflow-y: hidden;");
-                        
+
                     }
                     if (bit == bitstream.length - 1){
                         let load_indicator = document.getElementById("profile-loading");
@@ -158,9 +158,9 @@ function yb_getFeed(new_feed, callback, callback2, session_start){
             if (location === "home"){
                 post_fly_in(callback2);
                 setTimeout(initUI, 1000);
-            } else {
+            } 
                 $(bit_container).animate({"top":"0px"})
-            }
+            
             yb_setLoaded(true);
         } 
         let mobile_spacer = yb_createElement("div", "mobile-spacer", "ui-spacer");

@@ -310,7 +310,7 @@ Profile Page
     }
 
     #profile-loading {
-        
+        position: absolute;
         bottom: 140px;
         color: white;
     }
