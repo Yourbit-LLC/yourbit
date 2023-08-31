@@ -89,7 +89,7 @@ function yb_getFeed(new_feed, callback, callback2, session_start){
  
         } else {
             var bit_container =  yb_createElement("div", "bit-container", "yb-sub-container")
-
+            bit_container.setAttribute("style", "top:100vh;");
             content_container.appendChild(bit_container);
 
         }
@@ -159,7 +159,6 @@ function yb_getFeed(new_feed, callback, callback2, session_start){
                 post_fly_in(callback2);
                 setTimeout(initUI, 1000);
             } 
-                $(bit_container).animate({"top":"0px"})
             
             yb_setLoaded(true);
         } 
