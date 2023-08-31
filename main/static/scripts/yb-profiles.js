@@ -91,7 +91,7 @@ function yb_enterProfile() {
     headerDropIn();
 
     let bit_container = document.getElementById("bit-container");
-    $(bit_container).animate({"top":"0vh"}, "fast");
+    $(bit_container).animate({"top":"0vh"}, "slow");
     yb_showMiniBar(); 
     yb_showMenuTask();   
     
