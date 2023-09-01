@@ -313,7 +313,7 @@ Profile Page
         position: absolute;
         bottom: 140px;
         left: 50%;
-        transform: translate(-10px);
+        transform: translate(-20px);
     }
 
     .swipe-up-element {
