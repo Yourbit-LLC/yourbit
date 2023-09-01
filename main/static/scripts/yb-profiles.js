@@ -268,7 +268,7 @@ function yb_BuildProfile(profile_data){
     
     load_indicator_container.appendChild(loading_indicator);
 
-    let load_indicator_label = yb_createElement("p", "load-indicator-label", "load-circle-label");
+    let load_indicator_label = yb_createElement("p", "load-indicator-label", "loading-circle-label");
     load_indicator_label.setAttribute("style", `color:${custom.text_color} !important;`);
     load_indicator_label.innerHTML = "Loading bitstream...";
 
