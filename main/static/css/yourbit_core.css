@@ -73,6 +73,26 @@ Refer to the interactive codex for current style guidelines for Yourbit*/
     margin: auto;
     
   }
+  
+
+  .detail-load-box {
+    position: absolute;
+    bottom: 140px;
+    left: 50%;
+    transform: translate(50%);
+    display: grid;
+
+  }
+
+  .loading-circle.detailed {
+    position: relative;
+    grid-row: 1;
+  }
+
+  .loading-circle-label {
+    position: relative;
+    grid-row: 2;
+  }
 
   .msl {
     border-top: 4px solid #fadd00;

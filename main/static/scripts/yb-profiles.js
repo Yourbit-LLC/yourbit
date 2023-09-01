@@ -259,9 +259,16 @@ function yb_BuildProfile(profile_data){
     
     profile_splash.appendChild(swipe_up_element);
     
-    let loading_indicator = yb_createElement("div", "profile-loading", "loading-circle");
+    let load_indicator_container = yb_createElement("div", "load-indicator-container-profile", "detail-load-box");
+
+
+
+    let loading_indicator = yb_createElement("div", "profile-loading", "loading-circle detailed");
     loading_indicator.style.borderTop = `4px solid ${custom.text_color}`
-    profile_splash.appendChild(loading_indicator);
+    
+    load_indicator_container.appendChild(loading_indicator);
+
+    profile_splash.appendChild(load_indicator_container);
 
     
     let swipe_up_icon = yb_createElement("svg", "swipe-up-icon", "swipe-up-icon");

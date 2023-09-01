@@ -309,12 +309,6 @@ Profile Page
 
     }
 
-    #profile-loading {
-        position: absolute;
-        bottom: 140px;
-        left: 50%;
-        transform: translate(-20px);
-    }
 
     .swipe-up-element {
         position: absolute;
