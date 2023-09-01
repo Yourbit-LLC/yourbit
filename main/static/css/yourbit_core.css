@@ -15,9 +15,9 @@ Refer to the interactive codex for current style guidelines for Yourbit*/
   }
 
 @keyframes yb-flash {
-    0% { opacity: 1; }
-    50% { opacity: 0; }
-    100% { opacity: 1; }
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 @keyframes yb-pulse {
@@ -92,6 +92,7 @@ Refer to the interactive codex for current style guidelines for Yourbit*/
   .loading-circle-label {
     position: relative;
     grid-row: 2;
+    animation: yb-flash 1s linear infinite;
   }
 
   .msl {
