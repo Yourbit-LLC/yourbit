@@ -122,7 +122,7 @@ function yb_getFeed(new_feed, callback, callback2, session_start){
 
                     if (bit == bitstream.length - 1){
                         
-                        let load_indicator = document.getElementById("profile-loading");
+                        let load_indicator = document.getElementById("load-indicator-container-profile");
                         load_indicator.remove();
                         $("#swipe-up-element").fadeIn();
                         
