@@ -652,7 +652,7 @@ function BuildListItem(result, type){
     let user = result.user
     let custom = result.custom
     let primary_color = custom.primary_color;
-    let image = custom.image;
+    let image = custom.image_thumbnail_small;
     let name = user.first_name + " " + user.last_name;
     let handle = user.username;
     let element_id = `${type}-${id}`;
@@ -680,7 +680,7 @@ function BuildListItem(result, type){
 function yb_buildContactItem(result, type){
     let id = result.this_id
     let primary_color = result.primary_color;
-    let image = result.image;
+    let image = result.image_thumbnail_small;
     let name = result.name;
     let handle = result.username;
     let element_id = `${type}-${id}`;
