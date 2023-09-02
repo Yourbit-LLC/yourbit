@@ -93,7 +93,7 @@ Refer to the interactive codex for current style guidelines for Yourbit*/
     position: relative;
     grid-row: 2;
     animation: yb-flash 1.5s linear infinite;
-  }
+   }
 
   .msl {
     border-top: 4px solid #fadd00;

@@ -649,8 +649,9 @@ function yb_buildContextMenu(this_element){
 //Function for generating list items
 function BuildListItem(result, type){
     let id = result.this_id
-    let primary_color = result.primary_color;
-    let image = result.image;
+    let custom = result.custom
+    let primary_color = custom.primary_color;
+    let image = custom.image;
     let name = result.first_name + " " + result.last_name;
     let handle = result.username;
     let element_id = `${type}-${id}`;
