@@ -146,7 +146,7 @@ class BitViewSet(viewsets.ViewSet):
                         bit_pool = Bit.objects.filter(profile = this_profile).order_by("-time")
                     
                     else:
-                        bit_pool = Bit.objects.filter(profile = user_profile, is_public = True).order_by("-time")
+                        bit_pool = Bit.objects.filter(profile = this_profile, is_public = True).order_by("-time")
 
             else:
                 #Dataset is used for aggregating results based on filters within saved or interacted bits
