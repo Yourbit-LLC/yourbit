@@ -648,16 +648,17 @@ function yb_buildContextMenu(this_element){
 
 //Function for generating list items
 function BuildListItem(result, type){
-    let id = result.this_id
+    let id = result.id
+    let user = result.user
     let custom = result.custom
     let primary_color = custom.primary_color;
     let image = custom.image;
-    let name = result.first_name + " " + result.last_name;
-    let handle = result.username;
+    let name = user.first_name + " " + user.last_name;
+    let handle = user.username;
     let element_id = `${type}-${id}`;
     let new_item = yb_createElement("div", `result-${element_id}`, "full-result");
     new_item.setAttribute("style", `background-color: ${primary_color};`);
-    new_item.setAttribute("data-catid", `${result.this_id}`);
+    new_item.setAttribute("data-catid", `${id}`);
     new_item.setAttribute("data-username", `${handle}`);
     new_item.innerHTML =`
         
