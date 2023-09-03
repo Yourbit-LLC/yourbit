@@ -20,7 +20,7 @@ $(document).ready(function() {
 
 });
 
-function yb_setProfileUI(custom) {
+function yb_setCommunityUI(custom) {
     let background_image = document.getElementById("bg-image");
     background_image.setAttribute("src", custom.background_mobile);
     
@@ -51,7 +51,7 @@ function yb_setProfileUI(custom) {
 
 }
 
-function yb_enterProfile() {
+function yb_enterCommunity() {
     console.log("clicked")
     let profile_splash = document.getElementById("profile-page-splash");
     let image = document.getElementById("profile-image-splash");
@@ -103,20 +103,20 @@ function yb_enterProfile() {
 
 
 //Profile Page
-function yb_BuildProfile(profile_data){
+function yb_BuildCommunity(community_data){
 
     //Get active user id from session
     let active_id = yb_getSessionValues("id");
 
     //Get profile user id from data
-    let user = profile_data.user
+    let user = community_data.user
 
-    let profile_id = profile_data.id
+    let profile_id = community_data.id
 
     let user_id = user.id
     //Get profile image from data
-    let custom = profile_data.custom;
-    yb_setProfileUI(custom);
+    let custom = community_data.custom;
+    yb_setCommunityUI(custom);
 
     let profile_image = custom.image_thumbnail_large;
     let profile_background = custom.background_mobile;
@@ -308,14 +308,14 @@ function yb_BuildProfile(profile_data){
             if (deltaY < 0) {
                 // Perform actions to exit fullscreen
                 // Add your code here to handle fullscreen exit
-                yb_enterProfile();
+                yb_enterCommunity();
             }
         });
         
     });
 
     // swipe_up_element.addEventListener("click", function(){
-    //     yb_enterProfile();
+    //     yb_enterCommunity();
     // });
 
     return {'splash':profile_splash, 'data':data_element}
