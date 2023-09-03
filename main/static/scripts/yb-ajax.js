@@ -21,6 +21,9 @@ function yb_getFeed(new_feed, callback, callback2, session_start){
     console.log(new_feed)
     let url;
     console.log(location)
+
+    let load_indicator = document.getElementById("yb-loading-core");
+    load_indicator.style.display = "block";
     
     if (location === "home"){
         url = `
@@ -127,6 +130,15 @@ function yb_getFeed(new_feed, callback, callback2, session_start){
                         $("#swipe-up-element").fadeIn();
                         
                     }
+                } else {
+                    if (bit == bitstream.length - 1){
+                        
+                        let load_indicator = document.getElementById("yb-loading-core");
+                        load_indicator.style.display = "none";
+                        
+                        
+                        
+                    }                   
                 }
 
             }

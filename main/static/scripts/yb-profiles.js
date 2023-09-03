@@ -287,11 +287,13 @@ function yb_BuildProfile(profile_data){
     swipe_up_text.innerHTML = "Slide Up for Bitstream";
     swipe_up_element.appendChild(swipe_up_text);
 
+    let sort_by = yb_getSessionValues("sort");
+
     let new_feed = {
         "type": "global",
         "id": handle,
         "filter":"-fo-fr-me-p-c",
-        "sort":"chrono",
+        "sort":sort_by,
     };
 
     yb_getFeed(new_feed, "none", false);

@@ -74,6 +74,13 @@ Refer to the interactive codex for current style guidelines for Yourbit*/
     
   }
   
+  .yb-loading-indicator-core-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+  }
 
   .detail-load-box {
     position: absolute;
@@ -87,6 +94,17 @@ Refer to the interactive codex for current style guidelines for Yourbit*/
   .loading-circle.detailed {
     position: relative;
     grid-row: 1;
+  }
+
+  .loading-circle-large {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border: 8px solid rgb(74, 74, 74);
+    border-radius: 50%;
+    
+    animation: spin 1s linear infinite; /* The spin animation will rotate the circle */
+    margin: auto;
   }
 
   .loading-circle-label {
