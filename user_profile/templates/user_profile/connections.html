@@ -53,6 +53,10 @@
 
         let url = `${base_url}/api/profiles/?filter=all`
         yb_getConnections(url);
+
+        let load_indicator = document.getElementById("yb-loading-core");
+        load_indicator.style.display = "none";
+
         
     });
 
