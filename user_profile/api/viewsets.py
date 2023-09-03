@@ -224,8 +224,14 @@ class BitViewSet(viewsets.ViewSet):
                         else:
                             print("filter query error")
 
-                        bit_pool = sorted(
-                            chain(unsorted_list), key=attrgetter('time'), reverse=True)
+                        if sort == "chrono":
+                            bit_pool = sorted(
+                                chain(unsorted_list), key=attrgetter('time'), reverse=True)
+
+                        elif sort == "best":
+                            bit_pool = sorted(
+                                chain(unsorted_list), key=attrgetter('like_count'), reverse=True)
+
 
                     else:
                         my_bits = Bit.objects.filter(profile = user_profile, type=type)
@@ -234,9 +240,14 @@ class BitViewSet(viewsets.ViewSet):
                         all_bits = Bit.objects.prefetch_related('custom', 'user').filter(is_public = True, type=type).order_by('-like_count')
 
                         #Aggregate and sort posts into pool
-                        bit_pool = sorted(
-                            chain(my_bits, friends_bits, follow_bits, all_bits), key=attrgetter('time'), reverse=True
-                    )
+                        if sort == "chrono":
+                            bit_pool = sorted(
+                                chain(my_bits, friends_bits, follow_bits, all_bits), key=attrgetter('time'), reverse=True
+                            )
+
+                        elif sort == "best":
+                            bit_pool = sorted(
+                                chain(my_bits, friends_bits, follow_bits, all_bits), key=attrgetter('like_count'), reverse=True)
 
                 
         #Else, a users on profile, filter bits by user_profile
