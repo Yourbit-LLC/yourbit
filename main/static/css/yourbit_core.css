@@ -79,6 +79,7 @@ Refer to the interactive codex for current style guidelines for Yourbit*/
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 15;
 
   }
 
