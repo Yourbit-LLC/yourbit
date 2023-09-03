@@ -47,7 +47,11 @@ class FeedSettings(models.Model):
     show_links = models.BooleanField(default=True)
     
     #Sortation
-    sorting = models.CharField(max_length= 100, default = 'time')
+    sort_by = models.CharField(max_length= 100, default = 'chrono')
+
+    #Defualt Space
+    default_space = models.CharField(max_length= 100, default = 'auto')
+    current_space = models.CharField(max_length= 100, default = 'global')
 
 class NotificationSettings(models.Model):
     settings = models.OneToOneField('MySettings', related_name='notifications', on_delete=models.CASCADE, null=True)
