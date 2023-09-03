@@ -21,9 +21,6 @@ function yb_getFeed(new_feed, callback, callback2, session_start){
     console.log(new_feed)
     let url;
     console.log(location)
-
-    let load_indicator = document.getElementById("yb-loading-core");
-    load_indicator.style.display = "block";
     
     if (location === "home"){
         url = `

@@ -583,6 +583,9 @@ function yb_navigateTo(destination, data=null) {
     let current_location = yb_getSessionValues("location");
     let current_space = yb_getSessionValues("space");
 
+    let load_indicator = document.getElementById("yb-loading-core");
+    load_indicator.style.display = "block";
+
     if (current_location === "profile") {
         yb_updatePageTask("home");
         yb_revertCustom();
