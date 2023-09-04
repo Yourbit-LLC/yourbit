@@ -77,7 +77,7 @@ function yb_enterProfile() {
     $(".swipe-up-element").fadeOut("fast");
     
     $("#profile-page-splash").animate({"height":"120px"});
-    $("#profile-page-splash").css({"height":"120px", "pointer-events":"none"});
+    $("#profile-page-splash").css({"height":"120px"});
     $(".large-profile-image").animate({"height":"50px", "width":"50px", "margin-left":"5px"});
 
     $(".large-profile-image").css({"grid-column":"1"});
@@ -93,7 +93,7 @@ function yb_enterProfile() {
     let bit_container = document.getElementById("bit-container");
     $(bit_container).animate({"top":"0vh"}, "slow");
     setTimeout(function(){
-        $(bit_container).css({"pointer-events":"auto"});
+        $('#profile-page-splash').css({"pointer-events":"none"});
     }, 200);
     yb_showMiniBar(); 
     yb_showMenuTask();   
