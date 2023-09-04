@@ -1,5 +1,5 @@
 var base_url = window.location.origin;
-
+var isSwiping = false;
 $(document).ready(function() {
     let user_id = yb_getSessionValues("profile-username");
     console.log(user_id)
@@ -305,12 +305,13 @@ function yb_BuildProfile(profile_data){
     
     swipe_up_element.addEventListener("touchstart", function(event) {
         var initialY = event.touches[0].clientY;
+        isSwiping = true;
 
         // Add an event listener for touchend event
         swipe_up_element.addEventListener("touchend", function(event) {
             var finalY = event.changedTouches[0].clientY;
             var deltaY = finalY - initialY;
-    
+            isSwiping = false;
             // Check if the user has swiped down
             if (deltaY < 0) {
                 // Perform actions to exit fullscreen
@@ -321,6 +322,10 @@ function yb_BuildProfile(profile_data){
         
     });
 
+    content_container.addEventListener('touchmove', (event) => {
+        preventScroll(event);
+      });
+
     // swipe_up_element.addEventListener("click", function(){
     //     yb_enterProfile();
     // });
@@ -328,6 +333,12 @@ function yb_BuildProfile(profile_data){
     return {'splash':profile_splash, 'data':data_element}
 }
 
+function preventScroll(event) {
+    if (isSwiping) {
+        event.preventDefault(); // Prevent default scroll behavior
+        // Your swipe logic here
+      }
+}
 
 $('#back-to-home').click(function() {
     window.location.href = `${base_url}/bitstream/home/`
