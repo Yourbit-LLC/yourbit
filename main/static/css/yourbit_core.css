@@ -2350,6 +2350,18 @@ only be used for object transforms (shaping and scaling)
         border-radius: 20px;
         overflow-x: hidden;
     }
+    
+    .yb-card-quarter {
+      position: absolute;
+      height: 25vh;
+      width: 95vw;
+      bottom: 5px;
+      background-color: black;
+      transform: translate(105%);
+      border-radius: 20px;
+      
+    }
+      
 
     .yb-button-close {
         position: relative;
