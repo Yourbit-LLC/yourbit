@@ -2371,7 +2371,7 @@ only be used for object transforms (shaping and scaling)
       transform: translate(0, 100%);
       border-radius: 20px;
       z-index: 1000;
-      padding: 10px 10px 10px 10px;
+      
       
       
     }
