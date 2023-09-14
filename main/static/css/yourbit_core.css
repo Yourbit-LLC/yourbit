@@ -2364,8 +2364,8 @@ only be used for object transforms (shaping and scaling)
     
     .yb-card-quarter {
       position: absolute;
-      height: 30vh;
-      width: 99vw;
+      height: 25vh;
+      width: 96vw;
       left: 50%;
       bottom: 0px;
       background-color: black;
