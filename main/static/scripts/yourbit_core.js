@@ -162,8 +162,23 @@ function hideCreateBit() {
     $('#cb-divider').hide();
 }
 
+function yb_handle_quarter_card_option(callback) {
+    let card_element = document.getElementById('yb-card-quarter');
+    card_element.classList.remove('in');
+    card_element.classList.add('out');
+    callback();
+    setTimeout(function(){card_element.remove()}, 300);
+}
+
+function yb_hide_quarter_card() {
+    let card_element = document.getElementById('yb-card-quarter');
+    card_element.classList.remove('in');
+    card_element.classList.add('out');
+    setTimeout(function(){card_element.remove()}, 300);
+    
+}
 function yb_quarter_card(title, options) {
-    let card = yb_createElement('div', 'yb-temporary-card', 'yb-card-quarter');
+    let card = yb_createElement('div', 'yb-temporary-card', 'yb-card-quarter in');
     let card_title = yb_createElement('div', 'quarter-card-title', 'quarter-card-title');
     let card_title_text = yb_createElement('h3', 'quarter-card-title-text', 'quarter-card-title-text');
     
@@ -174,9 +189,12 @@ function yb_quarter_card(title, options) {
     //Get options stored in a dictionary, the corresponding action functions are stored as values to the keys defining actions
     let card_options = yb_createElement('div', 'quarter-card-options', 'quarter-card-options');
     for (let key in options) {
-        let option = yb_createElement('div', 'quarter-card-option', 'yb-single-line-input');
-        option.setAttribute('data-action', key);
-        option.addEventListener('click', options[key]);
+        let lowkey = key.toLowerCase();
+        let option = yb_createElement('div', `'card-option-${lowkey}`, 'yb-single-line-input');
+        option.setAttribute('data-action', lowkey);
+        option.addEventListener('click', function() {
+            yb_handle_qaurter_card_option(options[key])
+        });
         option.innerHTML = key;
         card_options.appendChild(option);
 

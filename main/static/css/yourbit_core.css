@@ -39,6 +39,17 @@ Refer to the interactive codex for current style guidelines for Yourbit*/
     100% { transform: translate(0px, 0px); }
 }
 
+@keyframes yb-card-slide-in {
+    0% { transform: translate(0, 105%); }
+    100% { transform: translate(0, -105%); }
+}
+
+@keyframes yb-card-slide-out {
+    0% { transform: translate(0, -105%); }
+    100% { transform: translate(0, 105%); }
+}
+
+
 @keyframes yb-press-filter {
     0% {
       transform: scale(1);
@@ -2360,6 +2371,15 @@ only be used for object transforms (shaping and scaling)
       transform: translate(105%);
       border-radius: 20px;
       
+      
+    }
+
+    .yb-card-quarter.in {
+        animation: yb-card-slide-in 0.3s linear 1;
+    }
+
+    .yb-card-quarter.out {
+        animation: yb-card-slide-out 0.3s linear 1;
     }
       
 
