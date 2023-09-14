@@ -181,7 +181,7 @@ function yb_quarter_card(title, options) {
     let card = yb_createElement('div', 'yb-temporary-card', 'yb-card-quarter in');
     let card_title = yb_createElement('div', 'quarter-card-title', 'quarter-card-title');
     let card_title_text = yb_createElement('h3', 'quarter-card-title-text', 'quarter-card-title-text');
-    
+    card_title_text.setAttribute('style', 'text-align: center; color: white;')
     card_title_text.innerHTML = title;
     card_title.appendChild(card_title_text);
     card.appendChild(card_title);
@@ -191,6 +191,7 @@ function yb_quarter_card(title, options) {
     for (let key in options) {
         let lowkey = key.toLowerCase();
         let option = yb_createElement('div', `'card-option-${lowkey}`, 'yb-single-line-input');
+        option.setAttribute("style", "margin-left: auto; margin-right: auto; text-align: center; background-color: rgba(50,50,50,0.4); line-height: 1.8; height: 32px;");
         option.setAttribute('data-action', lowkey);
         option.addEventListener('click', function() {
             yb_handle_qaurter_card_option(options[key])
