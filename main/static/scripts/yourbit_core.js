@@ -206,7 +206,7 @@ function yb_quarter_card(title, options) {
 
     card.appendChild(card_options);
     
-    return card;
+    document.body.appendChild(card);
 }
 
 
