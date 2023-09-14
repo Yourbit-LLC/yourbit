@@ -183,6 +183,12 @@ function yb_BuildProfile(data){
             profile_button_connect.setAttribute("data-action", "connect");
             profile_button_connect.innerHTML = "Connect";
             profile_interaction_container.appendChild(profile_button_connect);
+
+            //Create event listener for profile connect button shows a dropdown box for adding as friends or following
+            profile_button_connect.addEventListener("click", function() {
+                let these_options = {"Request Friend": versatile_test, "Follow": versatile_test, "Block": versatile_test, "Cancel": versatile_test};
+                yb_quarter_card("Connect Options", these_options)
+            });
         }
         else {
 
@@ -190,8 +196,19 @@ function yb_BuildProfile(data){
 
             if (connection_status == 1) {
                 connect_label = "Following";
+                //Create event listener for profile connect button shows a dropdown box for adding as friends or following
+                profile_button_connect.addEventListener("click", function() {
+                    let these_options = {"Request Friend": versatile_test, "Unfollow": versatile_test, "Block": versatile_test, "Cancel": versatile_test};
+                    yb_quarter_card("Connect Options", these_options)
+                });
             } else if (connection_status == 2) {
                 connect_label = "Friends";
+                
+                //Create event listener for profile connect button shows a dropdown box for adding as friends or following
+                profile_button_connect.addEventListener("click", function() {
+                    let these_options = {"Remove Friend": versatile_test, "Change to Follow": versatile_test, "Block": versatile_test, "Cancel": versatile_test};
+                    yb_quarter_card("Connect Options", these_options)
+                });
             }
             profile_button_connect.setAttribute("data-id", user_id);
             profile_button_connect.setAttribute("data-username", handle);
@@ -203,7 +220,8 @@ function yb_BuildProfile(data){
         
         //Create event listener for profile connect button shows a dropdown box for adding as friends or following
         profile_button_connect.addEventListener("click", function() {
-            yb_handleConnectButton(profile_button_connect);
+            let these_options = {"Add Friend": versatile_test, "Follow": versatile_test, "Block": versatile_test, "Cancel": versatile_test};
+            yb_quarter_card("Connect Options", these_options)
         });
 
     } else {

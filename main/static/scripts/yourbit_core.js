@@ -131,6 +131,11 @@ function showCreateBit(callback) {
     // history.pushState({}, "", `${current_url}/create/`);
 }
 
+//Versatile test function is used as a placeholder for yb_versatile function elements like yb_card before actions are developed
+function versatile_test() {
+    console.log('test');
+}
+
 /* Function to animate create bit onto the screen */
 function raiseCreateBit(callback){
     let create_bit = document.getElementById('create-bit-mobile');
@@ -155,6 +160,35 @@ function hideCreateBit() {
     // let current_url = document.getElementById('current_url').value;
     // history.pushState({}, "", `${current_url}/`);
     $('#cb-divider').hide();
+}
+
+function yb_quarter_card(title, options) {
+    let card = yb_createElement('div', 'yb-temporary-card', 'yb-card-quarter');
+    let card_title = yb_createElement('div', 'quarter-card-title', 'quarter-card-title');
+    let card_title_text = yb_createElement('h3', 'quarter-card-title-text', 'quarter-card-title-text');
+    
+    card_title_text.innerHTML = title;
+    card_title.appendChild(card_title_text);
+    card.appendChild(card_title);
+    
+    //Get options stored in a dictionary, the corresponding action functions are stored as values to the keys defining actions
+    let card_options = yb_createElement('div', 'quarter-card-options', 'quarter-card-options');
+    for (let key in options) {
+        let option = yb_createElement('div', 'quarter-card-option', 'yb-single-line-input');
+        option.setAttribute('data-action', key);
+        option.addEventListener('click', options[key]);
+        option.innerHTML = key;
+        card_options.appendChild(option);
+
+        if (key==='Cancel') {
+            option.style.color = 'red';
+            option.style.borderColor = 'red';
+        }
+    }
+
+    card.appendChild(card_options);
+    
+    return card;
 }
 
 
