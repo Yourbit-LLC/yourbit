@@ -2370,6 +2370,7 @@ only be used for object transforms (shaping and scaling)
       background-color: black;
       transform: translate(105%);
       border-radius: 20px;
+      z-index: 1000;
       
       
     }
