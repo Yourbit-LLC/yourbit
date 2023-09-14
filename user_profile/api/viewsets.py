@@ -81,12 +81,28 @@ class ProfileViewSet(viewsets.ViewSet):
     def retrieve(self, request, pk):
         queryset = Profile.objects.all()
         user = User.objects.get(username = pk)
+        user_profile = get_object_or_404(queryset, user=request.user)
         profile = get_object_or_404(queryset, user=user)
+
+        connection = 0
+
+        if profile == user_profile:
+            connection = 3
+
+        else:
+
+            if profile in user_profile.connections.all():
+                connection = 1
+
+            else:
+                if profile in user_profile.follows.all():
+                    connection = 2
+                
         serializer_class = ProfileSerializer(profile, many=False)
         print(serializer_class)
-        return Response(serializer_class.data)
         
-
+        return Response({"connection_status": connection, "profile_data": serializer_class.data})
+        
     def create(self):
         pass
 
