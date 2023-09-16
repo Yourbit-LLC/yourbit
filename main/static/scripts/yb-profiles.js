@@ -198,8 +198,13 @@ function yb_BuildProfile(data){
                 connect_label = "Following";
                 //Create event listener for profile connect button shows a dropdown box for adding as friends or following
                 profile_button_connect.addEventListener("click", function() {
-                    let these_options = {"Request Friend": versatile_test, "Unfollow": versatile_test, "Block": versatile_test, "Cancel": versatile_test};
-                    yb_quarter_card("Connect Options", these_options)
+                    let these_options = {
+                        "Request Friend": yb_addFriend, 
+                        "Unfollow": yb_follow, 
+                        "Block": versatile_test, 
+                        "Cancel": yb_hide_quarter_card
+                    };
+                    yb_quarter_card("Connect Options", these_options);
                 });
             } else if (connection_status == 2) {
                 connect_label = "Friends";

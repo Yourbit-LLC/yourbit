@@ -190,11 +190,17 @@ function yb_quarter_card(title, options) {
     let card_options = yb_createElement('div', 'quarter-card-options', 'quarter-card-options');
     for (let key in options) {
         let lowkey = key.toLowerCase();
-        let option = yb_createElement('div', `'card-option-${lowkey}`, 'yb-single-line-input');
-        option.setAttribute("style", "margin-left: auto; margin-right: auto; text-align: center; background-color: rgba(50,50,50,0.4); line-height: 1.8; height: 32px;");
+        let option = yb_createElement('div', 
+            `'card-option-${lowkey}`, 
+            'yb-single-line-input'
+            );
+        option.setAttribute(
+            "style", 
+            "margin-left: auto; margin-right: auto; text-align: center; background-color: rgba(50,50,50,0.4); line-height: 1.8; height: 32px;"
+        );
         option.setAttribute('data-action', lowkey);
         option.addEventListener('click', function() {
-            yb_handle_qaurter_card_option(options[key])
+            yb_handle_quarter_card_option(options[key])
         });
         option.innerHTML = key;
         card_options.appendChild(option);
