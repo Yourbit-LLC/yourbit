@@ -252,7 +252,13 @@ lang="en"
                             {% endif %}
                         </div>
                     </div>
-                    <input id="full-url" type="hidden" name="last_page" value="{{ request.path }}">
+
+                    <!--Input that keeps track of last page visited on every page switch, to be used on dynamic back button-->
+                    <input 
+                        id="full-url" 
+                        type="hidden" 
+                        name="last_page" 
+                        value="{{ request.path }}">
                     
                 </form>
         
@@ -267,16 +273,46 @@ lang="en"
 
                 **************************************** {    yourbit    } ****************************************
 -->
-                <div class="profile-menu" id="profile-menu" style="visibility: hidden;">
+                <div 
+                    class="profile-menu" 
+                    id="profile-menu" 
+                    style="visibility: hidden; 
+                    {% if user.custom.flat_mode_on %} background-color: 
+                    {% if user.custom.ui_theme_mode == "light" %} white 
+                    {% else %} black 
+                    {% endif %}; 
+                    {% endif %}
+                ">
 
                     <!--Mobile Header-->
-                    <div class = 'mobile-menu-header' style='display: grid; grid-template-columns: auto 50px;'>
-                        <h4 class='menu-header-label' style='grid-column:1; font-size: 18px; text-align: left; margin-left: 20px; '>Dashboard</h4>
-                        <div class='yb-button-close' id='menu-panel-close' style='grid-column: 2; right: 10px;'>&times;</div>
+                    <div 
+                        class = 'mobile-menu-header' 
+                        style='display: grid; grid-template-columns: auto 50px;'
+                    >
+                        <h4 
+                            class='menu-header-label' 
+                            style='grid-column:1; font-size: 18px; text-align: left; margin-left: 20px;'
+                        >
+                            Dashboard
+                        </h4>
+                        
+                        <div 
+                            class='yb-button-close' 
+                            id='menu-panel-close' 
+                            style='grid-column: 2; right: 10px;'
+                        >
+                            &times;
+                        
+                        </div>
                         
                     </div>
+
                     <!--Link to profile-->
-                    <div class="profile-name" data-username="{{user.username}}" id="profile-name">                    
+                    <div 
+                        class="profile-name" 
+                        data-username="{{user.username}}" 
+                        id="profile-name"
+                    >                    
                         <img style="border-color:{{user.profile.custom.accent_color}};" src="{{user.profile.custom.image_thumbnail_large.url}}" class="profile-image-large" id="menu-profile-image">
 
                         <p id="profile-name-label">{{user.first_name}} {{user.last_name}}</p>

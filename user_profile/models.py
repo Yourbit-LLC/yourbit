@@ -181,6 +181,7 @@ class Custom(models.Model):
     ui_colors_on = models.BooleanField(default=True)
     text_colors_on = models.BooleanField(default=True)
     bit_colors_on = models.BooleanField(default=True)
+    flat_mode_on = models.BooleanField(default=False)
 
 class Continuum(models.Model):
     user = models.OneToOneField(User, related_name = "continuum", on_delete=models.DO_NOTHING, blank=True)
