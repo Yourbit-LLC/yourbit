@@ -235,6 +235,7 @@ only be used for object transforms (shaping and scaling)
         color: white;
         font-family:Arial, Helvetica, sans-serif; 
         overflow: hidden;
+        background-color: black;
         
     }
 
@@ -243,22 +244,7 @@ only be used for object transforms (shaping and scaling)
     }
     /* UI background image */
     .bg-image {
-        position: fixed;
-        top: 0;
-        left: 0;
-        min-width: 100%;
-        /* The image used */
-      
-        /* Add the blur effect */
-        filter: brightness(80%) saturate(150%);
-        -webkit-filter: brightness(80%) saturate(150%);
-        /* Full height */
-        max-height: 100%;
-      
-        /* Center and scale the image nicely */
-        background-position: center;
-        z-index: 1;
-        transition: 1s;
+        display: none;
     
     }
     ::placeholder {
@@ -1021,25 +1007,14 @@ only be used for object transforms (shaping and scaling)
         right: 0px;
         height: 100%;
         width: 17em;
-        backdrop-filter: saturate(300%) brightness(125%) blur(20px);
         display: grid;
         visibility: hidden;
         transform: translate(17em);
         transition: 0.5s;
         grid-template-rows: 275px 40px 150px 40px;
         grid-row-gap: 10px;
-    }
 
-    @media (prefers-color-scheme: dark) {
-        #profile-menu {
-            background-color: black;
-        }
-    }
-
-    @media (prefers-color-scheme: light) {
-        #profile-menu {
-            background-color: white;
-        }
+        background-color: black;
     }
     
     #profile-name {
@@ -1099,19 +1074,7 @@ only be used for object transforms (shaping and scaling)
         top: 0px;
         width: 100%;
         height: 100%;
-        
-    }
-
-    @media (prefers-color-scheme: dark) {
-        .menu-profile-background-link {
-            background-color: rgba(50, 50, 50);
-        }
-    }
-
-    @media (prefers-color-scheme: light) {
-        .menu-profile-background-link {
-            background-color: rgba(200, 200, 200);
-        }
+        background-color: rgb(50, 50, 50);   
     }
 
     #menu-options{

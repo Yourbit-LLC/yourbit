@@ -88,17 +88,19 @@ lang="en"
             {% block background-image%}
             {% if user.is_authenticated %}
                 {% if user.profile.custom.background_image %}
-                    {% if wallpaper_on %}
-                        <img class="bg-image" id="bg-image" style="filter: brightness({{background_brightness}}%) blur({{background_blur}}px); -webkit-filter: blur({{background_blur}}px) brightness({{background_brightness}}%);" src = "{{user_wallpaper}}">
+                    {% if !user.profile.custom.flat_mode_on %}
+                        {% if wallpaper_on %}
+                            <img class="bg-image" id="bg-image" style="filter: brightness({{background_brightness}}%) blur({{background_blur}}px); -webkit-filter: blur({{background_blur}}px) brightness({{background_brightness}}%);" src = "{{user_wallpaper}}">
+                        {% else %}
+                            <div class="bg-image" style="background-color: rgb(25, 25, 25)"></div>
+                        {% endif %}
                     {% else %}
                         <div class="bg-image" style="background-color: rgb(25, 25, 25)"></div>
                     {% endif %}
                 {% else %}
                     <div class="bg-image" style="background-color: rgb(25, 25, 25)"></div>
                 {% endif %}
-            {% else %}
-                <div class="bg-image" style="background-color: rgb(25, 25, 25)"></div>
-            {% endif %}
+                {% endif %}
             {% endblock %}
             </div>        
                 <nav class="navigation-bar" id="nav">
