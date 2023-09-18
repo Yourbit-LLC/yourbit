@@ -169,6 +169,11 @@ Refer to the interactive codex for current style guidelines for Yourbit*/
     
 }
 
+body, html {
+    background-color: black;
+
+}
+
 @media screen and (min-width: 700px) {
 /*
 -- Universal --
@@ -1773,9 +1778,7 @@ only be used for object transforms (shaping and scaling)
             height: auto;
             position: fixed;
             z-index: 25;
-            background-color: rgba(0, 0, 0, 0.0);
-            -webkit-backdrop-filter: blur(40px) brightness(200%);
-            backdrop-filter: blur(40px) brightness(200%);
+            background-color: black;
             left: 1.5vw;
             box-shadow: -1px -1px 10px black;
             text-align: center;
@@ -1804,7 +1807,7 @@ only be used for object transforms (shaping and scaling)
             margin-right: auto;
             color: white;
             font-family: Arial, Helvetica, sans-serif;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(255, 255, 255, 0.4);
             border-radius: 10px;
             margin-bottom: 0px;
             display: grid;
@@ -1853,7 +1856,7 @@ only be used for object transforms (shaping and scaling)
             position: relative;
             width: 90vw;
             height: 35px;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(255, 255, 255, 0.4);
             margin-left: auto;
             margin-right: auto;
             border-radius: 10px;
@@ -1894,7 +1897,7 @@ only be used for object transforms (shaping and scaling)
             top: 0px;
             width: 100%;
             height: 100%;
-            background-color: black;
+            background-color: rgba(255, 255, 255, 0.4);
         }
         .menu-widget-container {
             position: relative;
@@ -1916,7 +1919,7 @@ only be used for object transforms (shaping and scaling)
             width: 100%;
             height: 40px;
             border-radius: 10px;
-            background-color: rgba(0, 0, 0, 0.6);
+            background-color: rgba(255, 255, 255, 0.4);
         }
 
         .count-icon {
