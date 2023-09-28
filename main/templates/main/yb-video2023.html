@@ -227,12 +227,12 @@
             let videoElement = document.getElementById("videoPlayer");
 
             
-            controlBar.transform = "translate(0, 100%)";
-            
-            sideBarLeft.transform = "translate(100%, 0)";
-            
-            sideBarRight.transform = "translate(-100%, 0)";
-
+            controlBar.style.transform = "translateY(100%)";
+            controlBar.style.opacity = "1";
+            sideBarLeft.style.transform = "translateX(100%)";
+            controlBar.style.opacity = "1";
+            sideBarRight.style.transform = "translateX(-100%)";
+            controlBar.style.opacity = "1";
             videoElement.style.height = "75vh";
             videoElement.style.width = "75vw";
             
@@ -247,12 +247,12 @@
             let videoElement = document.getElementById("videoPlayer");
 
             
-            controlBar.transform = "translate(0, -100%)";
-            
-            sideBarLeft.transform = "translate(-100%, 0)";
-            
-            sideBarRight.transform = "translate(100%, 0)";
-
+            controlBar.style.transform = "translateY(-100%)";
+            controlBar.style.opacity = "0";
+            sideBarLeft.style.transform = "translateX(-100%)";
+            sideBarLeft.style.opacity = "0";
+            sideBarRight.style.transform = "translateX(100%)";
+            sideBarRight.style.opacity = "0";
             videoElement.style.height = "100vh";
             videoElement.style.width = "100vw";
 
