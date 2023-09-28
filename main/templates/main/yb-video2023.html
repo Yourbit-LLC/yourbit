@@ -38,6 +38,14 @@
 
         }
 
+        #profileImage {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #ccc;
+            grid-column: 1;
+        }
+
         #interactions-container {
             grid-column: 3;
             display: grid;
@@ -128,15 +136,16 @@
             Your browser does not support the video tag.
         </video>
 
-        <div id="progressContainer" onclick="setVideoPosition(event)">
-                <div id="progress"></div>
-                <div id="handle" draggable="true" ondrag="dragHandler(event)"></div>
-            </div>
         <div id="controlBar">
 
             <!-- ... [rest of the code] ... -->
+            
+            <div id="progressContainer" onclick="setVideoPosition(event)">
+                <div id="progress"></div>
+                <div id="handle" draggable="true" ondrag="dragHandler(event)"></div>
+            </div>
 
-            <div id="profileInfo">
+            <div id="profileInfo" style = "color:white">
                 <div id="profileImage"></div>
                 <div id="profileName">
                     <div id="profileName">John Doe</div>
@@ -208,6 +217,47 @@
             progress.style.width = (videoPlayer.currentTime / videoPlayer.duration) * 100 + '%';
         }
 
+        function showVideoControls() {
+            let controlBar = document.getElementById("controlBar");
+            let sideBarLeft = document.getElementById("sideBarLeft");
+            let sideBarRight = document.getElementById("sideBarRight");
+            let videoElement = document.getElementById("videoPlayer");
+
+            controlBar.style.opacity = "1";
+            controlBar.transform = "translateY(-100%)";
+            sideBarLeft.style.opacity = "1";
+            sideBarLeft.transform = "translateX(-100%)";
+            sideBarRight.style.opacity = "1";
+            sideBarRight.transform = "translateX(100%)";
+
+            videoElement.style.height = "75vh";
+            videoElement.style.width = "75vw";
+            
+            videoPlayer.removeEventListener('click', showVideoControls);
+            videoPlayer.addEventListener('click', hideVideoControls);
+        }
+
+        function hideVideoControls() {
+            let controlBar = document.getElementById("controlBar");
+            let sideBarLeft = document.getElementById("sideBarLeft");
+            let sideBarRight = document.getElementById("sideBarRight");
+            let videoElement = document.getElementById("videoPlayer");
+
+            controlBar.style.opacity = "0";
+            controlBar.transform = "translateY(100%)";
+            sideBarLeft.style.opacity = "0";
+            sideBarLeft.transform = "translateX(100%)";
+            sideBarRight.style.opacity = "0";
+            sideBarRight.transform = "translateX(-100%)";
+
+            videoElement.style.height = "100vh";
+            videoElement.style.width = "100vw";
+
+            videoPlayer.removeEventListener('click', hideVideoControls);
+            videoPlayer.addEventListener('click', showVideoControls);
+
+        }
+
         function dragHandler(event) {
             const progressBar = document.getElementById('progressContainer');
             const progress = document.getElementById('progress');
@@ -222,11 +272,12 @@
             progress.style.width = (videoPlayer.currentTime / videoPlayer.duration) * 100 + '%';
         };
 
-
         //On ready function in vanilla js
         document.addEventListener("DOMContentLoaded", function(event) {
             //do work
             toggleFullscreen();
+            setTimeout(hideVideoControls, 1000);
+            videoPlayer.addEventListener('click', showVideoControls);
         });
         
     </script>
