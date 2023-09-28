@@ -15,8 +15,8 @@
         }
         
         #videoPlayer {
-            width: 75vw;
-            height: 75vh;
+            width: 80vw;
+            height: 80vh;
             background-color: black;
             top: 0px;
             margin-left: auto;
@@ -66,6 +66,7 @@
             flex-grow: 1;
             margin: 0 10px;
             cursor: pointer;
+            width: 80vw;
         }
 
         #progress {
@@ -236,8 +237,8 @@
             sideBarLeft.style.opacity = "1";
             sideBarRight.style.transform = "translateX(0)";
             sideBarRight.style.opacity = "1";
-            videoElement.style.height = "75vh";
-            videoElement.style.width = "75vw";
+            videoElement.style.height = "80vh";
+            videoElement.style.width = "80vw";
             
             videoPlayer.removeEventListener('click', showVideoControls);
             videoPlayer.addEventListener('click', hideVideoControls);
