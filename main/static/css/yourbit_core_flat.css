@@ -1807,7 +1807,7 @@ only be used for object transforms (shaping and scaling)
             margin-right: auto;
             color: white;
             font-family: Arial, Helvetica, sans-serif;
-            background-color: rgba(255, 255, 255, 0.4);
+            background-color: rgb(25, 25, 25);
             border-radius: 10px;
             margin-bottom: 0px;
             display: grid;
@@ -1919,7 +1919,7 @@ only be used for object transforms (shaping and scaling)
             width: 100%;
             height: 40px;
             border-radius: 10px;
-            background-color: rgba(255, 255, 255, 0.4);
+            background-color: rgba(25, 25, 25);
         }
 
         .count-icon {
@@ -1997,7 +1997,7 @@ only be used for object transforms (shaping and scaling)
 
             .profile-menu-link{
                 position: relative;
-                background-color: rgba(0, 0, 0, 0.5);
+                background-color: rgba(25, 25, 25);
                 border-radius: 10px;
                 padding: 2px;
                 text-align: left;
@@ -2337,7 +2337,7 @@ only be used for object transforms (shaping and scaling)
         height: 80vh;
         position: fixed;
         z-index: 25;
-        background-color: rgba(0, 0, 0, 0.0);
+        background-color: rgb(0, 0, 0);
         -webkit-backdrop-filter: blur(40px) brightness(175%);
         
         backdrop-filter: blur(40px) brightness(175%);
