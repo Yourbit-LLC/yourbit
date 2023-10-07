@@ -1688,10 +1688,11 @@ only be used for object transforms (shaping and scaling)
         .space-button {
             position: relative;
             width: 60px;
-            height: 30px;
-            background-color: rgba(150,150,150,0.5);
+            margin-top:2px;
+            height: 27px;
+            background-color: rgba(100,100,100,0.5);
             border-width: 0px;
-            border-radius: 0.25em;
+            border-radius: 5px;
             padding: 4px;
             transition: 0.3s;
             margin: auto;
