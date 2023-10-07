@@ -74,7 +74,7 @@ class Bit(models.Model):
     
     has_title = models.BooleanField(default=False)
     title = models.CharField(max_length=140, blank=True)
-    video = models.ManyToManyRel('Video', related_name='videos', blank=True)
+    video = models.ManyToManyField('Video', related_name='videos', blank=True)
 
     photos = models.ManyToManyField('Photo', related_name='photos', blank=True)
     body = models.CharField(max_length=5000)
