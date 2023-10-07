@@ -22,8 +22,8 @@ $(document).ready(function() {
 
 function yb_setProfileUI(custom) {
     let background_image = document.getElementById("bg-image");
-    let custom_values = document.getElementById("custom_values"); 
-    let flat_mode_on = custom_values.getAttribute("data-flat-mode-on");
+    
+    let flat_mode_on = yb_getUserCustom("flat-mode-on");
     
     if (flat_mode_on == "true") {
 

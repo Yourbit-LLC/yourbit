@@ -137,9 +137,12 @@ function yb_revertCustom() {
     let brightness = yb_getUserCustom("background-brightness");
     let icon_color = yb_getUserCustom("icon-color");
     let accent_color = yb_getUserCustom("secondary-color");
+    let flat_mode_on = yb_getUserCustom("flat-mode-on");
 
-    background_element.setAttribute("style", `filter: blur(${blur_radius}px) brightness(${brightness}%); -webkit-filter: blur(${blur_radius}px) brightness(${brightness}%);`);
-    background_element.setAttribute("src", background_image);
+    if (flat_mode_on == "True") {
+        background_element.setAttribute("style", `filter: blur(${blur_radius}px) brightness(${brightness}%); -webkit-filter: blur(${blur_radius}px) brightness(${brightness}%);`);
+        background_element.setAttribute("src", background_image);
+    }
 
     
     let ui_labels = document.getElementsByClassName("yb-ui-label");
