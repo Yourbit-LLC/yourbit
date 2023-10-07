@@ -38,7 +38,7 @@ openai.api_key = "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"
 
 ##################################################################################################################
 
-import cv2
+# import cv2
 
 # #Content Thumbnails
 # def generate_video_thumbnail(video_obj):
