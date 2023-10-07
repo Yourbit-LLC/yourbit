@@ -40,29 +40,29 @@ openai.api_key = "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"
 
 import cv2
 
-#Content Thumbnails
-def generate_video_thumbnail(video_obj):
-    cap = cv2.VideoCapture(video_obj.video_file.path)
-    frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+# #Content Thumbnails
+# def generate_video_thumbnail(video_obj):
+#     cap = cv2.VideoCapture(video_obj.video_file.path)
+#     frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 
-    # Choose a frame in the middle of the video as a thumbnail
-    frame_number = frame_count // 2
-    cap.set(cv2.CAP_PROP_POS_FRAMES, frame_number)
-    ret, frame = cap.read()
+#     # Choose a frame in the middle of the video as a thumbnail
+#     frame_number = frame_count // 2
+#     cap.set(cv2.CAP_PROP_POS_FRAMES, frame_number)
+#     ret, frame = cap.read()
 
-    if ret:
-        # Generate a unique name for the thumbnail
-        thumbnail_name = f'thumbnail_{video_obj.id}.jpg'
-        thumbnail_path = f'media/thumbnails/{thumbnail_name}'
+#     if ret:
+#         # Generate a unique name for the thumbnail
+#         thumbnail_name = f'thumbnail_{video_obj.id}.jpg'
+#         thumbnail_path = f'media/thumbnails/{thumbnail_name}'
         
-        # Save the frame as a thumbnail
-        cv2.imwrite(thumbnail_path, frame)
+#         # Save the frame as a thumbnail
+#         cv2.imwrite(thumbnail_path, frame)
 
-        # Update the video object with the thumbnail path
-        video_obj.thumbnail = f'thumbnails/{thumbnail_name}'
-        video_obj.save()
+#         # Update the video object with the thumbnail path
+#         video_obj.thumbnail = f'thumbnails/{thumbnail_name}'
+#         video_obj.save()
     
-    cap.release()
+#     cap.release()
 
 def generate_small_thumbnail(request, source_file):
     #Create small thumbnail
@@ -400,8 +400,8 @@ class Publish(View):
                 print(thumbnail_image)
                 video_object.thumbnail_image = thumbnail_image
 
-            else:
-                video_object.thumbnail_image = generate_video_thumbnail(video)
+            # else:
+            #     video_object.thumbnail_image = generate_video_thumbnail(video)
 
             video_object.save()
 
