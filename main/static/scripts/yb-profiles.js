@@ -22,9 +22,16 @@ $(document).ready(function() {
 
 function yb_setProfileUI(custom) {
     let background_image = document.getElementById("bg-image");
-    background_image.setAttribute("src", custom.background_mobile);
+    let custom_values = document.getElementById("custom_values"); 
+    let flat_mode_on = custom_values.getAttribute("data-flat-mode-on");
     
-    background_image.setAttribute("style", `filter: blur(${custom.background_blur}px) brightness(${custom.background_brightness}%); -webkit-filter: blur(${custom.background_blur}px) brightness(${custom.background_brightness}%);`);
+    if (flat_mode_on == "true") {
+
+        background_image.setAttribute("src", custom.background_mobile);
+    
+        background_image.setAttribute("style", `filter: blur(${custom.background_blur}px) brightness(${custom.background_brightness}%); -webkit-filter: blur(${custom.background_blur}px) brightness(${custom.background_brightness}%);`);
+
+    }
 
     let ui_labels = document.getElementsByClassName("yb-ui-label");
     for (let i = 0; i < ui_labels.length; i++) {
