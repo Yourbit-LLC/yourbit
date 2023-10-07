@@ -179,6 +179,10 @@ please refer to the child elements to the following classes. Universal methods s
 only be used for object transforms (shaping and scaling)
 */
 
+.yb-player-card {
+    display: none;
+}
+
 .splash-page {
     display: block;
     position: fixed;
@@ -442,6 +446,8 @@ only be used for object transforms (shaping and scaling)
     overflow: hidden;
     
 }
+
+
 
 .filter-button {
     position: relative;
@@ -3242,6 +3248,25 @@ only be used for object transforms (shaping and scaling)
         color: rgb(150, 150, 150);
         font-weight: 550;
         background-color: black;
+    }
+
+    .yb-player-card {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding: 10px 10px 10px 10px;
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 20px;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: left;
+        transform: translate(0px, 100vh);
+        transition: 0.5s;
     }
 
     
