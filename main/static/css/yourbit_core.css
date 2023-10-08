@@ -71,7 +71,7 @@ Refer to the interactive codex for current style guidelines for Yourbit*/
     width: 100vw;
     top: 0;
     left: 0;
-    z-index: 16;
+    z-index: 100;
 
 }
 
