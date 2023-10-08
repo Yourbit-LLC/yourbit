@@ -166,11 +166,12 @@
         position: relative;
         grid-row: 2;
         display: grid;
-        grid-template-columns: 30px 40% 42%;
+        grid-template-columns: 10% 50% 37%;
         height: 50px;
-        column-gap: 10px;
+        column-gap: 1%;
         z-index: 5;
         margin-top: -10px;
+        width: 100%;
 
     }
 
