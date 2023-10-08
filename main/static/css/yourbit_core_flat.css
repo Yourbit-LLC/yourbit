@@ -587,7 +587,7 @@ only be used for object transforms (shaping and scaling)
         position: relative;
         width: 40px;
         height: 30px;
-        background-color: rgba(0,0,0,0.4);
+        background-color: rgb(25, 25, 25);
         border-width: 0px;
         border-radius: 10px;
         padding: 4px;
@@ -685,7 +685,7 @@ only be used for object transforms (shaping and scaling)
         /* Search action button, will search content within text input on press */
         grid-column: 2;
         border-width: 0px;
-        background-color: rgba(0,0,0,0.4);
+        background-color: rgb(25, 25, 25);
         border-radius: 10px;
         height: 35px;
         width: 50px;
@@ -1898,7 +1898,7 @@ only be used for object transforms (shaping and scaling)
             top: 0px;
             width: 100%;
             height: 100%;
-            background-color: rgba(255, 255, 255, 0.4);
+            background-color: rgb(25, 25, 25);
         }
         .menu-widget-container {
             position: relative;
@@ -2207,7 +2207,7 @@ only be used for object transforms (shaping and scaling)
     .filter-button {
         position: relative;
         display: block;
-        background-color: rgba(150, 150, 150, 0.4);
+        background-color: rgb(25, 25, 25);
         border: 2px solid rgb(150, 150, 150);
         color: rgb(150, 150, 150);
         border-radius: 20px;
@@ -2303,7 +2303,7 @@ only be used for object transforms (shaping and scaling)
 
 
     .yb-single-line-input {
-        background-color: rgba(255, 255, 255, 0.3);
+        background-color: rgb(25, 25, 25);
         border-radius: 10px;
         border-width: 0px;
         width: 95%;
@@ -2562,7 +2562,7 @@ only be used for object transforms (shaping and scaling)
         height: 150px;
         border-radius: 10px;
         margin-top: 10px;
-        background-color: rgba(255, 255, 255, 0.3);
+        background-color: rgb(25, 25, 25);
         border-width: 0px;
         padding: 4px;
         color:white;
