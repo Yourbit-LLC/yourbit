@@ -197,6 +197,42 @@ body, html {
 
 }
 
+.splash-page {
+    display: block;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 100;
+
+}
+
+.splash-page.base {
+    background-color: black;
+}
+
+.splash-page.profile {
+    backdrop-filter: blur(20px) brightness(50%);
+    -webkit-backdrop-filter: blur(20px) brightness(50%);
+}
+
+.space-splash-label {
+    display: block;
+    position: absolute;
+    color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    border-radius: 20px;
+}
+
+.space-splash-label.profile {
+    transform:translate(-50%, -65%)
+}
+
+
 @media screen and (min-width: 700px) {
 /*
 -- Universal --
@@ -424,40 +460,6 @@ only be used for object transforms (shaping and scaling)
     styling for further adjustments.
     
 -- */
-.splash-page {
-    display: block;
-    position: fixed;
-    height: 100vh;
-    width: 100vw;
-    top: 0;
-    left: 0;
-    z-index: 100;
-
-}
-
-.splash-page.base {
-    background-color: black;
-}
-
-.splash-page.profile {
-    backdrop-filter: blur(20px) brightness(50%);
-    -webkit-backdrop-filter: blur(20px) brightness(50%);
-}
-
-.space-splash-label {
-    display: block;
-    position: absolute;
-    color: white;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    border-radius: 20px;
-}
-
-.space-splash-label.profile {
-    transform:translate(-50%, -65%)
-}
 
 #yb-browse-nav {
     position: sticky; 
