@@ -2303,7 +2303,7 @@ only be used for object transforms (shaping and scaling)
 
 
     .yb-single-line-input {
-        background-color: rgba(255, 255, 255, 0.4);
+        background-color: rgba(255, 255, 255, 0.3);
         border-radius: 10px;
         border-width: 0px;
         width: 95%;
@@ -2442,7 +2442,7 @@ only be used for object transforms (shaping and scaling)
     }
 
     .bit-options-button {
-        background-color: rgba(0, 0, 0, 0.5); 
+        background-color: rgba(255, 255, 255, 0.3); 
         display: block;
         border-width: 0px; 
         border-radius: 10px; 
@@ -2562,7 +2562,7 @@ only be used for object transforms (shaping and scaling)
         height: 150px;
         border-radius: 10px;
         margin-top: 10px;
-        background-color: rgba(255, 255, 255, 0.4);
+        background-color: rgba(255, 255, 255, 0.3);
         border-width: 0px;
         padding: 4px;
         color:white;
@@ -2576,7 +2576,7 @@ only be used for object transforms (shaping and scaling)
         margin-left: auto;
         margin-right: auto;
         /* column-gap: 10px; */
-        background-color: rgba(0, 0, 0, 0.4);
+        background-color: rgba(255, 255, 255, 0.3);
         border-radius: 10px;
         padding: 2px 3px 2px 2px;
     }
