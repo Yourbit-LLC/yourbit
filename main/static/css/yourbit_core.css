@@ -63,6 +63,43 @@ Refer to the interactive codex for current style guidelines for Yourbit*/
     }
   }
 
+  
+  .splash-page {
+    display: block;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 16;
+
+}
+
+.splash-page.base {
+    background-color: black;
+}
+
+.splash-page.profile {
+    backdrop-filter: blur(20px) brightness(50%);
+    -webkit-backdrop-filter: blur(20px) brightness(50%);
+}
+
+.space-splash-label {
+    display: block;
+    position: absolute;
+    color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    border-radius: 20px;
+}
+
+.space-splash-label.profile {
+    transform:translate(-50%, -65%)
+}
+
+
 #main-splash-image {
     display:block; 
     width: 80%; 
@@ -202,19 +239,6 @@ only be used for object transforms (shaping and scaling)
 
 .yb-player-card {
     display: none;
-}
-
-.splash-page {
-    display: block;
-    position: fixed;
-    height: 100vh;
-    width: 100vw;
-    top: 0;
-    left: 0;
-    z-index: 10;
-    backdrop-filter: blur(20px) brightness(50%);
-    -webkit-backdrop-filter: blur(20px) brightness(50%);
-
 }
 
     .wide-button {
@@ -2897,41 +2921,6 @@ only be used for object transforms (shaping and scaling)
     input:-ms-input-placeholder {  
         color: rgb(176, 176, 176) !important;  
         }
-
-    .splash-page {
-        display: block;
-        position: fixed;
-        height: 100vh;
-        width: 100vw;
-        top: 0;
-        left: 0;
-        z-index: 16;
-
-    }
-
-    .splash-page.base {
-        background-color: black;
-    }
-
-    .splash-page.profile {
-        backdrop-filter: blur(20px) brightness(50%);
-        -webkit-backdrop-filter: blur(20px) brightness(50%);
-    }
-
-    .space-splash-label {
-        display: block;
-        position: absolute;
-        color: white;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-        border-radius: 20px;
-    }
-
-    .space-splash-label.profile {
-        transform:translate(-50%, -65%)
-    }
     #mobile-spacer {
         display: block;
         position: relative;

@@ -207,18 +207,6 @@ please refer to the child elements to the following classes. Universal methods s
 only be used for object transforms (shaping and scaling)
 */
 
-.splash-page {
-    display: block;
-    position: fixed;
-    height: 100vh;
-    width: 100vw;
-    top: 0;
-    left: 0;
-    z-index: 10;
-    backdrop-filter: blur(20px) brightness(50%);
-    -webkit-backdrop-filter: blur(20px) brightness(50%);
-
-}
 
     .wide-button {
         /*Wide button is typically used for confirmation and back buttons a similar
@@ -436,6 +424,40 @@ only be used for object transforms (shaping and scaling)
     styling for further adjustments.
     
 -- */
+.splash-page {
+    display: block;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 16;
+
+}
+
+.splash-page.base {
+    background-color: black;
+}
+
+.splash-page.profile {
+    backdrop-filter: blur(20px) brightness(50%);
+    -webkit-backdrop-filter: blur(20px) brightness(50%);
+}
+
+.space-splash-label {
+    display: block;
+    position: absolute;
+    color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    border-radius: 20px;
+}
+
+.space-splash-label.profile {
+    transform:translate(-50%, -65%)
+}
 
 #yb-browse-nav {
     position: sticky; 
@@ -2884,33 +2906,7 @@ only be used for object transforms (shaping and scaling)
         color: rgb(176, 176, 176) !important;  
         }
 
-    .splash-page {
-        display: block;
-        position: fixed;
-        height: 100vh;
-        width: 100vw;
-        top: 0;
-        left: 0;
-        z-index: 16;
-        backdrop-filter: blur(20px) brightness(50%);
-        -webkit-backdrop-filter: blur(20px) brightness(50%);
 
-    }
-
-    .space-splash-label {
-        display: block;
-        position: absolute;
-        color: white;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-        border-radius: 20px;
-    }
-
-    .space-splash-label.profile {
-        transform:translate(-50%, -65%)
-    }
     #mobile-spacer {
         display: block;
         position: relative;
