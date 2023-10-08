@@ -119,6 +119,55 @@ function yb_applyTextColors(toggle=true) {
 
 }
 
+function yb_changeBackground(image) {
+    let background_element = document.getElementById("bg-image");
+    background_element.setAttribute("src", image);
+}
+
+function yb_getUserCustom(key) {
+    let this_data = document.getElementById("custom_values");
+    let response = this_data.getAttribute(`data-${key}`);
+    return response
+}
+
+function yb_revertCustom() {
+    let background_element = document.getElementById("bg-image");
+    let background_image = yb_getUserCustom("wallpaper");
+    let blur_radius = yb_getUserCustom("background-blur");
+    let brightness = yb_getUserCustom("background-brightness");
+    let icon_color = yb_getUserCustom("icon-color");
+    let accent_color = yb_getUserCustom("secondary-color");
+    let flat_mode_on = yb_getUserCustom("flat-mode-on");
+
+    if (flat_mode_on == "False") {
+        background_element.setAttribute("style", `filter: blur(${blur_radius}px) brightness(${brightness}%); -webkit-filter: blur(${blur_radius}px) brightness(${brightness}%);`);
+        background_element.setAttribute("src", background_image);
+    }
+
+    
+    let ui_labels = document.getElementsByClassName("yb-ui-label");
+    for (let i = 0; i < ui_labels.length; i++) {
+        ui_labels[i].setAttribute("style", `color:${icon_color} !important;`);
+    }
+
+    let ui_icons = document.getElementsByClassName("yb-ui-icon");
+    for (let i = 0; i < ui_icons.length; i++) {
+        ui_icons[i].setAttribute("style", `fill:${icon_color} !important;`);
+    }
+
+    let accent_buttons = document.getElementsByClassName("yb-accent-button");
+    for (let i = 0; i < accent_buttons.length; i++) {
+        accent_buttons[i].setAttribute("style", `border-color:${icon_color} !important;`);
+    }
+
+    let accented_elements = document.getElementsByClassName("yb-element-accent");
+    for (let i = 0; i < accented_elements.length; i++) {
+        accented_elements[i].setAttribute("style", `border-color:${accent_color} !important;`);
+    }
+}
+
+
+
 function yb_hideUI(){
     let screen_width = screen.width;
     if (screen_width < 600) {
@@ -126,8 +175,8 @@ function yb_hideUI(){
     
         $("#mobile-header").animate({"top":"-70px"});
         $("#nav").animate({"bottom": "-95px"});
-        $("#mobile-search-button").animate({"right": "-100px"});
-        $("#mobile-create-button").animate({"left":"-100px"});
+        $("#mobile-search-button").animate({"right": "-100%"});
+        $("#mobile-create-button").animate({"left":"-100%"});
         $("#back-to-home").hide();
         yb_setSessionValues("ui", "hidden")
         

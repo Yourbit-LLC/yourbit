@@ -69,9 +69,10 @@ function yb_getFeed(new_feed, callback, callback2, session_start){
         if (location === "profile") {
             
             var bit_container =  yb_createElement("div", "bit-container", "yb-sub-container")
-            bit_container.setAttribute("style", "top:100vh; padding-top:60px;");
+            bit_container.setAttribute("style", "position: absolute; top:100vh; padding-top:130px; pointer-events: none;");
 
             content_container.appendChild(bit_container);
+
             
         } 
         else if (location == "home") {
@@ -88,7 +89,7 @@ function yb_getFeed(new_feed, callback, callback2, session_start){
  
         } else {
             var bit_container =  yb_createElement("div", "bit-container", "yb-sub-container")
-
+            bit_container.setAttribute("style", "top:100vh;");
             content_container.appendChild(bit_container);
 
         }
@@ -117,9 +118,29 @@ function yb_getFeed(new_feed, callback, callback2, session_start){
                 bit_container.appendChild(new_bit)
                 
                 bitstream_index.push(packaged_bit.element_id);
+                if (location === "profile") {
 
+                    if (bit == bitstream.length - 1){
+                        
+                        let load_indicator = document.getElementById("load-indicator-container-profile");
+                        load_indicator.remove();
+                        $("#swipe-up-element").fadeIn();
+                        
+                    }
+                } else {
+                    if (bit == bitstream.length - 1){
+                        
+                        let load_indicator = document.getElementById("yb-loading-core");
+                        load_indicator.style.display = "none";
+                        
+                        
+                        
+                    }                   
+                }
 
             }
+
+
 
         } else {
             $(".feed-message").remove();
@@ -143,9 +164,8 @@ function yb_getFeed(new_feed, callback, callback2, session_start){
             if (location === "home"){
                 post_fly_in(callback2);
                 setTimeout(initUI, 1000);
-            } else {
-                $(bit_container).animate({"top":"0px"})
-            }
+            } 
+            
             yb_setLoaded(true);
         } 
         let mobile_spacer = yb_createElement("div", "mobile-spacer", "ui-spacer");

@@ -52,7 +52,7 @@ class ContextSearch(View):
     def post(self, request, *args, **kwargs):
         from itertools import chain
         query = request.POST.get('query')
-        applied_filter = request.POST.get('applied_filter')
+        applied_filter = request.POST.get('type')
 
         print("filter" + applied_filter)
         
@@ -105,7 +105,7 @@ class ContextSearch(View):
             else:
                 results_found = False
 
-            return JsonResponse({'results_found': results_found, 'bit_results': bit_results})
+            
 
         if applied_filter == "all" or applied_filter == "user":
             from YourbitAccounts.api.serializers import UserSerializer

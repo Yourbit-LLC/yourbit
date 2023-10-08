@@ -573,7 +573,7 @@ function yb_showMenuTask() {
     $('#menu-task').remove();
     let menu_task = yb_createElement("div", "menu-task", "task-icon");
     menu_task.innerHTML = '<svg class="task-icon-svg"  xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" width="24"><path d="M120 816v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>';
-    document.getElementById("minibar-blank").appendChild(menu_task);
+    document.getElementById("minibar").appendChild(menu_task);
     
     menu_task.addEventListener("click", function() {
         yb_show_profile_menu();
@@ -589,7 +589,7 @@ function showHomeTask() {
     $('#home-task').remove();
     let home_task = yb_createElement("div", "home-task", "task-icon");
     home_task.innerHTML = '<svg class="task-icon-svg" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M4 21V9l8-6 8 6v12h-6v-7h-4v7Z"/></svg>';
-    document.getElementById("minibar-blank").appendChild(home_task);
+    document.getElementById("minibar").appendChild(home_task);
     
     home_task.addEventListener("click", function() {
         home_url();
@@ -605,7 +605,7 @@ function showMessageTask() {
     $('#message-task').remove();
     let message_task = yb_createElement("div", "message-task", "task-icon");
     message_task.innerHTML = '<svg class="task-icon-svg" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M4 20q-.825 0-1.412-.587Q2 18.825 2 18V6q0-.825.588-1.412Q3.175 4 4 4h16q.825 0 1.413.588Q22 5.175 22 6v12q0 .825-.587 1.413Q20.825 20 20 20Zm8-7 8-5V6l-8 5-8-5v2Z"/></svg>';
-    document.getElementById("minibar-blank").appendChild(message_task);
+    document.getElementById("minibar").appendChild(message_task);
     
                     
     message_task.addEventListener("click", function() {
@@ -621,7 +621,7 @@ function showCommentTask() {
     $('#comment-task').remove();
     let comment_task = yb_createElement("div", "comment-task", "task-icon");
     comment_task.innerHTML = '<svg class="task-icon-svg" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M6 14h12v-2H6Zm0-3h12V9H6Zm0-3h12V6H6Zm16 14-4-4H4q-.825 0-1.412-.587Q2 16.825 2 16V4q0-.825.588-1.413Q3.175 2 4 2h16q.825 0 1.413.587Q22 3.175 22 4Z"/></svg>';
-    document.getElementById("minibar-blank").appendChild(comment_task);
+    document.getElementById("minibar").appendChild(comment_task);
     $(comment_task).animate({'height':'40px', 'width': '40px'}, 'fast')
 }
 
@@ -630,7 +630,7 @@ function showProfileTask() {
     $('#profile-task').remove();
     let profile_task = yb_createElement("div", "profile-task", "task-icon");
     profile_task.innerHTML = '<svg class="task-icon-svg" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M12 12q-1.65 0-2.825-1.175Q8 9.65 8 8q0-1.65 1.175-2.825Q10.35 4 12 4q1.65 0 2.825 1.175Q16 6.35 16 8q0 1.65-1.175 2.825Q13.65 12 12 12Zm-8 8v-2.8q0-.85.438-1.563.437-.712 1.162-1.087 1.55-.775 3.15-1.163Q10.35 13 12 13t3.25.387q1.6.388 3.15 1.163.725.375 1.162 1.087Q20 16.35 20 17.2V20Z"/></svg>';
-    document.getElementById("minibar-blank").appendChild(profile_task);
+    document.getElementById("minibar").appendChild(profile_task);
     
     profile_task.addEventListener("click", function() {
         yb_showWidget("profile", yb_loadProfileWidget);
@@ -644,7 +644,7 @@ function showVideoTask() {
     $('#video-task').remove();
     let video_task = yb_createElement("div", "video-task", "task-icon");
     video_task.innerHTML = '<svg class="task-icon-svg" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M8 19V5l11 7Z"/></svg>';
-    document.getElementById("minibar-blank").appendChild(video_task);
+    document.getElementById("minibar").appendChild(video_task);
     video_task.addEventListener("click", function() {
         yb_showWidget("video", yb_loadVideoWidget);
     });

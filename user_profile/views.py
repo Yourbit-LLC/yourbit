@@ -1,3 +1,6 @@
+#Import OS
+import os
+
 #Django imports
 from django.shortcuts import render
 from django.views import View
@@ -5,20 +8,23 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-#YB Code Imports
+from django.utils import dateformat, timezone
+from django.core.files.uploadedfile import InMemoryUploadedFile
+
+#Environment Imports
+from PIL import Image
+from io import BytesIO
+import openai
+import uuid
+import requests
+
+#YB Core Imports
 from notifications.models import Notification
 from .forms import ColorForm
 from .models import *
 from .forms import *
-from PIL import Image
-from io import BytesIO
-from django.core.files.uploadedfile import InMemoryUploadedFile
-import requests
 from settings.models import PrivacySettings
-from django.utils import dateformat, timezone
-import openai
-import uuid
-import os
+
 
 openai.api_key = "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"
 
@@ -31,6 +37,79 @@ openai.api_key = "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"
 #                       in this file.                          
 
 ##################################################################################################################
+
+# import cv2
+
+# #Content Thumbnails
+# def generate_video_thumbnail(video_obj):
+#     cap = cv2.VideoCapture(video_obj.video_file.path)
+#     frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+
+#     # Choose a frame in the middle of the video as a thumbnail
+#     frame_number = frame_count // 2
+#     cap.set(cv2.CAP_PROP_POS_FRAMES, frame_number)
+#     ret, frame = cap.read()
+
+#     if ret:
+#         # Generate a unique name for the thumbnail
+#         thumbnail_name = f'thumbnail_{video_obj.id}.jpg'
+#         thumbnail_path = f'media/thumbnails/{thumbnail_name}'
+        
+#         # Save the frame as a thumbnail
+#         cv2.imwrite(thumbnail_path, frame)
+
+#         # Update the video object with the thumbnail path
+#         video_obj.thumbnail = f'thumbnails/{thumbnail_name}'
+#         video_obj.save()
+    
+#     cap.release()
+
+def generate_small_thumbnail(request, source_file):
+    #Create small thumbnail
+    small_image = source_file.copy()
+    sthumb_io = BytesIO()
+    label = "thumbnail_small"
+    small_thumbnail = small_image.resize((64, 64))
+    small_thumbnail.save(sthumb_io, format='PNG', quality=80)
+    this_username = request.user.username
+    this_uid = request.user.id
+    timestamp = dateformat.format(timezone.now(), '%Y%m%d%-H:i-s')
+    this_filename = this_username + str(this_uid) + timestamp + label + ".png"
+    inmemory_uploaded_file = InMemoryUploadedFile(sthumb_io, None, this_filename, 'image/png', sthumb_io.tell(), None)
+    
+    return inmemory_uploaded_file
+
+def generate_large_thumbnail(request, source_file):
+    #Create large thumbnail
+    large_image = source_file.copy()
+    lthumb_io = BytesIO()
+    label = "thumbnail_large"
+    large_thumbnail = large_image.resize((256, 256))
+    large_thumbnail.save(lthumb_io, format='PNG', quality=80)
+    this_username = request.user.username
+    this_uid = request.user.id
+    timestamp = dateformat.format(timezone.now(), '%Y%m%d%-H:i-s')
+    this_filename = this_username + str(this_uid) + timestamp + label + ".png"
+    inmemory_uploaded_file = InMemoryUploadedFile(lthumb_io, None, this_filename, 'image/png', lthumb_io.tell(), None)
+    
+    return inmemory_uploaded_file
+
+def generate_xlarge_thumbnail(request, source_file):
+    #Create xlarge thumbnail
+    xlarge_image = source_file.copy()
+    xthumb_io = BytesIO()
+    label = "thumbnail_xlarge"
+    xlarge_thumbnail = xlarge_image.resize((512, 512))
+    xlarge_thumbnail.save(xthumb_io, format='PNG', quality=80)
+    this_username = request.user.username
+    this_uid = request.user.id
+    timestamp = dateformat.format(timezone.now(), '%Y%m%d%-H:i-s')
+    this_filename = this_username + str(this_uid) + timestamp + label + ".png"
+    inmemory_uploaded_file = InMemoryUploadedFile(xthumb_io, None, this_filename, 'image/png', xthumb_io.tell(), None)
+    
+    return inmemory_uploaded_file
+
+
 
 #Profile Page
 class ProfileView(View):
@@ -276,13 +355,20 @@ class Publish(View):
         elif type == 'photo':
 
             #Get file from request
-            image = request.FILES.get('photo')
+            source_file = request.FILES.get('photo')
 
             #Create photo instance
             new_photo = Photo()
 
             #Set new photo file to object
-            new_photo.image = image
+            new_photo.image = source_file
+
+            #512x512
+            new_photo.large_thumbnail = generate_xlarge_thumbnail(request, source_file)
+            #256x256
+            new_photo.medium_thumbnail = generate_large_thumbnail(request, source_file)
+            #128x128
+            new_photo.small_thumbnail = generate_small_thumbnail(request, source_file)
 
             #Assign photo object to user
             new_photo.user = request.user
@@ -295,17 +381,31 @@ class Publish(View):
                 new_bit.body = body
             
         else:
+
             video = request.FILES.get('video')
+
             # Generate a unique file name using uuid or any other logic
             unique_filename = str(uuid.uuid4()) + os.path.splitext(video.name)[1]
 
-            new_bit.video.save(unique_filename, video)
+            video_object.video.save(unique_filename, video)
 
-            new_bit.video_key = unique_filename
-            new_bit.video = video
+            video_object = Video.objects.create(
+                user=request.user, 
+                video = video, 
+                video_key = unique_filename
+            )
 
-            
+            if request.FILES.get('thumbnail_image'):
+                thumbnail_image = request.FILES.get('thumbnail_image')
+                print(thumbnail_image)
+                video_object.thumbnail_image = thumbnail_image
 
+            # else:
+            #     video_object.thumbnail_image = generate_video_thumbnail(video)
+
+            video_object.save()
+
+            new_bit.video.add(video_object)
          
         new_bit.body = body
         new_bit.type = new_type
@@ -321,6 +421,7 @@ class Publish(View):
 
         user_tz = user_profile.current_timezone
         serialized_bit = BitSerializer(new_bit, many=False, context={'user_tz':user_tz})
+
         return JsonResponse(serialized_bit.data)
 
 
@@ -449,31 +550,12 @@ class Personalization(LoginRequiredMixin, View):
                 source_file = Image.open(value)
 
 
-                #Create large thumbnail
-                large_image = source_file.copy()
-                lthumb_io = BytesIO()
-                label = "thumbnail_large"
-                large_thumbnail = large_image.resize((128, 128))
-                large_thumbnail.save(lthumb_io, format='PNG', quality=80)
-                this_username = request.user.username
-                this_uid = request.user.id
-                timestamp = dateformat.format(timezone.now(), '%Y%m%d%-H:i-s')
-                this_filename = this_username + str(this_uid) + timestamp + label + ".png"
-                inmemory_uploaded_file = InMemoryUploadedFile(lthumb_io, None, this_filename, 'image/png', lthumb_io.tell(), None)
-                custom.image_thumbnail_large = inmemory_uploaded_file
+                large_thumb = generate_large_thumbnail(request, source_file)
+                custom.image_thumbnail_large = large_thumb
 
                 #Create small thumbnail
-                small_image = source_file.copy()
-                sthumb_io = BytesIO()
-                label = "thumbnail_small"
-                small_thumbnail = small_image.resize((64, 64))
-                small_thumbnail.save(sthumb_io, format='PNG', quality=80)
-                this_username = request.user.username
-                this_uid = request.user.id
-                timestamp = dateformat.format(timezone.now(), '%Y%m%d%-H:i-s')
-                this_filename = this_username + str(this_uid) + timestamp + label + ".png"
-                inmemory_uploaded_file = InMemoryUploadedFile(sthumb_io, None, this_filename, 'image/png', sthumb_io.tell(), None)
-                custom.image_thumbnail_small = inmemory_uploaded_file
+                small_thumb = generate_small_thumbnail(request, source_file)
+                custom.image_thumbnail_small = small_thumb
 
                 #Rename and save full sized image
                 
@@ -594,7 +676,6 @@ class Personalization(LoginRequiredMixin, View):
 
 
         return JsonResponse({'success':'success'})
-
 
 class QuickVisibility(View):
     def get(self, request, *args, **kwargs):

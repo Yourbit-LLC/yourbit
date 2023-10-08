@@ -63,48 +63,34 @@ Refer to the interactive codex for current style guidelines for Yourbit*/
     }
   }
 
-  
-  .splash-page {
-    display: block;
-    position: fixed;
-    height: 100vh;
-    width: 100vw;
-    top: 0;
-    left: 0;
-    z-index: 100;
-
-}
-
-.splash-page.base {
-    background-color: black;
-}
-
-.splash-page.profile {
-    backdrop-filter: blur(20px) brightness(50%);
-    -webkit-backdrop-filter: blur(20px) brightness(50%);
-}
-
-.space-splash-label {
-    display: block;
-    position: absolute;
-    color: white;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    border-radius: 20px;
-}
-
-.space-splash-label.profile {
-    transform:translate(-50%, -65%)
-}
-
-
 #main-splash-image {
     display:block; 
     width: 80%; 
     margin: auto;
 }
+
+.photo-viewer {
+    position: fixed;
+    display: block;
+    top: 100vh;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background-color: black;
+}
+
+.full-screen-image {
+    position: relative;
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
 
 .yb-press-filter {
     animation: yb-press-filter 0.3s linear 1;
@@ -206,26 +192,46 @@ Refer to the interactive codex for current style guidelines for Yourbit*/
     
 }
 
-.photo-viewer {
-    position: fixed;
+body, html {
+    background-color: black;
+
+}
+
+.splash-page {
     display: block;
-    top: 100vh;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    z-index: 1000;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 100;
+
+}
+
+.splash-page.base {
     background-color: black;
 }
 
-.full-screen-image {
-    position: relative;
+.splash-page.profile {
+    backdrop-filter: blur(20px) brightness(50%);
+    -webkit-backdrop-filter: blur(20px) brightness(50%);
+}
+
+.space-splash-label {
     display: block;
-    max-width: 100%;
-    max-height: 100%;
+    position: absolute;
+    color: white;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    text-align: center;
+    border-radius: 20px;
 }
+
+.space-splash-label.profile {
+    transform:translate(-50%, -65%)
+}
+
 
 @media screen and (min-width: 700px) {
 /*
@@ -237,9 +243,6 @@ please refer to the child elements to the following classes. Universal methods s
 only be used for object transforms (shaping and scaling)
 */
 
-.yb-player-card {
-    display: none;
-}
 
     .wide-button {
         /*Wide button is typically used for confirmation and back buttons a similar
@@ -284,6 +287,7 @@ only be used for object transforms (shaping and scaling)
         color: white;
         font-family:Arial, Helvetica, sans-serif; 
         overflow: hidden;
+        background-color: black;
         
     }
 
@@ -292,22 +296,7 @@ only be used for object transforms (shaping and scaling)
     }
     /* UI background image */
     .bg-image {
-        position: fixed;
-        top: 0;
-        left: 0;
-        min-width: 100%;
-        /* The image used */
-      
-        /* Add the blur effect */
-        filter: brightness(80%) saturate(150%);
-        -webkit-filter: brightness(80%) saturate(150%);
-        /* Full height */
-        max-height: 100%;
-      
-        /* Center and scale the image nicely */
-        background-position: center;
-        z-index: 1;
-        transition: 1s;
+        display: none;
     
     }
     ::placeholder {
@@ -492,8 +481,6 @@ only be used for object transforms (shaping and scaling)
     
 }
 
-
-
 .filter-button {
     position: relative;
     display: block;
@@ -647,7 +634,7 @@ only be used for object transforms (shaping and scaling)
         position: relative;
         width: 40px;
         height: 30px;
-        background-color: rgba(0,0,0,0.4);
+        background-color: rgb(25, 25, 25);
         border-width: 0px;
         border-radius: 10px;
         padding: 4px;
@@ -745,7 +732,7 @@ only be used for object transforms (shaping and scaling)
         /* Search action button, will search content within text input on press */
         grid-column: 2;
         border-width: 0px;
-        background-color: rgba(0,0,0,0.4);
+        background-color: rgb(25, 25, 25);
         border-radius: 10px;
         height: 35px;
         width: 50px;
@@ -1068,18 +1055,18 @@ only be used for object transforms (shaping and scaling)
     #profile-menu {
         position: fixed;
         top: 3.75em;
-        background-color: rgba(155, 155, 155, 0.1);
         z-index: 8;
         right: 0px;
         height: 100%;
         width: 17em;
-        backdrop-filter: saturate(300%) brightness(125%) blur(20px);
         display: grid;
         visibility: hidden;
         transform: translate(17em);
         transition: 0.5s;
         grid-template-rows: 275px 40px 150px 40px;
         grid-row-gap: 10px;
+
+        background-color: black;
     }
     
     #profile-name {
@@ -1139,7 +1126,7 @@ only be used for object transforms (shaping and scaling)
         top: 0px;
         width: 100%;
         height: 100%;
-        background-color: black;
+        background-color: rgb(50, 50, 50);   
     }
 
     #menu-options{
@@ -1740,18 +1727,19 @@ only be used for object transforms (shaping and scaling)
         bottom: 0px;
         height: 100%;
         margin: auto;
-        -webkit-backdrop-filter: blur(20px);
-        backdrop-filter: blur(20px);
+        background-color: black;
+
         
     }
 
         .space-button {
             position: relative;
             width: 60px;
-            height: 30px;
-            background-color: rgba(0,0,0,0.5);
+            margin-top:2px;
+            height: 27px;
+            background-color: rgba(100,100,100,0.5);
             border-width: 0px;
-            border-radius: 0.25em;
+            border-radius: 5px;
             padding: 4px;
             transition: 0.3s;
             margin: auto;
@@ -1838,9 +1826,7 @@ only be used for object transforms (shaping and scaling)
             height: auto;
             position: fixed;
             z-index: 25;
-            background-color: rgba(0, 0, 0, 0.0);
-            -webkit-backdrop-filter: blur(40px) brightness(200%);
-            backdrop-filter: blur(40px) brightness(200%);
+            background-color: black;
             left: 1.5vw;
             box-shadow: -1px -1px 10px black;
             text-align: center;
@@ -1869,7 +1855,7 @@ only be used for object transforms (shaping and scaling)
             margin-right: auto;
             color: white;
             font-family: Arial, Helvetica, sans-serif;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgb(25, 25, 25);
             border-radius: 10px;
             margin-bottom: 0px;
             display: grid;
@@ -1918,7 +1904,7 @@ only be used for object transforms (shaping and scaling)
             position: relative;
             width: 90vw;
             height: 35px;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(255, 255, 255, 0.4);
             margin-left: auto;
             margin-right: auto;
             border-radius: 10px;
@@ -1959,7 +1945,7 @@ only be used for object transforms (shaping and scaling)
             top: 0px;
             width: 100%;
             height: 100%;
-            background-color: black;
+            background-color: rgb(25, 25, 25);
         }
         .menu-widget-container {
             position: relative;
@@ -1981,7 +1967,7 @@ only be used for object transforms (shaping and scaling)
             width: 100%;
             height: 40px;
             border-radius: 10px;
-            background-color: rgba(0, 0, 0, 0.6);
+            background-color: rgba(25, 25, 25);
         }
 
         .count-icon {
@@ -2059,7 +2045,7 @@ only be used for object transforms (shaping and scaling)
 
             .profile-menu-link{
                 position: relative;
-                background-color: rgba(0, 0, 0, 0.5);
+                background-color: rgba(25, 25, 25);
                 border-radius: 10px;
                 padding: 2px;
                 text-align: left;
@@ -2268,7 +2254,7 @@ only be used for object transforms (shaping and scaling)
     .filter-button {
         position: relative;
         display: block;
-        background-color: rgba(150, 150, 150, 0.4);
+        background-color: rgb(25, 25, 25);
         border: 2px solid rgb(150, 150, 150);
         color: rgb(150, 150, 150);
         border-radius: 20px;
@@ -2364,7 +2350,7 @@ only be used for object transforms (shaping and scaling)
 
 
     .yb-single-line-input {
-        background-color: rgba(0, 0, 0, 0.4);
+        background-color: rgb(25, 25, 25);
         border-radius: 10px;
         border-width: 0px;
         width: 95%;
@@ -2399,7 +2385,7 @@ only be used for object transforms (shaping and scaling)
         height: 80vh;
         position: fixed;
         z-index: 25;
-        background-color: rgba(0, 0, 0, 0.0);
+        background-color: rgb(0, 0, 0);
         -webkit-backdrop-filter: blur(40px) brightness(175%);
         display: inline-table;
         backdrop-filter: blur(40px) brightness(175%);
@@ -2503,7 +2489,7 @@ only be used for object transforms (shaping and scaling)
     }
 
     .bit-options-button {
-        background-color: rgba(0, 0, 0, 0.5); 
+        background-color: rgba(255, 255, 255, 0.3); 
         display: block;
         border-width: 0px; 
         border-radius: 10px; 
@@ -2623,7 +2609,7 @@ only be used for object transforms (shaping and scaling)
         height: 150px;
         border-radius: 10px;
         margin-top: 10px;
-        background-color: rgba(0, 0, 0, 0.4);
+        background-color: rgb(25, 25, 25);
         border-width: 0px;
         padding: 4px;
         color:white;
@@ -2637,7 +2623,7 @@ only be used for object transforms (shaping and scaling)
         margin-left: auto;
         margin-right: auto;
         /* column-gap: 10px; */
-        background-color: rgba(0, 0, 0, 0.4);
+        background-color: rgba(255, 255, 255, 0.3);
         border-radius: 10px;
         padding: 2px 3px 2px 2px;
     }
@@ -2921,6 +2907,8 @@ only be used for object transforms (shaping and scaling)
     input:-ms-input-placeholder {  
         color: rgb(176, 176, 176) !important;  
         }
+
+
     #mobile-spacer {
         display: block;
         position: relative;
@@ -3192,7 +3180,6 @@ only be used for object transforms (shaping and scaling)
         border-radius: 20px 0 0 20px;
         background-color: rgba(255, 255, 255, 0.5);
     }
-    
 
     .button-mini {
         position: relative;
@@ -3244,25 +3231,6 @@ only be used for object transforms (shaping and scaling)
         color: rgb(150, 150, 150);
         font-weight: 550;
         background-color: black;
-    }
-
-    .yb-player-card {
-        position: relative;
-        display: block;
-        width: 100%;
-        height: 100%;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        padding: 10px 10px 10px 10px;
-        background-color: rgba(0, 0, 0, 0.7);
-        border-radius: 20px;
-        color: white;
-        font-family: Arial, Helvetica, sans-serif;
-        text-align: left;
-        transform: translate(0px, 100vh);
-        transition: 0.5s;
     }
 
     

@@ -38,13 +38,47 @@ from .forms import *
 # Create your views here.
 class Home(View):
     def get(self, request, *args, **kwargs):
+        from settings.models import MySettings, FeedSettings
+        this_user = request.user
+        these_settings = MySettings.objects.get(user=this_user)
+        
+        #Get active feed settings
+        feed_settings = FeedSettings.objects.get(settings=these_settings)
+        default_space = feed_settings.default_space
+        if default_space == 'auto':
+            current_space = feed_settings.current_space
+
+        else:
+            current_space = default_space
+        
+        sort_by = feed_settings.sort_by
+
+        #Build filter chain
+        filter_chain = ""
+        if feed_settings.show_friends:
+            filter_chain += '-fr'
+        
+        if feed_settings.show_following:
+            filter_chain += '-fo'
+        
+        if feed_settings.show_communities:
+            filter_chain += '-co'
+
+        if feed_settings.show_public:
+            filter_chain += '-p'
+
+        if feed_settings.show_my_bits:
+            filter_chain += '-me'
+
+
         context = {
             'location': 'home',
-            'space':'global',
-            'filter':'all',
-            'sort':'chrono'
+            'space': current_space,
+            'filter':filter_chain,
+            'sort':sort_by,
             
         }
+        
         return render(request, "main/home.html", context)
 
 class ChatSpace(View):

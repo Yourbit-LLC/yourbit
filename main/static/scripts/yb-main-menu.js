@@ -2,10 +2,11 @@ $('#profile-name').click(function() {
     let username = $(this).attr("data-username")
     console.log(username)
     let data = {"username": username}
-    profile_url(data);
+    yb_navigateTo("profile", data);
+    
     yb_show_profile_menu();
 
-})
+});
 
 $('.profile-menu-link').click(function() {
     console.log("clicked");
@@ -14,38 +15,37 @@ $('.profile-menu-link').click(function() {
     let button_pressed = $(this).attr("name");
 
     if (button_pressed === "home") {
-        yb_updatePageTask("home");
-        home_url();
+        
+        yb_navigateTo("home");
     }
 
     if (button_pressed === "rewards") {
-        yb_updatePageTask("rewards")
-        rewards_url();
+        yb_navigateTo("rewards");
     }
 
     if (button_pressed === "history") {
-        yb_updatePageTask("history")
-        history_url();
+        
+        yb_navigateTo("history");
     }
 
     if (button_pressed === "messages"){
-        yb_updatePageTask("messages")
-        messages_inbox_url();
+        
+        yb_navigateTo("messages");
     }
 
     if (button_pressed === "settings"){
-        yb_updatePageTask("settings")
-        settings_url();
+        
+        yb_navigateTo("settings");
     }
 
     if (button_pressed === "connections"){
-        yb_updatePageTask("connections")
-        connections_url();
+        
+        yb_navigateTo("connections");
     }
 
     if (button_pressed === "stuff"){
-        yb_updatePageTask("stuff")
-        stuff_url();
+        
+        yb_navigateTo("stuff");
 
     }
 

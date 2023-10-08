@@ -131,6 +131,11 @@ function showCreateBit(callback) {
     // history.pushState({}, "", `${current_url}/create/`);
 }
 
+//Versatile test function is used as a placeholder for yb_versatile function elements like yb_card before actions are developed
+function versatile_test() {
+    console.log('test');
+}
+
 /* Function to animate create bit onto the screen */
 function raiseCreateBit(callback){
     let create_bit = document.getElementById('create-bit-mobile');
@@ -155,6 +160,60 @@ function hideCreateBit() {
     // let current_url = document.getElementById('current_url').value;
     // history.pushState({}, "", `${current_url}/`);
     $('#cb-divider').hide();
+}
+
+function yb_handle_quarter_card_option(callback) {
+    let card_element = document.getElementById('yb-card-quarter');
+    card_element.classList.remove('in');
+    card_element.classList.add('out');
+    callback();
+    setTimeout(function(){card_element.remove()}, 300);
+}
+
+function yb_hide_quarter_card() {
+    let card_element = document.getElementById('yb-card-quarter');
+    card_element.classList.remove('in');
+    card_element.classList.add('out');
+    setTimeout(function(){card_element.remove()}, 300);
+    
+}
+function yb_quarter_card(title, options) {
+    let card = yb_createElement('div', 'yb-temporary-card', 'yb-card-quarter in');
+    let card_title = yb_createElement('div', 'quarter-card-title', 'quarter-card-title');
+    let card_title_text = yb_createElement('h3', 'quarter-card-title-text', 'quarter-card-title-text');
+    card_title_text.setAttribute('style', 'text-align: center; color: white;')
+    card_title_text.innerHTML = title;
+    card_title.appendChild(card_title_text);
+    card.appendChild(card_title);
+    
+    //Get options stored in a dictionary, the corresponding action functions are stored as values to the keys defining actions
+    let card_options = yb_createElement('div', 'quarter-card-options', 'quarter-card-options');
+    for (let key in options) {
+        let lowkey = key.toLowerCase();
+        let option = yb_createElement('div', 
+            `'card-option-${lowkey}`, 
+            'yb-single-line-input'
+            );
+        option.setAttribute(
+            "style", 
+            "margin-left: auto; margin-right: auto; text-align: center; background-color: rgba(50,50,50,0.4); line-height: 1.8; height: 32px;"
+        );
+        option.setAttribute('data-action', lowkey);
+        option.addEventListener('click', function() {
+            yb_handle_quarter_card_option(options[key])
+        });
+        option.innerHTML = key;
+        card_options.appendChild(option);
+
+        if (key==='Cancel') {
+            option.style.color = 'red';
+            option.style.borderColor = 'red';
+        }
+    }
+
+    card.appendChild(card_options);
+    
+    document.body.appendChild(card);
 }
 
 

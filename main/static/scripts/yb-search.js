@@ -39,6 +39,8 @@ $('#mobile-searchbar').on('change keyup', function(e) {
     let event_type = e.input;
     console.log(event_type)
     let searchBar = document.getElementById('mobile-searchbar');
+    let type_field = document.getElementById('search-type');
+    type = type_field.value;
     let query = searchBar.value;
     $('#mobile-instant-results').empty();
     console.log(query);
@@ -107,12 +109,13 @@ function fetchResults(callback, query) {
         },
         url: '/search/',
         data: { 
-            
+            type: type,
             query: query
 
         },
         success: function(data){
             let response = data;
+            console.log(response);
             callback(response);
         }
     })

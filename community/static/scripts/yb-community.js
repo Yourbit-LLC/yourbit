@@ -1,5 +1,5 @@
 var base_url = window.location.origin;
-var isSwiping = false;
+
 $(document).ready(function() {
     let user_id = yb_getSessionValues("profile-username");
     console.log(user_id)
@@ -20,18 +20,11 @@ $(document).ready(function() {
 
 });
 
-function yb_setProfileUI(custom) {
+function yb_setCommunityUI(custom) {
     let background_image = document.getElementById("bg-image");
+    background_image.setAttribute("src", custom.background_mobile);
     
-    let flat_mode_on = yb_getUserCustom("flat-mode-on");
-    
-    if (flat_mode_on == "true") {
-
-        background_image.setAttribute("src", custom.background_mobile);
-    
-        background_image.setAttribute("style", `filter: blur(${custom.background_blur}px) brightness(${custom.background_brightness}%); -webkit-filter: blur(${custom.background_blur}px) brightness(${custom.background_brightness}%);`);
-
-    }
+    background_image.setAttribute("style", `filter: blur(${custom.background_blur}px) brightness(${custom.background_brightness}%); -webkit-filter: blur(${custom.background_blur}px) brightness(${custom.background_brightness}%);`);
 
     let ui_labels = document.getElementsByClassName("yb-ui-label");
     for (let i = 0; i < ui_labels.length; i++) {
@@ -58,7 +51,7 @@ function yb_setProfileUI(custom) {
 
 }
 
-function yb_enterProfile() {
+function yb_enterCommunity() {
     console.log("clicked")
     let profile_splash = document.getElementById("profile-page-splash");
     let image = document.getElementById("profile-image-splash");
@@ -84,7 +77,7 @@ function yb_enterProfile() {
     $(".swipe-up-element").fadeOut("fast");
     
     $("#profile-page-splash").animate({"height":"120px"});
-    $("#profile-page-splash").css({"height":"120px"});
+    $("#profile-page-splash").css({"height":"120px", "pointer-events":"none"});
     $(".large-profile-image").animate({"height":"50px", "width":"50px", "margin-left":"5px"});
 
     $(".large-profile-image").css({"grid-column":"1"});
@@ -99,10 +92,8 @@ function yb_enterProfile() {
 
     let bit_container = document.getElementById("bit-container");
     $(bit_container).animate({"top":"0vh"}, "slow");
-
-
     setTimeout(function(){
-        $('#profile-page-splash').css({"pointer-events":"none"});
+        $(bit_container).css({"pointer-events":"auto"});
     }, 200);
     yb_showMiniBar(); 
     yb_showMenuTask();   
@@ -112,24 +103,19 @@ function yb_enterProfile() {
 
 
 //Profile Page
-function yb_BuildProfile(data){
+function yb_BuildCommunity(community_data){
 
-
-    let profile_data = data.profile_data;
-    let connection_status = data.connection_status;
-    
     //Get active user id from session
     let active_id = yb_getSessionValues("id");
 
     //Get profile user id from data
-    let user = profile_data.user
 
-    let profile_id = profile_data.id
+    let profile_id = community_data.id
 
-    let user_id = user.id
+    let users = community_data.users;
     //Get profile image from data
-    let custom = profile_data.custom;
-    yb_setProfileUI(custom);
+    let custom = community_data.custom;
+    yb_setCommunityUI(custom);
 
     let profile_image = custom.image_thumbnail_large;
     let profile_background = custom.background_mobile;
@@ -137,23 +123,21 @@ function yb_BuildProfile(data){
 
     
     //Get profile name from data 
-    let profile_first_name = user.first_name;
-    let profile_last_name = user.last_name;
-    let profile_name = profile_first_name + " " + profile_last_name
+    let community_name = community_data.name
     
     //Get username from data 
-    let handle = user.username;
+    let handle = community_data.username;
 
     //Get motto from data
-    let motto = profile_data.motto;
+    let motto = community_data.motto;
 
     //Get bio from data
-    let bio = profile_data.bio;
+    let bio = community_data.bio;
     
     let data_element = yb_createElement("input", "profile-data", "yb-dat-hidden")
     data_element.setAttribute("type", "hidden");
 
-    let profile_splash = yb_createElement("div", "profile-page-splash", "splash-page profile");
+    let profile_splash = yb_createElement("div", "profile-page-splash", "splash-page");
     profile_splash.setAttribute("data-id", profile_id);
 
     let profile_info = yb_createElement("div", "profile-splash-label", "space-splash-label profile");
@@ -167,103 +151,65 @@ function yb_BuildProfile(data){
     let profile_name_element = yb_createElement("div", "profile-name-splash", "profile-name-splash");
     profile_info.appendChild(profile_name_element);
 
-    let profile_name_header = yb_createElement("h2", "profile-name-header", "profile-name-header");
-    profile_name_header.innerHTML = profile_name;
-    profile_name_element.appendChild(profile_name_header);
+    let community_name_header = yb_createElement("h2", "profile-name-header", "profile-name-header");
+    community_name_header.innerHTML = community_name;
+    community_name_element.appendChild(community_name_header);
 
-    let profile_handle_label = yb_createElement("b", "profile-handle-label", "profile-handle-label");
-    profile_handle_label.setAttribute("style", `color:${custom.text_color} !important;`);
-    profile_handle_label.innerHTML = "<small>@" + handle + "</small>";
-    profile_name_element.appendChild(profile_handle_label);
+    let community_handle_label = yb_createElement("b", "profile-handle-label", "profile-handle-label");
+    community_handle_label.setAttribute("style", `color:${custom.text_color} !important;`);
+    community_handle_label.innerHTML = "<small>@" + handle + "</small>";
+    profile_name_element.appendChild(community_handle_label);
 
-    let profile_interaction_container = yb_createElement("div", "profile-interaction-container", "profile-interaction-container");
-    profile_info.appendChild(profile_interaction_container);
+    let community_interaction_container = yb_createElement("div", "profile-interaction-container", "profile-interaction-container");
+    community_info.appendChild(community_interaction_container);
 
+    let admin = false;
+
+    for (let i = 0; i < users.length; i++){
+        let user = users[i];
+        if (user.id == active_id){
+            admin = true;
+        }
+    }
     
-    if (active_id != user_id){
-        let profile_button_connect = yb_createElement("button", "profile-button-connect", "button-profile-interaction");
-        profile_button_connect.setAttribute("style", `background-color: ${custom.primary_color}; color: ${custom.title_color};`);
+    if (admin){
+        let community_button_connect = yb_createElement("div", "profile-button-connect", "button-profile-interaction");
+        community_button_connect.setAttribute("style", `background-color: ${custom.primary_color}; color: ${custom.title_color};`);
         
-        if (connection_status == 0){
-            profile_button_connect.setAttribute("data-id", user_id);
-            profile_button_connect.setAttribute("data-username", handle);
-            profile_button_connect.setAttribute("data-action", "connect");
-            profile_button_connect.innerHTML = "Connect";
-            profile_interaction_container.appendChild(profile_button_connect);
-
-            //Create event listener for profile connect button shows a dropdown box for adding as friends or following
-            profile_button_connect.addEventListener("click", function() {
-                let these_options = {"Request Friend": versatile_test, "Follow": versatile_test, "Block": versatile_test, "Cancel": versatile_test};
-                yb_quarter_card("Connect Options", these_options)
-            });
-        }
-        else {
-
-            let connect_label;
-
-            if (connection_status == 1) {
-                connect_label = "Following";
-                //Create event listener for profile connect button shows a dropdown box for adding as friends or following
-                profile_button_connect.addEventListener("click", function() {
-                    let these_options = {
-                        "Request Friend": yb_addFriend, 
-                        "Unfollow": yb_follow, 
-                        "Block": versatile_test, 
-                        "Cancel": yb_hide_quarter_card
-                    };
-                    yb_quarter_card("Connect Options", these_options);
-                });
-            } else if (connection_status == 2) {
-                connect_label = "Friends";
-                
-                //Create event listener for profile connect button shows a dropdown box for adding as friends or following
-                profile_button_connect.addEventListener("click", function() {
-                    let these_options = {"Remove Friend": versatile_test, "Change to Follow": versatile_test, "Block": versatile_test, "Cancel": versatile_test};
-                    yb_quarter_card("Connect Options", these_options)
-                });
-            }
-            profile_button_connect.setAttribute("data-id", user_id);
-            profile_button_connect.setAttribute("data-username", handle);
-            profile_button_connect.setAttribute("data-action", "change");
-            profile_button_connect.innerHTML = connect_label + " <i class='fas fa-caret-down'></i>";
-            profile_interaction_container.appendChild(profile_button_connect);
-
-        }
+        community_button_connect.setAttribute("data-id", user_id);
+        community_button_connect.setAttribute("data-username", handle);
+        community_button_connect.setAttribute("data-name", profile_name);
+        community_button_connect.innerHTML = "Connect";
+        profile_interaction_container.appendChild(community_button_connect);
         
         //Create event listener for profile connect button shows a dropdown box for adding as friends or following
-        profile_button_connect.addEventListener("click", function() {
-            let these_options = {"Add Friend": versatile_test, "Follow": versatile_test, "Block": versatile_test, "Cancel": versatile_test};
-            yb_quarter_card("Connect Options", these_options)
+        community_button_connect.addEventListener("click", function() {
+            yb_handleComConnectButton(community_button_connect);
         });
 
     } else {
-        let profile_button_edit = yb_createElement("button", "profile-button-edit", "button-profile-interaction");
-        profile_button_edit.setAttribute("style", `background-color: ${custom.primary_color}; color: ${custom.title_color};`);
+        let community_button_edit = yb_createElement("div", "profile-button-edit", "button-profile-interaction");
+        community_button_edit.setAttribute("style", `background-color: ${custom.primary_color}; color: ${custom.title_color};`);
         
-        profile_button_edit.setAttribute("data-id", user_id);
-        profile_button_edit.innerHTML = "Customize";
-        profile_interaction_container.appendChild(profile_button_edit);
+        community_button_edit.setAttribute("data-id", user_id);
+        community_button_edit.innerHTML = "Customize";
+        profile_interaction_container.appendChild(community_button_edit);
 
-        profile_button_edit.addEventListener("click", function(){
+        community_button_edit.addEventListener("click", function(){
             customize_url();
         });
     }
-    
-
-
-        
-
 
     if (active_id != user_id){
-        let profile_button_message = yb_createElement("button", "button-profile-interaction", "button-profile-interaction");
-        profile_button_message.setAttribute("style", `background-color: ${custom.primary_color}; color: ${custom.title_color}; margin: 0px;`);
-        profile_button_message.setAttribute("id", "profile-button-message");
-        profile_button_message.setAttribute("data-id", user_id);
-        profile_button_message.innerHTML = "Message";
-        profile_interaction_container.appendChild(profile_button_message);
+        let community_button_message = yb_createElement("button", "button-profile-interaction", "button-profile-interaction");
+        community_button_message.setAttribute("style", `background-color: ${custom.primary_color}; color: ${custom.title_color}; margin: 0px;`);
+        community_button_message.setAttribute("id", "profile-button-message");
+        community_button_message.setAttribute("data-id", user_id);
+        community_button_message.innerHTML = "Message";
+        profile_interaction_container.appendChild(community_button_message);
 
         
-        profile_button_message.addEventListener("click", function(){
+        community_button_message.addEventListener("click", function(){
             //call show create bit with the call back function raise create bit
             showCreateBit(raiseCreateBit);
             yb_showMessageForm();
@@ -274,22 +220,22 @@ function yb_BuildProfile(data){
         });
 
     } else {
-        let profile_button_message = yb_createElement("button", "profile-button-message", "button-profile-interaction");
-        profile_button_message.setAttribute("style", `background-color: ${custom.primary_color}; color: ${custom.title_color};`);
-        profile_button_message.setAttribute("data-id", user_id);
-        profile_button_message.innerHTML = "Messages";
-        profile_interaction_container.appendChild(profile_button_message);
+        let community_button_message = yb_createElement("button", "profile-button-message", "button-profile-interaction");
+        community_button_message.setAttribute("style", `background-color: ${custom.primary_color}; color: ${custom.title_color};`);
+        community_button_message.setAttribute("data-id", user_id);
+        community_button_message.innerHTML = "Messages";
+        profile_interaction_container.appendChild(community_button_message);
 
-        profile_button_message.addEventListener("click", function(){
+        community_button_message.addEventListener("click", function(){
             messages_inbox_url();
         });
     }
 
-    let profile_button_about = yb_createElement("button", "profile-button-about", "button-profile-interaction");
-    profile_button_about.setAttribute("style", `background-color: ${custom.primary_color}; color: ${custom.title_color};`);
-    profile_button_about.setAttribute("data-id", user_id);
-    profile_button_about.innerHTML = "Info";
-    profile_interaction_container.appendChild(profile_button_about);
+    let community_button_about = yb_createElement("button", "profile-button-about", "button-profile-interaction");
+    community_button_about.setAttribute("style", `background-color: ${custom.primary_color}; color: ${custom.title_color};`);
+    community_button_about.setAttribute("data-id", user_id);
+    community_button_about.innerHTML = "Info";
+    profile_interaction_container.appendChild(community_button_about);
 
     let bio_container = yb_createElement("div", "profile-bio-container", "splash-bio-container");
     profile_info.appendChild(bio_container);
@@ -299,14 +245,14 @@ function yb_BuildProfile(data){
     profile_motto.innerHTML = motto;
     bio_container.appendChild(profile_motto);
 
-    let profile_bio = yb_createElement("p", "profile-bio", "profile-bio");
-    profile_bio.setAttribute("style", `color:${custom.text_color} !important;`);
+    let community_bio = yb_createElement("p", "profile-bio", "profile-bio");
+    community_bio.setAttribute("style", `color:${custom.text_color} !important;`);
     if (bio == null || bio == "" || bio == undefined) {
-        profile_bio.innerHTML = "No bio";
+        community_bio.innerHTML = "No bio";
     } else {
-        profile_bio.innerHTML = bio;
+        community_bio.innerHTML = bio;
     }
-    bio_container.appendChild(profile_bio);
+    bio_container.appendChild(community_bio);
 
     let swipe_up_element = yb_createElement("div", "swipe-up-element", "swipe-up-element bobbing-object");
     swipe_up_element.setAttribute("style", `display:none;`);
@@ -314,8 +260,6 @@ function yb_BuildProfile(data){
     profile_splash.appendChild(swipe_up_element);
     
     let load_indicator_container = yb_createElement("div", "load-indicator-container-profile", "detail-load-box");
-
-
 
     let loading_indicator = yb_createElement("div", "profile-loading", "loading-circle detailed");
     loading_indicator.style.borderTop = `4px solid ${custom.text_color}`
@@ -349,89 +293,51 @@ function yb_BuildProfile(data){
         "filter":"-fo-fr-me-p-c",
         "sort":sort_by,
     };
-    
-    let load_indicator = document.getElementById("yb-loading-core");
-    load_indicator.style.display = "none";
 
     yb_getFeed(new_feed, "none", false);
     
     swipe_up_element.addEventListener("touchstart", function(event) {
         var initialY = event.touches[0].clientY;
-        isSwiping = true;
 
         // Add an event listener for touchend event
         swipe_up_element.addEventListener("touchend", function(event) {
             var finalY = event.changedTouches[0].clientY;
             var deltaY = finalY - initialY;
-            isSwiping = false;
+    
             // Check if the user has swiped down
             if (deltaY < 0) {
                 // Perform actions to exit fullscreen
                 // Add your code here to handle fullscreen exit
-                yb_enterProfile();
+                yb_enterCommunity();
             }
         });
         
     });
 
-    content_container.addEventListener('touchmove', (event) => {
-        preventScroll(event);
-      });
-
     // swipe_up_element.addEventListener("click", function(){
-    //     yb_enterProfile();
+    //     yb_enterCommunity();
     // });
 
     return {'splash':profile_splash, 'data':data_element}
 }
 
-function preventScroll(event) {
-    if (isSwiping) {
-        event.preventDefault(); // Prevent default scroll behavior
-        // Your swipe logic here
-      }
-}
 
 $('#back-to-home').click(function() {
-    window.location.href = `${base_url}/bitstream/home/`
+    window.location.href = `${base_url}/bitstream/home/`;
 });
 
-function yb_handleConnectButton(profile_button_connect) {
+function yb_handleComConnectButton(community_button_connect) {
         console.log("clicked")
-        let user = profile_button_connect.getAttribute("data-name");
-        let handle = profile_button_connect.getAttribute("data-username");
+        let user = community_button_connect.getAttribute("data-name");
+        let handle = community_button_connect.getAttribute("data-username");
         console.log(handle);
-        let user_id = profile_button_connect.getAttribute("data-id");
+        let community_id = community_button_connect.getAttribute("data-id");
     
         //Create dropdown
 
-        profile_button_connect.removeEventListener("click", yb_handleConnectButton);
-        let dropdown = yb_createElement("div", "add-friend-link", "adaptive-dropdown");
-        dropdown.setAttribute("style", `position: absolute; overflow:hidden; top: 45px; left: 0px; border-radius: 20px; background-color:#222222; width: 90px; height: 0px;  box-shadow: 2px 2px 4px black;`);
-        profile_button_connect.appendChild(dropdown);
-        //Animate dropdown
-        $(dropdown).animate({"height": "70px"}, 200);
-        
-        //Create dropdown items
-        let add_friend_button = yb_createElement("p", "adaptive-dropdown-item-add-friend", "adaptive-dropdown-item");
-        add_friend_button.setAttribute("style", `color: white; height: 35px; margin-top: 0px; margin-bottom: 0px;`);
-        add_friend_button.innerHTML = "Add friend";
-        dropdown.appendChild(add_friend_button);
-        
-        //Create dropdown item click event for add friend
-        add_friend_button.addEventListener("click", function(){
-            yb_requestFriend(handle);
-        });
 
-        let follow_button = yb_createElement("p", "adaptive-dropdown-item-follow", "adaptive-dropdown-item");
-        follow_button.setAttribute("style", `color: white; height:35px; margin-top: 0px; margin-bottom: 0px;`);
-        follow_button.setAttribute("data-id", user_id);
-        follow_button.innerHTML = "Follow";
-        dropdown.appendChild(follow_button);
-    
-        follow_button.addEventListener("click", function(){
-            yb_addFollow(user_id);
-        });
+        yb_addFollow(community_id);
+        
 
 
 }

@@ -108,10 +108,13 @@
         yb_showMiniBar(); 
         yb_showMenuTask();   
         yb_hideSpaceBar();
-
+        let load_indicator = document.getElementById("yb-loading-core");
+        load_indicator.style.display = "none";
 
     });
     $('#back-to-home').click(function() {
         window.location.href = `${base_url}/bitstream/home/`
     });
 </script>
+
+

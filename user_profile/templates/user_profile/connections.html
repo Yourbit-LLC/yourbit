@@ -35,6 +35,7 @@
         
     </div>
     <div id = "list-container">
+
     </div>
     
     <div id="mobile-spacer">
@@ -52,6 +53,10 @@
 
         let url = `${base_url}/api/profiles/?filter=all`
         yb_getConnections(url);
+
+        let load_indicator = document.getElementById("yb-loading-core");
+        load_indicator.style.display = "none";
+
         
     });
 
@@ -79,30 +84,27 @@
                 for (var connection in results) {
                     $(".feed-message").remove();
                     
-
+                    let list_container = document.getElementById("list-container");
                     let this_item = results[connection];
                     console.log(this_item)
                     let user = this_item.user;
                     let custom = this_item.custom
 
                     let name = user.first_name + " " + user.last_name
+
+                    let result_object = BuildListItem(this_item, "user")
+
+                    result_object.addEventListener('click', function(e) {
+                        let this_element = e.currentTarget;
+                        let username = this_element.getAttribute('data-username');
+                        console.log(username);
+                        data = {"username": username}
+                        hideSearch();
+                        profile_url(data);
+                    });
+
+                    list_container.appendChild(result_object);
                     
-                    $("#list-container").append(
-                        `<div class='full-result' style="background-color: ${custom.primary_color}">
-                            <div class = 'full-result-image-container'>
-                                <img class='full-result-image' src="${custom.image}">
-                            </div>
-                            <div class='full-result-name-container'>
-                                <p class = 'full-result-name'><strong>${name}</strong></p>
-                                <p class = 'full-result-username'>
-                                    <small>@${user.username}</small>
-                                </p>
-                            
-                            </div>
-                            <a class='profile-search-link' href="/profile/${user.username}/"></a>
-                
-                        </div>`
-                    )
                     
                 }
             

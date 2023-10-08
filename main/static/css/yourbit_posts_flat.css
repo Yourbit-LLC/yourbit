@@ -136,10 +136,6 @@
         background-color: rgb(70, 70, 70);
         box-shadow: 0px 1px 5px black;
         margin-top: 0px;
-        width: 95vw;
-        margin-left: auto;
-        margin-right: auto;
-        
     }
 
     .post-wrapper.animate {
@@ -153,25 +149,25 @@
         padding-left: 5px;
         padding-right: 5px;
         padding-top: 2px;
-
+        margin-left: auto;
+        margin-right: auto;
+        width: 95vw;
     }
 
     @media screen and (min-width: 700px) {
-        .post-wrapper {
+        .container-bit-chat {
             max-width: 650px;
         }
     }
     
     .header-bit {
-        position: relative;
         grid-row: 2;
         display: grid;
-        grid-template-columns: 10% 50% 37%;
+        grid-template-columns: 30px 40% 42%;
         height: 50px;
-        column-gap: 1%;
+        column-gap: 10px;
         z-index: 5;
         margin-top: -10px;
-        width: 100%;
 
     }
 
@@ -198,8 +194,8 @@
     .image-thumbnail-small {
         position: relative;
         display: block;
-        height: 100%;
-        width:100%;
+        height: 30px;
+        width:30px;
         object-fit: contain;
         margin: auto;
         
@@ -268,7 +264,9 @@
         box-shadow: 0.5px 0.5px 8px rgba(0, 0, 0, 0.7);
         border-radius: 20px;
         grid-row: 3;
-        width: 100%;
+        width: auto;
+        min-width: 95vw;
+        max-width: 95vw;
         margin-left: auto;
         margin-right: auto;
         margin-bottom: 10px;
@@ -342,8 +340,8 @@
 
         margin-left: auto;
         margin-right: auto;
-        
-        
+        width: 95vw;
+        max-width: 650px;
     }
 
     .attached-video.preview {

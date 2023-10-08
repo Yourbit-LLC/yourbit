@@ -35,34 +35,68 @@
         .section-content {
             z-index: 2;
             /* Your content styles here */
+        }
+        #video-terrain-scan {
+            filter: blur(2px) brightness(150%);
+            -webkit-filter: blur(2px) brightness(150%);
+        }
+        
+        .yb-container-floatingAction.center {
+            display: grid;
+            position: fixed;
+            bottom: 150px;
+            left: 50%;
+            transform: translate(-50%);
+            height: 40px;
+            width: 70vw;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 8px;
             
-        }     
+            border-radius: 30px;
+            padding: 4px 4px 4px 4px;
+            background-color: black;
+            z-index: 3;
+            
+        }
+            
+        
         
     </style>
 </head>
 <body style="margin: 0; overflow: hidden; background-color:black;">
+        
+    <div class="yb-container-floatingAction center">
+            
+        <button class="wide-button" style = "width: 100%; grid-column: 1; color: white; font-weight: 575; font-size: 14px; height: 100%; background-color: #33cc33;">Login</button>
+
+        <button class="wide-button" style = "width: 100%; grid-column: 2; color: white; font-weight: 575; font-size: 14px; height: 100%; background-color: #0066ff;">Sign Up</button>
+ 
+    </div>
+
     <div class="yb-section-container" id="yb-sect1">
-        <img src="{% static 'images/logo-flat.png' %}" style="margin-left: auto; margin-right: auto; width: 40vw; max-width: 500px; margin-top: 10vh; margin-bottom: 10vh;">
+        <div class = "section-content">
+            <img src="{% static 'images/logo-flat.png' %}" style="margin-left: auto; margin-right: auto; width: 40vw; max-width: 500px; margin-top: 10vh; margin-bottom: 10vh;">
             <h2>Welcome to YOURBiT!</h2>
             <p>The revolutionary new social platform centered around you.</p>
-            <div style="text-align: center;">
-                <button class="wide-button" style = "width: 20vw;">Login</button>
-
-                <button class="wide-button" style = "width: 20vw;">Sign Up</button>
-                <br>
-            </div>
+            <br>
+        </div>
         <!-- Section 1 content here -->
     </div>
     <div class="yb-section-container">
+        <video class="section-video" id="video-terrain-scan" autoplay muted loop playsinline>
+            <source src="{% static 'videos/terrainscan0001-0070.avi'%}" type="video/avi">
+        </video>
         <!-- Section 2 content here -->
-        <h3>Mold your Social Landscape</h3>
+        <div class="section-content">
+            <h3>Mold your Social Landscape</h3>
 
-            <p>Yourbit's modular design empowers you to finely craft your experience. 
-                Toggle features on and off at your discretion, allowing you to define 
-                and curate your own unique social setting.
-            </p>
-            
-            <br>
+                <p>Yourbit's modular design empowers you to finely craft your experience. 
+                    Toggle features on and off at your discretion, allowing you to define 
+                    and curate your own unique social setting.
+                </p>
+                
+                <br>
+        </div>
 
 
 
@@ -87,18 +121,21 @@
     </div>
     <div class="yb-section-container">
         <!-- Section 3 content here -->
-        <h3>A Revolution in Privacy</h3>
+        <div class = "section-content">
+            <h3>A Revolution in Privacy</h3>
 
             <p>Yourbit sets the gold standard for privacy, surpassing all other social platforms. 
                 Take charge of your messaging preferences, refine discoverability settings, and control the visibility of data showcased on your profile. 
                 With Yourbit, you'll receive alerts whenever your data is transmitted beyond the site for third-party processing. 
                 This unwavering transparency ensures you're constantly informed about your data's journey and maintains your authority over access rights.
             </p>
+        </div>
     </div>
 
-    <footer style="background-color: rgb(35,35,35); width: 100vw; position: absolute; bottom: 0;">
+
+    {% comment %} <footer style="background-color: rgb(35,35,35); width: 100vw; position: absolute; bottom: 0;">
         <p>© 2021 Yourbit, LLC. All rights reserved.</p>
-    </footer>
+    </footer> {% endcomment %}
 
     <script>
         const sections = document.querySelectorAll('.yb-section-container');
@@ -120,7 +157,10 @@
             if (currentSection < sections.length - 1) {
                 currentSection++;
                 sections[currentSection].scrollIntoView({ behavior: 'smooth' });
-
+                if (currentSection == 1) {
+                    let video = document.getElementById("video-terrain-scan");
+                    video.play();
+                }
                 if (currentSection == 2) {
                     let video = document.getElementById("video-color-your-world");
                     video.play();

@@ -44,6 +44,7 @@ def Customization(request):
         title_color = custom.title_color
         text_color = custom.text_color
         is_new_user = custom.is_new_user
+        flat_mode_on = custom.flat_mode_on
 
         #Quick Appearance
         wallpaper_on = custom.wallpaper_on
@@ -69,6 +70,8 @@ def Customization(request):
             'user_image_large':user_image_large,
             'background_blur':background_blur,
             'background_brightness':background_brightness,
+            'is_new_user':is_new_user,
+            'flat_mode_on':flat_mode_on,
 
         }
 

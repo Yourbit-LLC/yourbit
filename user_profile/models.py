@@ -74,7 +74,7 @@ class Bit(models.Model):
     
     has_title = models.BooleanField(default=False)
     title = models.CharField(max_length=140, blank=True)
-    video = models.FileField(blank = True, upload_to = 'media/')
+    video = models.ManyToManyField('Video', related_name='videos', blank=True)
 
     photos = models.ManyToManyField('Photo', related_name='photos', blank=True)
     body = models.CharField(max_length=5000)
@@ -95,15 +95,6 @@ class Bit(models.Model):
     #New Views track the amount of non-repeat views of this bit
     new_views = models.IntegerField(default=0)
 
-    #Watch count tracks the amount of times a video bit has been watched for at least 80% length
-    watch_count = models.IntegerField(default = 0)
-    ## VIDEO BIT ONLY ##
-    
-    #New watches tracks the amount of non-repeat watches of this Video Bit
-    new_watches = models.IntegerField(default=0)
-    video_key = models.CharField(max_length=100, blank=True)
-    ## VIDEO BIT ONLY ##
-    
     #Options booleans
     is_public = models.BooleanField(default=False)
     is_tips = models.BooleanField(default=False)
@@ -140,7 +131,17 @@ class Video(models.Model):
     user = models.ForeignKey(User, related_name = "video", on_delete=models.DO_NOTHING, blank=True)
     thumbnail_image = models.ImageField(blank = True, upload_to='media/profile/videos/thumbnails/%Y/%m/%d/%H:%M')
     uploaded = models.DateTimeField(default=timezone.now)
+    
+    #Watch count tracks the amount of times a video bit has been watched for at least 80% length
+    watch_count = models.IntegerField(default = 0)
+    ## VIDEO BIT ONLY ##
+    
+    #New watches tracks the amount of non-repeat watches of this Video Bit
+    new_watches = models.IntegerField(default = 0)
 
+    video_key = models.CharField(max_length=100, blank=True)
+    ## VIDEO BIT ONLY ##
+    
 class Custom(models.Model):
 
     #Profile Connections
@@ -181,6 +182,7 @@ class Custom(models.Model):
     ui_colors_on = models.BooleanField(default=True)
     text_colors_on = models.BooleanField(default=True)
     bit_colors_on = models.BooleanField(default=True)
+    flat_mode_on = models.BooleanField(default=False)
 
 class Continuum(models.Model):
     user = models.OneToOneField(User, related_name = "continuum", on_delete=models.DO_NOTHING, blank=True)

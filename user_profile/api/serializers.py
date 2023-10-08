@@ -65,9 +65,15 @@ class CustomResultSerializer(serializers.ModelSerializer):
             'title_color'
         ]
 
+class CustomizeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Custom
+        fields="__all__"
+
+
 class ProfileSerializer(serializers.ModelSerializer):
     user = UserResultSerializer(many=False, read_only = True)
-    custom = CustomResultSerializer(many=False, read_only=True)
+    custom = CustomizeSerializer(many=False, read_only=True)
     class Meta:
         model = Profile
         fields = '__all__'
@@ -84,10 +90,7 @@ class ProfileResultSerializer(serializers.ModelSerializer):
         ]
 
 
-class CustomizeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Custom
-        fields="__all__"
+
 
 class ClusterSerializer(serializers.ModelSerializer):
     user = UserResultSerializer(many=False, read_only = True)

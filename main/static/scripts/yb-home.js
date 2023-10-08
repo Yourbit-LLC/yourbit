@@ -456,12 +456,15 @@ $('.filter-button-active').click(function() {
             
             chrono_check.addEventListener("click", function() {
                 let current_status = this.getAttribute("data-status");
+                let space = yb_getSessionValues("space");
+                let filter = yb_getSessionValues("filter");
+                let sort = yb_getSessionValues("sort");
                 if (current_status === "unchecked") {
                     yb_toggleOn(this);
                     data = {
-                        "type":"global",
-                        "filter":"all",
-                        "sort":"chrono",
+                        "type":space,
+                        "filter":filter,
+                        "sort":sort,
                     }
                     yb_getFeed(data, hideMainSplash, yb_getDisplay, true);
                     
@@ -475,12 +478,20 @@ $('.filter-button-active').click(function() {
             
             best_check.addEventListener("click", function() {
                 let current_status = this.getAttribute("data-status");
+                let space = yb_getSessionValues("space");
+                let filter = yb_getSessionValues("filter");
+                let sort = yb_getSessionValues("sort");
                 if (current_status === "unchecked") {
                     yb_toggleOn(this);
+                    data = {
+                        "type":space,
+                        "filter":filter,
+                        "sort":sort,
+                    }
+                    yb_getFeed(data, hideMainSplash, yb_getDisplay, true);
+                    
 
-                } else {
-                    yb_toggleOff(this);
-                }
+                } 
             });
 
             best_check.innerHTML = `
@@ -491,21 +502,6 @@ $('.filter-button-active').click(function() {
                 
             `
             sort_filter_container.appendChild(best_check);
-
-            best_check.addEventListener("click", function() {
-                let current_status = this.getAttribute("data-status");
-                if (current_status === "unchecked") {
-                    yb_toggleOn(this);
-                    data = {
-                        "type":"global",
-                        "filter":"all",
-                        "sort":"best",
-                    }
-                    yb_getFeed(data, hideMainSplash, yb_getDisplay, true);
-                    
-                }
-                
-            });
             
             let trendiest_check = yb_createElement("div", "trendiest-container", "filter-option-3");
             
@@ -517,9 +513,7 @@ $('.filter-button-active').click(function() {
                 if (current_status === "unchecked") {
                     yb_toggleOn(this);
                 
-                } else {
-                    yb_toggleOff(this);
-                }
+                } 
             });
 
             trendiest_check.innerHTML = `

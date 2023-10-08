@@ -81,12 +81,28 @@ class ProfileViewSet(viewsets.ViewSet):
     def retrieve(self, request, pk):
         queryset = Profile.objects.all()
         user = User.objects.get(username = pk)
+        user_profile = get_object_or_404(queryset, user=request.user)
         profile = get_object_or_404(queryset, user=user)
+
+        connection = 0
+
+        if profile == user_profile:
+            connection = 3
+
+        else:
+
+            if profile in user_profile.connections.all():
+                connection = 1
+
+            else:
+                if profile in user_profile.follows.all():
+                    connection = 2
+                
         serializer_class = ProfileSerializer(profile, many=False)
         print(serializer_class)
-        return Response(serializer_class.data)
         
-
+        return Response({"connection_status": connection, "profile_data": serializer_class.data})
+        
     def create(self):
         pass
 
@@ -146,7 +162,7 @@ class BitViewSet(viewsets.ViewSet):
                         bit_pool = Bit.objects.filter(profile = this_profile).order_by("-time")
                     
                     else:
-                        bit_pool = Bit.objects.filter(profile = user_profile, is_public = True).order_by("-time")
+                        bit_pool = Bit.objects.filter(profile = this_profile, is_public = True).order_by("-time")
 
             else:
                 #Dataset is used for aggregating results based on filters within saved or interacted bits
@@ -224,8 +240,14 @@ class BitViewSet(viewsets.ViewSet):
                         else:
                             print("filter query error")
 
-                        bit_pool = sorted(
-                            chain(unsorted_list), key=attrgetter('time'), reverse=True)
+                        if sort == "chrono":
+                            bit_pool = sorted(
+                                chain(unsorted_list), key=attrgetter('time'), reverse=True)
+
+                        elif sort == "best":
+                            bit_pool = sorted(
+                                chain(unsorted_list), key=attrgetter('like_count'), reverse=True)
+
 
                     else:
                         my_bits = Bit.objects.filter(profile = user_profile, type=type)
@@ -234,9 +256,14 @@ class BitViewSet(viewsets.ViewSet):
                         all_bits = Bit.objects.prefetch_related('custom', 'user').filter(is_public = True, type=type).order_by('-like_count')
 
                         #Aggregate and sort posts into pool
-                        bit_pool = sorted(
-                            chain(my_bits, friends_bits, follow_bits, all_bits), key=attrgetter('time'), reverse=True
-                    )
+                        if sort == "chrono":
+                            bit_pool = sorted(
+                                chain(my_bits, friends_bits, follow_bits, all_bits), key=attrgetter('time'), reverse=True
+                            )
+
+                        elif sort == "best":
+                            bit_pool = sorted(
+                                chain(my_bits, friends_bits, follow_bits, all_bits), key=attrgetter('like_count'), reverse=True)
 
                 
         #Else, a users on profile, filter bits by user_profile

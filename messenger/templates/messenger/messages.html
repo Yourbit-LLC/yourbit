@@ -53,7 +53,9 @@
         yb_hideSpaceBar();
         let bit_container = document.getElementById("list-container");
         yb_getConversations(bit_container, "all");
-        yb_endTask("#message-task"); 
+        yb_endTask("#message-task");         
+        let load_indicator = document.getElementById("yb-loading-core");
+        load_indicator.style.display = "none";
     })
 
     $(".filter-button").click(function(){
