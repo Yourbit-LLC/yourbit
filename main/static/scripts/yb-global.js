@@ -139,7 +139,7 @@ function yb_revertCustom() {
     let accent_color = yb_getUserCustom("secondary-color");
     let flat_mode_on = yb_getUserCustom("flat-mode-on");
 
-    if (flat_mode_on == "True") {
+    if (flat_mode_on == "False") {
         background_element.setAttribute("style", `filter: blur(${blur_radius}px) brightness(${brightness}%); -webkit-filter: blur(${blur_radius}px) brightness(${brightness}%);`);
         background_element.setAttribute("src", background_image);
     }
