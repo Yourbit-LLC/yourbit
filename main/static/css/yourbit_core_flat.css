@@ -2303,7 +2303,7 @@ only be used for object transforms (shaping and scaling)
 
 
     .yb-single-line-input {
-        background-color: rgba(0, 0, 0, 0.4);
+        background-color: rgba(255, 255, 255, 0.4);
         border-radius: 10px;
         border-width: 0px;
         width: 95%;
