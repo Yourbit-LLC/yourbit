@@ -2562,7 +2562,7 @@ only be used for object transforms (shaping and scaling)
         height: 150px;
         border-radius: 10px;
         margin-top: 10px;
-        background-color: rgba(0, 0, 0, 0.4);
+        background-color: rgba(255, 255, 255, 0.4);
         border-width: 0px;
         padding: 4px;
         color:white;
