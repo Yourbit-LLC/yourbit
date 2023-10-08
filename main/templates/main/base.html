@@ -18,10 +18,12 @@ lang="en"
         <!--Styling-->
         {% if user.profile.custom.flat_mode_on %}
             <link rel="stylesheet" type="text/css" href="{% static 'css/yourbit_core_flat.css' %}"/>
+            <link rel="stylesheet" type="text/css" href="{% static 'css/yourbit_posts_flat.css' %}"/>
         {% else %}
             <link rel="stylesheet" type="text/css" href="{% static 'css/yourbit_core.css' %}"/>
+            <link rel="stylesheet" type="text/css" href="{% static 'css/yourbit_posts.css' %}"/>
         {% endif %}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/yourbit_posts.css' %}"/>
+        
         <link rel="stylesheet" type="text/css" href="{% static 'css/notifications_yourbit.css' %}"/>
         <link rel="stylesheet" type="text/css" href="{% static 'css/search_results.css' %}"/>
         <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.ico'%}">

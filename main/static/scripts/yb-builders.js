@@ -157,6 +157,14 @@ function BuildBit(bit, liked_bits, disliked_bits){
     let feedback_icon_color = custom.feedback_icon_color;
     let feedback_background_color = custom.feedback_background_color;
     let paragraph_align = custom.paragraph_align;
+
+    let flat_mode_on = custom.flat_mode_on;
+    let background_color;
+    if (flat_mode_on == true){
+        background_color = primary_color;
+    } else {
+        background_color = "rgb(35, 35, 35);";
+    }
     
     //Prepare new bit by creating an element
     new_bit = yb_createElement("div", `bit-${id}`, `yb-element-background post-wrapper container-bit-${type}`)
@@ -170,7 +178,7 @@ function BuildBit(bit, liked_bits, disliked_bits){
     new_bit.setAttribute("data-icon-color", `${feedback_icon_color}`);
     new_bit.setAttribute("data-secondary-color", `${accent_color}`);
     new_bit.setAttribute("data-primary-color", `${primary_color}`);
-    new_bit.setAttribute("style", `background-color: ${primary_color};`);
+    new_bit.setAttribute("style", `background-color: ${background_color};`);
 
     //Title
     let has_title = bit.has_title;
