@@ -153,7 +153,7 @@ function yb_BuildProfile(data){
     let data_element = yb_createElement("input", "profile-data", "yb-dat-hidden")
     data_element.setAttribute("type", "hidden");
 
-    let profile_splash = yb_createElement("div", "profile-page-splash", "splash-page");
+    let profile_splash = yb_createElement("div", "profile-page-splash", "splash-page profile");
     profile_splash.setAttribute("data-id", profile_id);
 
     let profile_info = yb_createElement("div", "profile-splash-label", "space-splash-label profile");
