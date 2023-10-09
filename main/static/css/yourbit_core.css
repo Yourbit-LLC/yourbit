@@ -178,7 +178,7 @@ Refer to the interactive codex for current style guidelines for Yourbit*/
 
 @media screen and (min-width: 700px) {
     #main-splash-image {
-        width: 25%;
+        width: 75%;
         margin-top: auto;
         margin-bottom: auto;
     }
