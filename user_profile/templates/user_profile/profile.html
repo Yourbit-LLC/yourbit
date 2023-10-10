@@ -1,6 +1,71 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/yourbit_profile.css' %}"/>
+
+<input type="hidden" id="profile-data" value="{{ profile.id }}" data-username="{{profile.username}}"/>
+<div id="profile-page-splash" class="splash-page profile">
+
+    <div id="profile-splash-label" class = "space-splash-label profile">
+        <img src="{{user.profile.custom.image_thumbnail_large.url}}" class="profile-image"/>
+        <div class="profile-name-splash" id="profile-name-splash">
+            <h2>{{user.first_name}} {{user.last_name}}</h2>
+        </div>
+        <b id="profile-handle-label" class="profile-handle-label">
+            <small>@{{user.username}}</small>
+        </b>
+
+        <button id="profile-button-connect" class="button-profile-interaction" data-id = "{{profile.id}}">
+            
+            {% if request.user.id == profile.user.id %}
+                <span>Edit</span>
+            {% else %}
+                {% if profile.user in request.user.profile.following.all or profile.user in request.user.profile.connections.all %}
+                    <span>Manage</span>
+                {% else %}
+                    <span>Connect</span>
+                {% endif %}
+            {% endif %}
+
+
+        </button>
+
+        <button id="profile-button-message" class="button-profile-interaction" data-id="{{profile.id}}">
+            {% if request.user.id == profile.user.id %}
+                <span>Messages</span>
+            {% else %}
+                <span>Message</span>
+            {% endif %}
+        </button>
+
+        <button id="profile-button-about" class="button-profile-interaction">
+            <span>About</span>
+        </button>
+
+        <div id="profile-bio-container" class="splash-bio-container">
+            <h3 id="profile-motto" class="profile-motto">
+                {{profile.motto}}
+            </h3>
+            <p id="profile-bio" class="splash-bio">
+                {{profile.user_bio}}
+            </p>
+
+            <div id="profile-loading" class="loading-circle-detailed">
+  
+            </div>
+            <p id="load-indicator-label" class="loading-circle-label">loading bitstream...</p>
+
+
+            <div id="swipe-up-element" class="swipe-up-element bobbing-object">
+                <svg id="swipe-up-icon" class='swipe-up-icon' xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path style="fill:{{profile.custom.text_color}}" d="M14.15 30.75 12 28.6l12-12 12 11.95-2.15 2.15L24 20.85Z"/></svg>
+                <p color = "{{profile.custom.text_color}}" id="swipe-up-text">Slide up for bitstream</p>
+
+            </div>
+
+
+        </div>
+
+</div>
+
 <script class="page-script" type="text/javascript" src="{% static 'scripts/FeedManager.js' %}"></script>
 <script class="page-script" id="page-script" type="text/javascript" src="{% static 'scripts/yb-profiles.js' %}"></script>
-
+    
 </script>
