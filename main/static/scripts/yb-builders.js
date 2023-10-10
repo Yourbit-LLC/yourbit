@@ -162,7 +162,7 @@ function BuildBit(bit, liked_bits, disliked_bits){
 
     let background_color;
 
-    if (flat_mode_on == false){
+    if (flat_mode_on == "False"){
         background_color = primary_color;
     } else {
         background_color = "rgb(35, 35, 35);";
