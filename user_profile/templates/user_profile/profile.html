@@ -5,7 +5,7 @@
 <div id="profile-page-splash" class="splash-page profile">
 
     <div id="profile-splash-label" class = "space-splash-label profile">
-        <img src="{{user.profile.custom.image_thumbnail_large.url}}" class="profile-image-splash" id="large-profile-image" style="height: 0px; width: 0px; border-color:{{profile.custom.accent_color}}"/>
+        <img onload="showProfileImage();" src="{{user.profile.custom.image_thumbnail_large.url}}" class="profile-image-splash" id="large-profile-image" style="height: 0px; width: 0px; border-color:{{profile.custom.accent_color}}"/>
         <div class="profile-name-splash" id="profile-name-splash">
             <h2>{{user.first_name}} {{user.last_name}}</h2>
         </div>
