@@ -5,7 +5,7 @@
 <div id="profile-page-splash" class="splash-page profile">
 
     <div id="profile-splash-label" class = "space-splash-label profile">
-        <img src="{{user.profile.custom.image_thumbnail_large.url}}" class="profile-image"/>
+        <img src="{{user.profile.custom.image_thumbnail_large.url}}" class="profile-image-splash" id="large-profile-image" style="height: 0px; width: 0px; border-color:{{profile.custom.accent_color}}"/>
         <div class="profile-name-splash" id="profile-name-splash">
             <h2>{{user.first_name}} {{user.last_name}}</h2>
         </div>
@@ -48,18 +48,17 @@
                 {{profile.user_bio}}
             </p>
 
+        </div>
+
+        <div id="load-indicator-container-profile" class="detail-load-box">
             <div id="profile-loading" class="loading-circle-detailed">
-  
+
             </div>
             <p id="load-indicator-label" class="loading-circle-label">loading bitstream...</p>
-
-
-            <div id="swipe-up-element" class="swipe-up-element bobbing-object">
-                <svg id="swipe-up-icon" class='swipe-up-icon' xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path style="fill:{{profile.custom.text_color}}" d="M14.15 30.75 12 28.6l12-12 12 11.95-2.15 2.15L24 20.85Z"/></svg>
-                <p color = "{{profile.custom.text_color}}" id="swipe-up-text">Slide up for bitstream</p>
-
-            </div>
-
+        </div>
+        <div id="swipe-up-element" class="swipe-up-element bobbing-object">
+            <svg id="swipe-up-icon" class='swipe-up-icon' xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path style="fill:{{profile.custom.text_color}}" d="M14.15 30.75 12 28.6l12-12 12 11.95-2.15 2.15L24 20.85Z"/></svg>
+            <p color = "{{profile.custom.text_color}}" id="swipe-up-text">Slide up for bitstream</p>
 
         </div>
 
