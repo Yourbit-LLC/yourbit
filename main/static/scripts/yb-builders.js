@@ -158,7 +158,7 @@ function BuildBit(bit, liked_bits, disliked_bits){
     let feedback_background_color = custom.feedback_background_color;
     let paragraph_align = custom.paragraph_align;
 
-    let flat_mode_on = yb_getUserCustom('flat_mode_on')
+    let flat_mode_on = yb_getUserCustom('flat-mode-on')
 
     let background_color;
 
