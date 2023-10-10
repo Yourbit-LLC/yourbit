@@ -158,11 +158,11 @@ function BuildBit(bit, liked_bits, disliked_bits){
     let feedback_background_color = custom.feedback_background_color;
     let paragraph_align = custom.paragraph_align;
 
-    let flat_mode_on = custom.flat_mode_on;
+    let flat_mode_on = yb_getUserCustom('flat_mode_on')
 
     let background_color;
 
-    if (flat_mode_on == "False"){
+    if (flat_mode_on === "False"){
         background_color = primary_color;
     } else {
         background_color = "rgb(35, 35, 35);";
