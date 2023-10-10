@@ -472,26 +472,26 @@ only be used for object transforms (shaping and scaling)
     
 -- */
 
+
 #yb-browse-nav {
-    position: sticky; 
+    position: sticky;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     column-gap: 5px;
-    top: -20px; 
-    height: 40px; 
-    z-index: 20; 
+    top: -20px;
+    height: 37px;
+    z-index: 20;
     width: 100%;
     max-width: 650px;
-    border-radius: 20px; 
-    background-color: rgba(0,0,0,0.8); 
+    border-radius: 30px;
+    background-color: rgba(0,0,0,0.8);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     margin-left: auto;
     margin-right: auto;
     overflow: hidden;
-    
+    padding: 4px 4px 4px 4px;
 }
-
 
 
 .filter-button {
