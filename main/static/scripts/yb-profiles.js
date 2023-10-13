@@ -7,6 +7,7 @@ var button_about  = document.getElementById("profile-button-about");
 
 var user_id = yb_getSessionValues("id");
 var profile_id = document.getElementById("profile-data").getAttribute("data-profile-id");
+var active_username = document.getElementById("profile-data").getAttribute("data-username");
 
 function yb_setProfileUI(custom) {
     let background_image = document.getElementById("bg-image");
@@ -284,7 +285,7 @@ $(document).ready(function() {
     });
 
     button_message.addEventListener("click", function() {
-        if (USER_ID === PROFILE_ID) {
+        if (user_id === user_id) {
             messages_inbox_url();
         } else {
             showCreateBit(raiseCreateBit);
@@ -324,7 +325,7 @@ $(document).ready(function() {
 
     let new_feed = {
         "type": "global",
-        "id": handle,
+        "id": active_username,
         "filter":"-fo-fr-me-p-c",
         "sort": sort_by,
     };
