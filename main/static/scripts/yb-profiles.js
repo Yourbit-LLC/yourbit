@@ -14,7 +14,7 @@ function showProfileImage(){
     
 }
 
-function yb_setProfileUI(custom) {
+function yb_setProfileUI() {
     let background_image = document.getElementById("bg-image");
     
     let flat_mode_on = yb_getUserCustom("flat-mode-on");
@@ -341,6 +341,7 @@ $(document).ready(function() {
     yb_getFeed(new_feed, "none", false);
 
     showProfileImage();
+    yb_setProfileUI();
     yb_hideUI();
 
 });
