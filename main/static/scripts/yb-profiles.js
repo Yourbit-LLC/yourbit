@@ -274,6 +274,9 @@ function follow() {
 $(document).ready(function() {
     let user_id = yb_getSessionValues("profile-username");
     console.log(user_id)
+
+    let swipe_up_element = document.getElementById("swipe-up-element");
+    
     
     BUTTON_CONNECT.addEventListener("click", function() {
         let these_options = {"Request Friend": versatile_test, "Follow": versatile_test, "Block": versatile_test, "Cancel": versatile_test};
