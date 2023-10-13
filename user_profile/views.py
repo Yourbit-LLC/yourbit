@@ -131,7 +131,11 @@ class ProfilePageView(View):
         that_user = User.objects.get(username = username)
         this_profile = Profile.objects.get(user = that_user)
 
-        context = {'profile' : this_profile}
+        context = {
+            'profile' : this_profile,
+            
+            'profile_user' : that_user,
+        }
         html_content = render(request, 'user_profile/profile.html', context)
         return Response(html_content.content.decode('utf-8'))
 
