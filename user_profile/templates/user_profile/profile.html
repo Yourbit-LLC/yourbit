@@ -1,7 +1,7 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/yourbit_profile.css' %}"/>
 
-<input type="hidden" id="profile-data" value="{{ profile.id }}" data-username="{{profile.username}}"/>
+<input type="hidden" id="profile-data" value="{{ profile.id }}" data-username="{{profile.username}}" data-background = "{{user.profile.custom.background_image}}"/>
 <div id="profile-page-splash" class="splash-page profile">
 
     <div id="profile-splash-label" class = "space-splash-label profile">
