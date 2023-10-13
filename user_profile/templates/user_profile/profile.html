@@ -5,7 +5,7 @@
 <div id="profile-page-splash" class="splash-page profile">
 
     <div id="profile-splash-label" class = "space-splash-label profile">
-        <img src="{{profile.custom.image_thumbnail_large.url}}" class="large-profile-image" id="large-profile-image" style="height: 0px; width: 0px; border-color:{{profile.custom.accent_color}}"/>
+        <img src="{{profile.custom.image_thumbnail_large.url}}" class="large-profile-image" id="profile-image-splash" style="height: 0px; width: 0px; border-color:{{profile.custom.accent_color}}"/>
         <div class="profile-name-splash" id="profile-name-splash">
             <h2 id="profile-name-header" class="profile-name-header">{{profile_user.first_name}} {{profile_user.last_name}}</h2>
             <b id="profile-handle-label" class="profile-handle-label">
@@ -56,7 +56,7 @@
         <div id="profile-loading" class="loading-circle-detailed">
 
         </div>
-        <p id="load-indicator-label" class="loading-circle-label">loading bitstream...</p>
+        <p id="load-indicator-label" class="loading-circle-label" style+"color: white;">loading bitstream...</p>
     </div>
     
     <div id="swipe-up-element"  style="display:none;" class="swipe-up-element bobbing-object">
