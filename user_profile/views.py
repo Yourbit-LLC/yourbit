@@ -133,7 +133,7 @@ class ProfilePageView(View):
 
         context = {'profile' : this_profile}
         html_content = render(request, 'user_profile/profile.html', context)
-        return JsonResponse({'html_content': html_content.content.decode('utf-8')})
+        return Response(html_content.content.decode('utf-8'))
 
 class AddFriend(View):
     def post(self, request, *args, **kwargs):
