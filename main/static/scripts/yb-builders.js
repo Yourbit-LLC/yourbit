@@ -10,12 +10,6 @@
 
 */
 
-function showProfileImage(){
-    $(".large-profile-image").animate({"height": "150px", "width":"150px"}, 'fast');
-    
-}
-
-
 
 const video_observer = new IntersectionObserver(shrinkVideo, { threshold: 0.5 });
 const bit_observer = new IntersectionObserver(entries => {

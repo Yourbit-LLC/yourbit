@@ -9,6 +9,11 @@ var user_id = yb_getSessionValues("id");
 var profile_id = document.getElementById("profile-data").getAttribute("data-profile-id");
 var active_username = document.getElementById("profile-data").getAttribute("data-username");
 
+function showProfileImage(){
+    $(".large-profile-image").animate({"height": "150px", "width":"150px"}, 'fast');
+    
+}
+
 function yb_setProfileUI(custom) {
     let background_image = document.getElementById("bg-image");
     
