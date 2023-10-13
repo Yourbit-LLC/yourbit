@@ -7,40 +7,40 @@
     <div id="profile-splash-label" class = "space-splash-label profile">
         <img onload="showProfileImage()" src="{{user.profile.custom.image_thumbnail_large.url}}" class="profile-image-splash" id="large-profile-image" style="height: 0px; width: 0px; border-color:{{profile.custom.accent_color}}"/>
         <div class="profile-name-splash" id="profile-name-splash">
-            <h2>{{user.first_name}} {{user.last_name}}</h2>
+            <h2 id="profile-name-header" class="profile-name-header">{{user.first_name}} {{user.last_name}}</h2>
         </div>
         <b id="profile-handle-label" class="profile-handle-label">
             <small>@{{user.username}}</small>
         </b>
-    </div>
 
-        <button id="profile-button-connect" class="button-profile-interaction" data-id = "{{profile.id}}">
-            
-            {% if request.user.id == profile.user.id %}
-                <span>Edit</span>
-            {% else %}
-                {% if profile.user in request.user.profile.following.all or profile.user in request.user.profile.connections.all %}
-                    <span>Manage</span>
+        <div id="profile-interaction-container" class="profile-interaction-container">
+            <button id="profile-button-connect" class="button-profile-interaction" data-id = "{{profile.id}}">
+                
+                {% if request.user.id == profile.user.id %}
+                    <span>Edit</span>
                 {% else %}
-                    <span>Connect</span>
+                    {% if profile.user in request.user.profile.following.all or profile.user in request.user.profile.connections.all %}
+                        <span>Manage</span>
+                    {% else %}
+                        <span>Connect</span>
+                    {% endif %}
                 {% endif %}
-            {% endif %}
-
-
-        </button>
-
-        <button id="profile-button-message" class="button-profile-interaction" data-id="{{profile.id}}">
-            {% if request.user.id == profile.user.id %}
-                <span>Messages</span>
-            {% else %}
-                <span>Message</span>
-            {% endif %}
-        </button>
-
-        <button id="profile-button-about" class="button-profile-interaction">
-            <span>About</span>
-        </button>
-
+    
+    
+            </button>
+    
+            <button id="profile-button-message" class="button-profile-interaction" data-id="{{profile.id}}">
+                {% if request.user.id == profile.user.id %}
+                    <span>Messages</span>
+                {% else %}
+                    <span>Message</span>
+                {% endif %}
+            </button>
+    
+            <button id="profile-button-about" class="button-profile-interaction">
+                <span>About</span>
+            </button>
+        </div>
         <div id="profile-bio-container" class="splash-bio-container">
             <h3 id="profile-motto" class="profile-motto">
                 {{profile.motto}}
@@ -50,6 +50,10 @@
             </p>
 
         </div>
+    </div>
+
+
+
 
         <div id="load-indicator-container-profile" class="detail-load-box">
             <div id="profile-loading" class="loading-circle-detailed">
