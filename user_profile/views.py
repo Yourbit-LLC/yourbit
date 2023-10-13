@@ -121,7 +121,7 @@ class ProfileView(View):
             "space":"global",
             "sort":"chrono",
             "profile_id": this_profile.id,
-            "profile_username":that_user
+            "profile_username":that_user.username,
         }
         return render(request, "main/home.html", context)
 
