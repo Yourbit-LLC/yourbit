@@ -335,7 +335,7 @@ $(document).ready(function() {
 
     yb_getFeed(new_feed, "none", false);
 
-
+    showProfileImage();
     yb_hideUI();
 
 });
