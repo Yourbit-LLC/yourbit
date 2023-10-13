@@ -5,11 +5,11 @@
 <div id="profile-page-splash" class="splash-page profile">
 
     <div id="profile-splash-label" class = "space-splash-label profile">
-        <img onload="showProfileImage()" src="{{user.profile.custom.image_thumbnail_large.url}}" class="profile-image-splash" id="large-profile-image" style="height: 0px; width: 0px; border-color:{{profile.custom.accent_color}}"/>
+        <img src="{{profile.custom.image_thumbnail_large.url}}" class="profile-image-splash" id="large-profile-image" style="height: 0px; width: 0px; border-color:{{profile.custom.accent_color}}"/>
         <div class="profile-name-splash" id="profile-name-splash">
-            <h2 id="profile-name-header" class="profile-name-header">{{user.first_name}} {{user.last_name}}</h2>
+            <h2 id="profile-name-header" class="profile-name-header">{{profile.first_name}} {{profile.last_name}}</h2>
             <b id="profile-handle-label" class="profile-handle-label">
-                <small>@{{user.username}}</small>
+                <small>@{{profile.username}}</small>
             </b>
         </div>
 

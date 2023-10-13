@@ -198,7 +198,7 @@ function profile_url(data){
     }
 
     
-    $("#content-container").load(`${base_url}/profile/templates/profile/`)
+    $("#content-container").load(`${base_url}/profile/templates/profile/${data.username}/`)
     $("#page-header").remove();
     history.pushState({}, "", `/profile/${data.username}/`)
 

@@ -19,7 +19,7 @@ urlpatterns = [
         path('api/cluster/add/', AddToCluster.as_view(), name="add_to_cluster"),
         
         #Templates
-        path('templates/profile/', TemplateView.as_view(template_name='user_profile/profile.html')),
+        path('templates/profile/<str:username>/', TemplateView.as_view(template_name='user_profile/profile.html')),
         path('templates/customize-html/', TemplateView.as_view(template_name = 'user_profile/personalize_profile.html')),
         path('templates/connections-html/', TemplateView.as_view(template_name='user_profile/connections.html')),
         path('templates/my-stuff-html/', TemplateView.as_view(template_name='user_profile/my_stuff.html')),

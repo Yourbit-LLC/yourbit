@@ -125,6 +125,16 @@ class ProfileView(View):
         }
         return render(request, "main/home.html", context)
 
+class ProfilePageView(View):
+    def get(self, request, username, *args, **kwargs):
+        this_user = request.user
+        that_user = User.objects.get(username = username)
+        this_profile = Profile.objects.get(user = that_user)
+
+        context = {'profile' : this_profile}
+        html_content = render(request, 'user_profile/profile.html', context)
+        return JsonResponse({'html_content': html_content.content.decode('utf-8')})
+
 class AddFriend(View):
     def post(self, request, *args, **kwargs):
         action = request.POST.get('action')
