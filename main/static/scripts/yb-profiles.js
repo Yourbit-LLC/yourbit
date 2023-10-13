@@ -10,7 +10,7 @@ var profile_id = document.getElementById("profile-data").getAttribute("data-prof
 var active_username = document.getElementById("profile-data").getAttribute("data-username");
 
 function showProfileImage(){
-    $("#large-profile-image").animate({"height": "150px", "width":"150px"}, 'fast');
+    $(".large-profile-image").animate({"height": "150px", "width":"150px"}, 'fast');
     
 }
 
