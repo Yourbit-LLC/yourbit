@@ -278,12 +278,12 @@ $(document).ready(function() {
     let swipe_up_element = document.getElementById("swipe-up-element");
 
     
-    BUTTON_CONNECT.addEventListener("click", function() {
+    button_connect.addEventListener("click", function() {
         let these_options = {"Request Friend": versatile_test, "Follow": versatile_test, "Block": versatile_test, "Cancel": versatile_test};
         yb_quarter_card("Connect Options", these_options)
     });
 
-    BUTTON_MESSAGE.addEventListener("click", function() {
+    button_message.addEventListener("click", function() {
         if (USER_ID === PROFILE_ID) {
             messages_inbox_url();
         } else {
@@ -296,7 +296,7 @@ $(document).ready(function() {
         }
     });
 
-    BUTTON_ABOUT.addEventListener("click", function() {
+    button_about.addEventListener("click", function() {
         alert("about")
     });
 
