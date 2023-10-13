@@ -128,6 +128,8 @@ class ProfileView(View):
 class ProfilePageView(View):
     def get(self, request, username, *args, **kwargs):
         this_user = request.user
+
+        print(username)
         that_user = User.objects.get(username = username)
         this_profile = Profile.objects.get(user = that_user)
 
