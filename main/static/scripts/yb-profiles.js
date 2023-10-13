@@ -21,30 +21,30 @@ function yb_setProfileUI(custom) {
     
     if (flat_mode_on == "true") {
 
-        background_image.setAttribute("src", custom.background_mobile);
+        background_image.setAttribute("src", document.getElementById("profile-data").getAttribute("data-background"));
     
-        background_image.setAttribute("style", `filter: blur(${custom.background_blur}px) brightness(${custom.background_brightness}%); -webkit-filter: blur(${custom.background_blur}px) brightness(${custom.background_brightness}%);`);
+        background_image.setAttribute("style", `filter: blur(${document.getElementById('profile-data').getAttribute('data-blur')}px) brightness(${document.getElementById('profile-data').getAttribute('data-brightness')}%); -webkit-filter: blur(${custom.background_blur}px) brightness(${custom.background_brightness}%);`);
 
     }
 
     let ui_labels = document.getElementsByClassName("yb-ui-label");
     for (let i = 0; i < ui_labels.length; i++) {
-        ui_labels[i].setAttribute("style", `color:${custom.icon_color} !important;`);
+        ui_labels[i].setAttribute("style", `color:${document.getElementById("profile-data").getAttribute("data-icon-color")} !important;`);
     }
 
     let ui_icons = document.getElementsByClassName("yb-ui-icon");
     for (let i = 0; i < ui_icons.length; i++) {
-        $(ui_icons[i]).css({"fill": `${custom.icon_color} !important`});
+        $(ui_icons[i]).css({"fill": `${document.getElementById("profile-data").getAttribute("data-icon-color")} !important`});
     }
 
     let accent_buttons = document.getElementsByClassName("yb-accent-button");
     for (let i = 0; i < accent_buttons.length; i++) {
-        $(accent_buttons[i]).css({"border-color": `${custom.icon_color} !important;`});
+        $(accent_buttons[i]).css({"border-color": `${document.getElementById("profile-data").getAttribute("data-icon-color")} !important;`});
     }
 
     let accented_elements = document.getElementsByClassName("yb-element-accent");
     for (let i = 0; i < accented_elements.length; i++) {
-        $(ui_icons[i]).css({"fill": `${custom.icon_color} !important`});
+        $(ui_icons[i]).css({"fill": `${document.getElementById("profile-data").getAttribute("icon-color")} !important`});
     }
 
     
