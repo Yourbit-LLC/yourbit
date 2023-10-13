@@ -139,7 +139,7 @@ class ProfilePageView(View):
             'profile_user' : that_user,
         }
         html_content = render(request, 'user_profile/profile.html', context)
-        return Response(html_content.content.decode('utf-8'))
+        return HttpResponse(html_content.content.decode('utf-8'))
 
 class AddFriend(View):
     def post(self, request, *args, **kwargs):
