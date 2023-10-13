@@ -1,12 +1,12 @@
 var base_url = window.location.origin;
 var isSwiping = false;
 
-const BUTTON_CONNECT = document.getElementById("profile-button-connect");
-const BUTTON_MESSAGE = document.getElementById("profile-button-message");
-const BUTTON_ABOUT = document.getElementById("profile-button-about");
+var button_connect = document.getElementById("profile-button-connect");
+var button_message = document.getElementById("profile-button-message");
+var button_about  = document.getElementById("profile-button-about");
 
-const USER_ID = yb_getSessionValues("id");
-const PROFILE_ID = document.getElementById("profile-data").getAttribute("data-profile-id");
+var user_id = yb_getSessionValues("id");
+var profile_id = document.getElementById("profile-data").getAttribute("data-profile-id");
 
 function yb_setProfileUI(custom) {
     let background_image = document.getElementById("bg-image");
@@ -276,7 +276,7 @@ $(document).ready(function() {
     console.log(user_id)
 
     let swipe_up_element = document.getElementById("swipe-up-element");
-    
+
     
     BUTTON_CONNECT.addEventListener("click", function() {
         let these_options = {"Request Friend": versatile_test, "Follow": versatile_test, "Block": versatile_test, "Cancel": versatile_test};
