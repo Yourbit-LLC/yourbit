@@ -44,7 +44,7 @@ function yb_setProfileUI() {
 
     let accented_elements = document.getElementsByClassName("yb-element-accent");
     for (let i = 0; i < accented_elements.length; i++) {
-        $(ui_icons[i]).css({"fill": `${document.getElementById("profile-data").getAttribute("icon-color")} !important`});
+        (ui_icons[i]).css({"fill": `${document.getElementById("profile-data").getAttribute("icon-color")} !important`});
     }
 
     
