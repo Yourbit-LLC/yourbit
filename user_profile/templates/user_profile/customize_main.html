@@ -14,12 +14,18 @@
     }
 
     #customize-profile-icon {
-        position: absolute;
+        
         animation: colorCycleReverse 60s linear infinite;
+
+        
+    }
+
+    #svg-container {
+        position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        
+
     }
     
     @keyframes colorCycle {
@@ -63,7 +69,7 @@
 <div id="customize-profile-panel" class="yb-panel-wide" style="display: grid; grid-template-columns: 1fr 1fr; height: 200px;">
     <h1 style="margin: auto;">Profile</h1>
     <div class="profile-color-circle">
-        <svg xmlns="http://www.w3.org/2000/svg" height="190px" viewBox="0 -960 960 960" width="190px"><path id="customize-profile-icon" d="M480-481q-66 0-108-42t-42-108q0-66 42-108t108-42q66 0 108 42t42 108q0 66-42 108t-108 42ZM160-160v-94q0-38 19-65t49-41q67-30 128.5-45T480-420q62 0 123 15.5T731-360q31 14 50 41t19 65v94H160Z"/></svg>
+        <svg id="svg-container" xmlns="http://www.w3.org/2000/svg" height="190px" viewBox="0 -960 960 960" width="190px"><path id="customize-profile-icon" d="M480-481q-66 0-108-42t-42-108q0-66 42-108t108-42q66 0 108 42t42 108q0 66-42 108t-108 42ZM160-160v-94q0-38 19-65t49-41q67-30 128.5-45T480-420q62 0 123 15.5T731-360q31 14 50 41t19 65v94H160Z"/></svg>
     </div>
 </div>
 <div style="margin: auto;" id="customizable-bit-panel" class="yb-panel-wide" style="display:grid; grid-template-columns: 1fr 1fr; height: 200px;">
