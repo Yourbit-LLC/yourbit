@@ -7,12 +7,12 @@
         border-radius: 50%;
         background-color: red;
         animation: colorCycle 60s linear infinite;
-        object-fit: contain;
         overflow: hidden;
     }
 
     #customize-profile-icon {
         animation: colorCycleReverse 60s linear infinite;
+        object-fit: contain;
     }
     
     @keyframes colorCycle {
@@ -35,19 +35,19 @@
     
     @keyframes colorCycleReverse {
         0% {
-            background-color: blue;
+            fill: blue;
         }
         25% {
-            background-color: red;
+            fill: red;
         }
         50% {
-            background-color: green;
+            fill: green;
         }
         75% {
-            background-color: blue;
+            fill: blue;
         }
         100% {
-            background-color: red;
+            fill: red;
         }
 }
       
