@@ -10,8 +10,7 @@
         overflow: hidden;
         right: 0px;
         transform: translateX(50%);
-        filter: brightness(20%);
-        -webkit-filter: saturate(20%);
+
         
     }
 
@@ -33,40 +32,41 @@
     }
     
     @keyframes colorCycle {
-    0% {
-        background-color: red;
-    }
-    25% {
-        background-color: green;
-    }
-    50% {
-        background-color: blue;
-    }
-    75% {
-        background-color: red;
-    }
-    100% {
-        background-color: green;
-    }
-    }
-    
-    @keyframes colorCycleReverse {
         0% {
-            fill: blue;
+          background-color: #333; /* Dark gray */
         }
         25% {
-            fill: red;
+          background-color: rgba(200, 0, 0, 0.3); /* Slight red tint */
         }
         50% {
-            fill: green;
+          background-color: rgba(0, 200, 0, 0.3); /* Slight green tint */
         }
         75% {
-            fill: blue;
+          background-color: rgba(0, 0, 200, 0.3); /* Slight blue tint */
         }
         100% {
-            fill: red;
+          background-color: rgba(200, 0, 0, 0.3); /* Slight red tint */
         }
-}
+      }
+      
+    
+      @keyframes colorCycleReverse {
+        0% {
+          background-color: rgba(200, 0, 0, 0.3); /* Slight red tint */
+        }
+        25% {
+          background-color: rgba(0, 200, 0, 0.3); /* Slight green tint */
+        }
+        50% {
+          background-color: rgba(0, 0, 200, 0.3); /* Slight blue tint */
+        }
+        75% {
+          background-color: rgba(200, 0, 0, 0.3); /* Slight red tint */
+        }
+        100% {
+          background-color: #333; /* Dark gray */
+        }
+      }
       
       
 </style>
