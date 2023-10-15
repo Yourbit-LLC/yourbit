@@ -5,11 +5,11 @@
         width: 210px;
         height: 210px;
         border-radius: 20px;
-        background-color: red;
+        background-color: gray;
         animation: colorCycle 60s ease-in-out infinite;
         overflow: hidden;
         right: 0px;
-        transform: translateX(44%);
+        transform: translateX(42%);
         margin-top: auto;
         margin-bottom: auto;
 
@@ -38,6 +38,8 @@
         border-radius: 20px 0px 0px 20px;
         background-color: gray;
         width: 100%
+        animation: colorCycle 60s ease-in-out infinite;
+
         
     }
     
@@ -77,8 +79,14 @@
           fill: #333; /* Dark gray */
         }
       }
+
+      #yb-circle-strip {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+
+      }
       
-      
+
 </style>
 <div id="customizable-profile-panel" class="yb-panel-wide" style="display: grid; grid-template-columns: 2fr 1fr; height: 200px; overflow: hidden; padding: 0px 0px 0px 0px; width: 95vw;">
     <h1 style="margin: auto;">Profile</h1>
@@ -88,6 +96,7 @@
 </div>
 <div id="customizable-bit-panel" class="yb-panel-wide" style="display: grid; grid-template-columns: 2fr 1fr; height: 200px; overflow: hidden; padding: 0px 0px 0px 0px; width: 95vw;">
     <h1 style="margin: auto;">Bits</h1>
+    <div id="bit-graphic-text-area"></div>
     <div id="yb-bit-graphic" class="yb-bit-graphic">
         <div id="yb-circle-strip">
             <div></div>
