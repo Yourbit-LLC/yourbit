@@ -215,11 +215,13 @@ Profile Page
 
 .profile-interaction-container.preview {
     border: 3px rgba(255, 255, 255, 0.5) solid;
+    animation: yb-pulse 1s infinite;
     
 }
 
 .chat-bit-container.preview {
-    animation: yb-pulse 1s linear 1s infinite;
+    animation: yb-pulse 1s infinite;
+    animation-delay: 0.5s;
 }
 
 .button-profile-interaction {
