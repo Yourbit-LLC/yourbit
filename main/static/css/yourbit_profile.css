@@ -213,6 +213,11 @@ Profile Page
     margin-top: 20px;
 }
 
+.profile-interaction-container.preview {
+    border: 3px white solid;
+    animation: yb-pulse 2s infinite;
+}
+
 .button-profile-interaction {
     position: relative;
     width: 90px;
