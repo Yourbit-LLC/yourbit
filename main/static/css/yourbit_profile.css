@@ -55,6 +55,11 @@ Profile Page
     border: 3px solid white;
 }
 
+.large-profile-image.preview {
+    animation: yb-pulse-small 1s infinite;
+    animation-delay: 0.25s;
+}
+
 #profile-image-profile-image {
     position: relative;
     height: 80px;
@@ -181,8 +186,8 @@ Profile Page
 
 .profile-name-splash.preview {
     animation: yb-pulse-small 1s infinite;
-    animation-delay: 0.25s;
-    border: 3px rgba(255, 255, 255, 0.5) solid;
+    animation-delay: 0.5s;
+    
 
 }
 
@@ -221,14 +226,14 @@ Profile Page
 }
 
 .profile-interaction-container.preview {
-    border: 3px rgba(255, 255, 255, 0.5) solid;
-    animation: yb-pulse-small 1s infinite;
     
+    animation: yb-pulse-small 1s infinite;
+    animation-delay: 0.75s;
 }
 
 #bit-preview {
     animation: yb-pulse-small 1s infinite;
-    animation-delay: 0.5s;
+    animation-delay: 1s;
 }
 
 .button-profile-interaction {
