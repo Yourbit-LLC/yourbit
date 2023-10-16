@@ -219,7 +219,7 @@ Profile Page
     
 }
 
-.container-bit-chat.preview {
+#bit-preview {
     animation: yb-pulse 1s infinite;
     animation-delay: 0.5s;
 }
