@@ -85,6 +85,10 @@
         grid-template-columns: 1fr 1fr 1fr 1fr;
 
       }
+
+      #button-stack {
+
+      }
       
 
 </style>
@@ -110,7 +114,18 @@
 
 <div id="customizable-ui-panel" class="yb-panel-wide" style="display:grid; grid-template-columns: 2fr 1fr; height: 200px; overflow: hidden; padding: 0px 0px 0px 0px; width: 95vw;">
     <h1 style="margin: auto;">UI</h1>
-    <div>
+    <div id="button-stack">
+        <div></div>
+        <div></div>
+        <div></div>
 
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        let customize_profile_panel = document.getElementById('customize-profile-panel');
+        customize_profile_panel.addEventListener("click", function(){
+            customize_profile_url();
+        });
+    })
+</script>
