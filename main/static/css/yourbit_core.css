@@ -28,7 +28,7 @@ Refer to the interactive codex for current style guidelines for Yourbit*/
 
 @keyframes yb-pulse-small {
     0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+    50% { transform: scale(1.025); }
     100% { transform: scale(1); }
 }
 

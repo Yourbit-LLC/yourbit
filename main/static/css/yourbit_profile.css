@@ -182,6 +182,8 @@ Profile Page
 .profile-name-splash.preview {
     animation: yb-pulse-small 1s infinite;
     animation-delay: 0.25s;
+    border: 3px rgba(255, 255, 255, 0.5) solid;
+
 }
 
 
