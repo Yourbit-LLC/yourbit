@@ -214,8 +214,12 @@ Profile Page
 }
 
 .profile-interaction-container.preview {
-    border: 3px white solid;
-    animation: yb-pulse 2s infinite;
+    border: 3px rgba(255, 255, 255, 0.5) solid;
+    
+}
+
+.chat-bit-container.preview {
+    animation: yb-pulse 1s linear 1s infinite;
 }
 
 .button-profile-interaction {
