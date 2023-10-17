@@ -1600,6 +1600,17 @@ only be used for object transforms (shaping and scaling)
         height: 30px;
     }
 
+        
+    #edit-header-text {
+        position: absolute;
+        display: block;
+
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+    }
+
     .wide-button {
         /*Wide button is typically used for confirmation and back buttons a similar
         styling is used for the login and sign-up page buttons */

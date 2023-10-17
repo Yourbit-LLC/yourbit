@@ -282,7 +282,7 @@ $(document).ready(function() {
     console.log(user_id)
 
     $(logo).fadeOut();
-    let edit_header = yb_createElement("p", "mobile-logo", "edit-header-text");
+    let edit_header = yb_createElement("p", "edit-header-text", "edit-header-text");
     header.appendChild(edit_header);
 
     let swipe_up_element = document.getElementById("swipe-up-element");
