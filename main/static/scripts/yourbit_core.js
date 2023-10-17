@@ -199,15 +199,20 @@ function yb_quarter_card_list(title, options) {
             "margin-left: auto; margin-right: auto; text-align: center; background-color: rgba(50,50,50,0.4); line-height: 1.8; height: 32px;"
         );
         option.setAttribute('data-action', lowkey);
-        option.addEventListener('click', function() {
-            yb_handle_quarter_card_option(options[key])
-        });
+
         option.innerHTML = key;
         card_options.appendChild(option);
 
         if (key==='Cancel') {
             option.style.color = 'red';
             option.style.borderColor = 'red';
+            option.addEventListener('click', function() {
+                yb_hide_quarter_card();
+            });
+        } else {
+            option.addEventListener('click', function() {
+                yb_handle_quarter_card_option(options[key])
+            });
         }
     }
 
@@ -239,15 +244,6 @@ function yb_quarter_card_grid(title, options) {
     }
 
 }
-
-function yb_closeQuarterCard() {
-    $("#general-ui-container").animate({"top": "100vh"}, 25);
-    $("#general-ui-container").animate({"height": "80vh"}, 25);
-    $(".general-container").remove();
-    $("#cb-divider").fadeOut();
-}
-
-
 
 
 /*################################################################################################################
