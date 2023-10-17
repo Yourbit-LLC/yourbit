@@ -163,7 +163,7 @@ function hideCreateBit() {
 }
 
 function yb_handle_quarter_card_option(callback) {
-    let card_element = document.getElementById('yb-card-quarter');
+    let card_element = document.getElementById('yb-temporary-card');
     card_element.classList.remove('in');
     card_element.classList.add('out');
     callback();
@@ -171,7 +171,7 @@ function yb_handle_quarter_card_option(callback) {
 }
 
 function yb_hide_quarter_card() {
-    let card_element = document.getElementById('yb-card-quarter');
+    let card_element = document.getElementById('yb-temporary-card');
     card_element.classList.remove('in');
     card_element.classList.add('out');
     setTimeout(function(){card_element.remove()}, 300);

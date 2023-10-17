@@ -29,7 +29,7 @@ function yb_handleEditName() {
             "type": "color"
         }, 
         "Edit Name": {
-            "action":versatile_test, 
+            "action": versatile_test, 
             "type": "text"
         },
         "Edit Username": {
@@ -37,7 +37,7 @@ function yb_handleEditName() {
             "type": "text"
         },
         "Cancel": {
-            "action": yb_closeQuarterCard,
+            "action": versatile_test,
             "type": "command"
         }
     };
