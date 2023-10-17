@@ -240,6 +240,13 @@ function yb_quarter_card_grid(title, options) {
 
 }
 
+function yb_closeQuarterCard() {
+    $("#general-ui-container").animate({"top": "100vh"}, 25);
+    $("#general-ui-container").animate({"height": "80vh"}, 25);
+    $(".general-container").remove();
+    $("#cb-divider").fadeOut();
+}
+
 
 
 

@@ -35,6 +35,10 @@ function yb_handleEditName() {
         "Edit Username": {
             "action":versatile_test,
             "type": "text"
+        },
+        "Cancel": {
+            "action": yb_closeQuarterCard,
+            "type": "command"
         }
     };
 
@@ -59,6 +63,10 @@ function yb_handleEditBio() {
         "Change Bio": {
             "action": versatile_test,
             "type": "text"
+        },
+        "Cancel": {
+            "action": yb_closeQuarterCard,
+            "type": "command"
         }
     };
 
@@ -71,7 +79,7 @@ function yb_handleEditProfileImage() {
     let these_options = {
         "Upload New": versatile_test, 
         "From Library": versatile_test, 
-        "Cancel": versatile_test,
+        "Cancel": yb_closeQuarterCard,
     };
     
     yb_quarter_card_list("Upload Image", these_options);
