@@ -20,7 +20,7 @@ Refer to the interactive codex for current style guidelines for Yourbit*/
     100% { opacity: 0; }
 }
 
-@keyframes yb-flash {
+@keyframes yb-flash-soft {
     0% { opacity: 0.2; }
     50% { opacity: 1; }
     100% { opacity: 0.2; }
