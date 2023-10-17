@@ -283,6 +283,7 @@ $(document).ready(function() {
 
     $(logo).fadeOut();
     let edit_header = yb_createElement("p", "edit-header-text", "edit-header-text");
+    edit_header.innerHTML = "Edit Mode";
     header.appendChild(edit_header);
 
     let swipe_up_element = document.getElementById("swipe-up-element");
