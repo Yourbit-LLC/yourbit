@@ -171,6 +171,11 @@ Profile Page
 
 }
 
+.profile-bio-container.preview {
+    animation: yb-pulse-small 1s infinite;
+    animation-delay: 1s;
+}
+
 #profile-feed-content-container {
     position: relative;
     top: 0px;
