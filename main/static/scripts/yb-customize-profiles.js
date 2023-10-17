@@ -97,28 +97,19 @@ $(document).ready(function() {
     //Editing Profile Image
     let profile_image_option = document.getElementById("profile-image-splash");
     //Event Listener for image preview
-    profile_image_option.addEventListener(
-        "click", 
-        yb_handleEditProfileImage()
-    );
+    profile_image_option.addEventListener("click", yb_handleEditProfileImage());
 
     console.log(user_id)
 
     //Editing Profile Name
     let profile_name_option = document.getElementById("profile-name-splash");
     //Event Listener for name preview container
-    profile_name_option.addEventListener(
-        "click", 
-        yb_handleEditName()
-    );
+    profile_name_option.addEventListener("click", yb_handleEditName());
 
     //Editing Profile Buttons
     let profile_button_option = document.getElementById("profile-interaction-container");
     //Event Listener for interaction container
-    profile_button_option.addEventListener(
-        "click", 
-        yb_handleEditInteractions()
-    );
+    profile_button_option.addEventListener("click", yb_handleEditInteractions());
     
     //Editing Profile Bio
     let profile_bio_option = document.getElementById("profile-bio-container");
