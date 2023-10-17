@@ -1604,7 +1604,7 @@ only be used for object transforms (shaping and scaling)
     #edit-header-text {
         position: absolute;
         display: block;
-
+        margin: 0px;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);

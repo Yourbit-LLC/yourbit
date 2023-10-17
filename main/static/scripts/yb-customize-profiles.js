@@ -282,7 +282,7 @@ $(document).ready(function() {
     console.log(user_id)
 
     $(logo).fadeOut();
-    let edit_header = yb_createElement("p", "edit-header-text", "edit-header-text");
+    let edit_header = yb_createElement("h3", "edit-header-text", "edit-header-text");
     edit_header.innerHTML = "Edit Mode";
     header.appendChild(edit_header);
 
