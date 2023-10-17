@@ -79,7 +79,7 @@ function yb_handleEditProfileImage() {
     let these_options = {
         "Upload New": versatile_test, 
         "From Library": versatile_test, 
-        "Cancel": ver,
+        "Cancel": versatile_test,
     };
     
     yb_quarter_card_list("Upload Image", these_options);
