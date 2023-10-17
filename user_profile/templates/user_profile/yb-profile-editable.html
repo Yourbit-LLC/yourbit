@@ -4,17 +4,17 @@
 <div id="profile-page-splash" class="splash-page profile">
 
     <div id="profile-splash-label" class = "space-splash-label profile">
-        <img src="{{image_thumbnail_large.url}}" class="large-profile-image" id="profile-image-splash" onload = "showProfileImage()" style="height: 0px; width: 0px; border-color:{{accent_color}};"/>
+        <img src="{{user_image_large.url}}" class="large-profile-image" id="profile-image-splash" onload = "showProfileImage()" style="height: 0px; width: 0px; border-color:{{accent_color}};"/>
         <div class="profile-name-splash" id="profile-name-splash">
-            <h2 id="profile-name-header" style="color:{{title_color}};" class="profile-name-header">{{first_name}} {{last_name}}</h2>
+            <h2 id="profile-name-header" style="color:{{title_color}};" class="profile-name-header">{{user.first_name}} {{user.last_name}}</h2>
             <b id="profile-handle-label" style="color:{{text_color}};" class="profile-handle-label">
-                <small>@{{profile_user.username}}</small>
+                <small>@{{user.username}}</small>
             </b>
         </div>
 
 
         <div id="profile-interaction-container" class="profile-interaction-container">
-            <button style="color: {{profile.custom.title_color}}; background-color: {{profile.custom.primary_color}};" id="profile-button-connect" class="button-profile-interaction" data-id = "{{profile.id}}">
+            <button style="color: {{title_color}}; background-color: {{primary_color}};" id="profile-button-connect" class="button-profile-interaction" data-id = "{{profile.id}}">
                 
                 {% if request.user.id == profile.user.id %}
                     <span>Edit</span>
@@ -37,12 +37,12 @@
                 {% endif %}
             </button>
     
-            <button style="color: {{profile.custom.title_color}}; background-color: {{profile.custom.primary_color}};" id="profile-button-about" class="button-profile-interaction">
+            <button style="color: {{title_color}}; background-color: {{primary_color}};" id="profile-button-about" class="button-profile-interaction">
                 <span>About</span>
             </button>
         </div>
         <div id="profile-bio-container" class="splash-bio-container">
-            <h3 id="profile-motto" style="color: {{profile.custom.title_color}};" class="profile-motto">
+            <h3 id="profile-motto" style="color: {{title_color}};" class="profile-motto">
                 {{user.profile.motto}}
             </h3>
             <p id="profile-bio" style="color:{{text_color}};" class="splash-bio">
@@ -53,7 +53,7 @@
 
     
     <div id="swipe-up-element" class="swipe-up-element bobbing-object">
-        <svg id="swipe-up-icon" class='swipe-up-icon' xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path style="fill:{{profile.custom.text_color}}" d="M14.15 30.75 12 28.6l12-12 12 11.95-2.15 2.15L24 20.85Z"/></svg>
+        <svg id="swipe-up-icon" class='swipe-up-icon' xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path style="fill:{{text_color}}" d="M14.15 30.75 12 28.6l12-12 12 11.95-2.15 2.15L24 20.85Z"/></svg>
         <p style = "color: {{text_color}};" class = "swipe-up-text" id="swipe-up-text">Slide up to Edit Profile</p>
 
     </div>
