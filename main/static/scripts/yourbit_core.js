@@ -177,7 +177,7 @@ function yb_hide_quarter_card() {
     setTimeout(function(){card_element.remove()}, 300);
     
 }
-function yb_quarter_card(title, options) {
+function yb_quarter_card_list(title, options) {
     let card = yb_createElement('div', 'yb-temporary-card', 'yb-card-quarter in');
     let card_title = yb_createElement('div', 'quarter-card-title', 'quarter-card-title');
     let card_title_text = yb_createElement('h3', 'quarter-card-title-text', 'quarter-card-title-text');
@@ -215,6 +215,32 @@ function yb_quarter_card(title, options) {
     
     document.body.appendChild(card);
 }
+
+function yb_quarter_card_grid(title, options) {
+    let card = yb_createElement('div', 'yb-temporary-card', 'yb-card-quarter in');
+    let card_title = yb_createElement('div', 'quarter-card-title', 'quarter-card-title');
+    let card_title_text = yb_createElement('h3', 'quarter-card-title-text', 'quarter-card-title-text');
+    card_title_text.setAttribute('style', 'text-align: center; color: white;');
+    card_title_text.innerHTML = title;
+    card_title.appendChild(card_title_text);
+    card.appendChild(card_title);
+
+    let card_options = yb_createElement('div', 'quarter-card-options', 'quarter-card-options grid');
+
+    for (let key in options) {
+        let lowkey = key.toLowerCase();
+        let this_option = options[key];
+        if (this_option.type = "color") {
+            let option_container = yb_createElement("div", "yb-color-option-container", "yb-option-grid vsplit");
+            let icon = yb_createElement("div", `${lowkey}-color-circle`, "color-circle");
+            let label = yb_createElement("p", `${lowkey}-option-label`, "yb-grid-option-label");
+            label.innerHTML = `${key} Color`;
+        }
+    }
+
+}
+
+
 
 
 /*################################################################################################################

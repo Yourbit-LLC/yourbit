@@ -286,7 +286,7 @@ $(document).ready(function() {
     
     button_connect.addEventListener("click", function() {
         let these_options = {"Request Friend": versatile_test, "Follow": versatile_test, "Block": versatile_test, "Cancel": versatile_test};
-        yb_quarter_card("Connect Options", these_options)
+        yb_quarter_card_list("Connect Options", these_options)
     });
 
     button_message.addEventListener("click", function() {
