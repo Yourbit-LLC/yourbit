@@ -65,7 +65,7 @@ function yb_handleEditBio() {
             "type": "text"
         },
         "Cancel": {
-            "action": yb_closeQuarterCard,
+            "action": versatile_test,
             "type": "command"
         }
     };
@@ -79,7 +79,7 @@ function yb_handleEditProfileImage() {
     let these_options = {
         "Upload New": versatile_test, 
         "From Library": versatile_test, 
-        "Cancel": yb_closeQuarterCard,
+        "Cancel": ver,
     };
     
     yb_quarter_card_list("Upload Image", these_options);
