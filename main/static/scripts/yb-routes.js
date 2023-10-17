@@ -380,6 +380,20 @@ function customize_profile_url(data=null){
 
 }
 
+function customize_profile_splash_url(data=null){
+    try {
+        yb_purgeScripts(yb_clearContainer);
+    } catch (error) {
+        console.log(error);
+    }
+    console.log("function");
+    
+    $("#content-container").load(`${base_url}/profile/templates/customize-html-profile-splash/`);
+    yb_setSessionValues("location","customize-profile");
+    history.pushState({}, "", `/profile/customize/profile/`);
+    
+}
+
 //profile info
 function settings_profile_url(data){
     $("#content-container").html('');
