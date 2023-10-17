@@ -61,6 +61,7 @@ Profile Page
     margin-right: auto;
     animation: yb-pulse-small 1s infinite;
     animation-delay: 0.25s;
+    border-radius: 20px;
 }
 
 #profile-image-profile-image {
@@ -177,6 +178,7 @@ Profile Page
 .splash-bio-container.preview {
     animation: yb-pulse-small 1s infinite;
     animation-delay: 1s;
+    
 }
 
 #profile-feed-content-container {
@@ -195,6 +197,7 @@ Profile Page
 .profile-name-splash.preview {
     animation: yb-pulse-small 1s infinite;
     animation-delay: 0.5s;
+    border-radius: 20px;
     
 
 }
@@ -237,6 +240,7 @@ Profile Page
     
     animation: yb-pulse-small 1s infinite;
     animation-delay: 0.75s;
+    border-radius: 20px;
 }
 
 #bit-preview {
