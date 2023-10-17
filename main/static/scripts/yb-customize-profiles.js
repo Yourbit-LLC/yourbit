@@ -286,6 +286,8 @@ $(document).ready(function() {
     edit_header.innerHTML = "Edit Mode";
     header.appendChild(edit_header);
 
+    $(edit_header).fadeIn();
+
     let swipe_up_element = document.getElementById("swipe-up-element");
 
     
