@@ -55,7 +55,10 @@ Profile Page
     border: 3px solid white;
 }
 
+
 .profile-image-border.preview {
+    margin-left: auto;
+    margin-right: auto;
     animation: yb-pulse-small 1s infinite;
     animation-delay: 0.25s;
 }
