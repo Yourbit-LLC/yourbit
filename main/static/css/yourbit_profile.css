@@ -55,7 +55,7 @@ Profile Page
     border: 3px solid white;
 }
 
-.large-profile-image.preview {
+.profile-image-border.preview {
     animation: yb-pulse-small 1s infinite;
     animation-delay: 0.25s;
 }
