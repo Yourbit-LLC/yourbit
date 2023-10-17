@@ -279,7 +279,11 @@ function follow() {
 
 $(document).ready(function() {
     let user_id = yb_getSessionValues("profile-username");
+    let logo = document.getElementById('mobile-logo')
     console.log(user_id)
+
+    $(logo).fadeOut();
+    
 
     let swipe_up_element = document.getElementById("swipe-up-element");
 
