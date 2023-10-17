@@ -278,10 +278,12 @@ function follow() {
 $(document).ready(function() {
     let user_id = yb_getSessionValues("profile-username");
     let logo = document.getElementById('mobile-logo')
+    let header = document.getElementById("mobile-header")
     console.log(user_id)
 
     $(logo).fadeOut();
-
+    let edit_header = yb_createElement("p", "mobile-logo", "edit-header-text");
+    header.appendChild(edit_header);
 
     let swipe_up_element = document.getElementById("swipe-up-element");
 
