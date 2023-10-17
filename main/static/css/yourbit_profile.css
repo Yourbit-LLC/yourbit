@@ -236,7 +236,23 @@ Profile Page
     animation-delay: 1s;
 }
 
+#splash-preview-button-1 {
+    animation: yb-pulse-small 1s infinite; 
 
+}
+
+
+#splash-preview-button-2 {
+    animation: yb-pulse-small 1s infinite;
+    animation-delay: 0.5s;
+    
+}
+
+#splash-preview-button-3 {
+    animation: yb-pulse-small 1s infinite;
+    animation-delay: 1s;
+    
+}
 
 .button-profile-interaction {
     position: relative;
