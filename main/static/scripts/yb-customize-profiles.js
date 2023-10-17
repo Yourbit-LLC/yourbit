@@ -99,7 +99,7 @@ $(document).ready(function() {
     //Event Listener for image preview
     profile_image_option.addEventListener(
         "click", 
-        yb_handleEditProfileImage();
+        yb_handleEditProfileImage()
     );
 
     console.log(user_id)
