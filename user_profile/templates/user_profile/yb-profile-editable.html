@@ -1,11 +1,13 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/yourbit_profile.css' %}"/>
+<style>
 
+</style>
 <div id="profile-page-splash" class="splash-page profile">
 
     <div id="profile-splash-label" class = "space-splash-label profile">
-        <img src="{{user_image_large.url}}" class="large-profile-image" id="profile-image-splash" onload = "showProfileImage()" style="height: 0px; width: 0px; border-color:{{accent_color}};"/>
-        <div class="profile-name-splash" id="profile-name-splash">
+        <img src="{{user_image_large.url}}" class="large-profile-image preview" id="profile-image-splash" onload = "showProfileImage()" style="height: 0px; width: 0px; border-color:{{accent_color}};"/>
+        <div class="profile-name-splash preview" id="profile-name-splash">
             <h2 id="profile-name-header" style="color:{{title_color}};" class="profile-name-header">{{user.first_name}} {{user.last_name}}</h2>
             <b id="profile-handle-label" style="color:{{text_color}};" class="profile-handle-label">
                 <small>@{{user.username}}</small>
@@ -13,7 +15,7 @@
         </div>
 
 
-        <div id="profile-interaction-container" class="profile-interaction-container">
+        <div id="profile-interaction-container preview" class="profile-interaction-container">
             <button style="color: {{title_color}}; background-color: {{primary_color}};" id="profile-button-connect" class="button-profile-interaction" data-id = "{{profile.id}}">
                 
                 {% if request.user.id == profile.user.id %}
