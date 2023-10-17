@@ -69,7 +69,7 @@ function yb_handleEditBio() {
 
 function yb_handleEditProfileImage() {
     let these_options = {
-        "Upload New": upload_avatar_url(), 
+        "Upload New": versatile_test, 
         "From Library": versatile_test, 
         "Cancel": versatile_test,
     };
@@ -99,7 +99,7 @@ $(document).ready(function() {
     //Event Listener for image preview
     profile_image_option.addEventListener(
         "click", 
-        yb_handleEditProfileImage()
+        yb_handleEditProfileImage();
     );
 
     console.log(user_id)
