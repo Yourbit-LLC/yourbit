@@ -252,11 +252,13 @@ Profile Page
     height: 100vh;
     top: 0px;
     left: 0px;
-    background-image: linear-gradient(transparent 2px, rgba(0, 0, 0, 0.2) 2px, rgba(0, 0, 0, 0.2) 100%), linear-gradient(90deg, transparent 2px, rgba(0, 0, 0, 0.2) 2px, rgba(0, 0, 0, 0.2) 100%);
+    pointer-events: none;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 1px, transparent 1px);
     background-size: 30px 30px;
     z-index: 100;
-
 }
+
+
 
 #bit-preview {
     animation: yb-pulse-small 1s infinite;
