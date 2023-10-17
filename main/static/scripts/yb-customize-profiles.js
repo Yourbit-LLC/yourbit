@@ -6,8 +6,6 @@ var button_message = document.getElementById("profile-button-message");
 var button_about  = document.getElementById("profile-button-about");
 
 var user_id = yb_getSessionValues("id");
-var profile_id = document.getElementById("profile-data").getAttribute("data-profile-id");
-var active_username = document.getElementById("profile-data").getAttribute("data-username");
 
 function showProfileImage(){
     $(".large-profile-image").animate({"height": "150px", "width":"150px"}, 'fast');
@@ -283,7 +281,7 @@ $(document).ready(function() {
     console.log(user_id)
 
     $(logo).fadeOut();
-    
+
 
     let swipe_up_element = document.getElementById("swipe-up-element");
 
