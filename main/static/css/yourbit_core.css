@@ -1609,7 +1609,7 @@ only be used for object transforms (shaping and scaling)
         left: 50%;
         transform: translate(-50%, -50%);
         color: orange;
-        animation: yb-flash 1s ease-in-out 1s infinite;
+        animation: yb-flash 2s ease-in-out 1s infinite;
     }
 
     .wide-button {
