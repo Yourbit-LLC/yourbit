@@ -4,7 +4,9 @@
 
 </style>
 <div id="profile-page-splash" class="splash-page profile">
-
+    <div class="grid-overlay">
+    
+    </div>
     <div id="profile-splash-label" class = "space-splash-label profile">
         <div class="profile-image-border preview" style="height: 40vw; width: 40vw; border: 2px solid gray;">
             <img src="{{user_image_large.url}}" class="large-profile-image preview" id="profile-image-splash" style="height: 100%; width: 100%; border-color:{{accent_color}};"/>
@@ -63,9 +65,7 @@
     </div>
 
 </div>
-<div class="grid-overlay">
-    
-</div>
+
 
 <script class="page-script" type="text/javascript" src="{% static 'scripts/FeedManager.js' %}"></script>
 <script class="page-script" id="page-script" type="text/javascript" src="{% static 'scripts/yb-customize-profiles.js' %}"></script>
