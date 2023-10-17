@@ -171,7 +171,7 @@ Profile Page
 
 }
 
-.profile-bio-container.preview {
+.splash-bio-container.preview {
     animation: yb-pulse-small 1s infinite;
     animation-delay: 1s;
 }
