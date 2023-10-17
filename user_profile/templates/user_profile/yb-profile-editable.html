@@ -16,7 +16,7 @@
 
 
         <div id="profile-interaction-container preview" class="profile-interaction-container">
-            <button style="color: {{title_color}}; background-color: {{primary_color}};" id="profile-button-connect" class="button-profile-interaction" data-id = "{{profile.id}}">
+            <button style="color: {{title_color}}; background-color: {{bit_background}};" id="profile-button-connect" class="button-profile-interaction" data-id = "{{profile.id}}">
                 
                 {% if request.user.id == profile.user.id %}
                     <span>Edit</span>
@@ -31,7 +31,7 @@
     
             </button>
     
-            <button style="color: {{title_color}}; background-color: {{primary_color}};" id="profile-button-message" class="button-profile-interaction">
+            <button style="color: {{title_color}}; background-color: {{bit_background}};" id="profile-button-message" class="button-profile-interaction">
                 {% if request.user.id == profile.user.id %}
                     <span>Messages</span>
                 {% else %}
@@ -39,7 +39,7 @@
                 {% endif %}
             </button>
     
-            <button style="color: {{title_color}}; background-color: {{primary_color}};" id="profile-button-about" class="button-profile-interaction">
+            <button style="color: {{title_color}}; background-color: {{bit_background}};" id="profile-button-about" class="button-profile-interaction">
                 <span>About</span>
             </button>
         </div>
