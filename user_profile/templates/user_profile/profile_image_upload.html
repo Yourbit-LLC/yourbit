@@ -1,0 +1,11 @@
+{% load static %}
+<div class="center-container">
+    <img src="{{user_image_large.url}}" class="large-profile-image preview" id="profile-image-splash" style="height: 40vw; width: 40vw; border-color:{{accent_color}};"/>
+    <div id="edit-options">
+        <input type="slider" id="avatar-hue-slider">
+        <input type="checkbox" id = "avatar-enable-transparency">
+        <input type="checkbox" id = "avatar-enable-border">
+        <button>Display Shape</button>
+        <button>New Image</button>
+    </div>
+</div>

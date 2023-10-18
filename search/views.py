@@ -151,7 +151,18 @@ class ContextSearch(View):
 
             return JsonResponse({'results_found': results_found, 'comment_results': comment_results})
 
-        
 
-    
+class StickerSearch(models.Model):        
+    import requests
+    headers = {
+        'apikey': '76ffaf9390c1f1576c1c1a4183e4714c',
+    }
+    url = 'https://messenger.stipop.io/v1/search?userId=9937&q=cute&lang=en&pageNumber=1&limit=10'
+
+    response = requests.get( url, headers )
+
+    print(response)
+
+
+        
 

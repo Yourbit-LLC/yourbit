@@ -188,6 +188,13 @@ Refer to the interactive codex for current style guidelines for Yourbit*/
     100% { transform: rotate(360deg); }
   }
 
+  .center-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
 @media screen and (min-width: 700px) {
     #main-splash-image {
         width: 75%;
