@@ -78,7 +78,7 @@ function yb_handleEditBio() {
 function yb_handleEditProfileImage() {
     let these_options = {
         "Upload New": versatile_test, 
-        "From Library": versatile_test, 
+        "From Library": select_image_grid_url, 
         "Cancel": versatile_test,
     };
     
