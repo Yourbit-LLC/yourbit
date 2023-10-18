@@ -28,11 +28,11 @@
     }
 
 </style>
-<h2>Select from Uploads</h2>
+<h2 style="color: white; text-align: center;">Select from Uploads</h2>
 <div class="image-grid">
     {% for image in request.user.profile.photo.all %}
     <div class="image-grid-item" data-id="{{image.id}}">
-        <img src="{{ image.medium_thumbnail.url }}" alt="{{ image.title }}" />
+        <img src="{{ image.image.url }}" alt="{{ image.title }}" />
     </div>
     {% endfor %}
 </div>
