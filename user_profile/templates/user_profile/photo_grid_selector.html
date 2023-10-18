@@ -36,3 +36,61 @@
     </div>
     {% endfor %}
 </div>
+
+<script>
+    function previewImage(source){
+        let viewer = yb_createElement('div', 'photo-viewer', 'photo-viewer');
+        viewer.setAttribute("style", "display: none");
+        let viewing_image = yb_renderImage(source, "full-screen-image", "full-screen-image");
+        viewer.appendChild(viewing_image);
+        document.body.appendChild(viewer);
+    
+        $('.photo-viewer').fadeIn(200);
+        $('.photo-viewer').animate({"top": "0px"}, 200);
+    
+        let select_button = yb_createButton("select_button", "select-button", "select-button", "Select");
+        viewer.appendChild(select_button);
+        
+        let close_button = yb_createButton("cancel_button", "close-button", "close-button", "Cancel");
+        viewer.appendChild(close_button);
+
+        close_button.addEventListener("click", function(){
+            $('.photo-viewer').animate({"top": "100vh"}, 200);
+            $('.photo-viewer').fadeOut(200);
+            $('.photo-viewer').remove();
+        });
+
+        viewer.addEventListener("touchstart", function(event) {
+            var initialY = event.touches[0].clientY;
+    
+            // Add an event listener for touchend event
+            viewer.addEventListener("touchend", function(event) {
+                var finalY = event.changedTouches[0].clientY;
+                var deltaY = finalY - initialY;
+        
+                // Check if the user has swiped down
+                if (deltaY > 0) {
+                    // Perform actions to exit fullscreen
+                    // Add your code here to handle fullscreen exit
+                    console.log("Swiped down to exit fullscreen!");
+                    $('.photo-viewer').animate({"top": "100vh"}, 200);
+                    $('.photo-viewer').fadeOut(200);
+                    $('.photo-viewer').remove();
+                }
+            });
+        });
+
+    }
+
+    
+
+
+
+    $(document).ready(function(){
+        $('.image-grid-item').click(function(){
+            let image_id = $(this).attr('data-id');
+            let image_url = $(this).children('img').attr('src');
+            previewImage(image_url);
+        });
+    });
+</script>
