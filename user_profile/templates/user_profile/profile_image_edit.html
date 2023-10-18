@@ -1,11 +1,18 @@
 {% load static %}
 <div class="center-container">
-    <img src="{{user_image_large.url}}" class="large-profile-image preview" id="profile-image-splash" style="height: 40vw; width: 40vw; border-color:{{accent_color}};"/>
+    <img src="" class="large-profile-image preview" id="profile-image-preview" style="height: 40vw; width: 40vw; border-color:{{accent_color}};"/>
+    
+    <button id="image-shape-button" class="wide-button">New Image</button>
+    
     <div id="edit-options">
-        <input type="slider" id="avatar-hue-slider">
+
+        <input type="range" id="avatar-hue-slider" min="0" max="360" step="1" value="0">
         <input type="checkbox" id = "avatar-enable-transparency">
         <input type="checkbox" id = "avatar-enable-border">
-        <button>Display Shape</button>
-        <button>New Image</button>
+
+        <input type="color" id="avatar-border-color" value="{{accent_color}}">
+    
+        <button id="avatar-save-button" style="color: darkgreen;" class="wide-button">Save</button>
     </div>
 </div>
+<script src="{% static 'scripts/image_editor.js' %}"></script>

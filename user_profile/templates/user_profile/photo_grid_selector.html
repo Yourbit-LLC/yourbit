@@ -1,0 +1,38 @@
+{% load static %}
+<style>
+    /* Style for the image grid container */
+    .image-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    }
+
+    /* Style for each image grid item */
+    .image-grid-item {
+    width: 150px; /* Adjust the width according to your design */
+    height: 150px; /* Adjust the height according to your design */
+    overflow: hidden;
+    position: relative;
+    }
+
+    /* Style for the image within each grid item */
+    .image-grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Maintain aspect ratio and cover the whole area */
+    }
+
+    /* Optional: Hover effect for the image grid item */
+    .image-grid-item:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+</style>
+<h2>Select from Uploads</h2>
+<div class="image-grid">
+    {% for image in request.user.profile.photo.all %}
+    <div class="image-grid-item" data-id="{{image.id}}">
+        <img src="{{ image.medium_thumbnail.url }}" alt="{{ image.title }}" />
+    </div>
+    {% endfor %}
+</div>

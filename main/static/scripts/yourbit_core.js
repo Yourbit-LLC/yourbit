@@ -7,6 +7,9 @@ var content_container = document.getElementById('content-container');
 const MAIN_MENU = document.getElementById('profile-menu');
 const CREATE_MENU = document.getElementById('create-bit-mobile');
 const GENERAL_CONTAINER = document.getElementById('general-ui-container');
+const IMAGE_STAGE = document.getElementById("image-stage");
+const VIDEO_STAGE = document.getElementById("video-stage");
+
 
 var postList = document.getElementById("content-container-feed");
 
@@ -177,6 +180,16 @@ function yb_hide_quarter_card() {
     setTimeout(function(){card_element.remove()}, 300);
     
 }
+
+//Function to stage files across pages
+function yb_stageFile(type, file){
+    if (type === "image") {
+        IMAGE_STAGE.setAttribute("src", file);
+    } else if (type === "video") {
+        VIDEO_STAGE.setAttribute("src", file)
+    }
+}
+
 function yb_quarter_card_list(title, options) {
     let card = yb_createElement('div', 'yb-temporary-card', 'yb-card-quarter in');
     let card_title = yb_createElement('div', 'quarter-card-title', 'quarter-card-title');
