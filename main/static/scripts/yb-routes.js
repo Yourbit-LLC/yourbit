@@ -394,6 +394,20 @@ function customize_profile_splash_url(data=null){
     
 }
 
+function edit_profile_image_url(data=null){
+    try {
+        yb_purgeScripts(yb_clearContainer);
+    } catch (error) {
+        console.log(error);
+    }
+    console.log("function");
+    
+    $("#content-container").load(`${base_url}/profile/templates/customize-html-profile-image/`);
+    yb_setSessionValues("location","customize-profile");
+    history.pushState({}, "", `/profile/customize/profile/image/edit`);
+    
+}
+
 //profile info
 function settings_profile_url(data){
     $("#content-container").html('');
