@@ -647,6 +647,9 @@ function yb_navigateTo(destination, data=null) {
     if (current_location === "profile") {
         yb_updatePageTask("home");
         yb_revertCustom();
+    } else if (current_location === "customize-profile") {
+        $("#mobile-logo").fadeIn();
+        $("#header-edit-text").remove();
     }
 
     if (destination === "home") {
