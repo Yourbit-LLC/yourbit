@@ -50,6 +50,15 @@
     
         let select_button = yb_createButton("select_button", "select-button", "select-button", "Select");
         viewer.appendChild(select_button);
+
+        select_button.addEventListener("click", function() {
+            $('.photo-viewer').animate({"top": "100vh"}, 200);
+            $('.photo-viewer').fadeOut(200);
+            $('.photo-viewer').remove();
+            yb_stageFile("image", source);
+            yb_navigateTo("image-crop");
+            
+        });
         
         let close_button = yb_createButton("cancel_button", "close-button", "close-button", "Cancel");
         viewer.appendChild(close_button);

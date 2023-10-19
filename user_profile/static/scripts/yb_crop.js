@@ -1,7 +1,16 @@
 
+
+$(document).ready(function(){
+    showUpload("profile-image");
+    let location = yb_getSessionValues("location");
+    if (location === "square-crop"){
+        previewImage("square");
+    };
+    
+});
 var cropper;
-var profile_crop = document.getElementById('profile-image-preview');
-var background_crop = document.getElementById('background-image-preview');
+var square_crop = document.getElementById('profile-image-preview');
+var wide_crop = document.getElementById('background-image-preview');
 var preview2 = document.getElementById("profile-image-preview-image");
 var background_container = document.getElementById("background-container");
 var background = document.getElementById("bg-image");
@@ -25,33 +34,34 @@ function previewImage(type) {
     let this_element;
     console.log(type);
     $("#profile-advanced-options-button").fadeIn();
-    if (type === "profile-image") {
+    if (type === "square") {
         target_ratio = 1;
-        element = 'profile-image-input';
-        this_element = ".yb-cropper-container.profile-image"
+        element = IMAGE_STAGE.getAttribute("id");
+        this_element = ".yb-cropper-container-square"
         $("#profile-cropper-submission-controls").fadeIn();
-        this_window = profile_crop;
-    } else if (type === "desktop-background") {
-            element = 'background-image-input';
+        this_window = square_crop;
+    } else if (type === "ls-rect") {
+            element = IMAGE_STAGE.getAttribute("id");
             target_ratio = 16/9;
             $("#background-cropper-submission-controls").fadeIn();
             
-            this_window = background_crop;
-    } else if (type === "mobile-background") {
-            element = 'background-image-input';
+            this_window = wide_crop;
+    } else if (type === "p-rect") {
+            element = IMAGE_STAGE.getAttribute("id");
             target_ratio = 9/19.5;
-            this_element = ".yb-cropper-container.background"
+            this_element = ".yb-cropper-container.p-rect"
             $("#background-cropper-submission-controls").fadeIn();
-            this_window = background_crop;
+            this_window = wide_crop;
             
             if (background.style.opacity === "0"){
                 $("#bg-image").animate({"opacity": "1"}, "slow");
             }
-    } 
+    }
     console.log(element)
-    var input = document.getElementById(element);
-    console.log(input)
-    var file = input.files[0];
+    // var input = document.getElementById(element);
+    // console.log(input)
+    // var file = input.files[0];
+    var file = IMAGE_STAGE.src;
     var reader = new FileReader();
     console.log(this_window)
     reader.onload = function(e) {

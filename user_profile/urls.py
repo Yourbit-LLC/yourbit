@@ -23,6 +23,7 @@ urlpatterns = [
         path('templates/customize-html/', TemplateView.as_view(template_name = 'user_profile/customize_main.html')),
         path('templates/customize-html-profile/', TemplateView.as_view(template_name='user_profile/customize_profile.html')),
         path('templates/customize-html-profile-splash/', TemplateView.as_view(template_name='user_profile/yb-profile-editable.html')),
+        path('templates/customize-html-square-image-crop/', TemplateView.as_view(template_name='user_profile/profile_image_crop.html')),
         path('templates/customize-html-profile-image/', TemplateView.as_view(template_name='user_profile/profile_image_edit.html')),
         path('templates/customize-html-select-image/', TemplateView.as_view(template_name='user_profile/photo_grid_selector.html')),
         path('templates/connections-html/', TemplateView.as_view(template_name='user_profile/connections.html')),

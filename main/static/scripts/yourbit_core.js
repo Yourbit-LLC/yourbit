@@ -165,6 +165,7 @@ function hideCreateBit() {
     $('#cb-divider').hide();
 }
 
+
 function yb_handle_quarter_card_option(callback) {
     let card_element = document.getElementById('yb-temporary-card');
     card_element.classList.remove('in');
@@ -173,6 +174,7 @@ function yb_handle_quarter_card_option(callback) {
     setTimeout(function(){card_element.remove()}, 300);
 }
 
+//Hide quarter card
 function yb_hide_quarter_card() {
     let card_element = document.getElementById('yb-temporary-card');
     card_element.classList.remove('in');
@@ -181,15 +183,7 @@ function yb_hide_quarter_card() {
     
 }
 
-//Function to stage files across pages
-function yb_stageFile(type, file){
-    if (type === "image") {
-        IMAGE_STAGE.setAttribute("src", file);
-    } else if (type === "video") {
-        VIDEO_STAGE.setAttribute("src", file)
-    }
-}
-
+//List type quarter card
 function yb_quarter_card_list(title, options) {
     let card = yb_createElement('div', 'yb-temporary-card', 'yb-card-quarter in');
     let card_title = yb_createElement('div', 'quarter-card-title', 'quarter-card-title');
@@ -234,6 +228,8 @@ function yb_quarter_card_list(title, options) {
     document.body.appendChild(card);
 }
 
+
+//Grid type quarter card
 function yb_quarter_card_grid(title, options) {
     let card = yb_createElement('div', 'yb-temporary-card', 'yb-card-quarter in');
     let card_title = yb_createElement('div', 'quarter-card-title', 'quarter-card-title');
@@ -256,6 +252,15 @@ function yb_quarter_card_grid(title, options) {
         }
     }
 
+}
+
+//Function to stage files across pages
+function yb_stageFile(type, file){
+    if (type === "image") {
+        IMAGE_STAGE.setAttribute("src", file);
+    } else if (type === "video") {
+        VIDEO_STAGE.setAttribute("src", file)
+    }
 }
 
 

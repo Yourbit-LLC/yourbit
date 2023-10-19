@@ -422,6 +422,20 @@ function select_image_grid_url(){
     
 }
 
+function avatar_crop_url(){
+    try {
+        yb_purgeScripts(yb_clearContainer);
+    } catch (error) {
+        console.log(error);
+    }
+    console.log("function");
+    
+    $("#content-container").load(`${base_url}/profile/templates/customize-html-profile-image-crop/`);
+    yb_setSessionValues("location","square-cropper");
+    history.pushState({}, "", `/profile/customize/profile/image/crop/`);
+    
+}
+
 //profile info
 function settings_profile_url(data){
     $("#content-container").html('');
@@ -690,6 +704,9 @@ function yb_navigateTo(destination, data=null) {
     } else if (destination === "stuff") {
         yb_updatePageTask("stuff");
         stuff_url();
-    } 
+    } else if (destination === "avatar-crop") {
+        yb_updatePageTask("square-crop");
+        avatar_crop_url();
+    }
 
 }
