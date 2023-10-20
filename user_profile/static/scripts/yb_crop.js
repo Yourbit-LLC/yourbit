@@ -28,7 +28,7 @@ function previewImage(type, method) {
     } else if (type === "ls-rect") {
         // Similar logic for other cases
     }
-    let image = document.getElementById("preview-image"); // Get the image element
+    let image = document.getElementById("square-image-preview"); // Get the image element
 
     // Check if a file was selected
     if (method === "upload") {
