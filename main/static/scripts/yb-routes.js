@@ -664,7 +664,7 @@ function yb_navigateTo(destination, data=null) {
     } else if (current_location === "customize-profile") {
         if (destination !== "avatar-crop") {
             $("#mobile-logo").fadeIn();
-            $("#header-edit-text").remove();
+            $("#edit-header-text").remove();
         }
     }
 
