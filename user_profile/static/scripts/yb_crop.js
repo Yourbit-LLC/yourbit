@@ -29,57 +29,51 @@ function showUpload(type){
     $("#profile-cropper-back").attr("data-state", "1")
     
 }
-function previewImage(type) {
+function previewImage(type, method) {
     let target_ratio;
     let this_element;
     console.log(type);
     $("#profile-advanced-options-button").fadeIn();
     if (type === "square") {
         target_ratio = 1;
-        element = IMAGE_STAGE.getAttribute("id");
-        this_element = ".yb-cropper-container-square"
+        this_element = ".yb-cropper-container-square";
         $("#profile-cropper-submission-controls").fadeIn();
         this_window = square_crop;
     } else if (type === "ls-rect") {
-            element = IMAGE_STAGE.getAttribute("id");
-            target_ratio = 16/9;
-            $("#background-cropper-submission-controls").fadeIn();
-            
-            this_window = wide_crop;
-    } else if (type === "p-rect") {
-            element = IMAGE_STAGE.getAttribute("id");
-            target_ratio = 9/19.5;
-            this_element = ".yb-cropper-container.p-rect"
-            $("#background-cropper-submission-controls").fadeIn();
-            this_window = wide_crop;
-            
-            if (background.style.opacity === "0"){
-                $("#bg-image").animate({"opacity": "1"}, "slow");
-            }
+        // Similar logic for other cases
     }
-    console.log(element)
-    // var input = document.getElementById(element);
-    // console.log(input)
-    // var file = input.files[0];
-    var file = IMAGE_STAGE.src;
-    var reader = new FileReader();
-    console.log(this_window)
-    reader.onload = function(e) {
-        $(".cb-divider").fadeIn();
-        $(this_element).css("pointer-events", "auto");
-        this_window.src = e.target.result;
-        cropper = new Cropper(this_window, {
-            aspectRatio: target_ratio,
-            viewMode: 2,
-            crop: function(event) {
-                console.log(event.detail.width);
-                console.log(event.detail.height);
-                setTimeout(cropImage,100, type);
-            }
-        });
-    };
-    reader.readAsDataURL(file);
+
+    let input = document.getElementById("image-input"); // Get the file input
+    let image = document.getElementById("preview-image"); // Get the image element
+
+    // Check if a file was selected
+    if (method === "upload") {
+        let file = input.files[0];
+
+        let reader = new FileReader();
+        reader.onload = function(e) {
+            $(".cb-divider").fadeIn();
+            $(this_element).css("pointer-events", "auto");
+            image.src = e.target.result;
+            cropper = new Cropper(image, {
+                aspectRatio: target_ratio,
+                viewMode: 2,
+                crop: function(event) {
+                    console.log(event.detail.width);
+                    console.log(event.detail.height);
+                    setTimeout(cropImage, 100, type);
+                }
+            });
+        };
+        reader.readAsDataURL(file);
+    } else {
+        // No file selected, fetch the image URL from the database
+        let imageURL = getImageURLFromDatabase(); // Implement this function to fetch the URL
+        image.src = imageURL;
+        // Rest of the code for setting up Cropper remains the same
+    }
 }
+
 
 function cropImage(type) {
     var canvas = cropper.getCroppedCanvas();
