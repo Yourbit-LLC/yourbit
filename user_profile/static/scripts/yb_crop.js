@@ -86,7 +86,7 @@ function previewImage(type, method) {
 
 function cropImage(type) {
     var canvas = cropper.getCroppedCanvas();
-    if (type === "profile-image"){
+    if (type === "square"){
         preview2.src = canvas.toDataURL();
     } else {
         try {
