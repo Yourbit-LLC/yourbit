@@ -73,7 +73,7 @@ function previewImage(type, method) {
                 crop: function(event) {
                     console.log(event.detail.width);
                     console.log(event.detail.height);
-                    cropImage();
+                    cropImage(type);
                 }
             });
         })
