@@ -708,7 +708,6 @@ function yb_navigateTo(destination, data=null) {
         yb_updatePageTask("stuff");
         stuff_url();
     } else if (destination === "avatar-crop") {
-        yb_updatePageTask("square-crop");
         avatar_crop_url();
     }
 

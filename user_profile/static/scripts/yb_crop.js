@@ -2,7 +2,7 @@
 
 $(document).ready(function(){
     let location = yb_getSessionValues("location");
-    if (location === "square-crop"){
+    if (location === "square-cropper"){
         previewImage("square");
     };
     
