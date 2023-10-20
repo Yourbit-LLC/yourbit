@@ -2,6 +2,8 @@
     Get CSRF function for use in making requests
 */
 
+const FILE_UPLOAD_FIELD = document.getElementById("file-upload");
+
 var yb_scripts = {
     "home" : "/static/scripts/yb-home.js/",
     "profile": "/static/scripts/yb-profiles.js/",

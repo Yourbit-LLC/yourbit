@@ -1,7 +1,6 @@
 
 
 $(document).ready(function(){
-    showUpload("profile-image");
     let location = yb_getSessionValues("location");
     if (location === "square-crop"){
         previewImage("square");
@@ -16,19 +15,6 @@ var background_container = document.getElementById("background-container");
 var background = document.getElementById("bg-image");
 var select_button = document.getElementById("select-button");
 
-function showUpload(type){
-    $("#profile-cropper-select-button").hide();
-    $("#profile-cropper-back").fadeIn();
-    if (type === 'profile-image'){
-        $("#profile-image-input").fadeIn();
-        $("#profile-upload-button").hide();
-    } else {
-        $("#background-image-input").fadeIn();
-        $("#background-upload-button").hide();
-    }
-    $("#profile-cropper-back").attr("data-state", "1")
-    
-}
 function previewImage(type, method) {
     let target_ratio;
     let this_element;
@@ -42,12 +28,11 @@ function previewImage(type, method) {
     } else if (type === "ls-rect") {
         // Similar logic for other cases
     }
-
-    let input = document.getElementById("image-input"); // Get the file input
     let image = document.getElementById("preview-image"); // Get the image element
 
     // Check if a file was selected
     if (method === "upload") {
+        let input = FILE_UPLOAD_FIELD; // Get the input element
         let file = input.files[0];
 
         let reader = new FileReader();
@@ -68,7 +53,7 @@ function previewImage(type, method) {
         reader.readAsDataURL(file);
     } else {
         // No file selected, fetch the image URL from the database
-        let imageURL = getImageURLFromDatabase(); // Implement this function to fetch the URL
+        let imageURL = IMAGE_STAGE.getAttribute("src") // Implement this function to fetch the URL
         image.src = imageURL;
         // Rest of the code for setting up Cropper remains the same
     }

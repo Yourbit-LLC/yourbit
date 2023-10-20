@@ -599,8 +599,15 @@ lang="en"
                 </div>
 
 
+                
+                
+                <input type="file" id="upload-image" name="upload-image" accept="image/*" style="display:none;">
+                <input type="file" id="upload-video" name="upload-video" accept="video/*" style="display:none;">
+                <input type="file" id="upload-audio" name="upload-audio" accept="audio/*" style="display:none;">
+                
+
                 <!--Block for various page content within base page-->
-            
+
                 {% block current_url %}
                 {% endblock %}
                 {% block content %}
@@ -609,6 +616,7 @@ lang="en"
                 <div class = "yb-loading-indicator-core-container" id="yb-loading-core" style="display:none;">
                     <div class = "loading-circle-large"></div>
                 </div>
+                
                 
                 
 
@@ -623,7 +631,7 @@ lang="en"
                     </div>  
             {% endif %}
 
-            
+         
             
         
 
