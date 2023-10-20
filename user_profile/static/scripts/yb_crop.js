@@ -40,7 +40,7 @@ function previewImage(type, method) {
     } else {
         // No file selected, fetch the image URL from the database
         file = IMAGE_STAGE.getAttribute("src") // Implement this function to fetch the URL
-        image.src = imageURL;
+        image.src = file;
         // Rest of the code for setting up Cropper remains the same
     }
 
