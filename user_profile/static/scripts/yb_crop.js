@@ -34,33 +34,53 @@ function previewImage(type, method) {
     if (method === "upload") {
         let input = FILE_UPLOAD_FIELD; // Get the input element
         file = input.files[0];
-
+        let reader = new FileReader();
+        reader.onload = function(e) {
+            $(".cb-divider").fadeIn();
+            $(this_element).css("pointer-events", "auto");
+            image.src = e.target.result;
+            cropper = new Cropper(image, {
+                aspectRatio: target_ratio,
+                viewMode: 2,
+                crop: function(event) {
+                    console.log(event.detail.width);
+                    console.log(event.detail.height);
+                    setTimeout(cropImage, 100, type);
+                }
+            });
+        };
+    
+        reader.readAsDataURL(file);
 
         
     } else {
         // No file selected, fetch the image URL from the database
-        file = IMAGE_STAGE.getAttribute("src") // Implement this function to fetch the URL
-        image.src = file;
+        imageURL = IMAGE_STAGE.getAttribute("src") // Implement this function to fetch the URL
+        image.src = imageURL;
         // Rest of the code for setting up Cropper remains the same
-    }
+        // Fetch the image data and convert it to a Blob
+        fetch(imageURL)
+        .then(response => response.blob())
+        .then(blob => {
+            // Create an Object URL from the Blob
+            let blobUrl = URL.createObjectURL(blob);
+            image.src = blobUrl;
 
-    let reader = new FileReader();
-    reader.onload = function(e) {
-        $(".cb-divider").fadeIn();
-        $(this_element).css("pointer-events", "auto");
-        image.src = e.target.result;
-        cropper = new Cropper(image, {
-            aspectRatio: target_ratio,
-            viewMode: 2,
-            crop: function(event) {
-                console.log(event.detail.width);
-                console.log(event.detail.height);
-                setTimeout(cropImage, 100, type);
-            }
+            // Rest of the code for setting up Cropper remains the same
+            cropper = new Cropper(image, {
+                aspectRatio: target_ratio,
+                viewMode: 2,
+                crop: function(event) {
+                    console.log(event.detail.width);
+                    console.log(event.detail.height);
+                    setTimeout(cropImage, 100, type);
+                }
+            });
+        })
+        .catch(error => {
+            console.error("Error fetching and converting the image:", error);
         });
-    };
-
-    reader.readAsDataURL(file);
+    }
 }
 
 
