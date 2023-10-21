@@ -10,8 +10,8 @@ function yb_quarter_card_custom(title, options) {
 
     let card_options = yb_createElement('div', 'quarter-card-options', 'quarter-card-options');
 
-    let h_option_container = yb_createElement("div", "yb-color-option-container", "yb-option-grid vsplit");
-    let v_option_container = yb_createElement("div", "yb-button-option-container", "yb-option-grid hsplit");
+    let h_option_container = yb_createElement("div", "yb-color-option-container", "yb-option-grid hsplit");
+    let v_option_container = yb_createElement("div", "yb-button-option-container", "yb-option-grid vsplit");
     let this_option; 
 
     for (let key in options) {

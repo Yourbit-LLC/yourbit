@@ -310,7 +310,7 @@ Profile Page
 .yb-color-option-wrapper {
     position: relative;
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 2fr 1fr;
     color: white;
     width: 50px;
     margin-left: auto;
