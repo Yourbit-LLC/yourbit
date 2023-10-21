@@ -265,6 +265,20 @@ Refer to the interactive codex for current style guidelines for Yourbit*/
     margin-bottom: 5px;
     margin-top: 5px;
 
+
+    
+}
+
+.yb-grid-option-label  {
+    position: relative;
+    display: block;
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    
 }
 
 
