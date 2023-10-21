@@ -246,6 +246,24 @@ Refer to the interactive codex for current style guidelines for Yourbit*/
     transform: translate(-50%, -50%);
 }
 
+.yb-option-grid.vsplit {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+
+.yb-option-grid.hsplit {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+
+}
+
+
 @media screen and (min-width: 700px) {
 /*
 -- Universal --
