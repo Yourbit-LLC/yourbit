@@ -20,27 +20,35 @@ $('#back-to-home').click(function() {
 
 function yb_handleEditName() {
     let these_options = {
-        "Border": {
-            "function": versatile_test,
+        "name-color": {
+            "label": "Name Color",
+            "function": updateCustom, 
             "type": "color",
             "position": "horizontal"
-        },
-        "Name": {
+        }, 
+        "username-color": {
+            "label": "Username Color",
+            "function": updateCustom, 
+            "type": "color",
+            "position": "horizontal"
+        }, 
+        "change-name": {
+            "label": "Change Name",
             "function": versatile_test, 
             "type": "button",
-            "action": "Change",
             "position": "vertical"
         },
-        "Username": {
+        "change-username": {
+            "label": "Change Username",
             "function":versatile_test,
             "type": "button",
             "action": "Change",
             "position": "vertical"
         },
-        "Cancel": {
+        "cancel": {
+            "label": "Cancel",
             "function": versatile_test,
             "type": "button",
-            "action":"",
             "position": "vertical"
         }
     };
@@ -51,29 +59,34 @@ function yb_handleEditName() {
 
 function yb_handleEditBio() {
     let these_options = {
-        "Motto": {
+        "motto-color": {
+            "label": "Motto Color",
             "function": versatile_test, 
             "type": "color",
             "position": "horizontal"
         }, 
-        "Bio": {
+        "bio-color": {
+            "label": "Bio Color",
             "action" : versatile_test, 
             "type": "color",
             "position": "horizontal"
         },
-        "Motto": {
+        "change-motto": {
+            "label": "Change Motto",
             "function": versatile_test,
             "type": "button",
             "action": "Change",
             "position": "vertical"
         },
-        "Bio": {
+        "change-bio": {
+            "label": "Change Bio",
             "function": versatile_test,
             "type": "button",
             "action": "Change",
             "position": "vertical"
         },
-        "Cancel": {
+        "cancel": {
+            "label": "Cancel",
             "function": versatile_test,
             "type": "button",
             "action":"",
@@ -89,23 +102,27 @@ function yb_handleEditBio() {
 function yb_handleEditProfileImage() {
     let these_options = {
         "Border": {
+            "label": "Border Color",
             "function": versatile_test,
             "type": "color",
             "position": "horizontal"
         },
         "Upload": {
+            "label": "Upload New",
             "function": versatile_test,
             "type": "button",
             "action": "New",
             "position": "vertical"
         }, 
         "Library": {
+            "label": "Choose from Library",
             "function": select_image_grid_url,
             "type": "button",
             "action": "Choose from",
             "position": "vertical"
         }, 
         "Cancel": {
+            "label": "Cancel",
             "function": versatile_test,
             "type": "button",
             "action":"",

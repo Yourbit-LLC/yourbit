@@ -29,16 +29,12 @@ function yb_quarter_card_custom(title, options) {
             option.appendChild(icon);
             
             let label = yb_createElement("p", `${lowkey}-option-label`, "yb-grid-option-label");
-            label.innerHTML = `${key} Color`;
+            label.innerHTML = this_option.label;
             option.appendChild(label);
 
             h_option_container.appendChild(option);
 
         }  else {
-            let lowaction = this_option.action.toLowerCase();
-            let label = yb_createElement("p", `${lowkey}-option-label`, "yb-grid-option-label");
-            label.innerHTML = `${this_option.action} ${key}`;
-            
 
             let option = yb_createElement('div', 
             `'card-option-${lowkey}`, 
@@ -49,12 +45,12 @@ function yb_quarter_card_custom(title, options) {
                 "style", 
                 "margin-left: auto; margin-right: auto; text-align: center; background-color: rgba(50,50,50,0.4); line-height: 1.8; height: 32px;"
             );
-            option.setAttribute('data-action', `${lowaction}_${lowkey}`);
+            option.setAttribute('data-action', `${lowkey}`);
 
-            option.innerHTML = key;
+            option.innerHTML = this_option.label;
             
 
-            if (key==='Cancel') {
+            if (key==='cancel') {
                 option.style.color = 'red';
                 option.style.borderColor = 'red';
                 option.addEventListener('click', function() {
