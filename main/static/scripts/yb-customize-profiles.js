@@ -45,6 +45,7 @@ function yb_handleEditName() {
         "Cancel": {
             "function": versatile_test,
             "type": "button",
+            "action":"",
             "position": "vertical"
         }
     };
