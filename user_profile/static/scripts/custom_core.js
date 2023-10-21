@@ -17,7 +17,7 @@ function yb_quarter_card_custom(title, options) {
         let lowkey = key.toLowerCase();
         
         let this_option = options[key];
-        let lowaction = this_option.action.toLowerCase();
+        
         if (this_option.type = "color") {
             
             let icon = yb_createInput(type, `${lowkey}-color-circle`, "color-circle");
@@ -26,7 +26,7 @@ function yb_quarter_card_custom(title, options) {
             h_option_container.appendChild(icon);
 
         }  else {
-            
+            let lowaction = this_option.action.toLowerCase();
             let label = yb_createElement("p", `${lowkey}-option-label`, "yb-grid-option-label");
             label.innerHTML = `${this_option.action} ${key}`;
             v_option_container.appendChild(icon);
