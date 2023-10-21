@@ -29,7 +29,7 @@ function yb_quarter_card_custom(title, options) {
             let lowaction = this_option.action.toLowerCase();
             let label = yb_createElement("p", `${lowkey}-option-label`, "yb-grid-option-label");
             label.innerHTML = `${this_option.action} ${key}`;
-            v_option_container.appendChild(icon);
+            
 
             let option = yb_createElement('div', 
             `'card-option-${lowkey}`, 
@@ -43,7 +43,7 @@ function yb_quarter_card_custom(title, options) {
             option.setAttribute('data-action', `${lowaction}_${lowkey}`);
 
             option.innerHTML = key;
-            card_options.appendChild(option);
+            
 
             if (key==='Cancel') {
                 option.style.color = 'red';
@@ -57,8 +57,15 @@ function yb_quarter_card_custom(title, options) {
                     yb_handle_quarter_card_option(options[key].function)
                 });
             }
+
+            v_option_container.appendChild(option);
+
+
         }
     }
+
+    card_options.appendChild(h_option_container);
+    card_options.appendChild(v_option_container);
 
     card.appendChild(card_options);
     
