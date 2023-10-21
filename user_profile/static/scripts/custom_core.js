@@ -13,13 +13,13 @@ function yb_quarter_card_custom(title, options) {
     let h_option_container = yb_createElement("div", "yb-color-option-container", "yb-option-grid vsplit");
     let v_option_container = yb_createElement("div", "yb-button-option-container", "yb-option-grid hsplit");
     let this_option; 
-    
+
     for (let key in options) {
         let lowkey = key.toLowerCase();
         
         this_option = options[key];
         
-        if (this_option.type = "color") {
+        if (this_option.type === "color") {
             
             let icon = yb_createInput(this_option.type, `${lowkey}-color-circle`, "color-circle");
             let label = yb_createElement("p", `${lowkey}-option-label`, "yb-grid-option-label");
