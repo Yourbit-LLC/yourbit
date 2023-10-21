@@ -158,7 +158,8 @@ $(document).ready(function() {
     //Editing Profile Bio
     let profile_bio_option = document.getElementById("profile-bio-container");
     //Event listener for profile bio container
-    profile_bio_option = document.getElementById("profile-bio-container");
+    profile_bio_option.addEventListener("click", yb_handleEditBio);
+    
 
     //Set swipe up element
     let swipe_up_element = document.getElementById("swipe-up-element");
