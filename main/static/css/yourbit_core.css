@@ -251,6 +251,8 @@ Refer to the interactive codex for current style guidelines for Yourbit*/
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin-bottom: 5px;
+    margin-top: 5px;
     
 }
 
@@ -260,6 +262,8 @@ Refer to the interactive codex for current style guidelines for Yourbit*/
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+    margin-bottom: 5px;
+    margin-top: 5px;
 
 }
 
