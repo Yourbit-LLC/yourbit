@@ -60,4 +60,8 @@ function yb_quarter_card_custom(title, options) {
         }
     }
 
+    card.appendChild(card_options);
+    
+    document.body.appendChild(card);
+
 }
