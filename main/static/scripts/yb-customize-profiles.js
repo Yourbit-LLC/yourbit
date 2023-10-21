@@ -20,16 +20,11 @@ $('#back-to-home').click(function() {
 
 function yb_handleEditName() {
     let these_options = {
-        "Name": {
-            "function": updateCustom, 
+        "Border": {
+            "function": versatile_test,
             "type": "color",
             "position": "horizontal"
-        }, 
-        "Username": {
-            "function": updateCustom, 
-            "type": "color",
-            "position": "horizontal"
-        }, 
+        },
         "Name": {
             "function": versatile_test, 
             "type": "button",
@@ -159,7 +154,7 @@ $(document).ready(function() {
     let profile_bio_option = document.getElementById("profile-bio-container");
     //Event listener for profile bio container
     profile_bio_option.addEventListener("click", yb_handleEditBio);
-    
+
 
     //Set swipe up element
     let swipe_up_element = document.getElementById("swipe-up-element");
