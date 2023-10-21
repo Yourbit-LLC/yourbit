@@ -20,69 +20,104 @@ $('#back-to-home').click(function() {
 
 function yb_handleEditName() {
     let these_options = {
-        "Name Color": {
-            "action": updateCustom, 
-            "type": "color"
+        "Name": {
+            "function": updateCustom, 
+            "type": "color",
+            "position": "horizontal"
         }, 
-        "Username Color": {
-            "action": updateCustom, 
-            "type": "color"
+        "Username": {
+            "function": updateCustom, 
+            "type": "color",
+            "position": "horizontal"
         }, 
-        "Edit Name": {
-            "action": versatile_test, 
-            "type": "text"
+        "Name": {
+            "function": versatile_test, 
+            "type": "button",
+            "action": "Change",
+            "position": "vertical"
         },
-        "Edit Username": {
-            "action":versatile_test,
-            "type": "text"
+        "Username": {
+            "function":versatile_test,
+            "type": "button",
+            "action": "Change",
+            "position": "vertical"
         },
         "Cancel": {
-            "action": versatile_test,
-            "type": "command"
+            "function": versatile_test,
+            "type": "button",
+            "position": "vertical"
         }
     };
 
-    yb_quarter_card_grid("Edit Name Block", these_options);
+    yb_quarter_card_custom("Edit Name Block", these_options);
 
 }
 
 function yb_handleEditBio() {
     let these_options = {
-        "Motto Color": {
-            "action": versatile_test, 
-            "type": color
+        "Motto": {
+            "function": versatile_test, 
+            "type": "color",
+            "position": "horizontal"
         }, 
-        "Bio Color": {
+        "Bio": {
             "action" : versatile_test, 
-            "type": "color"
+            "type": "color",
+            "position": "horizontal"
         },
-        "Change Motto": {
-            "action": versatile_test,
-            "type": "text"
+        "Motto": {
+            "function": versatile_test,
+            "type": "button",
+            "action": "Change",
+            "position": "vertical"
         },
-        "Change Bio": {
-            "action": versatile_test,
-            "type": "text"
+        "Bio": {
+            "function": versatile_test,
+            "type": "button",
+            "action": "Change",
+            "position": "vertical"
         },
         "Cancel": {
-            "action": versatile_test,
-            "type": "command"
+            "function": versatile_test,
+            "type": "button",
+            "action":"",
+            "position": "vertical"
         }
     };
 
-    yb_quarter_card_grid("Edit Bio Block", these_options);
+    yb_quarter_card_custom("Edit Bio Block", these_options);
     
 
 }
 
 function yb_handleEditProfileImage() {
     let these_options = {
-        "Upload New": versatile_test, 
-        "From Library": select_image_grid_url, 
-        "Cancel": versatile_test,
+        "Border": {
+            "function": versatile_test,
+            "type": "color",
+            "position": "horizontal"
+        },
+        "Upload": {
+            "function": versatile_test,
+            "type": "button",
+            "action": "New",
+            "position": "vertical"
+        }, 
+        "Library": {
+            "function": select_image_grid_url,
+            "type": "button",
+            "action": "Choose from",
+            "position": "vertical"
+        }, 
+        "Cancel": {
+            "function": versatile_test,
+            "type": "button",
+            "action":"",
+            "position": "vertical"
+        }
     };
     
-    yb_quarter_card_list("Upload Image", these_options);
+    yb_quarter_card_custom("Profile Image", these_options);
 }
 
 $(document).ready(function() {

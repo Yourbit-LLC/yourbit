@@ -721,4 +721,20 @@
         transform: translate(-50%, -50%);
     }
 
+    .yb-option-grid.vsplit {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        
+    }
+
+    .yb-option-grid.hsplit {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+    }
+
 }
