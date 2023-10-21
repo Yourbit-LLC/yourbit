@@ -20,11 +20,19 @@ function yb_quarter_card_custom(title, options) {
         this_option = options[key];
         
         if (this_option.type === "color") {
-            
+            let option = yb_createElement('div',
+            'color-option-' + lowkey,
+            'yb-color-option-wrapper'
+            );
+
             let icon = yb_createInput(this_option.type, `${lowkey}-color-circle`, "color-circle");
+            option.appendChild(icon);
+            
             let label = yb_createElement("p", `${lowkey}-option-label`, "yb-grid-option-label");
             label.innerHTML = `${key} Color`;
-            h_option_container.appendChild(icon);
+            option.appendChild(label);
+
+            h_option_container.appendChild(option);
 
         }  else {
             let lowaction = this_option.action.toLowerCase();

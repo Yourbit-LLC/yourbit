@@ -737,4 +737,11 @@
 
     }
 
+    .yb-color-option-wrapper {
+        position: relative;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        color: white;
+    }
+
 }
