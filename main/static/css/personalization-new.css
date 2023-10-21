@@ -734,6 +734,7 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        width: 100%;
 
     }
 
@@ -742,6 +743,9 @@
         display: grid;
         grid-template-columns: 2fr 1fr;
         color: white;
+        width: 50px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
 }
