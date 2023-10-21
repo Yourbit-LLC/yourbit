@@ -312,7 +312,8 @@ Profile Page
     display: grid;
     grid-template-rows: 2fr 1fr;
     color: white;
-    width: 50px;
+    width: 150px;
+    height: 50px;
     margin-left: auto;
     margin-right: auto;
 }
