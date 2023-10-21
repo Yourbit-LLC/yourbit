@@ -20,7 +20,7 @@ function yb_quarter_card_custom(title, options) {
         
         if (this_option.type = "color") {
             
-            let icon = yb_createInput(type, `${lowkey}-color-circle`, "color-circle");
+            let icon = yb_createInput(this_option.type, `${lowkey}-color-circle`, "color-circle");
             let label = yb_createElement("p", `${lowkey}-option-label`, "yb-grid-option-label");
             label.innerHTML = `${key} Color`;
             h_option_container.appendChild(icon);
