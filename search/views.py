@@ -178,3 +178,45 @@ def get_trending_stickers(request):
     data = response.json()
     return JsonResponse(data)
 
+def get_trending_gifs(request):
+    headers = {
+    'api_key': giphy_api_key,
+    "limit": "40",
+    "offset": "0"
+    }
+    url = 'https://api.giphy.com/v1/gifs/trending'
+
+    response = requests.get( url, headers )
+
+    data = response.json()
+    return JsonResponse(data)
+
+#Sticker search function with giphy api
+def sticker_search(request):
+    headers = {
+    'api_key': giphy_api_key,
+    "limit": "40",
+    "offset": "0"
+    }
+    query = request.GET.get('query')
+    url = 'https://api.giphy.com/v1/stickers/search?q=' + query
+
+    response = requests.get( url, headers )
+
+    data = response.json()
+    return JsonResponse(data)
+
+#Gif search function with giphy api
+def gif_search(request):
+    headers = {
+    'api_key': giphy_api_key,
+    "limit": "40",
+    "offset": "0"
+    }
+    query = request.GET.get('query')
+    url = 'https://api.giphy.com/v1/gifs/search?q=' + query
+
+    response = requests.get( url, headers )
+
+    data = response.json()
+    return JsonResponse(data)
