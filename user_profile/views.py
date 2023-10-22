@@ -25,8 +25,13 @@ from .models import *
 from .forms import *
 from settings.models import PrivacySettings
 
+#initialize environment variables
+import environ
+env = environ.Env()
+environ.Env.read_env()
 
-openai.api_key = "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"
+
+openai.api_key = env('OPENAI_API_KEY')
 
 ##################################################################################################################
 
@@ -108,8 +113,6 @@ def generate_xlarge_thumbnail(request, source_file):
     inmemory_uploaded_file = InMemoryUploadedFile(xthumb_io, None, this_filename, 'image/png', xthumb_io.tell(), None)
     
     return inmemory_uploaded_file
-
-
 
 #Profile Page
 class ProfileView(View):

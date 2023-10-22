@@ -44,4 +44,5 @@ urlpatterns = [
         path('stuff/', MyStuff.as_view(), name="stuff"),
         path('visibility/', QuickVisibility.as_view(), name="get-visibility"),
         path('<str:username>/', ProfileView.as_view(), name="view-profile"),
+        
 ]

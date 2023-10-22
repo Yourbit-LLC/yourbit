@@ -6,6 +6,17 @@ from user_profile.models import Profile, Bit
 from feed.models import Comment
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 
+import requests
+
+
+#initialize environment variables
+import environ
+env = environ.Env()
+environ.Env.read_env()
+
+
+giphy_api_key = env('GIPHY_API_KEY')
+
 # Create your views here.
 
 class SearchResults(View):
@@ -154,4 +165,16 @@ class ContextSearch(View):
 
 
         
+def get_trending_stickers(request):
+    headers = {
+    'api_key': giphy_api_key,
+    "limit": "40",
+    "offset": "0"
+    }
+    url = 'https://api.giphy.com/v1/stickers/trending'
+
+    response = requests.get( url, headers )
+
+    data = response.json()
+    return data
 
