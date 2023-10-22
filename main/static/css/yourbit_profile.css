@@ -326,3 +326,12 @@ Profile Page
     margin: auto;
 }
 
+#additional-options {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    bottom: 25vh;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    grid-gap: 5px;
+}
