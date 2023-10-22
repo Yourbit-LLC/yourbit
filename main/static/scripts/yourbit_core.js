@@ -143,7 +143,7 @@ function versatile_test() {
 function raiseCreateBit(callback){
     let create_bit = document.getElementById('create-bit-mobile');
     create_bit.style.transition = '0.5s';
-    create_bit.style.transform = 'translate(-50%, -90vh)';
+    create_bit.style.transform = 'translateY(-100vh)';
     setTimeout(callback, 500);
 }
 

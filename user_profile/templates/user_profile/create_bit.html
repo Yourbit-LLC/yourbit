@@ -1,2 +1,45 @@
-<!--New dedicated create bit page-->
+{% extends 'social/base.html' %}
 {% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/create_bit_yourbit.css' %}"/>
+
+    <div id="content-container">
+        <h2>Create Bit</h2>
+        <p>Advanced Settings</p>
+        <!--Universal bit options-->
+        <input type="text" class="single-line-input" id="cb-title">
+        <input type="text" class="multi-line-input" id="cb-body">
+        {% if create_type == 'chat' %}
+            <!--Advanced options for only create chat bits-->
+            <input type="text" name="cb-align-text" list="alignments">
+            <datalist id="alignments">
+                <option value="left">
+                <option value="center">
+                <option value="right">
+            </datalist>
+        {% if create_type == 'video' %}
+            <!--Advanced options for only create video bits-->
+            <input type='file' class="file-field" id="cb-video-field">
+            <input type='text' class="single-line-input" id="cb-meta-field">
+
+        {% if create_type == 'photo' %}
+            <!--Advanced options for only create photo bits-->
+            <input type='file' class='file-field'>
+            <input type='text' class="single-line-input" id="cb-meta-field">
+        {% endif %}
+            <!--Personalization override options-->
+            <p>Customizations</p>            
+            <input type='color' class='color-field' id="cb-background">
+            <input type='color' class='color-field' id='cb-title-color'>
+            <input type='color' class='color-field' id='cb-paragraph-color'>
+            <input type='text' class='dropdown-list' id='cb-fonts'>
+            <datalist id="fonts">
+                {% for font in installed_fonts %}
+                    <option value={{font}}>
+                {% endfor %}
+
+            </datalist>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+{% endblock %}
