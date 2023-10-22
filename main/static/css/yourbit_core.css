@@ -2462,21 +2462,19 @@ only be used for object transforms (shaping and scaling)
     .yb-card {
         visibility: hidden;
         top: 100vh;
-        width: 95vw;
-        height: 80vh;
+        width: 100vw;
+        height: 100vh;
         position: fixed;
         z-index: 25;
         background-color: rgba(0, 0, 0, 0.0);
         -webkit-backdrop-filter: blur(40px) brightness(175%);
         display: inline-table;
         backdrop-filter: blur(40px) brightness(175%);
-        left: 50%;
-        transform: translate(-50%, 0);
+        left: 0;
         box-shadow: -1px -1px 10px black;
         text-align: center;
         color: white;
         transition: 0.5s;
-        border-radius: 20px;
         overflow-x: hidden;
     }
     
