@@ -544,7 +544,6 @@ $(".button-support").click(function(){
 
 function yb_closeCard(){
     $("#general-ui-container").animate({"top": "100vh"}, 25);
-    $("#general-ui-container").animate({"height": "80vh"}, 25);
     $(".general-container").remove();
     $("#cb-divider").fadeOut();
 }
