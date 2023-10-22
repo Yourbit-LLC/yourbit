@@ -194,7 +194,7 @@ $(".menu-widget").click(function() {
         $("#general-ui-container").show();
         $("#cb-divider").fadeIn();
         $("#general-ui-container").css("visibility", "visible");
-        $("#general-ui-container").animate({"top": "10vh"}, 500);
+        $("#general-ui-container").animate({"top": "0vh"}, 300);
         yb_BuildNotificationContainer(widget_name);
     }
 

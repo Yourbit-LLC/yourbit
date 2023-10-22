@@ -253,7 +253,7 @@ $(".button-support").click(function(){
     let ui_container = document.getElementById("general-ui-container");
     $("#general-ui-container").css({"display": "block"});
     $("#general-ui-container").css({"visibility": "visible"});
-    $("#general-ui-container").animate({"top": "10vh"});
+    $("#general-ui-container").animate({"top": "0vh"});
     let support_container = yb_createElement("div", "support-container", "general-container");
     let support_title = yb_createElement("div", "support-title", "general-title");
     let support_title_text = yb_createElement("h3", "support-title-text", "general-title-text");
