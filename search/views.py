@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from .models import *
 from user_profile.models import Profile, Bit
 from feed.models import Comment
@@ -176,5 +176,5 @@ def get_trending_stickers(request):
     response = requests.get( url, headers )
 
     data = response.json()
-    return data
+    return HttpResponse(data)
 
