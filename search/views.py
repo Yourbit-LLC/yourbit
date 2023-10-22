@@ -176,5 +176,5 @@ def get_trending_stickers(request):
     response = requests.get( url, headers )
 
     data = response.json()
-    return HttpResponse(data)
+    return JsonResponse(data)
 
