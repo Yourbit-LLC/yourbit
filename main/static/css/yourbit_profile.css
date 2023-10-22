@@ -335,3 +335,11 @@ Profile Page
     transform: translate(-50%, 0%);
     grid-gap: 5px;
 }
+
+.mini-button-icon {
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

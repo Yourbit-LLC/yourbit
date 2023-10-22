@@ -184,13 +184,15 @@ Refer to the interactive codex for current style guidelines for Yourbit*/
   }
 
   .yb-circle-button {
+    position: relative;
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 50%;
   }
 
   .yb-circle-button.mini {
-    height: 28px;
-    width: 28px;
+    height: 30px;
+    width: 30px;
+    padding: 2px 2px 2px 2px;
 
   }
   
