@@ -58,62 +58,6 @@ class Group(models.Model):
 
 #Models for bits and attachments below
 #For Media Attachments see Below Bit
-class Bit(models.Model):
-    
-    #Model for a Bit: A post on Yourbit
-    profile = models.ForeignKey(
-        'Profile', related_name="bits", on_delete=models.CASCADE, default=None
-    )
-
-    user = models.ForeignKey(
-        User, related_name="bits", on_delete=models.CASCADE, default=None
-    )
-    to_users = models.ManyToManyField(
-        User,  blank=True, related_name='mentioned'
-    )
-    
-    has_title = models.BooleanField(default=False)
-    title = models.CharField(max_length=140, blank=True)
-    video = models.ManyToManyField('Video', related_name='videos', blank=True)
-
-    photos = models.ManyToManyField('Photo', related_name='photos', blank=True)
-    body = models.CharField(max_length=5000)
-    time = models.DateTimeField(default=timezone.localtime)
-    type = models.CharField(max_length=20, default="chat")
-
-    likes = models.ManyToManyField(User, blank=True, related_name='likes')
-    like_count = models.IntegerField(default=0)
-    dislikes = models.ManyToManyField(User, blank=True, related_name='dislikes')
-    dislike_count = models.IntegerField(default=0)
-    shares = models.ManyToManyField(User, blank=True,related_name="shares")
-    share_count = models.IntegerField(default=0)
-    comment_count = models.IntegerField(default = 0)
-
-    #View Counts track the total amount of times a bit has been within the viewport for longer than 1.5s
-    view_count = models.IntegerField(default = 0)
-
-    #New Views track the amount of non-repeat views of this bit
-    new_views = models.IntegerField(default=0)
-
-    #Options booleans
-    is_public = models.BooleanField(default=False)
-    is_tips = models.BooleanField(default=False)
-    is_title =models.CharField(max_length=10, default='none')
-
-    #Links and widgets
-    contains_video_link = models.BooleanField(default=False)
-    contains_news_link = models.BooleanField(default=False)
-    contains_web_link = models.BooleanField(default=False)
-    extend_widget = models.CharField(max_length = 1000, blank=True)
-    video_widget = models.CharField(max_length = 1000, blank=True)
-    custom = models.ForeignKey('Custom', on_delete=models.CASCADE, default=None)
-
-    def __str__(self):
-        return (
-            f"{self.user}"
-            f"({self.time: %Y-%m-%d %H:%M}): "
-            f"{self.body[:30]}..."
-        )
 
 #Bit media attachments
 class Photo(models.Model):
@@ -196,19 +140,6 @@ class Custom(models.Model):
     sync_text_colors = models.BooleanField(default=False)
     sync_primary_colors = models.BooleanField(default=False)
     sync_accent_colors = models.BooleanField(default=False)
-
-
-
-class CustomBit(models.Model):
-    #bits
-    custom = models.ForeignKey(Custom, on_delete=models.CASCADE, default=None, related_name="bit")
-    primary_color = models.CharField(max_length=50, default = "#4b4b4b")
-    title_color = models.CharField(max_length=50, default="#ffffff")
-    text_color = models.CharField(max_length=50, default="#ffffff")
-    feedback_icon_color = models.CharField(max_length=50, default="#000000")
-    feedback_background_color = models.CharField(max_length=50, default="#ffffff")
-    paragraph_align = models.CharField(max_length=10, default = 'left')
-    comment_text_color = models.CharField(max_length=50, default="#ffffff")
 
 class ProfilePageCustom(models.Model):
     custom = models.ForeignKey(Custom, on_delete=models.CASCADE, default=None, related_name="profile_page_custom")
@@ -423,3 +354,71 @@ class ProfilePageSticker(models.Model):
     created = models.DateTimeField(default=timezone.now)
 
 
+class CustomBit(models.Model):
+    #bits
+    custom = models.ForeignKey(Custom, on_delete=models.CASCADE, default=None, related_name="bit")
+    primary_color = models.CharField(max_length=50, default = "#4b4b4b")
+    title_color = models.CharField(max_length=50, default="#ffffff")
+    text_color = models.CharField(max_length=50, default="#ffffff")
+    feedback_icon_color = models.CharField(max_length=50, default="#000000")
+    feedback_background_color = models.CharField(max_length=50, default="#ffffff")
+    paragraph_align = models.CharField(max_length=10, default = 'left')
+    comment_text_color = models.CharField(max_length=50, default="#ffffff")
+
+
+class Bit(models.Model):
+    
+    #Model for a Bit: A post on Yourbit
+    profile = models.ForeignKey(
+        'Profile', related_name="bits", on_delete=models.CASCADE, default=None
+    )
+
+    user = models.ForeignKey(
+        User, related_name="bits", on_delete=models.CASCADE, default=None
+    )
+    to_users = models.ManyToManyField(
+        User,  blank=True, related_name='mentioned'
+    )
+    
+    has_title = models.BooleanField(default=False)
+    title = models.CharField(max_length=140, blank=True)
+    video = models.ManyToManyField('Video', related_name='videos', blank=True)
+
+    photos = models.ManyToManyField('Photo', related_name='photos', blank=True)
+    body = models.CharField(max_length=5000)
+    time = models.DateTimeField(default=timezone.localtime)
+    type = models.CharField(max_length=20, default="chat")
+
+    likes = models.ManyToManyField(User, blank=True, related_name='likes')
+    like_count = models.IntegerField(default=0)
+    dislikes = models.ManyToManyField(User, blank=True, related_name='dislikes')
+    dislike_count = models.IntegerField(default=0)
+    shares = models.ManyToManyField(User, blank=True,related_name="shares")
+    share_count = models.IntegerField(default=0)
+    comment_count = models.IntegerField(default = 0)
+
+    #View Counts track the total amount of times a bit has been within the viewport for longer than 1.5s
+    view_count = models.IntegerField(default = 0)
+
+    #New Views track the amount of non-repeat views of this bit
+    new_views = models.IntegerField(default=0)
+
+    #Options booleans
+    is_public = models.BooleanField(default=False)
+    is_tips = models.BooleanField(default=False)
+    is_title =models.CharField(max_length=10, default='none')
+
+    #Links and widgets
+    contains_video_link = models.BooleanField(default=False)
+    contains_news_link = models.BooleanField(default=False)
+    contains_web_link = models.BooleanField(default=False)
+    extend_widget = models.CharField(max_length = 1000, blank=True)
+    video_widget = models.CharField(max_length = 1000, blank=True)
+    custom = models.ForeignKey(CustomBit, on_delete=models.CASCADE, default=None, related_name="user_custom")
+
+    def __str__(self):
+        return (
+            f"{self.user}"
+            f"({self.time: %Y-%m-%d %H:%M}): "
+            f"{self.body[:30]}..."
+        )
