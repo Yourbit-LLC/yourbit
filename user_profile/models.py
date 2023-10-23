@@ -229,18 +229,6 @@ class ProfileSplashCustom(models.Model):
     button_border_style = models.CharField(max_length=50, default="solid")
     button_border_color = models.CharField(max_length=50, default="#ffffff")
 
-
-class Continuum(models.Model):
-    user = models.OneToOneField(User, related_name = "continuum", on_delete=models.DO_NOTHING, blank=True)
-    profile = models.OneToOneField('Profile', related_name='continuum', blank=True, on_delete=models.CASCADE)
-    
-    title = models.CharField(max_length=100, default="Untitled Continuum")
-
-    bits = models.ManyToManyField(Bit, related_name = "continuum", blank=True)
-    created = models.DateTimeField(default=timezone.now)
-    updated = models.DateTimeField(default=timezone.now)
-    subscribers = models.ManyToManyField(User, related_name = "subscribed_users", blank=True)
-
 class UserProfileInfo(models.Model):
     profile = models.OneToOneField('Profile', related_name='user_profile_info', blank=True, on_delete=models.CASCADE)
 
@@ -422,3 +410,15 @@ class Bit(models.Model):
             f"({self.time: %Y-%m-%d %H:%M}): "
             f"{self.body[:30]}..."
         )
+
+
+class Continuum(models.Model):
+    user = models.OneToOneField(User, related_name = "continuum", on_delete=models.DO_NOTHING, blank=True)
+    profile = models.OneToOneField('Profile', related_name='continuum', blank=True, on_delete=models.CASCADE)
+    
+    title = models.CharField(max_length=100, default="Untitled Continuum")
+
+    bits = models.ManyToManyField(Bit, related_name = "continuum", blank=True)
+    created = models.DateTimeField(default=timezone.now)
+    updated = models.DateTimeField(default=timezone.now)
+    subscribers = models.ManyToManyField(User, related_name = "subscribed_users", blank=True)
