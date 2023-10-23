@@ -33,6 +33,7 @@ class Message(models.Model):
     sender_custom = models.ForeignKey('user_profile.Custom', on_delete=models.CASCADE, related_name="+")
     is_read = models.BooleanField(default=False)
 
+
 class GroupMessage(models.Model):
     sender = models.ForeignKey(User, related_name='group_message_to', on_delete=models.CASCADE, null=True)
     body = models.CharField(max_length = 1500)
@@ -51,3 +52,21 @@ class GroupConversation(models.Model):
     time_modified = models.DateTimeField(default=timezone.now)
     is_public = models.BooleanField(default=False)
     
+class ChatSticker(models.Model):
+    conversation = models.ForeignKey('Conversation', related_name='profile_splash_sticker', blank=True, on_delete=models.CASCADE)
+    group_conversation = models.ForeignKey('GroupConversation', related_name='profile_splash_sticker', blank=True, on_delete=models.CASCADE)
+    sticker = models.CharField(max_length=150, default="")
+    x = models.IntegerField(default=0)
+    y = models.IntegerField(default=0)
+    width = models.IntegerField(default=0)
+    height = models.IntegerField(default=0)
+    rotation = models.IntegerField(default=0)
+    z_index = models.IntegerField(default=0)
+    animation = models.CharField(max_length=100, default="static")
+    loop_animation = models.BooleanField(default=False)
+    animation_delay = models.IntegerField(default=0)
+    animation_duration = models.IntegerField(default=0)
+    
+    created = models.DateTimeField(default=timezone.now)
+
+

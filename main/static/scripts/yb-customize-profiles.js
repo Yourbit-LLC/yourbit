@@ -172,7 +172,10 @@ $(document).ready(function() {
     //Event listener for profile bio container
     profile_bio_option.addEventListener("click", yb_handleEditBio);
 
-
+    let add_sticker = document.getElementById("add-sticker");
+    //Event listener for add sticker
+    add_sticker.addEventListener("click", select_sticker_grid_url);
+    
     //Set swipe up element
     let swipe_up_element = document.getElementById("swipe-up-element");
 
