@@ -34,8 +34,8 @@ def Customization(request):
         #Custom Models
         custom_interface = custom.interface
         custom_splash = custom.profile_splash
-        custom_page = custom.profile_page
-        custom_bit = custom.bit
+        custom_page = custom.profile_page_custom
+        custom_bit = custom.custom_bit
         custom_menu = custom.menu
 
         #Background Settings
