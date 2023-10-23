@@ -2499,7 +2499,6 @@ only be used for object transforms (shaping and scaling)
       bottom: 0px;
       background-color: black;
       transform: translate(0, 100%);
-      border-radius: 20px;
       z-index: 1000;
       
       padding: 5px 5px 5px 5px;
