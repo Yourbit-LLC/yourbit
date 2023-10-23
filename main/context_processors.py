@@ -31,18 +31,18 @@ def Customization(request):
         user_image_small = custom.image_thumbnail_small
         user_image_large = custom.image_thumbnail_large
 
-        #UI Settings
-        accent_color = custom.accent_color
-        icon_color = custom.icon_color
-        feedback_icon_color = custom.feedback_icon_color
-        background_color = custom.background_color
-        feedback_background_color = custom.feedback_background_color
+        #Custom Models
+        custom_interface = custom.interface
+        custom_splash = custom.profile_splash
+        custom_page = custom.profile_page
+        custom_bit = custom.bit
+        custom_menu = custom.menu
+
+        #Background Settings
         background_blur = custom.background_blur
         background_brightness = custom.background_brightness
+
         #Community customization
-        bit_background = custom.primary_color
-        title_color = custom.title_color
-        text_color = custom.text_color
         is_new_user = custom.is_new_user
         flat_mode_on = custom.flat_mode_on
 
@@ -52,19 +52,17 @@ def Customization(request):
             wallpaper = custom.background_mobile.url
         user_colors_on = custom.user_colors_on
         default_theme_on = custom.default_theme_on
+
         return {
             'wallpaper_on': wallpaper_on,
             'user_image': user_image,
-            'accent_color':accent_color,
-            'icon_color':icon_color,
-            'feedback_icon_color':feedback_icon_color,
-            'background_color':background_color,
-            'bit_background' : bit_background,
-            'title_color':title_color,
-            'text_color':text_color,
             'user_colors_on':user_colors_on,
             'default_theme_on':default_theme_on,
-            'feedback_background_color':feedback_background_color,
+            'custom_interface':custom_interface,
+            'custom_splash':custom_splash,
+            'custom_page':custom_page,
+            'custom_bit':custom_bit,
+            'custom_menu':custom_menu,
             'user_wallpaper':wallpaper,
             'user_image_small':user_image_small,
             'user_image_large':user_image_large,

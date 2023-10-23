@@ -201,7 +201,7 @@ class Custom(models.Model):
 
 class BitCustom(models.Model):
     #bits
-    custom = models.ForeignKey('Custom', on_delete=models.CASCADE, default=None)
+    custom = models.ForeignKey(Custom, on_delete=models.CASCADE, default=None, related_name="bit")
     primary_color = models.CharField(max_length=50, default = "#4b4b4b")
     title_color = models.CharField(max_length=50, default="#ffffff")
     text_color = models.CharField(max_length=50, default="#ffffff")
@@ -220,7 +220,7 @@ class ProfilePageCustom(models.Model):
     button_text_color = models.CharField(max_length=50, default="#ffffff")
 
 class MainMenuCustom(models.Model):
-    custom = models.ForeignKey(Custom, on_delete=models.CASCADE, default=None)
+    custom = models.ForeignKey(Custom, on_delete=models.CASCADE, default=None, related_name = "menu")
     primary_color = models.CharField(max_length=50, default = "#4b4b4b")
     title_color = models.CharField(max_length=50, default="#ffffff")
     text_color = models.CharField(max_length=50, default="#ffffff")
@@ -249,8 +249,8 @@ class MainMenuCustom(models.Model):
     
     
 class UICustom(models.Model):
-    custom = models.ForeignKey(Custom, on_delete=models.CASCADE, default=None)
-    background_color = models.CharField(max_length=50, default="#323232")
+    custom = models.ForeignKey(Custom, on_delete=models.CASCADE, default=None, related_name = "interface")
+    primary_color = models.CharField(max_length=50, default="#323232")
     accent_color = models.CharField(max_length=50, default="#ffffff")
     icon_color = models.CharField(max_length=50, default="#ffffff")
     ui_theme_mode = models.CharField(max_length=50, default="dark")

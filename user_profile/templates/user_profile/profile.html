@@ -7,15 +7,15 @@
     <div id="profile-splash-label" class = "space-splash-label profile">
         <img src="{{profile.custom.image_thumbnail_large.url}}" class="large-profile-image" id="profile-image-splash" style="height: 0px; width: 0px; border-color:{{profile.custom.accent_color}};"/>
         <div class="profile-name-splash" id="profile-name-splash">
-            <h2 id="profile-name-header" style="color:{{profile.custom.title_color}};" class="profile-name-header">{{profile_user.first_name}} {{profile_user.last_name}}</h2>
-            <b style = "margin: 0px;" id="profile-handle-label" style="color:{{profile.custom.text_color}};" class="profile-handle-label">
+            <h2 id="profile-name-header" style="color:{{profile.custom.profile_splash.name_font_color}};" class="profile-name-header">{{profile_user.first_name}} {{profile_user.last_name}}</h2>
+            <b style = "margin: 0px;" id="profile-handle-label" style="color:{{profile.custom.profile_splash.username_font_color}};" class="profile-handle-label">
                 <small>@{{profile_user.username}}</small>
             </b>
         </div>
 
 
         <div id="profile-interaction-container" class="profile-interaction-container">
-            <button style="color: {{profile.custom.title_color}}; background-color: {{profile.custom.primary_color}};" id="profile-button-connect" class="button-profile-interaction" data-id = "{{profile.id}}">
+            <button style="color: {{profile.custom.profile_splash.button_text_color}}; background-color: {{profile.custom.profile_splash.button_color}};" id="profile-button-connect" class="button-profile-interaction" data-id = "{{profile.id}}">
                 
                 {% if request.user.id == profile.user.id %}
                     <span>Edit</span>
@@ -30,7 +30,7 @@
     
             </button>
     
-            <button style="color: {{profile.custom.title_color}}; background-color: {{profile.custom.primary_color}};" id="profile-button-message" class="button-profile-interaction" data-id="{{profile.id}}">
+            <button style="color: {{profile.custom.profile_splash.button_text_color}}; background-color: {{profile.custom.custom.profile_splash.button_color}};" id="profile-button-message" class="button-profile-interaction" data-id="{{profile.id}}">
                 {% if request.user.id == profile.user.id %}
                     <span>Messages</span>
                 {% else %}
@@ -38,15 +38,15 @@
                 {% endif %}
             </button>
     
-            <button style="color: {{profile.custom.title_color}}; background-color: {{profile.custom.primary_color}};" id="profile-button-about" class="button-profile-interaction">
+            <button style="color: {{profile.custom.profile_splash.button_text_color}}; background-color: {{profile.custom.profile_splash.button_color}};" id="profile-button-about" class="button-profile-interaction">
                 <span>About</span>
             </button>
         </div>
         <div id="profile-bio-container" class="splash-bio-container">
-            <h3 id="profile-motto" style="color: {{profile.custom.title_color}};" class="profile-motto">
+            <h3 id="profile-motto" style="color: {{profile.custom.profile_splash.title_color}};" class="profile-motto">
                 {{profile.motto}}
             </h3>
-            <p id="profile-bio" style="color:{{profile.custom.text_color}};" class="splash-bio">
+            <p id="profile-bio" style="color:{{profile.custom.profile_splash.text_color}};" class="splash-bio">
                 {{profile.user_bio}}
             </p>
         </div>
@@ -56,12 +56,12 @@
         <div id="profile-loading" class="loading-circle-detailed">
 
         </div>
-        <p id="load-indicator-label" class="loading-circle-label" style="color: {{profile.custom.text_color}};">loading bitstream...</p>
+        <p id="load-indicator-label" class="loading-circle-label" style="color: {{profile.custom.profile_splash.primary_color}};">loading bitstream...</p>
     </div>
     
     <div id="swipe-up-element"  style="display:none;" class="swipe-up-element bobbing-object">
-        <svg id="swipe-up-icon" class='swipe-up-icon' xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path style="fill:{{profile.custom.text_color}}" d="M14.15 30.75 12 28.6l12-12 12 11.95-2.15 2.15L24 20.85Z"/></svg>
-        <p style = "color: {{profile.custom.text_color}};" class = "swipe-up-text" id="swipe-up-text">Slide up for bitstream</p>
+        <svg id="swipe-up-icon" class='swipe-up-icon' xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path style="fill:{{profile.custom.profile_splash.primary_color}}" d="M14.15 30.75 12 28.6l12-12 12 11.95-2.15 2.15L24 20.85Z"/></svg>
+        <p style = "color: {{profile.custom.profile_splash.primary_color}};" class = "swipe-up-text" id="swipe-up-text">Slide up for bitstream</p>
 
     </div>
 
