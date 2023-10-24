@@ -402,7 +402,7 @@ class Bit(models.Model):
     contains_web_link = models.BooleanField(default=False)
     extend_widget = models.CharField(max_length = 1000, blank=True)
     video_widget = models.CharField(max_length = 1000, blank=True)
-    custom = models.ForeignKey(Custom, on_delete=models.CASCADE, default=None, related_name="user_custom")
+    custom = models.ForeignKey(CustomBit, on_delete=models.CASCADE, default=None, related_name="user_custom")
 
     def __str__(self):
         return (
