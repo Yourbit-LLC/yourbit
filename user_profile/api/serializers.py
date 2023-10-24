@@ -4,12 +4,6 @@ from ..models import *
 import pytz
 from datetime import datetime
 
-
-class CustomBitSerializer(serializers.ModelSerializer):
-    custom = CustomResultSerializer(many=False, read_only=True)
-    class Meta:
-        model = CustomBit
-        fields = '__all__'
         
 class PhotoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -49,10 +43,14 @@ class CustomResultSerializer(serializers.ModelSerializer):
             'image',
             'image_thumbnail_large',
             'image_thumbnail_small',
-            'primary_color',
-            'accent_color',
-            'title_color'
+         
         ]
+        
+class CustomBitSerializer(serializers.ModelSerializer):
+    custom = CustomResultSerializer(many=False, read_only=True)
+    class Meta:
+        model = CustomBit
+        fields = '__all__'
 
 class CustomizeSerializer(serializers.ModelSerializer):
     class Meta:
