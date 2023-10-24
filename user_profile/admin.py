@@ -1,5 +1,5 @@
 from django.contrib import admin
-from user_profile.models import Profile, Bit, Photo, Custom, UserProfileInfo, Cluster
+from user_profile.models import Profile, CustomBit, Bit, Photo, Custom, UserProfileInfo, Cluster
 # Register your models here.
 
 admin.site.register(Profile)
