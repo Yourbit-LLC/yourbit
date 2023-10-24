@@ -6,22 +6,11 @@ from datetime import datetime
 
 
 class CustomBitSerializer(serializers.ModelSerializer):
-
+    custom = CustomResultSerializer(many=False, read_only=True)
     class Meta:
-        model = Custom
-        fields = [
-            'image',
-            'image_thumbnail_large',
-            'image_thumbnail_small',
-            'primary_color', 
-            'accent_color',
-            'title_color', 
-            'text_color',
-            'feedback_icon_color',
-            'feedback_background_color',
-            'paragraph_align',
-
-        ]
+        model = CustomBit
+        fields = '__all__'
+        
 class PhotoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Photo
