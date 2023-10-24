@@ -142,7 +142,7 @@ function BuildBit(bit, liked_bits, disliked_bits){
     let images = custom.custom;
 
     //Profile Image
-    let profile_image = custom.image_thumbnail_small;
+    let profile_image = images.image_thumbnail_small;
 
     //colors
     let primary_color = custom.primary_color;
