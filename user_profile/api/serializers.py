@@ -16,25 +16,7 @@ class BitIDSerializer(serializers.ModelSerializer):
         fields = [
             'id',
         ]
-class BitSerializer(serializers.ModelSerializer):
-    user = UserResultSerializer(many=False, read_only = True)
-    custom = CustomBitSerializer(many = False, read_only = True)
-    photos = PhotoSerializer(many=True, read_only=True)
-    # time =  serializers.DateTimeField(format="%B %d, %Y / @%I:%M %p")
-    
-    class Meta:
-        model = Bit
-        fields = '__all__'
 
-    def to_representation(self, instance):
-        ret = super().to_representation(instance)
-        user_tz_str = self.context.get('user_tz')
-        this_time = instance.time
-        user_tz = pytz.timezone(user_tz_str)
-        if user_tz:
-            created_at = this_time.astimezone(user_tz)
-            ret['time'] = created_at.strftime("%B %d, %Y / @%I:%M %p")
-        return ret
 
 class CustomResultSerializer(serializers.ModelSerializer):
     class Meta:
@@ -85,4 +67,24 @@ class ClusterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cluster
         fields = '__all__'
+        
+class BitSerializer(serializers.ModelSerializer):
+    user = UserResultSerializer(many=False, read_only = True)
+    custom = CustomBitSerializer(many = False, read_only = True)
+    photos = PhotoSerializer(many=True, read_only=True)
+    # time =  serializers.DateTimeField(format="%B %d, %Y / @%I:%M %p")
+    
+    class Meta:
+        model = Bit
+        fields = '__all__'
+
+    def to_representation(self, instance):
+        ret = super().to_representation(instance)
+        user_tz_str = self.context.get('user_tz')
+        this_time = instance.time
+        user_tz = pytz.timezone(user_tz_str)
+        if user_tz:
+            created_at = this_time.astimezone(user_tz)
+            ret['time'] = created_at.strftime("%B %d, %Y / @%I:%M %p")
+        return ret
 
