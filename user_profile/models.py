@@ -344,7 +344,7 @@ class ProfilePageSticker(models.Model):
 
 class CustomBit(models.Model):
     #bits
-    custom = models.ForeignKey(Custom, on_delete=models.CASCADE, default=None, related_name="custom_bit")
+    images = models.ForeignKey(Custom, on_delete=models.CASCADE, default=None, related_name="custom_bit")
     primary_color = models.CharField(max_length=50, default = "#4b4b4b")
     title_color = models.CharField(max_length=50, default="#ffffff")
     text_color = models.CharField(max_length=50, default="#ffffff")
