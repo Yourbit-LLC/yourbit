@@ -1,0 +1,42 @@
+{% load static %}
+
+<div class="yb-header-snapCard">
+    <h4>{{user.profile.tasks.last_video}}</h4>
+    <div class="yb-close-button" id="yb-close-snapCard">
+    </div>
+</div>
+<div class = "yb-content-snapCard">
+    <div class="yb-snapCard-video" id="snapcard-video-container">
+
+    </div>
+    <div id="snapCard-video-controls">
+        
+        <!--Previous Video-->
+        
+            <div class="yb-snapCard-previousVideo yb-playerButton" id="snapCard-video-controls-left-button" name="previous">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path style="fill:white;" d="M220-240v-480h60v480h-60Zm520 0L394-480l346-240v480Zm-60-240Zm0 125v-250L499-480l181 125Z"/></svg>
+            </div>
+        
+        
+        <!--Play/Pause-->
+        
+            <div class="yb-snapCard-playVideo yb-playerButton" id="snapCard-video-controls-center-button" name="play">
+                <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32"><path style="fill:white;" d="M366-232q-15 10-30.5 1T320-258v-450q0-18 15.5-27t30.5 1l354 226q14 9 14 25t-14 25L366-232Z"/></svg>
+            </div>
+        
+
+        <!--Next Video-->
+        
+            <div class="yb-snapCard-nextVideo yb-playerButton" id="snapCard-video-controls-right-button" name="next">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path style="fill:white;" d="M680-240v-480h60v480h-60Zm-460 0v-480l346 240-346 240Zm60-240Zm0 125 181-125-181-125v250Z"/></svg>
+            </div>
+        
+        
+    
+    </div>
+
+    <button class="yb-button-flex">Go to Video</button>
+
+</div>
+
+<script src="{% static 'scripts/snapcards/yb_videoSnap.js' %}"></script>

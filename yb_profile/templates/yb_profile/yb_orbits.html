@@ -1,0 +1,50 @@
+{% load static %}
+<div id='div-header' style='position: relative; display: grid; grid-template-columns: 5fr 1fr; margin-left: auto; margin-right: auto; width: 100%; height: 40px; margin-bottom: 20px;' >
+    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb">Orbits</h3>
+    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('orbits');">&times;</div>
+</div>
+
+<div id="inbox-header" style="height: 40px; scrollbar-width: none; display:grid; grid-template-columns: 4fr 1fr; column-gap: 20px; overflow-x: scroll;" class="yb-hScroll yb-fillWidth yb-relative">
+    <div id="filter-container" class="yb-flexRow yb-fillWidth yb-gap5 yb-margin-L5">
+        <button class="yb-button-wide active medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb" name="following">Following</button>
+        <button class="yb-button-wide medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb" name = "top">Top</button>
+        <button class="yb-button-wide medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb" name="trending">Trending</button>
+        <button class="yb-button-wide medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb" name="recent">Recent</button>
+
+    </div>
+</div>
+
+<div id="connection-list" class="yb-fillWidth">
+    {% if connections %}
+        {% for connection in connections %}
+            <p class="yb-autoText">Connection</p>
+        {% endfor %}
+    {% else %}
+        <div class="yb-fillWidth yb-center-margin yb-margin-T30 yb-margin-B10">
+            <h3 class="yb-autoText align-center yb-margin-T10">No connections found</h3>
+        </div>
+        <br>
+        <button id="find-connections-orbits" class="yb-button-flex bg-gray-dark font-gray yb-button-halfWidth">+  Find Orbits</button>
+        <script>
+    
+            document.getElementById("find-connections-orbits").addEventListener("click", function(){
+                yb_toggle2WayContainer('orbits');
+                SEARCH_FIELD.focus();
+                yb_openSpotlight("orbits");
+                setTimeout(function(){
+                    SEARCH_CONTAINER.classList.add("yb-pulseSmall");
+                }, 400);
+                
+                setTimeout(function(){
+                    SEARCH_CONTAINER.classList.remove("yb-pulseSmall");
+                }, 1000);
+            });
+        </script>
+    {% endif %}
+
+</div>
+
+<script src="{% static 'scripts/yb_profile/yb_orbits.js' %}"></script>
+<div class="yb-logo-footer small" id="orbits-menu-footer" style="position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%);">
+    <img src="{% static 'images/main/yourbit-logo2023-01.svg' %}" style="width: 100%; position: relative;" alt="YB Logo" class="yb-logo-small">
+</div>

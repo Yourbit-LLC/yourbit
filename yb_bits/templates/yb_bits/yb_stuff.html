@@ -1,0 +1,26 @@
+{% load static %}
+<div id='div-header' style='position: relative; display: grid; grid-template-columns: 5fr 1fr; margin-left: auto; margin-right: auto; width: 100%; height: 40px; margin-bottom: 20px;' >
+    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb">My Stuff</h3>
+    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('stuff');">&times;</div>
+</div>
+
+<div id="inbox-header" style="height: 40px; display:grid; scrollbar-width: none; grid-template-columns: 4fr 1fr; column-gap: 20px; overflow-x: scroll;" class="yb-hScroll yb-fillWidth yb-relative">
+    <div id="filter-container" class="yb-flexRow yb-fillWidth yb-gap5 yb-margin-L5">
+        <button class="yb-button-wide active medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb" name = "recent">Recents</button>
+        <button class="yb-button-wide medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb" name="clusters">Clusters</button>
+        <button class="yb-button-wide medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb" name="chatbits">ChatBits</button>
+        <button class="yb-button-wide medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb" name="videobits">VideoBits</button>
+        <button class="yb-button-wide medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb" name="photobits">PhotoBits</button>
+        <button class="yb-button-wide medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb" name="comments">Comments</button>
+
+    </div>
+</div>
+
+<div id="stuff-list" class="yb-fillWidth yb-margin-T30">
+    <p class="yb-autoText font-medium align-center">No Stuff Found</p>
+</div>
+
+
+<div class="yb-logo-footer small" id="create-menu-footer" style="position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%);">
+    <img src="{% static 'images/main/yourbit-logo2023-01.svg' %}" style="width: 100%; position: relative;" alt="YB Logo" class="yb-logo-small">
+</div>

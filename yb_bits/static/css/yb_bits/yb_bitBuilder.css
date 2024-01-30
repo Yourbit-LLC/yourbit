@@ -1,0 +1,12 @@
+.yb-container-addPhoto {
+    position: relative; 
+    background-color: black; 
+    border-radius: 10px;  
+    width: 100%;
+    padding-bottom: 100%;
+
+}
+
+.yb-builderBit:focus {
+    outline: none;
+}

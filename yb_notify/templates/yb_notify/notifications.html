@@ -1,0 +1,62 @@
+{% load static %}
+<div id='div-header' style='position: relative; display: grid; grid-template-columns: 5fr 1fr; margin-left: auto; margin-right: auto; width: 100%; height: 40px; margin-bottom: 20px;' >
+    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb">Notifications</h3>
+    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('notifications')">&times;</div>
+</div>
+<div id="notify-button-container" class="yb-fullWidth yb-flexRow yb-gap5 yb-margin-L5 yb-margin-R5">
+    <button class="yb-button-wide tiny-wide bg-gray-dark yb-autoText yb-center-margin lr rounded active">All</button>
+    <button class="yb-button-wide tiny-wide bg-gray-dark yb-autoText yb-center-margin lr rounded">People</button>
+    <button class="yb-button-wide tiny-wide bg-gray-dark yb-autoText yb-center-margin lr rounded">Messages</button>
+    <button class="yb-button-wide tiny-wide bg-gray-dark yb-autoText yb-center-margin lr rounded">Bits</button>
+</div>
+<div id="notification-list" class="yb-fillWidth">
+    {% if results.count == 0 %}
+        <div class="yb-fillWidth yb-margin-T30 align-center yb-autoText">
+            <p class="font-gray"><b>No notifications</b></p>
+        </div>
+    {% else %}
+    {% for notification in results %}
+        <div id="notification-container-{{notification.id}}" class="yb-fillWidth">
+        <div id="notification-{{notification.id}}" class="
+            yb-listItem notification 
+            {% if notification.has_seen %} 
+            seen 
+            {%else%} 
+            unseen 
+            {% endif %}
+            yb-autoText
+        ">
+            <div id="notification-icon">
+                {% if notification.type == 1 %}
+                <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32">
+                    <path class="yb-autoFill" d="M616.244-527.693q21.832 0 37.025-15.283 15.192-15.282 15.192-37.115 0-21.832-15.283-37.024t-37.115-15.192q-21.832 0-37.024 15.283-15.193 15.282-15.193 37.115 0 21.832 15.283 37.024t37.115 15.192Zm-272.307 0q21.832 0 37.024-15.283 15.193-15.282 15.193-37.115 0-21.832-15.283-37.024t-37.115-15.192q-21.832 0-37.025 15.283-15.192 15.282-15.192 37.115 0 21.832 15.283 37.024t37.115 15.192ZM480-272.309q62.615 0 114.461-35.038T670.922-400H618q-22 37-58.5 58.5T480-320q-43 0-79.5-21.5T342-400h-52.922q24.615 57.615 76.461 92.653Q417.385-272.309 480-272.309Zm.067 172.308q-78.836 0-148.204-29.92-69.369-29.92-120.682-81.21-51.314-51.291-81.247-120.629-29.933-69.337-29.933-148.173t29.92-148.204q29.92-69.369 81.21-120.682 51.291-51.314 120.629-81.247 69.337-29.933 148.173-29.933t148.204 29.92q69.369 29.92 120.682 81.21 51.314 51.291 81.247 120.629 29.933 69.337 29.933 148.173t-29.92 148.204q-29.92 69.369-81.21 120.682-51.291 51.314-120.629 81.247-69.337 29.933-148.173 29.933ZM480-480Zm0 320q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Z"/>
+                </svg>
+                {% endif %}
+            </div>
+            <div id="notification-contents font-medium">
+                <b class="font-small yb-autoText">
+                        {{notification.display_name}} {{notification.title}}
+                </b>
+                <p class="yb-autoText">
+                    {{notification.body}}
+                </p>
+
+                <div class="font-gray" id="notification-time">
+                    <p>{{notification.time}}</p>
+                </div>
+
+            </div>
+
+            <div id="notification-close">
+                <button class="yb-button-close notification" onclick="yb_removeNotification({{notification.id}})">&times;</button>
+            </div>
+        </div>
+    </div>
+    
+    {% endfor %}
+    {% endif %}
+</div>
+
+<div class="yb-logo-footer small" id="create-menu-footer" style="position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%);">
+    <img src="{% static 'images/main/yourbit-logo2023-01.svg' %}" style="width: 100%; position: relative;" alt="YB Logo" class="yb-logo-small">
+</div>

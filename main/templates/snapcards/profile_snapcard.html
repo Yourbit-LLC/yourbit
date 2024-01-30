@@ -1,0 +1,28 @@
+{% load static %}
+
+<div class="yb-header-snapCard">
+    <h4>Recent Profiles</h4>
+    <div class="yb-close-button" id="yb-close-snapCard">
+    </div>
+</div>
+<div class = "yb-content-snapCard">
+    {% for profile in recent_profiles %}
+        <div class="yb-listItem" id="profile-item-{{profile.id}}" data-username="{{profile.user.username}}">
+            <div class="yb-image-thumbnail small">
+                <img src="{{ profile.custom.image_thumbnail_small.url }}" alt="profile pic">
+            </div>
+            <div class="yb-listItem-info">
+                <h4>{{profile.user.first_name}}{{profile.user.last_name}}</h4>
+                <p>@{{ profile.user.username }}</p>
+                <p class="online-status"><div class="yb-dot large"></div>Online</p>
+            </div>
+        </div>
+    {% endfor %}
+
+    <button class="yb-button-flex">My Profile</button>
+
+</div>
+
+<script src="{% static 'scripts/snapcards/yb_profileSnap.js' %}">
+
+</script>

@@ -1,14 +1,9 @@
-from django.urls import path, re_path
-from . import views
-from .views import *
+from django.shortcuts import render
+from django.contrib import admin
+from django.urls import path, include
+from main.views import index, create_menu_template, create_object_template
 
 urlpatterns = [
-    path('get/tasks/current_task/', CurrentTask.as_view(), name='get-current-task'),
-    path('get/tasks/', GetTasks.as_view(), name='get-tasks'),
-    path('tasks/start/', StartTask.as_view(), name='start-task'),
-    path('tasks/end/', EndTask.as_view(), name="end-task"),
-    
-    
-    
-    
+    path("create-menu/", create_menu_template, name="create"),
+    path("create/<str:object>/", create_object_template, name="index")
 ]

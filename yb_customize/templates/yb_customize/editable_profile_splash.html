@@ -1,0 +1,90 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/yb_profile/yb_profile.css' %}"/>
+<style>
+
+</style>
+<div id="profile-page-splash" class="splash-page profile">
+    <div class="grid-overlay">
+    
+    </div>
+    <div id="profile-splash-label" class = "space-splash-label profile">
+        <div class="profile-image-border preview" style="height: 40vw; width: 40vw; border: 2px solid gray;">
+            <img src="{{user_image_large.url}}" class="large-profile-image preview" id="profile-image-splash" style="height: 95%; width: 95%; border-color:{{user.profile.custom.profile_splash.image_border_color}};"/>
+        </div>
+        <div class="profile-name-splash preview" id="profile-name-splash" style="border: 2px solid gray;">
+            <h2 id="profile-name-header" style="color:{{user.profile.custom.profile_splash.title_color}};" class="profile-name-header">{{user.first_name}} {{user.last_name}}</h2>
+            <b id="profile-handle-label" style="color:{{user.profile.custom.profile_splash_text_color}};" class="profile-handle-label">
+                <small>@{{user.username}}</small>
+            </b>
+        </div>
+
+
+        <div id="profile-interaction-container" class="profile-interaction-container preview" style="border: 2px solid gray;">
+            <button style="color: {{user.profile.custom.profile_splash.button_text_color}}; background-color: {{user.profile.profile_splash.button_color}};" id="profile-button-connect" class="button-profile-interaction" data-id = "{{profile.id}}">
+                
+                {% if request.user.id == profile.user.id %}
+                    <span>Edit</span>
+                {% else %}
+                    {% if profile in request.user.profile.following.all or profile in request.user.profile.connections.all %}
+                        <span>Manage</span>
+                    {% else %}
+                        <span>Connect</span>
+                    {% endif %}
+                {% endif %}
+    
+    
+            </button>
+    
+            <button style="color: {{user.profile.custom.profile_splash.button_text_color}}; background-color: {{user.profile.custom.profile_splash.button_color}};" id="profile-button-message" class="button-profile-interaction">
+                {% if request.user.id == profile.user.id %}
+                    <span>Messages</span>
+                {% else %}
+                    <span>Message</span>
+                {% endif %}
+            </button>
+    
+            <button style="color: {{user.profile.custom.profile_splash.button_text_color}}; background-color: {{user.profile.profile_splash.button_color}};" id="profile-button-about" class="button-profile-interaction">
+                <span>About</span>
+            </button>
+        </div>
+        <div id="profile-bio-container" class="splash-bio-container preview" style="border: 2px solid gray;">
+            <h3 id="profile-motto" style="color: {{user.profile.custom.profile_splash.title_color}};" class="profile-motto">
+                {{user.profile.motto}}
+            </h3>
+            <p id="profile-bio" style="color:{{user.profile.custom.profile_splash.text_color}};" class="splash-bio">
+                {{user.profile.user_bio}}
+            </p>
+        </div>
+    </div>
+    <div id="additional-options">
+        <div id="add-sticker" class="yb-circle-button mini">
+            <svg class="mini-button-icon" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  width="24" height="24"
+            viewBox="0 0 512 512" xml:space="preserve">
+    
+            <path d="M264.157,0H256C114.842,0,0,114.842,0,256s114.842,256,256,256s256-114.842,256-256v-8.157L264.157,0z M445.972,237.513
+                c-56.308-1.762-98.861-16.712-126.817-44.667c-27.955-27.955-42.904-70.51-44.666-126.815L445.972,237.513z M256,472.615
+                c-119.442,0-216.615-97.174-216.615-216.615c0-112.413,86.079-205.085,195.78-215.604
+                c-2.527,79.869,16.307,140.464,56.141,180.299c37.481,37.481,93.314,56.384,166.316,56.382c4.586,0,9.261-0.096,13.984-0.247
+                C461.088,386.534,368.414,472.615,256,472.615z"/>
+            </svg>
+        </div>
+        
+        <div id="change-wallpaper" class="yb-circle-button mini">
+            <svg class="mini-button-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M200-120q-33 0-56.5-23.5T120-200v-240h80v240h240v80H200Zm320 0v-80h240v-240h80v240q0 33-23.5 56.5T760-120H520ZM240-280l120-160 90 120 120-160 150 200H240ZM120-520v-240q0-33 23.5-56.5T200-840h240v80H200v240h-80Zm640 0v-240H520v-80h240q33 0 56.5 23.5T840-760v240h-80Zm-140-40q-26 0-43-17t-17-43q0-26 17-43t43-17q26 0 43 17t17 43q0 26-17 43t-43 17Z"/></svg>
+        </div>
+
+    </div>
+
+    
+    <div id="swipe-up-element" class="swipe-up-element bobbing-object">
+        <svg id="swipe-up-icon" class='swipe-up-icon' xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path style="fill:{{user.profile.custom.profile_splash.text_color}}" d="M14.15 30.75 12 28.6l12-12 12 11.95-2.15 2.15L24 20.85Z"/></svg>
+        <p style = "color: {{user.profile.custom.profile_splash.text_color}};" class = "swipe-up-text" id="swipe-up-text">Slide up to Edit Profile</p>
+
+    </div>
+
+</div>
+
+
+<script class="page-script" type="text/javascript" src="{% static 'scripts/FeedManager.js' %}"></script>
+<script class="page-script" id="page-script" type="text/javascript" src="{% static 'scripts/custom_core.js' %}"></script>
+<script class="page-script" id="page-script" type="text/javascript" src="{% static 'scripts/yb-customize-profiles.js' %}"></script>

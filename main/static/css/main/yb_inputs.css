@@ -1,0 +1,24 @@
+.yb-input-singleLine {
+    /*Style*/
+
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    border-color: #4b4b4b;
+    padding: 5px;
+
+    /*Animation*/
+}
+
+.yb-input-select {
+    /*Style*/
+
+    width: 95%;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+
+    /*Animation*/
+}

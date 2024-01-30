@@ -1,0 +1,87 @@
+{% load static %}
+<div id='div-header' style='position: relative; display: grid; grid-template-columns: 5fr 1fr; margin-left: auto; margin-right: auto; width: 100%; height: 40px; margin-bottom: 20px;' >
+    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb">New Message</h3>
+    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('messages-new');">&times;</div>
+</div>
+
+<div id="create-convo-header" style="height: 40px;" class="yb-fillWidth yb-relative">
+    <div id="contact-filter-container" class="yb-fillWidth yb-center-margin all yb-relative yb-flexRow">
+        <input type="hidden" id="selected-contacts" value=""/>
+        <input type="text" id="contact-search-input" class="yb-input-singleLine yb-autoText black narrowBorder squared" style="height: 25px; width: 92%; position: relative; left: 5px; outline: none;" placeholder="Add a recipient"/>
+        <button id="filter-button" class="yb-button-flex transparent yb-autoText tb squared font-medium" style="height: 35px; width:55px;">Done</button>
+    </div>
+</div>
+<div id="filter-container" class="yb-flexRow yb-fillWidth yb-gap5 yb-margin-L5 yb-margin-T10">
+    <button class="yb-button-wide active medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb">Everyone</button>
+    <button class="yb-button-wide medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb">Friends</button>
+    <button class="yb-button-wide medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb">Followers</button>
+    <button class="yb-button-wide medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb">Following</button>
+    <button class="yb-button-wide medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb">Orbits</button>
+
+</div>
+
+<div id="connection-list" class="yb-fillWidth">
+    {% if connections == True %}
+        
+        {% for this_user in results %}
+        <div id="user-{{this_user.username}}" class="
+            yb-listItem user
+            yb-autoText
+        "> 
+            <div id="user-avatar">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32">
+                    <path class="yb-autoFill" d="M616.244-527.693q21.832 0 37.025-15.283 15.192-15.282 15.192-37.115 0-21.832-15.283-37.024t-37.115-15.192q-21.832 0-37.024 15.283-15.193 15.282-15.193 37.115 0 21.832 15.283 37.024t37.115 15.192Zm-272.307 0q21.832 0 37.024-15.283 15.193-15.282 15.193-37.115 0-21.832-15.283-37.024t-37.115-15.192q-21.832 0-37.025 15.283-15.192 15.282-15.192 37.115 0 21.832 15.283 37.024t37.115 15.192ZM480-272.309q62.615 0 114.461-35.038T670.922-400H618q-22 37-58.5 58.5T480-320q-43 0-79.5-21.5T342-400h-52.922q24.615 57.615 76.461 92.653Q417.385-272.309 480-272.309Zm.067 172.308q-78.836 0-148.204-29.92-69.369-29.92-120.682-81.21-51.314-51.291-81.247-120.629-29.933-69.337-29.933-148.173t29.92-148.204q29.92-69.369 81.21-120.682 51.291-51.314 120.629-81.247 69.337-29.933 148.173-29.933t148.204 29.92q69.369 29.92 120.682 81.21 51.314 51.291 81.247 120.629 29.933 69.337 29.933 148.173t-29.92 148.204q-29.92 69.369-81.21 120.682-51.291 51.314-120.629 81.247-69.337 29.933-148.173 29.933ZM480-480Zm0 320q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Z"/>
+                </svg>
+                
+            </div>
+
+            <div id="user-info" class="yb-fillWidth">
+                <div id="user-status" class="yb-fillWidth yb-autoText">
+                    {{this_user.first_name}} {{this_user.last_name}}
+                </div>
+                <br>
+                <div id="user-name" class="yb-fillWidth yb-autoText">
+                    {{this_user.username}}
+                </div>
+
+            </div>
+
+            <div id="user-action" class="yb-fillWidth">
+                <button class="yb-button-flex small circle">+</button>
+            </div>
+
+
+        </div>
+    
+        {% endfor %}
+    {% else %}
+        <div class="yb-fillWidth">
+            <div class="yb-autoText">
+                <br>
+                <p class="align-center yb-margin-T10">No contacts yet</p>
+                <br>
+                <button id="find-connections-messages" class="yb-button-flex bg-gray-dark font-gray yb-button-halfWidth">+  Find People</button>
+                <script>
+
+                    document.getElementById("find-connections-messages").addEventListener("click", function(){
+                        yb_toggle2WayContainer('messages-new');
+                        SEARCH_FIELD.focus();
+                        yb_openSpotlight();
+                        setTimeout(function(){
+                            SEARCH_CONTAINER.classList.add("yb-pulseSmall");
+                        }, 400);
+                        
+                        setTimeout(function(){
+                            SEARCH_CONTAINER.classList.remove("yb-pulseSmall");
+                        }, 1000);
+                    });
+                </script>
+            </div>
+        </div>
+    {% endif %}
+</div>
+<script src="{% static 'scripts/yb_messages/yb_newMessage.js' %}"></script>
+<div class="yb-logo-footer small" id="create-menu-footer" style="position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%);">
+    <img src="{% static 'images/main/yourbit-logo2023-01.svg' %}" style="width: 100%; position: relative;" alt="YB Logo" class="yb-logo-small">
+</div>

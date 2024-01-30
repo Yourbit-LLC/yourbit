@@ -1,0 +1,602 @@
+$(".bit-profile-image").click(function() {
+    let username = $(this).attr("data-username");
+    console.log(username)
+    window.top.location.replace(`${base_url}/profile/${username}`);
+});
+
+function yb_hideComments(bit_id) {
+    $(`#comment-container-${bit_id}`).hide();
+    $(`#comment-label-${bit_id}`).hide();
+    $(`#comment-container-${bit_id}`).empty();
+}
+
+/* 
+    *Function to build bit context menu
+    *@param {object} this_element - the element that was clicked
+    *@returns {object} context_menu - the context menu element
+*/
+
+function yb_buildContextMenu(this_element){
+    console.log("bit held");
+
+
+    let bit_id = this_element.getAttribute("data-id");
+
+    let this_user = yb_getSessionValues("id");
+    let bit_user = this_element.getAttribute("data-userid");
+    let content_container = document.getElementById("content-container")
+    context_menu = yb_createElement("div", `bit-context-${bit_id}`, "bit-context-menu");
+    
+    divider = yb_createElement("div", `context-backdrop-${bit_id}`, "bit-context-backdrop");
+    divider.setAttribute("data-bit-id", this_element.id)
+    
+    this_element.appendChild(divider);
+    this_element.appendChild(context_menu);
+    this_element.style.zIndex = "7";
+    console.log("this user: " + this_user);
+    console.log("bit user: " + bit_user);
+
+
+    exit_menu = yb_createElement("div", "context-menu-exit", "context-menu-exit");
+    exit_menu.setAttribute("data-bit-id", this_element.id);
+    exit_menu.setAttribute("data-id", bit_id);
+    
+
+    content_container.appendChild(exit_menu);
+    if (this_user === bit_user){
+
+        
+        edit_option = yb_createElement("div", `bit-edit`, "bit-context-option");
+        edit_option.setAttribute("data-id", bit_id)
+        edit_option.setAttribute("data-bit-id", `bit-${bit_id}`)
+        
+        edit_option.innerHTML=`
+            <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M5 19h1.4l8.625-8.625-1.4-1.4L5 17.6ZM19.3 8.925l-4.25-4.2 1.4-1.4q.575-.575 1.413-.575.837 0 1.412.575l1.4 1.4q.575.575.6 1.388.025.812-.55 1.387ZM17.85 10.4 7.25 21H3v-4.25l10.6-10.6Zm-3.525-.725-.7-.7 1.4 1.4Z"/></svg>
+            <p>Edit Bit</p>
+        `
+        context_menu.appendChild(edit_option);
+        edit_option.addEventListener("click", function() {
+            yb_handleEditBit(this);
+            hideContextMenu("close", this);
+
+        });
+
+        add_to_cluster = yb_createElement("div", `bit-add`, "bit-context-option");
+        add_to_cluster.setAttribute("data-id", bit_id);
+        add_to_cluster.innerHTML= `
+            <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M13 14h2v-3h3V9h-3V6h-2v3h-3v2h3Zm-5 4q-.825 0-1.412-.587Q6 16.825 6 16V4q0-.825.588-1.413Q7.175 2 8 2h12q.825 0 1.413.587Q22 3.175 22 4v12q0 .825-.587 1.413Q20.825 18 20 18Zm0-2h12V4H8v12Zm-4 6q-.825 0-1.412-.587Q2 20.825 2 20V6h2v14h14v2ZM8 4v12V4Z"/></svg>
+            <p>Add to Cluster</p>
+        `;
+        context_menu.appendChild(add_to_cluster);
+        add_to_cluster.addEventListener("click", function() {
+
+            let this_id = this.getAttribute("data-id");
+            console.log("click on option on bit: " + bit_id)
+
+            let this_menu = document.getElementById("bit-context-"+ this_id);
+            $(`#bit-context-${this_id}`).animate({"width":"70vw", "height": "200px"}, "fast")
+            $(`#bit-context-${this_id}`).empty()
+            $(`#bit-context-${this_id}`).html(`
+                <h4 style="color: white; margin-left:10px; grid-row: 1;">Add to...</h4>
+            `);
+            create_cluster = yb_createElement("div", `list-create-cluster`, "bit-context-option");
+            
+            create_cluster.innerHTML = `
+                <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M11 19v-6H5v-2h6V5h2v6h6v2h-6v6Z"/></svg>
+                <p>New Cluster</p>
+            `
+            $(`#bit-context-${this_id}`).append(create_cluster);
+
+            yb_listClusters(this_id);
+            
+            create_cluster.addEventListener("click", function() {
+               
+               showCreateBit(raiseCreateBit);
+               yb_showClusterForm();
+
+            });
+            
+
+        });
+        
+        hide_option = yb_createElement("div", `bit-hide`, "bit-context-option");
+        hide_option.setAttribute("data-id", bit_id);
+        hide_option.setAttribute("data-bit-id", this_element.id);
+        hide_option.innerHTML = `
+            <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m16.1 13.3-1.45-1.45q.225-1.175-.675-2.2-.9-1.025-2.325-.8L10.2 7.4q.425-.2.862-.3Q11.5 7 12 7q1.875 0 3.188 1.312Q16.5 9.625 16.5 11.5q0 .5-.1.938-.1.437-.3.862Zm3.2 3.15-1.45-1.4q.95-.725 1.688-1.588.737-.862 1.262-1.962-1.25-2.525-3.588-4.013Q14.875 6 12 6q-.725 0-1.425.1-.7.1-1.375.3L7.65 4.85q1.025-.425 2.1-.638Q10.825 4 12 4q3.775 0 6.725 2.087Q21.675 8.175 23 11.5q-.575 1.475-1.512 2.738Q20.55 15.5 19.3 16.45Zm.5 6.15-4.2-4.15q-.875.275-1.762.413Q12.95 19 12 19q-3.775 0-6.725-2.087Q2.325 14.825 1 11.5q.525-1.325 1.325-2.463Q3.125 7.9 4.15 7L1.4 4.2l1.4-1.4 18.4 18.4ZM5.55 8.4q-.725.65-1.325 1.425T3.2 11.5q1.25 2.525 3.587 4.012Q9.125 17 12 17q.5 0 .975-.062.475-.063.975-.138l-.9-.95q-.275.075-.525.112Q12.275 16 12 16q-1.875 0-3.188-1.312Q7.5 13.375 7.5 11.5q0-.275.037-.525.038-.25.113-.525Zm7.975 2.325ZM9.75 12.6Z"/></svg>
+            <p>Hide Bit</p>
+        `
+        context_menu.appendChild(hide_option);
+        hide_option.addEventListener("click", function() {
+            let this_id = this.getAttribute("data-id");
+            let this_element = `#bit-context-${this_id}`;
+            
+            yb_handleHideBit(bit_id);
+            
+            hideContextMenu("close", this_element);
+        });
+        
+        delete_option = yb_createElement("div", `bit-delete`, "bit-context-option");
+        delete_option.innerHTML = `
+            <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill: red;" d="M7 21q-.825 0-1.412-.587Q5 19.825 5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413Q17.825 21 17 21ZM17 6H7v13h10ZM9 17h2V8H9Zm4 0h2V8h-2ZM7 6v13Z"/></svg>
+            <p style="color:red;">Delete Bit</p>
+        `
+        delete_option.setAttribute("data-bit-id", this_element.id);
+        delete_option.addEventListener("click", function(event) {
+            hideContextMenu("delete", this_element);
+            yb_deleteBit(bit_id);
+            this_element = event.currentTarget;
+            
+        });
+        context_menu.appendChild(delete_option);
+    } else {
+        add_to_cluster = yb_createElement("div", `bit-add`, "bit-context-option");
+        add_to_cluster.innerHTML= `
+            <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M13 14h2v-3h3V9h-3V6h-2v3h-3v2h3Zm-5 4q-.825 0-1.412-.587Q6 16.825 6 16V4q0-.825.588-1.413Q7.175 2 8 2h12q.825 0 1.413.587Q22 3.175 22 4v12q0 .825-.587 1.413Q20.825 18 20 18Zm0-2h12V4H8v12Zm-4 6q-.825 0-1.412-.587Q2 20.825 2 20V6h2v14h14v2ZM8 4v12V4Z"/></svg>
+            <p>Add to Cluster</p>
+        `
+        context_menu.appendChild(add_to_cluster);
+
+        hide_option = yb_createElement("div", `bit-edit`, "bit-context-option");
+        hide_option.innerHTML = `
+            <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m16.1 13.3-1.45-1.45q.225-1.175-.675-2.2-.9-1.025-2.325-.8L10.2 7.4q.425-.2.862-.3Q11.5 7 12 7q1.875 0 3.188 1.312Q16.5 9.625 16.5 11.5q0 .5-.1.938-.1.437-.3.862Zm3.2 3.15-1.45-1.4q.95-.725 1.688-1.588.737-.862 1.262-1.962-1.25-2.525-3.588-4.013Q14.875 6 12 6q-.725 0-1.425.1-.7.1-1.375.3L7.65 4.85q1.025-.425 2.1-.638Q10.825 4 12 4q3.775 0 6.725 2.087Q21.675 8.175 23 11.5q-.575 1.475-1.512 2.738Q20.55 15.5 19.3 16.45Zm.5 6.15-4.2-4.15q-.875.275-1.762.413Q12.95 19 12 19q-3.775 0-6.725-2.087Q2.325 14.825 1 11.5q.525-1.325 1.325-2.463Q3.125 7.9 4.15 7L1.4 4.2l1.4-1.4 18.4 18.4ZM5.55 8.4q-.725.65-1.325 1.425T3.2 11.5q1.25 2.525 3.587 4.012Q9.125 17 12 17q.5 0 .975-.062.475-.063.975-.138l-.9-.95q-.275.075-.525.112Q12.275 16 12 16q-1.875 0-3.188-1.312Q7.5 13.375 7.5 11.5q0-.275.037-.525.038-.25.113-.525Zm7.975 2.325ZM9.75 12.6Z"/></svg>
+            <p>Hide Bit</p>
+        `
+        context_menu.appendChild(hide_option);
+        
+        block_option = yb_createElement("div", `bit-block`, "bit-context-option");
+
+        report_option = yb_createElement("div", `bit-report`, "bit-context-option");
+
+    }
+    exit_menu.addEventListener("click", function(e) {
+        this_element = e.currentTarget;
+        hideContextMenu("close", this_element);
+        
+    });
+
+    divider.addEventListener("click", function(e) {
+        this_element = e.currentTarget;
+        hideContextMenu("close", this_element);
+    });
+}
+
+/*
+    * Function to create header of a bit
+    * @param {object} bit - the bit object
+    * @returns {object} header - the header element
+*/
+
+function createHeader(bit) {
+
+    const header = yb_createElement("div", "yb-header-bit", `header-bit-${bit.id}`);
+    const profileImageContainer = yb_createElement("div", "element-accent profile-image-thumbnail tiny yb-center-margin all", `profile-image-${bit.id}`);
+    let custom = bit.custom;
+    let images = custom.images;
+    let profile_image = images.profile_image;
+    let thumbnail = profile_image.small_thumbnail;
+    
+    profileImageContainer.style.borderColor = bit.custom.accent_color;
+    profileImageContainer.innerHTML = `<img style="object-fit:fill; border-radius: 50%; width: 100%;" src="${thumbnail}">`;
+    header.appendChild(profileImageContainer);
+
+    const userInfo = yb_createElement("p", `bit-info-${bit.id}`, "yb-userInfo-bit");
+    userInfo.innerHTML = `<strong class="bit-name" style="color:${bit.custom.title_color};">${bit.display_name}</strong> <small class="bit-username" style="color:${bit.custom.text_color};">@${bit.user.username}</small>`;
+    header.appendChild(userInfo);
+
+    const timeLabel = yb_createElement("p", "yb-timeLabel-bit", `time-posted-${bit.id}`);
+    let [displayDate, displayTime] = bit.time.split("/");
+    timeLabel.innerHTML = `${displayDate}<br><small>${displayTime}</small>`;
+    header.appendChild(timeLabel);
+
+    return header;
+}
+
+/*
+    * Function to create the body of a bit
+    * @param {object} bit - the bit object
+    * @returns {object} body - the body element
+*/
+
+function createBody(bit) {
+    const body = yb_createElement("div", "yb-body-bit", `description-bit-${bit.id}`);
+    body.innerHTML = `<p style="color: ${bit.custom.text_color}; text-align:${bit.custom.paragraph_align}">${bit.body}</p>`;
+    return body;
+}
+
+/*
+    * Function to create the interactions for a bit
+    * @param {object} bit - the bit object
+    * @returns {object} media - an attached media element
+*/
+
+function yb_addMedia(type, bit) {
+    if (type === 'photo'){
+        let index = 0;
+        let photo = bit.photos[index]
+        let attachment = yb_createElement("img", "attached-photo preview", `photo-bit-${id}`);
+        attachment.setAttribute("src", photo.image);
+        attachment.setAttribute('data-id', id);
+        attachment.setAttribute('data-index', index);
+        
+        attachment.addEventListener("click", function(){
+            let source = this.getAttribute("src");
+            let this_id = this.getAttribute("data-id");
+            let this_index = this.getAttribute("data-index");
+            yb_openImage(source, this_index, this_id)
+        })
+
+        return attachment;
+    }
+
+    if (type === 'video'){
+        let bit_video = bit.video
+        let video_player = yb_createElement("video", `video-${id}`, "attached-video preview");
+        
+        video_player.setAttribute("controls", "true");
+        video_player.setAttribute("playsinline", "true");
+        video_player.setAttribute("data-id", id);
+
+        let video_source = yb_createElement("source", `video-source-${id}`, "video-source");
+        video_source.setAttribute("src", `${bit_video}`);
+        
+        video_player.appendChild(video_source);
+        
+
+        //Add an observer to the video
+        video_observer.observe(video_player);
+
+        return video_player;
+    }
+}
+
+/*
+    * Function to create the title of a bit
+    * @param {object} bit - the bit object
+    * @returns {object} title - the title element
+*/
+
+function createTitle(bit) {
+    const title = yb_createElement("div", "yb-title-bit yb-margin-T10", `title-bit-${bit.id}`);
+    title.innerHTML = `<h2 class="yb-autoText align-center" style="color: ${bit.custom.title_color};">${bit.title}</h2>`;
+    return title;
+}
+
+/*
+    * Function to create the body of a bit
+    * @param {object} bit - the bit object
+    * @returns {object} description - the description element
+*/
+
+function yb_createBody(bit) {
+    const description = yb_createElement("div", "yb-description-bit yb-margin-T10", `description-bit-${bit.id}`);
+    description.innerHTML = `<p class="yb-autoText align-left yb-margin-B30 yb-margin-L5" style="color: ${bit.custom.text_color};">${bit.body}</p>`;
+    return description;
+}
+
+/*
+    * Function to create the interactions for a bit
+    * @param {object} bit - the bit object
+    * @returns {object} interactions - the interactions element
+*/
+
+function yb_createInteractions(bit) {
+    let bit_interactions = yb_createElement("div", `yb-container-bitFeedback`, `bit-feedback-${bit.type}`);
+    
+    //Interactions
+    let like_count = bit.like_count;
+    let dislike_count = bit.dislike_count;
+    let comment_count = bit.comment_count;
+
+    //Likes
+    let like_button = yb_createButton("like", "yb-button-feedback pointer-object", `like-${bit.id}`);
+    like_button.setAttribute("data-catid", bit.id)
+    like_button.innerHTML = `<svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path id="like-icon-${bit.id}" style="fill: white;" d="M15.5 11Q16.15 11 16.575 10.575Q17 10.15 17 9.5Q17 8.85 16.575 8.425Q16.15 8 15.5 8Q14.85 8 14.425 8.425Q14 8.85 14 9.5Q14 10.15 14.425 10.575Q14.85 11 15.5 11ZM8.5 11Q9.15 11 9.575 10.575Q10 10.15 10 9.5Q10 8.85 9.575 8.425Q9.15 8 8.5 8Q7.85 8 7.425 8.425Q7 8.85 7 9.5Q7 10.15 7.425 10.575Q7.85 11 8.5 11ZM12 17.5Q13.775 17.5 15.137 16.525Q16.5 15.55 17.1 14H15.45Q14.925 14.9 14.025 15.45Q13.125 16 12 16Q10.875 16 9.975 15.45Q9.075 14.9 8.55 14H6.9Q7.5 15.55 8.863 16.525Q10.225 17.5 12 17.5ZM12 22Q9.925 22 8.1 21.212Q6.275 20.425 4.925 19.075Q3.575 17.725 2.788 15.9Q2 14.075 2 12Q2 9.925 2.788 8.1Q3.575 6.275 4.925 4.925Q6.275 3.575 8.1 2.787Q9.925 2 12 2Q14.075 2 15.9 2.787Q17.725 3.575 19.075 4.925Q20.425 6.275 21.212 8.1Q22 9.925 22 12Q22 14.075 21.212 15.9Q20.425 17.725 19.075 19.075Q17.725 20.425 15.9 21.212Q14.075 22 12 22ZM12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12ZM12 20Q15.325 20 17.663 17.663Q20 15.325 20 12Q20 8.675 17.663 6.337Q15.325 4 12 4Q8.675 4 6.338 6.337Q4 8.675 4 12Q4 15.325 6.338 17.663Q8.675 20 12 20Z"/></svg>`;
+    
+    //Check if bit is liked
+
+    if (bit.is_liked){
+        like_button.innerHTML = `<svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path id="like-icon-${bit.id}" class="yb-bit-icon active" style="fill: white;" d="M15.5 11Q16.15 11 16.575 10.575Q17 10.15 17 9.5Q17 8.85 16.575 8.425Q16.15 8 15.5 8Q14.85 8 14.425 8.425Q14 8.85 14 9.5Q14 10.15 14.425 10.575Q14.85 11 15.5 11ZM8.5 11Q9.15 11 9.575 10.575Q10 10.15 10 9.5Q10 8.85 9.575 8.425Q9.15 8 8.5 8Q7.85 8 7.425 8.425Q7 8.85 7 9.5Q7 10.15 7.425 10.575Q7.85 11 8.5 11ZM12 17.5Q13.775 17.5 15.137 16.525Q16.5 15.55 17.1 14H15.45Q14.925 14.9 14.025 15.45Q13.125 16 12 16Q10.875 16 9.975 15.45Q9.075 14.9 8.55 14H6.9Q7.5 15.55 8.863 16.525Q10.225 17.5 12 17.5ZM12 22Q9.925 22 8.1 21.212Q6.275 20.425 4.925 19.075Q3.575 17.725 2.788 15.9Q2 14.075 2 12Q2 9.925 2.788 8.1Q3.575 6.275 4.925 4.925Q6.275 3.575 8.1 2.787Q9.925 2 12 2Q14.075 2 15.9 2.787Q17.725 3.575 19.075 4.925Q20.425 6.275 21.212 8.1Q22 9.925 22 12Q22 14.075 21.212 15.9Q20.425 17.725 19.075 19.075Q17.725 20.425 15.9 21.212Q14.075 22 12 22ZM12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12ZM12 20Q15.325 20 17.663 17.663Q20 15.325 20 12Q20 8.675 17.663 6.337Q15.325 4 12 4Q8.675 4 6.338 6.337Q4 8.675 4 12Q4 15.325 6.338 17.663Q8.675 20 12 20Z"/></svg>`;
+        like_button.classList.add("active");
+        like_button.style.backgroundColor = bit.custom.feedback_background_color;
+
+    } 
+
+    
+    bit_interactions.appendChild(like_button);
+    
+    //Like Counter
+    let like_counter = yb_createElement("p", "counter", `like-count-${bit.id}`);
+    like_counter.innerHTML = like_count;
+    bit_interactions.appendChild(like_counter);
+    
+    ;
+
+    //Like Event Listener
+    like_button.addEventListener("click", yb_pressLike);
+    
+    //Dislikes
+    let dislike_button = yb_createButton("dislike", "yb-button-feedback pointer-object", `dislike-${bit.id}`);
+    dislike_button.setAttribute("data-catid", bit.id);
+
+    let dislike_html = `<svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path id="dislike-icon-${bit.id}" style="fill:white;" d="M620-520q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm-280 0q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-400Zm0 320q133 0 226.5-93.5T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160ZM325-280q7 0 14.5-4t11.5-10q22-30 55-48t74-18q41 0 74 18t55 48q4 6 11 10t14 4q18 0 26.5-16t-3.5-34q-26-39-73-64.5T480-420q-57 0-104 25.5T302-328q-11 17-2.5 32.5T325-280Z"/></svg>`
+    dislike_button.innerHTML = dislike_html;
+    //Check if user has already liked this bit
+
+    if (bit.is_disliked){
+        dislike_button.innerHTML = `
+        <svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path id="dislike-icon-${bit.id}" style="fill:white;" class="yb-bit-icon active" d="M620-520q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm-280 0q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-400Zm0 320q133 0 226.5-93.5T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160ZM325-280q7 0 14.5-4t11.5-10q22-30 55-48t74-18q41 0 74 18t55 48q4 6 11 10t14 4q18 0 26.5-16t-3.5-34q-26-39-73-64.5T480-420q-57 0-104 25.5T302-328q-11 17-2.5 32.5T325-280Z"/></svg>
+        `;
+        dislike_button.classList.add("active");
+        dislike_button.style.backgroundColor = bit.custom.feedback_background_color;
+
+        
+    } 
+
+    
+
+    bit_interactions.appendChild(dislike_button);
+    let dislike_counter = yb_createElement("p", "counter", `dislike-count-${bit.id}`);
+    dislike_counter.innerHTML = dislike_count;
+    bit_interactions.appendChild(dislike_counter);
+    
+    dislike_button.addEventListener("click", yb_pressDislike);
+
+    //Comments
+    let comment_button = yb_createButton("show-comment", "yb-button-feedback pointer-object", `show-comment-${bit.id}`);
+    comment_button.setAttribute("data-catid", bit.id)
+    comment_button.setAttribute("data-state", "show")
+    comment_button.innerHTML = `<svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill: white;" id="comment-icon-${bit.id}" d="M6 14H18V12H6ZM6 11H18V9H6ZM6 8H18V6H6ZM22 22 18 18H4Q3.175 18 2.588 17.413Q2 16.825 2 16V4Q2 3.175 2.588 2.587Q3.175 2 4 2H20Q20.825 2 21.413 2.587Q22 3.175 22 4ZM4 4V16Q4 16 4 16Q4 16 4 16H18.825L20 17.175V4Q20 4 20 4Q20 4 20 4H4Q4 4 4 4Q4 4 4 4ZM4 4V17.175V16Q4 16 4 16Q4 16 4 16V4Q4 4 4 4Q4 4 4 4Q4 4 4 4Q4 4 4 4Z"/></svg>`
+    bit_interactions.appendChild(comment_button);
+
+    //Comment Button Event Listener
+    comment_button.addEventListener("click", yb_pressShowComments);
+    
+
+    //Comment Counter
+    let comment_counter = yb_createElement("p", "counter", `comment-count-${bit.id}`);
+    comment_counter.innerHTML = comment_count;
+    bit_interactions.appendChild(comment_counter);
+
+    //Shares
+    let share_button = yb_createButton("share", "yb-button-feedback", `share-${bit.id}`);
+    share_button.innerHTML = `<svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill: white;" d="M6 23Q5.175 23 4.588 22.413Q4 21.825 4 21V10Q4 9.175 4.588 8.587Q5.175 8 6 8H9V10H6Q6 10 6 10Q6 10 6 10V21Q6 21 6 21Q6 21 6 21H18Q18 21 18 21Q18 21 18 21V10Q18 10 18 10Q18 10 18 10H15V8H18Q18.825 8 19.413 8.587Q20 9.175 20 10V21Q20 21.825 19.413 22.413Q18.825 23 18 23ZM11 16V4.825L9.4 6.425L8 5L12 1L16 5L14.6 6.425L13 4.825V16Z"/></svg>`
+    bit_interactions.appendChild(share_button);
+
+    let share_counter = yb_createElement("p", "counter", `share-count-${bit.id}`);
+    share_counter.innerHTML = "0";
+    bit_interactions.appendChild(share_counter);
+
+    //Dontation
+    let donate_button = yb_createButton("donate", "yb-button-feedback pointer-object", `donate-bit-${bit.id}`);
+    donate_button.innerHTML = `<svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill: white;" d="M11.025 21V18.85Q9.7 18.55 8.738 17.7Q7.775 16.85 7.325 15.3L9.175 14.55Q9.55 15.75 10.288 16.375Q11.025 17 12.225 17Q13.25 17 13.963 16.538Q14.675 16.075 14.675 15.1Q14.675 14.225 14.125 13.712Q13.575 13.2 11.575 12.55Q9.425 11.875 8.625 10.938Q7.825 10 7.825 8.65Q7.825 7.025 8.875 6.125Q9.925 5.225 11.025 5.1V3H13.025V5.1Q14.275 5.3 15.088 6.012Q15.9 6.725 16.275 7.75L14.425 8.55Q14.125 7.75 13.575 7.35Q13.025 6.95 12.075 6.95Q10.975 6.95 10.4 7.438Q9.825 7.925 9.825 8.65Q9.825 9.475 10.575 9.95Q11.325 10.425 13.175 10.95Q14.9 11.45 15.788 12.537Q16.675 13.625 16.675 15.05Q16.675 16.825 15.625 17.75Q14.575 18.675 13.025 18.9V21Z"/></svg>`
+    bit_interactions.appendChild(donate_button);
+
+    return bit_interactions;
+    
+}    
+
+/*
+    Function for creating a comment field
+    `@param {object} bit - the bit object
+    `@returns {object} comment_field_container - the comment field container element
+*/
+
+function yb_buildCommentField(bit) {
+    let comment_field_container = yb_createElement("div", "yb-container-commentField", `field-write-comment-${bit.id}`);
+    
+    //Comment Field
+    let comment_field = yb_createElement("input", "yb-field-commentField", `field-write-comment-${bit.id}`);
+    comment_field.setAttribute("placeholder", "Write Comment");
+    comment_field.setAttribute("style", `color: white; border: 2px solid ${bit.custom.accent_color}`);
+    comment_field_container.appendChild(comment_field);
+
+    //Comment Submit Button
+    let submit_comment_button = yb_createButton("send_comment", "yb-send-comment", `button-submit-comment-${bit.id}`)
+    submit_comment_button.setAttribute("data-catid", bit.id);
+    submit_comment_button.setAttribute("style", "background-color: rgba(255, 255, 255, 0.5)");
+    submit_comment_button.innerHTML = `<svg style="display: block; top: 50%; left: 50%; transform: translate(-50%, -50%); position: absolute;" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill: white;" d="M6 19.05 7.975 18.25Q7.725 17.525 7.513 16.775Q7.3 16.025 7.175 15.275L6 16.075Q6 16.075 6 16.075Q6 16.075 6 16.075ZM10 18H14Q14.45 17 14.725 15.562Q15 14.125 15 12.625Q15 10.15 14.175 7.937Q13.35 5.725 12 4.525Q10.65 5.725 9.825 7.937Q9 10.15 9 12.625Q9 14.125 9.275 15.562Q9.55 17 10 18ZM12 13Q11.175 13 10.588 12.412Q10 11.825 10 11Q10 10.175 10.588 9.587Q11.175 9 12 9Q12.825 9 13.413 9.587Q14 10.175 14 11Q14 11.825 13.413 12.412Q12.825 13 12 13ZM18 19.05V16.075Q18 16.075 18 16.075Q18 16.075 18 16.075L16.825 15.275Q16.7 16.025 16.488 16.775Q16.275 17.525 16.025 18.25ZM12 1.975Q14.475 3.775 15.738 6.55Q17 9.325 17 13Q17 13 17 13Q17 13 17 13L19.1 14.4Q19.525 14.675 19.763 15.125Q20 15.575 20 16.075V22L15.025 20H8.975L4 22V16.075Q4 15.575 4.238 15.125Q4.475 14.675 4.9 14.4L7 13Q7 13 7 13Q7 13 7 13Q7 9.325 8.262 6.55Q9.525 3.775 12 1.975Z"/></svg>`
+    comment_field_container.appendChild(submit_comment_button);
+
+    submit_comment_button.addEventListener("click", yb_pressSendComment);
+
+    return comment_field_container;
+}
+
+/*
+    * Function for building a bit
+    * @param {object} bit - the bit object
+    * @returns {object} built_bit - the built bit element
+    * @returns {string} element_id - the element id of the built bit
+    
+*/
+
+function yb_buildBit(bit){
+   
+    //Bit information
+    let id = bit.id;
+    let time = bit.time;
+    
+    //Set Element Class (Defines layout and styling)
+    let type = bit.type;
+
+    //Define bit ID which is returned to position bit in feed index
+    let element_id = `#bit-${bit.id}`;
+
+    //User and Profile
+    let user = bit.user;
+
+    let name = bit.display_name
+
+    let username = user.username;
+
+    //Customizations
+    let custom = bit.custom;
+
+    //colors
+    let primary_color = custom.primary_color;
+    let accent_color = custom.accent_color;
+    let title_color = custom.title_color;
+    let text_color = custom.text_color;
+    let feedback_icon_color = custom.feedback_icon_color;
+    let feedback_background_color = custom.feedback_background_color;
+    let paragraph_align = custom.paragraph_align;
+
+   
+    background_color = "#3d3d3d;";
+    
+    //Prepare new bit by creating an element
+    new_bit = yb_createElement("div",`yb-element-background yb-bit-shell ${type}bit`, `bit-${id}`)
+
+    //Apply All Attributes: element id, element class, data type, data-id, data-button-color, data icon color, data background color, style
+    new_bit.setAttribute("data-type", `${type}`);
+    new_bit.setAttribute("data-id", `${id}`);
+    new_bit.setAttribute("data-userid", `${user.id}`);
+    new_bit.setAttribute("data-username", `${username}`);
+    new_bit.setAttribute("data-button-color", `${feedback_background_color}`);
+    new_bit.setAttribute("data-icon-color", `${feedback_icon_color}`);
+    new_bit.setAttribute("data-secondary-color", `${accent_color}`);
+    new_bit.setAttribute("data-primary-color", `${primary_color}`);
+    new_bit.setAttribute("style", `background-color: ${background_color};`);
+
+    //generate header
+    new_bit.appendChild(createHeader(bit));
+
+    //Content Attachments
+    if (type === "video" || type === "photo"){
+        let media = yb_addMedia(type, bit);
+
+        new_bit.appendChild(media); 
+    }
+
+    //Title
+    new_bit.appendChild(createTitle(bit));
+
+
+    //Body
+    new_bit.appendChild(yb_createBody(bit));
+    
+
+    //Append interaction container
+    new_bit.appendChild(yb_createInteractions(bit));
+
+    //Comment Label
+    let comment_label = yb_createElement("p", "comment-label", `comment-label-${id}`);
+    comment_label.innerHTML = "Comments";
+    comment_label.setAttribute("style", `display: none; color: ${title_color}; font-weight: bold;`)
+    new_bit.appendChild(comment_label);
+
+    //Comment Container
+    let comment_container = yb_createElement("div", "yb-comment-container", `comment-container-${id}`);
+    new_bit.appendChild(comment_container);
+    
+
+    //Append comment field
+    new_bit.appendChild(yb_buildCommentField(bit));
+
+    return {'element_id':element_id, 'built_bit':new_bit}
+}
+
+/* 
+    *Function for generating comment bubbles
+    * @param {object} comment - the comment object
+    * @returns {object} comment_bubble - the comment bubble element
+*/
+
+function yb_buildComment(comment){
+    //Set up variables
+    let user = comment.user;
+    let sender_name = user.first_name + " " + user.last_name;
+    let custom = comment.custom;
+    let comment_id = comment.id;
+    let time = comment.time;
+    let body = comment.body;
+    let this_id = yb_getSessionValues("id");
+    let is_sender;
+    let comment_bubble;
+    let comment_wrapper;
+    let this_bit = document.getElementById(`bit-${comment.bit}`);
+    let primary_color = this_bit.getAttribute("data-primary-color");
+    let secondary_color = "#4b4b4b";
+
+    console.log()
+    console.log(this_id)
+    //Check if user is sender
+    if (user.id === parseInt(this_id)){
+        
+        is_sender = true;
+    } else {
+        is_sender = false;
+    }
+
+    //Build comment bubble right side for sender and left side for receiver
+    if (is_sender === true){
+        //Build comment bubble for sender
+        comment_wrapper = yb_createElement("div", "yb-comment-shell", `comment-shell-${comment_id}`);
+        comment_bubble = yb_createElement("div", "yb-comment-item right font-medium", `comment-${comment_id}`);
+        comment_bubble.setAttribute("data-catid", comment_id);
+        comment_bubble.setAttribute("style", `background-color: ${primary_color}`);
+        //Create profile image
+        comment_delete_button = yb_createButton(
+            "delete_comment", 
+            "yb-delete-comment small pointer-object circle border-none", 
+            `delete-comment-${comment_id}`, 
+            `&times;`
+        );
+        comment_delete_button.setAttribute("style", `border: 2px solid ${secondary_color}`)
+        comment_delete_button.setAttribute("data-catid", comment_id);
+        comment_delete_button.setAttribute("data-bitid", comment.bit);
+        comment_bubble.appendChild(comment_delete_button);
+
+        comment_delete_button.addEventListener("click", yb_pressCommentDelete);
+        
+        //Create comment name
+        let comment_name = yb_createElement("p", "comment-name", `comment-name-${comment_id}`);
+        comment_name.innerHTML = sender_name;
+        comment_bubble.appendChild(comment_name);
+        
+        //Create comment body
+        let comment_body = yb_createElement("p", "comment-body", `comment-body-${comment_id}`,);
+        comment_body.innerHTML = body;
+        comment_bubble.appendChild(comment_body);
+        
+        //Create comment time
+        let comment_time = yb_createElement("p", "comment-time", `comment-time-${comment_id}`,);
+        comment_time.innerHTML = `<small class="font-small" style="color:gray;">${time}</small>`;
+        comment_bubble.appendChild(comment_time);
+        comment_wrapper.appendChild(comment_bubble);
+        return comment_wrapper
+
+    } else {
+        //Build comment bubble for sender
+        comment_wrapper = yb_createElement("div", "yb-comment-shell", `comment-shell-${comment_id}`);
+        comment_bubble = yb_createElement("div", "yb-comment-item left font-medium", `comment-${comment_id}`);
+        comment_bubble.setAttribute("data-cat-id", comment_id);
+        comment_bubble.setAttribute("style", `background-color: ${primary_color}`);
+
+
+        //Create comment image
+        // rendered_image = yb_renderImage(profile_image, "image-hang right", "yb-comment-image");
+        // comment_bubble.appendChild(rendered_image);
+
+        //Create comment name
+        let comment_name = yb_createElement("p", "comment-name", `comment-name-${comment_id}`);
+        comment_name.innerHTML = sender_name;
+        comment_bubble.appendChild(comment_name);
+
+        //Create comment body
+        let comment_body = yb_createElement("p", "comment-body", `comment-body-${comment_id}`);
+        comment_body.innerHTML = body;
+        comment_bubble.appendChild(comment_body);
+
+        //Create comment time
+        let comment_time = yb_createElement("p", "comment-time", `comment-time-${comment_id}`);
+        comment_time.innerHTML = `<small>${time}</small>`;
+        comment_bubble.appendChild(comment_time);
+        return comment_bubble;
+
+    }
+
+
+    
+}

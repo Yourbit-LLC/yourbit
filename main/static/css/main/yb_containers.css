@@ -1,0 +1,606 @@
+
+.yb-card {
+    /*Positioning*/
+    position: fixed;
+    display: inline-table;
+    left: 0;
+    z-index: 25;
+
+    /*Style*/
+    visibility: hidden;
+    background-color: rgba(0, 0, 0, 0.8);
+    -webkit-backdrop-filter: blur(40px) brightness(175%);
+    backdrop-filter: blur(40px) brightness(175%);
+    box-shadow: -1px -1px 10px black;
+    text-align: center;
+    color: white;
+    transition: 0.5s;
+    overflow-x: hidden;
+}
+
+.yb-card.full {
+    
+    top: 100vh;
+    width: 100vw;
+    height: 100vh;
+}
+
+.yb-fsContainer {
+    /*Positioning*/
+    position: fixed;
+    display: inline-table;
+    top: 100vh;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 25;
+
+
+    /*Style*/
+    text-align: center;
+    color: white;
+    transition: 0.5s;
+    overflow-x: hidden;
+    
+}
+
+.yb-fsContainer.still {
+    top: 0;
+}
+
+.yb-fsContainer.open {
+    top: 70vh;
+    background-color: black;
+    transition: 0.5s;
+
+}
+
+.yb-header-fsContainer {
+    position: relative;
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+.yb-heading-card {
+    position: relative;
+    display: grid;
+    width: 100%;
+    grid-template-rows: 40px;
+    grid-template-columns: 40px 7fr 1fr;
+    padding-right: 5px;
+    height: 45px;
+    text-align: left;
+    margin-left: auto;
+    padding-left: 4px;
+    padding-top: 10px;
+}
+
+.yb-heading-label {
+    line-height: 2;
+    text-align: left;
+    margin-right: 10px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.yb-listItem {
+    /*Positioning*/
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+
+    /*Sizing*/
+    height: auto;
+    max-height: 100px;
+    min-height: 40px;
+    padding: 10px;
+    column-gap: 10px;
+
+    /*Style*/
+    border-radius: 10px;
+    font-size: 12px;
+    font-family: 'Roboto', sans-serif;
+    text-align: left;
+    overflow: hidden;
+    transition: 0.5s;
+
+}
+
+/* General styles for notification list items */
+.yb-listItem.notification {
+    background-color: #333;
+    color: #fff;
+    width: 90%;
+
+}
+
+/* Styles for seen and unseen notifications */
+.seen {
+    background-color: #555;
+}
+
+.unseen {
+    background-color: #222;
+}
+
+/* Notification icon */
+#notification-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Notification content */
+#notification-contents {
+    flex-grow: 1;
+}
+
+#notification-contents p {
+    margin: 0;
+    color: #ddd;
+}
+
+/* Notification time */
+#notification-time p {
+    font-size: 0.8em;
+    color: #aaa;
+}
+
+/* Close button */
+#notification-close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.yb-button-close.notification {
+    background: #444;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    line-height: 1;
+    margin: 0px;
+}
+
+.yb-button-close.notification:hover {
+    background: #666;
+}
+
+/* Hover effect for the entire notification */
+.yb-listItem.notification:hover {
+    background-color: #1e1e1e;
+}
+
+
+.yb-flexGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.yb-grid-item {
+    width: 60px;
+    height: 60px;
+    display: grid;
+    grid-template-rows: 1fr 3fr;
+    position: relative;
+    transition: 0.5s;
+
+
+}
+
+.yb-grid-item:hover {
+    cursor: pointer;
+    animation: yb-bounce 0.5s ease-in-out 1; 
+
+}
+
+.profile-image-thumbnail {
+    position: relative;
+    display: block;
+    object-fit: contain;
+    transition: 1s;
+    
+
+}
+
+.profile-image-thumbnail:hover {
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+
+.yb-2Way-container {
+    position: fixed;
+    z-index: 99;
+    box-shadow: black 0px 0px 50px 0px;
+
+}
+.yb-panel-wide {
+    position: relative;
+    width: 90%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 3px 10px 3px 10px;
+    background-color: rgba(0, 0, 0, 0.95);
+    border-radius: 20px;
+    text-align: center; 
+    color: white;
+}
+
+.yb-panel-wide.panel-gray {
+    background-color: #4b4b4b;
+}
+
+/* Customize the scrollbar track */
+.yb-hScroll::-webkit-scrollbar {
+    width: 0px; /* Adjust the width as needed */
+    height: 90%;
+    margin-left: 2px;
+}
+
+/* Customize the scrollbar track color */
+.yb-hScroll::-webkit-scrollbar-track {
+    background-color: var(--scrollbar-track-color);
+}
+
+/* Customize the scrollbar thumb (handle) */
+.yb-hScroll::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb-color);
+    
+}
+
+@media screen and (min-width: 768px) {
+    .yb-2Way-container {
+        right: 15px;
+        border-radius: 10px;
+        width: 300px;
+        height: calc(100vh - 90px);
+        top: calc(50% + 30px);
+        transform: translate(150%, -50%);
+        background-color: black;
+        transition: 0.5s;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        scrollbar-width: none; /* Create a thin scrollbar on Firefox */
+        scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color); /* Set thumb and track colors on Firefox */
+    }
+
+    /* Customize the scrollbar track */
+    .yb-2Way-container::-webkit-scrollbar {
+        width: 0px; /* Adjust the width as needed */
+        height: 90%;
+        margin-left: 2px;
+    }
+    
+    /* Customize the scrollbar track color */
+    .yb-2Way-container::-webkit-scrollbar-track {
+        background-color: var(--scrollbar-track-color);
+    }
+    
+    /* Customize the scrollbar thumb (handle) */
+    .yb-2Way-container::-webkit-scrollbar-thumb {
+        background-color: var(--scrollbar-thumb-color);
+        
+    }
+
+
+    .yb-2Way-container.open {
+        transform: translate(0, -50%);
+        transition: 0.5s;
+        
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .yb-2Way-container {
+        right: 0px;
+        bottom: 0px;
+        width: 100vw;
+        height: 100vh;
+        top: 0px;
+        transform: translateY(100vh);
+        background-color: black;
+        transition: 0.5s;
+        overflow-y: scroll;
+    }
+
+    .yb-2Way-container.open {
+        transform: translate(0);
+        transition: 0.5s;
+    }
+}
+
+.yb-2Way-header {
+    position: relative;
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+    width: 100%;
+    height: 30px;
+}
+
+.yb-menu-profile {
+    position: relative;
+    display: grid;
+    width: 100%;
+    grid-template-rows: 4fr 1fr 1fr;
+    height: 43%;
+    text-align: center;
+    
+    
+}
+
+#profile-icon-menu:hover {
+    cursor: pointer;
+    animation: yb-pulse-small 0.5s linear 1;
+}
+
+#yb-menu-name:hover {
+    cursor: pointer;
+    animation: yb-pulse-small 0.5s linear 1;
+}
+
+#yb-menu-username:hover {
+    cursor: pointer;
+    animation: yb-pulse-small 0.5s linear 1;
+}
+
+.yb-menu-grid {
+    position: relative;
+    
+    max-width: 275px;
+    margin: auto;
+}
+
+#content-container{
+    left: 0px;
+    top: 0px;
+    padding-top: 70px;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    overflow: hidden;
+    background-color: rgb(25, 25, 25);
+    overflow-y: scroll;
+    
+
+}
+
+/* Customize the scrollbar track */
+#content-container::-webkit-scrollbar {
+    width: 0px; /* Adjust the width as needed */
+    height: 90%;
+    margin-left: 2px;
+}
+
+/* Customize the scrollbar track color */
+#content-container::-webkit-scrollbar-track {
+    background-color: var(--scrollbar-track-color);
+}
+
+/* Customize the scrollbar thumb (handle) */
+#content-container::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb-color);
+    
+}
+
+@media screen and (min-width: 768px) {
+    .yb-container-spotlight {
+        position: absolute;
+        top: 90px;
+        left: calc(50% - 350px);
+        max-width: 700px;
+        width: 90vw;
+        height: 80vh;
+        max-height: 500px;
+        background-color: rgba(0, 0, 0, 0.95);
+        z-index: 99;
+        border-radius: 20px;
+        border: 1px solid rgb(24, 24, 24);
+        box-shadow: black 0px 0px 60px 0px;
+        transform: translateY(-100vh);
+        transition: 0.5s;
+    }
+
+    .yb-container-spotlight.open {
+
+        transform: translateY(0vh);
+        transition: 0.5s;
+    }
+    
+ 
+}
+    
+
+
+@media screen and (max-width: 768px) {
+    
+    .yb-container-spotlight {
+        position: fixed;
+        left: 0px;
+        top: 90px;
+        max-width: 100vw;
+        width: 100vw;
+        height: 100vh;
+        max-height: 100vh;
+        background-color: rgba(0, 0, 0, 0.95);
+        z-index: 99;
+        border-radius: 0px;
+        border: 1px solid rgb(24, 24, 24);
+        box-shadow: black 0px 0px 60px 0px;
+        transform: translateY(100vh);
+        transition: 0.5s;
+    }
+
+    .yb-container-spotlight.open {
+
+        transform: translateY(-95vh);
+        transition: 0.5s;
+    }
+    
+    
+}
+
+
+.full-result {
+    display: grid;
+    grid-template-columns: 65px 3fr 1fr;
+    margin-top: 5px;
+    background-color: #4b4b4b;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    padding: 5px 5px 5px 5px;
+    margin-bottom: 5px;
+}
+
+@media screen and (min-width: 768px) {
+    .full-result {
+        max-width: 500px;
+    }
+    
+ 
+}
+
+.notification-dropdown {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    width: 45px;
+    height: 45px;
+    background-color: black;
+    z-index: 99;
+    border-radius: 20px;
+    transform: translateX(-50%);
+
+}
+
+.notification-dropdown.active {
+    top: 70px !important;
+    transition: 0.5s;
+}
+
+.notification-dropdown.expanded {
+    width: 95%;
+    transition: 0.5s;
+}
+
+.yb-top-layer {
+    position:fixed;
+    display: none;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 100;
+    transition: 0.5s;
+
+}
+
+.yb-top-layer.open {
+    display: block;
+    transition: 0.5s;
+}
+
+.yb-container-center {
+    position: relative;
+    display: none;
+    top: 50%;
+    left: 50%;
+    width: 90%;
+    max-width: 600px;
+    height: 300px;
+    text-align: center;
+    padding: 3px 10px 3px 10px;
+    background-color: rgb(25, 25, 25);
+    border-radius: 20px;
+    color: white;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 0.3s;
+    transition-delay: 0.4s;
+    overflow: hidden;
+}
+
+.yb-container-center.open {
+    transform: translate(-50%, -50%) scale(1);
+    display: flex;
+    transition-delay: 0.4s;
+    transition: 0.3s;
+}
+
+.yb-prompt-content {
+    position: relative;
+    display: grid;
+    grid-template-rows: 1fr 3fr 1fr;
+    width: 100%;
+    height: 100%;
+
+    padding: 3px 10px 3px 10px;
+    border-radius: 20px;
+    color: white;
+    
+}
+
+.yb-prompt-title {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-bottom: 1px solid white;
+    color: white;
+}
+
+.yb-prompt-body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    color: white;
+}
+
+.yb-prompt-footer {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    width: 100%;
+    height: 100%;
+    border-top: 1px solid white;
+    color: white;
+    padding-top: 10px;
+}
+
+.field-tag {
+    position: absolute;
+    grid-gap: 5px;
+    width: auto;
+    height: 30px;
+    margin-left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #4b4b4b;
+    overflow: hidden;
+}

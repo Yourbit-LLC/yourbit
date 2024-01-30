@@ -1,0 +1,65 @@
+{% load static %}
+<div id='div-header' style='position: relative; display: grid; grid-template-columns: 5fr 1fr; margin-left: auto; margin-right: auto; width: 100%; height: 40px; margin-bottom: 20px;' >
+    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb">People</h3>
+    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('people');">&times;</div>
+</div>
+
+<div id="inbox-header" style="height: 40px; display:grid; grid-template-columns: 4fr 1fr; column-gap: 20px; scrollbar-width: none; overflow-x: scroll;" class="yb-hScroll yb-fillWidth yb-relative">
+    <div id="filter-container" class="yb-flexRow yb-fillWidth yb-gap5 yb-margin-L5">
+        
+        <button class="people-filter yb-button-wide active medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb">Everyone</button>
+        <button class="people-filter yb-button-wide medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb">Recent</button>
+        <button class="people-filter yb-button-wide medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb">Friends</button>
+        <button class="people-filter yb-button-wide medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb">Family</button>
+        <button class="people-filter yb-button-wide medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb">Followers</button>
+        <button class="people-filter yb-button-wide medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb">Following</button>
+
+    </div>
+</div>
+
+<div id="connection-list" class="yb-fillWidth">
+    {% if connections %}
+        {% for connection in connections %}
+            <div id="result-people-undefined" class="full-result yb-autoText" style="background-color: rgb(25, 25, 25);" data-catid="undefined" data-username="ajboston2023">
+        
+            <div class="full-result-image-container">
+                    <img class="full-result-image" src="">
+            </div>
+            <div class="full-result-name-container">
+                <p class="full-result-name"><strong>{{connection.display_name}}</strong></p>
+                <p class="full-result-username">
+                    <small>{{connection.user.username}}</small>
+                </p>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="yb-fillWidth yb-center-margin yb-margin-T30 yb-margin-B10">
+            <h3 class="yb-autoText align-center yb-margin-T10">No connections found</h3>
+        </div>
+        <br>
+        <button id="find-connections-people" class="yb-button-flex bg-gray-dark font-gray yb-button-halfWidth">+  Find People</button>
+        <script>
+    
+            document.getElementById("find-connections-people").addEventListener("click", function(){
+                yb_toggle2WayContainer('people');
+                SEARCH_FIELD.focus();
+                yb_openSpotlight("people");
+                setTimeout(function(){
+                    SEARCH_CONTAINER.classList.add("yb-pulseSmall");
+                }, 400);
+                
+                setTimeout(function(){
+                    SEARCH_CONTAINER.classList.remove("yb-pulseSmall");
+                }, 1000);
+            });
+        </script>
+    {% endif %}
+
+</div>
+
+<script src="{% static 'scripts/yb_profile/yb_people.js' %}"></script>
+<div class="yb-logo-footer small" id="create-menu-footer" style="position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%);">
+    <img src="{% static 'images/main/yourbit-logo2023-01.svg' %}" style="width: 100%; position: relative;" alt="YB Logo" class="yb-logo-small">
+
+</div>

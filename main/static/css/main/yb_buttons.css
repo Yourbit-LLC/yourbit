@@ -1,0 +1,261 @@
+
+.yb-button-popout {
+    /*positioning*/
+    position: fixed;
+    display: block;
+    z-index: 15;
+    bottom: 57px;
+
+    /*sizing*/
+    width: 45px;
+    height: 45px;
+
+    /*style*/
+    border-radius: 180px;
+    background-color: #4b4b4b;
+    border: 3px solid rgb(200, 200, 200);
+    line-height: 30px;
+    text-align: center;
+    padding: 4px 4px 4px 4px;
+    
+}
+
+.yb-button-popout.left {
+    left: 7px;
+    transition: 0.5s;
+}
+
+.yb-button-popout.right {
+    right: 7px;
+    transition: 0.5s;
+
+}
+
+.yb-button-popout.right.hide {
+    right: -100px;
+    transition: 0.5s;
+}
+
+.yb-button-popout.left.hide {
+    left: -100px;
+    transition: 0.5s;
+}
+
+.yb-button-popUp{
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 2px solid white;
+    text-align: center;
+    border-radius: 40px;
+    color: white;
+    
+    font-size: 16px;
+
+    -webkit-filter: drop-shadow(2px 2px 5px black);
+    filter: drop-shadow(2px 2px 5px black);
+}
+
+@media only screen and (min-width: 768px) {
+    .yb-button-popout {
+        display: none;
+    
+    }
+}
+
+
+/* 
+        yb-button wide
+*/
+
+.yb-button-wide {
+    /*Positioning*/
+    position: relative;
+    display: inline-block;
+    
+    
+    /*Sizing*/
+    height: 30px;
+    
+    /*Style*/
+    border-width: 0px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+
+    text-align: center;
+    font-weight: 550;
+    transition: all 0.2s ease-in-out;
+
+    padding: 5px 5px 5px 5px;
+}
+
+.tiny-wide {
+    width: 28%;
+}
+
+.small-wide {
+    width: 33%;
+}
+
+.medium-wide {
+    width: 80px;
+}
+
+.yb-button-wide:hover {
+    /*Style*/
+    background-color: #f5f5f5;
+    border-color: #e6e6e6;
+    color: black;
+    /* animation: yb-pulse-small 0.5s linear 1; */
+    transform: scale(1.03);
+}
+
+.yb-button-wide.active {
+    /*Style*/
+    background-color: black;
+    border-color: white;
+    color: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    border-width: 2px;
+    border-style: solid;
+}
+
+.yb-button-flex {
+    /*button that changes size based on text inside with no border color and a small amount of padding around the text */
+    /*Positioning*/
+    position: relative;
+    display: inline-block;
+    margin: 0px;
+
+    /*Sizing*/
+    height: 40px;
+    width: auto;
+
+    /*Style*/
+    border-width: 0px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+
+    transition: 0.5s;
+}
+
+.yb-button-flex.transparent {
+    /*Style*/
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.yb-button-flex:hover {
+    /*Style*/
+    background-color: white;
+    color: black;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+    transform : scale(1.02);
+    transition: 0.5s;
+}
+
+.yb-button-threeQuarter {
+    display: block;
+    position: relative;
+    width: 70%;
+    height: 35px;
+    background-color: #4b4b4b;
+    margin-bottom: 5px;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.yb-button-threeQuarter:hover {
+    background-color: white;
+    color: #4b4b4b;
+    transform: scale(1.03);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+    transition: 0.5s;
+}
+
+.yb-button-halfWidth {
+    display: block;
+    position: relative;
+    width: 50%;
+    height: 30px;
+    background-color: #4b4b4b;
+    margin-bottom: 5px;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.yb-button-halfWidth:hover {
+    background-color: white;
+    color: #4b4b4b;
+    transform: scale(1.03);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+    transition: 0.5s;
+}
+
+.yb-button-filter {
+    /*Positioning*/
+    position: relative;
+    display: block;
+    margin: auto;
+    
+    /*Sizing*/
+    height: 26px;
+
+    /*Style*/
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 2px solid rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    border-radius: 20px;
+    
+
+
+}
+
+.yb-button-filter.active {
+    /*Positioning*/
+    position: relative;
+    display: block;
+    margin: auto;
+
+    /*Sizing*/
+    height: 27px;
+    width: 100%;
+
+    /*Style*/
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 2px solid rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    border-radius: 20px;
+    transition: 0.5s;
+}
+
+.yb-button-close {
+    position: relative;
+    margin: 8px 8px auto auto;
+    height: 25px;
+    width: 25px;
+    font-size: 30px;
+    font-weight: 300;
+    border-radius: 50%;
+    background-color: gray;
+    border-width: 0px;
+    text-align: center;
+    line-height: 0.8;
+    transition: 0.5s;
+}
+
+.yb-button-close:hover{
+    cursor: pointer;
+    animation: yb-bounce 0.5s ease-in-out 1;
+    background-color: white;
+    color: red;
+    transition: 0.8s;
+}
+

@@ -1,0 +1,21 @@
+{% load static %}
+
+<div class="yb-header-snapCard">
+    <h4>Recent Messages</h4>
+    <div class="yb-close-button" id="yb-close-snapCard">
+    </div>
+</div>
+<div class = "yb-content-snapCard">
+    {% for conversation in recent_conversations %}
+        <div class="yb-listItem" id="profile-item-{{profile.id}}" data-username="{{profile.user.username}}">
+            <div class="yb-image-thumbnail small">
+                <img src="{{ profile.custom.image_thumbnail_small.url }}" alt="{{profile.user.first_name}}s profile image">
+            </div>
+            <div class="yb-listItem-info">
+                <h4>{{ conversation.receiver.username }}</h4>
+                <p class="message-preview">{{ conversation.latest_message }}</p>
+            </div>
+        </div>
+    {% endfor %}
+    <button class="yb-button-flex">Go to Messages</button>
+</div>

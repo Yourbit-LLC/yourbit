@@ -1,0 +1,108 @@
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/yourbit_settings.css' %}"/>
+    <div id='div-header' style='position: relative; display: grid; grid-template-columns: 5fr 1fr; margin-left: auto; margin-right: auto; width: 100%; height: 40px; margin-bottom: 20px;' >
+        <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb">Feed Settings</h3>
+        <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('settings-feed');">&times;</div>
+    </div>
+    
+    <p style="font-size: small; text-align: center;" class="yb-autoText yb-margin-L5 yb-margin-R5">
+        Here, you can manage what you see in feed. All of these options are also available
+        in quick feed settings on the quickbar located at the top of feeds. The settings below
+        will define the default options to be loaded every time you log in.
+    </p>
+    
+    
+    
+    <div class="settings-container" style = "color: white; text-align: center;">
+    <!--Scope-->
+        <!--Default: Public/Followers+Friends/FriendsOnly-->
+            <p>Show Posts From</p>
+            <select type="text" class='yb-input-singleLine bg-gray-dark' name="yb-align-text" id="yb-align-text" style='color: white;' placeholder="Paragraph Align">
+                <option value="e">Everyone</option>
+                <option value="fol">Just People I'm Following</option>
+                <option value="ff">Friends and Following</option>
+                <option value="f">Just Friends</option>
+            </select>
+            <p>Sort Posts By</p>
+            <select type="text" class='yb-input-singleLine bg-gray-dark' name="yb-align-text" id="yb-align-text" style='color: white;' placeholder="Paragraph Align">
+                <option value="chrono">Time</option><!--Sorts by time-->
+                <option value="top">Best</option><!--Sorts by likes-->
+                <option value="trending">Trending</option><!--Sorts by fastest spreading-->
+                <option value="popular">Most Seen</option><!--Sorts by most seen of all time-->
+            </select>
+            <!--dropdown-->
+        <!--Exclude External Links-->
+            <!--dropdown-->
+        <!--Exclude Shared Posts-->
+        <p>Exclude Shared Posts</p>
+        <label class="yb-switch-round" id="yb-exclude-shared" style="grid-column: 2;">
+            <input type="checkbox" class="checkbox" name="exclude_shared" id="yb-check-exclude-shared">
+            <span class="slider round"></span>
+        </label>
+        <br>
+        <br>
+        <br>
+        <!--Show Group Connections-->
+        <!--Show Group Posts-->
+    
+    <!--Moderation-->
+        <!--Keyword Filters-->
+        <!--Resricted Content-->
+        <!--Smart Filters-->
+        <p>Toggle All Smart Filters</p>
+        <label class="yb-switch-round" id="yb-sf-all" style="grid-column: 2;">
+            <input type="checkbox" class="checkbox" name="sf_all" id="yb-check-sf-all">
+            <span class="slider round"></span>
+        </label>
+            {% comment %} <p>Suppress Politics</p>
+            <!--Politics Filter-->
+            <label class="yb-switch-round" id="yb-sf-politics" style="grid-column: 2;">
+                <input type="checkbox" class="checkbox" name="sf_politics" id="yb-check-sf-politics">
+                <span class="slider round"></span>
+            </label> {% endcomment %}
+
+            <p>Suppress News Links</p>
+            <!--News Filter-->
+            <label class="yb-switch-round" id="yb-sf-news" style="grid-column: 2;">
+                <input type="checkbox" class="checkbox" name="sf_news" id="yb-check-sf-news">
+                <span class="slider round"></span>
+            </label>
+            <!--Custom Source Extension: Internal/External-->
+            <!--Foul Language-->
+            <p>Foul Language Filter</p>
+            <label class="yb-switch-round" id="yb-sf-language" style="grid-column: 2;">
+                <input type="checkbox" class="checkbox" name="sf-language" id="yb-check-sf-language">
+                <span class="slider round"></span>
+            </label>
+            <p>Keyword Filters <small><i>*Separate by commas</i></small></p>
+            <!--Custom Keyword Extension-->
+            <input type="text" class="yb-input-singleLine">
+        <!--Blocked Users-->
+        <!--Muted Users-->
+
+    <!--Default Space: Global, Chat, Video, Photo-->
+    <!--Feed Groups-->
+        <!--Default Groups-->
+            <!--Toggle: On/Off-->
+            <!-- <label class="yb-switch-round" id="yb-default-groups" style="grid-column: 2;">
+                <input type="checkbox" class="checkbox" name="default-groups" id="yb-check-default-group">
+                <span class="slider round"></span>
+            </label> -->
+            <!--Select Default-->
+                <!--Dropdown-->
+        <!--Create Group-->
+            <!--Add Community/Friend/Following to group-->
+
+            <!--Group Type (Optional)-->
+        </div>
+        <div id="mobile-spacer">
+        </div>
+        <script>
+            $(document).ready(function() {
+                
+                let load_indicator = document.getElementById("yb-loading-core");
+                load_indicator.style.display = "none";
+            
+            });
+        </script>

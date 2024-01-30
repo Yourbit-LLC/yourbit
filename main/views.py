@@ -1,142 +1,121 @@
-
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.views import View
-from django.utils.timezone import localtime
-from django.views.generic.edit import UpdateView, DeleteView
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
-from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
-from django.db.models import Q
-from django.views.decorators.csrf import csrf_exempt
-from .models import TaskManager
-from django.core.mail import send_mail
-class EmailTest(View):
-    def get(self, request, *args, **kwargs):
-        send_mail(
-            'Hello from Yourbit!',
-            "This is a test of Yourbit's Email System",
-            "test@yourbit.me",
-            ['aus.chaney@gmail.com'],
-            fail_silently=False,
+from django.http import HttpResponse
+from django.template import loader
+from django.contrib.auth import authenticate, login, logout
+from yb_accounts.models import Account as User
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+
+# Create your views here.
+
+def initialize_session(request):
+    from yb_settings.models import MySettings, FeedSettings
+    from yb_systems.models import TaskManager
+    print(request)
+    this_user = request.user
+    these_settings = MySettings.objects.get(user=this_user)
+    this_state = TaskManager.objects.get(user=this_user)
+    last_location = this_state.last_location
+    
+    #Get active feed settings
+    feed_settings = FeedSettings.objects.get(settings=these_settings)
+    default_space = feed_settings.default_space
+
+    if default_space == 'auto':
+        current_space = feed_settings.current_space
+
+    else:
+        current_space = default_space
+    
+    sort_by = feed_settings.sort_by
+
+    #Build filter chain
+    filter_chain = ""
+    if feed_settings.show_friends:
+        filter_chain += '-fr'
+    
+    if feed_settings.show_following:
+        filter_chain += '-fo'
+    
+    if feed_settings.show_communities:
+        filter_chain += '-co'
+
+    if feed_settings.show_public:
+        filter_chain += '-p'
+
+    if feed_settings.show_my_bits:
+        filter_chain += '-me'
+
+    return {
+        "last_location": last_location,
+        "current_space": current_space, 
+        "sort_by": sort_by, 
+        "filter_chain": filter_chain
+    }
+
+
+
+def index(request, *args, **kwargs):
+
+
+
+    if request.user.is_authenticated:
+        init_params = initialize_session(request)
+        return render(
+            request, 
+            "main/index.html",
+            {
+                'first_login': request.user.first_login,
+                'location': init_params['last_location'],
+                'space': init_params['current_space'],
+                'filter': init_params['filter_chain'],
+                'sort': init_params['sort_by'],        
+            },
+
         )
-class GetTasks(View):
-    def get(self, request, *args, **kwargs):
-        user = request.user
-        task_manager = TaskManager.objects.get(user = user)
-        home_task = task_manager.home_task
-        message_task = task_manager.message_task
-        comment_task = task_manager.comment_task
-        profile_task = task_manager.profile_task
-        video_task = task_manager.video_task
-        tasks = {}
-
-        if home_task:
-            last_space = task_manager.last_space
-            tasks.update({'#home-task':last_space})
+    else:
+        from yb_accounts.forms import RegistrationForm, LoginForm
+        registration_form = RegistrationForm()
+        login_form = LoginForm()
+        return render(
+            request,
+            "registration/login.html",
+            {
+                'state': 'home',
+                'registration_form': registration_form,
+                'login_form': login_form,
+            }
+        )
         
-        if message_task:
-            conversation_data = task_manager.conversation.all
-            conversations = []
-            for conversation in conversation_data:
-                conversations.append(conversation.id)
-            tasks.update({'#message-task':conversations})
-        
-        if comment_task:
-            comment_data = task_manager.recent_comment.all
-            bits = []
-            for bit in comment_data:
-                bits.append(bit.id)
+def sign_up(request, *args, **kwargs):
+    from yb_accounts.forms import RegistrationForm
+    registration_form = RegistrationForm()
+    return render(
+        request,
+        "main/welcome.html",
+        {
+            'state': 'sign_up',
+            'registration_form': registration_form,
+        }
+    )
 
-            tasks.update({'#comment-task':bits})
+# Create your views here.
+def create_menu_template(request, *args, **kwargs):
+    return render(request, "main/create_menu.html")
 
-        if profile_task:
-            profile_data = task_manager.recent_profile.all
-            profiles = []
-            for profile in profile_data:
-                profiles.append(profile.id)
-            
-            tasks.update({'#profile-task':profiles})
+def create_object_template(request, object, *args, **kwargs):
+    if object == "chatbit":
+        return render(request, "yb_bits/yb_bitBuilder.html", {'object': object})
 
-        if video_task:
-            suspended_videos = task_manager.video.all
-            last_video = task_manager.last_video
-            videos = []
-            for video in suspended_videos:
-                videos.append(video)
+    elif object == "photobit":
+        return render(request, "yb_bits/yb_bitBuilder.html", {'object': object})
 
-            tasks.update({'#video-task': {'last_video':last_video, 'suspended_videos':videos}})
+    elif object == "videobit":
+        return render(request, "yb_bits/yb_bitBuilder.html", {'object': object})
 
-class CurrentTask(View):
-    def get(self, request, *args, **kwargs):
-        task_manager = TaskManager.objects.get(user=request.user)
-        current_task = task_manager.current_task
-        last_url = task_manager.last_url
+    elif object == "orbit":
+        return render(request, "create/yb_createOrbit.html", {'object': object})
 
-        JsonResponse({'last_url':last_url, 'current_task':current_task})
-
-class StartTask(View):
-    def post(self, request, *args, **kwargs):
-        task_manager = TaskManager.objects.get(user=request.user)
-        task = request.POST.get['task']
-        
-        this_task = request.POST.get['this_task']
-        task_manager.last_task = this_task
-
-        current_url = request.POST.get['current_url']
-        task_manager.last_url = current_url
-
-        if task == '#home-task':
-            space = request.POST.get['space']
-            
-            
-            task_manager.last_space = space
-            task_manager.home_task = True
-
-        if task == '#message-task':
-            this_conversation = request.POST.get['conversation']
-            
-            task_manager.message_task = True
-            task_manager.conversation.add(this_conversation)
-
-        if task == '#comment-task':
-            this_comment = request.POST.get['comment']
-            
-            task_manager.comment_task = True
-            task_manager.recent_comment.add(this_comment)
-
-        if task == '#profile-task':
-            this_profile = request.POST.get['profile']
-
-            task_manager.profile_task = True
-            task_manager.recent_profile = this_profile
-        
-        if task =='#video-task':
-            this_video = request.POST.get['video']
-
-            task_manager.video_task = True
-            task_manager.last_video = this_video
-            task_manager.video.add(this_video)
-
-class EndTask(View):
-    def post(self, request, *args, **kwargs):
-        JsonResponse({'success':'success'})
-
-
-class Maintenance(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, 'social/maintenance.html')
-#Asynchronous Search queries on mobile for search suggestions
-
-
-############################## 
-#                            #
-#-----      Tests       -----#
-#                            #
-##############################
-
-class DynamicFeedTest(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, 'social/test-feed-page.html')
-
-
-
-
+    
+    

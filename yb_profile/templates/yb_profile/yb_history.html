@@ -1,0 +1,27 @@
+{% load static %}
+<div id='div-header' style='position: relative; display: grid; grid-template-columns: 5fr 1fr; margin-left: auto; margin-right: auto; width: 100%; height: 40px; margin-bottom: 20px;' >
+    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb">My History</h3>
+    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('history');">&times;</div>
+</div>
+
+<div id="inbox-header" style="height: 40px; scrollbar-width: none; display:grid; grid-template-columns: 4fr 1fr; column-gap: 20px; overflow-x: scroll;" class="yb-hScroll yb-fillWidth yb-relative">
+    <div id="filter-container" class="yb-flexRow yb-fillWidth yb-gap5 yb-margin-L5">
+        <button class="history-filter yb-button-wide active medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb" name="recents">Recents</button>
+        <button class="history-filter yb-button-wide medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb" name="videos">Videos</button>
+        <button class="history-filter yb-button-wide medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb" name="liked">Liked</button>
+        <button class="history-filter yb-button-wide medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb" name="disliked">Disliked</button>
+        <button class="history-filter yb-button-wide medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb" name="comments">Comments</button>
+
+    </div>
+</div>
+
+<div id="stuff-list" class="yb-fillWidth yb-margin-T30">
+    <p class="yb-autoText font-medium align-center">No History Found</p>
+
+
+</div>
+
+<script src="{% static 'scripts/yb_profile/yb_history.js' %}"></script>
+<div class="yb-logo-footer small" id="history-menu-footer" style="position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%);">
+    <img src="{% static 'images/main/yourbit-logo2023-01.svg' %}" style="width: 100%; position: relative;" alt="YB Logo" class="yb-logo-small">
+</div>

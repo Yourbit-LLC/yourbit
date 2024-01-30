@@ -1,0 +1,149 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/yb_bits/yb_bits.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/yb_bits/yb_bitBuilder.css' %}">
+
+<form class= "yb-container-bitPreview create" style="position: relative;">
+    <div id='div-header' style='position: relative; display: grid; grid-template-columns: 5fr 1fr; margin-left: auto; margin-right: auto; width: 100%; height: 40px; margin-bottom: 20px;' >
+        <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb">Create Bit</h3>
+        <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('create')">&times;</div>
+        <input type="hidden" id="bb-field-bitType" value="chat">
+    </div>
+
+    <div class="yb-gridH13 yb-fillWidth">
+        <div id="text-type-button" class="type-button active" name="chat">
+            <svg class="space-button-image yb-center-transform all small" style="position: relative; grid-column: 1;" xmlns="http://www.w3.org/2000/svg" height="32" width="32">
+                <path class="{% if object == "chatbit" %}yb-fill-white {% else %} yb-fill-gray{% endif %} small" d="M.95 17.8V1.85q0-.5.325-.825Q1.6.7 2.1.7h14.25q.5 0 .825.325.325.325.325.825V12q0 .5-.325.825-.325.325-.825.325H5.6Zm5.8.9q-.5 0-.825-.325-.325-.325-.325-.825v-2.4h13.9V5.4h2.4q.5 0 .825.325.325.325.325.825v16.8L18.4 18.7Zm8.1-15.35H3.6v8.05l.9-.9h10.35Zm-11.25 0v8.05Z">
+
+                </path>
+            </svg>
+        </div>
+        <div id="video-type-button" class="type-button" name="video">
+            <svg class="space-button-image yb-center-transform all small" style="position: relative; grid-column: 1;" xmlns="http://www.w3.org/2000/svg" height="32" width="32">
+                <path class="{% if object == "videobit" %}yb-fill-white {% else %} yb-fill-gray{% endif %} small"  d="m9.15 17.15 8-5.15-8-5.15ZM12 22.8q-2.25 0-4.213-.85-1.962-.85-3.424-2.312Q2.9 18.175 2.05 16.212 1.2 14.25 1.2 12t.85-4.225Q2.9 5.8 4.363 4.338q1.462-1.463 3.424-2.301Q9.75 1.2 12 1.2t4.225.837q1.975.838 3.438 2.301 1.462 1.462 2.299 3.437Q22.8 9.75 22.8 12q0 2.25-.838 4.212-.837 1.963-2.299 3.426Q18.2 21.1 16.225 21.95q-1.975.85-4.225.85Zm0-2.65q3.425 0 5.788-2.363Q20.15 15.425 20.15 12t-2.362-5.788Q15.425 3.85 12 3.85q-3.425 0-5.787 2.362Q3.85 8.575 3.85 12q0 3.425 2.363 5.787Q8.575 20.15 12 20.15ZM12 12Z">
+
+                </path>
+            </svg>
+        </div>
+        <div id="photo-type-button" class="type-button" name="photo">
+            <svg class="space-button-image yb-center-transform all small" style="position: relative; grid-column: 1;" xmlns="http://www.w3.org/2000/svg" height="32" width="32">
+                <path class="{% if object == "photobit" %}yb-fill-white {% else %} yb-fill-gray{% endif %} small" d="M12 17.75q1.925 0 3.263-1.337Q16.6 15.075 16.6 13.15q0-1.925-1.337-3.263Q13.925 8.55 12 8.55q-1.925 0-3.262 1.337Q7.4 11.225 7.4 13.15q0 1.925 1.338 3.263Q10.075 17.75 12 17.75Zm0-2.65q-.8 0-1.375-.575t-.575-1.375q0-.8.575-1.375T12 11.2q.8 0 1.375.575t.575 1.375q0 .8-.575 1.375T12 15.1Zm-8.15 6.725q-1.1 0-1.875-.775-.775-.775-.775-1.875V7.125q0-1.1.775-1.875.775-.775 1.875-.775h3.025l2.05-2.25h6.15l2.05 2.25h3.025q1.1 0 1.875.775.775.775.775 1.875v12.05q0 1.1-.775 1.875-.775.775-1.875.775Zm16.3-2.65V7.125h-4.2l-2.05-2.25h-3.8l-2.05 2.25h-4.2v12.05ZM12 13.15Z">
+
+                </path>
+            </svg>
+        </div>
+    </div>
+
+    <div id="bit-preview" class="
+        yb-element-background 
+        yb-bit-shell 
+        {% if object == "chatbit" %}
+        createChat 
+        {% else %}
+        createMedia
+        {% endif %}
+        primary-color-preview" data-type="chat" data-id="66" data-userid="1" data-username="achaney55" data-button-color="#669d34" data-icon-color="#ffffff" data-secondary-color="#3a87fe" data-primary-color="#0056d6" style="background-color: #4b4b4b;">
+        
+        <div id="header-bit-preview" class="yb-header-bit preview yb-gap10">
+            <div id="profile-image" class="element-accent profile-image-thumbnail small border-solid plainBorder narrowBorder circle" data-username="achaney55" style="border-color: white; overflow: hidden;">
+                <img class="image-thumbnail-round small" style="object-fit:fill;" src="{{profile_thumbnail_small}}">
+            </div>
+            <p id="bit-info-preview" class="yb-userInfo-bit align-left">
+                <strong id="chat-user-name" class="bit-name" style="color:white;">
+                    {{request.user.first_name}} {{request.user.last_name}}
+                </strong> 
+                <small class="bit-username" style="color: gray;">
+                    @{{request.user.username}}
+                </small>
+            </p>
+            <p id="time-posted-preview" class="yb-timeLabel-bit">
+                October 01, 2023 
+                <br>
+                <small id="time-label">@00:00 AM</small>
+            </p>
+        </div>
+        
+        <input type="text" id="bb-field-bitTitle" class="yb-builderBit yb-tform-cntrOrigin bb-field yb-autoText squared font-large font-heavy align-center border-solid narrowBorder" style="position: relative; height: 30px; width: 75%; display:none; margin-left: auto; margin-right: auto;" placeholder="Title">
+        {% comment %} {{ bit_form.title }} {% endcomment %}
+        <button type="button" style="height: 25px; width: 75%;" id="title-bit-preview-button" class="yb-button-flex transparent font-white font-small yb-center-transform lr">    
+            Add Title
+        </button>
+        <h3 class="yb-title-bit yb-autoText" id="title-bit-preview" style="display: none;">Title</h3>
+        <br>
+
+        {% if object == "videobit" %}
+        <input type="file" id="bb-field-bitVideo" class="yb-builderBit yb-tform-cntrOrigin bb-field yb-autoText squared" placeholder="Video" style="display:none; transform:(0,0);">
+        <div id="add-video-button" style="position: relative; background-color: black; border-radius: 10px; height: 150px; width: 100%;" class="yb-container-addVideo preview" class="yb-center-transform lr">
+            <svg class="yb-center-transform all" xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32"><path class="yb-fill-white" d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+        </div>
+        <video id="video-bit-preview" class="yb-video-bit" style="display: none;" controls>
+            <source src="" type="video/mp4">
+        </video>
+        {% elif object == "photobit" %}
+        <input type="file" id="bb-field-bitPhoto" class="yb-builderBit yb-tform-cntrOrigin bb-field bg-gray-dark yb-autoText squared" placeholder="Photo" style="display:none; transform:scale(0,0);">
+        <div id="add-photo-button" style="" class="yb-container-addPhoto preview" class="yb-center-transform lr">
+            <svg class="yb-center-transform all" xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32"><path class="yb-fill-white" d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+        </div>
+        <img id="photo-bit-preview" class="yb-photo-bit" style="display: none;" src="">
+
+        {% endif %}
+
+        <textarea id="bb-field-body" class="yb-builderBit yb-tform-cntrOrigin bb-field bg-gray-dark yb-autoText squared font-medium align-left border-solid narrowBorder" placeholder="Description" style="position: relative; height: 30px; width: 75%; display:none; margin-left: auto; margin-right: auto;"></textarea>
+        {% comment %} {{ bit_form.body }} {% endcomment %}
+        <button type="button" id="description-bit-preview-button" style="height: 25px; width: 75%;" class = "yb-button-flex transparent font-white font-small yb-center-transform lr">
+            Add Description
+        </button>
+        <p id="description-bit-preview" class="yb-description-bit yb-autoText yb-padding-L5 align-left yb-margin-B20" style="display: none;">Description</p>
+        
+        <hr class="yb-fillWidth">
+
+        <input type="text" id="bb-field-bitShoutouts" class="yb-builderBit yb-tform-cntrOrigin bb-field bg-gray-dark yb-autoText rounded font-heavy align-left border-solid narrowBorder" placeholder="Search Connections" style="position: relative; height: 30px; width: 75%; display:none; margin-left: auto; margin-right: auto;">
+
+        {% comment %} {{ bit_form.shoutouts }} {% endcomment %}
+        <button type="button" id="shoutout-bit-preview-button" style="height: 25px; width: 75%;" class = "yb-button-flex transparent font-white font-small yb-center-transform lr">
+            Add ShoutOuts
+        </button>
+        
+        {% if object == "videobit" %}
+            <input type = "text" class = "yb-builderBit yb-tform-cntrOrigin bb-field bg-gray-dark yb-autoText rounde font-heavy align-center border-solid narrowBorderd" placeholder = "Meta Tags (separate by commas)" style="display:none; transform: scale(0,0);" id="bb-field-bitTags">
+            
+            <button type="button" id = "tags-bit-preview-button" style="height: 25px; width: 75%;" class = "yb-button-flex transparent font-white font-small yb-center-transform lr">
+                Add Tags
+            </button>
+        {% endif %}
+
+    </div>
+</form>
+
+<div class="yb-options-bitBuilder contracted yb-margin-L10 yb-margin-R10">
+    <div class="yb-options-bitBuilder-header yb-fillWidth yb-flexRow yb-gap10">
+     
+            <button class="yb-button-halfWidth white rounded font-black border-none font-heavy" style="height: 35px;">Options</button>
+        
+  
+    
+
+            <button class="yb-button-halfWidth green rounded yb-autoText border-none font-heavy" id="button-submit-bit" style="height: 35px;">Send</button>
+   
+    </div>
+    
+
+</div>
+
+</div>
+<div class="yb-logo-footer small" id="create-menu-footer" style="position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%);">
+    <img src="{% static 'images/main/yourbit-logo2023-01.svg' %}" style="width: 100%; position: relative;" alt="YB Logo" class="yb-logo-small">
+</div>
+
+<script class="page-script" src="{% static "scripts/yb_builder/yb_createBit.js" %}"></script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".yb-container-bitPreview").on("click", function(){
+            $(".yb-options-bitBuilder").toggleClass("contracted");
+            $(".yb-options-bitBuilder").toggleClass("expanded");
+        });
+
+        yb_startClock("time-label", "decorated-time");
+
+    });
+</script>

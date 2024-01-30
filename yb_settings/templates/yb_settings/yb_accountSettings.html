@@ -1,0 +1,103 @@
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/yb_settings/yourbit_settings.css' %}"/>
+<div id='div-header' style='position: relative; display: grid; grid-template-columns: 5fr 1fr; margin-left: auto; margin-right: auto; width: 100%; height: 40px; margin-bottom: 20px;' >
+    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb">Account Settings</h3>
+    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('settings-account');">&times;</div>
+</div>
+
+<p style="font-size: small; text-align: center;" class="yb-autoText yb-margin-L5 yb-margin-R5">
+    Welcome to your Account settings, here you can change
+    general account information like you name, email address, 
+    username, or password.
+</p>
+
+
+<div class="settings-container" style="color:white; text-align: center;">
+    <div class = "setting-sub-container">
+        <h4>Account Information</h4>
+        <!--Edit Name-->
+        <p class="yb-select-label">First Name</p>
+        <div id = "field-container-first-name" class="yb-field-container">
+            
+            <input id='field-first-name' value="{{user.first_name}}" class="yb-input-singleLine bg-gray-dark squared yb-autoText yb-margin-T10">
+        
+        </div>
+        
+        <br>
+        <br>
+        <p class="yb-select-label">Last Name</p>
+            <div id = "field-container-last-name" class="yb-field-container">
+                <input id='field-last-name' value="{{user.last_name}}" class="yb-input-singleLine bg-gray-dark squared yb-autoText yb-margin-T10">
+            </div>
+        <br>
+        <br>
+        <!--Edit Email Address-->
+        <p class="yb-select-label">Email Address</p>
+            <div id="field-container-email-address" class="yb-field-container">
+                <input id='field-email-address' value="{{user.email}}" class="yb-input-singleLine bg-gray-dark squared yb-autoText yb-margin-T10">
+            </div>
+        <br>
+        <br>
+        <!--Edit Username-->
+        <p class="yb-select-label">Username</p>
+            <div id="field-container-username" class="yb-field-container">
+                <input id='field-username' value="{{user.username}}" class="yb-input-singleLine bg-gray-dark squared yb-autoText yb-margin-T10">
+            </div>
+        <br>
+        <br>
+        <!--Edit Phone Number-->
+        <p class="yb-select-label">Phone Number</p>
+            <div id = "field-container-phone-number" class="yb-field-container">
+                <input id='field-phone-number' value="{{user.phone_number}}" class="yb-input-singleLine bg-gray-dark squared yb-autoText yb-margin-T10">
+            </div>    
+    </div>
+    <br>
+    <div class = "setting-sub-container">
+        <hr>
+        <b>Change Password</b>
+        <p style="font-size: small;">
+            <b><small>Password Tips:</small></b>
+            <br>
+            Never share your password with anyone and try to change it every 30 days.
+            Click the button below to change your password.
+        </p>
+        <br>
+        <button type="button" style="width:150px;" class="wide-button">Change Password</button>
+        <br>
+        <br>
+        <input id="checkbox-password-reminder" style="background-color: rgba(255,255,255, 0.5); color: white;" type="checkbox">
+        <label for="checkbox-password-reminder"><small>Send me reminders to update my password</small></label>
+    </div>
+    <br>
+    <div class="setting-sub-container">
+        <hr>
+        <b>Delete Account</b>
+        <p style="font-size: small;"> The big red button below will eject you from Yourbit, along with all of your belongings,
+            and Yourbit won't remember a single shred of your existence.
+            <br>
+            <br>
+            <small>
+            As harsh as that sounds, its necessary in this case. We believe in protecting your privacy and
+            anonymity. This means that all of your public and private data on Yourbit will be violently obliterated.
+            <br><br>
+            
+            </small>
+            We hope you return to Yourbit soon!
+        </p>
+        <br>
+        <br>
+        <button type="button" style="width:150px; background-color:red; color: white; box-shadow: 0px 0px 10px red;" class="yb-button-wide"><b>Delete Account<b></button>
+    </div>
+</div>
+<div id="mobile-spacer">
+</div>
+<script class="page-script" type="text/javascript" src="{% static 'scripts/yb-account-settings.js' %}"></script>
+<script>
+    $(document).ready(function() {
+        
+        let load_indicator = document.getElementById("yb-loading-core");
+        load_indicator.style.display = "none";
+    
+    });
+</script>

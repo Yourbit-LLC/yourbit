@@ -1,0 +1,98 @@
+{% load static %}
+<div id='div-header' style='position: relative; display: grid; grid-template-columns: 5fr 1fr; margin-left: auto; margin-right: auto; width: 100%; height: 40px; margin-bottom: 20px;' >
+    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb">Messages</h3>
+    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('messages');">&times;</div>
+</div>
+
+<div id="button-container" class="yb-flexRow yb-gap10 yb-fillWidth;" style="height: 35px; padding: 5px 5px 5px 5px;">
+    <button class="yb-button-flex bg-gray-dark yb-center-margin lr rounded border-none" style="width: 50%; height: 30px;"><svg class="yb-center-margin all tiny pointer-object" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path class="yb-autoFill" d="M764.522-134.913 523.848-375.587q-29.761 21.044-65.434 33.065-35.672 12.022-76.292 12.022-102.187 0-173.861-71.674Q136.587-473.848 136.587-576q0-102.152 71.674-173.826Q279.935-821.5 382.087-821.5q102.152 0 173.826 71.674 71.674 71.674 71.674 173.861 0 40.859-12.022 76.292-12.021 35.434-33.065 64.956l240.913 241.152-58.891 58.652ZM382.087-413.5q67.848 0 115.174-47.326Q544.587-508.152 544.587-576q0-67.848-47.326-115.174Q449.935-738.5 382.087-738.5q-67.848 0-115.174 47.326Q219.587-643.848 219.587-576q0 67.848 47.326 115.174Q314.239-413.5 382.087-413.5Z"/></svg></button>
+    <button class="yb-button-flex bg-gray-dark yb-center-margin lr rounded border-none" style="width: 50%; height: 30px;"><svg class="yb-center-margin all tiny pointer-object" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path class="yb-autoFill" d="M218.87-135.869q-34.483 0-58.742-24.259t-24.259-58.742v-522.26q0-34.896 24.109-59.448 24.109-24.553 58.892-23.553h345.76l-83 83.001H218.87v522.26h522.26v-262.282l83.001-83v345.282q0 34.483-24.259 58.742t-58.742 24.259H218.87ZM480-480Zm-99.826 99.826v-158.5l350.413-350.174q12.674-12.674 27.587-18.391 14.913-5.718 30.565-5.718 16.313 0 31.396 5.718 15.083 5.717 27.698 18.174l41.015 40.934q12.913 12.674 18.63 27.913 5.718 15.239 5.718 31.003 0 15.789-5.823 31.108-5.822 15.32-18.525 27.998L538.674-380.174h-158.5Zm456.717-409.065L789-836.891l47.891 47.652Zm-378.5 330.848h47.652l228.848-228.848-23.238-24.326-24.175-23.326-229.087 228.848v47.652Zm253.262-253.174-24.175-23.326 24.175 23.326 23.238 24.326-23.238-24.326Z"/></svg></button>
+</div>
+<hr class="yb-fillWidth bg-gray-dark" style="border-color: rgb(35, 35, 35);">
+<div id="inbox-header" style="height: 40px; scrollbar-width: none; display:grid; grid-template-columns: 4fr 1fr; column-gap: 20px; overflow-x: scroll;" class="yb-hScroll yb-fillWidth yb-relative">
+    <div id="filter-container" class="yb-flexRow yb-fillWidth yb-gap5 yb-margin-L5">
+        
+        <button class="message-filter yb-button-wide active medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb" name="all">Everyone</button>
+        <button class="message-filter yb-button-wide medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb" name="friends">Friends</button>
+        <button class="message-filter yb-button-wide medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb" name="followers">Followers</button>
+        <button class="message-filter yb-button-wide medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb" name="orbits">Orbits</button>
+        <button class="message-filter yb-button-wide medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb" name="public">Public</button>
+
+    </div>
+</div>
+<hr class="yb-fillWidth bg-gray-dark" style="border-color: rgb(35, 35, 35);">
+
+<div id="conversation-list" class="yb-fillWidth">
+    {% if conversations == True %}
+        
+        {% for conversation in results %}
+        <div id="conversation-container-{{conversation.id}}" class="yb-fillWidth">
+            <div id="conversation-{{conversation.id}}" class="
+                yb-listItem conversation 
+                {% comment %} {% if conversation.has_seen %} 
+                seen 
+                {%else%} 
+                unseen 
+                {% endif %} {% endcomment %}
+                yb-autoText
+            "> 
+                <div id="conversation-icon">
+                    
+                    <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32">
+                        <path class="yb-autoFill" d="M616.244-527.693q21.832 0 37.025-15.283 15.192-15.282 15.192-37.115 0-21.832-15.283-37.024t-37.115-15.192q-21.832 0-37.024 15.283-15.193 15.282-15.193 37.115 0 21.832 15.283 37.024t37.115 15.192Zm-272.307 0q21.832 0 37.024-15.283 15.193-15.282 15.193-37.115 0-21.832-15.283-37.024t-37.115-15.192q-21.832 0-37.025 15.283-15.192 15.282-15.192 37.115 0 21.832 15.283 37.024t37.115 15.192ZM480-272.309q62.615 0 114.461-35.038T670.922-400H618q-22 37-58.5 58.5T480-320q-43 0-79.5-21.5T342-400h-52.922q24.615 57.615 76.461 92.653Q417.385-272.309 480-272.309Zm.067 172.308q-78.836 0-148.204-29.92-69.369-29.92-120.682-81.21-51.314-51.291-81.247-120.629-29.933-69.337-29.933-148.173t29.92-148.204q29.92-69.369 81.21-120.682 51.291-51.314 120.629-81.247 69.337-29.933 148.173-29.933t148.204 29.92q69.369 29.92 120.682 81.21 51.314 51.291 81.247 120.629 29.933 69.337 29.933 148.173t-29.92 148.204q-29.92 69.369-81.21 120.682-51.291 51.314-120.629 81.247-69.337 29.933-148.173 29.933ZM480-480Zm0 320q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Z"/>
+                    </svg>
+                    
+                </div>
+                <div id="notification-contents font-medium">
+                    <b class="font-small yb-autoText">
+                            {{conversation.display_name}}
+                    </b>
+                    <p class="yb-autoText">
+                        {{conversation.preview}}
+                    </p>
+
+                    <div class="font-gray" id="conversation-time">
+                        <p>{{conversation.time}}</p>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="yb-fillWidth">
+            <div class="yb-autoText">
+                <br>
+                <p class="align-center yb-margin-T10">No conversations yet</p>
+                <br>
+                <button id="create-new-conversation" class="yb-button-flex bg-gray-dark font-gray yb-button-halfWidth">+  Create New</button>
+                <script>
+
+                    document.getElementById("create-new-conversation").addEventListener("click", function(){
+                        let container = yb_toggle2WayContainer('messages-new');
+                        if (container[0] === "closing"){
+                            history.pushState(null, null, "/");
+                            container[1].setAttribute("data-state", "empty");
+                        } else {
+                            console.log("not closing")
+                            let container_content = container[1].querySelector(".yb-2Way-content");
+                            container[1].setAttribute("data-state", "messages-new");
+                            yb_purgeScripts(yb_clearContainer);
+                            
+                            $(container_content).load("/messages/templates/new-message/")
+
+                            history.pushState({}, "", '/messages/');
+                    
+                        }
+                    });
+                </script>
+            </div>
+        </div>
+    {% endif %}
+</div>
+<script src="{% static 'scripts/yb_messages/yb_messenger.js' %}"></script>
+<script src="{% static 'scripts/yb_messages/yb_inbox.js' %}"></script>
+<div class="yb-logo-footer small" id="create-menu-footer" style="position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%);">
+    <img src="{% static 'images/main/yourbit-logo2023-01.svg' %}" style="width: 100%; position: relative;" alt="YB Logo" class="yb-logo-small">
+</div>

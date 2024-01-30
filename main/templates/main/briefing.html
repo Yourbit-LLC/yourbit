@@ -1,0 +1,24 @@
+{% load static %}
+
+<div id="profile-splash-label" class = "space-splash-label profile">
+    <img src="{{user_profile_image}}" class="large-profile-image" id="profile-image-splash" style="height: 0px; width: 0px; border-color:{{profile.custom.accent_color}};"/>
+    <div class="profile-name-splash" id="profile-name-splash">
+        <h3>Welcome back, {{user_first_name}}!</h3>
+        <p>Here are some things you missed...</p>
+    </div>
+</div>
+
+<div class="yb-list-container half">
+    {% for brief in briefings %}
+        <div class="yb-list-item simple">
+            <p>{{brief.body}}</p>                
+        </div>
+    {% endfor %}
+</div>
+
+<h4>Continue where you left off?</h4>
+<div class="yb-actions-horizontal">
+    <button id="button-new-session">New</button>
+    <button id="button-continue-session">Continue</button>
+
+</div>
