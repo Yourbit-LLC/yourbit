@@ -427,7 +427,7 @@
 
     .yb-container-spotlight.open {
 
-        transform: translateY(0);
+        transform: translateY(0vh);
         transition: 0.5s;
     }
     
@@ -457,7 +457,7 @@
 
     .yb-container-spotlight.open {
 
-        transform: translateY(-95vh);
+        transform: translateY(0vh);
         transition: 0.5s;
     }
     
