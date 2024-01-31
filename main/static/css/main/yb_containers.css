@@ -431,6 +431,7 @@
 @media screen and (max-width: 768px) {
     .spotlight-header {
         grid-template-columns: 7fr 1fr; 
+        grid-gap: 5px;
     }
 
     .spotlight-header-label {
