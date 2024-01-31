@@ -449,7 +449,6 @@
         background-color: rgba(0, 0, 0, 0.95);
         z-index: 99;
         border-radius: 0px;
-        border: 1px solid rgb(24, 24, 24);
         box-shadow: black 0px 0px 60px 0px;
         transform: translateY(100vh);
         transition: 0.5s;
