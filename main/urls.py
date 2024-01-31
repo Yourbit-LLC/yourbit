@@ -7,3 +7,4 @@ urlpatterns = [
     path("create-menu/", create_menu_template, name="create"),
     path("create/<str:object>/", create_object_template, name="index")
 ]
+
