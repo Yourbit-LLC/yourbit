@@ -424,6 +424,8 @@
     .spotlight-header {
         grid-template-columns: 1.5fr 6fr 1fr; 
     }
+
+
 }
 
 @media screen and (max-width: 768px) {
@@ -435,6 +437,9 @@
         display: none;
     }
     
+    .search-filter-button {
+        width: 150px !important;
+    }
     
 }
 
