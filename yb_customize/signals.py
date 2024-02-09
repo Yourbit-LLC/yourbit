@@ -13,7 +13,7 @@ def create_profile(sender, instance, created, **kwargs):
         theme.save()
         
         #Create Custom Core Object which contains all settings for handling customizations
-        custom = CustomCore(user_profile=instance)
+        custom = CustomCore(profile=instance)
         custom.theme = theme
         custom.save()
         

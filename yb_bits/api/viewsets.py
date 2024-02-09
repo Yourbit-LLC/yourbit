@@ -108,7 +108,7 @@ class BitViewSet(viewsets.ModelViewSet):
 
         #Get custom core for profile images
         user_profile = Profile.objects.get(user=self.request.user)
-        custom_core = CustomCore.objects.get(user_profile=user_profile)
+        custom_core = CustomCore.objects.get(profile=user_profile)
         theme = custom_core.theme
         
         custom_bit = CustomBit.objects.get(theme=theme)

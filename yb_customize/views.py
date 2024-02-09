@@ -115,7 +115,7 @@ def get_wallpaper(request, profile_class, type):
 
     if profile_class == 'profile':
         this_profile = Profile.objects.get(user=request.user)
-        custom_core = CustomCore.objects.get(user_profile=this_profile)
+        custom_core = CustomCore.objects.get(profile=this_profile)
     elif profile_class == 'orbit':
         this_profile = Orbit.objects.get(handle=request.GET.get('handle'))
         custom_core = CustomCore.objects.get(community_profile=this_profile)
