@@ -151,3 +151,5 @@ class FriendRequest(models.Model):
     accepted = models.BooleanField(default=False)
     status = models.CharField(max_length=100, default="pending")
     time = models.DateTimeField(default=timezone.now)
+
+    
