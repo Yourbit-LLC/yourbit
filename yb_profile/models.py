@@ -140,7 +140,7 @@ class Inventory(models.Model):
     #Add inventory items here
     clusters = models.ManyToManyField('yb_bits.Cluster', related_name='inventory', blank=True)
     continuums = models.ManyToManyField('yb_bits.Continuum', related_name='inventory', blank=True)
-    themes = models.ManyToManyField('yb_customize.Theme', related_name='inventory', blank=True)
+    # themes = models.ManyToManyField('yb_customize.Theme', related_name='inventory', blank=True)
     # fonts = models.ManyToManyField('yb_customize.Font', related_name='inventory', blank=True)
     bits = models.ManyToManyField('yb_bits.Bit', related_name='inventory', blank=True)
 
