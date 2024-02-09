@@ -77,7 +77,7 @@ class Profile(models.Model):
         return self.user.username
 
 
-class Profile_Info(models.Model):
+class ProfileInfo(models.Model):
 
     #Contact Info
     email = models.EmailField(max_length=150)

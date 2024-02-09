@@ -7,7 +7,7 @@ from yb_bits.models import BitComment, Bit
 from yb_messages.models import Message, OneToOneMessage
 
 class NotificationCore(models.Model):
-    profile = models.ForeignKey('yb_profile.UserProfile', on_delete=models.CASCADE, related_name='notification_profile')
+    profile = models.ForeignKey('yb_profile.Profile', on_delete=models.CASCADE, related_name='notification_profile')
     unseen_notifications = models.ManyToManyField('Notification', related_name='unseen_notifications', blank=True)
     seen_notifications = models.ManyToManyField('Notification', related_name='seen_notifications', blank=True)
 
@@ -20,10 +20,10 @@ class Notification(models.Model):
     #User Details
     display_name = models.CharField(max_length=100, blank=True, null=True) #used for display name, user may set real name or username
     is_community = models.BooleanField(default=False)
-    to_user = models.ForeignKey('yb_profile.UserProfile', related_name='notification_to', on_delete=models.CASCADE, null=True) #connected to profile so users personal information cannot be retrieved
+    to_user = models.ForeignKey('yb_profile.Profile', related_name='notification_to', on_delete=models.CASCADE, null=True) #connected to profile so users personal information cannot be retrieved
     title = models.CharField(max_length=100, blank=True, null=True)
     body = models.CharField(max_length=300, blank=True, null=True)
-    from_user = models.ForeignKey('yb_profile.UserProfile', related_name='notification_from_user', on_delete=models.CASCADE, null=True) #connected to profile so users personal information cannot be retrieved
+    from_user = models.ForeignKey('yb_profile.Profile', related_name='notification_from_user', on_delete=models.CASCADE, null=True) #connected to profile so users personal information cannot be retrieved
     from_community = models.ForeignKey('yb_profile.CommunityProfile', related_name='notification_from_community', on_delete=models.CASCADE, blank=True, null=True)
     
     #Notification Details

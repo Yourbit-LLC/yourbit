@@ -4,7 +4,7 @@ from django.urls import path, include
 from yb_profile.views import *
 
 urlpatterns = [
-    path("user/<str:username>/", UserProfileView.as_view(), name="user_profile"),
+    path("user/<str:username>/", ProfileView.as_view(), name="user_profile"),
     path("page/<str:username>/", CommunityProfileView.as_view(), name="page_profile"),
     path("templates/people/", PeopleListTemplate.as_view(), name="people_template"),
     path("templates/orbits/", OrbitListTemplate.as_view(), name="orbit_template"),

@@ -6,7 +6,7 @@ from rest_framework import filters
 from django_filters.rest_framework import DjangoFilterBackend
 from yb_accounts.models import Account as User
 from yb_messages.models import *
-from yb_profile.models import UserProfile
+from yb_profile.models import Profile
 from .serializers import *
 from rest_framework.throttling import UserRateThrottle, AnonRateThrottle
 from rest_framework.authtoken.models import Token

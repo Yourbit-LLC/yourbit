@@ -11,9 +11,9 @@ class GetNotifications(View):
 
 
 def notifications_html(request):
-    from yb_profile.models import UserProfile
+    from yb_profile.models import Profile
     from .models import NotificationCore
-    this_profile = UserProfile.objects.get(user=request.user)
+    this_profile = Profile.objects.get(user=request.user)
     notification_core = NotificationCore.objects.get(profile=this_profile)
     unseen_notifications = notification_core.unseen_notifications.all()
     seen_notifications = notification_core.seen_notifications.all()

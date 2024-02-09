@@ -7,7 +7,7 @@ from operator import attrgetter
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.decorators import api_view, action
 from rest_framework.response import Response
-from yb_profile.models import UserProfile
+from yb_profile.models import Profile
 from rest_framework.parsers import MultiPartParser, FormParser, FileUploadParser
 #import object does not exist
 from django.core.exceptions import ObjectDoesNotExist
@@ -17,7 +17,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 
 class ProfileViewset(viewsets.ModelViewSet):
-    queryset = UserProfile.objects.all()
+    queryset = Profile.objects.all()
     serializer_class = ProfileResultSerializer
     filter_backends = [DjangoFilterBackend]
 
@@ -49,10 +49,10 @@ class ProfileViewset(viewsets.ModelViewSet):
                 return Response(status=status.HTTP_401_UNAUTHORIZED)
             
             else:
-                if user_to_follow in request.user.userprofile.follows.all():
+                if user_to_follow in request.user.Profile.follows.all():
                     return Response("Already Following User", status=status.HTTP_400_BAD_REQUEST)
                 else:
-                    request.user.userprofile.follow(user_to_follow)
+                    request.user.Profile.follow(user_to_follow)
                     return Response(status=status.HTTP_204_NO_CONTENT)
         
         except ObjectDoesNotExist:
@@ -67,16 +67,16 @@ class ProfileViewset(viewsets.ModelViewSet):
             if user_to_unfollow == request.user:
                 return Response(status=status.HTTP_400_BAD_REQUEST)
             
-            elif user_to_unfollow.userprofile.is_private:
+            elif user_to_unfollow.Profile.is_private:
                 return Response(status=status.HTTP_401_UNAUTHORIZED)
             
             else:
                 
-                if user_to_unfollow not in request.user.userprofile.follows.all():
+                if user_to_unfollow not in request.user.Profile.follows.all():
                     return Response("Not Following User", status=status.HTTP_400_BAD_REQUEST)
                 
                 else:        
-                    request.user.userprofile.unfollow(user_to_unfollow)
+                    request.user.Profile.unfollow(user_to_unfollow)
                     return Response(status=status.HTTP_204_NO_CONTENT)
                 
         except ObjectDoesNotExist:
@@ -127,12 +127,12 @@ class CommunityViewset(viewsets.ModelViewSet):
         
         else:
             #If user is already following the account, return 400
-            if user_to_follow in request.user.userprofile.follows.all():
+            if user_to_follow in request.user.Profile.follows.all():
                 return Response("Already Following User", status=status.HTTP_400_BAD_REQUEST)
             
             #If user is not already following the account, follow the account
             else:
-                request.user.userprofile.follow(user_to_follow)
+                request.user.Profile.follow(user_to_follow)
                 return Response(status=status.HTTP_204_NO_CONTENT)
         
     @action(detail=True, methods=['post'])
@@ -153,11 +153,11 @@ class CommunityViewset(viewsets.ModelViewSet):
         
         else:
             
-            if user_to_unfollow not in request.user.userprofile.follows.all():
+            if user_to_unfollow not in request.user.Profile.follows.all():
                 return Response("Not Following User", status=status.HTTP_400_BAD_REQUEST)
             
             else:        
-                request.user.userprofile.unfollow(user_to_unfollow)
+                request.user.Profile.unfollow(user_to_unfollow)
                 return Response(status=status.HTTP_204_NO_CONTENT)
 
         
@@ -167,14 +167,14 @@ class CommunityViewset(viewsets.ModelViewSet):
         
 
 class ProfileInfoViewset(viewsets.ModelViewSet):
-    queryset = UserProfileInfo.objects.all()
-    serializer_class = UserProfileInfoSerializer
+    queryset = ProfileInfo.objects.all()
+    serializer_class = ProfileInfoSerializer
     filter_backends = [DjangoFilterBackend]
     
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
-        serializer = UserProfileInfoSerializer(instance)
+        serializer = ProfileInfoSerializer(instance)
         return Response(serializer.data)
     
     def get_queryset(self):
@@ -250,8 +250,8 @@ class FriendRequestViewset(viewsets.ModelViewSet):
         to_user = friend_request.to_user
 
         if to_user == request.user:
-            from_user.userprofile.friends.add(to_user)
-            to_user.userprofile.friends.add(from_user)
+            from_user.Profile.friends.add(to_user)
+            to_user.Profile.friends.add(from_user)
 
             # Update or delete the friend request
             friend_request.accepted = True

@@ -5,10 +5,10 @@ from yb_accounts.models import Account as User
 
 # Create your views here.
 #Profile Page
-class UserProfileView(View):
+class ProfileView(View):
     def get(self, request, username, *args, **kwargs):
         that_user = User.objects.get(username = username)
-        this_profile = UserProfile.objects.get(user = that_user)
+        this_profile = Profile.objects.get(user = that_user)
         context = {
             "location":"profile",
             "space":"global",
@@ -34,7 +34,7 @@ class PeopleListTemplate(View):
         from itertools import chain
         from operator import attrgetter
 
-        this_profile = UserProfile.objects.get(user = request.user)
+        this_profile = Profile.objects.get(user = request.user)
         friends = this_profile.friends.all()
         followers = this_profile.followers.all()
         following = this_profile.follows.all()
@@ -57,7 +57,7 @@ class OrbitListTemplate(View):
         from itertools import chain
         from operator import attrgetter
 
-        this_profile = UserProfile.objects.get(user = request.user)
+        this_profile = Profile.objects.get(user = request.user)
         
         following = this_profile.followers.filter(is_orbit = True)
 
@@ -79,8 +79,8 @@ class HistoryTemplate(View):
 class ProfileAboutTemplate(View):
     def get(self, request, username, *args, **kwargs):
         this_user = User.objects.get(username = username)
-        this_profile = UserProfile.objects.get(user = this_user)
-        this_info = UserProfileInfo.objects.get(profile = this_profile)
+        this_profile = Profile.objects.get(user = this_user)
+        this_info = ProfileInfo.objects.get(profile = this_profile)
 
         context = {
             "current_profile":this_profile,

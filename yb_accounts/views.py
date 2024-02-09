@@ -152,9 +152,9 @@ class Onboarding(View):
     def post(self, request, *args, **kwargs):
         from yb_settings.models import MySettings, PrivacySettings
         from yb_settings.forms import ShortPrivacyForm
-        from yb_profile.models import UserProfile
+        from yb_profile.models import Profile
         user = request.user
-        user_profile = UserProfile.objects.get(user=user)
+        user_profile = Profile.objects.get(user=user)
 
         form = ShortPrivacyForm(request.POST)
 

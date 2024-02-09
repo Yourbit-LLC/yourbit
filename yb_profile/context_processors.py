@@ -21,10 +21,10 @@ from yb_settings.models import MySettings
 #         }
 
 def Customization(request):
-    from yb_profile.models import UserProfile
+    from yb_profile.models import Profile
     from yb_customize.models import CustomCore
     if request.user.is_authenticated:
-        profile = UserProfile.objects.get(user=request.user)
+        profile = Profile.objects.get(user=request.user)
         custom = CustomCore.objects.get(user_profile=profile)
         
         profile_image_object = custom.profile_image

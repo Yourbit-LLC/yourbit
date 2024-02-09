@@ -11,7 +11,7 @@ from rest_framework import filters
 from django_filters.rest_framework import DjangoFilterBackend
 from yb_accounts.models import Account as User
 from yb_bits.models import *
-from yb_profile.models import UserProfile
+from yb_profile.models import Profile
 from .serializers import *
 from rest_framework.throttling import UserRateThrottle, AnonRateThrottle
 from rest_framework.authtoken.models import Token
@@ -68,7 +68,7 @@ class BitFeedAPIView(generics.ListAPIView):
 
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
-        this_profile = UserProfile.objects.get(user=self.request.user)
+        this_profile = Profile.objects.get(user=self.request.user)
         user_tz = this_profile.current_timezone
 
         print("user tz" + user_tz)
@@ -107,7 +107,7 @@ class BitViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
 
         #Get custom core for profile images
-        user_profile = UserProfile.objects.get(user=self.request.user)
+        user_profile = Profile.objects.get(user=self.request.user)
         custom_core = CustomCore.objects.get(user_profile=user_profile)
         theme = custom_core.theme
         
@@ -176,7 +176,7 @@ class CommentViewSet(viewsets.ModelViewSet):
         
         return queryset
     def list(self, request, *args, **kwargs):
-        user_profile = UserProfile.objects.get(user=request.user)
+        user_profile = Profile.objects.get(user=request.user)
         timezone = user_profile.current_timezone
 
         serializer = self.get_serializer_context()

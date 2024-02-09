@@ -10,7 +10,7 @@ class Photo(models.Model):
 
     is_community = models.BooleanField(default=False)
 
-    profile = models.ForeignKey('yb_profile.UserProfile', related_name = "photo", on_delete=models.CASCADE, blank=True, null=True)
+    profile = models.ForeignKey('yb_profile.Profile', related_name = "photo", on_delete=models.CASCADE, blank=True, null=True)
     community_profile = models.ForeignKey('yb_profile.CommunityProfile', related_name = "photo", on_delete=models.CASCADE, blank=True, null=True)
     
     small_thumbnail = models.ImageField(blank = True, upload_to='media/profile/small_thumbnails/%Y/%m/%d/%H:%M', default="static/images/2023-logo-draft.png")
@@ -41,11 +41,11 @@ class PhotoSticker(models.Model):
     time = models.DateTimeField(default=timezone.now)
 
 class ProfileImage(models.Model):
-    profile = models.ForeignKey('yb_profile.UserProfile', related_name = "profile_image", on_delete=models.CASCADE, blank=True, null=True)
+    profile = models.ForeignKey('yb_profile.Profile', related_name = "profile_image", on_delete=models.CASCADE, blank=True, null=True)
     photo = models.ForeignKey('Photo', related_name = "profile_image", on_delete=models.CASCADE, blank=True, null=True)
 
 class Wallpaper(models.Model):
-    user_profile = models.ForeignKey('yb_profile.UserProfile', related_name='wallpaper', blank=True, on_delete=models.CASCADE, null=True)
+    user_profile = models.ForeignKey('yb_profile.Profile', related_name='wallpaper', blank=True, on_delete=models.CASCADE, null=True)
     community_profile = models.ForeignKey('yb_profile.CommunityProfile', related_name='wallpaper', blank=True, on_delete=models.CASCADE, null=True)
     background_image = models.ImageField(upload_to='profile/background/%Y/%m/%d', blank=True, default="media/aqua_default_theme.png")
     background_mobile = models.ImageField(upload_to='profile/background/%Y/%m/%d', blank=True, default="media/aqua_default_theme.png")

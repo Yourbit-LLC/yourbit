@@ -6,7 +6,7 @@ from django.contrib.postgres.fields import ArrayField as ArrayField
 # Create your models here.
 
 class MessageCore(models.Model):
-    profile = models.ForeignKey('yb_profile.UserProfile', related_name='message_core', on_delete=models.CASCADE, blank=True)
+    profile = models.ForeignKey('yb_profile.Profile', related_name='message_core', on_delete=models.CASCADE, blank=True)
     #message settings
     # 1 = everyone, 2 = friends, 3 = no one
     receive_from = models.IntegerField(default=1)

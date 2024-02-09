@@ -2,7 +2,7 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from yb_accounts.models import Account as User
 from yb_settings.models import MySettings, FeedSettings, PrivacySettings, NotificationSettings
-from yb_profile.models import UserProfile, UserProfileInfo
+from yb_profile.models import Profile, ProfileInfo
 from yb_systems.models import TaskManager
 from yb_rewards.models import Rewards
 from yb_customize.models import CustomCore
@@ -22,7 +22,7 @@ from yb_photo.models import Photo, Wallpaper
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
     if created:
-        user_profile = UserProfile(user=instance)
+        user_profile = Profile(user=instance)
         user_profile.save()
         settings = MySettings(user=instance, profile=user_profile)
         settings.save()
@@ -36,7 +36,7 @@ def create_profile(sender, instance, created, **kwargs):
         rewards.save()
         history = InteractionHistory(user=instance, profile=user_profile)
         history.save()
-        profile_info = UserProfileInfo(profile=user_profile)
+        profile_info = ProfileInfo(profile=user_profile)
         profile_info.save()
         custom_core = CustomCore(user_profile=user_profile)
         default_profile_image = Photo(profile = user_profile, is_community = False)

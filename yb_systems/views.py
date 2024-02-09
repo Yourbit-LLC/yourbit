@@ -9,7 +9,7 @@ from django.db.models import Q
 from django.views.decorators.csrf import csrf_exempt
 from .models import TaskManager
 from django.core.mail import send_mail
-from yb_profile.models import UserProfile
+from yb_profile.models import Profile
 #import response from dajngo
 from django.http import HttpResponse
 
@@ -147,7 +147,7 @@ class DynamicFeedTest(View):
 
 
 def updateTimezone(request):
-    this_profile = UserProfile.objects.get(user=request.user)
+    this_profile = Profile.objects.get(user=request.user)
     this_timezone = request.POST.get("user_tz")
     print(this_timezone)
     this_profile.current_timezone = this_timezone

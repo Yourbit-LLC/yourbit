@@ -12,16 +12,16 @@ class ProfileResultSerializer(serializers.ModelSerializer):
     user = UserResultSerializer(read_only=True)
 
     class Meta: 
-        model = UserProfile
+        model = Profile
         fields = ['display_name', 'user', 'customcore']
 
     def get_customcore(self, obj):
         """
         This method is called to get the value of the 'customcore' field.
-        'obj' is the UserProfile instance that's being serialized.
+        'obj' is the Profile instance that's being serialized.
         """
 
-        if hasattr(obj, 'customcore'):  # Check if the UserProfile instance has a related CustomCore instance
+        if hasattr(obj, 'customcore'):  # Check if the Profile instance has a related CustomCore instance
             return SlimCustomSerializer(obj.custom).data  # If it does, serialize the CustomCore instance and return the serialized data
         return None  # If it doesn't, return None
     
@@ -36,17 +36,17 @@ class CommunityResultSerializer(serializers.ModelSerializer):
         def get_customcore(self, obj):
             """
             This method is called to get the value of the 'customcore' field.
-            'obj' is the UserProfile instance that's being serialized.
+            'obj' is the Profile instance that's being serialized.
             """
     
-            if hasattr(obj, 'customcore'):  # Check if the UserProfile instance has a related CustomCore instance
+            if hasattr(obj, 'customcore'):  # Check if the Profile instance has a related CustomCore instance
                 return SlimCustomSerializer(obj.custom).data  # If it does, serialize the CustomCore instance and return the serialized data
             return None  # If it doesn't, return None
         
-class UserProfileInfoSerializer(serializers.ModelSerializer):
+class ProfileInfoSerializer(serializers.ModelSerializer):
 
     class Meta: 
-        model = UserProfileInfo
+        model = ProfileInfo
         fields = '__all__'
 
 class CommunityProfileInfoSerializer(serializers.ModelSerializer):

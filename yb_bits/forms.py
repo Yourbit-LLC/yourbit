@@ -1,17 +1,17 @@
 from django import forms
 from yb_bits.models import Bit, Cluster
-from yb_profile.models import UserProfile
+from yb_profile.models import Profile
 
-class UserProfilePictureUpload(forms.ModelForm):
+class ProfilePictureUpload(forms.ModelForm):
     image = forms.FileField(required=True)
 
     def __init__(self, *args, **kwargs):
-        super(UserProfilePictureUpload, self).__init__(*args, **kwargs)
+        super(ProfilePictureUpload, self).__init__(*args, **kwargs)
         self.fields['image'].widget.attrs.update({'name': 'profile_image_field', 'class':'profile-image-field', 'id':'profile-image-field'})
 
 
     class Meta:
-        model = UserProfile
+        model = Profile
         fields = ('image',)
         exclude = ("user", )
 
@@ -21,7 +21,7 @@ class UserBackgroundPictureUpload(forms.ModelForm):
         super(UserBackgroundPictureUpload, self).__init__(*args, **kwargs)
         self.fields['background_image'].widget.attrs.update({'name': 'background_image_field', 'class':'profile-image-field', 'id':'bkd-image-field'})
     class Meta:
-        model = UserProfile
+        model = Profile
         fields = ('background_image',)
         exclude = ("user",)
 
@@ -31,7 +31,7 @@ class CommunityProfilePictureUpload(forms.ModelForm):
         super(CommunityProfilePictureUpload, self).__init__(*args, **kwargs)
         self.fields['image'].widget.attrs.update({'name': 'profile_image_field', 'class':'profile-image-field', 'id':'profile-image-field'})
     class Meta:
-        model = UserProfile
+        model = Profile
         fields = ('image',)
         exclude = ("user",)
 
@@ -41,7 +41,7 @@ class CommunityBackgroundPictureUpload(forms.ModelForm):
         super(CommunityBackgroundPictureUpload, self).__init__(*args, **kwargs)
         self.fields['background_image'].widget.attrs.update({'name': 'background_image_field', 'class':'profile-image-field', 'id':'bkd-image-field'})
     class Meta:
-        model = UserProfile
+        model = Profile
         fields = ('background_image',)
         exclude = ("user",)
 

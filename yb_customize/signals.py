@@ -2,11 +2,11 @@
 from django.dispatch import Signal
 from django.dispatch import receiver
 from django.db.models.signals import post_save, pre_save
-from yb_profile.models import UserProfile, CommunityProfile
+from yb_profile.models import Profile, CommunityProfile
 from yb_customize.models import *
 
 # Define your signals here
-@receiver(post_save, sender=UserProfile)
+@receiver(post_save, sender=Profile)
 def create_profile(sender, instance, created, **kwargs):
     if created:
         theme = Theme(name="", author = instance.user)

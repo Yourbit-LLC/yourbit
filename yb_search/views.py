@@ -4,7 +4,7 @@ from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from django.db.models import F
 from yb_bits.models import Bit
 from yb_accounts.models import Account as User
-from yb_profile.models import UserProfile
+from yb_profile.models import Profile
 from yb_profile.api.serializers import ProfileResultSerializer
 from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
 import requests
@@ -44,11 +44,11 @@ def search(request):
     user_results = []
     username_filter = User.objects.filter(username__icontains = query)
     for result in username_filter:
-        this_profile = UserProfile.objects.get(user=result)
+        this_profile = Profile.objects.get(user=result)
         if this_profile not in user_results:
             user_results.append(this_profile)
 
-    user_profile_filter = UserProfile.objects.filter(display_name__icontains = query)
+    user_profile_filter = Profile.objects.filter(display_name__icontains = query)
     for result in user_profile_filter:
         if result not in user_results:
             user_results.append(result)
