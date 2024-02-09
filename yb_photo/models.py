@@ -9,8 +9,10 @@ class Photo(models.Model):
     image = models.ImageField(blank = True, upload_to='media/profile/source_photos/%Y/%m/%d/%H:%M', default="static/images/2023-logo-draft.png")
 
     is_community = models.BooleanField(default=False)
+
     profile = models.ForeignKey('yb_profile.UserProfile', related_name = "photo", on_delete=models.CASCADE, blank=True, null=True)
     community_profile = models.ForeignKey('yb_profile.CommunityProfile', related_name = "photo", on_delete=models.CASCADE, blank=True, null=True)
+    
     small_thumbnail = models.ImageField(blank = True, upload_to='media/profile/small_thumbnails/%Y/%m/%d/%H:%M', default="static/images/2023-logo-draft.png")
     medium_thumbnail = models.ImageField(blank = True, upload_to='media/profile/medium_thumbnails/%Y/%m/%d/%H:%M', default="static/images/2023-logo-draft.png")
     large_thumbnail =  models.ImageField(blank = True, upload_to='media/profile/large_thumbnails/%Y/%m/%d/%H:%M', default="static/images/2023-logo-draft.png")
@@ -37,6 +39,10 @@ class PhotoSticker(models.Model):
     animation_duration = models.IntegerField(default=0)
     
     time = models.DateTimeField(default=timezone.now)
+
+class ProfileImage(models.Model):
+    profile = models.ForeignKey('yb_profile.UserProfile', related_name = "profile_image", on_delete=models.CASCADE, blank=True, null=True)
+    photo = models.ForeignKey('Photo', related_name = "profile_image", on_delete=models.CASCADE, blank=True, null=True)
 
 class Wallpaper(models.Model):
     user_profile = models.ForeignKey('yb_profile.UserProfile', related_name='wallpaper', blank=True, on_delete=models.CASCADE, null=True)

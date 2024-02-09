@@ -42,15 +42,19 @@ def new_conversation_template(request):
 class ConversationView(View):
     def get(self, request, *args, **kwargs):
         user = request.user
-        conversation_id = kwargs['conversation_id']
-        conversation = Conversation.objects.get(id=conversation_id)
 
-        if conversation.is_group:
-            group_conversation = GroupConversation.objects.get(id=conversation_id)
-            messages = Message.objects.filter(conversation=group_conversation)
+        #Get type data from url
+        conversation_type = kwargs['type']
+
+        conversation_id = kwargs['conversation_id']
+
+        if conversation_type == 'group':
+            conversation = GroupConversation.objects.get(id=conversation_id)
+
         else:
-            one_to_one_conversation = OneToOneConversation.objects.get(id=conversation_id)
-            messages = Message.objects.filter(conversation=one_to_one_conversation)
+            conversation = OneToOneConversation.objects.get(id=conversation_id)
+
+        messages = conversation.messages.all()
 
         context = {
             'messages': messages,
