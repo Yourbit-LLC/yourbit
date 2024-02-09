@@ -85,6 +85,7 @@ class Orbit(models.Model):
 
 
 class ProfileInfo(models.Model):
+    profile = models.OneToOneField(Profile, related_name='profile_info', blank=True, on_delete=models.CASCADE)
 
     #Contact Info
     email = models.EmailField(max_length=150)
