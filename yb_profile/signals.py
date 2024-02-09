@@ -38,11 +38,11 @@ def create_profile(sender, instance, created, **kwargs):
         history.save()
         profile_info = ProfileInfo(profile=user_profile)
         profile_info.save()
-        custom_core = CustomCore(user_profile=user_profile)
+        custom_core = CustomCore(profile=user_profile)
         default_profile_image = Photo(profile = user_profile, is_community = False)
         default_profile_image.save()
         custom_core.profile_image = default_profile_image
-        default_wallpaper = Wallpaper(user_profile = user_profile)
+        default_wallpaper = Wallpaper(profile = user_profile)
         default_wallpaper.save()
         custom_core.wallpaper = default_wallpaper
         custom_core.save()

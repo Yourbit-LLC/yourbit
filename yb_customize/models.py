@@ -9,8 +9,7 @@ from yb_accounts.models import Account as User
 class CustomCore(models.Model):
 
     #Profile Connections
-    user_profile = models.OneToOneField('yb_profile.Profile', related_name='custom', blank=True, on_delete=models.CASCADE, null=True)
-    community_profile = models.OneToOneField('yb_profile.Orbit', related_name='custom', blank=True, on_delete=models.CASCADE, null=True)
+    profile = models.OneToOneField('yb_profile.Profile', related_name='custom', blank=True, on_delete=models.CASCADE, null=True)
     is_new_user = models.BooleanField(default=True)
 
     #Universal profile image variables by reference to photo object

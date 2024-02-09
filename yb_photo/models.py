@@ -6,6 +6,7 @@ from django.utils import timezone
 
 class Photo(models.Model):
     #Model for a photo uploaded by a user
+    profile = models.ForeignKey('yb_profile.Profile', related_name = "photo", on_delete=models.CASCADE, blank=True, null=True)
     image = models.ImageField(blank = True, upload_to='media/profile/source_photos/%Y/%m/%d/%H:%M', default="static/images/2023-logo-draft.png")
 
     is_community = models.BooleanField(default=False)
@@ -45,8 +46,7 @@ class ProfileImage(models.Model):
     photo = models.ForeignKey('Photo', related_name = "profile_image", on_delete=models.CASCADE, blank=True, null=True)
 
 class Wallpaper(models.Model):
-    user_profile = models.ForeignKey('yb_profile.Profile', related_name='wallpaper', blank=True, on_delete=models.CASCADE, null=True)
-    community_profile = models.ForeignKey('yb_profile.Orbit', related_name='wallpaper', blank=True, on_delete=models.CASCADE, null=True)
+    profile = models.ForeignKey('yb_profile.Profile', related_name='wallpaper', blank=True, on_delete=models.CASCADE, null=True)
     background_image = models.ImageField(upload_to='profile/background/%Y/%m/%d', blank=True, default="media/aqua_default_theme.png")
     background_mobile = models.ImageField(upload_to='profile/background/%Y/%m/%d', blank=True, default="media/aqua_default_theme.png")
     background_desktop = models.ImageField(upload_to='profile/background/%Y/%m/%d', blank=True, default="media/aqua_default_theme.png")
