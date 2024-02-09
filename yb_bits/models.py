@@ -1,5 +1,5 @@
 from django.db import models
-from yb_profile.models import UserProfile as Profile
+from yb_profile.models import Profile as Profile
 from yb_accounts.models import Account as User
 from django.utils import timezone
 from yb_customize.models import CustomBit
