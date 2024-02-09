@@ -127,11 +127,11 @@ class ProfileInfo(models.Model):
     relationship_status = models.CharField(max_length = 100, default = 'Single')
 
     
-# class OrbitInfo(models.Model):
-#     profile = models.OneToOneField(Orbit, related_name='community_profile_info', blank=True, on_delete=models.CASCADE)
-#     date_started = models.DateField(default=timezone.now)
-#     location_started = models.CharField(max_length = 150)
-#     team_size = models.IntegerField(default = 1)
+class OrbitInfo(models.Model):
+    profile = models.OneToOneField(Orbit, related_name='community_profile_info', blank=True, on_delete=models.CASCADE)
+    date_started = models.DateField(default=timezone.now)
+    location_started = models.CharField(max_length = 150)
+    team_size = models.IntegerField(default = 1)
 
 class Inventory(models.Model):
     
