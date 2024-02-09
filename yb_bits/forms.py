@@ -25,10 +25,10 @@ class UserBackgroundPictureUpload(forms.ModelForm):
         fields = ('background_image',)
         exclude = ("user",)
 
-class CommunityProfilePictureUpload(forms.ModelForm):
+class OrbitPictureUpload(forms.ModelForm):
     image = forms.FileField(required=True)
     def __init__(self, *args, **kwargs):
-        super(CommunityProfilePictureUpload, self).__init__(*args, **kwargs)
+        super(OrbitPictureUpload, self).__init__(*args, **kwargs)
         self.fields['image'].widget.attrs.update({'name': 'profile_image_field', 'class':'profile-image-field', 'id':'profile-image-field'})
     class Meta:
         model = Profile

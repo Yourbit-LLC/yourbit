@@ -88,7 +88,7 @@ class ProfileViewset(viewsets.ModelViewSet):
 
 
 class CommunityViewset(viewsets.ModelViewSet):
-    queryset = CommunityProfile.objects.all()
+    queryset = Orbit.objects.all()
     serializer_class = CommunityResultSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['handle', 'display_name']
@@ -122,7 +122,7 @@ class CommunityViewset(viewsets.ModelViewSet):
             return Response(status=status.HTTP_400_BAD_REQUEST)
         
         #If user is trying to follow a private account, return 401
-        elif user_to_follow.communityprofile.is_private:
+        elif user_to_follow.Orbit.is_private:
             return Response(status=status.HTTP_401_UNAUTHORIZED)
         
         else:
@@ -148,7 +148,7 @@ class CommunityViewset(viewsets.ModelViewSet):
         if user_to_unfollow == request.user:
             return Response(status=status.HTTP_400_BAD_REQUEST)
         
-        elif user_to_unfollow.communityprofile.is_private:
+        elif user_to_unfollow.Orbit.is_private:
             return Response(status=status.HTTP_401_UNAUTHORIZED)
         
         else:
@@ -189,13 +189,13 @@ class ProfileInfoViewset(viewsets.ModelViewSet):
 
 
 class CommunityInfoViewset(viewsets.ModelViewSet):
-    queryset = CommunityProfileInfo.objects.all()
-    serializer_class = CommunityProfileInfoSerializer
+    queryset = OrbitInfo.objects.all()
+    serializer_class = OrbitInfoSerializer
     filter_backends = [DjangoFilterBackend]
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
-        serializer = CommunityProfileInfoSerializer(instance)
+        serializer = OrbitInfoSerializer(instance)
         return Response(serializer.data)
     
     def get_queryset(self):

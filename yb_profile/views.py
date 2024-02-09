@@ -18,9 +18,9 @@ class ProfileView(View):
         return render(request, "yb_profile/yb_profile.html", context)
 
 #Page Profile
-class CommunityProfileView(View):
+class OrbitView(View):
     def get(self, request, username, *args, **kwargs):
-        this_profile = CommunityProfile.objects.get(handle = username)
+        this_profile = Orbit.objects.get(handle = username)
         context = {
             "location":"profile",
             "space":"global",

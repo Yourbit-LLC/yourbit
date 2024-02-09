@@ -30,7 +30,7 @@ class CommunityResultSerializer(serializers.ModelSerializer):
         customcore = serializers.SerializerMethodField()
     
         class Meta: 
-            model = CommunityProfile
+            model = Orbit
             fields = ['display_name', 'customcore']
     
         def get_customcore(self, obj):
@@ -49,10 +49,10 @@ class ProfileInfoSerializer(serializers.ModelSerializer):
         model = ProfileInfo
         fields = '__all__'
 
-class CommunityProfileInfoSerializer(serializers.ModelSerializer):
+class OrbitInfoSerializer(serializers.ModelSerializer):
 
     class Meta: 
-        model = CommunityProfileInfo
+        model = OrbitInfo
         fields = '__all__'
 
 class FriendRequestSerializer(serializers.ModelSerializer):

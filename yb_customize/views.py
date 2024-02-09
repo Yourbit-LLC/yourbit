@@ -12,7 +12,7 @@ class CustomizeProfile(View):
     def post(self, request):
         pass
 
-from yb_profile.models import Profile, CommunityProfile
+from yb_profile.models import Profile, Orbit
 from yb_photo.models import Photo
 from yb_photo.views import generate_tiny_thumbnail, generate_small_thumbnail, generate_medium_thumbnail
 
@@ -29,7 +29,7 @@ def update_profile_image(request):
     if request.POST.get('class') == 'profile':
         this_profile = Profile.objects.get(user=request.user)
     elif request.POST.get('class') == 'community':
-        this_profile = CommunityProfile.objects.get(handle=request.POST.get('handle'))
+        this_profile = Orbit.objects.get(handle=request.POST.get('handle'))
     else:
         return HttpResponse("Invalid request type")
 
@@ -57,7 +57,7 @@ def update_profile_image(request):
     return HttpResponse("success")
 
 def update_profile_background(request):
-    from yb_profile.models import Profile, CommunityProfile
+    from yb_profile.models import Profile, Orbit
     from yb_photo.models import Wallpaper
 
     wpid = request.POST.get('wpid')
@@ -71,7 +71,7 @@ def update_profile_background(request):
         
     elif profile_class == 'orbit':
         print("updating community profile")
-        this_profile = CommunityProfile.objects.get(handle = request.POST.get('handle'))
+        this_profile = Orbit.objects.get(handle = request.POST.get('handle'))
     
     else:
         print("Invalid Entry For Type => " + "'" + profile_class + "'")
@@ -108,7 +108,7 @@ def update_profile_background(request):
 
 def get_wallpaper(request, profile_class, type):
     from yb_photo.models import Wallpaper
-    from yb_profile.models import Profile, CommunityProfile
+    from yb_profile.models import Profile, Orbit
     from yb_customize.models import CustomCore
 
     this_profile = None
@@ -117,7 +117,7 @@ def get_wallpaper(request, profile_class, type):
         this_profile = Profile.objects.get(user=request.user)
         custom_core = CustomCore.objects.get(user_profile=this_profile)
     elif profile_class == 'orbit':
-        this_profile = CommunityProfile.objects.get(handle=request.GET.get('handle'))
+        this_profile = Orbit.objects.get(handle=request.GET.get('handle'))
         custom_core = CustomCore.objects.get(community_profile=this_profile)
     else:
         return HttpResponse("Invalid request type")

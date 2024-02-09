@@ -75,6 +75,13 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+    
+class Orbit(models.Model):
+    #Model for a community profile
+    profile = models.ManyToManyField(Profile, related_name='orbit', blank=True, on_delete=models.CASCADE)
+    date_started = models.DateField(default=timezone.now)
+    location_started = models.CharField(max_length = 150)
+    team_size = models.IntegerField(default = 1)
 
 
 class ProfileInfo(models.Model):
@@ -120,7 +127,7 @@ class ProfileInfo(models.Model):
     relationship_status = models.CharField(max_length = 100, default = 'Single')
 
     
-# class CommunityProfileInfo(models.Model):
+# class OrbitInfo(models.Model):
 #     profile = models.OneToOneField(Orbit, related_name='community_profile_info', blank=True, on_delete=models.CASCADE)
 #     date_started = models.DateField(default=timezone.now)
 #     location_started = models.CharField(max_length = 150)

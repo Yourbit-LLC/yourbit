@@ -177,4 +177,4 @@ class TaskManager(models.Model):
     recent_comment = models.ManyToManyField('yb_bits.Bit', related_name = 'comment_sections', blank=True)
     conversation = models.ManyToManyField('yb_messages.OneToOneConversation', related_name = 'recent_conversations', blank=True)
     recent_user_profile = models.ManyToManyField('yb_profile.Profile', related_name='recent_user_profiles', blank=True)
-    recent_user_profile = models.ManyToManyField('yb_profile.CommunityProfile', related_name='recent_community_profiles', blank=True)
+    recent_user_profile = models.ManyToManyField('yb_profile.Orbit', related_name='recent_community_profiles', blank=True)
