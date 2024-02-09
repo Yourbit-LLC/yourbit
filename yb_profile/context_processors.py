@@ -25,7 +25,7 @@ def Customization(request):
     from yb_customize.models import CustomCore
     if request.user.is_authenticated:
         profile = Profile.objects.get(user=request.user)
-        custom = CustomCore.objects.get(user_profile=profile)
+        custom = CustomCore.objects.get(profile=profile)
         
         profile_image_object = custom.profile_image
         profile_image = profile_image_object.image
