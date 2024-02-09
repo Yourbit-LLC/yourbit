@@ -78,7 +78,7 @@ class Profile(models.Model):
     
 class Orbit(models.Model):
     #Model for a community profile
-    profile = models.ManyToManyField(Profile, related_name='orbit', blank=True, on_delete=models.CASCADE)
+    profile = models.ManyToManyField(Profile, related_name='orbit', blank=True)
     date_started = models.DateField(default=timezone.now)
     location_started = models.CharField(max_length = 150)
     team_size = models.IntegerField(default = 1)
