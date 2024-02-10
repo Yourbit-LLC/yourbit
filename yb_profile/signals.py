@@ -5,7 +5,7 @@ from yb_settings.models import MySettings, FeedSettings, PrivacySettings, Notifi
 from yb_profile.models import Profile, ProfileInfo
 from yb_systems.models import TaskManager
 from yb_rewards.models import Rewards
-from yb_customize.models import CustomCore
+from yb_customize.models import CustomCore, Theme
 from yb_notify.models import NotificationCore
 from yb_bits.models import InteractionHistory, Bit, BitStream
 from yb_photo.models import Photo, Wallpaper
@@ -46,6 +46,7 @@ def create_profile(sender, instance, created, **kwargs):
         default_wallpaper.save()
         custom_core.wallpaper = default_wallpaper
         custom_core.save()
+        default_theme = Theme(name = "Default", author = instance)
         task_manager = TaskManager(user = instance)
         task_manager.save()
         notification_core = NotificationCore(profile = user_profile)
