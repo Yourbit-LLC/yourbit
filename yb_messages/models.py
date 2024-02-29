@@ -44,7 +44,7 @@ class Message(models.Model):
     is_read = models.BooleanField(default=False)
 
 class ChatSticker(models.Model):
-    user = models.ForeignKey(User, related_name='chat_stickers', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='chat_stickers', on_delete=models.CASCADE, default=None)
     sticker = models.CharField(max_length=150, default="")
     x = models.IntegerField(default=0)
     y = models.IntegerField(default=0)
