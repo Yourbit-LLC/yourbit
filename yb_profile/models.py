@@ -31,7 +31,7 @@ class Profile(models.Model):
     is_briefings = models.BooleanField(default=False)
 
         #System information
-    current_timezone = models.CharField(max_length=150, default="America/NewYork")
+    current_timezone = models.CharField(max_length=150, default="America/New_York")
     alerted_notifications = models.BooleanField(default=False)
 
     display_name = models.CharField(max_length=150, default="")

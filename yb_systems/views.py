@@ -149,7 +149,7 @@ class DynamicFeedTest(View):
 def updateTimezone(request):
     this_profile = Profile.objects.get(user=request.user)
     this_timezone = request.POST.get("user_tz")
-    print(this_timezone)
+    print("running timezone update:" + this_timezone)
     this_profile.current_timezone = this_timezone
     this_profile.save()
     return HttpResponse({"Response":"Timezone successfully updated"})

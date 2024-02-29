@@ -121,6 +121,7 @@ class BitViewSet(viewsets.ModelViewSet):
         serializer.save(display_name = user_profile.display_name, user=self.request.user, profile=user_profile, custom=custom_bit)
 
         headers = self.get_success_headers(serializer.data)
+
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
     
 class LikeViewSet(viewsets.ModelViewSet):
