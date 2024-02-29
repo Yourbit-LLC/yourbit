@@ -4,7 +4,7 @@ from django.utils import timezone
 from yb_accounts.models import Account as User
 from yb_customize.models import CustomCore
 from yb_bits.models import BitComment, Bit
-from yb_messages.models import Message, OneToOneMessage
+from yb_messages.models import Message
 
 class NotificationCore(models.Model):
     profile = models.ForeignKey('yb_profile.Profile', on_delete=models.CASCADE, related_name='notification_profile')
@@ -36,9 +36,8 @@ class Notification(models.Model):
     comment = models.ForeignKey(BitComment, on_delete=models.CASCADE, related_name='+', blank=True, null=True)
 
     #Message Details
-    solo_conversation = models.ForeignKey('yb_messages.OneToOneConversation', on_delete=models.CASCADE, related_name='+', blank=True, null=True)
-    group_conversation = models.ForeignKey('yb_messages.GroupConversation', on_delete=models.CASCADE, related_name='+', blank=True, null=True)
-    message = models.ForeignKey(OneToOneMessage, on_delete=models.CASCADE, related_name='+', blank=True, null=True)
+    conversation = models.ForeignKey('yb_messages.Conversation', on_delete=models.CASCADE, related_name='+', blank=True, null=True)
+    message = models.ForeignKey(Message, on_delete=models.CASCADE, related_name='+', blank=True, null=True)
 
 
 

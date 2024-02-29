@@ -12,8 +12,8 @@ class MessageCore(models.Model):
     receive_from = models.IntegerField(default=1)
     
     blocked_users = models.ManyToManyField(User, blank=True, related_name='blocked_users')
-    muted_user_conversations = models.ManyToManyField('OneToOneConversation', blank=True, related_name='muted_user_conversations')
-    muted_community_conversations = models.ManyToManyField('OneToOneConversation', blank=True, related_name='muted_community_conversations')
+    muted_user_conversations = models.ManyToManyField('Conversation', blank=True, related_name='muted_user_conversations')
+    muted_community_conversations = models.ManyToManyField('Conversation', blank=True, related_name='muted_community_conversations')
     allowed_communities = models.ManyToManyField('yb_profile.Orbit', blank=True, related_name='allowed_communities')
     blocked_communities = models.ManyToManyField('yb_profile.Orbit', blank=True, related_name='blocked_communities')
     start_by_phone = models.BooleanField(default=False)
