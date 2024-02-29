@@ -110,8 +110,12 @@ class BitViewSet(viewsets.ModelViewSet):
         user_profile = Profile.objects.get(user=self.request.user)
         custom_core = CustomCore.objects.get(profile=user_profile)
         theme = custom_core.theme
+
+        try:
+            custom_bit = CustomBit.objects.get(theme=theme)
         
-        custom_bit = CustomBit.objects.get(theme=theme)
+        except CustomBit.DoesNotExist:
+            custom_bit = CustomBit.objects.create(theme=theme)
 
         #Add additional parameters
         serializer.save(display_name = user_profile.display_name, user=self.request.user, profile=user_profile, custom=custom_bit)
