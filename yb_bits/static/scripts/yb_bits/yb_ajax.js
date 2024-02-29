@@ -1,3 +1,9 @@
+
+function yb_renderBit(data) {
+    let this_bit = yb_buildBit(data);
+    bit_container.appendChild(this_bit.built_bit);
+}
+ 
 function yb_updateFeed(update, data) {
     //Update the feed
     console.log("updating display...")
@@ -12,9 +18,7 @@ function yb_updateFeed(update, data) {
 
         for (let i = 0; i < data.length; i++) {
             let blueprint = data[i];
-            let this_bit = yb_buildBit(blueprint);
-            bit_container.appendChild(this_bit.built_bit);
-
+            yb_renderBit(blueprint);
             
         }
 
@@ -92,11 +96,14 @@ function yb_createBit(this_data, csrf_token) {
         contentType: false,
         success: function(response) {
             console.log(response);
-            yb_toggle2WayContainer('create')
-            yb_getFeed(true);
+            yb_toggle2WayContainer('create'); //Located in main/static/scripts/main/main.js
+            yb_renderBit(response);
+            // yb_getFeed(true); //Located in yb_bits/static/scripts/yb_bits/yb_ajax.js
         },
         error: function(response) {
             console.log(response);
+            
+
         }
     });
 }
