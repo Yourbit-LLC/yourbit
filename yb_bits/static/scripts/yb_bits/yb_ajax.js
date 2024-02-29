@@ -1,3 +1,4 @@
+var bit_container = document.getElementById("bit-container");
 
 function yb_renderBit(data) {
     let this_bit = yb_buildBit(data);
@@ -8,7 +9,6 @@ function yb_updateFeed(update, data) {
     //Update the feed
     console.log("updating display...")
     console.log(update)
-    let bit_container = document.getElementById("bit-container");
     if (update === true) {
         //Append the feed
         $('#bit-container').append(data);
