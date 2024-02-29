@@ -9,27 +9,13 @@ def message_inbox(request):
     user = request.user
 
     # Fetch conversations. Django querysets are lazy, and won't hit the database here.
-    solo_conversations = OneToOneConversation.objects.filter(sender=user)
-    group_conversations = GroupConversation.objects.filter(members=user)
+    conversations = Conversation.objects.filter(members=user).sort_by('-time_modified')
 
-    # Check if both querysets are empty
-    if not solo_conversations.exists() and not group_conversations.exists():
-        conversations = False
-        conversation_list = None
-        print("no conversations")
-    else:
-        # Combine and sort the conversations
-        conversations = True
-        conversation_list = sorted(
-            chain(solo_conversations, group_conversations), 
-            key=attrgetter('time_modified'), 
-            reverse=True
-        )
-        print("some conversations")
+
 
     context = {
         'conversations': conversations,
-        'results': conversation_list,
+        
     }
 
     print(context)
@@ -48,11 +34,7 @@ class ConversationView(View):
 
         conversation_id = kwargs['conversation_id']
 
-        if conversation_type == 'group':
-            conversation = GroupConversation.objects.get(id=conversation_id)
-
-        else:
-            conversation = OneToOneConversation.objects.get(id=conversation_id)
+        conversation = Conversation.objects.get(id=conversation_id)
 
         messages = conversation.messages.all()
 
@@ -66,14 +48,8 @@ class ConversationView(View):
     def post(self, request, *args, **kwargs):
         user = request.user
         conversation_id = kwargs['conversation_id']
-        conversation_type = kwargs['conversation_type']
 
-        conversation = None
-
-        if conversation_type == 'group':
-            conversation = GroupConversation.objects.get(id=conversation_id)
-        else:
-            conversation = OneToOneConversation.objects.get(id=conversation_id)
+        conversation = Conversation.objects.get(id=conversation_id)
 
         message = request.POST.get('message')
 

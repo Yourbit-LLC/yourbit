@@ -1,30 +1,23 @@
 from rest_framework import serializers
 from yb_messages.models import *
 from yb_accounts.models import Account as User
+from yb_accounts.api.serializers import UserResultSerializer
 import pytz
 
 class MessageCoreSerializer(serializers.ModelSerializer):
+    
     class Meta:
         model = MessageCore
         fields = '__all__'
 
-class OneToOneConversationSerializer(serializers.ModelSerializer):
+class ConversationSerializer(serializers.ModelSerializer):
+    user = UserResultSerializer(read_only=True)
     class Meta:
-        model = OneToOneConversation
+        model = Conversation
         fields = '__all__'
 
-class GroupConversationSerializer(serializers.ModelSerializer):
+class MessageSerializer(serializers.ModelSerializer):
+    user = UserResultSerializer(read_only=True)
     class Meta:
-        model = GroupConversation
+        model = Message
         fields = '__all__'
-
-class OneToOneMessageSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = OneToOneMessage
-        fields = '__all__'
-
-class GroupMessageSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = GroupMessage
-        fields = '__all__'
-        

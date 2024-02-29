@@ -15,7 +15,7 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import update_last_login
 from django.utils import timezone
 from django.db.models import Q
-
+ 
 #Viewset for chat bits
 # views.py
 from rest_framework import generics, viewsets
@@ -33,47 +33,25 @@ class MessageCoreViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(profile=self.request.user.profile)
 
-class OneToOneConversationViewSet(viewsets.ModelViewSet):
-    queryset = OneToOneConversation.objects.all()
-    serializer_class = OneToOneConversationSerializer
+
+class ConversationViewSet(viewsets.ModelViewSet):
+    queryset = Conversation.objects.all()
+    serializer_class = ConversationSerializer
     permission_classes = [permissions.IsAuthenticated]
     
     def get_queryset(self):
-        return OneToOneConversation.objects.filter(profile=self.request.user.profile)
+        return Conversation.objects.filter(profile=self.request.user.profile)
     
     def perform_create(self, serializer):
         serializer.save(profile=self.request.user.profile)
 
-class GroupConversationViewSet(viewsets.ModelViewSet):
-    queryset = GroupConversation.objects.all()
-    serializer_class = GroupConversationSerializer
+class MessageViewSet(viewsets.ModelViewSet):
+    queryset = Message.objects.all()
+    serializer_class = MessageSerializer
     permission_classes = [permissions.IsAuthenticated]
     
     def get_queryset(self):
-        return GroupConversation.objects.filter(profile=self.request.user.profile)
+        return Message.objects.filter(conversation__members=self.request.user)
     
     def perform_create(self, serializer):
         serializer.save(profile=self.request.user.profile)
-
-class OneToOneMessageViewSet(viewsets.ModelViewSet):
-    queryset = OneToOneMessage.objects.all()
-    serializer_class = OneToOneMessageSerializer
-    permission_classes = [permissions.IsAuthenticated]
-    
-    def get_queryset(self):
-        return OneToOneMessage.objects.filter(profile=self.request.user.profile)
-    
-    def perform_create(self, serializer):
-        serializer.save(profile=self.request.user.profile)
-
-class GroupMessageViewSet(viewsets.ModelViewSet):
-    queryset = GroupMessage.objects.all()
-    serializer_class = GroupMessageSerializer
-    permission_classes = [permissions.IsAuthenticated]
-    
-    def get_queryset(self):
-        return GroupMessage.objects.filter(profile=self.request.user.profile)
-    
-    def perform_create(self, serializer):
-        serializer.save(profile=self.request.user.profile)
-
