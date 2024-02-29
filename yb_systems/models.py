@@ -175,6 +175,6 @@ class TaskManager(models.Model):
     feed_filters = models.CharField(max_length = 30, default='-fr-fo-me-c-p', blank=True)
     recent_videos = models.ManyToManyField('yb_bits.Bit', related_name='video_recent', blank=True)
     recent_comment = models.ManyToManyField('yb_bits.Bit', related_name = 'comment_sections', blank=True)
-    conversation = models.ManyToManyField('yb_messages.OneToOneConversation', related_name = 'recent_conversations', blank=True)
+    conversation = models.ManyToManyField('yb_messages.Conversation', related_name = 'recent_conversations', blank=True)
     recent_user_profile = models.ManyToManyField('yb_profile.Profile', related_name='recent_user_profiles', blank=True)
     recent_user_profile = models.ManyToManyField('yb_profile.Orbit', related_name='recent_community_profiles', blank=True)
