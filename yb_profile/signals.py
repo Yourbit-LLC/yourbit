@@ -22,8 +22,12 @@ from yb_photo.models import Photo, Wallpaper
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
     if created:
+
+        #Initialize User Profile to act as parent for all user data
         user_profile = Profile(user=instance)
         user_profile.save()
+
+        #Initialize User Settings Modules
         settings = MySettings(user=instance, profile=user_profile)
         settings.save()
         feed = FeedSettings(settings=settings)
@@ -38,6 +42,8 @@ def create_profile(sender, instance, created, **kwargs):
         history.save()
         profile_info = ProfileInfo(profile=user_profile)
         profile_info.save()
+
+        #Initialize Customization Modules
         custom_core = CustomCore(profile=user_profile)
         default_profile_image = Photo(profile = user_profile, is_community = False)
         default_profile_image.save()
@@ -45,10 +51,16 @@ def create_profile(sender, instance, created, **kwargs):
         default_wallpaper = Wallpaper(profile = user_profile)
         default_wallpaper.save()
         custom_core.wallpaper = default_wallpaper
-        custom_core.save()
         default_theme = Theme(name = "Default", author = instance)
+        default_theme.save()
+        custom_core.theme = default_theme
+        custom_core.save()
+
+        #Initialize Task Manager for user continuity
         task_manager = TaskManager(user = instance)
         task_manager.save()
+
+        #Initialize Notification Core for managing user notifications
         notification_core = NotificationCore(profile = user_profile)
         notification_core.save()
         user_profile.save()
