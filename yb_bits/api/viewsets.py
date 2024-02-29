@@ -115,7 +115,7 @@ class BitViewSet(viewsets.ModelViewSet):
             custom_bit = CustomBit.objects.get(theme=theme)
         
         except CustomBit.DoesNotExist:
-            custom_bit = CustomBit.objects.create(theme=theme)
+            custom_bit = CustomBit.objects.create(theme=theme, images = custom_core)
 
         #Add additional parameters
         serializer.save(display_name = user_profile.display_name, user=self.request.user, profile=user_profile, custom=custom_bit)

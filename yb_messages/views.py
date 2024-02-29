@@ -9,7 +9,7 @@ def message_inbox(request):
     user = request.user
 
     # Fetch conversations. Django querysets are lazy, and won't hit the database here.
-    conversations = Conversation.objects.filter(members=user).sort_by('-time_modified')
+    conversations = Conversation.objects.filter(members=user).order_by('-time_modified')
 
 
 
