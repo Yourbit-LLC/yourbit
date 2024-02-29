@@ -48,7 +48,7 @@ class Message(models.Model):
         abstract = True
 
 class ChatSticker(models.Model):
-    conversation = models.ForeignKey(Conversation, related_name='message_sticker', blank=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='chat_stickers', on_delete=models.CASCADE)
     sticker = models.CharField(max_length=150, default="")
     x = models.IntegerField(default=0)
     y = models.IntegerField(default=0)
