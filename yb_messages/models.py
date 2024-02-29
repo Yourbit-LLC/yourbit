@@ -43,10 +43,6 @@ class Message(models.Model):
     
     is_read = models.BooleanField(default=False)
 
-    class Meta:
-        ordering = ['-time']
-        abstract = True
-
 class ChatSticker(models.Model):
     user = models.ForeignKey(User, related_name='chat_stickers', on_delete=models.CASCADE)
     sticker = models.CharField(max_length=150, default="")
