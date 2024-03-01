@@ -157,6 +157,7 @@ class Onboarding(View):
         user_profile = Profile.objects.get(user=user)
 
         form = ShortPrivacyForm(request.POST)
+        privacy_settings.save()
 
         if form.is_valid():
             privacy_settings = form.save(commit=False)
@@ -166,7 +167,9 @@ class Onboarding(View):
                 user_profile.display_name = privacy_settings.display_name
             else:
                 user_profile.display_name = user.first_name + " " + user.last_name
-            privacy_settings.save()
+            
+            user_profile.save()
+            
             if user.is_authenticated:
                 user.onboarding_complete = True
                 user.save()
