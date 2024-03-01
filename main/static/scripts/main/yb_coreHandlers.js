@@ -34,7 +34,7 @@ function yb_handleNotificationsClick() {
 }
 
 function yb_updateTimezone() {
-    let timezone = document.getElementById("id_timezone").value;
+    let timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     let data = {
         timezone: timezone
     }
