@@ -193,6 +193,8 @@ function yb_sendComment(bitId, commentBody, csrf_token) {
             } else {
                 yb_showComments(bitId);
             }
+            
+            $(`#comment-count-${bitId}`).value += 1;
             // Implement the function to update the UI accordingly
         },
         error: function(jqXHR) {
