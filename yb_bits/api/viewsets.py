@@ -103,6 +103,7 @@ class BitViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         from yb_customize.models import CustomCore
+        from yb_bits.api.serializers import BitSerializer
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
@@ -122,7 +123,10 @@ class BitViewSet(viewsets.ModelViewSet):
 
         headers = self.get_success_headers(serializer.data)
 
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        new_bit = Bit.objects.get(id=serializer.data['id'])
+        rendered_bit = BitSerializer(new_bit, context={'user_tz': user_profile.current_timezone, 'request': request})
+
+        return Response(rendered_bit.data, status=status.HTTP_201_CREATED, headers=headers)
     
 class LikeViewSet(viewsets.ModelViewSet):
     queryset = BitLike.objects.all()
