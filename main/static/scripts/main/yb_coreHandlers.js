@@ -38,10 +38,12 @@ function yb_updateTimezone() {
     let data = {
         timezone: timezone
     }
+    let csrf_token = getCSRF();
     $.ajax({
         type: "POST",
         url: "/systems/update/timezone/",
         data: data,
+        headers: {"X-CSRFToken": csrf_token},
         success: function(response){
             console.log(response);
         }
