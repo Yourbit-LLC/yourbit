@@ -383,6 +383,8 @@ $(document).ready(function() {
     CREATE_POPOUT.addEventListener('click', yb_toggleCreateMenu);
     console.log(SEARCH_FIELD);
 
+    yb_updateTimezone();
+
 
 
     // yb_setTimezone();

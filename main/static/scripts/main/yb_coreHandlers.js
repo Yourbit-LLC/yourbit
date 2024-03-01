@@ -40,7 +40,7 @@ function yb_updateTimezone() {
     }
     $.ajax({
         type: "POST",
-        url: "/update/timezone/",
+        url: "/systems/update/timezone/",
         data: data,
         success: function(response){
             console.log(response);
