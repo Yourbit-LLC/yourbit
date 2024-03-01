@@ -191,7 +191,7 @@ function yb_handleCreateBit(){
     this_data.append('shoutouts', shoutouts);
     let csrf_token = getCSRF();
 
-    yb_createBit(this_data, csrf_token); //Located in yb_bits/static/scripts/yb_builder/yb_ajax.js
+    yb_createBit(this_data, csrf_token); //Located in yb_bits/static/scripts/yb_bits/yb_ajax.js
 
 }  
 
