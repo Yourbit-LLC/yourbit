@@ -160,13 +160,13 @@ class Onboarding(View):
 
         if form.is_valid():
             privacy_settings = form.save(commit=False)
-            privacy_settings.save()
-
+            
+            print(privacy_settings.display_name)
             if privacy_settings.display_name != "":
                 user_profile.display_name = privacy_settings.display_name
             else:
                 user_profile.display_name = user.first_name + " " + user.last_name
-            
+            privacy_settings.save()
             if user.is_authenticated:
                 user.onboarding_complete = True
                 user.save()
