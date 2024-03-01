@@ -21,8 +21,6 @@ from django.templatetags.static import static
 #         user_profile.save()
 
 
-default_image = static("main/default_profile_image.png")
-
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
     if created:
@@ -52,10 +50,6 @@ def create_profile(sender, instance, created, **kwargs):
         default_profile_image = Photo(profile = user_profile, is_community = False)
         
         #Set the image and image thumbnail fields to static file for default_profile_image.png
-        default_profile_image.image = default_image
-        default_profile_image.small_thumbnail = default_image
-        default_profile_image.medium_thumbnail = default_image
-        default_profile_image.large_thumbnail = default_image
         default_profile_image.save()
         custom_core.profile_image = default_profile_image
         default_wallpaper = Wallpaper(profile = user_profile)

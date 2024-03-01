@@ -7,16 +7,16 @@ from django.utils import timezone
 class Photo(models.Model):
     #Model for a photo uploaded by a user
     profile = models.ForeignKey('yb_profile.Profile', related_name = "photo", on_delete=models.CASCADE, blank=True, null=True)
-    image = models.ImageField(blank = True, upload_to='media/profile/source_photos/%Y/%m/%d/%H:%M', default="static/images/2023-logo-draft.png")
+    image = models.ImageField(blank = True, upload_to='media/profile/source_photos/%Y/%m/%d/%H:%M', default="static/images/main/default_pfile_image2.png")
 
     is_community = models.BooleanField(default=False)
 
     profile = models.ForeignKey('yb_profile.Profile', related_name = "photo", on_delete=models.CASCADE, blank=True, null=True)
     community_profile = models.ForeignKey('yb_profile.Orbit', related_name = "photo", on_delete=models.CASCADE, blank=True, null=True)
     
-    small_thumbnail = models.ImageField(blank = True, upload_to='media/profile/small_thumbnails/%Y/%m/%d/%H:%M', default="static/images/2023-logo-draft.png")
-    medium_thumbnail = models.ImageField(blank = True, upload_to='media/profile/medium_thumbnails/%Y/%m/%d/%H:%M', default="static/images/2023-logo-draft.png")
-    large_thumbnail =  models.ImageField(blank = True, upload_to='media/profile/large_thumbnails/%Y/%m/%d/%H:%M', default="static/images/2023-logo-draft.png")
+    small_thumbnail = models.ImageField(blank = True, upload_to='media/profile/small_thumbnails/%Y/%m/%d/%H:%M', default="static/images/main/default_pfile_image2.png")
+    medium_thumbnail = models.ImageField(blank = True, upload_to='media/profile/medium_thumbnails/%Y/%m/%d/%H:%M', default="static/images/main/default_pfile_image2.png")
+    large_thumbnail =  models.ImageField(blank = True, upload_to='media/profile/large_thumbnails/%Y/%m/%d/%H:%M', default="static/images/main/default_pfile_image2.png")
     
     stickers = models.ManyToManyField('PhotoSticker', related_name = "photo", blank=True)
 
