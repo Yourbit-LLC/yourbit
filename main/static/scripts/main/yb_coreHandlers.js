@@ -33,4 +33,19 @@ function yb_handleNotificationsClick() {
 
 }
 
+function yb_updateTimezone() {
+    let timezone = document.getElementById("id_timezone").value;
+    let data = {
+        timezone: timezone
+    }
+    $.ajax({
+        type: "POST",
+        url: "/update/timezone/",
+        data: data,
+        success: function(response){
+            console.log(response);
+        }
+    })
+}
+
 

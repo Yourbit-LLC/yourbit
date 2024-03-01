@@ -9,6 +9,7 @@ from yb_customize.models import CustomCore, Theme
 from yb_notify.models import NotificationCore
 from yb_bits.models import InteractionHistory, Bit, BitStream
 from yb_photo.models import Photo, Wallpaper
+from django.templatetags.static import static
 
 # def create_profile(sender, instance, created, **kwargs):
 #     if created:
@@ -18,6 +19,9 @@ from yb_photo.models import Photo, Wallpaper
 #         customizations.save()
 #         user_profile.follows.set([instance.profile.id])
 #         user_profile.save()
+
+
+default_image = static("main/default_profile_image.png")
 
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
@@ -46,6 +50,12 @@ def create_profile(sender, instance, created, **kwargs):
         #Initialize Customization Modules
         custom_core = CustomCore(profile=user_profile)
         default_profile_image = Photo(profile = user_profile, is_community = False)
+        
+        #Set the image and image thumbnail fields to static file for default_profile_image.png
+        default_profile_image.image = default_image
+        default_profile_image.small_thumbnail = default_image
+        default_profile_image.medium_thumbnail = default_image
+        default_profile_image.large_thumbnail = default_image
         default_profile_image.save()
         custom_core.profile_image = default_profile_image
         default_wallpaper = Wallpaper(profile = user_profile)
