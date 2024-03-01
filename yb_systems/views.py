@@ -146,7 +146,7 @@ class DynamicFeedTest(View):
 
 
 
-def updateTimezone(request):
+def updateTimezone(request, *args, **kwargs):
     this_profile = Profile.objects.get(user=request.user)
     this_timezone = request.POST.get("user_tz")
     print("running timezone update:" + this_timezone)
