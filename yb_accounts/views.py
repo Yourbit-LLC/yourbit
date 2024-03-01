@@ -168,8 +168,9 @@ class Onboarding(View):
             else:
                 user_profile.display_name = user.first_name + " " + user.last_name
             
+            user_profile.username = user.username
             user_profile.save()
-            
+
             if user.is_authenticated:
                 user.onboarding_complete = True
                 user.save()
