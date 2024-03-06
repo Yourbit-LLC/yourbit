@@ -227,7 +227,7 @@ class FriendRequestViewset(viewsets.ModelViewSet):
 
         to_user_privacy = PrivacySettings.objects.get(settings = to_user_settings)
         
-        if to_user_privacy.link_only:
+        if to_user_privacy.searchable == False:
             return Response(status=status.HTTP_401_UNAUTHORIZED)
 
         serializer = self.get_serializer(data=request.data)
