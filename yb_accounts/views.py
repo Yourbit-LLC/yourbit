@@ -182,8 +182,6 @@ class Onboarding(View):
             print(form.errors)  # Print form errors
             return redirect('onboarding')
 
-
-            
 class WelcomeTest(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'main/welcome.html')

@@ -183,7 +183,7 @@ function yb_requestFriend() {
     let csrfToken = getCSRF();
     let user_id = document.getElementById("profile-data").getAttribute("data-profile-id");
     let friend_request = new FormData()
-    friend_request.append('user_id', user_id)
+    friend_request.append('to_user', user_id)
 
     console.log(user_id)
     $.ajax (
