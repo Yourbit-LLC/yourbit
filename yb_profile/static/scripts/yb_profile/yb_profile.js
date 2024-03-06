@@ -183,6 +183,10 @@ function yb_requestFriend() {
     let csrfToken = getCSRF();
     let user_id = document.getElementById("profile-data").getAttribute("data-profile-id");
 
+    let this_data = JSON.stringify({
+        to_user: user_id
+    });
+
 
     console.log(user_id)
     $.ajax (
@@ -192,9 +196,7 @@ function yb_requestFriend() {
                 'X-CSRFToken': csrfToken
             },
             url: '/profile/api/connect/friend/',
-            data: {
-                to_user: user_id
-            },
+            data: this_data,
 
             success: function(data) {
                 let response = data;
