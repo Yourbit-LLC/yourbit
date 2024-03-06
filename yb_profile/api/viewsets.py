@@ -234,6 +234,7 @@ class FriendRequestViewset(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)  
         
         user_profile = Profile.objects.get(user = request.user)
+        
         serializer.validated_data['from_user'] = user_profile
 
         friend_request = serializer.save()
