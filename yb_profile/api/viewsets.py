@@ -231,7 +231,10 @@ class FriendRequestViewset(viewsets.ModelViewSet):
             return Response(status=status.HTTP_401_UNAUTHORIZED)
 
         serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)        
+        serializer.is_valid(raise_exception=True)  
+        
+        serializer.validated_data['from_user'] = request.user
+
         friend_request = serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     
