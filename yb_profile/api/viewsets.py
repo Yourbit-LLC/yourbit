@@ -233,7 +233,8 @@ class FriendRequestViewset(viewsets.ModelViewSet):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)  
         
-        serializer.validated_data['from_user'] = request.user
+        user_profile = Profile.objects.get(user = request.user)
+        serializer.validated_data['from_user'] = user_profile
 
         friend_request = serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
