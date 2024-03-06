@@ -220,10 +220,12 @@ class FriendRequestViewset(viewsets.ModelViewSet):
         return Response(serializer.data)
     
     def create(self, request, *args, **kwargs):
-        from yb_settings.models import MySettings
+        from yb_settings.models import MySettings, PrivacySettings
         to_user = request.data.get('to_user')
         print("\n\nCreating friend request to user: \n" + to_user + "\n\n")
         to_user_settings = MySettings.objects.get(user = to_user)
+
+        to_user_privacy = PrivacySettings.objects.get(settings = to_user_settings)
         
         if to_user_settings.link_only:
             return Response(status=status.HTTP_401_UNAUTHORIZED)
