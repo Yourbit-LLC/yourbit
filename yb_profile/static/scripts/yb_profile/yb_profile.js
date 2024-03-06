@@ -193,7 +193,8 @@ function yb_requestFriend() {
         {
             type: 'POST',
             headers: {
-                'X-CSRFToken': csrfToken
+                'X-CSRFToken': csrfToken,
+                'Content-Type': 'application/json'
             },
             url: '/profile/api/connect/friend/',
             data: this_data,

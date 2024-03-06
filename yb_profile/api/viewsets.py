@@ -221,7 +221,7 @@ class FriendRequestViewset(viewsets.ModelViewSet):
     
     def create(self, request, *args, **kwargs):
         from yb_settings.models import MySettings
-        to_user = request.POST.get('to_user')
+        to_user = request.data.get('to_user')
         print("\n\nCreating friend request to user: \n" + to_user + "\n\n")
         to_user_settings = MySettings.objects.get(user = to_user)
         
