@@ -544,9 +544,18 @@
     transition: 0.5s;
 }
 
-.notification-widget.expanded {
-    width: 95%;
-    transition: 0.5s;
+@media screen and (max-width: 768px) {
+    .notification-widget.expanded {
+        width: 95%;
+        transition: 0.5s;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .notification-widget.expanded {
+        width: 300px;
+        transition: 0.5s;
+    }
 }
 
 .yb-top-layer {
