@@ -242,11 +242,7 @@ class FriendRequestViewset(viewsets.ModelViewSet):
 
         to_profile.friend_requests.add(friend_request)
 
-        #Get friend request request by from user and to user 
-        created_friend_request = FriendRequest.objects.get(from_user = user_profile, to_user = to_profile)
-        serialized_request = FriendRequestSerializer(created_friend_request)
-
-        return Response(serialized_request.data, status=status.HTTP_201_CREATED)
+        return Response(status=status.HTTP_201_CREATED)
     
     def get_queryset(self):
         queryset = super().get_queryset()
