@@ -218,24 +218,22 @@ class FriendRequestViewset(viewsets.ModelViewSet):
         instance = self.get_object()
         serializer = FriendRequestSerializer(instance)
         return Response(serializer.data)
-    
-    def create(self, request, *args, **kwargs):
-        from yb_settings.models import MySettings, PrivacySettings
-        to_user = request.data.get('to_user')
-        print("\n\nCreating friend request to user: \n" + to_user + "\n\n")
-        to_user_settings = MySettings.objects.get(user = to_user)
 
-        to_user_privacy = PrivacySettings.objects.get(settings = to_user_settings)
+    def create(self, request, *args, **kwargs):
+        from_user = Profile.objects.get(user=request.user)
+        to_user_id = request.data.get('to_user')
+        to_user = Profile.objects.get(user=to_user_id)
         
-        if to_user_privacy.searchable == False:
-            return Response(status=status.HTTP_401_UNAUTHORIZED)
+        # Check if from_user and to_user are valid profiles
+        if not from_user or not to_user:
+            return Response({"error": "Invalid user(s)"}, status=status.HTTP_400_BAD_REQUEST)
 
         serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)  
-        
-        user_profile = Profile.objects.get(user = request.user)
+        serializer.is_valid(raise_exception=True)
 
-        serializer.validated_data['from_user'] = user_profile
+        # Add from_user and to_user to the validated data before saving
+        serializer.validated_data['from_user'] = from_user
+        serializer.validated_data['to_user'] = to_user
 
         friend_request = serializer.save()
 
