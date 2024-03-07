@@ -49,7 +49,7 @@ function yb_displayNotifications(response) {
     }
 }
 
-function yb_getNotifications(type) {
+function yb_getNotificationList(type) {
 
     $.ajax( {
         type: 'GET',
@@ -64,3 +64,22 @@ function yb_getNotifications(type) {
         }
     })
 };
+
+function yb_checkNotification(type) {
+    $.ajax( {
+        type: 'GET',
+        url: '/notifications/check/',
+        data: { 
+            type: type,
+        },
+        success: function(response){
+            if (response.length > 0) {
+                showNotification(expandNotification, response[0].body);
+            }
+        }
+    })
+}
+
+$(document).ready(function(){
+    setInterval(yb_checkNotification, 60000, 'all');
+});
