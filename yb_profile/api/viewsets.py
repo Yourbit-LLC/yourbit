@@ -246,6 +246,7 @@ class FriendRequestViewset(viewsets.ModelViewSet):
             queryset = queryset.filter(to_user__username=username)
         return queryset
     
+    
     @action(detail=True, methods=['post'])
     def accept(self, request, pk=None):
 
