@@ -206,6 +206,7 @@ function yb_requestFriend() {
 
                 showNotification(expandNotification, body);
                 yb_closeSlideUpTemplate();
+                yb_closePrompt();
             }
         }
     )
