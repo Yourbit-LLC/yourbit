@@ -237,7 +237,7 @@ class FriendRequestViewset(viewsets.ModelViewSet):
 
         friend_request = serializer.save(from_user = user_profile)
         
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(friend_request.data, status=status.HTTP_201_CREATED)
     
     def get_queryset(self):
         queryset = super().get_queryset()
