@@ -220,7 +220,7 @@ class FriendRequestViewset(viewsets.ModelViewSet):
         return Response(serializer.data)
     
     def create(self, request, *args, **kwargs):
-        from serializers import FriendRequestSerializer, ProfileInfoSerializer
+        from yb_profile.api.serializers import FriendRequestSerializer, ProfileInfoSerializer
         from_user = Profile.objects.get(user=request.user)
         to_user_id = request.data.get('to_user')
         to_user = Profile.objects.get(user=to_user_id)
