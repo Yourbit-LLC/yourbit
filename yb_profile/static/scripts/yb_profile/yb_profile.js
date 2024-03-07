@@ -202,7 +202,7 @@ function yb_requestFriend() {
             success: function(data) {
                 let response = data;
                 let to_user = response.name;
-                let body = `Friend request to ${response.to_user.display_name} sent`;
+                let body = `Friend request sent`;
 
                 showNotification(expandNotification, body);
                 yb_closeSlideUpTemplate();

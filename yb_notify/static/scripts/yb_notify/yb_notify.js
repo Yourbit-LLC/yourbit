@@ -1,4 +1,4 @@
-const NOTIFICATION_CONTAINER = document.getElementById('notification-widget-main');
+const NOTIFICATION_CONTAINER = document.getElementById('notification-widget');
 
 function showNotification(callback1, body) {
     NOTIFICATION_CONTAINER.classList.add('active');

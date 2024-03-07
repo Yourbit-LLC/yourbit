@@ -523,7 +523,7 @@
  
 }
 
-.notification-dropdown {
+.notification-widget {
     position: absolute;
     top: -50px;
     left: 50%;
@@ -533,10 +533,11 @@
     z-index: 99;
     border-radius: 20px;
     transform: translateX(-50%);
+    transition: 1s;
 
 }
 
-.notification-dropdown.active {
+.notification-widget.active {
     top: 70px !important;
     transition: 0.5s;
 }
