@@ -39,6 +39,8 @@ class Notification(models.Model):
     conversation = models.ForeignKey('yb_messages.Conversation', on_delete=models.CASCADE, related_name='+', blank=True, null=True)
     message = models.ForeignKey(Message, on_delete=models.CASCADE, related_name='+', blank=True, null=True)
 
+    link = models.CharField(max_length=100, blank=True, null=True)
+
 
 
 

@@ -372,11 +372,11 @@ function yb_handleAboutClick(e){
         $(container_content).load(`/profile/templates/about/${this_username}/`)
         history.pushState({}, "", `/profile/about/${this_username}/`);
     }
+
     //let container_content = container.querySelector(".yb-2way-content");
     
     // let container_content = document.getElementById("yb-2way-content");
     // $(container_content).load("/notifications/")
-
 
 }
 
