@@ -61,7 +61,6 @@ def create_friend_request_notification(sender, instance, created, **kwargs):
             body = instance.from_user.user.username + " has sent you a friend request",
             type = 5,
             link = "/profile/" + str(instance.from_user.user.username),
-            profile = instance.to_user
         )
         notification.save()
 
