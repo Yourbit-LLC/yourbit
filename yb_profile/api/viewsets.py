@@ -221,6 +221,7 @@ class FriendRequestViewset(viewsets.ModelViewSet):
     
     def create(self, request, *args, **kwargs):
         from yb_settings.models import MySettings, PrivacySettings
+        from .serializers import ProfileResultSerializer
         to_user = request.data.get('to_user')
         print("\n\nCreating friend request to user: \n" + to_user + "\n\n")
         to_user_settings = MySettings.objects.get(user = to_user)
@@ -236,8 +237,16 @@ class FriendRequestViewset(viewsets.ModelViewSet):
         user_profile = Profile.objects.get(user = request.user)
 
         friend_request = serializer.save(from_user = user_profile)
-        
-        return Response(friend_request.data, status=status.HTTP_201_CREATED)
+
+        to_profile = Profile.objects.get(user = to_user)
+
+        to_profile.friend_requests.add(friend_request)
+
+        #Get friend request request by from user and to user 
+        created_friend_request = FriendRequest.objects.get(from_user = user_profile, to_user = to_profile)
+        serialized_request = FriendRequestSerializer(created_friend_request)
+
+        return Response(serialized_request.data, status=status.HTTP_201_CREATED)
     
     def get_queryset(self):
         queryset = super().get_queryset()

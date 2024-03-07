@@ -71,6 +71,7 @@ class Profile(models.Model):
     space_focus = models.CharField(max_length=100, default="global") #What type of content the user or community primarily focuses on
     is_orbit = models.BooleanField(default=False) #If the user is an orbit, they will be able to see the orbits of their followers
 
+    friend_requests = models.ManyToManyField('FriendRequest', related_name='friend_requests', blank=True)
     # Add any other user-specific fields
 
     def __str__(self):
