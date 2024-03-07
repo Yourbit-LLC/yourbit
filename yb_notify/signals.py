@@ -30,7 +30,7 @@ def create_bit_like_notification(sender, instance, created, **kwargs):
     if created:
         bit = instance.bit
         notification = Notification(
-            to_user = bit.user,
+            to_user = bit.profile,
             body = instance.user.username + " has liked your bit",
             type = 1,
             link = "/bits/" + str(bit.id),
@@ -44,7 +44,7 @@ def create_bit_comment_notification(sender, instance, created, **kwargs):
     if created:
         bit = instance.bit
         notification = Notification(
-            to_user = bit.profile.user,
+            to_user = bit.profile,
             body = instance.user.username + " has commented on your bit",
             type = 2,
             link = "/bits/" + str(bit.id),
@@ -57,7 +57,7 @@ def create_bit_comment_notification(sender, instance, created, **kwargs):
 def create_friend_request_notification(sender, instance, created, **kwargs):
     if created:
         notification = Notification(
-            to_user = instance.to_user.user,
+            to_user = instance.to_user,
             body = instance.from_user.user.username + " has sent you a friend request",
             type = 5,
             link = "/profile/" + str(instance.from_user.user.username),
@@ -70,10 +70,12 @@ def create_friend_request_notification(sender, instance, created, **kwargs):
 def create_friend_accept_notification(sender, instance, created, **kwargs):
     if instance.accepted:
         notification = Notification(
-            to_user = instance.from_user.user,
+            to_user = instance.from_user,
             body = instance.to_user.user.username + " has accepted your friend request",
             type = 5,
             link = "/profile/" + str(instance.to_user.user.username),
             profile = instance.from_user
         )
         notification.save()
+
+
