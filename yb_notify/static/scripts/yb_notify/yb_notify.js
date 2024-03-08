@@ -80,6 +80,106 @@ function yb_checkNotification(type) {
     })
 }
 
+function yb_handleNotificationOptionClick(e) {
+    let this_option = e.currentTarget;
+    let this_id = this_option.getAttribute("data-catid");
+    let this_option_name = this_option.getAttribute("name");
+
+    if (this_option_name === "View Bit") {
+        yb_viewBit(this_id);
+    } else if (this_option_name === "Send Thanks") {
+        yb_sendThanks(this_id);
+    } else if (this_option_name === "Dismiss") {
+        yb_dismissNotification(this_id);
+    } else if (this_option_name === "Reply to Comment") {
+        yb_replyToComment(this_id);
+    } else if (this_option_name === "View Profile") {
+        yb_navToProfile(this_id);
+    } else if (this_option_name === "Accept") {
+        yb_acceptRequest(this_id);
+    } else if (this_option_name === "Message") {
+        yb_openMessagesTo(this_id);
+    } else if (this_option_name === "Reply to Message") {
+        yb_replyToMessage(this_id);
+    } else if (this_option_name === "View Conversation") {
+        yb_viewConversation(this_id);
+    } 
+
+}
+
+function yb_notificationMenu(type) {
+    let menu = document.getElementById("yb-slide-up-core");
+
+    let these_options = {};
+
+    if (type === 1) {
+
+        //Prepare Options
+        let these_options = {
+            "View Bit": yb_handleNotificationOptionClick,
+            "Send Thanks": yb_handleNotificationOptionClick,
+            "Dismiss": yb_handleNotificationOptionClick, 
+        };
+    } else if (type === 2) {
+        let these_options = {
+            "Reply to Comment": yb_handleNotificationOptionClick,
+            "View Bit": yb_handleNotificationOptionClick, 
+            "Dismiss": yb_handleNotificationOptionClick, 
+        };
+    } else if (type === 3) {
+        let these_options = {
+            "View Profile": yb_handleNotificationOptionClick, 
+            "Dismiss": yb_handleNotificationOptionClick, 
+        };
+    } else if (type === 4) {
+        let these_options = {
+            "Accept": yb_handleNotificationOptionClick,
+            "View Profile": yb_handleNotificationOptionClick, 
+            "Dismiss": yb_handleNotificationOptionClick, 
+        };
+    } else if (type === 5) {
+        let these_options = {
+            "View Profile": yb_handleNotificationOptionClick, 
+            "Send Message": yb_handleNotificationOptionClick,
+            "Dismiss": yb_handleNotificationOptionClick, 
+        };
+    } else if (type === 6) {
+        let these_options = {
+            "Reply to Message": yb_handleNotificationOptionClick,
+            "View Conversation": yb_handleNotificationOptionClick, 
+            "Dismiss": yb_handleNotificationOptionClick, 
+        };
+    } else if (type === 7) {
+        let these_options = {
+            "View Bit": yb_handleNotificationOptionClick, 
+            "Send Thanks": yb_handleNotificationOptionClick,
+            "Dismiss": yb_handleNotificationOptionClick, 
+        };
+    }
+
+
+
+    let this_container = yb_createElement("div", "notification-response-container", "notification-response-container");
+
+    for (let option in these_options) {
+        let this_function = these_options[option];
+        let new_option = yb_createElement(
+            "div", 
+            "notification-response-option yb-button-threeQuarter border-none squared yb-margin-T10 yb-widthConstraint-600 yb-autoText bg-gray-dark font-heavy pointer-object", 
+            `notification-response-option-${option}`
+        );
+        new_option.innerHTML = option;
+        new_option.setAttribute("data-catid", this_id);
+        new_option.setAttribute("name", option);
+        new_option.addEventListener("click", this_function);
+        this_container.appendChild(new_option);
+    }
+
+    menu.appendChild(this_container);
+
+
+}
+
 $(document).ready(function(){
     setInterval(yb_checkNotification, 60000, 'all');
 });
