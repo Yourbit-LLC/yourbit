@@ -135,42 +135,42 @@ function yb_notificationMenu(type) {
     if (type === 1) {
 
         //Prepare Options
-        let these_options = {
+        these_options = {
             "View Bit": yb_handleNotificationOptionClick,
             "Send Thanks": yb_handleNotificationOptionClick,
             "Dismiss": yb_handleNotificationOptionClick, 
         };
     } else if (type === 2) {
-        let these_options = {
+        these_options = {
             "Reply to Comment": yb_handleNotificationOptionClick,
             "View Bit": yb_handleNotificationOptionClick, 
             "Dismiss": yb_handleNotificationOptionClick, 
         };
     } else if (type === 3) {
-        let these_options = {
+        these_options = {
             "View Profile": yb_handleNotificationOptionClick, 
             "Dismiss": yb_handleNotificationOptionClick, 
         };
     } else if (type === 4) {
-        let these_options = {
+        these_options = {
             "Accept": yb_handleNotificationOptionClick,
             "View Profile": yb_handleNotificationOptionClick, 
             "Dismiss": yb_handleNotificationOptionClick, 
         };
     } else if (type === 5) {
-        let these_options = {
+        these_options = {
             "View Profile": yb_handleNotificationOptionClick, 
             "Send Message": yb_handleNotificationOptionClick,
             "Dismiss": yb_handleNotificationOptionClick, 
         };
     } else if (type === 6) {
-        let these_options = {
+        these_options = {
             "Reply to Message": yb_handleNotificationOptionClick,
             "View Conversation": yb_handleNotificationOptionClick, 
             "Dismiss": yb_handleNotificationOptionClick, 
         };
     } else if (type === 7) {
-        let these_options = {
+        these_options = {
             "View Bit": yb_handleNotificationOptionClick, 
             "Send Thanks": yb_handleNotificationOptionClick,
             "Dismiss": yb_handleNotificationOptionClick, 
