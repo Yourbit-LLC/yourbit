@@ -438,8 +438,35 @@ $(document).ready(function() {
 
 });
 
+function yb_viewBit() {
+    let bit_id = this.getAttribute("data-bit-id");
+    let url = `/bit/${bit_id}/`;
+    $("#content-container").empty();
+    $("#content-container").load(url);
+}
+
+function yb_sendThanks() {
+    let bit_id = this.getAttribute("data-profile-id");
+    let csrf = getCSRF();
+    let url = `/bit/${profile_id}/thanks/`;
+    let data = {
+        'csrfmiddlewaretoken': csrf
+    }
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: data,
+        success: function(data){
+            console.log(data);
+        }
+    })
+}
 
 
+function yb_navToProfile(username) {
+    $("#content-container").empty();
+    $("#content-container").load(`/profile/user/${username}/`);
+}
 
 
 
