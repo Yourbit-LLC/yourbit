@@ -131,7 +131,8 @@ function yb_notificationMenu(type, this_id) {
     let menu = document.getElementById("yb-slide-up-core");
 
     let these_options = {};
-
+    
+    console.log("Notification Response Triggered")
 
     if (type === 1) {
 
