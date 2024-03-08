@@ -80,33 +80,53 @@ function yb_checkNotification(type) {
     })
 }
 
+//Function for handling notification response options
 function yb_handleNotificationOptionClick(e) {
     let this_option = e.currentTarget;
     let this_id = this_option.getAttribute("data-catid");
     let this_option_name = this_option.getAttribute("name");
 
     if (this_option_name === "View Bit") {
+      
         yb_viewBit(this_id);
+    
     } else if (this_option_name === "Send Thanks") {
+      
         yb_sendThanks(this_id);
+    
     } else if (this_option_name === "Dismiss") {
+      
         yb_dismissNotification(this_id);
+    
     } else if (this_option_name === "Reply to Comment") {
+      
         yb_replyToComment(this_id);
+    
     } else if (this_option_name === "View Profile") {
+      
         yb_navToProfile(this_id);
+    
     } else if (this_option_name === "Accept") {
+      
         yb_acceptRequest(this_id);
+    
     } else if (this_option_name === "Message") {
+      
         yb_openMessagesTo(this_id);
+    
     } else if (this_option_name === "Reply to Message") {
+      
         yb_replyToMessage(this_id);
+    
     } else if (this_option_name === "View Conversation") {
+      
         yb_viewConversation(this_id);
+
     } 
 
 }
 
+//Function for drawing menu and listing options off
 function yb_notificationMenu(type) {
     let menu = document.getElementById("yb-slide-up-core");
 
