@@ -161,7 +161,6 @@ $(document).ready(function () {
         let username = MENU_PROFILE_BUTTON.getAttribute("data-username");
         //clear content-container
         yb_toggleMainMenu();
-        $("#content-container").empty();
-        $("#content-container").load(`/profile/user/${username}/`);
+        yb_navToProfile(username);
     });
 });
