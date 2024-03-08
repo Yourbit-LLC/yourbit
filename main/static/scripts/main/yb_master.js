@@ -159,6 +159,7 @@ function yb_closeSlideUpTemplate() {
     let template = document.getElementById("yb-slide-up-core");
     template.innerHTML = "";
     template.classList.remove("open");
+    template.classList.remove("checked");
     console.log("closing slide up core")
     
 }
@@ -417,7 +418,7 @@ $(document).ready(function() {
           
             if (menu && !menu.contains(event.target) && event.target !== menuButton && event.target !== menuButtonText) {
                 // The click is outside the menu, hide it
-                if (menu.classList.contains("open")){
+                if (menu.classList.contains("open") && menu.classList.contains("checked")){
                     yb_closeSlideUpTemplate(menu);
                 }
             }  
@@ -426,17 +427,28 @@ $(document).ready(function() {
         catch(err) {
             if (menu && !menu.contains(event.target)) {
                 // The click is outside the menu, hide it
-                if (menu.classList.contains("open")){
+                if (menu.classList.contains("open") && menu.classList.contains("checked")){
                     yb_closeSlideUpTemplate(menu);
                 }
             }  
         }
     }
 
+    //Hover event function to add check to class list of slide up core
+    function yb_handleMenuHover() {
+        let menu = document.getElementById('yb-slide-up-core');
+        menu.classList.add("checked");
+    }
+    
+
     // Add event listener to the document
     document.addEventListener('click', handleClickOutside);
 
+    menu.addEventListener('mouseover', yb_handleMenuHover);
+
 });
+
+
 
 function yb_viewBit() {
     let bit_id = this.getAttribute("data-bit-id");
