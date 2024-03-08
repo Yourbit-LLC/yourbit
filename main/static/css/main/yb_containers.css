@@ -90,8 +90,8 @@
 
 .yb-listItem {
     /*Positioning*/
-    display: flex;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: 40px 7fr 1fr;
     position: relative;
     
     margin-left: auto;
