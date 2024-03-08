@@ -17,7 +17,7 @@
     {% else %}
     {% for notification in results %}
         <div id="notification-container-{{notification.id}}" class="yb-fillWidth">
-        <div id="notification-{{notification.id}}" class="
+        <div id="notification-{{notification.id}}" onclick="yb_notificationMenu({{notification.type}})" class="
             yb-listItem notification 
             {% if notification.has_seen %} 
             seen 
