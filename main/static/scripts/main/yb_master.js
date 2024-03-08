@@ -460,7 +460,7 @@ function yb_viewBit() {
 function yb_sendThanks() {
     let bit_id = this.getAttribute("data-profile-id");
     let csrf = getCSRF();
-    let url = `/bit/${profile_id}/thanks/`;
+    let url = `/api/bit/${profile_id}/thanks/`;
     let data = {
         'csrfmiddlewaretoken': csrf
     }
