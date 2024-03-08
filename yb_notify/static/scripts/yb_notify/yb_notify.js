@@ -199,7 +199,7 @@ function yb_notificationMenu(type, this_id) {
 
     menu.appendChild(this_container);
 
-    menu.classList.add("active");
+    menu.classList.add("open");
 
 
 }
