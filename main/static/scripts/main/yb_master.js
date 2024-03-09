@@ -445,10 +445,10 @@ function yb_viewBit() {
     $("#content-container").load(url);
 }
 
-function yb_sendThanks() {
-    let bit_id = this.getAttribute("data-profile-id");
+function yb_sendThanks(profile_id) {
+    
     let csrf = getCSRF();
-    let url = `/bit/${profile_id}/thanks/`;
+    let url = `/bits/api/bit/${profile_id}/thanks/`;
     let data = {
         'csrfmiddlewaretoken': csrf
     }
@@ -462,10 +462,41 @@ function yb_sendThanks() {
     })
 }
 
+function yb_acceptRequest() {
+    let request_id = this.getAttribute("data-id");
+    let csrf = getCSRF();
+    let url = `profile/api/friendrequest/${request_id}/accept/`;
+    let data = {
+        'csrfmiddlewaretoken': csrf
+    }
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: data,
+        success: function(data){
+            console.log(data);
+            let body = "Friend Request Accepted";
+            showNotification(expandNotification, body);
+        }
+    })
+}
 
-function yb_navToProfile(username) {
-    $("#content-container").empty();
-    $("#content-container").load(`/profile/user/${username}/`);
+function yb_dismissNotification(notification_id) {
+    let csrf = getCSRF();
+    let url = `/notify/api/notifications/${notification_id}/`;
+    let data = {
+        'csrfmiddlewaretoken': csrf
+    }
+    $.ajax({
+        type: "DELETE",
+        url: url,
+        data: data,
+        success: function(data){
+            console.log(data);
+            let notification_element = document.getElementById(`notification-${notification_id}`);
+            notification_element.remove();
+        }
+    })
 }
 
 

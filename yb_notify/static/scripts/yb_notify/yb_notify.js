@@ -88,11 +88,11 @@ function yb_handleNotificationOptionClick(e) {
 
     if (this_option_name === "View Bit") {
       
-        yb_viewBit(this_id);
+        yb_viewBit(this_id); //Location: Master.js -- Line 441
     
     } else if (this_option_name === "Send Thanks") {
       
-        yb_sendThanks(this_id);
+        yb_sendThanks(this_id); //Location: Master.js -- Line 448
     
     } else if (this_option_name === "Dismiss") {
       
@@ -100,15 +100,15 @@ function yb_handleNotificationOptionClick(e) {
     
     } else if (this_option_name === "Reply to Comment") {
       
-        yb_replyToComment(this_id);
+        yb_replyToComment(this_id); //Location: main/yb_coreHandlers.js --
     
     } else if (this_option_name === "View Profile") {
       
-        yb_navToProfile(this_id);
+        yb_navigateToProfile();  //Location: Master.js -- Line 313
     
     } else if (this_option_name === "Accept") {
       
-        yb_acceptRequest(this_id);
+        yb_acceptRequest(this_id); //Location: Master.js -- Line 465
     
     } else if (this_option_name === "Message") {
       
@@ -133,6 +133,8 @@ function yb_notificationMenu(type, this_id) {
     let these_options = {};
     
     console.log("Notification Response Triggered")
+
+    //Handle Notification Option Click location: This document -- Line 83
 
     if (type === 1) {
 
