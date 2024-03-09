@@ -142,42 +142,42 @@ function yb_notificationMenu(type, this_id) {
         these_options = {
             "View Bit": yb_handleNotificationOptionClick,
             "Send Thanks": yb_handleNotificationOptionClick,
-            "Dismiss": yb_handleNotificationOptionClick, 
+            "Cancel": yb_handleNotificationOptionClick, 
         };
     } else if (type === 2) {
         these_options = {
             "Reply to Comment": yb_handleNotificationOptionClick,
             "View Bit": yb_handleNotificationOptionClick, 
-            "Dismiss": yb_handleNotificationOptionClick, 
+            "Cancel": yb_handleNotificationOptionClick, 
         };
     } else if (type === 3) {
         these_options = {
             "View Profile": yb_handleNotificationOptionClick, 
-            "Dismiss": yb_handleNotificationOptionClick, 
+            "Cancel": yb_handleNotificationOptionClick, 
         };
     } else if (type === 4) {
         these_options = {
             "Accept": yb_handleNotificationOptionClick,
             "View Profile": yb_handleNotificationOptionClick, 
-            "Dismiss": yb_handleNotificationOptionClick, 
+            "Cancel": yb_handleNotificationOptionClick, 
         };
     } else if (type === 5) {
         these_options = {
             "View Profile": yb_handleNotificationOptionClick, 
             "Send Message": yb_handleNotificationOptionClick,
-            "Dismiss": yb_handleNotificationOptionClick, 
+            "Cancel": yb_handleNotificationOptionClick, 
         };
     } else if (type === 6) {
         these_options = {
             "Reply to Message": yb_handleNotificationOptionClick,
             "View Conversation": yb_handleNotificationOptionClick, 
-            "Dismiss": yb_handleNotificationOptionClick, 
+            "Cancel": yb_handleNotificationOptionClick, 
         };
     } else if (type === 7) {
         these_options = {
             "View Bit": yb_handleNotificationOptionClick, 
             "Send Thanks": yb_handleNotificationOptionClick,
-            "Dismiss": yb_handleNotificationOptionClick, 
+            "Cancel": yb_handleNotificationOptionClick, 
         };
     }
 

@@ -72,7 +72,7 @@ def create_friend_request_notification(sender, instance, created, **kwargs):
         notification = Notification(
             to_user = instance.to_user,
             body = instance.from_user.user.username + " has sent you a friend request",
-            type = 5,
+            type = 4,
             link = "/profile/" + str(instance.from_user.user.username),
         )
 
