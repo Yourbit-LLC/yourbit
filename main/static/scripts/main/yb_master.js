@@ -493,6 +493,26 @@ function yb_acceptRequest() {
     })
 }
 
+
+function yb_declineRequest() {
+    let request_id = this.getAttribute("data-id");
+    let csrf = getCSRF();
+    let url = `profile/api/friendrequest/${request_id}/accept/`;
+    let data = {
+        'csrfmiddlewaretoken': csrf
+    }
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: data,
+        success: function(data){
+            console.log(data);
+            let body = "Friend Request Accepted";
+            showNotification(expandNotification, body);
+        }
+    })
+}
+
 function yb_dismissNotification(notification_id) {
     let csrf = getCSRF();
     let url = `/notify/api/notifications/${notification_id}/`;

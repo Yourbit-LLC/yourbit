@@ -96,7 +96,7 @@ function yb_handleNotificationOptionClick(e) {
     
     } else if (this_option_name === "Dismiss") {
       
-        yb_dismissNotification(this_id);
+        yb_dismissNotification(this_id); //Location: Master.js -- Line 496
     
     } else if (this_option_name === "Reply to Comment") {
       
@@ -111,7 +111,7 @@ function yb_handleNotificationOptionClick(e) {
         yb_acceptRequest(this_id); //Location: Master.js -- Line 465
     
     } else if (this_option_name === "Message") {
-      
+    
         yb_openMessagesTo(this_id);
     
     } else if (this_option_name === "Reply to Message") {
