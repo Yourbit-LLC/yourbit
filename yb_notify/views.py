@@ -15,8 +15,8 @@ def notifications_html(request):
     from .models import NotificationCore
     this_profile = Profile.objects.get(user=request.user)
     notification_core = NotificationCore.objects.get(profile=this_profile)
-    unseen_notifications = notification_core.unseen_notifications.all()
-    seen_notifications = notification_core.seen_notifications.all()
+    unseen_notifications = notification_core.unseen_notifications.all().order_by('-time')
+    seen_notifications = notification_core.seen_notifications.all().order_by('-time')
 
     #chain together seen and unseen notificaitons
     notifications = unseen_notifications | seen_notifications
