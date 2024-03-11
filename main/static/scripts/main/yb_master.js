@@ -462,7 +462,7 @@ function yb_viewBit(bit_id, comment_id = null) {
                 bit_container.style.display = "none";
 
                 let rendered_bit = yb_buildBit(bit);
-                CONTENT_CONTAINER.appendChild(rendered_bit);
+                CONTENT_CONTAINER.appendChild(rendered_bit.built_bit);
 
                 yb_toggle2WayContainer('notifications');
 
