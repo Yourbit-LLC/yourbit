@@ -26,7 +26,7 @@ def create_profile(sender, instance, created, **kwargs):
     if created:
 
         #Initialize User Profile to act as parent for all user data
-        user_profile = Profile(user=instance)
+        user_profile = Profile(user=instance, username = instance.username)
         user_profile.save()
 
         #Initialize User Settings Modules

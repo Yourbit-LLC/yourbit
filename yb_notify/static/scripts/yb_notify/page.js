@@ -2,6 +2,38 @@ var filter_buttons = document.querySelectorAll('.notify-filter-button');
 
 const NOTIFICATION_CONTAINER = document.getElementById('notification-list');
 
+function yb_buildNotifyItem(result, action=null){
+    let id = result.id
+    let user = result.user
+
+    let name = result.display_name;
+    let handle = from_user.username;
+    let element_id = `${type}-${id}`;
+    let new_item = yb_createElement("div", "full-result yb-autoText", `result-${element_id}`,);
+    new_item.setAttribute("style", `background-color: rgb(25, 25, 25);`);
+    new_item.setAttribute("data-catid", `${id}`);
+    new_item.setAttribute("data-username", `${handle}`);
+    new_item.innerHTML =`
+        
+            <div cla      ss = 'full-result-image-container'>
+                <img class='full-result-image' src="">
+            </div>
+            <div class='full-result-name-container'>
+                <p class = 'full-result-name'><strong>${name}</strong></p>
+                <p class = 'full-result-username'>
+                    <small>@${handle}</small>
+                </p>
+            </div>
+    `
+
+    if (action != null) {
+        let handler = action(id, handle)
+        new_item.addEventListener('click', handler)
+        
+    }
+    
+    return new_item
+}
 //Function for handling notification response options
 function yb_handleNotificationOptionClick(e) {
     let this_option = e.currentTarget;
