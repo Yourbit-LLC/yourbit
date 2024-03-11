@@ -128,6 +128,16 @@ class BitViewSet(viewsets.ModelViewSet):
 
         return Response(rendered_bit.data, status=status.HTTP_201_CREATED, headers=headers)
     
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        user_profile = Profile.objects.get(user=self.request.user)
+        timezone = user_profile.current_timezone
+
+        serializer = self.get_serializer(instance, context={'user_tz': timezone, 'request': request})
+        return Response(serializer.data)
+        
+
+    
 class LikeViewSet(viewsets.ModelViewSet):
     queryset = BitLike.objects.all()
     serializer_class = BitLikeSerializer
