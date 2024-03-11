@@ -15,7 +15,9 @@ class NotificationViewSet(viewsets.ModelViewSet):
     serializer_class = NotificationSerializer
 
     def list(self, request, *args, **kwargs):
-        queryset = Notification.objects.filter(to_user=request.user)
+        from yb_profile.models import Profile
+        user_profile = Profile.objects.get(user=request.user)  # Assuming the user is authenticated
+        queryset = Notification.objects.filter(to_user=user_profile)
 
         #Filter by query param
         user_filter = self.request.query_params.get('notify_class', None)
