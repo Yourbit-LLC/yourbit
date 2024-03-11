@@ -9,3 +9,4 @@ def bit_builder_view(request):
 
 def bitstream_view(request):
     return render(request, "yb_bits/yb_bitStream.html")
+

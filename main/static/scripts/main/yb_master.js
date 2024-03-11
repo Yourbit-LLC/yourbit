@@ -450,11 +450,28 @@ $(document).ready(function() {
 
 
 
-function yb_viewBit() {
-    let bit_id = this.getAttribute("data-bit-id");
-    let url = `/bit/${bit_id}/`;
-    $("#content-container").empty();
-    $("#content-container").load(url);
+function yb_viewBit(bit_id, comment_id = null) {
+    let url = `/bits/api/bit/${bit_id}/`;
+    $.ajax({
+        type: "GET",
+        url: url,
+        success: function(data){
+            try {
+                let bit = data
+                let bit_container = document.getElementById('bit-container');
+                bit_container.style.display = "none";
+
+                let rendered_bit = yb_buildBit(bit);
+                CONTENT_CONTAINER.appendChild(rendered_bit);
+
+                yb_toggle2WayContainer('notifications');
+
+            } catch(err) {
+                console.log(err);
+            }
+        }
+    })
+    
 }
 
 function yb_sendThanks(profile_id) {
