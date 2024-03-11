@@ -150,7 +150,7 @@ function yb_getNotificationList(notify_class) {
 
     $.ajax( {
         type: 'GET',
-        url: '/notifications/api/notifications/',
+        url: '/notify/api/notifications/',
         data: { 
             notify_class: notify_class,
         },
