@@ -74,7 +74,7 @@ function yb_buildNotifyItem(result, action=null){
     new_sub_item.addEventListener('click', function() {
         yb_notificationMenu(result.type, id);
     });
-    
+
     return new_item
 }
 //Function for handling notification response options
@@ -215,7 +215,7 @@ function yb_displayNotifications(response) {
     }
     for (let i = 0; i < response.length; i++) {
         
-        new_item = yb_buildListItem(response[i]);
+        new_item = yb_buildNotifyItem(response[i]);
 
         NOTIFICATION_CONTAINER.appendChild(new_item);
     }
