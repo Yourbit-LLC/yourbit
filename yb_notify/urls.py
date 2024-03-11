@@ -6,4 +6,5 @@ from yb_notify.views import GetNotifications, notifications_html
 urlpatterns = [
     path("collect/", GetNotifications.as_view(), name="create"),
     path("template/list/", notifications_html, name="list-html"),
+    path("api/", include("yb_notify.routers")),
 ]

@@ -16,11 +16,6 @@ class NotificationViewSet(viewsets.ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         queryset = Notification.objects.filter(to_user=request.user)
-        serializer = NotificationSerializer(queryset, many=True)
-        return Response(serializer.data)
-
-    def retrieve(self, request, pk=None):
-        queryset = Notification.objects.all()
 
         #Filter by query param
         user_filter = self.request.query_params.get('notify_class', None)
@@ -28,6 +23,11 @@ class NotificationViewSet(viewsets.ModelViewSet):
         if user_filter is not None:
             queryset = queryset.filter(notify_class=user_filter)
 
+        serializer = NotificationSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def retrieve(self, request, pk=None):
+        queryset = Notification.objects.all()
         notification = get_object_or_404(queryset, pk=pk)
         serializer = NotificationSerializer(notification)
         return Response(serializer.data)
