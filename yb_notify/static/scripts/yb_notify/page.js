@@ -3,34 +3,77 @@ var filter_buttons = document.querySelectorAll('.notify-filter-button');
 const NOTIFICATION_CONTAINER = document.getElementById('notification-list');
 
 function yb_buildNotifyItem(result, action=null){
-    let id = result.id
-    let user = result.user
+    let id = result.id;
 
-    let name = result.display_name;
-    let handle = from_user.username;
-    let element_id = `${type}-${id}`;
-    let new_item = yb_createElement("div", "full-result yb-autoText", `result-${element_id}`,);
-    new_item.setAttribute("style", `background-color: rgb(25, 25, 25);`);
-    new_item.setAttribute("data-catid", `${id}`);
-    new_item.setAttribute("data-username", `${handle}`);
-    new_item.innerHTML =`
-        
-            <div cla      ss = 'full-result-image-container'>
-                <img class='full-result-image' src="">
-            </div>
-            <div class='full-result-name-container'>
-                <p class = 'full-result-name'><strong>${name}</strong></p>
-                <p class = 'full-result-username'>
-                    <small>@${handle}</small>
-                </p>
-            </div>
-    `
-
-    if (action != null) {
-        let handler = action(id, handle)
-        new_item.addEventListener('click', handler)
-        
+    if (result.has_seen == false) {
+        has_seen = "unseen";
+    } else {
+        has_seen = "seen";
     }
+
+    icon = "";
+
+    if (result.type == 1) {
+        icon = `
+            <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32">
+                <path class="yb-autoFill" d="M616.244-527.693q21.832 0 37.025-15.283 15.192-15.282 15.192-37.115 0-21.832-15.283-37.024t-37.115-15.192q-21.832 0-37.024 15.283-15.193 15.282-15.193 37.115 0 21.832 15.283 37.024t37.115 15.192Zm-272.307 0q21.832 0 37.024-15.283 15.193-15.282 15.193-37.115 0-21.832-15.283-37.024t-37.115-15.192q-21.832 0-37.025 15.283-15.192 15.282-15.192 37.115 0 21.832 15.283 37.024t37.115 15.192ZM480-272.309q62.615 0 114.461-35.038T670.922-400H618q-22 37-58.5 58.5T480-320q-43 0-79.5-21.5T342-400h-52.922q24.615 57.615 76.461 92.653Q417.385-272.309 480-272.309Zm.067 172.308q-78.836 0-148.204-29.92-69.369-29.92-120.682-81.21-51.314-51.291-81.247-120.629-29.933-69.337-29.933-148.173t29.92-148.204q29.92-69.369 81.21-120.682 51.291-51.314 120.629-81.247 69.337-29.933 148.173-29.933t148.204 29.92q69.369 29.92 120.682 81.21 51.314 51.291 81.247 120.629 29.933 69.337 29.933 148.173t-29.92 148.204q-29.92 69.369-81.21 120.682-51.291 51.314-120.629 81.247-69.337 29.933-148.173 29.933ZM480-480Zm0 320q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Z"/>
+            </svg>
+        `
+    } else if (result.type == 2) {
+        icon = `
+            <svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                <path style="fill: white;" id="comment-icon-${bit.id}" d="M6 14H18V12H6ZM6 11H18V9H6ZM6 8H18V6H6ZM22 22 18 18H4Q3.175 18 2.588 17.413Q2 16.825 2 16V4Q2 3.175 2.588 2.587Q3.175 2 4 2H20Q20.825 2 21.413 2.587Q22 3.175 22 4ZM4 4V16Q4 16 4 16Q4 16 4 16H18.825L20 17.175V4Q20 4 20 4Q20 4 20 4H4Q4 4 4 4Q4 4 4 4ZM4 4V17.175V16Q4 16 4 16Q4 16 4 16V4Q4 4 4 4Q4 4 4 4Q4 4 4 4Q4 4 4 4Z"/>
+            </svg>
+        `
+    }
+
+    let name = result.from_user.display_name;
+    let handle = result.from_user.username;
+    let element_id = `notification-${id}`;
+    let new_item = yb_createElement("div", `yb-fillWidth`, `notification-container-${id}`,);
+    new_item.setAttribute("style", `background-color: rgb(25, 25, 25);`);
+    new_item.setAttribute("data-id", `${id}`);
+    new_item.setAttribute("data-username", `${handle}`);
+
+    let new_sub_item = yb_createElement("div", `yb-listItem notification ${has_seen} yb_autoText`, element_id);
+
+    let notification_icon = yb_createElement("div", "notification-icon", `notification-icon-${id}`);
+    notification_icon.innerHTML = icon;
+
+    let notification_contents = yb_createElement("div", "notification-contents font-medium", `notification-contents-${id}`);
+    notification_contents.innerHTML = `
+    
+        <b class="font-small yb-autoText">
+            ${result.title}
+        </b>
+        <p class="yb-autoText">
+            ${result.body}
+        </p>
+        <div class="font-gray" id="notification-time">
+            <p>${result.time}</p>
+        </div>
+
+        `;
+
+    let notification_close = yb_createElement("div", "notification-close", `notification-close-${id}`);
+    notification_close.innerHTML = `
+        <button class="yb-button-close notification">&times;</button>
+    `;
+
+    notification_close.addEventListener('click', function() {
+        yb_dismissNotification(id);
+    });
+
+    
+
+    new_sub_item.appendChild(notification_icon);
+    new_sub_item.appendChild(notification_contents);
+    new_sub_item.appendChild(notification_close);
+    new_item.appendChild(new_sub_item);
+
+    new_sub_item.addEventListener('click', function() {
+        yb_notificationMenu(result.type, id);
+    });
     
     return new_item
 }
