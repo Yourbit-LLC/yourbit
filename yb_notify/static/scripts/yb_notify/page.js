@@ -1,6 +1,6 @@
 var filter_buttons = document.querySelectorAll('.notify-filter-button');
 
-const NOTIFICATION_CONTAINER = document.getElementById('notification-container');
+const NOTIFICATION_CONTAINER = document.getElementById('notification-list');
 
 //Function for handling notification response options
 function yb_handleNotificationOptionClick(e) {
