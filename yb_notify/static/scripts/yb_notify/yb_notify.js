@@ -53,7 +53,7 @@ function yb_getNotificationList(type) {
 
     $.ajax( {
         type: 'GET',
-        url: '/notifications/',
+        url: '/notifications/api/notifications/',
         data: { 
             type: type,
         },

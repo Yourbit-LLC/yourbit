@@ -16,6 +16,8 @@ class Notification(models.Model):
 
     #Notification type 1 = like, 2 = comment, 3 = follow, 4 = friend request received, 5 = friend request accepted, 6 = message, 7 = donation
     type = models.IntegerField()
+
+    notify_class = models.IntegerField(default=0) #0 = people, 1 = Messages, 2 = bits
     
     #User Details
     display_name = models.CharField(max_length=100, blank=True, null=True) #used for display name, user may set real name or username
@@ -30,6 +32,7 @@ class Notification(models.Model):
     custom = models.ForeignKey(CustomCore, on_delete=models.CASCADE, related_name='+', blank=True, null=True)
     time = models.DateTimeField(default=timezone.now)
     has_seen = models.BooleanField(default=False)
+
 
     #Bit Details
     bit = models.ForeignKey(Bit, on_delete=models.CASCADE, related_name='+', blank=True, null=True)

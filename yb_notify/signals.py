@@ -28,7 +28,8 @@ def create_message_notification(sender, instance, created, **kwargs):
                     link = "/messages/" + str(conversation.id),
                     profile = instance.profile,
                     conversation = conversation,
-                    title = "New Message"
+                    title = "New Message",
+                    notify_class = 1
                     
                 )
 
@@ -46,7 +47,9 @@ def create_bit_like_notification(sender, instance, created, **kwargs):
             body = instance.user.username + " has liked your bit",
             type = 1,
             link = "/bits/" + str(bit.id),
-            title = "New Like"
+            title = "New Like",
+            notify_class = 2
+
             
         )
         notification.save()
@@ -63,7 +66,8 @@ def create_bit_comment_notification(sender, instance, created, **kwargs):
             body = instance.user.username + " has commented on your bit",
             type = 2,
             link = "/bits/" + str(bit.id),
-            title = "New Comment"
+            title = "New Comment",
+            notify_class = 2
         )
         notification.save()
 
@@ -78,7 +82,8 @@ def create_friend_request_notification(sender, instance, created, **kwargs):
             body = instance.from_user.user.username + " has sent you a friend request",
             type = 4,
             link = "/profile/" + str(instance.from_user.user.username),
-            title = "New Friend Request"
+            title = "New Friend Request",
+            notify_class = 0
         )
 
         notification.save()
@@ -94,7 +99,8 @@ def create_friend_accept_notification(sender, instance, created, **kwargs):
             body = instance.to_user.user.username + " has accepted your friend request",
             type = 5,
             link = "/profile/" + str(instance.to_user.user.username),
-            title = "Friend Request Accepted"
+            title = "Friend Request Accepted",
+            notify_class = 0
         )
 
         notification.save()

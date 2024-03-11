@@ -15,12 +15,10 @@ from yb_profile.models import Profile
 from .serializers import *
 from rest_framework.throttling import UserRateThrottle, AnonRateThrottle
 from rest_framework.authtoken.models import Token
-from django.contrib.auth import authenticate
-from django.contrib.auth.hashers import make_password
-from django.contrib.auth.models import update_last_login
 from django.utils import timezone
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
+
 
 #Viewset for chat bits
 # views.py
