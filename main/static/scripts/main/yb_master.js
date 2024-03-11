@@ -467,7 +467,7 @@ function yb_viewBit(bit_id, comment_id = null) {
                 yb_toggle2WayContainer('notifications');
                 yb_closeSlideUpTemplate(SLIDE_UP_CORE);
 
-                built_bit.classList.add("yb-pulseNormal");
+                rendered_bit.built_bit.classList.add("yb-pulseNormal");
 
             } catch(err) {
                 console.log(err);
