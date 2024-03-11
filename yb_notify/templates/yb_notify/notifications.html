@@ -4,10 +4,10 @@
     <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('notifications')">&times;</div>
 </div>
 <div id="notify-button-container" class="yb-fullWidth yb-flexRow yb-gap5 yb-margin-L5 yb-margin-R5">
-    <button class="yb-button-wide tiny-wide bg-gray-dark yb-autoText yb-center-margin lr rounded active">All</button>
-    <button class="yb-button-wide tiny-wide bg-gray-dark yb-autoText yb-center-margin lr rounded">People</button>
-    <button class="yb-button-wide tiny-wide bg-gray-dark yb-autoText yb-center-margin lr rounded">Messages</button>
-    <button class="yb-button-wide tiny-wide bg-gray-dark yb-autoText yb-center-margin lr rounded">Bits</button>
+    <button class="notify-filter-button yb-button-wide tiny-wide bg-gray-dark yb-autoText yb-center-margin lr rounded active">All</button>
+    <button class="notify-filter-button yb-button-wide tiny-wide bg-gray-dark yb-autoText yb-center-margin lr rounded" data-notify-class = "0">People</button>
+    <button class="notify-filter-button yb-button-wide tiny-wide bg-gray-dark yb-autoText yb-center-margin lr rounded" data-notify-class = "1">Messages</button>
+    <button class="notify-filter-button yb-button-wide tiny-wide bg-gray-dark yb-autoText yb-center-margin lr rounded" data-notify-class = "2">Bits</button>
 </div>
 <div id="notification-list" class="yb-fillWidth">
     {% if results.count == 0 %}
@@ -65,3 +65,4 @@
 <div class="yb-logo-footer small" id="create-menu-footer" style="position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%);">
     <img src="{% static 'images/main/yourbit-logo2023-01.svg' %}" style="width: 100%; position: relative;" alt="YB Logo" class="yb-logo-small">
 </div>
+<script class="page-script" type = "text/javascript" src="{% static 'scripts/yb_notify/page.js' %}"></script>
