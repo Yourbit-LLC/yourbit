@@ -451,7 +451,7 @@ $(document).ready(function() {
 
 
 function yb_viewBit(bit_id, comment_id = null) {
-    let url = `/bits/api/bit/${bit_id}/`;
+    let url = `/bits/api/bits/${bit_id}/`;
     $.ajax({
         type: "GET",
         url: url,
