@@ -465,6 +465,7 @@ function yb_viewBit(bit_id, comment_id = null) {
                 CONTENT_CONTAINER.appendChild(rendered_bit.built_bit);
 
                 yb_toggle2WayContainer('notifications');
+                yb_closeSlideUpTemplate(SLIDE_UP_CORE);
 
             } catch(err) {
                 console.log(err);
