@@ -412,7 +412,10 @@ function yb_buildCommentField(bit) {
 */
 
 function yb_buildBit(bit){
-   
+    
+    console.log("Build bit running...");
+    console.log(bit);
+    
     //Bit information
     let id = bit.id;
     let time = bit.time;
