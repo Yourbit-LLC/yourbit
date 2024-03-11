@@ -128,6 +128,11 @@ function yb_notificationMenu(type, this_id) {
 
 }
 
+function yb_clearNotifications() {
+    NOTIFICATION_CONTAINER.innerHTML = "";
+}
+
+
 function yb_displayNotifications(response) {
     yb_clearNotifications();
     if (response.length == 0) {

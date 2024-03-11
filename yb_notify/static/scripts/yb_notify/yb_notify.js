@@ -32,7 +32,7 @@ function hideNotification() {
 };
 
 function yb_clearNotifications() {
-    NOTIFICATION_WIDGET.innerHTML = "";
+    NOTIFICATION_CONTAINER.innerHTML = "";
 }
 
 function yb_checkNotification(type) {
