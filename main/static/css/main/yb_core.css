@@ -589,3 +589,13 @@ p {
     right: 0px;
     top: 0px;
 }
+
+.yb-status-indicator.mobile {
+    position: absolute;
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    right: 10px;
+    top: 10px;
+}
