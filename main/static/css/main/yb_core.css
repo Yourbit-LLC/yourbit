@@ -576,9 +576,6 @@ p {
     animation: yb-blink-soft 2.5s linear infinite;
 }
 
-
-
-
-
-
-
+.yb-halfWidth {
+    width: 50%;
+}
