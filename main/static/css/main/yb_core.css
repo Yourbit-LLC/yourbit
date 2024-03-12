@@ -579,3 +579,13 @@ p {
 .yb-halfWidth {
     width: 50%;
 }
+
+.yb-status-indicator {
+    position: absolute;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    right: 5px;
+    top: 5px;
+}

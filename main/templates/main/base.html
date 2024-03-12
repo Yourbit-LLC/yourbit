@@ -246,7 +246,9 @@ lang="en"
 
             <!--End Search-->
 
-            <form class = "yb-nav-actions" id="quick-actions" method="GET" action="">
+            <!--Quick Actions-->
+
+            <div class = "yb-nav-actions" id="quick-actions" method="GET" action="">
                 {% csrf_token %}
 
                 <div class="quick-button" id="create-quick" >
@@ -256,7 +258,7 @@ lang="en"
                 </div>
 
                 <div class="quick-button" id="notifications-quick" >
-                    <div class="status-indicator" id="notification-status" style="display: none;">
+                    <div class="yb-status-indicator yb-red" id="notification-status">
                         <!--
                             Nothing goes in here, this div appears as a small red circle on the notifcation icon when new notifications exist
                         -->
@@ -275,7 +277,9 @@ lang="en"
                     <div class="helper" id="messages-helper">Messages</div>
                 </div>
 
-            </form>
+            </div>
+
+            <!--End Quick Actions-->
 
             
             <div style="overflow: hidden;" class="profile-image-thumbnail medium border-solid plainBorder narrowBorder circle" id = "profile-icon">

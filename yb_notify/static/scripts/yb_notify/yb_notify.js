@@ -35,16 +35,13 @@ function yb_clearNotifications() {
     NOTIFICATION_CONTAINER.innerHTML = "";
 }
 
-function yb_checkNotification(type) {
+function yb_checkNotification() {
     $.ajax( {
         type: 'GET',
-        url: '/notifications/check/',
-        data: { 
-            type: type,
-        },
+        url: '/notify/api/notification-core/has-unseen/',
         success: function(response){
             if (response.length > 0) {
-                showNotification(expandNotification, response[0].body);
+                
             }
         }
     })
