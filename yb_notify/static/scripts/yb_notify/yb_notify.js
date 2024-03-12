@@ -1,5 +1,5 @@
 const NOTIFICATION_WIDGET = document.getElementById('notification-widget');
-
+const NOTIFICATION_STATUS = document.querySelectorAll('.notification-status');
 function showNotification(callback1, body) {
     NOTIFICATION_WIDGET.classList.add('active');
     setTimeout(callback1, 1000, showText, body);
@@ -40,8 +40,14 @@ function yb_checkNotification() {
         type: 'GET',
         url: '/notify/api/notification-core/has-unseen/',
         success: function(response){
-            if (response.length > 0) {
-                
+            if (response.has_seen === true) {
+                for (let i = 0; i < NOTIFICATION_STATUS.length; i++) {
+                    NOTIFICATION_STATUS[i].style.display = 'block';
+                }
+            } else {
+                for (let i = 0; i < NOTIFICATION_STATUS.length; i++) {
+                    NOTIFICATION_STATUS[i].style.display = 'none';
+                }
             }
         }
     })
