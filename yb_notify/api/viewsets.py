@@ -3,8 +3,8 @@ from rest_framework import viewsets, permissions, generics, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework import filters
-from ..models import Notification
-from .serializers import NotificationSerializer
+from ..models import Notification, NotificationCore
+from .serializers import NotificationSerializer, NotificationCoreSerializer
 from django.shortcuts import get_object_or_404
 
 class NotificationViewSet(viewsets.ModelViewSet):
@@ -33,49 +33,67 @@ class NotificationViewSet(viewsets.ModelViewSet):
         notification = get_object_or_404(queryset, pk=pk)
         serializer = NotificationSerializer(notification)
         return Response(serializer.data)
+    
+class NotificationCoreViewSet(viewsets.ModelViewSet):
+    queryset = NotificationCore.objects.all()
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
+    serializer_class = NotificationCoreSerializer
 
-    @action(detail=True, methods=['post'])
-    def mark_read(self, request, pk=None):
-        notification = self.get_object()
-        notification.read = True
-        notification.save()
-        serializer = NotificationSerializer(notification)
-        return Response(serializer.data)
-
+    def get_queryset(self):
+        return self.queryset.filter(profile=self.request.user.profile)
+    
+    #Get unseen notification count
+    @action(detail=False, methods=['get'])
+    def unseen_count(self, request, *args, **kwargs):
+        notification_core = self.get_queryset().first()
+        count = notification_core.unseen_notifications.count()
+        return Response({'count': count})
+    
+    #Check if there are unseen notifications return true or false
+    @action(detail=False, methods=['get'])
+    def has_unseen(self, request, *args, **kwargs):
+        notification_core = self.get_queryset().first()
+        if notification_core.unseen_notifications.count() > 0:
+            return Response({'has_unseen': True})
+        else:
+            return Response({'has_unseen': False})
+        
+    #Mark all notifications as seen
     @action(detail=False, methods=['post'])
-    def mark_all_read(self, request):
-        notifications = Notification.objects.filter(to_user=request.user)
-        notifications.update(read=True)
-        serializer = NotificationSerializer(notifications, many=True)
-        return Response(serializer.data)
+    def mark_all_seen(self, request, *args, **kwargs):
+        notification_core = self.get_queryset().first()
 
+        #Update the has seen field in each notification
+        notification_core.unseen_notifications.all().update(has_seen=True)
+        
+        #Add all unseen notifications to seen notifications
+        notification_core.seen_notifications.add(*notification_core.unseen_notifications.all())
+        
+        #Clear the unseen notifications
+        notification_core.unseen_notifications.clear()
+        notification_core.save()
+
+        #Return a response
+        return Response({'status': 'all notifications marked as seen'})
+    
+    #Mark a single notification as seen
     @action(detail=False, methods=['post'])
-    def mark_all_unread(self, request):
-        notifications = Notification.objects.filter(to_user=request.user)
-        notifications.update(read=False)
-        serializer = NotificationSerializer(notifications, many=True)
-        return Response(serializer.data)
+    def mark_seen(self, request, *args, **kwargs):
+        notification_core = self.get_queryset().first()
 
-    @action(detail=False, methods=['post'])
-    def delete_all(self, request):
-        notifications = Notification.objects.filter(to_user=request.user)
-        notifications.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        #Update the has seen field in the notification
+        notification_core.unseen_notifications.filter(id=request.data['id']).update(has_seen=True)
 
-    @action(detail=True, methods=['post'])
-    def delete(self, request, pk=None):
-        notification = self.get_object()
-        notification.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        #Add the notification to seen notifications
+        notification_core.seen_notifications.add(*notification_core.unseen_notifications.filter(id=request.data['id']))
 
-    @action(detail=False, methods=['post'])
-    def delete_read(self, request):
-        notifications = Notification.objects.filter(to_user=request.user, read=True)
-        notifications.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        #Remove the notification from unseen notifications
+        notification_core.unseen_notifications.remove(*notification_core.unseen_notifications.filter(id=request.data['id']))
+        
 
-    @action(detail=False, methods=['post'])
-    def delete_unread(self, request):
-        notifications = Notification.objects.filter(to_user=request.user, read=False)
-        notifications.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        notification_core.save()
+
+        #Return a response
+        return Response({'status': 'notification marked as seen'})
