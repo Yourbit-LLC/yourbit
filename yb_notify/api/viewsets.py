@@ -47,14 +47,14 @@ class NotificationCoreViewSet(viewsets.ModelViewSet):
     #Get unseen notification count
     @action(detail=False, methods=['get'])
     def unseen_count(self, request, *args, **kwargs):
-        notification_core = self.get_queryset().first()
+        notification_core = self.get_queryset()
         count = notification_core.unseen_notifications.count()
         return Response({'count': count})
     
     #Check if there are unseen notifications return true or false
     @action(detail=False, methods=['get'])
     def has_unseen(self, request, *args, **kwargs):
-        notification_core = self.get_queryset().first()
+        notification_core = self.get_queryset()
         if notification_core.unseen_notifications.count() > 0:
             return Response({'has_unseen': True})
         else:
@@ -63,7 +63,7 @@ class NotificationCoreViewSet(viewsets.ModelViewSet):
     #Mark all notifications as seen
     @action(detail=False, methods=['post'])
     def mark_all_seen(self, request, *args, **kwargs):
-        notification_core = self.get_queryset().first()
+        notification_core = self.get_queryset()
 
         #Update the has seen field in each notification
         notification_core.unseen_notifications.all().update(has_seen=True)
@@ -81,7 +81,7 @@ class NotificationCoreViewSet(viewsets.ModelViewSet):
     #Mark a single notification as seen
     @action(detail=False, methods=['post'])
     def mark_seen(self, request, *args, **kwargs):
-        notification_core = self.get_queryset().first()
+        notification_core = self.get_queryset()
 
         #Update the has seen field in the notification
         notification_core.unseen_notifications.filter(id=request.data['id']).update(has_seen=True)
