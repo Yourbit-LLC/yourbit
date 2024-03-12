@@ -43,23 +43,23 @@ class NotificationCoreViewSet(viewsets.ModelViewSet):
     serializer_class = NotificationCoreSerializer
 
     def get_queryset(self):
-        return self.queryset.get(profile=self.request.user.profile)
+        return self.queryset.filter(profile=self.request.user.profile)
     
     #Get unseen notification count
     @action(detail=False, methods=['get'])
     def unseen_count(self, request, *args, **kwargs):
-        notification_core = self.get_queryset()
+        notification_core = self.get_queryset().first()
         count = notification_core.unseen_notifications.count()
         return Response({'count': count})
     
     #Check if there are unseen notifications return true or false
     @action(detail=False, methods=['get'])
     def has_unseen(self, request, *args, **kwargs):
-        notification_core = self.get_queryset()
+        notification_core = self.get_queryset().first()
         if notification_core.unseen_notifications.count() > 0:
-            return JsonResponse({'has_unseen': True})
+            return Response({'has_unseen': True})
         else:
-            return JsonResponse({'has_unseen': False})
+            return Response({'has_unseen': False})
         
     #Mark all notifications as seen
     @action(detail=False, methods=['post'])
