@@ -52,7 +52,7 @@ class NotificationCoreViewSet(viewsets.ModelViewSet):
         return Response({'count': count})
     
     #Check if there are unseen notifications return true or false
-    @action(detail=False, methods=['get'])
+    @action(detail=True, methods=['get'])
     def has_unseen(self, request, *args, **kwargs):
         notification_core = self.get_queryset()
         if notification_core.unseen_notifications.count() > 0:
