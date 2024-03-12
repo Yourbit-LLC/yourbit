@@ -77,6 +77,25 @@ function yb_buildNotifyItem(result, action=null){
 
     return new_item
 }
+
+function yb_dismissNotification(notification_id) {
+    let csrf = getCSRF();
+    let url = `/notify/api/notifications/${notification_id}/`;
+    let data = {
+        'csrfmiddlewaretoken': csrf
+    }
+    $.ajax({
+        type: "DELETE",
+        url: url,
+        data: data,
+        success: function(data){
+            console.log(data);
+            let notification_element = document.getElementById(`notification-${notification_id}`);
+            notification_element.remove();
+        }
+    })
+}
+
 //Function for handling notification response options
 function yb_handleNotificationOptionClick(e) {
     let this_option = e.currentTarget;
@@ -91,9 +110,9 @@ function yb_handleNotificationOptionClick(e) {
       
         yb_sendThanks(this_id); //Location: Master.js -- Line 448
     
-    } else if (this_option_name === "Dismiss") {
+    } else if (this_option_name === "Cancel") {
       
-        yb_dismissNotification(this_id); //Location: Master.js -- Line 496
+        yb_closeSlideUpTemplate();
     
     } else if (this_option_name === "Reply to Comment") {
       
@@ -236,6 +255,8 @@ function yb_getNotificationList(notify_class) {
         }
     })
 };
+
+
 
 function yb_handleFilterClick() {
     yb_getNotificationList(this.getAttribute('data-notify-class'));

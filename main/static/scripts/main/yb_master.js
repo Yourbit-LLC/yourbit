@@ -533,23 +533,7 @@ function yb_declineRequest() {
     })
 }
 
-function yb_dismissNotification(notification_id) {
-    let csrf = getCSRF();
-    let url = `/notify/api/notifications/${notification_id}/`;
-    let data = {
-        'csrfmiddlewaretoken': csrf
-    }
-    $.ajax({
-        type: "DELETE",
-        url: url,
-        data: data,
-        success: function(data){
-            console.log(data);
-            let notification_element = document.getElementById(`notification-${notification_id}`);
-            notification_element.remove();
-        }
-    })
-}
+
 
 
 

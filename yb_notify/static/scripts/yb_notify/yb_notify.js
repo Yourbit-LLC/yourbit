@@ -35,6 +35,7 @@ function yb_clearNotifications() {
     NOTIFICATION_CONTAINER.innerHTML = "";
 }
 
+
 function yb_checkNotification() {
     $.ajax( {
         type: 'GET',
