@@ -79,15 +79,14 @@ function yb_buildNotifyItem(result, action=null){
 }
 
 function yb_dismissNotification(notification_id) {
-    let csrf = getCSRF();
+    let csrf_token = getCSRF();
     let url = `/notify/api/notifications/${notification_id}/`;
-    let data = {
-        'csrfmiddlewaretoken': csrf
-    }
     $.ajax({
         type: "DELETE",
         url: url,
-        data: data,
+        headers: {
+            'X-CSRFToken': csrf_token,
+        },
         success: function(data){
             console.log(data);
             let notification_element = document.getElementById(`notification-${notification_id}`);
