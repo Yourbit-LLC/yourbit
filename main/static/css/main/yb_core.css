@@ -586,6 +586,6 @@ p {
     width: 9px;
     height: 9px;
     border-radius: 50%;
-    right: 1px;
-    top: 1px;
+    right: 0px;
+    top: 0px;
 }
