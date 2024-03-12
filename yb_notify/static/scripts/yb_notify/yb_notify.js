@@ -57,5 +57,5 @@ function yb_checkNotification() {
 
 $(document).ready(function(){
     yb_checkNotification();
-    setInterval(yb_checkNotification, 60000, 'all');
+    setInterval(yb_checkNotification, 10000, 'all');
 });
