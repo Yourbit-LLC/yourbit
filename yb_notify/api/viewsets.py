@@ -64,7 +64,7 @@ class NotificationCoreViewSet(viewsets.ModelViewSet):
     #Mark all notifications as seen
     @action(detail=False, methods=['post'])
     def mark_all_seen(self, request, *args, **kwargs):
-        notification_core = self.get_queryset()
+        notification_core = self.get_queryset().first()
 
         #Update the has seen field in each notification
         notification_core.unseen_notifications.all().update(has_seen=True)
@@ -82,7 +82,7 @@ class NotificationCoreViewSet(viewsets.ModelViewSet):
     #Mark a single notification as seen
     @action(detail=False, methods=['post'])
     def mark_seen(self, request, *args, **kwargs):
-        notification_core = self.get_queryset()
+        notification_core = self.get_queryset().first()
 
         #Update the has seen field in the notification
         notification_core.unseen_notifications.filter(id=request.data['id']).update(has_seen=True)
