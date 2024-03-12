@@ -40,8 +40,8 @@ function yb_checkNotification() {
         type: 'GET',
         url: '/notify/api/notification-core/has_unseen/',
         success: function(response){
-            console.log(response.has_seen)
-            if (response.has_seen) {
+            console.log(response.has_unseen)
+            if (response.has_unseen) {
                 for (let i = 0; i < NOTIFICATION_STATUS.length; i++) {
                     NOTIFICATION_STATUS[i].style.display = 'inline-block';
                 }
