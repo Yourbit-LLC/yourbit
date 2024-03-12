@@ -582,7 +582,7 @@ p {
 
 .yb-status-indicator {
     position: absolute;
-    display: inline-block;
+    display: none;
     width: 9px;
     height: 9px;
     border-radius: 50%;
@@ -592,7 +592,7 @@ p {
 
 .yb-status-indicator.mobile {
     position: absolute;
-    display: inline-block;
+    display: none;
     width: 9px;
     height: 9px;
     border-radius: 50%;
