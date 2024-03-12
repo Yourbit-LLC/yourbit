@@ -38,7 +38,7 @@ function yb_clearNotifications() {
 function yb_checkNotification() {
     $.ajax( {
         type: 'GET',
-        url: '/notify/api/notification-core/has-unseen/',
+        url: '/notify/api/notification-core/has_unseen/',
         success: function(response){
             if (response.has_seen === true) {
                 for (let i = 0; i < NOTIFICATION_STATUS.length; i++) {
@@ -54,5 +54,6 @@ function yb_checkNotification() {
 }
 
 $(document).ready(function(){
+    yb_checkNotification();
     setInterval(yb_checkNotification, 60000, 'all');
 });
