@@ -6,6 +6,7 @@ from rest_framework import filters
 from ..models import Notification, NotificationCore
 from .serializers import NotificationSerializer, NotificationCoreSerializer
 from django.shortcuts import get_object_or_404
+from django.http import JsonResponse
 
 class NotificationViewSet(viewsets.ModelViewSet):
     queryset = Notification.objects.all()
@@ -56,9 +57,9 @@ class NotificationCoreViewSet(viewsets.ModelViewSet):
     def has_unseen(self, request, *args, **kwargs):
         notification_core = self.get_queryset()
         if notification_core.unseen_notifications.count() > 0:
-            return Response({'has_unseen': True})
+            return JsonResponse({'has_unseen': True})
         else:
-            return Response({'has_unseen': False})
+            return JsonResponse({'has_unseen': False})
         
     #Mark all notifications as seen
     @action(detail=False, methods=['post'])
