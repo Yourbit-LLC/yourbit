@@ -3,7 +3,7 @@ from .api.viewsets import *
 
 router = DefaultRouter()
 router.register(r'profile', ProfileViewset, basename='profile')
-router.register(r'connect/friend', FriendRequestViewset, basename='friend_request')
+router.register(r'connect/friend/', FriendRequestViewset, basename='friend_request')
 
 
 
