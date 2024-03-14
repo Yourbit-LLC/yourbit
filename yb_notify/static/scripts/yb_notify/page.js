@@ -6,6 +6,7 @@ function yb_buildNotifyItem(result, action=null){
     let id = result.id;
     console.log(result.id);
     console.log(result);
+    console.log("ahbdiba");
 
     if (result.has_seen == false) {
         has_seen = "unseen";
