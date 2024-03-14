@@ -497,7 +497,7 @@ function yb_sendThanks(profile_id) {
 function yb_acceptRequest(request_id) {
     
     let csrf = getCSRF();
-    let url = `profile/api/friendrequest/${request_id}/accept/`;
+    let url = `profile/api/connect/friend/${request_id}/accept/`;
     let data = {
         'csrfmiddlewaretoken': csrf
     }
