@@ -255,7 +255,7 @@ class FriendRequestViewset(viewsets.ModelViewSet):
     @action(detail=True, methods=['post'])
     def accept(self, request, pk=None):
 
-        friend_request = self.get_object()
+        friend_request = self.get_object(pk=pk)
 
         # Assuming the FriendRequest model has 'from_user' and 'to_user' fields
         
