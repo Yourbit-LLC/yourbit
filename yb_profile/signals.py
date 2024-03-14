@@ -24,9 +24,9 @@ from django.templatetags.static import static
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
     if created:
-
+        default_display_name = instance.first_name + " " + instance.last_name
         #Initialize User Profile to act as parent for all user data
-        user_profile = Profile(user=instance, username = instance.username)
+        user_profile = Profile(user=instance, username = instance.username, display_name = default_display_name)
         user_profile.save()
 
         #Initialize User Settings Modules
