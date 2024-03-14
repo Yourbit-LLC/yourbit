@@ -33,6 +33,8 @@ class Notification(models.Model):
     time = models.DateTimeField(default=timezone.now)
     has_seen = models.BooleanField(default=False)
 
+    #Friend Request Details
+    friend_request = models.ForeignKey('yb_profile.FriendRequest', on_delete=models.CASCADE, related_name='+', blank=True, null=True)
 
     #Bit Details
     bit = models.ForeignKey(Bit, on_delete=models.CASCADE, related_name='+', blank=True, null=True)
