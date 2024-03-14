@@ -56,7 +56,8 @@ class OrbitInfoSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class FriendRequestSerializer(serializers.ModelSerializer):
-    from_user = serializers.ReadOnlyField() 
+    from_user = ProfileResultSerializer(read_only=True)
+    to_user = ProfileResultSerializer(read_only=True)
     class Meta: 
         model = FriendRequest
         fields = '__all__'
