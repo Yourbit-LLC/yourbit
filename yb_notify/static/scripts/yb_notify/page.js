@@ -4,6 +4,7 @@ const NOTIFICATION_CONTAINER = document.getElementById('notification-list');
 
 function yb_buildNotifyItem(result, action=null){
     let id = result.id;
+    console.log(result.id);
 
     if (result.has_seen == false) {
         has_seen = "unseen";
