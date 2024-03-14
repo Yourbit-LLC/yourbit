@@ -1,3 +1,88 @@
+var bit_container = document.getElementById("bit-container");
+
+function yb_renderBit(data) {
+    let this_bit = yb_buildBit(data);
+    bit_container.appendChild(this_bit.built_bit);
+}
+ 
+function yb_updateFeed(update, data) {
+    //Update the feed
+    console.log("updating display...")
+    console.log(update)
+    if (update === true) {
+        //Append the feed
+        $('#bit-container').append(data);
+    } else {
+        //Update the feed
+        console.log("appending html...")
+
+        for (let i = 0; i < data.length; i++) {
+            let blueprint = data[i];
+            yb_renderBit(blueprint);
+            
+        }
+
+    }
+}
+
+function yb_requestFeed(data=null) {
+    //Get the feed
+    console.log("feed requested")
+
+    console.log(data.update)
+    $.ajax({
+        type: 'GET',
+        url: '/bits/api/bitstream/',
+        data: data,
+        success: function(response) {
+            //Update the feed
+            yb_updateFeed(data.update, response);
+            console.log(response)
+        },
+        error: function(response) {
+            //Error
+            console.log(response);
+        }
+    });
+}
+
+function yb_getFeed(update = false, next_page = false, previous_page = false) {
+    // Initialize variables
+    let sort_setting = yb_getSessionValues('sort');
+    console.log(sort_setting)
+    let filter_setting = yb_getSessionValues('filter');
+    let space = yb_getSessionValues('space');
+    let page = yb_getSessionValues('bitstream-page') || 1; // Default to page 1 if not set
+    let request_data;
+
+    // Adjust page number for next or previous page requests
+    if (next_page) {
+        page += 1;
+    } else if (previous_page) {
+        page -= 1;
+    }
+
+    // Ensure the page number doesn't fall below 1
+    page = Math.max(page, 1);
+
+    // Update the session values
+    yb_setSessionValues('bitstream-page', page);
+
+    // Create the request data
+    request_data = {
+        'update': update,
+        'filter': filter_setting,
+        'sort': sort_setting,
+        'space': space,
+        'page': page,
+        'items_per_page': 8, // Assuming your Django view is set up to handle this
+    }
+
+    // Send the request to the backend
+    yb_requestFeed(request_data);
+}
+
+
 $(document).ready(function() {
     yb_getFeed();
 });
