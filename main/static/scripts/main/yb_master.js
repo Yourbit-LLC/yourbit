@@ -494,8 +494,8 @@ function yb_sendThanks(profile_id) {
     })
 }
 
-function yb_acceptRequest() {
-    let request_id = this.getAttribute("data-id");
+function yb_acceptRequest(e) {
+    let request_id = e.currentTarget.getAttribute("data-id");
     let csrf = getCSRF();
     let url = `profile/api/friendrequest/${request_id}/accept/`;
     let data = {
