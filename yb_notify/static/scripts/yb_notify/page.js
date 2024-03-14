@@ -1,10 +1,11 @@
 var filter_buttons = document.querySelectorAll('.notify-filter-button');
 
-const NOTIFICATION_CONTAINER = document.getElementById('notification-list');
+var NOTIFICATION_CONTAINER = document.getElementById('notification-list');
 
 function yb_buildNotifyItem(result, action=null){
     let id = result.id;
     console.log(result.id);
+    console.log(result);
 
     if (result.has_seen == false) {
         has_seen = "unseen";
