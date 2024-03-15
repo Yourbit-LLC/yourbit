@@ -38,6 +38,10 @@ function yb_buildNotifyItem(result, action=null){
     new_item.setAttribute("data-id", `${id}`);
     new_item.setAttribute("data-username", `${handle}`);
 
+    if (result.type == 4) {
+        new_item.setAttribute("data-rid", result.friend_request);
+    }
+
     let new_sub_item = yb_createElement("div", `yb-listItem notification ${has_seen} yb_autoText`, element_id);
 
     let notification_icon = yb_createElement("div", "notification-icon", `notification-icon-${id}`);
