@@ -125,7 +125,7 @@ function yb_handleNotificationOptionClick(e) {
         yb_navigateToProfile();  //Location: Master.js -- Line 313
     
     } else if (this_option_name === "Accept") {
-      
+        
         yb_acceptRequest(this_id); //Location: Master.js -- Line 465
     
     } else if (this_option_name === "Message") {
@@ -268,5 +268,4 @@ $(document).ready(function () {
     for (let i = 0; i < filter_buttons.length; i++){
         filter_buttons[i].addEventListener('click', yb_handleFilterClick);
     }
-
 });
