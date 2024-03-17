@@ -39,6 +39,7 @@ function yb_buildNotifyItem(result, action=null){
     new_item.setAttribute("data-username", `${handle}`);
 
     if (result.type == 4) {
+        console.log(result.friend_request);
         new_item.setAttribute("data-rid", result.friend_request);
     }
 
