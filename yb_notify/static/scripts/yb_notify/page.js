@@ -129,7 +129,7 @@ function yb_handleNotificationOptionClick(e) {
         yb_navigateToProfile();  //Location: Master.js -- Line 313
     
     } else if (this_option_name === "Accept") {
-        
+        this_id = this_option.getAttribute("data-rid");
         yb_acceptRequest(this_id); //Location: Master.js -- Line 465
     
     } else if (this_option_name === "Message") {
