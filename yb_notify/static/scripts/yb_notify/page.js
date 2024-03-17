@@ -82,11 +82,13 @@ function yb_buildNotifyItem(result, action=null){
     new_sub_item.appendChild(notification_close);
     new_item.appendChild(new_sub_item);
 
+    NOTIFICATION_CONTAINER.appendChild(new_item);
+
     new_item.addEventListener('click', function() {
         yb_notificationMenu(result.type, id);
     });
 
-    return new_item
+
 }
 
 function yb_dismissNotification(notification_id) {
@@ -244,9 +246,9 @@ function yb_displayNotifications(response) {
     }
     for (let i = 0; i < response.length; i++) {
         
-        new_item = yb_buildNotifyItem(response[i]);
+        yb_buildNotifyItem(response[i]);
 
-        NOTIFICATION_CONTAINER.appendChild(new_item);
+
     }
 }
 
