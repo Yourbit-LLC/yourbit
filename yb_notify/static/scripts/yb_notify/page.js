@@ -82,7 +82,7 @@ function yb_buildNotifyItem(result, action=null){
     new_sub_item.appendChild(notification_close);
     new_item.appendChild(new_sub_item);
 
-    new_sub_item.addEventListener('click', function() {
+    new_item.addEventListener('click', function() {
         yb_notificationMenu(result.type, id);
     });
 
