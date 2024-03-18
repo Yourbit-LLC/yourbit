@@ -235,8 +235,9 @@ class FriendRequestViewset(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         
         user_profile = Profile.objects.get(user = request.user)
+        to_user_profile = Profile.objects.get(id = to_user)
 
-        friend_request = serializer.save(from_user = user_profile)
+        friend_request = serializer.save(from_user = user_profile, to_user = to_user_profile)
 
         to_profile = Profile.objects.get(user = to_user)
 
