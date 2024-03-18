@@ -263,8 +263,8 @@ class FriendRequestViewset(viewsets.ModelViewSet):
         to_user = friend_request.to_user
 
         if to_user == request.user.profile:
-            from_user.Profile.friends.add(to_user)
-            to_user.Profile.friends.add(from_user)
+            from_user.profile.friends.add(to_user)
+            to_user.profile.friends.add(from_user)
 
             # Update or delete the friend request
             friend_request.accepted = True
