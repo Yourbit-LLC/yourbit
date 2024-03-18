@@ -1,11 +1,13 @@
 const NOTIFICATION_WIDGET = document.getElementById('notification-widget');
 const NOTIFICATION_STATUS = document.querySelectorAll('.notification-status');
+
+
 function showNotification(callback1, body) {
     NOTIFICATION_WIDGET.classList.add('active');
     setTimeout(callback1, 1000, showText, body);
 };
 
-function expandNotification(callback, dark) {
+function expandNotification(callback, body) {
     NOTIFICATION_WIDGET.classList.add('expanded');
     $(NOTIFICATION_WIDGET).html(`
     
