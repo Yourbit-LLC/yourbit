@@ -252,7 +252,7 @@ class FriendRequestViewset(viewsets.ModelViewSet):
         return queryset
     
     
-    @action(detail=False, methods=['post'])
+    @action(detail=True, methods=['post'])
     def accept(self, request, pk=None, *args, **kwargs):
 
         friend_request = self.get_object()
@@ -262,7 +262,7 @@ class FriendRequestViewset(viewsets.ModelViewSet):
         from_user = friend_request.from_user
         to_user = friend_request.to_user
 
-        if to_user == request.user:
+        if to_user == request.user.profile:
             from_user.Profile.friends.add(to_user)
             to_user.Profile.friends.add(from_user)
 
