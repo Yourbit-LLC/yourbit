@@ -16,8 +16,8 @@
         </div>
     {% else %}
     {% for notification in results %}
-        <div id="notification-container-{{notification.id}}" data-id = "{{notification.id}}" class="yb-fillWidth" {% if notification.type == 4%} data-rid = "{{notification.friend_request}}" {% endif %}>
-        <div id="notification-{{notification.id}}" onclick="yb_notificationMenu({{notification.type}}, {{notification.id}}, {{notification.friend_request}})" class="
+        <div id="notification-container-{{notification.id}}" data-id = "{{notification.id}}" class="yb-fillWidth" {% if notification.type == 4%} data-rid = "{{notification.friend_request.id}}" {% endif %}>
+        <div id="notification-{{notification.id}}" onclick="yb_notificationMenu({{notification.type}}, {{notification.id}}, {{notification.friend_request.id}})" class="
             yb-listItem notification 
             {% if notification.has_seen %} 
             seen 
