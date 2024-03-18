@@ -79,7 +79,11 @@ function yb_buildNotifyItem(result, action=null){
     NOTIFICATION_CONTAINER.appendChild(new_item);
 
     new_item.addEventListener('click', function() {
-        yb_notificationMenu(result.type, id);
+        if (result.type === 4) {
+            yb_notificationMenu(result.type, id, result.request_id);
+        } else {
+            yb_notificationMenu(result.type, id);
+        }
     });
 
 
@@ -149,7 +153,7 @@ function yb_handleNotificationOptionClick(e) {
 }
 
 //Function for drawing menu and listing options off
-function yb_notificationMenu(type, this_id) {
+function yb_notificationMenu(type, this_id, rid=null) {
     let menu = document.getElementById("yb-slide-up-core");
 
     let these_options = {};
@@ -208,7 +212,6 @@ function yb_notificationMenu(type, this_id) {
         these_options = {
             "Accept": 
                 {
-                    "id": this.getAttribute("data-rid"),
                     "action" : yb_handleNotificationOptionClick,
                 },
                     
@@ -283,7 +286,7 @@ function yb_notificationMenu(type, this_id) {
         new_option.innerHTML = option;
         new_option.setAttribute("data-catid", this_id);
         if (type === 4) {
-            new_option.setAttribute("data-rid", this_id);
+            new_option.setAttribute("data-rid", rid);
         }
         new_option.setAttribute("name", option);
         new_option.addEventListener("click", yb_handleNotificationOptionClick);
