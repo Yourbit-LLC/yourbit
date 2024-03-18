@@ -1,5 +1,5 @@
 from rest_framework.routers import DefaultRouter
-from api.viewsets import MessageViewSet, ConversationViewSet
+from yb_messages.api.viewsets import MessageViewSet, ConversationViewSet
 
 router = DefaultRouter()
 
