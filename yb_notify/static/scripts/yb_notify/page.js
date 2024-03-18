@@ -40,12 +40,6 @@ function yb_buildNotifyItem(result, action=null){
     new_item.setAttribute("data-id", `${id}`);
     new_item.setAttribute("data-username", `${handle}`);
 
-    if (result.type == 4) {
-        console.log("friend request")
-        console.log(result.friend_request);
-        new_item.setAttribute("data-rid", result.friend_request);
-    }
-
     let new_sub_item = yb_createElement("div", `yb-listItem notification ${has_seen} yb_autoText`, element_id);
 
     let notification_icon = yb_createElement("div", "notification-icon", `notification-icon-${id}`);
@@ -168,44 +162,110 @@ function yb_notificationMenu(type, this_id) {
 
         //Prepare Options
         these_options = {
-            "View Bit": yb_handleNotificationOptionClick,
-            "Send Thanks": yb_handleNotificationOptionClick,
-            "Cancel": yb_handleNotificationOptionClick, 
+            "View Bit": 
+                { 
+                    "id": this_id,
+                    "action" : yb_handleNotificationOptionClick
+                },
+            "Send Thanks": 
+                {
+                    "id": this_id,
+                    "action": yb_handleNotificationOptionClick,
+                },
+            "Cancel": 
+                {
+                    "action" : yb_handleNotificationOptionClick, 
+                }
         };
     } else if (type === 2) {
         these_options = {
-            "Reply to Comment": yb_handleNotificationOptionClick,
-            "View Bit": yb_handleNotificationOptionClick, 
-            "Cancel": yb_handleNotificationOptionClick, 
+            "Reply to Comment": 
+                {
+                    "id": this_id,
+                    "action" : yb_handleNotificationOptionClick,
+                },
+            "View Bit": 
+                {
+                    "action" : yb_handleNotificationOptionClick,
+                }, 
+            "Cancel": 
+                {
+                    "action" : yb_handleNotificationOptionClick, 
+                }
         };
     } else if (type === 3) {
         these_options = {
-            "View Profile": yb_handleNotificationOptionClick, 
-            "Cancel": yb_handleNotificationOptionClick, 
+            "View Profile": 
+                {
+                    "action" : yb_handleNotificationOptionClick,
+                }, 
+            "Cancel": 
+                {
+                    "action" : yb_handleNotificationOptionClick, 
+                }
         };
     } else if (type === 4) {
         these_options = {
-            "Accept": yb_handleNotificationOptionClick,
-            "View Profile": yb_handleNotificationOptionClick, 
-            "Cancel": yb_handleNotificationOptionClick, 
+            "Accept": 
+                {
+                    "id": this.getAttribute("data-rid"),
+                    "action" : yb_handleNotificationOptionClick,
+                },
+                    
+            "View Profile": 
+                {
+                    "action" : yb_handleNotificationOptionClick, 
+                },
+            "Cancel": 
+                {
+                    "action" : yb_handleNotificationOptionClick, 
+                }
         };
     } else if (type === 5) {
         these_options = {
-            "View Profile": yb_handleNotificationOptionClick, 
-            "Send Message": yb_handleNotificationOptionClick,
-            "Cancel": yb_handleNotificationOptionClick, 
+            "View Profile": 
+                {
+                    "action" : yb_handleNotificationOptionClick, 
+                },
+            "Send Message": 
+                {
+                    "action": yb_handleNotificationOptionClick,
+                },
+            "Cancel": 
+                {
+                    "action" : yb_handleNotificationOptionClick, 
+                }
         };
     } else if (type === 6) {
         these_options = {
-            "Reply to Message": yb_handleNotificationOptionClick,
-            "View Conversation": yb_handleNotificationOptionClick, 
-            "Cancel": yb_handleNotificationOptionClick, 
+            "Reply to Message": 
+                {
+                    "action" : yb_handleNotificationOptionClick,
+                },
+            "View Conversation": 
+                {
+                    "action" : yb_handleNotificationOptionClick, 
+                },
+            "Cancel": 
+                {
+                    "action" : yb_handleNotificationOptionClick,
+                }
+            
         };
     } else if (type === 7) {
         these_options = {
-            "View Bit": yb_handleNotificationOptionClick, 
-            "Send Thanks": yb_handleNotificationOptionClick,
-            "Cancel": yb_handleNotificationOptionClick, 
+            "View Bit": 
+                {
+                    "action" : yb_handleNotificationOptionClick, 
+                },
+            "Send Thanks": 
+                {
+                    "action":yb_handleNotificationOptionClick,
+                },
+            "Cancel": 
+                {
+                    "action": yb_handleNotificationOptionClick, 
+                }
         };
     }
 
@@ -222,6 +282,9 @@ function yb_notificationMenu(type, this_id) {
         );
         new_option.innerHTML = option;
         new_option.setAttribute("data-catid", this_id);
+        if (type === 4) {
+            new_option.setAttribute("data-rid", this_id);
+        }
         new_option.setAttribute("name", option);
         new_option.addEventListener("click", yb_handleNotificationOptionClick);
         this_container.appendChild(new_option);
