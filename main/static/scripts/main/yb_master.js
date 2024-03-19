@@ -197,8 +197,8 @@ function yb_toggle2WayContainer(type, scroll=false){
         SIDE_CONTAINER_A.classList.toggle('open');
 
         if (scroll) {
-            if (SIDE_CONTAINER_A.classList.contains('vScroll-locked')){
-                SIDE_CONTAINER_A.classList.remove('vScroll-locked');
+            if (SIDE_CONTAINER_A.classList.contains('yb-lockScroll-y')){
+                SIDE_CONTAINER_A.classList.remove('yb-lockScroll-y');
                 SIDE_CONTAINER_A.classList.add('vScroll');
             } else {
                 SIDE_CONTAINER_A.classList.add('vScroll');
@@ -206,9 +206,9 @@ function yb_toggle2WayContainer(type, scroll=false){
         } else {
             if (SIDE_CONTAINER_A.classList.contains('vScroll')){
                 SIDE_CONTAINER_A.classList.remove('vScroll');
-                SIDE_CONTAINER_A.classList.add('vScroll-locked');
+                SIDE_CONTAINER_A.classList.add('yb-lockScroll-y');
             } else {
-                SIDE_CONTAINER_A.classList.add('vScroll-locked');
+                SIDE_CONTAINER_A.classList.add('yb-lockScroll-y');
             }
         }
 
