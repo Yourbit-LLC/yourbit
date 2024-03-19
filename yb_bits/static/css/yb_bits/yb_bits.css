@@ -182,21 +182,25 @@
     bottom: 0px;
     left: 0px;
     width: 100%;
-    height: 50px;
-    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+    height: 80px;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
     z-index: 4;
 }
 
 .yb-showMore-bit {
-    position: relative;
-    margin: auto;
+    position: absolute;
+    bottom: 5px;
+    left: 0px;
+    width: 100%;
     height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: mediumblue;
+    color: lightblue;
     font-size: 20px;
+    font-weight: bold;
     cursor: pointer;
+    z-index: 5;
 
 }
 
