@@ -201,9 +201,14 @@ function yb_toggle2WayContainer(type, scroll=false){
                 SIDE_CONTAINER_A.classList.remove('vScroll-locked');
                 SIDE_CONTAINER_A.classList.add('vScroll');
             } else {
+                SIDE_CONTAINER_A.classList.add('vScroll');
+            } 
+        } else {
+            if (SIDE_CONTAINER_A.classList.contains('vScroll')){
                 SIDE_CONTAINER_A.classList.remove('vScroll');
                 SIDE_CONTAINER_A.classList.add('vScroll-locked');
-
+            } else {
+                SIDE_CONTAINER_A.classList.add('vScroll-locked');
             }
         }
 
