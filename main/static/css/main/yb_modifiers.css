@@ -551,3 +551,22 @@
 .yb-vScroll {
     overflow-y: scroll;
 }
+
+
+/* Customize the scrollbar track */
+.yb-vScroll::-webkit-scrollbar {
+    width: 0px; /* Adjust the width as needed */
+    height: 90%;
+    margin-left: 2px;
+}
+
+/* Customize the scrollbar track color */
+.yb-vScroll::-webkit-scrollbar-track {
+    background-color: var(--scrollbar-track-color);
+}
+
+/* Customize the scrollbar thumb (handle) */
+.yb-vScroll::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb-color);
+    
+}
