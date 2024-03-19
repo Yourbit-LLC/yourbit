@@ -204,12 +204,20 @@ function yb_createBody(bit) {
     paragraph.innerHTML = bit.body;
 
     if (bit.type === "chat" && bit.body.length > 200){
+        let show_more_backdrop = yb_createElement("div", "yb-showMore-backdrop", `show-more-backdrop-${bit.id}`);
         let show_more = yb_createElement("p", "yb-showMore-bit", `show-more-${bit.id}`);
-        paragraph.style.cursor = "pointer";
-        paragraph.addEventListener("click", function(){
-            yb_expandBit(bit.id);
-        });
+        show_more.innerHTML = "Show More";
+        show_more.style.color = bit.custom.title_color; 
+        show_more.style.cursor = "pointer";
+        show_more.setAttribute("data-catid", bit.id);
+
+        show_more_backdrop.appendChild(show_more);
+        body.appendChild(show_more_backdrop);
+
+        show_more.addEventListener("click", yb_expandBit);
     }
+
+    body.appendChild(paragraph);
 
 
     return body;

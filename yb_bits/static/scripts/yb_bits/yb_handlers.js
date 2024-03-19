@@ -222,3 +222,29 @@ function yb_pressEdit(e){
     // Sends a request to edit the bit
     yb_editBit(this_id, edit_data);
 }
+
+function yb_contractBit(e) {
+    let id = e.currentTarget.getAttribute("data-catid");
+    let element_id = `bit-${id}`;
+    let this_bit = document.getElementById(element_id);
+    this_bit.classList.remove("expanded");
+
+    let show_more = this_bit.querySelector(`.yb-showMore-bit`);
+    show_more.innerHTML = "Show more";
+    show_more.removeEventListener("click", yb_contractBit);
+    show_more.addEventListener("click", yb_expandBit);
+
+}
+
+function yb_expandBit(e) {
+    let this_id = e.currentTarget.getAttribute("data-catid");
+    let element_id = `bit-${id}`;
+    let this_bit = document.getElementById(element_id);
+    this_bit.classList.add("expanded");
+
+    let show_more = this_bit.querySelector(`.yb-showMore-bit`);
+    show_more.innerHTML = "Show less";
+    show_more.removeEventListener("click", yb_expandBit);
+    show_more.addEventListener("click", yb_contractBit);
+
+}
