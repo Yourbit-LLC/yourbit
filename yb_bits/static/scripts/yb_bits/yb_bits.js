@@ -200,7 +200,7 @@ function createHeader(bit) {
 
 function yb_createBody(bit) {
     const body = yb_createElement("div", "yb-body-bit", `body-bit-${bit.id}`);
-    const paragraph = yb_createElement("p", "yb-bodyText-bit", `bit-bodyText-${bit.id}`);
+    const paragraph = yb_createElement("p", "yb-bodyText-bit yb-autoText font-small", `bit-bodyText-${bit.id}`);
     paragraph.innerHTML = bit.body;
 
     if (bit.type === "chat" && bit.body.length > 200){

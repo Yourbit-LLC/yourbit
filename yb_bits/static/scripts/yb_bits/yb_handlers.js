@@ -237,7 +237,7 @@ function yb_contractBit(e) {
 }
 
 function yb_expandBit(e) {
-    let this_id = e.currentTarget.getAttribute("data-catid");
+    let id = e.currentTarget.getAttribute("data-catid");
     let element_id = `bit-${id}`;
     let this_bit = document.getElementById(element_id);
     this_bit.classList.add("expanded");
