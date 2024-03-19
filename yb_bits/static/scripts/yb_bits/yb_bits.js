@@ -205,7 +205,7 @@ function yb_createBody(bit) {
 
     if (bit.type === "chat" && bit.body.length > 200){
         let show_more_backdrop = yb_createElement("div", "yb-showMore-backdrop", `show-more-backdrop-${bit.id}`);
-        let show_more = yb_createElement("p", "yb-showMore-bit", `show-more-${bit.id}`);
+        let show_more = yb_createElement("p", "yb-showMore-bit yb-autoText", `show-more-${bit.id}`);
         show_more.innerHTML = "Show More";
         show_more.style.cursor = "pointer";
         show_more.setAttribute("data-catid", bit.id);
