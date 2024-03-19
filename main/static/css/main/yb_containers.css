@@ -283,7 +283,6 @@
         transform: translate(150%, -50%);
         background-color: black;
         transition: 0.5s;
-        overflow-y: scroll;
         overflow-x: hidden;
         scrollbar-width: none; /* Create a thin scrollbar on Firefox */
         scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color); /* Set thumb and track colors on Firefox */
