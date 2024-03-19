@@ -198,8 +198,8 @@ function createHeader(bit) {
     * @returns {object} body - the body element
 */
 
-function createBody(bit) {
-    const body = yb_createElement("div", "yb-body-bit", `description-bit-${bit.id}`);
+function yb_createBody(bit) {
+    const body = yb_createElement("div", "yb-body-bit", `body-bit-${bit.id}`);
     const paragraph = yb_createElement("p", "yb-bodyText-bit", `bit-bodyText-${bit.id}`);
     paragraph.innerHTML = bit.body;
 
@@ -278,13 +278,6 @@ function createTitle(bit) {
     * @param {object} bit - the bit object
     * @returns {object} description - the description element
 */
-
-function yb_createBody(bit) {
-    const description = yb_createElement("div", "yb-description-bit yb-margin-T10", `description-bit-${bit.id}`);
-    description.innerHTML = `<p class="yb-autoText align-left yb-margin-B30 yb-margin-L5" style="color: ${bit.custom.text_color};">${bit.body}</p>`;
-    return description;
-}
-
 /*
     * Function to create the interactions for a bit
     * @param {object} bit - the bit object
