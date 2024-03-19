@@ -200,14 +200,13 @@ function createHeader(bit) {
 
 function yb_createBody(bit) {
     const body = yb_createElement("div", "yb-body-bit", `body-bit-${bit.id}`);
-    const paragraph = yb_createElement("p", "yb-bodyText-bit yb-autoText font-small", `bit-bodyText-${bit.id}`);
+    const paragraph = yb_createElement("p", "yb-bodyText-bit yb-autoText font-medium", `bit-bodyText-${bit.id}`);
     paragraph.innerHTML = bit.body;
 
     if (bit.type === "chat" && bit.body.length > 200){
         let show_more_backdrop = yb_createElement("div", "yb-showMore-backdrop", `show-more-backdrop-${bit.id}`);
         let show_more = yb_createElement("p", "yb-showMore-bit", `show-more-${bit.id}`);
         show_more.innerHTML = "Show More";
-        show_more.style.color = bit.custom.title_color; 
         show_more.style.cursor = "pointer";
         show_more.setAttribute("data-catid", bit.id);
 
