@@ -191,10 +191,21 @@ function yb_clear2WayContainer(container){
 
 }
 
-function yb_toggle2WayContainer(type){
+function yb_toggle2WayContainer(type, scroll=false){
     if (MAIN_MENU.classList.contains('open')){
         MAIN_MENU.classList.toggle('open');
         SIDE_CONTAINER_A.classList.toggle('open');
+
+        if (scroll) {
+            if (SIDE_CONTAINER_A.classList.contains('vScroll-locked')){
+                SIDE_CONTAINER_A.classList.remove('vScroll-locked');
+                SIDE_CONTAINER_A.classList.add('vScroll');
+            } else {
+                SIDE_CONTAINER_A.classList.remove('vScroll');
+                SIDE_CONTAINER_A.classList.add('vScroll-locked');
+
+            }
+        }
 
 
         return ["switching", SIDE_CONTAINER_A];

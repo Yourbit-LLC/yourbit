@@ -572,3 +572,7 @@
     background-color: var(--scrollbar-thumb-color);
     
 }
+
+.yb-lockScroll-y {
+    overflow-y: hidden;
+}

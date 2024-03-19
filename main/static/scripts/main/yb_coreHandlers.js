@@ -1,6 +1,6 @@
 /* Handles click of messages */
 function yb_handleMessageClick() {
-    let container = yb_toggle2WayContainer('messages');
+    let container = yb_toggle2WayContainer('messages', false);
     if (container[0] === "closing"){
         history.pushState(null, null, "/");
         container[1].setAttribute("data-state", "empty");
@@ -15,7 +15,7 @@ function yb_handleMessageClick() {
 }
 
 function yb_handleNotificationsClick() {
-    let container = yb_toggle2WayContainer('notifications');
+    let container = yb_toggle2WayContainer('notifications', false);
     if (container[0] === "closing"){
         history.pushState(null, null, "/");
         container[1].setAttribute("data-state", "empty");

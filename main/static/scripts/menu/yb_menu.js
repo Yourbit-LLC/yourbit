@@ -44,7 +44,7 @@ function yb_toggleMainMenu() {
 
 function yb_toggleSettingsMenu() {
     console.log("settings shown")
-    let container = yb_toggle2WayContainer('settings');
+    let container = yb_toggle2WayContainer('settings', true);
     if (container[0] === "closing"){
         history.pushState(null, null, "/");
         container[1].setAttribute("data-state", "empty");
