@@ -168,6 +168,14 @@
     grid-row: 4;
     z-index:3;
     margin-bottom: 25px;
+    max-height: 125px;
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.yb-body-bit.expanded {
+    max-height: none;
+    transition: 0.5s;
 }
 
 .yb-container-bitFeedback {

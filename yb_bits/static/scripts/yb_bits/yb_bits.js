@@ -200,7 +200,18 @@ function createHeader(bit) {
 
 function createBody(bit) {
     const body = yb_createElement("div", "yb-body-bit", `description-bit-${bit.id}`);
-    body.innerHTML = `<p style="color: ${bit.custom.text_color}; text-align:${bit.custom.paragraph_align}">${bit.body}</p>`;
+    const paragraph = yb_createElement("p", "yb-bodyText-bit", `bit-bodyText-${bit.id}`);
+    paragraph.innerHTML = bit.body;
+
+    if (bit.type === "chat" && bit.body.length > 200){
+        let show_more = yb_createElement("p", "yb-showMore-bit", `show-more-${bit.id}`);
+        paragraph.style.cursor = "pointer";
+        paragraph.addEventListener("click", function(){
+            yb_expandBit(bit.id);
+        });
+    }
+
+
     return body;
 }
 
