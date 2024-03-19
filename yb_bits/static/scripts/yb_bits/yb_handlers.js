@@ -227,7 +227,13 @@ function yb_contractBit(e) {
     let id = e.currentTarget.getAttribute("data-catid");
     let element_id = `body-bit-${id}`;
     let this_text = document.getElementById(element_id);
+    let this_paragraph = this_text.querySelector(`.yb-bodyText-${id}`);
+    this_paragraph.style.paddingBottom = "0px";
+
+
     this_text.classList.remove("expanded");
+
+
 
     let show_more = this_text.querySelector(`.yb-showMore-bit`);
     show_more.innerHTML = "Show more";
@@ -241,6 +247,9 @@ function yb_expandBit(e) {
     let element_id = `body-bit-${id}`;
     let this_text = document.getElementById(element_id);
     this_text.classList.add("expanded");
+
+    let this_paragraph = this_text.querySelector(`.yb-bodyText-${id}`);
+    this_paragraph.style.paddingBottom = "80px";
 
     let show_more = this_text.querySelector(`.yb-showMore-bit`);
     show_more.innerHTML = "Show less";
