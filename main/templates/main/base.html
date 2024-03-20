@@ -72,12 +72,6 @@ lang="en"
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.12/lottie.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     
-    <!--Import Systems-->
-    <script src="{% static 'scripts/yb_systems/yb_timeKeeper.js' %}"></script>
-    <script src="{% static 'scripts/yb_systems/yb_sessions.js' %}"></script>
-    <script src="{% static 'scripts/yb_systems/yb_routes.js' %}"></script>
-    
-    
     
     <body style="background-color: black;">
         <input id='csrf-token' type='hidden' value={{csrf_token}}>
@@ -474,6 +468,13 @@ lang="en"
 
     
     </body>
+
+    <!--Import Systems-->
+    <script src="{% static 'scripts/yb_systems/yb_timeKeeper.js' %}"></script>
+    <script src="{% static 'scripts/yb_systems/yb_sessions.js' %}"></script>
+    <script src="{% static 'scripts/yb_systems/yb_routes.js' %}"></script>
+    
+    
 
     <!--Import main scripts-->
     <script src="{% static 'scripts/yb_notify/yb_notify.js' %}"></script>
