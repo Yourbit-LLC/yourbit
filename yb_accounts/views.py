@@ -155,12 +155,14 @@ class Onboarding(View):
         from yb_profile.models import Profile
         user = request.user
         user_profile = Profile.objects.get(user=user)
+        
 
         form = ShortPrivacyForm(request.POST)
+
+        privacy_settings = form.save(commit=False)
         privacy_settings.save()
 
         if form.is_valid():
-            privacy_settings = form.save(commit=False)
             
             print(privacy_settings.display_name)
             if privacy_settings.display_name != "":
