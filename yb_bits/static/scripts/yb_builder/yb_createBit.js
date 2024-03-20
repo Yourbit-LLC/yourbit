@@ -4,6 +4,14 @@
 
 var bit_submit_button = document.getElementById("button-submit-bit");
 var bit_options_button = document.getElementById("bit-options-button");
+var add_video_button = document.getElementById("add-video-button");
+var add_photo_button = document.getElementById("add-photo-button");
+var chat_type_button = document.getElementById("chat-type-button");
+var video_type_button = document.getElementById("video-type-button");
+var photo_type_button = document.getElementById("photo-type-button");
+var bit_type_field = document.getElementById("bb-field-bitType");
+var type_buttons = document.querySelectorAll(".type-button");
+
 //Function for generating bits
 function BuildBitPreview(type){
 
@@ -248,4 +256,63 @@ $(document).ready(function(){
         yb_handleCreateBit();
     });
 
+});
+
+$(document).ready(function(){
+    chat_type_button.addEventListener("click", function(){
+        if (bit_type_field !== "chat"){
+            for (let i = 0; i < type_buttons.length; i++){
+                type_buttons[i].classList.remove("active");
+            }
+            chat_type_button.classList.add("active");
+            bit_type_field.value = "chat";
+
+            if (add_video_button.classList.contains("active")){
+                add_video_button.classList.remove("active");
+            } else if (add_photo_button.classList.contains("active")){
+                add_photo_button.classList.remove("active");
+            }
+        
+        } else {
+            console.log("Already active");
+        }
+    });
+
+    video_type_button.addEventListener("click", function(){
+        if (bit_type_field !== "video"){
+            for (let i = 0; i < type_buttons.length; i++){
+                type_buttons[i].classList.remove("active");
+            }
+            video_type_button.classList.add("active");
+            bit_type_field.value = "video";
+
+            if (add_photo_button.classList.contains("active")){
+                add_photo_button.classList.remove("active");
+            } else if (chat_type_button.classList.contains("active")){
+                chat_type_button.classList.remove("active");
+            }
+        
+        } else {
+            console.log("Already active");
+        }
+    });
+
+    photo_type_button.addEventListener("click", function(){
+        if (bit_type_field !== "photo"){
+            for (let i = 0; i < type_buttons.length; i++){
+                type_buttons[i].classList.remove("active");
+            }
+            photo_type_button.classList.add("active");
+            bit_type_field.value = "photo";
+
+            if (add_video_button.classList.contains("active")){
+                add_video_button.classList.remove("active");
+            } else if (chat_type_button.classList.contains("active")){
+                chat_type_button.classList.remove("active");
+            }
+        
+        } else {
+            console.log("Already active");
+        }
+    });
 });

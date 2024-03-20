@@ -26,3 +26,11 @@
 #add-photo-button.active {
     display: block;
 }
+
+#tags-bit-preview-button {
+    display: none;
+}
+
+#tags-bit-preview-button.active {
+    display: block;
+}
