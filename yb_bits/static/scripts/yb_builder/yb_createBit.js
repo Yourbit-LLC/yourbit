@@ -183,12 +183,12 @@ function yb_handleCreateBit(){
     this_data = new FormData();
     this_data.append('type', type);
     if (type === "photo"){
-        let image = document.getElementById("bb-field-img").files[0];
+        let image = document.getElementById("bb-field-bitPhoto").files[0];
         this_data.append('image', image);
         let tags = document.getElementById("bb-field-bitTags").value;
         this_data.append('tags', tags);
     } else if (type === "video"){
-        let video = document.getElementById("bb-field-video").files[0];
+        let video = document.getElementById("bb-field-bitVideo").files[0];
         this_data.append('video', video);
         let tags = document.getElementById("bb-field-bitTags").value;
         this_data.append('tags', tags);
