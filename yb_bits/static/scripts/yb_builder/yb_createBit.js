@@ -292,9 +292,9 @@ $(document).ready(function(){
 
             if (add_photo_button.classList.contains("active")){
                 add_photo_button.classList.remove("active");
-            } else if (chat_type_button.classList.contains("active")){
-                chat_type_button.classList.remove("active");
             }
+
+            add_video_button.classList.add("active");
         
         } else {
             console.log("Already active");
@@ -313,9 +313,9 @@ $(document).ready(function(){
 
             if (add_video_button.classList.contains("active")){
                 add_video_button.classList.remove("active");
-            } else if (chat_type_button.classList.contains("active")){
-                chat_type_button.classList.remove("active");
-            }
+            } 
+
+            add_photo_button.classList.add("active");
         
         } else {
             console.log("Already active");
