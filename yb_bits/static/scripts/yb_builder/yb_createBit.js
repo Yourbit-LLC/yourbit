@@ -12,6 +12,9 @@ var photo_type_button = document.getElementById("photo-type-button");
 var bit_type_field = document.getElementById("bb-field-bitType");
 var type_buttons = document.querySelectorAll(".type-button");
 
+var photo_upload_field = document.getElementById("bb-field-bitPhoto");
+var video_upload_field = document.getElementById("bb-field-bitVideo");
+
 //Function for generating bits
 function BuildBitPreview(type){
 
@@ -320,6 +323,15 @@ $(document).ready(function(){
         } else {
             console.log("Already active");
         }
+    });
+
+    add_photo_button.addEventListener("click", function(){
+        photo_upload_field.click();
+        
+    });
+
+    add_video_button.addEventListener("click", function(){
+        video_upload_field.click();
     });
 
     // yb_startClock("time-label", "decorated-time");
