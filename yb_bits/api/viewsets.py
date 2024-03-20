@@ -109,7 +109,7 @@ class BitViewSet(viewsets.ModelViewSet):
         user_profile = Profile.objects.get(user=self.request.user)
         custom_core = CustomCore.objects.get(profile=user_profile)
         theme = custom_core.theme
-
+        
         try:
             custom_bit = CustomBit.objects.get(theme=theme)
         
