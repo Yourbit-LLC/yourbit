@@ -43,7 +43,7 @@ function initializeOrUpdateCropper(target_ratio, field) {
                 }
             });
 
-            imageElement.style.maxHeight = "75%";
+            imageElement.style.maxHeight = "75vh";
 
         }
 
