@@ -248,6 +248,22 @@ function yb_toggle2WayContainer(type, scroll=false){
                         
                         SIDE_CONTAINER_B.classList.toggle("open");
 
+                        if (scroll) {
+                            if (SIDE_CONTAINER_B.classList.contains('yb-lockScroll-y')){
+                                SIDE_CONTAINER_B.classList.remove('yb-lockScroll-y');
+                                SIDE_CONTAINER_B.classList.add('vScroll');
+                            } else {
+                                SIDE_CONTAINER_B.classList.add('vScroll');
+                            } 
+                        } else {
+                            if (SIDE_CONTAINER_B.classList.contains('vScroll')){
+                                SIDE_CONTAINER_B.classList.remove('vScroll');
+                                SIDE_CONTAINER_B.classList.add('yb-lockScroll-y');
+                            } else {
+                                SIDE_CONTAINER_B.classList.add('yb-lockScroll-y');
+                            }
+                        }
+
                         return ["switching", SIDE_CONTAINER_B];
 
                     } else {
@@ -258,6 +274,22 @@ function yb_toggle2WayContainer(type, scroll=false){
                         yb_clear2WayContainer(SIDE_CONTAINER_B);
                         
                         SIDE_CONTAINER_A.classList.toggle("open");
+
+                        if (scroll) {
+                            if (SIDE_CONTAINER_A.classList.contains('yb-lockScroll-y')){
+                                SIDE_CONTAINER_A.classList.remove('yb-lockScroll-y');
+                                SIDE_CONTAINER_A.classList.add('vScroll');
+                            } else {
+                                SIDE_CONTAINER_A.classList.add('vScroll');
+                            } 
+                        } else {
+                            if (SIDE_CONTAINER_A.classList.contains('vScroll')){
+                                SIDE_CONTAINER_A.classList.remove('vScroll');
+                                SIDE_CONTAINER_A.classList.add('yb-lockScroll-y');
+                            } else {
+                                SIDE_CONTAINER_A.classList.add('yb-lockScroll-y');
+                            }
+                        }
 
                         return ["switching", SIDE_CONTAINER_A];
                     } 
