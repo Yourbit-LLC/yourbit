@@ -192,6 +192,8 @@ function yb_clear2WayContainer(container){
 }
 
 function yb_toggle2WayContainer(type, scroll=false){
+
+    console.log(scroll)
     if (MAIN_MENU.classList.contains('open')){
         MAIN_MENU.classList.toggle('open');
         SIDE_CONTAINER_A.classList.toggle('open');
