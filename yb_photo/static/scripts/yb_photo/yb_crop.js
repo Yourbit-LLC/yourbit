@@ -42,9 +42,6 @@ function initializeOrUpdateCropper(target_ratio, field) {
                     cropImage(target_ratio);
                 }
             });
-
-            imageElement.style.maxHeight = "75vh";
-
         }
 
         reader.readAsDataURL(file);
