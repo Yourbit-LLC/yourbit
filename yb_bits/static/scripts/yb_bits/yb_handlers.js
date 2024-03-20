@@ -236,6 +236,9 @@ function yb_contractBit(e) {
 
 
     let show_more = this_text.querySelector(`.yb-showMore-bit`);
+    let show_more_backdrop = this_text.querySelector(`.yb-showMore-backdrop`);
+
+    show_more_backdrop.style.display = "block";
     show_more.innerHTML = "Show more";
     show_more.removeEventListener("click", yb_contractBit);
     show_more.addEventListener("click", yb_expandBit);
@@ -249,9 +252,13 @@ function yb_expandBit(e) {
     this_text.classList.add("expanded");
 
     let this_paragraph = this_text.querySelector(`.yb-bodyText-bit`);
-    this_paragraph.style.paddingBottom = "80px";
+    this_paragraph.style.paddingBottom = "50px";
 
     let show_more = this_text.querySelector(`.yb-showMore-bit`);
+    
+    let show_more_backdrop = this_text.querySelector(`.yb-showMore-backdrop`);
+
+    show_more_backdrop.style.display = "none";
     show_more.innerHTML = "Show less";
     show_more.removeEventListener("click", yb_expandBit);
     show_more.addEventListener("click", yb_contractBit);
