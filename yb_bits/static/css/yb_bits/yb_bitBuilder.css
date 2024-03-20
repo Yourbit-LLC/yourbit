@@ -11,19 +11,19 @@
     outline: none;
 }
 
-#add-video-button {
+.yb-container-addVideo {
     display: none;
 }
 
-#add-video-button.active {
+.yb-container-addVideo.active {
     display: block;
 }
 
-#add-photo-button {
+.yb-container-addPhoto {
     display: none;
 }
 
-#add-photo-button.active {
+.yb-container-addPhoto.active {
     display: block;
 }
 
@@ -33,4 +33,9 @@
 
 #tags-bit-preview-button.active {
     display: block;
+}
+
+.type-button.active {
+    filter: brightness(2);
+    -webkit-filter: brightness(2);
 }
