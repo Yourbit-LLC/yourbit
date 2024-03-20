@@ -262,6 +262,7 @@ $(document).ready(function(){
     chat_type_button.addEventListener("click", function(){
         console.log("clicked");
         if (bit_type_field !== "chat"){
+            console.log("not chat");
             for (let i = 0; i < type_buttons.length; i++){
                 type_buttons[i].classList.remove("active");
             }
@@ -282,6 +283,7 @@ $(document).ready(function(){
     video_type_button.addEventListener("click", function(){
         console.log("clicked");
         if (bit_type_field !== "video"){
+            console.log("not video");
             for (let i = 0; i < type_buttons.length; i++){
                 type_buttons[i].classList.remove("active");
             }
@@ -302,6 +304,7 @@ $(document).ready(function(){
     photo_type_button.addEventListener("click", function(){
         console.log("clicked");
         if (bit_type_field !== "photo"){
+            console.log("not photo");
             for (let i = 0; i < type_buttons.length; i++){
                 type_buttons[i].classList.remove("active");
             }
