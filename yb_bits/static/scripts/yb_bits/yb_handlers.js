@@ -243,6 +243,12 @@ function yb_contractBit(e) {
     show_more.removeEventListener("click", yb_contractBit);
     show_more.addEventListener("click", yb_expandBit);
 
+    let this_bit = document.getElementById(`bit-${id}`);
+    this_bit.scrollIntoView({
+        behavior: 'smooth', // Smooth scrolling
+        block: 'start' // Scroll to the top of the element
+    });
+
 }
 
 function yb_expandBit(e) {
