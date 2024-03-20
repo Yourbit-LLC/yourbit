@@ -52,6 +52,7 @@
         <input type="file" id="bb-field-bitVideo" class="yb-builderBit yb-tform-cntrOrigin bb-field yb-autoText squared" placeholder="Video" style="display:none; transform:(0,0);">
         <div id="add-video-button" style="position: relative; background-color: black; border-radius: 10px; height: 150px; width: 100%;" class="yb-container-addVideo preview" class="yb-center-transform lr">
             <svg class="yb-center-transform all" xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32"><path class="yb-fill-white" d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+            <p>Upload Video</p>
         </div>
         <video id="video-bit-preview" class="yb-video-bit" style="display: none;" controls>
             <source src="" type="video/mp4">
@@ -60,6 +61,7 @@
         <input type="file" id="bb-field-bitPhoto" class="yb-builderBit yb-tform-cntrOrigin bb-field bg-gray-dark yb-autoText squared" placeholder="Photo" style="display:none; transform:scale(0,0);">
         <div id="add-photo-button" style="" class="yb-container-addPhoto preview" class="yb-center-transform lr">
             <svg class="yb-center-transform all" xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32"><path class="yb-fill-white" d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+            <p>Upload Photo</p>
         </div>
         <img id="photo-bit-preview" class="yb-photo-bit" style="display: none;" src="">
 
@@ -81,13 +83,13 @@
             Add ShoutOuts
         </button>
         
-        {% if object == "videobit" %}
-            <input type = "text" class = "yb-builderBit yb-tform-cntrOrigin bb-field bg-gray-dark yb-autoText rounde font-heavy align-center border-solid narrowBorderd" placeholder = "Meta Tags (separate by commas)" style="display:none; transform: scale(0,0);" id="bb-field-bitTags">
-            
-            <button type="button" id = "tags-bit-preview-button" style="height: 25px; width: 75%;" class = "yb-button-flex transparent font-white font-small yb-center-transform lr">
-                Add Tags
-            </button>
-        {% endif %}
+        
+        <input type = "text" class = "yb-builderBit yb-tform-cntrOrigin bb-field bg-gray-dark yb-autoText rounde font-heavy align-center border-solid narrowBorderd" placeholder = "Meta Tags (separate by commas)" style="display:none; transform: scale(0,0);" id="bb-field-bitTags">
+        
+        <button type="button" id = "tags-bit-preview-button" style="height: 25px; width: 75%;" class = "yb-button-flex transparent font-white font-small yb-center-transform lr">
+            Add Tags
+        </button>
+    
 
     </div>
 </form>

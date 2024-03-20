@@ -10,3 +10,15 @@
 .yb-builderBit:focus {
     outline: none;
 }
+
+#bb-field-bitPhoto {
+    display: none;
+}
+
+#bb-field-bitVideo.active {
+    display: block;
+}
+
+#bb-field-bitVideo {
+    display: none;
+}
