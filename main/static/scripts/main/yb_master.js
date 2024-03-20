@@ -250,7 +250,7 @@ function yb_toggle2WayContainer(type, scroll=false){
                         
                         SIDE_CONTAINER_B.classList.toggle("open");
 
-                        if (scroll) {
+                        if (scroll === true) {
                             if (SIDE_CONTAINER_B.classList.contains('yb-lockScroll-y')){
                                 SIDE_CONTAINER_B.classList.remove('yb-lockScroll-y');
                                 SIDE_CONTAINER_B.classList.add('vScroll');
