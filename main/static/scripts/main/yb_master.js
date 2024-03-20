@@ -293,7 +293,7 @@ function yb_close2WayContainer(){
 
 
 function yb_toggleCreateMenu(){
-    let container = yb_toggle2WayContainer('create');
+    let container = yb_toggle2WayContainer('create', true);
     if (container[0] != "closing"){
         
         let container_content = container[1].querySelector(".yb-2Way-content");
