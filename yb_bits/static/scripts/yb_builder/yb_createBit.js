@@ -315,4 +315,6 @@ $(document).ready(function(){
             console.log("Already active");
         }
     });
+
+    yb_startClock("time-label", "decorated-time");
 });
