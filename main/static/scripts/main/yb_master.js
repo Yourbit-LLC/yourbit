@@ -250,7 +250,7 @@ function yb_toggle2WayContainer(type, scroll=false){
                         
                         SIDE_CONTAINER_B.classList.toggle("open");
 
-                        if (scroll === true) {
+                        if (scroll) {
                             if (SIDE_CONTAINER_B.classList.contains('yb-lockScroll-y')){
                                 SIDE_CONTAINER_B.classList.remove('yb-lockScroll-y');
                                 SIDE_CONTAINER_B.classList.add('vScroll');
@@ -303,6 +303,23 @@ function yb_toggle2WayContainer(type, scroll=false){
                     SIDE_CONTAINER_A.classList.toggle("open");
                     CREATE_POPOUT.classList.toggle("hide");
                     SEARCH_POPOUT.classList.toggle("hide");
+
+                    if (scroll) {
+                        if (SIDE_CONTAINER_A.classList.contains('yb-lockScroll-y')){
+                            SIDE_CONTAINER_A.classList.remove('yb-lockScroll-y');
+                            SIDE_CONTAINER_A.classList.add('vScroll');
+                        } else {
+                            SIDE_CONTAINER_A.classList.add('vScroll');
+                        } 
+                    } else {
+                        if (SIDE_CONTAINER_A.classList.contains('vScroll')){
+                            SIDE_CONTAINER_A.classList.remove('vScroll');
+                            SIDE_CONTAINER_A.classList.add('yb-lockScroll-y');
+                        } else {
+                            SIDE_CONTAINER_A.classList.add('yb-lockScroll-y');
+                        }
+                    }
+
                     return ["opening", SIDE_CONTAINER_A];
                 }
             }
