@@ -11,14 +11,18 @@
     outline: none;
 }
 
-#bb-field-bitPhoto {
+#add-video-button {
     display: none;
 }
 
-#bb-field-bitVideo.active {
+#add-video-button.active {
     display: block;
 }
 
-#bb-field-bitVideo {
+#add-photo-button {
     display: none;
+}
+
+#add-photo-button.active {
+    display: block;
 }
