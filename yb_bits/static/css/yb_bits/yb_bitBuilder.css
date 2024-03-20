@@ -38,4 +38,5 @@
 .type-button.active {
     filter: brightness(2);
     -webkit-filter: brightness(2);
+    transition: 0.5s;
 }
