@@ -370,12 +370,16 @@ function yb_openSpotlight(category=null){
         let search_cat = document.getElementById(`sFilter-${category}`);
         SEARCH_FILTER_FIELD.value = category;
         search_cat.classList.add('active');
-
     }
+
+    CREATE_POPOUT.classList.toggle("hide");
+    SEARCH_POPOUT.classList.toggle("hide");
 }
 function yb_closeSpotlight(){
     SPOTLIGHT_CONTAINER.classList.remove('open');
     SEARCH_FIELD.value = "";
+    CREATE_POPOUT.classList.toggle("hide");
+    SEARCH_POPOUT.classList.toggle("hide");
 }
 
 function yb_navigateToProfile(e) {
