@@ -1,4 +1,4 @@
-const NOTIFICATION_WIDGET = document.getElementById('notification-widget');
+const NOTIFICATION_WIDGET = document.getElementById('notification-widget'); //CSS 
 const NOTIFICATION_STATUS = document.querySelectorAll('.notification-status');
 
 

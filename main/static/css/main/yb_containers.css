@@ -483,6 +483,7 @@
     
     .yb-container-spotlight {
         position: fixed;
+        display: none;
         left: 0px;
         top: 65px;
         width: 100vw;
@@ -496,7 +497,7 @@
     }
 
     .yb-container-spotlight.open {
-
+        display: block;
         transform: translateY(0vh);
         transition: 0.5s;
     }
@@ -534,6 +535,8 @@
 
 .notification-widget {
     position: absolute;
+    display: grid;
+    grid-template-rows: 50px auto;
     top: -50px;
     left: 50%;
     width: 45px;
