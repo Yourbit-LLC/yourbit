@@ -495,6 +495,12 @@
         transition: 0.5s;
     }
     
+    .yb-spotlight-content {
+        position: relative;
+        display: flex;
+        flex-direction: column-reverse;
+        bottom: 0px;
+    }
     
 }
 
