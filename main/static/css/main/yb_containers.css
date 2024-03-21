@@ -653,7 +653,7 @@
     overflow: hidden;
 }
 
-.full-result-image {
+.full-result-image-container {
     position: relative;
     display: block;
     object-fit: contain;
@@ -663,4 +663,5 @@
     margin-left: auto;
     margin-right: auto;
     transition: 0.5s;
+    overflow: hidden;
 }
