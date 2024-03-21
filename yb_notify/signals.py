@@ -79,11 +79,13 @@ def create_friend_request_notification(sender, instance, created, **kwargs):
     if created:
         notification = Notification(
             to_user = instance.to_user,
+            from_user = instance.from_user,
             body = instance.from_user.user.username + " has sent you a friend request",
             type = 4,
             link = "/profile/" + str(instance.from_user.user.username),
             title = "New Friend Request",
-            notify_class = 0
+            notify_class = 0,
+            friend_request = instance
         )
 
         notification.save()
@@ -96,6 +98,7 @@ def create_friend_accept_notification(sender, instance, created, **kwargs):
     if instance.accepted:
         notification = Notification(
             to_user = instance.from_user,
+            from_user = instance.to_user,
             body = instance.to_user.user.username + " has accepted your friend request",
             type = 5,
             link = "/profile/" + str(instance.to_user.user.username),
