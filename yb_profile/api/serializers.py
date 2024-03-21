@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from ..models import *
+from yb_customize.models import CustomCore
 from yb_customize.api.serializers import SlimCustomSerializer
 import pytz
 from datetime import datetime
@@ -16,15 +17,8 @@ class ProfileResultSerializer(serializers.ModelSerializer):
         fields = ['display_name', 'user', 'customcore']
 
     def get_customcore(self, obj):
-        """
-        This method is called to get the value of the 'customcore' field.
-        'obj' is the Profile instance that's being serialized.
-        """
-
-        if hasattr(obj, 'CustomCore'):  # Check if the Profile instance has a related CustomCore instance
-            return SlimCustomSerializer(obj.custom).data  # If it does, serialize the CustomCore instance and return the serialized data
-        return None  # If it doesn't, return None
-    
+        custom_core = CustomCore.objects.get(profile=obj)
+        return SlimCustomSerializer(custom_core).data
 class CommunityResultSerializer(serializers.ModelSerializer):
     
         customcore = serializers.SerializerMethodField()
