@@ -12,8 +12,8 @@ function yb_buildListItem(result, action=null){
     new_item.setAttribute("data-username", `${handle}`);
     new_item.innerHTML =`
         
-            <div cla      ss = 'full-result-image-container'>
-                <img class='full-result-image' src="">
+            <div class = 'full-result-image-container'>
+                <img class='full-result-image' style="width: 100%; position:relative;" src="${result.customcore.profile_image.small_thumbnail}">
             </div>
             <div class='full-result-name-container'>
                 <p class = 'full-result-name'><strong>${name}</strong></p>
