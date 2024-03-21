@@ -652,3 +652,15 @@
     background-color: #4b4b4b;
     overflow: hidden;
 }
+
+.full-result-image {
+    position: relative;
+    display: block;
+    object-fit: contain;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    transition: 0.5s;
+}
