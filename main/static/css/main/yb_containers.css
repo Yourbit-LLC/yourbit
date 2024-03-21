@@ -484,9 +484,9 @@
     .yb-container-spotlight {
         position: fixed;
         left: 0px;
-        top: 70px;
+        top: 65px;
         width: 100vw;
-        height: calc(100vh - 70px);
+        height: calc(100vh - 65px);
         background-color: rgba(0, 0, 0, 0.95);
         z-index: 99;
         border-radius: 0px;
@@ -505,7 +505,7 @@
         position: absolute;
         display: flex;
         flex-direction: column-reverse;
-        bottom: 0vh;
+        bottom: 50px;
     }
     
 }
