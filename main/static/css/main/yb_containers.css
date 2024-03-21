@@ -486,7 +486,7 @@
         left: 0px;
         top: 70px;
         width: 100vw;
-        height: 100vh;
+        height: calc(100vh - 70px);
         background-color: rgba(0, 0, 0, 0.95);
         z-index: 99;
         border-radius: 0px;
@@ -505,7 +505,7 @@
         position: absolute;
         display: flex;
         flex-direction: column-reverse;
-        bottom: 20vh;
+        bottom: 0vh;
     }
     
 }
