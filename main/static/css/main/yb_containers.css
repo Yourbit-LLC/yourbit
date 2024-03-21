@@ -505,7 +505,7 @@
         position: absolute;
         display: flex;
         flex-direction: column-reverse;
-        bottom: 0px;
+        bottom: 0vh;
     }
     
 }
