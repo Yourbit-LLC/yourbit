@@ -21,7 +21,7 @@ class ProfileResultSerializer(serializers.ModelSerializer):
         'obj' is the Profile instance that's being serialized.
         """
 
-        if hasattr(obj, 'customcore'):  # Check if the Profile instance has a related CustomCore instance
+        if hasattr(obj, 'CustomCore'):  # Check if the Profile instance has a related CustomCore instance
             return SlimCustomSerializer(obj.custom).data  # If it does, serialize the CustomCore instance and return the serialized data
         return None  # If it doesn't, return None
     
