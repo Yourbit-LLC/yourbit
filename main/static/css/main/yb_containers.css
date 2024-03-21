@@ -446,7 +446,7 @@
 
 @media screen and (min-width: 768px) {
     .yb-container-spotlight {
-        position: absolute;
+        position: fixed;
         top: 90px;
         left: calc(50% - 350px);
         max-width: 700px;
@@ -476,13 +476,11 @@
 @media screen and (max-width: 768px) {
     
     .yb-container-spotlight {
-        position: absolute;
+        position: fixed;
         left: 0px;
         top: 70px;
-        max-width: 100vw;
         width: 100vw;
         height: 100vh;
-        max-height: 100vh;
         background-color: rgba(0, 0, 0, 0.95);
         z-index: 99;
         border-radius: 0px;
