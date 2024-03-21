@@ -103,7 +103,8 @@ def create_friend_accept_notification(sender, instance, created, **kwargs):
             type = 5,
             link = "/profile/" + str(instance.to_user.user.username),
             title = "Friend Request Accepted",
-            notify_class = 0
+            notify_class = 0,
+            friend_request = instance
         )
 
         notification.save()
