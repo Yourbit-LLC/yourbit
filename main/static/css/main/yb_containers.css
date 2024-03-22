@@ -491,6 +491,7 @@
         z-index: 99;
         border-radius: 0px;
         transform: translateY(100vh);
+        box-shadow: black 0px 0px 60px 0px;
         transition: 0.5s;
         overflow-y: hidden;
     }
