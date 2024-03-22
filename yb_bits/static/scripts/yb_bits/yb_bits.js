@@ -551,13 +551,13 @@ function yb_buildComment(comment){
         comment_bubble.setAttribute("data-catid", comment_id);
         comment_bubble.setAttribute("style", `background-color: ${primary_color}`);
         //Create profile image
-        comment_delete_button = yb_createButton(
-            "delete_comment", 
+        comment_delete_button = yb_createElement(
+            "div", 
             "yb-delete-comment pointer-object circle border-none", 
             `delete-comment-${comment_id}`, 
-            `&times;`
         );
         
+        comment_delete_button.innerHTML = `&times;`;
         comment_delete_button.setAttribute("data-catid", comment_id);
         comment_delete_button.setAttribute("data-bitid", comment.bit);
         comment_bubble.appendChild(comment_delete_button);
