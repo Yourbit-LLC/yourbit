@@ -486,7 +486,7 @@
         left: 0px;
         top: 65px;
         width: 100vw;
-        height: calc(100vh - 135px);
+        height: calc(100vh - 100px);
         background-color: rgba(0, 0, 0, 0.95);
         z-index: 99;
         border-radius: 0px;
@@ -702,5 +702,5 @@
 .yb-input-floating-text {
     height: 40px !important;
     outline: none;
-    
+
 }
