@@ -553,7 +553,7 @@ function yb_buildComment(comment){
         //Create profile image
         comment_delete_button = yb_createButton(
             "delete_comment", 
-            "yb-delete-comment small pointer-object circle border-none", 
+            "yb-delete-comment pointer-object circle border-none", 
             `delete-comment-${comment_id}`, 
             `&times;`
         );
