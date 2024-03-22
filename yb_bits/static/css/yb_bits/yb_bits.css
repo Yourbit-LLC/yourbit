@@ -526,8 +526,9 @@
     text-decoration: none;
     left: -40px;
     top : 50%;
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
+    text-align: center;
     transform: translateY(-50%);
     font-size: 25px;
     background-color: gray;
