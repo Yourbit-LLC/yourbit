@@ -482,8 +482,7 @@
 @media screen and (max-width: 768px) {
     
     .yb-container-spotlight {
-        position: absolute;
-        
+        position: fixed;
         left: 0px;
         top: 65px;
         width: 100vw;
@@ -491,14 +490,15 @@
         background-color: rgba(0, 0, 0, 0.95);
         z-index: 99;
         border-radius: 0px;
-        
         transform: translateY(100vh);
         transition: 0.5s;
+        overflow-y: hidden;
     }
 
     .yb-container-spotlight.open {
         
         transform: translateY(0);
+        overflow-y: scroll;
         transition: 0.5s;
     }
     
@@ -508,6 +508,13 @@
         flex-direction: column-reverse;
         bottom: 50%;
         transform: translateY(50%);
+    }
+
+    .yb-spotlight-content.open {
+        bottom: 70px;
+        transform: translateY(0%);
+        transition: 0.5s;
+
     }
     
 }
