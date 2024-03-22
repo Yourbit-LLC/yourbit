@@ -497,7 +497,7 @@
 
     .yb-container-spotlight.open {
         display: block;
-        height: calc(0vh + 65px);
+        height: 65px;
         transition: 0.5s;
     }
     
