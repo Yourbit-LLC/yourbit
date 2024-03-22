@@ -52,6 +52,8 @@ const PROMPT_BODY = document.getElementById("prompt-content-b");
 const PROMPT_FOOTER = document.getElementById("prompt-content-c");
 
 const TOP_LAYER = document.getElementById("top-layer");
+const FLOATING_TEXT_CONTAINER = document.getElementById("floating-text");
+const FLOATING_TEXT_INPUT = document.getElementById("input-floating-text");
 
 //Remove a snapcard
 function yb_removeSnapCard(card) {
@@ -371,6 +373,11 @@ function yb_openSpotlight(category=null){
         let search_cat = document.getElementById(`sFilter-${category}`);
         SEARCH_FILTER_FIELD.value = category;
         search_cat.classList.add('active');
+    }
+    //If screen width is less than 768pixels
+    if (window.innerWidth < 768){
+        FLOATING_TEXT_CONTAINER.classList.add('open');
+        FLOATING_TEXT_INPUT.focus();
     }
 
     CREATE_POPOUT.classList.add("hide");
