@@ -701,4 +701,6 @@
 
 .yb-input-floating-text {
     height: 40px !important;
+    outline: none;
+    
 }

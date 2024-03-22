@@ -96,6 +96,15 @@ $(document).ready(function () {
         yb_search("main", type, query);
     });
 
+    $(FLOATING_TEXT_INPUT).on('change keyup', function() {
+        query = this.value;
+
+        type = SEARCH_FILTER_FIELD.value;
+        yb_search("main", type, query);
+    });
+
+
+
     for (let i = 0; i < SEARCH_FILTER_BUTTONS.length; i++) {
         SEARCH_FILTER_BUTTONS[i].addEventListener('click', function() {
             

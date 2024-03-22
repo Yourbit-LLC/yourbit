@@ -378,6 +378,8 @@ function yb_openSpotlight(category=null){
     if (window.innerWidth < 768){
         FLOATING_TEXT_CONTAINER.classList.add('open');
         FLOATING_TEXT_INPUT.focus();
+    } else {
+        SEARCH_FIELD.focus();
     }
 
     CREATE_POPOUT.classList.add("hide");
@@ -468,7 +470,6 @@ $(document).ready(function() {
 
     SEARCH_POPOUT.addEventListener('click', function() {
         yb_openSpotlight();
-        SEARCH_FIELD.focus();
     });
 
     yb_updateTimezone();
