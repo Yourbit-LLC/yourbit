@@ -482,13 +482,13 @@
 @media screen and (max-width: 768px) {
     
     .yb-container-spotlight {
-        position: fixed;
-        display: none;
+        position: absolute;
+        
         left: 0px;
         top: 65px;
         width: 100vw;
         height: calc(100vh - 65px);
-        background-color: rgba(0, 0, 0, 0.95);
+        
         z-index: 99;
         border-radius: 0px;
         box-shadow: black 0px 0px 60px 0px;
@@ -497,7 +497,7 @@
     }
 
     .yb-container-spotlight.open {
-        display: block;
+        
         transform: translateY(0);
         transition: 0.5s;
     }
