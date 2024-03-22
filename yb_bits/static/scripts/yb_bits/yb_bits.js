@@ -181,7 +181,7 @@ function createHeader(bit) {
     header.appendChild(profileImageContainer);
 
     const userInfo = yb_createElement("p", "yb-userInfo-bit", `bit-info-${bit.id}`);
-    userInfo.innerHTML = `<b class="bit-name" style="color:${bit.custom.title_color};">${bit.display_name}</b> <small class="bit-username" style="color:${bit.custom.text_color};">@${bit.user.username}</small>`;
+    userInfo.innerHTML = `<strong class="bit-name" style="color:${bit.custom.title_color};">${bit.display_name}</strong><br> <small class="bit-username" style="color:${bit.custom.text_color};">@${bit.user.username}</small>`;
     header.appendChild(userInfo);
 
     const timeLabel = yb_createElement("p", "yb-timeLabel-bit", `time-posted-${bit.id}`);
