@@ -523,6 +523,7 @@
 
 .yb-delete-comment {
     position: absolute;
+    text-decoration: none;
     left: -40px;
     top : 50%;
     height: 30px;
