@@ -486,7 +486,7 @@
         left: 0px;
         top: 65px;
         width: 100vw;
-        height: calc(100vh - 65px);
+        height: calc(100vh - 135px);
         background-color: rgba(0, 0, 0, 0.95);
         z-index: 99;
         border-radius: 0px;
@@ -506,7 +506,7 @@
         position: absolute;
         display: flex;
         flex-direction: column-reverse;
-        bottom: 100px;
+        bottom: 70px;
     }
 
 
@@ -679,4 +679,20 @@
     margin-right: auto;
     transition: 0.5s;
     overflow: hidden;
+}
+
+.yb-container-floatingText {
+    position: fixed;
+    display: none;
+    bottom: 5px;
+    width: 90%;
+    max-width: 600px;
+    height: 60px;
+    padding: 3px 10px 3px 10px;
+    color: white;
+
+}
+
+.yb-container-floatingText.open {
+    display: block;
 }
