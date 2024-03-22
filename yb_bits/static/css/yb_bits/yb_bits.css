@@ -113,8 +113,12 @@
 }
 
 .yb-userInfo-bit {
-    font-size: 15px;
+    font-size: 12px;
     color: white; /* Change the color to your preferred text color */
+}
+
+.yb-userInfo-bit small {
+    font-size: 80%;
 }
 
 .yb-timeLabel-bit {
