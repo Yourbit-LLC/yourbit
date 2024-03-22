@@ -557,7 +557,7 @@ function yb_buildComment(comment){
             `delete-comment-${comment_id}`, 
             `&times;`
         );
-        comment_delete_button.setAttribute("style", `border: 2px solid ${secondary_color}`)
+        
         comment_delete_button.setAttribute("data-catid", comment_id);
         comment_delete_button.setAttribute("data-bitid", comment.bit);
         comment_bubble.appendChild(comment_delete_button);
