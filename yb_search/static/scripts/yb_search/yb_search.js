@@ -77,7 +77,7 @@ function yb_getSearchResults(location, type, query) {
 
 function yb_search(location, type, query) {
     if (location == "main") {
-        if (window.innerWidth < 768) {
+        if (window.innerWidth > 768) {
             if (query.length > 0) {
                 yb_openSpotlight();
             } else {
