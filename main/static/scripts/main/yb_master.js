@@ -27,6 +27,7 @@ const CONTENT_CONTAINER = document.getElementById('content-container');
 const MASTHEAD_LOGO = document.getElementById("yb-logo-masthead");
 const MOBILE_HEADER = document.querySelector('.yb-header');
 const SPOTLIGHT_CONTAINER = document.getElementById('yb-container-spotlight');
+const SPOTLIGHT_CONTENT =  document.getElementById('spotlight-content');
 
 const CREATE_POPOUT = document.getElementById("create-button-popout");
 const SEARCH_POPOUT = document.getElementById("search-button-popout");
@@ -374,12 +375,15 @@ function yb_openSpotlight(category=null){
 
     CREATE_POPOUT.classList.add("hide");
     SEARCH_POPOUT.classList.add("hide");
+    SPOTLIGHT_CONTENT.classList.add('open');
+
 }
 function yb_closeSpotlight(){
     SPOTLIGHT_CONTAINER.classList.remove('open');
     SEARCH_FIELD.value = "";
     CREATE_POPOUT.classList.remove("hide");
     SEARCH_POPOUT.classList.remove("hide");
+    SPOTLIGHT_CONTENT.classList.remove('open');
 }
 
 function yb_navigateToProfile(e) {
