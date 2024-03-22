@@ -455,6 +455,8 @@ $(document).ready(function() {
     CREATE_POPOUT.addEventListener('click', yb_toggleCreateMenu);
     console.log(SEARCH_FIELD);
 
+    SEARCH_POPOUT.addEventListener('click', yb_openSpotlight);
+
     yb_updateTimezone();
 
 
