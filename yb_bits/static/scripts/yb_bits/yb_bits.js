@@ -180,7 +180,7 @@ function createHeader(bit) {
     profileImageContainer.innerHTML = `<img style="object-fit:fill; border-radius: 50%; width: 100%;" src="${thumbnail}">`;
     header.appendChild(profileImageContainer);
 
-    const userInfo = yb_createElement("p", `bit-info-${bit.id}`, "yb-userInfo-bit");
+    const userInfo = yb_createElement("p", "yb-userInfo-bit", `bit-info-${bit.id}`);
     userInfo.innerHTML = `<b class="bit-name" style="color:${bit.custom.title_color};">${bit.display_name}</b> <small class="bit-username" style="color:${bit.custom.text_color};">@${bit.user.username}</small>`;
     header.appendChild(userInfo);
 
