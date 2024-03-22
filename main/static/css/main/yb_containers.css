@@ -498,7 +498,7 @@
 
     .yb-container-spotlight.open {
         display: block;
-        transform: translateY(0vh);
+        transform: translateY(-95vh);
         transition: 0.5s;
     }
     
