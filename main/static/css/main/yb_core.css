@@ -16,6 +16,10 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+button {
+    text-decoration: none !important;
+}
+
 
 /* The switch - the box around the slider */
 .yb-switch-round {
