@@ -506,7 +506,8 @@
         position: absolute;
         display: flex;
         flex-direction: column-reverse;
-        bottom: 50px;
+        bottom: 50%;
+        transform: translateY(50%);
     }
     
 }
