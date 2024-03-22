@@ -525,6 +525,8 @@
     position: absolute;
     left: -40px;
     top : 50%;
+    height: 30px;
+    width: 30px;
     transform: translateY(-50%);
     font-size: 25px;
     background-color: gray;
