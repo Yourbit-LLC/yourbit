@@ -685,7 +685,7 @@
 .yb-container-floatingText {
     position: fixed;
     display: none;
-    bottom: 5px;
+    bottom: 0px;
     width: 90%;
     max-width: 600px;
     height: 60px;
