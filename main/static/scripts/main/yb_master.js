@@ -372,14 +372,14 @@ function yb_openSpotlight(category=null){
         search_cat.classList.add('active');
     }
 
-    CREATE_POPOUT.classList.toggle("hide");
-    SEARCH_POPOUT.classList.toggle("hide");
+    CREATE_POPOUT.classList.add("hide");
+    SEARCH_POPOUT.classList.add("hide");
 }
 function yb_closeSpotlight(){
     SPOTLIGHT_CONTAINER.classList.remove('open');
     SEARCH_FIELD.value = "";
-    CREATE_POPOUT.classList.toggle("hide");
-    SEARCH_POPOUT.classList.toggle("hide");
+    CREATE_POPOUT.classList.remove("hide");
+    SEARCH_POPOUT.classList.remove("hide");
 }
 
 function yb_navigateToProfile(e) {
