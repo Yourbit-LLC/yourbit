@@ -393,6 +393,10 @@ function yb_closeSpotlight(){
     CREATE_POPOUT.classList.remove("hide");
     SEARCH_POPOUT.classList.remove("hide");
 
+    if (window.innerWidth < 768){
+        FLOATING_TEXT_CONTAINER.classList.remove('open');
+    }
+
 }
 
 function yb_navigateToProfile(e) {
