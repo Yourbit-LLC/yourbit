@@ -328,7 +328,7 @@
     }
 
     .yb-2Way-container.open {
-        transform: translate(0);
+        transform: translateY(0);
         transition: 0.5s;
     }
 }
