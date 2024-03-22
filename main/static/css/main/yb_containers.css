@@ -506,16 +506,10 @@
         position: absolute;
         display: flex;
         flex-direction: column-reverse;
-        bottom: 50%;
-        transform: translateY(50%);
+        bottom: 100px;
     }
 
-    .yb-spotlight-content.open {
-        bottom: 70px;
-        transform: translateY(0%);
-        transition: 0.5s;
 
-    }
     
 }
 

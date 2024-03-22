@@ -375,7 +375,7 @@ function yb_openSpotlight(category=null){
 
     CREATE_POPOUT.classList.add("hide");
     SEARCH_POPOUT.classList.add("hide");
-    SPOTLIGHT_CONTENT.classList.add('open');
+    
 
 }
 function yb_closeSpotlight(){
@@ -383,7 +383,7 @@ function yb_closeSpotlight(){
     SEARCH_FIELD.value = "";
     CREATE_POPOUT.classList.remove("hide");
     SEARCH_POPOUT.classList.remove("hide");
-    SPOTLIGHT_CONTENT.classList.remove('open');
+
 }
 
 function yb_navigateToProfile(e) {
