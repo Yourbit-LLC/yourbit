@@ -698,3 +698,7 @@
 .yb-container-floatingText.open {
     display: block;
 }
+
+.yb-input-floating-text {
+    height: 40px !important;
+}
