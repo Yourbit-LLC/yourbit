@@ -48,7 +48,7 @@ class NotificationPage(View):
                     'space': init_params['current_space'],
                     'filter': init_params['filter_chain'],
                     'sort': init_params['sort_by'],   
-                    'start_function': 'yb_handleNotificationsClick()',    
+                    'start_function': 'yb_startBitstream(); yb_handleNotificationsClick();',    
                 },
 
             )
