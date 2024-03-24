@@ -71,7 +71,7 @@ def index(request, *args, **kwargs):
                 'space': init_params['current_space'],
                 'filter': init_params['filter_chain'],
                 'sort': init_params['sort_by'],    
-                'start_function': 'yb_startBitstream();',    
+                'start_function': 'yb_startBitStream();',    
             },
 
         )
@@ -133,7 +133,7 @@ class CreateElement(View):
                     'space': init_params['current_space'],
                     'filter': init_params['filter_chain'],
                     'sort': init_params['sort_by'],   
-                    'start_function': 'yb_toggleCreateMenu(); yb_startBitstream();',    
+                    'start_function': 'yb_toggleCreateMenu(); yb_startBitStream();',    
                 },
 
             )

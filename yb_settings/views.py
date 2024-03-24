@@ -37,7 +37,7 @@ class SettingsElement(View):
                     'space': init_params['current_space'],
                     'filter': init_params['filter_chain'],
                     'sort': init_params['sort_by'],   
-                    'start_function': 'yb_toggleSettingsMenu(); yb_startBitstream();',    
+                    'start_function': 'yb_toggleSettingsMenu(); yb_startBitStream();',    
                 },
 
             )
