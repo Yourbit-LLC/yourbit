@@ -259,6 +259,12 @@
     text-decoration: none;
 }
 
+.yb-button-close-text {
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
 
 .yb-button-close:hover{
