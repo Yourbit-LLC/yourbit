@@ -253,7 +253,7 @@
     border-radius: 50%;
     background-color: gray;
     border-width: 0px;
-    line-height: 0.1px;
+    line-height: 0px;
     transition: 0.5s;
 }
 
