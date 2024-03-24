@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.contrib import admin
 from django.urls import path, include
-from .views import search
+from .views import search, SearchElement
 
 urlpatterns = [
-    path("", search, name="search"),
+    path("", SearchElement.as_view() , name="search"),
 ]

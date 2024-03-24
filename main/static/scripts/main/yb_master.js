@@ -400,7 +400,12 @@ function yb_closeSpotlight(){
 }
 
 function yb_navigateToProfile(e) {
-    let username = e.currentTarget.getAttribute("data-username");
+    let username;
+    try {
+        username = e.currentTarget.getAttribute("data-username");
+    } catch(err) {
+        username = e;
+    }
     $("#content-container").load(`/profile/user/${username}/`);
     yb_closeSpotlight();
 }
