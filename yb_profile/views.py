@@ -103,7 +103,7 @@ class ProfilePage(View):
                     'space': init_params['current_space'],
                     'filter': init_params['filter_chain'],
                     'sort': init_params['sort_by'],   
-                    'start_function': f"yb_navigateToProfile({'request.user.username'})",
+                    'start_function': f"yb_navigateToProfile('{request.user.username}')",
                 },
 
             )
