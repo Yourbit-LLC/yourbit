@@ -86,7 +86,7 @@ class MessagePage(View):
                     'space': init_params['current_space'],
                     'filter': init_params['filter_chain'],
                     'sort': init_params['sort_by'],   
-                    'start_function': 'yb_handleMessagesClick()',    
+                    'start_function': 'yb_handleMessageClick()',    
                 },
 
             )
