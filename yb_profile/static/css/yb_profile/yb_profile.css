@@ -232,13 +232,14 @@ Profile Page
         bottom: 100px !important;
     }
 }
-    .swipe_up_icon {
-        margin-bottom: 0px;
-        
-    }
-    .swipe-up-text {
-        margin-top: -3px;
-    }
+.swipe_up_icon {
+    margin-bottom: 0px;
+    
+}
+.swipe-up-text {
+    margin-top: -3px;
+}
+
 .profile-interaction-container {
     display: grid;
     width: 90%;
