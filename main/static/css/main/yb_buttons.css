@@ -237,9 +237,7 @@
 }
 
 .yb-button-close {
-    display: block;
-    align-items: center;
-    justify-content: center;
+    display: inline-block;
     text-align: center;
     font-size: 16px; /* Adjust as necessary */
     position: relative;
