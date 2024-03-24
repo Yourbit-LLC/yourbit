@@ -5,7 +5,7 @@ from main.views import index, create_menu_template, create_object_template, Crea
 
 urlpatterns = [
     path("create-menu/", create_menu_template, name="create"),
-    path("create/bit/", create_object_template, name="index"),
-    path("create/", CreateElement.as_view(), name="index"),
+    path("create/<str:object>/", create_object_template, name="index"),
+    # path("create/", CreateElement.as_view(), name="index"),
 ]
 
