@@ -70,7 +70,8 @@ def index(request, *args, **kwargs):
                 'location': init_params['last_location'],
                 'space': init_params['current_space'],
                 'filter': init_params['filter_chain'],
-                'sort': init_params['sort_by'],        
+                'sort': init_params['sort_by'],    
+                'start_function': 'yb_startBitstream()',    
             },
 
         )

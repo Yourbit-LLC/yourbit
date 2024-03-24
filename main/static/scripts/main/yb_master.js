@@ -193,6 +193,10 @@ function yb_clear2WayContainer(container){
     container_content.innerHTML = "";
 
 }
+function yb_startBitStream() {
+    
+    $(CONTENT_CONTAINER).load('/bits/templates/bitstream/');
+}
 
 function yb_toggle2WayContainer(type, scroll=false){
 
