@@ -502,6 +502,10 @@
         overflow-y: scroll;
         transition: 0.5s;
     }
+
+    .sl-expanded {
+        height: calc(100vh - 65px);
+    }
     
     .yb-spotlight-content {
         position: absolute;

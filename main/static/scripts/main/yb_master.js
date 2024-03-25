@@ -371,6 +371,17 @@ function getCSRF() {
     return csrf
 }
 
+function focusSpotlightField() {
+    SPOTLIGHT_CONTAINER.classList.remove('sl-expanded');
+    FLOATING_TEXT_INPUT.removeEventListener('focus', focusSpotlightField);
+    FLOATING_TEXT_INPUT.addEventListener('blur', blurSpotlightField);
+}
+
+function blurSpotlightField() {
+    SPOTLIGHT_CONTAINER.classList.add('sl-expanded');
+    FLOATING_TEXT_INPUT.removeEventListener('blur', blurSpotlightField);
+    FLOATING_TEXT_INPUT.addEventListener('focus', focusSpotlightField);
+}
 function yb_openSpotlight(category=null){
     SPOTLIGHT_CONTAINER.classList.add('open');
     if (category != null){
@@ -382,6 +393,8 @@ function yb_openSpotlight(category=null){
     if (window.innerWidth < 768){
         FLOATING_TEXT_CONTAINER.classList.add('open');
         FLOATING_TEXT_INPUT.focus();
+        FLOATING_TEXT_INPUT.addEventListener('blur', blurSpotlightField);
+        
     } else {
         SEARCH_FIELD.focus();
     }
@@ -490,8 +503,6 @@ $(document).ready(function() {
     });
 
     yb_updateTimezone();
-
-    
 
 
 
