@@ -412,6 +412,10 @@ function yb_navigateToProfile(e) {
     }
     $("#content-container").load(`/profile/user/${username}/`);
     yb_closeSpotlight();
+    MOBILE_HEADER.classList.toggle("hide");
+    NAV_BAR.classList.toggle("hideMobile");
+    CREATE_POPOUT.classList.toggle("hide");
+    SEARCH_POPOUT.classList.toggle("hide");
 }
 
 function yb_submitQuery(){
