@@ -248,7 +248,7 @@ lang="en"
             <!--Search box must disappear at half width and become button until the button is clicked 
                 in which the search bar will expand to fill entire element-->
 
-            <form class = "yb-search-form desktop" id = "search" method="POST" action="{% url 'search' %}">
+            <form class = "yb-search-form desktop" id = "search" method="POST" action="{% url 'search-results' %}">
                 {% csrf_token %}
                 <input id="full-url" type="hidden" name="last_page" value="{{ request.path }}">
                 <input id="field-search-filter" type="hidden" name="filter" value="">
