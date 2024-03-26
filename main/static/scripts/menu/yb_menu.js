@@ -121,26 +121,24 @@ function yb_showStuffPage() {
     }
 }
 
+const BUTTON_FUNCTIONS = {
+    "home": yb_goHome,
+    "messages": yb_handleMessageClick,
+    "people": yb_showPeoplePage,
+    "stuff": yb_showStuffPage,
+    "orbits": yb_showOrbitsPage,
+    "history": yb_showHistoryPage
+}
+
+
 function yb_handleMenuGridLink(link) {
 
     console.log(link);
     console.log("clicked")
-    if (link === "bitstream") {
-        yb_goHome();
-    } else if (link === "messages") {
-        yb_handleMessageClick();
-    } else if (link === "people") {
-        yb_showPeoplePage();
-
-    } else if (link === "stuff") {
-        yb_showStuffPage();
-    } else if (link === "orbits") {
-        yb_showOrbitsPage();
-    } else if (link === "history") {
-        yb_showHistoryPage();
-    
+    if (link in BUTTON_FUNCTIONS){
+        BUTTON_FUNCTIONS[link]();
     } else {
-        console.log("Link not yet built");
+        console.log("no function found for link");
     }
 }
 

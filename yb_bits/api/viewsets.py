@@ -116,6 +116,20 @@ class BitViewSet(viewsets.ModelViewSet):
         except CustomBit.DoesNotExist:
             custom_bit = CustomBit.objects.create(theme=theme, images = custom_core)
 
+        if 'photo' in request.data:
+            photo_data = request.data.pop('photo')
+            photo_serializer = PhotoSerializer(data=photo_data)
+            photo_serializer.is_valid(raise_exception=True)
+            photo = photo_serializer.save()
+            serializer.validated_data['photo'] = photo
+
+        if 'video' in request.data:
+            video_data = request.data.pop('video')
+            video_serializer = VideoSerializer(data=video_data)
+            video_serializer.is_valid(raise_exception=True)
+            video = video_serializer.save()
+            serializer.validated_data['video'] = video
+
         #Add additional parameters
         serializer.save(display_name = user_profile.display_name, user=self.request.user, profile=user_profile, custom=custom_bit)
 

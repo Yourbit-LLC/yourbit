@@ -106,49 +106,28 @@ function yb_dismissNotification(notification_id) {
     })
 }
 
+var option_functions = {
+    "View Bit": yb_viewBit, //This document
+    "Send Thanks": yb_sendThanks, //This document
+    "Cancel": yb_closeSlideUpTemplate, //main/yb_master.js
+    "Reply to Comment": yb_replyToComment, //Not yet created
+    "View Profile": yb_navigateToProfile,
+    "Accept": yb_acceptRequest,
+    "Message": yb_openMessagesTo,
+    "Reply to Message": yb_replyToMessage,
+    "View Conversation": yb_viewConversation 
+}
+
+
 //Function for handling notification response options
 function yb_handleNotificationOptionClick(e) {
     let this_option = e.currentTarget;
     let this_id = this_option.getAttribute("data-catid");
     let this_option_name = this_option.getAttribute("name");
-
-    if (this_option_name === "View Bit") {
-      
-        yb_viewBit(this_id); //Location: Master.js -- Line 441
     
-    } else if (this_option_name === "Send Thanks") {
-      
-        yb_sendThanks(this_id); //Location: Master.js -- Line 448
-    
-    } else if (this_option_name === "Cancel") {
-      
-        yb_closeSlideUpTemplate();
-    
-    } else if (this_option_name === "Reply to Comment") {
-      
-        yb_replyToComment(this_id); //Location: main/yb_coreHandlers.js --
-    
-    } else if (this_option_name === "View Profile") {
-      
-        yb_navigateToProfile();  //Location: Master.js -- Line 313
-    
-    } else if (this_option_name === "Accept") {
-        this_id = this_option.getAttribute("data-rid");
-        yb_acceptRequest(this_id); //Location: Master.js -- Line 465
-    
-    } else if (this_option_name === "Message") {
-    
-        yb_openMessagesTo(this_id);
-    
-    } else if (this_option_name === "Reply to Message") {
-      
-        yb_replyToMessage(this_id);
-    
-    } else if (this_option_name === "View Conversation") {
-      
-        yb_viewConversation(this_id);
-
-    } 
+    if (this_option_name in option_functions) {
+        option_functions[this_option_name](this_id);
+    }
 
 }
 

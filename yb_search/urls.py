@@ -4,5 +4,6 @@ from django.urls import path, include
 from .views import search, SearchElement
 
 urlpatterns = [
-    path("", SearchElement.as_view() , name="search"),
+    path("", SearchElement.as_view() , name="search-page"),
+    path("results/", search, name="search-results")
 ]
