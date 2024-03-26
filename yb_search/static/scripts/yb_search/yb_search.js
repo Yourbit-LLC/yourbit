@@ -61,7 +61,7 @@ function yb_getSearchResults(location, type, query) {
 
     $.ajax( {
         type: 'GET',
-        url: '/search/',
+        url: '/search/results/',
         data: { 
             type: type,
             query: query
