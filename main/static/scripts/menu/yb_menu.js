@@ -121,9 +121,13 @@ function yb_showStuffPage() {
     }
 }
 
+function yb_messageButton() {
+    yb_handleMessageClick();
+}
+
 const BUTTON_FUNCTIONS = {
     "home": yb_goHome,
-    "messages": yb_handleMessageClick,
+    "messages": yb_messageButton,
     "people": yb_showPeoplePage,
     "stuff": yb_showStuffPage,
     "orbits": yb_showOrbitsPage,
