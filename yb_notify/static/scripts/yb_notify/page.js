@@ -112,7 +112,7 @@ var option_functions = {
     "Cancel": yb_closeSlideUpTemplate, //main/yb_master.js
     "Reply to Comment": yb_replyToComment, //Not yet created
     "View Profile": yb_navigateToProfile,
-    "Accept": yb_acceptRequest,
+    "Accept": yb_acceptRequest, //This document
     "Message": yb_openMessagesTo,
     "Reply to Message": yb_replyToMessage,
     "View Conversation": yb_viewConversation 
@@ -275,8 +275,6 @@ function yb_notificationMenu(type, this_id, rid=null) {
     menu.appendChild(this_container);
 
     menu.classList.add("open");
-
-
 }
 
 function yb_clearNotifications() {
