@@ -383,7 +383,6 @@ function checkSpotlightTop(focus=false) {
         SPOTLIGHT_CONTAINER.style.top = `${headerRect.bottom}px`;
         SPOTLIGHT_CONTAINER.style.height = `calc(100vh - ${headerRect.bottom}px)`;
         //adjust height as well
-        SPOTLIGHT_CONTENT.style.transform = `translateY(-${headerRect.bottom + 10}px)`;
     }
 
 }
