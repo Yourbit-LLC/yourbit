@@ -410,8 +410,6 @@ function yb_openSpotlight(category=null){
     if (window.innerWidth < 768){
         FLOATING_TEXT_CONTAINER.classList.add('open');
         FLOATING_TEXT_INPUT.focus();
-        MOBILE_HEADER.classList.toggle("hide");
-        NAV_BAR.classList.toggle("hideMobile");
         FLOATING_TEXT_INPUT.addEventListener('blur', blurSpotlightField);
         
     } else {
@@ -429,9 +427,6 @@ function yb_closeSpotlight(){
 
     if (window.innerWidth < 768){
         FLOATING_TEXT_CONTAINER.classList.remove('open');
-        MOBILE_HEADER.classList.toggle("hide");
-        NAV_BAR.classList.toggle("hideMobile");
-
     }
 
 }
