@@ -381,7 +381,7 @@ function checkSpotlightTop() {
     if (spotlightRect.top < headerRect.bottom){
         SPOTLIGHT_CONTAINER.style.top = `${headerRect.bottom}px`;
         //adjust height as well
-        SPOTLIGHT_CONTENT.style.height = `calc(100% - ${headerRect.bottom}px)`;
+        SPOTLIGHT_CONTENT.style.transform = `translateY(-${headerRect.bottom}px)`;
     }
 
 }
