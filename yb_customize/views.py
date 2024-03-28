@@ -14,7 +14,7 @@ class CustomizeProfile(View):
 
 from yb_profile.models import Profile, Orbit
 from yb_photo.models import Photo
-from yb_photo.views import generate_tiny_thumbnail, generate_small_thumbnail, generate_medium_thumbnail
+from yb_photo.utility import process_image
 
 
 class CustomizeMenu(View):
@@ -36,19 +36,13 @@ def update_profile_image(request):
     source_image = request.FILES.get('image')
     cropped_image = request.FILES.get('cropped_image')
 
-    new_photo = Photo(image=source_image)
-    new_photo.small_thumbnail = generate_small_thumbnail(request, cropped_image)
-    new_photo.medium_thumbnail = generate_medium_thumbnail(request, cropped_image)
-    new_photo.large_thumbnail = generate_tiny_thumbnail(request, cropped_image)
+    new_photo = process_image(request, source_image, cropped_image)
 
     if request.POST.get('class') == 'profile':
         new_photo.profile = this_profile
     elif request.POST.get('class') == 'community':
         new_photo.is_community = True
         new_photo.community_profile = this_profile
-
-    new_photo.is_private = False
-    new_photo.save()
 
     custom_core = this_profile.custom
     custom_core.profile_image = new_photo

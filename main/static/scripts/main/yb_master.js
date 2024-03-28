@@ -439,8 +439,8 @@ function yb_closeSpotlight(){
 
     if (window.innerWidth < 768){
         FLOATING_TEXT_CONTAINER.classList.remove('open');
-        CREATE_POPOUT.classList.add("hide");
-        SEARCH_POPOUT.classList.add("hide");
+        CREATE_POPOUT.classList.remove("hide");
+        SEARCH_POPOUT.classList.remove("hide");
     }
 
 }
