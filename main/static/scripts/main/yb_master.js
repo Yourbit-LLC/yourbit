@@ -376,7 +376,7 @@ function checkSpotlightTop(focus=false) {
     //Check if the spotlight container is intersecting with the header and by how much
     let spotlightRect = SPOTLIGHT_CONTAINER.getBoundingClientRect();
     let headerRect = MOBILE_HEADER.getBoundingClientRect();
-    let input_rect = FLOATING_TEXT_INPUT.getBoundingClientRect();
+    let input_rect = FLOATING_TEXT_CONTAINER.getBoundingClientRect();
 
 
     console.log("\n Top\n " + spotlightRect.top, "\n bottom\n " + headerRect.bottom)
