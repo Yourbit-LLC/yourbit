@@ -508,10 +508,9 @@
     }
     
     .yb-spotlight-content {
-        position: absolute;
+        position: relative;
         display: flex;
-        flex-direction: column-reverse;
-        bottom: 55px;
+        
 
     }
 

@@ -393,7 +393,6 @@ function focusSpotlightField() {
     FLOATING_TEXT_INPUT.addEventListener('blur', blurSpotlightField);
 
     //after completion of above check spotlight top
-    setTimeout(checkSpotlightTop, 500, true);
 
 }
 
