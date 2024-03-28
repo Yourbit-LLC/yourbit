@@ -391,7 +391,11 @@ function focusSpotlightField() {
     FLOATING_TEXT_INPUT.removeEventListener('focus', focusSpotlightField);
     FLOATING_TEXT_INPUT.addEventListener('blur', blurSpotlightField);
 
-    //after completion of above check spotlight top
+    // Reset CSS modifications
+    SPOTLIGHT_CONTAINER.style.top = ''; // Reset the 'top' property
+    SPOTLIGHT_CONTAINER.style.height = ''; // Reset the 'height' property
+
+
 
 }
 
