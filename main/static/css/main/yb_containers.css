@@ -510,7 +510,7 @@
     .yb-spotlight-content {
         position: relative;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         
 
     }
