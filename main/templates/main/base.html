@@ -4,8 +4,7 @@
 
 {% load static %}
 
-<!-- Load manifest.json -->
-{% include 'manifest.json' %}
+
 
 <!DOCTYPE html>
 <html
@@ -15,7 +14,7 @@ lang="en"
         <title>Yourbit | Bitstream</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
+        <link rel="manifest" href="{% static 'manifest.json' %}">
         <!--Root CSS Variables-->
         <style>
             :root {
