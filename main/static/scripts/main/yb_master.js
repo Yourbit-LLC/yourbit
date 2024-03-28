@@ -405,8 +405,7 @@ function blurSpotlightField() {
     FLOATING_TEXT_INPUT.addEventListener('focus', focusSpotlightField);
 
     //Check if the spotlight container is intersecting with the header and by how much
-    let spotlightRect = SPOTLIGHT_CONTAINER.getBoundingClientRect();
-    let headerRect = MOBILE_HEADER.getBoundingClientRect();
+
     setTimeout(checkSpotlightTop, 500);
 }
 
@@ -422,14 +421,14 @@ function yb_openSpotlight(category=null){
         FLOATING_TEXT_CONTAINER.classList.add('open');
         FLOATING_TEXT_INPUT.focus();
         FLOATING_TEXT_INPUT.addEventListener('blur', blurSpotlightField);
+        CREATE_POPOUT.classList.add("hide");
+        SEARCH_POPOUT.classList.add("hide");
+    
         
     } else {
         SEARCH_FIELD.focus();
     }
 
-    CREATE_POPOUT.classList.add("hide");
-    SEARCH_POPOUT.classList.add("hide");
-    
 
 }
 function yb_closeSpotlight(){
@@ -438,6 +437,8 @@ function yb_closeSpotlight(){
 
     if (window.innerWidth < 768){
         FLOATING_TEXT_CONTAINER.classList.remove('open');
+        CREATE_POPOUT.classList.add("hide");
+        SEARCH_POPOUT.classList.add("hide");
     }
 
 }
