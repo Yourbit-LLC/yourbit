@@ -376,13 +376,16 @@ function checkSpotlightTop(focus=false) {
     //Check if the spotlight container is intersecting with the header and by how much
     let spotlightRect = SPOTLIGHT_CONTAINER.getBoundingClientRect();
     let headerRect = MOBILE_HEADER.getBoundingClientRect();
+    let input_rect = FLOATING_TEXT_INPUT.getBoundingClientRect();
+
+
     console.log("\n Top\n " + spotlightRect.top, "\n bottom\n " + headerRect.bottom)
     
     if (spotlightRect.top < headerRect.bottom){
         SPOTLIGHT_CONTAINER.style.top = `${headerRect.bottom}px`;
         SPOTLIGHT_CONTAINER.style.height = `calc(100vh - ${headerRect.bottom}px)`;
         //adjust height as well
-        SPOTLIGHT_CONTENT.style.transform = `translateY(-${headerRect.bottom}px)`;
+        SPOTLIGHT_CONTENT.style.transform = `translateY(-${input_rect.top + 10}px)`;
     }
 
 }
