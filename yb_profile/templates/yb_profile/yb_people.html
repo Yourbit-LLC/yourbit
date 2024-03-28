@@ -5,6 +5,7 @@
 </div>
 
 <div id="inbox-header" style="height: 40px; display:grid; grid-template-columns: 4fr 1fr; column-gap: 20px; scrollbar-width: none; overflow-x: scroll;" class="yb-hScroll yb-fillWidth yb-relative">
+    <hr>
     <div id="filter-container" class="yb-flexRow yb-fillWidth yb-gap5 yb-margin-L5">
         
         <button class="people-filter yb-button-wide active medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb">Everyone</button>
@@ -15,9 +16,10 @@
         <button class="people-filter yb-button-wide medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb">Following</button>
 
     </div>
+    <hr>
 </div>
 
-<div id="connection-list" class="yb-fillWidth">
+<div id="connection-list" class="yb-fillWidth yb-vScroll yb-margin-T10" style="height: calc(100% - 150px); border-radius: 15px;">
     {% if connections %}
         {% for connection in connections %}
             <div id="result-people-undefined" class="full-result yb-autoText" style="background-color: rgb(25, 25, 25);" data-catid="undefined" data-username="ajboston2023">
