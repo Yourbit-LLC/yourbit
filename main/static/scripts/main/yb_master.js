@@ -371,10 +371,7 @@ function getCSRF() {
     return csrf
 }
 
-function focusSpotlightField() {
-    SPOTLIGHT_CONTAINER.classList.remove('sl-expanded');
-    FLOATING_TEXT_INPUT.removeEventListener('focus', focusSpotlightField);
-    FLOATING_TEXT_INPUT.addEventListener('blur', blurSpotlightField);
+function checkSpotlightTop() {
 
     //Check if the spotlight container is intersecting with the header and by how much
     let spotlightRect = SPOTLIGHT_CONTAINER.getBoundingClientRect();
@@ -383,22 +380,27 @@ function focusSpotlightField() {
     if (spotlightRect.top < headerRect.bottom){
         SPOTLIGHT_CONTAINER.style.top = `${headerRect.bottom}px`;
     }
+
 }
+function focusSpotlightField() {
+    SPOTLIGHT_CONTAINER.classList.remove('sl-expanded');
+    FLOATING_TEXT_INPUT.removeEventListener('focus', focusSpotlightField);
+    FLOATING_TEXT_INPUT.addEventListener('blur', blurSpotlightField);
+
+    //after completion of above check spotlight top
+    setTimeout(checkSpotlightTop, 100);
+
+}
+
+
 
 function blurSpotlightField() {
     SPOTLIGHT_CONTAINER.classList.add('sl-expanded');
     FLOATING_TEXT_INPUT.removeEventListener('blur', blurSpotlightField);
     FLOATING_TEXT_INPUT.addEventListener('focus', focusSpotlightField);
 
-    //Check if the spotlight container is intersecting with the header and by how much
-    let spotlightRect = SPOTLIGHT_CONTAINER.getBoundingClientRect();
-    let headerRect = MOBILE_HEADER.getBoundingClientRect();
-    console.log("\n Top\n " + spotlightRect.top, "\n bottom\n " + headerRect.bottom)
-
-    if (spotlightRect.top < headerRect.bottom){
-        SPOTLIGHT_CONTAINER.style.top = `${headerRect.bottom}px`;
-        console.log("Spotlight container is intersecting with header")
-    }
+    setTimeout(checkSpotlightTop, 100);
+    
 }
 
 function yb_openSpotlight(category=null){
