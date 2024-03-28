@@ -376,8 +376,8 @@ function checkSpotlightTop() {
     //Check if the spotlight container is intersecting with the header and by how much
     let spotlightRect = SPOTLIGHT_CONTAINER.getBoundingClientRect();
     let headerRect = MOBILE_HEADER.getBoundingClientRect();
-    console.log("\n Top\n " + spotlightRect.top, "\n bottom\n " + headerRect.top)
-    
+    console.log("\n Top\n " + spotlightRect.top, "\n bottom\n " + headerRect.bottom)
+
     if (spotlightRect.top < headerRect.bottom){
         SPOTLIGHT_CONTAINER.style.top = `${headerRect.bottom}px`;
     }
@@ -389,7 +389,7 @@ function focusSpotlightField() {
     FLOATING_TEXT_INPUT.addEventListener('blur', blurSpotlightField);
 
     //after completion of above check spotlight top
-    setTimeout(checkSpotlightTop, 100);
+    setTimeout(checkSpotlightTop, 500);
 
 }
 
@@ -403,7 +403,7 @@ function blurSpotlightField() {
     //Check if the spotlight container is intersecting with the header and by how much
     let spotlightRect = SPOTLIGHT_CONTAINER.getBoundingClientRect();
     let headerRect = MOBILE_HEADER.getBoundingClientRect();
-    setTimeout(checkSpotlightTop, 100);
+    setTimeout(checkSpotlightTop, 500);
 }
 
 function yb_openSpotlight(category=null){
