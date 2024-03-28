@@ -3,9 +3,10 @@
     <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb">People</h3>
     <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('people');"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
 </div>
+<hr>
 
 <div id="inbox-header" style="height: 40px; display:grid; grid-template-columns: 4fr 1fr; column-gap: 20px; scrollbar-width: none; overflow-x: scroll;" class="yb-hScroll yb-fillWidth yb-relative">
-    <hr>
+    
     <div id="filter-container" class="yb-flexRow yb-fillWidth yb-gap5 yb-margin-L5">
         
         <button class="people-filter yb-button-wide active medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb">Everyone</button>
@@ -16,8 +17,9 @@
         <button class="people-filter yb-button-wide medium-wide rounded bg-gray-dark yb-autoText font-small yb-center-margin tb">Following</button>
 
     </div>
-    <hr>
+
 </div>
+<hr>
 
 <div id="connection-list" class="yb-fillWidth yb-vScroll yb-margin-T10" style="height: calc(100% - 150px); border-radius: 15px;">
     {% if connections %}
