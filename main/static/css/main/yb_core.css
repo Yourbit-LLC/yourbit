@@ -50,7 +50,7 @@ button {
     }
 
     .menu-button.pwa-standalone {
-        transform: translateY(-30px);
+        transform: translate(-50%, -30px);
     }
 
     .desktop-element{
