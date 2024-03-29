@@ -42,15 +42,15 @@ button {
 
  @media screen and (max-width: 768px) {
     .yb-navigation.pwa-standalone {
-        height: 60px !important;
+        height: 70px !important;
     }
 
     .yb-button-popout.pwa-standalone {
-        transform: translateY(-20px);
+        transform: translateY(-30px);
     }
 
     .menu-button.pwa-standalone {
-        transform: translateY(-20px);
+        transform: translateY(-30px);
     }
 
     .desktop-element{
