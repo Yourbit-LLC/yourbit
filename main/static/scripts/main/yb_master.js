@@ -543,6 +543,13 @@ $(document).ready(function() {
 
     yb_updateTimezone();
 
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+        console.log('display-mode is standalone');
+        document.body.classList.add("pwa-standalone");
+    } else {
+        console.log('display-mode is not standalone');
+    }
+
 
 
     // yb_setTimezone();

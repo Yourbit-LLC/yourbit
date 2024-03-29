@@ -40,6 +40,18 @@ button {
     height: 0;
 }
 
+ @media screen and (max-width: 768px) {
+    .pwa-standalone {
+        padding-bottom: 20px;
+    }
+    .desktop-element{
+        display: none;
+
+    }
+        
+ }
+
+
 /* The slider */
 .slider {
     position: absolute;

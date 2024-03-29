@@ -181,8 +181,8 @@ lang="en"
         <!--Navigation Bar-->
         <nav class="yb-navigation" id="nav-bar-desktop">
                 
-            <img class = "yb-logo-masthead" style="-webkit-filter: drop-shadow(0px 0px 10px black); filter: drop-shadow(0px 0px 10px black); width: 40px;" src="{% static 'images/main/yourbit-logo2023-01.svg' %}">
-            <p id="logo-name" style="margin: auto; font-weight: bold; text-shadow: 0px 0px 5px black;">Yourbit</p>
+            <img class = "desktop-element yb-logo-masthead" style="-webkit-filter: drop-shadow(0px 0px 10px black); filter: drop-shadow(0px 0px 10px black); width: 40px;" src="{% static 'images/main/yourbit-logo2023-01.svg' %}">
+            <p id="logo-name" class="desktop-element" style="margin: auto; font-weight: bold; text-shadow: 0px 0px 5px black;">Yourbit</p>
             
             <!--Space navigator allows people to switch between content types on the network-->
             <div class = "yb-space-nav">
@@ -252,7 +252,7 @@ lang="en"
             <!--Search box must disappear at half width and become button until the button is clicked 
                 in which the search bar will expand to fill entire element-->
 
-            <form class = "yb-search-form desktop" id = "search" method="POST" action="{% url 'search-results' %}">
+            <form class = "yb-search-form desktop desktop-element" id = "search" method="POST" action="{% url 'search-results' %}">
                 {% csrf_token %}
                 <input id="full-url" type="hidden" name="last_page" value="{{ request.path }}">
                 <input id="field-search-filter" type="hidden" name="filter" value="">
@@ -264,7 +264,7 @@ lang="en"
 
             <!--Quick Actions-->
 
-            <div class = "yb-nav-actions" id="quick-actions" method="GET" action="">
+            <div class = "yb-nav-actions desktop-element" id="quick-actions" method="GET" action="">
                 {% csrf_token %}
 
                 <div class="quick-button" id="create-quick" >
