@@ -106,13 +106,17 @@ function yb_dismissNotification(notification_id) {
     })
 }
 
+function yb_acceptOption(this_id) {
+    yb_acceptRequest(this_id);
+}
+
 var option_functions = {
     "View Bit": yb_viewBit, //This document
     "Send Thanks": yb_sendThanks, //This document
     "Cancel": yb_closeSlideUpTemplate, //main/yb_master.js
     "Reply to Comment": yb_replyToComment, //Not yet created
     "View Profile": yb_navigateToProfile,
-    "Accept": yb_acceptRequest, //This document
+    "Accept": yb_acceptOption, //This document
     "Message": yb_openMessagesTo,
     "Reply to Message": yb_replyToMessage,
     "View Conversation": yb_viewConversation 
