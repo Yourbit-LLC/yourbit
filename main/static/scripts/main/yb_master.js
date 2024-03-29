@@ -545,7 +545,10 @@ $(document).ready(function() {
 
     if (window.matchMedia('(display-mode: standalone)').matches) {
         console.log('display-mode is standalone');
-        document.body.classList.add("pwa-standalone");
+        SEARCH_POPOUT.classList.add("pwa-standalone");
+        CREATE_POPOUT.classList.add("pwa-standalone");
+        NAV_BAR.classList.add("pwa-standalone");
+        MENU_BUTTON.classList.add("pwa-standalone");
     } else {
         console.log('display-mode is not standalone');
     }

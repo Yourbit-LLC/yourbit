@@ -41,9 +41,18 @@ button {
 }
 
  @media screen and (max-width: 768px) {
-    .pwa-standalone {
-        padding-bottom: 20px !important;
+    .yb-navigation.pwa-standalone {
+        height: 60px !important;
     }
+
+    .yb-button-popout.pwa-standalone {
+        transform: translateY(-20px);
+    }
+
+    .menu-button.pwa-standalone {
+        transform: translateY(-20px);
+    }
+
     .desktop-element{
         display: none !important;
 
