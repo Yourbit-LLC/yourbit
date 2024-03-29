@@ -42,7 +42,7 @@ button {
 
  @media screen and (max-width: 768px) {
     .pwa-standalone {
-        padding-bottom: 20px;
+        padding-bottom: 20px !important;
     }
     .desktop-element{
         display: none !important;
