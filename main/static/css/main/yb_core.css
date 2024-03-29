@@ -45,7 +45,7 @@ button {
         padding-bottom: 20px;
     }
     .desktop-element{
-        display: none;
+        display: none !important;
 
     }
         
