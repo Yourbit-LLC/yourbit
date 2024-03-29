@@ -117,16 +117,13 @@ var option_functions = {
     // "Reply to Comment": yb_replyToComment, //Not yet created
     "View Profile": yb_navigateToProfile,
     "Accept": yb_acceptOption, //This document
-    // "Message": yb_openMessagesTo,
-    // "Reply to Message": yb_replyToMessage,
-    // "View Conversation": yb_viewConversation 
 }
 
 
 //Function for handling notification response options
 function yb_handleNotificationOptionClick(e) {
     let this_option = e.currentTarget;
-    let this_id = this_option.getAttribute("data-catid");
+    let this_id = this_option.getAttribute("data-oid");
     let this_option_name = this_option.getAttribute("name");
     
     option_functions[this_option_name](this_id);
@@ -267,7 +264,7 @@ function yb_notificationMenu(type, this_id, rid=null) {
         new_option.innerHTML = option;
         new_option.setAttribute("data-catid", this_id);
         if (type === 4) {
-            new_option.setAttribute("data-rid", rid);
+            new_option.setAttribute("data-oid", rid);
         }
         new_option.setAttribute("name", option);
         new_option.addEventListener("click", yb_handleNotificationOptionClick);
