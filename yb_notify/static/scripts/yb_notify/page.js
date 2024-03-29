@@ -125,7 +125,7 @@ function yb_handleNotificationOptionClick(e) {
     let this_id = this_option.getAttribute("data-catid");
     let this_option_name = this_option.getAttribute("name");
     
-    if (this_option_name in option_functions) {
+    if (this_option_name in option_functions.keys()) {
         option_functions[this_option_name](this_id);
     }
 
