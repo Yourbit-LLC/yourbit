@@ -40,9 +40,9 @@ function yb_toggleMainMenu() {
     SEARCH_POPOUT.classList.toggle("hide");
     MAIN_MENU.classList.toggle("open");
 
-    if ("vibrate" in navigator) {
+    if ("vibrate" in window.navigator) {
         // Vibrate for 1000 milliseconds (1 second)
-        navigator.vibrate(250);
+        window.navigator.vibrate(250);
       } else {
         // Browser does not support the Vibration API
         console.log("Vibration API not supported");
