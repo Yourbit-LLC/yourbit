@@ -114,12 +114,12 @@ var option_functions = {
     "View Bit": yb_viewBit, //This document
     "Send Thanks": yb_sendThanks, //This document
     "Cancel": yb_closeSlideUpTemplate, //main/yb_master.js
-    "Reply to Comment": yb_replyToComment, //Not yet created
+    // "Reply to Comment": yb_replyToComment, //Not yet created
     "View Profile": yb_navigateToProfile,
     "Accept": yb_acceptOption, //This document
-    "Message": yb_openMessagesTo,
-    "Reply to Message": yb_replyToMessage,
-    "View Conversation": yb_viewConversation 
+    // "Message": yb_openMessagesTo,
+    // "Reply to Message": yb_replyToMessage,
+    // "View Conversation": yb_viewConversation 
 }
 
 
