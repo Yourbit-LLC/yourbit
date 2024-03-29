@@ -548,7 +548,7 @@ $(document).ready(function() {
         SEARCH_POPOUT.classList.add("pwa-standalone");
         CREATE_POPOUT.classList.add("pwa-standalone");
         NAV_BAR.classList.add("pwa-standalone");
-        MENU_BUTTON.classList.add("pwa-standalone");
+        document.getElementById("profile-icon").classList.add("pwa-standalone");
     } else {
         console.log('display-mode is not standalone');
     }
