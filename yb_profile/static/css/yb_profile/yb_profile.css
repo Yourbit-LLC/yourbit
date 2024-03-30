@@ -117,6 +117,7 @@ Profile Page
 
 .button-profile-interaction {
     width: 20vw; 
+    height: 35px !important;
     max-width: 150px;
 }
 
@@ -305,10 +306,11 @@ Profile Page
 }
 
 .profile-interaction-container {
-    display: grid;
+    display: flex;
+    flex-direction: row;
     width: 100%;
     max-width: 500px;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
     text-align: center;
     align-items: center;
     margin-top: 20px;
