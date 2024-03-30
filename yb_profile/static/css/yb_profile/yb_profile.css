@@ -121,8 +121,8 @@ Profile Page
 }
 
 .button-profile-interaction.end {
-    height: "35px" !important;
-    width: "35px" !important;
+    height: 35px !important;
+    width: 35px !important;
     pointer-events: auto !important;
 }
 
