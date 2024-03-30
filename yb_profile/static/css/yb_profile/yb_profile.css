@@ -413,7 +413,7 @@ Profile Page
     transform: translate(-50%, -50%);
 }
 
-#profile-image-container {
+.profile-image-container {
     position: relative;
     width: 256px;
     height: 256px;
