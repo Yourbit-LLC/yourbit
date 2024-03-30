@@ -524,6 +524,7 @@ async function subscribeToPush() {
     };
     
     let subscription = await swRegistration.pushManager.subscribe(subscriptionOptions);
+    
     sendSubscriptionToServer(subscription);
 }
 

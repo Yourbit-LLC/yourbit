@@ -55,6 +55,13 @@ Profile Page
     border: 3px solid white;
 }
 
+.large-profile-image.end {
+    height: 30px;
+    width: 30px;
+    margin-left: 50px;
+    grid-column: 1;
+}
+
 
 .profile-image-border.preview {
     margin-left: auto;
@@ -115,13 +122,24 @@ Profile Page
 
 }
 
+.button-profile-interaction {
+    width: 20vw; 
+    max-width: 150px;
+}
+
+.button-profile-interaction.end {
+    height: "35px";
+    width: "35px";
+    pointer-events: auto;
+}
+
 .profile-button {
     border-radius: 25px;
     border-width: 0px;
     font-size: 14px;
     text-align: center;
     color: auto;
-    height: 40px;
+    height: 30px;
 }
 
 
@@ -141,23 +159,27 @@ Profile Page
 }
 
 .profile-interact-icon {
-    display: block;
+    display: none;
     position: relative;
 
 }
 
-#profile-connect-button {
+.profile-interact-icon.end {
+    display: block;
+}
+
+.profile-CME {
     grid-column: 1;
     height: 40px;
 }
 
-#profile-follow-button {
+.profile-follow {
     grid-column: 2;
     width: auto;
     height: 40px;
 }
 
-#profile-message-button {
+.profile-message {
     grid-column: 3;
     height: 40px;
 }
@@ -167,7 +189,13 @@ Profile Page
     -webkit-backdrop-filter: blur(20px) brightness(50%);
 }
 
-#profile-bio-container {
+.profile.end {
+    height: 80px;
+    top: 100px;
+    width: 100%;
+}
+
+.profile-bio-container {
     position: relative;
     width: 95%; 
     margin-left: auto;
@@ -179,6 +207,32 @@ Profile Page
     padding: 5px 5px 5px 5px;
     min-height: 50px;
 
+}
+
+.profile-bio-container.end {
+    display: none;
+}
+
+.profile-splash-label.end {
+    display: grid;
+    text-align: left;
+    grid-template-columns: 60px auto 120px;
+}
+
+.profile-name-splash.end {
+    grid-column: 2;
+    height: 40px;
+}
+
+.profile-name-header.end {
+    font-size: 15px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.profile-handle.label.end {
+    font-size: 12px;
+    margin-left: 10px;
 }
 
 .splash-bio-container.preview {
@@ -208,7 +262,6 @@ Profile Page
 
 }
 
-
 .button-dropdown {
     position: absolute;
     width: 75px;
@@ -227,7 +280,13 @@ Profile Page
     color: white;
 }
 
-@media screen and (min-width: 600px){
+.swipe-up-element.end {
+    top: 0;
+    opacity: 0;
+    display: none;
+}
+
+@media screen and (min-width: 768px){
     .swipe-up-element {
         bottom: 100px !important;
     }
@@ -249,6 +308,15 @@ Profile Page
     align-items: center;
     margin-top: 20px;
 
+}
+
+.profile-interaction-container.end {
+    grid-column: 3;
+    grid-template-columns: 40px 40px 40px;
+    margin-top:0px;
+    text-align:center; 
+    margin-bottom: 0px; 
+    height:80px;
 }
 
 .profile-interaction-container.preview {
