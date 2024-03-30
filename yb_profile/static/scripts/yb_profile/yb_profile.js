@@ -14,7 +14,7 @@ const PROFILE_SPLASH_SCREEN = document.getElementById("profile-page-splash");
 const PROFILE_SPLASH_LABEL = document.getElementById("profile-splash-label");
 const PROFILE_NAME_HEADER = document.getElementById("profile-name-header");
 const PROFILE_HANDLE_LABEL = document.getElementById("profile-handle-label");
-const PROFILE_IMAGE_SPLASH = document.getElementById("profile-image-splash");
+const PROFILE_IMAGE_SPLASH = document.getElementById("profile-image-container");
 const PROFILE_SPLASH_BIO = document.getElementById("splash-bio-container");
 const PROFILE_INTERACTION_CONTAINER = document.getElementById("profile-interaction-container");
 const PROFILE_INTERACTION_BUTTONS = document.getElementsByClassName("button-profile-interaction");
@@ -98,7 +98,7 @@ function yb_enterProfile() {
     NAV_BAR.classList.toggle("hideMobile");
     CREATE_POPOUT.classList.toggle("hide");
     SEARCH_POPOUT.classList.toggle("hide");
-    
+
     let bit_container = document.getElementById("bit-container");
     $(bit_container).animate({"top":"0vh"}, "slow");
 
