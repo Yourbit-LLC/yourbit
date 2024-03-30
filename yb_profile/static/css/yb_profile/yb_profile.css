@@ -55,13 +55,6 @@ Profile Page
     border: 3px solid white;
 }
 
-.profile-image-container.end {
-    height: 50px !important;
-    width: 50px !important;
-    margin-left: 50px !important;
-    grid-column: 1 !important;
-}
-
 
 .profile-image-border.preview {
     margin-left: auto;
@@ -422,6 +415,14 @@ Profile Page
     border-width: 5px;
 
 }
+
+
+.profile-image-container.end {
+    height: 50px !important;
+    width: 50px !important;
+    grid-column: 1 !important;
+}
+
 
 .profile-connect-option {
     line-height: 2;
