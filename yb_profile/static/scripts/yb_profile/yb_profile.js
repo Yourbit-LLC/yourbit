@@ -94,6 +94,8 @@ function yb_enterProfile() {
     
     PROFILE_IMAGE_SPLASH.classList.add("end");
 
+    SWIPE_UP_ELEMENT.classList.add("end");
+
     MOBILE_HEADER.classList.toggle("hide");
     NAV_BAR.classList.toggle("hideMobile");
     CREATE_POPOUT.classList.toggle("hide");
