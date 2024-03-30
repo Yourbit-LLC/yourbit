@@ -56,10 +56,10 @@ Profile Page
 }
 
 .large-profile-image.end {
-    height: 30px;
-    width: 30px;
-    margin-left: 50px;
-    grid-column: 1;
+    height: 30px !important;
+    width: 30px !important;
+    margin-left: 50px !important;
+    grid-column: 1 !important;
 }
 
 
@@ -128,9 +128,9 @@ Profile Page
 }
 
 .button-profile-interaction.end {
-    height: "35px";
-    width: "35px";
-    pointer-events: auto;
+    height: "35px" !important;
+    width: "35px" !important;
+    pointer-events: auto !important;
 }
 
 .profile-button {
@@ -160,12 +160,12 @@ Profile Page
 
 .profile-interact-icon {
     display: none;
-    position: relative;
 
 }
 
 .profile-interact-icon.end {
-    display: block;
+    position: relative;
+    display: block !important;
 }
 
 .profile-CME {
@@ -190,9 +190,9 @@ Profile Page
 }
 
 .profile.end {
-    height: 80px;
-    top: 100px;
-    width: 100%;
+    height: 80px !important;
+    top: 100px !important;
+    width: 100% !important;
 }
 
 .profile-bio-container {
@@ -210,29 +210,29 @@ Profile Page
 }
 
 .profile-bio-container.end {
-    display: none;
+    display: none !important;
 }
 
 .profile-splash-label.end {
-    display: grid;
-    text-align: left;
-    grid-template-columns: 60px auto 120px;
+    display: grid !important;
+    text-align: left !important;
+    grid-template-columns: 60px auto 120px !important;
 }
 
 .profile-name-splash.end {
-    grid-column: 2;
-    height: 40px;
+    grid-column: 2 !important;
+    height: 40px !important;
 }
 
 .profile-name-header.end {
-    font-size: 15px;
-    margin-left: 10px;
-    margin-top: 10px;
+    font-size: 15px !important;
+    margin-left: 10px !important;
+    margin-top: 10px !important;
 }
 
 .profile-handle.label.end {
-    font-size: 12px;
-    margin-left: 10px;
+    font-size: 12px !important;
+    margin-left: 10px !important;
 }
 
 .splash-bio-container.preview {
@@ -283,7 +283,7 @@ Profile Page
 .swipe-up-element.end {
     top: 0;
     opacity: 0;
-    display: none;
+    display: none !important;
 }
 
 @media screen and (min-width: 768px){
@@ -311,12 +311,12 @@ Profile Page
 }
 
 .profile-interaction-container.end {
-    grid-column: 3;
-    grid-template-columns: 40px 40px 40px;
-    margin-top:0px;
-    text-align:center; 
-    margin-bottom: 0px; 
-    height:80px;
+    grid-column: 3 !important;
+    grid-template-columns: 40px 40px 40px !important;
+    margin-top:0px !important;
+    text-align:center !important; 
+    margin-bottom: 0px !important; 
+    height:80px !important; 
 }
 
 .profile-interaction-container.preview {
