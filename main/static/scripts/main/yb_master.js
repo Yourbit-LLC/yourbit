@@ -515,6 +515,20 @@ function yb_closePrompt(){
 
 }
 
+async function subscribeToPush() {
+    let serverPublicKey = VAPID_PUBLIC_KEY;
+
+    let subscriptionOptions = {
+        userVisibleOnly: true,
+        applicationServerKey: serverPublicKey
+    };
+    
+    let subscription = await swRegistration.pushManager.subscribe(subscriptionOptions);
+    sendSubscriptionToServer(subscription);
+}
+
+
+
 $(document).ready(function() {
     SEARCH_BUTTON.addEventListener('mouseover', yb_searchMouseOver);
     CREATE_DESKTOP.addEventListener('click', yb_toggleCreateMenu);

@@ -30,9 +30,9 @@ self.addEventListener('install', function(event) {
     );
 });
 
+
 self.addEventListener('fetch', function(event) {
-    event.respondWith(
-        caches.match(event.request)
+    event.respondWith(caches.match(event.request)
         .then(function(response) {
             // Cache hit - return response
             if (response) {
@@ -41,7 +41,8 @@ self.addEventListener('fetch', function(event) {
             return fetch(event.request);
         })
     );
-});
+}
+);
 
 self.addEventListener('activate', function(event) {
     var cacheWhitelist = ['yourbit-cache-v1'];
@@ -58,3 +59,29 @@ self.addEventListener('activate', function(event) {
         })
     );
 });
+
+
+self.addEventListener('push', (event) => {
+    let pushMessageJSON = event.data.json();
+
+    event.waitUntil(self.registration.showNotification(pushMessageJSON.title, {
+        body: pushMessageJSON.body,
+        tag: pushMessageJSON.tag,
+        actions: [{
+            action: pushMessageJSON.actionURL,
+            title: pushMessageJSON.actionTitle
+        }]
+    })
+    
+)});
+
+self.addEventListener('notificationclick', function(event) {
+    if (!event.action) {
+        // Was a normal notification click
+        console.log('Notification Click.');
+        return;
+    }
+
+    clients.openWindow(event.action);
+});    
+

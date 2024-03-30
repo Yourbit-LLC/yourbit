@@ -41,8 +41,6 @@ function yb_toggleMainMenu() {
     MAIN_MENU.classList.toggle("open");
 
 
-    window.navigator.vibrate(1000);
-
 }
 
 function yb_toggleSettingsMenu() {
