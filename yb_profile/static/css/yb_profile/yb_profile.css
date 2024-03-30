@@ -211,8 +211,7 @@ Profile Page
 .profile-bio-container.end {
     display: none !important;
 }
-
-.profile-splash-label.end {
+.yb-splash-label.end {
     display: grid !important;
     text-align: left !important;
     grid-template-columns: 60px auto 120px !important;
