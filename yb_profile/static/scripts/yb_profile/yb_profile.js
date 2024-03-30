@@ -99,15 +99,15 @@ function yb_enterProfile() {
     CREATE_POPOUT.classList.toggle("hide");
     SEARCH_POPOUT.classList.toggle("hide");
 
-    let bit_container = document.getElementById("bit-container");
-    $(bit_container).animate({"top":"0vh"}, "slow");
+    // let bit_container = document.getElementById("bit-container");
+    // $(bit_container).animate({"top":"0vh"}, "slow");
 
 
-    setTimeout(function(){
-        $('#profile-page-splash').css({"pointer-events":"none"});
-    }, 200);
-    yb_showMiniBar(); 
-    yb_showMenuTask();   
+    // setTimeout(function(){
+    //     $('#profile-page-splash').css({"pointer-events":"none"});
+    // }, 200);
+    // yb_showMiniBar(); 
+    // yb_showMenuTask();   
     
 }
 

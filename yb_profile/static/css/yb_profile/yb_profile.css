@@ -55,7 +55,7 @@ Profile Page
     border: 3px solid white;
 }
 
-.large-profile-image.end {
+.profile-image-container.end {
     height: 30px !important;
     width: 30px !important;
     margin-left: 50px !important;
