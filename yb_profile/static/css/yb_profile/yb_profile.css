@@ -56,8 +56,8 @@ Profile Page
 }
 
 .profile-image-container.end {
-    height: 30px !important;
-    width: 30px !important;
+    height: 50px !important;
+    width: 50px !important;
     margin-left: 50px !important;
     grid-column: 1 !important;
 }
@@ -159,8 +159,7 @@ Profile Page
 }
 
 .profile-interact-icon {
-    display: none;
-
+    display: none !important;
 }
 
 .profile-interact-icon.end {
