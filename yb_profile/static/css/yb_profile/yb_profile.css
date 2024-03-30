@@ -183,8 +183,9 @@ Profile Page
 
 .splash-page.end {
     height: 80px !important;
-    top: 100px !important;
+    top: 60px !important;
     width: 100% !important;
+    transition: 0.5s !important;
 }
 
 .profile-bio-container {
@@ -211,22 +212,26 @@ Profile Page
     grid-template-columns: 60px auto 120px !important;
     width: 100% !important;
     height: 100% !important;
+    transition: 0.5s !important;
 }
 
 .profile-name-splash.end {
     grid-column: 2 !important;
     height: 40px !important;
+    transition: 0.5s !important;
 }
 
 .profile-name-header.end {
     font-size: 15px !important;
     margin-left: 10px !important;
     margin-top: 10px !important;
+    transition: 0.5s !important;
 }
 
 .profile-handle.label.end {
     font-size: 12px !important;
     margin-left: 10px !important;
+    transition: 0.5s !important;
 }
 
 .splash-bio-container.preview {
@@ -278,6 +283,7 @@ Profile Page
     top: 0;
     opacity: 0;
     display: none !important;
+    transition: 0.5s !important;
 }
 
 @media screen and (min-width: 768px){
@@ -311,6 +317,7 @@ Profile Page
     text-align:center !important; 
     margin-bottom: 0px !important; 
     height:80px !important; 
+    transition: 0.5s !important;
 }
 
 .profile-interaction-container.preview {
@@ -421,6 +428,7 @@ Profile Page
     height: 50px !important;
     width: 50px !important;
     grid-column: 1 !important;
+    transition: 0.5s !important;
 }
 
 
