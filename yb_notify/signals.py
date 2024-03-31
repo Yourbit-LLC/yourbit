@@ -1,11 +1,12 @@
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from yb_accounts.models import Account as User
-from yb_messages.models import Message 
+from yb_messages.models import Message
 from yb_notify.models import Notification
 from yb_bits.models import BitLike, BitComment
 from yb_profile.models import FriendRequest
 from yb_notify.models import NotificationCore
+from webpush import send_user_notification
 
 #Create a notification on creation of message
 
@@ -30,12 +31,16 @@ def create_message_notification(sender, instance, created, **kwargs):
                     conversation = conversation,
                     title = "New Message",
                     notify_class = 1
-                    
+
                 )
 
                 notification.save()
 
                 addToCore(notification, member)
+
+                #Send Push Notification
+                payload = {"head": "New Message", "body": instance.body, "icon": "/static/images/2023-logo-draft.png"}
+                send_user_notification(user=member, payload=payload, ttl=1000)
 
 #Create a notification on like of a bit
 @receiver(post_save, sender=BitLike)
@@ -50,11 +55,15 @@ def create_bit_like_notification(sender, instance, created, **kwargs):
             title = "New Like",
             notify_class = 2
 
-            
+
         )
         notification.save()
 
         addToCore(notification, bit.profile)
+
+        #Send Push Notification
+        # payload = {"head": "New Like", "body": instance.user.username + " has liked your bit", "icon": "/static/images/2023-logo-draft.png"}
+        # send_user_notification(user=bit.profile.user, payload=payload, ttl=1000)
 
 #Create a notification on creation of bit comment
 @receiver(post_save, sender=BitComment)
@@ -72,6 +81,11 @@ def create_bit_comment_notification(sender, instance, created, **kwargs):
         notification.save()
 
         addToCore(notification, bit.profile)
+
+        #Send Push Notification
+        # payload = {"head": "New Comment", "body": instance.user.username + " has commented on your bit", "icon": "/static/images/2023-logo-draft.png"}
+        # send_user_notification(user=bit.profile.user, payload=payload, ttl=1000)
+
 
 #Create a notification on friend request
 @receiver(post_save, sender=FriendRequest)
@@ -92,6 +106,10 @@ def create_friend_request_notification(sender, instance, created, **kwargs):
 
         addToCore(notification, instance.to_user)
 
+        #Send Push Notification
+        # payload = {"head": "New Friend Request", "body": instance.from_user.user.username + " has sent you a friend request", "icon": "/static/images/2023-logo-draft.png"}
+        # send_user_notification(user=instance.to_user.user, payload=payload, ttl=1000)
+
 #Create a notification on friend request acceptance
 @receiver(post_save, sender=FriendRequest)
 def create_friend_accept_notification(sender, instance, created, **kwargs):
@@ -110,4 +128,10 @@ def create_friend_accept_notification(sender, instance, created, **kwargs):
         notification.save()
 
         addToCore(notification, instance.from_user)
+
+        #Send Push Notification
+        # payload = {"head": "Friend Request Accepted", "body": instance.to_user.user.username + " has accepted your friend request", "icon": "/static/images/2023-logo-draft.png"}
+        # send_user_notification(user=instance.from_user.user, payload=payload, ttl=1000)
+
+
 
