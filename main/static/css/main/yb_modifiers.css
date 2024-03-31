@@ -329,7 +329,7 @@
 
 .rainbowBorder {
     /*Style*/
-    border-image: linear-gradient(
+    border-color: linear-gradient(
         to right,
         red,
         orange, 
