@@ -328,8 +328,26 @@
     
 
 .rainbowBorder {
-    /*Style*/
-    border-color: linear-gradient(
+    /* Adjust the border radius as needed */
+    border-radius: 10px;
+    /* Ensures the pseudo-element is positioned relative to this wrapper */
+    position: relative; 
+    /* Adjust padding to match the pseudo border width for visual consistency */
+    padding: 10px; 
+    /* Needed to ensure the pseudo-element's border wraps the content nicely */
+    overflow: hidden; 
+}
+
+.rainbowBorder::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    /* The gradient border */
+    border: 5px solid; /* Adjust the border width as needed */
+    border-image: linear-gradient(
         to right,
         red,
         orange, 
@@ -339,7 +357,13 @@
         indigo, 
         violet
     ) 1;
+    /* Ensures the border corners are rounded */
+    border-radius: 10px; /* Match this value with the wrapper's border-radius */
+    /* Expands the pseudo-element to cover the border area */
+    /* Adjust these values based on the border width to ensure proper coverage */
+    margin: -5px; 
 }
+
 
 .narrowBorder {
     /*Style*/
