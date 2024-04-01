@@ -8,7 +8,6 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
 # Create your views here.
-
 def initialize_session(request):
     from yb_settings.models import MySettings, FeedSettings
     from yb_systems.models import TaskManager

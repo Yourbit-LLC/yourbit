@@ -3,11 +3,11 @@ self.addEventListener('install', function(event) {
     var urlsToCache = [
         "/",
         "/profile/templates/history/",
-        "/profile/templates/messages/",
+        "/messages/templates/messages/",
         "/profile/templates/orbits/",
         "/profile/templates/people/",
         "/profile/templates/stuff/",
-        "/profile/templates/user/",
+        "/bits/templates/user/",
         "https://objects-in-yourbit-2.us-ord-1.linodeobjects.com/scripts/main/yb_master.js",
         "https://objects-in-yourbit-2.us-ord-1.linodeobjects.com/scripts/menu/yb_menu.js",  
         "https://objects-in-yourbit-2.us-ord-1.linodeobjects.com/scripts/yb_worker.js",

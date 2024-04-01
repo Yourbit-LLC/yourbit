@@ -524,10 +524,23 @@ async function subscribeToPush() {
     };
     
     let subscription = await swRegistration.pushManager.subscribe(subscriptionOptions);
-    
+
     sendSubscriptionToServer(subscription);
 }
 
+async function sendSubscriptionToServer(subscription) {
+    const response = await fetch('/notify/api/subscribe/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(subscription)
+    });
+
+    if (!response.ok) {
+        throw new Error('Failed to send subscription to server');
+    }
+}
 
 
 $(document).ready(function() {
@@ -556,6 +569,16 @@ $(document).ready(function() {
         });
     }
 
+    if ('serviceWorker' in navigator && 'SyncManager' in window) {
+        navigator.serviceWorker.ready
+        .then(function(registration) {
+            return registration.sync.register('sync-new-bits');
+        })
+        .catch(function(err) {
+            console.log('Service Worker registration failed: ', err);
+        });
+    }
+
     yb_updateTimezone();
 
     if (window.matchMedia('(display-mode: standalone)').matches) {
@@ -567,7 +590,6 @@ $(document).ready(function() {
     } else {
         console.log('display-mode is not standalone');
     }
-
 
 
     // yb_setTimezone();

@@ -65,3 +65,91 @@ class NotificationPage(View):
                     'login_form': login_form,
                 }
             )
+        
+
+@method_decorator(login_required, name='dispatch')
+def subscribeToNotifications(request):
+    from .models import UserDevice, PushSubscription
+    import json
+    data = json.loads(request.body)
+    user = User.objects.get(username=data['username'])
+    device_info = json.loads(data['device_info'])
+
+    device = UserDevice.objects.get_or_create(user=user, device_id=data['device_id'], defaults={'device_type': device_info['deviceType']})
+    
+    subscription = PushSubscription(
+        user_device = device,
+        endpoint = data['endpoint'],
+        p256dh = data['p256dh'],
+        auth = data['auth']
+    )
+
+    subscription.save()
+    return HttpResponse("Success")
+
+@method_decorator(login_required, name='dispatch')
+def unsubscribeToNotifications(request):
+    from .models import UserDevice, PushSubscription
+    import json
+    data = json.loads(request.body)
+    user = User.objects.get(username=data['username'])
+    device = UserDevice.objects.get(user=user, device_id=data['device_id'])
+    subscription = PushSubscription.objects.get(user_device=device, endpoint=data['endpoint'])
+    subscription.delete()
+    return HttpResponse("Success")
+
+
+def notifyUser(request):
+    from .models import PushSubscription, UserDevice
+    import json
+    from webpush import send_user_notification
+
+    data = json.loads(request.body)
+    user = User.objects.get(username=data['username'])
+
+    subscription = PushSubscription.objects.get(user_device=device)
+
+    device = UserDevice.objects.get(user=user, device_id=data['device_id'])
+
+    if device.device_type == 'iOS':
+        device.send_message_ios(data['message'])
+
+    else:
+
+        payload = {
+            'head': data['head'],
+            'body': data['body'],
+            'icon': data['icon'],
+            'tag': data['tag'],
+            'data': data['data']
+        }
+
+        device.send_message_web(payload)
+    return HttpResponse("Success")
+
+def notifyAllUsers(request):
+    from .models import PushSubscription, UserDevice
+    import json
+    from webpush import send_user_notification
+
+    data = json.loads(request.body)
+    users = User.objects.all()
+
+    for user in users:
+        device = UserDevice.objects.get(user=user, device_id=data['device_id'])
+        subscription = PushSubscription.objects.get(user_device=device)
+
+        if device.device_type == 'iOS':
+            device.send_message_ios(data['message'])
+
+        else:
+            payload = {
+                'head': data['head'],
+                'body': data['body'],
+                'icon': data['icon'],
+                'tag': data['tag'],
+                'data': data['data']
+            }
+
+            device.send_message_web(payload)
+    return HttpResponse("Success")

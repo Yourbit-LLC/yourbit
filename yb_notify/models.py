@@ -11,6 +11,84 @@ class NotificationCore(models.Model):
     unseen_notifications = models.ManyToManyField('Notification', related_name='unseen_notifications', blank=True)
     seen_notifications = models.ManyToManyField('Notification', related_name='seen_notifications', blank=True)
 
+class UserDevice(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    device_id = models.CharField(max_length=255) # Unique ID for the device
+    device_type = models.CharField(max_length=50) # E.g., 'iOS', 'Android', 'Web'
+    last_active = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = ('user', 'device_id')
+
+    def send_message_web(self, message):
+        from webpush import send_user_notification
+        # Send a message to the device
+
+        # For example, you might use the `webpush` library to send a push notification
+        # to a web browser
+        send_user_notification(
+            user=self.user,
+            payload={
+                'head': 'New message',
+                'body': message,
+            },
+            ttl=1000,
+        )
+    
+    def send_message_ios(self, message):
+        # Send a message to the device
+        import httpx
+        import json
+
+        # Enable HTTP/2 support in httpx
+        client = httpx.Client(http2=True)
+
+        # Your device token
+        device_token = self.device_id
+
+        # The URL for the APNs request
+        url = f"https://api.push.apple.com/3/device/{device_token}"
+
+        # The payload of your push notification
+        data = json.dumps({
+            "aps": {
+                "alert": message
+            }
+        })
+
+        # The headers for the APNs request
+        headers = {
+            "apns-push-type": "alert",
+            "apns-expiration": "0",
+            "apns-priority": "10",
+            "apns-topic": "yourbit.me"
+        }
+
+        # Sending the POST request to the APNs server
+        response = client.post(url, headers=headers, content=data)
+
+        # Printing the response status code and body
+        print(response.status_code)
+        print(response.text)
+
+        # Close the client
+
+        client.close()
+
+
+    
+
+
+class PushSubscription(models.Model):
+    user_device = models.ForeignKey(UserDevice, on_delete=models.CASCADE)
+    endpoint = models.URLField(max_length=500)
+    p256dh = models.CharField(max_length=100) # Public key
+    auth = models.CharField(max_length=100) # Auth secret
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('endpoint', 'p256dh', 'auth')
+
 # Create your models here.
 class Notification(models.Model):
 
