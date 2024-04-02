@@ -384,7 +384,7 @@ function yb_handleAboutClick(e){
     } else {
         console.log("not closing")
         let container_content = container[1].querySelector(".yb-2Way-content");
-        container[1].setAttribute("data-state", "notifications");
+        container[1].setAttribute("data-state", "about");
         $(container_content).load(`/profile/templates/about/${this_username}/`)
         history.pushState({}, "", `/profile/about/${this_username}/`);
     }
