@@ -544,24 +544,10 @@ async function sendSubscriptionToServer(subscription) {
 
 
 $(document).ready(function() {
-    SEARCH_BUTTON.addEventListener('mouseover', yb_searchMouseOver);
-    CREATE_DESKTOP.addEventListener('click', yb_toggleCreateMenu);
-    // EXIT_CREATE.addEventListener('click', yb_toggleCreateMenu);
-
-    MESSAGES_DESKTOP.addEventListener("click", yb_handleMessageClick);
-    NOTIFICATIONS_DESKTOP.addEventListener("click", yb_handleNotificationsClick);
-    NOTIFICATIONS_MOBILE.addEventListener("click", yb_handleNotificationsClick);
-
-    CREATE_POPOUT.addEventListener('click', yb_toggleCreateMenu);
-    console.log(SEARCH_FIELD);
-
-    SEARCH_POPOUT.addEventListener('click', function() {
-        yb_openSpotlight();
-    });
 
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
-            navigator.serviceWorker.register('https://objects-in-yourbit-2.us-ord-1.linodeobjects.com/static/sw.js').then(function(registration) {
+            navigator.serviceWorker.register('https://objects-in-yourbit-2.us-ord-1.linodeobjects.com/static/scripts/main/sw.js').then(function(registration) {
                 console.log('ServiceWorker registration successful with scope: ', registration.scope);
             }, function(err) {
                 console.log('ServiceWorker registration failed: ', err);
@@ -578,6 +564,21 @@ $(document).ready(function() {
             console.log('Service Worker registration failed: ', err);
         });
     }
+
+    SEARCH_BUTTON.addEventListener('mouseover', yb_searchMouseOver);
+    CREATE_DESKTOP.addEventListener('click', yb_toggleCreateMenu);
+    // EXIT_CREATE.addEventListener('click', yb_toggleCreateMenu);
+
+    MESSAGES_DESKTOP.addEventListener("click", yb_handleMessageClick);
+    NOTIFICATIONS_DESKTOP.addEventListener("click", yb_handleNotificationsClick);
+    NOTIFICATIONS_MOBILE.addEventListener("click", yb_handleNotificationsClick);
+
+    CREATE_POPOUT.addEventListener('click', yb_toggleCreateMenu);
+    console.log(SEARCH_FIELD);
+
+    SEARCH_POPOUT.addEventListener('click', function() {
+        yb_openSpotlight();
+    });
 
     yb_updateTimezone();
 
