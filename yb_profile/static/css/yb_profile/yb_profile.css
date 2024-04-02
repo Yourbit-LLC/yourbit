@@ -190,7 +190,7 @@ Profile Page
 .splash-page.end {
     height: 80px !important;
     top: 60px !important;
-    width: 100% !important;
+    width: 100vw !important;
     transition: 0.5s !important;
 }
 
@@ -229,8 +229,8 @@ Profile Page
 
 .profile-name-header.end {
     font-size: 15px !important;
-    margin-left: 10px !important;
-    margin-top: 10px !important;
+    margin-top: 20px !important;
+    margin-bottom: 2px;
     transition: 0.5s !important;
 }
 
