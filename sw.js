@@ -10,7 +10,7 @@ self.addEventListener('install', function(event) {
         "/bits/templates/user/",
         "https://objects-in-yourbit-2.us-ord-1.linodeobjects.com/scripts/main/yb_master.js",
         "https://objects-in-yourbit-2.us-ord-1.linodeobjects.com/scripts/menu/yb_menu.js",  
-        "https://objects-in-yourbit-2.us-ord-1.linodeobjects.com/scripts/yb_worker.js",
+        "https://objects-in-yourbit-2.us-ord-1.linodeobjects.com/yb_worker.js",
         "https://objects-in-yourbit-2.us-ord-1.linodeobjects.com/css/main/yb_core.css",
         "https://objects-in-yourbit-2.us-ord-1.linodeobjects.com/css/main/yb_animations.css",
         "https://objects-in-yourbit-2.us-ord-1.linodeobjects.com/css/main/yb_containers.css",
