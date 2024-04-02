@@ -336,6 +336,10 @@ Profile Page
     
 }
 
+.profile-interact-text.end {
+    display: none !important;
+}
+
 .grid-overlay {
     position: absolute;
     width: 100vw;

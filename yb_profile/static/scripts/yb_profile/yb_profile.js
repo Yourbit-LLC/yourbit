@@ -10,17 +10,19 @@ var profile_id = document.getElementById("profile-data").getAttribute
 ("data-profile-id");
 var active_username = document.getElementById("profile-data").getAttribute("data-username");
 
-const PROFILE_SPLASH_SCREEN = document.getElementById("profile-page-splash");
-const PROFILE_SPLASH_LABEL = document.getElementById("profile-splash-label");
-const PROFILE_NAME_HEADER = document.getElementById("profile-name-header");
-const PROFILE_HANDLE_LABEL = document.getElementById("profile-handle-label");
-const PROFILE_IMAGE_SPLASH = document.getElementById("profile-image-container");
-const PROFILE_SPLASH_BIO = document.getElementById("profile-bio-container");
-const PROFILE_INTERACTION_CONTAINER = document.getElementById("profile-interaction-container");
-const PROFILE_INTERACTION_BUTTONS = document.getElementsByClassName("button-profile-interaction");
-const INTERACT_ICONS = document.getElementsByClassName("profile-interact-icon");
+var PROFILE_SPLASH_SCREEN = document.getElementById("profile-page-splash");
+var PROFILE_SPLASH_LABEL = document.getElementById("profile-splash-label");
+var PROFILE_NAME_HEADER = document.getElementById("profile-name-header");
+var PROFILE_HANDLE_LABEL = document.getElementById("profile-handle-label");
+var PROFILE_IMAGE_SPLASH = document.getElementById("profile-image-container");
+var PROFILE_SPLASH_BIO = document.getElementById("profile-bio-container");
+var PROFILE_INTERACTION_CONTAINER = document.getElementById("profile-interaction-container");
+var PROFILE_INTERACTION_BUTTONS = document.getElementsByClassName("button-profile-interaction");
+var INTERACT_ICONS = document.getElementsByClassName("profile-interact-icon");
 
-const SWIPE_UP_ELEMENT = document.getElementById("swipe-up-element");
+var SWIPE_UP_ELEMENT = document.getElementById("swipe-up-element");
+
+var interact_texts = document.getElementsByClassName("profile-interact-text");
 
 
 function showProfileImage(){
@@ -88,6 +90,10 @@ function yb_enterProfile() {
 
     for (let i = 0; i < INTERACT_ICONS.length; i++) {
         INTERACT_ICONS[i].classList.add("end");
+    }
+
+    for (let i = 0; i < interact_texts.length; i++) {
+        interact_texts[i].classList.add("end");
     }
 
     PROFILE_INTERACTION_CONTAINER.classList.add("end");
