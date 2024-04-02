@@ -99,38 +99,35 @@ def unsubscribeToNotifications(request):
     return HttpResponse("Success")
 
 
-def notifyUser(request):
+def notifyUser(title, body, icon, tag, data, user):
     from .models import PushSubscription, UserDevice
     import json
     from webpush import send_user_notification
 
-    data = json.loads(request.body)
-    user = User.objects.get(username=data['username'])
+    devices = UserDevice.objects.filter(user=user)
 
-    subscription = PushSubscription.objects.get(user_device=device)
+    for device in devices:
+        subscription = PushSubscription.objects.get(user_device=device)
 
-    device = UserDevice.objects.get(user=user, device_id=data['device_id'])
+        if device.device_type == 'iOS':
+            device.send_message_ios(subscription, data)
 
-    if device.device_type == 'iOS':
-        device.send_message_ios(data['message'])
+        else:
+            payload = {
+                'head': data['head'],
+                'body': body,
+                'icon': icon,
+                'tag': tag,
+                'data': data
+            }
 
-    else:
+            device.send_message_web(payload)
 
-        payload = {
-            'head': data['head'],
-            'body': data['body'],
-            'icon': data['icon'],
-            'tag': data['tag'],
-            'data': data['data']
-        }
-
-        device.send_message_web(payload)
     return HttpResponse("Success")
 
 def notifyAllUsers(request):
     from .models import PushSubscription, UserDevice
     import json
-    from webpush import send_user_notification
 
     data = json.loads(request.body)
     users = User.objects.all()

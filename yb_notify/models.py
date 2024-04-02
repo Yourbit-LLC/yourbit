@@ -35,7 +35,7 @@ class UserDevice(models.Model):
             ttl=1000,
         )
     
-    def send_message_ios(self, message):
+    def send_message_ios(self, subscription, data):
         # Send a message to the device
         import httpx
         import json
@@ -52,7 +52,10 @@ class UserDevice(models.Model):
         # The payload of your push notification
         data = json.dumps({
             "aps": {
-                "alert": message
+                "alert": {
+                    "title": data['title'],
+                    "body": data['body']
+                },
             }
         })
 
@@ -60,7 +63,7 @@ class UserDevice(models.Model):
         headers = {
             "apns-push-type": "alert",
             "apns-expiration": "0",
-            "apns-priority": "10",
+            "apns-priority": "5",
             "apns-topic": "yourbit.me"
         }
 
