@@ -561,7 +561,7 @@ $(document).ready(function() {
 
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
-            navigator.serviceWorker.register('https://objects-in-yourbit-2.us-ord-1.linodeobjects.com/yb_worker.js').then(function(registration) {
+            navigator.serviceWorker.register('https://objects-in-yourbit-2.us-ord-1.linodeobjects.com/static/sw.js').then(function(registration) {
                 console.log('ServiceWorker registration successful with scope: ', registration.scope);
             }, function(err) {
                 console.log('ServiceWorker registration failed: ', err);
