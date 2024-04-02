@@ -381,7 +381,7 @@ Profile Page
 
 
 .profile-interact-icon {
-    position: absolute;
+    position: absolute !important;
     display: block;
     top:50%;
     left: 50%;
