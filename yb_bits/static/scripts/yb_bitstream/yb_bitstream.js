@@ -33,7 +33,8 @@ function yb_updateFeed(update, data) {
         console.log("appending html...")
         $(bit_container).html('');
 
-        if ('profile' in data){
+        if (yb_getSessionValues('location') === 'profile'){
+            console.log("profile data")
             yb_showSwipeUp();
         }
 
