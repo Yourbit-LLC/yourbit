@@ -37,6 +37,7 @@ function yb_requestFeed(data=null) {
         success: function(response) {
             //Update the feed
             yb_updateFeed(data.update, response);
+            MAIN_LOADING_SCREEN.style.display = 'none';
             console.log(response)
         },
         error: function(response) {

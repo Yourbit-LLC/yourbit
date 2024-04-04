@@ -55,6 +55,8 @@ const TOP_LAYER = document.getElementById("top-layer");
 const FLOATING_TEXT_CONTAINER = document.getElementById("floating-text");
 const FLOATING_TEXT_INPUT = document.getElementById("input-floating-text");
 
+const MAIN_LOADING_SCREEN = document.getElementById("yb-loading-main");
+
 //Remove a snapcard
 function yb_removeSnapCard(card) {
     card.remove();
