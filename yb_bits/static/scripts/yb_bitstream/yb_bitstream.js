@@ -33,7 +33,7 @@ function yb_updateFeed(update, data) {
         console.log("appending html...")
         $(bit_container).html('');
 
-        if (data.profile){
+        if ('profile' in data){
             yb_showSwipeUp();
         }
 
