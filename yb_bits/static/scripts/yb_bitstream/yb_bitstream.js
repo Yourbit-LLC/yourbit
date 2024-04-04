@@ -37,8 +37,8 @@ function yb_requestFeed(data=null) {
         success: function(response) {
             //Update the feed
             yb_updateFeed(data.update, response);
-            $(MAIN_LOADING_SCREEN).fadeOut(500);
-            $(MAIN_LOADING_SCREEN).animate({scale: 0}, 500);
+            $(MAIN_LOADING_SCREEN).fadeOut(500).animate({opacity: 0}, 500);
+            
             bit_container.classList.add('open');
             console.log(response)
         },
