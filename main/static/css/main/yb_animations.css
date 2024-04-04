@@ -17,7 +17,7 @@
   }
 
   .yb-bounceDown-infinite {
-    animation: yb-bounceDown 1s linear infinite;
+    animation: yb-bounceDown 3s linear infinite;
   }
 
   @keyframes yb-bounce-adaptY50 {
