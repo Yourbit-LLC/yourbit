@@ -447,9 +447,29 @@ lang="en"
                 <object type="image/svg+xml" style="position: absolute; height:75vw; width: 75vw; top:50%; left:50%; transform: translate(-50%,-50%);" data="{% static 'images/main/animated_loading_screen.svg' %}" class="yb-loading">
             </div>
             <script>
+                function getBrowser() {
+                    const userAgent = navigator.userAgent;
+                  
+                    if (userAgent.match(/chrome|chromium|crios/i)) {
+                      return "Chrome";
+                    } else if (userAgent.match(/firefox|fxios/i)) {
+                      return "Firefox";
+                    } else if (userAgent.match(/safari/i)) {
+                      return "Safari";
+                    } else if (userAgent.match(/opr\//i)) {
+                      return "Opera";
+                    } else if (userAgent.match(/edg/i)) {
+                      return "Edge";
+                    } else if (userAgent.match(/msie|trident/i)) {
+                      return "Internet Explorer";
+                    } else {
+                      return "Unknown";
+                    }
+                  }
+
                 var loading = document.getElementById('yb-loading-iconContainer');
-                //If on safari add "yb-blink-soft" and "infinite" to the class list
-                if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1) {
+                //If browser is safari add "yb-blink-soft" and "infinite" to the class list
+                if (getBrowser() == "Safari") {
                     loading.classList.add('yb-blink-soft');
                     loading.classList.add('infinite');
                 }
