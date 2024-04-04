@@ -3,7 +3,7 @@
     /*positioning*/
     position: fixed;
     display: block;
-    z-index: 15;
+    z-index: 1000;
     bottom: 57px;
 
     /*sizing*/
