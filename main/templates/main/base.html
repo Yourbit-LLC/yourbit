@@ -444,8 +444,9 @@ lang="en"
         <!--Main loading initial app-->
         <div class = "yb-fsContainer still black" id="yb-loading-main" style="transition: 0.5s;">
             <div id="yb-loading-iconContainer" class="yb-loading-iconContainer" style="position: relative; top: 0px; left: 0px; width: 100vw; height: 100vh;">
-                <object type="image/svg+xml" style="position: absolute; height:75vw; width: 75vw; top:50%; left:50%; transform: translate(-50%,-50%);" data="{% static 'images/main/animated_loading_screen.svg' %}" class="yb-loading"></object>
+                <object type="image/svg+xml" style="position: absolute; height:60vw; width: 60vw; top:50%; left:50%; transform: translate(-50%,-50%);" data="{% static 'images/main/animated_loading_screen.svg' %}" class="yb-loading"></object>
             </div>
+            <p class="yb-autoText yb-fillWidth align-center font-medium">Loading Bitstream...</p>
             <script>
                 var loading = document.getElementById('yb-loading-iconContainer');
                 //If on safari add "yb-blink-soft" and "infinite" to the class list
