@@ -15,6 +15,7 @@ function yb_updateFeed(update, data) {
     } else {
         //Update the feed
         console.log("appending html...")
+        $('#bit-container').html('');
 
         for (let i = 0; i < data.length; i++) {
             let blueprint = data[i];
@@ -49,7 +50,7 @@ function yb_requestFeed(data=null) {
     });
 }
 
-function yb_getFeed(update = false, next_page = false, previous_page = false) {
+function yb_getFeed(update = false, next_page = false, previous_page = false, profile = null) {
     // Initialize variables
     let sort_setting = yb_getSessionValues('sort');
     console.log(sort_setting)
@@ -79,6 +80,11 @@ function yb_getFeed(update = false, next_page = false, previous_page = false) {
         'space': space,
         'page': page,
         'items_per_page': 8, // Assuming your Django view is set up to handle this
+    }
+
+    if (profile) {
+        // If we're requesting a specific user's feed, add the user's ID to the request data
+        request_data['profile'] = profile;
     }
 
     // Send the request to the backend
