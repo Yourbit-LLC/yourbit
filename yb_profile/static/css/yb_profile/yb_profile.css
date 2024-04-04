@@ -448,6 +448,15 @@ Profile Page
     line-height: 2;
 }
 
+.swipe-up-loading {
+    position: absolute;
+    display: none;
+    bottom: 100px;
+    width: 100%;
+    text-align: center;
+    color: white;
+}
+
 .swipe-up-loading.false {
     display:none;
     transition: 0.5s;
@@ -462,3 +471,4 @@ Profile Page
     display: block;
     transition: 0.5s;
 }
+

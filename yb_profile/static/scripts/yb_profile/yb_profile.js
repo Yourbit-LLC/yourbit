@@ -107,7 +107,9 @@ function yb_enterProfile() {
     CREATE_POPOUT.classList.toggle("hide");
     SEARCH_POPOUT.classList.toggle("hide");
 
-    // let bit_container = document.getElementById("bit-container");
+    let profile_bit_container = document.getElementById("profile-bit-container");
+
+    bit_container.classList.add('open');
     // $(bit_container).animate({"top":"0vh"}, "slow");
 
 

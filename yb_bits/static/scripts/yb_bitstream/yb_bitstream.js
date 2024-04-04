@@ -61,7 +61,10 @@ function yb_requestFeed(data=null) {
             yb_updateFeed(data.update, response);
             $(MAIN_LOADING_SCREEN).fadeOut(500).animate({opacity: 0}, 500);
             
-            bit_container.classList.add('open');
+            if (yb_getSessionValues('location') != 'profile'){
+                bit_container.classList.add('open');
+            }
+            
             console.log(response)
         },
         error: function(response) {
