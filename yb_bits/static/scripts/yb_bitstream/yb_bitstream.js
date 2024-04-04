@@ -92,6 +92,7 @@ function yb_getFeed(update = false, next_page = false, previous_page = false) {
     if (yb_getSessionValues('location') === 'profile') {
         // If we're requesting a specific user's feed, add the user's ID to the request data
         request_data['profile'] = document.getElementById('profile-data').getAttribute('data-username');
+        
     }
 
     // Send the request to the backend
