@@ -11,6 +11,15 @@ function yb_renderBit(data) {
     let this_bit = yb_buildBit(data);
     bit_container.appendChild(this_bit.built_bit);
 }
+
+function yb_showSwipeUp() {
+    let swipe_up = document.getElementById("swipe-up-element");
+    let load_indicator = document.getElementById("loading-indicator-container-profile");
+
+    load_indicator.classList.remove("true");
+    load_indicator.classList.add("false");
+    swipe_up.classList.add("show");
+}
  
 function yb_updateFeed(update, data) {
     //Update the feed
@@ -92,7 +101,7 @@ function yb_getFeed(update = false, next_page = false, previous_page = false) {
     if (yb_getSessionValues('location') === 'profile') {
         // If we're requesting a specific user's feed, add the user's ID to the request data
         request_data['profile'] = document.getElementById('profile-data').getAttribute('data-username');
-        
+
     }
 
     // Send the request to the backend

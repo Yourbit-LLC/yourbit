@@ -621,3 +621,56 @@ p {
     right: 10px;
     top: 10px;
 }
+
+.loading-circle {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border: 4px solid rgb(74, 74, 74);
+    border-radius: 50%;
+    
+    animation: loading-spin 2s linear infinite; /* The spin animation will rotate the circle */
+    margin: auto;
+    
+  }
+  
+  .yb-loading-indicator-core-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 15;
+
+  }
+
+  .detail-load-box {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translate(-50%);
+    display: grid;
+
+  }
+
+  .loading-circle.detailed {
+    position: relative;
+    grid-row: 1;
+  }
+
+  .loading-circle-large {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border: 6px solid rgb(74, 74, 74);
+    border-radius: 50%;
+    border-top: 8px solid #c9c9c9;
+    
+    animation: loading-spin 2s linear infinite; /* The spin animation will rotate the circle */
+    margin: auto;
+  }
+
+  .loading-circle-label {
+    position: relative;
+    grid-row: 2;
+    animation: yb-flash 1.5s linear infinite;
+   }

@@ -279,6 +279,7 @@ Profile Page
 
 .swipe-up-element {
     position: absolute;
+    display: none;
     bottom: 60px;
     text-align: center;
     width: 100%;
@@ -445,4 +446,19 @@ Profile Page
 
 .profile-connect-option {
     line-height: 2;
+}
+
+.swipe-up-loading.false {
+    display:none;
+    transition: 0.5s;
+}
+
+.swipe-up-loading.true {
+    display: block;
+    transition: 0.5s;
+}
+
+.swipe-up-element.show {
+    display: block;
+    transition: 0.5s;
 }
