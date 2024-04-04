@@ -27,11 +27,15 @@ function yb_updateFeed(update, data) {
     console.log(update)
     if (update === true) {
         //Append the feed
-        $('#bit-container').append(data);
+        $(bit_container).append(data);
     } else {
         //Update the feed
         console.log("appending html...")
-        $('#bit-container').html('');
+        $(bit_container).html('');
+
+        if (data.profile){
+            yb_showSwipeUp();
+        }
 
         for (let i = 0; i < data.length; i++) {
             let blueprint = data[i];
