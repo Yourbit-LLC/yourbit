@@ -14,6 +14,8 @@
     }
 </style>
 <link rel="stylesheet" type="text/css" href="{% static 'css/yb_profile/yb_profile.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'css/yb_bits/yb_bits.css' %}"/>
+
 
 <input type="hidden" id="profile-data" value="{{current_profile.username}}" data-id="{{ current_profile.id }}" data-username="{{current_profile.user.username}}" data-background = "{{current_profile.custom.background_image.url}}" data-blur="{{profile.custom.background_blur}}" data-brightness="{{current_profile.custom.background_brightness}}" data-icon-color = "{{current_profile.custom.icon_color}}"/>
 <div id="profile-page-splash" class="splash-page profile">
