@@ -358,7 +358,7 @@ function yb_toggleCreateMenu(){
         
         let container_content = container[1].querySelector(".yb-2Way-content");
         container[1].setAttribute("data-state", "create");
-        $(container_content).load("/core/templates/create-menu/");
+        $(container_content).load("/core/create-menu/");
         history.pushState({}, "", '/create/');
     } else {
         history.pushState(null, null, "/");

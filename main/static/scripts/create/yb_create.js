@@ -28,7 +28,7 @@ $(document).ready(function () {
                 yb_handleNewMessage();
 
             } else{
-                var url = "/core/create/" + option;
+                var url = "/core/templates/create/" + option;
                 $(create_options).fadeOut(500);
                 $(container).load(url, function () {
                     $(container).fadeIn(500);
