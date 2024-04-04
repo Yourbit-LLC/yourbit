@@ -14,7 +14,7 @@ function yb_renderBit(data) {
 
 function yb_showSwipeUp() {
     let swipe_up = document.getElementById("swipe-up-element");
-    let load_indicator = document.getElementById("loading-indicator-container-profile");
+    let load_indicator = document.getElementById("load-indicator-container-profile");
 
     load_indicator.classList.remove("true");
     load_indicator.classList.add("false");
