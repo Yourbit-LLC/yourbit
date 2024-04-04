@@ -33,7 +33,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 1001;
+    z-index: 20;
 
 
     /*Style*/
@@ -43,6 +43,13 @@
     overflow-x: hidden;
     
 }
+
+.yb-fsContainer.list-menu {
+    z-index: 1001 !important;
+}
+
+
+
 
 .yb-fsContainer.still {
     top: 0;
