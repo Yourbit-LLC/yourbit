@@ -107,6 +107,7 @@ function yb_enterProfile() {
     CREATE_POPOUT.classList.remove("hide");
     SEARCH_POPOUT.classList.remove("hide");
 
+    yb_setSessionValues("fullscreen", "false");
     let profile_bit_container = document.getElementById("profile-bit-container");
 
     bit_container.classList.add('open');

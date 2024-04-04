@@ -243,10 +243,13 @@ function yb_toggle2WayContainer(type, scroll=false){
                     
                     SIDE_CONTAINERS[i].classList.toggle("open");
                     yb_clear2WayContainer(SIDE_CONTAINERS[i]);
-                    MOBILE_HEADER.classList.remove("hide");
-                    NAV_BAR.classList.remove("hideMobile");
-                    CREATE_POPOUT.classList.remove("hide");
-                    SEARCH_POPOUT.classList.remove("hide");
+
+                    if (!yb_getSessionValues('fullscreen')){
+                        MOBILE_HEADER.classList.remove("hide");
+                        NAV_BAR.classList.remove("hideMobile");
+                        CREATE_POPOUT.classList.remove("hide");
+                        SEARCH_POPOUT.classList.remove("hide");
+                    }
 
                     history.pushState(null, null, "/");
                     return ["closing", SIDE_CONTAINERS[i]];
@@ -464,6 +467,7 @@ function yb_navigateToProfile(e) {
     CREATE_POPOUT.classList.add("hide");
     SEARCH_POPOUT.classList.add("hide");
     yb_setSessionValues('location', 'profile');
+    yb_setSessionValues('fullscreen', 'true');
 
     if (MAIN_LOADING_SCREEN.style.display === "block"){
         $(MAIN_LOADING_SCREEN).fadeOut(500).animate({opacity: 0}, 500);

@@ -49,6 +49,8 @@ var active_comment_task = false;
 var active_notification_task = false;
 var back_button_active = false;
 
+var fullscreen_view = false;
+
 function getCSRF() {
     let csrf_token = document.querySelector('[name=csrfmiddlewaretoken]').value;
     return csrf_token;
@@ -325,6 +327,15 @@ function yb_getSessionValues(key) {
 
 function yb_setSessionValues(key, value) {
     $("#session_values").attr(`data-${key}`, value);
+}
+
+
+function yb_activateFullscreen() {
+    yb_setSessionValues("fullscreen", "true");
+}
+
+function yb_deactivateFullscreen() {
+    yb_setSessionValues("fullscreen", "false");
 }
 
 function yb_updatePageTask(next_location) {
