@@ -1,4 +1,11 @@
-var bit_container = document.getElementById("bit-container");
+
+if (yb_getSessionValues('location') === 'profile') {
+    var bit_container = document.getElementById("profile-bit-container");
+} else {
+
+    var bit_container = document.getElementById("bit-container");
+}
+
 
 function yb_renderBit(data) {
     let this_bit = yb_buildBit(data);
