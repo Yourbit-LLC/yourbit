@@ -243,10 +243,10 @@ function yb_toggle2WayContainer(type, scroll=false){
                     
                     SIDE_CONTAINERS[i].classList.toggle("open");
                     yb_clear2WayContainer(SIDE_CONTAINERS[i]);
-                    MOBILE_HEADER.classList.toggle("hide");
-                    NAV_BAR.classList.toggle("hideMobile");
-                    CREATE_POPOUT.classList.toggle("hide");
-                    SEARCH_POPOUT.classList.toggle("hide");
+                    MOBILE_HEADER.classList.remove("hide");
+                    NAV_BAR.classList.remove("hideMobile");
+                    CREATE_POPOUT.classList.remove("hide");
+                    SEARCH_POPOUT.classList.remove("hide");
 
                     history.pushState(null, null, "/");
                     return ["closing", SIDE_CONTAINERS[i]];
@@ -307,11 +307,11 @@ function yb_toggle2WayContainer(type, scroll=false){
                 }
             } else {
                 if (i === SIDE_CONTAINERS.length - 1){
-                    MOBILE_HEADER.classList.toggle("hide");
-                    NAV_BAR.classList.toggle("hideMobile");
-                    SIDE_CONTAINER_A.classList.toggle("open");
-                    CREATE_POPOUT.classList.toggle("hide");
-                    SEARCH_POPOUT.classList.toggle("hide");
+                    MOBILE_HEADER.classList.add("hide");
+                    NAV_BAR.classList.add("hideMobile");
+                    SIDE_CONTAINER_A.classList.add("open");
+                    CREATE_POPOUT.classList.add("hide");
+                    SEARCH_POPOUT.classList.add("hide");
 
                     if (scroll) {
                         if (SIDE_CONTAINER_A.classList.contains('yb-lockScroll-y')){
@@ -427,7 +427,7 @@ function yb_openSpotlight(category=null){
         FLOATING_TEXT_INPUT.addEventListener('blur', blurSpotlightField);
         CREATE_POPOUT.classList.add("hide");
         SEARCH_POPOUT.classList.add("hide");
-        NAV_BAR.classList.toggle("hideMobile");
+        NAV_BAR.classList.add("hideMobile");
 
     
         
@@ -445,7 +445,7 @@ function yb_closeSpotlight(){
         FLOATING_TEXT_CONTAINER.classList.remove('open');
         CREATE_POPOUT.classList.remove("hide");
         SEARCH_POPOUT.classList.remove("hide");
-        NAV_BAR.classList.toggle("hideMobile");
+        NAV_BAR.classList.remove("hideMobile");
     }
 
 }
@@ -460,9 +460,9 @@ function yb_navigateToProfile(e) {
     $("#content-container").load(`/profile/user/${username}/`);
     yb_closeSpotlight();
     MOBILE_HEADER.classList.toggle("hide");
-    NAV_BAR.classList.toggle("hideMobile");
-    CREATE_POPOUT.classList.toggle("hide");
-    SEARCH_POPOUT.classList.toggle("hide");
+    NAV_BAR.classList.add("hideMobile");
+    CREATE_POPOUT.classList.add("hide");
+    SEARCH_POPOUT.classList.add("hide");
     yb_setSessionValues('location', 'profile');
 
     if (MAIN_LOADING_SCREEN.style.display === "block"){
