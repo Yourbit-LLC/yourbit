@@ -244,7 +244,7 @@ function yb_toggle2WayContainer(type, scroll=false){
                     SIDE_CONTAINERS[i].classList.toggle("open");
                     yb_clear2WayContainer(SIDE_CONTAINERS[i]);
 
-                    if (!yb_getSessionValues('fullscreen')){
+                    if (yb_getSessionValues('fullscreen') == "false"){
                         MOBILE_HEADER.classList.remove("hide");
                         NAV_BAR.classList.remove("hideMobile");
                         CREATE_POPOUT.classList.remove("hide");
