@@ -16,7 +16,7 @@
     animation: yb-bounceDown 1s linear 1;
   }
 
-  .yb-bounce-infinite {
+  .yb-bounceDown-infinite {
     animation: yb-bounceDown 1s linear infinite;
   }
 
