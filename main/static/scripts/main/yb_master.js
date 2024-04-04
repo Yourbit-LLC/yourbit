@@ -427,6 +427,8 @@ function yb_openSpotlight(category=null){
         FLOATING_TEXT_INPUT.addEventListener('blur', blurSpotlightField);
         CREATE_POPOUT.classList.add("hide");
         SEARCH_POPOUT.classList.add("hide");
+        NAV_BAR.classList.toggle("hideMobile");
+
     
         
     } else {
@@ -443,6 +445,7 @@ function yb_closeSpotlight(){
         FLOATING_TEXT_CONTAINER.classList.remove('open');
         CREATE_POPOUT.classList.remove("hide");
         SEARCH_POPOUT.classList.remove("hide");
+        NAV_BAR.classList.toggle("hideMobile");
     }
 
 }
