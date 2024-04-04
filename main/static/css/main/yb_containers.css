@@ -709,3 +709,15 @@
     outline: none;
 
 }
+
+.bit-container {
+    position: relative;
+    transform: translateY(100vh);
+    transition: 0.75s;
+    ;
+}
+
+.bit-container.open {
+    transform: translateY(0);
+    transition: 0.75s;
+}
