@@ -102,10 +102,10 @@ function yb_enterProfile() {
 
     SWIPE_UP_ELEMENT.classList.add("end");
 
-    MOBILE_HEADER.classList.toggle("hide");
-    NAV_BAR.classList.toggle("hideMobile");
-    CREATE_POPOUT.classList.toggle("hide");
-    SEARCH_POPOUT.classList.toggle("hide");
+    MOBILE_HEADER.classList.remove("hide");
+    NAV_BAR.classList.remove("hideMobile");
+    CREATE_POPOUT.classList.remove("hide");
+    SEARCH_POPOUT.classList.remove("hide");
 
     let profile_bit_container = document.getElementById("profile-bit-container");
 
