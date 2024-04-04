@@ -46,17 +46,23 @@ class BitFeedAPIView(generics.ListAPIView):
         sort_value = self.request.query_params.get('sort')
 
         print(sort_value)
-        # Add other parameters as needed
 
+        #Check if profile is in request query params
+        if 'profile' in self.request.query_params:
+            #If so user wants bits for a specific profile
+            profile_username = self.request.query_params.get('profile')
+            profile = Profile.objects.get(user__username=profile_username)
+            queryset = Bit.objects.filter(profile=profile).order_by('-' + sort_value)
         
+        else:            
 
-        # Filter bits made by friends, followers, or public bits
-        queryset = Bit.objects.filter(
-            models.Q(profile__in=friends) |  # Bits made by friends
-            models.Q(profile__in=follows) |  # Bits made by followers
-            models.Q(is_public=True) |  # Public bits
-            models.Q(user=self.request.user)  # Bits made by the user
-        ).distinct().order_by('-' + sort_value)
+            # Filter bits made by friends, followers, or public bits
+            queryset = Bit.objects.filter(
+                models.Q(profile__in=friends) |  # Bits made by friends
+                models.Q(profile__in=follows) |  # Bits made by followers
+                models.Q(is_public=True) |  # Public bits
+                models.Q(user=self.request.user)  # Bits made by the user
+            ).distinct().order_by('-' + sort_value)
 
         print(queryset)
 

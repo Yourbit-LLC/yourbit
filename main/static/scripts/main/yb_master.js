@@ -460,6 +460,7 @@ function yb_navigateToProfile(e) {
     NAV_BAR.classList.toggle("hideMobile");
     CREATE_POPOUT.classList.toggle("hide");
     SEARCH_POPOUT.classList.toggle("hide");
+    yb_setSessionValues('location', 'profile');
 }
 
 function yb_submitQuery(){

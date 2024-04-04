@@ -50,7 +50,7 @@ function yb_requestFeed(data=null) {
     });
 }
 
-function yb_getFeed(update = false, next_page = false, previous_page = false, profile = null) {
+function yb_getFeed(update = false, next_page = false, previous_page = false) {
     // Initialize variables
     let sort_setting = yb_getSessionValues('sort');
     console.log(sort_setting)
@@ -82,9 +82,9 @@ function yb_getFeed(update = false, next_page = false, previous_page = false, pr
         'items_per_page': 8, // Assuming your Django view is set up to handle this
     }
 
-    if (profile) {
+    if (yb_getSessionValues('location') === 'profile') {
         // If we're requesting a specific user's feed, add the user's ID to the request data
-        request_data['profile'] = profile;
+        request_data['profile'] = document.getElementById('profile-data').getAttribute('data-username');
     }
 
     // Send the request to the backend
