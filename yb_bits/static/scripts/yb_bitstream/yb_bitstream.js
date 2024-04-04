@@ -38,6 +38,7 @@ function yb_requestFeed(data=null) {
             //Update the feed
             yb_updateFeed(data.update, response);
             MAIN_LOADING_SCREEN.style.display = 'none';
+            bit_container.classList.add('open');
             console.log(response)
         },
         error: function(response) {
