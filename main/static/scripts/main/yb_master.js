@@ -461,6 +461,10 @@ function yb_navigateToProfile(e) {
     CREATE_POPOUT.classList.toggle("hide");
     SEARCH_POPOUT.classList.toggle("hide");
     yb_setSessionValues('location', 'profile');
+
+    if (MAIN_LOADING_SCREEN.style.display === "block"){
+        $(MAIN_LOADING_SCREEN).fadeOut(500).animate({opacity: 0}, 500);
+    }
 }
 
 function yb_submitQuery(){
