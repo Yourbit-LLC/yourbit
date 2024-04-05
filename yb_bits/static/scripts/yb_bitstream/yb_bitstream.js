@@ -7,8 +7,8 @@ if (yb_getSessionValues('location') === 'profile') {
 }
 
 
-function yb_renderBit(data, start_location) {
-    console.log("Current Location " + start_location)
+function yb_renderBit(data) {
+    
     if (start_location === yb_getSessionValues('location')) {
         let this_bit = yb_buildBit(data);
         bit_container.appendChild(this_bit.built_bit);
@@ -28,7 +28,7 @@ function yb_showSwipeUp() {
     swipe_up.classList.add("show");
 }
  
-function yb_updateFeed(update, data, start_location) {
+function yb_updateFeed(update, data) {
     //Update the feed
     console.log("updating display...")
     console.log(update)
@@ -47,7 +47,7 @@ function yb_updateFeed(update, data, start_location) {
 
         for (let i = 0; i < data.length; i++) {
             let blueprint = data[i];
-            yb_renderBit(blueprint, start_location);
+            yb_renderBit(blueprint);
             
         }
 
@@ -67,7 +67,11 @@ function yb_requestFeed(data=null) {
         data: data,
         success: function(response) {
             //Update the feed
-            yb_updateFeed(data.update, response, start_location);
+            if (start_location === yb_getSessionValues('location')) {
+                yb_updateFeed(data.update, response);
+            } else {
+                console.log("User navigated away from the feed. Stopping render...")
+                }
             $(MAIN_LOADING_SCREEN).fadeOut(500).animate({opacity: 0}, 500);
             
             if (yb_getSessionValues('location') != 'profile'){
