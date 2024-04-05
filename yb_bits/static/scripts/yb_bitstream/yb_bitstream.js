@@ -59,6 +59,7 @@ function yb_requestFeed(data=null) {
     console.log("feed requested")
 
     let start_location = toString(yb_getSessionValues('location'));
+    console.log("Starting Location " + start_location)
 
     console.log(data.update)
     $.ajax({
@@ -67,6 +68,11 @@ function yb_requestFeed(data=null) {
         data: data,
         success: function(response) {
             //Update the feed
+            
+            console.log("Starting location: " + start_location)
+
+            console.log("Current location: " + yb_getSessionValues('location'))
+            
             if (start_location === yb_getSessionValues('location')) {
                 yb_updateFeed(data.update, response);
             } else {
