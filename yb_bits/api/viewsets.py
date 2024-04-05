@@ -124,6 +124,7 @@ class BitViewSet(viewsets.ModelViewSet):
 
         if 'photo' in request.FILES:
             from yb_photo.utility import process_image
+            print("Creating a photobit.")
             photo_data = request.FILES['photo']
             new_photo = process_image(request, cropped_image=photo_data)
             new_photo.save()
