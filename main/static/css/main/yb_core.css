@@ -674,3 +674,28 @@ p {
     grid-row: 2;
     animation: yb-flash 1.5s linear infinite;
    }
+
+
+@media screen and (min-width: 768px) {
+    .loading-icon-animated {
+        position: absolute; 
+        height:60vh; 
+        width: 60vh; 
+        top:50%; 
+        left:50%; 
+        transform: translate(-50%,-50%);
+    }    
+        
+}
+
+@media screen and (max-width: 768px) {
+    .loading-icon-animated {
+        position: absolute; 
+        height:60vw; 
+        width: 60vw; 
+        top:50%; 
+        left:50%; 
+        transform: translate(-50%,-50%);
+    }    
+    
+}

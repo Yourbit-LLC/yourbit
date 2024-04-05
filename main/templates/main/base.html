@@ -267,7 +267,7 @@ lang="en"
 
             <div class = "yb-nav-actions desktop-element" id="quick-actions" method="GET" action="">
                 {% csrf_token %}
-
+                
                 <div class="quick-button" id="create-quick" >
                     <svg style="fill:white;" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
                         <path d="M434.5-434.5H191.869v-91H434.5v-242.631h91V-525.5h242.631v91H525.5v242.631h-91V-434.5Z"/>
@@ -443,7 +443,7 @@ lang="en"
         <!--Main loading initial app-->
         <div class = "yb-fsContainer still black" id="yb-loading-main" style="transition: 0.5s; display:block;">
             <div id="yb-loading-iconContainer" class="yb-loading-iconContainer" style="position: relative; top: 0px; left: 0px; width: 100vw; height: 100vh;">
-                <object type="image/svg+xml" style="position: absolute; height:60vw; width: 60vw; top:50%; left:50%; transform: translate(-50%,-50%);" data="{% static 'images/main/animated_loading_screen.svg' %}" class="yb-loading"></object>
+                <object type="image/svg+xml" class="loading-icon-animated" data="{% static 'images/main/animated_loading_screen.svg' %}" class="yb-loading"></object>
                 <p class="yb-autoText yb-fillWidth align-center font-medium yb-bounceDown-infinite font-gray" style="position: absolute; top: calc(50% + 31vw);">Loading Bitstream...</p>
             </div>
             
