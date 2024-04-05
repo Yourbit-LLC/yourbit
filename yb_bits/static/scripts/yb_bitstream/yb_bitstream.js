@@ -8,6 +8,7 @@ if (yb_getSessionValues('location') === 'profile') {
 
 
 function yb_renderBit(data, start_location) {
+    console.log("Current Location " + start_location)
     if (start_location === yb_getSessionValues('location')) {
         let this_bit = yb_buildBit(data);
         bit_container.appendChild(this_bit.built_bit);
