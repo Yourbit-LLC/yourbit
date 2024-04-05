@@ -58,7 +58,7 @@ function yb_requestFeed(data=null) {
     //Get the feed
     console.log("feed requested")
 
-    let start_location = toString(yb_getSessionValues('location'));
+    let start_location = yb_getSessionValues('location');
     console.log("Starting Location " + start_location)
 
     console.log(data.update)
@@ -72,7 +72,7 @@ function yb_requestFeed(data=null) {
             console.log("Starting location: " + start_location)
 
             console.log("Current location: " + yb_getSessionValues('location'))
-            
+
             if (start_location === yb_getSessionValues('location')) {
                 yb_updateFeed(data.update, response);
             } else {
