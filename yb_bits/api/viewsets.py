@@ -125,10 +125,10 @@ class BitViewSet(viewsets.ModelViewSet):
         if 'photo' in request.FILES:
             from yb_photo.utility import process_image
             print("Creating a photobit.")
-            photo_data = request.FILES['photo']
+            photo_data = request.FILES['image']
             new_photo = process_image(request, cropped_image=photo_data)
             new_photo.save()
-            serializer.validated_data['photo'] = new_photo
+            serializer.validated_data['photos'] = new_photo
 
         if 'video' in request.FILES:
             video_data = request.data.FILES['video']
