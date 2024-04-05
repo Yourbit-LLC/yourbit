@@ -685,6 +685,8 @@ p {
         left:50%; 
         transform: translate(-50%,-50%);
     }    
+
+
         
 }
 
@@ -697,5 +699,18 @@ p {
         left:50%; 
         transform: translate(-50%,-50%);
     }    
+
+    .loading-text {
+        position: absolute;
+        top: calc(50% + 31vw);
+    }
+    
+}
+
+@media screen and (min-width: 768px) {
+    .loading-text {
+        position: absolute;
+        top: calc(50% + 31vh);
+    }
     
 }
