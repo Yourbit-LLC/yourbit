@@ -455,6 +455,7 @@ function yb_closeSpotlight(){
 
 function yb_navigateToProfile(e) {
     let username;
+    yb_setSessionValues('location', 'profile');
     try {
         username = e.currentTarget.getAttribute("data-username");
     } catch(err) {
@@ -466,7 +467,6 @@ function yb_navigateToProfile(e) {
     NAV_BAR.classList.add("hideMobile");
     CREATE_POPOUT.classList.add("hide");
     SEARCH_POPOUT.classList.add("hide");
-    yb_setSessionValues('location', 'profile');
     yb_setSessionValues('fullscreen', 'true');
 
     if (MAIN_LOADING_SCREEN.style.display === "block"){
