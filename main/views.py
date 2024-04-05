@@ -47,7 +47,7 @@ def initialize_session(request):
         filter_chain += '-me'
 
     return {
-        "last_location": last_location,
+        "last_location": "home",
         "current_space": current_space, 
         "sort_by": sort_by, 
         "filter_chain": filter_chain
