@@ -684,10 +684,7 @@ p {
         top:50%; 
         left:50%; 
         transform: translate(-50%,-50%);
-    }    
-
-
-        
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -711,6 +708,13 @@ p {
     .loading-text {
         position: absolute;
         top: calc(50% + 31vh);
+    }
+    
+}
+
+@media screen and (min-width: 768px) {
+    .yb-splash-label {
+        max-width: 700px;
     }
     
 }
