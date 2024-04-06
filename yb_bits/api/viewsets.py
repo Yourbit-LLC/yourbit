@@ -122,7 +122,7 @@ class BitViewSet(viewsets.ModelViewSet):
         except CustomBit.DoesNotExist:
             custom_bit = CustomBit.objects.create(theme=theme, images = custom_core)
 
-        if 'photo' in request.FILES:
+        if 'image' in request.FILES:
             from yb_photo.utility import process_image
             print("Creating a photobit.")
             photo_data = request.FILES['image']
