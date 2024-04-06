@@ -126,7 +126,7 @@ class BitViewSet(viewsets.ModelViewSet):
             from yb_photo.utility import process_image
             print("Creating a photobit.")
             photo_data = request.FILES['image']
-            new_photo = process_image(request, cropped_image=photo_data)
+            new_photo = process_image(request, photo_data, photo_data, False)
             new_photo.save()
             serializer.validated_data['photos'] = new_photo
 

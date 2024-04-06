@@ -76,8 +76,6 @@ def generate_large_thumbnail(request, source_file):
 
 def process_image(request, source_image = None, cropped_image = None, is_private = False):
 
-    
-
     #Create new photo instance
     new_photo = Photo(image=source_image)
     new_photo.small_thumbnail = generate_small_thumbnail(request, cropped_image)
