@@ -124,21 +124,27 @@ class BitViewSet(viewsets.ModelViewSet):
 
         if 'image' in request.FILES:
             from yb_photo.utility import process_image
+
             print("Creating a photobit.")
+            
             photo_data = request.FILES['image']
             new_photo = process_image(request, photo_data, photo_data, False)
             new_photo.save()
-            serializer.validated_data['photos'] = new_photo
+            serializer.validated_data['photos'] = new_photo.id
 
         if 'video' in request.FILES:
             video_data = request.data.FILES['video']
             new_video = Video.objects.create(video=video_data)
             new_video.save()
             serializer.validated_data['video'] = new_video
-            
 
         #Add additional parameters
-        serializer.save(display_name = user_profile.display_name, user=self.request.user, profile=user_profile, custom=custom_bit)
+        serializer.save(
+            display_name = user_profile.display_name, 
+            user=self.request.user, 
+            profile=user_profile, 
+            custom=custom_bit
+        )
 
         headers = self.get_success_headers(serializer.data)
 
