@@ -29,8 +29,8 @@ class BitSerializer(serializers.ModelSerializer):
     is_liked = serializers.SerializerMethodField()
     is_disliked = serializers.SerializerMethodField()
 
-    photos = PhotoSerializer(read_only = True)
-
+    photos = PhotoSerializer(read_only = False)
+    
     time =  serializers.DateTimeField(format="%B %d, %Y / @%I:%M %p")
 
     class Meta:
