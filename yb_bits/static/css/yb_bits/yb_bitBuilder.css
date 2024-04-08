@@ -7,9 +7,6 @@
     width: 0px;
     margin: auto;
     transition: 0.5s;
-    overflow: none;
-    object-fit: cover;
-
 }
 
 .yb-builderBit:focus {
@@ -30,6 +27,11 @@
     transition: 0.5s;
     height: 275px;
     width: 275px;
+    border-radius: 10px;  
+    border: 2px solid #4b4b4b;
+    overflow: none;
+    object-fit: cover;
+
 }
 
 #tags-bit-preview-button {
