@@ -16,6 +16,10 @@
     animation: yb-bounceDown 1s linear 1;
   }
 
+  .yb-bounceDown-once.fast {
+    animation: yb-bounceDown 0.3s linear 1;
+  }
+
   .yb-bounceDown-infinite {
     animation: yb-bounceDown 3s linear infinite;
   }
