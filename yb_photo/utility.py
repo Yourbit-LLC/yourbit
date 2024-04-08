@@ -91,6 +91,6 @@ def process_image(request, source_image = None, cropped_image = None, is_private
     new_photo.is_private = is_private
     new_photo.save()
 
-    print("Processing Complete: \n\n" + new_photo)
+    print("Processing Complete")
 
     return new_photo
