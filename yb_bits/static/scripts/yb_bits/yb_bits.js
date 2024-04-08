@@ -193,36 +193,6 @@ function createHeader(bit) {
 }
 
 /*
-    * Function to create the body of a bit
-    * @param {object} bit - the bit object
-    * @returns {object} body - the body element
-*/
-
-function yb_createBody(bit) {
-    const body = yb_createElement("div", "yb-body-bit", `body-bit-${bit.id}`);
-    const paragraph = yb_createElement("p", "yb-bodyText-bit yb-autoText font-medium", `bit-bodyText-${bit.id}`);
-    paragraph.innerHTML = bit.body;
-
-    if (bit.type === "chat" && bit.body.length > 200){
-        let show_more_backdrop = yb_createElement("div", "yb-showMore-backdrop", `show-more-backdrop-${bit.id}`);
-        let show_more = yb_createElement("p", "yb-showMore-bit yb-autoText", `show-more-${bit.id}`);
-        show_more.innerHTML = "Show More";
-        show_more.style.cursor = "pointer";
-        show_more.setAttribute("data-catid", bit.id);
-
-        show_more_backdrop.appendChild(show_more);
-        body.appendChild(show_more_backdrop);
-
-        show_more.addEventListener("click", yb_expandBit);
-    }
-
-    body.appendChild(paragraph);
-
-
-    return body;
-}
-
-/*
     * Function to create the interactions for a bit
     * @param {object} bit - the bit object
     * @returns {object} media - an attached media element
@@ -269,6 +239,37 @@ function yb_addMedia(type, bit) {
         return video_player;
     }
 }
+
+/*
+    * Function to create the body of a bit
+    * @param {object} bit - the bit object
+    * @returns {object} body - the body element
+*/
+
+function yb_createBody(bit) {
+    const body = yb_createElement("div", "yb-body-bit", `body-bit-${bit.id}`);
+    const paragraph = yb_createElement("p", "yb-bodyText-bit yb-autoText font-medium", `bit-bodyText-${bit.id}`);
+    paragraph.innerHTML = bit.body;
+
+    if (bit.type === "chat" && bit.body.length > 200){
+        let show_more_backdrop = yb_createElement("div", "yb-showMore-backdrop", `show-more-backdrop-${bit.id}`);
+        let show_more = yb_createElement("p", "yb-showMore-bit yb-autoText", `show-more-${bit.id}`);
+        show_more.innerHTML = "Show More";
+        show_more.style.cursor = "pointer";
+        show_more.setAttribute("data-catid", bit.id);
+
+        show_more_backdrop.appendChild(show_more);
+        body.appendChild(show_more_backdrop);
+
+        show_more.addEventListener("click", yb_expandBit);
+    }
+
+    body.appendChild(paragraph);
+
+
+    return body;
+}
+
 
 /*
     * Function to create the title of a bit
@@ -478,15 +479,16 @@ function yb_buildBit(bit){
     //generate header
     new_bit.appendChild(createHeader(bit));
 
+    //Title
+    new_bit.appendChild(createTitle(bit));
+
+
     //Content Attachments
     if (type === "video" || type === "photo"){
         let media = yb_addMedia(type, bit);
 
         new_bit.appendChild(media); 
     }
-
-    //Title
-    new_bit.appendChild(createTitle(bit));
 
 
     //Body
