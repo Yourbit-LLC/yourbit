@@ -548,3 +548,9 @@
     transition: 0.8s;
 }
 
+.attached-photo {
+    border-radius: 10px;
+    margin: auto;
+    width: 90%;
+    box-shadow: 1px 1px 10px black;
+}
