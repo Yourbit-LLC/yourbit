@@ -1,9 +1,11 @@
 .yb-container-addPhoto {
+    display: none;
     position: relative; 
     background-color: black; 
     border-radius: 10px;  
-    width: 100%;
-    padding-bottom: 100%;
+    height: 0px;
+    width: 0px;
+    transition: 0.5s;
 
 }
 
@@ -19,12 +21,12 @@
     display: block;
 }
 
-.yb-container-addPhoto {
-    display: none;
-}
-
+\\
 .yb-container-addPhoto.active {
     display: block;
+    transition: 0.5s;
+    height: 275px;
+    width: 275px;
 }
 
 #tags-bit-preview-button {
