@@ -333,6 +333,7 @@ $(document).ready(function(){
             let this_image = yb_renderImage(photo_preview, "bit-preview-image", `bit-preview-image`, "Preview Image");
             add_photo_button.innerHTML = "";
             add_photo_button.appendChild(this_image);
+            add_photo_button.classList.add("fast");
             add_photo_button.classList.add("yb-bounceDown-once");
 
         });
