@@ -21,7 +21,7 @@
     display: block;
 }
 
-\\
+
 .yb-container-addPhoto.active {
     display: block;
     transition: 0.5s;
