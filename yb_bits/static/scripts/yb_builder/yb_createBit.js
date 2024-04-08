@@ -329,7 +329,7 @@ $(document).ready(function(){
         photo_upload_field.click();
         photo_upload_field.addEventListener("change", function(){
             let photo = photo_upload_field.files[0];
-            photo_preview.src = URL.createObjectURL(photo);
+            photo_preview = URL.createObjectURL(photo);
             let this_image = yb_renderImage(photo_preview, "bit-preview-image", `bit-preview-image`, "Preview Image");
             add_photo_button.innerHTML = this_image;
 
