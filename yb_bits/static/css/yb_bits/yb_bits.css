@@ -116,6 +116,7 @@
 .yb-userInfo-bit {
     font-size: 13px;
     color: white; /* Change the color to your preferred text color */
+    text-align: left !important;
 }
 
 .yb-userInfo-bit small {
