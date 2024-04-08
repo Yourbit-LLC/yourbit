@@ -16,6 +16,7 @@ from yb_accounts.api.serializers import UserSerializer
 class BitSerializer(serializers.ModelSerializer):
     from yb_accounts.api.serializers import UserBitSerializer
     from yb_customize.api.serializers import CustomBitSerializer
+    from yb_photo.api.serializers import PhotoSerializer
     
     user = UserBitSerializer(read_only=True)
     custom = CustomBitSerializer(read_only=True)
@@ -27,6 +28,8 @@ class BitSerializer(serializers.ModelSerializer):
     comment_count = serializers.SerializerMethodField()
     is_liked = serializers.SerializerMethodField()
     is_disliked = serializers.SerializerMethodField()
+
+    photos = PhotoSerializer(read_only = True)
 
     time =  serializers.DateTimeField(format="%B %d, %Y / @%I:%M %p")
 
