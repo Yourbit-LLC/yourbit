@@ -159,7 +159,7 @@
 }
 
 .yb-title-bit.preview {
-    grid-row: 3;
+    grid-row: 2;
 }
 
 
@@ -553,5 +553,5 @@
     margin: auto;
     width: 90%;
     box-shadow: 1px 1px 10px black;
-    grid-row: 2;
+    grid-row: 3;
 }
