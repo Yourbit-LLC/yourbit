@@ -261,6 +261,7 @@ function yb_notificationMenu(type, this_id, rid=null) {
             "notification-response-option yb-button-threeQuarter border-none squared yb-margin-T10 yb-widthConstraint-600 yb-autoText bg-gray-dark font-heavy pointer-object", 
             `notification-response-option-${option}`
         );
+        let new_option_text = yb_createElement("p", "notification-response-text yb-center-margin all", `notification-response-text-${this_id}-${option.substring(0, 3)}`);
         new_option.innerHTML = option;
         new_option.setAttribute("data-catid", this_id);
         if (type === 4) {
