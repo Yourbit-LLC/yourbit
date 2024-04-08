@@ -229,12 +229,14 @@ function yb_createBody(bit) {
 */
 
 function yb_addMedia(type, bit) {
+
+    
     if (type === 'photo'){
         let index = 0;
         let photo = bit.photos[index]
-        let attachment = yb_createElement("img", "attached-photo preview", `photo-bit-${id}`);
+        let attachment = yb_createElement("img", "attached-photo preview", `photo-bit-${bit.id}`);
         attachment.setAttribute("src", photo.image);
-        attachment.setAttribute('data-id', id);
+        attachment.setAttribute('data-id', bit.id);
         attachment.setAttribute('data-index', index);
         
         attachment.addEventListener("click", function(){
@@ -249,20 +251,20 @@ function yb_addMedia(type, bit) {
 
     if (type === 'video'){
         let bit_video = bit.video
-        let video_player = yb_createElement("video", `video-${id}`, "attached-video preview");
+        let video_player = yb_createElement("video", `video-${bit.id}`, "attached-video preview");
         
         video_player.setAttribute("controls", "true");
         video_player.setAttribute("playsinline", "true");
-        video_player.setAttribute("data-id", id);
+        video_player.setAttribute("data-id", bit.id);
 
-        let video_source = yb_createElement("source", `video-source-${id}`, "video-source");
+        let video_source = yb_createElement("source", `video-source-${bit.id}`, "video-source");
         video_source.setAttribute("src", `${bit_video}`);
         
         video_player.appendChild(video_source);
         
 
         //Add an observer to the video
-        video_observer.observe(video_player);
+        // video_observer.observe(video_player);
 
         return video_player;
     }
