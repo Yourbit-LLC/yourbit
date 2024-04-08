@@ -130,7 +130,7 @@ class BitViewSet(viewsets.ModelViewSet):
             photo_data = request.FILES['image']
             new_photo = process_image(request, photo_data, photo_data, False)
             new_photo.save()
-            serializer.validated_data['photos'] = [new_photo]
+            serializer.validated_data['photos'].add(new_photo)
 
         if 'video' in request.FILES:
             video_data = request.data.FILES['video']
