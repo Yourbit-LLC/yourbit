@@ -552,7 +552,7 @@
 .attached-photo {
     border-radius: 10px;
     margin: auto;
-    width: 90%;
+    width: 98%;
     box-shadow: 1px 1px 10px black;
     grid-row: 3;
 }
