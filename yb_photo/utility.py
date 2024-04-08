@@ -81,9 +81,10 @@ def process_image(request, source_image = None, cropped_image = None, is_private
     #Create new photo instance
     new_photo = Photo(image=source_image)
 
+    new_photo.tiny_thumbnail = generate_tiny_thumbnail(request, cropped_image)
     new_photo.small_thumbnail = generate_small_thumbnail(request, cropped_image)
     new_photo.medium_thumbnail = generate_medium_thumbnail(request, cropped_image)
-    new_photo.large_thumbnail = generate_tiny_thumbnail(request, cropped_image)
+    new_photo.large_thumbnail = generate_large_thumbnail(request, cropped_image)
 
     print("Images Cropped")
 
