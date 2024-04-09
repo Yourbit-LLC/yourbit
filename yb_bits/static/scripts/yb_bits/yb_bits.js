@@ -226,11 +226,11 @@ function yb_addMedia(type, bit) {
         video_player.setAttribute("controls", "true");
         video_player.setAttribute("playsinline", "true");
         video_player.setAttribute("data-id", bit.id);
-
-        let video_source = yb_createElement("source", `video-source-${bit.id}`, "video-source");
-        video_source.setAttribute("src", `${bit_video}`);
+        video_player.setAttribute("src", bit_video);
+        // let video_source = yb_createElement("source", `video-source-${bit.id}`, "video-source");
+        // video_source.setAttribute("src", `${bit_video}`);
         
-        video_player.appendChild(video_source);
+        // video_player.appendChild(video_source);
         
 
         //Add an observer to the video
