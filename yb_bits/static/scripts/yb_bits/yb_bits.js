@@ -206,7 +206,7 @@ function yb_addMedia(type, bit) {
         let photo = bit.photos[index]
         let attachment_container = yb_createElement("div", "attached-photo-container", `photo-container-${bit.id}`);
         let attachment = yb_createElement("img", "attached-photo", `photo-bit-${bit.id}`);
-        attachment.setAttribute("src", photo.image);
+        attachment.setAttribute("src", photo.large_thumbnail);
         attachment.setAttribute('data-id', bit.id);
         attachment.setAttribute('data-index', index);
 
