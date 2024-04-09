@@ -31,7 +31,12 @@ function yb_updateFeed(update, data) {
     console.log(update)
     if (update === true) {
         //Append the feed
-        $(bit_container).append(data);
+        console.log("appending html...")
+        for (let i = 0; i < data.length; i++) {
+            let blueprint = data[i];
+            yb_renderBit(blueprint);
+        }
+        
     } else {
         //Update the feed
         console.log("appending html...")
