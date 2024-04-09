@@ -72,9 +72,11 @@ class BitFeedAPIView(generics.ListAPIView):
 
         page = self.request.query_params.get('page')
 
+        print("\n\n" + page + "\n\n")
+
         if page:
             queryset = p.page(page)
-            
+
 
         # You may want to handle exceptions for invalid input or missing parameters
 
