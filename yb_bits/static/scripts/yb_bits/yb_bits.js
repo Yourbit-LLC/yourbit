@@ -221,7 +221,7 @@ function yb_addMedia(type, bit) {
 
     if (type === 'video'){
         let bit_video = bit.video_upload
-        let video_player = yb_createElement("video", `video-${bit.id}`, "attached-video preview");
+        let video_player = yb_createElement("video", `video-${bit.id}`, "attached-video");
         
         video_player.setAttribute("controls", "true");
         video_player.setAttribute("playsinline", "true");
