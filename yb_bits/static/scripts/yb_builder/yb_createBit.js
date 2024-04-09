@@ -260,6 +260,7 @@ $(document).ready(function(){
         //disable button
         bit_submit_button.disabled = true;
         bit_submit_button.innerHTML = "Uploading...";
+        bit_submit_button.style.backgroundColor = "rgb(100, 100, 100)";
         bit_submit_button.classList.add("yb-bounce-infinite");
     });
 

@@ -6,6 +6,10 @@
     100% { transform: scale(1); }
   }
 
+  .yb-bounce-infinite {
+    animation: yb-bounce 1s linear infinite;
+  }
+
   @keyframes yb-bounceDown {
     0% { transform: scale(1); }
     50% { transform: scale(0.9); }
