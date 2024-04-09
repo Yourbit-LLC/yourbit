@@ -30,7 +30,7 @@ class BitSerializer(serializers.ModelSerializer):
     is_disliked = serializers.SerializerMethodField()
 
     photos = PhotoSerializer(many=True, read_only = True)
-    video_upload = PhotoSerializer(many=False, read_only = True)
+    video_upload = VideoSerializer(many=False, read_only = True)
     
     time =  serializers.DateTimeField(format="%B %d, %Y / @%I:%M %p")
 
