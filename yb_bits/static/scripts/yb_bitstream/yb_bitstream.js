@@ -133,14 +133,36 @@ function yb_getFeed(update = false, next_page = false, previous_page = false) {
     yb_requestFeed(request_data);
 }
 
+function onScrollToBottom() {
+    console.log("User has scrolled to the bottom of the container!");
+    // Place your logic here that needs to be executed when the bottom is reached
+    yb_getFeed(true, true);
+  }
+  
+  // Function to detect scroll to the bottom of a specific container
+function detectScrollToBottom() {
+
+    console.log("Detecting scroll to bottom")
+
+    if (!bit_container) {
+        console.error("Container not found");
+        return;
+    }
+
+
+    bit_container.addEventListener('scroll', () => {
+        console.log("scrolling...")
+        const { scrollTop, scrollHeight, clientHeight } = bit_container;
+        if (scrollTop + clientHeight >= scrollHeight - 5) { // -5 is a small threshold to trigger the event a bit before reaching the bottom
+            console.log("scroll to bottom detected")
+            onScrollToBottom();
+        }
+    });
+}  
+
 
 $(document).ready(function() {
     yb_getFeed();
+    detectScrollToBottom();
 
-    //If user scrolls to the bottom of the page, request the next page
-    bit_container.onscroll = function() {
-        if ((bit_container.innerHeight + bit_container.scrollY) >= window.innerHeight) {
-            yb_getFeed(true, true);
-        }
-    }
 });
