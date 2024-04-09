@@ -169,7 +169,9 @@ function detectScrollToBottom() {
 
 
 $(document).ready(function() {
+    yb_setSessionValues('bitstream-page', 1);
     yb_getFeed();
     detectScrollToBottom();
+
 
 });
