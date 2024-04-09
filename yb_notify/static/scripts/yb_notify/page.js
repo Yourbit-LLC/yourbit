@@ -1,4 +1,4 @@
-var filter_buttons = document.querySelectorAll('.notify-filter-button');
+var notify_filter_buttons = document.querySelectorAll('.notify-filter-button');
 
 var NOTIFICATION_CONTAINER = document.getElementById('notification-list');
 
@@ -321,7 +321,7 @@ function yb_handleFilterClick() {
 }
 
 $(document).ready(function () {
-    for (let i = 0; i < filter_buttons.length; i++){
-        filter_buttons[i].addEventListener('click', yb_handleFilterClick);
+    for (let i = 0; i < notify_filter_buttons.length; i++){
+        notify_filter_buttons[i].addEventListener('click', yb_handleFilterClick);
     }
 });
