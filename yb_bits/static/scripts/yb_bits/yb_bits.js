@@ -227,6 +227,7 @@ function yb_addMedia(type, bit) {
         video_player.setAttribute("playsinline", "true");
         video_player.setAttribute("data-id", bit.id);
         video_player.setAttribute("src", bit_video.video);
+        video_player.setAttribute("style", "max-width: 100%; max-height: 350px;")
         // let video_source = yb_createElement("source", `video-source-${bit.id}`, "video-source");
         // video_source.setAttribute("src", `${bit_video}`);
         
