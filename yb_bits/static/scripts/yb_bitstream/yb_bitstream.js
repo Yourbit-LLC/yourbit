@@ -150,9 +150,9 @@ function detectScrollToBottom() {
     }
 
 
-    document.body.addEventListener('scroll', () => {
+    CONTENT_CONTAINER.addEventListener('scroll', () => {
         console.log("scrolling...")
-        var { scrollTop, scrollHeight, clientHeight } = document.body;
+        var { scrollTop, scrollHeight, clientHeight } = CONTENT_CONTAINER;
         if (scrollTop + clientHeight >= scrollHeight - 5) { // -5 is a small threshold to trigger the event a bit before reaching the bottom
             console.log("scroll to bottom detected")
             onScrollToBottom();
