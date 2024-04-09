@@ -113,6 +113,8 @@ function yb_getFeed(update = false, next_page = false, previous_page = false) {
         yb_setSessionValues('bitstream-page', page);
     }
 
+    console.log("Page: " + page)
+
     // Ensure the page number doesn't fall below 1
     page = Math.max(page, 1);
 
