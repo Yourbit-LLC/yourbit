@@ -220,24 +220,27 @@ function yb_addMedia(type, bit) {
     }
 
     if (type === 'video'){
-        let bit_video = bit.video_upload
+        let bit_video = bit.video_upload;
+        let attached_video_container = yb_createElement("div", "attached-video-container", `video-container-${bit.id}`);
+
         let video_player = yb_createElement("video", `video-${bit.id}`, "attached-video");
         
         video_player.setAttribute("controls", "true");
         video_player.setAttribute("playsinline", "true");
         video_player.setAttribute("data-id", bit.id);
         video_player.setAttribute("src", bit_video.video);
-        video_player.setAttribute("style", "max-width: 100%; max-height: 350px; margin-left: auto; margin-right: auto; display: block;");
+        video_player.setAttribute("style", "max-width: 100%; max-height:100%; margin-left: auto; margin-right: auto; display: block;");
         // let video_source = yb_createElement("source", `video-source-${bit.id}`, "video-source");
         // video_source.setAttribute("src", `${bit_video}`);
         
         // video_player.appendChild(video_source);
+        attached_video_container.appendChild(video_player);
         
 
         //Add an observer to the video
         // video_observer.observe(video_player);
 
-        return video_player;
+        return attached_video_container;
     }
 }
 
