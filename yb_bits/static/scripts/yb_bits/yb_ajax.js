@@ -22,7 +22,7 @@ function yb_createBit(this_data, csrf_token) {
             if (current_location === 'home') {
                 let bit_container = document.getElementById("bit-container");
                 bit_container.prepend(this_bit.built_bit);
-                this_bit.built_bit.classList.add("yb-bounceDown-3x");
+                this_bit.built_bit.classList.add("yb-stretchSqueeze-1");
             } else {
                 let body = "Bit created successfully";
                 showNotification(expandNotification, body);

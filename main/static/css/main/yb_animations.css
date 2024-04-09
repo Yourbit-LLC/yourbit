@@ -88,6 +88,10 @@
     }
   }
 
+  .yb-stretchSqueeze-1 {
+    animation: stretchSqueeze 1s linear 1;
+  }
+
 @keyframes yb-pulse {
     0% { transform: scale(1); }
     50% { transform: scale(1.1); }
