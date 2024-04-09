@@ -102,8 +102,10 @@ function yb_getFeed(update = false, next_page = false, previous_page = false) {
     // Adjust page number for next or previous page requests
     if (next_page) {
         page += 1;
+        yb_setSessionValues('bitstream-page', page);
     } else if (previous_page) {
         page -= 1;
+        yb_setSessionValues('bitstream-page', page);
     }
 
     // Ensure the page number doesn't fall below 1
@@ -134,4 +136,11 @@ function yb_getFeed(update = false, next_page = false, previous_page = false) {
 
 $(document).ready(function() {
     yb_getFeed();
+
+    //If user scrolls to the bottom of the page, request the next page
+    bit_container.onscroll = function() {
+        if ((bit_container.innerHeight + bit_container.scrollY) >= document.body.offsetHeight) {
+            yb_getFeed(true, true);
+        }
+    }
 });
