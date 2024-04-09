@@ -220,13 +220,13 @@ function yb_addMedia(type, bit) {
     }
 
     if (type === 'video'){
-        let bit_video = bit.video
+        let bit_video = bit.video_upload
         let video_player = yb_createElement("video", `video-${bit.id}`, "attached-video preview");
         
         video_player.setAttribute("controls", "true");
         video_player.setAttribute("playsinline", "true");
         video_player.setAttribute("data-id", bit.id);
-        video_player.setAttribute("src", bit_video);
+        video_player.setAttribute("src", bit_video.video);
         // let video_source = yb_createElement("source", `video-source-${bit.id}`, "video-source");
         // video_source.setAttribute("src", `${bit_video}`);
         
