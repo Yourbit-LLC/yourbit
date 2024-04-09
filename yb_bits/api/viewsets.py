@@ -145,7 +145,7 @@ class BitViewSet(viewsets.ModelViewSet):
             serializer.validated_data['photos'] = [new_photo]
 
         if 'video' in request.FILES:
-            video_data = request.data.FILES['video']
+            video_data = request.FILES['video']
             new_video = Video.objects.create(video=video_data, user=self.request.user)
             new_video.save()
             serializer.validated_data['video'] = new_video
