@@ -269,7 +269,7 @@ function yb_notificationMenu(type, this_id, rid=null) {
         new_option.setAttribute("data-catid", this_id);
         if (type === 4) {
             new_option.setAttribute("data-oid", rid);
-        }
+        };
         new_option.setAttribute("name", option);
         new_option.addEventListener("click", yb_handleNotificationOptionClick);
         this_container.appendChild(new_option);
