@@ -20,6 +20,10 @@
     animation: yb-bounceDown 1s linear 1;
   }
 
+  .yb-bounceDown-3x {
+    animation: yb-bounceDown 0.75s linear 3;
+  }
+
   .yb-bounceDown-once.fast {
     animation: yb-bounceDown 0.3s linear 1;
   }
