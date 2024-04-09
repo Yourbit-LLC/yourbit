@@ -96,7 +96,7 @@ function yb_getFeed(update = false, next_page = false, previous_page = false) {
     console.log(sort_setting)
     let filter_setting = yb_getSessionValues('filter');
     let space = yb_getSessionValues('space');
-    let page = yb_getSessionValues('bitstream-page') || 1; // Default to page 1 if not set
+    let page = parsInt(yb_getSessionValues('bitstream-page')) || 1; // Default to page 1 if not set
     let request_data;
 
     // Adjust page number for next or previous page requests
