@@ -81,6 +81,8 @@ class Bit(models.Model):
     #New watches tracks the amount of non-repeat watches of this Video Bit
     new_watches = models.IntegerField(default = 0)
 
+    video = models.OneToOneField('yb_video.Video', related_name='video', blank=True)
+
     video_key = models.CharField(max_length=100, blank=True)
 
     
