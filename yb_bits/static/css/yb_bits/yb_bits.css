@@ -550,14 +550,17 @@
     transition: 0.8s;
 }
 
-.attached-photo {
+.attached-photo-container {
     border-radius: 10px;
     margin: auto;
     width: 98%;
     box-shadow: 1px 1px 10px black;
     grid-row: 3;
     border: 2px solid #4b4b4b;
-    object-fit: contain;
+}
+
+.attached-photo {
+    width: 100%;
 }
 
 .attached-video-container {

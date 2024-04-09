@@ -204,10 +204,13 @@ function yb_addMedia(type, bit) {
     if (type === 'photo'){
         let index = 0;
         let photo = bit.photos[index]
+        let attachment_container = yb_createElement("div", "attached-photo-container", `photo-container-${bit.id}`);
         let attachment = yb_createElement("img", "attached-photo", `photo-bit-${bit.id}`);
         attachment.setAttribute("src", photo.large_thumbnail);
         attachment.setAttribute('data-id', bit.id);
         attachment.setAttribute('data-index', index);
+
+        attachment_container.appendChild(attachment);
         
         attachment.addEventListener("click", function(){
             let source = this.getAttribute("src");
@@ -216,7 +219,7 @@ function yb_addMedia(type, bit) {
             yb_openImage(source, this_index, this_id)
         })
 
-        return attachment;
+        return attachment_container;
     }
 
     if (type === 'video'){
