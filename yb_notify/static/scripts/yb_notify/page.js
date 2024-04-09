@@ -133,6 +133,7 @@ function yb_handleNotificationOptionClick(e) {
 //Function for drawing menu and listing options off
 function yb_notificationMenu(type, this_id, rid=null) {
     let menu = document.getElementById("yb-slide-up-core");
+    console.log(rid)
 
     let these_options = {};
     

@@ -34,7 +34,7 @@
 
         
         {% endif %}>
-        <div id="notification-{{notification.id}}" onclick="yb_notificationMenu({{notification.type}}, {{notification.id}}, {% if notification.type == 4 %} '{{notification.friend_request.id}}' {% elif notification.type == 1 or notification.type == 2 or notification.type == 7%} '{{notification.bit.id}}' {% elif notification.type == 3 or notification.type == 5%} '{{notification.profile.id}}' {% elif notification.type == 6%} '{{notification.message.id}}' {% endif %})" class="
+        <div id="notification-{{notification.id}}" onclick="yb_notificationMenu({{notification.type}}, {{notification.id}}, {% if notification.type == 4 %} '{{notification.friend_request}}' {% elif notification.type == 1 or notification.type == 2 or notification.type == 7%} '{{notification.bit}}' {% elif notification.type == 3 or notification.type == 5%} '{{notification.profile}}' {% elif notification.type == 6%} '{{notification.message}}' {% endif %})" class="
             yb-listItem notification 
             {% if notification.has_seen %} 
             seen 
