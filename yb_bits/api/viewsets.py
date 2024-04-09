@@ -29,6 +29,8 @@ from .serializers import BitSerializer, CreateBitSerializer,PhotoSerializer, Vid
 from yb_video.models import Video
 from yb_photo.models import Photo
 
+from django.core.paginator import Paginator
+
 
 class BitFeedAPIView(generics.ListAPIView):
     serializer_class = BitSerializer
@@ -65,6 +67,14 @@ class BitFeedAPIView(generics.ListAPIView):
             ).distinct().order_by('-' + sort_value)
 
         print(queryset)
+
+        p = Paginator(queryset, 8)
+
+        page = self.request.query_params.get('page')
+
+        if page:
+            queryset = p.page(page)
+            
 
         # You may want to handle exceptions for invalid input or missing parameters
 

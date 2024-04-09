@@ -119,7 +119,6 @@ function yb_getFeed(update = false, next_page = false, previous_page = false) {
         'sort': sort_setting,
         'space': space,
         'page': page,
-        'items_per_page': 8, // Assuming your Django view is set up to handle this
     }
 
     if (yb_getSessionValues('location') === 'profile') {
