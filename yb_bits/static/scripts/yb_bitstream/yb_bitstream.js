@@ -138,8 +138,8 @@ $(document).ready(function() {
     yb_getFeed();
 
     //If user scrolls to the bottom of the page, request the next page
-    bit_container.onscroll = function() {
-        if ((bit_container.innerHeight + bit_container.scrollY) >= document.body.offsetHeight) {
+    window.onscroll = function() {
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
             yb_getFeed(true, true);
         }
     }
