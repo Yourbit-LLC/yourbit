@@ -219,6 +219,10 @@ function yb_addMedia(type, bit) {
             // yb_openImage(source, this_index, this_id)
             attachment.classList.add("expanded")
             attachment_container.classList.add("expanded")
+
+            //reparent container to document body
+            attachment_container.detach();
+            document.body.appendChild(attachment_container);
         })
 
         return attachment_container;
