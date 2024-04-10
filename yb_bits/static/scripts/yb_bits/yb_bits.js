@@ -213,10 +213,11 @@ function yb_addMedia(type, bit) {
         attachment_container.appendChild(attachment);
         
         attachment.addEventListener("click", function(){
-            let source = this.getAttribute("src");
-            let this_id = this.getAttribute("data-id");
-            let this_index = this.getAttribute("data-index");
-            yb_openImage(source, this_index, this_id)
+            // let source = this.getAttribute("src");
+            // let this_id = this.getAttribute("data-id");
+            // let this_index = this.getAttribute("data-index");
+            // yb_openImage(source, this_index, this_id)
+            attachment_container.classList.add("expanded")
         })
 
         return attachment_container;
