@@ -295,7 +295,7 @@ function yb_openImage(source, index, this_id){
     $.ajax(
         {
             type: "GET",
-            url: `/api/bits/${this_id}/`,
+            url: `/bits/api/bits/${this_id}/`,
         
 
             success: function(data) {
