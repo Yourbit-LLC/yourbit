@@ -28,6 +28,15 @@
 .yb-button-plain {
     background-color: transparent;
     border: none;
+    transition: 0.5s;
+}
+
+.yb-button-plain:hover {
+    background-color: transparent;
+    border: none;
+    color: skyblue;
+    transform: scale(1.08);
+    transition: 0.5s;
 }
 
 .yb-button-popout.right {
