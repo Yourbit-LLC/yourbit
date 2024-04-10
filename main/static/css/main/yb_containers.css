@@ -743,4 +743,5 @@
 .attached-photo.expanded {
     max-width: 100% !important;
     max-height: 100% !important;
+    width: unset;
 }
