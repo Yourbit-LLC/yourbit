@@ -301,7 +301,6 @@ function yb_openImage(source, index, this_id){
             success: function(data) {
                 let bit = data;
                 let id = bit.id;
-                let user = bit.user;
                 let like_count = bit.like_count;
                 let dislike_count = bit.dislike_count;
                 let comment_count = bit.comment_count;
@@ -322,7 +321,7 @@ function yb_openImage(source, index, this_id){
                 info_container.setAttribute("style", "padding-left: 10px; color: white; text-shadow: 1px 1px 2px black; position: absolute; bottom: 60px;");
                 
                 let name_container = yb_createElement('b', 'photo-name-container', 'name-container-fs');
-                name_container.innerHTML = user.first_name + " " + user.last_name;
+                name_container.innerHTML = bit.display_name;
                 info_container.appendChild(name_container);
 
                 let description = yb_createElement('p', 'photo-description-container', 'description-container-fs');
