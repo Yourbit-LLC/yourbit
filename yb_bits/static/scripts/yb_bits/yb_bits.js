@@ -221,8 +221,7 @@ function yb_addMedia(type, bit) {
             attachment_container.classList.add("expanded")
 
             //reparent container to document body
-            attachment_container.detach();
-            document.body.appendChild(attachment_container);
+            attachment_container.reparentTo("body");
         })
 
         return attachment_container;
