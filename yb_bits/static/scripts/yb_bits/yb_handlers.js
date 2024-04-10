@@ -271,6 +271,16 @@ function yb_expandBit(e) {
 
 }
 
+function closeImage() {
+
+    console.log("Swiped down to exit fullscreen!");
+    $('.photo-viewer').animate({"top": "100vh"}, 200);
+    $('.photo-viewer').fadeOut(200);
+    $('.photo-viewer').remove();
+    
+
+}
+
 
 function yb_openImage(source, index, this_id){
     let viewer = yb_createElement('div', 'photo-viewer', 'photo-viewer');
@@ -394,12 +404,7 @@ function yb_openImage(source, index, this_id){
                 
                         // Check if the user has swiped down
                         if (deltaY > 0) {
-                            // Perform actions to exit fullscreen
-                            // Add your code here to handle fullscreen exit
-                            console.log("Swiped down to exit fullscreen!");
-                            $('.photo-viewer').animate({"top": "100vh"}, 200);
-                            $('.photo-viewer').fadeOut(200);
-                            $('.photo-viewer').remove();
+                            yb_closeImage();
                         }
                     });
 
