@@ -730,7 +730,7 @@
     transition: 0.75s;
 }
 
-.attached-photo.expanded {
+.attached-photo-container.expanded {
     position: fixed;
     z-index: 1000;
     top: 0px;
