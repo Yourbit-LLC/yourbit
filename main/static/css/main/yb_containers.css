@@ -739,3 +739,8 @@
     width: 100vw;
     transition: 0.5s;
 }
+
+.attached-photo.expanded {
+    max-width: 100% !important;
+    max-height: 100% !important;
+}
