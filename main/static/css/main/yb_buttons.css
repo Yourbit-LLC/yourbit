@@ -25,6 +25,11 @@
     transition: 0.5s;
 }
 
+.yb-button-plain {
+    background-color: transparent;
+    border: none;
+}
+
 .yb-button-popout.right {
     right: 7px;
     transition: 0.5s;
