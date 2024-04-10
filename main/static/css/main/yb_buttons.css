@@ -37,6 +37,7 @@
     color: skyblue;
     transform: scale(1.08);
     transition: 0.5s;
+    cursor: pointer;
 }
 
 .yb-button-popout.right {
