@@ -425,17 +425,6 @@
 }
 
 /* media query for light mode text */
-@media (prefers-color-scheme: light) {
-    .yb-autoText {
-        /*Style*/
-        color: black;
-        mix-blend-mode: difference;
-        /* what are all the options in mix blend mode?
-        normal | multiply | screen | overlay | darken | lighten | color-dodge | color-burn | hard-light | soft-light | difference | exclusion | hue | saturation | color | luminosity
-        */
-    }
-}
-
 .font-white {
     /*Style*/
     color: white;
