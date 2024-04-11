@@ -374,6 +374,19 @@ p {
     transition: 0.3s;
     margin: auto;
 }
+@media (prefers-color-scheme: dark){
+    .yb-svg-gridItem {
+        background-color: white;
+    }
+}
+
+@media (prefers-color-scheme: light){
+    .yb-svg-gridItem {
+        background-color: black !important;
+    }
+}
+
+
 
 .helper {
     display: none;
