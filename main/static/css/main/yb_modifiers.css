@@ -212,9 +212,11 @@
 }
 
 /* Icon Fill Modifiers */
-.yb-autoFill {
-    fill: white;
-    mix-blend-mode: difference;
+@media (prefers-color-scheme: dark) {
+    .yb-autoFill {
+        fill: white;
+        mix-blend-mode: difference;
+    }
 }
 
 @media screen and (prefers-color-scheme: light) {

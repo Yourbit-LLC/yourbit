@@ -656,6 +656,18 @@ p {
     
 }
 
+@media (prefers-color-scheme: light) {
+    .yb-icon {
+        fill: black;
+    }
+}
+
+@media (perfers-color-scheme: dark) {
+    .yb-icon {
+        fill: white;
+    }
+}
+
 .yb-icon:hover {
     opacity: 0.8;
 }
