@@ -44,7 +44,10 @@ button {
 
 @media (prefers-color-scheme: light) {
     .yb-panel {
-        background-color: rgb(175, 175, 175);
+        background-color: white;
+    }
+    .yb-button-wide {
+        background-color: rgb(175, 175, 175); 
     }
 }
 
