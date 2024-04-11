@@ -85,7 +85,6 @@
     
     grid-template-rows: 30px auto 30px 20px fit-content 10px fit-content 50px auto auto;
     text-align: center;
-    background-color: black;
 
 
 }
@@ -93,7 +92,6 @@
 .yb-bit-shell.photobit {
     
     text-align: center;
-    background-color: black;
     grid-template-rows: 50px auto auto auto 50px auto 48px;
     grid-gap:2px;
 
