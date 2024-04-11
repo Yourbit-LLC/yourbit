@@ -1,5 +1,7 @@
 
 /* Bit Containers */
+
+@media (prefers-color-scheme: light) {
 .yb-bit-shell {
 
     /*Positioning*/
@@ -22,6 +24,34 @@
     box-shadow: 0px 1px 5px black;
 
     padding: 5px;
+}
+
+@media (prefers-color-scheme: light) {
+    .yb-bit-shell {
+    
+        /*Positioning*/
+        position: relative;
+        margin-top: 0px;
+        margin-bottom: 8px;
+        
+        
+        /*Sizing*/
+        width: 95%;
+    
+        /*Style*/
+        display: grid;
+        grid-row-gap: 3px;
+        border-radius: 20px;
+        transition: 0.3s;
+        cursor: pointer;
+        pointer-events: auto;
+        background-color: rgb(255, 255, 255);
+        box-shadow: 0px 1px 5px black;
+    
+        padding: 5px;
+    }
+    
+}
 
 
 }
