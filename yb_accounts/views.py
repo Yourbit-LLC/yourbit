@@ -193,7 +193,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     messages.success(request, ("You were logged out"))
-    return redirect("login")
+    return redirect("home")
 
 class Onboarding(View):
     def get(self, request, *args, **kwargs):
