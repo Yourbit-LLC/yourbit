@@ -33,6 +33,20 @@ body {
 button {
     text-decoration: none !important;
 }
+@media (prefers-color-scheme: dark) {
+    .yb-panel {
+        background-color: black;
+    }
+    .yb-button-wide {
+        background-color: rgb(35, 35, 35); 
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    .yb-panel {
+        background-color: rgb(175, 175, 175);
+    }
+}
 
 
 /* The switch - the box around the slider */
@@ -142,18 +156,6 @@ input:checked + .slider:before {
     transition: 0.5s;
 }
 
-@media (prefers-color-scheme: dark) {
-    .yb-header {
-        background-color: black;
-    }
-}
-
-@media (prefers-color-scheme: light) {
-    .yb-header {
-        background-color: white;
-    }
-} 
-    
 
 
 .yb-header.hide {
