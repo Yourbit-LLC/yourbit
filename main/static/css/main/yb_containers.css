@@ -123,11 +123,22 @@
 }
 
 /* General styles for notification list items */
-.yb-listItem.notification {
-    background-color: #333;
-    color: #fff;
-    width: 90%;
+@media (prefers-color-scheme: dark){
+    .yb-listItem.notification {
+        background-color: #333;
+        color: #fff;
+        width: 90%;
 
+    }
+}
+
+@media (prefers-color-scheme: light){
+    .yb-listItem.notification {
+        background-color: rgb(150, 150, 150);
+        color: #000;
+        width: 90%;
+
+    }
 }
 
 /* Styles for seen and unseen notifications */
