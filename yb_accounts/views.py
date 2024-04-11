@@ -11,7 +11,7 @@ from django.core.exceptions import ValidationError
 from django.core.mail import send_mail
 from django.template.loader import render_to_string, get_template
 from django.utils.html import strip_tags
-
+from .models import Account as User
 from django.http import FileResponse
 
 # Create your views here.
@@ -79,6 +79,65 @@ def registration_view(request):
         context['registration_form'] = form
     
         return render(request, 'yb_accounts/register.html', context)
+    
+class ForgotPassword(View):
+    def get(self, request, *args, **kwargs):
+        context = {}
+        return render(request, 'yb_accounts/forgot_password.html', context)
+    
+    def post(self, request, *args, **kwargs):
+        email = request.POST.get('email')
+        try:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
+            return redirect('forgot_password')
+        
+        verification_key = generate_verification_key()
+        user.verification_token = verification_key
+        user.save()
+
+        subject = 'Yourbit Password Reset'
+        message = render_to_string('yb_accounts/password_reset_email.html', {
+            'user': user,
+            'verification_key': verification_key,
+            'logo_image':"https://objects-in-yourbit.us-southeast-1.linodeobjects.com/images/logo-flat.png",
+        })
+        html_message = message
+        recipient_list = [user.email]
+        from_email = 'no-reply@yourbit.me'
+        send_mail(subject, strip_tags(html_message), from_email, recipient_list, html_message=html_message)
+        return redirect('email_confirmation')
+    
+
+class ResetPassword(View):
+    def get(self, request, *args, **kwargs):
+        context = {}
+        return render(request, 'yb_accounts/reset_password.html', context)
+    
+    def post(self, request, *args, **kwargs):
+        email = request.POST.get('email')
+        verification_key = request.POST.get('verification_key')
+        new_password = request.POST.get('new_password')
+        confirm_password = request.POST.get('confirm_password')
+
+        try:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
+            return redirect('forgot_password')
+        
+        if verification_key == user.verification_token:
+            if new_password == confirm_password:
+                try:
+                    validate_password(new_password)
+                except ValidationError as e:
+                    return redirect('reset_password')
+                user.set_password(new_password)
+                user.save()
+                return redirect('login')
+            else:
+                return redirect('reset_password')
+        else:
+            return redirect('reset_password')
 
 class EmailConfirmation(View):
     def get(self, request, *args, **kwargs):
