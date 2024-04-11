@@ -497,7 +497,7 @@ p {
         /*Positioning*/
         position: relative;
         margin: auto;
-        background-color: black;
+        fill: black;
         /*Style*/
         cursor: pointer;
     }
@@ -505,7 +505,7 @@ p {
     .yb-logo-masthead.mobile {
         position: absolute;
         display: block;
-        background-color: black;
+        fill: black;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -533,7 +533,7 @@ p {
         /*Positioning*/
         position: relative;
         margin: auto;
-        background-color: white;
+        fill: white;
         /*Style*/
         cursor: pointer;
     }
@@ -541,7 +541,7 @@ p {
     .yb-logo-masthead.mobile {
         position: absolute;
         display: block;
-        background-color: white;
+        fill: white;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
