@@ -222,7 +222,6 @@
 @media (prefers-color-scheme: light) {
     .yb-autoFill {
         fill: black;
-        mix-blend-mode: difference;
     }
 }
     
