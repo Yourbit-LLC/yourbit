@@ -376,13 +376,13 @@ p {
 }
 @media (prefers-color-scheme: dark){
     .yb-svg-gridItem {
-        background-color: white;
+        fill: white;
     }
 }
 
 @media (prefers-color-scheme: light){
     .yb-svg-gridItem {
-        background-color: black !important;
+        fill: black !important;
     }
 }
 
