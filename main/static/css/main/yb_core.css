@@ -375,13 +375,13 @@ p {
     margin: auto;
 }
 @media (prefers-color-scheme: dark){
-    .yb-svg-gridItem {
+    .yb-icon-gridItem {
         fill: white;
     }
 }
 
 @media (prefers-color-scheme: light){
-    .yb-svg-gridItem {
+    .yb-icon-gridItem {
         fill: black !important;
     }
 }
