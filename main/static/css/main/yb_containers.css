@@ -389,10 +389,22 @@
     width: 100vw;
     position: fixed;
     overflow: hidden;
-    background-color: rgb(25, 25, 25);
+    
     overflow-y: scroll;
     
 
+}
+
+@media (prefers-color-scheme: dark) {
+    #content-container {
+        background-color: rgb(25, 25, 25);
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    #content-container {
+        background-color: rgb(150, 150, 150)
+    }
 }
 
 /* Customize the scrollbar track */

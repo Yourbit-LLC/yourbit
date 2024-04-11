@@ -309,7 +309,6 @@ p {
         display: grid;
         position: absolute;
         grid-template-columns: auto auto 80px auto auto;
-        background-color: black;
         width: 100vw;
         bottom: 0px;
         height: 100%;
