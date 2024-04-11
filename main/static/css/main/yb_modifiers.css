@@ -219,7 +219,7 @@
     }
 }
 
-@media screen and (prefers-color-scheme: light) {
+@media (prefers-color-scheme: light) {
     .yb-autoFill {
         fill: black;
         mix-blend-mode: difference;
