@@ -382,12 +382,19 @@ p {
 .space-button-icon {
     fill: gray;
 }
-
-.space-button-icon.active {
-    filter: brightness(200%);
-    -webkit-filter: brightness(200%);
+@media (prefers-color-scheme: dark) {
+    .space-button-icon.active {
+        filter: brightness(200%);
+        -webkit-filter: brightness(200%);
+    }
 }
+@media (prefers-color-scheme: light){
+    .space-button-icon.active {
+        filter: brightness(0%);
+        -webkit-filter: brightness(0%);
+    }
 
+}
 .yb-search-form.desktop {
     /* Positioning */
     margin: auto;
