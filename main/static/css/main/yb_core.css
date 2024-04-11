@@ -490,37 +490,76 @@ p {
 }
     
 
+@media (prefers-color-scheme: light) {
+    
 
- .yb-logo-masthead {
-    /*Positioning*/
-    position: relative;
-    margin: auto;
+    .yb-logo-masthead {
+        /*Positioning*/
+        position: relative;
+        margin: auto;
+        background-color: black;
+        /*Style*/
+        cursor: pointer;
+    }
 
-    /*Style*/
-    cursor: pointer;
- }
+    .yb-logo-masthead.mobile {
+        position: absolute;
+        display: block;
+        background-color: black;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 30px;
+    }
 
- .yb-logo-masthead.mobile {
-    position: absolute;
-    display: block;
+    .yb-header-logo {
+        /*Positioning*/
+        position: relative;
+        margin: auto 0;
 
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 30px;
- }
+        /*Sizing*/
+        height: 40px;
+        width: 40px;
 
-.yb-header-logo {
-    /*Positioning*/
-    position: relative;
-    margin: auto 0;
+        /*Style*/
+        cursor: pointer;
+    }
+}
 
-    /*Sizing*/
-    height: 40px;
-    width: 40px;
+@media (prefers-color-scheme: dark) {
+    
 
-    /*Style*/
-    cursor: pointer;
+    .yb-logo-masthead {
+        /*Positioning*/
+        position: relative;
+        margin: auto;
+        background-color: white;
+        /*Style*/
+        cursor: pointer;
+    }
+
+    .yb-logo-masthead.mobile {
+        position: absolute;
+        display: block;
+        background-color: white;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 30px;
+    }
+
+    .yb-header-logo {
+        /*Positioning*/
+        position: relative;
+        margin: auto 0;
+
+        /*Sizing*/
+        height: 40px;
+        width: 40px;
+
+        /*Style*/
+        cursor: pointer;
+    }
 }
 
 .yb-header-logo:hover {
