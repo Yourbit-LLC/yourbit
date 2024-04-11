@@ -32,9 +32,16 @@ function yb_updateFeed(update, data) {
     if (update === true) {
         //Append the feed
         console.log("appending html...")
+        if (data.length > 0) {
         for (let i = 0; i < data.length; i++) {
             let blueprint = data[i];
             yb_renderBit(blueprint);
+        }
+        } else {
+            
+            no_feed = yb_createElement("h3", "yb-feed-message", "no-feed-message");
+            no_feed.innerHTML = "No bits found."
+            bit_container.appendChild(no_feed);
         }
         
     } else {
