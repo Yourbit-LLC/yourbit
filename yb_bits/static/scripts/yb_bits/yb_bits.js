@@ -467,8 +467,6 @@ function yb_buildBit(bit){
     let feedback_background_color = custom.feedback_background_color;
     let paragraph_align = custom.paragraph_align;
 
-   
-    background_color = "#3d3d3d;";
     
     //Prepare new bit by creating an element
     new_bit = yb_createElement("div",`yb-element-background yb-bit-shell ${type}bit`, `bit-${id}`)
@@ -482,7 +480,6 @@ function yb_buildBit(bit){
     new_bit.setAttribute("data-icon-color", `${feedback_icon_color}`);
     new_bit.setAttribute("data-secondary-color", `${accent_color}`);
     new_bit.setAttribute("data-primary-color", `${primary_color}`);
-    new_bit.setAttribute("style", `background-color: ${background_color};`);
 
     //generate header
     new_bit.appendChild(createHeader(bit));
