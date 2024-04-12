@@ -63,29 +63,19 @@ class BitFeedAPIView(generics.ListAPIView):
         
         else:            
 
+           # Start with a base query that applies to all situations
+            base_query = models.Q(profile__in=friends) | \
+                        models.Q(profile__in=follows) | \
+                        models.Q(is_public=True) | \
+                        models.Q(user=self.request.user)
+
+            # Check if the active space is not global
             if active_space != "global":
+                # Add the type filter to the base query
+                base_query &= models.Q(type=active_space)
 
-                # Filter bits made by friends, followers, or public bits
-                queryset = Bit.objects.filter(
-                    models.Q(profile__in=friends) |  # Bits made by friends
-                    models.Q(profile__in=follows) |  # Bits made by followers
-                    models.Q(is_public=True) |  # Public bits
-                    models.Q(user=self.request.user)  # Bits made by the user
-                ).distinct().order_by(sort_value)
-            
-            else:
-
-                # Filter bits made by friends, followers, or public bits
-                queryset = Bit.objects.filter(
-                    (
-                        models.Q(profile__in=friends) |  # Bits made by friends
-                        models.Q(profile__in=follows) |  # Bits made by followers
-                        models.Q(is_public=True) |  # Public bits
-                        models.Q(user=self.request.user) 
-                    ) &
-                    models.Q(type=active_space) 
-
-                ).distinct().order_by(sort_value)
+            # Now apply the base_query to the queryset and finalize with distinct and order_by
+            queryset = Bit.objects.filter(base_query).distinct().order_by(sort_value)
 
         print(queryset)
 
