@@ -60,8 +60,8 @@ function yb_buildContactItem(result, type){
         yb_endTask("#message-task")
         yb_hideWidget()
         $(".minibar").animate({"bottom":"-60px"}).fadeOut();
+    });
 
-    })
     return new_item
 }
 
@@ -71,5 +71,6 @@ function yb_buildFieldTag(label, id) {
         <p class="field-tag-label yb-autoText yb-margin-L5">${label}</p>
         <button class="field-tag-delete" style=" border-width: 0px; color: red; background-color: transparent; font-size: 24px;" data-catid="${id}">&times</button>
     `;
+
     return new_tag
 }
