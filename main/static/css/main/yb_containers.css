@@ -141,6 +141,7 @@
     }
 }
 
+
 /* Styles for seen and unseen notifications */
 .seen {
     background-color: #555;
@@ -205,7 +206,7 @@
 }
 
 /* Hover effect for the entire notification */
-.yb-listItem.notification:hover {
+.yb-listItem:hover {
     background-color: #1e1e1e;
     
 }
@@ -214,16 +215,16 @@
     transition: 0.4s;
 }
 
-.yb-listItem.notification:hover p {
+.yb-listItem:hover p {
     color: lightgray !important;
     transition: 0.4s;
 }
 
-.yb-listItem.notification b {
+.yb-listItem b {
     transition: 0.4s;
 }
 
-.yb-listItem.notification:hover b {
+.yb-listItem:hover b {
     color: lightgray !important;
     transition: 0.4s;
 }
