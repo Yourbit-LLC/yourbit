@@ -64,7 +64,7 @@ class BitFeedAPIView(generics.ListAPIView):
                 models.Q(profile__in=follows) |  # Bits made by followers
                 models.Q(is_public=True) |  # Public bits
                 models.Q(user=self.request.user)  # Bits made by the user
-            ).distinct().order_by('-' + sort_value)
+            ).distinct().order_by(sort_value)
 
         print(queryset)
 
