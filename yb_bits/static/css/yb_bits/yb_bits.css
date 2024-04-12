@@ -27,7 +27,7 @@
 }
 
     .field-border {
-        border-color: white;
+        border: 2px solid white;
     }
 }
 
@@ -57,7 +57,7 @@
     }
 
     .field-border {
-        border-color: gray;
+        border: 2px solid gray;
     }
     
 }
