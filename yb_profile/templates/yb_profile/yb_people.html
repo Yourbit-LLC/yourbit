@@ -25,7 +25,7 @@
 <div id="connection-list" class="yb-fillWidth yb-vScroll yb-margin-T10" style="height: calc(100% - 150px); border-radius: 15px;">
     {% if connections %}
         {% for connection in connections %}
-            <div id="result-people-undefined" class="full-result yb-autoText" style="background-color: rgb(25, 25, 25);" data-catid="undefined" data-username="ajboston2023">
+            <div id="result-people-{{connection.id}}" class="full-result yb-autoText " data-catid="{{connection.id}}" data-username="ajboston2023">
         
             <div class="full-result-image-container">
                     <img class="full-result-image" style="width:100%; position: relative;" src="{{connection.custom.profile_image.medium_thumbnail.url}}">
