@@ -154,7 +154,6 @@ input:checked + .slider:before {
     width: 100%;
 
     /*Style*/
-    border-bottom: 1px solid #e6e6e6;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     transition: 0.5s;
 }
@@ -191,6 +190,18 @@ p {
 @media screen and (min-width: 768px) {
     .yb-header {
         display: none;
+    }
+}
+
+@media (prefers-color-scheme: dark){
+    .yb-header {
+        border-bottom: 1px solid #e6e6e6;
+    }
+}
+
+@media (prefers-color-scheme: light){
+    .yb-header {
+        border-bottom: 1px solid black;
     }
 }
 
