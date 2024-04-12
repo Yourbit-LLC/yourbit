@@ -557,7 +557,8 @@ async function sendSubscriptionToServer(subscription) {
 }
 
 function yb_changeSpace(e) {
-    let bit_type = yb_changeSpace(e.currentTarget.getAttribute("name"));
+    let button_name = e.currentTarget.getAttribute("name");
+    let bit_type = yb_changeSpace(button_name);
     yb_setSessionValues('space', bit_type);
     let location = yb_getSessionValues("location")
 
