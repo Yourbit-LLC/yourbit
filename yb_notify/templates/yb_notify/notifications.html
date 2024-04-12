@@ -4,10 +4,10 @@
     <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('notifications')"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
 </div>
 <div id="notify-button-container" class="yb-fullWidth yb-flexRow yb-gap5 yb-margin-L5 yb-margin-R5">
-    <button class="notify-filter-button yb-button-wide tiny-wide bg-gray-dark yb-autoText yb-center-margin lr rounded active">All</button>
-    <button class="notify-filter-button yb-button-wide tiny-wide bg-gray-dark yb-autoText yb-center-margin lr rounded" data-notify-class = "0">People</button>
-    <button class="notify-filter-button yb-button-wide tiny-wide bg-gray-dark yb-autoText yb-center-margin lr rounded" data-notify-class = "1">Messages</button>
-    <button class="notify-filter-button yb-button-wide tiny-wide bg-gray-dark yb-autoText yb-center-margin lr rounded" data-notify-class = "2">Bits</button>
+    <button class="notify-filter-button yb-button-wide tiny-wide yb-autoText yb-center-margin lr rounded active">All</button>
+    <button class="notify-filter-button yb-button-wide tiny-wide yb-autoText yb-center-margin lr rounded" data-notify-class = "0">People</button>
+    <button class="notify-filter-button yb-button-wide tiny-wide yb-autoText yb-center-margin lr rounded" data-notify-class = "1">Messages</button>
+    <button class="notify-filter-button yb-button-wide tiny-wide yb-autoText yb-center-margin lr rounded" data-notify-class = "2">Bits</button>
 </div>
 <div id="notification-list" class="yb-fillWidth yb-vScroll yb-margin-T10" style="height: calc(100% - 150px); border-radius: 15px;">
     {% if results.count == 0 %}
