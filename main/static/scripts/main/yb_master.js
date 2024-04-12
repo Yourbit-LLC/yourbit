@@ -10,10 +10,10 @@
 
 //Define Core UI Constants
 
-const ALL_SPACE_BUTTON = document.getElementById('yb-all-space-button');
-const CHAT_SPACE_BUTTON = document.getElementById('yb-chat-space-button');
-const PHOTO_SPACE_BUTTON = document.getElementById('yb-photo-space-button');
-const VIDEO_SPACE_BUTTON = document.getElementById('yb-video-space-button');
+const ALL_SPACE_BUTTON = document.getElementById('global-space-button');
+const CHAT_SPACE_BUTTON = document.getElementById('text-space-button');
+const PHOTO_SPACE_BUTTON = document.getElementById('photo-space-button');
+const VIDEO_SPACE_BUTTON = document.getElementById('video-space-button');
 
 const SEARCH_BUTTON = document.getElementById('search-button');
 const SEARCH_FIELD = document.getElementById('desktop-search-bar');
@@ -624,6 +624,20 @@ $(document).ready(function() {
     ALL_SPACE_BUTTON.addEventListener("click", function(e) {
         yb_changeSpace(e);
     });
+
+    CHAT_SPACE_BUTTON.addEventListener("click", function(e) {
+        yb_changeSpace(e);
+    });
+
+    VIDEO_SPACE_BUTTON.addEventListener("click", function(e) {
+        yb_changeSpace(e);
+    });
+
+    PHOTO_SPACE_BUTTON.addEventListener("click", function(e) {
+        yb_changeSpace(e);
+    });
+
+    
 
     // yb_setTimezone();
     /* Code for lottie animation renderer */
