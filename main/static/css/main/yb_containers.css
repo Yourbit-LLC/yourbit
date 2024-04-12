@@ -143,13 +143,13 @@
 
 
 /* Styles for seen and unseen notifications */
-.notification.seen {
+/* .notification.seen {
     background-color: #555;
 }
 
 .notification.unseen {
     background-color: #222;
-}
+} */
 
 /* Notification icon */
 #notification-icon {
