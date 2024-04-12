@@ -211,6 +211,10 @@
     background-color: rgb(35, 35, 35);
 }
 
+.bg-transparent {
+    background-color: transparent;
+}
+
 /* Icon Fill Modifiers */
 @media (prefers-color-scheme: dark) {
     .yb-autoFill {
