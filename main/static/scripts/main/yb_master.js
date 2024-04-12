@@ -556,10 +556,9 @@ async function sendSubscriptionToServer(subscription) {
     }
 }
 
-function yb_changeSpace(e) {
-    let button_name = e.currentTarget.getAttribute("name");
-    let bit_type = yb_changeSpace(button_name);
-    yb_setSessionValues('space', bit_type);
+function yb_changeSpace(space_name) {
+
+    yb_setSessionValues('space', space_name);
     let location = yb_getSessionValues("location")
 
     if (location === "home" || location === "profile") {
@@ -623,19 +622,23 @@ $(document).ready(function() {
     }
 
     ALL_SPACE_BUTTON.addEventListener("click", function(e) {
-        yb_changeSpace(e);
+        let space_name = e.currentTarget.getAttribute("name")
+        yb_changeSpace(space_name);
     });
 
     CHAT_SPACE_BUTTON.addEventListener("click", function(e) {
-        yb_changeSpace(e);
+        let space_name = e.currentTarget.getAttribute("name")
+        yb_changeSpace(space_name);
     });
 
     VIDEO_SPACE_BUTTON.addEventListener("click", function(e) {
-        yb_changeSpace(e);
+        let space_name = e.currentTarget.getAttribute("name")
+        yb_changeSpace(space_name);
     });
 
     PHOTO_SPACE_BUTTON.addEventListener("click", function(e) {
-        yb_changeSpace(e);
+        let space_name = e.currentTarget.getAttribute("name")
+        yb_changeSpace(space_name);
     });
 
     
