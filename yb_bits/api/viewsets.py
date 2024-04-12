@@ -80,8 +80,8 @@ class BitFeedAPIView(generics.ListAPIView):
                     models.Q(profile__in=friends) |  # Bits made by friends
                     models.Q(profile__in=follows) |  # Bits made by followers
                     models.Q(is_public=True) |  # Public bits
-                    models.Q(user=self.request.user),  # Bits made by the user
-                    type = active_space
+                    models.Q(user=self.request.user) &
+                    models.Q(type=active_space) 
 
                 ).distinct().order_by(sort_value)
 
