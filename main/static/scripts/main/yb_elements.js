@@ -7,7 +7,6 @@ function yb_buildListItem(result, action=null){
     let handle = user.username;
     let element_id = `${type}-${id}`;
     let new_item = yb_createElement("div", "full-result yb-autoText", `result-${element_id}`,);
-    new_item.setAttribute("style", `background-color: rgb(25, 25, 25);`);
     new_item.setAttribute("data-catid", `${id}`);
     new_item.setAttribute("data-username", `${handle}`);
     new_item.innerHTML =`
