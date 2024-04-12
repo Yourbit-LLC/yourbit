@@ -207,11 +207,17 @@
 /* Hover effect for the entire notification */
 .yb-listItem.notification:hover {
     background-color: #1e1e1e;
+    transition: 0.5s;
     
+}
+
+.yb-listItem.notification p {
+    transition: 1s;
 }
 
 .yb-listItem.notification:hover p {
     color: lightgray !important;
+    transition: 1s;
 }
 
 
