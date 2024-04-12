@@ -25,6 +25,10 @@
 
     padding: 5px;
 }
+
+    .field-border {
+        border-color: white;
+    }
 }
 
 @media (prefers-color-scheme: light) {
@@ -51,8 +55,14 @@
     
         padding: 5px;
     }
+
+    .field-border {
+        border-color: white;
+    }
     
 }
+
+
 
 
 
