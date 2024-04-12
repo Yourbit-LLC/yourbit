@@ -428,8 +428,7 @@
 @media (prefers-color-scheme: dark){
     .yb-autoText {
         /*Style*/
-        color: black;
-        mix-blend-mode: difference;
+        color: white;
     }
 
 }
