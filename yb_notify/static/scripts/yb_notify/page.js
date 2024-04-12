@@ -40,7 +40,7 @@ function yb_buildNotifyItem(result, action=null){
     new_item.setAttribute("data-id", `${id}`);
     new_item.setAttribute("data-username", `${handle}`);
 
-    let new_sub_item = yb_createElement("div", `yb-listItem notification ${has_seen} yb_autoText`, element_id);
+    let new_sub_item = yb_createElement("div", `yb-listItem notification ${has_seen}`, element_id);
 
     let notification_icon = yb_createElement("div", "notification-icon", `notification-icon-${id}`);
     notification_icon.innerHTML = icon;
@@ -48,13 +48,13 @@ function yb_buildNotifyItem(result, action=null){
     let notification_contents = yb_createElement("div", "notification-contents font-medium", `notification-contents-${id}`);
     notification_contents.innerHTML = `
     
-        <b class="font-small yb-autoText">
+        <b class="font-small yb-autoText blend">
             ${result.title}
         </b>
-        <p class="yb-autoText">
+        <p class="yb-autoText blend">
             ${result.body}
         </p>
-        <div class="font-gray" id="notification-time">
+        <div class="font-gray blend" id="notification-time">
             <p>${result.time}</p>
         </div>
 

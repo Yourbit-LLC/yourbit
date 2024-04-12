@@ -420,6 +420,9 @@
     height: 30px;
 }
 
+.blend {
+    mix-blend-mode: difference;
+}
 /* Text Modifiers */
 @media (prefers-color-scheme: light) {
     .yb-autoText {
