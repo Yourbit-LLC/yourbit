@@ -77,10 +77,12 @@ class BitFeedAPIView(generics.ListAPIView):
 
                 # Filter bits made by friends, followers, or public bits
                 queryset = Bit.objects.filter(
-                    models.Q(profile__in=friends) |  # Bits made by friends
-                    models.Q(profile__in=follows) |  # Bits made by followers
-                    models.Q(is_public=True) |  # Public bits
-                    models.Q(user=self.request.user) &
+                    (
+                        models.Q(profile__in=friends) |  # Bits made by friends
+                        models.Q(profile__in=follows) |  # Bits made by followers
+                        models.Q(is_public=True) |  # Public bits
+                        models.Q(user=self.request.user) 
+                    ) &
                     models.Q(type=active_space) 
 
                 ).distinct().order_by(sort_value)
