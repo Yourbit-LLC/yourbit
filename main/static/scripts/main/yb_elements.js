@@ -6,20 +6,19 @@ function yb_buildListItem(result, action=null){
     let name = result.display_name;
     let handle = user.username;
     let element_id = `${type}-${id}`;
-    let new_item = yb_createElement("div", "full-result yb-autoText", `result-${element_id}`,);
+    let new_item = yb_createElement("div", "full-result yb-autoText", `result-${element_id}`);
     new_item.setAttribute("data-catid", `${id}`);
     new_item.setAttribute("data-username", `${handle}`);
     new_item.innerHTML =`
-        
-            <div class = 'full-result-image-container'>
-                <img class='full-result-image' style="width: 100%; position:relative;" src="${result.customcore.profile_image.small_thumbnail}">
-            </div>
-            <div class='full-result-name-container'>
-                <p class = 'full-result-name'><strong>${name}</strong></p>
-                <p class = 'full-result-username'>
-                    <small>@${handle}</small>
-                </p>
-            </div>
+        <div class = 'full-result-image-container'>
+            <img class='full-result-image' style="width: 100%; position:relative;" src="${result.customcore.profile_image.small_thumbnail}">
+        </div>
+        <div class='full-result-name-container'>
+            <p class = 'full-result-name'><strong>${name}</strong></p>
+            <p class = 'full-result-username'>
+                <small>@${handle}</small>
+            </p>
+        </div>
     `
 
     if (action != null) {
@@ -40,7 +39,6 @@ function yb_buildContactItem(result, type){
     let handle = result.username;
     let element_id = `${type}-${id}`;
     let new_item = yb_createElement("div", `result-${element_id}`, "full-result");
-    new_item.setAttribute("style", `background-color: ${primary_color};`);
     new_item.setAttribute("data-catid", `${result.this_id}`);
     new_item.innerHTML =`
         
