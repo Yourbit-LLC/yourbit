@@ -47,6 +47,9 @@ class BitFeedAPIView(generics.ListAPIView):
         filter_value = self.request.query_params.get('filter', None)
         sort_value = self.request.query_params.get('sort')
 
+        active_space = self.request.query_params.get('space')
+
+
         print(sort_value)
 
         #Check if profile is in request query params
@@ -58,13 +61,25 @@ class BitFeedAPIView(generics.ListAPIView):
         
         else:            
 
-            # Filter bits made by friends, followers, or public bits
-            queryset = Bit.objects.filter(
-                models.Q(profile__in=friends) |  # Bits made by friends
-                models.Q(profile__in=follows) |  # Bits made by followers
-                models.Q(is_public=True) |  # Public bits
-                models.Q(user=self.request.user)  # Bits made by the user
-            ).distinct().order_by(sort_value)
+            if active_space != "global":
+
+                # Filter bits made by friends, followers, or public bits
+                queryset = Bit.objects.filter(
+                    models.Q(profile__in=friends) |  # Bits made by friends
+                    models.Q(profile__in=follows) |  # Bits made by followers
+                    models.Q(is_public=True) |  # Public bits
+                    models.Q(user=self.request.user)  # Bits made by the user
+                ).distinct().order_by(sort_value)
+            
+            else:
+
+                # Filter bits made by friends, followers, or public bits
+                queryset = Bit.objects.filter(
+                    models.Q(profile__in=friends, type=active_space) |  # Bits made by friends
+                    models.Q(profile__in=follows, type=active_space) |  # Bits made by followers
+                    models.Q(is_public=True, type=active_space) |  # Public bits
+                    models.Q(user=self.request.user, type=active_space)  # Bits made by the user
+                ).distinct().order_by(sort_value)
 
         print(queryset)
 
