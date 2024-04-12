@@ -556,6 +556,21 @@ async function sendSubscriptionToServer(subscription) {
     }
 }
 
+function yb_changeSpace(e) {
+    let bit_type = yb_changeSpace(e.currentTarget.getAttribute("name"));
+    yb_setSessionValues('space', bit_type);
+    let location = yb_getSessionValues("location")
+
+    if (location === "home" || location === "profile") {
+        try {
+            yb_getFeed()
+        }
+        catch(err) {
+            console.log("Invalid location for space filters")
+        }
+    } 
+}
+
 
 $(document).ready(function() {
 
@@ -606,6 +621,9 @@ $(document).ready(function() {
         console.log('display-mode is not standalone');
     }
 
+    ALL_SPACE_BUTTON.addEventListener("click", function(e) {
+        yb_changeSpace(e);
+    });
 
     // yb_setTimezone();
     /* Code for lottie animation renderer */
