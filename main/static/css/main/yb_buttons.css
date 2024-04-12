@@ -177,9 +177,9 @@
     position: relative;
     width: 70%;
     height: 35px;
-    background-color: #4b4b4b;
+    
     margin-bottom: 5px;
-    color: white;
+    
     margin-left: auto;
     margin-right: auto;
 }
@@ -191,6 +191,22 @@
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
     transition: 0.5s;
 }
+
+@media (prefers-color-scheme:dark) {
+    .yb-button-threeQuarter {
+        color: white;
+        background-color: #4b4b4b;
+    }
+}
+
+@media (prefers-color-scheme:dark) {
+    .yb-button-threeQuarter {
+        background-color: rgb(200, 200, 200);
+        color: black;
+    }
+}
+
+
 
 .yb-button-halfWidth {
     display: block;
