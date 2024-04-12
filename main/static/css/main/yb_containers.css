@@ -207,7 +207,11 @@
 /* Hover effect for the entire notification */
 .yb-listItem.notification:hover {
     background-color: #1e1e1e;
-    color: white !important;
+    
+}
+
+.yb-listItem.notification:hover p {
+    color: lightgray !important;
 }
 
 
