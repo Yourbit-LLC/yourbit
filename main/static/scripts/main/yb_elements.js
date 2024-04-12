@@ -6,7 +6,7 @@ function yb_buildListItem(result, action=null){
     let name = result.display_name;
     let handle = user.username;
     let element_id = `${type}-${id}`;
-    let new_item = yb_createElement("div", "full-result yb-autoText", `result-${element_id}`);
+    let new_item = yb_createElement("div", "yb-listItem yb-autoText", `result-${element_id}`);
     new_item.setAttribute("data-catid", `${id}`);
     new_item.setAttribute("data-username", `${handle}`);
     new_item.innerHTML =`
