@@ -181,14 +181,14 @@ p {
     transition: 0.5s;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 768px) {
     .yb-header {
         display: flex;
     }
 
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 768px) {
     .yb-header {
         display: none;
     }
