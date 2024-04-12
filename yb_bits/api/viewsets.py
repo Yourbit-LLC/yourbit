@@ -49,6 +49,8 @@ class BitFeedAPIView(generics.ListAPIView):
 
         active_space = self.request.query_params.get('space')
 
+        print(active_space)
+
 
         print(sort_value)
 
