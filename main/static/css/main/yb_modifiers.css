@@ -417,10 +417,20 @@
 }
 
 /* Text Modifiers */
-.yb-autoText {
-    /*Style*/
-    color: white;
-    mix-blend-mode: difference;
+@media (prefers-color-scheme: light) {
+    .yb-autoText {
+        /*Style*/
+        color: black;
+    }
+
+}
+
+@media (prefers-color-scheme: dark){
+    .yb-autoText {
+        /*Style*/
+        color: black;
+        mix-blend-mode: difference;
+    }
 
 }
 
