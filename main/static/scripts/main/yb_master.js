@@ -633,7 +633,7 @@ $(document).ready(function() {
     }
 
     for (let i = 0; i < SPACE_BUTTONS.length; i++) {
-        SPACE_BUTTONS[i].addEventListener("click", function(){
+        SPACE_BUTTONS[i].addEventListener("click", function(e){
             let space_name = e.currentTarget.getAttribute("name");
             yb_changeSpace(space_name);
         });
