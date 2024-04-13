@@ -578,9 +578,10 @@ function yb_changeSpace(space_name) {
             let this_button = document.getElementById(`${space_name}-space-button`)
             
             this_button.querySelector(".yb-icon").classList.add("active");
-        
+            
             yb_getFeed()
             CONTENT_CONTAINER.scrollTo(0, 0);
+
         }
         catch(err) {
             console.log("Invalid location for space filters")

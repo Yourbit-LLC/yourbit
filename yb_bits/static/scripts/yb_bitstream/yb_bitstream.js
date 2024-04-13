@@ -28,6 +28,7 @@ function yb_showSwipeUp() {
 function onScrollToBottom() {
     console.log("User has scrolled to the bottom of the container!");
     // Place your logic here that needs to be executed when the bottom is reached
+    $("load-indicator-container-bitstream").show();
     yb_getFeed(true, true);
   }
 
@@ -68,12 +69,15 @@ function yb_updateFeed(update, data) {
                 let blueprint = data[i];
                 yb_renderBit(blueprint);
             }
+
             detectScrollToBottom();
+            $("load-indicator-container-bitstream").hide();
         } else {
             
             let no_feed = yb_createElement("h3", "yb-feed-message", "no-feed-message");
             no_feed.innerHTML = "No bits found."
             bit_container.appendChild(no_feed);
+            $("load-indicator-container-bitstream").hide();
         }
         
 
