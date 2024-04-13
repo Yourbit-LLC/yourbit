@@ -48,7 +48,7 @@ class FeedSettings(models.Model):
     show_links = models.BooleanField(default=True)
     
     #Sortation
-    sort_by = models.CharField(max_length= 100, default = 'time')
+    sort_by = models.CharField(max_length= 100, default = '-time')
 
     #Defualt Space
     default_space = models.CharField(max_length= 100, default = 'auto')

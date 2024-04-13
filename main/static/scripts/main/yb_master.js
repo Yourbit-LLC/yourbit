@@ -10,10 +10,10 @@
 
 //Define Core UI Constants
 
-const SPACE_BUTTONS = document.querySelectAll(".yb-space-button");
+const SPACE_BUTTONS = document.querySelectorAll(".yb-space-button");
 
 const ALL_SPACE_BUTTON = document.getElementById('global-space-button');
-const CHAT_SPACE_BUTTON = document.getElementById('text-space-button');
+const CHAT_SPACE_BUTTON = document.getElementById('chat-space-button');
 const PHOTO_SPACE_BUTTON = document.getElementById('photo-space-button');
 const VIDEO_SPACE_BUTTON = document.getElementById('video-space-button');
 
@@ -563,8 +563,17 @@ function yb_changeSpace(space_name) {
     yb_setSessionValues('space', space_name);
     let location = yb_getSessionValues("location")
 
+
     if (location === "home" || location === "profile") {
         try {
+            for (let i = 0; i < SPACE_BUTTONS.length; i++) {
+                if (SPACE_BUTTONS[i].classList.contains("active")) {
+                    SPACE_BUTTONS[i].classList.remove("active")
+                }
+            } 
+
+            document.getElementById(`${space_name}-space-button`).classList.add("active");
+        
             yb_getFeed()
         }
         catch(err) {
@@ -623,25 +632,10 @@ $(document).ready(function() {
         console.log('display-mode is not standalone');
     }
 
-    ALL_SPACE_BUTTON.addEventListener("click", function(e) {
-        let space_name = e.currentTarget.getAttribute("name")
+    for (let i = 0; i < SPACE_BUTTONS.length; i++) {
+        let space_name = e.currentTarget.getAttribute("name");
         yb_changeSpace(space_name);
-    });
-
-    CHAT_SPACE_BUTTON.addEventListener("click", function(e) {
-        let space_name = e.currentTarget.getAttribute("name")
-        yb_changeSpace(space_name);
-    });
-
-    VIDEO_SPACE_BUTTON.addEventListener("click", function(e) {
-        let space_name = e.currentTarget.getAttribute("name")
-        yb_changeSpace(space_name);
-    });
-
-    PHOTO_SPACE_BUTTON.addEventListener("click", function(e) {
-        let space_name = e.currentTarget.getAttribute("name")
-        yb_changeSpace(space_name);
-    });
+    }
 
     
 
