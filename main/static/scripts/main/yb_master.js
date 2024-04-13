@@ -567,8 +567,6 @@ function yb_changeSpace(space_name) {
     console.log(space_name);
     let location = yb_getSessionValues("location");
 
-
-
     if (location === "home" || location === "profile") {
         try {
             for (let i = 0; i < SPACE_BUTTONS.length; i++) {
@@ -582,6 +580,7 @@ function yb_changeSpace(space_name) {
             this_button.querySelector(".yb-icon").classList.add("active");
         
             yb_getFeed()
+            CONTENT_CONTAINER.scrollTo(0, 0);
         }
         catch(err) {
             console.log("Invalid location for space filters")
