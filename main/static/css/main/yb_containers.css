@@ -505,7 +505,6 @@
         width: 90vw;
         height: 80vh;
         max-height: 500px;
-        background-color: rgba(0, 0, 0, 0.95);
         z-index: 99;
         border-radius: 20px;
         border: 1px solid rgb(24, 24, 24);
@@ -537,7 +536,6 @@
         z-index: 99;
         border-radius: 0px;
         transform: translateY(100vh);
-        box-shadow: black 0px 0px 60px 0px;
         transition: 0.5s;
         overflow-y: hidden;
     }
