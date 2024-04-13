@@ -127,7 +127,7 @@ function yb_messageButton() {
 }
 
 const BUTTON_FUNCTIONS = {
-    "bitstream": yb_startBitStream,
+    "bitstream": yb_goHome,
     "messages": yb_messageButton,
     "people": yb_showPeoplePage,
     "stuff": yb_showStuffPage,
