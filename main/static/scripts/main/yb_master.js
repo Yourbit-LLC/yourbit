@@ -633,8 +633,10 @@ $(document).ready(function() {
     }
 
     for (let i = 0; i < SPACE_BUTTONS.length; i++) {
-        let space_name = e.currentTarget.getAttribute("name");
-        yb_changeSpace(space_name);
+        SPACE_BUTTONS[i].addEventListener("click", function(){
+            let space_name = e.currentTarget.getAttribute("name");
+            yb_changeSpace(space_name);
+        });
     }
 
     
