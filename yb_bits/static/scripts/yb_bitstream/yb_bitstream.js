@@ -39,7 +39,7 @@ function yb_updateFeed(update, data) {
         }
         } else {
             
-            no_feed = yb_createElement("h3", "yb-feed-message", "no-feed-message");
+            let no_feed = yb_createElement("h3", "yb-feed-message", "no-feed-message");
             no_feed.innerHTML = "No bits found."
             bit_container.appendChild(no_feed);
         }
@@ -83,6 +83,7 @@ function yb_requestFeed(data=null) {
             console.log("Current location: " + yb_getSessionValues('location'))
 
             if (start_location === yb_getSessionValues('location')) {
+                if ()
                 yb_updateFeed(data.update, response);
             } else {
                 console.log("User navigated away from the feed. Stopping render...")
