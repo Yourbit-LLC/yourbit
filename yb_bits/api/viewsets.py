@@ -59,7 +59,12 @@ class BitFeedAPIView(generics.ListAPIView):
             #If so user wants bits for a specific profile
             profile_username = self.request.query_params.get('profile')
             profile = Profile.objects.get(user__username=profile_username)
-            queryset = Bit.objects.filter(profile=profile).order_by(sort_value)
+            
+            if active_space != "global":
+                queryset = Bit.objects.filter(profile=profile, type = active_space).order_by(sort_value)
+            
+            else:
+                queryset = Bit.objects.filter(profile=profile).order_by(sort_value)
         
         else:            
 
