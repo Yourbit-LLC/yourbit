@@ -638,8 +638,8 @@ $(document).ready(function() {
 
     for (let i = 0; i < SPACE_BUTTONS.length; i++) {
         SPACE_BUTTONS[i].addEventListener("click", function(e){
+            $(MAIN_LOADING_SCREEN).fadeIn(100).animate({opacity: 1}, 100);
             let space_name = e.currentTarget.getAttribute("name");
-            $(MAIN_LOADING_SCREEN).fadeIn(250).animate({opacity: 1}, 250);
             yb_changeSpace(space_name);
         });
     }
