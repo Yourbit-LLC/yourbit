@@ -64,10 +64,11 @@ function yb_updateFeed(update, data) {
         //Append the feed
         console.log("appending html...")
         if (data.length > 0) {
-        for (let i = 0; i < data.length; i++) {
-            let blueprint = data[i];
-            yb_renderBit(blueprint);
-        }
+            for (let i = 0; i < data.length; i++) {
+                let blueprint = data[i];
+                yb_renderBit(blueprint);
+            }
+            detectScrollToBottom();
         } else {
             
             let no_feed = yb_createElement("h3", "yb-feed-message", "no-feed-message");
@@ -92,10 +93,9 @@ function yb_updateFeed(update, data) {
             yb_renderBit(blueprint);
             
         }
+        detectScrollToBottom();
 
     }
-
-    detectScrollToBottom();
 }
 
 function yb_requestFeed(data=null) {
