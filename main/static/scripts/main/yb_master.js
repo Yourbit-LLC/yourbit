@@ -198,7 +198,8 @@ function yb_clear2WayContainer(container){
 
 }
 function yb_startBitStream() {
-    
+    $(CONTENT_CONTAINER).html("");
+    yb_setSessionValues("location", "home")
     $(CONTENT_CONTAINER).load('/bits/templates/bitstream/');
 }
 
