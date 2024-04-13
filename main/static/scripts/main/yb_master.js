@@ -10,7 +10,7 @@
 
 //Define Core UI Constants
 
-const SPACE_BUTTONS = document.querySelectorAll(".yb-space-button");
+const SPACE_BUTTONS = document.querySelectorAll(".space-button");
 
 const ALL_SPACE_BUTTON = document.getElementById('global-space-button');
 const CHAT_SPACE_BUTTON = document.getElementById('chat-space-button');
