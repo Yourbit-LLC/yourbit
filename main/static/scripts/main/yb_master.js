@@ -568,8 +568,8 @@ function yb_changeSpace(space_name) {
     if (location === "home" || location === "profile") {
         try {
             for (let i = 0; i < SPACE_BUTTONS.length; i++) {
-                if (SPACE_BUTTONS[i].classList.contains("active")) {
-                    SPACE_BUTTONS[i].classList.remove("active")
+                if (SPACE_BUTTONS[i].querySelector(".yb-icon").classList.contains("active")) {
+                    SPACE_BUTTONS[i].querySelector(".yb-icon").classList.remove("active")
                 }
             } 
 
