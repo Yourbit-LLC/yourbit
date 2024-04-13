@@ -573,7 +573,9 @@ function yb_changeSpace(space_name) {
                 }
             } 
 
-            document.getElementById(`${space_name}-space-button`).classList.add("active");
+            let this_button = document.getElementById(`${space_name}-space-button`)
+            
+            this_button.querySelector(".yb-icon").classList.add("active");
         
             yb_getFeed()
         }
