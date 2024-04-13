@@ -83,7 +83,6 @@ function yb_requestFeed(data=null) {
             console.log("Current location: " + yb_getSessionValues('location'))
 
             if (start_location === yb_getSessionValues('location')) {
-                if ()
                 yb_updateFeed(data.update, response);
             } else {
                 console.log("User navigated away from the feed. Stopping render...")
