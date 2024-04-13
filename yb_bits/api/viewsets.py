@@ -91,7 +91,12 @@ class BitFeedAPIView(generics.ListAPIView):
         print("\n\n" + page + "\n\n")
 
         if page:
-            queryset = p.page(page)
+
+            try:
+                queryset = p.page(page)
+
+            except:
+                queryset = None
 
 
         # You may want to handle exceptions for invalid input or missing parameters
