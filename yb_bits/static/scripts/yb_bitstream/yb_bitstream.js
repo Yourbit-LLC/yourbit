@@ -75,6 +75,8 @@ function yb_updateFeed(update, data) {
             bit_container.appendChild(no_feed);
         }
         
+
+        
     } else {
         //Update the feed
         console.log("appending html...")
@@ -90,9 +92,10 @@ function yb_updateFeed(update, data) {
             yb_renderBit(blueprint);
             
         }
-        detectScrollToBottom();
 
     }
+
+    detectScrollToBottom();
 }
 
 function yb_requestFeed(data=null) {
