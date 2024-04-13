@@ -22,9 +22,9 @@ function yb_logout() {
 }
 
 function yb_goHome() {
-    console.log("home clicked");
-    window.location.href = "/";
-
+    $(CONTENT_CONTAINER).html("");
+    yb_setSessionValues("location", "home")
+    $(CONTENT_CONTAINER).load('/bits/templates/bitstream/');
 }
 
 
@@ -127,7 +127,7 @@ function yb_messageButton() {
 }
 
 const BUTTON_FUNCTIONS = {
-    "bitstream": START_BITSTREAM,
+    "bitstream": yb_startBitStream,
     "messages": yb_messageButton,
     "people": yb_showPeoplePage,
     "stuff": yb_showStuffPage,
