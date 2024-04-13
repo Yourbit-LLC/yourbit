@@ -564,7 +564,7 @@ function yb_changeSpace(space_name) {
     console.log(space_name);
     let location = yb_getSessionValues("location");
 
-    
+
 
     if (location === "home" || location === "profile") {
         try {
@@ -639,7 +639,7 @@ $(document).ready(function() {
     for (let i = 0; i < SPACE_BUTTONS.length; i++) {
         SPACE_BUTTONS[i].addEventListener("click", function(e){
             let space_name = e.currentTarget.getAttribute("name");
-            $(MAIN_LOADING_SCREEN).fadeIn(500).animate({opacity: 0}, 500);
+            $(MAIN_LOADING_SCREEN).fadeIn(500).animate({opacity: 1}, 500);
             yb_changeSpace(space_name);
         });
     }
