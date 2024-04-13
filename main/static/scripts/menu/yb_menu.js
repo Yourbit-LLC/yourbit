@@ -21,11 +21,7 @@ function yb_logout() {
     window.location.href = "/logout/";
 }
 
-function yb_goHome() {
-    $(CONTENT_CONTAINER).html("");
-    yb_setSessionValues("location", "home")
-    $(CONTENT_CONTAINER).load('/bits/templates/bitstream/');
-}
+
 
 
 function yb_toggleMainMenu() {
@@ -41,6 +37,13 @@ function yb_toggleMainMenu() {
     MAIN_MENU.classList.toggle("open");
 
 
+}
+
+function yb_goHome() {
+    yb_toggleMainMenu();
+    $(CONTENT_CONTAINER).html("");
+    yb_setSessionValues("location", "home")
+    $(CONTENT_CONTAINER).load('/bits/templates/bitstream/');
 }
 
 function yb_toggleSettingsMenu() {
