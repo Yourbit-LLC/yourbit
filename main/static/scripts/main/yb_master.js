@@ -561,7 +561,8 @@ async function sendSubscriptionToServer(subscription) {
 function yb_changeSpace(space_name) {
 
     yb_setSessionValues('space', space_name);
-    let location = yb_getSessionValues("location")
+    console.log(space_name);
+    let location = yb_getSessionValues("location");
 
 
     if (location === "home" || location === "profile") {
