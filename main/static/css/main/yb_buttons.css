@@ -201,7 +201,7 @@
 
 @media (prefers-color-scheme:dark) {
     .yb-button-threeQuarter {
-        background-color: rgb(200, 200, 200);
+        background-color: #4b4b4b;
         color: black;
     }
 }
