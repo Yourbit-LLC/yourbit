@@ -199,9 +199,9 @@
     }
 }
 
-@media (prefers-color-scheme:dark) {
+@media (prefers-color-scheme:light) {
     .yb-button-threeQuarter {
-        background-color: #4b4b4b;
+        background-color: rgb(200, 200, 200);
         color: black;
     }
 }
