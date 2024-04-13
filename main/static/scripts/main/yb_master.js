@@ -203,6 +203,8 @@ function yb_startBitStream() {
     $(CONTENT_CONTAINER).load('/bits/templates/bitstream/');
 }
 
+const START_BITSTREAM = yb_startBitStream();
+
 function yb_toggle2WayContainer(type, scroll=false){
 
     console.log(scroll)
