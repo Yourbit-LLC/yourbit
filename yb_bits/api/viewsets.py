@@ -59,7 +59,7 @@ class BitFeedAPIView(generics.ListAPIView):
             #If so user wants bits for a specific profile
             profile_username = self.request.query_params.get('profile')
             profile = Profile.objects.get(user__username=profile_username)
-            queryset = Bit.objects.filter(profile=profile).order_by('-' + sort_value)
+            queryset = Bit.objects.filter(profile=profile).order_by(sort_value)
         
         else:            
 
