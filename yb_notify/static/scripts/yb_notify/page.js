@@ -126,7 +126,8 @@ function yb_handleNotificationOptionClick(e) {
     let this_id = this_option.getAttribute("data-oid");
     console.log(this_id);
     let this_option_name = this_option.getAttribute("name");
-    
+    yb_toggle2WayContainer("notifications");
+    yb_closeSlideUpTemplate();
     option_functions[this_option_name](this_id);
 
 }
