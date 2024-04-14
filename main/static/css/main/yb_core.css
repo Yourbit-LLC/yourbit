@@ -300,7 +300,7 @@ p {
         position: relative;
         margin: auto;
         height: 100%;
-        margin-left: 10px;
+        
         /* white border on left and right edges only */
         border-left: 2px solid #4b4b4b;
         border-right: 2px solid #4b4b4b;
@@ -319,7 +319,7 @@ p {
         text, video, and photo but available spaces are subject to change */
         display: grid;
         position: absolute;
-        grid-template-columns: auto auto 80px auto auto;
+        grid-template-columns: 1fr 1fr 80px 1fr 1fr;
         width: 100vw;
         bottom: 0px;
         height: 100%;
