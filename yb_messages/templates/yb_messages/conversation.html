@@ -1,17 +1,12 @@
 {% load static %}
-<html>
-    
-    <head>
-        <link rel="stylesheet" type="text/css" href="{% static 'css/conversations.css' %}"/>
-        <link rel="stylesheet" type="text/css" href="{% static 'css/yourbit_core.css' %}"/>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1">
-    </head>
-    <body>
-        <input id='csrf-token' type='hidden' value={{csrf_token}}>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/conversation/yb_conversations.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main/yb_core.css' %}"/>
+
+    <input id='csrf-token' type='hidden' value={{csrf_token}}>
     <div id='header' style='text-align:center; color: white;'>
         <svg id="back-to-convos" xmlns="http://www.w3.org/2000/svg" style="position: absolute; left: 15px; top: 50%; transform: translate(0, -50%);" height="24" width="24"><path d="M10 22 0 12 10 2l1.775 1.775L3.55 12l8.225 8.225Z"/></svg>
-        <h3 id="receiver-name" style="margin-top:15px; margin-bottom: 2px;">{{conversation.receiver}}</h3>
+        <h3 id="receiver-name" style="margin-top:15px; margin-bottom: 2px;">{{conversation_name}}</h3>
         <p style='margin-top:0px;'><small>offline</small></p>
         <svg id="options-button" xmlns="http://www.w3.org/2000/svg" style = "position: absolute; right: 15px; top: 50%; transform: translate(0, -50%);" height="24" width="24"><path d="M12 20q-.825 0-1.412-.587Q10 18.825 10 18q0-.825.588-1.413Q11.175 16 12 16t1.413.587Q14 17.175 14 18q0 .825-.587 1.413Q12.825 20 12 20Zm0-6q-.825 0-1.412-.588Q10 12.825 10 12t.588-1.413Q11.175 10 12 10t1.413.587Q14 11.175 14 12q0 .825-.587 1.412Q12.825 14 12 14Zm0-6q-.825 0-1.412-.588Q10 6.825 10 6t.588-1.412Q11.175 4 12 4t1.413.588Q14 5.175 14 6t-.587 1.412Q12.825 8 12 8Z"/></svg>
         <div id="conversation-data" data-id="{{conversation.id}}" data-primary-color = "{{request.user.profile.custom.primary_color}}" data-receiver-username="{{conversation.receiver.username}}" data-receiver="{{conversation.receiver.id}}" data-sender-id = "{{request.user.id}}"></div>
@@ -20,7 +15,7 @@
     <div id='message-container' style="padding-bottom: 55px;">
         <!--Messages are appended here-->
         {% for message in messages reversed %}
-            {% if message.sender == request.user %}
+            {% if message.from_user == request.user %}
                 
                     <div id="message-{{message.id}}" class='message-bubble message-bubble-right' style="background-color: {{user.profile.custom.primary_color}};">
                         <div class="message-body">{{ message.body }}</div>
@@ -71,14 +66,6 @@
             <button id="send-button"  class="yb-button-round" disabled>Send</button>
         </div>    
     </div>
-</body>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script class="page-script" type='text/javascript' type="text/css" src="{% static 'scripts/yb-ajax.js' %}"></script>
-<script class="page-script" type='text/javascript' type="text/css" src="{% static 'scripts/yb-routes.js' %}"></script>
-<script class="page-script" type='text/javascript' type="text/css" src="{% static 'scripts/yb-global.js' %}"></script>
-<script class="page-script" type='text/javascript' type="text/css" src="{% static 'scripts/messenger.js' %}"></script>
-<script class="page-script" type='text/javascript' type="text/css" src="{% static 'scripts/yb-builders.js' %}"></script>
-<script class="page-script" type='text/javascript' type="text/css" src="{% static 'scripts/conversation.js' %}"></script>
 
-</html>
+<script class="page-script" type='text/javascript' type="text/css" src="{% static 'scripts/yb_messages/yb_conversation.js' %}"></script>

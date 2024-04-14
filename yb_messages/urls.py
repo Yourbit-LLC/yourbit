@@ -6,6 +6,7 @@ from yb_messages.views import message_inbox, new_conversation_template, MessageP
 urlpatterns = [
     path("inbox/", message_inbox, name="message_inbox"),
     path("templates/new-message/", new_conversation_template, name="message_new"),
+    path("templates/conversation/<int:id>/"),
     path('api/', include('yb_messages.routers')),
     path('', MessagePage.as_view(), name="message_inbox")
     

@@ -521,6 +521,31 @@ function yb_displayPrompt(title, message, actions, id=null){
 
 }
 
+function yb_toggleConversation2Way(page, id){
+    let container = yb_toggle2WayContainer('conversation', false);
+    if (container[0] === "closing"){
+        history.pushState(null, null, "/");
+        container[1].setAttribute("data-state", "empty");
+    } else {
+        console.log("not closing")
+        let container_content = container[1].querySelector(".yb-2Way-content");
+        container[1].setAttribute("data-state", "conversation");
+        $(container_content).load(page)
+        history.pushState({}, "", `/messages/conversation/${id}/`);
+    }
+
+}
+
+function yb_loadConversationTemplate(this_id){
+    $.ajax({
+        type: 'GET',
+        url: `/messages/templates/conversation/${this_id}/`,
+        success: function(response){
+            yb_toggleConversation2WayContainer(response, this_id);
+        }
+    })
+}
+
 function yb_closePrompt(){
     
     TOP_LAYER.classList.remove("open");

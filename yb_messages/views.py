@@ -27,51 +27,37 @@ def new_conversation_template(request):
     return render(request, "yb_messages/create_conversation.html", {})
 
 class ConversationView(View):
-    def get(self, request, *args, **kwargs):
-        user = request.user
+    def get(self, request, id, *args, **kwargs):
+        
+        this_id = id
+        
+        context = {}
 
-        #Get type data from url
-        conversation_type = kwargs['type']
+        this_conversation = Conversation.objects.get(id = this_id)
+        messages = Message.objects.filter(conversation = this_conversation)
 
-        conversation_id = kwargs['conversation_id']
+        members = this_conversation.members.all()
 
-        conversation = Conversation.objects.get(id=conversation_id)
+        context["conversation"] = this_conversation
+        context["messages"] = messages
 
-        messages = conversation.messages.all()
+        if this_conversation.is_name == True:
+            context["conversation_name"] = this_conversation.name
 
-        context = {
-            'messages': messages,
-            'conversation': conversation,
-        }
+        else:
+            if len(this_conversation.members.all()) > 2:
+                context["conversation_name"] = str(this_conversation.members.count()) + " People"
 
-        return render(request, "yb_messages/conversation.html", context)
-
-    def post(self, request, *args, **kwargs):
-        user = request.user
-        conversation_id = kwargs['conversation_id']
-
-        conversation = Conversation.objects.get(id=conversation_id)
-
-        message = request.POST.get('message')
-
-        new_message = Message(
-            sender=user,
-            body=message,
-        )
-
-        new_message.save()
-
-        conversation.messages.add(new_message)
-
-        messages = conversation.messages.all()
-
-        context = {
-            'messages': messages,
-            'conversation': conversation,
-        }
+            else:
+                for member in members:
+                    member = members[member]
+                    if member !=  request.user:
+                        context["conversation_name"] = member.profile.display_name
+            
 
         return render(request, "yb_messages/conversation.html", context)
-    
+
+ 
 class MessagePage(View):
     def get(self, request):
         

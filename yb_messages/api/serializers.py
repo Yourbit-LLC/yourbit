@@ -11,11 +11,21 @@ class MessageCoreSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ConversationSerializer(serializers.ModelSerializer):
-    user = UserResultSerializer(read_only=True)
+    members = serializers.CharField(write_only=True)
+
     class Meta:
         model = Conversation
-        fields = '__all__'
+        fields = ['id', 'members', 'is_name', 'name', 'is_joinable', 'is_private', 'is_community', 'time_modified', 'stickers']
 
+    def create(self, validated_data):
+        # Extract members as a comma-separated string and convert to a list of user IDs
+        member_ids = validated_data.pop('members').split(',')
+        member_ids = [int(id.strip()) for id in member_ids if id.strip().isdigit()]  # Ensure only valid integers are converted
+        members = User.objects.filter(id__in=member_ids)
+        conversation = Conversation.objects.create(**validated_data)
+        conversation.members.set(members)
+        return conversation
+    
 class MessageSerializer(serializers.ModelSerializer):
     user = UserResultSerializer(read_only=True)
     class Meta:

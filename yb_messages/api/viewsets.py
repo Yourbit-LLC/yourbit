@@ -43,7 +43,13 @@ class ConversationViewSet(viewsets.ModelViewSet):
         return Conversation.objects.filter(profile=self.request.user.profile)
     
     def perform_create(self, serializer):
-        serializer.save(profile=self.request.user.profile)
+        # Automatically add the request.user to the conversation members
+        members = serializer.validated_data.get('members', [])
+        if self.request.user not in members:
+            members.append(self.request.user)
+        serializer.save(members=members)
+
+        return Response(serializer.data)
 
 class MessageViewSet(viewsets.ModelViewSet):
     queryset = Message.objects.all()

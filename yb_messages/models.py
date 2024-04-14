@@ -22,7 +22,8 @@ class MessageCore(models.Model):
     start_by_name = models.BooleanField(default=False)
 
 class Conversation(models.Model):
-    name = models.CharField(max_length=100)
+    is_name = models.BooleanField(default = False)
+    name = models.CharField(max_length=100, default = "Untitled Conversation")
     members = models.ManyToManyField(User, related_name='members')
     is_joinable = models.BooleanField(default=False)
     is_private = models.BooleanField(default=False)
@@ -35,6 +36,7 @@ class Conversation(models.Model):
 #Message is contained in a conversation
 class Message(models.Model):
     conversation = models.ForeignKey('Conversation', related_name='messages', on_delete=models.CASCADE)
+    from_user = models.ForeignKey(User, related_name="sender", on_delete=models.CASCADE)
     body = models.CharField(max_length = 1500)
     videos = models.ManyToManyField('yb_video.Video', blank=True)
     images = models.ManyToManyField('yb_photo.Photo', blank=True)

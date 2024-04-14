@@ -21,7 +21,7 @@ $(document).ready(function(){
         header.style.transform = "translateY(-100%)";
         message_container.style.transform = "translateY(100%)";
 
-        window.location.href = "/messages/inbox/";
+        yb_handleMessageClick();
     });
 
     message_input.addEventListener('keyup', function(event){
