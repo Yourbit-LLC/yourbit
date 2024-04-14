@@ -18,7 +18,7 @@
     {% for notification in results %}
         <div id="notification-container-{{notification.id}}" data-id = "{{notification.id}}" class="yb-fillWidth" 
         {% if notification.type == 4%} 
-                data-rid = "{{notification.friend_request.id}}" 
+                data-rid = "{{notification.friend_request}}" 
 
             {% endif %}
         
