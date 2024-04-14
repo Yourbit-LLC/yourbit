@@ -627,6 +627,10 @@ $(document).ready(function() {
         yb_openSpotlight();
     });
 
+    MASTHEAD_LOGO.addEventListener('click', function() {
+        yb_startBitStream()
+    })
+
     yb_updateTimezone();
 
     if (window.matchMedia('(display-mode: standalone)').matches) {
