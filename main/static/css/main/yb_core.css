@@ -442,7 +442,7 @@ p {
 .yb-search-bar.desktop:hover {
     filter: brightness(75%);
     -webkit-filter: brightness(75%);
-    animation: yb-flash 0.5s linear 1;
+    transition: 0.5s;
 }
 
 .yb-search-bar.desktop {
