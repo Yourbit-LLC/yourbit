@@ -26,7 +26,7 @@ const CREATE_BUTTON = document.getElementById('yb-create-button');
 const EXIT_CREATE = document.getElementById('cb-panel-close')
 const CREATE_OPTIONS = document.querySelectorAll(".create-option");
 const CONTENT_CONTAINER = document.getElementById('content-container');
-const MASTHEAD_LOGO = document.getElementById("yb-logo-masthead");
+const MASTHEAD_LOGOS = document.querySelectorAll(".yb-logo-masthead");
 const MOBILE_HEADER = document.querySelector('.yb-header');
 const SPOTLIGHT_CONTAINER = document.getElementById('yb-container-spotlight');
 const SPOTLIGHT_CONTENT =  document.getElementById('spotlight-content');
@@ -79,14 +79,14 @@ function yb_changePageTitle(title){
     document.title = title;
 }
 
-/* Function to change the logo in the masthead */
-function yb_changeMastheadLogo(type, selection){
-    if (type === "style"){
-        MASTHEAD_LOGO.src = selection;
-    } else if (type === "color"){
-        MASTHEAD_LOGO.style.fill = selection;
-    }
-}
+// /* Function to change the logo in the masthead */
+// function yb_changeMastheadLogo(type, selection){
+//     if (type === "style"){
+//         MASTHEAD_LOGO.src = selection;
+//     } else if (type === "color"){
+//         MASTHEAD_LOGO.style.fill = selection;
+//     }
+// }
 
 //Hide quarter card
 function yb_hideQuartercard() {
@@ -627,9 +627,12 @@ $(document).ready(function() {
         yb_openSpotlight();
     });
 
-    MASTHEAD_LOGO.addEventListener('click', function() {
-        yb_startBitStream()
-    })
+    for (let i = 0; i < MASTHEAD_LOGOS.length; i++) {
+        MASTHEAD_LOGOS[i].addEventListener('click', function() {
+            yb_startBitStream()
+        })
+    }
+
 
     yb_updateTimezone();
 
