@@ -30,6 +30,20 @@ function yb_conversationAddContact(e) {
 
 }
 
+function yb_createConversation() {
+    let recipient_field = document.getElementById("selected-contacts");
+    $.ajax({
+        type: 'POST',
+        url: '/messages/api/conversation',
+        data: {
+            members: recipient_field.value
+        },
+        success: function(response) {
+            yb_loadConversationTemplate(response.id)
+        }
+    })
+}
+
 
 $(document).ready(function () {
     $(contact_search).on('change keyup', function() {

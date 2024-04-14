@@ -33,17 +33,3 @@ function yb_sendMessage(data) {
         }
     });
 }
-
-function yb_createConversation() {
-    let recipient_field = document.getElementById("selected-contacts");
-    $.ajax({
-        type: 'POST',
-        url: '/messages/api/conversation',
-        data: {
-            members: recipient_field.value
-        },
-        success: function(response) {
-            yb_loadConversationTemplate(response.id)
-        }
-    })
-}
