@@ -1,6 +1,11 @@
 //Function for generating list items
 function yb_buildListItem(result, action=null){
     let id = result.id
+
+    if (id === undefined) {
+        id = result.user.id
+    }
+    
     let user = result.user
 
     let name = result.display_name;
