@@ -477,7 +477,7 @@ p {
     
 }
 
-@media (prefers-colo-scheme: light) {
+@media (prefers-color-scheme: light) {
     .yb-search-button.desktop {
         border-left: 2px solid white;
     }
