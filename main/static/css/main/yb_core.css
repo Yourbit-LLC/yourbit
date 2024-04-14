@@ -251,7 +251,7 @@ p {
         (notifications, messages, and quick appearance settings), and the user menu */
         position: fixed;
         display: grid;
-        grid-template-columns: 60px 55px 1.5fr 4fr 1.5fr 0.75fr;
+        grid-template-columns: 115px 1.5fr 4fr 1.5fr 0.75fr;
         z-index: 4;
         top: 0;
         left: 0;
