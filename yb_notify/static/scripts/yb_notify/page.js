@@ -80,7 +80,7 @@ function yb_buildNotifyItem(result, action=null){
 
     new_item.addEventListener('click', function() {
         if (result.type === 4) {
-            yb_notificationMenu(result.type, id, result.request_id);
+            yb_notificationMenu(result.type, id, result.friend_request);
         } else {
             yb_notificationMenu(result.type, id);
         }
@@ -124,6 +124,7 @@ var option_functions = {
 function yb_handleNotificationOptionClick(e) {
     let this_option = e.currentTarget;
     let this_id = this_option.getAttribute("data-oid");
+    console.log(this_id);
     let this_option_name = this_option.getAttribute("name");
     
     option_functions[this_option_name](this_id);
