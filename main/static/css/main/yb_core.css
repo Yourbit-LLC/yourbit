@@ -251,7 +251,7 @@ p {
         (notifications, messages, and quick appearance settings), and the user menu */
         position: fixed;
         display: grid;
-        grid-template-columns: 115px 1.5fr 4fr 1.5fr 0.75fr;
+        grid-template-columns: 115px 1.3fr 4fr 1.5fr 0.75fr;
         z-index: 4;
         top: 0;
         left: 0;
@@ -434,12 +434,14 @@ p {
 
 .yb-search-bar.desktop:focus {
     outline: none;
-    background-color: #e6e6e6;
+    filter: brightness(75%);
+    -webkit-filter: brightness(75%);
     transition: 0.5s ease-in-out;
 }
 
 .yb-search-bar.desktop:hover {
-    background-color: #e6e6e6;
+    filter: brightness(75%);
+    -webkit-filter: brightness(75%);
     animation: yb-flash 0.5s linear 1;
 }
 
@@ -454,7 +456,7 @@ p {
     /* border radius on left top and bottom only */
     border-radius: 5px 0px 0px 5px;
     border-width: 0px;
-    background-color: #4b4b4b;
+    background-color: lightgray;
     transition: 0.5s ease-in-out;
 }
 
@@ -469,10 +471,23 @@ p {
     /* border radius on right top and bottom only */
     border-radius: 0px 5px 5px 0px;
     /* Style */
-    background-color: #4b4b4b;
+    background-color: lightgray;
     border: none;
     cursor: pointer;
-    border-left: 2px solid black;
+    
+}
+
+@media (prefers-colo-scheme: light) {
+    .yb-search-button.desktop {
+        border-left: 2px solid white;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .yb-search-button.desktop {
+        border-left: 2px solid black;
+    }
+
 }
 
 .yb-nav-actions {
