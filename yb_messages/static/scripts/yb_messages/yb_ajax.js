@@ -43,7 +43,7 @@ function yb_createConversation() {
             members: recipient_field.value
         },
         success: function(response) {
-            
+            yb_loadConversationTemplate(response.id)
         }
     })
 }

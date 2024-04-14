@@ -30,6 +30,7 @@ function yb_conversationAddContact(e) {
 
 }
 
+
 $(document).ready(function () {
     $(contact_search).on('change keyup', function() {
         query = this.value;
@@ -37,4 +38,8 @@ $(document).ready(function () {
         type = 'user';
         yb_search("messages", type, query);
     });
+
+    let next_button = document.getElementById("new-message-next");
+    
+    next_button.addEventListener("click", yb_createConversation)
 });
