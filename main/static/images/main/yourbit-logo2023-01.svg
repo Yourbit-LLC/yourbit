@@ -11,7 +11,8 @@
 
      @media (prefers-color-scheme: light) {
       .cls-1 {
-        fill: black;
+        fill: white;
+        filter: drop-shadow(3px 1px 10px black)
         stroke-width: 0px;
       }
      }
