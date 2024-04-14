@@ -4,15 +4,14 @@
     <style>
      @media (prefers-color-scheme: dark){
       .cls-1 {
-        fill: white;
+        fill: rgb(102, 51, 153);
         stroke-width: 0px;
       }
      }
 
      @media (prefers-color-scheme: light) {
       .cls-1 {
-        fill: white;
-        filter: drop-shadow(3px 1px 10px black);
+        fill: rgb(102, 51, 153);
         stroke-width: 0px;
       }
      }
