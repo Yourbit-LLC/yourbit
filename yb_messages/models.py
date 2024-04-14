@@ -36,7 +36,7 @@ class Conversation(models.Model):
 #Message is contained in a conversation
 class Message(models.Model):
     conversation = models.ForeignKey('Conversation', related_name='messages', on_delete=models.CASCADE)
-    from_user = models.ForeignKey(User, related_name="sender", on_delete=models.CASCADE)
+    from_user = models.ForeignKey(User, related_name="sender", on_delete=models.CASCADE, blank=True)
     body = models.CharField(max_length = 1500)
     videos = models.ManyToManyField('yb_video.Video', blank=True)
     images = models.ManyToManyField('yb_photo.Photo', blank=True)
