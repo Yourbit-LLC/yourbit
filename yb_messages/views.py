@@ -7,10 +7,11 @@ from django.views import View
 from main.views import initialize_session
 
 def message_inbox(request):
+    from .models import MessageCore
     user = request.user
-
+    message_core = MessageCore.objects.get(profile = request.user.profile)
     # Fetch conversations. Django querysets are lazy, and won't hit the database here.
-    conversations = Conversation.objects.filter(members=user).order_by('-time_modified')
+    conversations = message_core.conversations.all()
 
 
 
