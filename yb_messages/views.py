@@ -13,6 +13,7 @@ def message_inbox(request):
     user = request.user
 
     profile = Profile.objects.get(user = user)
+    
     try:
         message_core = MessageCore.objects.get(profile = profile) 
 
@@ -33,28 +34,36 @@ def message_inbox(request):
     else:
         is_conversations = True
 
+    conversation_data = {}
+
     if is_conversations:
+        iteration = 1
         for conversation in conversations:
-            this_conversation = Conversation.objects.get(id = conversation.id)
-            messages = Message.objects.filter(conversation = this_conversation)
 
-            members = this_conversation.members.all()
+            members = conversation.members.all()
 
-            if this_conversation.is_name == True:
-                conversation["conversation_name"] = this_conversation.name
+            conversation_data.update({"conversation-1": {"id": conversation.id, "time":conversation.time_modified}})
+
+            if conversation.is_name == True:
+                conversation_data["conversation-"+iteration]["name"] = conversation.name
+                conversation_data["image"] = user.profile.custom.profile_image.image_thumbnail_small
 
             else:
-                if len(this_conversation.members.all()) > 2:
-                    conversation["conversation_name"] = str(this_conversation.members.count()) + " People"
+                if len(conversation.members.all()) > 2:
+                    conversation_data["conversation-"+iteration]["name"] = str(conversation.members.count()) + " People"
+                    conversation_data["image"] = user.profile.custom.profile_image.image_thumbnail_small
 
                 else:
                     for member in members:
                         if member !=  request.user:
-                            conversation["conversation_name"] = member.profile.display_name
+                            conversation_data["conversation-"+iteration]["name"] = member.profile.display_name
+                            conversation_data["image"] = member.profile.custom.profile_image.image_thumbnail_small
+
+            iteration += 1
 
     context = {
         "conversations": is_conversations,
-        'results': conversations,
+        'results': conversation_data,
         'onload': onload
         
     }
