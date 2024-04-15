@@ -20,6 +20,7 @@ class MessageCore(models.Model):
     start_by_email = models.BooleanField(default=False)
     start_by_username = models.BooleanField(default=False)
     start_by_name = models.BooleanField(default=False)
+    conversations = models.ManyToManyField("Conversation", blank=True, related_name = "user_conversations")
 
 class Conversation(models.Model):
     is_name = models.BooleanField(default = False)
