@@ -13,10 +13,19 @@ def message_inbox(request):
     user = request.user
 
     profile = Profile.objects.get(user = user)
+    try:
+        message_core = MessageCore.objects.get(profile = profile) 
 
-    message_core = MessageCore.objects.get(profile = profile)  
+    except:
+        message_core = MessageCore.objects.create(profile = profile)
 
-    conversations = message_core.conversations.all()
+    try:
+        conversations = message_core.conversations.all()
+        onload = None 
+
+    except:
+        conversations = message_core.conversations.all()
+        onload = "yb_handleMessageClick()"
 
     if len(conversations) == 0:
         is_conversations = False
@@ -27,6 +36,7 @@ def message_inbox(request):
     context = {
         "conversations": is_conversations,
         'results': conversations,
+        'onload': onload
         
     }
 
