@@ -49,7 +49,7 @@ class ConversationViewSet(viewsets.ModelViewSet):
         print(members)
 
         if str(self.request.user.id) not in members:
-            members.append(self.request.user.id)
+            members += str(self.request.user.id)
         serializer.save(members=members)
 
         return Response(serializer.data)
