@@ -45,7 +45,6 @@ class ConversationViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         from yb_messages.models import MessageCore
 
-        message_core = MessageCore.objects.get(profile = self.request.user.profile)
         # Automatically add the request.user to the conversation members
         members = serializer.validated_data.get('members', [])
 
@@ -57,7 +56,9 @@ class ConversationViewSet(viewsets.ModelViewSet):
 
         new_conversation = Conversation.objects.get(id=serializer.data['id'])
 
-        message_core.conversations.add(new_conversation)
+        for member in new_conversation.members.all():
+            message_core = MessageCore.objects.get(profile = member.profile)
+            message_core.conversations.add(new_conversation)
 
         return Response(serializer.data)
 
