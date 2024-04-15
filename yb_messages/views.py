@@ -7,15 +7,28 @@ from django.views import View
 from main.views import initialize_session
 
 def message_inbox(request):
-    user = request.user
+    
+    import requests
 
-    # Fetch conversations. Django querysets are lazy, and won't hit the database here.
-    conversations = Conversation.objects.filter(members=user).order_by('-time_modified')
+    # API endpoint URL
+    url = "https://yourbit.me/messages/api/conversations/"
+
+    # Making a GET request to the API
+    response = requests.get(url)
+
+    # Checking if the request was successful
+    if response.status_code == 200:
+        # The request was successful; you can process the response data
+        conversations = response.json()
+        print("Fetched conversations:", conversations)
+    else:
+        # There was an error fetching the data
+        print("Failed to fetch data. Status code:", response.status_code, "Response:", response.text)
 
 
 
     context = {
-        'conversations': conversations,
+        'conversations': response,
         
     }
 
@@ -28,7 +41,7 @@ def new_conversation_template(request):
 
 class ConversationView(View):
     def get(self, request, id, *args, **kwargs):
-        
+
         this_id = id
         
         context = {}
