@@ -32,9 +32,13 @@ function yb_conversationAddContact(e) {
 
 function yb_createConversation() {
     let recipient_field = document.getElementById("selected-contacts");
+    let csrf_token = getCSRF();
     $.ajax({
         type: 'POST',
         url: '/messages/api/conversations/',
+        headers: {
+            'X-CSRFToken': csrf_token,
+        },
         data: {
             members: recipient_field.value
         },
