@@ -45,7 +45,8 @@ class ConversationViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         # Automatically add the request.user to the conversation members
         members = serializer.validated_data.get('members', [])
-        if self.request.user not in members:
+
+        if str(self.request.user.id) not in members:
             members.append(self.request.user)
         serializer.save(members=members)
 
