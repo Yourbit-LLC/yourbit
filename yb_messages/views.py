@@ -13,7 +13,7 @@ def message_inbox(request):
     user = request.user
 
     profile = Profile.objects.get(user = user)
-    
+
     try:
         message_core = MessageCore.objects.get(profile = profile) 
 
@@ -45,18 +45,18 @@ def message_inbox(request):
             conversation_data.update({"conversation-1": {"id": conversation.id, "time":conversation.time_modified}})
 
             if conversation.is_name == True:
-                conversation_data["conversation-"+iteration]["name"] = conversation.name
+                conversation_data["conversation-" + str(iteration)]["name"] = conversation.name
                 conversation_data["image"] = user.profile.custom.profile_image.image_thumbnail_small
 
             else:
                 if len(conversation.members.all()) > 2:
-                    conversation_data["conversation-"+iteration]["name"] = str(conversation.members.count()) + " People"
+                    conversation_data["conversation-" + str(iteration)]["name"] = str(conversation.members.count()) + " People"
                     conversation_data["image"] = user.profile.custom.profile_image.image_thumbnail_small
 
                 else:
                     for member in members:
                         if member !=  request.user:
-                            conversation_data["conversation-"+iteration]["name"] = member.profile.display_name
+                            conversation_data["conversation-" + str(iteration)]["name"] = member.profile.display_name
                             conversation_data["image"] = member.profile.custom.profile_image.image_thumbnail_small
 
             iteration += 1
