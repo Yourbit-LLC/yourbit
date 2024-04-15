@@ -11,7 +11,12 @@ def message_inbox(request):
     user = request.user
     message_core = MessageCore.objects.get_or_create(profile = request.user.profile)
     # Fetch conversations. Django querysets are lazy, and won't hit the database here.
-    conversations = message_core.conversations.all()
+
+    try:
+        conversations = message_core.conversations.all()
+
+    except:
+        conversations = None
 
 
 
