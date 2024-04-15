@@ -33,7 +33,7 @@ function yb_getConversations(filter){
 
 function yb_toggleNewMessage(){
     
-    document.getElementById("create-new-conversation").addEventListener("click", function(){
+    
         let container = yb_toggle2WayContainer('messages-new');
         if (container[0] === "closing"){
             history.pushState(null, null, "/");
@@ -49,7 +49,6 @@ function yb_toggleNewMessage(){
             history.pushState({}, "", '/messages/');
     
         }
-    });
 }
 
 $(document).ready(function () {
