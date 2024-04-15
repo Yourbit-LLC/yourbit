@@ -40,7 +40,7 @@ class ConversationViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
     
     def get_queryset(self):
-        return Conversation.objects.filter(profile=self.request.user.profile)
+        return Conversation.objects.filter(members=self.request.user)
     
     def perform_create(self, serializer):
         # Automatically add the request.user to the conversation members
