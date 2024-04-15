@@ -37,7 +37,8 @@ def message_inbox(request):
     conversation_data = []
 
     if is_conversations:
-        iteration = 1
+        iteration = 0
+
         for conversation in conversations:
 
             members = conversation.members.all()
