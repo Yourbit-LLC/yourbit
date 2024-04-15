@@ -15,7 +15,7 @@ class ConversationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Conversation
-        fields = ['id', 'members', 'is_name', 'name', 'is_joinable', 'is_private', 'is_community', 'time_modified', 'stickers']
+        fields = ['id', 'members', 'is_name', 'name', 'is_joinable', 'is_private', 'is_community', 'time_modified']
 
     def create(self, validated_data):
         # Extract members as a comma-separated string and convert to a list of user IDs
