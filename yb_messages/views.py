@@ -13,7 +13,7 @@ def message_inbox(request):
     # Fetch conversations. Django querysets are lazy, and won't hit the database here.
 
     try:
-        conversations = message_core.conversations.all()
+        conversations = message_core.user_conversations.all()
 
     except:
         conversations = None
