@@ -530,7 +530,7 @@ function yb_toggleConversation2Way(id){
         console.log("not closing")
         let container_content = container[1].querySelector(".yb-2Way-content");
         container[1].setAttribute("data-state", "conversation");
-        $(container_content).load(`/messages/templates/conversation/${this_id}/`)
+        $(container_content).load(`/messages/templates/conversation/${id}/`)
         history.pushState({}, "", `/messages/conversation/${id}/`);
     }
 
