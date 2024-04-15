@@ -22,7 +22,7 @@
 </div>
 <hr class="yb-fillWidth bg-gray-dark" style="border-color: rgb(35, 35, 35);">
 
-<div id="conversation-list" class="yb-fillWidth">
+<div id="conversation-list" class="yb-fillWidth" onload="{{onload}}">
     {% if conversations == True %}
         
         {% for conversation in results %}

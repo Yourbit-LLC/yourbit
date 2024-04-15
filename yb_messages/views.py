@@ -9,19 +9,32 @@ from main.views import initialize_session
 def message_inbox(request):
     from .models import MessageCore
     user = request.user
-    message_core = MessageCore.objects.get_or_create(profile = request.user.profile)
+
+    try: 
+        message_core = MessageCore.objects.get(profile = request.user.profile)
+
+    except: 
+        message_core = MessageCore.objects.create(profile = request.user.profile)
     # Fetch conversations. Django querysets are lazy, and won't hit the database here.
 
+    
     try:
-        conversations = message_core.user_conversations.all()
+        conversations = message_core.conversations.all()
+        onload = None
 
     except:
-        conversations = None
+        conversations = message_core.conversations.all()
+        onload = "yb_handleMessageClick()"
+
+
+
 
 
 
     context = {
         'conversations': conversations,
+        'onload': onload
+
         
     }
 
