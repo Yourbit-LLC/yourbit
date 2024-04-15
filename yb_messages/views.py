@@ -13,13 +13,20 @@ def message_inbox(request):
     user = request.user
 
     profile = Profile.objects.get(user = user)
-    
+
     message_core = MessageCore.objects.get(profile = profile)  
 
     conversations = message_core.conversations.all()
 
+    if len(conversations) == 0:
+        is_conversations = False
+
+    else:
+        is_conversations = True
+
     context = {
-        'conversations': conversations,
+        "conversations": is_conversations,
+        'results': conversations,
         
     }
 
