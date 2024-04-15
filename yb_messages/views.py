@@ -56,7 +56,6 @@ class ConversationView(View):
 
             else:
                 for member in members:
-                    member = members[member]
                     if member !=  request.user:
                         context["conversation_name"] = member.profile.display_name
             
