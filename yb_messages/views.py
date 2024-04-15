@@ -46,18 +46,18 @@ def message_inbox(request):
 
             if conversation.is_name == True:
                 conversation_data["conversation-" + str(iteration)]["name"] = conversation.name
-                conversation_data["image"] = user.profile.custom.profile_image.small_thumbnail
+                conversation_data["conversation-" + str(iteration)]["image"] = user.profile.custom.profile_image.small_thumbnail
 
             else:
                 if len(conversation.members.all()) > 2:
                     conversation_data["conversation-" + str(iteration)]["name"] = str(conversation.members.count()) + " People"
-                    conversation_data["image"] = user.profile.custom.profile_image.small_thumbnail
+                    conversation_data["conversation-" + str(iteration)]["image"] = user.profile.custom.profile_image.small_thumbnail
 
                 else:
                     for member in members:
                         if member !=  request.user:
                             conversation_data["conversation-" + str(iteration)]["name"] = member.profile.display_name
-                            conversation_data["image"] = member.profile.custom.profile_image.small_thumbnail
+                            conversation_data["conversation-" + str(iteration)]["image"] = member.profile.custom.profile_image.small_thumbnail
 
             iteration += 1
 
