@@ -6,12 +6,15 @@ from itertools import chain
 from django.views import View
 from main.views import initialize_session
 
+from yb_profile.models import Profile
+
 def message_inbox(request):
     from .models import MessageCore
     user = request.user
 
+    profile = Profile.objects.get(user = user)
     
-    message_core = MessageCore.objects.get(profile = request.user.profile)  
+    message_core = MessageCore.objects.get(profile = profile)  
 
     conversations = message_core.conversations.all()
 
