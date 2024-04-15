@@ -56,8 +56,8 @@ def message_inbox(request):
                 else:
                     for member in members:
                         if member !=  request.user:
-                            conversation_data["conversation-" + str(iteration)]["name"] = member.profile.display_name
-                            conversation_data["conversation-" + str(iteration)]["image"] = member.profile.custom.profile_image.small_thumbnail
+                            conversation_data[iteration]["name"] = member.profile.display_name
+                            conversation_data[iteration]["image"] = member.profile.custom.profile_image.small_thumbnail
 
             iteration += 1
 
