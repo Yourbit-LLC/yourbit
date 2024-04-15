@@ -34,7 +34,7 @@ function yb_createConversation() {
     let recipient_field = document.getElementById("selected-contacts");
     $.ajax({
         type: 'POST',
-        url: '/messages/api/conversation',
+        url: '/messages/api/conversations/',
         data: {
             members: recipient_field.value
         },
