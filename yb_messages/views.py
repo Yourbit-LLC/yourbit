@@ -34,7 +34,7 @@ def message_inbox(request):
     else:
         is_conversations = True
 
-    conversation_data = {}
+    conversation_data = []
 
     if is_conversations:
         iteration = 1
@@ -42,16 +42,16 @@ def message_inbox(request):
 
             members = conversation.members.all()
 
-            conversation_data.update({"conversation-1": {"id": conversation.id, "time":conversation.time_modified}})
+            conversation_data.append({"id": conversation.id, "time":conversation.time_modified})
 
             if conversation.is_name == True:
-                conversation_data["conversation-" + str(iteration)]["name"] = conversation.name
-                conversation_data["conversation-" + str(iteration)]["image"] = user.profile.custom.profile_image.small_thumbnail
+                conversation_data[iteration]["name"] = conversation.name
+                conversation_data[conversation]["image"] = user.profile.custom.profile_image.small_thumbnail
 
             else:
                 if len(conversation.members.all()) > 2:
-                    conversation_data["conversation-" + str(iteration)]["name"] = str(conversation.members.count()) + " People"
-                    conversation_data["conversation-" + str(iteration)]["image"] = user.profile.custom.profile_image.small_thumbnail
+                    conversation_data[iteration]["name"] = str(conversation.members.count()) + " People"
+                    conversation_data[iteration]["image"] = user.profile.custom.profile_image.small_thumbnail
 
                 else:
                     for member in members:
