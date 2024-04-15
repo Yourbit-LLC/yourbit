@@ -9,7 +9,7 @@ from main.views import initialize_session
 def message_inbox(request):
     from .models import MessageCore
     user = request.user
-    message_core = MessageCore.objects.get(profile = request.user.profile)
+    message_core = MessageCore.objects.get_or_create(profile = request.user.profile)
     # Fetch conversations. Django querysets are lazy, and won't hit the database here.
     conversations = message_core.conversations.all()
 
