@@ -541,7 +541,7 @@ function yb_loadConversationTemplate(this_id){
         type: 'GET',
         url: `/messages/templates/conversation/${this_id}/`,
         success: function(response){
-            yb_toggleConversation2WayContainer(response, this_id);
+            yb_toggleConversation2Way(response, this_id);
         }
     })
 }
