@@ -33,6 +33,25 @@ def message_inbox(request):
     else:
         is_conversations = True
 
+    if is_conversations:
+        for conversation in conversations:
+            this_conversation = Conversation.objects.get(id = conversation.id)
+            messages = Message.objects.filter(conversation = this_conversation)
+
+            members = this_conversation.members.all()
+
+            if this_conversation.is_name == True:
+                conversation["conversation_name"] = this_conversation.name
+
+            else:
+                if len(this_conversation.members.all()) > 2:
+                    conversation["conversation_name"] = str(this_conversation.members.count()) + " People"
+
+                else:
+                    for member in members:
+                        if member !=  request.user:
+                            conversation["conversation_name"] = member.profile.display_name
+
     context = {
         "conversations": is_conversations,
         'results': conversations,
