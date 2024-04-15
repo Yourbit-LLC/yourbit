@@ -1,3 +1,5 @@
+var new_message_button = document.getElementById("new-message-main")
+
 function yb_getConversations(filter){
     $.ajax({
         type: 'GET',
@@ -29,6 +31,27 @@ function yb_getConversations(filter){
     });
 }
 
+function yb_toggleNewMessage(){
+    
+    document.getElementById("create-new-conversation").addEventListener("click", function(){
+        let container = yb_toggle2WayContainer('messages-new');
+        if (container[0] === "closing"){
+            history.pushState(null, null, "/");
+            container[1].setAttribute("data-state", "empty");
+        } else {
+            console.log("not closing")
+            let container_content = container[1].querySelector(".yb-2Way-content");
+            container[1].setAttribute("data-state", "messages-new");
+            yb_purgeScripts(yb_clearContainer);
+            
+            $(container_content).load("/messages/templates/new-message/")
+
+            history.pushState({}, "", '/messages/');
+    
+        }
+    });
+}
+
 $(document).ready(function () {
     let filter_buttons = document.getElementsByClassName("message-filter");
     for (let i = 0; i < filter_buttons.length; i++){
@@ -37,4 +60,6 @@ $(document).ready(function () {
             yb_getConversations(filter);
         });
     }
+
+    new_message_button.addEventListener("click", yb_toggleNewMessage);
 });
