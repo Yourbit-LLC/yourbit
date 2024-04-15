@@ -10,31 +10,13 @@ def message_inbox(request):
     from .models import MessageCore
     user = request.user
 
-    try: 
-        message_core = MessageCore.objects.get(profile = request.user.profile)
-
-    except: 
-        message_core = MessageCore.objects.create(profile = request.user.profile)
-    # Fetch conversations. Django querysets are lazy, and won't hit the database here.
-
     
-    try:
-        conversations = message_core.conversations.all()
-        onload = None
+    message_core = MessageCore.objects.get(profile = request.user.profile)  
 
-    except:
-        conversations = message_core.conversations.all()
-        onload = "yb_handleMessageClick()"
-
-
-
-
-
+    conversations = message_core.conversations.all()
 
     context = {
         'conversations': conversations,
-        'onload': onload
-
         
     }
 

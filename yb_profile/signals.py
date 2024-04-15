@@ -9,6 +9,7 @@ from yb_customize.models import CustomCore, Theme
 from yb_notify.models import NotificationCore
 from yb_bits.models import InteractionHistory, Bit, BitStream
 from yb_photo.models import Photo, Wallpaper
+from yb_messages.models import MessageCore
 from django.templatetags.static import static
 
 # def create_profile(sender, instance, created, **kwargs):
@@ -44,6 +45,9 @@ def create_profile(sender, instance, created, **kwargs):
         history.save()
         profile_info = ProfileInfo(profile=user_profile)
         profile_info.save()
+
+        message_core = MessageCore(profile = user_profile)
+        message_core.save()
 
         #Initialize Customization Modules
         custom_core = CustomCore(profile=user_profile)
