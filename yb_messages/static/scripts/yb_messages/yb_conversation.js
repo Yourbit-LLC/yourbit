@@ -82,14 +82,20 @@ function yb_checkMessages(){
 
 
 function yb_intervalMessenger() {
-    let current_position = message_container.scrollTop;
-    yb_refreshConversation();
+    if (document.getElementById("message-container")) {
+        let current_position = message_container.scrollTop;
+        yb_refreshConversation();
+
+    } else {
+        clearInterval(yb_intervalMessenger);
+        clearInterval(yb_intervalMessenger, 2000);
+
+    }
 }
 
 $(document).ready(function(){
 
     back_button.addEventListener("click", function() {
-        clearInterval(yb_intervalMessenger)
         let header = document.getElementById("message-header");
         let message_input = document.getElementById("message-input");
         let message_list = document.getElementById("message-container");
