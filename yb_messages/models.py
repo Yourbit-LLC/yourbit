@@ -31,7 +31,7 @@ class Conversation(models.Model):
     is_community = models.BooleanField(default=False)
     time_modified = models.DateTimeField(default=timezone.now)
     stickers = models.ManyToManyField('ChatSticker', blank=True)
-    messages = models.ManyToManyField('Message', related_name="messages", on_delete=models.CASCADE, blank=True)
+    messages = models.ManyToManyField('Message', related_name="messages", blank=True)
 #Conversations are parent to messages in the database model. 
 # Organizes messages between one set of users
 
