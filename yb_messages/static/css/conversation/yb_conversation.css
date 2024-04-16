@@ -166,7 +166,7 @@ body {
   
   .message-bubble-right {
     background-color: rgb(75, 75, 75);
-    margin-right: 10px;
+    margin-right: 2px;
     margin-left: auto;
     color: white;
     border-radius: 20px;
@@ -187,7 +187,7 @@ body {
   .message-bubble-left {
     background-color: rgb(105, 0, 119);
     margin-right: auto;
-    margin-left: 10px;
+    margin-left: 2px;
 
     color: white;
     border-radius: 20px;
