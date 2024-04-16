@@ -98,7 +98,6 @@ function yb_buildMessage(this_message){
 
         new_element = yb_createElement("div", `message-${id}`, "message-bubble message-bubble-right");
         new_element.setAttribute("data-id", id);
-        new_element.setAttribute("style", `background-color: ${user_color};`);
 
         new_body = yb_createElement("div", `message-body-${id}`, "message-body");
         new_body.innerHTML = body;
