@@ -121,7 +121,7 @@ body {
     font-weight: 550;
 }
 
-.send-button.enabled {
+#send-button.enabled {
     background-color: green !important;
 }
 
