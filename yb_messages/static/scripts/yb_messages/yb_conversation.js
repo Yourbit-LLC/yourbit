@@ -47,7 +47,6 @@ function yb_refreshConversation(current_position){
 }
 
 
-let send_button = document.getElementById("send-button");
 
 function yb_checkMessages(){
     let this_id = yb_getSessionValues("conversation");
