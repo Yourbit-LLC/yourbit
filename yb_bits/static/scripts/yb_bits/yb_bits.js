@@ -408,7 +408,7 @@ function yb_buildCommentField(bit) {
     let comment_field_container = yb_createElement("div", "yb-container-commentField", `field-write-comment-${bit.id}`);
     
     //Comment Field
-    let comment_field = yb_createElement("input", "yb-field-commentField field-border", `field-write-comment-${bit.id}`);
+    let comment_field = yb_createElement("input", "yb-field-commentField field-border yb-autoText", `field-write-comment-${bit.id}`);
     comment_field.setAttribute("placeholder", "Write Comment");
     comment_field.setAttribute("style", `color: white;`);
     comment_field_container.appendChild(comment_field);
