@@ -72,8 +72,9 @@ class MessageViewSet(viewsets.ModelViewSet):
         return Message.objects.filter(conversation__members=self.request.user)
     
     def perform_create(self, serializer):
+        this_id = self.request.data.get["id"]
 
-        conversation = Conversation.objects.get(id=self.request.data.get["id"])
+        conversation = Conversation.objects.get(id=this_id)
         body = self.request.data.get["body"]
 
         serializer.save(from_user=self.request.user, body=body)
