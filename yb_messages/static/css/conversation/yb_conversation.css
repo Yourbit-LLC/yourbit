@@ -125,6 +125,10 @@ body {
     background-color: green !important;
 }
 
+.yb-2Way-content {
+    overflow: hidden;
+}
+
 #message-header {
     position: fixed;
     top: 0;
