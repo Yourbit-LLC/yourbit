@@ -27,10 +27,10 @@ $(document).ready(function(){
     message_input.addEventListener('keyup', function(event){
         if (message_input.value.length > 0){
             send_button.disabled = false;
-            send_button.style.backgroundColor = "green";
+            send_button.classList.add("enabled")
         } else {
             send_button.disabled = true;
-            send_button.style.backgroundColor = "rgb(75,75,75)";
+            send_button.classList.remove("enabled");
         }
     });
 
