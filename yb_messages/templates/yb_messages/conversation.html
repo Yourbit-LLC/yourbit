@@ -4,7 +4,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/main/yb_core.css' %}"/>
 
     <input id='csrf-token' type='hidden' value={{csrf_token}}>
-    <div id='header' style='text-align:center; color: white;'>
+    <div id='header' class="yb-autoFill" style='text-align:center; color: white;'>
         <svg id="back-to-convos" xmlns="http://www.w3.org/2000/svg" style="position: absolute; left: 15px; top: 50%; transform: translate(0, -50%);" height="24" width="24"><path class="yb-autoFill"  d="M10 22 0 12 10 2l1.775 1.775L3.55 12l8.225 8.225Z"/></svg>
         <h3 id="receiver-name" style="margin-top:15px; margin-bottom: 2px;">{{conversation_name}}</h3>
         <p style='margin-top:0px;'><small>offline</small></p>
