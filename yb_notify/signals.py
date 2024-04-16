@@ -23,7 +23,7 @@ def create_message_notification(sender, instance, created, **kwargs):
         for member in members:
             if member != instance.from_user:
                 notification = Notification(
-                    to_user = member.display_name,
+                    to_user = member.profile.display_name,
                     body = instance.body,
                     type = 6,
                     link = "/messages/" + str(conversation.id),
