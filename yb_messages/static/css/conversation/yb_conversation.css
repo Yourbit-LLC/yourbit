@@ -121,6 +121,10 @@ body {
     font-weight: 550;
 }
 
+.send-button.enabled {
+    background-color: green !important;
+}
+
 #header {
     position: fixed;
     top: 0;
