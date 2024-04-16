@@ -21,13 +21,13 @@ def create_message_notification(sender, instance, created, **kwargs):
         conversation = instance.conversation
         members = conversation.members.all()
         for member in members:
-            if member != instance.profile.user:
+            if member != instance.user:
                 notification = Notification(
                     to_user = member.display_name,
                     body = instance.body,
                     type = 6,
                     link = "/messages/" + str(conversation.id),
-                    profile = instance.profile,
+                    profile = instance.user.profile,
                     conversation = conversation,
                     title = "New Message",
                     notify_class = 1
