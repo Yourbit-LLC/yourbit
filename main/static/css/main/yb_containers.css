@@ -272,6 +272,10 @@
     box-shadow: black 0px 0px 50px 0px;
 
 }
+
+.yb-2Way-content {
+    overflow-x: hidden;
+}
 .yb-panel-wide {
     position: relative;
     width: 90%;
