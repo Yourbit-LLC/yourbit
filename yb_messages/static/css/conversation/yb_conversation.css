@@ -38,6 +38,10 @@ body {
         background-color: black;
         border-top: 2px solid gray;
     }
+
+    #message-field {
+        background-color: rgba(55, 55, 55);
+    }
 }
 
 
@@ -45,6 +49,10 @@ body {
     #message-input {
         background-color: white;
         border-top: 2px solid gray;
+    }
+
+    #message-field {
+        background-color: rgba(55, 55, 55);
     }
 }
 
@@ -80,7 +88,6 @@ body {
 
 #message-field {
     width: 95%;
-    background-color: rgba(55, 55, 55);
     border-width: 0px;
     border-radius: 10px;
     height: 30px;
