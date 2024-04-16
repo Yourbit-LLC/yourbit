@@ -9,8 +9,6 @@ function yb_sendMessage(data) {
         headers: {
             'X-CSRFToken': csrf_token,
         },
-        processData: false,
-        contentType: false,
         success: function(response) {
             //Update the feed
             let message_field = document.getElementById("message-field")
