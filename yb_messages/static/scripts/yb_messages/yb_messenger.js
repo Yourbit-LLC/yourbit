@@ -1,4 +1,5 @@
 var new_message_button = document.getElementById("new-message-main")
+var conversations = document.querySelectorAll(".conversation-container")
 
 function yb_getConversations(filter){
     $.ajax({
@@ -34,20 +35,20 @@ function yb_getConversations(filter){
 function yb_toggleNewMessage(){
     
     
-        let container = yb_toggle2WayContainer('messages-new');
-        if (container[0] === "closing"){
-            history.pushState(null, null, "/");
-            container[1].setAttribute("data-state", "empty");
-        } else {
-            console.log("not closing")
-            let container_content = container[1].querySelector(".yb-2Way-content");
-            container[1].setAttribute("data-state", "messages-new");
-            yb_purgeScripts(yb_clearContainer);
-            
-            $(container_content).load("/messages/templates/new-message/")
+    let container = yb_toggle2WayContainer('messages-new');
+    if (container[0] === "closing"){
+        history.pushState(null, null, "/");
+        container[1].setAttribute("data-state", "empty");
+    } else {
+        console.log("not closing")
+        let container_content = container[1].querySelector(".yb-2Way-content");
+        container[1].setAttribute("data-state", "messages-new");
+        yb_purgeScripts(yb_clearContainer);
+        
+        $(container_content).load("/messages/templates/new-message/")
 
-            history.pushState({}, "", '/messages/');
-    
+        history.pushState({}, "", '/messages/');
+
         }
 }
 
@@ -61,4 +62,13 @@ $(document).ready(function () {
     }
 
     new_message_button.addEventListener("click", yb_toggleNewMessage);
+
+    for (i = 0; i < conversations.length; i++){
+        conversations[i].addEventListener("click", function(){
+            let this_id = this.getAttribute("data-catid")
+            yb_toggleConversation2Way(this_id)
+        });
+    }
+
+
 });
