@@ -1,9 +1,13 @@
 
 function yb_sendMessage(data) {
+    let csrf_token = getCSRF();
     //Send a message
     $.ajax({
         type: 'POST',
         url: '/messages/api/messages/',
+        headers: {
+            'X-CSRFToken': csrf_token,
+        },
         data: data,
         success: function(response) {
             //Update the feed
