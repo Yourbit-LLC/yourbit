@@ -42,7 +42,6 @@ class Message(models.Model):
     body = models.CharField(max_length = 1500)
     videos = models.ManyToManyField('yb_video.Video', blank=True)
     images = models.ManyToManyField('yb_photo.Photo', blank=True)
-    documents = ArrayField(models.FileField(upload_to='media/message_files', blank=True))
     time = models.DateTimeField(default=timezone.now)
     
     is_read = models.BooleanField(default=False)
