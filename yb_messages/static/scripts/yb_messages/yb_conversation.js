@@ -2,7 +2,7 @@ var this_data = document.getElementById("conversation-data");
 var conversation = this_data.getAttribute('data-id');
 var send_button = document.getElementById('send-button');
 var message_input = document.getElementById('message-field');
-var message_list = $('#message-container');
+
 
 var options_button = document.getElementById('options-button');
 
@@ -13,7 +13,6 @@ let message_container = document.getElementById("message-container");
 
 
 function yb_refreshConversation(current_position){
-    let message_container = document.getElementById("message-container");
     
     $.ajax({
         type: 'GET',
