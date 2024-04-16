@@ -1,15 +1,30 @@
-var this_data = document.getElementById("conversation-data");
-var conversation = this_data.getAttribute('data-id');
-var send_button = document.getElementById('send-button');
-var message_input = document.getElementById('message-field');
+try{
+    var this_data = document.getElementById("conversation-data");
+    var conversation = this_data.getAttribute('data-id');
+    var send_button = document.getElementById('send-button');
+    var message_input = document.getElementById('message-field');
 
+    var options_button = document.getElementById('options-button');
 
-var options_button = document.getElementById('options-button');
+    var back_button = document.getElementById("back-to-convos");
+    console.log("conversation loaded!")
 
-var back_button = document.getElementById("back-to-convos");
-console.log("conversation loaded!")
+    let message_container = document.getElementById("message-container");
+}
+catch(err){
+    console.log("Already Declared. Reassigning Variables.");
+    this_data = document.getElementById("conversation-data");
+    conversation = this_data.getAttribute('data-id');
+    send_button = document.getElementById('send-button');
+    message_input = document.getElementById('message-field');
 
-let message_container = document.getElementById("message-container");
+    options_button = document.getElementById('options-button');
+
+    back_button = document.getElementById("back-to-convos");
+    console.log("conversation loaded!")
+
+    message_container = document.getElementById("message-container");
+}
 
 
 function yb_refreshConversation(current_position){
