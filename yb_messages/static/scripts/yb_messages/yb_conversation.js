@@ -5,10 +5,12 @@ function yb_sendMessage(data) {
     $.ajax({
         type: 'POST',
         url: '/messages/api/messages/',
+        data: data,
         headers: {
             'X-CSRFToken': csrf_token,
         },
-        data: data,
+        processData: false,
+        contentType: false,
         success: function(response) {
             //Update the feed
             let message_field = document.getElementById("message-field")
