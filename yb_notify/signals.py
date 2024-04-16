@@ -23,7 +23,7 @@ def create_message_notification(sender, instance, created, **kwargs):
         for member in members:
             if member != instance.from_user:
                 notification = Notification(
-                    to_user = member.profile.display_name,
+                    to_user = member.profile,
                     body = instance.body,
                     type = 6,
                     link = "/messages/" + str(conversation.id),
@@ -38,9 +38,9 @@ def create_message_notification(sender, instance, created, **kwargs):
 
                 addToCore(notification, member.profile)
 
-                #Send Push Notification
-                payload = {"head": "New Message", "body": instance.body, "icon": "/static/images/2023-logo-draft.png"}
-                send_user_notification(user=member, payload=payload, ttl=1000)
+                # #Send Push Notification
+                # payload = {"head": "New Message", "body": instance.body, "icon": "/static/images/2023-logo-draft.png"}
+                # send_user_notification(user=member, payload=payload, ttl=1000)
 
 #Create a notification on like of a bit
 @receiver(post_save, sender=BitLike)
