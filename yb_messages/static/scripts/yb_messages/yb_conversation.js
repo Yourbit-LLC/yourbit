@@ -14,7 +14,7 @@ $(document).ready(function(){
     let message_container = document.getElementById("message-container");
 
     back_button.addEventListener("click", function() {
-        let header = document.getElementById("header");
+        let header = document.getElementById("message-header");
         let message_input = document.getElementById("message-input");
         let message_list = document.getElementById("message-container");
         message_input.style.transform = "translateY(100%)";
@@ -50,7 +50,7 @@ $(document).ready(function(){
             "id" : conversation,
             "body": body,
         }
-        
+
         yb_sendMessage(this_data);
     });
 
