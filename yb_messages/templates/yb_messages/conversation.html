@@ -17,7 +17,7 @@
         {% for message in messages reversed %}
             {% if message.from_user == request.user %}
                 
-                    <div id="message-{{message.id}}" class='message-bubble message-bubble-right' style="background-color: {{user.profile.custom.primary_color}};">
+                    <div id="message-{{message.id}}" class='message-bubble message-bubble-right'>
                         <div class="message-body">{{ message.body }}</div>
                     </div>
                 
@@ -31,7 +31,7 @@
 
             {% else %}
                 
-                    <div id="message-{{message.id}}" class='message-bubble message-bubble-left' style="background-color: rgb(75, 75, 75);">
+                    <div id="message-{{message.id}}" class='message-bubble message-bubble-left'>
                         <div class="message-body">{{ message.body }}</div>
                     </div>
 
