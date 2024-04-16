@@ -36,7 +36,7 @@ body {
 @media (prefers-color-scheme: dark) {
     #message-input {
         background-color: black;
-        border-top: 2px solid gray;
+        border-top: 2px solid rgba(55, 55, 55);
     }
 
     #message-field {
@@ -48,11 +48,11 @@ body {
 @media (prefers-color-scheme: light) {
     #message-input {
         background-color: white;
-        border-top: 2px solid gray;
+        border-top: 2px solid lightgray;
     }
 
     #message-field {
-        background-color: rgba(55, 55, 55);
+        background-color: lightgray;
     }
 }
 
