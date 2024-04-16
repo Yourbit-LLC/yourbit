@@ -72,18 +72,14 @@ class MessageViewSet(viewsets.ModelViewSet):
         return Message.objects.filter(conversation__members=self.request.user)
     
     def perform_create(self, serializer):
-        this_id = self.request.data.get["id"]
-
+        this_id = self.request.data.get("id")  # Use parentheses () instead of square brackets []
         conversation = Conversation.objects.get(id=this_id)
-        body = self.request.data.get["body"]
-
+        body = self.request.data.get("body")  # Use parentheses () instead of square brackets []
         serializer.save(from_user=self.request.user, body=body)
 
         new_message = Message.objects.get(id=serializer.data['id'])
-
         conversation.messages.add(new_message)
         conversation.save()
-
         
 
 
