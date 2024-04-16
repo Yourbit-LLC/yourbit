@@ -102,6 +102,18 @@ body {
     
 }
 
+@media only screen and (max-width: 768px) {
+    #message-container {
+        padding-bottom: 75px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    #message-container {
+        padding-bottom: 60px;
+    }
+}
+
 #message-field {
     width: 95%;
     border-width: 0px;
