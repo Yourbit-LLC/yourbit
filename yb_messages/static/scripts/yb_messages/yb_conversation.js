@@ -9,7 +9,7 @@ try{
     var back_button = document.getElementById("back-to-convos");
     console.log("conversation loaded!")
 
-    let message_container = document.getElementById("message-container");
+    var message_container = document.getElementById("message-container");
 }
 catch(err){
     console.log("Already Declared. Reassigning Variables.");
