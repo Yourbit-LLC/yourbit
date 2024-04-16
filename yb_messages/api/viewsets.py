@@ -75,7 +75,7 @@ class MessageViewSet(viewsets.ModelViewSet):
         this_id = self.request.data.get("id")  # Use parentheses () instead of square brackets []
         conversation = Conversation.objects.get(id=this_id)
         body = self.request.data.get("body")  # Use parentheses () instead of square brackets []
-        serializer.save(from_user=self.request.user, body=body)
+        serializer.save(from_user=self.request.user, body=body, conversation=conversation)
 
         new_message = Message.objects.get(id=serializer.data['id'])
         conversation.messages.add(new_message)
