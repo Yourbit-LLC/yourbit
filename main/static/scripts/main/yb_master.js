@@ -192,6 +192,10 @@ function yb_openBitBuilder() {
 }
 
 function yb_clear2WayContainer(container){
+    let page_scripts = container.querySelectorAll(".page-script");
+    for (i = 0; i < page_scripts.length; i++){
+        page_scripts[i].remove()
+    }
     
     let container_content = container.querySelector(".yb-2Way-content");
     container_content.innerHTML = "";

@@ -14,6 +14,7 @@ $(document).ready(function(){
     let message_container = document.getElementById("message-container");
 
     back_button.addEventListener("click", function() {
+
         let header = document.getElementById("message-header");
         let message_input = document.getElementById("message-input");
         let message_list = document.getElementById("message-container");
