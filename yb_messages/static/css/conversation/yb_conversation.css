@@ -42,6 +42,14 @@ body {
     #message-field {
         background-color: rgba(55, 55, 55);
     }
+
+    #send-button {
+        background-color: rgb(75, 75, 75);
+    }
+
+    #add-attachment {
+        background-color: rgb(75, 75, 75);
+    }
 }
 
 
@@ -52,6 +60,14 @@ body {
     }
 
     #message-field {
+        background-color: lightgray;
+    }
+
+    #send-button {
+        background-color: lightgray;
+    }
+
+    #add-attachment {
         background-color: lightgray;
     }
 }
@@ -100,7 +116,6 @@ body {
     border-radius: 10px;
     border-width: 0px;
     color: white;
-    background-color: rgb(75, 75, 75);
     margin-right: 2px;
     transition: 0.25s;
     font-weight: 550;
