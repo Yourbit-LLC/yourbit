@@ -14,6 +14,8 @@ body {
     bottom: 0px;
 }
 
+
+
 #message-input {
     text-align: center;
     position: absolute;
@@ -21,10 +23,9 @@ body {
     left: 0px;
     display: grid;
     grid-template-columns: 40px calc(100% - 106px) 55px;
-    background-color: black;
+    
     padding-top: 5px;
     transition: 0.5s;
-    padding-bottom: 10px;
     padding-top: 5px;
     grid-gap: 3px;
     padding-left: 3px;
@@ -32,10 +33,26 @@ body {
     
 }
 
+@media (prefers-color-scheme: dark) {
+    #message-input {
+        background-color: black;
+        border-top: 2px solid gray;
+    }
+}
+
+
+@media (prefers-color-scheme: light) {
+    #message-input {
+        background-color: white;
+        border-top: 2px solid gray;
+    }
+}
+
 @media only screen and (max-width: 768px){
     #message-input{
         bottom: 0vh;
         width: 100vw;
+        padding-bottom: 30px;
     }
 }
 
@@ -43,6 +60,7 @@ body {
     #message-input{
         bottom: 0px;
         width: 100%;
+        padding-bottom: 5px;
     }
 }
 
