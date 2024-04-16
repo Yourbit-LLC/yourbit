@@ -105,7 +105,6 @@ class ConversationView(View):
             
 
         return render(request, "yb_messages/conversation.html", context)
-
  
 class MessagePage(View):
     def get(self, request):

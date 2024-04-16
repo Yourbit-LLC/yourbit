@@ -31,12 +31,13 @@ class Conversation(models.Model):
     is_community = models.BooleanField(default=False)
     time_modified = models.DateTimeField(default=timezone.now)
     stickers = models.ManyToManyField('ChatSticker', blank=True)
+    messages = models.ManyToManyField('Message', related_name="messages", on_delete=models.CASCADE, blank=True)
 #Conversations are parent to messages in the database model. 
 # Organizes messages between one set of users
 
 #Message is contained in a conversation
 class Message(models.Model):
-    conversation = models.ForeignKey('Conversation', related_name='messages', on_delete=models.CASCADE)
+    conversation = models.ForeignKey('Conversation', related_name='conversation', on_delete=models.CASCADE, default=None)
     from_user = models.ForeignKey(User, related_name="sender", on_delete=models.CASCADE, blank=True)
     body = models.CharField(max_length = 1500)
     videos = models.ManyToManyField('yb_video.Video', blank=True)

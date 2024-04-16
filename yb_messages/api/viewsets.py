@@ -59,6 +59,7 @@ class ConversationViewSet(viewsets.ModelViewSet):
         for member in new_conversation.members.all():
             message_core = MessageCore.objects.get(profile = member.profile)
             message_core.conversations.add(new_conversation)
+            message_core.save()
 
         return Response(serializer.data)
 
@@ -71,4 +72,17 @@ class MessageViewSet(viewsets.ModelViewSet):
         return Message.objects.filter(conversation__members=self.request.user)
     
     def perform_create(self, serializer):
-        serializer.save(profile=self.request.user.profile)
+
+        conversation = Conversation.objects.get(id=self.request.data.get["id"])
+        body = self.request.data.get["body"]
+
+        serializer.save(from_user=self.request.user, body=body)
+
+        new_message = Message.objects.get(id=serializer.data['id'])
+
+        conversation.messages.add(new_message)
+        conversation.save()
+
+        
+
+

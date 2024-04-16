@@ -77,3 +77,64 @@ function yb_buildFieldTag(label, id) {
 
     return new_tag
 }
+
+//Function for generating message bubbles
+function yb_buildMessage(this_message){
+    
+    let id= this_message.id
+    let time = this_message.time
+    let sender = this_message.sender
+    let sender_name = sender.first_name + " " + sender.last_name
+    let body = this_message.body
+    let profile_image = this_message.image
+    let is_sender = this_message.is_sender
+
+    console.log(is_sender)
+    let new_element;
+
+    if (is_sender === true){
+        let conversation_data = document.getElementById("conversation-data");
+        let user_color = conversation_data.getAttribute("data-primary-color");
+
+        new_element = yb_createElement("div", `message-${id}`, "message-bubble message-bubble-right");
+        new_element.setAttribute("data-id", id);
+        new_element.setAttribute("style", `background-color: ${user_color};`);
+
+        new_body = yb_createElement("div", `message-body-${id}`, "message-body");
+        new_body.innerHTML = body;
+        new_element.appendChild(new_body);
+
+        // new_time = yb_createElement("p", `message-time-${id}`, "message-time");
+        // new_time.innerHTML = `<small>${time}</small>`;
+        // new_element.appendChild(new_time);
+
+        // new_avatar = yb_renderImage(profile_image, "message-hangover-right", new_element);
+        // new_avatar.style.display = "none";
+        // new_avatar.style.marginRight = "10px";
+        // new_element.appendChild(new_avatar);
+
+    } else {
+        new_element = yb_createElement("div", `message-${id}`, "message-bubble message-bubble-left");
+        new_element.setAttribute("data-id", id)
+        
+        new_body = yb_createElement("div", `message-body-${id}`, "message-body");
+        new_body.innerHTML = body;
+        new_element.appendChild(new_body);
+
+        // new_time = yb_createElement("p", `message-time-${id}`, "message-time");
+        // new_time.innerHTML = `<small>${time}</small>`;
+        // new_element.appendChild(new_time);
+
+        // new_avatar = yb_renderImage(profile_image, "message-hangover-left", new_element);
+        // new_avatar.style.display = "none";
+        // new_avatar.style.marginRight = "10px";
+        // new_element.appendChild(new_avatar);
+
+    }
+
+
+    return new_element
+
+
+}
+

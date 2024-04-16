@@ -130,8 +130,8 @@ body {
 }
 
 #message-header {
-    position: fixed;
-    top: 0;
+    position: absolute;
+    top: 0vh;
     left: 0;
     z-index:  2;
     height: 70px;

@@ -36,7 +36,7 @@ $(document).ready(function(){
 
     send_button.addEventListener('click', function(){
         let body = message_input.value;
-        let receiver = this_data.getAttribute('data-receiver-username');
+        let receiver = conversation;
         
         this.disabled = true;
 
@@ -46,7 +46,12 @@ $(document).ready(function(){
         this.innerHTML = `<div class="loading-circle msl"></div>`;
         this.style.backgroundColor = "transparent";
 
-        yb_sendMessage(body, conversation, receiver);
+        let this_data = {
+            "id" : conversation,
+            "body": body,
+        }
+        
+        yb_sendMessage(this_data);
     });
 
     setInterval(function(){
