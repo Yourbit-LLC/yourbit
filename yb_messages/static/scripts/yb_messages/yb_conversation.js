@@ -89,14 +89,14 @@ function yb_intervalMessenger() {
 $(document).ready(function(){
 
     back_button.addEventListener("click", function() {
-
+        clearInterval(yb_intervalMessenger)
         let header = document.getElementById("message-header");
         let message_input = document.getElementById("message-input");
         let message_list = document.getElementById("message-container");
         message_input.style.transform = "translateY(100%)";
         header.style.transform = "translateY(-100%)";
         message_container.style.transform = "translateY(100%)";
-        clearInterval(yb_intervalMessenger, 2000)
+        
 
         yb_handleMessageClick();
     });
