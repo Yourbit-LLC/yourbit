@@ -36,7 +36,7 @@ def create_message_notification(sender, instance, created, **kwargs):
 
                 notification.save()
 
-                addToCore(notification, member)
+                addToCore(notification, member.profile)
 
                 #Send Push Notification
                 payload = {"head": "New Message", "body": instance.body, "icon": "/static/images/2023-logo-draft.png"}
