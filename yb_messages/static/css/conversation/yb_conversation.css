@@ -172,17 +172,15 @@ body {
     min-width: 50px;
     max-width: 70%;
     padding: 10px 10px 10px 10px;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
     color: white;
   }
   
   .message-bubble-right {
     background-color: rgb(75, 75, 75);
-    margin-right: 2px;
+    margin-right: 5px;
     margin-left: auto;
     color: white;
     border-radius: 20px;
-    box-shadow: 1px 1px 3px black;
 
   }
 
@@ -199,7 +197,7 @@ body {
   .message-bubble-left {
     background-color: rgb(105, 0, 119);
     margin-right: auto;
-    margin-left: 2px;
+    margin-left: 5px;
 
     color: white;
     border-radius: 20px;
