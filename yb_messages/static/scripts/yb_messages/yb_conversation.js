@@ -1,67 +1,15 @@
 var this_data = document.getElementById("conversation-data");
 var conversation = this_data.getAttribute('data-id');
+var send_button = document.getElementById('send-button');
+var message_input = document.getElementById('message-field');
+var message_list = $('#message-container');
 
-$(document).ready(function(){
-    let send_button = document.getElementById('send-button');
-    let message_input = document.getElementById('message-field');
-    let message_list = $('#message-container');
-    
-    let options_button = document.getElementById('options-button');
+var options_button = document.getElementById('options-button');
 
-    let back_button = document.getElementById("back-to-convos");
-    console.log("conversation loaded!")
+var back_button = document.getElementById("back-to-convos");
+console.log("conversation loaded!")
 
-    let message_container = document.getElementById("message-container");
-
-    back_button.addEventListener("click", function() {
-
-        let header = document.getElementById("message-header");
-        let message_input = document.getElementById("message-input");
-        let message_list = document.getElementById("message-container");
-        message_input.style.transform = "translateY(100%)";
-        header.style.transform = "translateY(-100%)";
-        message_container.style.transform = "translateY(100%)";
-
-        yb_handleMessageClick();
-    });
-
-    message_input.addEventListener('keyup', function(event){
-        if (message_input.value.length > 0){
-            send_button.disabled = false;
-            send_button.classList.add("enabled")
-        } else {
-            send_button.disabled = true;
-            send_button.classList.remove("enabled");
-        }
-    });
-
-    send_button.addEventListener('click', function(){
-        let body = message_input.value;
-        let receiver = conversation;
-        
-        this.disabled = true;
-
-        this.style.width = "33.25px";
-        this.style.height = "33.25px";
-        this.style.borderRadius = "50%";
-        this.innerHTML = `<div class="loading-circle msl"></div>`;
-        this.style.backgroundColor = "transparent";
-
-        let this_data = {
-            "id" : conversation,
-            "body": body,
-        }
-
-        yb_sendMessage(this_data);
-    });
-
-    setInterval(function(){
-        let current_position = message_container.scrollTop;
-        yb_refreshConversation();
-    }, 1000);
-    
-});
-
+let message_container = document.getElementById("message-container");
 
 
 function yb_refreshConversation(current_position){
@@ -132,3 +80,58 @@ function yb_checkMessages(){
     })
 
 }
+
+
+function yb_intervalMessenger() {
+    let current_position = message_container.scrollTop;
+    yb_refreshConversation();
+}
+
+$(document).ready(function(){
+
+    back_button.addEventListener("click", function() {
+
+        let header = document.getElementById("message-header");
+        let message_input = document.getElementById("message-input");
+        let message_list = document.getElementById("message-container");
+        message_input.style.transform = "translateY(100%)";
+        header.style.transform = "translateY(-100%)";
+        message_container.style.transform = "translateY(100%)";
+        clearInterval(yb_intervalMessenger, 2000)
+
+        yb_handleMessageClick();
+    });
+
+    message_input.addEventListener('keyup', function(event){
+        if (message_input.value.length > 0){
+            send_button.disabled = false;
+            send_button.classList.add("enabled")
+        } else {
+            send_button.disabled = true;
+            send_button.classList.remove("enabled");
+        }
+    });
+
+    send_button.addEventListener('click', function(){
+        let body = message_input.value;
+        let receiver = conversation;
+        
+        this.disabled = true;
+
+        this.style.width = "33.25px";
+        this.style.height = "33.25px";
+        this.style.borderRadius = "50%";
+        this.innerHTML = `<div class="loading-circle msl"></div>`;
+        this.style.backgroundColor = "transparent";
+
+        let this_data = {
+            "id" : conversation,
+            "body": body,
+        }
+
+        yb_sendMessage(this_data);
+    });
+
+    setInterval(yb_intervalMessenger, 2000);
+    
+});
