@@ -1,8 +1,10 @@
 
 try {
     var conversation_data = document.getElementById("conversation-data");
+    var this_id = conversation_data.getAttribute("data-id")
 } catch(err) {
     conversation_data = document.getElementById("conversation-data");
+    this_id = conversation_data.getAttribute("data-id")
 }
 
 function yb_sendMessage(data) {
@@ -122,7 +124,7 @@ function yb_refreshConversation(current_position){
 
 
 function yb_checkMessages(){
-    let this_id = yb_getSessionValues("conversation");
+    
 
     console.log("checking messages...");
     $.ajax({
