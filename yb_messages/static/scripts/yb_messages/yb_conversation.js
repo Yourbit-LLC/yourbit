@@ -13,7 +13,7 @@ function yb_sendMessage(data) {
             //Update the feed
             let message_field = document.getElementById("message-field")
             message_field.value = "";
-            let this_message = response.data;
+            let this_message = response;
             let message_container = document.getElementById("message-container");
             
             let is_sender = true
