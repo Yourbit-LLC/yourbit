@@ -113,10 +113,10 @@ function yb_buildMessage(this_message){
         // new_element.appendChild(new_avatar);
 
     } else {
-        new_element = yb_createElement("div", `message-${id}`, "message-bubble message-bubble-left");
+        new_element = yb_createElement("div", "message-bubble message-bubble-left", `message-${id}`);
         new_element.setAttribute("data-id", id)
         
-        new_body = yb_createElement("div", `message-body-${id}`, "message-body");
+        new_body = yb_createElement("div", "message-body", `message-body-${id}`);
         new_body.innerHTML = body;
         new_element.appendChild(new_body);
 

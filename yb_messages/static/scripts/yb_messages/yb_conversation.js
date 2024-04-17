@@ -1,4 +1,10 @@
 
+try {
+    var latest_message_id = 0;
+} catch(err) {
+    latest_message_id = 0;
+}
+
 function yb_sendMessage(data) {
     let csrf_token = getCSRF();
     //Send a message
@@ -121,6 +127,9 @@ function yb_checkMessages(){
     $.ajax({
         type: 'GET',
         url: `/messages/check/${this_id}/`,
+        data: {
+            "last_message":latest_message_id
+        },
         success: function(data){
 
             if (data.is_messages == true){
@@ -161,6 +170,8 @@ function yb_intervalMessenger() {
 }
 
 $(document).ready(function(){
+
+    latest_message_id = document.getElementById("conversation-data").getAttribute("data-last-message");
 
     back_button.addEventListener("click", function() {
         let header = document.getElementById("message-header");

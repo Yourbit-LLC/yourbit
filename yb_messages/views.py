@@ -5,6 +5,8 @@ from operator import attrgetter
 from itertools import chain
 from django.views import View
 from main.views import initialize_session
+from rest_framework.decorators import api_view
+from django.http import JsonResponse
 
 from yb_profile.models import Profile
 
@@ -102,6 +104,11 @@ class ConversationView(View):
                 for member in members:
                     if member !=  request.user:
                         context["conversation_name"] = member.profile.display_name
+
+        last_message = messages.last()
+        last_id = last_message.id
+
+        context["last_message"] = last_id
             
 
         return render(request, "yb_messages/conversation.html", context)
@@ -137,3 +144,23 @@ class MessagePage(View):
                     'login_form': login_form,
                 }
             )
+        
+
+@api_view(['GET'])
+def check_new_messages(request, id):
+    from .api.serializers import MessageSerializer
+    user = request.user
+    last_message = request.query_params.get("last_message")
+    this_conversation = Conversation.objects.get(id=id)
+
+    new_messages = Message.objects.filter(id__gt=int(last_message), conversation=this_conversation)
+
+    if len(new_messages) > 0:
+        messages_serialized = MessageSerializer(new_messages, many=True)
+        response = {"is_messages":True, "messages":messages_serialized.data}
+    else:
+        response = {"is_messages":False}
+    
+    
+    return JsonResponse(response)
+

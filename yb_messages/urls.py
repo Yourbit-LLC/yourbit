@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.contrib import admin
 from django.urls import path, include
-from yb_messages.views import message_inbox, new_conversation_template, MessagePage, ConversationView
+from yb_messages.views import message_inbox, new_conversation_template, MessagePage, ConversationView, check_new_messages
 
 urlpatterns = [
     path("inbox/", message_inbox, name="message_inbox"),
+    path('check/<int:id>/', check_new_messages, name='check-new-messages'),
     path("templates/new-message/", new_conversation_template, name="message_new"),
     path("templates/conversation/<int:id>/", ConversationView.as_view(), name="conversation"),
     path('api/', include('yb_messages.routers')),
