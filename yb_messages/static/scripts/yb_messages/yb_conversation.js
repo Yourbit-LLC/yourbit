@@ -1,8 +1,8 @@
 
 try {
-    var latest_message_id = 0;
+    var conversation_data = document.getElementById("conversation-data");
 } catch(err) {
-    latest_message_id = 0;
+    conversation_data = document.getElementById("conversation-data");
 }
 
 function yb_sendMessage(data) {
@@ -123,13 +123,16 @@ function yb_refreshConversation(current_position){
 
 function yb_checkMessages(){
     let this_id = yb_getSessionValues("conversation");
+
     console.log("checking messages...");
     $.ajax({
         type: 'GET',
-        url: `/messages/check/${this_id}/${latest_message_id}/`,
+        url: `/messages/check/${this_id}/${conversation_data.getAttribute("data-last-message")}/`,
         success: function(data){
 
             if (data.is_messages == true){
+
+
                 for (let i = 0; i < data.messages.length; i++){
                     let message = data.messages[i];
                     let message_container = document.getElementById("message-container");
@@ -145,6 +148,10 @@ function yb_checkMessages(){
                     }
                     let display_message = BuildMessage(this_blueprint);
                     message_container.insertBefore(display_message, message_container.firstChild);
+
+                    if (i = data.messages.length) {
+                        conversation_data.setAttribute("data-last-message", message.id)
+                    }
                 }
             }
 
@@ -167,8 +174,6 @@ function yb_intervalMessenger() {
 }
 
 $(document).ready(function(){
-
-    latest_message_id = document.getElementById("conversation-data").getAttribute("data-last-message");
 
     back_button.addEventListener("click", function() {
         let header = document.getElementById("message-header");
