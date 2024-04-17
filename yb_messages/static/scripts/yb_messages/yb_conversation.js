@@ -164,7 +164,7 @@ function yb_checkMessages(){
 function yb_intervalMessenger() {
     if (document.getElementById("message-container")) {
         let current_position = message_container.scrollTop;
-        yb_refreshConversation();
+        yb_checkMessages();
 
     } else {
         clearInterval(yb_intervalMessenger);
