@@ -147,10 +147,9 @@ class MessagePage(View):
         
 
 @api_view(['GET'])
-def check_new_messages(request, id):
+def check_new_messages(request, id, last_message):
     from .api.serializers import MessageSerializer
     user = request.user
-    last_message = request.query_params.get("last_message")
     this_conversation = Conversation.objects.get(id=id)
 
     new_messages = Message.objects.filter(id__gt=int(last_message), conversation=this_conversation)

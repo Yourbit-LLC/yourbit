@@ -5,7 +5,7 @@ from yb_messages.views import message_inbox, new_conversation_template, MessageP
 
 urlpatterns = [
     path("inbox/", message_inbox, name="message_inbox"),
-    path('check/<int:id>/', check_new_messages, name='check-new-messages'),
+    path('check/<int:id>/<int:last_message>/', check_new_messages, name='check-new-messages'),
     path("templates/new-message/", new_conversation_template, name="message_new"),
     path("templates/conversation/<int:id>/", ConversationView.as_view(), name="conversation"),
     path('api/', include('yb_messages.routers')),

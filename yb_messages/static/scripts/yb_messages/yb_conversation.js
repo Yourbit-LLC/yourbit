@@ -126,10 +126,7 @@ function yb_checkMessages(){
     console.log("checking messages...");
     $.ajax({
         type: 'GET',
-        url: `/messages/check/${this_id}/`,
-        data: {
-            "last_message":latest_message_id
-        },
+        url: `/messages/check/${this_id}/${latest_message_id}/`,
         success: function(data){
 
             if (data.is_messages == true){
