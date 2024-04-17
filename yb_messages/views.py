@@ -104,11 +104,14 @@ class ConversationView(View):
                 for member in members:
                     if member !=  request.user:
                         context["conversation_name"] = member.profile.display_name
+        try:
+            last_message = messages.last()
+            last_id = last_message.id
 
-        last_message = messages.last()
-        last_id = last_message.id
+            context["last_message"] = last_id
+        except:
+            last_id = 0
 
-        context["last_message"] = last_id
             
 
         return render(request, "yb_messages/conversation.html", context)
