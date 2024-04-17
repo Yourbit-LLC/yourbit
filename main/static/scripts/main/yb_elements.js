@@ -96,10 +96,10 @@ function yb_buildMessage(this_message){
         let conversation_data = document.getElementById("conversation-data");
         let user_color = conversation_data.getAttribute("data-primary-color");
 
-        new_element = yb_createElement("div", `message-${id}`, "message-bubble message-bubble-right");
+        new_element = yb_createElement("div", "message-bubble message-bubble-right", `message-${id}`);
         new_element.setAttribute("data-id", id);
 
-        new_body = yb_createElement("div", `message-body-${id}`, "message-body");
+        new_body = yb_createElement("div", "message-body", `message-body-${id}`);
         new_body.innerHTML = body;
         new_element.appendChild(new_body);
 
