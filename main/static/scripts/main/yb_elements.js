@@ -83,10 +83,7 @@ function yb_buildMessage(this_message){
     
     let id= this_message.id
     let time = this_message.time
-    let sender = this_message.sender
-    let sender_name = sender.first_name + " " + sender.last_name
     let body = this_message.body
-    let profile_image = this_message.image
     let is_sender = this_message.is_sender
 
     console.log(is_sender)
