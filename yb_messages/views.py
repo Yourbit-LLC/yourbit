@@ -152,7 +152,7 @@ def check_new_messages(request, id, last_message):
     user = request.user
     this_conversation = Conversation.objects.get(id=id)
 
-    new_messages = Message.objects.filter(id__gt=int(last_message), conversation=this_conversation)
+    new_messages = Message.objects.filter(id__gt=int(last_message), conversation=this_conversation).exclude(from_user = request.user)
 
     if len(new_messages) > 0:
         messages_serialized = MessageSerializer(new_messages, many=True)
