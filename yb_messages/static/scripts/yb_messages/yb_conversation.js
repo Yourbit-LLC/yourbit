@@ -148,7 +148,7 @@ function yb_checkMessages(){
                         "is_sender":is_sender,
                         
                     }
-                    let display_message = BuildMessage(this_blueprint);
+                    let display_message = yb_buildMessage(this_blueprint);
                     message_container.insertBefore(display_message, message_container.firstChild);
 
                     if (i = data.messages.length) {
