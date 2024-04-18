@@ -56,6 +56,10 @@ class ConversationViewSet(viewsets.ModelViewSet):
         for member in members:
             print(str(start) + ": " + member)
 
+            if member == '':
+                members.remove(member)
+                
+
         # Check if the conversation already exists with the same members
         existing_conversation = Conversation.objects.filter(members__in=members).distinct()
 
