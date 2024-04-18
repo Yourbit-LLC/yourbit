@@ -35,7 +35,7 @@ class Bit(models.Model):
     display_name = models.CharField(max_length=100, blank=True, null=True) #used for display name, user may set real name or username
     title = models.CharField(max_length=140, blank=True)
 
-    body = models.CharField(max_length=5000)
+    body = models.CharField(max_length=5000, blank=True)
     
     time = models.DateTimeField(default=timezone.localtime)
     evaporate = models.BooleanField(default=False)
