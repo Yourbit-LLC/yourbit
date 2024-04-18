@@ -46,6 +46,7 @@ const NAV_BAR = document.querySelector(".yb-navigation");
 const SIDE_CONTAINER_A = document.getElementById("yb-dynamic-2way-a");
 const SIDE_CONTAINER_B = document.getElementById("yb-dynamic-2way-b");
 const SIDE_CONTAINERS = document.querySelectorAll(".yb-2Way-container");
+const MESSAGE_BUTTON_MOBILE = document.getElementById("button-message-mobile-header");
 
 //Prompts
 const PROMPT_CONTAINER = document.getElementById("prompt-container");
@@ -638,6 +639,7 @@ $(document).ready(function() {
     MESSAGES_DESKTOP.addEventListener("click", yb_handleMessageClick);
     NOTIFICATIONS_DESKTOP.addEventListener("click", yb_handleNotificationsClick);
     NOTIFICATIONS_MOBILE.addEventListener("click", yb_handleNotificationsClick);
+    MESSAGE_BUTTON_MOBILE.addEventListener("click", yb_handleMessageClick)
 
     CREATE_POPOUT.addEventListener('click', yb_toggleCreateMenu);
     console.log(SEARCH_FIELD);
