@@ -431,6 +431,14 @@ function yb_buildCommentField(bit) {
     
 */
 
+function yb_handleDeleteBit(e){
+    let this_button = e.currentTarget;
+    let bit_id = this_button.getAttribute("data-catid");
+
+    yb_deleteBit(bit_id)
+
+}
+
 function yb_buildBit(bit){
     
     console.log("Build bit running...");
@@ -478,6 +486,12 @@ function yb_buildBit(bit){
     new_bit.setAttribute("data-icon-color", `${feedback_icon_color}`);
     new_bit.setAttribute("data-secondary-color", `${accent_color}`);
     new_bit.setAttribute("data-primary-color", `${primary_color}`);
+
+    let delete_button = yb_createElement("div", "yb-button-delete hangover-corner-right", `delete-bit-${id}`);
+    delete_button.setAttribute("data-catid", id);
+    new_bit.appendChild(delete_button);
+
+    delete_button.addEventListener("click", yb_handleDeleteBit)
 
     //generate header
     new_bit.appendChild(createHeader(bit));

@@ -387,3 +387,30 @@ function yb_deleteDislike(dislikeId, data=null) {
 }
 
 
+function yb_deleteBit(bitID) {
+
+    console.log("Deleting bit")
+    //Delete a Dislike
+    console.log("deleting dislike...");
+    console.log(data)
+    $.ajax({
+        type: 'DELETE',
+        url: `/bits/api/bits/${bitID}/ `,
+        data: data,
+        success: function(response) {
+            let deleting_bit = document.getElementById(`bit-${bitID}`);
+            deleting_bit.remove();
+
+            console.log("Successfully deleted bit")
+            //Update the feed
+            console.log(response)
+        },
+        error: function(response) {
+            //Error
+            console.log("Server failed to delete bit")
+        }
+    });
+
+}
+
+
