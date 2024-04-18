@@ -48,9 +48,10 @@ class ConversationViewSet(viewsets.ModelViewSet):
         # Automatically add the request.user to the conversation members
         members = serializer.validated_data.get('members', [])
 
-        print(members)
+        
 
         for member in members:
+            print(member)
             for char in member:
                 if char == ',':
                     members.remove(member)
