@@ -347,3 +347,20 @@
     transition: 0.8s;
 }
 
+.hangover-corner-right {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    transform: translate(50%, -50%);
+}
+
+.yb-button-delete.hangover-corner-right {
+    height: 28px;
+    width: 28px;
+    font-size: 30px;
+    font-weight: 600;
+    border-radius: 50%;
+    background-color: gray;
+    border-width: 0px;
+    transition: 0.5s;
+}
