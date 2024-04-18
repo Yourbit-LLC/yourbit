@@ -46,24 +46,24 @@ class ConversationViewSet(viewsets.ModelViewSet):
         from yb_messages.models import MessageCore
 
         # Automatically add the request.user to the conversation members
-        members = serializer.validated_data.get('members')
+        members = serializer.validated_data.get('members', [])
 
-        members = members.split(",")
+        members_split = members.split(",")
 
         start = 0
 
-        for member in members:
+        for member in members_split:
             print(str(start) + ": " + member)
 
             if member == '':
-                members.remove(member)
+                members_split.remove(member)
                 
 
         print(str(start) + ": " + member)
         # Check if the conversation already exists with the same members
 
         try:
-            existing_conversation = Conversation.objects.get(members__in=members)
+            existing_conversation = Conversation.objects.get(members__in=members_split)
             return Response({"message": "Conversation already exists."}, status=status.HTTP_400_BAD_REQUEST)
 
         except:

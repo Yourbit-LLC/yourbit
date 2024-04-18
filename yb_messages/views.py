@@ -86,6 +86,7 @@ class ConversationView(View):
         context = {}
 
         this_conversation = Conversation.objects.get(id = this_id)
+        
         messages = Message.objects.filter(conversation = this_conversation)
 
         members = this_conversation.members.all()
