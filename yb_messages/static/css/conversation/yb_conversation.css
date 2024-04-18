@@ -173,7 +173,7 @@ body {
     max-width: 70%;
     padding: 10px 10px 10px 10px;
     min-height: 1em;
-    
+    height: fit-content;
     color: white;
   }
   
