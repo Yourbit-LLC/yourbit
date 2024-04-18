@@ -261,7 +261,7 @@ function yb_notificationMenu(type, this_id, rid=null) {
         
         let new_option = yb_createElement(
             "div", 
-            "notification-response-option yb-menu-listButton yb-button-threeQuarter border-none squared yb-margin-T10 yb-widthConstraint-600 yb-autoText bg-gray-dark font-heavy pointer-object", 
+            "notification-response-option yb-menu-listButton yb-button-threeQuarter border-none squared yb-margin-T10 yb-widthConstraint-600 yb-autoText bg-gray font-heavy pointer-object", 
             `notification-response-option-${option}`
         );
         

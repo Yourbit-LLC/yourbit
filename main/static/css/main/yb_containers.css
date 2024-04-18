@@ -38,7 +38,6 @@
 
     /*Style*/
     text-align: center;
-    color: white;
     transition: 0.5s;
     overflow-x: hidden;
     
@@ -57,7 +56,6 @@
 
 .yb-fsContainer.open {
     top: 70vh;
-    background-color: black;
     transition: 0.5s;
 
 }
