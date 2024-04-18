@@ -46,9 +46,8 @@ class ConversationViewSet(viewsets.ModelViewSet):
         from yb_messages.models import MessageCore
 
         # Automatically add the request.user to the conversation members
-        members = serializer.validated_data.get('members', [])
+        members = serializer.validated_data.get('members')
 
-        
         members = members.split(",")
 
         start = 0
@@ -60,6 +59,7 @@ class ConversationViewSet(viewsets.ModelViewSet):
                 members.remove(member)
                 
 
+        print(str(start) + ": " + member)
         # Check if the conversation already exists with the same members
         existing_conversation = Conversation.objects.filter(members__in=members).distinct()
 
