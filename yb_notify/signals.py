@@ -29,7 +29,7 @@ def create_message_notification(sender, instance, created, **kwargs):
                     type = 6,
                     link = "/messages/" + str(conversation.id),
                     conversation = conversation,
-                    title = "New Message",
+                    title = "Message from " + instance.from_user.profile.display_name,
                     notify_class = 1
 
                 )
