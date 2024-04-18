@@ -22,7 +22,7 @@
 </div>
 <hr class="yb-fillWidth bg-gray-dark" style="border-color: rgb(35, 35, 35);">
 
-<div id="conversation-list" class="yb-fillWidth" onload="{{onload}}">
+<div id="conversation-list" class="yb-fillWidth yb-vScroll yb-margin-T10" style="height: calc(100% - 150px); border-radius: 15px;" onload="{{onload}}">
     {% if conversations == True %}
         
         {% for conversation in results %}
