@@ -61,10 +61,12 @@ class ConversationViewSet(viewsets.ModelViewSet):
 
         print(str(start) + ": " + member)
         # Check if the conversation already exists with the same members
-        existing_conversation = Conversation.objects.filter(members__in=members).distinct()
 
-        if existing_conversation.exists():
-            # Return a response indicating that the conversation already exists
+        try:
+            existing_conversation = Conversation.objects.get(members__in=members).distinct()
+
+        except:
+ 
             return Response({"message": "Conversation already exists."}, status=status.HTTP_400_BAD_REQUEST)
 
 
