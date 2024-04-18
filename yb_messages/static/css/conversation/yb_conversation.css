@@ -172,7 +172,8 @@ body {
     min-width: 50px;
     max-width: 70%;
     padding: 10px 10px 10px 10px;
-    height: 1em;
+    min-height: 1em;
+    height: auto;
     color: white;
   }
   
