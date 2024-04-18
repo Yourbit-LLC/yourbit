@@ -487,12 +487,6 @@ function yb_buildBit(bit){
     new_bit.setAttribute("data-secondary-color", `${accent_color}`);
     new_bit.setAttribute("data-primary-color", `${primary_color}`);
 
-    let delete_button = yb_createElement("div", "yb-button-delete hangover-corner-right", `delete-bit-${id}`);
-    delete_button.setAttribute("data-catid", id);
-    new_bit.appendChild(delete_button);
-
-    delete_button.addEventListener("click", yb_handleDeleteBit)
-
     //generate header
     new_bit.appendChild(createHeader(bit));
 
@@ -609,7 +603,6 @@ function yb_buildComment(comment){
         comment_bubble.setAttribute("data-cat-id", comment_id);
         comment_bubble.setAttribute("style", `background-color: ${primary_color}`);
 
-
         //Create comment image
         // rendered_image = yb_renderImage(profile_image, "image-hang right", "yb-comment-image");
         // comment_bubble.appendChild(rendered_image);
@@ -630,8 +623,5 @@ function yb_buildComment(comment){
         comment_bubble.appendChild(comment_time);
         return comment_bubble;
 
-    }
-
-
-    
+    }    
 }
