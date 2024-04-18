@@ -274,7 +274,7 @@
 }
 
 .yb-2Way-content {
-    overflow-x: hidden;
+    overflow: hidden;
 }
 .yb-panel-wide {
     position: relative;
