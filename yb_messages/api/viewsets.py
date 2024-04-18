@@ -58,7 +58,8 @@ class ConversationViewSet(viewsets.ModelViewSet):
             if member == '':
                 members_split.remove(member)
                 
-
+        members += self.request.user.id
+        
         print(str(start) + ": " + member)
         # Check if the conversation already exists with the same members
 
