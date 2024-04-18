@@ -172,6 +172,7 @@ body {
     min-width: 50px;
     max-width: 70%;
     padding: 10px 10px 10px 10px;
+    height: 1em;
     color: white;
   }
   
@@ -207,7 +208,7 @@ body {
 .message-body {
     position: relative;
     display: inline-block;
-    width: 99%;
+    width: 100%;
     font-size: 14px;
 
 }
