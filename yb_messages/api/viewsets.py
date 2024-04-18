@@ -50,6 +50,12 @@ class ConversationViewSet(viewsets.ModelViewSet):
 
         print(members)
 
+        for member in members:
+            for char in member:
+                if char == ',':
+                    members.remove(member)
+
+
             # Check if the conversation already exists with the same members
         existing_conversation = Conversation.objects.filter(members__in=members).distinct()
         if existing_conversation.exists():
