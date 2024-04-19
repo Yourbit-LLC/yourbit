@@ -18,6 +18,7 @@ from rest_framework.authtoken.models import Token
 from django.utils import timezone
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
+from rest_framework.exceptions import PermissionDenied
 
 
 #Viewset for chat bits
@@ -193,7 +194,17 @@ class BitViewSet(viewsets.ModelViewSet):
 
         serializer = self.get_serializer(instance, context={'user_tz': timezone, 'request': request})
         return Response(serializer.data)
+    
+
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
         
+        # Check if the request user is the owner of the object
+        if instance.user != request.user:
+            raise PermissionDenied("You do not have permission to delete this object.")
+
+        return super().destroy(request, *args, **kwargs)
 
     
 class LikeViewSet(viewsets.ModelViewSet):
