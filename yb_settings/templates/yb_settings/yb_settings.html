@@ -6,72 +6,73 @@
         <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb">Settings</h3>
         <div class='yb-button-close' id='cb-panel-close' onclick='yb_toggle2WayContainer("settings")'><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
     </div>
-
-    <div id="settings-container" style="padding-top: 0px;">
-        <br>
-        <p style="color:white; font-size: small; font-weight: 550; padding-left: 5px; padding-right: 5px; font-family: 'Roboto', sans-serif; text-align: center;">Manage account, content, and privacy settings here.</p>    
-        <br>
-        <div class="settingsBox" id="void-subscription">
-            <h3 class="setting-header">Subscription</h3>
-            <p class="setting-description">
-                Manage your paid subscriptions and payment methods on yourbit
-            </p>
-            <button class="editSetting pointer-object" name="subscription">Edit</button>
-            
-        </div>
-
-        <div class="settingsBox" id="account-settings">
-            <div class="setting-header-container" id="account-settings-header-container">
-                <h3 class="setting-header" id="account-settings-header"> Account </h3>
-            </div>
-            <p id="account-settings-description" class="setting-description">
-                Change account settings, like username, email, and name.
-            </p>
-            <button class="editSetting pointer-object" name="account">Edit</button>
-        </div>
-
-        <div class="settingsBox" id="profile-settings">
-            <div class="setting-header-container" id="profile-settings-header-container">
-                <h3 class="setting-header" id="profile-settings-header"> Profile information </h3>
-            </div>
-            <p id="profile-settings-description" class="setting-description">
-                Change information about you on your profile.
-            </p>
-            <button class="editSetting pointer-object" name="profile">Edit</button>
-        </div>
-        
-        <div class="settingsBox" id="personalization">
-            <h3 class="setting-header" id="personalize-header">Personalization</h3>
+    <div class="yb-fillWidth yb-vScroll font-white yb-margin-T10 align-center" style="height: calc(100% - 150px); border-radius: 15px;">
+        <div id="settings-container" style="padding-top: 0px;">
+            <br>
+            <p style="color:white; font-size: small; font-weight: 550; padding-left: 5px; padding-right: 5px; font-family: 'Roboto', sans-serif; text-align: center;">Manage account, content, and privacy settings here.</p>    
+            <br>
+            <div class="settingsBox" id="void-subscription">
+                <h3 class="setting-header">Subscription</h3>
                 <p class="setting-description">
-                    Edit profile colors, profile, image, background image, fonts, bio, gender, and default spaces.
+                    Manage your paid subscriptions and payment methods on yourbit
                 </p>
-                <button class="editSetting pointer-object" name="customize">Edit</button>
-        </div>
-
-        <div class="settingsBox" id="privacy">
-            <h3 class="setting-header">Privacy</h3>
-            <p class="setting-description">Manage your privacy and exposure settings here, like who you wish to see your posts, what information do friends and followers have access to, and how your data is used.</p>
-            <button class="editSetting pointer-object" name="privacy">Edit</button>
-        </div>
-
-        <div class="settingsBox" id="moderation-bot">
-            <h3 class="setting-header">Feed/Reccomendation Control</h3>
-            <p class="setting-description">Modify feed algorithms to tailor yourbit feeds to your liking, create presets and use quick visibility settings to jump to various feed settings depending on your mood.</p>
-            <button class="editSetting pointer-object" name="feed">Edit</button>
-        </div>
-
-        <div class="settingsBox" id="monetization">
-            <h3 class="setting-header">Monetization</h3>
-            <p class="setting-description">Manage settings for sending and recieving tips, promotional monetization coming soon.</p>
-            <button class="editSetting pointer-object" name="monetization">Edit</button>
-        </div>
-
-    </div>
-    <div class="settingFormContainer" id="subscription-form-container">
-        <div id="subscription-form-box">
-            <form id="subscription-form">
+                <button class="editSetting pointer-object" name="subscription">Edit</button>
                 
-            </form>
+            </div>
+
+            <div class="settingsBox" id="account-settings">
+                <div class="setting-header-container" id="account-settings-header-container">
+                    <h3 class="setting-header" id="account-settings-header"> Account </h3>
+                </div>
+                <p id="account-settings-description" class="setting-description">
+                    Change account settings, like username, email, and name.
+                </p>
+                <button class="editSetting pointer-object" name="account">Edit</button>
+            </div>
+
+            <div class="settingsBox" id="profile-settings">
+                <div class="setting-header-container" id="profile-settings-header-container">
+                    <h3 class="setting-header" id="profile-settings-header"> Profile information </h3>
+                </div>
+                <p id="profile-settings-description" class="setting-description">
+                    Change information about you on your profile.
+                </p>
+                <button class="editSetting pointer-object" name="profile">Edit</button>
+            </div>
+            
+            <div class="settingsBox" id="personalization">
+                <h3 class="setting-header" id="personalize-header">Personalization</h3>
+                    <p class="setting-description">
+                        Edit profile colors, profile, image, background image, fonts, bio, gender, and default spaces.
+                    </p>
+                    <button class="editSetting pointer-object" name="customize">Edit</button>
+            </div>
+
+            <div class="settingsBox" id="privacy">
+                <h3 class="setting-header">Privacy</h3>
+                <p class="setting-description">Manage your privacy and exposure settings here, like who you wish to see your posts, what information do friends and followers have access to, and how your data is used.</p>
+                <button class="editSetting pointer-object" name="privacy">Edit</button>
+            </div>
+
+            <div class="settingsBox" id="moderation-bot">
+                <h3 class="setting-header">Feed/Reccomendation Control</h3>
+                <p class="setting-description">Modify feed algorithms to tailor yourbit feeds to your liking, create presets and use quick visibility settings to jump to various feed settings depending on your mood.</p>
+                <button class="editSetting pointer-object" name="feed">Edit</button>
+            </div>
+
+            <div class="settingsBox" id="monetization">
+                <h3 class="setting-header">Monetization</h3>
+                <p class="setting-description">Manage settings for sending and recieving tips, promotional monetization coming soon.</p>
+                <button class="editSetting pointer-object" name="monetization">Edit</button>
+            </div>
+
+        </div>
+        <div class="settingFormContainer" id="subscription-form-container">
+            <div id="subscription-form-box">
+                <form id="subscription-form">
+                    
+                </form>
+            </div>
         </div>
     </div>
     <div class="yb-logo-footer small" id="create-menu-footer" style="position: relative; margin-left: auto; margin-right: auto;">
