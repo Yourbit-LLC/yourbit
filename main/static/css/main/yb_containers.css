@@ -2,9 +2,9 @@
     .yb-card {
         /*Positioning*/
         position: fixed;
-        top: 50%;
+        top: 200%;
         left: 50%;
-        transform: translate(-50%, 120%);
+        transform: translate(-50%, 50%);
         z-index: 1002;
         border-radius: 25px;
 
@@ -20,15 +20,21 @@
         transition: 0.5s;
         overflow-x: hidden;
     }
+    .yb-card.open {
+        visibility: visible !important;
+        top: 50%;
+        transition: 0.5s;
+    }
+    
 }
 
 @media screen and (min-width: 768px){
     .yb-card {
         /*Positioning*/
         position: fixed;
-        top: 50%;
+        top: 200%;
         left: 50%;
-        transform: translate(-50%, 120%);
+        transform: translate(-50%, -50%);
         z-index: 1002;
         border-radius: 25px;
 
@@ -45,6 +51,18 @@
         overflow-x: hidden;
     }
 
+    .yb-card.open {
+        visibility: visible !important;
+        transform: translate(-50%, -50%);
+        transition: 0.5s;
+    }
+    
+
+}
+
+.yb-card hr {
+    border: 1px solid white;
+    
 }
 
 @media (prefers-color-scheme: light){
@@ -59,11 +77,6 @@
     }
 }
 
-.yb-card.open {
-    visibility: visible !important;
-    transform: translate(-50%, -50%);
-    transition: 0.5s;
-}
 
 .yb-fsContainer {
     /*Positioning*/
