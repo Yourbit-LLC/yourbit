@@ -2,9 +2,9 @@
     .yb-card {
         /*Positioning*/
         position: fixed;
-        top: 200%;
+        top: 50%;
         left: 50%;
-        transform: translate(-50%, 50%);
+        transform: translate(-50%, 150%);
         z-index: 1002;
         border-radius: 25px;
 
@@ -22,7 +22,7 @@
     }
     .yb-card.open {
         visibility: visible !important;
-        top: 50% !important;
+        transform: translate(-50%, 50%) !important;
         transition: 0.5s;
     }
     
@@ -34,7 +34,7 @@
         position: fixed;
         top: 200%;
         left: 50%;
-        transform: translate(-50%, -113%);
+        transform: translate(-50%, -50%);
         z-index: 1002;
         border-radius: 25px;
 
