@@ -89,7 +89,7 @@
     $(document).ready(function() {
         /* yb_showMiniBar(); 
         yb_showMenuTask();   */
-        $('#content-container').animate({'top':'0px'});
+        
         /* yb_hideSpaceBar();*/
 
         /* let load_indicator = document.getElementById("yb-loading-core");
@@ -112,6 +112,7 @@
             console.log("if")
             yb_toggle2WayContainer("settings");
             customize_url("");
+            yb_hideSpaceBar();
         } else {
             let container = yb_toggle2WayContainer('settings-profile');
             if (container[0] === "closing"){

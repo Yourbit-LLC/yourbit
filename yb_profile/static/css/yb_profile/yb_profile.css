@@ -412,10 +412,15 @@ Profile Page
     position: absolute;
     display: flex;
     flex-direction: row;
-    bottom: 50px;
+    bottom: 30px;
     left: 50%;
     transform: translate(-50%, 0%);
     grid-gap: 5px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 25px;
+    z-index: 101;
+    fill: purple;
 }
 
 .mini-button-icon {
