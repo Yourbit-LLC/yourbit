@@ -400,7 +400,6 @@ function yb_deleteBit(bitID) {
         headers: {
             'X-CSRFToken': csrf_token,
         },
-        data: data,
         success: function(response) {
             let deleting_bit = document.getElementById(`bit-${bitID}`);
             deleting_bit.remove();
