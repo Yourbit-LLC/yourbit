@@ -112,7 +112,10 @@
             console.log("if")
             yb_toggle2WayContainer("settings");
             customize_url("");
-            setTimeout(yb_hideSpaceBar, 200);
+            yb_setSessionValues("fullscreen", "true");
+            NAV_BAR.classList.remove("hideMobile");
+            CREATE_POPOUT.classList.remove("hide");
+            SEARCH_POPOUT.classList.remove("hide");
         } else {
             let container = yb_toggle2WayContainer('settings-profile');
             if (container[0] === "closing"){
