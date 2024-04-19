@@ -40,15 +40,33 @@
 
         
             {% endif %}>
-        <div id="notification-{{notification.id}}" onclick="yb_notificationMenu({{notification.type}}, {{notification.id}}, {% if notification.type == 4 %} '{{notification.friend_request.id}}' {% elif notification.type == 1 or notification.type == 2 or notification.type == 7%} '{{notification.bit}}' {% elif notification.type == 3 or notification.type == 5%} '{{notification.profile}}' {% elif notification.type == 6%} '{{notification.message}}' {% endif %})" class="
-            yb-listItem notification 
-            {% if notification.has_seen %} 
-            seen 
-            {%else%} 
-            unseen 
-            {% endif %}
-            yb-autoText
-        ">  
+        <div id="notification-{{notification.id}}" onclick="
+            {% if notification.type == 4 %}
+                yb_notificationMenu({{notification.type}}, {{notification.id}}, 
+                
+                {% if notification.type == 1 or notification.type == 2 or notification.type == 7%} 
+                    '{{notification.bit}}' 
+                    
+                {% elif notification.type == 3 or notification.type == 5%} 
+                    '{{notification.profile}}' 
+                {% elif notification.type == 6%} 
+                    '{{notification.message}}' 
+                {% endif %})
+                
+            {% else %} 
+                yb_openCard('/profile/templates/friend_request/{{notification.friend_request.id}}/')
+                
+            {% endif %}" 
+            
+                class="
+                yb-listItem notification 
+                {% if notification.has_seen %} 
+                seen 
+                {%else%} 
+                unseen 
+                {% endif %}
+                yb-autoText
+            ">      
             <div id="notification-icon">
                 {% if notification.type == 1 %}
                 <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32">
