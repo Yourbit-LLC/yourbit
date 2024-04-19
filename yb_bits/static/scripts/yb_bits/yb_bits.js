@@ -10,6 +10,17 @@ function yb_hideComments(bit_id) {
     $(`#comment-container-${bit_id}`).empty();
 }
 
+
+function yb_handleDeleteBit(e){
+    let this_button = e.currentTarget;
+    let bit_id = this_button.getAttribute("data-catid");
+    console.log("Bit ID: " + bit_id)
+
+    yb_deleteBit(bit_id)
+
+}
+
+
 /* 
     *Function to build bit context menu
     *@param {object} this_element - the element that was clicked
@@ -32,16 +43,16 @@ function yb_bitMenu(e){
 
     if (user_id == bit_user_id){
         these_options = {
-            "Edit Bit": yb_deleteBit,
-            "Add to Cluster": yb_deleteBit,
-            "Hide Bit": yb_deleteBit,
-            "Delete Bit": yb_deleteBit,
+            "Edit Bit": yb_handleDeleteBit,
+            "Add to Cluster": yb_handleDeleteBit,
+            "Hide Bit": yb_handleDeleteBit,
+            "Delete Bit": yb_handleDeleteBit,
         }
     } else {
         these_options = {
-            "Add to Cluster": yb_deleteBit,
-            "Hide Bit": yb_deleteBit,
-            "Report Bit": yb_deleteBit,
+            "Add to Cluster": yb_handleDeleteBit,
+            "Hide Bit": yb_handleDeleteBit,
+            "Report Bit": yb_handleDeleteBit,
         }
 
     }
@@ -64,7 +75,7 @@ function yb_bitMenu(e){
         new_option.setAttribute("data-catid", this_id);
 
         new_option.setAttribute("name", option);
-        new_option.addEventListener("click", these_options[option](this_id));
+        new_option.addEventListener("click", these_options[option]);
         this_container.appendChild(new_option);
     }
 
@@ -353,15 +364,6 @@ function yb_buildCommentField(bit) {
     * @returns {string} element_id - the element id of the built bit
     
 */
-
-function yb_handleDeleteBit(e){
-    let this_button = e.currentTarget;
-    let bit_id = this_button.getAttribute("data-catid");
-    console.log("Bit ID: " + bit_id)
-
-    yb_deleteBit(bit_id)
-
-}
 
 function yb_buildBit(bit){
     

@@ -386,7 +386,8 @@ function yb_deleteDislike(dislikeId, data=null) {
 
 }
 
-function yb_deleteBit(bitID) {
+function yb_deleteBit() {
+    
 
     console.log("Deleting bit")
     //Delete a Dislike
