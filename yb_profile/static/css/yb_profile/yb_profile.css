@@ -440,6 +440,10 @@ Profile Page
 
 }
 
+.yb-editBarLabel {
+    padding-right: 10px;
+}
+
 
 .profile-image-container.end {
     height: 50px !important;
