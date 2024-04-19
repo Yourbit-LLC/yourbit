@@ -139,7 +139,7 @@
 
 .yb-header-bit {
     display: grid;
-    grid-template-columns: auto 1fr 1fr 30px;
+    grid-template-columns: auto 1fr 1fr 20px;
     height: 50px;
     column-gap: 1%;
     width: 100%;
@@ -149,6 +149,11 @@
     padding: 0 10px;
     box-sizing: border-box;
     grid-row: 1;
+}
+
+.yb-button-bitOptions {
+    text-align: center;
+    width: 24px;
 }
 
 .yb-userInfo-bit {
