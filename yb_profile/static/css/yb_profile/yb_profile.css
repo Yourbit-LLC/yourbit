@@ -409,17 +409,17 @@ Profile Page
 }
 
 #additional-options {
-    position: fixed;
+    position: absolute;
     display: flex;
     flex-direction: row;
-    bottom: 25vh;
+    bottom: 50px;
     left: 50%;
     transform: translate(-50%, 0%);
     grid-gap: 5px;
 }
 
 .mini-button-icon {
-    position: absolute;
+    position: relative;
     display: block;
     top: 50%;
     left: 50%;
