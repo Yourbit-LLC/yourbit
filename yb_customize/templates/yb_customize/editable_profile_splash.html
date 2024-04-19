@@ -19,8 +19,8 @@
         </div>
 
 
-        <div id="profile-interaction-container" class="profile-interaction-container preview" style="border: 2px solid gray;">
-            <button style="color: {{user.profile.custom.profile_splash.button_text_color}}; background-color: {{user.profile.profile_splash.button_color}};" id="profile-button-connect" class="button-profile-interaction" data-id = "{{profile.id}}">
+        <div id="profile-interaction-container" class="profile-interaction-container profile-CME profile-interaction-container yb-center-margin lr" style="border: 2px solid gray;">
+            <button style="color: {{user.profile.custom.profile_splash.button_text_color}}; background-color: {{user.profile.profile_splash.button_color}};" id="profile-button-connect" class="button-profile-interaction yb-button-flex" data-id = "{{profile.id}}">
                 
                 {% if request.user.id == profile.user.id %}
                     <span>Edit</span>
@@ -35,7 +35,7 @@
     
             </button>
     
-            <button style="color: {{user.profile.custom.profile_splash.button_text_color}}; background-color: {{user.profile.custom.profile_splash.button_color}};" id="profile-button-message" class="button-profile-interaction">
+            <button style="color: {{user.profile.custom.profile_splash.button_text_color}}; background-color: {{user.profile.custom.profile_splash.button_color}};" id="profile-button-message" class="button-profile-interaction yb-button-flex">
                 {% if request.user.id == profile.user.id %}
                     <span>Messages</span>
                 {% else %}
@@ -43,10 +43,10 @@
                 {% endif %}
             </button>
     
-            <button style="color: {{user.profile.custom.profile_splash.button_text_color}}; background-color: {{user.profile.profile_splash.button_color}};" id="profile-button-about" class="button-profile-interaction">
+            <button style="color: {{user.profile.custom.profile_splash.button_text_color}}; background-color: {{user.profile.profile_splash.button_color}};" id="profile-button-about" class="button-profile-interaction yb-button-flex">
                 <span>About</span>
             </button>
-        </div>
+        {% comment %} </div>
         <div id="profile-bio-container" class="splash-bio-container preview" style="border: 2px solid gray;">
             <h3 id="profile-motto" style="color: {{user.profile.custom.profile_splash.title_color}};" class="profile-motto">
                 {{user.profile.motto}}
@@ -54,7 +54,7 @@
             <p id="profile-bio" style="color:{{user.profile.custom.profile_splash.text_color}};" class="splash-bio">
                 {{user.profile.user_bio}}
             </p>
-        </div>
+        </div> {% endcomment %}
     </div>
     <div id="additional-options">
         <div id="add-sticker" class="yb-circle-button mini">
