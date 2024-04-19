@@ -412,7 +412,7 @@ Profile Page
     position: absolute;
     display: flex;
     flex-direction: row;
-    bottom: 30px;
+    bottom: 50px;
     left: 50%;
     transform: translate(-50%, 0%);
     grid-gap: 5px;
