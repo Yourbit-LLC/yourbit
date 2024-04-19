@@ -98,6 +98,12 @@ function yb_hideQuartercard() {
 
 }
 
+function yb_hideSpaceBar() {
+    NAV_BAR.classList.add("hideMobile");
+    CREATE_POPOUT.classList.add("hide");
+    SEARCH_POPOUT.classList.add("hide");
+    yb_setSessionValues("fullscreen", "true");
+}
 
 /* Function to handle quarter card options */
 function yb_handleQuarterCardOption(callback) {
