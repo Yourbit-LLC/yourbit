@@ -11,7 +11,7 @@ class UserBitSerializer(serializers.ModelSerializer):
 
     class Meta: 
         model = User
-        fields = ['username']
+        fields = [ 'id', 'username']
 
 class UserResultSerializer(serializers.ModelSerializer):
 
