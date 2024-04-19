@@ -52,6 +52,17 @@ class PeopleListTemplate(View):
 
         }
         return render(request, "yb_profile/yb_people.html", context)
+    
+class FriendRequestTemplate(View):
+    def get(self, request, id, *args, **kwargs):
+
+        this_request = FriendRequest.objects.get(id = id)
+
+        context = {
+            "friend_request": this_request,
+        }
+
+        return render(request, "yb_profile/yb_friend_request.html", context)
 
 class OrbitListTemplate(View):
     def get(self, request, *args, **kwargs):

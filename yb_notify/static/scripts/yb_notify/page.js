@@ -80,7 +80,8 @@ function yb_buildNotifyItem(result, action=null){
 
     new_item.addEventListener('click', function() {
         if (result.type === 4) {
-            yb_notificationMenu(result.type, id, result.friend_request);
+            yb_openCard(`/profile/templates/friend_request/${result.friend_request}/`);
+
         } else {
             yb_notificationMenu(result.type, id);
         }

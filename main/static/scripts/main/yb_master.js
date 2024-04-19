@@ -30,6 +30,7 @@ const MASTHEAD_LOGOS = document.querySelectorAll(".yb-logo-masthead");
 const MOBILE_HEADER = document.querySelector('.yb-header');
 const SPOTLIGHT_CONTAINER = document.getElementById('yb-container-spotlight');
 const SPOTLIGHT_CONTENT =  document.getElementById('spotlight-content');
+const CARD_CONTAINER = document.getElementById("yb-card")
 
 const CREATE_POPOUT = document.getElementById("create-button-popout");
 const SEARCH_POPOUT = document.getElementById("search-button-popout");
@@ -223,6 +224,16 @@ function yb_startBitStream() {
 }
 
 const START_BITSTREAM = yb_startBitStream();
+
+function yb_openCard(content) {
+    $(CARD_CONTAINER).load(content);
+    CARD_CONTAINER.classList.add("open");
+}
+
+function yb_closeCard() {
+    CARD_CONTAINER.innerHTML = '';
+    CARD_CONTAINER.classList.remove("open")
+}
 
 function yb_toggle2WayContainer(type, scroll=false){
 

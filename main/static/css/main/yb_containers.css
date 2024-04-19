@@ -1,28 +1,66 @@
+@media screen and (max-width: 768px){
+    .yb-card {
+        /*Positioning*/
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 120%);
+        z-index: 101;
 
-.yb-card {
-    /*Positioning*/
-    position: fixed;
-    display: inline-table;
-    left: 0;
-    z-index: 25;
+        height: 90%;
+        width: 98%;
 
-    /*Style*/
-    visibility: hidden;
-    background-color: rgba(0, 0, 0, 0.8);
-    -webkit-backdrop-filter: blur(40px) brightness(175%);
-    backdrop-filter: blur(40px) brightness(175%);
-    box-shadow: -1px -1px 10px black;
-    text-align: center;
-    color: white;
-    transition: 0.5s;
-    overflow-x: hidden;
+        /*Style*/
+        visibility: hidden;
+        
+        box-shadow: -1px -1px 10px black;
+        text-align: center;
+        color: white;
+        transition: 0.5s;
+        overflow-x: hidden;
+    }
 }
 
-.yb-card.full {
-    
-    top: 100vh;
-    width: 100vw;
-    height: 100vh;
+@media screen and (min-width: 768px){
+    .yb-card {
+        /*Positioning*/
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 120%);
+        z-index: 101;
+
+        height: 500px;
+        width: 650px;
+
+        /*Style*/
+        visibility: hidden;
+        
+        box-shadow: -1px -1px 10px black;
+        text-align: center;
+        color: white;
+        transition: 0.5s;
+        overflow-x: hidden;
+    }
+
+}
+
+@media (prefers-color-scheme: light){
+    .yb-card {
+        background-color: gray;
+    }
+}
+
+@media (prefers-color-scheme: dark){
+    .yb-card {
+        background-color: rgb(30, 30, 30);
+    }
+}
+
+.yb-card.open {
+    visibility: visible !important;
+    transform: translate(-50%, -50%);
+    transition: 0.5s;
 }
 
 .yb-fsContainer {

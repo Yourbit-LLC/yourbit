@@ -11,6 +11,7 @@ urlpatterns = [
     path("templates/stuff/", StuffTemplate.as_view(), name="stuff_template"),
     path("templates/history/", HistoryTemplate.as_view(), name="history_template"),
     path("templates/about/<str:username>/", ProfileAboutTemplate.as_view(), name="history_template"),
+    path("templates/friend_request/<int:id>/", FriendRequestTemplate.as_view(), name="friend_request_template"),
     path("api/", include("yb_profile.routers")),
     path('', ProfilePage.as_view(), name="profile_page"),
 ]

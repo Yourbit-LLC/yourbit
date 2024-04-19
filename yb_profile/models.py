@@ -152,6 +152,7 @@ class FriendRequest(models.Model):
     to_user = models.ForeignKey(Profile, related_name = "to_user", on_delete=models.CASCADE)
     accepted = models.BooleanField(default=False)
     status = models.CharField(max_length=100, default="pending")
+    message = models.CharField(max_length = 200, blank=True)
     time = models.DateTimeField(default=timezone.now)
 
     
