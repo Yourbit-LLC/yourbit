@@ -356,6 +356,7 @@ function yb_buildCommentField(bit) {
 function yb_handleDeleteBit(e){
     let this_button = e.currentTarget;
     let bit_id = this_button.getAttribute("data-catid");
+    console.log(bit_id)
 
     yb_deleteBit(bit_id)
 
