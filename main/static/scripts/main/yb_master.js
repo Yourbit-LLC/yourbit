@@ -588,25 +588,25 @@ function yb_changeSpace(space_name) {
     let space_label;
     let space_icon;
 
-    if (space_name == "global") {
+    if (space_name === "global") {
         space_label = "EVERYTHING"
     } else {
         space_label = space_name.toUpperCase() + "S";
     }
 
-    if (space_name == "chat") {
+    if (space_name === "chat") {
         space_icon = `
             
                 <path style="fill: #4b4b4b; height: 60px; width: 100px;" d="M3 18v-2h12v2Zm0-5v-2h18v2Zm0-5V6h18v2Z"/>
             
         `
-    } else if (space_name == "photo") {
+    } else if (space_name === "photo") {
         space_icon = `
             
                 <path style="fill: #4b4b4b; height: 60px; width: 100px;" d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-4.86 8.86l-3 3.87L9 13.14 6 17h12l-3.86-5.14z"/>
             
         `
-    } else if (space_name == "video") {
+    } else if (space_name === "video") {
         space_icon = `
             
                 <path style="fill: #4b4b4b; height: 60px; width: 100px;" d="m9.15 17.15 8-5.15-8-5.15ZM12 22.8q-2.25 0-4.213-.85-1.962-.85-3.424-2.312Q2.9 18.175 2.05 16.212 1.2 14.25 1.2 12t.85-4.225Q2.9 5.8 4.363 4.338q1.462-1.463 3.424-2.301Q9.75 1.2 12 1.2t4.225.837q1.975.838 3.438 2.301 1.462 1.462 2.299 3.437Q22.8 9.75 22.8 12q0 2.25-.838 4.212-.837 1.963-2.299 3.426Q18.2 21.1 16.225 21.95q-1.975.85-4.225.85Zm0-2.65q3.425 0 5.788-2.363Q20.15 15.425 20.15 12t-2.362-5.788Q15.425 3.85 12 3.85q-3.425 0-5.787 2.362Q3.85 8.575 3.85 12q0 3.425 2.363 5.787Q8.575 20.15 12 20.15ZM12 12Z"/>
