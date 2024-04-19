@@ -42,8 +42,12 @@
             {% endif %}>
         <div id="notification-{{notification.id}}" onclick="
             {% if notification.type == 4 %}
-                yb_notificationMenu({{notification.type}}, {{notification.id}}, 
+                yb_openCard('/profile/templates/friend_request/{{notification.friend_request.id}}/')
+
                 
+            {% else %} 
+                yb_notificationMenu({{notification.type}}, {{notification.id}}, 
+                    
                 {% if notification.type == 1 or notification.type == 2 or notification.type == 7%} 
                     '{{notification.bit}}' 
                     
@@ -52,9 +56,6 @@
                 {% elif notification.type == 6%} 
                     '{{notification.message}}' 
                 {% endif %})
-                
-            {% else %} 
-                yb_openCard('/profile/templates/friend_request/{{notification.friend_request.id}}/')
                 
             {% endif %}" 
             
