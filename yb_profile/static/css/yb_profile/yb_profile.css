@@ -421,6 +421,7 @@ Profile Page
     border-radius: 25px;
     z-index: 101;
     fill: purple;
+    font-weight: 600;
 }
 
 @media screen and (max-width: 768px) {
