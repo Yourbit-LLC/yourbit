@@ -5,7 +5,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, 120%);
-        z-index: 101;
+        z-index: 1002;
         border-radius: 25px;
 
         height: 90vh;
@@ -29,7 +29,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, 120%);
-        z-index: 101;
+        z-index: 1002;
         border-radius: 25px;
 
         height: 500px;
