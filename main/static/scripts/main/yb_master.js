@@ -584,8 +584,53 @@ async function sendSubscriptionToServer(subscription) {
 function yb_changeSpace(space_name) {
 
     yb_setSessionValues('space', space_name);
+
+    let space_label;
+    let space_icon;
+
+    if (space_name == "global") {
+        space_label = "EVERYTHING"
+    } else {
+        space_label = space_name.toUpperCase() + "S";
+    }
+
+    if (space_name == "chat") {
+        space_icon = `
+            
+                <path style="fill: #4b4b4b; height: 60px; width: 100px;" d="M3 18v-2h12v2Zm0-5v-2h18v2Zm0-5V6h18v2Z"/>
+            
+        `
+    } else if (space_name == "photo") {
+        space_icon = `
+            
+                <path style="fill: #4b4b4b; height: 60px; width: 100px;" d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-4.86 8.86l-3 3.87L9 13.14 6 17h12l-3.86-5.14z"/>
+            
+        `
+    } else if (space_name == "video") {
+        space_icon = `
+            
+                <path style="fill: #4b4b4b; height: 60px; width: 100px;" d="m9.15 17.15 8-5.15-8-5.15ZM12 22.8q-2.25 0-4.213-.85-1.962-.85-3.424-2.312Q2.9 18.175 2.05 16.212 1.2 14.25 1.2 12t.85-4.225Q2.9 5.8 4.363 4.338q1.462-1.463 3.424-2.301Q9.75 1.2 12 1.2t4.225.837q1.975.838 3.438 2.301 1.462 1.462 2.299 3.437Q22.8 9.75 22.8 12q0 2.25-.838 4.212-.837 1.963-2.299 3.426Q18.2 21.1 16.225 21.95q-1.975.85-4.225.85Zm0-2.65q3.425 0 5.788-2.363Q20.15 15.425 20.15 12t-2.362-5.788Q15.425 3.85 12 3.85q-3.425 0-5.787 2.362Q3.85 8.575 3.85 12q0 3.425 2.363 5.787Q8.575 20.15 12 20.15ZM12 12Z"/>
+            
+        `
+    } else {
+        space_icon = `
+            
+                <path style="fill: #4b4b4b; height: 60px; width: 100px;" d="M220-254.5q-94.152 0-159.826-65.674Q-5.5-385.848-5.5-480q0-94.152 65.674-159.826Q125.848-705.5 220-705.5q37.957 0 72.913 13.359 34.957 13.358 62.674 38.076l64.891 58.652L352.348-534l-57.935-51.935q-15.283-13.282-34.446-20.924Q240.804-614.5 220-614.5q-55.848 0-95.174 39.326Q85.5-535.848 85.5-480q0 55.848 39.326 95.174Q164.152-345.5 220-345.5q20.804 0 39.967-7.641 19.163-7.642 34.446-20.924l310-280q27.717-24.718 62.674-38.076Q702.043-705.5 740-705.5q94.152 0 159.826 65.674Q965.5-574.152 965.5-480q0 94.152-65.674 159.826Q834.152-254.5 740-254.5q-37.957 0-72.913-13.359-34.957-13.358-62.674-38.076l-64.891-58.652L607.652-426l57.935 51.935q15.283 13.282 34.446 20.924Q719.196-345.5 740-345.5q55.848 0 95.174-39.326Q874.5-424.152 874.5-480q0-55.848-39.326-95.174Q795.848-614.5 740-614.5q-20.804 0-39.967 7.641-19.163 7.642-34.446 20.924l-310 280q-27.717 24.718-62.674 38.076Q257.957-254.5 220-254.5Z"/>
+        
+        `
+    }
+
     console.log(space_name);
     let location = yb_getSessionValues("location");
+
+    if (location === "home") {
+        let bitstream_icon = document.getElementById("bitstream-title-icon");
+        bitstream_icon.innerHTML = space_icon;
+        
+        let bitstream_label = document.getElementById("bitstream-title-text");
+        bitstream_label.innerHTML = space_label;
+        
+    }
 
     if (location === "home" || location === "profile") {
         try {

@@ -20,6 +20,21 @@ function yb_handleDeleteBit(e){
 
 }
 
+// function yb_handleEditBit(e){
+//     let this_button = e.currentTarget;
+//     let this_id = this_button.getAttribute("data-catid");
+//     let this_bit = document.getElementById(`bit-${this_id}`);
+
+//     let current_title_container = document.getElementById(`title-bit-${this_id}`);
+//     let current_body_container = document.getElementById(`bit-body-${this_id}`);
+
+//     let current_title = current_title_container.querySelector("h2").innerHTML;
+//     let current_body = current_body_container.querySelector("p").innerHTML;
+
+
+    
+// }
+
 
 /* 
     *Function to build bit context menu
