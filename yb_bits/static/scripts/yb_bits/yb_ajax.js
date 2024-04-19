@@ -392,7 +392,6 @@ function yb_deleteBit(bitID) {
     console.log("Deleting bit")
     //Delete a Dislike
     console.log("deleting dislike...");
-    console.log(data)
 
     let csrf_token = getCSRF();
     $.ajax({
