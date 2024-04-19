@@ -6,6 +6,7 @@
         left: 50%;
         transform: translate(-50%, 120%);
         z-index: 101;
+        border-radius: 25px;
 
         height: 90%;
         width: 98%;
@@ -29,6 +30,7 @@
         left: 50%;
         transform: translate(-50%, 120%);
         z-index: 101;
+        border-radius: 25px;
 
         height: 500px;
         width: 650px;
