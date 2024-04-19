@@ -61,7 +61,7 @@ function yb_bitMenu(e){
         new_option.setAttribute("data-catid", this_id);
 
         new_option.setAttribute("name", option);
-        new_option.addEventListener("click", yb_handleNotificationOptionClick);
+        new_option.addEventListener("click", these_options[option]);
         this_container.appendChild(new_option);
     }
 
