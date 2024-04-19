@@ -211,7 +211,13 @@ function yb_clear2WayContainer(container){
 }
 function yb_startBitStream() {
     $(CONTENT_CONTAINER).html("");
-    yb_setSessionValues("fullscreen", "false");
+    if (yb_getSessionValues("fullscreen") === "true"){
+        MOBILE_HEADER.classList.remove("hide");
+        NAV_BAR.classList.remove("hideMobile");
+        CREATE_POPOUT.classList.remove("hide");
+        SEARCH_POPOUT.classList.remove("hide");
+        yb_setSessionValues("fullscreen", "false");
+    }   
     yb_setSessionValues("location", "home")
     $(CONTENT_CONTAINER).load('/bits/templates/bitstream/');
 }
