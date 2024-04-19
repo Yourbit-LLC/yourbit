@@ -112,7 +112,7 @@
             console.log("if")
             yb_toggle2WayContainer("settings");
             customize_url("");
-            yb_hideSpaceBar();
+            setTimeout(yb_hideSpaceBar, 200);
         } else {
             let container = yb_toggle2WayContainer('settings-profile');
             if (container[0] === "closing"){
