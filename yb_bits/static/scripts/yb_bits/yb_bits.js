@@ -16,7 +16,7 @@ function yb_hideComments(bit_id) {
     *@returns {object} context_menu - the context menu element
 */
 
-function yb_buildContextMenu(e){
+function yb_bitMenu(e){
     let this_button = e.currentTarget;
     let menu = document.getElementById("yb-slide-up-core");
     let this_id = this_button.getAttribute("data-catid");
@@ -107,7 +107,7 @@ function createHeader(bit) {
         <svg "yb-icon xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"/></svg>
     `
     header.appendChild(ybMoreButton)
-    ybMoreButton.addEventListener("click",)
+    ybMoreButton.addEventListener("click", yb_bitMenu)
 
     return header;
 }
