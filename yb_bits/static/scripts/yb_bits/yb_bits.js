@@ -28,6 +28,7 @@ function yb_bitMenu(e){
     console.log("Bit Options Triggered")
     console.log("bit user id: " + bit_user_id)
     console.log("user id: " + user_id)
+    console.log("bit id " + this_id)
 
     if (user_id == bit_user_id){
         these_options = {
