@@ -6,6 +6,7 @@ from yb_profile.views import *
 urlpatterns = [
     path("user/<str:username>/", ProfileView.as_view(), name="user_profile"),
     path("page/<str:username>/", OrbitView.as_view(), name="page_profile"),
+    path("create/cluster/", CreateCluster.as_view(), name="create_cluster"),
     path("templates/people/", PeopleListTemplate.as_view(), name="people_template"),
     path("templates/orbits/", OrbitListTemplate.as_view(), name="orbit_template"),
     path("templates/stuff/", StuffTemplate.as_view(), name="stuff_template"),

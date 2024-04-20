@@ -126,8 +126,9 @@ class Cluster(models.Model):
     profile = models.ForeignKey('yb_profile.Profile', on_delete= models.CASCADE, related_name = 'cluster', null=True)
     type = models.CharField(max_length=100, default="all")
     bits = models.ManyToManyField('yb_bits.Bit', related_name = 'clustered_bit', blank=True)
-    custom = models.OneToOneField('yb_customize.CustomUI', on_delete=models.CASCADE, related_name='cluster', null=True)
+    custom = models.ForeignKey('yb_customize.CustomUI', on_delete=models.CASCADE, related_name='cluster', null=True)
     bit_count = models.IntegerField(default=0)
+    is_public = models.BooleanField
 
 
 class BitComment(models.Model):

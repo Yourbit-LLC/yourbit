@@ -69,7 +69,6 @@ class Profile(models.Model):
     motto = models.CharField(max_length=100, blank=True)
 
     space_focus = models.CharField(max_length=100, default="global") #What type of content the user or community primarily focuses on
-    is_orbit = models.BooleanField(default=False) #If the user is an orbit, they will be able to see the orbits of their followers
 
     friend_requests = models.ManyToManyField('FriendRequest', related_name='friend_requests', blank=True)
     # Add any other user-specific fields
@@ -80,6 +79,8 @@ class Profile(models.Model):
 class Orbit(models.Model):
     #Model for a community profile
     profile = models.ManyToManyField(Profile, related_name='orbit', blank=True)
+    followers = models.ManyToManyField(Profile, related_name='orbit_followers', blank=True)
+    is_public = models.BooleanField(default=False)
     date_started = models.DateField(default=timezone.now)
     location_started = models.CharField(max_length = 150)
     team_size = models.IntegerField(default = 1)

@@ -1,0 +1,29 @@
+{% load static %}
+
+<div id='div-header' class="div-header">
+    <div class="cb-panel-back"><svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
+    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb">Create Cluster</h3>
+    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('create-cluster');"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
+</div>
+<hr>
+
+<div id="connection-list" class="yb-fillWidth yb-vScroll yb-margin-T10" style="height: calc(100% - 70px); border-radius: 15px;">
+    <form id="create-cluster-form">
+        <label for="name">Cluster Name</label>
+        <input id="cc-name-field" name="name" placeholder="Untitled CLuster">
+
+        <label for = "type" id="cc-type-label">Type</label>
+
+        <select id="cc-type-field" name="type">
+            <option value="any">Any</option>
+            <option value="chat">ChatBits</option>
+            <option value="photo">PhotoBits</option>
+            <option value="video">VideoBits</option>
+        </select>
+
+        <button type="submit" class="yb-button-wide green font-white">Create</button>
+
+    </form>
+
+</div>
+
