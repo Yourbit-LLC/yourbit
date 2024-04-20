@@ -48,6 +48,7 @@ def create_bit_like_notification(sender, instance, created, **kwargs):
     if created:
         bit = instance.bit
         notification = Notification(
+            bit = bit,
             to_user = bit.profile,
             body = instance.user.username + " has liked your bit",
             type = 1,
@@ -71,6 +72,7 @@ def create_bit_comment_notification(sender, instance, created, **kwargs):
     if created:
         bit = instance.bit
         notification = Notification(
+            bit = bit,
             to_user = bit.profile,
             body = instance.user.username + " has commented on your bit",
             type = 2,
