@@ -87,8 +87,8 @@ class CreateCluster(View):
     
         cluster_name = request.POST.get("name")
         cluster_type = request.POST.get("type")
-        
-        new_cluster = Cluster(profile = request.user.profile, name = cluster_name, type=cluster_type, custom = custom_ui)
+
+        new_cluster = Cluster(profile = request.user.profile, name = cluster_name, type=cluster_type)
         new_cluster.save()
 
         return JsonResponse({"cluster": new_cluster})
