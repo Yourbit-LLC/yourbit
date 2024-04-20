@@ -8,21 +8,27 @@
 <hr>
 
 <div id="connection-list" class="yb-fillWidth yb-vScroll yb-margin-T10" style="height: calc(100% - 70px); border-radius: 15px;">
-    <form id="create-cluster-form">
-        <label for="name">Orbit Name</label>
-        <input id="co-name-field" name="name" placeholder="Untitled CLuster">
-
-        <label id="co-type-label" for = "type">Type</label>
-
-        <select id="co-type-field" name="type">
+    <form id="create-orbit-form" class="yb-fillWidth align-center" style="font-weight: 600;">
+        <br>
+        <label for="name" class="yb-autoText font-medium align-center">Cluster Name</label>
+        <br>
+        <br>
+        <input id="co-name-field" name="name" class="yb-input-singleLine yb-autoText yb-panel plainBorder narrowBorder squared" placeholder="Untitled Cluster" style="height: 40px !important;">
+        <br>
+        <br>
+        <br>
+        <label for = "type" id="co-type-label" class="yb-autoText font-medium align-center">Type</label>
+        <br>
+        <br>
+        <select id="co-type-field" name="type" class="yb-input-singleLine yb-autoText plainBorder yb-panel narrowBorder squared" style="height: 40px !important;">
             <option value="any">Any</option>
             <option value="chat">ChatBits</option>
             <option value="photo">PhotoBits</option>
             <option value="video">VideoBits</option>
         </select>
-
-        <button type="submit" class="yb-button-wide green font-white">Create</button>
+        <br>
+        <br>
+        <button type="submit" class="yb-button-flex green font-white yb-center-margin lr">Create</button>
 
     </form>
-
 </div>
