@@ -1,4 +1,8 @@
-let filter_buttons = document.getElementsByClassName("orbit-filter");
+try {
+    let filter_buttons = document.getElementsByClassName("orbit-filter");
+} catch {
+    filter_buttons = document.getElementsByClassName("orbit-filter");
+}
 
 function yb_listOrbits(filter){
     $.ajax({

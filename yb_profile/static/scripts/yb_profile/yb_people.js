@@ -1,4 +1,9 @@
-let filter_buttons = document.getElementsByClassName("people-filter");
+
+try{
+    let filter_buttons = document.getElementsByClassName("people-filter");
+} catch {
+    filter_buttons = document.getElementsByClassName("people-filter");
+}
 
 function yb_listPeople(filter){
     $.ajax({

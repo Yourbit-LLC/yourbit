@@ -1,4 +1,8 @@
-var notify_filter_buttons = document.querySelectorAll('.notify-filter-button');
+try {
+    var notify_filter_buttons = document.querySelectorAll('.notify-filter-button');
+} catch {
+    notify_filter_buttons = document.querySelectorAll('.notify-filter-button');
+}
 
 var NOTIFICATION_CONTAINER = document.getElementById('notification-list');
 
