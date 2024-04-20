@@ -26,6 +26,8 @@ $(document).ready(function () {
 
             if (option === "message") {
                 yb_handleNewMessage();
+                history.pushState({}, "", `/messages/`);
+
 
             } else{
                 var url = "/core/templates/create/" + option;
@@ -33,6 +35,8 @@ $(document).ready(function () {
                 $(container).load(url, function () {
                     $(container).fadeIn(500);
                 });
+
+                history.pushState({}, "", `/create/${option}/`);
             }
             
         });
