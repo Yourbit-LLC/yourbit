@@ -37,14 +37,14 @@
         </h2>
     </div>
 
-    {% if bit.type === "video" %}
+    {% if bit.type == "video" %}
         <div id="video-container-{{bit.id}}" class="attached-video-container">
             <video id="video-{{bit.id}}" class="attached-video" controls="true" playsinline="true" data-id="{{bit.id}}" src="{{bit.video_upload.video.url}}" style="max-width: 100%; max-height:100%; margin-left: auto; margin-right: auto; display: block;">
 
             </video>
         </div>
 
-    {% elif bit.type === "photo"%}
+    {% elif bit.type == "photo"%}
         {% for photo in bit.photos %}
         <div id="photo-container-163" class="attached-photo-container">
                 <img id="photo-bit-163" class="attached-photo" src="{{photo.large_thumbnail.url}}" data-id="163" data-index="0">
