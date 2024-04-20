@@ -904,7 +904,18 @@ p {
     left: 0px;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
     -webkit-backdrop-filter: blur(50px);
     backdrop-filter: blur(50px);
+}
+
+@media (prefers-color-scheme: dark) {
+    .core-object-focus {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    .core-object-focus {
+        background-color: rgba(255, 255, 255, 0.5);
+    }
 }
