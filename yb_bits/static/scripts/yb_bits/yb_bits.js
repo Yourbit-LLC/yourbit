@@ -62,12 +62,14 @@ function yb_bitMenu(e){
             "Add to Cluster": yb_handleDeleteBit,
             "Hide Bit": yb_handleDeleteBit,
             "Delete Bit": yb_handleDeleteBit,
+            "Cancel": yb_closeSlideUpTemplate, //main/yb_master.js
         }
     } else {
         these_options = {
             "Add to Cluster": yb_handleDeleteBit,
             "Hide Bit": yb_handleDeleteBit,
             "Report Bit": yb_handleDeleteBit,
+            "Cancel": yb_closeSlideUpTemplate, //main/yb_master.js
         }
 
     }
