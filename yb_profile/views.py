@@ -137,7 +137,7 @@ class ProfilePage(View):
 class CreateOrbit(View):
     def get(self, request):
         
-        return render(request, "yb_bits/create_cluster.html")
+        return render(request, "yb_bits/create_orbit.html")
        
     
     def post(self, request):
