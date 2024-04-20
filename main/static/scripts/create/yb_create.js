@@ -36,7 +36,7 @@ $(document).ready(function () {
                     $(container).fadeIn(500);
                 });
 
-                history.pushState({}, "", `core/create/${option}/`);
+                history.pushState({}, "", `/core/create/${option}/`);
             }
             
         });
