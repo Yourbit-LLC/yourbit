@@ -51,6 +51,13 @@ class Profile(models.Model):
         blank=True
     )
     
+    
+    orbit_follows = models.ManyToManyField(
+        "Orbit",
+        related_name="following",
+        blank=True
+    )
+    
     def follow(self, profile):
         """Follow another user profile."""
         self.follows.add(profile)

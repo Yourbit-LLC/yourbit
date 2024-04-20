@@ -35,3 +35,19 @@
 
 </div>
 
+<script>
+    $(document).ready(function(){
+        $('#create-cluster-form').submit(function(e){
+            e.preventDefault();
+            var form = $(this);
+            var url = form.attr('action');
+            var data = form.serialize();
+            $.post(url, data, function(response){
+                if(response.status == 'success'){
+                    yb_toggle2WayContainer('create');
+                    yb_openCard('/profile/templates/cluster/'+response.cluster_id+'/');
+                }
+            });
+        });
+    });
+

@@ -73,7 +73,6 @@ class OrbitListTemplate(View):
 
         this_profile = Profile.objects.get(user = request.user)
         
-        following = this_profile.followers.filter(is_orbit = True)
 
         context = {
             "following":following,
