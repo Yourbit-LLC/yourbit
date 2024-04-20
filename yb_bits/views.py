@@ -87,10 +87,7 @@ class CreateCluster(View):
     
         cluster_name = request.POST.get("name")
         cluster_type = request.POST.get("type")
-
-        this_custom = CustomCore.objects.get(profile = request.user.profile)
-        custom_ui = CustomUI.objects.get(theme = this_custom.theme)
-
+        
         new_cluster = Cluster(profile = request.user.profile, name = cluster_name, type=cluster_type, custom = custom_ui)
         new_cluster.save()
 
