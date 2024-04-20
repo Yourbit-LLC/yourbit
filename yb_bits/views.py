@@ -78,7 +78,7 @@ def bitstream_view(request):
 class CreateCluster(View):
 
     def get(self, request):
-        return render(request, "yb_profile/create_cluster.html")
+        return render(request, "yb_bits/create_cluster.html")
 
     def post(self, request, *args, **kwargs):
         from yb_bits.models import Cluster
