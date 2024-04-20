@@ -8,16 +8,19 @@
 <hr>
 
 <div id="connection-list" class="yb-fillWidth yb-vScroll yb-margin-T10" style="height: calc(100% - 70px); border-radius: 15px;">
-    <form id="create-cluster-form" class="yb-fillWidth align-center">
+    <form id="create-cluster-form" class="yb-fillWidth align-center" style="font-weight: 600;">
         <br>
         <label for="name" class="yb-autoText font-medium align-center">Cluster Name</label>
         <br>
-        <input id="cc-name-field" name="name" class="yb-input-singleLine plainBorder" placeholder="Untitled CLuster">
+        <br>
+        <input id="cc-name-field" name="name" class="yb-input-singleLine plainBorder squared" placeholder="Untitled CLuster">
         <br>
         <br>
-        <label for = "type" id="cc-type-label" class="yb-autoText font-mediumalign-center">Type</label>
         <br>
-        <select id="cc-type-field" name="type" class="yb-input-singleLine plainBorder">
+        <label for = "type" id="cc-type-label" class="yb-autoText font-medium align-center">Type</label>
+        <br>
+        <br>
+        <select id="cc-type-field" name="type" class="yb-input-singleLine plainBorder squared">
             <option value="any">Any</option>
             <option value="chat">ChatBits</option>
             <option value="photo">PhotoBits</option>
