@@ -906,6 +906,7 @@ p {
     height: 100vh;
     -webkit-backdrop-filter: blur(50px);
     backdrop-filter: blur(40px);
+    display: none;
 }
 
 @media (prefers-color-scheme: dark) {
