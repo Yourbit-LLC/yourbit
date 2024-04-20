@@ -49,12 +49,12 @@
                 yb_notificationMenu({{notification.type}}, {{notification.id}}, 
                     
                 {% if notification.type == 1 or notification.type == 2 or notification.type == 7%} 
-                    '{{notification.bit}}' 
+                    '{{notification.bit.id}}' 
                     
                 {% elif notification.type == 3 or notification.type == 5%} 
-                    '{{notification.profile}}' 
+                    '{{notification.profile.id}}' 
                 {% elif notification.type == 6%} 
-                    '{{notification.message}}' 
+                    '{{notification.message.conversation.id}}' 
                 {% endif %})
                 
             {% endif %}" 

@@ -13,5 +13,6 @@ urlpatterns = [
     path('templates/builder/<int:pk>/edit/', bit_builder_view, name="bit-builder"),
     path('templates/builder/', bit_builder_view, name="bit-builder"),
     path('templates/bitstream/', bitstream_view, name="bit-feed"),
+    path('templates/bit/focus/<int:pk>/', bit_focus_view, name="bit-focus")
     
 ]

@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views import View
 from .forms import BitForm
 from django.http import JsonResponse, HttpResponse
+from .models import *
 
 
 # Create your views here.
@@ -96,3 +97,6 @@ class CreateCluster(View):
 
         return JsonResponse({"cluster": serialized_cluster.data})
     
+def bit_focus_view(request, pk, *args, **kwargs):
+    this_bit = Bit.objects.get(pk=pk)
+    return render(request, "yb_bits/yb_bit_focus.html", {"bit":this_bit})

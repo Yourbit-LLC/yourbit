@@ -47,6 +47,7 @@ const NAV_BAR = document.querySelector(".yb-navigation");
 const SIDE_CONTAINER_A = document.getElementById("yb-dynamic-2way-a");
 const SIDE_CONTAINER_B = document.getElementById("yb-dynamic-2way-b");
 const SIDE_CONTAINERS = document.querySelectorAll(".yb-2Way-container");
+const FOCUS_CONTAINER = document.getElementById("core-focus-container");
 const MESSAGE_BUTTON_MOBILE = document.getElementById("button-message-mobile-header");
 
 //Prompts
@@ -488,6 +489,16 @@ function yb_closeSpotlight(){
 
 }
 
+function yb_openFocusContainer(source){
+    $(FOCUS_CONTAINER).fadeIn(500);
+    $(FOCUS_CONTAINER).load(source);
+}
+
+function yb_closeFocusContainer(){
+    $(FOCUS_CONTAINER).fadeOut(500);
+    FOCUS_CONTAINER.innerHTML = "";
+}
+
 function yb_navigateToProfile(e) {
     let username;
     yb_setSessionValues('location', 'profile');
@@ -810,30 +821,8 @@ $(document).ready(function() {
 
 
 function yb_viewBit(bit_id, comment_id = null) {
-    let url = `/bits/api/bits/${bit_id}/`;
-    $.ajax({
-        type: "GET",
-        url: url,
-        success: function(data){
-            try {
-                let bit = data
-                let bit_container = document.getElementById('bit-container');
-                bit_container.style.display = "none";
-
-                let rendered_bit = yb_buildBit(bit);
-                CONTENT_CONTAINER.appendChild(rendered_bit.built_bit);
-
-                yb_toggle2WayContainer('notifications');
-                yb_closeSlideUpTemplate(SLIDE_UP_CORE);
-
-                rendered_bit.built_bit.classList.add("yb-pulseNormal");
-
-            } catch(err) {
-                console.log(err);
-            }
-        }
-    })
-    
+    let url = `templates/bit/focus/${bit_id}/`;
+    yb_openFocusContainer(url);
 }
 
 function yb_sendThanks(profile_id) {

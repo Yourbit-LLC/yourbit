@@ -86,8 +86,8 @@ function yb_buildNotifyItem(result, action=null){
         if (result.type === 4) {
             yb_openCard(`/profile/templates/friend_request/${result.friend_request}/`);
 
-        } else {
-            yb_notificationMenu(result.type, id);
+        } else if (result.type === 1 || result.type === 2 || result.type === 7) {
+            yb_notificationMenu(result.type, id, result.bit);
         }
     });
 
