@@ -135,8 +135,7 @@ class ProfilePage(View):
             )
         
 class CreateOrbit(View):
-    def get(self, request):
-        return render(request, "yb_profile/create_orbit.html") 
+       
     
     def post(self, request):
         orbit_name = request.POST.get("name")
@@ -150,21 +149,3 @@ class CreateOrbit(View):
 
         return JsonResponse({"orbit": new_orbit})
     
-class CreateCluster(View):
-    def get(self, request):
-        return render(request, "yb_profile/create_cluster.html")
-
-    def post(self, request, *args, **kwargs):
-        from yb_bits.models import Cluster
-        cluster_name = request.POST.get("name")
-        cluster_type = request.POST.get("type")
-
-        this_custom = CustomCore.objects.get(profile = request.user.profile)
-        custom_ui = CustomUI.objects.get(theme = this_custom.theme)
-
-        new_cluster = Cluster(profile = request.user.profile, name = cluster_name, type=cluster_type, custom = custom_ui)
-        new_cluster.save()
-
-        return JsonResponse({"cluster": new_cluster})
-        
-

@@ -1,11 +1,15 @@
 from django.shortcuts import render
 from django.contrib import admin
 from django.urls import path, include
-from main.views import index, create_menu_template, create_object_template, CreateElement
+from main.views import *
+from yb_bits.views import CreateCluster
+from yb_profile.views import CreateOrbit
 
 urlpatterns = [
     path("create-menu/", create_menu_template, name="create"),
-    path("templates/create/<str:object>/", create_object_template, name="index"),
-    path("create/", CreateElement.as_view(), name="index"),
+    path("templates/create/bit/", create_bit_template, name="create-object"),
+    path("templates/create/cluster/", CreateCluster.as_view(), name="create_cluster"),
+    path("templates/create/orbit/", CreateOrbit.as_view(), name="create-orbit"),
+    path("create/", CreateElement.as_view(), name="create-element"),
 ]
 
