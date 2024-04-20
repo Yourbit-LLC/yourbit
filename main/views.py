@@ -105,17 +105,8 @@ def create_menu_template(request, *args, **kwargs):
     return render(request, "main/create_menu.html")
 
 def create_bit_template(request, object, *args, **kwargs):
-    if object == "chatbit":
-        return render(request, "yb_bits/yb_bitBuilder.html", {'object': object})
-
-    elif object == "photobit":
-        return render(request, "yb_bits/yb_bitBuilder.html", {'object': object})
-
-    elif object == "videobit":
-        return render(request, "yb_bits/yb_bitBuilder.html", {'object': object})
-
-    elif object == "orbit":
-        return render(request, "create/yb_createOrbit.html", {'object': object})
+    
+    return render(request, "yb_bits/yb_bitBuilder.html")
 
 def create_cluster_template(request, *args, **kwargs):
     return render(request, "yb_bits/create_cluster.html")
