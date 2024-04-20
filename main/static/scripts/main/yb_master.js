@@ -821,7 +821,7 @@ $(document).ready(function() {
 
 
 function yb_viewBit(bit_id, comment_id = null) {
-    let url = `templates/bit/focus/${bit_id}/`;
+    let url = `/bits/templates/bit/focus/${bit_id}/`;
     yb_openFocusContainer(url);
 }
 
