@@ -138,3 +138,8 @@ class BitCommentSerializer(serializers.ModelSerializer):
             ret['time'] = this_time.strftime("%B %d, %Y @ %I:%M %p")
 
         return ret
+    
+class ClusterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cluster
+        fields = '__all__'

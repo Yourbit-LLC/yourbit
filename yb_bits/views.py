@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from .forms import BitForm
+from django.http import JsonResponse, HttpResponse
 
 
 # Create your views here.
@@ -82,7 +83,7 @@ class CreateCluster(View):
 
     def post(self, request, *args, **kwargs):
         from yb_bits.models import Cluster
-        from yb_customize.models import CustomCore, CustomUI
+        from yb_bits.api.serializers import ClusterSerializer
         from django.http import JsonResponse
     
         cluster_name = request.POST.get("name")
@@ -91,5 +92,7 @@ class CreateCluster(View):
         new_cluster = Cluster(profile = request.user.profile, name = cluster_name, type=cluster_type)
         new_cluster.save()
 
-        return JsonResponse({"cluster": new_cluster})
+        serialized_cluster = ClusterSerializer(new_cluster, many=False)
+
+        return JsonResponse({"cluster": serialized_cluster.data})
     
