@@ -79,6 +79,7 @@
     flex-direction: column;
     left: 50%;
     transform: translate(-50%, 0);
+    font-weight: 600;
 }
 
 .yb-popup-menu-item {
@@ -106,7 +107,9 @@
 
     .yb-popup-menu {
         background-color: white;
-        color: black
+        color: #4b4b4b;
+
+
     }
 }
 
