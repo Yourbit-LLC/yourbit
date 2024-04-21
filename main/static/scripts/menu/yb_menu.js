@@ -35,14 +35,14 @@ function yb_toggleMainMenu() {
         NAV_BAR.classList.remove("hideMobile");
         CREATE_POPOUT.classList.remove("hide");
         SEARCH_POPOUT.classList.remove("hide");
-        MAIN_MENU.classList.add("open");
+        MAIN_MENU.classList.remove("open");
  
     } else {
         MOBILE_HEADER.classList.add("hide");
         NAV_BAR.classList.add("hideMobile");
         CREATE_POPOUT.classList.add("hide");
         SEARCH_POPOUT.classList.add("hide");
-        MAIN_MENU.classList.remove("open");
+        MAIN_MENU.classList.add("open");
 
     
     }
