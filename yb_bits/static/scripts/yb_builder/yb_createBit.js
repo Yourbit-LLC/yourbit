@@ -156,7 +156,7 @@ function yb_blurTextField(field, button, preview) {
         
         let title = this_field.value;
         console.log(title);
-        this_preview.innerHTML = title;
+        this_preview.innerHTML = title.replace(/\n/g, "<br>");
         
         $(this_field).animate({"transform": "translateX(-50%) scale(0,0)"}, 500, function(){
             $(this_field).hide('fast', function(){
@@ -196,7 +196,7 @@ function yb_handleCreateBit(){
     let title = document.getElementById("bb-field-bitTitle").value;
     this_data.append('title', title);
     let body = document.getElementById("bb-field-body").value;
-    this_data.append('body', body);
+    this_data.append('body', body.replace(/\n/g, "<br>"));
 
     let shoutouts = document.getElementById("bb-field-bitShoutouts").value;
     this_data.append('shoutouts', shoutouts);
