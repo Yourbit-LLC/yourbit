@@ -73,8 +73,7 @@
 }
 
 .yb-popup-menu {
-    width: 98vw;
-    max-width: 350px;
+    width: 98%;
     bottom: 65px;
     box-shadow: 1px 1px 10px black;
     border-radius: 10px;
