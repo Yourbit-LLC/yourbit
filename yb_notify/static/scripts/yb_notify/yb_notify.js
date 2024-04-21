@@ -18,7 +18,7 @@ function expandNotification(callback, body) {
 };
 
 function showText(body) {
-    NOTIFICATION_CONTENT.innerHTML = body
+    NOTIFICATION_CONTENT.innerHTML = body;
 }
 
 function contractNotification() {
