@@ -66,6 +66,23 @@ const MAIN_LOADING_SCREEN = document.getElementById("yb-loading-main");
 const TIME_KEEPER = document.getElementById("time-keeper-node");
 var clock_isTicking = false;
 
+// Get the current date
+const currentDate = new Date();
+
+// Define months array for converting month number to month name
+const months = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
+// Get the month, day, and year from the current date
+const month = months[currentDate.getMonth()];
+const day = String(currentDate.getDate()).padStart(2, '0'); // Ensure 2-digit day
+const year = currentDate.getFullYear();
+
+// Format the date as "MonthName day, year"
+const formattedDate = `${month} ${day}, ${year}`;
+
 function yb_setTimezone(){
     let csrfToken = getCSRF();
     let user_tz = Intl.DateTimeFormat().resolvedOptions().timeZone
