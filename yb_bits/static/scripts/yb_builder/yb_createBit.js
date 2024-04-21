@@ -349,5 +349,5 @@ $(document).ready(function(){
         video_upload_field.click();
     });
 
-    // yb_startClock("time-label", "decorated-time");
+    yb_startClock("time-label", "decorated-time");
 });
