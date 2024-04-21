@@ -52,7 +52,6 @@ class BitFeedAPIView(generics.ListAPIView):
 
         print(active_space)
 
-
         print(sort_value)
 
         #Check if profile is in request query params
