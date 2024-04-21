@@ -31,17 +31,19 @@ function yb_toggleMainMenu() {
         SIDE_CONTAINER_B.classList.toggle('open');
     }
     if (MAIN_MENU.classList.contains('open')){
-        MOBILE_HEADER.classList.add("hide");
-        NAV_BAR.classList.add("hideMobile");
-        CREATE_POPOUT.classList.add("hide");
-        SEARCH_POPOUT.classList.add("hide");
-        MAIN_MENU.classList.remove("open");
-    } else {
         MOBILE_HEADER.classList.remove("hide");
         NAV_BAR.classList.remove("hideMobile");
         CREATE_POPOUT.classList.remove("hide");
         SEARCH_POPOUT.classList.remove("hide");
         MAIN_MENU.classList.add("open");
+ 
+    } else {
+        MOBILE_HEADER.classList.add("hide");
+        NAV_BAR.classList.add("hideMobile");
+        CREATE_POPOUT.classList.add("hide");
+        SEARCH_POPOUT.classList.add("hide");
+        MAIN_MENU.classList.remove("open");
+
     
     }
 
