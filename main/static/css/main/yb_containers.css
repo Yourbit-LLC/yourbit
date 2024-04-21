@@ -29,6 +29,7 @@
     .yb-popup-menu {
 
         bottom: 80px;
+        transform: translate(-50%, calc(100% + 85px));
 
         /* transform: translate(0, calc(100% + 70px)); */
     
@@ -68,6 +69,7 @@
     .yb-popup-menu {
 
         bottom: 50px;
+        transform: translate(-50%, calc(100% + 55px));
 
         /* transform: translate(-50%, calc(100% + 70px)); */
     
@@ -87,7 +89,6 @@
     display: flex;
     flex-direction: column;
     left: 50%;
-    transform: translate(-50%, 0);
     font-weight: 575;
 }
 
