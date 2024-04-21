@@ -818,7 +818,19 @@ $(document).ready(function() {
 
 });
 
+function yb_showPopoutCard() {
+    let card_element = document.getElementById('yb-temporary-card');
+    card_element.classList.add('in');
+    card_element.classList.remove('out');
 
+}
+
+function yb_hidePopoutCard() {
+    let card_element = document.getElementById('yb-temporary-card');
+    card_element.classList.remove('in');
+    card_element.classList.add('out');
+    setTimeout(function(){card_element.remove()}, 300);
+}
 
 function yb_viewBit(bit_id, comment_id = null) {
     let url = `/bits/templates/bit/focus/${bit_id}/`;
