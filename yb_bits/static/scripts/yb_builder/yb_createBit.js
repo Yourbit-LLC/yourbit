@@ -350,4 +350,6 @@ $(document).ready(function(){
     });
 
     yb_startClock("time-label", "decorated-time");
+
+    $("#bit-date-preview").html(formattedDate);
 });
