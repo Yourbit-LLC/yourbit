@@ -14,7 +14,7 @@ function yb_createBit(this_data, csrf_token) {
         contentType: false,
         success: function(response) {
             console.log(response);
-            yb_toggle2WayContainer('create'); //Located in main/static/scripts/main/main.js
+            yb_toggle2WayContainer('create-bit'); //Located in main/static/scripts/main/main.js
             
             let this_bit = yb_buildBit(response);
             let current_location = yb_getSessionValues('location');
