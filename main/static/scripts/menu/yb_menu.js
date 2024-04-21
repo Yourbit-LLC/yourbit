@@ -30,11 +30,20 @@ function yb_toggleMainMenu() {
     } else if (SIDE_CONTAINER_B.classList.contains('open')){
         SIDE_CONTAINER_B.classList.toggle('open');
     }
-    MOBILE_HEADER.classList.toggle("hide");
-    NAV_BAR.classList.toggle("hideMobile");
-    CREATE_POPOUT.classList.toggle("hide");
-    SEARCH_POPOUT.classList.toggle("hide");
-    MAIN_MENU.classList.toggle("open");
+    if (MAIN_MENU.classList.contains('open')){
+        MOBILE_HEADER.classList.add("hide");
+        NAV_BAR.classList.add("hideMobile");
+        CREATE_POPOUT.classList.add("hide");
+        SEARCH_POPOUT.classList.add("hide");
+        MAIN_MENU.classList.remove("open");
+    } else {
+        MOBILE_HEADER.classList.remove("hide");
+        NAV_BAR.classList.remove("hideMobile");
+        CREATE_POPOUT.classList.remove("hide");
+        SEARCH_POPOUT.classList.remove("hide");
+        MAIN_MENU.classList.add("open");
+    
+    }
 
 
 }
