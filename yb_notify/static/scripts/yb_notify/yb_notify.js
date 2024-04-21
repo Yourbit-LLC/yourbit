@@ -1,6 +1,6 @@
 const NOTIFICATION_WIDGET = document.getElementById('notification-widget'); //CSS 
 const NOTIFICATION_STATUS = document.querySelectorAll('.notification-status');
-
+const NOTIFICATION_CONTENT = document.getElementById('notification-widget-content');
 
 function showNotification(callback1, body) {
     NOTIFICATION_WIDGET.classList.add('active');
@@ -18,9 +18,7 @@ function expandNotification(callback, body) {
 };
 
 function showText(body) {
-    NOTIFICATION_WIDGET.innerHTML = `
-        <p style='display:block; position: relative; margin: auto; top:50%; left: 50%; transform:translate(-50%, -50%); margin-left: 20px;'>${body}</p>
-    `;
+    NOTIFICATION_CONTENT.innerHTML = body
 }
 
 function contractNotification() {

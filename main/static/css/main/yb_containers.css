@@ -709,7 +709,7 @@
 .notification-widget {
     position: absolute;
     display: grid;
-    grid-template-rows: 50px auto;
+    grid-template-columns: 50px auto;
     top: -50px;
     left: 50%;
     width: 45px;
