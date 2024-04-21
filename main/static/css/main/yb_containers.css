@@ -27,9 +27,8 @@
     }
 
     .yb-popup-menu {
-        z-index: 1000;
-        transition: 0.5s;
-        overflow: hidden;
+
+        bottom: 70px;
 
         /* transform: translate(0, calc(100% + 70px)); */
     
@@ -65,13 +64,23 @@
         transform: translate(-50%, -50%);
         transition: 0.5s;
     }
+
+    .yb-popup-menu {
+
+        bottom: 50px;
+
+        /* transform: translate(-50%, calc(100% + 70px)); */
+    
+    }
     
 
 }
 
 .yb-popup-menu {
     width: 98%;
-    bottom: 50px;
+    overflow: hidden;
+    z-index:100;
+    transition: 0.5s;
     box-shadow: 1px 1px 5px black;
     border-radius: 10px;
     position: absolute;
