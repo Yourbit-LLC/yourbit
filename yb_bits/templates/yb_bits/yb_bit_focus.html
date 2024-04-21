@@ -8,7 +8,7 @@
         </svg>
     </div>
 </div>
-<div id="bit-{{bit.id}}" class="yb-element-background yb-bit-shell videobit" data-type="video" data-id="{{bit.id}}" data-userid="undefined" data-username="{{bit.username}}" data-button-color="undefined" data-icon-color="undefined" data-secondary-color="{{bit.custom.secondary_color}}" data-primary-color="{{bit.custom.primary_color}}" style="display:none;">
+<div id="bit-{{bit.id}}" class="yb-element-background yb-bit-shell videobit" data-type="video" data-id="{{bit.id}}" data-userid="undefined" data-username="{{bit.username}}" data-button-color="undefined" data-icon-color="undefined" data-secondary-color="{{bit.custom.secondary_color}}" data-primary-color="{{bit.custom.primary_color}}">
    
     <div id="header-bit-{{bit.id}}" class="yb-header-bit">
         <div id="profile-image-{{bit.id}}" class="element-accent profile-image-thumbnail tiny yb-center-margin all" style="border-color: rgb(255, 255, 255);">
@@ -51,8 +51,8 @@
 
     {% elif bit.type == "photo"%}
         {% for photo in bit.photos %}
-        <div id="photo-container-163" class="attached-photo-container">
-                <img id="photo-bit-163" class="attached-photo" src="{{photo.large_thumbnail.url}}" data-id="163" data-index="0">
+        <div id="photo-container-{{bit.id}}" class="attached-photo-container">
+                <img id="photo-bit-{{bit.id}}" class="attached-photo" src="{{photo.large_thumbnail.url}}" data-id="163" data-index="0">
             </div>
             {% endfor %}
     {% endif %}
@@ -123,7 +123,5 @@
 </div>
 
 <script>
-    $(document).ready(function(){
-        $("#bit-{{bit.id}}").fadeIn(500);
-    });
+
 </script>
