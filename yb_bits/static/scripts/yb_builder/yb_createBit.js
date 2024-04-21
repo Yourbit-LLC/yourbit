@@ -19,7 +19,6 @@ var video_upload_field = document.getElementById("bb-field-bitVideo");
 function BuildBitPreview(type){
 
     let time = bit.time;
-    let date = formattedDate;
 
     //Define bit ID which is returned to position bit in feed index
     let element_id = `#bit-preview`;
@@ -351,5 +350,4 @@ $(document).ready(function(){
     });
 
     yb_startClock("time-label", "decorated-time");
-
 });
