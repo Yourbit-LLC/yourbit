@@ -27,9 +27,6 @@
     }
 
     .yb-popup-menu {
-        position: absolute;
-        display: flex;
-        flex-direction: column;
         z-index: 1000;
         transition: 0.5s;
         overflow: hidden;
@@ -77,6 +74,7 @@
     bottom: 65px;
     box-shadow: 1px 1px 10px black;
     border-radius: 10px;
+    position: absolute;
 }
 
 .yb-popup-menu-item {
