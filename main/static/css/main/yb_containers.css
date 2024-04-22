@@ -737,7 +737,7 @@
     width: 95%;
     max-width: 500px;
     border-radius: 10px;
-    transform: translate(-50%, calc(-100% - 75px));
+    transform: translate(-50%, calc(-100% - 90px));
     transition: 0.5s;
     overflow: hidden;
     padding: 5px;
