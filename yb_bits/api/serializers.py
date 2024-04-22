@@ -110,8 +110,7 @@ class BitDislikeSerializer(serializers.ModelSerializer):
 
 class BitCommentSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
-
-    # time =  serializers.DateTimeField(format="%B %d, %Y / @%I:%M %p")
+    time =  serializers.DateTimeField(format="%B %d, %Y @%I:%M %p")
 
     class Meta:
         model = BitComment
