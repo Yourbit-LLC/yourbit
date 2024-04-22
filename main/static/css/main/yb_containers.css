@@ -737,13 +737,17 @@
     width: 95%;
     max-width: 500px;
     border-radius: 10px;
-    transform: translateX(-50%);
+    transform: translate(-50%, calc(-100% - 75px));
     transition: 0.5s;
     overflow: hidden;
     padding: 5px;
     box-shadow: 1px 1px 5px black;
 }
 
+.yb-top-banner.open {
+    transform: translate(-50%, 0);
+    transition: 0.5s;
+}
 @media screen and (max-width: 768px) {
     .notification-widget.expanded {
         width: 95%;

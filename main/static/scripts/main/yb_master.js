@@ -61,6 +61,7 @@ const FLOATING_TEXT_CONTAINER = document.getElementById("floating-text");
 const FLOATING_TEXT_INPUT = document.getElementById("input-floating-text");
 
 const MAIN_LOADING_SCREEN = document.getElementById("yb-loading-main");
+const SUBSCRIPTION_BANNER = document.getElementById("notification-permission-banner");
 
 
 const TIME_KEEPER = document.getElementById("time-keeper-node");
@@ -964,6 +965,12 @@ const yb_registrations = async () => {
 $(document).ready(function() {
 
     yb_registrations();
+
+    if (Notification.permission === 'default') {
+        // Notifications not yet granted or denied
+        // Show subscription banner
+        SUBSCRIPTION_BANNER.classList.add('open');
+    }
 
     if ('serviceWorker' in navigator && 'SyncManager' in window) {
         navigator.serviceWorker.ready
