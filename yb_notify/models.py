@@ -14,9 +14,9 @@ class NotificationCore(models.Model):
 
 class UserDevice(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    device_name = models.CharField(max_length=255) # E.g., 'John's iPhone'
-    device_id = models.CharField(max_length=255) # Unique ID for the device
-    device_type = models.CharField(max_length=50) # E.g., 'iOS', 'Android', 'Web'
+    device_name = models.CharField(max_length=255, blank=True) # E.g., 'John's iPhone'
+    device_id = models.CharField(max_length=255, blank=True) # Unique ID for the device
+    device_type = models.CharField(max_length=50, blank=True) # E.g., 'iOS', 'Android', 'Web'
     last_active = models.DateTimeField(auto_now=True)
 
     class Meta:
@@ -119,9 +119,9 @@ class UserDevice(models.Model):
 
 class PushSubscription(models.Model):
     user_device = models.ForeignKey(UserDevice, on_delete=models.CASCADE)
-    endpoint = models.URLField(max_length=500)
-    p256dh = models.CharField(max_length=100) # Public key
-    auth = models.CharField(max_length=100) # Auth secret
+    endpoint = models.URLField(max_length=50, blank=True)
+    p256dh = models.CharField(max_length=100, blank=True) # Public key
+    auth = models.CharField(max_length=100, blank=True) # Auth secret
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
