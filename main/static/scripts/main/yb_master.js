@@ -873,6 +873,12 @@ function yb_changeSpace(space_name) {
     } 
 }
 
+
+function hideTopBanner() {
+    SUBSCRIPTION_BANNER.classList.remove('open');
+
+}
+
 /*
         ----------------------------------
         -----SERVICE WORKER FUNCTIONS-----
