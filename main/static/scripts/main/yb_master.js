@@ -913,14 +913,6 @@ async function sendSubscriptionToServer(subscription) {
     }
 }
 
-const requestNotificationPermission = async () => {
-    const permission = await Notification.requestPermission();
-    if (permission !== 'granted') {
-        throw new Error('Permission not granted for Notification');
-    } else {
-        subscribeToPush();
-    }
-}
 
 const checkPermission = async () => {
     if (!('serviceWorker' in navigator)) {
@@ -937,15 +929,26 @@ const checkPermission = async () => {
 
 }
 
-const swRegistration = async () => {
-    if ('serviceWorker' in navigator) {
-
-        const registration = await navigator.serviceWorker.register('/static/scripts/main/sw.js');
-        console.log('Service Worker registered successfully');
-        return registration;
-
+const requestNotificationPermission = async () => {
+    const permission = await Notification.requestPermission();
+    if (permission !== 'granted') {
+        throw new Error('Permission not granted for Notification');
+    } else {
+        subscribeToPush();
     }
 }
+
+
+function yb_notificationPermCheck() {
+            
+    if (Notification.permission === 'default') {
+        // Notifications not yet granted or denied
+        // Show subscription banner
+        SUBSCRIPTION_BANNER.classList.add('open');
+    } 
+}
+
+
 
 async function displayNotification() {
     if (Notification.permission === 'granted') {
@@ -961,24 +964,9 @@ async function displayNotification() {
     }
 }
 
-const yb_registrations = async () => {
-    checkPermission();
-    const reg = await swRegistration();
-    reg.showNotification('You are now subscribed to notifications');
-}
 
-function yb_notificationPermCheck() {
-    
-    if (Notification.permission === 'default') {
-        // Notifications not yet granted or denied
-        // Show subscription banner
-        SUBSCRIPTION_BANNER.classList.add('open');
-    } 
-}
 $(document).ready(function() {
 
-    yb_registrations();
-    setTimeout(yb_notificationPermCheck, 5000);
 
     if ('serviceWorker' in navigator && 'SyncManager' in window) {
         navigator.serviceWorker.ready
