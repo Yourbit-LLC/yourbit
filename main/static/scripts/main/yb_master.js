@@ -961,16 +961,18 @@ const yb_registrations = async () => {
     reg.showNotification('You are now subscribed to notifications');
 }
 
-
-$(document).ready(function() {
-
-    yb_registrations();
-
+function yb_notificationPermCheck() {
+    
     if (Notification.permission === 'default') {
         // Notifications not yet granted or denied
         // Show subscription banner
         SUBSCRIPTION_BANNER.classList.add('open');
-    }
+    } 
+}
+$(document).ready(function() {
+
+    yb_registrations();
+    setTimeout(yb_notificationPermCheck, 5000);
 
     if ('serviceWorker' in navigator && 'SyncManager' in window) {
         navigator.serviceWorker.ready
