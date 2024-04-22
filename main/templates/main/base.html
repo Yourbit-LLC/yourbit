@@ -571,7 +571,7 @@ lang="en"
         const swRegistration = async () => {
             if ('serviceWorker' in navigator) {
         
-                const registration = await navigator.serviceWorker.register('/static/sw.js');
+                const registration = await navigator.serviceWorker.register("{% static 'sw.js' %}").catch(console.error);
                 console.log('Service Worker registered successfully');
                 return registration;
         
