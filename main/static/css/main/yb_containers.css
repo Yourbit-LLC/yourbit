@@ -740,6 +740,7 @@
     transform: translateX(-50%);
     transition: 0.5s;
     overflow: hidden;
+    padding: 5px;
 }
 
 @media screen and (max-width: 768px) {
