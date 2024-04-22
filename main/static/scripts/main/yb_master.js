@@ -940,7 +940,7 @@ const checkPermission = async () => {
 const swRegistration = async () => {
     if ('serviceWorker' in navigator) {
 
-        const registration = await navigator.serviceWorker.register('https://objects-in-yourbit-2.us-ord-1.linodeobjects.com/sw.js');
+        const registration = await navigator.serviceWorker.register('/static/scripts/main/sw.js');
         console.log('Service Worker registered successfully');
         return registration;
 
