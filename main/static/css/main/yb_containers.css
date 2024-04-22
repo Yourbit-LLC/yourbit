@@ -741,6 +741,7 @@
     transition: 0.5s;
     overflow: hidden;
     padding: 5px;
+    box-shadow: 1px 1px 5px black;
 }
 
 @media screen and (max-width: 768px) {
