@@ -939,14 +939,14 @@ const requestNotificationPermission = async () => {
 }
 
 
-function yb_notificationPermCheck() {
+// function yb_notificationPermCheck() {
             
-    if (Notification.permission === 'default') {
-        // Notifications not yet granted or denied
-        // Show subscription banner
-        SUBSCRIPTION_BANNER.classList.add('open');
-    } 
-}
+//     if (Notification.permission === 'default') {
+//         // Notifications not yet granted or denied
+//         // Show subscription banner
+//         SUBSCRIPTION_BANNER.classList.add('open');
+//     } 
+// }
 
 
 
