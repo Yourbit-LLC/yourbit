@@ -3,8 +3,8 @@ from rest_framework import viewsets, permissions, generics, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework import filters
-from ..models import Notification, NotificationCore
-from .serializers import NotificationSerializer, NotificationCoreSerializer
+from ..models import Notification, NotificationCore, UserDevice, PushSubscription
+from .serializers import NotificationSerializer, NotificationCoreSerializer, UserDeviceSerializer, NotificationSubscriptionSerializer
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 
@@ -98,3 +98,64 @@ class NotificationCoreViewSet(viewsets.ModelViewSet):
 
         #Return a response
         return Response({'status': 'notification marked as seen'})
+
+
+class NotificationDevice(viewsets.ModelViewSet):
+    queryset = UserDevice.objects.all()
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
+    serializer_class = UserDeviceSerializer
+
+    def get_queryset(self):
+        return self.queryset.filter(profile=self.request.user.profile)
+    
+    #Register a device
+    @action(detail=False, methods=['post'])
+    def register(self, request, *args, **kwargs):
+        device_data = request.data["device"]
+        
+        print(request.data)
+
+        device = UserDevice.objects.get_or_create(
+            user=request.user,
+            device_id=device_data['device_id'],
+            device_type=device_data['device_type'],
+            device_name = device_data['device_name']
+        )
+
+        subscription = PushSubscription.objects.create(
+            device = device,
+            endpoint=device_data['subscription']['endpoint'],
+            p256dh=device_data['subscription']['keys']['p256dh'],
+            auth=device_data['subscription']['keys']['auth'],
+            user_device=device
+        )
+
+        subscription.save()
+
+        return Response({'status': 'device registered'})
+    
+    #Unregister a device
+    @action(detail=False, methods=['post'])
+    def unregister(self, request, *args, **kwargs):
+        profile = self.request.user.profile
+        device_id = request.data['device_id']
+        
+        device = UserDevice.objects.get(user=request.user, device_id=device_id)
+        push_subscription = PushSubscription.objects.get(device=device)
+        
+        push_subscription.delete()
+        device.delete()
+
+        return Response({'status': 'device unregistered'})
+    
+    #Send a test notification
+    @action(detail=False, methods=['post'])
+    def send_test(self, request, *args, **kwargs):
+        profile = self.request.user.profile
+        devices = UserDevice.objects.filter(user=request.user)
+        for device in devices:
+            device.send_test_notification(device.device_type)
+
+        return Response({'status': 'test notification sent'})

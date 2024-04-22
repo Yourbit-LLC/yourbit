@@ -1,3 +1,7 @@
+// This is the service worker with the Cache-first network
+
+console.log('Service Worker Loaded...');
+
 self.addEventListener('install', function(event) {
     var CACHE_NAME = "yourbit-cache-v1";
     var urlsToCache = [

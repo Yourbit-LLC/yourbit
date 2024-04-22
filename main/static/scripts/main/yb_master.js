@@ -139,9 +139,11 @@ function yb_getTimeString(type){
         if (time_step === 0){
             time_step = 1;
             timeString = `@${converted_hours[0]}:${minutes} ${converted_hours[1]}`;
+
         } else {
             time_step = 0;
             timeString = `@${converted_hours[0]} ${minutes} ${converted_hours[1]}`;
+            
         }
 
         
@@ -797,33 +799,6 @@ function yb_closePrompt(){
 
 }
 
-async function subscribeToPush() {
-    let serverPublicKey = VAPID_PUBLIC_KEY;
-
-    let subscriptionOptions = {
-        userVisibleOnly: true,
-        applicationServerKey: serverPublicKey
-    };
-    
-    let subscription = await swRegistration.pushManager.subscribe(subscriptionOptions);
-
-    sendSubscriptionToServer(subscription);
-}
-
-async function sendSubscriptionToServer(subscription) {
-    const response = await fetch('/notify/api/subscribe/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(subscription)
-    });
-
-    if (!response.ok) {
-        throw new Error('Failed to send subscription to server');
-    }
-}
-
 function yb_changeSpace(space_name) {
 
     yb_setSessionValues('space', space_name);
@@ -897,18 +872,98 @@ function yb_changeSpace(space_name) {
     } 
 }
 
+/*
+        ----------------------------------
+        -----SERVICE WORKER FUNCTIONS-----
+        ----------------------------------
+*/
+
+
+async function subscribeToPush() {
+    let serverPublicKey = VAPID_PUBLIC_KEY;
+
+    let subscriptionOptions = {
+        userVisibleOnly: true,
+        applicationServerKey: serverPublicKey
+    };
+    
+    let subscription = await swRegistration.pushManager.subscribe(subscriptionOptions);
+
+    sendSubscriptionToServer(subscription);
+}
+
+async function sendSubscriptionToServer(subscription) {
+    const response = await fetch('/notify/api/subscribe/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(subscription)
+    });
+
+    if (!response.ok) {
+        throw new Error('Failed to send subscription to server');
+    }
+}
+
+const requestNotificationPermission = async () => {
+    const permission = await Notification.requestPermission();
+    if (permission !== 'granted') {
+        throw new Error('Permission not granted for Notification');
+    } else {
+        subscribeToPush();
+    }
+}
+
+const checkPermission = async () => {
+    if (!('serviceWorker' in navigator)) {
+        throw new Error('Service Worker not supported');
+    }
+
+    if (!('PushManager' in window)) {
+        throw new Error('Push API not supported');
+    }
+
+    if (!('Notification' in window)) {
+        throw new Error('Notification API not supported');
+    }
+
+}
+
+const swRegistration = async () => {
+    if ('serviceWorker' in navigator) {
+
+        const registration = await navigator.serviceWorker.register('/static/scripts/main/sw.js');
+        console.log('Service Worker registered successfully');
+        return registration;
+
+    }
+}
+
+async function displayNotification() {
+    if (Notification.permission === 'granted') {
+        const options = {
+            body: 'This is a notification from the service worker',
+            icon: '/static/images/icons/icon-192x192.png',
+            vibrate: [100, 50, 100],
+            data: {
+                dateOfArrival: Date.now(),
+                primaryKey: 1
+            }
+        };
+    }
+}
+
+const yb_registrations = async () => {
+    checkPermission();
+    const reg = await swRegistration();
+    reg.showNotification('You are now subscribed to notifications');
+}
+
 
 $(document).ready(function() {
 
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-            navigator.serviceWorker.register('https://objects-in-yourbit-2.us-ord-1.linodeobjects.com/sw.js').then(function(registration) {
-                console.log('ServiceWorker registration successful with scope: ', registration.scope);
-            }, function(err) {
-                console.log('ServiceWorker registration failed: ', err);
-            });
-        });
-    }
+    yb_registrations();
 
     if ('serviceWorker' in navigator && 'SyncManager' in window) {
         navigator.serviceWorker.ready

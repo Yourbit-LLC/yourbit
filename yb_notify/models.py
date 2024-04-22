@@ -5,6 +5,7 @@ from yb_accounts.models import Account as User
 from yb_customize.models import CustomCore
 from yb_bits.models import BitComment, Bit
 from yb_messages.models import Message
+from firebase_admin import messaging, initialize_app, credentials
 
 class NotificationCore(models.Model):
     profile = models.ForeignKey('yb_profile.Profile', on_delete=models.CASCADE, related_name='notification_profile')
@@ -13,6 +14,7 @@ class NotificationCore(models.Model):
 
 class UserDevice(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    device_name = models.CharField(max_length=255) # E.g., 'John's iPhone'
     device_id = models.CharField(max_length=255) # Unique ID for the device
     device_type = models.CharField(max_length=50) # E.g., 'iOS', 'Android', 'Web'
     last_active = models.DateTimeField(auto_now=True)
@@ -78,6 +80,39 @@ class UserDevice(models.Model):
 
         client.close()
 
+    def send_message_firebase(self, message):
+        # Send a message to the device
+        # Fetch the service account key JSON file contents
+        cred = credentials.Certificate('/certs/yourbit-eb3b2-3866adb1b1bb.json')
+
+        # Initialize the app with a service account, granting admin privileges
+        initialize_app(cred)
+
+        # This registration token comes from the client FCM SDKs
+        registration_token = self.device_id
+
+        # See documentation on defining a message payload
+        message = messaging.Message(
+            data={
+                'score': '850',
+                'time': '2:45',
+            },
+            token=registration_token,
+        )
+
+        # Send a message to the device corresponding to the provided
+        # registration token.
+        response = messaging.send(message)
+        # Response is a message ID string.
+        print('Successfully sent message:', response)
+
+    def send_test_notification(self, device_type):
+        # Send a test notification to the device
+        if device_type == 'web':
+            self.send_message_firebase('This is a test notification')
+        elif device_type == 'ios':
+            self.send_message_ios('This is a test notification')
+        
 
     
 
