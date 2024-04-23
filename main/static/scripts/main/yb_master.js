@@ -921,10 +921,10 @@ async function subscribeToPush() {
       const response = await fetch('/notify/api/subscribe/', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+            'Content-Type': 'application/json',
             'X-CSRFToken': csrfToken
         },
-        body: JSON.stringify(subscription)
+        data: JSON.stringify(subscription)
       });
   
       if (!response.ok) {
