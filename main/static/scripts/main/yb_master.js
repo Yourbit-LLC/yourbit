@@ -63,6 +63,8 @@ const FLOATING_TEXT_INPUT = document.getElementById("input-floating-text");
 const MAIN_LOADING_SCREEN = document.getElementById("yb-loading-main");
 const SUBSCRIPTION_BANNER = document.getElementById("notification-permission-banner");
 
+const VAPID_PUBLIC_KEY = "BDAIHj_HT2qvxVsrE-pvZOGc2TcJeMKUIM0LxStPASodefcu9fucQndG9XSONnd04finmXAueTLmxqBjv9q6H7g";
+
 
 const TIME_KEEPER = document.getElementById("time-keeper-node");
 var clock_isTicking = false;
