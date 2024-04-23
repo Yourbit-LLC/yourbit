@@ -948,6 +948,27 @@ function yb_notificationPermCheck() {
     } 
 }
 
+const swRegistration = async () => {
+    if ('serviceWorker' in navigator) {
+
+        const registration = await navigator.serviceWorker.register("/static/sw.js").catch(console.error);
+        console.log('Service Worker registered successfully');
+        return registration;
+
+    }
+}
+
+const yb_registrations = async () => {
+    checkPermission();
+    const reg = await swRegistration();
+    reg.showNotification('You are now subscribed to notifications');
+}
+
+$(document).ready(function() {
+
+});
+    
+
 
 
 async function displayNotification() {
@@ -967,6 +988,8 @@ async function displayNotification() {
 
 $(document).ready(function() {
 
+    swRegistration();
+    setTimeout(yb_notificationPermCheck, 5000);
 
     if ('serviceWorker' in navigator && 'SyncManager' in window) {
         navigator.serviceWorker.ready
