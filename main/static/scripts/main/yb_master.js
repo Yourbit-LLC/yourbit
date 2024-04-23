@@ -906,7 +906,7 @@ async function subscribeToPush() {
         applicationServerKey: serverPublicKey
       };
   
-      const subscription = await swRegistration.pushManager.subscribe(subscriptionOptions);
+      const subscription = swRegistration.pushManager.subscribe(subscriptionOptions);
       sendSubscriptionToServer(subscription);
   
     } catch (error) {
