@@ -887,19 +887,7 @@ function hideTopBanner() {
         ----------------------------------
 */
 
-async function sendSubscriptionToServer(subscription) {
-    const response = await fetch('/notify/api/subscribe/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(subscription)
-    });
 
-    if (!response.ok) {
-        throw new Error('Failed to send subscription to server');
-    }
-}
 
 async function subscribeToPush() {
     let serverPublicKey = VAPID_PUBLIC_KEY;
@@ -912,6 +900,20 @@ async function subscribeToPush() {
     let subscription = await swRegistration.pushManager.subscribe(subscriptionOptions);
 
     sendSubscriptionToServer(subscription);
+}
+
+async function sendSubscriptionToServer(subscription) {
+    const response = await fetch('/notify/api/subscribe/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(subscription)
+    });
+
+    if (!response.ok) {
+        throw new Error('Failed to send subscription to server');
+    }
 }
 
 
@@ -946,7 +948,7 @@ const requestNotificationPermission = async () => {
         throw new Error('Permission not granted for Notification');
     } else {
         subscribeToPush();
-        yb_notificationPermCheck();
+        yb_registrations();
     }
 }
 
@@ -964,7 +966,16 @@ function yb_notificationPermCheck() {
 const yb_registrations = async () => {
     checkPermission();
     const reg = await swRegistration();
-    yb_notificationPermCheck();
+    reg.showNotification('You are now subscribed to notifications', {
+        body: 'You will now receive notifications from the service worker',
+        icon: '/static/images/icons/icon-192x192.png',
+        vibrate: [100, 50, 100],
+        data: {
+            dateOfArrival: Date.now(),
+            primaryKey: 1
+        }
+    
+    });
 }
 
 
@@ -986,8 +997,9 @@ async function displayNotification() {
 
 $(document).ready(function() {
 
-    yb_registrations();
-    
+    checkPermission();
+    swRegistration();
+    yb_notificationPermCheck();
 
     if ('serviceWorker' in navigator && 'SyncManager' in window) {
         navigator.serviceWorker.ready
