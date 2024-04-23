@@ -906,7 +906,7 @@ async function subscribeToPush() {
         applicationServerKey: serverPublicKey
       };
   
-      const subscription = await registerSW.pushManager.subscribe(subscriptionOptions);
+      const subscription = await swRegistration.pushManager.subscribe(subscriptionOptions);
       sendSubscriptionToServer(subscription);
   
     } catch (error) {
@@ -989,6 +989,7 @@ $(document).ready(function() {
         .then(function(registration) {
             console.log('Service Worker registered successfully');
             swRegistration = registration;
+            yb_showNotifyPrompt();
         })
         .catch(function(err) {
             console.error('Service Worker registration failed: ', err);
