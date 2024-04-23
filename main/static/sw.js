@@ -2,36 +2,38 @@
 
 console.log('Service Worker Loaded...');
 
-self.addEventListener('install', function(event) {
-    var CACHE_NAME = "yourbit-cache-v1";
-    var urlsToCache = [
-        "/",
-        "/profile/templates/history/",
-        "/messages/templates/messages/",
-        "/profile/templates/orbits/",
-        "/profile/templates/people/",
-        "/profile/templates/stuff/",
-        "/bits/templates/user/",
-        "https://objects-in-yourbit-2.us-ord-1.linodeobjects.com/scripts/main/yb_master.js",
-        "https://objects-in-yourbit-2.us-ord-1.linodeobjects.com/scripts/menu/yb_menu.js",  
-        "https://objects-in-yourbit-2.us-ord-1.linodeobjects.com/sw.js",
-        "https://objects-in-yourbit-2.us-ord-1.linodeobjects.com/css/main/yb_core.css",
-        "https://objects-in-yourbit-2.us-ord-1.linodeobjects.com/css/main/yb_animations.css",
-        "https://objects-in-yourbit-2.us-ord-1.linodeobjects.com/css/main/yb_containers.css",
-        "https://objects-in-yourbit-2.us-ord-1.linodeobjects.com/css/main/yb_buttons.css",
-        "https://objects-in-yourbit-2.us-ord-1.linodeobjects.com/css/main/yb_modifiers.css",
-        "https://objects-in-yourbit-2.us-ord-1.linodeobjects.com/css/main/yb_inputs.css",
-        "https://objects-in-yourbit-2.us-ord-1.linodeobjects.com/scripts/yb_bitstream/yb_bitstream.js",
-    ];
-    
+const CACHE_NAME = "yourbit-cache-v1";
+const PRECACHE_ASSETS = [
+    "/",
+    "/profile/templates/history/",
+    "/messages/templates/messages/",
+    "/profile/templates/orbits/",
+    "/profile/templates/people/",
+    "/profile/templates/stuff/",
+    "/bits/templates/user/",
+    "/static/css/main/yb_core.css",
+    "/static/css/main/yb_buttons.css",
+    "/static/css/main/yb_containers.css",
+    "/static/css/main/yb_modifiers.css",
+    "/static/css/yb_profile/yb_profile.css",
+    "/static/css/conversation/conversation.css",
+    "/static/css/yb_bits/yb_bits.css",
+    "/static/scripts/main/yb_master.js",
+    "/static/scripts/main/yb_create.js",
+    "/static/scripts/main/yb_elements.js",
+    "/static/scripts/menu/yb_menu.js",
+    "/static/scripts/yb_profile/yb_profile.js",
 
-    event.waitUntil(
-        caches.open(CACHE_NAME)
-        .then(function(cache) {
-            console.log('Opened cache');
-            return cache.addAll(urlsToCache);
-        })
-    );
+];
+
+
+
+self.addEventListener('install', function(event) {
+
+    event.waitUntil((async () => {
+        const cache = await caches.open(CACHE_NAME);
+        cache.addAll(PRECACHE_ASSETS);
+    })());
 });
 
 
@@ -48,22 +50,9 @@ self.addEventListener('fetch', function(event) {
 }
 );
 
-self.addEventListener('activate', function(event) {
-    var cacheWhitelist = ['yourbit-cache-v1'];
-
-    event.waitUntil(
-        caches.keys().then(function(cacheNames) {
-            return Promise.all(
-                cacheNames.map(function(cacheName) {
-                    if (cacheWhitelist.indexOf(cacheName) === -1) {
-                        return caches.delete(cacheName);
-                    }
-                })
-            );
-        })
-    );
-});
-
+self.addEventListener('activate', event => {
+    event.waitUntil(self.clients.claim());
+  });
 
 self.addEventListener('push', (event) => {
     let pushMessageJSON = event.data.json();
