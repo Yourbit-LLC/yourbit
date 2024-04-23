@@ -964,11 +964,6 @@ const yb_registrations = async () => {
     reg.showNotification('You are now subscribed to notifications');
 }
 
-$(document).ready(function() {
-
-});
-    
-
 
 
 async function displayNotification() {
