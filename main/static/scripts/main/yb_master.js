@@ -888,6 +888,12 @@ function hideTopBanner() {
 */
 
 
+const registerSW = async () => {
+    const swRegistration = await navigator.serviceWorker.register('/static/scripts/main/sw.js');
+    return swRegistration;
+}
+
+
 
 async function subscribeToPush() {
     let serverPublicKey = VAPID_PUBLIC_KEY;
@@ -941,12 +947,6 @@ const checkPermission = async () => {
         throw new Error('Notifications not supported in this browser');
     }
 }
-
-const registerSW = async () => {
-    const swRegistration = await navigator.serviceWorker.register('/static/scripts/main/sw.js');
-    return swRegistration;
-}
-
 const requestNotificationPermission = async () => {
     const permission = await Notification.requestPermission();
 
