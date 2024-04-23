@@ -981,20 +981,10 @@ function yb_showNotifyPrompt() {
 }
 
 
-async function initializeWorkers() { // Using async for await 
-  try {
-    await checkPermission(); 
-    swRegistration = registerSW(); 
-    yb_showNotifyPrompt();
 
-  } catch (error) {
-    console.error('Error initializing push notifications:', error);
-    // Handle setup errors
-  }
-}
 
 $(document).ready(function() {
-    initializeWorkers();
+    registerSW();
 
     if ('serviceWorker' in navigator && 'SyncManager' in window) {
         navigator.serviceWorker.ready
