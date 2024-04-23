@@ -887,7 +887,7 @@ function hideTopBanner() {
         ----------------------------------
 */
 
-
+let swRegistration; // Declared in a shared scope
 
 async function subscribeToPush() {
     try {
@@ -978,9 +978,8 @@ function yb_showNotifyPrompt() {
     }
 }
 
-let swRegistration; // Declared in a shared scope
 
-$(document).ready(async function() { // Using async for await 
+async function initializeWorkers() { // Using async for await 
   try {
     await checkPermission(); 
     swRegistration = await registerSW(); 
@@ -990,11 +989,10 @@ $(document).ready(async function() { // Using async for await
     console.error('Error initializing push notifications:', error);
     // Handle setup errors
   }
-});
+}
 
 $(document).ready(function() {
-
-    swRegistration = registerSW();
+    initializeWorkers();
 
     if ('serviceWorker' in navigator && 'SyncManager' in window) {
         navigator.serviceWorker.ready
