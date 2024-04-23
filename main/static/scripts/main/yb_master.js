@@ -887,21 +887,6 @@ function hideTopBanner() {
         ----------------------------------
 */
 
-
-
-async function subscribeToPush() {
-    let serverPublicKey = VAPID_PUBLIC_KEY;
-
-    let subscriptionOptions = {
-        userVisibleOnly: true,
-        applicationServerKey: serverPublicKey
-    };
-    
-    let subscription = await swRegistration.pushManager.subscribe(subscriptionOptions);
-
-    sendSubscriptionToServer(subscription);
-}
-
 async function sendSubscriptionToServer(subscription) {
     const response = await fetch('/notify/api/subscribe/', {
         method: 'POST',
@@ -914,6 +899,19 @@ async function sendSubscriptionToServer(subscription) {
     if (!response.ok) {
         throw new Error('Failed to send subscription to server');
     }
+}
+
+async function subscribeToPush() {
+    let serverPublicKey = VAPID_PUBLIC_KEY;
+
+    let subscriptionOptions = {
+        userVisibleOnly: true,
+        applicationServerKey: serverPublicKey
+    };
+    
+    let subscription = await swRegistration.pushManager.subscribe(subscriptionOptions);
+
+    sendSubscriptionToServer(subscription);
 }
 
 
@@ -948,6 +946,7 @@ const requestNotificationPermission = async () => {
         throw new Error('Permission not granted for Notification');
     } else {
         subscribeToPush();
+        yb_notificationPermCheck();
     }
 }
 
@@ -965,16 +964,7 @@ function yb_notificationPermCheck() {
 const yb_registrations = async () => {
     checkPermission();
     const reg = await swRegistration();
-    reg.showNotification('Hello, from Yourbit!', {
-        body: "You're in the loop! You will now get notifications from Yourbit!",
-        icon: '/static/images/icons/icon-192x192.png',
-        vibrate: [100, 50, 100],
-        data: {
-            dateOfArrival: Date.now(),
-            primaryKey: 1
-        }
-    
-    });
+    yb_notificationPermCheck();
 }
 
 
@@ -997,8 +987,7 @@ async function displayNotification() {
 $(document).ready(function() {
 
     yb_registrations();
-
-    yb_notificationPermCheck();
+    
 
     if ('serviceWorker' in navigator && 'SyncManager' in window) {
         navigator.serviceWorker.ready
