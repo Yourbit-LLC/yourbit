@@ -951,8 +951,8 @@ const checkPermission = async () => {
     }
 }
 
-const registerSW = async () => {
-    const swRegistration = await navigator.serviceWorker.register('/static/sw.js');
+function registerSW(){
+    const swRegistration = navigator.serviceWorker.register('/static/sw.js');
     return swRegistration;
 }
 
