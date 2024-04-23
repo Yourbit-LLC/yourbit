@@ -5,12 +5,6 @@ console.log('Service Worker Loaded...');
 const CACHE_NAME = "yourbit-cache-v1";
 const PRECACHE_ASSETS = [
     "/",
-    "/profile/templates/history/",
-    "/messages/templates/messages/",
-    "/profile/templates/orbits/",
-    "/profile/templates/people/",
-    "/profile/templates/stuff/",
-    "/bits/templates/user/",
     "/static/css/main/yb_core.css",
     "/static/css/main/yb_buttons.css",
     "/static/css/main/yb_containers.css",
