@@ -889,6 +889,18 @@ function hideTopBanner() {
 
 var swRegistration; // Declared in a shared scope
 
+function encodeBase64URL(input) {
+    //Convert the input to a UintArray
+    const inputArray = new Uint8Array(input);
+    //Encode the input to base64
+    const base64 = btoa(String.fromCharCode.apply(null, inputArray));
+
+    //Convert the base64 to base64URL
+    const base64URL = base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+    
+
+
 async function subscribeToPush() {
     try {
       // Verify that a Service Worker registration exists
@@ -896,7 +908,7 @@ async function subscribeToPush() {
         throw new Error('Service Worker registration not found.');
       }
   
-      const serverPublicKey = '<YOUR VAPID PUBLIC KEY>'; // Replace with your key
+      const serverPublicKey = VAPID_PUBLIC_KEY; // Replace with your key
       if (!serverPublicKey) {
         throw new Error('VAPID_PUBLIC_KEY is missing or invalid.');
       }
