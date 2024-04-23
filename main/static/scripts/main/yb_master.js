@@ -994,6 +994,8 @@ $(document).ready(async function() { // Using async for await
 
 $(document).ready(function() {
 
+    swRegistration = registerSW();
+
     if ('serviceWorker' in navigator && 'SyncManager' in window) {
         navigator.serviceWorker.ready
         .then(function(registration) {
