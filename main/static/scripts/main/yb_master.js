@@ -888,15 +888,6 @@ function hideTopBanner() {
 */
 
 
-const swRegistration = async () => {
-    if ('serviceWorker' in navigator) {
-
-        const registration = await navigator.serviceWorker.register("/static/sw.js").catch(console.error);
-        console.log('Service Worker registered successfully');
-        return registration;
-
-    }
-}
 
 async function subscribeToPush() {
     let serverPublicKey = VAPID_PUBLIC_KEY;
@@ -941,6 +932,16 @@ const checkPermission = async () => {
 
 }
 
+const swRegistration = async () => {
+    if ('serviceWorker' in navigator) {
+
+        const registration = await navigator.serviceWorker.register("/static/sw.js").catch(console.error);
+        console.log('Service Worker registered successfully');
+        return registration;
+
+    }
+}
+
 const requestNotificationPermission = async () => {
     const permission = await Notification.requestPermission();
     if (permission !== 'granted') {
@@ -964,7 +965,16 @@ function yb_notificationPermCheck() {
 const yb_registrations = async () => {
     checkPermission();
     const reg = await swRegistration();
-    reg.showNotification('You are now subscribed to notifications');
+    reg.showNotification('Hello, from Yourbit!', {
+        body: "You're in the loop! You will now get notifications from Yourbit!",
+        icon: '/static/images/icons/icon-192x192.png',
+        vibrate: [100, 50, 100],
+        data: {
+            dateOfArrival: Date.now(),
+            primaryKey: 1
+        }
+    
+    });
 }
 
 
@@ -986,7 +996,8 @@ async function displayNotification() {
 
 $(document).ready(function() {
 
-    swRegistration();
+    yb_registrations();
+
     yb_notificationPermCheck();
 
     if ('serviceWorker' in navigator && 'SyncManager' in window) {
