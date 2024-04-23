@@ -913,93 +913,52 @@ async function sendSubscriptionToServer(subscription) {
 
     if (!response.ok) {
         throw new Error('Failed to send subscription to server');
-    }
-}
-
-
-const checkPermission = async () => {
-    if (!('serviceWorker' in navigator)) {
-        throw new Error('Service Worker not supported');
-    }
-
-    if (!('PushManager' in window)) {
-        throw new Error('Push API not supported');
-    }
-
-    if (!('Notification' in window)) {
-        throw new Error('Notification API not supported');
-    }
-
-}
-
-const swRegistration = async () => {
-    if ('serviceWorker' in navigator) {
-
-        const registration = await navigator.serviceWorker.register("/static/sw.js").catch(console.error);
-        console.log('Service Worker registered successfully');
-        return registration;
-
-    }
-}
-
-const requestNotificationPermission = async () => {
-    const permission = await Notification.requestPermission();
-    if (permission !== 'granted') {
-        throw new Error('Permission not granted for Notification');
     } else {
-        subscribeToPush();
-        yb_registrations();
-    }
-}
-
-
-function yb_notificationPermCheck() {
-    console.log(Notification.permission)
-    console.log("running permissions check")
-    if (Notification.permission === 'default') {
-        SUBSCRIPTION_BANNER.classList.add('open');
-    }
-    
-}
-
-
-const yb_registrations = async () => {
-    checkPermission();
-    const reg = await swRegistration();
-    reg.showNotification('You are now subscribed to notifications', {
-        body: 'You will now receive notifications from the service worker',
-        icon: '/static/images/icons/icon-192x192.png',
-        vibrate: [100, 50, 100],
-        data: {
-            dateOfArrival: Date.now(),
-            primaryKey: 1
-        }
-    
-    });
-}
-
-
-
-async function displayNotification() {
-    if (Notification.permission === 'granted') {
-        const options = {
-            body: 'This is a notification from the service worker',
-            icon: '/static/images/icons/icon-192x192.png',
+        new Notification('Hello, from Yourbit!', {
+            body: 'You are now subscribed to notifications',
+            icon: '/static/images/icons/icon-72x72.png',
             vibrate: [100, 50, 100],
             data: {
                 dateOfArrival: Date.now(),
                 primaryKey: 1
             }
-        };
+        });
+    }
+}
+
+const checkPermission = async () => {
+    if (!('serviceWorker' in navigator)) {
+        throw new Error('Service Worker not supported in this browser');
+    } 
+    
+    if (!('PushManager' in window)) {
+        throw new Error('Push API not supported in this browser');
+    } 
+    
+    if (!('Notification' in window)) {
+        throw new Error('Notifications not supported in this browser');
+    }
+}
+
+const registerSW = async () => {
+    const swRegistration = await navigator.serviceWorker.register('/static/scripts/main/sw.js');
+    return swRegistration;
+}
+
+const requestNotificationPermission = async () => {
+    const permission = await Notification.requestPermission();
+
+    if (permission !== 'granted') {
+        throw new Error('Permission not granted for Notification');
+    } else {
+        subscribeToPush();
+        return permission;
     }
 }
 
 
 $(document).ready(function() {
 
-    checkPermission();
-    swRegistration();
-    yb_notificationPermCheck();
 
     if ('serviceWorker' in navigator && 'SyncManager' in window) {
         navigator.serviceWorker.ready
