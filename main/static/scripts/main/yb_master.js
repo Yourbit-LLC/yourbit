@@ -980,7 +980,7 @@ function yb_showNotifyPrompt() {
 
 let swRegistration; // Declared in a shared scope
 
-async function initializeWorkers() { // Using async for await 
+$(document).ready(async function() { // Using async for await 
   try {
     await checkPermission(); 
     swRegistration = await registerSW(); 
@@ -990,7 +990,7 @@ async function initializeWorkers() { // Using async for await
     console.error('Error initializing push notifications:', error);
     // Handle setup errors
   }
-}
+});
 
 $(document).ready(function() {
     initializeWorkers();
