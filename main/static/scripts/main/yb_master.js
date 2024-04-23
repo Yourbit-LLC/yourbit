@@ -888,51 +888,54 @@ function hideTopBanner() {
 */
 
 
-const registerSW = async () => {
-    const swRegistration = await navigator.serviceWorker.register('/static/scripts/main/sw.js');
-    return swRegistration;
-}
-
-
 
 async function subscribeToPush() {
-    let serverPublicKey = VAPID_PUBLIC_KEY;
-
-    let subscriptionOptions = {
+    try {
+      // Verify that a Service Worker registration exists
+      if (!swRegistration) {
+        throw new Error('Service Worker registration not found.');
+      }
+  
+      const serverPublicKey = '<YOUR VAPID PUBLIC KEY>'; // Replace with your key
+      if (!serverPublicKey) {
+        throw new Error('VAPID_PUBLIC_KEY is missing or invalid.');
+      }
+  
+      const subscriptionOptions = {
         userVisibleOnly: true,
         applicationServerKey: serverPublicKey
-    };
-    
-    let subscription = await registerSW.pushManager.subscribe(subscriptionOptions);
-
-    sendSubscriptionToServer(subscription);
-}
-
-async function sendSubscriptionToServer(subscription) {
-    const response = await fetch('/notify/api/subscribe/', {
+      };
+  
+      const subscription = await swRegistration.pushManager.subscribe(subscriptionOptions);
+      sendSubscriptionToServer(subscription);
+  
+    } catch (error) {
+      console.error('Error subscribing to push notifications:', error);
+      // Handle the error, e.g., display an error message to the user
+    }
+  }
+  
+  async function sendSubscriptionToServer(subscription) {
+    try {
+      const response = await fetch('/notify/api/subscribe/', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(subscription)
-    });
-
-    if (!response.ok) {
-        throw new Error('Failed to send subscription to server');
-    } else {
-        new Notification('Hello, from Yourbit!', {
-            body: 'You are now subscribed to notifications',
-            icon: '/static/images/icons/icon-72x72.png',
-            vibrate: [100, 50, 100],
-            data: {
-                dateOfArrival: Date.now(),
-                primaryKey: 1
-            }
-        });
-
-        hideTopBanner();
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to send subscription to server. Server Response:', response.status); 
+      } else {
+        // ... rest of your code (show notification, hide banner)
+      }
+    } catch (error) {
+      console.error('Error sending subscription data to server:', error);
+      // Handle the error
     }
-}
+  }
+  
 
 const checkPermission = async () => {
     if (!('serviceWorker' in navigator)) {
@@ -947,6 +950,12 @@ const checkPermission = async () => {
         throw new Error('Notifications not supported in this browser');
     }
 }
+
+const registerSW = async () => {
+    const swRegistration = await navigator.serviceWorker.register('/static/scripts/main/sw.js');
+    return swRegistration;
+}
+
 const requestNotificationPermission = async () => {
     const permission = await Notification.requestPermission();
 
@@ -969,11 +978,21 @@ function yb_showNotifyPrompt() {
     }
 }
 
+let swRegistration; // Declared in a shared scope
 
-$(document).ready(function() {
-
+$(document).ready(async function() { // Using async for await 
+  try {
+    await checkPermission(); 
+    swRegistration = await registerSW(); 
     yb_showNotifyPrompt();
 
+  } catch (error) {
+    console.error('Error initializing push notifications:', error);
+    // Handle setup errors
+  }
+});
+
+$(document).ready(function() {
     if ('serviceWorker' in navigator && 'SyncManager' in window) {
         navigator.serviceWorker.ready
         .then(function(registration) {
