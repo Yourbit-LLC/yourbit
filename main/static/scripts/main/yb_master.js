@@ -944,8 +944,9 @@ const requestNotificationPermission = async () => {
 function yb_notificationPermCheck() {
     console.log(Notification.permission)
     console.log("running permissions check")
-
+    if (Notification.permission === 'default') {
         SUBSCRIPTION_BANNER.classList.add('open');
+    }
     
 }
 
