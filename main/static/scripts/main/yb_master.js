@@ -941,14 +941,10 @@ const requestNotificationPermission = async () => {
 
 function yb_notificationPermCheck() {
     console.log(Notification.permission)
+    console.log("running permissions check")
     if (Notification.permission === 'default') {
         // Notifications not yet granted or denied
         // Show subscription banner
-        SUBSCRIPTION_BANNER.classList.add('open');
-    } else if (Notification.permission === 'denied') {
-        // Notifications denied
-        // Show error message
-        console.log('Notifications denied');
         SUBSCRIPTION_BANNER.classList.add('open');
     }
 }
