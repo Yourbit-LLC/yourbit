@@ -942,11 +942,9 @@ const requestNotificationPermission = async () => {
 function yb_notificationPermCheck() {
     console.log(Notification.permission)
     console.log("running permissions check")
-    if (Notification.permission === 'default') {
-        // Notifications not yet granted or denied
-        // Show subscription banner
+
         SUBSCRIPTION_BANNER.classList.add('open');
-    }
+    
 }
 
 const swRegistration = async () => {
