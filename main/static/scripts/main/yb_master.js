@@ -985,7 +985,7 @@ async function displayNotification() {
 $(document).ready(function() {
 
     swRegistration();
-    setTimeout(yb_notificationPermCheck, 5000);
+    yb_notificationPermCheck();
 
     if ('serviceWorker' in navigator && 'SyncManager' in window) {
         navigator.serviceWorker.ready
