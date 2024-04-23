@@ -952,7 +952,7 @@ const checkPermission = async () => {
 }
 
 const registerSW = async () => {
-    const swRegistration = await navigator.serviceWorker.register('/static/scripts/main/sw.js');
+    const swRegistration = await navigator.serviceWorker.register('/static/scripts/sw.js');
     return swRegistration;
 }
 
@@ -994,7 +994,7 @@ async function initializeWorkers() { // Using async for await
 
 $(document).ready(function() {
     initializeWorkers();
-    
+
     if ('serviceWorker' in navigator && 'SyncManager' in window) {
         navigator.serviceWorker.ready
         .then(function(registration) {
