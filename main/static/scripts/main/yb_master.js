@@ -984,7 +984,7 @@ function yb_showNotifyPrompt() {
 async function initializeWorkers() { // Using async for await 
   try {
     await checkPermission(); 
-    swRegistration = await registerSW(); 
+    swRegistration = registerSW(); 
     yb_showNotifyPrompt();
 
   } catch (error) {
