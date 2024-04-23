@@ -887,7 +887,7 @@ function hideTopBanner() {
         ----------------------------------
 */
 
-let swRegistration; // Declared in a shared scope
+var swRegistration; // Declared in a shared scope
 
 async function subscribeToPush() {
     try {
@@ -984,7 +984,17 @@ function yb_showNotifyPrompt() {
 
 
 $(document).ready(function() {
-    registerSW();
+    if (typeof navigator.serviceWorker !== 'undefined') {
+        navigator.serviceWorker.register('/static/sw.js')
+        .then(function(registration) {
+            console.log('Service Worker registered successfully');
+            swRegistration = registration;
+        })
+        .catch(function(err) {
+            console.error('Service Worker registration failed: ', err);
+        });
+    }
+
 
     if ('serviceWorker' in navigator && 'SyncManager' in window) {
         navigator.serviceWorker.ready
