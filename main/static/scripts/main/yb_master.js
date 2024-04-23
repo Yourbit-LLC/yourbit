@@ -993,7 +993,6 @@ $(document).ready(async function() { // Using async for await
 });
 
 $(document).ready(function() {
-    initializeWorkers();
 
     if ('serviceWorker' in navigator && 'SyncManager' in window) {
         navigator.serviceWorker.ready
