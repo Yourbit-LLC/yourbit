@@ -916,11 +916,13 @@ async function subscribeToPush() {
   }
   
   async function sendSubscriptionToServer(subscription) {
+    let csrfToken = getCSRF();
     try {
       const response = await fetch('/notify/api/subscribe/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken
         },
         body: JSON.stringify(subscription)
       });
