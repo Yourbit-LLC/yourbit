@@ -923,6 +923,8 @@ async function sendSubscriptionToServer(subscription) {
                 primaryKey: 1
             }
         });
+
+        hideTopBanner();
     }
 }
 
@@ -956,9 +958,21 @@ const requestNotificationPermission = async () => {
     }
 }
 
+const checkSubscription = async () => {
+    const subscription = await swRegistration.pushManager.getSubscription();
+    return subscription;
+}
+
+function yb_showNotifyPrompt() {
+    if (Notification.permission === 'default') {
+        SUBSCRIPTION_BANNER.classList.add('open');
+    }
+}
+
 
 $(document).ready(function() {
 
+    yb_showNotifyPrompt();
 
     if ('serviceWorker' in navigator && 'SyncManager' in window) {
         navigator.serviceWorker.ready
