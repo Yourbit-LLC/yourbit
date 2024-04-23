@@ -888,6 +888,16 @@ function hideTopBanner() {
 */
 
 
+const swRegistration = async () => {
+    if ('serviceWorker' in navigator) {
+
+        const registration = await navigator.serviceWorker.register("/static/sw.js").catch(console.error);
+        console.log('Service Worker registered successfully');
+        return registration;
+
+    }
+}
+
 async function subscribeToPush() {
     let serverPublicKey = VAPID_PUBLIC_KEY;
 
@@ -950,15 +960,6 @@ function yb_notificationPermCheck() {
     
 }
 
-const swRegistration = async () => {
-    if ('serviceWorker' in navigator) {
-
-        const registration = await navigator.serviceWorker.register("/static/sw.js").catch(console.error);
-        console.log('Service Worker registered successfully');
-        return registration;
-
-    }
-}
 
 const yb_registrations = async () => {
     checkPermission();
