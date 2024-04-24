@@ -112,9 +112,10 @@ class NotificationDevice(viewsets.ModelViewSet):
     
     #Register a device
     def create(self, request, *args, **kwargs):
-        device_data = request.data["device"]
-        
         print(request.data)
+    
+        device_data = request.data["device"]
+    
 
         device = UserDevice.objects.get_or_create(
             user=request.user,
