@@ -930,15 +930,19 @@ async function subscribeToPush() {
   async function sendSubscriptionToServer(subscription) {
     let csrfToken = getCSRF();
     try {
-      const response = await fetch('/notify/api/subscribe/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': csrfToken
-        },
-        data: subscription
-      });
-  
+      const response = await $.ajax({
+            type: "POST",
+            url: '/notify/api/subscribe/',
+            data: JSON.stringify(subscription),
+            contentType: 'application/json',
+            headers: {
+                'X-CSRFToken': csrfToken
+            },
+            success: function(data){
+                console.log(data);
+            }
+        })
+
       if (!response.ok) {
         throw new Error('Failed to send subscription to server. Server Response:', response.status); 
       } else {
