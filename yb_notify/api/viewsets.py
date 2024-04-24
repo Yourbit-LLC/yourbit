@@ -100,7 +100,7 @@ class NotificationCoreViewSet(viewsets.ModelViewSet):
         return Response({'status': 'notification marked as seen'})
 
 
-class PushSubscription(viewsets.ModelViewSet):
+class PushSubscriptionViewset(viewsets.ModelViewSet):
     queryset = PushSubscription.objects.all()
     permission_classes = [
         permissions.IsAuthenticated
