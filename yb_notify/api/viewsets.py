@@ -100,7 +100,7 @@ class NotificationCoreViewSet(viewsets.ModelViewSet):
         return Response({'status': 'notification marked as seen'})
 
 
-class NotificationDevice(viewsets.ModelViewSet):
+class PushSubscription(viewsets.ModelViewSet):
     queryset = UserDevice.objects.all()
     permission_classes = [
         permissions.IsAuthenticated
@@ -114,22 +114,13 @@ class NotificationDevice(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         print(request.data)
     
-        device_data = request.data["device"]
+        device_data = request.data
     
-
-        device = UserDevice.objects.get_or_create(
-            user=request.user,
-            device_id=device_data['device_id'],
-            device_type=device_data['device_type'],
-            device_name = device_data['device_name']
-        )
-
         subscription = PushSubscription.objects.create(
-            device = device,
-            endpoint=device_data['subscription']['endpoint'],
-            p256dh=device_data['subscription']['keys']['p256dh'],
-            auth=device_data['subscription']['keys']['auth'],
-            user_device=device
+            user = request.user,
+            endpoint=device_data['endpoint'],
+            p256dh=device_data['keys']['p256dh'],
+            auth=device_data['keys']['auth'],
         )
 
         subscription.save()
