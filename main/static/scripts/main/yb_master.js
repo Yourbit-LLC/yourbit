@@ -943,11 +943,12 @@ async function subscribeToPush() {
             }
         })
 
-      if (!response.ok) {
-        throw new Error('Failed to send subscription to server. Server Response:', response.status); 
-      } else {
-        // ... rest of your code (show notification, hide banner)
-      }
+        new Notification('Hello, from Yourbit!', {
+            body: `You're in the loop! You will now receive notifications from Yourbit!`,
+            icon: '/static/images/yourbit-icon.png',
+        });
+
+
     } catch (error) {
       console.error('Error sending subscription data to server:', error);
       // Handle the error
