@@ -111,7 +111,6 @@ class NotificationDevice(viewsets.ModelViewSet):
         return self.queryset.filter(profile=self.request.user.profile)
     
     #Register a device
-    @action(detail=False, methods=['post'])
     def create(self, request, *args, **kwargs):
         device_data = request.data["device"]
         
