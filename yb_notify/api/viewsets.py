@@ -3,7 +3,7 @@ from rest_framework import viewsets, permissions, generics, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework import filters
-from ..models import Notification, NotificationCore, UserDevice, PushSubscription
+from ..models import Notification, NotificationCore, PushSubscription
 from .serializers import NotificationSerializer, NotificationCoreSerializer, UserDeviceSerializer, NotificationSubscriptionSerializer
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
@@ -101,7 +101,7 @@ class NotificationCoreViewSet(viewsets.ModelViewSet):
 
 
 class PushSubscription(viewsets.ModelViewSet):
-    queryset = UserDevice.objects.all()
+    queryset = PushSubscription.objects.all()
     permission_classes = [
         permissions.IsAuthenticated
     ]
@@ -131,13 +131,11 @@ class PushSubscription(viewsets.ModelViewSet):
     @action(detail=False, methods=['post'])
     def unregister(self, request, *args, **kwargs):
         profile = self.request.user.profile
-        device_id = request.data['device_id']
+        device_id = request.data['endpoint']
         
-        device = UserDevice.objects.get(user=request.user, device_id=device_id)
-        push_subscription = PushSubscription.objects.get(device=device)
+        push_subscription = PushSubscription.objects.get(device=device_id)
         
         push_subscription.delete()
-        device.delete()
 
         return Response({'status': 'device unregistered'})
     
@@ -145,7 +143,7 @@ class PushSubscription(viewsets.ModelViewSet):
     @action(detail=False, methods=['post'])
     def send_test(self, request, *args, **kwargs):
         profile = self.request.user.profile
-        devices = UserDevice.objects.filter(user=request.user)
+        devices = PushSubscription.objects.filter(user=request.user)
         for device in devices:
             device.send_test_notification(device.device_type)
 
