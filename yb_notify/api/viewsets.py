@@ -23,7 +23,7 @@ class NotificationViewSet(viewsets.ModelViewSet):
         #Filter by query param
         user_filter = self.request.query_params.get('notify_class', None)
 
-        if user_filter is not '':
+        if user_filter != '':
             queryset = queryset.filter(notify_class=user_filter)
 
         serializer = NotificationSerializer(queryset, many=True)
