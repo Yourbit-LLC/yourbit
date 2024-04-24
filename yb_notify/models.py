@@ -13,7 +13,7 @@ class NotificationCore(models.Model):
     seen_notifications = models.ManyToManyField('Notification', related_name='seen_notifications', blank=True)
 
 class PushSubscription(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name="push_subscriptions")
     endpoint = models.URLField(max_length=50, blank=True)
     p256dh = models.CharField(max_length=100, blank=True) # Public key
     auth = models.CharField(max_length=100, blank=True) # Auth secret
