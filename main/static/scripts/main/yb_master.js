@@ -936,7 +936,7 @@ async function subscribeToPush() {
             'Content-Type': 'application/json',
             'X-CSRFToken': csrfToken
         },
-        data: JSON.stringify(subscription)
+        data: subscription
       });
   
       if (!response.ok) {
