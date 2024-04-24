@@ -4,8 +4,6 @@ console.log('Service Worker Loaded...');
 
 const CACHE_NAME = "yourbit-cache-v1";
 const PRECACHE_ASSETS = [
-    "/",
-
 ];
 
 
