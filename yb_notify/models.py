@@ -14,9 +14,9 @@ class NotificationCore(models.Model):
 
 class PushSubscription(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name="push_subscriptions")
-    endpoint = models.URLField(max_length=50, blank=True)
-    p256dh = models.CharField(max_length=100, blank=True) # Public key
-    auth = models.CharField(max_length=100, blank=True) # Auth secret
+    endpoint = models.URLField(max_length=1000, blank=True)
+    p256dh = models.CharField(max_length=1000, blank=True) # Public key
+    auth = models.CharField(max_length=1000, blank=True) # Auth secret
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
