@@ -112,7 +112,7 @@ class NotificationDevice(viewsets.ModelViewSet):
     
     #Register a device
     @action(detail=False, methods=['post'])
-    def register(self, request, *args, **kwargs):
+    def create(self, request, *args, **kwargs):
         device_data = request.data["device"]
         
         print(request.data)
