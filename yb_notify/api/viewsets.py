@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework import filters
 from ..models import Notification, NotificationCore, PushSubscription
-from .serializers import NotificationSerializer, NotificationCoreSerializer, NotificationSubscriptionSerializer, 
+from .serializers import NotificationSerializer, NotificationCoreSerializer, NotificationSubscriptionSerializer
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 
