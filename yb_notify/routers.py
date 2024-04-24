@@ -1,10 +1,10 @@
 from rest_framework.routers import DefaultRouter
-from .api.viewsets import NotificationViewSet, NotificationCoreViewSet, PushSubscription
+from .api.viewsets import NotificationViewSet, NotificationCoreViewSet, PushSubscription, PushSubscriptionViewset
 
 router = DefaultRouter()
 router.register(r'notifications', NotificationViewSet, basename='notifications')
 router.register(r'notification-core', NotificationCoreViewSet, basename='notification-core')
-router.register(r'subscribe', PushSubscription, basename='subscribe')
+router.register(r'subscribe', PushSubscriptionViewset, basename='subscribe')
 
 # Add more endpoints as needed
 urlpatterns = router.urls
