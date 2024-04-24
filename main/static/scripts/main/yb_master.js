@@ -940,13 +940,15 @@ async function subscribeToPush() {
             },
             success: function(data){
                 console.log(data);
+
+                new Notification('Hello, from Yourbit!', {
+                    body: `You're in the loop! You will now receive notifications from Yourbit!`,
+                    icon: '/static/images/yourbit-icon.png',
+                });
             }
         })
 
-        new Notification('Hello, from Yourbit!', {
-            body: `You're in the loop! You will now receive notifications from Yourbit!`,
-            icon: '/static/images/yourbit-icon.png',
-        });
+
 
 
     } catch (error) {
