@@ -78,16 +78,16 @@ def subscribeToNotifications(request):
     print(data)
     subscription = SubscriptionInfo.objects.create(
         endpoint=data['endpoint'],
-        auth=data['auth'],
+        auth=data["keys"]['auth'],
         browser=data['browser'],
         user_agent=data['user_agent'],
-        p256dh=data['p256dh'],
+        p256dh=data["keys"]['p256dh'],
     )
 
     subscription.save()
     
     push_info = PushInformation.objects.create(
-        user=user,
+        user=request.user,
         subscription=subscription,
         group=None,
         
@@ -96,7 +96,7 @@ def subscribeToNotifications(request):
     push_info.save()
 
     send_user_notification(
-        user=user,
+        user=request.user,
         payload={
             'head': 'Welcome to Yourbit!',
             'body': 'You are now subscribed to notifications from Yourbit.',
