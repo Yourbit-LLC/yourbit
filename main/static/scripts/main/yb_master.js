@@ -953,11 +953,8 @@ async function subscribeToPush() {
   
   async function sendSubscriptionToServer(subscription) {
     console.log(subscription)
-    //Get browser name and append to subscription
-    subscription.browser = getBrowserName(navigator.userAgent);
-
-    subscription.user_agent = navigator.userAgent;
-
+    //Get browser name and append to 
+  
     //Get browser type and append to subscription
     
     let csrfToken = getCSRF();
