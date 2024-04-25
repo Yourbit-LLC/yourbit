@@ -104,6 +104,7 @@ def subscribeToNotifications(request):
             'tag': 'yourbit',
             'data': {
                 'url': '/notify/',
+                'action': 'open_url'  # Specify the action as 'open_url'
             }
         },
         ttl=1000,
