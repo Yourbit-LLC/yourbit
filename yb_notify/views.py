@@ -79,8 +79,7 @@ def subscribeToNotifications(request):
     subscription = SubscriptionInfo.objects.create(
         endpoint=data['endpoint'],
         auth=data["keys"]['auth'],
-        browser=data['browser'],
-        user_agent=data['user_agent'],
+
         p256dh=data["keys"]['p256dh'],
     )
 
@@ -123,8 +122,7 @@ def unsubscribeToNotifications(request):
     subscription = SubscriptionInfo.objects.get(
         endpoint=data['endpoint'],
         auth=data['auth'],
-        browser=data['browser'],
-        user_agent=data['user_agent'],
+
         p256dh=data['p256dh'],
     )
 
