@@ -38,7 +38,7 @@ def create_message_notification(sender, instance, created, **kwargs):
                 addToCore(notification, member.profile)
 
                 # #Send Push Notification
-                payload = {"title": "New Message from" + instance.from_user.profile.display_name, "body": instance.body[:100], "icon": "/static/images/2023-logo-draft.png"}
+                payload = {"title": "New Message from " + instance.from_user.profile.display_name, "body": "They said: " + instance.body[:100], "icon": "/static/images/2023-logo-draft.png"}
                 send_user_notification(user=member, payload=payload, ttl=1000)
 
 #Create a notification on like of a bit
