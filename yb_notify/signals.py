@@ -63,8 +63,8 @@ def create_bit_like_notification(sender, instance, created, **kwargs):
         addToCore(notification, bit.profile)
 
         #Send Push Notification
-        # payload = {"head": "New Like", "body": instance.user.username + " has liked your bit", "icon": "/static/images/2023-logo-draft.png"}
-        # send_user_notification(user=bit.profile.user, payload=payload, ttl=1000)
+        payload = {"title": "New Like", "body": instance.user.username + " has liked your bit", "icon": "/static/images/2023-logo-draft.png"}
+        send_user_notification(user=bit.profile.user, payload=payload, ttl=1000)
 
 #Create a notification on creation of bit comment
 @receiver(post_save, sender=BitComment)
@@ -85,8 +85,8 @@ def create_bit_comment_notification(sender, instance, created, **kwargs):
         addToCore(notification, bit.profile)
 
         #Send Push Notification
-        # payload = {"head": "New Comment", "body": instance.user.username + " has commented on your bit", "icon": "/static/images/2023-logo-draft.png"}
-        # send_user_notification(user=bit.profile.user, payload=payload, ttl=1000)
+        payload = {"title": "New Comment", "body": instance.user.username + " has commented on your bit", "icon": "/static/images/2023-logo-draft.png"}
+        send_user_notification(user=bit.profile.user, payload=payload, ttl=1000)
 
 
 #Create a notification on friend request
@@ -109,8 +109,8 @@ def create_friend_request_notification(sender, instance, created, **kwargs):
         addToCore(notification, instance.to_user)
 
         #Send Push Notification
-        # payload = {"head": "New Friend Request", "body": instance.from_user.user.username + " has sent you a friend request", "icon": "/static/images/2023-logo-draft.png"}
-        # send_user_notification(user=instance.to_user.user, payload=payload, ttl=1000)
+        payload = {"title": "New Friend Request", "body": instance.from_user.user.username + " has sent you a friend request", "icon": "/static/images/2023-logo-draft.png"}
+        send_user_notification(user=instance.to_user.user, payload=payload, ttl=1000)
 
 #Create a notification on friend request acceptance
 @receiver(post_save, sender=FriendRequest)
