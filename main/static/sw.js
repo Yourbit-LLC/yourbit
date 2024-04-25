@@ -37,16 +37,24 @@ self.addEventListener('activate', event => {
 self.addEventListener('push', (event) => {
     let pushMessageJSON = event.data.json();
 
-    event.waitUntil(self.registration.showNotification(pushMessageJSON.title, {
-        body: pushMessageJSON.body,
-        tag: pushMessageJSON.tag,
-        actions: [{
-            action: pushMessageJSON.actionURL,
-            title: pushMessageJSON.actionTitle
-        }]
-    })
+    try {
+        event.waitUntil(self.registration.showNotification(pushMessageJSON.title, {
+            body: pushMessageJSON.body,
+            tag: pushMessageJSON.tag,
+            actions: [{
+                action: pushMessageJSON.actionURL,
+                title: pushMessageJSON.actionTitle
+            }]
+        }));
+    } catch(err) {
+        console.error(err);
+        new Notification(pushMessageJSON.title, {
+            body: pushMessageJSON.body,
+            tag: pushMessageJSON.tag,
+        });
+    }
     
-)});
+});
 
 self.addEventListener('notificationclick', function(event) {
     if (!event.action) {
