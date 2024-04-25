@@ -74,7 +74,6 @@ def subscribeToNotifications(request):
     from webpush import send_user_notification
 
     data = json.loads(request.body)
-    user = User.objects.get(username=data['username'])
 
     subscription = SubscriptionInfo.objects.create(
         endpoint=data['endpoint'],
