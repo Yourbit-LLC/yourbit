@@ -40,11 +40,7 @@ self.addEventListener('push', (event) => {
     try {
         event.waitUntil(self.registration.showNotification(pushMessageJSON.title, {
             body: pushMessageJSON.body,
-            tag: pushMessageJSON.tag,
-            actions: [{
-                action: pushMessageJSON.actionURL,
-                title: pushMessageJSON.actionTitle
-            }]
+            tag: pushMessageJSON.tag
         }));
     } catch(err) {
         console.error(err);

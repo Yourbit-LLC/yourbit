@@ -124,10 +124,17 @@ def send_test_notification(request):
             'body': 'This is a test notification you requested. Let us know what you find!',
             'icon': '/static/images/yourbit_logo.png',
             'tag': 'yourbit',
+            'actions': [
+                {
+                    'action': 'open_url',
+                    'title': 'Open Yourbit',
+                    'icon': '/static/images/yourbit_logo.png'
+                }
+            ],
             'data': {
                 'url': '/notify/',
-                'action': 'open_url'  # Specify the action as 'open_url'
             }
+            
         },
         ttl=1000,
     )
