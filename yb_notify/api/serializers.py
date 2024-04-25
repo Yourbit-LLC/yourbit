@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from yb_notify.models import Notification, NotificationCore, PushSubscription
+from yb_notify.models import Notification, NotificationCore
 from yb_profile.api.serializers import ProfileResultSerializer
 
 class NotificationSerializer(serializers.ModelSerializer):
@@ -18,13 +18,5 @@ class NotificationCoreSerializer(serializers.ModelSerializer):
         model = NotificationCore
         fields = '__all__'
 
-class NotificationSubscriptionSerializer(serializers.Serializer):
-    endpoint = serializers.CharField()
-    p256dh = serializers.CharField()
-    auth = serializers.CharField()
 
-
-    class Meta:
-        model = PushSubscription
-        fields = '__all__'
 

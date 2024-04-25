@@ -3,7 +3,7 @@ from rest_framework import viewsets, permissions, generics, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework import filters
-from ..models import Notification, NotificationCore, PushSubscription
+from ..models import Notification, NotificationCore
 from .serializers import NotificationSerializer, NotificationCoreSerializer, NotificationSubscriptionSerializer
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
@@ -98,53 +98,3 @@ class NotificationCoreViewSet(viewsets.ModelViewSet):
 
         #Return a response
         return Response({'status': 'notification marked as seen'})
-
-
-class PushSubscriptionViewset(viewsets.ModelViewSet):
-    queryset = PushSubscription.objects.all()
-    permission_classes = [
-        permissions.IsAuthenticated
-    ]
-    serializer_class = NotificationSubscriptionSerializer
-
-    def get_queryset(self):
-        return self.queryset.filter(profile=self.request.user.profile)
-    
-    #Register a device
-    def create(self, request, *args, **kwargs):
-        print(request.data)
-    
-        device_data = request.data
-    
-        subscription = PushSubscription.objects.create(
-            user = request.user,
-            endpoint=device_data['endpoint'],
-            p256dh=device_data['keys']['p256dh'],
-            auth=device_data['keys']['auth'],
-        )
-
-        subscription.save()
-
-        return Response({'status': 'device registered'})
-    
-    #Unregister a device
-    @action(detail=False, methods=['post'])
-    def unregister(self, request, *args, **kwargs):
-        profile = self.request.user.profile
-        device_id = request.data['endpoint']
-        
-        push_subscription = PushSubscription.objects.get(device=device_id)
-        
-        push_subscription.delete()
-
-        return Response({'status': 'device unregistered'})
-    
-    #Send a test notification
-    @action(detail=False, methods=['post'])
-    def send_test(self, request, *args, **kwargs):
-        profile = self.request.user.profile
-        devices = PushSubscription.objects.filter(user=request.user)
-        for device in devices:
-            device.send_test_notification(device.device_type)
-
-        return Response({'status': 'test notification sent'})
