@@ -69,7 +69,7 @@ class NotificationPage(View):
         
 
 @method_decorator(login_required, name='dispatch')
-def subscribeToNotifications(request):
+def subscribeToNotifications(request, *args, **kwargs):
     import json
     from webpush.models import SubscriptionInfo, PushInformation
     from webpush import send_user_notification
