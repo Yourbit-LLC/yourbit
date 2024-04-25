@@ -113,6 +113,25 @@ def subscribeToNotifications(request):
 
     return HttpResponse("Success")
 
+def send_test_notification(request):
+    from webpush.models import SubscriptionInfo, PushInformation
+    from webpush import send_user_notification
+
+    send_user_notification(
+        user=request.user,
+        payload={
+            'head': 'Testing 1... 2... 3...',
+            'body': 'This is a test notification you requested. Let us know what you find!',
+            'icon': '/static/images/yourbit_logo.png',
+            'tag': 'yourbit',
+            'data': {
+                'url': '/notify/',
+                'action': 'open_url'  # Specify the action as 'open_url'
+            }
+        },
+        ttl=1000,
+    )
+
 @method_decorator(login_required, name='dispatch')
 def unsubscribeToNotifications(request):
     import json
