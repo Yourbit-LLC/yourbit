@@ -25,13 +25,12 @@ def create_message_notification(sender, instance, created, **kwargs):
                 notification = Notification(
                     to_user = member.profile,
                     from_user = instance.from_user.profile,
-                    body = instance.body,
+                    body = instance.body[:100],
                     type = 6,
                     link = "/messages/" + str(conversation.id),
                     conversation = conversation,
-                    title = "Message from " + instance.from_user.profile.display_name,
+                    title = "Message from " + instance.from_user.profile.display_name[:50],
                     notify_class = 1
-
                 )
 
                 notification.save()
@@ -39,8 +38,8 @@ def create_message_notification(sender, instance, created, **kwargs):
                 addToCore(notification, member.profile)
 
                 # #Send Push Notification
-                # payload = {"head": "New Message", "body": instance.body, "icon": "/static/images/2023-logo-draft.png"}
-                # send_user_notification(user=member, payload=payload, ttl=1000)
+                payload = {"title": "New Message from" + instance.from_user.display_name, "body": instance.body[:100], "icon": "/static/images/2023-logo-draft.png"}
+                send_user_notification(user=member, payload=payload, ttl=1000)
 
 #Create a notification on like of a bit
 @receiver(post_save, sender=BitLike)
@@ -50,7 +49,7 @@ def create_bit_like_notification(sender, instance, created, **kwargs):
         notification = Notification(
             bit = bit,
             to_user = bit.profile,
-            body = instance.user.username + " has liked your bit",
+            body = instance.user.profile.display_name + " has liked your bit",
             type = 1,
             link = "/bits/" + str(bit.id),
             title = "New Like",
@@ -63,7 +62,13 @@ def create_bit_like_notification(sender, instance, created, **kwargs):
         addToCore(notification, bit.profile)
 
         #Send Push Notification
-        payload = {"title": "New Like", "body": instance.user.username + " has liked your bit", "icon": "/static/images/2023-logo-draft.png"}
+
+        if bit.title != "":
+            notification_body = bit.title
+        else:
+            notification_body = bit.body[:100]
+
+        payload = {"title": "New Like from " + instance.user.profile.display_name, "body" : notification_body, "icon": "/static/images/2023-logo-draft.png"}
         send_user_notification(user=bit.profile.user, payload=payload, ttl=1000)
 
 #Create a notification on creation of bit comment
@@ -74,7 +79,7 @@ def create_bit_comment_notification(sender, instance, created, **kwargs):
         notification = Notification(
             bit = bit,
             to_user = bit.profile,
-            body = instance.user.username + " has commented on your bit",
+            body = instance.user.profile.display_name + " has commented on your bit",
             type = 2,
             link = "/bits/" + str(bit.id),
             title = "New Comment",
@@ -85,7 +90,7 @@ def create_bit_comment_notification(sender, instance, created, **kwargs):
         addToCore(notification, bit.profile)
 
         #Send Push Notification
-        payload = {"title": "New Comment", "body": instance.user.username + " has commented on your bit", "icon": "/static/images/2023-logo-draft.png"}
+        payload = {"title": "New Comment from " + instance.user.profile.display_name, "body": instance.body, "icon": "/static/images/2023-logo-draft.png"}
         send_user_notification(user=bit.profile.user, payload=payload, ttl=1000)
 
 
@@ -132,8 +137,8 @@ def create_friend_accept_notification(sender, instance, created, **kwargs):
         addToCore(notification, instance.from_user)
 
         #Send Push Notification
-        # payload = {"head": "Friend Request Accepted", "body": instance.to_user.user.username + " has accepted your friend request", "icon": "/static/images/2023-logo-draft.png"}
-        # send_user_notification(user=instance.from_user.user, payload=payload, ttl=1000)
+        payload = {"title": "Friend Request Accepted", "body": instance.to_user.user.username + " has accepted your friend request", "icon": "/static/images/2023-logo-draft.png"}
+        send_user_notification(user=instance.from_user.user, payload=payload, ttl=1000)
 
 
 
