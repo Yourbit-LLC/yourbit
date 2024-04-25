@@ -98,7 +98,7 @@ def subscribeToNotifications(request):
     send_user_notification(
         user=request.user,
         payload={
-            'head': 'Welcome to Yourbit!',
+            'title': 'Welcome to Yourbit!',
             'body': 'You are now subscribed to notifications from Yourbit.',
             'icon': '/static/images/yourbit_logo.png',
             'tag': 'yourbit',
