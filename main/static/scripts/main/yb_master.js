@@ -881,6 +881,30 @@ function hideTopBanner() {
 
 }
 
+function getBrowserName(userAgent) {
+    // Convert the user agent string to lowercase for easier comparison
+    var ua = userAgent.toLowerCase();
+  
+    // Check for common browser identifiers in the user agent string
+    if (ua.indexOf('firefox') !== -1) {
+      return 'Firefox';
+    } else if (ua.indexOf('chrome') !== -1) {
+      return 'Chrome';
+    } else if (ua.indexOf('safari') !== -1) {
+      return 'Safari';
+    } else if (ua.indexOf('opera') !== -1 || ua.indexOf('opr') !== -1) {
+      return 'Opera';
+    } else if (ua.indexOf('edge') !== -1) {
+      return 'Edge';
+    } else if (ua.indexOf('msie') !== -1 || ua.indexOf('trident') !== -1) {
+      return 'Internet Explorer';
+    } else {
+      // If the browser is not recognized, return 'Unknown'
+      return 'Unknown';
+    }
+  }
+  
+
 /*
         ----------------------------------
         -----SERVICE WORKER FUNCTIONS-----
@@ -928,11 +952,19 @@ async function subscribeToPush() {
   }
   
   async function sendSubscriptionToServer(subscription) {
+    console.log(subscription)
+    //Get browser name and append to subscription
+    subscription.browser = getBrowserName(navigator.userAgent);
+
+    subscription.user_agent = navigator.userAgent;
+
+    //Get browser type and append to subscription
+    
     let csrfToken = getCSRF();
     try {
       const response = await $.ajax({
             type: "POST",
-            url: '/notify/api/subscribe/',
+            url: '/notify/subscribe/',
             data: JSON.stringify(subscription),
             contentType: 'application/json',
             headers: {
@@ -940,11 +972,6 @@ async function subscribeToPush() {
             },
             success: function(data){
                 console.log(data);
-
-                new Notification('Hello, from Yourbit!', {
-                    body: `You're in the loop! You will now receive notifications from Yourbit!`,
-                    icon: '/static/images/yourbit-icon.png',
-                });
             }
         })
 

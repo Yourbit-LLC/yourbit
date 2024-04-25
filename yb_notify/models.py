@@ -12,16 +12,6 @@ class NotificationCore(models.Model):
     unseen_notifications = models.ManyToManyField('Notification', related_name='unseen_notifications', blank=True)
     seen_notifications = models.ManyToManyField('Notification', related_name='seen_notifications', blank=True)
 
-class PushSubscription(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name="push_subscriptions")
-    endpoint = models.URLField(max_length=1000, blank=True)
-    p256dh = models.CharField(max_length=1000, blank=True) # Public key
-    auth = models.CharField(max_length=1000, blank=True) # Auth secret
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        unique_together = ('endpoint', 'p256dh', 'auth')
-
 # Create your models here.
 class Notification(models.Model):
 
