@@ -42,15 +42,9 @@ self.addEventListener('push', (event) => {
             body: pushMessageJSON.body,
             tag: pushMessageJSON.tag,
             icon: pushMessageJSON.icon,
-            data: pushMessageJSON.data,
-            actions: pushMessageJSON.actions.map(action => ({action: action.action, title: action.title})),
         }));
     } catch(err) {
         console.error(err);
-        new Notification(pushMessageJSON.title, {
-            body: pushMessageJSON.body,
-            tag: pushMessageJSON.tag,
-        });
     }
     
 });
