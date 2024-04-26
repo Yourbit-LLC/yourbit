@@ -1023,6 +1023,9 @@ function yb_showNotifyPrompt() {
     }
 }
 
+function yb_acceptOption(this_id) {
+    yb_acceptRequest(this_id);
+}
 
 
 
