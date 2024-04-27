@@ -894,6 +894,9 @@
 
 }
 
+.yb-loading-iconContainer.hide {
+    display: none;
+}
 .bit-container {
     position: relative;
     transform: translateY(100vh);

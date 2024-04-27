@@ -449,24 +449,12 @@ function yb_closeCard() {
 }
 
 function yb_hide2WayLoad() {
-    for (let i = 0; i < SIDE_CONTAINERS.length + 1; i++) {
-        let this_object = SIDE_CONTAINERS[i];
-        if (this_object.classList.contains("open")){
-            this_object.getElementById("yb-load-iconContainer").classList.add("hide");
-            break;
-        }
-    }
+    $(".yb-load-iconContainer").addClass("hide");
 
 }
 
 function yb_show2WayLoad() {
-    for (let i = 0; i < SIDE_CONTAINERS.length + 1; i++) {
-        let this_object = SIDE_CONTAINERS[i];
-        if (this_object.classList.contains("open")){
-            this_object.getElementById("yb-load-iconContainer").classList.remove("hide");
-            break;
-        }
-    }
+    $(".yb-load-iconContainer").removeClass("hide");
 }
 
 
@@ -519,7 +507,7 @@ function yb_toggle2WayContainer(type, scroll=false){
                         NAV_BAR.classList.remove("hideMobile");
                         CREATE_POPOUT.classList.remove("hide");
                         SEARCH_POPOUT.classList.remove("hide");
-                        yb_hide2WayLoad();
+                        yb_show2WayLoad();
                     }
 
                     history.pushState(null, null, "/");
