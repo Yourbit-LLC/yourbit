@@ -53,7 +53,7 @@
                 {% elif notification.type == 3 or notification.type == 5%} 
                     yb_navigateToProfile()
                 {% elif notification.type == 6%} 
-                    yb_toggleConversation2Way('{{notification.message.conversation.id}}')
+                    yb_toggleConversation2Way('{{notification.conversation.id}}')
                 {% endif %}
                 
             {% endif %}"
