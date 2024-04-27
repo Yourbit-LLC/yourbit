@@ -12,6 +12,11 @@ class NotificationCore(models.Model):
     unseen_notifications = models.ManyToManyField('Notification', related_name='unseen_notifications', blank=True)
     seen_notifications = models.ManyToManyField('Notification', related_name='seen_notifications', blank=True)
 
+class Announcement(models.Model):
+    title = models.CharField(max_length=100)
+    body = models.CharField(max_length=300)
+    time = models.DateTimeField(default=timezone.now)
+
 # Create your models here.
 class Notification(models.Model):
 

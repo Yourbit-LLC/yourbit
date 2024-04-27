@@ -2,9 +2,9 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from yb_accounts.models import Account as User
 from yb_messages.models import Message
-from yb_notify.models import Notification
+from yb_notify.models import Notification, Announcement
 from yb_bits.models import BitLike, BitComment
-from yb_profile.models import FriendRequest
+from yb_profile.models import FriendRequest, Profile
 from yb_notify.models import NotificationCore
 from webpush import send_user_notification
 
@@ -14,6 +14,44 @@ def addToCore(notification, profile):
     notification_core = NotificationCore.objects.get(profile = profile)
     notification_core.unseen_notifications.add(notification)
     notification_core.save()
+
+@receiver(post_save, sender=Announcement)
+def create_announcement_notification(sender, instance, created, **kwargs):
+    if created:
+        for user in User.objects.all():
+            notification = Notification(
+                from_user = Profile.objects.get(username = "achaney55"),
+                to_user = user,
+                body = instance.body,
+                type = 7,
+                link = "/announcements/",
+                title = instance.title,
+                notify_class = 0
+            )
+
+            notification.save()
+
+            addToCore(notification, user.profile)
+
+            #Send Push Notification
+            payload = {
+                "title": instance.title, 
+                "body": instance.body, 
+                "icon": "/static/images/2023-logo-draft.png",
+                'tag': 'yourbit',
+                'actions': [
+                    {
+                        'action': 'open_url',
+                        'title': 'Open Yourbit',
+                        'icon': '/static/images/yourbit_logo.png'
+                    }
+                ],
+                'data': {
+                    'url': '/notify/',
+                }
+                
+            }
+            send_user_notification(user=user, payload=payload, ttl=1000)
 
 @receiver(post_save, sender=Message)
 def create_message_notification(sender, instance, created, **kwargs):
