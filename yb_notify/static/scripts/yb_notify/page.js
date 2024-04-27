@@ -327,7 +327,7 @@ function yb_handleFilterClick() {
 }
 
 $(document).ready(function () {
-    yb_hide2WayLoad();
+    // yb_hide2WayLoad();
     for (let i = 0; i < notify_filter_buttons.length; i++){
         notify_filter_buttons[i].addEventListener('click', yb_handleFilterClick);
     }

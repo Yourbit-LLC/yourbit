@@ -37,7 +37,7 @@ function yb_listPeople(filter){
 }
 
 $(document).ready(function () {
-    yb_hide2WayLoad();
+    // yb_hide2WayLoad();
     for (let i = 0; i < filter_buttons.length; i++){
         filter_buttons[i].addEventListener('click', function() {
             let filter = this.getAttribute("name");

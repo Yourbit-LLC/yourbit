@@ -56,7 +56,7 @@ $(document).ready(function () {
         type = 'user';
         yb_search("messages", type, query);
     });
-    yb_hide2WayLoad();
+    // yb_hide2WayLoad();
     let next_button = document.getElementById("new-message-next");
     
     next_button.addEventListener("click", yb_createConversation)
