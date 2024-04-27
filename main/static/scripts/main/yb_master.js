@@ -507,7 +507,7 @@ function yb_toggle2WayContainer(type, scroll=false){
                         NAV_BAR.classList.remove("hideMobile");
                         CREATE_POPOUT.classList.remove("hide");
                         SEARCH_POPOUT.classList.remove("hide");
-                        yb_show2WayLoad();
+                        
                     }
 
                     history.pushState(null, null, "/");
@@ -537,7 +537,7 @@ function yb_toggle2WayContainer(type, scroll=false){
                             }
                         }
 
-                        yb_show2WayLoad();
+                        
                         
                         return ["switching", SIDE_CONTAINER_B];
 
@@ -566,7 +566,6 @@ function yb_toggle2WayContainer(type, scroll=false){
                             }
                         }
 
-                        yb_hide2WayLoad();
 
                         return ["switching", SIDE_CONTAINER_A];
                     } 
