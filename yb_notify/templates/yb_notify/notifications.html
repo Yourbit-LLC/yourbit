@@ -40,24 +40,23 @@
 
         
             {% endif %}>
-        <div id="notification-{{notification.id}}" onclick="
+        <div id="notification-{{notification.id}}" data-username="{{notification.from_user.username}}" onclick="
             {% if notification.type == 4 %}
                 yb_openCard('/profile/templates/friend_request/{{notification.friend_request.id}}/')
 
                 
             {% else %} 
-                yb_notificationMenu({{notification.type}}, {{notification.id}}, 
                     
                 {% if notification.type == 1 or notification.type == 2 or notification.type == 7%} 
-                    '{{notification.bit.id}}' 
+                    yb_viewBit('{{notification.bit.id}}')
                     
                 {% elif notification.type == 3 or notification.type == 5%} 
-                    '{{notification.profile.id}}' 
+                    yb_navigateToProfile()
                 {% elif notification.type == 6%} 
-                    '{{notification.message.conversation.id}}' 
-                {% endif %})
+                    yb_toggleConversation2Way('{{notification.message.conversation.id}}')
+                {% endif %}
                 
-            {% endif %}" 
+            {% endif %}"
             
                 class="
                 yb-listItem notification 

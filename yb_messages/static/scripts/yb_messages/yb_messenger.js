@@ -66,7 +66,7 @@ $(document).ready(function () {
     for (i = 0; i < conversations.length; i++){
         conversations[i].addEventListener("click", function(){
             let this_id = this.getAttribute("data-catid")
-            yb_toggleConversation2Way(this_id)
+            yb_toggleConversation2Way(this_id);
         });
     }
 
