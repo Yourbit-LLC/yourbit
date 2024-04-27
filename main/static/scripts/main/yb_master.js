@@ -448,6 +448,29 @@ function yb_closeCard() {
     CARD_CONTAINER.classList.remove("open")
 }
 
+function yb_hide2WayLoad() {
+    for (let i = 0; i < SIDE_CONTAINERS.length + 1; i++) {
+        this_object = SIDE_CONTAINERS[i];
+        if (this_object.classList.contains("open")){
+            this_object.classList.toggle("open");
+            this_object.getElementById("yb-load-iconContainer").classList.add("hide");
+            break;
+        }
+    }
+
+}
+
+function yb_show2WayLoad() {
+    for (let i = 0; i < SIDE_CONTAINERS.length + 1; i++) {
+        this_object = SIDE_CONTAINERS[i];
+        if (this_object.classList.contains("open")){
+            this_object.getElementById("yb-load-iconContainer").classList.remove("hide");
+            break;
+        }
+    }
+}
+
+
 function yb_toggle2WayContainer(type, scroll=false){
 
     console.log(scroll)
@@ -497,7 +520,7 @@ function yb_toggle2WayContainer(type, scroll=false){
                         NAV_BAR.classList.remove("hideMobile");
                         CREATE_POPOUT.classList.remove("hide");
                         SEARCH_POPOUT.classList.remove("hide");
-                        this_object.getElementById("yb-load-iconContainer").classList.remove("hide");
+                        yb_hide2WayLoad();
                     }
 
                     history.pushState(null, null, "/");
@@ -527,6 +550,8 @@ function yb_toggle2WayContainer(type, scroll=false){
                             }
                         }
 
+                        yb_show2WayLoad();
+                        
                         return ["switching", SIDE_CONTAINER_B];
 
                     } else {
@@ -553,6 +578,8 @@ function yb_toggle2WayContainer(type, scroll=false){
                                 SIDE_CONTAINER_A.classList.add('yb-lockScroll-y');
                             }
                         }
+
+                        yb_hide2WayLoad();
 
                         return ["switching", SIDE_CONTAINER_A];
                     } 
@@ -603,17 +630,7 @@ function yb_close2WayContainer(){
     }
 }
 
-function yb_hide2WayLoad() {
-    for (let i = 0; i < SIDE_CONTAINERS.length + 1; i++) {
-        this_object = SIDE_CONTAINERS[i];
-        if (this_object.classList.contains("open")){
-            this_object.classList.toggle("open");
-            this_object.getElementById("yb-load-iconContainer").classList.add("hide");
-            break;
-        }
-    }
 
-}
 
 
 function yb_toggleCreateMenu(){

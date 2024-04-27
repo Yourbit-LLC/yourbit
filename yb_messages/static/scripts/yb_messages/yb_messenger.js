@@ -61,6 +61,8 @@ $(document).ready(function () {
         });
     }
 
+    yb_hide2WayLoad();
+
     new_message_button.addEventListener("click", yb_toggleNewMessage);
 
     for (i = 0; i < conversations.length; i++){

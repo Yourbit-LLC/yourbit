@@ -176,6 +176,7 @@ function yb_intervalMessenger() {
 }
 
 $(document).ready(function(){
+    yb_hide2WayLoad();
 
     back_button.addEventListener("click", function() {
         let header = document.getElementById("message-header");

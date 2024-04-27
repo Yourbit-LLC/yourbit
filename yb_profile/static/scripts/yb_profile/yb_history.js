@@ -37,6 +37,7 @@ function yb_getHistory(filter) {
 
 /* On document ready assign event listeners to page specific buttons */
 $(document).ready(function () {
+    yb_hide2WayLoad();
     for (let i = 0; i < filter_buttons.length; i++){
         filter_buttons[i].addEventListener('click', function() {
             let filter = this.getAttribute("name");

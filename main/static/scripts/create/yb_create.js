@@ -20,6 +20,7 @@ function yb_handleNewMessage() {
 $(document).ready(function () {
     let container = document.getElementById("create-menu-content");
     let create_options = document.getElementById("create-options");
+    yb_hide2WayLoad();
     for (var i = 0; i < options.length; i++) {
         options[i].addEventListener("click", function () {
             var option = this.getAttribute("name");
