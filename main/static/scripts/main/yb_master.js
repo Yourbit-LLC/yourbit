@@ -450,9 +450,8 @@ function yb_closeCard() {
 
 function yb_hide2WayLoad() {
     for (let i = 0; i < SIDE_CONTAINERS.length + 1; i++) {
-        this_object = SIDE_CONTAINERS[i];
+        let this_object = SIDE_CONTAINERS[i];
         if (this_object.classList.contains("open")){
-            this_object.classList.toggle("open");
             this_object.getElementById("yb-load-iconContainer").classList.add("hide");
             break;
         }
@@ -462,7 +461,7 @@ function yb_hide2WayLoad() {
 
 function yb_show2WayLoad() {
     for (let i = 0; i < SIDE_CONTAINERS.length + 1; i++) {
-        this_object = SIDE_CONTAINERS[i];
+        let this_object = SIDE_CONTAINERS[i];
         if (this_object.classList.contains("open")){
             this_object.getElementById("yb-load-iconContainer").classList.remove("hide");
             break;
