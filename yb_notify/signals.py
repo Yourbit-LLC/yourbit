@@ -21,7 +21,7 @@ def create_announcement_notification(sender, instance, created, **kwargs):
         for user in User.objects.all():
             notification = Notification(
                 from_user = Profile.objects.get(username = "achaney55"),
-                to_user = user,
+                to_user = user.profile,
                 body = instance.body,
                 type = 7,
                 link = "/announcements/",
