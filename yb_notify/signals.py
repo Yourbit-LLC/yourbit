@@ -38,7 +38,23 @@ def create_message_notification(sender, instance, created, **kwargs):
                 addToCore(notification, member.profile)
 
                 # #Send Push Notification
-                payload = {"title": "New Message from " + instance.from_user.profile.display_name, "body": "They said: " + '"' + instance.body[:100] + '"', "icon": "/static/images/2023-logo-draft.png"}
+                payload = {
+                    "title": "New Message from " + instance.from_user.profile.display_name, 
+                    "body": "They said: " + '"' + instance.body[:100] + '"', 
+                    "icon": "/static/images/2023-logo-draft.png",
+                    'tag': 'yourbit',
+                    'actions': [
+                        {
+                            'action': 'open_url',
+                            'title': 'Open Yourbit',
+                            'icon': '/static/images/yourbit_logo.png'
+                        }
+                    ],
+                    'data': {
+                        'url': '/messages/',
+                    }
+                    
+                }
                 send_user_notification(user=member, payload=payload, ttl=1000)
 
 #Create a notification on like of a bit
@@ -68,7 +84,22 @@ def create_bit_like_notification(sender, instance, created, **kwargs):
         else:
             notification_body = bit.body[:100]
 
-        payload = {"title": "New Like from " + instance.user.profile.display_name, "body" : notification_body, "icon": "/static/images/2023-logo-draft.png"}
+        payload = {
+            "title": "New Like from " + instance.user.profile.display_name, 
+            "body" : notification_body, 
+            "icon": "/static/images/2023-logo-draft.png",
+            'tag': 'yourbit',
+            'actions': [
+                {
+                    'action': 'open_url',
+                    'title': 'Open Yourbit',
+                    'icon': '/static/images/yourbit_logo.png'
+                }
+            ],
+            'data': {
+                'url': '/notify/',
+            }
+        }
         send_user_notification(user=bit.profile.user, payload=payload, ttl=1000)
 
 #Create a notification on creation of bit comment
@@ -90,7 +121,23 @@ def create_bit_comment_notification(sender, instance, created, **kwargs):
         addToCore(notification, bit.profile)
 
         #Send Push Notification
-        payload = {"title": "New Comment from " + instance.user.profile.display_name, "body": instance.body, "icon": "/static/images/2023-logo-draft.png"}
+        payload = {
+            "title": "New Comment from " + instance.user.profile.display_name, 
+            "body": instance.body, 
+            "icon": "/static/images/2023-logo-draft.png",
+            'tag': 'yourbit',
+            'actions': [
+                {
+                    'action': 'open_url',
+                    'title': 'Open Yourbit',
+                    'icon': '/static/images/yourbit_logo.png'
+                }
+            ],
+            'data': {
+                'url': '/notify/',
+            }
+            
+        }
         send_user_notification(user=bit.profile.user, payload=payload, ttl=1000)
 
 
@@ -114,7 +161,23 @@ def create_friend_request_notification(sender, instance, created, **kwargs):
         addToCore(notification, instance.to_user)
 
         #Send Push Notification
-        payload = {"title": "New Friend Request", "body": instance.from_user.user.username + " has sent you a friend request", "icon": "/static/images/2023-logo-draft.png"}
+        payload = {
+            "title": "New Friend Request", 
+            "body": instance.from_user.user.username + " has sent you a friend request", 
+            "icon": "/static/images/2023-logo-draft.png",
+            'tag': 'yourbit',
+            'actions': [
+                {
+                    'action': 'open_url',
+                    'title': 'Open Yourbit',
+                    'icon': '/static/images/yourbit_logo.png'
+                }
+            ],
+            'data': {
+                'url': '/notify/',
+            }
+            
+            }
         send_user_notification(user=instance.to_user.user, payload=payload, ttl=1000)
 
 #Create a notification on friend request acceptance
@@ -137,7 +200,24 @@ def create_friend_accept_notification(sender, instance, created, **kwargs):
         addToCore(notification, instance.from_user)
 
         #Send Push Notification
-        payload = {"title": "Friend Request Accepted", "body": instance.to_user.user.username + " has accepted your friend request", "icon": "/static/images/2023-logo-draft.png"}
+        payload = {
+            "title": "Friend Request Accepted", 
+            "body": instance.to_user.user.username + " has accepted your friend request", 
+            "icon": "/static/images/2023-logo-draft.png",
+            'tag': 'yourbit',
+            'actions': [
+                {
+                    'action': 'open_url',
+                    'title': 'Open Yourbit',
+                    'icon': '/static/images/yourbit_logo.png'
+                }
+            ],
+            'data': {
+                'url': '/notify/',
+            }
+            
+            
+            }
         send_user_notification(user=instance.from_user.user, payload=payload, ttl=1000)
 
 
