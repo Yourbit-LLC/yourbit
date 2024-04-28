@@ -637,3 +637,19 @@
     border: 2px solid black;
 
 }
+
+.no-bits-message {
+    position: relative;
+    display: block;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 98%;
+    max-width: 650px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+}

@@ -663,9 +663,6 @@ function focusSpotlightField() {
     // Reset CSS modifications
     SPOTLIGHT_CONTAINER.style.top = ''; // Reset the 'top' property
     SPOTLIGHT_CONTAINER.style.height = ''; // Reset the 'height' property
-
-
-
 }
 
 

@@ -136,6 +136,9 @@ function yb_requestFeed(data=null) {
         },
         error: function(response) {
             //Error
+            $("#load-indicator-container-bitstream").hide();
+            $("#no-bits-message").show();
+
             console.log(response);
         }
     });
