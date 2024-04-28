@@ -35,6 +35,7 @@ urlpatterns = [
     path('search/', include('yb_search.urls')),
     path('systems/', include('yb_systems.urls')),
     path('settings/', include('yb_settings.urls')),
+    path('support/', include('yb_support.urls')),
     path('core/', include('main.urls')),
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout'),
