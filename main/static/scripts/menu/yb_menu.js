@@ -10,6 +10,7 @@ const MAIN_MENU = document.getElementById('yb-main-menu');
 const MENU_BUTTONS = document.querySelectorAll('.yb-item-mainMenu');
 const LOGOUT_BUTTON = document.getElementById("yb-logout-button");
 const SETTINGS_BUTTON = document.getElementById('yb-settings-button');
+const SUPPORT_BUTTON = document.getElementById('yb-support-button');
 
 const MENU_PROFILE_BUTTON = document.getElementById('profile-icon-menu');
 
@@ -165,6 +166,8 @@ function yb_handleMenuGridLink(link) {
 $(document).ready(function () {
     MENU_BUTTON.addEventListener('click', yb_toggleMainMenu);
     SETTINGS_BUTTON.addEventListener("click", yb_toggleSettingsMenu);
+    SUPPORT_BUTTON.addEventListener("click", yb_handleSupportClick);
+
     LOGOUT_BUTTON.addEventListener("click", yb_logout);
     for (let i = 0; i < MENU_BUTTONS.length; i++){
         console.log("added event listener to button")

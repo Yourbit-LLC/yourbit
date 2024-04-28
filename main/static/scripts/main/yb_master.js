@@ -457,6 +457,20 @@ function yb_show2WayLoad() {
     $(".yb-load-iconContainer").removeClass("hide");
 }
 
+function yb_handleSupportClick() {
+    let container = yb_toggle2WayContainer('support', false);
+    if (container[0] === "closing"){
+        history.pushState(null, null, "/");
+        container[1].setAttribute("data-state", "empty");
+    } else {
+        console.log("not closing")
+        let container_content = container[1].querySelector(".yb-2Way-content");
+        container[1].setAttribute("data-state", "support");
+        $(container_content).load("/support/templates/support-center/")
+        history.pushState({}, "", '/support/');
+
+    }
+}
 
 function yb_toggle2WayContainer(type, scroll=false){
 
