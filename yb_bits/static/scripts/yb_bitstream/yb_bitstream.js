@@ -74,10 +74,9 @@ function yb_updateFeed(update, data) {
             $("load-indicator-container-bitstream").hide();
         } else {
             
-            let no_feed = yb_createElement("h3", "yb-feed-message", "no-feed-message");
-            no_feed.innerHTML = "No bits found."
-            bit_container.appendChild(no_feed);
-            $("load-indicator-container-bitstream").hide();
+            $("#load-indicator-container-bitstream").hide();
+            $("#no-bits-message").show();
+
         }
         
 
@@ -98,6 +97,10 @@ function yb_updateFeed(update, data) {
             
         }
         detectScrollToBottom();
+
+        $("#load-indicator-container-bitstream").hide();
+        $("#no-bits-message").show();
+
 
     }
 }
@@ -136,9 +139,6 @@ function yb_requestFeed(data=null) {
         },
         error: function(response) {
             //Error
-            $("#load-indicator-container-bitstream").hide();
-            $("#no-bits-message").show();
-
             console.log(response);
         }
     });
