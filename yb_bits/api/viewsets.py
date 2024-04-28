@@ -112,7 +112,7 @@ class BitFeedAPIView(generics.ListAPIView):
         page = self.paginate_queryset(queryset)
         if page is not None:
             print(queryset)
-            if len(queryset < 1):
+            if len(queryset < 2):
                 return Response({"detail": "Invalid page number"}, status=status.HTTP_400_BAD_REQUEST)
             
             else:
