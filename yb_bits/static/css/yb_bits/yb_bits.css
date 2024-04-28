@@ -642,14 +642,17 @@
     position: relative;
     display: block;
     text-align: center;
+    padding: 10px;
     font-size: 20px;
+    font-weight: 600;
     color: white;
     margin-top: 20px;
     margin-bottom: 20px;
     margin-left: auto;
     margin-right: auto;
-    width: 98%;
+    width: 95%;
     max-width: 650px;
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.7);
+    height: 150px;
 }

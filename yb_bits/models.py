@@ -22,11 +22,11 @@ class Bit(models.Model):
 
     #Model for a Bit: A post on Yourbit
     profile = models.ForeignKey(
-        'yb_profile.Profile', related_name="bits", on_delete=models.CASCADE, default=None
+        'yb_profile.Profile', related_name="bits", on_delete=models.CASCADE, default=None, blank=True
     )
 
     user = models.ForeignKey(
-        User, related_name="bits", on_delete=models.CASCADE, default=None
+        User, related_name="bits", on_delete=models.CASCADE, default=None, blank=True
     )
     to_users = models.ManyToManyField(
         User,  blank=True, related_name='mentioned'

@@ -5,7 +5,7 @@ from yb_profile.models import Profile as Profile
 # Create your models here.
 class MySettings(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE)
-    profile = models.OneToOneField(Profile, on_delete = models.CASCADE)
+    profile = models.OneToOneField(Profile, on_delete = models.CASCADE, blank=True, null=True)
 
 class PrivacySettings(models.Model):
     settings = models.ForeignKey(MySettings, related_name='privacy', on_delete=models.CASCADE, null=True)

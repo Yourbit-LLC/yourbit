@@ -9,6 +9,13 @@ class Note(models.Model):
     time = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=1000, blank=True, default=None)
 
+class Issue(models.Model):
+    subject = models.CharField(max_length=1000, blank=True, default=None)
+    body = models.CharField(max_length=1000, blank=True, default=None)
+    time = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=1000, blank=True, default="pending")
+
+
 class SupportCase(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     subject = models.CharField(max_length=1000, blank=True, default=None)

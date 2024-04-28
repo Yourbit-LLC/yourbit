@@ -1,0 +1,28 @@
+{% load static %}
+
+<div>
+    <div>
+        <h3>Support Center</h3>
+    </div>
+    <div>
+        <div class="setting-header yb-flexRow">
+            <p>Knwon Issues</p>
+        </div>
+        <div class="yb-flexColumn" id="known-issues-list">
+            {% for issue in known_issues %}
+            <div class="yb-flexRow yb-margin-T5">
+                <h4>Problem: {{ issue.subject }}</h4>
+                <p>{{ issue.body[:100] }}</p>
+                <p>Discovered: {{ issue.time }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="yb-flexColumn" id="support-options">
+        <button type='button' id = "button-bug-report" class='create-option yb-button-threeQuarter border-none rounded yb-widthConstraint-600 yb-autoText font-heavy pointer-object' name='bug-report'>Report Bug</button>
+        <button type='button' id = "button-feature-request" class='create-option yb-button-threeQuarter border-none rounded yb-widthConstraint-600 yb-autoText font-heavy pointer-object' name='bug-report'>Feature Request</button>
+        <button type='button' id = "button-contact-info" class='create-option yb-button-threeQuarter border-none rounded yb-widthConstraint-600 yb-autoText font-heavy pointer-object' name='contact-info'>Contact Information</button>
+
+    </div>
+
+</div>

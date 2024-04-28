@@ -8,7 +8,7 @@ from yb_messages.models import Message
 from firebase_admin import messaging, initialize_app, credentials
 
 class NotificationCore(models.Model):
-    profile = models.ForeignKey('yb_profile.Profile', on_delete=models.CASCADE, related_name='notification_profile')
+    profile = models.ForeignKey('yb_profile.Profile', on_delete=models.CASCADE, related_name='notification_profile', blank=True, null=True)
     unseen_notifications = models.ManyToManyField('Notification', related_name='unseen_notifications', blank=True)
     seen_notifications = models.ManyToManyField('Notification', related_name='seen_notifications', blank=True)
 
