@@ -111,14 +111,16 @@ class BitFeedAPIView(generics.ListAPIView):
         print("user tz" + user_tz)
         page = self.paginate_queryset(queryset)
         if page is not None:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
-        if queryset is None:
-            return Response({"detail": "Invalid page number"}, status=status.HTTP_400_BAD_REQUEST)
-        
-        else:
-            serializer = self.get_serializer(queryset, many=True, context={'user_tz': user_tz,'request': request})
-            return Response(serializer.data)
+            if queryset is None:
+                return Response({"detail": "Invalid page number"}, status=status.HTTP_400_BAD_REQUEST)
+            
+            else:
+                serializer = self.get_serializer(page, many=True)
+                return self.get_paginated_response(serializer.data)
+
+    
+        serializer = self.get_serializer(queryset, many=True, context={'user_tz': user_tz,'request': request})
+        return Response(serializer.data)
 
 class BitViewSet(viewsets.ModelViewSet):
     queryset = Bit.objects.all()
