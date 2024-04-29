@@ -30,14 +30,12 @@
         <br>
         <br>
 
-        
+        <button type="submit" class="yb-button-flex green font-white yb-center-margin lr">Submit</button>
 
     </form>
 
-    <button id="fr-submit-button" class="yb-button-flex green font-white yb-center-margin lr">Submit</button>
-
     <script class="page-script">
-        document.getElementById('fr-submit-button').addEventListener('click', function(e) {
+        document.getElementById('create-feature-request-form').addEventListener('submit', function(e) {
             $.ajax({
                 type: 'POST',
                 url: '/support/request-feature/',
@@ -48,10 +46,10 @@
                     'csrfmiddlewaretoken': '{{ csrf_token }}'
                 },
                 success: function() {
-                    yb_showNotification(expandNotification, "Feature Request Submitted");
+                    alert('Feature request submitted successfully!');
                     yb_toggle2WayContainer('request-feature');
                 }
             });
         });
-
+    </script>
 </div>
