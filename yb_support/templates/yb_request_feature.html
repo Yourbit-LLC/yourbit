@@ -36,6 +36,7 @@
 
     <script class="page-script">
         document.getElementById('create-feature-request-form').addEventListener('submit', function(e) {
+            e.preventDefault();
             $.ajax({
                 type: 'POST',
                 url: '/support/request-feature/',
