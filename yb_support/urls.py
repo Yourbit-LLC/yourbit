@@ -10,7 +10,7 @@ urlpatterns = [
     path("templates/request-feature/", feature_request_template, name="feature_request"),
     path("templates/contact-info/", contact_info_template, name="feature_request"),
     path('report-bug/', ReportBugView.as_view(), name='bug_report'),
-    path('feature-request/', RequestFeatureView.as_view(), name='feature_request'),
+    path('request-request/', RequestFeatureView.as_view(), name='feature_request'),
     path('', SupportCenterView.as_view(), name='support_center'),
     
 
