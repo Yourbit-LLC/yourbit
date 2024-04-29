@@ -1,0 +1,38 @@
+{% load static %}
+
+<div id='div-header' onclick="yb_handleSupportClick()" class="div-header">
+    <div class="cb-panel-back"><svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
+    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb">Report a Bug</h3>
+    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('bug-report');"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
+</div>
+    
+
+<div id="bug-report-form" class="yb-fillWidth yb-vScroll yb-margin-T10" style="height: calc(100% - 70px); border-radius: 15px;">
+    <form id="create-cluster-form" class="yb-fillWidth align-center" style="font-weight: 600;" method="POST">
+        {% csrf_token %}
+        <br>
+        <label for="title" class="yb-autoText font-medium align-center">Title</label>
+        <br>
+        <br>
+        <input id="rbs-title-field" name="title" class="yb-input-singleLine yb-autoText yb-panel plainBorder narrowBorder squared" placeholder="Short description of issue..." style="height: 40px !important;">
+        <br>
+        <br>
+        <br>
+        <label for="name" class="yb-autoText font-medium align-center">Description</label>
+        <br>
+        <br>
+        <input id="rbs-description-field" name="description" class="yb-input-singleLine yb-autoText yb-panel plainBorder narrowBorder squared" placeholder="Give us a little more info about whats going on..." style="height: 40px !important;">
+        <br>
+        <br>
+        <br>
+        <input type="checkbox" id="rbs-updates-check" name="updates-check" class="yb-autoText" checked>
+        <label for="updates-check" class="yb-autoText font-medium align-center">Allow follow up about this report via messages.</label>
+        
+        <br>
+        <br>
+
+        <button type="submit" class="yb-button-flex green font-white yb-center-margin lr">Submit</button>
+
+    </form>
+
+</div>

@@ -1,29 +1,24 @@
 {% load static %}
 
-<div id='div-header' onclick="yb_toggleSettingsMenu()" class="div-header">
+<div id='div-header' onclick="yb_toggleMainMenu()" class="div-header">
     <div class="cb-panel-back"><svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
-    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb">Help</h3>
+    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb">Support Center</h3>
     <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('support');"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
 </div>
-
-<div>
-    <h3 style="text-align: center;" class="yb-autoText">Support Center</h3>
-</div>
-<br>
 <br>
 <div class="yb-flexColumn" id="support-options">
     <h3 class="align-center" style="color:gray;">Get in touch...</h3>
     <br>
-    <button type='button' id = "button-bug-report" class='create-option yb-button-threeQuarter border-none rounded yb-widthConstraint-600 yb-autoText font-heavy pointer-object' name='bug-report'>Report Bug</button>
-    <button type='button' id = "button-feature-request" class='create-option yb-button-threeQuarter border-none rounded yb-widthConstraint-600 yb-autoText font-heavy pointer-object' name='bug-report'>Feature Request</button>
-    <button type='button' id = "button-contact-info" class='create-option yb-button-threeQuarter border-none rounded yb-widthConstraint-600 yb-autoText font-heavy pointer-object' name='contact-info'>Contact Information</button>
+    <button type='button' id = "yb-button-bug-report" class='create-option yb-button-threeQuarter border-none rounded yb-widthConstraint-600 yb-autoText font-heavy pointer-object' name='bug-report'>Report Bug</button>
+    <button type='button' id = "yb-button-request-feature" class='create-option yb-button-threeQuarter border-none rounded yb-widthConstraint-600 yb-autoText font-heavy pointer-object' name='request-feature'>Feature Request</button>
+    <button type='button' id = "yb-button-contact-info" class='create-option yb-button-threeQuarter border-none rounded yb-widthConstraint-600 yb-autoText font-heavy pointer-object' name='contact-info'>Contact Information</button>
 
 </div>
 <br>
 <div class="setting-header yb-flexColumn">
     <h3 style="color:gray;" class="yb-autoText align-center">Known Issues</h3>
 </div>
-<div class="yb-fillWidth yb-vScroll font-white yb-margin-T10 align-center" style="height: calc(100% - 350px); border-radius: 15px;">
+<div class="yb-fillWidth yb-vScroll font-white yb-margin-T10 align-center" style="height: calc(100% - 315px); border-radius: 15px;">
 
     <div style="margin-left: auto; margin-right: auto; height: 100%;">
 
@@ -40,3 +35,5 @@
 
 
 </div>
+
+<script class="page-script" src="{% static 'scripts/yb_support/yb_support_center.js' %}"></script>

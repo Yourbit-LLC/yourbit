@@ -8,3 +8,12 @@ def support_center_template(request):
         "known_issues": issues,
     }
     return render(request, 'yb_support_center.html', context)
+
+def report_bug_template(request):
+    return render(request, 'yb_report_bug.html')
+
+def feature_request_template(request):
+    return render(request, 'yb_request_feature.html')
+
+def contact_info_template(request):
+    return render(request, 'yb_contact_info.html')
