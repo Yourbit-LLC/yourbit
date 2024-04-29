@@ -6,29 +6,36 @@
     <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('support');"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
 </div>
 
+<div>
+    <h3 style="text-align: center;" class="yb-autoText">Support Center</h3>
+</div>
+<br>
+<br>
+<div class="yb-flexColumn" id="support-options">
+    <p class="yb-autoText align-center">Get in touch...</p>
+    <button type='button' id = "button-bug-report" class='create-option yb-button-threeQuarter border-none rounded yb-widthConstraint-600 yb-autoText font-heavy pointer-object' name='bug-report'>Report Bug</button>
+    <button type='button' id = "button-feature-request" class='create-option yb-button-threeQuarter border-none rounded yb-widthConstraint-600 yb-autoText font-heavy pointer-object' name='bug-report'>Feature Request</button>
+    <button type='button' id = "button-contact-info" class='create-option yb-button-threeQuarter border-none rounded yb-widthConstraint-600 yb-autoText font-heavy pointer-object' name='contact-info'>Contact Information</button>
+
+</div>
+<br>
+<div class="setting-header yb-flexColumn">
+    <h3 style="color:gray;" class="yb-autoText align-center">Known Issues</h3>
+</div>
 <div class="yb-fillWidth yb-vScroll font-white yb-margin-T10 align-center" style="height: calc(100% - 150px); border-radius: 15px;">
-    <div>
-        <h3>Support Center</h3>
-    </div>
-    <div>
-        <div class="setting-header yb-flexRow">
-            <p>Knwon Issues</p>
-        </div>
-        <div class="yb-flexColumn" id="known-issues-list">
+
+    <div style="margin-left: auto; margin-right: auto; height: 100%;">
+
+        <div class="yb-container-list yb-flexColumn" id="known-issues-list" style="padding:10px; margin-bottom: 4px;">
             {% for issue in known_issues %}
-            <div class="yb-flexRow yb-margin-T5">
-                <h4>Problem: {{ issue.subject }}</h4>
-                <p>{{ issue.body[:100] }}</p>
-                <p>Discovered: {{ issue.time }}</p>
+            <div class="yb-flexColumn support-issue yb-margin-T5" style="text-align: left; border-radius: 15px; padding: 10px;">
+                <b style=" font-size: 18px;  color: {{ issue.priority }};">Problem: {{ issue.subject }}</b>
+                <p style="padding-left: 5px; font-size: 14px;">{{ issue.body }}</p>
+                <p style="padding-left: 10px; font-size: 12px; color: rgb(200, 200, 200);">Discovered: {{ issue.time }}</p>
             </div>
             {% endfor %}
         </div>
     </div>
-    <div class="yb-flexColumn" id="support-options">
-        <button type='button' id = "button-bug-report" class='create-option yb-button-threeQuarter border-none rounded yb-widthConstraint-600 yb-autoText font-heavy pointer-object' name='bug-report'>Report Bug</button>
-        <button type='button' id = "button-feature-request" class='create-option yb-button-threeQuarter border-none rounded yb-widthConstraint-600 yb-autoText font-heavy pointer-object' name='bug-report'>Feature Request</button>
-        <button type='button' id = "button-contact-info" class='create-option yb-button-threeQuarter border-none rounded yb-widthConstraint-600 yb-autoText font-heavy pointer-object' name='contact-info'>Contact Information</button>
 
-    </div>
 
 </div>

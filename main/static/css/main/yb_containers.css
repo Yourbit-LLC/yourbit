@@ -948,3 +948,16 @@
     transform: translate(-50%, -50%);
 }
 
+
+@media (prefers-color-scheme: dark) {
+    .support-issue {
+        background-color: rgb(20, 20, 20);
+    }
+}
+
+
+@media (prefers-color-scheme: light) {
+    .support-issue {
+        background-color: gray;
+    }
+}
