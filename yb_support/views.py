@@ -99,7 +99,7 @@ class ReportBugView(View):
             )
 
     def post(self, request):
-        subject = request.POST.get('subject')
+        subject = request.POST.get('title')
         body = request.POST.get('body')
 
         bug_report = BugReport(
@@ -144,7 +144,7 @@ class RequestFeatureView(View):
             )
 
     def post(self, request):
-        subject = request.POST.get('subject')
+        subject = request.POST.get('title')
         body = request.POST.get('body')
 
         feature_request = FeatureRequest(
