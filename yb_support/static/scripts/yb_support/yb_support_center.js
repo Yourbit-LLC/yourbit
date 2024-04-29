@@ -1,7 +1,7 @@
 try {
-    const BUG_REPORT_BUTTON = document.getElementById("yb-button-bug-report");
-    const REQUEST_FEAUTURE_BUTTON = document.getElementById("yb-button-request-feature");
-    const CONTACT_INFO_BUTTON = document.getElementById("yb-button-contact-info");
+    var BUG_REPORT_BUTTON = document.getElementById("yb-button-bug-report");
+    var REQUEST_FEAUTURE_BUTTON = document.getElementById("yb-button-request-feature");
+    var CONTACT_INFO_BUTTON = document.getElementById("yb-button-contact-info");
 } catch(err) {
     BUG_REPORT_BUTTON = document.getElementById("yb-button-bug-report");
     REQUEST_FEAUTURE_BUTTON = document.getElementById("yb-button-request-feature");
