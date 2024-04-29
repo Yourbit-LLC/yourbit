@@ -8,7 +8,7 @@
     
 
 <div id="bug-report-form" class="yb-fillWidth yb-vScroll yb-margin-T10" style="height: calc(100% - 70px); border-radius: 15px;">
-    <form id="create-bug-report-form" class="yb-fillWidth align-center" style="font-weight: 600;">
+    <form id="create-bug-report-form" class="yb-fillWidth align-center" style="font-weight: 600;" method="POST">
         {% csrf_token %}
         <br>
         <label for="title" class="yb-autoText font-medium align-center">Title</label>
