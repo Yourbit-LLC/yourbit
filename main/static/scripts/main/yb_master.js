@@ -572,6 +572,7 @@ function yb_toggle2WayContainer(type, scroll=false){
                 }
             } else {
                 if (i === SIDE_CONTAINERS.length - 1){
+                    yb_clear2WayContainer(SIDE_CONTAINER_A);
                     MOBILE_HEADER.classList.add("hide");
                     NAV_BAR.classList.add("hideMobile");
                     SIDE_CONTAINER_A.classList.add("open");

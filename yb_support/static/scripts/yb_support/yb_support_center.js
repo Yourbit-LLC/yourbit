@@ -6,7 +6,6 @@ try {
     BUG_REPORT_BUTTON = document.getElementById("yb-button-bug-report");
     REQUEST_FEAUTURE_BUTTON = document.getElementById("yb-button-request-feature");
     CONTACT_INFO_BUTTON = document.getElementById("yb-button-contact-info");
-    console.error(err);
 }
 
 
