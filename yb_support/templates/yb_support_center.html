@@ -26,9 +26,9 @@
 
     <div style="margin-left: auto; margin-right: auto; height: 100%;">
 
-        <div class="yb-container-list yb-flexColumn" id="known-issues-list" style="padding:10px; margin-bottom: 4px;">
+        <div class="yb-container-list yb-flexColumn" id="known-issues-list" style="padding:10px;">
             {% for issue in known_issues %}
-            <div class="yb-flexColumn support-issue yb-margin-T5" style="text-align: left; border-radius: 15px; padding: 10px;">
+            <div class="yb-flexColumn support-issue yb-margin-T5" style="text-align: left; border-radius: 15px; padding: 10px; margin-bottom: 4px;">
                 <b style=" font-size: 18px;  color: {{ issue.priority }};">Problem: {{ issue.subject }}</b>
                 <p style="padding-left: 5px; font-size: 14px;">{{ issue.body }}</p>
                 <p style="padding-left: 10px; font-size: 12px; color: rgb(200, 200, 200);">Discovered: {{ issue.time }}</p>
