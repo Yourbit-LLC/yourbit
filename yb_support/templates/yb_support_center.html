@@ -12,7 +12,8 @@
 <br>
 <br>
 <div class="yb-flexColumn" id="support-options">
-    <p class="yb-autoText align-center">Get in touch...</p>
+    <h3 class="align-center" style="color:gray;">Get in touch...</h3>
+    <br>
     <button type='button' id = "button-bug-report" class='create-option yb-button-threeQuarter border-none rounded yb-widthConstraint-600 yb-autoText font-heavy pointer-object' name='bug-report'>Report Bug</button>
     <button type='button' id = "button-feature-request" class='create-option yb-button-threeQuarter border-none rounded yb-widthConstraint-600 yb-autoText font-heavy pointer-object' name='bug-report'>Feature Request</button>
     <button type='button' id = "button-contact-info" class='create-option yb-button-threeQuarter border-none rounded yb-widthConstraint-600 yb-autoText font-heavy pointer-object' name='contact-info'>Contact Information</button>
@@ -29,9 +30,9 @@
         <div class="yb-container-list yb-flexColumn" id="known-issues-list" style="padding:10px;">
             {% for issue in known_issues %}
             <div class="yb-flexColumn support-issue yb-margin-T5" style="text-align: left; border-radius: 15px; padding: 10px; margin-bottom: 4px;">
-                <b style=" font-size: 18px;  color: {{ issue.priority }};">Problem: {{ issue.subject }}</b>
+                <b style=" font-size: 18px;  color: {{ issue.priority }};">{{ issue.subject }}</b>
                 <p style="padding-left: 5px; font-size: 14px;">{{ issue.body }}</p>
-                <p style="padding-left: 10px; font-size: 12px; color: rgb(200, 200, 200);">Discovered: {{ issue.time }}</p>
+                <p style="padding-left: 10px; font-size: 12px; color: rgb(200, 200, 200);">Filed On: {{ issue.time }}</p>
             </div>
             {% endfor %}
         </div>
