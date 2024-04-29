@@ -34,7 +34,7 @@ class SupportCase(models.Model):
 class BugReport(SupportCase):
     notes = models.ManyToManyField(Note, blank=True, related_name="bug_notes")
     upvotes = models.ManyToManyField(User, blank=True, related_name="bug_upvotes")
-    page_location = models.CharField(max_length=1000, blank=True, default=None)
+    
     
     
 class UserReport(SupportCase):
