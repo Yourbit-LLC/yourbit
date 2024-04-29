@@ -8,6 +8,8 @@ from yb_profile.models import FriendRequest, Profile
 from yb_notify.models import NotificationCore
 from webpush import send_user_notification
 
+from yb_support.models import BugReport, FeatureRequest
+
 #Create a notification on creation of message
 
 def addToCore(notification, profile):
@@ -36,6 +38,82 @@ def create_announcement_notification(sender, instance, created, **kwargs):
             #Send Push Notification
             payload = {
                 "title": instance.title, 
+                "body": instance.body, 
+                "icon": "/static/images/2023-logo-draft.png",
+                'tag': 'yourbit',
+                'actions': [
+                    {
+                        'action': 'open_url',
+                        'title': 'Open Yourbit',
+                        'icon': '/static/images/yourbit_logo.png'
+                    }
+                ],
+                'data': {
+                    'url': '/notify/',
+                }
+                
+            }
+            send_user_notification(user=user, payload=payload, ttl=1000)
+
+@receiver(post_save, sender=BugReport)
+def create_bug_report_notification(sender, instance, created, **kwargs):
+    if created:
+        for user in User.objects.filter(is_admin = True):
+            notification = Notification(
+                from_user = Profile.objects.get(username = "achaney55"),
+                to_user = user.profile,
+                body = instance.body,
+                type = 0,
+                link = "/support/",
+                title = instance.subject,
+                notify_class = 0
+            )
+
+            notification.save()
+
+            addToCore(notification, user.profile)
+
+            #Send Push Notification
+            payload = {
+                "title": "New Bug Report: " + instance.subject, 
+                "body": instance.body, 
+                "icon": "/static/images/2023-logo-draft.png",
+                'tag': 'yourbit',
+                'actions': [
+                    {
+                        'action': 'open_url',
+                        'title': 'Open Yourbit',
+                        'icon': '/static/images/yourbit_logo.png'
+                    }
+                ],
+                'data': {
+                    'url': '/notify/',
+                }
+                
+            }
+            send_user_notification(user=user, payload=payload, ttl=1000)
+
+@receiver(post_save, sender=FeatureRequest)
+def create_feature_request_notification(sender, instance, created, **kwargs):
+    if created:
+        for user in User.objects.filter(is_admin = True):
+            notification = Notification(
+                from_user = Profile.objects.get(username = "achaney55"),
+                to_user = user.profile,
+                body = instance.body,
+                type = 0,
+                link = "/support/",
+                title = instance.subject,
+                notify_class = 0
+            )
+
+            notification.save()
+
+            addToCore(notification, user.profile)
+
+            #Send Push Notification
+            payload = {
+                "title": "New Feature Request: " + instance.subject, 
                 "body": instance.body, 
                 "icon": "/static/images/2023-logo-draft.png",
                 'tag': 'yourbit',
