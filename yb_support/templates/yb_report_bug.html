@@ -31,13 +31,13 @@
         <br>
         <br>
 
-        <button type="submit" class="yb-button-flex green font-white yb-center-margin lr">Submit</button>
+        <button id="rep-bug-submit-button" class="yb-button-flex green font-white yb-center-margin lr">Submit</button>
 
 
 
     </form>
     <script class="page-script">
-        document.getElementById('create-bug-report-form').addEventListener('submit', function(e) {
+        document.getElementById('rep-bug-submit-button').addEventListener('click', function(e) {
             e.preventDefault();
             $.ajax({
                 type: 'POST',

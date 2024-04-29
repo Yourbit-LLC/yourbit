@@ -30,12 +30,12 @@
         <br>
         <br>
 
-        <button type="submit" class="yb-button-flex green font-white yb-center-margin lr">Submit</button>
+        <button id="fr-submit-button" class="yb-button-flex green font-white yb-center-margin lr">Submit</button>
 
     </form>
 
     <script class="page-script">
-        document.getElementById('create-feature-request-form').addEventListener('submit', function(e) {
+        document.getElementById('fr-submit-button').addEventListener('click', function(e) {
             e.preventDefault();
             $.ajax({
                 type: 'POST',
