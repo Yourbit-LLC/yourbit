@@ -49,6 +49,7 @@ class ConversationViewSet(viewsets.ModelViewSet):
         members = serializer.validated_data.get('members', [])
 
         members_split = members.split(",")
+        print(members_split)
 
         start = 0
 
@@ -60,7 +61,7 @@ class ConversationViewSet(viewsets.ModelViewSet):
                 
         members_split.append(str(self.request.user.id))
 
-        print(str(start) + ": " + member)
+        print("Members: " + str(members_split))
         # Check if the conversation already exists with the same members
 
         try:
