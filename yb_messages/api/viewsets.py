@@ -76,15 +76,16 @@ class ConversationViewSet(viewsets.ModelViewSet):
         existing_conversations = Conversation.objects.filter(members__in=member_profiles)
 
         if existing_conversations.exists():
-            print("Existing conversation found")
             
             filtered_conversations = []
             for conversation in existing_conversations:
+
                 conversation_members = conversation.members.all()
                 if all(member in member_profiles for member in conversation_members) and len(conversation_members) == len(member_profiles):
                     filtered_conversations.append(conversation)
 
-            if filtered_conversations:
+            if filtered_conversations > 0:
+                print("Existing conversation found")
                 serializer = ConversationSerializer(filtered_conversations[0], many=False)
                 print(serializer.data)
                 return Response(serializer.data)
