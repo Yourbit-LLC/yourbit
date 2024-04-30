@@ -73,7 +73,7 @@ class ConversationViewSet(viewsets.ModelViewSet):
 
         # try:
         print("Trying to find existing conversation")
-        existing_conversation = Conversation.objects.filter(members__in=member_profiles).distinct()
+        existing_conversation = Conversation.objects.filter(members__in=member_profiles)
 
         if existing_conversation.exists():
             print("Found existing conversation")
