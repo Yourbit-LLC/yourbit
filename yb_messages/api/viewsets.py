@@ -67,6 +67,8 @@ class ConversationViewSet(viewsets.ModelViewSet):
         for member in members_split:
             member_profiles.append(User.objects.get(id=member))
 
+        print("Member Profiles: " + str(member_profiles))
+
         # Check if the conversation already exists with the same members
 
         try:
