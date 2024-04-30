@@ -74,7 +74,7 @@ class ConversationViewSet(viewsets.ModelViewSet):
         try:
             print("Trying to find existing conversation")
             existing_conversation = Conversation.objects.get(members__in=member_profiles)
-            return Response({"message": "Conversation already exists."}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"message": "Conversation already exists."})
 
         except:
 
