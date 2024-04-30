@@ -71,25 +71,25 @@ class ConversationViewSet(viewsets.ModelViewSet):
 
         # Check if the conversation already exists with the same members
 
-        # try:
-        print("Trying to find existing conversation")
-        existing_conversation = Conversation.objects.get(members__in=member_profiles)
-        return Response({"message": "Conversation already exists."}, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            print("Trying to find existing conversation")
+            existing_conversation = Conversation.objects.get(members__in=member_profiles)
+            return Response({"message": "Conversation already exists."}, status=status.HTTP_400_BAD_REQUEST)
 
-        # except:
+        except:
 
-        #     if str(self.request.user.id) not in members:
-        #         members += str(self.request.user.id)
-        #     serializer.save(members=members)
+            if str(self.request.user.id) not in members:
+                members += str(self.request.user.id)
+            serializer.save(members=members)
 
-        #     new_conversation = Conversation.objects.get(id=serializer.data['id'])
+            new_conversation = Conversation.objects.get(id=serializer.data['id'])
 
-        #     for member in new_conversation.members.all():
-        #         message_core = MessageCore.objects.get(profile = member.profile)
-        #         message_core.conversations.add(new_conversation)
-        #         message_core.save()
+            for member in new_conversation.members.all():
+                message_core = MessageCore.objects.get(profile = member.profile)
+                message_core.conversations.add(new_conversation)
+                message_core.save()
 
-        #     return Response(serializer.data)
+            return Response(serializer.data)
 
 class MessageViewSet(viewsets.ModelViewSet):
     queryset = Message.objects.all()
