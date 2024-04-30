@@ -27,7 +27,6 @@ function yb_navigateToSupportForm(e){
 
 }
 
-
 $(document).ready(function() {
     BUG_REPORT_BUTTON.addEventListener("click", yb_navigateToSupportForm);
 
