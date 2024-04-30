@@ -94,6 +94,8 @@ class ConversationViewSet(viewsets.ModelViewSet):
                 message_core.conversations.add(new_conversation)
                 message_core.save()
 
+            print(serializer.data)
+
             return Response(serializer.data)
 
 class MessageViewSet(viewsets.ModelViewSet):
