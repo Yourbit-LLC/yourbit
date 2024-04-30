@@ -84,7 +84,7 @@ class ConversationViewSet(viewsets.ModelViewSet):
                 if all(member in member_profiles for member in conversation_members) and len(conversation_members) == len(member_profiles):
                     filtered_conversations.append(conversation)
 
-            if filtered_conversations > 0:
+            if filtered_conversations:
                 print("Existing conversation found")
                 serializer = ConversationSerializer(filtered_conversations[0], many=False)
                 print(serializer.data)
