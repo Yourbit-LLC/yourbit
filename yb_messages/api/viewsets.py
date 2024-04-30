@@ -76,6 +76,8 @@ class ConversationViewSet(viewsets.ModelViewSet):
         existing_conversations = Conversation.objects.filter(members__in=member_profiles)
 
         if existing_conversations.exists():
+            print("Existing conversation found")
+            
             filtered_conversations = []
             for conversation in existing_conversations:
                 conversation_members = conversation.members.all()
@@ -84,6 +86,7 @@ class ConversationViewSet(viewsets.ModelViewSet):
 
             if filtered_conversations:
                 serializer = ConversationSerializer(filtered_conversations[0], many=False)
+                print(serializer.data)
                 return Response(serializer.data)
         
         else:
