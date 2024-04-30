@@ -29,6 +29,8 @@ class BitSerializer(serializers.ModelSerializer):
     is_liked = serializers.SerializerMethodField()
     is_disliked = serializers.SerializerMethodField()
 
+    body = serializers.SerializerMethodField()
+
     photos = PhotoSerializer(many=True, read_only = True)
     video_upload = VideoSerializer(many=False, read_only = True)
     
@@ -72,6 +74,10 @@ class BitSerializer(serializers.ModelSerializer):
         if request and request.user:
             return obj.dislikes.filter(user=request.user).exists()
         return False
+    
+    def get_body(self, obj):
+        #Get with line breaks
+        return obj.body.replace('\n', '<br>')
     
     def to_representation(self, instance):
         ret = super().to_representation(instance)

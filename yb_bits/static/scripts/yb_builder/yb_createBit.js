@@ -196,7 +196,7 @@ function yb_handleCreateBit(){
     let title = document.getElementById("bb-field-bitTitle").value;
     this_data.append('title', title);
     let body = document.getElementById("bb-field-body").value;
-    this_data.append('body', body.replace(/\n/g, "<br>"));
+    this_data.append('body', body);
 
     let shoutouts = document.getElementById("bb-field-bitShoutouts").value;
     this_data.append('shoutouts', shoutouts);
