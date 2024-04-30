@@ -78,6 +78,7 @@ class ConversationViewSet(viewsets.ModelViewSet):
         if existing_conversation.exists():
             print("Found existing conversation")
             serializer = ConversationSerializer(existing_conversation.first(), many=False)
+            print(serializer.data)
             return Response(serializer.data)
         
         else:
