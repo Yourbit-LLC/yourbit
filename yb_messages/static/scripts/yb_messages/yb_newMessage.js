@@ -43,6 +43,9 @@ function yb_createConversation() {
             members: recipient_field.value
         },
         success: function(response) {
+            console.log("Response ID: " + response.id);
+            console.log(response);
+            
             yb_toggleConversation2Way(response.id)
         }
     })
