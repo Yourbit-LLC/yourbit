@@ -32,18 +32,18 @@
             <!--Phone Number-->
                 <p class="yb-select-label">Phone Number</p>
                 <!--TextInput-->
-                <input type='text' id='phone-number' class='yb-input-singleLine bg-gray-dark squared yb-autoText yb-margin-T10' placeholder="(555)555-5555">
+                <input type='text' id='phone-number' class='yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10' placeholder="(555)555-5555">
             <!--Address-->
                 <p class="yb-select-label">Address</p>
-                <input type='text' id='street-address' class='yb-input-singleLine bg-gray-dark squared yb-autoText yb-margin-T10'>
+                <input type='text' id='street-address' class='yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10'>
             <!--Hometown-->
                 <!--Town-->
                 <p class="yb-select-label">Hometown</p>
-                <input type='text' id='town' class='yb-input-singleLine bg-gray-dark squared yb-autoText yb-margin-T10'>
+                <input type='text' id='town' class='yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10'>
                 <!--Connect Group-->
             <!--Email Address-->
                 <p class="yb-select-label">Display Email <small><i>*If not the same as account email</i></small></p>
-                <input type='text' id='email-address' class='yb-input-singleLine bg-gray-dark squared yb-autoText yb-margin-T10'>
+                <input type='text' id='email-address' class='yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10'>
         </div>
     <!--Occupation-->
         <!--Workplace-->
@@ -54,22 +54,22 @@
             <br>
             <!--Name-->
             <p class="yb-select-label">Employer Name</p>
-            <input type='text' id='workplace-name' placeholder="Product Sales, Inc." class='yb-input-singleLine bg-gray-dark squared yb-autoText yb-margin-T10' placeholder="'Workplace, Inc'">
+            <input type='text' id='workplace-name' placeholder="Product Sales, Inc." class='yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10' placeholder="'Workplace, Inc'">
             <br>
             <br>
             <!--Industry-->
             <p class="yb-select-label">Industry</p>
-            <input type='text' id='industry-name' placeholder="Retail" class='yb-input-singleLine bg-gray-dark squared yb-autoText yb-margin-T10'>
+            <input type='text' id='industry-name' placeholder="Retail" class='yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10'>
             <br>
             <br>
             <!--Role-->
             <p class="yb-select-label">Role</p>
-            <input type='text' id='workplace-role' placeholder="Shift Manager" class='yb-input-singleLine bg-gray-dark squared yb-autoText yb-margin-T10'>
+            <input type='text' id='workplace-role' placeholder="Shift Manager" class='yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10'>
             <br>
             <br>
             <!--Year Started-->
             <p class="yb-select-label">Start Date</p>
-            <input type="date" class="yb-input-singleLine bg-gray-dark squared yb-autoText yb-margin-T10" id="input-job-start-date">
+            <input type="date" class="yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10" id="input-job-start-date">
             
             <!--Connect Group-->
             <br>
@@ -97,7 +97,7 @@
                 <br>
                 <!--Attending Status-->
                     Did you graduate?
-                    <select type="text" class='yb-input-singleLine bg-gray-dark squared yb-autoText yb-margin-T10' name="yb-align-text" id="yb-align-text" style="background-color: rgba(255,255,255,0.5); color: white;" placeholder="Paragraph Align" value="{{request.user.profile.user_profile_info.graduated_hs}}">
+                    <select type="text" class='yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10' name="yb-align-text" id="yb-align-text" style="background-color: rgba(255,255,255,0.5); color: white;" placeholder="Paragraph Align" value="{{request.user.profile.user_profile_info.graduated_hs}}">
                         <option value="yes">Yes</option>
                         <option value="no">No</option>
                         <option value="ny">Not Yet</option>
@@ -106,7 +106,7 @@
                     <br>
                     <!--Year Graduated-->
                     What Year?
-                    <input type="text" class="yb-input-singleLine bg-gray-dark squared yb-autoText yb-margin-T10" placeholder="Ex. '2023'" style="background-color: rgba(255,255,255,0.5); color: white;" name="year_graduated" value="{{request.user.profile.user_profile_info.year_graduated_hs}}">
+                    <input type="text" class="yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10" placeholder="Ex. '2023'" style="background-color: rgba(255,255,255,0.5); color: white;" name="year_graduated" value="{{request.user.profile.user_profile_info.year_graduated_hs}}">
                     <br>
                     <br>
                 <!--Connect Group-->
@@ -130,7 +130,7 @@
                 <!--Attending Status-->
                     Did you graduate?
 
-                    <select type="text" class='yb-input-singleLine bg-gray-dark squared yb-autoText yb-margin-T10' name="yb-align-text" id="yb-align-text" style="background-color: rgba(255,255,255,0.5); color: white;" placeholder="Paragraph Align" value="{{request.user.user_profile_info.currently_attanding_u}}">
+                    <select type="text" class='yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10' name="yb-align-text" id="yb-align-text" style="background-color: rgba(255,255,255,0.5); color: white;" placeholder="Paragraph Align" value="{{request.user.user_profile_info.currently_attanding_u}}">
                         <option value="yes">Yes</option>
                         <option value="no">No</option>
                         <option value="ny">Not Yet</option>
@@ -139,7 +139,7 @@
                     <br>
                     <!--Year Graduated-->
                     What Year?
-                    <input type="text" class="yb-input-singleLine bg-gray-dark squared yb-autoText yb-margin-T10" placeholder="Ex. '2023'" name="year_graduated" value="{{request.user.profile.user_profile_info.year_graduated_u}}">
+                    <input type="text" class="yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10" placeholder="Ex. '2023'" name="year_graduated" value="{{request.user.profile.user_profile_info.year_graduated_u}}">
                 <!--Connect Group-->
                 <p>Check if your school has an existing group. Link to the group to join in
                     on discussions with your peers.</p>
