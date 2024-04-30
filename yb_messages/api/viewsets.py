@@ -62,11 +62,16 @@ class ConversationViewSet(viewsets.ModelViewSet):
         members_split.append(str(self.request.user.id))
 
         print("Members: " + str(members_split))
+
+        member_profiles = []
+        for member in members_split:
+            member_profiles.append(User.objects.get(id=member))
+
         # Check if the conversation already exists with the same members
 
         try:
             print("Trying to find existing conversation")
-            existing_conversation = Conversation.objects.get(members__in=members_split)
+            existing_conversation = Conversation.objects.get(members__in=member_profiles)
             return Response({"message": "Conversation already exists."}, status=status.HTTP_400_BAD_REQUEST)
 
         except:
