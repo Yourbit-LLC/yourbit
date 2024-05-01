@@ -1,3 +1,10 @@
+.yb-color-pallete {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+
 @media screen and (min-width: 700px) {
 
     #split-content-container {
@@ -344,6 +351,7 @@
     
     }
     
+
     #bit-profile-image {
         display: block;
         position: relative;

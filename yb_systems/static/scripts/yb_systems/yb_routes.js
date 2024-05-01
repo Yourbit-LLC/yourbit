@@ -404,140 +404,32 @@ function customize_profile_splash_url(data=null){
     
 }
 
-function edit_profile_image_url(data=null){
+function customize_bit_url(data=null){
     try {
         yb_purgeScripts(yb_clearContainer);
     } catch (error) {
         console.log(error);
     }
     console.log("function");
-    
-    $("#content-container").load(`${base_url}/profile/templates/customize-html-profile-image/`);
-    yb_setSessionValues("location","customize-profile");
-    history.pushState({}, "", `/profile/customize/profile/image/edit`);
-    
+
+    $("#content-container").load(`${base_url}/customize/templates/customize-bit/`);
+    yb_setSessionValues("location","customize-bit");
+    history.pushState({}, "", `/profile/customize/bit/`);
 }
 
-function select_image_grid_url(){
+function customize_ui_url(data=null){
     try {
         yb_purgeScripts(yb_clearContainer);
     } catch (error) {
         console.log(error);
     }
     console.log("function");
-    
-    $("#content-container").load(`${base_url}/profile/templates/customize-html-select-image/`);
-    yb_setSessionValues("location","customize-profile");
-    history.pushState({}, "", `/profile/customize/profile/image/edit`);
-    
+
+    $("#content-container").load(`${base_url}/customize/templates/customize-ui/`);
+    yb_setSessionValues("location","customize-ui");
+    history.pushState({}, "", `/profile/customize/ui/`);
 }
 
-function avatar_crop_url(){
-    try {
-        yb_purgeScripts(yb_clearContainer);
-    } catch (error) {
-        console.log(error);
-    }
-    console.log("function");
-    
-    $("#content-container").load(`${base_url}/profile/templates/customize-html-profile-image-crop/`);
-    yb_setSessionValues("location","square-cropper");
-    history.pushState({}, "", `/profile/customize/profile/image/crop/`);
-    
-}
-
-//profile info
-function settings_profile_url(data){
-    $("#content-container").html('');
-    $("#content-container").load(`${base_url}/settings/templates/profile-info-html/`);
-    yb_setSessionValues("location","settings_profile");
-    history.pushState({}, "", `/settings/profile/`)
-
-}
-
-
-
-//privacy settings
-function settings_privacy_url(data){
-    $("#content-container").html('');
-    $("#content-container").load(`${base_url}/settings/templates/privacy-settings-html/`);
-    yb_setSessionValues("location","settings_privacy");
-    history.pushState({}, "", `/settings/privacy/`)
-    
-
-}
-
-//subscription
-function settings_subscription_url(data){
-    $("#content-container").html('');
-    yb_setSessionValues("location","settings_subscription");
-    $("#content-container").load(`${base_url}/settings/templates/subscription-settings-html/`);
-    history.pushState({}, "", `/settings/subscriptions/`);
-    
-}
-
-//money settings
-function settings_money_url(data){
-    $("#content-container").html('');
-    $("#content-container").load(`${base_url}/settings/payments-settings-html/`);
-    yb_setSessionValues("location","settings_money");
-    history.pushState({}, "", `/settings/feed/`);
-    
-
-
-}
-
-//Messages
-function messages_inbox_url(){
-    let base_url = getBaseURL();
-    try {
-        yb_purgeScripts(yb_clearContainer);
-    } catch (error) {
-        console.log(error);
-    }
-
-    
-    $("#content-container").load(`${base_url}/messages/templates/messages-html/`);
-    yb_setSessionValues("location","inbox");
-
-    let menu = document.getElementById("profile-menu");
-    
-    if (menu.style.visibility === "visible") {
-        yb_show_profile_menu();
-    }
-
-    let ui_status = yb_getSessionValues("ui")
-    
-    if (ui_status === "hidden") {
-        headerDropIn();
-    }
-    history.pushState({}, "", '/messages/inbox/');
-    
-}
-
-//Private Inbox
-function messages_public_inbox_url(data){
-    $("#content-container").html('');
-    yb_setSessionValues("location","public_inbox");
-    history.pushState({}, "", '/messages/inbox/public/');
-    
-
-}
-
-//Public Inbox
-function messages_private_inbox_url(data){
-    $("#content-container").load(`${base_url}/messenger/templates/messenger/conversation.html/`)
-    yb_setSessionValues("location","private_inbox");
-    history.pushState({}, "", '/messages/inbox/private/')
-    
-}
-
-//Conversation
-function messages_conversation_url(id, username){
-    window.location.href = `${base_url}/messages/conversation/${id}`;
-
-    
-}
 
 
 function rewards_url(data){

@@ -59,86 +59,27 @@ function yb_goHome() {
 }
 
 function yb_toggleSettingsMenu() {
-    console.log("settings shown")
-    let container = yb_toggle2WayContainer('settings', true);
-    if (container[0] === "closing"){
-        history.pushState(null, null, "/");
-        container[1].setAttribute("data-state", "empty");
-    } else {
-        console.log("not closing")
-        let container_content = container[1].querySelector(".yb-2Way-content");
-        container[1].setAttribute("data-state", "settings");
-        $(container_content).load("/settings/root/")
-        history.pushState({}, "", '/settings/main/');
-
-    }
+    yb_launch2WayContainer("settings");
 }
 
 function yb_showPeoplePage() {
-    console.log("settings shown")
-    let container = yb_toggle2WayContainer('people');
-    if (container[0] === "closing"){
-        history.pushState(null, null, "/");
-        container[1].setAttribute("data-state", "empty");
-    } else {
-        console.log("not closing")
-        let container_content = container[1].querySelector(".yb-2Way-content");
-        container[1].setAttribute("data-state", "people");
-        $(container_content).load("/profile/templates/people/")
-        history.pushState({}, "", '/profile/people/');
-
-    }
+    yb_launch2WayContainer("people");
 }
 
 function yb_showOrbitsPage() {
-    console.log("settings shown")
-    let container = yb_toggle2WayContainer('orbits');
-    if (container[0] === "closing"){
-        history.pushState(null, null, "/");
-        container[1].setAttribute("data-state", "empty");
-    } else {
-        console.log("not closing")
-        let container_content = container[1].querySelector(".yb-2Way-content");
-        container[1].setAttribute("data-state", "orbits");
-        $(container_content).load("/profile/templates/orbits/")
-        history.pushState({}, "", '/profile/people/');
-
-    }
+    yb_launch2WayContainer("orbits");
 }
 
 function yb_showHistoryPage() {
-    console.log("settings shown")
-    let container = yb_toggle2WayContainer('history');
-    if (container[0] === "closing"){
-        history.pushState(null, null, "/");
-        container[1].setAttribute("data-state", "empty");
-    } else {
-        console.log("not closing")
-        let container_content = container[1].querySelector(".yb-2Way-content");
-        container[1].setAttribute("data-state", "history");
-        $(container_content).load("/profile/templates/history/")
-        history.pushState({}, "", '/profile/history/');
-    }
+    yb_launch2WayContainer("history");
 }
 
 function yb_showStuffPage() {
-    console.log("settings shown")
-    let container = yb_toggle2WayContainer('stuff');
-    if (container[0] === "closing"){
-        history.pushState(null, null, "/");
-        container[1].setAttribute("data-state", "empty");
-    } else {
-        console.log("not closing")
-        let container_content = container[1].querySelector(".yb-2Way-content");
-        container[1].setAttribute("data-state", "stuff");
-        $(container_content).load("/profile/templates/stuff/")
-        history.pushState({}, "", '/profile/stuff/');
-
-    }
+    yb_launch2WayContainer("stuff");
 }
 
 function yb_messageButton() {
-    yb_handleMessageClick();
+    yb_launch2WayContainer("messages");
 }
 
 const BUTTON_FUNCTIONS = {
@@ -163,18 +104,7 @@ function yb_handleMenuGridLink(link) {
 }
 
 function yb_handleSupportClick() {
-    let container = yb_toggle2WayContainer('support', false);
-    if (container[0] === "closing"){
-        history.pushState(null, null, "/");
-        container[1].setAttribute("data-state", "empty");
-    } else {
-        console.log("not closing")
-        let container_content = container[1].querySelector(".yb-2Way-content");
-        container[1].setAttribute("data-state", "support");
-        $(container_content).load("/support/templates/support-center/")
-        history.pushState({}, "", '/support/');
-
-    }
+    yb_launch2WayContainer("support-center");
 }
 
 $(document).ready(function () {

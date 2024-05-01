@@ -32,11 +32,15 @@ def Customization(request):
         profile_thumbnail_small = profile_image_object.small_thumbnail.url
         profile_thumbnail_medium = profile_image_object.medium_thumbnail.url
         profile_thumbnail_large = profile_image_object.large_thumbnail.url
+
+        display_name = profile.display_name
+        username = profile.user.username
         
         wallpaper_object = custom.wallpaper
         wallpaper = wallpaper_object.background_image
         wallpaper_mobile = None
         wallpaper_desktop = None
+
 
         
 
@@ -45,6 +49,8 @@ def Customization(request):
             'profile_thumbnail_small': profile_thumbnail_small,
             'profile_thumbnail_medium': profile_thumbnail_medium,
             'profile_thumbnail_large': profile_thumbnail_large,
+            'display_name': display_name,
+            'username': username,
             'wallpaper': wallpaper,
             'wallpaper_mobile': wallpaper_mobile,
             'wallpaper_desktop': wallpaper_desktop,

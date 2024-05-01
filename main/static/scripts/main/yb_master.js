@@ -86,6 +86,80 @@ const year = currentDate.getFullYear();
 // Format the date as "MonthName day, year"
 const formattedDate = `${month} ${day}, ${year}`;
 
+var TWO_WAY_INDEX = {
+    "create": 
+        {
+            "template" : "/core/create-menu/",
+            "url" : "/create/"
+        },
+    "messages" : 
+        {
+            "template" : "/messages/inbox/",
+            "url" : "/messages/"
+        },
+    "notifications": 
+        {
+            "template" : "/notify/template/list/",
+            "url" : "/notify/"
+        },
+    "conversation": 
+        {
+            "template" : "/messages/templates/conversation/",
+            "url" : "/messages/conversation/"
+        },
+    "people":
+        {
+            "template" : "/profile/templates/people/",
+            "url" : "/profile/people/"
+        },
+    "orbits": 
+        {
+            "template" : "/profile/templates/orbits/",
+            "url" : "/profile/orbits/"
+        },
+    "settings": 
+        {
+            "template" : "/settings/root/",
+            "url" : "/settings/"
+        },
+    "stuff": 
+        {
+            "template" : "/profile/templates/stuff/",
+            "url" : "/profile/stuff/"
+        },
+    "history": 
+        {
+            "template" : "/profile/templates/history/",
+            "url" : "/profile/history/"
+        },
+
+    "support-center":
+        {
+            "template" : "/support/templates/support-center/",
+            "url" : "/support/"
+        }
+
+};
+
+function yb_launch2WayContainer(page) {
+    let this_page = TWO_WAY_INDEX[page];
+    console.log("settings shown")
+    let container = yb_toggle2WayContainer(page, true);
+    if (container[0] === "closing"){
+        history.pushState(null, null, "/");
+        container[1].setAttribute("data-state", "empty");
+    } else {
+        console.log("not closing")
+        let container_content = container[1].querySelector(".yb-2Way-content");
+        container[1].setAttribute("data-state", page);
+        $(container_content).html("");
+        $(container_content).load(this_page.template)
+        history.pushState({}, "", this_page.url);
+
+    }
+}
+
+
 function yb_setTimezone(){
     let csrfToken = getCSRF();
     let user_tz = Intl.DateTimeFormat().resolvedOptions().timeZone

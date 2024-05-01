@@ -57,3 +57,26 @@ function uploadProfileImage(source_image, cropped_image, type, profile_class, na
     });
 }
 
+function submitCustomOption(c_class, option, value) {
+    let csrf_token = getCSRF();
+    $.ajax({
+        type: 'POST',
+        url: '/customize/update/',
+        data: {
+            c_class: c_class,
+            option: option,
+            value: value
+        },
+        headers: {
+            'X-CSRFToken': csrf_token,
+        },
+        success: function(response) {
+            yb_showNotification(expandNotification, "Settings Updated");
+            console.log(response);
+        },
+        error: function(response) {
+            console.log(response);
+        }
+    });
+}
+

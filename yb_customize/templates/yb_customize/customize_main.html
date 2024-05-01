@@ -103,7 +103,7 @@
     
     <div id="yb-bit-graphic" class="yb-bit-graphic">
         <div id="bit-graphic-text-area"></div>
-        <div id="yb-circle-strip">
+        <div id="yb-circle-strip yb-flexRow">
             <div></div>
             <div></div>
             <div></div>
@@ -127,5 +127,17 @@
         customize_profile_panel.addEventListener("click", function(){
             customize_profile_splash_url();
         });
+
+        let customize_bit_panel = document.getElementById('customizable-bit-panel');
+        customize_bit_panel.addEventListener("click", function(){
+            customize_bit_url();
+        });
+
+        let customize_ui_panel = document.getElementById('customizable-ui-panel');
+        customize_ui_panel.addEventListener("click", function(){
+            customize_ui_url();
+        });
+
+
     })
 </script>

@@ -4,7 +4,7 @@ from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.utils import timezone
 from django.utils import dateformat
-from PIL import Image
+from PIL import Image, ImageOps
 from .models import Photo
 
 # Create your views here.
@@ -14,6 +14,7 @@ def generate_tiny_thumbnail(request, source_file):
     tiny_image = source_file.copy()
     sthumb_io = BytesIO()
     label = "thumbnail_tiny"
+    squared_image = ImageOps.fit(source_file, (32, 32))
     tiny_thumbnail = tiny_image.resize((32, 32))
     tiny_thumbnail.save(sthumb_io, format='PNG', quality=80)
     this_username = request.user.username
@@ -30,6 +31,7 @@ def generate_small_thumbnail(request, source_file):
     small_image = source_file.copy()
     sthumb_io = BytesIO()
     label = "thumbnail_small"
+    squared_image = ImageOps.fit(source_file, (64, 64))
     small_thumbnail = small_image.resize((64, 64))
     small_thumbnail.save(sthumb_io, format='PNG', quality=80)
     this_username = request.user.username
@@ -46,6 +48,7 @@ def generate_medium_thumbnail(request, source_file):
     large_image = source_file.copy()
     lthumb_io = BytesIO()
     label = "thumbnail_medium"
+    squared_image = ImageOps.fit(source_file, (256, 256))
     large_thumbnail = large_image.resize((256, 256))
     large_thumbnail.save(lthumb_io, format='PNG', quality=80)
     this_username = request.user.username
@@ -63,6 +66,7 @@ def generate_large_thumbnail(request, source_file):
     xlarge_image = source_file.copy()
     xthumb_io = BytesIO()
     label = "thumbnail_large"
+    squared_image = ImageOps.fit(source_file, (512, 512))
     xlarge_thumbnail = xlarge_image.resize((512, 512))
     xlarge_thumbnail.save(xthumb_io, format='PNG', quality=80)
     this_username = request.user.username

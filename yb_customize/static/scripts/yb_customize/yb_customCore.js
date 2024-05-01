@@ -77,3 +77,4 @@ function yb_flexCard(title, options) {
     document.body.appendChild(card);
 
 }
+

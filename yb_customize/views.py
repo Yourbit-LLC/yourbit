@@ -129,3 +129,17 @@ def get_wallpaper(request, profile_class, type):
 
     print("wallpaper => " + str(wallpaper))
     return FileResponse(wallpaper, content_type="image/png")
+
+class CustomizeUI(View):
+    def get(self, request):
+        return render(request, "yb_customize/customize_ui.html")
+    
+    def post(self, request):
+        pass
+
+class CustomizeBit(View):
+    def get(self, request):
+        return render(request, "yb_customize/customize_bit.html")
+    
+    def post(self, request):
+        pass

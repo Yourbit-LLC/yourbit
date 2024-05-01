@@ -152,3 +152,29 @@ class CreateOrbit(View):
 
         return JsonResponse({"orbit": new_orbit})
     
+def follow_profile(request, *args, **kwargs):
+    if request.method == "POST":
+        profile_id = request.POST.get("profile_id")
+        this_profile = Profile.objects.get(id = profile_id)
+        this_user = request.user.profile
+
+        this_user.follows.add(this_profile)
+        this_profile.followers.add(this_user)
+
+        this_user.save()
+        this_profile.save()
+
+        return JsonResponse({"status": "success"})
+    
+def block_profile(request, *args, **kwargs):
+    if request.method == "POST":
+        profile_id = request.POST.get("profile_id")
+        this_profile = Profile.objects.get(id = profile_id)
+        this_user = request.user.profile
+
+        this_user.blocked.add(this_profile)
+        
+        this_profile.save()
+
+        return JsonResponse({"status": "success"})
+    
