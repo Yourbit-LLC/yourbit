@@ -48,7 +48,11 @@
                             {{conversation.name}}
                     </b>
                     <p class="yb-autoText">
-                        *Message Preview Pending*
+                        {% if conversation.preview != ""%}
+                            "{{conversation.preview}}..."
+                        {% else %}
+                            <i>Attachment</i>
+                        {% endif %}
                     </p>
 
                     <div class="font-white blend" id="conversation-time">

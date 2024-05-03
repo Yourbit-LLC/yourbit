@@ -44,8 +44,10 @@ def message_inbox(request):
         for conversation in conversations:
 
             members = conversation.members.all()
+            preview_text = Message.objects.filter(conversation = conversation).last().body[:150]
+            conversation_data.append({"id": conversation.id, "time":conversation.time_modified, "preview": preview_text})
 
-            conversation_data.append({"id": conversation.id, "time":conversation.time_modified})
+            
 
             if conversation.is_name == True:
                 conversation_data[iteration]["name"] = conversation.name
@@ -67,7 +69,8 @@ def message_inbox(request):
     context = {
         "conversations": is_conversations,
         'results': conversation_data,
-        'onload': onload
+        'onload': onload,
+        
         
     }
 
