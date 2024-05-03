@@ -44,7 +44,13 @@ def message_inbox(request):
         for conversation in conversations:
 
             members = conversation.members.all()
-            preview_text = Message.objects.filter(conversation = conversation).last().body[:150]
+            preview_message = Message.objects.filter(conversation = conversation).last()
+            
+            if preview_message.from_user == user:
+                preview_text = "You: " + preview_message.body[:150]
+
+            else:
+                preview_text = preview_message.from_user.first_name + ": " + preview_message
             conversation_data.append({"id": conversation.id, "time":conversation.time_modified, "preview": preview_text})
 
             
