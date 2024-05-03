@@ -50,11 +50,12 @@ def create_profile(sender, instance, created, **kwargs):
         message_core.save()
 
         #Initialize Customization Modules
+        from yb_photo.utility import process_image
         custom_core = CustomCore(profile=user_profile)
-        default_profile_image = Photo(profile = user_profile, is_community = False)
+        default_profile_image = process_image(instance, static("main/images/default-profile-image.png"), static("yb_customize/images/default-profile-image.png"), False)
         
         #Set the image and image thumbnail fields to static file for default_profile_image.png
-        default_profile_image.save()
+        
         custom_core.profile_image = default_profile_image
         default_wallpaper = Wallpaper(profile = user_profile)
         default_wallpaper.save()

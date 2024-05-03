@@ -79,7 +79,7 @@ function yb_buildFieldTag(label, id) {
 }
 
 //Function for generating message bubbles
-function yb_buildMessage(this_message){
+function yb_buildMessage(this_message, photos = [], videos = []){
     
     let id= this_message.id
     let time = this_message.time
@@ -87,19 +87,43 @@ function yb_buildMessage(this_message){
     let is_sender = this_message.is_sender
 
     console.log(is_sender)
-    let new_element;
+    let message_contents = [];
 
     if (is_sender === true){
         let conversation_data = document.getElementById("conversation-data");
         let user_color = conversation_data.getAttribute("data-primary-color");
 
+        if (photos.length > 0){
+            for (let i=0; i<photos.length; i++){
+                let photo = photos[i];
+                let photo_id = photo.id;
+                new_photo_container = yb_createElement("div", "message-bubble message-bubble-right", `message-photo-container-${photo_id}`);
+                new_photo_container.style.backgroundColor = "transparent";
+                new_photo = yb_renderImage(photo.image, "message-photo", "message-photo-" + photo_id, "A photo you sent");
+                new_photo_container.appendChild(new_photo);
+                message_contents.push(new_photo_container);
+            }
+
+        } else if (videos.length > 0){
+            for (let i=0; i<videos.length; i++){
+                let video = videos[i];
+                let video_id = video.id;
+                new_video_container = yb_createElement("div", "message-bubble message-bubble-left", `message-video-${video_id}`);
+                new_video = yb_renderVideo(video.video, "message-video", "message-video-" + video_id, "Video from a friend");
+                new_video_container.appendChild(new_video);
+                message_contents.push(new_video_container);
+            }
+        }
+
+
         new_element = yb_createElement("div", "message-bubble message-bubble-right", `message-${id}`);
         new_element.setAttribute("data-id", id);
-
         new_body = yb_createElement("div", "message-body", `message-body-${id}`);
         new_body.innerHTML = body;
         new_element.appendChild(new_body);
 
+        message_contents.push(new_element);
+     
         // new_time = yb_createElement("p", `message-time-${id}`, "message-time");
         // new_time.innerHTML = `<small>${time}</small>`;
         // new_element.appendChild(new_time);
@@ -110,12 +134,37 @@ function yb_buildMessage(this_message){
         // new_element.appendChild(new_avatar);
 
     } else {
+
+        if (photos.length > 0){
+            for (let i=0; i<photos.length; i++){
+                let photo_object = photos[i];
+                let photo = photo_object.image;
+                let photo_id = photo.id;
+                new_photo_container = yb_createElement("div", "message-bubble message-bubble-left", `message-photo-container-${photo_id}`);
+                new_photo = yb_renderImage(photo.image, "message-photo", "message-photo-" + photo_id, "Photo from a friend");
+                new_photo_container.appendChild(new_photo);
+                message_contents.push(new_photo_container);
+            }
+
+        } else if (videos.length > 0){
+            for (let i=0; i<videos.length; i++){
+                let video_object = videos[i];
+                let video = video_object.image;
+                let video_id = video.id;
+                new_video_container = yb_createElement("div", "message-bubble message-bubble-left", `message-video-${video_id}`);
+                new_video = yb_renderVideo(video.video, "message-video", "message-video-" + video_id, "Video from a friend");
+                new_video_container.appendChild(new_video);
+                message_contents.push(new_video_container);
+            }
+        }
+
         new_element = yb_createElement("div", "message-bubble message-bubble-left", `message-${id}`);
         new_element.setAttribute("data-id", id)
         
         new_body = yb_createElement("div", "message-body", `message-body-${id}`);
         new_body.innerHTML = body;
         new_element.appendChild(new_body);
+        message_contents.push(new_element);
 
         // new_time = yb_createElement("p", `message-time-${id}`, "message-time");
         // new_time.innerHTML = `<small>${time}</small>`;
@@ -129,7 +178,7 @@ function yb_buildMessage(this_message){
     }
 
 
-    return new_element
+    return message_contents
 
 
 }

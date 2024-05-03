@@ -78,6 +78,12 @@
 
 }
 
+.yb-popup-menu.open {
+    transform: translate(-50%, 0);
+    transition: 0.5s;
+
+}
+
 .yb-popup-menu {
     width: 98%;
     overflow: hidden;

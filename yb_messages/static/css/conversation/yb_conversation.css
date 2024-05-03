@@ -19,11 +19,12 @@ body {
 #message-input {
     text-align: center;
     position: absolute;
-    height: 40px;
     left: 0px;
+    bottom: 0px;
     display: grid;
+    grid-template-rows: auto 45px;
     grid-template-columns: 40px calc(100% - 106px) 55px;
-    
+    z-index: 101;
     padding-top: 5px;
     transition: 0.5s;
     padding-top: 5px;
@@ -193,9 +194,13 @@ body {
     color: white;
     margin: auto;
   }
+
+  #attachment-icon {
+    transition: 0.5s;
+  }
   
   .message-bubble-left {
-    background-color: rgb(105, 0, 119);
+    background-color: #007bff;
     margin-right: auto;
     margin-left: 5px;
 
@@ -222,4 +227,31 @@ body {
     width: 100%;
     color: gray;
     display: none;
+}
+
+#attachment-preview-container {
+    position: relative;
+    
+    grid-column-start: 1;
+    grid-column-end: 4;
+    max-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    flex-direction: row;
+    width: 100%;
+
+}
+.message-photo {
+    max-height: 200px;
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+#attachment-preview {
+    height: 100px;
+    display: block;
+    margin-right: 10px;
+    border-radius: 10px;
 }

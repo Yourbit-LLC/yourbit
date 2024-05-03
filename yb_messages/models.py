@@ -39,7 +39,7 @@ class Conversation(models.Model):
 class Message(models.Model):
     conversation = models.ForeignKey('Conversation', related_name='conversation', on_delete=models.CASCADE, default=None)
     from_user = models.ForeignKey(User, related_name="sender", on_delete=models.CASCADE, blank=True)
-    body = models.CharField(max_length = 1500)
+    body = models.CharField(max_length = 1500, blank=True)
     videos = models.ManyToManyField('yb_video.Video', blank=True)
     images = models.ManyToManyField('yb_photo.Photo', blank=True)
     time = models.DateTimeField(default=timezone.now)

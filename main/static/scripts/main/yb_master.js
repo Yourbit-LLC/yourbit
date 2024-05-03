@@ -170,7 +170,6 @@ var TWO_WAY_INDEX = {
             "template" : "/photo/templates/cropper/background/",
             "url" : ""
         },
-
           
 };
 

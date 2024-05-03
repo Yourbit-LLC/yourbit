@@ -27,7 +27,12 @@ class ConversationSerializer(serializers.ModelSerializer):
         return conversation
     
 class MessageSerializer(serializers.ModelSerializer):
+    from yb_photo.api.serializers import PhotoSerializer
+    from yb_video.api.serializers import VideoSerializer
+
     user = UserResultSerializer(read_only=True)
+    images = PhotoSerializer(many=True, read_only=True)
+    videos = VideoSerializer(many=True, read_only=True)
     class Meta:
         model = Message
         fields = '__all__'

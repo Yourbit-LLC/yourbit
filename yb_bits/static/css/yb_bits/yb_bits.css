@@ -609,18 +609,34 @@
 .attached-photo-container {
     border-radius: 10px;
     margin: auto;
-    width: 99.5%;
-    
-    box-shadow: 1px 1px 10px black;
     grid-row: 3;
-    border: 2px solid #4b4b4b;
+    border: 1px solid black;
     overflow: hidden;
     background-color: black;
 }
 
+@media screen and (min-width: 768px) {
+    .attached-photo-container {
+        width: 100%;
+        max-width: 512px;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    .attached-photo-container {
+        width: 100%;
+    }
+
+}
+
 .attached-photo {
+    display: block;
+    margin: auto;
     width: 100%;
-    object-fit: fill;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
 }
 
 .attached-video-container {
@@ -631,7 +647,6 @@
     grid-row: 3;
     background-color: black;
     border-radius: 10px;
-    box-shadow: 1px 1px 5px black;
     height: 350px;
     overflow: hidden;
     border: 2px solid black;

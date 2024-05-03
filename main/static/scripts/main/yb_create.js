@@ -17,6 +17,17 @@ function yb_renderImage(source, yb_class, yb_id, alt) {
 
 }
 
+function yb_renderVideo(source, yb_class, yb_id, alt) {
+    let new_element = yb_createElement("video", yb_class, yb_id);
+    
+    new_element.setAttribute("src", source);
+    new_element.setAttribute("alt", alt);
+
+    return new_element;
+
+}
+
+
 function yb_createButton(name, yb_class, yb_id, label, action=null) {
     let new_element = yb_createElement("button", yb_class, yb_id);
 
