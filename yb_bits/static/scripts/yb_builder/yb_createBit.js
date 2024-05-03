@@ -13,7 +13,10 @@ var bit_type_field = document.getElementById("bb-field-bitType");
 var type_buttons = document.querySelectorAll(".type-button");
 
 var photo_upload_field = document.getElementById("bb-field-bitPhoto");
+var cropped_photo_upload_field = document.getElementById("bb-field-bitPhoto-cropped");
 var video_upload_field = document.getElementById("bb-field-bitVideo");
+
+var cropped_photo;
 
 //Function for generating bits
 function BuildBitPreview(type){
@@ -185,14 +188,20 @@ function yb_handleCreateBit(){
     if (type === "photo"){
         let image = document.getElementById("bb-field-bitPhoto").files[0];
         this_data.append('image', image);
+
+        var cropped_image = dataURItoBlob(cropped_photo);
+        this_data.append('cropped_image', cropped_image);
+
         let tags = document.getElementById("bb-field-bitTags").value;
         this_data.append('tags', tags);
+
     } else if (type === "video"){
         let video = document.getElementById("bb-field-bitVideo").files[0];
         this_data.append('video', video);
         let tags = document.getElementById("bb-field-bitTags").value;
         this_data.append('tags', tags);
     }
+
     let title = document.getElementById("bb-field-bitTitle").value;
     this_data.append('title', title);
     let body = document.getElementById("bb-field-body").value;
@@ -266,6 +275,25 @@ $(document).ready(function(){
 
 });
 
+function finishBitCrop(){
+    cropped_photo = cropper.getCroppedCanvas().toDataURL();
+    let cropped_photo_field = document.getElementById("bb-field-bitPhoto-cropped");
+    
+    yb_2WayPage(1, "cropper-bit");
+    yb_collapse2Way();
+    
+    let photo = photo_upload_field.files[0];
+    photo_preview = URL.createObjectURL(photo);
+
+    let this_image = yb_renderImage(cropped_photo, "bit-preview-image", `bit-preview-image`, "Preview Image");
+
+    add_photo_button.innerHTML = "";
+    add_photo_button.appendChild(this_image);
+    add_photo_button.classList.add("fast");
+    add_photo_button.classList.add("yb-bounceDown-once");
+
+}
+
 $(document).ready(function(){
     chat_type_button.addEventListener("click", function(){
         console.log("clicked");
@@ -333,13 +361,15 @@ $(document).ready(function(){
     add_photo_button.addEventListener("click", function(){
         photo_upload_field.click();
         photo_upload_field.addEventListener("change", function(){
-            let photo = photo_upload_field.files[0];
-            photo_preview = URL.createObjectURL(photo);
-            let this_image = yb_renderImage(photo_preview, "bit-preview-image", `bit-preview-image`, "Preview Image");
-            add_photo_button.innerHTML = "";
-            add_photo_button.appendChild(this_image);
-            add_photo_button.classList.add("fast");
-            add_photo_button.classList.add("yb-bounceDown-once");
+            // let photo = photo_upload_field.files[0];
+            // photo_preview = URL.createObjectURL(photo);
+            // let this_image = yb_renderImage(photo_preview, "bit-preview-image", `bit-preview-image`, "Preview Image");
+            // add_photo_button.innerHTML = "";
+            // add_photo_button.appendChild(this_image);
+            // add_photo_button.classList.add("fast");
+            // add_photo_button.classList.add("yb-bounceDown-once");
+            yb_2WayPage(2, "cropper-bit");
+            yb_expand2Way();
 
         });
         

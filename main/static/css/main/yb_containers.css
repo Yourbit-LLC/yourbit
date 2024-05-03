@@ -381,11 +381,14 @@
     position: fixed;
     z-index: 99;
     box-shadow: black 0px 0px 50px 0px;
+    overflow-x: hidden;
 
 }
 
+
 .yb-2Way-content {
     overflow: hidden;
+    transition: 0.3s;
 }
 .yb-panel-wide {
     position: relative;
@@ -432,7 +435,7 @@
         height: calc(100vh - 90px);
         top: calc(50% + 30px);
         transform: translate(150%, -50%);
-        transition: 0.5s;
+        transition: 0.35s;
         overflow-x: hidden;
         scrollbar-width: none; /* Create a thin scrollbar on Firefox */
         scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color); /* Set thumb and track colors on Firefox */
@@ -459,9 +462,32 @@
 
     .yb-2Way-container.open {
         transform: translate(0, -50%);
-        transition: 0.5s;
+        transition: 0.25s;
         
     }
+
+    .yb-2Way-container.expanded {
+        width: 90%;
+        max-width: 750px;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        transition: 0.35s;
+    }
+}
+
+.yb-2Way-content.inactive {
+    transform: translateX(-100%);
+    transition: 0.3s;
+}
+
+.yb-2Way-secondary {
+    transform: translateX(100%);
+    transition: 0.3s;
+}
+
+.yb-2Way-secondary.active {
+    transform: translateX(0);
+    transition: 0.3s;
 }
 
 @media screen and (max-width: 768px) {
@@ -472,13 +498,13 @@
         height: 100vh;
         top: 0px;
         transform: translateY(100vh);
-        transition: 0.5s;
+        transition: 0.25s;
         overflow-y: scroll;
     }
 
     .yb-2Way-container.open {
         transform: translateY(0);
-        transition: 0.5s;
+        transition: 0.25s;
     }
 }
 

@@ -18,20 +18,39 @@ function resetCropper() {
 }
 
 
-function initializeOrUpdateCropper(target_ratio, field) {
-
+function initializeOrUpdateCropper(target_ratio, field, preview_block) {
 
     let file_upload_field = document.getElementById(field);
 
     if (cropper) {
         console.log("cropper exists")
-        cropper.replace($('#profile-image-preview').attr('src'));
-    } else {
+        // cropper.replace($("#" + field).attr('src'));
+        
         let input = file_upload_field; // Get the input element
         file = input.files[0];
         let reader = new FileReader();
         reader.onload = function(e) {
-            let imageElement = document.getElementById('profile-image-preview');
+            let imageElement = document.getElementById(preview_block);
+            imageElement.src = e.target.result;
+            cropper = new Cropper(imageElement, {
+                aspectRatio: target_ratio,
+                viewMode: 2,
+                crop: function(event) {
+                    console.log(event.detail.width);
+                    console.log(event.detail.height);
+                    cropImage(target_ratio);
+                }
+            });
+        }
+
+        reader.readAsDataURL(file);
+    } else {
+
+        let input = file_upload_field; // Get the input element
+        file = input.files[0];
+        let reader = new FileReader();
+        reader.onload = function(e) {
+            let imageElement = document.getElementById(preview_block);
             imageElement.src = e.target.result;
             cropper = new Cropper(imageElement, {
                 aspectRatio: target_ratio,
@@ -49,15 +68,19 @@ function initializeOrUpdateCropper(target_ratio, field) {
 }
 
 function previewProfileImage() {
-    initializeOrUpdateCropper(1, "profile-image-upload");
+    initializeOrUpdateCropper(1, "profile-image-upload", "crop-image-preview");
 }
 
 function previewDesktopBackgroundImage() {
-    initializeOrUpdateCropper(16/9, "background-image-upload");
+    initializeOrUpdateCropper(16/9, "background-image-upload", "crop-image-preview");
 }
 
 function previewMobileBackgroundImage() {
-    initializeOrUpdateCropper(9/19.5, "background-image-upload");
+    initializeOrUpdateCropper(9/19.5, "background-image-upload", "crop-image-preview");
+}
+
+function previewBitCrop() {
+    initializeOrUpdateCropper(1, "bb-field-bitPhoto", "crop-image-preview");    
 }
 
 function cropImage(type) {

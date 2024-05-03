@@ -167,10 +167,11 @@ class BitViewSet(viewsets.ModelViewSet):
             print("Creating a photobit.")
             
             photo_data = request.FILES['image']
-            new_photo = process_image(request, photo_data, photo_data, False)
+            photo_data_cropped = request.FILES['cropped_image']
+            new_photo = process_image(request, photo_data, photo_data_cropped, False)
             new_photo.save()
             serializer.validated_data['photos'] = [new_photo]
-
+ 
         if 'video' in request.FILES:
             video_data = request.FILES['video']
             new_video = Video.objects.create(video=video_data, user=self.request.user)

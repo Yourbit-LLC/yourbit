@@ -1,0 +1,51 @@
+{% load static %}
+
+<input type="hidden" id="image-edit-data" value="{{type}}">
+
+<!--Profile image cropper-->
+<div class="yb-cropper-container profile-image yb-center-transform tb yb-fillWidth" style="transition: 0.5s;" id="square-crop-container">
+    <div class = "yb-cropper-preview-container" style = "max-height: 75vh;">
+        <img id="crop-image-preview" style="object-fit: contain; max-width:100%; height: 100%; max-height: calc(100%-140px);"/>
+        <input type="hidden" id="cropper-output" value="">
+    </div>
+    <div id="profile-cropper-submission-controls" class="align-center yb-margin-T10" style="width:100%; background-color: rgba(0, 0, 0, 0.5);">
+        <button id="image-cropper-save" class="yb-button-flex green font-white" type = "button" style="width: 120px;" name="inactive" data-type="none" data-class="none">Done</button>
+    </div>  
+</div>
+
+<script src="{% static 'scripts/yb_customize/yb_ajax.js' %}"></script>
+<script src="{% static 'scripts/yb_photo/yb_crop.js' %}"></script>
+
+<script>
+    $(document).ready(function(){
+        
+        let type = $('#image-edit-data').val();
+        let submit = document.getElementById('image-cropper-save');
+
+        if (type == "bit"){
+            console.log("bit");
+            previewBitCrop();
+        } else if (type == "profile"){
+            console.log("profile");
+            previewProfileImage();
+        } else if (type == "mobile-wallpaper") {
+            console.log("mobile-wallpaper");
+            previewMobileBackgroundImage();
+        } else if (type == "desktop-wallpaper") {
+            console.log("desktop-wallpaper");
+            previewDesktopBackgroundImage();
+        } 
+
+        submit.addEventListener('click', function(){
+            if (type == "bit"){
+                finishBitCrop();
+            } else if (type == "profile"){
+                finishProfileImage();
+            } else if (type == "mobile-wallpaper") {
+                finishMobileBackgroundImage();
+            } else if (type == "desktop-wallpaper") {
+                finishDesktopBackgroundImage();
+            }
+        });
+    });
+</script>

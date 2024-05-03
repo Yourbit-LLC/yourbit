@@ -74,6 +74,11 @@ lang="en"
     <!--Import External Scripts-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.12/lottie.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <!--Import cropper js and styling-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" />
+
+
     
     <!--Import Systems-->
     <script src="{% static 'scripts/yb_systems/yb_timeKeeper.js' %}"></script>
@@ -520,6 +525,10 @@ lang="en"
                 <!--Dynamic content will load here-->
             </div>
 
+            <div class="yb-2Way-secondary yb-fillContainer" id="yb-2way-secondary-b">
+                <!--Dynamic content will load here-->
+            </div>
+
         </div>
 
         <div class="yb-2Way-container yb-panel" id="yb-dynamic-2way-b" data-state="empty">
@@ -530,6 +539,10 @@ lang="en"
 
 
             <div class="yb-2Way-content yb-fillContainer" id="yb-2way-content-a">
+                <!--Dynamic content will load here-->
+            </div>
+
+            <div class="yb-2Way-secondary yb-fillContainer" id="yb-2way-secondary-a">
                 <!--Dynamic content will load here-->
             </div>
 

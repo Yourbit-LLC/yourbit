@@ -179,6 +179,7 @@ window.onload = function() {
         console.log(this_type);
         let this_class = $(this).attr('data-class');
         let source_image;
+        
         //Get cropped image data
         var croppedImageDataURL = cropper.getCroppedCanvas().toDataURL();
         var cropped_image = dataURItoBlob(croppedImageDataURL);
