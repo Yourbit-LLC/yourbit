@@ -19,6 +19,25 @@
     
 }
 
+@media screen and (max-width: 768px) {
+    .yb-2Way-expand {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .yb-2Way-expand {
+        position: absolute;
+        display: block;
+        top: 50%;
+        left: -50px;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+    }
+}
+
+
 .yb-button-popout.left {
     left: 7px;
     transition: 0.5s;

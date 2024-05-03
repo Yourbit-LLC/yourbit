@@ -32,7 +32,10 @@
                                 <video src="{{ video.video.url }}" class="message-video" controls></video>
                             </div>
                         {% endfor %}
-                    {% else %}
+
+                    {% endif %}
+                    {% if message.body != "" %}
+                    
                         <div id="message-{{message.id}}" class='message-bubble message-bubble-right'>
                             <div class="message-body">{{ message.body }}</div>
                         </div>
@@ -62,21 +65,13 @@
 
                         </div>
                         {% endfor %}
-                    {% else %}
+                    {% endif %}
+
+                    {% if message.body != "" %}
                         <div id="message-{{message.id}}" class='message-bubble message-bubble-left'>
                             <div class="message-body">{{ message.body }}</div>
                         </div>
                     {% endif %}
-                
-                    <div id="message-{{message.id}}" class='message-bubble message-bubble-left'>
-                        <div class="message-body">{{ message.body }}</div>
-                    </div>
-
-
-                    <div class='message-timestamp' style="display: none;">
-                        <div class="message-time">{{ message.time }}</div>
-
-                    </div>
                 
             
 

@@ -622,6 +622,7 @@ function yb_show2WayLoad() {
 function yb_toggle2WayContainer(type, scroll=false){
 
     console.log(scroll)
+    yb_collapse2Way();
     if (MAIN_MENU.classList.contains('open')){
         MAIN_MENU.classList.toggle('open');
         SIDE_CONTAINER_A.classList.toggle('open');
