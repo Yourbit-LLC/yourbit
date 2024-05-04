@@ -44,6 +44,9 @@ def message_inbox(request):
         for conversation in conversations:
 
             members = conversation.members.all()
+
+            print(conversation.id)
+
             preview_message = Message.objects.filter(conversation = conversation).last()
             
             if preview_message.from_user == user:
