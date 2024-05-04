@@ -72,6 +72,7 @@
     </div>
 <script type="text/javascript">
     var base_url = window.location.origin;
+    var settings_container = document.getElementsByClassName("settingsBox");
         
     $(document).ready(function() {
         
@@ -90,13 +91,13 @@
     });
 
     function yb_handleEditClick(e){
-        let this_item = e.target;
+        let this_item = e.currentTarget;
         let action = this_item.getAttribute("name");
         console.log(action)
 
         console.log("profile info clicked")
 
-        if (action === "customize") {
+        if (action == "customize") {
             console.log("if")
             yb_toggle2WayContainer("settings");
             customize_url("");
@@ -118,8 +119,10 @@
 
     }
 
-    for (let i = 0; i < document.getElementsByClassName("settingsBox").length; i++) {
-        document.getElementsByClassName("settingsBox")[i].addEventListener("click", yb_handleEditClick);
+    for (let i = 0; i < settings_container.length; i++){
+        console.log(settings_container[i].getAttribute("name"));
+        settings_container[i].addEventListener("click", yb_handleEditClick);
     }
 
+    
 </script>
