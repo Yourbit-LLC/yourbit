@@ -49,14 +49,14 @@
                     </b>
                     <p class="yb-autoText">
                         {% if conversation.preview != ""%}
-                            "{{conversation.preview}}..."
+                            {{conversation.preview}}
                         {% else %}
                             <i>Attachment</i>
                         {% endif %}
                     </p>
 
                     <div class="font-white blend" id="conversation-time">
-                        <p "font-small"><small><i>{{conversation.time}}</i></small></p>
+                        <p class="font-small"><small><i>{{conversation.time}}</i></small></p>
                     </div>
 
                 </div>

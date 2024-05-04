@@ -20,10 +20,9 @@
                     {% if message.images%}
                         {% for image in message.images.all %}
                             <div id="message-{{message.id}}" class='message-bubble message-bubble-right' style="background-color: transparent;">
-                                    
-                                        <img src="{{ image.image.url }}" class="message-photo"/>
-                                    
-                                
+
+                                <img src="{{ image.image.url }}" class="message-photo"/>   
+                                           
                             </div>
                         {% endfor %}
                     {% elif message.videos %}
