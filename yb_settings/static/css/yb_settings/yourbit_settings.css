@@ -24,20 +24,20 @@
 
     .settingsBox {
         position: relative;
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: 1fr 4fr;
         margin-left: auto;
         margin-right: auto;
         width: 90%;
-        background-color: #2D2D2D;
+        background-color: rgb(25, 25, 25);
         color: rgb(177, 177, 177);
         padding: 10px;
         border-radius: 20px;
-        
+        height: 35px;
         row-gap: 5px;
-        text-align: center;
+        text-align: left;
         margin-bottom: 10px;
-        font-size: small;
+        font-size: medium;
 
 
     }
