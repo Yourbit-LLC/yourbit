@@ -307,8 +307,7 @@ Profile Page
 }
 
 .profile-interaction-container {
-    display: flex;
-    flex-direction: row;
+
     width: 100%;
     max-width: 500px;
     grid-gap: 10px;

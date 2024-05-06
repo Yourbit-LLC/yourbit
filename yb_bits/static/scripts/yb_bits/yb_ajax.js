@@ -281,7 +281,7 @@ function yb_sendLike(bitId, data=null, csrf_token) {
 
 */
 
-function yb_deleteLike(likeId, data=null) {
+function yb_deleteLike(likeId, data=null, csrf_token) {
     //Delete a Like
     console.log("deleting like...");
     console.log(data)
@@ -289,6 +289,9 @@ function yb_deleteLike(likeId, data=null) {
         type: 'DELETE',
         url: `/bits/api/likes/${likeId} `,
         data: data,
+        headers: {
+            'X-CSRFToken': csrf_token,
+        },
         success: function(response) {
             //Update the feed
             console.log(response)
@@ -366,14 +369,18 @@ function yb_sendDislike(bit, data=null, csrf_token) {
 
 */
 
-function yb_deleteDislike(dislikeId, data=null) {
+function yb_deleteDislike(dislikeId, data=null, csrf_token) {
     //Delete a Dislike
+    
     console.log("deleting dislike...");
     console.log(data)
     $.ajax({
         type: 'DELETE',
         url: `/bits/api/dislikes/${dislikeId} `,
         data: data,
+        headers: {
+            'X-CSRFToken': csrf_token,
+        },
         success: function(response) {
             //Update the feed
             console.log(response)

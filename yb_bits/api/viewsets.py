@@ -224,6 +224,16 @@ class LikeViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         bit_like = serializer.save(bit=bit, user = self.request.user)
         bit.likes.add(bit_like)
+
+        if bit_dislike := BitDislike.objects.filter(bit=bit, user=self.request.user).first():
+            bit.dislikes.remove(bit_dislike)
+            bit_dislike.delete()
+
+        elif bit_like := BitLike.objects.filter(bit=bit, user=self.request.user).first():
+            bit.likes.remove(bit_like)
+            bit_like.delete()
+
+
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
@@ -238,6 +248,16 @@ class DislikeViewsSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         bit_dislike = serializer.save(bit=bit, user = self.request.user)
         bit.dislikes.add(bit_dislike)
+
+        if bit_like := BitLike.objects.filter(bit=bit, user=self.request.user).first():
+            bit.likes.remove(bit_like)
+            bit_like.delete()
+
+        #now for dislikes 
+        elif bit_dislike := BitDislike.objects.filter(bit=bit, user=self.request.user).first():
+            bit.dislikes.remove(bit_dislike)
+            bit_dislike.delete()
+
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
