@@ -1174,7 +1174,7 @@ function registerSW(){
 const requestNotificationPermission = async () => {
     const permission = await Notification.requestPermission();
 
-    if (permission !== 'granted') {
+    if (permission != 'granted') {
         throw new Error('Permission not granted for Notification');
     } else {
         subscribeToPush();
