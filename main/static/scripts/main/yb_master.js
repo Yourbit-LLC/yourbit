@@ -767,7 +767,7 @@ function yb_toggle2WayContainer(type, scroll=false){
     
 }
 
-function yb_close2WayContainer(){
+function yb_close2WayContainer() {
     for (let i = 0; i < SIDE_CONTAINERS.length + 1; i++) {
         this_object = SIDE_CONTAINERS[i];
         if (this_object.classList.contains("open")){
@@ -779,7 +779,7 @@ function yb_close2WayContainer(){
     }
 }
 
-function yb_toggleCreateMenu(){
+function yb_toggleCreateMenu() {
     let container = yb_toggle2WayContainer('create', true);
     if (container[0] != "closing"){
         
@@ -1188,7 +1188,7 @@ const checkSubscription = async () => {
 }
 
 function yb_showNotifyPrompt() {
-    if (Notification.permission === 'default') {
+    if (Notification.permission != 'granted') {
         SUBSCRIPTION_BANNER.classList.add('open');
     }
 }

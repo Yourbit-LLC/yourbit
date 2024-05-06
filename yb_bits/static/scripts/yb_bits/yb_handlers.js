@@ -170,9 +170,7 @@ function yb_toggleBitButton(button, this_id, this_bit) {
             yb_makeInactive(dislike_button, dislike_icon);
             // Decreases the dislike count by 1
             dislike_count.innerHTML = dislike_count_int - 1;
-            
         }
-        
     }
 
     if (button == "dislike") {
@@ -189,9 +187,7 @@ function yb_toggleBitButton(button, this_id, this_bit) {
             yb_makeInactive(like_button, like_icon);
             // Decreases the like count by 1
             like_count.innerHTML = like_count_int - 1;
-
         }
-        // Sends a request to remove the like from the bit
     }
 }
 
