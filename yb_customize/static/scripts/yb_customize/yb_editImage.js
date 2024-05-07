@@ -29,14 +29,10 @@ function yb_saveProfileImage() {
     new_image_button.addEventListener("click", new_image_handler);
 }
 
-function new_image_handler(e) {
-    let current_target = e.currentTarget;
+function new_image_handler() {
     new_image_input.click();
 
-    current_target.innerHTML = "Save Image";
-    current_target.style.backgroundColor = "green";
-    current_target.removeEventListener("click", new_image_handler);
-
+    new_image_button.removeEventListener("click", new_image_handler);
 
 
 
@@ -70,6 +66,9 @@ $(document).ready(function() {
 
     new_image_input.addEventListener("change", function() {
         yb_2WayPage(2, "cropper-profile");
+        new_image_button.innerHTML = "Save Image";
+        new_image_button.style.backgroundColor = "green";
+
 
     });
 
