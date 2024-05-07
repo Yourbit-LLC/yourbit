@@ -121,7 +121,9 @@ function yb_sendComment(bitId, commentBody, csrf_token) {
                 yb_showComments(bitId);
             }
             
-            $(`#comment-count-${bitId}`).value += 1;
+            comment_count = document.getElementById(`comment-count-${bitId}`).innerHTML;
+            comment_count = parseInt(comment_count) + 1;
+            document.getElementById(`comment-count-${bitId}`).innerHTML = comment_count;
             // Implement the function to update the UI accordingly
         },
         error: function(jqXHR) {
