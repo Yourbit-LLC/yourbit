@@ -16,6 +16,7 @@ const ALL_SPACE_BUTTON = document.getElementById('global-space-button');
 const CHAT_SPACE_BUTTON = document.getElementById('chat-space-button');
 const PHOTO_SPACE_BUTTON = document.getElementById('photo-space-button');
 const VIDEO_SPACE_BUTTON = document.getElementById('video-space-button');
+const IMAGE_STAGE = document.getElementById('image-stage');
 
 const SEARCH_BUTTON = document.getElementById('search-button');
 const SEARCH_FIELD = document.getElementById('desktop-search-bar');
@@ -91,7 +92,7 @@ var MAIN_TEMPLATE_INDEX = {
     "profile": "/profile/templates/profile/",
 };
 
-var TWO_WAY_INDEX = {
+const TWO_WAY_INDEX = {
     "create": 
         {
             "template" : "/core/create-menu/",
@@ -170,6 +171,11 @@ var TWO_WAY_INDEX = {
             "template" : "/photo/templates/cropper/background/",
             "url" : ""
         },
+    "profile-image-upload":
+        {
+            "template" : "/customize/templates/profile-image/",
+            "url" : ""
+        },
           
 };
 
@@ -234,7 +240,40 @@ function yb_collapse2Way() {
     }
 }
 
+function yb_clearSecondaryContent() {
+    for (let i = 0; i < SIDE_CONTAINERS.length; i++) {
+        if (SIDE_CONTAINERS[i].classList.contains("open")) {
+            let secondary = SIDE_CONTAINERS[i].querySelector(".yb-2Way-secondary");
+            secondary.innerHTML = "";
+            break;
+        }
+    }
+}
 
+function yb_replaceProfileImages(){
+    let profile_id = yb_getSessionValues("user-profile");
+    $.ajax({
+        type: 'GET',
+        url: `/profile/api/profile/${profile_id}/image/`,
+        success: function(response) {
+            console.log(response)
+            let profile_image = response.profile_image;
+            
+            let image_containers = document.querySelectorAll(".profile-icon");
+            console.log(image_containers)
+            for (let i = 0; i < image_containers.length; i++){
+                let this_image = image_containers[i];
+                let image_source = profile_image.large_thumbnail;
+                this_image.setAttribute("src", image_source);
+            }
+
+        },
+        error: function(response) {
+            console.log(response);
+        }
+    });
+
+}
 
 function yb_setTimezone(){
     let csrfToken = getCSRF();

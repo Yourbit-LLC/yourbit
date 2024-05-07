@@ -55,3 +55,10 @@ class FriendRequestSerializer(serializers.ModelSerializer):
     class Meta: 
         model = FriendRequest
         fields = '__all__'
+
+class CustomProfileImageSerializer(serializers.ModelSerializer):
+    from yb_photo.api.serializers import PhotoSerializer
+    profile_image = PhotoSerializer(read_only=True)
+    class Meta: 
+        model = CustomCore
+        fields = ['profile_image']

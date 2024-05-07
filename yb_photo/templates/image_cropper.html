@@ -1,5 +1,11 @@
 {% load static %}
 
+<div id='div-header' style='position: relative; display: grid; grid-template-columns: 40px 5fr 40px; margin-left: auto; margin-right: auto; width: 100%; height: 40px; margin-bottom: 20px;' >
+    <div class="cb-panel-back"><svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
+    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb">Crop Thumbnail</h3>
+</div>
+<hr>
+
 <input type="hidden" id="image-edit-data" value="{{type}}">
 
 <!--Profile image cropper-->
@@ -17,6 +23,10 @@
 <script src="{% static 'scripts/yb_photo/yb_crop.js' %}"></script>
 
 <script>
+    function cropperGoBack(){
+        yb_2WayPage(1, 'profile-image-upload');
+        setTimeout(yb_clearSecondaryContent, 500);
+    }
     $(document).ready(function(){
         
         let type = $('#image-edit-data').val();

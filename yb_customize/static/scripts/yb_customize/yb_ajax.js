@@ -44,12 +44,27 @@ function uploadProfileImage(source_image, cropped_image, type, profile_class, na
                 `;
             }
 
-            yb_hideCropper(true);
-            
+            try {
+
+                yb_hideCropper(true);
+            } catch (error) {
+                console.log("Function Not Found")
+            }
         } else {
-            yb_hideCropper(false);
+            try {
+                yb_hideCropper(true);
+            } catch (error) {   
+                console.log("Function Not Found")
+            }   
         }
 
+        try {
+            yb_replaceProfileImages();
+
+        } catch (error) {
+            console.log("Function Not Found")
+        }
+            
         },
         error: function(data) {
             console.log(data);

@@ -24,7 +24,12 @@ class CustomizeMenu(View):
     def post(self, request):
         pass
 
-
+class ProfileImageUpload(View):
+    def get(self, request):
+        return render(request, "yb_customize/profile_image_edit.html")
+    
+    def post(self, request):
+        pass
 def update_profile_image(request):
     if request.POST.get('class') == 'profile':
         this_profile = Profile.objects.get(user=request.user)

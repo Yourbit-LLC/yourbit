@@ -11,5 +11,6 @@ urlpatterns = [
     path("get/wallpaper/<str:profile_class>/<str:type>/", get_wallpaper, name="get_profile_background"),
     path("templates/customize-ui/", CustomizeUI.as_view(), name="customize_ui"),
     path("templates/customize-bit/", CustomizeBit.as_view(), name="customize_core"),
+    path("templates/profile-image/", ProfileImageUpload.as_view(), name="customize_notify"),
 
 ]

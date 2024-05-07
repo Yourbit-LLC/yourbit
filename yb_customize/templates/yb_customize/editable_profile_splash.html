@@ -9,7 +9,7 @@
     </div>
     <div id="profile-splash-label" class = "yb-splash-label profile yb-center-transform all align-center">
         <div class="profile-image-border preview" style="height: 25vw; width: 25vw; border: 2px solid gray;">
-            <img src="{{profile_thumbnail_medium}}" class="large-profile-image preview" id="profile-image-splash" style="height: 95%; width: 95%; border-color:{{user.profile.custom.profile_splash.image_border_color}};"/>
+            <img src="{{profile_thumbnail_medium}}" class="large-profile-image preview profile-icon" id="profile-image-splash" style="height: 95%; width: 95%; border-color:{{user.profile.custom.profile_splash.image_border_color}};"/>
         </div>
         <div class="profile-name-splash preview" id="profile-name-splash" style="border: 2px solid gray;">
             <h2 id="profile-name-header" style="color:{{user.profile.custom.profile_splash.title_color}};" class="profile-name-header">{{user.first_name}} {{user.last_name}}</h2>
@@ -95,6 +95,5 @@
 </div>
 
 
-<script class="page-script" type="text/javascript" src="{% static 'scripts/FeedManager.js' %}"></script>
-<script class="page-script" id="page-script" type="text/javascript" src="{% static 'scripts/custom_core.js' %}"></script>
-<script class="page-script" id="page-script" type="text/javascript" src="{% static 'scripts/yb-customize-profiles.js' %}"></script>
+{% comment %} <script class="page-script" id="page-script" type="text/javascript" src="{% static 'scripts/yb_customize/customCore.js' %}"></script> {% endcomment %}
+<script class="page-script" id="page-script" type="text/javascript" src="{% static 'scripts/yb_customize/yb-customize-profiles.js' %}"></script>

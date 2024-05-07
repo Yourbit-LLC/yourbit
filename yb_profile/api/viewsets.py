@@ -81,6 +81,14 @@ class ProfileViewset(viewsets.ModelViewSet):
                 
         except ObjectDoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
+        
+    @action(detail=True, methods=['get'])
+    def image(self, request, pk=None):
+        profile = self.get_object()
+        custom_core = CustomCore.objects.get(profile=profile)
+        serialized_data = CustomProfileImageSerializer(custom_core).data
+
+        return Response(serialized_data)
 
 
 

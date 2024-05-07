@@ -100,37 +100,8 @@ function yb_handleEditBio() {
 }
 
 function yb_handleEditProfileImage() {
-    let these_options = {
-        "Border": {
-            "label": "Border Color",
-            "function": versatile_test,
-            "type": "color",
-            "position": "horizontal"
-        },
-        "Upload": {
-            "label": "Upload New",
-            "function": versatile_test,
-            "type": "button",
-            "action": "New",
-            "position": "vertical"
-        }, 
-        "Library": {
-            "label": "Choose from Library",
-            "function": select_image_grid_url,
-            "type": "button",
-            "action": "Choose from",
-            "position": "vertical"
-        }, 
-        "Cancel": {
-            "label": "Cancel",
-            "function": versatile_test,
-            "type": "button",
-            "action":"",
-            "position": "vertical"
-        }
-    };
-    
-    yb_flexCard("Profile Image", these_options);
+    yb_launch2WayContainer("profile-image-upload");
+    yb_expand2Way();
 }
 
 $(document).ready(function() {
@@ -139,16 +110,16 @@ $(document).ready(function() {
     let logo = document.getElementById('mobile-logo');
     let header = document.getElementById("mobile-header");
 
-    //Hide logo
-    $(logo).fadeOut();
+    // //Hide logo
+    // $(logo).fadeOut();
 
-    //Build edit mode text
-    let edit_header = yb_createElement("h3", "edit-header-text", "edit-header-text");
-    edit_header.innerHTML = "Edit Mode";
-    header.appendChild(edit_header);
+    // //Build edit mode text
+    // let edit_header = yb_createElement("h3", "edit-header-text", "edit-header-text");
+    // edit_header.innerHTML = "Edit Mode";
+    // header.appendChild(edit_header);
 
     //Show edit mode text
-    $(edit_header).fadeIn();
+    // $(edit_header).fadeIn();
 
     //Editing Profile Image
     let profile_image_option = document.getElementById("profile-image-splash");
@@ -167,14 +138,14 @@ $(document).ready(function() {
     //Event Listener for interaction container
     //profile_button_option.addEventListener("click", yb_handleEditInteractions());
     
-    //Editing Profile Bio
-    let profile_bio_option = document.getElementById("profile-bio-container");
-    //Event listener for profile bio container
-    profile_bio_option.addEventListener("click", yb_handleEditBio);
+    // //Editing Profile Bio
+    // let profile_bio_option = document.getElementById("profile-bio-container");
+    // //Event listener for profile bio container
+    // profile_bio_option.addEventListener("click", yb_handleEditBio);
 
     let add_sticker = document.getElementById("add-sticker");
     //Event listener for add sticker
-    add_sticker.addEventListener("click", select_sticker_grid_url);
+    // add_sticker.addEventListener("click", select_sticker_grid_url);
     
     //Set swipe up element
     let swipe_up_element = document.getElementById("swipe-up-element");
