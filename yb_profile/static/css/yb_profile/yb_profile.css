@@ -213,9 +213,9 @@ Profile Page
 }
 .yb-splash-label.end {
     position: relative;
-    display: grid !important;
+    display: grid;
     text-align: left !important;
-    grid-template-columns: 60px auto 120px !important;
+    grid-template-columns: 70px auto 150px !important;
     width: 100% !important;
     height: 100% !important;
     transition: 0.5s !important;
@@ -319,11 +319,13 @@ Profile Page
 }
 
 .profile-interaction-container.end {
+    position: relative;
     grid-column: 3 !important;
-    grid-template-columns: 40px 40px 40px !important;
-    text-align:center !important; 
-    margin-bottom: 0px !important; 
-    height:80px !important; 
+    grid-template-columns: 1fr 1fr 1fr !important;
+    text-align: center !important;
+    margin-right: 20px;
+    margin-bottom: 0px !important;
+    height: 40px !important;
     transition: 0.5s !important;
 }
 
@@ -461,6 +463,8 @@ Profile Page
 .profile-image-container.end {
     height: 50px !important;
     width: 50px !important;
+    top: 50%;
+    transform: translate(0, -50%);
     grid-column: 1 !important;
     transition: 0.5s !important;
 }
