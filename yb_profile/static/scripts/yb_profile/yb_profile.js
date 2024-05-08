@@ -369,6 +369,7 @@ function yb_handleConnectClick(e) {
     let action = this.getAttribute("data-action");
     if (action === "edit") {
         customize_url("")
+        MOBILE_HEADER.classList.remove("hide");
     } else {
         yb_loadSlideUpTemplate("script", yb_assembleConnectMenu);
     }
