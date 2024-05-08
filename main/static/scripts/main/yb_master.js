@@ -1245,7 +1245,7 @@ $(document).ready(function() {
         .then(function(registration) {
             console.log('Service Worker registered successfully');
             swRegistration = registration;
-            setTimeout(yb_showNotifyPrompt, 1000);
+            setTimeout(yb_showNotifyPrompt, 5000);
         })
         .catch(function(err) {
             console.error('Service Worker registration failed: ', err);
