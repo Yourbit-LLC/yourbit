@@ -52,7 +52,7 @@ def create_profile(sender, instance, created, **kwargs):
         #Initialize Customization Modules
         from yb_photo.utility import process_image
         custom_core = CustomCore(profile=user_profile)
-        default_profile_image = process_image(instance, static("main/images/default-profile-image.png"), static("yb_customize/images/default-profile-image.png"), False)
+        default_profile_image = process_image(instance, static("images/main/default-profile-image.png"), static("images/main/default-profile-image.png"), False)
         
         #Set the image and image thumbnail fields to static file for default_profile_image.png
         

@@ -420,6 +420,11 @@
     height: 30px;
 }
 
+.yb-grayFill {
+    fill: rgb(91, 91, 91);
+    mix-blend-mode: difference;
+}
+
 .blend {
     mix-blend-mode: difference;
 }

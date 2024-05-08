@@ -119,7 +119,6 @@
     text-align: center;
     font-weight: 550;
     transition: all 0.2s ease-in-out;
-
     padding: 5px 5px 5px 5px;
 }
 
@@ -143,6 +142,8 @@
     /* animation: yb-pulse-small 0.5s linear 1; */
     transform: scale(1.03);
 }
+
+
 
 .yb-button-wide.active {
     /*Style*/
