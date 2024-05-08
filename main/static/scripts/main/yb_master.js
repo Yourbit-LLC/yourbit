@@ -1245,7 +1245,12 @@ $(document).ready(function() {
         .then(function(registration) {
             console.log('Service Worker registered successfully');
             swRegistration = registration;
-            setTimeout(yb_showNotifyPrompt, 5000);
+            if (checkSubscription() === null) {
+                yb_showNotifyPrompt();
+            } else {
+                console.log("Subscription already exists");
+            }
+            
         })
         .catch(function(err) {
             console.error('Service Worker registration failed: ', err);
