@@ -402,7 +402,6 @@ Profile Page
     margin-right: auto;
 }
 
-
 .color-circle {
     position: relative;
     display: block;
@@ -433,7 +432,7 @@ Profile Page
 
 @media screen and (min-width: 768px) {
     #additional-options {
-        bottom: 50px;
+        bottom: 35px;
     }
     
 }

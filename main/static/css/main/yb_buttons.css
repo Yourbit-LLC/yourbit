@@ -327,7 +327,6 @@
     font-size: 30px;
     font-weight: 600;
     border-radius: 50%;
-    background-color: gray;
     border-width: 0px;
     transition: 0.5s;
     padding: 0px;
@@ -362,8 +361,8 @@
 .yb-button-close:hover{
     cursor: pointer;
     animation: yb-bounce 0.5s ease-in-out 1;
-    background-color: white;
-    color: red;
+    background-color: gray;
+    fill: red !important;
     transition: 0.8s;
 }
 

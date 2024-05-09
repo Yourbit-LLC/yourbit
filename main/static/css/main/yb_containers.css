@@ -565,6 +565,8 @@
     overflow: hidden;
     
     overflow-y: scroll;
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
     
 
 }
