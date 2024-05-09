@@ -345,6 +345,20 @@
     
 }
 
+@media screen and (prefers-color-scheme: light) {
+    .yb-button-close svg {
+        fill: black;
+    }
+
+}
+
+@media screen and (prefers-color-scheme: dark) {
+    .yb-button-close svg {
+        fill: white;
+    }
+
+}
+
 @media only screen and (min-width: 768px) {
     .yb-button-close-text {
         position:absolute;

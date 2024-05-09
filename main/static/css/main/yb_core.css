@@ -33,23 +33,6 @@ body {
 button {
     text-decoration: none !important;
 }
-@media (prefers-color-scheme: dark) {
-    .yb-panel {
-        background-color: black;
-    }
-    .yb-button-wide {
-        background-color: rgb(35, 35, 35); 
-    }
-}
-
-@media (prefers-color-scheme: light) {
-    .yb-panel {
-        background-color: white;
-    }
-    .yb-button-wide {
-        background-color: rgb(200, 200, 200); 
-    }
-}
 
 
 /* The switch - the box around the slider */

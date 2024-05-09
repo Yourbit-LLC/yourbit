@@ -202,6 +202,19 @@
     background-color: #4b4b4b;
 }
 
+@media screen and (prefers-color-scheme: light) {
+    .bg-autoGray {
+        background-color: gray;
+    }
+    
+}
+
+@media screen and (prefers-color-scheme: dark) {
+    .bg-autoGray {
+        background-color: rgb(35, 35, 35);
+    }
+}
+
 .yb-gray-light {
     /*Style*/
     background-color: #6b6b6b;
@@ -278,6 +291,25 @@
     /*Style*/
     border-style: solid;
 }
+
+@media (prefers-color-scheme: dark) {
+    .yb-panel {
+        background-color: black;
+    }
+    .yb-button-wide {
+        background-color: rgb(35, 35, 35); 
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    .yb-panel {
+        background-color: white;
+    }
+    .yb-button-wide {
+        background-color: rgb(200, 200, 200); 
+    }
+}
+
 
 .border-dashed {
     /*Style*/
