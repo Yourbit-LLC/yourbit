@@ -24,26 +24,32 @@ function initializeOrUpdateCropper(target_ratio, field, preview_block) {
 
     if (cropper) {
         console.log("cropper exists")
-        // cropper.replace($("#" + field).attr('src'));
-        
-        let input = file_upload_field; // Get the input element
-        file = input.files[0];
-        let reader = new FileReader();
-        reader.onload = function(e) {
-            let imageElement = document.getElementById(preview_block);
-            imageElement.src = e.target.result;
-            cropper = new Cropper(imageElement, {
-                aspectRatio: target_ratio,
-                viewMode: 2,
-                crop: function(event) {
-                    console.log(event.detail.width);
-                    console.log(event.detail.height);
-                    cropImage(target_ratio);
-                }
-            });
+        try {
+            yb_getSessionValues('location');
+            let input = file_upload_field; // Get the input element
+            file = input.files[0];
+            let reader = new FileReader();
+            reader.onload = function(e) {
+                let imageElement = document.getElementById(preview_block);
+                imageElement.src = e.target.result;
+                cropper = new Cropper(imageElement, {
+                    aspectRatio: target_ratio,
+                    viewMode: 2,
+                    crop: function(event) {
+                        console.log(event.detail.width);
+                        console.log(event.detail.height);
+                        cropImage(target_ratio);
+                    }
+                });
+            }
+    
+            reader.readAsDataURL(file);
+        } catch {
+            console.log("Located in onboarding")
+            cropper.replace($("#" + field).attr('src'));
         }
+        
 
-        reader.readAsDataURL(file);
     } else {
 
         let input = file_upload_field; // Get the input element
@@ -72,11 +78,11 @@ function previewProfileImage() {
 }
 
 function previewDesktopBackgroundImage() {
-    initializeOrUpdateCropper(16/9, "background-image-upload", "desktop-preview-output");
+    initializeOrUpdateCropper(16/9, "background-image-upload", "profile-image-preview");
 }
 
 function previewMobileBackgroundImage() {
-    initializeOrUpdateCropper(9/19.5, "background-image-upload", "mobile-preview-output");
+    initializeOrUpdateCropper(9/19.5, "background-image-upload", "profile-image-preview");
 }
 
 function previewBitCrop() {
@@ -135,6 +141,7 @@ function uploadImage(type){
         element.style.pointerEvents = "none";
     });
 
+    console.log(type)
 
     if (type === "profile-image"){
         updateCustom('image_upload', 'profile_image', file);

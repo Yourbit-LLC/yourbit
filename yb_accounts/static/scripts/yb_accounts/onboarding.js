@@ -185,6 +185,8 @@ window.onload = function() {
         var cropped_image = dataURItoBlob(croppedImageDataURL);
         let wpid;
 
+        console.log(this_type)
+
         if (this_type === 'profile') {
             console.log("uploading profile image")
             source_image = profile_img_upload.files[0];

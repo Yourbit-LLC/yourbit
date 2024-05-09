@@ -1,8 +1,8 @@
-function uploadProfileImage(source_image, cropped_image, type, profile_class, name=null, wpid=null) {
+function uploadProfileImage(source_image, cropped_image, image_type, profile_class, name=null, wpid=null) {
     var formData = new FormData();
     formData.append('image', source_image);
     formData.append('cropped_image', cropped_image);
-    formData.append('type', type);
+    formData.append('type', image_type);
     formData.append('name', name);
     formData.append('wpid', wpid);
     formData.append('class', profile_class);
@@ -14,7 +14,7 @@ function uploadProfileImage(source_image, cropped_image, type, profile_class, na
     
     $.ajax({
         type: 'POST',
-        url: `/customize/upload/${type}-image/`,
+        url: `/customize/upload/${image_type}-image/`,
         data: formData,
         headers: {
             'X-CSRFToken': csrf_token,
@@ -25,9 +25,10 @@ function uploadProfileImage(source_image, cropped_image, type, profile_class, na
             console.log(data);
 
             
-            console.log(data.stage);
+        console.log(image_type);
 
-        if (type === 'background') {
+        if (image_type === 'background') {
+            console.log('background');
             if (data.stage === 1){
                 console.log('stage 1');
                 document.getElementById('background-image-form').setAttribute('data-wpid', data.wpid);
@@ -52,7 +53,7 @@ function uploadProfileImage(source_image, cropped_image, type, profile_class, na
             }
         } else {
             try {
-                yb_hideCropper(true);
+                yb_hideCropper(false);
             } catch (error) {   
                 console.log("Function Not Found")
             }   
