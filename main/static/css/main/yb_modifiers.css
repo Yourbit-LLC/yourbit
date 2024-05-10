@@ -294,7 +294,9 @@
 
 @media (prefers-color-scheme: dark) {
     .yb-panel {
-        background-color: black;
+        background-color: rgba(0, 0, 0, 0.9);
+        backdrop-filter: blur(30px);
+        -webkit-backdrop-filter: blur(30px);
     }
     .yb-button-wide {
         background-color: rgb(35, 35, 35); 
@@ -303,7 +305,9 @@
 
 @media (prefers-color-scheme: light) {
     .yb-panel {
-        background-color: white;
+        background-color: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(30px);
+        -webkit-backdrop-filter: blur(30px);
     }
     .yb-button-wide {
         background-color: rgb(200, 200, 200); 
