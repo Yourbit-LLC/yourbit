@@ -131,6 +131,7 @@ class ResetPassword(View):
                     validate_password(new_password)
                 except ValidationError as e:
                     return redirect('reset_password')
+                
                 user.set_password(new_password)
                 user.save()
                 return redirect('login')
