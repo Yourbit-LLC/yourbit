@@ -82,8 +82,15 @@ function toggleColorInput(e) {
     console.log(this_color);
     let this_input = document.getElementById(this_color + '-color-picker');
 
-    this_input.click();
-    this_input.focus();
+    if (isSafari) {
+        this_input.style.display = 'block';
+        this_input.click();
+    } else {
+        this_input.click();
+    }
+
+    
+    
 
 }
 

@@ -68,6 +68,7 @@ const SUBSCRIPTION_BANNER = document.getElementById("notification-permission-ban
 
 const VAPID_PUBLIC_KEY = "BDAIHj_HT2qvxVsrE-pvZOGc2TcJeMKUIM0LxStPASodefcu9fucQndG9XSONnd04finmXAueTLmxqBjv9q6H7g";
 
+const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
 const TIME_KEEPER = document.getElementById("time-keeper-node");
 var clock_isTicking = false;
@@ -431,6 +432,7 @@ function yb_formatTimeAgo(timestamp) {
         });
     }
 }
+
 
 
 // Get a reference to the DOM element where you want to display the timer
@@ -1252,7 +1254,7 @@ $(document).ready(function() {
         .then(function(registration) {
             console.log('Service Worker registered successfully');
             swRegistration = registration;
-            if (checkSubscription() === null) {
+            if (checkSubscription() == null) {
                 yb_showNotifyPrompt();
             } else {
                 console.log("Subscription already exists");
@@ -1263,6 +1265,7 @@ $(document).ready(function() {
             console.error('Service Worker registration failed: ', err);
         });
     }
+
 
 
     if ('serviceWorker' in navigator && 'SyncManager' in window) {
