@@ -10,19 +10,10 @@
 /*
         Core UI
 */
-
-@media (prefers-color-scheme: light) {
-    body {
-        background-color: white;
-    }
-
+body {
+    background-color: (--yb-background-color);
 }
 
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: black;
-    }
-}
 
 body {
     /*Style*/
@@ -33,58 +24,6 @@ body {
 button {
     text-decoration: none !important;
 }
-
-.yb-background-image {
-    position: fixed;
-    top: 0;
-    left: -2vw;
-    width: 103vw;
-    /* The image used */
-  
-    /* Add the blur effect */
-    filter: brightness(80%) saturate(150%) blur(20px);
-    -webkit-filter: brightness(80%) saturate(150%) blur(20px);
-    /* Full height */
-    height: 101vh;
-    
-  
-    /* Center and scale the image nicely */
-    background-position: center;
-    z-index: 1;
-    transition: 1s;
-
-}
-
-.yb-background-overlay {
-    z-index: 2;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-
-}
-
-@media (prefers-color-scheme: dark) {
-    .yb-background-image {
-        background-color: black;
-    }
-
-    .yb-background-overlay {
-        background-color: rgba(0, 0, 0, 0.2);
-    }
-}
-
-@media (prefers-color-scheme: light) {
-    .yb-background-image {
-        background-color: white;
-    }
-
-    .yb-background-overlay {
-        background-color: rgba(255, 255, 255, 0.2);
-    }
-}
-
 
 
 /* The switch - the box around the slider */
@@ -361,7 +300,6 @@ p {
         margin: auto;
         -webkit-backdrop-filter: blur(20px);
         backdrop-filter: blur(20px);
-        z-index: 10;
     }
 
     .yb-space-nav.hidden {
@@ -369,17 +307,12 @@ p {
         transition: 0.5s;
     }
 
-    @media (prefers-color-scheme: dark) {
-        .yb-space-nav {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
+    .yb-space-nav {
+        background-color: (--yb-panel-color);
     }
+
     
-    @media (prefers-color-scheme: light) {
-        .yb-space-nav {
-            background-color: rgba(255, 255, 255, 0.8);
-        }
-    }
+
 }
 
 .space-button {
@@ -433,18 +366,10 @@ p {
     transition: 0.3s;
     margin: auto;
 }
-@media (prefers-color-scheme: dark){
-    .yb-icon-gridItem {
-        fill: white;
-    }
-}
 
-@media (prefers-color-scheme: light){
-    .yb-icon-gridItem {
-        fill: black !important;
-    }
+.yb-icon-gridItem {
+    fill: (--yb-icon-color);
 }
-
 
 
 .helper {
@@ -716,7 +641,7 @@ p {
 */
 
 .yb-splash.base {
-    background-color: black;
+    background-color: (--yb-panel-color);
 }
 /*
         Splash Pages - Profile
@@ -756,17 +681,11 @@ p {
     
 }
 
-@media (prefers-color-scheme: light) {
-    .yb-icon {
-        fill: black;
-    }
-}
 
-@media (perfers-color-scheme: dark) {
     .yb-icon {
-        fill: white;
+        fill: (--yb-icon-color);
     }
-}
+
 
 .yb-icon:hover {
     opacity: 0.8;
@@ -938,7 +857,13 @@ p {
 }
 
 .div-header {
-    position: relative; display: grid; grid-template-columns: 28px 5fr 1fr; margin-left: auto; margin-right: auto; width: 100%; height: 40px;
+    position: relative; 
+    display: grid; 
+    grid-template-columns: 28px 5fr 1fr; 
+    margin-left: auto; 
+    margin-right: auto; 
+    width: 100%; 
+    height: 40px;
 }
 
 .cb-panel-back {

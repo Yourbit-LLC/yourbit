@@ -1,5 +1,12 @@
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/yb_bits/yb_bits.css' %}">
+
+{% if custom_core.bit_colors_on %}
+
+    <link rel="stylesheet" href="{% static 'css/yb_bits/yb_bits_customized.css' %}">
+
+{% else %}
+    <link rel="stylesheet" href="{% static 'css/yb_bits/yb_bits.css' %}">
+{% endif %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/yb_bits/yb_bitBuilder.css' %}">
 
 <form class= "yb-container-bitPreview create" style="position: relative;" enctype="multipart/form-data">

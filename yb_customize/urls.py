@@ -4,6 +4,8 @@ from django.urls import path, include
 from .views import *
 
 urlpatterns = [
+    path("bit/", CustomizeBitView.as_view(), name="customize_bit"),
+    path("ui/", CustomizeUIView.as_view(), name="customize_bit"),
     path("templates/main/", CustomizeMenu.as_view(), name="customize_main"),
     path("templates/profile-splash/", CustomizeProfile.as_view(), name="customize_profile"),
     path("upload/profile-image/", update_profile_image, name="update_profile_image"),

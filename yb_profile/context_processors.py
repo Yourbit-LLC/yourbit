@@ -22,10 +22,12 @@ from yb_settings.models import MySettings
 
 def Customization(request):
     from yb_profile.models import Profile
-    from yb_customize.models import CustomCore
+    from yb_customize.models import CustomCore, CustomBit
     if request.user.is_authenticated:
         profile = Profile.objects.get(user=request.user)
         custom = CustomCore.objects.get(profile=profile)
+
+        theme = custom.theme
         
         profile_image_object = custom.profile_image
         profile_image = profile_image_object.image
@@ -42,7 +44,7 @@ def Customization(request):
         wallpaper_desktop = None
 
 
-        
+        custom_bit = CustomBit.objects.get(theme=theme)
 
         return {
             'profile_image': profile_image,
@@ -54,6 +56,8 @@ def Customization(request):
             'wallpaper': wallpaper,
             'wallpaper_mobile': wallpaper_mobile,
             'wallpaper_desktop': wallpaper_desktop,
+            'custom_bit': custom_bit,
+            'custom_core': custom
 
         }
 

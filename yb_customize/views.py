@@ -3,6 +3,8 @@ from django.views import View
 from django.http import HttpResponse, JsonResponse, FileResponse
 from rest_framework.response import Response
 from PIL import Image
+from main.views import initialize_session
+from yb_customize.models import *
 
 # Create your views here.
 class CustomizeProfile(View):
@@ -148,3 +150,86 @@ class CustomizeBit(View):
     
     def post(self, request):
         pass
+
+class CustomizeBitView(View):  
+    def get(self, request):
+        if request.user.is_authenticated:
+            init_params = initialize_session(request)
+            return render(
+                request, 
+                "main/index.html",
+                {
+                    'first_login': request.user.first_login,
+                    'location': init_params['last_location'],
+                    'space': init_params['current_space'],
+                    'filter': init_params['filter_chain'],
+                    'sort': init_params['sort_by'],   
+                    'start_function': 'customize_bit_url()',    
+                },
+
+            )
+        
+        else:
+            from yb_accounts.forms import RegistrationForm, LoginForm
+            registration_form = RegistrationForm()
+            login_form = LoginForm()
+            return render(
+                request,
+                "registration/login.html",
+                {
+                    'state': 'home',
+                    'registration_form': registration_form,
+                    'login_form': login_form,
+                }
+            )
+    
+    def post(self, request):
+        custom_core = CustomCore.objects.get(profile=request.user.profile)
+        theme = custom_core.theme
+        custom_bit = CustomBit.objects.get(theme=theme)
+
+        custom_bit.primary_color = request.POST.get('primary_color')
+        custom_bit.button_color = request.POST.get('button_color')
+        custom_bit.icon_color = request.POST.get('icon_color')
+        custom_bit.text_color = request.POST.get('text_color')
+        custom_bit.title_color = request.POST.get('title_color')
+        custom_bit.save()
+
+        return JsonResponse({"success": "success"})
+    
+
+class CustomizeUIView(View):
+    def get(self, request):
+        if request.user.is_authenticated:
+            init_params = initialize_session(request)
+            return render(
+                request, 
+                "main/index.html",
+                {
+                    'first_login': request.user.first_login,
+                    'location': init_params['last_location'],
+                    'space': init_params['current_space'],
+                    'filter': init_params['filter_chain'],
+                    'sort': init_params['sort_by'],   
+                    'start_function': 'customize_ui_url()',    
+                },
+
+            )
+        
+        else:
+            from yb_accounts.forms import RegistrationForm, LoginForm
+            registration_form = RegistrationForm()
+            login_form = LoginForm()
+            return render(
+                request,
+                "registration/login.html",
+                {
+                    'state': 'home',
+                    'registration_form': registration_form,
+                    'login_form': login_form,
+                }
+            )
+    
+    def post(self, request):
+        pass
+

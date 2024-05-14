@@ -4,26 +4,28 @@ const NOTIFICATION_CONTENT = document.getElementById('notification-widget-conten
 
 function showNotification(callback1, body) {
     NOTIFICATION_WIDGET.classList.add('active');
+    console.log(body);
     setTimeout(callback1, 1000, showText, body);
 };
 
 function expandNotification(callback, body) {
+    console.log(body);
     NOTIFICATION_WIDGET.classList.add('expanded');
-    $(NOTIFICATION_WIDGET).html(`
-    
-    `);
+    $(NOTIFICATION_CONTENT).html(``);
     callback(body);
     setTimeout(contractNotification, 5000);
     
 };
 
 function showText(body) {
-    NOTIFICATION_CONTENT.innerHTML = body;
+    console.log(body);
+    NOTIFICATION_CONTENT.innerHTML = `<p class="yb-fillWidth" style="height: 100%; line-height: 2.5; padding-left: 10px;">${body}</p>`;
 }
 
 function contractNotification() {
     
     NOTIFICATION_WIDGET.classList.remove('expanded');
+    NOTIFICATION_CONTENT.innerHTML = "";
     setTimeout(hideNotification, 1000);
 };
 

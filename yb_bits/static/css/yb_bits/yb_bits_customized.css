@@ -1,7 +1,6 @@
 
 /* Bit Containers */
 
-@media (prefers-color-scheme: dark) {
 .yb-bit-shell {
 
     /*Positioning*/
@@ -20,50 +19,17 @@
     transition: 0.3s;
     cursor: pointer;
     pointer-events: auto;
-    background-color: rgb(70, 70, 70);
+    /* variable */
+    background-color: var(--yb-bit-color) !important;
     box-shadow: 0px 1px 5px black;
 
     padding: 5px;
     transition: 0.5s;
 }
 
-    .field-border {
-        border: 2px solid white;
-    }
+.field-border {
+    border: 2px solid white;
 }
-
-@media (prefers-color-scheme: light) {
-    .yb-bit-shell {
-    
-        /*Positioning*/
-        position: relative;
-        margin-top: 0px;
-        margin-bottom: 8px;
-        
-        
-        /*Sizing*/
-        width: 95%;
-    
-        /*Style*/
-        display: grid;
-        grid-row-gap: 3px;
-        border-radius: 20px;
-        transition: 0.3s;
-        cursor: pointer;
-        pointer-events: auto;
-        background-color: rgb(255, 255, 255);
-        box-shadow: 0px 1px 5px black;
-        transition: 0.5s;
-        padding: 5px;
-    }
-
-    .field-border {
-        border: 2px solid gray;
-    }
-    
-}
-
-
 
 
 
@@ -202,6 +168,11 @@
     margin-top: 0px;
     width: 100%;
     text-align: center;
+    transition: 0.5s;
+}
+
+.yb-titleText-bit {
+    color: var(--yb-title-color) !important;
 }
 
 .yb-title-bit.preview {
@@ -209,7 +180,7 @@
 }
 
 
-.yb-body-bit {
+.yb-bodyText-bit {
     position: relative;
     background-color:transparent;
     border-radius: 10px;
@@ -220,6 +191,7 @@
     max-height: 125px;
     overflow: hidden;
     transition: 0.5s;
+    color: var(--yb-text-color) !important;
 }
 
 .yb-body-bit.expanded {
@@ -318,7 +290,7 @@
 .yb-button-feedback.active {
     position: relative;
     display: block;
-    background-color: rgb(125, 125, 125);
+    background-color: var(--yb-fb-background-color);
     width: 50px;
     height: 50px;
     cursor: pointer;
@@ -475,6 +447,7 @@
     -webkit-backdrop-filter: brightness(90%);
     width: 100%;
     height: 100%;
+    
 }
 
 .yb-comment-time {
@@ -611,7 +584,7 @@
     border-radius: 10px;
     margin: auto;
     grid-row: 3;
-    border: 1px solid black;
+    border: 2px solid black;
     overflow: hidden;
     background-color: black;
 }
@@ -673,14 +646,3 @@
     height: 150px;
 }
 
-@media (prefers-color-scheme: light) {
-    #bitstream-title-icon {
-        fill: rgb(25, 25, 25);
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-    #bitstream-title-icon {
-        fill: gray;
-    }
-}

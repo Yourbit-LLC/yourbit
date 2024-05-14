@@ -24,13 +24,13 @@ class CustomCore(models.Model):
     wallpaper_hue = models.CharField(max_length=10, default="0")
     
     #Quick Appearance Settings
-    user_colors_on = models.BooleanField(default=True)
-    wallpaper_on = models.BooleanField(default=True)
+    user_colors_on = models.BooleanField(default=False)
+    wallpaper_on = models.BooleanField(default=False)
     default_theme_on = models.BooleanField(default=False)
     only_my_colors = models.BooleanField(default=False)
-    ui_colors_on = models.BooleanField(default=True)
-    text_colors_on = models.BooleanField(default=True)
-    bit_colors_on = models.BooleanField(default=True)
+    ui_colors_on = models.BooleanField(default=False)
+    text_colors_on = models.BooleanField(default=False)
+    bit_colors_on = models.BooleanField(default=False)
     flat_mode_on = models.BooleanField(default=False)
 
     #Shared Appearance Settings
@@ -156,4 +156,7 @@ class CustomBit(CustomBase):
     images = models.ForeignKey(CustomCore, on_delete=models.CASCADE, default=None, related_name="custom_bit")
     paragraph_align = models.CharField(max_length=10, default = 'left')
     comment_text_color = models.CharField(max_length=50, default="#ffffff")
+    name_color = models.CharField(max_length=50, default="#ffffff")
+    username_color = models.CharField(max_length=50, default="#ffffff")
+
 

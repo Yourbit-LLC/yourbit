@@ -61,6 +61,8 @@ const TOP_LAYER = document.getElementById("top-layer");
 const FLOATING_TEXT_CONTAINER = document.getElementById("floating-text");
 const FLOATING_TEXT_INPUT = document.getElementById("input-floating-text");
 
+const CUSTOM_VALUES = document.getElementById("custom-values");
+
 const MAIN_LOADING_SCREEN = document.getElementById("yb-loading-main");
 const SUBSCRIPTION_BANNER = document.getElementById("notification-permission-banner");
 
@@ -1237,6 +1239,11 @@ function yb_acceptOption(this_id) {
     yb_closeCard();
 }
 
+function yb_getCustomValues(key){
+    CUSTOM_VALUES.getAttribute("data-" + key);
+}
+
+
 
 
 $(document).ready(function() {
@@ -1268,6 +1275,8 @@ $(document).ready(function() {
         });
     }
 
+
+
     SEARCH_BUTTON.addEventListener('mouseover', yb_searchMouseOver);
     CREATE_DESKTOP.addEventListener('click', yb_toggleCreateMenu);
     // EXIT_CREATE.addEventListener('click', yb_toggleCreateMenu);
@@ -1292,6 +1301,7 @@ $(document).ready(function() {
 
 
     yb_updateTimezone();
+
 
     if (window.matchMedia('(display-mode: standalone)').matches) {
         console.log('display-mode is standalone');

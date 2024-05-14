@@ -55,6 +55,8 @@ class PeopleListTemplate(View):
         }
         return render(request, "yb_profile/yb_people.html", context)
     
+
+    
 class FriendRequestTemplate(View):
     def get(self, request, id, *args, **kwargs):
 

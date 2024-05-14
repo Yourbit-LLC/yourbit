@@ -202,9 +202,19 @@
     background-color: #4b4b4b;
 }
 
+
+
 @media screen and (prefers-color-scheme: light) {
     .bg-autoGray {
         background-color: gray;
+    }
+
+    .font-autoGray {
+        color: gray;
+    }
+
+    .fill-autoGray {
+        fill: gray;
     }
     
 }
@@ -212,6 +222,14 @@
 @media screen and (prefers-color-scheme: dark) {
     .bg-autoGray {
         background-color: rgb(35, 35, 35);
+    }
+
+    .font-autoGray {
+        color: rgb(35, 35, 35);
+    }
+
+    .fill-autoGray {
+        fill: rgb(35, 35, 35);
     }
 }
 

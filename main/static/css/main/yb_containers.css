@@ -173,7 +173,7 @@
 }
 
 .yb-fsContainer.open {
-    top: 70vh;
+    top: 55vh;
     transition: 0.5s;
 
 }
@@ -405,10 +405,23 @@
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 3px 10px 3px 10px;
-    background-color: rgba(0, 0, 0, 0.95);
+    filter: drop-shadow(0px 2px 5px black);
+    -webkit-filter: drop-shadow(0px 2px 5px black);
     border-radius: 20px;
     text-align: center; 
     color: white;
+}
+
+@media (prefers-color-scheme: dark) {
+    .yb-panel-wide {
+        background-color: #333;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    .yb-panel-wide {
+        background-color: white;
+    }
 }
 
 .yb-panel-wide.panel-gray {
@@ -563,7 +576,7 @@
     width: 100vw;
     position: fixed;
     overflow: hidden;
-    
+    z-index: 3;
     overflow-y: scroll;
     /* -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
@@ -573,13 +586,13 @@
 
 @media (prefers-color-scheme: dark) {
     #content-container {
-        background-color: rgb(25, 25, 25);
+        background-color: transparent;
     }
 }
 
 @media (prefers-color-scheme: light) {
     #content-container {
-        background-color: rgb(150, 150, 150)
+        background-color: transparent;
     }
 }
 
@@ -744,18 +757,19 @@
 .notification-widget {
     position: absolute;
     display: grid;
-    grid-template-columns: 50px auto;
-    top: -50px;
+    grid-template-columns: 55px auto;
+    top: -70px;
     left: 50%;
-    width: 45px;
-    height: 45px;
+    width: 55px;
+    height: 55px;
     background-color: black;
     color: white;
     z-index: 99;
-    border-radius: 20px;
+    border-radius: 50%;
     transform: translateX(-50%);
     transition: 1s;
     overflow: hidden;
+    padding: 5px 5px 5px 5px;
 
 }
 
@@ -786,14 +800,16 @@
 @media screen and (max-width: 768px) {
     .notification-widget.expanded {
         width: 95%;
-        transition: 0.5s;
+        transition: 0.3s;
+        border-radius: 40px;
     }
 }
 
 @media screen and (min-width: 768px) {
     .notification-widget.expanded {
         width: 300px;
-        transition: 0.5s;
+        transition: 0.3s;
+        border-radius: 40px;
     }
 }
 

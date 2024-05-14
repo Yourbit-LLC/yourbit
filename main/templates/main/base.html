@@ -23,8 +23,8 @@ lang="en"
                 --yb-secondary-color: {{custom_bit.accent_color}};
                 --yb-text-color: {{custom_bit.text_color}};
                 --yb-title-color: {{custom_bit.title_color}};
-                --yb-fb-icon-color: {{custom_bit.feedback_icon_color}};
-                --yb-fb-background-color: {{custom_bit.feedback_background_color}};
+                --yb-fb-icon-color: {{custom_bit.icon_color}};
+                --yb-fb-background-color: {{custom_bit.button_color}};
                 --yb-icon-color: {{custom_interface.icon_color}};
                 --yb-background-blur: {{background_blur}};
                 --yb-background-brightness: {{background_brightness}};
@@ -91,6 +91,13 @@ lang="en"
     <body onload="{{start_function | safe}}">
         <input id='csrf-token' type='hidden' value={{csrf_token}}>
 
+        <div class="yb-background-overlay">
+        </div>
+        <div id="bg-image" class="yb-background-image">
+            <img style="min-width:100%; min-height: 100%;" id="bg-image-source" src="{{wallpaper.url}}"></img>
+        </div>
+        
+
         <!--Session values for loading dynamic pages-->
         <input 
             type='hidden' 
@@ -114,7 +121,7 @@ lang="en"
         <!--Customization values for loading dynamic pages-->
         <input 
             type='hidden' 
-            id='custom_values' 
+            id='custom-values' 
             data-primary-color="{{custom_bit.primary_color}}" 
             data-secondary-color="{{custom_bit.accent_color}}"
             data-text-color="{{custom_bit.text_color}}" 
@@ -125,20 +132,21 @@ lang="en"
             data-icon-color="{{custom_interface.icon_color}}" 
             data-background-blur = "{{background_blur}}" 
             data-background-brightness = "{{background_brightness}}" 
-            data-flat-mode-on = "{{flat_mode_on}}"
+            data-bit-colors-on = "{{custom_core.bit_colors_on}}"
+            data-only-my-colors = "{{custom_core.only_my_colors}}"
         > 
 
 
         <input type="hidden" id="yb-timekeeper-node" data-month="" data-day="" data-hours="" data-minutes="" data-seconds="">
 
-        {% comment %} <img id="bg-image" class="yb-background-image" src="{{wallpaper.url}}"></img> {% endcomment %}
+      
         <!--Page content start-->
         
-        <div class="notification-widget" id="notification-widget">
-            <div class="notification-icon-container" ic="notification-icon-container">
+        <div class="notification-widget yb-panel" id="notification-widget">
+            <div class="notification-icon-container yb-fillWidth yb-center-margin all" id="notification-icon-container" style="grid-column: 1;">
                 <img class = "desktop-element yb-logo-masthead" style="width: 100%;" src="{% static 'images/main/yourbit-logo2023-01.svg' %}">
             </div>
-            <div class="notification-widget-content" id="notification-widget-content">
+            <div class="notification-widget-content yb-autoText align-left" id="notification-widget-content" style="grid-column: 2;">
             </div>
 
         </div>

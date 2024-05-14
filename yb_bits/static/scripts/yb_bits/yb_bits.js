@@ -238,7 +238,7 @@ function yb_createBody(bit) {
 
 function createTitle(bit) {
     const title = yb_createElement("div", "yb-title-bit yb-margin-T10", `title-bit-${bit.id}`);
-    title.innerHTML = `<h2 class="yb-autoText align-center">${bit.title}</h2>`;
+    title.innerHTML = `<h2 class="yb-autoText align-center yb-titleText-bit">${bit.title}</h2>`;
     return title;
 }
 
