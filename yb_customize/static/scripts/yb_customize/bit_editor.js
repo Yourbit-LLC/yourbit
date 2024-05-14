@@ -83,6 +83,7 @@ function toggleColorInput(e) {
     let this_input = document.getElementById(this_color + '-color-picker');
 
     this_input.click();
+    this_input.focus();
 
 }
 
