@@ -86,13 +86,9 @@ function toggleColorInput(e) {
     if (isSafari) {
         this_input.style.display = 'block';
         this_input.click();
-        this_input.focus();
     } else {
         this_input.click();
     }
-
-    
-    
 
 }
 
