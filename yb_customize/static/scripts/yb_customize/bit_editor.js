@@ -86,6 +86,7 @@ function toggleColorInput(e) {
     if (isSafari) {
         this_input.style.display = 'block';
         this_input.click();
+        this_input.focus();
     } else {
         this_input.click();
     }
@@ -163,6 +164,10 @@ function updateColorPreview(e) {
         });
     }
 
+    if (isSafari) {
+        this_input.style.display = 'none';
+
+    }
     document.getElementById(this_color + '-color-circle').style.backgroundColor = this_input.value;
 
 }
