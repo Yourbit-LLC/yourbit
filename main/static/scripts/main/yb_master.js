@@ -1249,6 +1249,8 @@ function yb_getCustomValues(key){
 
 
 $(document).ready(function() {
+    let this_browser = console.log(getBrowserName(navigator.userAgent));
+    console.log(this_browser);
     if (typeof navigator.serviceWorker !== 'undefined') {
         navigator.serviceWorker.register('/static/sw.js')
         .then(function(registration) {
