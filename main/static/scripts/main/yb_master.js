@@ -1182,11 +1182,6 @@ async function subscribeToPush() {
             },
             success: function(data){
                 console.log(data);
-                if (data["is_subscribed"] === false){
-                    yb_showNotifyPrompt();
-                } else {
-                    console.log("Already Subscribed");
-                }
             }
         })
 

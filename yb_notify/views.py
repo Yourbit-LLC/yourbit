@@ -96,8 +96,8 @@ def subscribeToNotifications(request):
     #check if subscribed
     if SubscriptionInfo.objects.filter(
         endpoint=data['endpoint'],
-        auth=data['auth'],
-        p256dh=data['p256dh'],
+        auth=data["keys"]['auth'],
+        p256dh=data["keys"]['p256dh'],
     ).exists():
         is_subscribed = True
         return JsonResponse({"is_subscribed":is_subscribed})
