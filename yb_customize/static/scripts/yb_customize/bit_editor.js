@@ -75,22 +75,6 @@ function saveBitEdits() {
 
 }
 
-function toggleColorInput(e) {
-    let this_element = e.currentTarget;
-
-    let color = this_element.style.backgroundColor;
-    let this_color = this_element.getAttribute('name');
-    console.log(this_color);
-    let this_input = document.getElementById(this_color + '-color-picker');
-
-    if (isSafari) {
-        this_input.style.display = 'block';
-        this_input.click();
-    } else {
-        this_input.click();
-    }
-
-}
 
 function activateSetButtons() {
     set_buttons.forEach(function (element) {
@@ -169,10 +153,6 @@ function updateColorPreview(e) {
 }
 
 $(document).ready(function () {
-    color_selectors.forEach(function (element) {
-        console.log(element.getAttribute('name') + "-color-picker");
-        element.addEventListener('click', toggleColorInput);
-    });
 
     color_inputs.forEach(function (element) {
         console.log(element.getAttribute('name') + "-color-picker");
