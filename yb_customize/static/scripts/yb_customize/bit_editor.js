@@ -148,7 +148,7 @@ function updateColorPreview(e) {
         this_input.style.display = 'none';
 
     }
-    document.getElementById(this_color + '-color-circle').style.backgroundColor = this_input.value;
+    
 
 }
 
