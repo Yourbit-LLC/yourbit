@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.template import loader
 from django.contrib.auth import authenticate, login, logout
 from yb_accounts.models import Account as User
@@ -68,19 +68,19 @@ class NotificationPage(View):
             )
         
 
-def checkSubscription(request):
-    from webpush.models import SubscriptionInfo, PushInformation
+# def checkSubscription(request):
+#     from webpush.models import SubscriptionInfo, PushInformation
 
-    is_subscribed = False
-    
-    if SubscriptionInfo.objects.filter(
-        endpoint=request.GET.get('endpoint'),
-        auth=request.GET.get('auth'),
-        p256dh=request.GET.get('p256dh'),
-    ).exists():
-        is_subscribed = True
+#     is_subscribed = False
 
-    return HttpResponse(is_subscribed)
+#     if SubscriptionInfo.objects.filter(
+#         endpoint=request.GET.get('endpoint'),
+#         auth=request.GET.get('auth'),
+#         p256dh=request.GET.get('p256dh'),
+#     ).exists():
+        
+
+#     return HttpResponse(is_subscribed)
 
 def subscribeToNotifications(request):
     import json
@@ -91,13 +91,16 @@ def subscribeToNotifications(request):
 
     print(data)
 
+    is_subscribed = False
+
     #check if subscribed
     if SubscriptionInfo.objects.filter(
         endpoint=data['endpoint'],
         auth=data['auth'],
         p256dh=data['p256dh'],
     ).exists():
-        return HttpResponse("Already subscribed")
+        is_subscribed = True
+        return JsonResponse({"is_subscribed":is_subscribed})
     
     subscription = SubscriptionInfo.objects.create(
         endpoint=data['endpoint'],
@@ -134,7 +137,7 @@ def subscribeToNotifications(request):
     )
 
 
-    return HttpResponse("Success")
+    return JsonResponse({"Success" : "Success", "is_subscribed": is_subscribed})
 
 def send_test_notification(request):
     from webpush.models import SubscriptionInfo, PushInformation

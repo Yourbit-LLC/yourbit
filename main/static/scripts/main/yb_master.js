@@ -1160,6 +1160,7 @@ async function subscribeToPush() {
   
     } catch (error) {
       console.error('Error subscribing to push notifications:', error);
+      yb_showNotifyPrompt();
       // Handle the error, e.g., display an error message to the user
     }
   }
@@ -1182,6 +1183,12 @@ async function subscribeToPush() {
             },
             success: function(data){
                 console.log(data);
+                if (data["is_subscribed"] === false){
+                    yb_showNotifyPrompt();
+                } else {
+                    hideTopBanner();
+                    console.log("IS Subscribed");
+                }
             }
         })
 
@@ -1256,12 +1263,7 @@ $(document).ready(function() {
         .then(function(registration) {
             console.log('Service Worker registered successfully');
             swRegistration = registration;
-            if (checkSubscription() == null) {
-                yb_showNotifyPrompt();
-            } else {
-                console.log("Subscription already exists");
-                console.log(checkSubscription());
-            }
+            subscribeToPush();
             
         })
         .catch(function(err) {
