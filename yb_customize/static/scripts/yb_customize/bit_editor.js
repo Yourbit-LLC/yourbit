@@ -12,6 +12,7 @@ try {
     var customization_toggle = document.getElementById('custom-bit-toggle');
     var set_buttons = document.querySelectorAll('.be-set-button');
     var save_button = document.getElementById('save-bit');
+    var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
 } catch (e) {
     console.log(e);
@@ -28,7 +29,7 @@ try {
     customization_toggle = document.getElementById('custom-bit-toggle');
     set_buttons = document.querySelectorAll('.be-set-button');
     save_button = document.getElementById('save-bit');
-
+    isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 }
 
 function changeColor(property, value) {

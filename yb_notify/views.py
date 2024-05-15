@@ -68,6 +68,20 @@ class NotificationPage(View):
             )
         
 
+def checkSubscription(request):
+    from webpush.models import SubscriptionInfo, PushInformation
+
+    is_subscribed = False
+    
+    if SubscriptionInfo.objects.filter(
+        endpoint=request.GET.get('endpoint'),
+        auth=request.GET.get('auth'),
+        p256dh=request.GET.get('p256dh'),
+    ).exists():
+        is_subscribed = True
+
+    return HttpResponse(is_subscribed)
+
 def subscribeToNotifications(request):
     import json
     from webpush.models import SubscriptionInfo, PushInformation
@@ -76,6 +90,15 @@ def subscribeToNotifications(request):
     data = json.loads(request.body)
 
     print(data)
+
+    #check if subscribed
+    if SubscriptionInfo.objects.filter(
+        endpoint=data['endpoint'],
+        auth=data['auth'],
+        p256dh=data['p256dh'],
+    ).exists():
+        return HttpResponse("Already subscribed")
+    
     subscription = SubscriptionInfo.objects.create(
         endpoint=data['endpoint'],
         auth=data["keys"]['auth'],
