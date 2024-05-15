@@ -1160,7 +1160,6 @@ async function subscribeToPush() {
   
     } catch (error) {
       console.error('Error subscribing to push notifications:', error);
-      yb_showNotifyPrompt();
       // Handle the error, e.g., display an error message to the user
     }
   }
@@ -1186,8 +1185,7 @@ async function subscribeToPush() {
                 if (data["is_subscribed"] === false){
                     yb_showNotifyPrompt();
                 } else {
-                    hideTopBanner();
-                    console.log("IS Subscribed");
+                    console.log("Already Subscribed");
                 }
             }
         })
@@ -1237,8 +1235,8 @@ const checkSubscription = async () => {
     return subscription;
 }
 
-function yb_showNotifyPrompt() {
-    if (Notification.permission != 'granted') {
+const yb_showNotifyPrompt = async () => {
+    if (permission != 'granted') {
         SUBSCRIPTION_BANNER.classList.add('open');
     }
 }
@@ -1263,8 +1261,6 @@ $(document).ready(function() {
         .then(function(registration) {
             console.log('Service Worker registered successfully');
             swRegistration = registration;
-            subscribeToPush();
-            
         })
         .catch(function(err) {
             console.error('Service Worker registration failed: ', err);
