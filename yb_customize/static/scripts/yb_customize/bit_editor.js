@@ -156,7 +156,7 @@ $(document).ready(function () {
 
     color_inputs.forEach(function (element) {
         console.log(element.getAttribute('name') + "-color-picker");
-        element.addEventListener('change', updateColorPreview);
+        element.addEventListener('input', updateColorPreview);
     });
 
     customization_toggle.addEventListener('click', toggleBitCustomizations);
