@@ -205,7 +205,7 @@
 
 
 @media screen and (prefers-color-scheme: light) {
-    .bg-autoGray {
+    .yb-bg-autoGray {
         background-color: gray;
     }
 
@@ -220,7 +220,7 @@
 }
 
 @media screen and (prefers-color-scheme: dark) {
-    .bg-autoGray {
+    .yb-bg-autoGray {
         background-color: rgb(35, 35, 35);
     }
 
@@ -242,7 +242,7 @@
     background-color: rgb(35, 35, 35);
 }
 
-.bg-transparent {
+.yb-bg-transparent {
     background-color: transparent;
 }
 

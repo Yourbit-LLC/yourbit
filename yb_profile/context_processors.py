@@ -38,6 +38,7 @@ def Customization(request):
         display_name = profile.display_name
         username = profile.user.username
         
+        wallpaper_enabled = custom.wallpaper_on
         wallpaper_object = custom.wallpaper
         wallpaper = wallpaper_object.background_image
         wallpaper_mobile = None
