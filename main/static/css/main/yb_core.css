@@ -92,8 +92,8 @@ button {
     position: relative;
     margin-left: 5px;
     display: inline-block;
-    width: 21px;
-    height: 13.5px;
+    width: 42px;
+    height: 27px;
     margin-top: auto;
     margin-bottom: auto;
 }
@@ -134,7 +134,7 @@ button {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #6f00b9;
+    background-color: #d81919;
     -webkit-transition: .4s;
     transition: .4s;
 }
@@ -142,8 +142,8 @@ button {
 .slider:before {
     position: absolute;
     content: "";
-    height: 11px;
-    width: 11px;
+    height: 22px;
+    width: 22px;
     left: 1.5px;
     bottom: 1.5px;
     background-color: rgb(200, 200, 200);
@@ -160,16 +160,16 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-    -webkit-transform: translateX(7.5px);
-    -ms-transform: translateX(7.5px);
-    transform: translateX(7.5px);
+    -webkit-transform: translateX(16px);
+    -ms-transform: translateX(16px);
+    transform: translateX(16px);
     transition: 0.5s;
 }
 
 /* Rounded sliders */
 .slider.round {
     border-radius: 27px;
-    height: 14px;
+    height: 25.5px;
 }
 
 .slider.round:before {

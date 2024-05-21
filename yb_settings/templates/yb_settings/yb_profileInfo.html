@@ -3,20 +3,20 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/yb_settings/yourbit_settings.css' %}"/>
 <div id='div-header' class="div-header">
     <div class="cb-panel-back" onclick="yb_toggleSettingsMenu()"><svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
-    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb">Profile Info</h3>
+    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb"></h3>
     <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('settings-profile');"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
 </div>
 
-    
-<p style="font-size: small; text-align: center;" class="yb-autoText yb-margin-L5 yb-margin-R5">
-    Manage the information about you on your profile. All information is 
-    set to private by default. If you'd like to edit visibility permissions for friends or followers, 
-    you can do so in Privacy Settings below.
-</p>
+<div class="yb-flexColumn" id="settings-info">
+    <svg class="yb-autoFill yb-center-margin lr" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e8eaed"><path d="M222-255q63-44 125-67.5T480-346q71 0 133.5 23.5T739-255q44-54 62.5-109T820-480q0-145-97.5-242.5T480-820q-145 0-242.5 97.5T140-480q0 61 19 116t63 109Zm257.81-195q-57.81 0-97.31-39.69-39.5-39.68-39.5-97.5 0-57.81 39.69-97.31 39.68-39.5 97.5-39.5 57.81 0 97.31 39.69 39.5 39.68 39.5 97.5 0 57.81-39.69 97.31-39.68 39.5-97.5 39.5Zm.66 370Q398-80 325-111.5t-127.5-86q-54.5-54.5-86-127.27Q80-397.53 80-480.27 80-563 111.5-635.5q31.5-72.5 86-127t127.27-86q72.76-31.5 155.5-31.5 82.73 0 155.23 31.5 72.5 31.5 127 86t86 127.03q31.5 72.53 31.5 155T848.5-325q-31.5 73-86 127.5t-127.03 86Q562.94-80 480.47-80Zm-.47-60q55 0 107.5-16T691-212q-51-36-104-55t-107-19q-54 0-107 19t-104 55q51 40 103.5 56T480-140Zm0-370q34 0 55.5-21.5T557-587q0-34-21.5-55.5T480-664q-34 0-55.5 21.5T403-587q0 34 21.5 55.5T480-510Zm0-77Zm0 374Z"/></svg>
+    <h3 class="align-center" style="color:gray;">PROFILE INFO</h3>
+    <p style="font-size: small; font-weight: 550; padding-left: 5px; padding-right: 5px; font-family: 'Roboto', sans-serif; text-align: center;" class="yb-autoText">Manage account, content, and privacy settings here.</p>    
 
-<button class="yb-button-flex bg-gray-dark font-gray yb-button-halfWidth" style="">Privacy Settings</button>
+</div>
+<br>
+<button class="yb-button-flex bg-autoGray font-gray yb-button-halfWidth" style="">Privacy Settings</button>
 
-<div class="yb-fillWidth yb-vScroll yb-autoText yb-margin-T10 align-center" style="height: calc(100% - 150px); border-radius: 15px;">
+<div class="yb-fillWidth yb-vScroll yb-autoText yb-margin-T10 align-center" style="height: calc(100% - 300px); border-radius: 15px; padding-bottom: 150px;">
     <!--Connecting groups will create a link to the group on the profile page-->
     <!--General-->
         <!--Profile Bio-->
@@ -27,7 +27,7 @@
 
     <!--Contact Info-->
     <br>
-        <div class="yb-panel-wide bg-gray-dark">
+        <div class="yb-panel-wide bg-autoGray">
             <h3 style="position: relative; margin-left: auto; margin-right: auto; line-height:2; background-color:black; width: 200px; height: 35px; border-radius: 10px;">Contact Info</h3>
             <!--Phone Number-->
                 <p class="yb-select-label">Phone Number</p>
@@ -48,7 +48,7 @@
     <!--Occupation-->
         <!--Workplace-->
 
-        <div class="yb-panel-wide bg-gray-dark">
+        <div class="yb-panel-wide bg-autoGray">
             <h3 style="position: relative; margin-left: auto; margin-right: auto; line-height:2; background-color:black; width: 200px; height: 35px; border-radius: 10px;">Work Info</h3>
             <br>
             <br>
@@ -85,14 +85,14 @@
             <br>
 
         </div>            
-        <div class = "yb-panel-wide bg-gray-dark">
+        <div class = "yb-panel-wide bg-autoGray">
             <h3>Education Info</h3>
                 <br>
                 <br>
             <!--High School-->
                 <!--Name-->
                 <p class="yb-select-label">High School Name</p>
-                <input type='text' id='hs-name' style="background-color: rgba(255,255,255,0.5); color: white;" placeholder="Ex. 'Weeby High'" class='yb-input-singleLine bg-gray-dark squared yb-autoText yb-margin-T10' value="{{request.user.profile.user_profile_info.high_school}}">
+                <input type='text' id='hs-name' style="background-color: rgba(255,255,255,0.5); color: white;" placeholder="Ex. 'Weeby High'" class='yb-input-singleLine bg-autoGray squared yb-autoText yb-margin-T10' value="{{request.user.profile.user_profile_info.high_school}}">
                 <br>
                 <br>
                 <!--Attending Status-->
@@ -119,12 +119,12 @@
             <!--College-->
                 <!--Name-->
                 <p class="yb-select-label">College Name</p>
-                <input type='text' id='college-name' placeholder="Ex. 'Weeby University'" style="background-color: rgba(255,255,255,0.5); color: white;" class='yb-input-singleLine bg-gray-dark squared yb-autoText yb-margin-T10' value="{{request.user.profile.user_profile_info.college}}">
+                <input type='text' id='college-name' placeholder="Ex. 'Weeby University'" style="background-color: rgba(255,255,255,0.5); color: white;" class='yb-input-singleLine bg-autoGray squared yb-autoText yb-margin-T10' value="{{request.user.profile.user_profile_info.college}}">
                 <br>
                 <br>
                 <!--Field of Study-->
                 <p class="yb-select-label">Field of Study</p>
-                <input type='text' id='field-of-study' placeholder="Ex. 'Computer Science'" style="background-color: rgba(255,255,255,0.5); color: white;" class='yb-input-singleLine bg-gray-dark squared yb-autoText yb-margin-T10' value="{{request.user.profile.user_profile_info.field_of_study}}">
+                <input type='text' id='field-of-study' placeholder="Ex. 'Computer Science'" style="background-color: rgba(255,255,255,0.5); color: white;" class='yb-input-singleLine bg-autoGray squared yb-autoText yb-margin-T10' value="{{request.user.profile.user_profile_info.field_of_study}}">
                 <br>
                 <br>
                 <!--Attending Status-->
@@ -148,13 +148,13 @@
                 <br>
                 <br>
         </div>
-        <div class="yb-panel-wide bg-gray-dark">
+        <div class="yb-panel-wide bg-autoGray">
         <!--Hobbies-->
         <h3 style="position: relative; margin-left: auto; margin-right: auto; line-height:2; background-color:black; width: 200px; height: 35px; border-radius: 10px;">Interest/Hobbies</h3>
             <br>
             <!--Name-->  
             <b>Hobby Name</b>
-            <input type='text' id='hobby-name' placeholder="Ex. 'Video Games'" style="background-color: rgba(255,255,255,0.5); color: white;" class='yb-input-singleLine bg-gray-dark squared yb-autoText yb-margin-T10'>
+            <input type='text' id='hobby-name' placeholder="Ex. 'Video Games'" style="background-color: rgba(255,255,255,0.5); color: white;" class='yb-input-singleLine bg-autoGray squared yb-autoText yb-margin-T10'>
             <!--Connect Group-->
             <p>Check if your hobby has an existing group. Link to the group to join in
                 on discussions with your peers.</p>
@@ -166,7 +166,7 @@
             
             <!--Name-->
             <p class="yb-select-label">Religion Name</p>
-            <input type='text' id='religion-name' style="background-color: rgba(255,255,255,0.5); color: white;" placeholder="Ex. 'Christianity'" class='yb-input-singleLine bg-gray-dark squared yb-autoText yb-margin-T10'>
+            <input type='text' id='religion-name' style="background-color: rgba(255,255,255,0.5); color: white;" placeholder="Ex. 'Christianity'" class='yb-input-singleLine bg-autoGray squared yb-autoText yb-margin-T10'>
             <!--Connect Group-->
             <p>Check if your religion has an existing group. Link to the group to join in
                 on discussions with your peers.</p>
@@ -176,7 +176,7 @@
         <!--Place of Worship-->
             <!--Name-->
             <p class="yb-select-label">Place of Worship Name</p>
-            <input type='text' id='place-of-worship-name' style="background-color: rgba(255,255,255,0.5); color: white;" placeholder="Ex. 'Church of the Holy Spirit'" class='yb-input-singleLine bg-gray-dark squared yb-autoText yb-margin-T10'>
+            <input type='text' id='place-of-worship-name' style="background-color: rgba(255,255,255,0.5); color: white;" placeholder="Ex. 'Church of the Holy Spirit'" class='yb-input-singleLine bg-autoGray squared yb-autoText yb-margin-T10'>
             <!--Connect Group-->
             <p>Check if your place of worship has an existing group. Link to the group to join in
                 on discussions with your peers.</p>

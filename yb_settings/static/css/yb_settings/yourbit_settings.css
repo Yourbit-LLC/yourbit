@@ -123,10 +123,23 @@
         margin-right: auto;
         grid-template-columns: 1fr 1fr; 
         font-size: 13px;
-        background-color: black;
         border-radius: 20px;
         padding: 6px 4px 6px 4px; 
         row-gap: 10px;
+    }
+
+    @media (prefers-color-scheme: light) {
+        .yb-switch-container-grid {
+            background-color: gray;
+        }
+
+    }
+
+    @media (prefers-color-scheme: dark) {
+        .yb-switch-container-grid {
+            background-color: #2D2D2D;
+        }
+
     }
     
     .yb-switch-label {
