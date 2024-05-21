@@ -641,3 +641,7 @@
 .yb-lockScroll-y {
     overflow-y: hidden;
 }
+
+.yb-spacer {
+    height: 150px;
+}
