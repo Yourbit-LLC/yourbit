@@ -371,13 +371,13 @@ p {
 
     @media (prefers-color-scheme: dark) {
         .yb-space-nav {
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.7);
         }
     }
     
     @media (prefers-color-scheme: light) {
         .yb-space-nav {
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.7);
         }
     }
 }

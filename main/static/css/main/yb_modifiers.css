@@ -209,27 +209,27 @@
         background-color: gray;
     }
 
-    .font-autoGray {
-        color: gray;
+    .yb-font-autoGray {
+        color: rgb(96, 96, 96);
     }
 
-    .fill-autoGray {
-        fill: gray;
+    .yb-fill-autoGray {
+        fill: rgb(97, 97, 97);
     }
     
 }
 
 @media screen and (prefers-color-scheme: dark) {
     .yb-bg-autoGray {
-        background-color: rgb(35, 35, 35);
+        background-color: rgb(25, 25, 25);
     }
 
-    .font-autoGray {
-        color: rgb(35, 35, 35);
+    .yb-font-autoGray {
+        color: rgb(70, 70, 70);
     }
 
-    .fill-autoGray {
-        fill: rgb(35, 35, 35);
+    .yb-fill-autoGray {
+        fill: rgb(70, 70, 70);
     }
 }
 
@@ -312,9 +312,9 @@
 
 @media (prefers-color-scheme: dark) {
     .yb-panel {
-        background-color: rgba(0, 0, 0, 0.7);
-        backdrop-filter: blur(30px);
-        -webkit-backdrop-filter: blur(30px);
+        background-color: rgba(0, 0, 0, 0.75);
+        backdrop-filter: blur(80px);
+        -webkit-backdrop-filter: blur(80px);
     }
     .yb-button-wide {
         background-color: rgb(35, 35, 35); 
@@ -323,9 +323,9 @@
 
 @media (prefers-color-scheme: light) {
     .yb-panel {
-        background-color: rgba(255, 255, 255, 0.7);
-        backdrop-filter: blur(30px);
-        -webkit-backdrop-filter: blur(30px);
+        background-color: rgba(255, 255, 255, 0.75);
+        backdrop-filter: blur(80px);
+        -webkit-backdrop-filter: blur(80px);
     }
     .yb-button-wide {
         background-color: rgb(200, 200, 200); 

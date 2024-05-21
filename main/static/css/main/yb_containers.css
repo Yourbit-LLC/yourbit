@@ -584,7 +584,7 @@
 
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
     #content-container {
         background-color: transparent;
     }
@@ -594,7 +594,7 @@
     #content-container {
         background-color: transparent;
     }
-}
+} */
 
 /* Customize the scrollbar track */
 #content-container::-webkit-scrollbar {
