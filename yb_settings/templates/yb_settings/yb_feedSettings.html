@@ -17,8 +17,9 @@
     
     
     
-    <div class="yb-fillWidth yb-vScroll yb-autoText yb-margin-T10 align-center" style="height: calc(100% - 300px); border-radius: 15px; padding-bottom: 150px;">
+    <form class="yb-fillWidth yb-vScroll yb-autoText yb-margin-T10 align-center" method="POST" action="{% url 'settings_feed' %}" style="height: calc(100% - 300px); border-radius: 15px; padding-bottom: 150px;">
     <!--Scope-->
+        {% csrf_token %}
         <!--Default: Public/Followers+Friends/FriendsOnly-->
             <p>Show Posts From</p>
             <select type="text" class='yb-input-singleLine yb-panel' name="yb-align-text" id="yb-align-text" style='color: white;' placeholder="Paragraph Align">
@@ -98,7 +99,7 @@
             <!--Add Community/Friend/Following to group-->
 
             <!--Group Type (Optional)-->
-        </div>
+        </form>
         <div id="mobile-spacer">
         </div>
         <script>

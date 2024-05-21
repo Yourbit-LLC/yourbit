@@ -16,7 +16,7 @@
 </div>
 
 
-    <div id="privacy-form" class="yb-fillWidth yb-vScroll yb-autoText yb-margin-T10 align-center" style="height: calc(100% - 150px); border-radius: 15px;">
+    <form id="privacy-form" method="POST" action="{% url 'settings_privacy' %}" class="yb-fillWidth yb-vScroll yb-autoText yb-margin-T10 align-center" style="height: calc(100% - 150px); border-radius: 15px;">
         <!--All settings should include an explanation with a question
              mark symbol used for activation located right of the label
             
@@ -27,6 +27,7 @@
         <!--Profile Publicity: Private/Public (Default Private)-->
             <!--Switch-->
             <br>
+            {% csrf_token %}
             
             <div class="setting-container" style="padding-bottom: 150px;">
                 <h3>Profile</h3>
@@ -238,11 +239,9 @@
                 <!--Switch--> 
 
         <!--Personal Info (Default Private)-->
-
-
-
-        <script type='text/javascript' class="page-script" src="{% static 'scripts/yb-privacy.js' %}"></script>
-    </div>
+        
+    </form>
+    <script type='text/javascript' class="page-script" src="{% static 'scripts/yb_settings/yb-ajax.js' %}"></script> 
     <div id="mobile-spacer">
     </div>
     <script>

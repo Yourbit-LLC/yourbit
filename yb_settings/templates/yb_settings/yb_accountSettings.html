@@ -14,7 +14,8 @@
 
 </div>
 
-<div class="yb-fillWidth yb-vScroll yb-autoText yb-margin-T10 align-center" style="height: calc(100% - 200px); border-radius: 15px; padding-bottom: 150px;">
+<form class="yb-fillWidth yb-vScroll yb-autoText yb-margin-T10 align-center" method="POST" action="{% url 'settings_account' %}" style="height: calc(100% - 200px); border-radius: 15px; padding-bottom: 150px;">
+    {% csrf_token %}
     <div class = "setting-sub-container">
         <h4>Account Information</h4>
         <!--Edit Name-->
@@ -90,7 +91,7 @@
         <br>
         <button type="button" style="width:150px; background-color:red; color: white; box-shadow: 0px 0px 10px red;" class="yb-button-wide"><b>Delete Account<b></button>
     </div>
-</div>
+</form>
 <div id="mobile-spacer">
 </div>
 <script class="page-script" type="text/javascript" src="{% static 'scripts/yb-account-settings.js' %}"></script>

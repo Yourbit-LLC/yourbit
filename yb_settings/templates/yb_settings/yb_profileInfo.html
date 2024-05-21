@@ -16,7 +16,7 @@
 <br>
 <button class="yb-button-flex bg-autoGray font-gray yb-button-halfWidth" style="">Privacy Settings</button>
 
-<div class="yb-fillWidth yb-vScroll yb-autoText yb-margin-T10 align-center" style="height: calc(100% - 300px); border-radius: 15px; padding-bottom: 150px;">
+<form class="yb-fillWidth yb-vScroll yb-autoText yb-margin-T10 align-center" method="POST" action="{% url 'settings_profile' %}" style="height: calc(100% - 300px); border-radius: 15px; padding-bottom: 150px;">
     <!--Connecting groups will create a link to the group on the profile page-->
     <!--General-->
         <!--Profile Bio-->
@@ -26,6 +26,7 @@
         <!--Change Profile Image-->
 
     <!--Contact Info-->
+    {% csrf_token %}
     <br>
         <div class="yb-panel-wide bg-autoGray">
             <h3 style="position: relative; margin-left: auto; margin-right: auto; line-height:2; background-color:black; width: 200px; height: 35px; border-radius: 10px;">Contact Info</h3>
@@ -196,7 +197,7 @@
         <!--Smart Pinned-->
 
     </div>
-</div>
+</form>
 <script class="page-script">
 
     $(document).ready(function(){
