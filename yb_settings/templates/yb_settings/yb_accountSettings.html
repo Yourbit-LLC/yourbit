@@ -20,40 +20,37 @@
         <h4>Account Information</h4>
         <!--Edit Name-->
         <div id = "field-container-first-name" class="yb-field-container">
-            <div id="display-first-name" class="yb-padding-ALL5 squared yb-bg-autoGray yb-font-autoGray yb-margin-T10 yb-shadow" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">First Name: </p><p class="field-cover-value align-right" style="grid-column: 2;">{{user.first_name}}</p></div>
+            <div id="display-first-name" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoGray yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">First Name: </p><p class="field-cover-value align-right" style="grid-column: 2;">{{user.first_name}}</p></div>
             <input id='field-first-name' value="{{user.first_name}}" class="yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10" style="display:none;">
         
         </div>
         
-        <br>
         
         <div id = "field-container-last-name" class="yb-field-container">
-            <div id="display-last-name" class="yb-padding-ALL5 squared yb-bg-autoGray yb-font-autoGray yb-margin-T10 yb-shadow" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">Last Name: </p><p class="field-cover-value align-right" style="grid-column: 2;">{{user.last_name}}</p></div>
+            <div id="display-last-name" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoGray yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">Last Name: </p><p class="field-cover-value align-right" style="grid-column: 2;">{{user.last_name}}</p></div>
             <input id='field-last-name' value="{{user.last_name}}" class="yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10" style="display:none;">
         </div>
-        <br>
-        <br>
+
+        <!--Edit Username-->
+
+        <div id="field-container-username" class="yb-field-container">
+            <div id="display-username" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoGray yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">Username: </p><p class="field-cover-value align-right" style="grid-column: 2;">{{user.username}}</p></div>
+            <input id='field-username' value="{{user.username}}" class="yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10" style="display:none;">
+        </div>
+
         <!--Edit Email Address-->
         
         <div id="field-container-email-address" class="yb-field-container">
-            <div id="display-email" class="yb-padding-ALL5 squared yb-bg-autoGray yb-font-autoGray yb-margin-T10 yb-shadow" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">Email: </p><p class="field-cover-value align-right" style="grid-column: 2;">{{user.email}}</p></div>
+            <div id="display-email" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoGray yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">Email: </p><p class="field-cover-value align-right" style="grid-column: 2;">{{user.email}}</p></div>
             <input id='field-email-address' value="{{user.email}}" class="yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10" style="display:none;">
         </div>
-        <br>
-        
-        <!--Edit Username-->
-        
-        <div id="field-container-username" class="yb-field-container">
-            <div id="display-username" class="yb-padding-ALL5 squared yb-bg-autoGray yb-font-autoGray yb-margin-T10 yb-shadow" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">Username: </p><p class="field-cover-value align-right" style="grid-column: 2;">{{user.username}}</p></div>
-            <input id='field-username' value="{{user.username}}" class="yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10">
-        </div>
-        <br>
         
         <!--Edit Phone Number-->
-        <p class="yb-select-label">Phone Number</p>
-            <div id = "field-container-phone-number" class="yb-field-container">
-                <input id='field-phone-number' value="{{user.phone_number}}" class="yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10">
-            </div>    
+        
+        <div id = "field-container-phone-number" class="yb-field-container">
+            <div id="display-phone-number" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoGray yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">Phone: </p><p class="field-cover-value align-right" style="grid-column: 2;">{{user.phone_number}}</p></div>
+            <input id='field-phone-number' value="{{user.phone_number}}" class="yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10" style="display: none;">
+        </div>    
     </div>
     <br>
     <div class = "setting-sub-container">
