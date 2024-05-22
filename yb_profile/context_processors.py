@@ -58,7 +58,8 @@ def Customization(request):
             'wallpaper_mobile': wallpaper_mobile,
             'wallpaper_desktop': wallpaper_desktop,
             'custom_bit': custom_bit,
-            'custom_core': custom
+            'custom_core': custom,
+            'wallpaper_enabled': wallpaper_enabled,
 
         }
 
