@@ -144,10 +144,6 @@ function updateColorPreview(e) {
         });
     }
 
-    if (isSafari) {
-        this_input.style.display = 'none';
-
-    }
     
 
 }
