@@ -613,6 +613,12 @@
 
 }
 
+.yb-grid-H12 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+
 .yb-vScroll {
     overflow-y: scroll;
     scrollbar-width: none; /* Create a thin scrollbar on Firefox */

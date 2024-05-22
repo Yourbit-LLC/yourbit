@@ -74,15 +74,15 @@ function initializeOrUpdateCropper(target_ratio, field, preview_block) {
 }
 
 function previewProfileImage() {
-    initializeOrUpdateCropper(1, "profile-image-upload", "profile-image-preview");
+    initializeOrUpdateCropper(1, "profile-image-upload", "crop-image-preview");
 }
 
 function previewDesktopBackgroundImage() {
-    initializeOrUpdateCropper(16/9, "background-image-upload", "profile-image-preview");
+    initializeOrUpdateCropper(16/9, "background-image-upload", "crop-image-preview");
 }
 
 function previewMobileBackgroundImage() {
-    initializeOrUpdateCropper(9/19.5, "background-image-upload", "profile-image-preview");
+    initializeOrUpdateCropper(9/19.5, "background-image-upload", "crop-image-preview");
 }
 
 function previewBitCrop() {
