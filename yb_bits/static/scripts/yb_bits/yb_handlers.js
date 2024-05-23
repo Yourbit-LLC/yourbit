@@ -306,6 +306,16 @@ function yb_openImage(source, index, this_id){
     let viewer = yb_createElement('div', 'photo-viewer', 'photo-viewer');
     viewer.setAttribute("style", "display: none");
     let viewing_image = yb_renderImage(source, "full-screen-image", "full-screen-image");
+
+    let photo_header = yb_createElement('div', 'div-header', 'div-header');
+    photo_header.setAttribute("style", "position: absolute; display:grid; grid-template-columns: 1fr 1fr; top: 0px; left: 0px; width: 100%; height: 50px; background-color: rgba(0, 0, 0, 0.5);");
+    photo_header.innerHTML = `
+        <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb"></h3>
+        <div class='yb-button-close' id='cb-panel-close' onclick="yb_closeImage();"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path class='yb-fill-white' d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
+    `
+
+    viewer.appendChild(photo_header);
+
     viewer.appendChild(viewing_image);
     document.body.appendChild(viewer);
 
@@ -326,6 +336,9 @@ function yb_openImage(source, index, this_id){
                 let comment_count = bit.comment_count;
 
                 let photo = bit.photos[index];
+
+                let photo_header = yb_createElement('div', 'fs-image-header', 'fs-image-header');
+                photo_header.setAttribute("style", "position: absolute; display:grid; grid-template-columns: 1fr 1fr; top: 0px; left: 0px; width: 100%; height: 50px; background-color: rgba(0, 0, 0, 0.5);");
 
                 let full_viewing_image = yb_renderImage(photo.image, "full-screen-image", "full-screen-image");
                 full_viewing_image.setAttribute("style", "visibility: hidden;");
