@@ -22,8 +22,9 @@
 <script class="page-script" type="text/javascript" src="{% static 'scripts/yb_bits/yb_ajax.js' %}"></script>
 <script class="page-script" type="text/javascript" src="{% static 'scripts/yb_bits/yb_handlers.js' %}"></script>
 
-<div id='yb-browse-nav' class="yb-container-filter yb-panel yb-gap5 yb-margin-L5 yb-margin-R5 rounded yb-flexRow yb-padding-ALL5" style="position: sticky !important; top: -6px; z-index: 4; box-shadow: 1px 1px 20px black;" data-state="contracted">
+<div id='yb-browse-nav' class="yb-container-filter yb-panel yb-gap5 yb-margin-L5 yb-margin-R5 rounded yb-flexRow yb-padding-ALL5" style="position: sticky !important; top: -6px; z-index: 4; box-shadow: 1px 1px 20px black; overflow: hidden;" data-state="contracted">
     <input type="hidden">
+    <span class="yb-fillContainer yb-panel align-center yb-font-autoGray" style="line-height: 2; z-index: 10; position: absolute;"><p><b>Feature in Progress...</b> Filter Bar</p></span>
     
     <button class='yb-button-wide small-wide rounded yb-autoText font-small yb-center-margin tb' id="button-filter-sort" data-state="contracted" name = 'sort-filter'>
         <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
