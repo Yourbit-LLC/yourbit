@@ -20,7 +20,7 @@
     cursor: pointer;
     pointer-events: auto;
     /* variable */
-    background-color: var(--yb-bit-color) !important;
+    background-color: var(--yb-bit-color);
     box-shadow: 0px 1px 5px black;
 
     padding: 5px;
@@ -172,7 +172,7 @@
 }
 
 .yb-titleText-bit {
-    color: var(--yb-title-color) !important;
+    color: var(--yb-title-color);
 }
 
 .yb-title-bit.preview {
@@ -191,7 +191,7 @@
     max-height: 125px;
     overflow: hidden;
     transition: 0.5s;
-    color: var(--yb-text-color) !important;
+    color: var(--yb-text-color);
 }
 
 .yb-body-bit.expanded {

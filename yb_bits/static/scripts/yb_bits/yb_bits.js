@@ -355,6 +355,7 @@ function yb_createInteractions(bit) {
     `@returns {object} comment_field_container - the comment field container element
 */
 
+
 function yb_buildCommentField(bit) {
     let comment_field_container = yb_createElement("div", "yb-container-commentField", `field-write-comment-${bit.id}`);
     
@@ -362,6 +363,15 @@ function yb_buildCommentField(bit) {
     let comment_field = yb_createElement("input", "yb-field-commentField field-border yb-autoText", `field-write-comment-${bit.id}`);
     comment_field.setAttribute("placeholder", "Write Comment");
     comment_field_container.appendChild(comment_field);
+
+    $(comment_field).on("change keyup", function(e){
+        if (e.key === "Enter"){
+            if (e.currentTarget.value.length > 0){
+                let this_id = e.currentTarget.getAttribute("data-catid");
+                submit_comment_button.click();
+            }
+        }
+    });
 
     //Comment Submit Button
     let submit_comment_button = yb_createButton("send_comment", "yb-send-comment", `button-submit-comment-${bit.id}`)
@@ -418,7 +428,8 @@ function yb_buildBit(bit){
 
     
     //Prepare new bit by creating an element
-    new_bit = yb_createElement("div",`yb-element-background yb-bit-shell ${type}bit`, `bit-${id}`)
+    new_bit = yb_createElement("div",`yb-element-background yb-bit-shell ${type}bit`, `bit-${id}`);
+    new_bit.style.backgroundColor = primary_color;
 
     //Apply All Attributes: element id, element class, data type, data-id, data-button-color, data icon color, data background color, style
     new_bit.setAttribute("data-type", `${type}`);
