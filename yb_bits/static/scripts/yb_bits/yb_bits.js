@@ -99,8 +99,6 @@ function yb_bitMenu(e){
     menu.appendChild(this_container);
 
     menu.classList.add("open");
-
-
     
 }
 
@@ -445,7 +443,9 @@ function yb_buildBit(bit){
     new_bit.appendChild(createHeader(bit));
 
     //Title
-    new_bit.appendChild(createTitle(bit));
+    let title = createTitle(bit);
+    title.style.color = title_color + " !important";
+    new_bit.appendChild(title);
 
 
 
@@ -458,7 +458,9 @@ function yb_buildBit(bit){
 
 
     //Body
-    new_bit.appendChild(yb_createBody(bit));
+    let body = yb_createBody(bit);
+    body.style.color = text_color + " !important";
+    new_bit.appendChild(body);
     
 
     //Append interaction container
