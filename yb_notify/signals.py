@@ -133,6 +133,7 @@ def create_feature_request_notification(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=Message)
 def create_message_notification(sender, instance, created, **kwargs):
+
     if created:
         conversation = instance.conversation
         members = conversation.members.all()
@@ -176,85 +177,87 @@ def create_message_notification(sender, instance, created, **kwargs):
 #Create a notification on like of a bit
 @receiver(post_save, sender=BitLike)
 def create_bit_like_notification(sender, instance, created, **kwargs):
-    if created:
-        bit = instance.bit
-        notification = Notification(
-            bit = bit,
-            to_user = bit.profile,
-            body = instance.user.profile.display_name + " has liked your bit",
-            type = 1,
-            link = "/bits/" + str(bit.id),
-            title = "New Like",
-            notify_class = 2
+    if instance.user != instance.bit.profile.user:
+        if created:
+            bit = instance.bit
+            notification = Notification(
+                bit = bit,
+                to_user = bit.profile,
+                body = instance.user.profile.display_name + " has liked your bit",
+                type = 1,
+                link = "/bits/" + str(bit.id),
+                title = "New Like",
+                notify_class = 2
 
 
-        )
-        notification.save()
+            )
+            notification.save()
 
-        addToCore(notification, bit.profile)
+            addToCore(notification, bit.profile)
 
-        #Send Push Notification
+            #Send Push Notification
 
-        if bit.title != "":
-            notification_body = bit.title
-        else:
-            notification_body = bit.body[:100]
+            if bit.title != "":
+                notification_body = bit.title
+            else:
+                notification_body = bit.body[:100]
 
-        payload = {
-            "title": "New Like from " + instance.user.profile.display_name, 
-            "body" : notification_body, 
-            "icon": "/static/images/2023-logo-draft.png",
-            'tag': 'yourbit',
-            'actions': [
-                {
-                    'action': 'open_url',
-                    'title': 'Open Yourbit',
-                    'icon': '/static/images/yourbit_logo.png'
+            payload = {
+                "title": "New Like from " + instance.user.profile.display_name, 
+                "body" : notification_body, 
+                "icon": "/static/images/2023-logo-draft.png",
+                'tag': 'yourbit',
+                'actions': [
+                    {
+                        'action': 'open_url',
+                        'title': 'Open Yourbit',
+                        'icon': '/static/images/yourbit_logo.png'
+                    }
+                ],
+                'data': {
+                    'url': '/notify/',
                 }
-            ],
-            'data': {
-                'url': '/notify/',
             }
-        }
-        send_user_notification(user=bit.profile.user, payload=payload, ttl=1000)
+            send_user_notification(user=bit.profile.user, payload=payload, ttl=1000)
 
 #Create a notification on creation of bit comment
 @receiver(post_save, sender=BitComment)
 def create_bit_comment_notification(sender, instance, created, **kwargs):
-    if created:
-        bit = instance.bit
-        notification = Notification(
-            bit = bit,
-            to_user = bit.profile,
-            body = instance.user.profile.display_name + " has commented on your bit",
-            type = 2,
-            link = "/bits/" + str(bit.id),
-            title = "New Comment",
-            notify_class = 2
-        )
-        notification.save()
+    if instance.user != instance.bit.profile.user:
+        if created:
+            bit = instance.bit
+            notification = Notification(
+                bit = bit,
+                to_user = bit.profile,
+                body = instance.user.profile.display_name + " has commented on your bit",
+                type = 2,
+                link = "/bits/" + str(bit.id),
+                title = "New Comment",
+                notify_class = 2
+            )
+            notification.save()
 
-        addToCore(notification, bit.profile)
+            addToCore(notification, bit.profile)
 
-        #Send Push Notification
-        payload = {
-            "title": "New Comment from " + instance.user.profile.display_name, 
-            "body": instance.body, 
-            "icon": "/static/images/2023-logo-draft.png",
-            'tag': 'yourbit',
-            'actions': [
-                {
-                    'action': 'open_url',
-                    'title': 'Open Yourbit',
-                    'icon': '/static/images/yourbit_logo.png'
+            #Send Push Notification
+            payload = {
+                "title": "New Comment from " + instance.user.profile.display_name, 
+                "body": instance.body, 
+                "icon": "/static/images/2023-logo-draft.png",
+                'tag': 'yourbit',
+                'actions': [
+                    {
+                        'action': 'open_url',
+                        'title': 'Open Yourbit',
+                        'icon': '/static/images/yourbit_logo.png'
+                    }
+                ],
+                'data': {
+                    'url': '/notify/',
                 }
-            ],
-            'data': {
-                'url': '/notify/',
+                
             }
-            
-        }
-        send_user_notification(user=bit.profile.user, payload=payload, ttl=1000)
+            send_user_notification(user=bit.profile.user, payload=payload, ttl=1000)
 
 
 #Create a notification on friend request
