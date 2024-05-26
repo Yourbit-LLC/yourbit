@@ -26,7 +26,7 @@ from rest_framework.exceptions import PermissionDenied
 from rest_framework import generics, viewsets
 from rest_framework.response import Response
 from yb_bits.models import Bit
-from .serializers import BitSerializer, CreateBitSerializer,PhotoSerializer, VideoSerializer, BitCommentSerializer
+from .serializers import BitSerializer, CreateBitSerializer, PhotoSerializer, VideoSerializer, BitCommentSerializer
 from yb_video.models import Video
 from yb_photo.models import Photo
 
@@ -279,13 +279,16 @@ class DislikeViewsSet(viewsets.ModelViewSet):
 
 class CommentViewSet(viewsets.ModelViewSet):
     queryset = BitComment.objects.all().order_by('-time')
-    serializer_class = BitCommentSerializer
+    serializer_class = BitCommentSerializer    
 
     def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
+
+        serializer = self.get_serializer(data=request.data, context={'is_creating': True,'request': request})
         serializer.is_valid(raise_exception=True)
         
         bit_id = serializer.validated_data.get('bit')
+
+        
         if isinstance(bit_id, Bit):
             bit = bit_id
         else:
@@ -307,10 +310,12 @@ class CommentViewSet(viewsets.ModelViewSet):
         
         return queryset
     def list(self, request, *args, **kwargs):
+
         user_profile = Profile.objects.get(user=request.user)
         timezone = user_profile.current_timezone
-
+        print(timezone)
         serializer = self.get_serializer_context()
+        serializer['is_create'] = False
         serializer['user_tz'] = timezone
 
         return super().list(request, *args, **kwargs)

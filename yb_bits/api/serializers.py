@@ -114,9 +114,19 @@ class BitDislikeSerializer(serializers.ModelSerializer):
         model = BitDislike
         fields = '__all__'
 
+
+    
+class ClusterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cluster
+        fields = '__all__'
+
+
+
 class BitCommentSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
-    # time =  serializers.DateTimeField(format="%B %d, %Y @%I:%M %p")
+
+    time = serializers.DateTimeField(format="%B %d, %Y @%I:%M %p", required=False)
 
     class Meta:
         model = BitComment
@@ -125,26 +135,36 @@ class BitCommentSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         ret = super().to_representation(instance)
         user_tz_str = self.context.get('user_tz', None)
+        
+        if not self.context.get('is_creating', False):
+            # Ensure instance.time is timezone-aware
+            this_time = instance.time
+            if this_time and not this_time.tzinfo:
+                # If this_time is naive, make it aware with the default timezone
+                this_time = make_aware(this_time, get_default_timezone())
 
-        # Ensure instance.time is timezone-aware
-        this_time = instance.time
-        if this_time and not this_time.tzinfo:
-            # If this_time is naive, make it aware with the default timezone
-            this_time = make_aware(this_time, get_default_timezone())
-
-        # Convert time to user's timezone if valid, else use default timezone
-        try:
-            user_tz = pytz.timezone(user_tz_str) if user_tz_str else get_default_timezone()
-            created_at = this_time.astimezone(user_tz)
-            ret['time'] = created_at.strftime("%B %d, %Y @ %I:%M %p")
-        except pytz.UnknownTimeZoneError:
-            # Handle unknown timezone by using a default or logging an error
-            # For now, let's just use the default timezone
-            ret['time'] = this_time.strftime("%B %d, %Y @ %I:%M %p")
+            # Convert time to user's timezone if valid, else use default timezone
+            try:
+                user_tz = pytz.timezone(user_tz_str) if user_tz_str else get_default_timezone()
+                created_at = this_time.astimezone(user_tz)
+                print(created_at.strftime("%B %d, %Y @ %I:%M %p"))
+                ret['time'] = created_at.strftime("%B %d, %Y @ %I:%M %p")
+                
+            except pytz.UnknownTimeZoneError:
+                # Handle unknown timezone by using a default or logging an error
+                # For now, let's just use the default timezone
+                #print error
+                print('Unknown timezone error')
+                ret['time'] = this_time.strftime("%B %d, %Y @ %I:%M %p")
 
         return ret
-    
-class ClusterSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Cluster
-        fields = '__all__'
+
+    def create(self, validated_data):
+        # Set the context to indicate creation
+        self.context['is_creating'] = True
+        return super().create(validated_data)
+
+    def update(self, instance, validated_data):
+        # Set the context to indicate updating
+        self.context['is_creating'] = False
+        return super().update(instance, validated_data)
