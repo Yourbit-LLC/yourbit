@@ -44,10 +44,7 @@ def Customization(request):
         wallpaper_mobile = None
         wallpaper_desktop = None
 
-
-        custom_bit = CustomBit.objects.get(theme=theme)
-
-        return {
+        context = {
             'profile_image': profile_image,
             'profile_thumbnail_small': profile_thumbnail_small,
             'profile_thumbnail_medium': profile_thumbnail_medium,
@@ -57,12 +54,18 @@ def Customization(request):
             'wallpaper': wallpaper,
             'wallpaper_mobile': wallpaper_mobile,
             'wallpaper_desktop': wallpaper_desktop,
-            'custom_bit': custom_bit,
             'custom_core': custom,
             'wallpaper_enabled': wallpaper_enabled,
-
         }
 
+        bit_colors_on = custom.bit_colors_on
+
+
+        if bit_colors_on:
+            custom_bit = CustomBit.objects.get(theme=theme)
+            context['custom_bit'] = custom_bit
+
+        return context
 
     else:
         return {}
