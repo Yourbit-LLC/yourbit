@@ -4,79 +4,170 @@ from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.utils import timezone
 from django.utils import dateformat
-from PIL import Image, ImageOps
+from PIL import Image, ImageOps, ImageSequence
 from .models import Photo
 
 # Create your views here.
 def generate_tiny_thumbnail(user, source_file):
-    #Create small thumbnail (32x32)
+    # Open the source file
     source_file = Image.open(source_file)
-    tiny_image = source_file.copy()
-    sthumb_io = BytesIO()
-    label = "thumbnail_tiny"
-    squared_image = ImageOps.fit(source_file, (32, 32))
-    tiny_thumbnail = tiny_image.resize((32, 32))
-    tiny_thumbnail.save(sthumb_io, format='PNG', quality=80)
+    label = "thumbnail_medium"
     this_username = user.username
     this_uid = user.id
     timestamp = dateformat.format(timezone.now(), '%Y%m%d%-H:i-s')
-    this_filename = this_username + str(this_uid) + timestamp + label + ".png"
-    inmemory_uploaded_file = InMemoryUploadedFile(sthumb_io, None, this_filename, 'image/png', sthumb_io.tell(), None)
-    
+    this_filename = f"{this_username}{this_uid}{timestamp}{label}.png"
+
+    # Check if the source file is a GIF
+    if source_file.format == 'GIF':
+        # Create a new BytesIO object for the thumbnail
+        lthumb_io = BytesIO()
+
+        # Handle GIF resizing
+        frames = ImageSequence.Iterator(source_file)
+        new_frames = []
+        for frame in frames:
+            new_frame = ImageOps.fit(frame.convert('RGBA'), (32, 32), Image.ANTIALIAS)
+            new_frames.append(new_frame)
+
+        # Save the new frames as a GIF
+        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=source_file.info['duration'])
+
+        # Update filename and format
+        this_filename = f"{this_username}{this_uid}{timestamp}{label}.gif"
+        format = 'image/gif'
+    else:
+        # Handle non-GIF image resizing
+        lthumb_io = BytesIO()
+        large_image = source_file.copy()
+        squared_image = ImageOps.fit(large_image, (32, 32), Image.ANTIALIAS)
+        squared_image.save(lthumb_io, format='PNG', quality=80)
+        format = 'image/png'
+
+    # Create InMemoryUploadedFile
+    inmemory_uploaded_file = InMemoryUploadedFile(lthumb_io, None, this_filename, format, lthumb_io.tell(), None)
+
     return inmemory_uploaded_file
 
+
 def generate_small_thumbnail(user, source_file):
-    #Create small thumbnail (64x64)
+    # Open the source file
     source_file = Image.open(source_file)
-    small_image = source_file.copy()
-    sthumb_io = BytesIO()
-    label = "thumbnail_small"
-    squared_image = ImageOps.fit(source_file, (64, 64))
-    small_thumbnail = small_image.resize((64, 64))
-    small_thumbnail.save(sthumb_io, format='PNG', quality=80)
+    label = "thumbnail_medium"
     this_username = user.username
     this_uid = user.id
     timestamp = dateformat.format(timezone.now(), '%Y%m%d%-H:i-s')
-    this_filename = this_username + str(this_uid) + timestamp + label + ".png"
-    inmemory_uploaded_file = InMemoryUploadedFile(sthumb_io, None, this_filename, 'image/png', sthumb_io.tell(), None)
-    
+    this_filename = f"{this_username}{this_uid}{timestamp}{label}.png"
+
+    # Check if the source file is a GIF
+    if source_file.format == 'GIF':
+        # Create a new BytesIO object for the thumbnail
+        lthumb_io = BytesIO()
+
+        # Handle GIF resizing
+        frames = ImageSequence.Iterator(source_file)
+        new_frames = []
+        for frame in frames:
+            new_frame = ImageOps.fit(frame.convert('RGBA'), (64, 64), Image.ANTIALIAS)
+            new_frames.append(new_frame)
+
+        # Save the new frames as a GIF
+        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=source_file.info['duration'])
+
+        # Update filename and format
+        this_filename = f"{this_username}{this_uid}{timestamp}{label}.gif"
+        format = 'image/gif'
+    else:
+        # Handle non-GIF image resizing
+        lthumb_io = BytesIO()
+        large_image = source_file.copy()
+        squared_image = ImageOps.fit(large_image, (64, 64), Image.ANTIALIAS)
+        squared_image.save(lthumb_io, format='PNG', quality=80)
+        format = 'image/png'
+
+    # Create InMemoryUploadedFile
+    inmemory_uploaded_file = InMemoryUploadedFile(lthumb_io, None, this_filename, format, lthumb_io.tell(), None)
+
     return inmemory_uploaded_file
 
 def generate_medium_thumbnail(user, source_file):
-    #Create Medium thumbnail (256x256)
+    # Open the source file
     source_file = Image.open(source_file)
-    large_image = source_file.copy()
-    lthumb_io = BytesIO()
     label = "thumbnail_medium"
-    squared_image = ImageOps.fit(source_file, (256, 256))
-    large_thumbnail = large_image.resize((256, 256))
-    large_thumbnail.save(lthumb_io, format='PNG', quality=80)
     this_username = user.username
     this_uid = user.id
     timestamp = dateformat.format(timezone.now(), '%Y%m%d%-H:i-s')
-    this_filename = this_username + str(this_uid) + timestamp + label + ".png"
-    inmemory_uploaded_file = InMemoryUploadedFile(lthumb_io, None, this_filename, 'image/png', lthumb_io.tell(), None)
-    
+    this_filename = f"{this_username}{this_uid}{timestamp}{label}.png"
+
+    # Check if the source file is a GIF
+    if source_file.format == 'GIF':
+        # Create a new BytesIO object for the thumbnail
+        lthumb_io = BytesIO()
+
+        # Handle GIF resizing
+        frames = ImageSequence.Iterator(source_file)
+        new_frames = []
+        for frame in frames:
+            new_frame = ImageOps.fit(frame.convert('RGBA'), (256, 256), Image.ANTIALIAS)
+            new_frames.append(new_frame)
+
+        # Save the new frames as a GIF
+        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=source_file.info['duration'])
+
+        # Update filename and format
+        this_filename = f"{this_username}{this_uid}{timestamp}{label}.gif"
+        format = 'image/gif'
+    else:
+        # Handle non-GIF image resizing
+        lthumb_io = BytesIO()
+        large_image = source_file.copy()
+        squared_image = ImageOps.fit(large_image, (256, 256), Image.ANTIALIAS)
+        squared_image.save(lthumb_io, format='PNG', quality=80)
+        format = 'image/png'
+
+    # Create InMemoryUploadedFile
+    inmemory_uploaded_file = InMemoryUploadedFile(lthumb_io, None, this_filename, format, lthumb_io.tell(), None)
+
     return inmemory_uploaded_file
 
-#Typically used for feed thumbnails
 def generate_large_thumbnail(user, source_file):
-    #Create large thumbnail (512x512)
+    # Open the source file
     source_file = Image.open(source_file)
-    xlarge_image = source_file.copy()
-    xthumb_io = BytesIO()
-    label = "thumbnail_large"
-    squared_image = ImageOps.fit(source_file, (512, 512))
-    xlarge_thumbnail = xlarge_image.resize((512, 512))
-    xlarge_thumbnail.save(xthumb_io, format='PNG', quality=80)
+    label = "thumbnail_medium"
     this_username = user.username
     this_uid = user.id
     timestamp = dateformat.format(timezone.now(), '%Y%m%d%-H:i-s')
-    this_filename = this_username + str(this_uid) + timestamp + label + ".png"
-    inmemory_uploaded_file = InMemoryUploadedFile(xthumb_io, None, this_filename, 'image/png', xthumb_io.tell(), None)
-    
-    return inmemory_uploaded_file
+    this_filename = f"{this_username}{this_uid}{timestamp}{label}.png"
 
+    # Check if the source file is a GIF
+    if source_file.format == 'GIF':
+        # Create a new BytesIO object for the thumbnail
+        lthumb_io = BytesIO()
+
+        # Handle GIF resizing
+        frames = ImageSequence.Iterator(source_file)
+        new_frames = []
+        for frame in frames:
+            new_frame = ImageOps.fit(frame.convert('RGBA'), (512, 512), Image.ANTIALIAS)
+            new_frames.append(new_frame)
+
+        # Save the new frames as a GIF
+        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=source_file.info['duration'])
+
+        # Update filename and format
+        this_filename = f"{this_username}{this_uid}{timestamp}{label}.gif"
+        format = 'image/gif'
+    else:
+        # Handle non-GIF image resizing
+        lthumb_io = BytesIO()
+        large_image = source_file.copy()
+        squared_image = ImageOps.fit(large_image, (512, 512), Image.ANTIALIAS)
+        squared_image.save(lthumb_io, format='PNG', quality=80)
+        format = 'image/png'
+
+    # Create InMemoryUploadedFile
+    inmemory_uploaded_file = InMemoryUploadedFile(lthumb_io, None, this_filename, format, lthumb_io.tell(), None)
+
+    return inmemory_uploaded_file
 
 def process_image(request, source_image = None, cropped_image = None, is_private = False):
 
@@ -103,3 +194,4 @@ def process_image(request, source_image = None, cropped_image = None, is_private
     print("Processing Complete")
 
     return new_photo
+
