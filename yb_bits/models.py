@@ -127,7 +127,7 @@ class Cluster(models.Model):
     type = models.CharField(max_length=100, default="all")
     bits = models.ManyToManyField('yb_bits.Bit', related_name = 'clustered_bit', blank=True)
     bit_count = models.IntegerField(default=0)
-    is_public = models.BooleanField
+    is_public = models.BooleanField(default=False)
 
 
 class BitComment(models.Model):

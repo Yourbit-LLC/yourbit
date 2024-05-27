@@ -60,7 +60,7 @@ class CustomBase(models.Model):
     text_color = models.CharField(max_length=50, default="#ffffff")
     title_color = models.CharField(max_length=50, default="#ffffff")
     button_color = models.CharField(max_length=50, default="#ffffff")
-    button_text_color = models.CharField(max_length=50, default="#ffffff")
+    button_text_color = models.CharField(max_length=50, default="#000000")
 
     class Meta:
         abstract = True
