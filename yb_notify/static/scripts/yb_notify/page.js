@@ -40,7 +40,6 @@ function yb_buildNotifyItem(result, action=null){
     let handle = result.from_user.username;
     let element_id = `notification-${id}`;
     let new_item = yb_createElement("div", `yb-fillWidth`, `notification-container-${id}`,);
-    new_item.setAttribute("style", `background-color: rgb(25, 25, 25);`);
     new_item.setAttribute("data-id", `${id}`);
     new_item.setAttribute("data-username", `${handle}`);
 
@@ -247,11 +246,11 @@ function yb_notificationMenu(type, this_id, rid=null) {
                 },
             "Send Thanks": 
                 {
-                    "action":yb_handleNotificationOptionClick,
+                    "action" : yb_handleNotificationOptionClick,
                 },
             "Cancel": 
                 {
-                    "action": yb_handleNotificationOptionClick, 
+                    "action" : yb_handleNotificationOptionClick, 
                 }
         };
     }
@@ -331,4 +330,5 @@ $(document).ready(function () {
     for (let i = 0; i < notify_filter_buttons.length; i++){
         notify_filter_buttons[i].addEventListener('click', yb_handleFilterClick);
     }
+
 });
