@@ -945,9 +945,22 @@
 
 }
 
+.yb-loading-iconContainer {
+    display: block;
+}
+
 .yb-loading-iconContainer.hide {
     display: none;
 }
+
+.tw-loading-iconContainer {
+    display: block;
+}
+
+.tw-loading-iconContainer.hide {
+    display: none;
+}
+
 .bit-container {
     position: relative;
     transform: translateY(100vh);

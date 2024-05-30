@@ -686,6 +686,8 @@ function yb_toggle2WayContainer(type, scroll=false){
             }
         }
 
+        tw_showLoading();
+
 
         return ["switching", SIDE_CONTAINER_A];
     } else {
@@ -742,6 +744,7 @@ function yb_toggle2WayContainer(type, scroll=false){
                             }
                         }
 
+                        tw_showLoading();
                         
                         
                         return ["switching", SIDE_CONTAINER_B];
@@ -771,7 +774,7 @@ function yb_toggle2WayContainer(type, scroll=false){
                             }
                         }
 
-
+                        tw_showLoading
                         return ["switching", SIDE_CONTAINER_A];
                     } 
                 }
@@ -800,7 +803,7 @@ function yb_toggle2WayContainer(type, scroll=false){
                             SIDE_CONTAINER_A.classList.add('yb-lockScroll-y');
                         }
                     }
-
+                    tw_showLoading();
                     return ["opening", SIDE_CONTAINER_A];
                 }
             }

@@ -6,30 +6,33 @@
       .cls-1 {
         <!-- fill: white;
         stroke-width: 0px; -->
+        
       } 
       @keyframes rotateGradient {
           0% {
               transform: rotate(0deg);
           }
+
           50% {
               transform: rotate(180deg);
           }
           100% {
               transform: rotate(360deg);
           }
+
       }
 
       #rainbowGradient {
-          animation: rotateGradient 5s linear infinite;
+          animation: rotateGradient 3.5s linear infinite;
 
       }
     </style>
     <linearGradient id="rainbowGradient" gradientTransform="rotate(0) scale(3)">
-      <stop offset="0%" stop-color="black"/>
+      <stop offset="0%" stop-color="rgb(55, 55, 55)"/>
       
-      <stop offset="50%" stop-color="rgb(55, 55, 55)"/>
+      <stop offset="50%" stop-color="rgb(170, 170, 170)"/>
       
-      <stop offset="100%" stop-color="black"/>
+      <stop offset="100%" stop-color="rgb(55, 55, 55)"/>
 
     </linearGradient>
     <filter id="gradientOutline">

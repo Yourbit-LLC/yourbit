@@ -2,9 +2,9 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'css/yb_settings/yourbit_settings.css' %}"/>
 <div id='div-header' class="div-header">
-    
+    <div class="cb-panel-back" onclick="yb_toggleSettingsMenu()"><svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
     <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb"></h3>
-    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('settings-privacy');"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
+    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('settings-feed');"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
 </div>
 
 <div class="yb-flexColumn" id="settings-info">
@@ -76,7 +76,7 @@
                 <p class="yb-select-label">Show my real name to:</p>
                 <div id="yb-field-container-real-name" class="yb-field-container">
 
-                    <select type="text" class='yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10' value="{{settings.privacy.real_name_visibility}}" name="yb-real-name" id="yb-field-real-name" placeholder="Paragraph Align">
+                    <select type="text" class='yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoGray yb-margin-T10' value="{{settings.privacy.real_name_visibility}}" name="yb-real-name" id="yb-field-real-name" placeholder="Paragraph Align" style="width: 95%; margin-left: auto; margin-right: auto;">
                         <option value="e">Everyone</option>
                         <option value="fr">Friends Only</option>
                         <option value="no">Nobody</option>
@@ -88,7 +88,7 @@
                 <br>
                 <p class="yb-select-label">Show Birthday:</p>
                 <div id="yb-field-container-birthday" class="yb-field-containter">
-                    <select type="text" class='yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10' name="yb-select-birthday" value="{{settings.privacy.birthday_visibility}}" id="yb-field-birthday" placeholder="Paragraph Align">
+                    <select type="text" class='yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoGray yb-margin-T10' name="yb-select-birthday" value="{{settings.privacy.birthday_visibility}}" id="yb-field-birthday" placeholder="Paragraph Align" style="width: 95%; margin-left: auto; margin-right: auto;">
                         <option value="e">Everyone</option>
                         <option value="fr">Friends Only</option>
                         <option value="no">Nobody</option>
@@ -101,7 +101,7 @@
                 <br>
                 <p class="yb-select-label">Display Phone Number</p>
                 <div id="yb-field-container-phone-number" class="yb-field-container">
-                    <select type="text" class='yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10' name="yb-phone-number-select" value="{{settings.privacy.phone_number_visibility}}" id="yb-field-phone-number" placeholder="Paragraph Align">
+                    <select type="text" class='yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoGray yb-margin-T10' name="yb-phone-number-select" value="{{settings.privacy.phone_number_visibility}}" id="yb-field-phone-number" placeholder="Paragraph Align" style="width: 95%; margin-left: auto; margin-right: auto;">
                         <option value="e">Everyone</option>
                         <option value="fr">Friends Only</option>
                         <option value="no">Nobody</option>
@@ -114,7 +114,7 @@
                 <br>
                 <p class="yb-select-label">Display Email</p>
                 <div id="yb-field-container-email" class="yb-field-container">
-                    <select type="text" class='yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10' name="yb-select-email" id="yb-field-email" value="{{settings.privacy.email_visibility}}" placeholder="Paragraph Align">
+                    <select type="text" class='yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoGray yb-margin-T10' name="yb-select-email" id="yb-field-email" value="{{settings.privacy.email_visibility}}" placeholder="Paragraph Align" style="width: 95%; margin-left: auto; margin-right: auto;">
                         <option value="e">Everyone</option>
                         <option value="fr">Friends Only</option>
                         <option value="no">Nobody</option>
@@ -126,7 +126,7 @@
                 <br>
                 <p class="yb-select-label">Show Friend Count</p>
                 <div id="yb-field-container-friend-count" class="yb-field-container">
-                    <select type="text" class='yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10' name="yb-select-friend-count" id="yb-field-friend-count" value="{{settings.privacy.friend_count_visibility}}" placeholder="Paragraph Align">
+                    <select type="text" class='yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoGray yb-margin-T10' name="yb-select-friend-count" id="yb-field-friend-count" value="{{settings.privacy.friend_count_visibility}}" placeholder="Paragraph Align" style="width: 95%; margin-left: auto; margin-right: auto;">
                         <option value="e">Everyone</option>
                         <option value="fr">Friends Only</option>
                         <option value="no">Nobody</option>
@@ -138,7 +138,7 @@
                 <br>
                 <p class="yb-select-label">Show Follower Count</p>
                 <div id="yb-field-container-follow-count" class="yb-field-container">
-                    <select type="text" class='yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10' name="yb-select-follow-count" id="yb-field-follow-count" value="{{settings.privacy.follower_count_visibility}}"  placeholder="Paragraph Align">
+                    <select type="text" class='yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoGray yb-margin-T10' name="yb-select-follow-count" id="yb-field-follow-count" value="{{settings.privacy.follower_count_visibility}}"  placeholder="Paragraph Align" style="width: 95%; margin-left: auto; margin-right: auto;">
                         <option value="e">Everyone</option>
                         <option value="fr">Friends Only</option>
                         <option value="no">Nobody</option>
@@ -162,12 +162,12 @@
                         Zip
                     </i>
                     </p>
-                    <button type='button' class="wide-button">Edit</button>
+                    <button type='button' class="yb-button-wide yb-bg-autoGray font-gray yb-button-halfWidth rounded">Edit</button>
                     <br>
                     <br>
                     <p class="yb-select-label">Display Mailing Address</p>
                     <div id="yb-field-container-display-mailing" class="yb-field-container">
-                        <select type="text" class='yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10' name="yb-align-text" id="yb-field-display-mailing" placeholder="Paragraph Align">
+                        <select type="text" class='yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoGray yb-margin-T10' name="yb-align-text" id="yb-field-display-mailing" placeholder="Paragraph Align" style="width: 95%; margin-left: auto; margin-right: auto;">
                             <option value="e">Everyone</option>
                             <option value="fr">Friends Only</option>
                             <option value="no">Nobody</option>
@@ -213,7 +213,7 @@
                 <div>
                     <p class="yb-select-label">Allow Messages From:</p>
                     <div id="yb-field-container-align-text" class="yb-field-container">
-                        <select type="text" class='yb-input-singleLine yb-autoText squared yb-panel' name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align">
+                        <select type="text" class='yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoGray yb-margin-T10' name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align" style="width: 95%; margin-left: auto; margin-right: auto;">
                             <option value="e">Everyone</option>
                             <option value="fr">Friends Only</option>
                             <option value="no">Nobody</option>
@@ -244,11 +244,9 @@
     <script type='text/javascript' class="page-script" src="{% static 'scripts/yb_settings/yb-ajax.js' %}"></script> 
     <div id="mobile-spacer">
     </div>
+
     <script>
-        $(document).ready(function() {
-            
-            let load_indicator = document.getElementById("yb-loading-core");
-            load_indicator.style.display = "none";
-        
+        $(document).ready(function(){
+            tw_hideLoading();
         });
     </script>

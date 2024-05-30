@@ -20,7 +20,13 @@
     <div id = "field-container-first-name" class="yb-field-container">
         <div id="display-first-name" class="yb-padding-ALL5 squared yb-bg-autoGray yb-font-autoGray yb-margin-T10 yb-shadow" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">First Name: </p><p class="field-cover-value align-right" style="grid-column: 2;">{{user.first_name}}</p></div>
         <input id='field-first-name' value="{{user.first_name}}" class="yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10" style="display:none;">
-    
     </div>
     
 </form>
+
+
+<script>
+    $(document).ready(function(){
+        tw_hideLoading();
+    });
+</script>

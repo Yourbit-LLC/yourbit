@@ -24,6 +24,22 @@
     /*Animation*/
 }
 
+.yb-input-transparent.right {
+    /*Style*/
+
+    position: relative;
+    right: 0;
+    top: 0;
+    padding: 5px;
+    margin-right: 5px;
+    text-align: right;
+    background-color: transparent;
+    border: none;
+
+    /*Animation*/
+
+}
+
 
 .yb-color-circle {
     position: relative;

@@ -57,7 +57,7 @@ def generate_small_thumbnail(user, source_file):
     this_uid = user.id
     timestamp = dateformat.format(timezone.now(), '%Y%m%d%-H:i-s')
     this_filename = f"{this_username}{this_uid}{timestamp}{label}.png"
-
+    print("File Format " + source_file.format)
     # Check if the source file is a GIF
     if source_file.format == 'GIF':
         # Create a new BytesIO object for the thumbnail
