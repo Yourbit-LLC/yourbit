@@ -11,6 +11,7 @@ urlpatterns = [
     path("templates/privacy/", settings_privacy, name="settings_privacy"),
     path("templates/subscription/", settings_subscription, name="settings_subscription"),
     path("templates/feed/", settings_feed, name="settings_feed"),
+    path("templates/notifications/", settings_notifications, name="settings_notifications"),
     path("templates/account/", settings_account, name="settings_account"),
     path("", SettingsElement.as_view(), name="settings_main")
 ]

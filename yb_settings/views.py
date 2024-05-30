@@ -24,6 +24,9 @@ def settings_feed(request):
 def settings_account(request):
     return render(request, "yb_settings/yb_accountSettings.html")
 
+def settings_notifications(request):
+    return render(request, "yb_settings/yb_notificationSettings.html")
+
 class SettingsElement(View):
     def get(self, request):
                         
