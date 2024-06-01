@@ -66,6 +66,8 @@ const CUSTOM_VALUES = document.getElementById("custom-values");
 const MAIN_LOADING_SCREEN = document.getElementById("yb-loading-main");
 const SUBSCRIPTION_BANNER = document.getElementById("notification-permission-banner");
 
+const BG_IMAGE = document.getElementById("bg-image");
+
 const VAPID_PUBLIC_KEY = "BDAIHj_HT2qvxVsrE-pvZOGc2TcJeMKUIM0LxStPASodefcu9fucQndG9XSONnd04finmXAueTLmxqBjv9q6H7g";
 
 

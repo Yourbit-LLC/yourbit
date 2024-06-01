@@ -57,12 +57,19 @@ class FeedSettings(models.Model):
 class NotificationSettings(models.Model):
     settings = models.ForeignKey(MySettings, related_name='notifications', on_delete=models.CASCADE, null=True)
 
+    notifications_enabled = models.BooleanField(default=True)
+
     #New Post Notifications
     bits_from_friends = models.BooleanField(default=True)
     bits_from_followers = models.BooleanField(default=True)
     bits_from_communities = models.BooleanField(default=True)
+
+    new_bits_from =  models.ManyToManyField(Profile, blank=True, related_name='custom_list')
+
+    bit_likes = models.BooleanField(default=True)
+    bit_comments = models.BooleanField(default=True)
+    bit_shares = models.BooleanField(default=True)
     
-    custom_list =  models.ManyToManyField(Profile, blank=True, related_name='custom_list')
 
     #Comment Notifications 
     my_bit_comments = models.BooleanField(default=True)
