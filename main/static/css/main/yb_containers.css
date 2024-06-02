@@ -394,8 +394,8 @@
 @media screen and (max-width: 768px) {
     @media (prefers-color-scheme: dark) {
         .yb-2Way-container {
-            backdrop-filter: brightness(0.75) blur(80px) !important;
-            -webkit-backdrop-filter: brightness(0.5) blur(80px) !important;
+            backdrop-filter: brightness(0.7) blur(80px) !important;
+            -webkit-backdrop-filter: brightness(0.7) blur(80px) !important;
         }
     }
 }
