@@ -15,7 +15,7 @@
 
 </div>
 
-<form id="privacy-form" method="POST" action="{% url 'settings_privacy' %}" class="yb-fillWidth yb-vScroll yb-autoText yb-margin-T10 align-center" style="height: calc(100% - 150px); border-radius: 15px;">
+<form id="notification-settings-form" method="POST" action="{% url 'settings_privacy' %}" class="yb-fillWidth yb-vScroll yb-autoText yb-margin-T10 align-center" style="height: calc(100% - 150px); border-radius: 15px;">
     {% csrf_token %}
     <div id="field-container-notifications-toggle" class="yb-field-container">
         <div class="setting-sub-container">
@@ -23,7 +23,7 @@
                 <p class="field-cover-label align-left" style="grid-column: 1;">Enable Notifications </p>        
                 <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="yb-exclude-shared" >
-                        <input type="checkbox" class="checkbox" name="default_public" id="yb-check-default-public">
+                        <input type="checkbox" class="checkbox notification-check" name="default_public" id="yb-check-default-public">
                         <span class="slider round"></span>
                     </label>
                 </div>       
@@ -36,7 +36,7 @@
                 <p class="field-cover-label align-left" style="grid-column: 1; font-size: auto;">App Updates </p>        
                 <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="yb-exclude-shared" >
-                        <input type="checkbox" class="checkbox" name="default_public" id="yb-check-default-public">
+                        <input type="checkbox" class="checkbox notification-check" name="default_public" id="yb-check-default-public">
                         <span class="slider round"></span>
                     </label>
                 </div>
@@ -46,7 +46,7 @@
                 <p class="field-cover-label align-left" style="grid-column: 1; font-size: auto;">Store Updates </p>        
                 <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="yb-exclude-shared" >
-                        <input type="checkbox" class="checkbox" name="default_public" id="yb-check-default-public">
+                        <input type="checkbox" class="checkbox notification-check" name="default_public" id="yb-check-default-public">
                         <span class="slider round"></span>
                     </label>
                 </div>
@@ -55,45 +55,45 @@
 
         <div class="setting-sub-container">
             <h4>Bit Notifications</h4>
-            <div id="display-email" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr;">
+            <div id="ntfy-check-enableBit" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr;">
                 <p class="field-cover-label align-left" style="grid-column: 1; font-size: auto;">Bits </p>        
                 <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="yb-exclude-shared" >
-                        <input type="checkbox" class="checkbox" name="default_public" id="yb-check-default-public">
+                        <input type="checkbox" class="checkbox notification-check" name="default_public" id="yb-check-default-public">
                         <span class="slider round"></span>
                     </label>
                 </div>
             </div>
 
-            <div id="display-email" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; opacity: 0.5;">
+            <div id="ntfy-batchBit" class="bit-subsetting yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; opacity: 0.5;">
                 <p class="field-cover-label align-left" style="grid-column: 1; font-size: auto;">Batch Notifications </p>        
                 <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="yb-exclude-shared" >
-                        <input type="checkbox" class="checkbox" name="default_public" id="yb-check-default-public">
+                        <input type="checkbox" class="checkbox notification-check" name="default_public" id="yb-check-default-public">
                         <span class="slider round"></span>
                     </label>
                 </div>
             </div>
 
-            <div id="display-email" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 75% 1fr; opacity: 0.5;">
-                <p class="field-cover-label align-left" style="grid-column: 1; font-size: auto;">Batch Interval </p>        
+            <div id="ntfy-batchBitInterval" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 75% 1fr; opacity: 0.5;">
+                <p class="field-cover-label align-left bit-subsetting" style="grid-column: 1; font-size: auto;">Batch Interval </p>        
                 
-                <input type="number" class="yb-input-transparent right yb-font-autoGray" style="grid-column: 2; width: 50px; font-weight: 600;" value="1">
+                <input type="number" class="yb-input-transparent right yb-font-autoGray bit-subsetting" style="grid-column: 2; width: 50px; font-weight: 600;" value="1">
 
             </div>
 
 
-            <div id="display-email" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; opacity: 0.5;">
+            <div id="ntfy-enableLikes" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; opacity: 0.5;">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Likes </p>        
                 <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="yb-exclude-shared" >
-                        <input type="checkbox" class="checkbox" name="default_public" id="yb-check-default-public">
+                        <input type="checkbox" class="checkbox notification-check bit-subsetting" name="default_public" id="yb-check-default-public">
                         <span class="slider round"></span>
                     </label>
                 </div>       
             </div>
 
-            <div style="opacity: 0.5;">
+            <div id="ntfy-likesFrom" style="opacity: 0.5;">
                 <p class="yb-select-label">Notify about likes From:</p>
                 <div id="yb-field-container-align-text" class="yb-field-container">
                     <select type="text" class='yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoGray yb-margin-T10' name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align" style="width: 95%; margin-left: auto; margin-right: auto;">
@@ -104,21 +104,21 @@
                 </div>
             </div>
 
-            <div id="display-email" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; opacity: 0.5;">
+            <div id="ntfy-enableComments" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; opacity: 0.5;">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Comments </p>        
                 <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="yb-exclude-shared" >
-                        <input type="checkbox" class="checkbox" name="default_public" id="yb-check-default-public">
+                        <input type="checkbox" class="checkbox notification-check bit-subsetting" name="default_public" id="yb-check-default-public">
                         <span class="slider round"></span>
                     </label>
                 </div>
             </div>
 
             
-            <div style="opacity: 0.5;">
+            <div id="ntfy-commentsFrom" style="opacity: 0.5;">
                 <p class="yb-select-label">Notify about comments From:</p>
                 <div id="yb-field-container-align-text" class="yb-field-container">
-                    <select type="text" class='yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoGray yb-margin-T10' name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align" style="width: 95%; margin-left: auto; margin-right: auto;">
+                    <select type="text" class='bit-subsetting yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoGray yb-margin-T10' name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align" style="width: 95%; margin-left: auto; margin-right: auto;">
                         <option value="e">Everyone</option>
                         <option value="fr">Friends Only</option>
                         <option value="no">Nobody</option>
@@ -126,21 +126,21 @@
                 </div>
             </div>
 
-            <div id="display-email" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; opacity: 0.5;">
+            <div id="ntfy-enableShares" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; opacity: 0.5;">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Shares </p>        
                 <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="yb-exclude-shared" >
-                        <input type="checkbox" class="checkbox" name="default_public" id="yb-check-default-public">
+                        <input type="checkbox" class="checkbox notification-check bit-subsetting" name="default_public" id="yb-check-default-public">
                         <span class="slider round"></span>
                     </label>
                 </div>       
             </div>
 
                         
-            <div style="opacity: 0.5;">
+            <div id="ntfy-sharesFrom" style="opacity: 0.5;">
                 <p class="yb-select-label">Notify about shares From:</p>
                 <div id="yb-field-container-align-text" class="yb-field-container">
-                    <select type="text" class='yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoGray yb-margin-T10' name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align" style="width: 95%; margin-left: auto; margin-right: auto;">
+                    <select type="text" class='bit-subsetting yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoGray yb-margin-T10' name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align" style="width: 95%; margin-left: auto; margin-right: auto;">
                         <option value="e">Everyone</option>
                         <option value="fr">Friends Only</option>
                         <option value="no">Nobody</option>
@@ -149,22 +149,22 @@
             </div>
 
             
-            <div id="display-email" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; opacity: 0.5;">
+            <div id="ntfy-enableDonations" class="bit-subsetting yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; opacity: 0.5;">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Donations </p>        
                 <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="yb-exclude-shared" >
-                        <input type="checkbox" class="checkbox" name="default_public" id="yb-check-default-public">
+                        <input type="checkbox" class="checkbox notification-check bit-subsetting-input" name="default_public" id="yb-check-default-public">
                         <span class="slider round"></span>
                     </label>
                 </div>       
             </div>
 
             <br> 
-            <div id="display-email" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; opacity: 0.5;">
+            <div id="ntfy-enableOrbits" class="bit-subsetting yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; opacity: 0.5;">
                 <p class="field-cover-label align-left" style="grid-column: 1;">New from Orbits </p>        
                 <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="yb-exclude-shared" >
-                        <input type="checkbox" class="checkbox" name="default_public" id="yb-check-default-public">
+                        <input type="checkbox" class="checkbox notification-check" name="default_public" id="yb-check-default-public">
                         <span class="slider round"></span>
                     </label>
                 </div>       
@@ -194,7 +194,7 @@
                 <p class="field-cover-label align-left" style="grid-column: 1; font-size: auto;">Friend Requests </p>        
                 <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="yb-exclude-shared" >
-                        <input type="checkbox" class="checkbox" name="default_public" id="yb-check-default-public">
+                        <input type="checkbox" class="checkbox notification-check" name="default_public" id="yb-check-default-public">
                         <span class="slider round"></span>
                     </label>
                 </div>
@@ -204,7 +204,7 @@
                 <p class="field-cover-label align-left" style="grid-column: 1; font-size: auto;">Follows </p>        
                 <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="yb-exclude-shared" >
-                        <input type="checkbox" class="checkbox" name="default_public" id="yb-check-default-public">
+                        <input type="checkbox" class="checkbox notification-check" name="default_public" id="yb-check-default-public">
                         <span class="slider round"></span>
                     </label>
                 </div>

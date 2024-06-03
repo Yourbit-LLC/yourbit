@@ -17,7 +17,7 @@
     
     
     
-    <form class="yb-fillWidth yb-vScroll yb-autoText yb-margin-T10 align-center" method="POST" action="{% url 'settings_feed' %}" style="height: calc(100% - 300px); border-radius: 15px; padding-bottom: 150px;">
+    <form class="yb-fillWidth yb-vScroll yb-autoText yb-margin-T10 align-center" ID="feed-settings-form" method="POST" action="{% url 'settings_feed' %}" style="height: calc(100% - 300px); border-radius: 15px; padding-bottom: 150px;">
     <!--Scope-->
         {% csrf_token %}
         <!--Default: Public/Followers+Friends/FriendsOnly-->
