@@ -14,41 +14,41 @@
 
 </div>
 
-<form class="yb-fillWidth yb-vScroll yb-autoText yb-margin-T10 align-center" method="POST" action="{% url 'settings_account' %}" style="height: calc(100% - 200px); border-radius: 15px; padding-bottom: 150px;">
+<form class="yb-fillWidth yb-vScroll yb-autoText yb-margin-T10 align-center" id="account-settings-form" method="POST" action="{% url 'settings_account' %}" style="height: calc(100% - 200px); border-radius: 15px; padding-bottom: 150px;">
     {% csrf_token %}
     <div class = "setting-sub-container">
         <h4>Account Information</h4>
         <!--Edit Name-->
         <div id = "field-container-first-name" class="yb-field-container">
-            <div id="display-first-name" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoGray yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">First Name: </p><input id='field-first-name' value="{{user.first_name}}" class="yb-input-transparent right yb-font-autoGray" style="grid-column: 2;"></div>
+            <div id="display-first-name" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoGray yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">First Name: </p><input name="first_name" id='field-first-name' value="{{user.first_name}}" class="yb-input-transparent right yb-font-autoGray account-field" style="grid-column: 2;"></div>
             
         
         </div>
         
         
         <div id = "field-container-last-name" class="yb-field-container">
-            <div id="display-last-name" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoGray yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">Last Name: </p><input id='field-last-name' value="{{user.last_name}}" class="yb-input-transparent right yb-font-autoGray" style="grid-column: 2;"></div>
+            <div id="display-last-name" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoGray yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">Last Name: </p><input name="last_name" id='field-last-name' value="{{user.last_name}}" class="yb-input-transparent right yb-font-autoGray account-field" style="grid-column: 2;"></div>
             <input id='field-last-name' value="{{user.last_name}}" class="yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10" style="display:none;">
         </div>
 
         <!--Edit Username-->
 
         <div id="field-container-username" class="yb-field-container">
-            <div id="display-username" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoGray yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">Username: </p><input id='field-username' value="{{user.username}}" class="yb-input-transparent right yb-font-autoGray" style="grid-column: 2;"></div>
+            <div id="display-username" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoGray yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">Username: </p><input name="username" id='field-username' value="{{user.username}}" class="yb-input-transparent right yb-font-autoGray account-field" style="grid-column: 2;"></div>
             <input id='field-username' value="{{user.username}}" class="yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10" style="display:none;">
         </div>
 
         <!--Edit Email Address-->
         
         <div id="field-container-email-address" class="yb-field-container">
-            <div id="display-email" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoGray yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">Email: </p><input id='field-email' value="{{user.email}}" class="yb-input-transparent right yb-font-autoGray" style="grid-column: 2;"></div>
+            <div id="display-email" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoGray yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">Email: </p><input name="email" id='field-email' value="{{user.email}}" class="yb-input-transparent right yb-font-autoGray account-field" style="grid-column: 2;"></div>
             <input id='field-email-address' value="{{user.email}}" class="yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10" style="display:none;">
         </div>
         
         <!--Edit Phone Number-->
         
         <div id = "field-container-phone-number" class="yb-field-container">
-            <div id="display-phone-number" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoGray yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">Phone: </p><input type="tel" id='field-phone' value="{{user.phone_number}}" class="yb-input-transparent right yb-font-autoGray" style="grid-column: 2;"></div>
+            <div id="display-phone-number" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoGray yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">Phone: </p><input name="phone_number" type="tel" id='field-phone' value="{{user.phone_number}}" class="yb-input-transparent right yb-font-autoGray account-field" style="grid-column: 2;"></div>
             <input id='field-phone-number' value="{{user.phone_number}}" class="yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10" style="display: none;">
         </div>    
     </div>
@@ -90,10 +90,13 @@
         <button type="button" style="width:150px; background-color:red; color: white; box-shadow: 0px 0px 10px red;" class="yb-button-wide"><b>Delete Account<b></button>
     </div>
 </form>
+
 <div id="mobile-spacer">
+
 </div>
+
 {% comment %} <script class="page-script" type="text/javascript" src="{% static 'scripts/yb-account-settings.js' %}"></script> {% endcomment %}
-<script class = "page-script" type="text/javascript" src="{% static 'scripts/yb_settings/yb_ajax.js' %}"></script>
+<script class = "page-script" type="text/javascript" src="{% static 'scripts/yb_settings/yb_accountSettings.js' %}"></script>
 <script>
     $(document).ready(function(){
         tw_hideLoading();

@@ -3,6 +3,7 @@ from main.views import initialize_session
 from django.views import View
 from yb_settings.models import *
 from yb_profile.models import Profile, ProfileInfo
+from django.http import JsonResponse, HttpResponse
 
 # Create your views here.
 
@@ -130,10 +131,16 @@ class AccountSettings(View):
     def get(self, request):
         return render(request, "yb_settings/yb_accountSettings.html")
     def post(self, request):
-        user = User.objects.get(username = request.user)
+        user = request.user
+        user.first_name = request.POST['first_name']
+        user.last_name = request.POST['last_name']
         user.username = request.POST['username']
         user.email = request.POST['email']
+        user.phone_number = request.POST['phone_number']
+        
         user.save()
+
+        return JsonResponse({"success":True, "message":"Account settings updated"})
 
 class ChangePassword(View):
     def get(self, request):

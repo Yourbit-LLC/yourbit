@@ -1,4 +1,6 @@
-function saveAccountSettings() {
+
+
+function saveProfileInfo() {
     var form = $('#account-settings-form');
     var formData = form.serialize();
     $.ajax({
@@ -7,24 +9,7 @@ function saveAccountSettings() {
         data: formData,
         success: function (data) {
             if (data.success) {
-                showNotification('success', data.message);
-            } else {
-                showNotification('error', data.message);
-            }
-        }
-    });
-}
-
-function saveProfileInfo() {
-    var form = $('#profile-info-form');
-    var formData = form.serialize();
-    $.ajax({
-        url: form.attr('action'),
-        type: 'POST',
-        data: formData,
-        success: function (data) {
-            if (data.success) {
-                showNotification('success', data.message);
+                showNotification(expandNotification, "Profile Info Saved");
             } else {
                 showNotification('error', data.message);
             }

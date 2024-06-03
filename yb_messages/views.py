@@ -88,7 +88,22 @@ def message_inbox(request):
     return render(request, "yb_messages/messages.html", context)
 
 def new_conversation_template(request):
-    return render(request, "yb_messages/create_conversation.html", {})
+    user = request.user 
+    profile = user.profile
+    friends = profile.friends.all()
+
+    context = {}
+
+    if len(friends) == 0:
+        connections = False
+
+    else:
+        connections = True
+        context["results"] = friends
+
+    context["connections"] = connections
+
+    return render(request, "yb_messages/create_conversation.html", context)
 
 class ConversationView(View):
     def get(self, request, id, *args, **kwargs):

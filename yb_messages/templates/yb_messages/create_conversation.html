@@ -7,7 +7,7 @@
 <div id="create-convo-header" style="height: 40px;" class="yb-fillWidth yb-relative">
     <div id="contact-filter-container" class="yb-fillWidth yb-center-margin all yb-relative yb-flexRow">
         <input type="hidden" id="selected-contacts" value=""/>
-        <input type="text" id="contact-search-input" class="yb-input-singleLine yb-autoText bg-transparent narrowBorder squared yb-fillWidth" style="height: 25px; width: 92%; position: relative; left: 5px; outline: none;" placeholder="Add a recipient"/>
+        <input type="text" id="contact-search-input" class="yb-input-singleLine yb-autoText bg-transparent narrowBorder squared yb-fillWidth yb-panel" style="height: 25px; width: 92%; position: relative; left: 5px; outline: none;" placeholder="Add a recipient"/>
         <button id="new-message-next" class="yb-button-plain yb-autoText tb squared font-medium yb-fillWidth" style="height: 35px; width:55px;">Next</button>
     </div>
 </div>
@@ -21,7 +21,7 @@
 </div>
 
 <div id="connection-list" class="yb-fillWidth">
-    {% if connections == True %}
+    {% if connections %}
         
         {% for this_user in results %}
         <div id="user-{{this_user.username}}" class="
@@ -85,3 +85,9 @@
 <div class="yb-logo-footer small" id="create-menu-footer" style="position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%);">
     <img src="{% static 'images/main/yourbit-logo2023-01.svg' %}" style="width: 100%; position: relative;" alt="YB Logo" class="yb-logo-small">
 </div>
+
+<script>
+    $(document).ready(function(){
+        tw_hideLoading();
+    });
+</script>
