@@ -1,6 +1,6 @@
 from django.db import models
 from yb_accounts.models import Account as User
-from yb_profile.models import Profile as Profile
+from yb_profile.models import Profile, Orbit
 
 # Create your models here.
 class MySettings(models.Model):
@@ -64,11 +64,15 @@ class NotificationSettings(models.Model):
     bits_from_followers = models.BooleanField(default=True)
     bits_from_communities = models.BooleanField(default=True)
 
-    new_bits_from =  models.ManyToManyField(Profile, blank=True, related_name='custom_list')
+    new_user_bits_from =  models.ManyToManyField(Profile, blank=True, related_name='custom_list')
+    new_orbit_bits_from =  models.ManyToManyField(Orbit, blank=True, related_name='custom_list_orbit')
 
     bit_likes = models.BooleanField(default=True)
+    bit_likes_from = models.CharField(max_length=100, default='e')
     bit_comments = models.BooleanField(default=True)
+    bit_comments_from = models.CharField(max_length=100, default='e')
     bit_shares = models.BooleanField(default=True)
+    bit_shares_from = models.CharField(max_length=100, default='e')
     
 
     #Comment Notifications 

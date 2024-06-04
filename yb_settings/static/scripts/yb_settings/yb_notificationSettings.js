@@ -1,10 +1,12 @@
 try {
-    var form_checkboxes = document.querySelectorAll('.account-field');
+    var notify_checkboxes = document.querySelectorAll('.notification-check');
+    var notify_fields = document.querySelectorAll('.ntfy-field');
 } catch {
-    form_checkboxes = document.querySelectorAll('.notification-check');
+    notify_checkboxes = document.querySelectorAll('.notification-check');
+    notify_fields = document.querySelectorAll('.ntfy-field');
 }
 
-function saveAccountSettings() {
+function saveNotificationSettings() {
     var form = $('#notification-settings-form');
     var formData = form.serialize();
     $.ajax({
@@ -21,29 +23,16 @@ function saveAccountSettings() {
     });
 }
 
-function detectEnterPress(event) {
-    if (event.key === 'Enter') {
-        for (var i = 0; i < form_fields.length; i++) {
-            form_fields[i].blur();
-        }
-        saveAccountSettings();
-    }
-}
-
 $(document).ready(function () {
-    for (var i = 0; i < form_fields.length; i++) {
-        form_fields[i].addEventListener('focus', function () {
-            this.select();
-
+    for (var i = 0; i < notify_fields.length; i++) {
+        notify_fields[i].addEventListener('blur', function () {
+            saveNotificationSettings();
         });
+    }
 
-        form_fields[i].addEventListener('keypress', function (event) {
-            detectEnterPress(event);
-
-        });
-
-        form_fields[i].addEventListener('blur', function () {
-            saveAccountSettings();
+    for (var i = 0; i < notify_checkboxes.length; i++) {
+        notify_checkboxes[i].addEventListener('click', function () {
+            saveNotificationSettings();
         });
     }
 });
