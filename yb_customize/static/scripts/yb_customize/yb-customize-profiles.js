@@ -4,6 +4,7 @@ var isSwiping = false;
 var button_connect = document.getElementById("profile-button-connect");
 var button_message = document.getElementById("profile-button-message");
 var button_about  = document.getElementById("profile-button-about");
+var profile_image_button_temp = document.getElementById("change-avatar");
 
 var user_id = yb_getSessionValues("id");
 
@@ -125,6 +126,7 @@ $(document).ready(function() {
     let profile_image_option = document.getElementById("profile-image-splash");
     //Event Listener for image preview
     profile_image_option.addEventListener("click", yb_handleEditProfileImage);
+    profile_image_button_temp.addEventListener("click", yb_handleEditProfileImage);
 
     console.log(user_id)
 
