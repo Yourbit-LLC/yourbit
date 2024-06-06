@@ -426,6 +426,7 @@ Profile Page
 @media screen and (max-width: 768px) {
     #additional-options {
         bottom: 35px;
+        width: 62vw;
     }
 }
 
