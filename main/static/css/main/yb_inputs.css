@@ -40,6 +40,33 @@
 
 }
 
+@media (prefers-color-scheme: dark) {
+    .yb-input-transparent.right:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 5px;
+        transition: 0.5s;
+    }
+
+    .yb-input-transparent.right:focus {
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 5px;
+        transition: 0.5s;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    .yb-input-transparent.right:hover {
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+        transition: 0.5s;
+    }
+
+    .yb-input-transparent.right:focus {
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+        transition: 0.5s;
+    }
+}
 
 .yb-color-circle {
     position: relative;
