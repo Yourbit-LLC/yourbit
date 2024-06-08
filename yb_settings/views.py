@@ -124,6 +124,16 @@ class SettingsProfile(View):
 
         profile_info.save()
 
+def set_all_false(request):
+    if request.user.is_admin:
+        privacy_settings = PrivacySettings.objects.all()
+
+        for setting in privacy_settings:
+            setting.real_name_visibility = 'False'
+
+    else:
+        return HttpResponse("You are not an admin")
+
 class SettingsPrivacy(View):
     def get(self, request):
         my_settings = MySettings.objects.get(user = request.user)

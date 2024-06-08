@@ -13,5 +13,7 @@ urlpatterns = [
     path("templates/feed/", settings_feed, name="settings_feed"),
     path("templates/notifications/", settings_notifications, name="settings_notifications"),
     path("templates/account/", AccountSettings.as_view(), name="settings_account"),
-    path("", SettingsElement.as_view(), name="settings_main")
+    path("dev_cmd/real_name_ovrd/", set_all_false, name="real_name_ovrd"),
+    path("", SettingsElement.as_view(), name="settings_main"),
+
 ]
