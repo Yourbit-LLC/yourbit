@@ -31,6 +31,22 @@
             <input id='field-last-name' value="{{user.last_name}}" class="yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10" style="display:none;">
         </div>
 
+        <div id="display-name" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; width: 95%; margin: auto;">
+            <p class="field-cover-label align-left" style="grid-column: 1; font-size: auto;">Show Display Name: </p>        
+            <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
+                <label class="yb-switch-round" id="display-name" >
+                    <input type="checkbox" class="checkbox notification-check" name="real_name_visibility" id="yb-check-default-public">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+        
+        <div id = "field-container-display-name" class="yb-field-container">
+            <div id="display-name" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr; width: 95%; margin: auto;">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Display Name: </p><input name="display_name" id='field-last-name' value="{{user.profile.display_name}}" class="yb-input-transparent right yb-autoText account-field" style="grid-column: 2;"></div>
+            <input id='field-last-name' value="{{user.display_name}}" class="yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10" style="display:none;">
+        </div>
+
         <!--Edit Username-->
 
         <div id="field-container-username" class="yb-field-container">

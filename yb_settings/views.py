@@ -14,7 +14,26 @@ def settings_profile(request):
     return render(request, "yb_settings/yb_profileInfo.html")
 
 def settings_privacy(request):
-    return render(request, "yb_settings/yb_privacySettings.html")
+    my_settings = MySettings.objects.get(user = request.user)
+    privacy = PrivacySettings.objects.get(settings = my_settings)
+    context = {
+        'show_reputation': privacy.show_reputation,
+        'enable_followers': privacy.enable_followers,
+        'searchable': privacy.searchable,
+        'real_name_visibility': privacy.real_name_visibility,
+        'display_name': privacy.display_name,
+        'message_availability': privacy.message_availability,
+        'comment_visibility': privacy.comment_visibility,
+        'default_public': privacy.default_public,
+        'phone_number_visibility': privacy.phone_number_visibility,
+        'birthday_visibility': privacy.birthday_visibility,
+        'email_visibility': privacy.email_visibility,
+        'enable_share': privacy.enable_share,
+        'friends_of_friends': privacy.friends_of_friends,
+        'friend_count_visibility': privacy.friend_count_visibility,
+        'follower_count_visibility': privacy.follower_count_visibility,
+    }
+    return render(request, "yb_settings/yb_privacySettings.html", context)
 
 def settings_subscription(request):
     return render(request, "yb_settings/yb_subscriptionSettings.html")
@@ -107,7 +126,26 @@ class SettingsProfile(View):
 
 class SettingsPrivacy(View):
     def get(self, request):
-        return render(request, "yb_settings/yb_privacySettings.html")
+        my_settings = MySettings.objects.get(user = request.user)
+        privacy = PrivacySettings.objects.get(settings = my_settings)
+        context = {
+            'show_reputation': privacy.show_reputation,
+            'enable_followers': privacy.enable_followers,
+            'searchable': privacy.searchable,
+            'real_name_visibility': privacy.real_name_visibility,
+            'display_name': privacy.display_name,
+            'message_availability': privacy.message_availability,
+            'comment_visibility': privacy.comment_visibility,
+            'default_public': privacy.default_public,
+            'phone_number_visibility': privacy.phone_number_visibility,
+            'birthday_visibility': privacy.birthday_visibility,
+            'email_visibility': privacy.email_visibility,
+            'enable_share': privacy.enable_share,
+            'friends_of_friends': privacy.friends_of_friends,
+            'friend_count_visibility': privacy.friend_count_visibility,
+            'follower_count_visibility': privacy.follower_count_visibility,
+        }
+        return render(request, "yb_settings/yb_privacySettings.html", context)
     def post(self, request):
         privacy = PrivacySettings.objects.get(user = request.user)
         privacy.show_reputation = request.POST['show_reputation']

@@ -97,3 +97,105 @@
         border: 2px solid black;
     }
 }
+
+
+/* .custom-select select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: none;
+    font-size: 16px;
+} */
+
+
+
+
+.yb-input-select::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    width: 0;
+    height: 0;
+    margin-top: -3px;
+    border-width: 6px 6px 0 6px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+    pointer-events: none;
+
+}
+
+@media (prefers-color-scheme: dark) {
+    .yb-input-option {
+        background-color: rgb(25, 25, 25);
+        color: white;
+    }
+
+    .yb-input-option:hover {
+        background-color: rgb(50, 50, 50);
+    }
+
+    .yb-input-option:focus {
+        background-color: rgb(50, 50, 50);
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    .yb-input-option {
+        background-color: white;
+        color: black;
+    }
+
+    .yb-input-option:hover {
+        background-color: rgb(230, 230, 230);
+    }
+
+    .yb-input-option:focus {
+        background-color: rgb(230, 230, 230);
+    }
+
+}
+
+.prv-option {
+    background-color: rgb(153, 0, 0);
+    color: rgb(255, 100, 100);
+}
+
+.prv-option:hover {
+    background-color: rgb(255, 50, 50);
+    color: white;
+}
+
+.prv-option:focus {
+    background-color: rgb(255, 50, 50);
+    color: white;
+}
+
+.prv-option:active {
+    background-color: rgb(255, 50, 50);
+    color: white;
+}
+
+.pub-option {
+    background-color: green;
+    color: rgb(50, 255, 50);
+}
+
+.pub-option:hover {
+    background-color: rgb(50, 255, 50);
+    color: white;
+}
+
+.pub-option:focus {
+    background-color: rgb(50, 255, 50);
+    color: white;
+}
+
+.pub-option:active {
+    background-color: rgb(50, 255, 50);
+    color: white;
+}
