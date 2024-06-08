@@ -42,7 +42,13 @@ def settings_feed(request):
     return render(request, "yb_settings/yb_feedSettings.html")
 
 def settings_account(request):
-    return render(request, "yb_settings/yb_accountSettings.html")
+    my_settings = MySettings.objects.get(user = request.user)
+    privacy = PrivacySettings.objects.get(settings = my_settings)
+
+    context = {
+        "real_name_visibility": privacy.real_name_visibility,
+    }
+    return render(request, "yb_settings/yb_accountSettings.html", context)
 
 def settings_notifications(request):
     return render(request, "yb_settings/yb_notificationSettings.html")
@@ -177,7 +183,14 @@ class SettingsPrivacy(View):
 
 class AccountSettings(View):
     def get(self, request):
-        return render(request, "yb_settings/yb_accountSettings.html")
+        my_settings = MySettings.objects.get(user = request.user)
+        privacy = PrivacySettings.objects.get(settings = my_settings)
+
+        context = {
+            "real_name_visibility": privacy.real_name_visibility,
+        }
+
+        return render(request, "yb_settings/yb_accountSettings.html", context)
     def post(self, request):
         user = request.user
         user.first_name = request.POST['first_name']
