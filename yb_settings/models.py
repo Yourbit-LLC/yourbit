@@ -12,7 +12,7 @@ class PrivacySettings(models.Model):
     show_reputation = models.BooleanField(default=True)
     enable_followers = models.BooleanField(default=False)
     searchable = models.BooleanField(default=True)
-    real_name_visibility = models.BooleanField(default=True)
+    real_name_visibility = models.CharField(max_length = 50, default='fr')
     display_name = models.CharField(max_length = 50, default='')
     message_availability = models.CharField(max_length = 50, default='e')
     comment_visibility = models.CharField(max_length = 50, default='e')
