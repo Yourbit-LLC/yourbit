@@ -13,6 +13,20 @@
     margin-bottom: auto;
 }
 
+.yb-hblock-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+@media screen and (max-width: 768px) {
+    .yb-hblock-2.responsive {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+
+}
+
 .yb-center-margin.all {
     /*Positioning*/
     margin: auto;

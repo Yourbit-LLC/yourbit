@@ -181,6 +181,13 @@ const TWO_WAY_INDEX = {
             "template" : "/customize/templates/profile-image/",
             "url" : ""
         },
+
+    "background-image-upload":
+    {
+        "template" : "/customize/templates/wallpaper/",
+        "url" : ""
+    },
+    
           
 };
 

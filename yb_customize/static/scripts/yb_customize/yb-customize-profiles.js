@@ -5,6 +5,7 @@ var button_connect = document.getElementById("profile-button-connect");
 var button_message = document.getElementById("profile-button-message");
 var button_about  = document.getElementById("profile-button-about");
 var profile_image_button_temp = document.getElementById("change-avatar");
+var wallpaper_button_temp = document.getElementById("change-wallpaper");
 
 var user_id = yb_getSessionValues("id");
 
@@ -105,6 +106,12 @@ function yb_handleEditProfileImage() {
     yb_expand2Way();
 }
 
+function yb_handleEditWallpaper() {
+    yb_launch2WayContainer("background-image-upload");
+    yb_expand2Way();
+
+}
+
 $(document).ready(function() {
     //Initialize Data
     let user_id = yb_getSessionValues("profile-username");
@@ -129,6 +136,7 @@ $(document).ready(function() {
     profile_image_button_temp.addEventListener("click", yb_handleEditProfileImage);
 
     console.log(user_id)
+    wallpaper_button_temp.addEventListener("click", yb_handleEditWallpaper);
 
     //Editing Profile Name
     let profile_name_option = document.getElementById("profile-name-splash");

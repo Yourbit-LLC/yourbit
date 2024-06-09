@@ -233,3 +233,9 @@ class CustomizeUIView(View):
     def post(self, request):
         pass
 
+class WallpaperUpload(View):
+    def get(self, request):
+        return render(request, "yb_customize/wallpaper_edit.html")
+    
+    def post(self, request):
+        pass

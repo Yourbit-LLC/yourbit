@@ -34,6 +34,13 @@ class SupportCase(models.Model):
 class BugReport(SupportCase):
     notes = models.ManyToManyField(Note, blank=True, related_name="bug_notes")
     upvotes = models.ManyToManyField(User, blank=True, related_name="bug_upvotes")
+
+    def __str__(self):
+        return f"{self.subject} - Submitted by: {self.user.username}"
+    
+    class Meta:
+        verbose_name = "Bug Report"
+        verbose_name_plural = "Bug Reports"
     
     
     
@@ -43,6 +50,14 @@ class UserReport(SupportCase):
     
     bit = models.ForeignKey(Bit, on_delete=models.CASCADE)
 
+    class Meta:
+        verbose_name = "User Report"
+        verbose_name_plural = "User Reports"
+
 class FeatureRequest(SupportCase):
     notes = models.ManyToManyField(Note, blank=True, related_name="feature_notes")
     upvotes = models.ManyToManyField(User, blank=True, related_name="feature_upvotes")
+
+    class Meta:
+        verbose_name = "Feature Request"
+        verbose_name_plural = "Feature Requests"

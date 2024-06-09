@@ -51,6 +51,22 @@ def settings_account(request):
     return render(request, "yb_settings/yb_accountSettings.html", context)
 
 def settings_notifications(request):
+    my_settings = MySettings.objects.get(user = request.user)
+    notifications = NotificationSettings.objects.get(settings = my_settings)
+
+    context = {
+        "notifications_enabled": notifications.notifications_enabled,
+        "bits_from_friends": notifications.bits_from_friends,
+        "bits_from_following": notifications.bits_from_following,
+        "bits_from_communities": notifications.bits_from_communities,
+        "user_bit_notify_list": notifications.new_user_bits_from,
+        "orbits_bit_notify_list": notifications.new_orbit_bits_from,
+        "bit_likes": notifications.bit_likes,
+        "bit_comments": notifications.bit_comments,
+        "bit_shares": notifications.bit_shares,
+        "bit_mentions": notifications.bit_mentions,
+        
+    }
     return render(request, "yb_settings/yb_notificationSettings.html")
 
 class SettingsElement(View):

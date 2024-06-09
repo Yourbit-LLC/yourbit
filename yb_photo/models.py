@@ -51,3 +51,11 @@ class Wallpaper(models.Model):
     background_image = models.ImageField(upload_to='profile/background/%Y/%m/%d', blank=True, default="media/aqua_default_theme.png")
     background_mobile = models.ImageField(upload_to='profile/background/%Y/%m/%d', blank=True, default="media/aqua_default_theme.png")
     background_desktop = models.ImageField(upload_to='profile/background/%Y/%m/%d', blank=True, default="media/aqua_default_theme.png")
+
+    def __str__(self):
+        try:
+            return f"Wallpaper {self.id} - Submitted by: {self.profile.username}"
+        
+        except:
+            return f"Wallpaper {self.id} - Submitted by: Unknown User"
+    

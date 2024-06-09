@@ -61,7 +61,7 @@ class NotificationSettings(models.Model):
 
     #New Post Notifications
     bits_from_friends = models.BooleanField(default=True)
-    bits_from_followers = models.BooleanField(default=True)
+    bits_from_following = models.BooleanField(default=True)
     bits_from_communities = models.BooleanField(default=True)
 
     new_user_bits_from =  models.ManyToManyField(Profile, blank=True, related_name='custom_list')
@@ -71,6 +71,7 @@ class NotificationSettings(models.Model):
     bit_likes_from = models.CharField(max_length=100, default='e')
     bit_comments = models.BooleanField(default=True)
     bit_comments_from = models.CharField(max_length=100, default='e')
+    bit_mentions = models.BooleanField(default=True)
     bit_shares = models.BooleanField(default=True)
     bit_shares_from = models.CharField(max_length=100, default='e')
     
