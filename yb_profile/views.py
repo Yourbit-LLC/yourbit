@@ -40,28 +40,32 @@ def people_list(request, filter, *args, **kwargs):
 
     results_list = []
     print(filter)
-    if 'fr' in filter:
+    #if filter contains fr
+    if filter == 'fr-fo-fn':
         friends = this_profile.friends.all()
-        results_list.append(friends)
-
-    if 'fo' in filter:
         followers = this_profile.followers.all()
-        results_list.append(followers)
-
-    if 'fn' in filter:
         following = this_profile.follows.all()
+        results_list.append(friends)
+        results_list.append(followers)
         results_list.append(following)
 
-    if 'or' in filter:
-        orbits = this_profile.orbit_follows.all()
-        results_list.append(orbits)
+    elif filter == 'fo':
+        followers = this_profile.followers.all()
+        results_list.append(friends)
+
+    elif filter == 'fn':
+        following = this_profile.follows.all()
+        results_list.append(following)
 
     try:
         connections = sorted(
             chain(results_list), key=attrgetter('display_name'), reverse=False
         )
     except:
-        connections = None
+        if len(results_list) == 0:
+            connections = None
+        else:
+            connections = results_list
 
     context = {
         "connections":connections,
