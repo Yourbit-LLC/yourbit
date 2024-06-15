@@ -41,8 +41,15 @@ def Customization(request):
         wallpaper_enabled = custom.wallpaper_on
         wallpaper_object = custom.wallpaper
         wallpaper = wallpaper_object.background_image
-        wallpaper_mobile = None
-        wallpaper_desktop = None
+        try:
+            wallpaper_mobile = wallpaper_object.background_mobile
+        except:
+            wallpaper_mobile = None
+
+        try:
+            wallpaper_desktop = wallpaper_object.background_desktop
+        except:
+            wallpaper_desktop = None
 
         context = {
             'profile_image': profile_image,

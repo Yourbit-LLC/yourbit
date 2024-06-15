@@ -108,7 +108,7 @@ function yb_handleEditProfileImage() {
 
 function yb_handleEditWallpaper() {
     yb_launch2WayContainer("background-image-upload");
-    yb_expand2Way();
+    yb_resize2Way(3);
 
 }
 

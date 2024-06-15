@@ -31,8 +31,44 @@ class OrbitView(View):
             "current_profile":this_profile,
         }
         return render(request, "yb_profile/yb_profile.html", context)
+    
+def people_list(request, filter, *args, **kwargs):
+    from itertools import chain
+    from operator import attrgetter
 
-class PeopleListTemplate(View):
+    this_profile = Profile.objects.get(user = request.user)
+
+    results_list = []
+    if 'fr' in filter:
+        friends = this_profile.friends.all()
+        results_list.append(friends)
+
+    if 'fo' in filter:
+        followers = this_profile.followers.all()
+        results_list.append(followers)
+
+    if 'fn' in filter:
+        following = this_profile.follows.all()
+        results_list.append(following)
+
+    if 'or' in filter:
+        orbits = this_profile.orbit_follows.all()
+        results_list.append(orbits)
+
+    try:
+        connections = sorted(
+            chain(results_list), key=attrgetter('display_name'), reverse=True
+        )
+    except:
+        connections = None
+
+    context = {
+        "connections":connections,
+
+    }
+    return render(request, "yb_profile/yb_people.html", context)
+
+class PeopleViewTemplate(View):
     def get(self, request, *args, **kwargs):
         from itertools import chain
         from operator import attrgetter

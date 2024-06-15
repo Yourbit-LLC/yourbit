@@ -35,6 +35,41 @@ def notifications_html(request):
 
     return render(request, "yb_notify/notifications.html", context)
 
+def notification_list(request, filter, *args, **kwargs):
+    from yb_profile.models import Profile
+    from .models import NotificationCore
+    #Get show seen from request params
+    show_seen = request.GET.get('seen', False)
+    this_profile = Profile.objects.get(user=request.user)
+    notification_core = NotificationCore.objects.get(profile=this_profile)
+
+    if filter == 'all':
+        unseen_notifications = notification_core.unseen_notifications.all().order_by('-time')
+        if show_seen:
+            seen_notifications = notification_core.seen_notifications.all().order_by('-time')
+            notifications = unseen_notifications | seen_notifications
+        else:
+            notifications = unseen_notifications
+
+    else:
+        unseen_notifications = notification_core.unseen_notifications.filter(type=int(filter)).order_by('-time')
+        if show_seen:
+            seen_notifications = notification_core.seen_notifications.filter(type=int(filter)).order_by('-time')
+            notifications = seen_notifications | unseen_notifications
+        else:
+            notifications = unseen_notifications
+
+    context = {
+        'results': notifications,
+    }
+
+    return render(request, "yb_notify/notification_list.html", context)
+
+
+
+
+
+
 class NotificationPage(View):
     def get(self, request):
         

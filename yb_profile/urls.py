@@ -6,13 +6,14 @@ from yb_profile.views import *
 urlpatterns = [
     path("user/<str:username>/", ProfileView.as_view(), name="user_profile"),
     path("page/<str:username>/", OrbitView.as_view(), name="page_profile"),
-    path("templates/people/", PeopleListTemplate.as_view(), name="people_template"),
+    path("templates/people/", PeopleViewTemplate.as_view(), name="people_template"),
     path("templates/orbits/", OrbitListTemplate.as_view(), name="orbit_template"),
     path("templates/stuff/", StuffTemplate.as_view(), name="stuff_template"),
     path("templates/history/", HistoryTemplate.as_view(), name="history_template"),
     path("templates/about/<str:username>/", ProfileAboutTemplate.as_view(), name="history_template"),
     path("templates/friend_request/<int:id>/", FriendRequestTemplate.as_view(), name="friend_request_template"),
     path("create/orbit/", CreateOrbit.as_view(), name="create_orbit"),
+    path("people-list/", people_list, name="people_list"),
     path("api/", include("yb_profile.routers")),
     path('', ProfilePage.as_view(), name="profile_page"),
 ]

@@ -191,6 +191,10 @@ const TWO_WAY_INDEX = {
           
 };
 
+function changeColor(property, value) {
+    document.documentElement.style.setProperty(property, value);
+}
+
 function yb_launch2WayContainer(page) {
     let this_page = TWO_WAY_INDEX[page];
     console.log("settings shown")
@@ -230,6 +234,37 @@ function yb_2WayPage(index, page="") {
         secondary.classList.add("active");
         content.classList.add("inactive");
         $(secondary).load(TWO_WAY_INDEX[page].template);
+    }
+
+}
+
+function yba_endSequence(class_name) {
+    let these_targets = document.querySelectorAll(class_name);
+    for (let i = 0; i < these_targets.length; i++) {
+        these_targets[i].style.animation = "none";
+    }
+}
+
+
+function yba_createSequence(animation, class_name, delay, duration, iterations=1) {
+    let these_targets = document.querySelectorAll(class_name);
+    for (let i = 0; i < iterations; i++) {
+        for (let i = 0; i < these_targets.length; i++) {
+            these_targets[i].style.animation = `${animation} ${duration}s ease-in-out ${delay}s forwards`;
+        }
+    }
+
+}
+
+
+function yb_resize2Way(size=1) {
+    let container = document.getElementById("yb-dynamic-2way-a");
+    if (size === 1) {
+        container.classList.remove("expanded");
+    } else if (size === 2){
+        container.classList.add("expanded");
+    } else if (size === 3){
+        container.classList.add("expanded2");
     }
 
 }

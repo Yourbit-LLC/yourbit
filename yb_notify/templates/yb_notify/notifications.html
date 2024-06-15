@@ -15,106 +15,14 @@
 
 <hr>
 <div id="notify-button-container" class="yb-fullWidth yb-flexRow yb-gap5 yb-margin-L5 yb-margin-R5" style="position: relative;">
-    <button class="notify-filter-button yb-button-wide tiny-wide yb-autoText yb-center-margin lr rounded active" data-notify-class = "">All</button>
+    <button class="notify-filter-button yb-button-wide tiny-wide yb-autoText yb-center-margin lr rounded active" data-notify-class = "all">All</button>
     <button class="notify-filter-button yb-button-wide tiny-wide yb-autoText yb-center-margin lr rounded" data-notify-class = "0">People</button>
     <button class="notify-filter-button yb-button-wide tiny-wide yb-autoText yb-center-margin lr rounded" data-notify-class = "1">Messages</button>
     <button class="notify-filter-button yb-button-wide tiny-wide yb-autoText yb-center-margin lr rounded" data-notify-class = "2">Bits</button>
 </div>
 <hr>
 <div id="notification-list" class="yb-fillWidth yb-vScroll yb-margin-T10" style="height: calc(100% - 260px); border-radius: 15px;">
-    {% if results.count == 0 %}
-        <div class="yb-fillWidth yb-margin-T30 align-center yb-autoText">
-            <p class="font-gray"><b>No notifications</b></p>
-        </div>
-    {% else %}
-    {% for notification in results %}
-        <div id="notification-container-{{notification.id}}" data-id = "{{notification.id}}" class="yb-fillWidth" 
-        {% if notification.type == 4%} 
-                data-rid = "{{notification.friend_request.id}}" 
-
-            {% endif %}
-        
-            {% if notification.type == 1 or notification.type == 2 or notification.type == 7%}
-            
-                data-rid = "{{notification.bit.id}}"
-
-            {% endif %}
-
-            {% if notification.type == 3 or notification.type == 5%}
-
-                data-rid = "{{notification.profile.id}}"
-
-            {% endif %}
-
-            {% if notification.type == 6%}
-
-                data-rid = "{{notification.message.id}}"
-
-        
-            {% endif %}>
-        <div id="notification-{{notification.id}}" data-username="{{notification.from_user.username}}" 
-            
-                class="
-                yb-listItem notification 
-                {% if notification.has_seen %} 
-                seen 
-                {%else%} 
-                unseen 
-                {% endif %}
-                yb-autoText
-            ">      
-            <div id="notification-icon">
-                {% if notification.type == 1 %}
-                <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32">
-                    <path class="yb-autoFill" d="M616.244-527.693q21.832 0 37.025-15.283 15.192-15.282 15.192-37.115 0-21.832-15.283-37.024t-37.115-15.192q-21.832 0-37.024 15.283-15.193 15.282-15.193 37.115 0 21.832 15.283 37.024t37.115 15.192Zm-272.307 0q21.832 0 37.024-15.283 15.193-15.282 15.193-37.115 0-21.832-15.283-37.024t-37.115-15.192q-21.832 0-37.025 15.283-15.192 15.282-15.192 37.115 0 21.832 15.283 37.024t37.115 15.192ZM480-272.309q62.615 0 114.461-35.038T670.922-400H618q-22 37-58.5 58.5T480-320q-43 0-79.5-21.5T342-400h-52.922q24.615 57.615 76.461 92.653Q417.385-272.309 480-272.309Zm.067 172.308q-78.836 0-148.204-29.92-69.369-29.92-120.682-81.21-51.314-51.291-81.247-120.629-29.933-69.337-29.933-148.173t29.92-148.204q29.92-69.369 81.21-120.682 51.291-51.314 120.629-81.247 69.337-29.933 148.173-29.933t148.204 29.92q69.369 29.92 120.682 81.21 51.314 51.291 81.247 120.629 29.933 69.337 29.933 148.173t-29.92 148.204q-29.92 69.369-81.21 120.682-51.291 51.314-120.629 81.247-69.337 29.933-148.173 29.933ZM480-480Zm0 320q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Z"/>
-                </svg>
-                {% elif notification.type == 2 %}
-                <svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
-                    <path style="fill: white;" id="comment-icon-${bit.id}" d="M6 14H18V12H6ZM6 11H18V9H6ZM6 8H18V6H6ZM22 22 18 18H4Q3.175 18 2.588 17.413Q2 16.825 2 16V4Q2 3.175 2.588 2.587Q3.175 2 4 2H20Q20.825 2 21.413 2.587Q22 3.175 22 4ZM4 4V16Q4 16 4 16Q4 16 4 16H18.825L20 17.175V4Q20 4 20 4Q20 4 20 4H4Q4 4 4 4Q4 4 4 4ZM4 4V17.175V16Q4 16 4 16Q4 16 4 16V4Q4 4 4 4Q4 4 4 4Q4 4 4 4Q4 4 4 4Z"/>
-                </svg>
-
-                {% endif %}
-                
-            </div>
-            <div id="notification-contents font-medium" onclick="
-            {% if notification.type == 4 %}
-                yb_openCard('/profile/templates/friend_request/{{notification.friend_request.id}}/')
-
-                
-            {% else %} 
-                    
-                {% if notification.type == 1 or notification.type == 2 or notification.type == 7%} 
-                    yb_viewBit('{{notification.bit.id}}')
-                    
-                {% elif notification.type == 3 or notification.type == 5%} 
-                    yb_navigateToProfile()
-                {% elif notification.type == 6%} 
-                    yb_toggleConversation2Way('{{notification.conversation.id}}')
-                {% endif %}
-                
-            {% endif %}"
-            >
-                <b class="font-small yb-autoText">
-                    {{notification.title}}
-                </b>
-                <p class="yb-autoText">
-                    {{notification.body}}
-                </p>
-
-                <div class="font-gray-dark" id="notification-time">
-                    <p>{{notification.time}}</p>
-                </div>
-
-            </div>
-
-            <div id="notification-close">
-                <button class="yb-button-close notification" onclick="yb_dismissNotification({{notification.id}})">&times;</button>
-            </div>
-        </div>
-    </div>
-    
-    {% endfor %}
-    {% endif %}
+    {% include 'yb_notify/notification_list.html' %}
 </div>
 
 <div class="yb-logo-footer small" id="create-menu-footer" style="position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%);">

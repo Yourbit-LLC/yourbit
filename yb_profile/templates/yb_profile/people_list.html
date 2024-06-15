@@ -1,0 +1,37 @@
+{% if connections %}
+{% for connection in connections %}
+    <div id="result-people-{{connection.id}}" class="yb-listItem yb-autoText " data-catid="{{connection.id}}" data-username="ajboston2023">
+
+    <div class="full-result-image-container">
+            <img class="full-result-image" style="width:100%; position: relative;" src="{{connection.custom.profile_image.medium_thumbnail.url}}">
+    </div>
+    <div class="full-result-name-container">
+        <p class="full-result-name"><strong>{{connection.display_name}}</strong></p>
+        <p class="full-result-username">
+            <small>@{{connection.user.username}}</small>
+        </p>
+    </div>
+</div>
+{% endfor %}
+{% else %}
+<div class="yb-fillWidth yb-center-margin yb-margin-T30 yb-margin-B10">
+    <h3 class="yb-autoText align-center yb-margin-T10">No connections found</h3>
+</div>
+<br>
+<button id="find-connections-people" class="yb-button-flex bg-gray-dark font-gray yb-button-halfWidth">+  Find People</button>
+<script>
+
+    document.getElementById("find-connections-people").addEventListener("click", function(){
+        yb_toggle2WayContainer('people');
+        SEARCH_FIELD.focus();
+        yb_openSpotlight("people");
+        setTimeout(function(){
+            SEARCH_CONTAINER.classList.add("yb-pulseSmall");
+        }, 400);
+        
+        setTimeout(function(){
+            SEARCH_CONTAINER.classList.remove("yb-pulseSmall");
+        }, 1000);
+    });
+</script>
+{% endif %}

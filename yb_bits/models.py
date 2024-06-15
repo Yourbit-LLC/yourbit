@@ -4,6 +4,7 @@ from yb_accounts.models import Account as User
 from django.utils import timezone
 from yb_customize.models import CustomBit
 from django.contrib.postgres.fields import ArrayField
+# from .tasks import auto_post, auto_delete
 
 
 
@@ -31,16 +32,18 @@ class Bit(models.Model):
     to_users = models.ManyToManyField(
         User,  blank=True, related_name='mentioned'
     )
-    
+
     display_name = models.CharField(max_length=100, blank=True, null=True) #used for display name, user may set real name or username
     title = models.CharField(max_length=140, blank=True)
 
     body = models.CharField(max_length=5000, blank=True)
-    
+
     time = models.DateTimeField(default=timezone.localtime)
     evaporate = models.BooleanField(default=False)
     evapoation_date = models.DateTimeField(default=timezone.localtime)
-    
+    is_scheduled = models.BooleanField(default=False)
+    scheduled_publish_time = models.DateTimeField(default=None, blank=True, null=True)
+
     type = models.CharField(max_length=20, default="chat")
 
     dislikes = models.ManyToManyField('BitDislike', blank=True, related_name='dislikes', null=True)
@@ -68,16 +71,16 @@ class Bit(models.Model):
     custom = models.ForeignKey(CustomBit, on_delete=models.CASCADE, default=None, related_name="user_custom")
     tags = models.CharField(max_length=1000, blank=True)
     slug = models.SlugField(max_length=140, blank=True)
-    
+
     photos = models.ManyToManyField('yb_photo.Photo', related_name='photos', blank=True)
 
     #If type in video category
-    #watch percent determined by percentage of video watched not time watched 
+    #watch percent determined by percentage of video watched not time watched
     average_watch_percent = models.FloatField(null=True)
-    
+
     #Watch count tracks the amount of times a video bit has been watched for at least 80% length
     watch_count = models.IntegerField(default = 0)
-    
+
     #New watches tracks the amount of non-repeat watches of this Video Bit
     new_watches = models.IntegerField(default = 0)
 
@@ -85,7 +88,8 @@ class Bit(models.Model):
 
     video_key = models.CharField(max_length=100, blank=True)
 
-    
+    is_live = models.BooleanField(default=False)
+
     #Amount of time bit, or its contents, were visible on screen in milliseconds
     average_time_on_screen = models.IntegerField(null=True)
 
@@ -95,7 +99,14 @@ class Bit(models.Model):
             f"({self.time: %Y-%m-%d %H:%M}): "
             f"{self.body[:30]}..."
         )
-    
+
+    # def save(self, *args, **kwargs):
+    #     super(Bit, self).save(*args, **kwargs)
+    #     if self.is_scheduled:
+    #         auto_post.apply_async((self.id,), eta=self.scheduled_publish_time)
+    #     if self.evaporate:
+    #         auto_delete.apply_async((self.id,), eta=self.evapoation_date)
+
 class Continuum(models.Model):
 
     title = models.CharField(max_length=100, default="Untitled Continuum")
@@ -118,7 +129,7 @@ class BitSticker(models.Model):
     loop_animation = models.BooleanField(default=False)
     animation_delay = models.IntegerField(default=0)
     animation_duration = models.IntegerField(default=0)
-    
+
     time = models.DateTimeField(default=timezone.now)
 
 class Cluster(models.Model):
@@ -151,7 +162,7 @@ class BitDislike(models.Model):
 
 class BitShare(models.Model):
     #Model for a share on a bit
-    
+
     user = models.ForeignKey(User, related_name = "bit_shares", on_delete=models.CASCADE, blank=True)
     time = models.DateTimeField(default=timezone.now)
 
@@ -185,13 +196,13 @@ class Interaction(models.Model):
     time = models.DateTimeField(default=timezone.now)
 
 #   Interaction history types:
-#       
+#
 #       Profile
 #       1 - communityView
 #       2 - profileView
 #       3 - followedUser
 #       4 - addedFriend
-#       
+#
 #       Bit
 #       5 - bitView
 #       6 - videoView
@@ -212,14 +223,14 @@ class Interaction(models.Model):
     action_class = models.IntegerField(default=0)
 
     action_sub_class = models.IntegerField(default=0)
-    
+
     #If type in bit category
     bit = models.ForeignKey(
         Bit, related_name="bit_interacted_with", on_delete=models.CASCADE, default=None
     )
 
     #If type in video category
-    #watch percent determined by percentage of video watched not time watched 
+    #watch percent determined by percentage of video watched not time watched
     watch_percent = models.FloatField(null=True)
 
     #Amount of time bit, or its contents, were visible on screen in milliseconds
@@ -227,20 +238,20 @@ class Interaction(models.Model):
 
 
 #Interaction history table indexes all Yourbit Interactions as they are created. Interactions
-#are referenced in 3 places which allow for quicker queries and scope. 
+#are referenced in 3 places which allow for quicker queries and scope.
 class InteractionHistory(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE)
     profile = models.OneToOneField(
         Profile, on_delete=models.DO_NOTHING, default=None, null=True, blank=True, related_name='interactions'
     )
-    
+
     liked_bits = models.ManyToManyField(Bit, related_name="liked_bits", blank=True)
     disliked_bits = models.ManyToManyField(Bit, related_name="disliked_bits", blank=True)
     shared_bits = models.ManyToManyField(Bit, related_name='shared', blank=True)
-    
+
     interacted_with = models.ManyToManyField(Bit, related_name='interacted_with', blank=True )
     commented_on = models.ManyToManyField(Bit, related_name='commented_on', blank=True)
-    
+
     bit_donation = models.ManyToManyField(Bit, related_name = "bit_donations", blank = True)
     user_donation = models.ManyToManyField(User, related_name = "user_donations", blank=True)
 

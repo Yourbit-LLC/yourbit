@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from PIL import Image
 from main.views import initialize_session
 from yb_customize.models import *
+from django.utils import timezone, dateformat
 
 # Create your views here.
 class CustomizeProfile(View):
@@ -79,7 +80,7 @@ def update_profile_background(request):
         
     if (wpid == "null"):
         print("Existing Wallpaper Not Found \n\n Creating New One...")
-        new_wallpaper = Wallpaper()
+        new_wallpaper = Wallpaper(profile=this_profile)
         this_stage = 1
 
     else:
@@ -94,11 +95,32 @@ def update_profile_background(request):
     
 
     if request.POST.get('name') == 'desktop':
-        new_wallpaper.background_desktop = request.POST.get('cropped-image')
+        desktop_img = request.FILES.get('cropped_image')
+
+        label = "dt-wp"
+        this_username = this_profile.user.username
+        this_uid = this_profile.user.id
+        
+        timestamp = dateformat.format(timezone.now(), '%Y%m%d%-H:i-s')
+        this_filename = f"{this_username}{this_uid}{timestamp}{label}.png"
+
+        desktop_img.name = this_filename
+
+        new_wallpaper.background_desktop = desktop_img
         
 
     elif request.POST.get('name') == 'mobile':
-        new_wallpaper.background_mobile = request.POST.get('cropped-image')
+        mobile_img = request.FILES.get('cropped_image')
+
+        label = "mo-wp"
+        this_username = this_profile.user.username
+        this_uid = this_profile.user.id
+        
+        timestamp = dateformat.format(timezone.now(), '%Y%m%d%-H:i-s')
+        this_filename = f"{this_username}{this_uid}{timestamp}{label}.png"
+
+        mobile_img.name = this_filename
+        new_wallpaper.background_mobile = mobile_img
     
     new_wallpaper.save()
 
@@ -231,10 +253,28 @@ class CustomizeUIView(View):
             )
     
     def post(self, request):
-        pass
+        custom_core = CustomCore.objects.get(profile=request.user.profile)
+        theme = custom_core.theme
+        try:
+            custom_ui = CustomUI.objects.get(theme=theme)
+
+        except:
+            custom_ui = CustomUI(theme=theme)
+
+        custom_ui.primary_color = request.POST.get('primary_color')
+        custom_ui.button_color = request.POST.get('button_color')
+        custom_ui.icon_color = request.POST.get('icon_color')
+        custom_ui.button_text_color = request.POST.get('button_text_color')
+        custom_ui.text_color = request.POST.get('text_color')
+        custom_ui.title_color = request.POST.get('title_color')
+        custom_ui.save()
+
+        return HttpResponse("success")
 
 class WallpaperUpload(View):
     def get(self, request):
+
+        
         return render(request, "yb_customize/wallpaper_edit.html")
     
     def post(self, request):

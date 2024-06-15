@@ -1,10 +1,12 @@
 try {
     var notify_filter_buttons = document.querySelectorAll('.notify-filter-button');
+    var list_container = document.getElementById('notification-list');
 } catch {
     notify_filter_buttons = document.querySelectorAll('.notify-filter-button');
+    list_container = document.getElementById('notification-list');
 }
 
-var NOTIFICATION_CONTAINER = document.getElementById('notification-list');
+
 
 function yb_buildNotifyItem(result, action=null){
     let id = result.id;
@@ -286,37 +288,17 @@ function yb_notificationMenu(type, this_id, rid=null) {
 }
 
 function yb_clearNotifications() {
-    NOTIFICATION_CONTAINER.innerHTML = "";
+    list_container.innerHTML = "";
 }
 
 
-function yb_displayNotifications(response) {
+
+function yb_getNotificationList(notify_class, show_seen = 'True') {
+
+  
     yb_clearNotifications();
-    if (response.length == 0) {
-        return;
-    }
-    for (let i = 0; i < response.length; i++) {
-        
-        yb_buildNotifyItem(response[i]);
+    $(list_container).load(`/notify/notification-list/${notify_class}/?seen=True`);
 
-
-    }
-}
-
-function yb_getNotificationList(notify_class) {
-
-    $.ajax( {
-        type: 'GET',
-        url: '/notify/api/notifications/',
-        data: { 
-            notify_class: notify_class,
-        },
-        success: function(response){
-
-            yb_displayNotifications(response);
-
-        }
-    })
 };
 
 

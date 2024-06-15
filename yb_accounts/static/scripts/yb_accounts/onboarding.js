@@ -125,7 +125,7 @@ window.onload = function() {
         $('#desktop-preview-output').attr('src', URL.createObjectURL(this.files[0]));
         $('#mobile-preview-output').attr('src', URL.createObjectURL(this.files[0]));
         $("#profile-back-button").attr("name", "background");
-
+ 
     });
 
     $("#desktop-crop-option").on("click", function() {

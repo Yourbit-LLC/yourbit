@@ -32,9 +32,6 @@ try {
     isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 }
 
-function changeColor(property, value) {
-    document.documentElement.style.setProperty(property, value);
-}
 
 function saveBitEdits() {
     let shell_color = document.getElementById('bit-shell-color-picker').value;
@@ -159,8 +156,7 @@ $(document).ready(function () {
     customization_toggle.classList.add("yb-bounceDown-1");
     setTimeout(function () {
         customization_toggle.classList.remove("yb-bounceDown-1");
-    }
-        , 1000);
+    }, 1000);
 
     save_button.addEventListener('click', saveBitEdits);
 

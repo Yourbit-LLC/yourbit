@@ -1,39 +1,20 @@
 
 try{
-    let filter_buttons = document.getElementsByClassName("people-filter");
+    var filter_buttons = document.getElementsByClassName("people-filter");
+    var list_container = document.getElementById('connection-list');
+
 } catch {
+    list_container = document.getElementById()
     filter_buttons = document.getElementsByClassName("people-filter");
 }
 
+function clearPeopleList(){
+    $(list_container).empty();
+}
+
 function yb_listPeople(filter){
-    $.ajax({
-        type: 'GET',
-        url: '/people/',
-        data: {
-            filter: filter
-        },
-        success: function(response){
-            let people_container = document.getElementById("people-container");
-            people_container.innerHTML = "";
-            for (let i = 0; i < response.people.length; i++){
-                let person = response.people[i];
-                let this_id = person.id;
-                let this_name = person.name;
-                let this_image = person.image_thumbnail_small;
-                let this_primary_color = person.primary_color;
-                let this_unread = person.unread;
-                let this_blueprint = {
-                    "id": this_id,
-                    "name": this_name,
-                    "image": this_image,
-                    "primary_color": this_primary_color,
-                    "unread": this_unread,
-                }
-                let display_person = yb_buildContactItem(this_blueprint);
-                people_container.appendChild(display_person);
-            }
-        }
-    });
+    clearPeopleList();
+    $(list_container).load(`/profile/people-list/${filter}/`);
 }
 
 $(document).ready(function () {

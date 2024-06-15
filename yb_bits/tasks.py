@@ -1,15 +1,21 @@
-# tasks.py
+# from celery import shared_task
+# from django.utils import timezone
+# from yb_bits.models import Bit
 
-from celery import shared_task
-from django.utils import timezone
-from datetime import timedelta
-from .models import Bit
+# @shared_task
+# def auto_post(Bit_id):
+#     try:
+#         bit = Bit.objects.get(id=Bit_id)
+#         bit.is_live = True
+#         bit.time = timezone.now()
+#         bit.save()
+#     except Bit.DoesNotExist:
+#         pass
 
-@shared_task
-def evaporate_bits():
-    expiration_date = timezone.now()
-    Bit.objects.filter(
-        evaporate=True,
-        evaporation_date__lte=expiration_date, 
-
-    ).delete()
+# @shared_task
+# def auto_delete(Bit_id):
+#     try:
+#         bit = Bit.objects.get(id=Bit_id)
+#         bit.delete()
+#     except bit.DoesNotExist:
+#         pass

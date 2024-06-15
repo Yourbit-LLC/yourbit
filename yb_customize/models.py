@@ -111,6 +111,13 @@ class CustomUI(CustomBase):
     theme = models.ForeignKey(Theme, on_delete=models.CASCADE, default=None, related_name="custom_ui")
     ui_theme_mode = models.CharField(max_length=50, default="dark")
     
+    translucency = models.BooleanField(default=False)
+
+    blur = models.BooleanField(default=False)
+    blur_amt = models.CharField(max_length=10, default="20")
+
+    backdrop_brightness = models.CharField(max_length=10, default="80")
+    
 
 class CustomSplash(CustomBase):
     theme = models.ForeignKey(Theme, on_delete=models.CASCADE, default=None, related_name="custom_splash")

@@ -23,6 +23,7 @@
     grid-template-columns: 1fr 1fr 1fr;
 }
 
+
 .yb-hblock-41 {
     display: grid;
     grid-template-columns: 3.85fr 1fr;
@@ -341,27 +342,17 @@
     border-style: solid;
 }
 
-@media (prefers-color-scheme: dark) {
-    .yb-panel {
-        background-color: rgba(0, 0, 0, 0.75);
-        backdrop-filter: blur(80px);
-        -webkit-backdrop-filter: blur(80px);
-    }
-    .yb-button-wide {
-        background-color: rgb(35, 35, 35); 
-    }
+
+.yb-panel {
+    background-color: var(--yb-panel-color);
+    backdrop-filter: blur(80px);
+    -webkit-backdrop-filter: blur(80px);
+}
+.yb-button-wide {
+    background-color: var(--yb-button-background-color); 
 }
 
-@media (prefers-color-scheme: light) {
-    .yb-panel {
-        background-color: rgba(255, 255, 255, 0.75);
-        backdrop-filter: blur(80px);
-        -webkit-backdrop-filter: blur(80px);
-    }
-    .yb-button-wide {
-        background-color: rgb(200, 200, 200); 
-    }
-}
+
 
 
 .border-dashed {
