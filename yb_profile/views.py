@@ -57,7 +57,7 @@ def people_list(request, filter, *args, **kwargs):
 
     try:
         connections = sorted(
-            chain(results_list), key=attrgetter('display_name'), reverse=True
+            chain(results_list), key=attrgetter('display_name'), reverse=False
         )
     except:
         connections = None

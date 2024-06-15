@@ -52,9 +52,9 @@ def notification_list(request, filter, *args, **kwargs):
             notifications = unseen_notifications
 
     else:
-        unseen_notifications = notification_core.unseen_notifications.filter(type=int(filter)).order_by('-time')
+        unseen_notifications = notification_core.unseen_notifications.filter(notify_class=int(filter)).order_by('-time')
         if show_seen:
-            seen_notifications = notification_core.seen_notifications.filter(type=int(filter)).order_by('-time')
+            seen_notifications = notification_core.seen_notifications.filter(notify_class=int(filter)).order_by('-time')
             notifications = seen_notifications | unseen_notifications
         else:
             notifications = unseen_notifications
