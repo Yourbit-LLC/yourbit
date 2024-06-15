@@ -39,6 +39,7 @@ def people_list(request, filter, *args, **kwargs):
     this_profile = Profile.objects.get(user = request.user)
 
     results_list = []
+    print(filter)
     if 'fr' in filter:
         friends = this_profile.friends.all()
         results_list.append(friends)
