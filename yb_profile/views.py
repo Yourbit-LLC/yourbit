@@ -49,6 +49,10 @@ def people_list(request, filter, *args, **kwargs):
         results_list.append(followers)
         results_list.append(following)
 
+    elif filter == 'fr':
+        friends = this_profile.friends.all()
+        results_list.append(friends)
+
     elif filter == 'fo':
         followers = this_profile.followers.all()
         results_list.append(followers)
