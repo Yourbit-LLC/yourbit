@@ -69,7 +69,7 @@ def people_list(request, filter, *args, **kwargs):
         if len(results_list) == 0:
             connections = None
         else:
-            connections = results_list
+            connections = results_list[0]
 
     context = {
         "connections":connections,
