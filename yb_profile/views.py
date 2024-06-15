@@ -51,7 +51,7 @@ def people_list(request, filter, *args, **kwargs):
 
     elif filter == 'fo':
         followers = this_profile.followers.all()
-        results_list.append(friends)
+        results_list.append(followers)
 
     elif filter == 'fn':
         following = this_profile.follows.all()
