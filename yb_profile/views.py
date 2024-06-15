@@ -66,7 +66,7 @@ def people_list(request, filter, *args, **kwargs):
         "connections":connections,
 
     }
-    return render(request, "yb_profile/people-list.html", context)
+    return render(request, "yb_profile/people_list.html", context)
 
 class PeopleViewTemplate(View):
     def get(self, request, *args, **kwargs):
