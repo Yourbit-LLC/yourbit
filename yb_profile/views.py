@@ -224,4 +224,5 @@ def block_profile(request, *args, **kwargs):
         this_profile.save()
 
         return JsonResponse({"status": "success"})
+
     
