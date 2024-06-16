@@ -260,23 +260,6 @@ p {
         transform: translateY(200%);
         transition: 0.5s;
     }
-
-    
-    @media (prefers-color-scheme: dark) {
-        .yb-navigation {
-            background-color: rgba(0, 0, 0, 0.8);
-
-        }
-
-    }
-
-    @media (prefers-color-scheme: light) {
-        .yb-navigation {
-            background-color: rgba(255, 255, 255, 0.8);
-
-        }
-
-    }
 }
 
 /* Desktop Navigation Bar on Top */
@@ -367,18 +350,6 @@ p {
     .yb-space-nav.hidden {
         transform: translateY(300px);
         transition: 0.5s;
-    }
-
-    @media (prefers-color-scheme: dark) {
-        .yb-space-nav {
-            background-color: rgba(0, 0, 0, 0.7);
-        }
-    }
-    
-    @media (prefers-color-scheme: light) {
-        .yb-space-nav {
-            background-color: rgba(255, 255, 255, 0.7);
-        }
     }
 }
 
