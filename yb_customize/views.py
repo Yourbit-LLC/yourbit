@@ -161,7 +161,20 @@ def get_wallpaper(request, profile_class, type):
 
 class CustomizeUI(View):
     def get(self, request):
-        return render(request, "yb_customize/customize_ui.html")
+        profile = Profile.objects.get(user=request.user)
+        custom_core = CustomCore.objects.get(profile=profile)
+        theme = custom_core.theme
+        custom_ui = CustomUI.objects.get(theme=theme)
+        context = {
+            'custom_core': custom_core,
+            'primary_color': custom_ui.primary_color,
+            'button_color': custom_ui.button_color,
+            'icon_color': custom_ui.icon_color,
+            'button_text_color': custom_ui.button_text_color,
+            'text_color': custom_ui.text_color,
+            'title_color': custom_ui.title_color,
+        }
+        return render(request, "yb_customize/customize_ui.html", context)
     
     def post(self, request):
         pass

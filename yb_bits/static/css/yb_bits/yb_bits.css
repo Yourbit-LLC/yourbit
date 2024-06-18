@@ -25,6 +25,8 @@
 
     padding: 5px;
     transition: 0.5s;
+    backdrop-filter: blur(40px) brightness(90%);
+    -webkit-backdrop-filter: blur(40px) brightness(90%);
 }
 
     .field-border {
@@ -55,6 +57,8 @@
         box-shadow: 0px 1px 5px black;
         transition: 0.5s;
         padding: 5px;
+        backdrop-filter: blur(40px) brightness(90%);
+        -webkit-backdrop-filter: blur(40px) brightness(90%);
     }
 
     .field-border {

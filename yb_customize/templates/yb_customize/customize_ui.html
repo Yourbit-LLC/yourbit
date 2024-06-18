@@ -5,6 +5,8 @@
     <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb align-left" onclick="customize_url('')">Back</h3>
     <div></div>
 </div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.css"/>
+
 <h3 class="yb-autoText align-center">Customize UI</h3>
 <br>
 <div class="yb-fillWidth align-center">
@@ -126,40 +128,49 @@
         </svg>
     </div> {% endcomment %}
     <hr style="border-color: rgb(25, 25, 25);">
+    <h4 class="yb-font-autoGray align-left">Panels</h4>
     <div style="display:grid; grid-template-columns: 1fr 1fr 1fr 1fr; text-align: center; font-size: 12px;">
         <div>
-            <input class="color-input" type="color" name="ui-panel" id="ui-panel-color-picker" value="{{custom_ui.primary_color}}" >
+            <div class = "color-circle" name="ui-panel" style="background-color: {{primary_color}}"></div>
+            <input class="color-input" type="text" name="ui-panel" style="display: none;" id="ui-panel-color-picker" value="{{custom_ui.primary_color}}" data-coloris>
                 
             <p class="yb-autoText">Panel Color</p>
         </div>
         <div>
-            <input class="color-input" type="color" name="ui-icon" id="ui-icon-color-picker" value="{{custom_bit.title_color}}" >
+            <div class = "color-circle" name="ui-icon" style="background-color: {{icon_color}}"></div>
+            <input class="color-input" type="text" name="ui-icon" id="ui-icon-color-picker" value="{{icon_color}}" style="display: none;" data-coloris>
                 
             <p class="yb-autoText">Icon Color</p>
 
         </div>
         <div>
-            <input class="color-input" type="color" name="ui-title" id="ui-title-color-picker" value="{{custom_bit.title_color}}" >
+            <div class = "color-circle" name="ui-title" style="background-color: {{title_color}}"></div>
+            <input class="color-input" type="text" name="ui-title" id="ui-title-color-picker" style="display: none;" value="{{title_color}}" data-coloris>
                 
             <p class="yb-autoText">Header Color</p>
             
         </div>
         <div>
-            <input class="color-input" type="color" name="ui-text" id="ui-text-color-picker" value="{{custom_bit.title_color}}" >
+            <div class = "color-circle" name="ui-text" style="background-color: {{text_color}}"></div>
+            <input class="color-input" type="text" name="ui-text" id="ui-text-color-picker" style="display: none;" value="{{text_color}}" data-coloris>
                 
             <p class="yb-autoText">Text Color</p>
             
         </div>
     </div>
     <br>
+    <h4 class="yb-font-autoGray align-left">Buttons</h4>
     <div id="button-color-options" style="display:grid; grid-template-columns: 1fr 1fr; text-align: center; font-size: 12px;">
+        
         <div>
-            <input class="color-input" type="color" name="ui-button-background" id="ui-button-background-color-picker" value="{{custom_ui.primary_color}}" >
+            <div class = "color-circle" name="ui-button-background" style="background-color: {{button_color}}"></div>
+            <input class="color-input" type="text" name="ui-button-background" id="ui-button-background-color-picker" style="display: none;" value="{{button_color}}" data-coloris>
                 
             <p class="yb-autoText">Background Color</p>
         </div>
         <div>
-            <input class="color-input" type="color" name="ui-button-foreground" id="ui-button-foreground-color-picker" value="{{custom_bit.title_color}}" >
+            <div class = "color-circle" name="ui-button-foreground" style="background-color: {{button_text_color}}"></div>
+            <input class="color-input" type="text" name="ui-button-foreground" id="ui-button-foreground-color-picker" style="display: none;" value="{{button_text_color}}" data-coloris>
                 
             <p class="yb-autoText">Foreground Color</p>
 
@@ -173,5 +184,6 @@
 <div class="yb-spacer">
     <br>
 </div>
+<script src="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.js"></script>
 
 <script src="{% static 'scripts/yb_customize/ui_editor.js' %}"></script>

@@ -18,9 +18,11 @@ try {
     var custom_ui_toggle = document.getElementById('custom-ui-toggle');
     var save_button = document.getElementById('save-ui');
     var set_buttons = document.querySelectorAll('.ui-set-button');
+    var color_circles = document.querySelectorAll('.color-circle');
 
     
 } catch (e) {
+
     core_panels = document.querySelectorAll('.yb-panel');
     core_paths = document.querySelectorAll('.yb-path');
     core_heads = document.querySelectorAll('.yb-pHead');
@@ -40,6 +42,7 @@ try {
     custom_ui_toggle = document.getElementById('custom-ui-toggle');
     save_button = document.getElementById('save-ui');
     set_buttons = document.querySelectorAll('.ui-set-button');
+    color_circles = document.querySelectorAll('.color-circle');
 }
 
 
@@ -229,4 +232,13 @@ $(document).ready(function () {
     text_color_input.addEventListener('input', change_text_color);
 
     save_button.addEventListener('click', saveUIEdits);
+
+    //COlor Circles
+    color_circles.forEach(function (element) {
+        element.addEventListener('click', function () {
+            let this_input = document.getElementById(this.getAttribute('name') + `-color-picker`);
+            this_input.click();
+
+        });
+    });
 });
