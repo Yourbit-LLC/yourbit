@@ -337,7 +337,7 @@ p {
 }
 
 .yb-icon-gridItem {
-    fill: (--yb-icon-color);
+    fill: var(--yb-icon-color);
 }
 
 
@@ -346,18 +346,21 @@ p {
 }
 
 .space-button-icon {
-    fill: gray;
+    fill: var(--yb-icon-color);
+    transition: 0.5s;
 }
 @media (prefers-color-scheme: dark) {
     .space-button-icon.active {
         filter: brightness(200%);
         -webkit-filter: brightness(200%);
+        transition: 0.5s;
     }
 }
 @media (prefers-color-scheme: light){
     .space-button-icon.active {
         filter: brightness(0%);
         -webkit-filter: brightness(0%);
+        transition: 0.5s;
     }
 
 }
@@ -610,7 +613,7 @@ p {
 */
 
 .yb-splash.base {
-    background-color: (--yb-panel-color);
+    background-color: var(--yb-panel-color);
 }
 /*
         Splash Pages - Profile
@@ -652,7 +655,11 @@ p {
 
 
     .yb-icon {
-        fill: (--yb-icon-color);
+        fill: var(--yb-icon-color);
+    }
+
+    .yb-path {
+        fill: var(--yb-icon-color);
     }
 
 
