@@ -862,3 +862,55 @@ p {
         background-color: rgba(255, 255, 255, 0.5);
     }
 }
+
+
+.yb-background-image {
+    position: fixed;
+    top: 0;
+    left: -2vw;
+    width: 103vw;
+    /* The image used */
+  
+    /* Add the blur effect */
+    filter: brightness(80%) saturate(150%) blur(20px);
+    -webkit-filter: brightness(80%) saturate(150%) blur(20px);
+    /* Full height */
+    height: 101vh;
+    
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    z-index: 1;
+    transition: 1s;
+
+}
+
+.yb-background-overlay {
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+}
+
+@media (prefers-color-scheme: dark) {
+    .yb-background-image {
+        background-color: black;
+    }
+
+    .yb-background-overlay {
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    .yb-background-image {
+        background-color: white;
+    }
+
+    .yb-background-overlay {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+}
