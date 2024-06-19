@@ -771,6 +771,8 @@
     border-radius: 50%;
     margin: auto;
     margin-top: 5px;
-    border: 2px solid gray
+    border: 2px solid gray;
+    box-shadow: 1px 1px 5px black;
+    transition: 0.3s;
 
 }

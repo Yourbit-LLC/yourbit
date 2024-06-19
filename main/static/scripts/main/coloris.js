@@ -13,9 +13,9 @@
 
   // Default settings
   const settings = {
-    el: '[data-coloris]',
-    parent: '#content-container',
-    theme: 'default',
+    el: '.color-input',
+    parent: 'body',
+    theme: 'pill',
     themeMode: 'dark',
     rtl: false,
     wrap: true,
@@ -30,9 +30,9 @@
     selectInput: false,
     inline: false,
     defaultColor: '#000000',
-    clearButton: false,
+    clearButton: true,
     clearLabel: 'Clear',
-    closeButton: false,
+    closeButton: true,
     closeLabel: 'Close',
     onChange: () => undefined,
     a11y: {

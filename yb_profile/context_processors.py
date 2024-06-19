@@ -22,7 +22,7 @@ from yb_settings.models import MySettings
 
 def Customization(request):
     from yb_profile.models import Profile
-    from yb_customize.models import CustomCore, CustomBit
+    from yb_customize.models import CustomCore, CustomBit, CustomUI
     if request.user.is_authenticated:
         profile = Profile.objects.get(user=request.user)
         custom = CustomCore.objects.get(profile=profile)
@@ -51,6 +51,14 @@ def Customization(request):
         except:
             wallpaper_desktop = None
 
+
+        if custom.ui_colors_on:
+            custom_ui = CustomUI.objects.get(theme=theme)
+
+        else:
+            custom_ui = None
+
+
         context = {
             'profile_image': profile_image,
             'profile_thumbnail_small': profile_thumbnail_small,
@@ -63,6 +71,7 @@ def Customization(request):
             'wallpaper_desktop': wallpaper_desktop,
             'custom_core': custom,
             'wallpaper_enabled': wallpaper_enabled,
+            'custom_ui': custom_ui,
         }
 
         bit_colors_on = custom.bit_colors_on

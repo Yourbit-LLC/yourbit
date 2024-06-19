@@ -18,7 +18,7 @@ lang="en"
         <!--Root CSS Variables-->
         <style>
             :root {
-                --yb-panel-color: {{custom_interface.primary_color}};
+                --yb-panel-color: {{custom_ui.primary_color}};
                 --yb-bit-color: {{custom_bit.primary_color}};
                 --yb-secondary-color: {{custom_bit.accent_color}};
                 --yb-text-color: {{custom_bit.text_color}};
@@ -48,22 +48,47 @@ lang="en"
             rel="stylesheet" 
             href="{% static 'css/main/yb_animations.css' %}"/>
 
-        <link 
-            rel="stylesheet" 
-            href="{% static 'css/main/yb_core.css' %}"/>
+
 
         <link 
             rel="stylesheet" 
             href="{% static 'css/main/yb_buttons.css' %}"/>
         
 
-        <link 
-            rel="stylesheet" 
-            href="{% static 'css/main/yb_containers.css' %}"/>
 
-        <link 
-            rel="stylesheet" 
-            href="{% static 'css/main/yb_modifiers.css' %}"/>
+        {% if custom_core.ui_colors_on %}
+            <link 
+                rel="stylesheet" 
+                href="{% static 'css/main/yb_modifiers_customized.css' %}"/>
+
+            <link 
+                rel="stylesheet" 
+                href="{% static 'css/main/yb_core_customized.css' %}"/>
+
+                
+            <link 
+                rel="stylesheet" 
+                href="{% static 'css/main/yb_containers_customized.css' %}"/>
+
+        {% else %}
+            <link 
+                rel="stylesheet" 
+                href="{% static 'css/main/yb_core.css' %}"/>
+
+            
+            <link 
+                rel="stylesheet" 
+                href="{% static 'css/main/yb_containers.css' %}"/>
+
+            <link 
+                rel="stylesheet" 
+                href="{% static 'css/main/yb_modifiers.css' %}"/>
+
+
+
+
+        {% endif %}
+
         
         <link 
             rel="stylesheet" 

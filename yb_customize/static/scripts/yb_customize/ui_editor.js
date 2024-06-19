@@ -19,6 +19,8 @@ try {
     var save_button = document.getElementById('save-ui');
     var set_buttons = document.querySelectorAll('.ui-set-button');
     var color_circles = document.querySelectorAll('.color-circle');
+    var panel_color_circle = document.getElementById('ui-panel-color-circle');
+    var color_inputs = document.querySelectorAll('.color-input');
 
     
 } catch (e) {
@@ -43,6 +45,8 @@ try {
     save_button = document.getElementById('save-ui');
     set_buttons = document.querySelectorAll('.ui-set-button');
     color_circles = document.querySelectorAll('.color-circle');
+    panel_color_circle = document.getElementById('ui-panel-color-circle');
+    color_inputs = document.querySelectorAll('.color-input');
 }
 
 
@@ -91,6 +95,13 @@ function updateUIToggle() {
     };
 };
 
+function updateColorCircle(name, color) {
+    let this_circle = document.getElementById(name + '-color-circle');
+    this_circle.style.backgroundColor = color;
+
+}
+
+
 
 function change_panel_color() {
     var color = panel_color_input.value;
@@ -106,6 +117,10 @@ function change_panel_color() {
     for (var i = 0; i < core_panels.length; i++) {
         core_panels[i].style.backgroundColor = color;
     }
+
+    updateColorCircle('ui-panel', color);
+
+    
 }
 
 function change_icon_color() {
@@ -123,6 +138,8 @@ function change_icon_color() {
         core_paths[i].style.fill = color;
     }
 
+    updateColorCircle('ui-icon', color);
+
     
 }
 
@@ -137,6 +154,8 @@ function change_title_color() {
         core_heads[i].style.color = color;
     }
 
+    updateColorCircle('ui-title', color);
+
 }
 
 function change_text_color() {
@@ -149,6 +168,8 @@ function change_text_color() {
     for (var i = 0; i < core_texts.length; i++) {
         core_texts[i].style.color = color;
     }
+
+    updateColorCircle('ui-text', color);
 }
 function change_button_background() {
     var color = button_background_input.value;
@@ -160,6 +181,8 @@ function change_button_background() {
     for (var i = 0; i < preview_buttons.length; i++) {
         preview_buttons[i].style.backgroundColor = color;
     }
+
+    updateColorCircle('ui-button-background', color);
 }
 
 function change_button_foreground() {
@@ -176,6 +199,8 @@ function change_button_foreground() {
     for (var i = 0; i < preview_button_icons.length; i++) {
         preview_button_icons[i].style.fill = color;
     }
+
+    updateColorCircle('ui-button-foreground', color);
 }
 
 
@@ -233,6 +258,8 @@ $(document).ready(function () {
 
     save_button.addEventListener('click', saveUIEdits);
 
+    
+
     //COlor Circles
     color_circles.forEach(function (element) {
         element.addEventListener('click', function () {
@@ -241,4 +268,10 @@ $(document).ready(function () {
 
         });
     });
+
+    for (var i = 0; i < color_inputs.length; i++) {
+        color_inputs[i].addEventListener('click', function (event) {
+            event.preventDefault();
+        });
+    }
 });
