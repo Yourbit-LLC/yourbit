@@ -1,3 +1,23 @@
+try {
+    var rootProfileStyles = getComputedStyle(document.documentElement);
+
+} catch {
+    rootProfileStyles = getComputedStyle(document.documentElement);
+
+}
+
+let custom_index = [
+    'panel-color',
+    'accent-color',
+    'text-color',
+    'icon-color',
+    'title-color',
+    'button-color',
+    'button-text-color'
+
+]
+
+
 var base_url = window.location.origin;
 var isSwiping = false;
 
@@ -31,39 +51,10 @@ function showProfileImage(){
 }
 
 function yb_setProfileUI() {
-    let background_image = document.getElementById("bg-image");
-    
-    let flat_mode_on = yb_getUserCustom("flat-mode-on");
-    
-    if (flat_mode_on == "true") {
-
-        background_image.setAttribute("src", document.getElementById("profile-data").getAttribute("data-background"));
-    
-        background_image.setAttribute("style", `filter: blur(${document.getElementById('profile-data').getAttribute('data-blur')}px) brightness(${document.getElementById('profile-data').getAttribute('data-brightness')}%); -webkit-filter: blur(${custom.background_blur}px) brightness(${custom.background_brightness}%);`);
-
+    for (let i = 0; i < custom_index.length; i++) {
+        let this_style = rootProfileStyles.getPropertyValue(`--yb-profile-${custom_index[i]}`);
+        document.documentElement.style.setProperty(`--yb-${custom_index[i]}`, this_style);
     }
-
-    let ui_labels = document.getElementsByClassName("yb-ui-label");
-    for (let i = 0; i < ui_labels.length; i++) {
-        ui_labels[i].setAttribute("style", `color:${document.getElementById("profile-data").getAttribute("data-icon-color")} !important;`);
-    }
-
-    let ui_icons = document.getElementsByClassName("yb-ui-icon");
-    for (let i = 0; i < ui_icons.length; i++) {
-        $(ui_icons[i]).css({"fill": `${document.getElementById("profile-data").getAttribute("data-icon-color")} !important`});
-    }
-
-    let accent_buttons = document.getElementsByClassName("yb-accent-button");
-    for (let i = 0; i < accent_buttons.length; i++) {
-        $(accent_buttons[i]).css({"border-color": `${document.getElementById("profile-data").getAttribute("data-icon-color")} !important;`});
-    }
-
-    let accented_elements = document.getElementsByClassName("yb-element-accent");
-    for (let i = 0; i < accented_elements.length; i++) {
-        (ui_icons[i]).css({"fill": `${document.getElementById("profile-data").getAttribute("icon-color")} !important`});
-    }
-
-    
 
 
 }
