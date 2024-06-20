@@ -1,8 +1,8 @@
 try {
-    var rootProfileStyles = getComputedStyle(document.documentElement);
+    var profile_custom_info = document.getElementById("profile-custom-info");
 
 } catch {
-    rootProfileStyles = getComputedStyle(document.documentElement);
+    profile_custom_info = document.getElementById("profile-custom-info");
 
 }
 
@@ -52,9 +52,10 @@ function showProfileImage(){
 
 function yb_setProfileUI() {
     for (let i = 0; i < custom_index.length; i++) {
-        let this_style = rootProfileStyles.getPropertyValue(`--yb-profile-${custom_index[i]}`);
+        let this_style = profile_custom_info.getAttribute(`data-${custom_index[i]}`);
         console.log(this_style);
-        document.documentElement.style.setProperty(`--yb-${custom_index[i]}`, this_style);
+        console.log(custom_index[i])
+        changeColor(`--yb-${custom_index[i]}`, this_style);
     }
 
 
