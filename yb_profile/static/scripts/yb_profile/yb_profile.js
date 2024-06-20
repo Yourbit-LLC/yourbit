@@ -6,7 +6,7 @@ try {
 
 }
 
-let custom_index = [
+var custom_index = [
     'panel-color',
     'accent-color',
     'text-color',
@@ -53,6 +53,7 @@ function showProfileImage(){
 function yb_setProfileUI() {
     for (let i = 0; i < custom_index.length; i++) {
         let this_style = rootProfileStyles.getPropertyValue(`--yb-profile-${custom_index[i]}`);
+        console.log(this_style);
         document.documentElement.style.setProperty(`--yb-${custom_index[i]}`, this_style);
     }
 
