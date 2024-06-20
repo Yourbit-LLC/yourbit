@@ -71,7 +71,7 @@ def Customization(request):
             'wallpaper_desktop': wallpaper_desktop,
             'custom_core': custom,
             'wallpaper_enabled': wallpaper_enabled,
-            'custom_ui': custom_ui,
+            'user_custom_ui': custom_ui,
         }
 
         bit_colors_on = custom.bit_colors_on
