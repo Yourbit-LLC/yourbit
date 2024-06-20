@@ -394,6 +394,8 @@ function yb_handleAboutClick(e){
 $(document).ready(function() {
     let user_id = yb_getSessionValues("profile-username");
     console.log(user_id)
+
+    yb_setProfileUI();
                                                                                                                              
     let swipe_up_element = document.getElementById("swipe-up-element");
     
