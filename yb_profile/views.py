@@ -12,11 +12,16 @@ class ProfileView(View):
     def get(self, request, username, *args, **kwargs):
         that_user = User.objects.get(username = username)
         this_profile = Profile.objects.get(user = that_user)
+        custom = CustomCore.objects.get(profile = this_profile)
+        custom_ui = CustomUI.objects.get(theme = custom.theme)
+
         context = {
             "location":"profile",
             "space":"global",
             "sort":"chrono",
             "current_profile":this_profile,
+            "custom_ui":custom_ui,
+
         }
         return render(request, "yb_profile/yb_profile.html", context)
 

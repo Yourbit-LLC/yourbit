@@ -3,15 +3,14 @@
 <style>
     ::root {
 
-        --primary-color: {{current_profile.custom.profile_splash.primary_color}};
-        --secondary-color: {{current_profile.custom.profile_splash.secondary_color}};
-        --accent-color: {{current_profile.custom.profile_splash.accent_color}};
-        --text-color: {{current_profile.custom.profile_splash.text_color}};
-        --title-color: {{current_profile.custom.profile_splash.title_color}};        
-        --button-color: {{current_profile.custom.profile_splash.button_color}};        
-        --button-text-color: {{current_profile.custom.profile_splash.button_text_color}};        
+        --primary-color: {{custom_ui.primary_color}};
+        --accent-color: {{custom_ui.accent_color}};
+        --text-color: {{custom_ui.text_color}};
+        --title-color: {{custom_ui.title_color}};        
+        --button-color: {{custom_ui.button_color}};        
+        --button-text-color: {{custom_ui.button_text_color}};        
         --username-font-color: {{current_profile.custom.profile_splash.username_font_color}};        
-        --name-font-color: {{current_profile.custom.profile_splash.name_font_color}};
+        {% comment %} --name-font-color: {{current_profile.custom.profile_splash.name_font_color}}; {% endcomment %}
 
     }
 </style>
@@ -26,7 +25,7 @@
 {% endif %}
 
 <input type="hidden" id="profile-data" value="{{current_profile.username}}" data-id="{{ current_profile.id }}" data-username="{{current_profile.user.username}}" data-background = "{{current_profile.custom.background_image.url}}" data-blur="{{profile.custom.background_blur}}" data-brightness="{{current_profile.custom.background_brightness}}" data-icon-color = "{{current_profile.custom.icon_color}}"/>
-<div id="profile-page-splash" class="splash-page profile">
+<div id="profile-page-splash" class="splash-page profile yb-panel">
 
     <div id="profile-splash-label" class = "yb-splash-label profile yb-center-transform all align-center">
         <div id="profile-image-container" class="profile-image-container yb-center-margin all plainBorder border-solid narrowBorder circle">
