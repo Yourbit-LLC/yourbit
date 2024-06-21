@@ -56,6 +56,7 @@ function yb_goHome() {
     $(CONTENT_CONTAINER).html("");
     yb_setSessionValues("location", "home")
     $(CONTENT_CONTAINER).load('/bits/templates/bitstream/');
+    yb_revertUIColor();
 }
 
 function yb_toggleSettingsMenu() {

@@ -15,6 +15,7 @@ lang="en"
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <link rel="manifest" href="{% static 'manifest.json' %}">
         <meta name = "theme-color" content = "#000000">
+        
         <!--Root CSS Variables-->
         <style>
             :root {
@@ -155,17 +156,23 @@ lang="en"
         <!--Customization values for loading dynamic pages-->
         <input 
             type='hidden' 
-            id='custom-values' 
-            data-primary-color="{{custom_bit.primary_color}}" 
-            data-secondary-color="{{custom_bit.accent_color}}"
-            data-text-color="{{custom_bit.text_color}}" 
-            data-title-color="{{custom_bit.title_color}}" 
-            data-fb-icon-color="{{custom_bit.feedback_icon_color}}" 
-            data-fb-background-color="{{custom_bit.feedback_background_color}}" 
+            id='user-custom-info' 
+            data-bit-primary-color="{{custom_bit.primary_color}}" 
+            data-bit-accent-color="{{custom_bit.accent_color}}"
+            data-bit-text-color="{{custom_bit.text_color}}" 
+            data-bit-title-color="{{custom_bit.title_color}}" 
+            data-bit-icon-color="{{custom_bit.feedback_icon_color}}" 
+            data-bit-background-color="{{custom_bit.button_color}}" 
             data-wallpaper = "{{user_wallpaper}}" 
-            data-icon-color="{{custom_interface.icon_color}}" 
-            data-background-blur = "{{background_blur}}" 
-            data-background-brightness = "{{background_brightness}}" 
+            data-ui-panel-color="{{user_custom_ui.primary_color}}"
+            data-ui-accent-color="{{user_custom_ui.accent_color}}"
+            data-ui-text-color="{{user_custom_ui.text_color}}"
+            data-ui-title-color="{{user_custom_ui.title_color}}"
+            data-ui-button-color="{{user_custom_ui.button_color}}"
+            data-ui-button-text-color="{{user_custom_ui.button_text_color}}"
+            data-ui-icon-color="{{user_custom_ui.icon_color}}" 
+            data-wp-background-blur = "{{background_blur}}" 
+            data-wp-background-brightness = "{{background_brightness}}" 
             data-bit-colors-on = "{{custom_core.bit_colors_on}}"
             data-only-my-colors = "{{custom_core.only_my_colors}}"
         > 

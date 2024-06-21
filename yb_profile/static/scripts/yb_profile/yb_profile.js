@@ -6,17 +6,6 @@ try {
 
 }
 
-var custom_index = [
-    'panel-color',
-    'accent-color',
-    'text-color',
-    'icon-color',
-    'title-color',
-    'button-color',
-    'button-text-color'
-
-]
-
 
 var base_url = window.location.origin;
 var isSwiping = false;
@@ -48,17 +37,6 @@ var interact_texts = document.getElementsByClassName("profile-interact-text");
 function showProfileImage(){
     $(".large-profile-image").animate({"height": "150px", "width":"150px"}, 'fast');
     
-}
-
-function yb_setProfileUI() {
-    for (let i = 0; i < custom_index.length; i++) {
-        let this_style = profile_custom_info.getAttribute(`data-${custom_index[i]}`);
-        console.log(this_style);
-        console.log(custom_index[i])
-        changeColor(`--yb-${custom_index[i]}`, this_style);
-    }
-
-
 }
 
 function yb_enterProfile() {

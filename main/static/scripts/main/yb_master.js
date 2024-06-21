@@ -61,12 +61,13 @@ const TOP_LAYER = document.getElementById("top-layer");
 const FLOATING_TEXT_CONTAINER = document.getElementById("floating-text");
 const FLOATING_TEXT_INPUT = document.getElementById("input-floating-text");
 
-const CUSTOM_VALUES = document.getElementById("custom-values");
+const CUSTOM_VALUES = document.getElementById("user-custom-info");
 
 const MAIN_LOADING_SCREEN = document.getElementById("yb-loading-main");
 const SUBSCRIPTION_BANNER = document.getElementById("notification-permission-banner");
 
 const BG_IMAGE = document.getElementById("bg-image");
+
 
 const VAPID_PUBLIC_KEY = "BDAIHj_HT2qvxVsrE-pvZOGc2TcJeMKUIM0LxStPASodefcu9fucQndG9XSONnd04finmXAueTLmxqBjv9q6H7g";
 
@@ -91,6 +92,16 @@ const year = currentDate.getFullYear();
 
 // Format the date as "MonthName day, year"
 const formattedDate = `${month} ${day}, ${year}`;
+
+const custom_index = [
+    'panel-color',
+    'accent-color',
+    'text-color',
+    'icon-color',
+    'title-color',
+    'button-color',
+    'button-text-color'
+]
 
 var MAIN_TEMPLATE_INDEX = {
     "customize-main": "/customize/templates/customize/main/",
@@ -195,6 +206,28 @@ function changeColor(property, value) {
     document.documentElement.style.setProperty(property, value);
 }
 
+function yb_setProfileUI() {
+    for (let i = 0; i < custom_index.length; i++) {
+        let this_style = profile_custom_info.getAttribute(`data-${custom_index[i]}`);
+        console.log(this_style);
+        console.log(custom_index[i])
+        changeColor(`--yb-${custom_index[i]}`, this_style);
+    }
+
+
+}
+
+function yb_revertUIColor() {
+    for (let i = 0; i < custom_index.length; i++) {
+        console.log("reverting color")
+        console.log(custom_index[i])
+        let this_data = CUSTOM_VALUES.getAttribute(`data-ui-${custom_index[i]}`);
+        console.log(this_data);
+        changeColor('--yb-' + custom_index[i], this_data);
+    }
+}
+
+
 function yb_launch2WayContainer(page) {
     let this_page = TWO_WAY_INDEX[page];
     console.log("settings shown")
@@ -255,6 +288,8 @@ function yba_createSequence(animation, class_name, delay, duration, iterations=1
     }
 
 }
+
+
 
 
 function yb_resize2Way(size=1) {
@@ -680,7 +715,8 @@ function yb_startBitStream() {
         SEARCH_POPOUT.classList.remove("hide");
         yb_setSessionValues("fullscreen", "false");
     }   
-    yb_setSessionValues("location", "home")
+    yb_setSessionValues("location", "home");
+    
     $(CONTENT_CONTAINER).load('/bits/templates/bitstream/');
 }
 
