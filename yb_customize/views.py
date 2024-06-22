@@ -187,16 +187,26 @@ class CustomizeBit(View):
         pass
 
 def user_custom_repair(request):
+    failures = 0
+    successes = 0
+
     for user in User.objects.all():
         try:
             custom_core = CustomCore.objects.get(profile=user.profile)
             theme = custom_core.theme
             custom_ui = CustomUI.objects.get(theme=theme)
+            successes += 1
+
         except:
+            failures += 1
             custom_core = CustomCore.objects.get(profile=user.profile)
             theme = custom_core.theme
             custom_ui = CustomUI.objects.create(theme=theme)
             custom_ui.save()
+
+    return JsonResponse({"successes": successes, "failures": failures})
+
+    
 
 class CustomizeBitView(View):  
     def get(self, request):
