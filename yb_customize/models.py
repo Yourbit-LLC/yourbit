@@ -169,16 +169,7 @@ class CustomBit(CustomBase):
     username_color = models.CharField(max_length=50, default="#ffffff")
 
 
-for user in User.objects.all():
-    try:
-        custom_core = CustomCore.objects.get(profile=user.profile)
-        theme = custom_core.theme
-        custom_ui = CustomUI.objects.get(theme=theme)
-    except:
-        custom_core = CustomCore.objects.get(profile=user.profile)
-        theme = custom_core.theme
-        custom_ui = CustomUI.objects.create(theme=theme)
-        custom_ui.save()
+
 
 
     
