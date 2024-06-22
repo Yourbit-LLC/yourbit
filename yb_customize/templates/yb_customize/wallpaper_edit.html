@@ -14,11 +14,26 @@
     <section>
         <form id="wallpaper-form" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <input type="file" name="wallpaper" id="wallpaper" style="display:none;">
-            <button id="new-image-button" class="yb-button-wide rounded font-white" style="padding: 10px 10px 10px 10px; height: 40px !important; background-color: #3399ff">New Image</button>
-            <button id="new-image-button" class="yb-button-wide rounded font-white" style="padding: 10px 10px 10px 10px; height: 40px !important; background-color: darkgreen;">Toggle Wallpaper: ON</button>
-            <input type="range" id="wallpaper-brightness" value="80" step="5" max="100" min="0">
-            <input type="range" id="wallpaper-blur" value="40" step="5" max="120" min="0">
+            <div class="yb-hblock-2 yb-gap10 yb-center-margin lr" style="width: 95%;">
+                <input type="file" name="wallpaper" id="wallpaper" style="display:none;">
+                <div class="yb-hblock-2 squared" style="height: 40px; background-color: rgba(25, 25, 25, 0.8); padding: 5px 5px 5px 5px;" >
+                    <button id="new-image-button" class="yb-button-wide rounded font-white" style="margin: auto; width: 160px; p5adding: 10px 10px 10px 10px; height: 40px !important; background-color: darkgreen; grid-column: 1;">Toggle Wallpaper: ON</button>
+                    <button id="new-image-button" class="yb-button-wide rounded font-white" style="margin: auto; width: 160px; padding: 10px 10px 10px 10px; height: 40px !important; background-color: #3399ff grid-column: 2;">Change Image</button>
+                    
+                </div>
+                <div style="text-align: left; height: 40px; background-color: rgba(25, 25, 25, 0.8); padding: 5px 5px 5px 5px;" class="squared">
+                    <div class="yb-hblock-2">
+                        <label for="wallpaper_brightness" >Brightness</label>
+                        <input type="range" id="wallpaper-brightness" name="wallpaper_brightness" value="80" step="5" max="100" min="0" style="width: 120px;">
+                    </div>
+                    
+                    <div class="yb-hblock-2">
+                        <label for="wallpaper_blur">Blur</label>
+                        <input type="range" id="wallpaper-blur" name="wallpaper_blur" value="40" step="5" max="120" min="0" style="width: 120px;">
+                    </div>
+                    
+                </div>
+            </div>
         </form>
     </section>
     <br>
