@@ -186,6 +186,8 @@ Profile Page
     width: 100vw;
     top: 0px;
     background-color: var(--yb-panel-color);
+    transition: 0.5s;
+    overflow: hidden;
 }
 
 .splash-page.end {    
