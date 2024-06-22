@@ -316,6 +316,7 @@ function yb_collapse2Way() {
     for (let i = 0; i < SIDE_CONTAINERS.length; i++) {
         if (SIDE_CONTAINERS[i].classList.contains("open")) {
             SIDE_CONTAINERS[i].classList.remove("expanded");
+            SIDE_CONTAINERS[i].classList.remove("expanded2");
             break;
         }
     }
