@@ -186,6 +186,18 @@ class CustomizeBit(View):
     def post(self, request):
         pass
 
+def user_custom_repair(request):
+    for user in User.objects.all():
+        try:
+            custom_core = CustomCore.objects.get(profile=user.profile)
+            theme = custom_core.theme
+            custom_ui = CustomUI.objects.get(theme=theme)
+        except:
+            custom_core = CustomCore.objects.get(profile=user.profile)
+            theme = custom_core.theme
+            custom_ui = CustomUI.objects.create(theme=theme)
+            custom_ui.save()
+
 class CustomizeBitView(View):  
     def get(self, request):
         if request.user.is_authenticated:
