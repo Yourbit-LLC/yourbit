@@ -113,6 +113,8 @@ class CustomUI(CustomBase):
     
     translucency = models.BooleanField(default=False)
 
+    logo_color = models.CharField(max_length=50, default="#ffffff")
+
     blur = models.BooleanField(default=False)
     blur_amt = models.CharField(max_length=10, default="20")
 
