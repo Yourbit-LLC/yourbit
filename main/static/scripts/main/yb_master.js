@@ -202,6 +202,7 @@ const TWO_WAY_INDEX = {
           
 };
 
+
 function changeColor(property, value) {
     document.documentElement.style.setProperty(property, value);
 }
@@ -209,8 +210,7 @@ function changeColor(property, value) {
 function yb_setProfileUI() {
     for (let i = 0; i < custom_index.length; i++) {
         let this_style = profile_custom_info.getAttribute(`data-${custom_index[i]}`);
-        console.log(this_style);
-        console.log(custom_index[i])
+
         changeColor(`--yb-${custom_index[i]}`, this_style);
     }
 
@@ -219,10 +219,9 @@ function yb_setProfileUI() {
 
 function yb_revertUIColor() {
     for (let i = 0; i < custom_index.length; i++) {
-        console.log("reverting color")
-        console.log(custom_index[i])
+
         let this_data = CUSTOM_VALUES.getAttribute(`data-ui-${custom_index[i]}`);
-        console.log(this_data);
+        
         changeColor('--yb-' + custom_index[i], this_data);
     }
 }
