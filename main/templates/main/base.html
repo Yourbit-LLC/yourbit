@@ -231,6 +231,12 @@ lang="en"
                 <defs>
                     <style>
                         {% if custom_core.ui_colors_on %}
+                            .cls-1 {
+                                fill: {{user_custom_ui.icon_color}};
+                                stroke-width: 0px;
+                            }
+
+                        {% else %}
                             @media (prefers-color-scheme: dark){
                                 .cls-1 {
                                 fill: gray;
@@ -243,11 +249,6 @@ lang="en"
                                 fill: gray;
                                 stroke-width: 0px;
                                 }
-                            }
-                        {% else %}
-                            .cls-1 {
-                                fill: {{user_custom_ui.icon_color}};
-                                stroke-width: 0px;
                             }
                         {% endif %}
                     </style>
@@ -307,6 +308,11 @@ lang="en"
                 <defs>
                     <style>
                         {% if custom_core.ui_colors_on %}
+                            .cls-1 {
+                                fill: {{user_custom_ui.icon_color}};
+                                stroke-width: 0px;
+                            }
+                        {% else %}
                             @media (prefers-color-scheme: dark){
                                 .cls-1 {
                                 fill: gray;
@@ -320,11 +326,7 @@ lang="en"
                                 stroke-width: 0px;
                                 }
                             }
-                        {% else %}
-                            .cls-1 {
-                                fill: {{user_custom_ui.icon_color}};
-                                stroke-width: 0px;
-                            }
+       
                         {% endif %}
                         </style>
                     </defs>

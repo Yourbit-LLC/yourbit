@@ -485,84 +485,12 @@ p {
 }
     
 
-@media (prefers-color-scheme: light) {
-    
-    
-    #logo-name {
-        color: rgb(102, 51, 153);
-    }
 
-    .yb-logo-masthead {
-        /*Positioning*/
-        position: relative;
-        margin: auto;
-        fill: black;
-        /*Style*/
-        cursor: pointer;
-    }
 
-    .yb-logo-masthead.mobile {
-        position: absolute;
-        display: block;
-        fill: black;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        height: 30px;
-    }
-
-    .yb-header-logo {
-        /*Positioning*/
-        position: relative;
-        margin: auto 0;
-
-        /*Sizing*/
-        height: 40px;
-        width: 40px;
-
-        /*Style*/
-        cursor: pointer;
-    }
+#logo-name {
+    color: var(--yb-icon-color);
 }
 
-@media (prefers-color-scheme: dark) {
-    
-    #logo-name {
-        color: rgb(153, 102, 203);
-    }
-
-    .yb-logo-masthead {
-        /*Positioning*/
-        position: relative;
-        margin: auto;
-        fill: white;
-        /*Style*/
-        cursor: pointer;
-    }
-
-    .yb-logo-masthead.mobile {
-        position: absolute;
-        display: block;
-        fill: white;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        height: 30px;
-    }
-
-    .yb-header-logo {
-        /*Positioning*/
-        position: relative;
-        margin: auto 0;
-
-        /*Sizing*/
-        height: 40px;
-        width: 40px;
-
-        /*Style*/
-        cursor: pointer;
-    }
-}
 
 .yb-header-logo:hover {
     opacity: 0.8;
