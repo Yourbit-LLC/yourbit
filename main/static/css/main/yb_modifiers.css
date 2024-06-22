@@ -233,7 +233,9 @@
     background-color: #4b4b4b;
 }
 
-
+.yb-pHead {
+    color: gray;
+}
 
 @media screen and (prefers-color-scheme: light) {
     .yb-bg-autoGray {

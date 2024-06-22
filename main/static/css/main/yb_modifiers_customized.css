@@ -503,13 +503,13 @@
 }
 /* Text Modifiers */
 
-    .yb-autoText {
-        /*Style*/
-        color: var(--yb-text-color);
-    }
+.yb-pHead {
+    color: var(--yb-title-color) !important;
+}
 
-
-
+.yb-pText {
+    color: var(--yb-text-color) !important;
+}
 
 
 /* media query for light mode text */
