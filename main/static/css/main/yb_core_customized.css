@@ -347,6 +347,8 @@ p {
 
 .space-button-icon {
     fill: var(--yb-icon-color);
+    filter: brightness(80%) saturate(80%);
+    -webkit-filter: brightness(80%) (80%);
     transition: 0.5s;
 }
 @media (prefers-color-scheme: dark) {
@@ -582,13 +584,13 @@ p {
 }
 
 
-    .yb-icon {
-        fill: var(--yb-icon-color);
-    }
+.yb-icon {
+    fill: var(--yb-icon-color);
+}
 
-    .yb-path {
-        fill: var(--yb-icon-color);
-    }
+.yb-path {
+    fill: var(--yb-icon-color);
+}
 
 
 .yb-icon:hover {

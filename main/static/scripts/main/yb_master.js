@@ -201,11 +201,18 @@ const TWO_WAY_INDEX = {
             "url" : ""
         },
 
-    "cropper-background":
+    "cropper-desktop-background":
         {
             "template" : "/photo/templates/cropper/background/",
             "url" : ""
         },
+
+    "cropper-mobile-background":
+        {
+            "template" : "/photo/templates/cropper/background/",
+            "url" : ""
+        },
+        
     "profile-image-upload":
         {
             "template" : "/customize/templates/profile-image/",
@@ -764,6 +771,7 @@ function yb_startBitStream() {
         CREATE_POPOUT.classList.remove("hide");
         SEARCH_POPOUT.classList.remove("hide");
         yb_setSessionValues("fullscreen", "false");
+        yb_revertUIColor();
     }   
     yb_setSessionValues("location", "home");
     
