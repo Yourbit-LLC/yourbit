@@ -67,6 +67,7 @@ const MAIN_LOADING_SCREEN = document.getElementById("yb-loading-main");
 const SUBSCRIPTION_BANNER = document.getElementById("notification-permission-banner");
 
 const BG_IMAGE = document.getElementById("bg-image");
+const BG_IMAGE_SOURCE = document.getElementById("bg-image-source");
 
 
 const VAPID_PUBLIC_KEY = "BDAIHj_HT2qvxVsrE-pvZOGc2TcJeMKUIM0LxStPASodefcu9fucQndG9XSONnd04finmXAueTLmxqBjv9q6H7g";
@@ -208,7 +209,7 @@ function changeColor(property, value) {
 }
 
 function yb_changeWallpaper(value) {
-    BG_IMAGE.setAttribute("src", value);
+    BG_IMAGE_SOURCE.setAttribute("src", value);
 }
 
 function yb_setProfileUI() {
