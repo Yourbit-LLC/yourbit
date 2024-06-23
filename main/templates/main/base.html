@@ -139,12 +139,12 @@ lang="en"
     
     
     
-    <body onload="{{start_function | safe}}">
+    <body onload="{{start_function | safe}}" >
         <input id='csrf-token' type='hidden' value={{csrf_token}}>
 
         <div class="yb-background-overlay">
         </div>
-        <div id="bg-image" class="yb-background-image">
+        <div id="bg-image" class="yb-background-image yb-bg-autoGray">
             <img style="min-width:100%; min-height: 100%;" id="bg-image-source" src="{{wallpaper.url}}"></img>
         </div>
         

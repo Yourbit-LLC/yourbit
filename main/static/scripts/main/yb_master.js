@@ -252,7 +252,7 @@ function changeColor(property, value) {
 }
 
 function yb_changeWallpaper(value) {
-    BG_IMAGE_SOURCE.setAttribute("src", value);
+    BG_IMAGE_SOURCE.src = value;
 }
 
 function yb_setProfileUI() {
@@ -263,6 +263,7 @@ function yb_setProfileUI() {
     }
 
     let this_wallpaper = yb_getProfileData("background");
+    console.log("This wallpaper: " + this_wallpaper)
     yb_changeWallpaper(this_wallpaper);
 
 
