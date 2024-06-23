@@ -383,7 +383,7 @@ $(document).ready(function() {
 
     yb_setProfileUI();
 
-    if (yb_getProfileData("background-enabled") === "true") {
+    if (yb_getProfileData("background-enabled") === "True") {
         CONTENT_CONTAINER.classList.remove("yb-bg-autoGray");
         CONTENT_CONTAINER.classList.add("yb-bg-transparent");
     } else {

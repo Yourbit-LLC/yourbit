@@ -334,14 +334,12 @@ function yba_createSequence(animation, class_name, delay, duration, iterations=1
     let these_targets = document.querySelectorAll(class_name);
     for (let i = 0; i < iterations; i++) {
         for (let i = 0; i < these_targets.length; i++) {
-            these_targets[i].style.animation = `${animation} ${duration}s ease-in-out ${delay}s forwards`;
+            setTimeout(function() {
+                these_targets[i].style.animation = `${animation} ${duration}s ease-in-out`;
+            }, delay);
         }
     }
-
 }
-
-
-
 
 function yb_resize2Way(size=1) {
     let container = document.getElementById("yb-dynamic-2way-a");
