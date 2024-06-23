@@ -21,6 +21,11 @@ try {
     var color_circles = document.querySelectorAll('.color-circle');
     var panel_color_circle = document.getElementById('ui-panel-color-circle');
     var color_inputs = document.querySelectorAll('.color-input');
+    var core_stylesheet = document.getElementById('yb-stylesheet-core');
+    var button_stylesheet = document.getElementById('yb-stylesheet-button');
+    var container_stylesheet = document.getElementById('yb-stylesheet-container');
+    var modifier_stylesheet = document.getElementById('yb-stylesheet-modifier');
+
 
     
 } catch (e) {
@@ -47,6 +52,10 @@ try {
     color_circles = document.querySelectorAll('.color-circle');
     panel_color_circle = document.getElementById('ui-panel-color-circle');
     color_inputs = document.querySelectorAll('.color-input');
+    core_stylesheet = document.getElementById('yb-stylesheet-core');
+    button_stylesheet = document.getElementById('yb-stylesheet-button');
+    container_stylesheet = document.getElementById('yb-stylesheet-container');
+    modifier_stylesheet = document.getElementById('yb-stylesheet-modifier');
 }
 
 
@@ -58,7 +67,26 @@ function activateSetButtons() {
     });
 }
 
+function sendUIToggle() {
+    let csrf_token = getCSRF();
 
+    $.ajax({
+        type: 'POST',
+        url: '/customize/ui/toggle/',
+        headers: {
+            'X-CSRFToken': csrf_token
+        },
+        success: function (response) {
+            console.log(response);
+            showNotification(expandNotification, "Custom UI Toggled");
+        },
+        error: function (response) {
+            console.log(response);
+            showNotification(expandNotification, "Something went wrong...");
+        }
+    });
+
+}
 
 function toggleUICustomizations() {
     if (custom_ui_toggle.classList.contains('active')) {
@@ -68,6 +96,7 @@ function toggleUICustomizations() {
         custom_ui_toggle.innerHTML = 'Custom UI: <b>OFF</b>';
         custom_ui_toggle.classList.add("fast");
         custom_ui_toggle.classList.add("yb-bounceDown-once");
+        yb_changeUIState('default');
         setTimeout(function () {
             custom_ui_toggle.classList.remove("yb-bounceDown-once");
             custom_ui_toggle.classList.remove("fast");
@@ -80,11 +109,14 @@ function toggleUICustomizations() {
         custom_ui_toggle.innerHTML = 'Custom UI: <b>ON</b>';
         custom_ui_toggle.classList.add("fast");
         custom_ui_toggle.classList.add("yb-bounceDown-once");
+        yb_changeUIState('modded');
         setTimeout(function () {
             custom_ui_toggle.classList.remove("yb-bounceDown-once");
             custom_ui_toggle.classList.remove("fast");
         }
             , 1000);
+
+
     }
 
 }
@@ -255,6 +287,7 @@ $(document).ready(function () {
     button_foreground_input.addEventListener('input', change_button_foreground);
     header_color_input.addEventListener('input', change_title_color);
     text_color_input.addEventListener('input', change_text_color);
+    custom_ui_toggle.addEventListener('click', toggleUICustomizations);
 
     save_button.addEventListener('click', saveUIEdits);
 

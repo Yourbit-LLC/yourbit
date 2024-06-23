@@ -60,37 +60,45 @@ lang="en"
         {% if custom_core.ui_colors_on %}
             <link 
                 rel="stylesheet" 
+                id="yb-stylesheet-modifier"
                 href="{% static 'css/main/yb_modifiers_customized.css' %}"/>
 
             <link 
                 rel="stylesheet" 
+                id="yb-stylesheet-core"
                 href="{% static 'css/main/yb_core_customized.css' %}"/>
 
                 
             <link 
                 rel="stylesheet" 
+                id="yb-stylesheet-container"
                 href="{% static 'css/main/yb_containers_customized.css' %}"/>
 
             <link 
                 rel="stylesheet" 
+                id="yb-stylesheet-button"
                 href="{% static 'css/main/yb_buttons_customized.css' %}"/>
 
         {% else %}
             <link 
                 rel="stylesheet" 
+                id="yb-stylesheet-core"
                 href="{% static 'css/main/yb_core.css' %}"/>
 
             
             <link 
                 rel="stylesheet" 
+                id="yb-stylesheet-container"
                 href="{% static 'css/main/yb_containers.css' %}"/>
 
             <link 
                 rel="stylesheet" 
+                id="yb-stylesheet-modifier"
                 href="{% static 'css/main/yb_modifiers.css' %}"/>
 
             <link 
                 rel="stylesheet" 
+                id="yb-stylesheet-button"
                 href="{% static 'css/main/yb_buttons.css' %}"/>
 
 

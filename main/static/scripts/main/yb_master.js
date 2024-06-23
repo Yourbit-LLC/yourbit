@@ -2,6 +2,7 @@
 //Yourbit, LLC - 2023
 //Author: Austin Chaney
 //Date: 10/26/2023
+//Modified: 06/22/2024
 
 
 //Master contains functions that are used by multiple pages
@@ -104,10 +105,27 @@ const custom_index = [
     'button-text-color'
 ]
 
-var MAIN_TEMPLATE_INDEX = {
+const CORE_TEMPLATE_INDEX = {
+    "home": "/bits/templates/bitstream/",
     "customize-main": "/customize/templates/customize/main/",
     "profile": "/profile/templates/profile/",
 };
+
+const DEFAULT_STYLESHEET_INDEX = {
+    "yb-stylesheet-core": "/static/css/main/yb_core.css",
+    "yb-stylesheet-modifier": "/static/css/main/yb_modifiers.css",
+    "yb-stylesheet-button": "/static/css/main/yb_buttons.css",
+    "yb-stylesheet-container": "/static/css/main/yb_containers.css",
+    "yb-stylesheet-bit": "/static/css/yb_bits/yb_bits.css",
+}
+
+const MODDED_STYLESHEET_INDEX = {
+    "yb-stylesheet-core": "/static/css/main/yb_core_customized.css",
+    "yb-stylesheet-modifier": "/static/css/main/yb_modifiers_customized.css",
+    "yb-stylesheet-button": "/static/css/main/yb_buttons_customized.css",
+    "yb-stylesheet-container": "/static/css/main/yb_containers_customized.css",
+    "yb-stylesheet-bit": "/static/css/yb_bits/yb_bits_customized.css",
+}
 
 const TWO_WAY_INDEX = {
     "create": 
@@ -202,6 +220,31 @@ const TWO_WAY_INDEX = {
     
           
 };
+
+function yb_swapSheets(state, sheet_name) {
+    if (state === "default") {
+        let sheet = DEFAULT_STYLESHEET_INDEX[sheet_name];
+        document.getElementById(sheet_name).setAttribute("href", sheet);
+    } else if (state === "modded") {
+        let sheet = MODDED_STYLESHEET_INDEX[sheet_name];
+        document.getElementById(sheet_name).setAttribute("href", sheet);
+    }
+}
+
+function yb_changeUIState(state) {
+    if (state === "default") {
+        yb_swapSheets("default", "yb-stylesheet-core");
+        yb_swapSheets("default", "yb-stylesheet-modifier");
+        yb_swapSheets("default", "yb-stylesheet-button");
+        yb_swapSheets("default", "yb-stylesheet-container");
+    } else if (state === "modded") {
+        yb_swapSheets("modded", "yb-stylesheet-core");
+        yb_swapSheets("modded", "yb-stylesheet-modifier");
+        yb_swapSheets("modded", "yb-stylesheet-button");
+        yb_swapSheets("modded", "yb-stylesheet-container");
+    }
+}
+
 
 
 function changeColor(property, value) {

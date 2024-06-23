@@ -159,6 +159,34 @@ def get_wallpaper(request, profile_class, type):
     print("wallpaper => " + str(wallpaper))
     return FileResponse(wallpaper, content_type="image/png")
 
+def toggle_only_my_colors(request):
+    custom_core = CustomCore.objects.get(profile=request.user.profile)
+    custom_core.only_my_colors = not custom_core.only_my_colors
+    custom_core.save()
+
+    return JsonResponse({"success": "success"})
+
+def toggle_custom_ui(request):
+    custom_core = CustomCore.objects.get(profile=request.user.profile)
+    custom_core.ui_colors_on = not custom_core.ui_colors_on
+    custom_core.save()
+
+    return JsonResponse({"success": "success"})   
+
+def toggle_custom_bits(request):
+    custom_core = CustomCore.objects.get(profile=request.user.profile)
+    custom_core.bit_colors_on = not custom_core.bit_colors_on
+    custom_core.save()
+
+    return JsonResponse({"success": "success"})
+
+def toggle_wallpaper(request):
+    custom_core = CustomCore.objects.get(profile=request.user.profile)
+    custom_core.wallpaper_on = not custom_core.wallpaper_on
+    custom_core.save()
+
+    return JsonResponse({"success": "success"})
+
 class CustomizeUI(View):
     def get(self, request):
         profile = Profile.objects.get(user=request.user)
@@ -206,7 +234,6 @@ def user_custom_repair(request):
 
     return JsonResponse({"successes": successes, "failures": failures})
 
-    
 
 class CustomizeBitView(View):  
     def get(self, request):
@@ -253,7 +280,8 @@ class CustomizeBitView(View):
         custom_bit.save()
 
         return JsonResponse({"success": "success"})
-    
+
+
 
 class CustomizeUIView(View):
     def get(self, request):

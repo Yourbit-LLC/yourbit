@@ -81,6 +81,26 @@ function activateSetButtons() {
     });
 }
 
+function yb_sendBitToggle() {
+    let csrf_token = getCSRF();
+    $.ajax({
+        type: 'POST',
+        url: '/customize/bit/toggle/',
+        headers: {
+            'X-CSRFToken': csrf_token
+        },
+        success: function (response) {
+            console.log(response);
+            showNotification(expandNotification, "Bit Colors Off");
+        },
+        error: function (response) {
+            console.log(response);
+            showNotification(expandNotification, "Something went wrong...");
+        }
+    });
+}
+
+
 
 
 function toggleBitCustomizations() {
@@ -91,11 +111,14 @@ function toggleBitCustomizations() {
         customization_toggle.innerHTML = 'Custom Bits: <b>OFF</b>';
         customization_toggle.classList.add("fast");
         customization_toggle.classList.add("yb-bounceDown-once");
+        
         setTimeout(function () {
             customization_toggle.classList.remove("yb-bounceDown-once");
             customization_toggle.classList.remove("fast");
         }
             , 1000);
+
+        yb_sendBitToggle();
     } else {
         customization_toggle.classList.remove('yb-red');
         customization_toggle.classList.add('active');
@@ -103,11 +126,14 @@ function toggleBitCustomizations() {
         customization_toggle.innerHTML = 'Custom Bits: <b>ON</b>';
         customization_toggle.classList.add("fast");
         customization_toggle.classList.add("yb-bounceDown-once");
+        
         setTimeout(function () {
             customization_toggle.classList.remove("yb-bounceDown-once");
             customization_toggle.classList.remove("fast");
         }
             , 1000);
+
+        yb_sendBitToggle();
     }
 
 }
