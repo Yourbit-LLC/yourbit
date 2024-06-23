@@ -207,12 +207,19 @@ function changeColor(property, value) {
     document.documentElement.style.setProperty(property, value);
 }
 
+function yb_changeWallpaper(value) {
+    BG_IMAGE.setAttribute("src", value);
+}
+
 function yb_setProfileUI() {
     for (let i = 0; i < custom_index.length; i++) {
         let this_style = profile_custom_info.getAttribute(`data-${custom_index[i]}`);
 
         changeColor(`--yb-${custom_index[i]}`, this_style);
     }
+
+    let this_wallpaper = yb_getProfileData("background");
+    yb_changeWallpaper(this_wallpaper);
 
 
 }

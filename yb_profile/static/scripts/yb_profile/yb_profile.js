@@ -1,8 +1,10 @@
 try {
     var profile_custom_info = document.getElementById("profile-custom-info");
+    var profile_data = document.getElementById("profile-data");
 
 } catch {
     profile_custom_info = document.getElementById("profile-custom-info");
+    profile_data = document.getElementById("profile-data");
 
 }
 
@@ -33,6 +35,10 @@ var SWIPE_UP_ELEMENT = document.getElementById("swipe-up-element");
 
 var interact_texts = document.getElementsByClassName("profile-interact-text");
 
+function yb_getProfileData(key) {
+    let data = profile_data.getAttribute("data-" + key);
+    return data;
+}
 
 function showProfileImage(){
     $(".large-profile-image").animate({"height": "150px", "width":"150px"}, 'fast');
