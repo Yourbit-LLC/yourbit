@@ -7,7 +7,7 @@ try {
     var name_preview = document.getElementById('bit-name-preview');
     var username_preview = document.getElementById('bit-username-preview');
     var pfp_preview = document.getElementById('bit-image-preview');
-    var color_selectors = document.querySelectorAll('.yb-color-circle');
+    var color_selectors = document.querySelectorAll('.color-circle');
     var color_inputs = document.querySelectorAll('.color-input');
     var customization_toggle = document.getElementById('custom-bit-toggle');
     var set_buttons = document.querySelectorAll('.be-set-button');
@@ -177,6 +177,15 @@ $(document).ready(function () {
         console.log(element.getAttribute('name') + "-color-picker");
         element.addEventListener('input', updateColorPreview);
     });
+
+    color_selectors.forEach(function (element) {
+        element.addEventListener('click', function (e) {
+            let this_input = e.currentTarget;
+            let color_option = this_input.getAttribute('name');
+            $(`#${color_option}-color-picker`).click();
+        });
+    });
+
 
     customization_toggle.addEventListener('click', toggleBitCustomizations);
     customization_toggle.classList.add("yb-bounceDown-1");

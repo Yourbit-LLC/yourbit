@@ -364,8 +364,8 @@ p {
         -webkit-filter: brightness(0%);
         transition: 0.5s;
     }
-
 }
+
 .yb-search-form.desktop {
     /* Positioning */
     margin: auto;
