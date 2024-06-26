@@ -40,11 +40,11 @@
     <div class="yb-hblock-41 responsive" style="padding: 10px 10px 10px 10px;">
         <div class="wp-desktop-preview">
             <div class="wp-desktop-preview-inner" style="position: relative;">
-                {% if wallpaper_desktop.url %}
+                {% if wallpaper_desktop.url != "" %}
                     <img src="{{wallpaper_desktop.url}}" style="max-width: 100%; max-height: 400px; border-radius: 10px; box-shadow: 1px 1px 5px black;" class="wp-desktop-preview-image">
 
                 {% else %}
-                    <img src="{% static 'images/desktop-wallpaper-placeholder.png' %}" style="max-width: 100%; max-height: 400px; border-radius: 10px; box-shadow: 1px 1px 5px black;" class="wp-desktop-preview-image">
+                    <img src="{% static 'images/main/desktop-wallpaper-placeholder.png' %}" style="max-width: 100%; max-height: 400px; border-radius: 10px; box-shadow: 1px 1px 5px black;" class="wp-desktop-preview-image">
                 {% endif %}
                 
 
@@ -55,10 +55,10 @@
         </div>
         <div class="wp-mobile-preview" >
             <div class="wp-mobile-preview-inner">
-                {% if wallpaper_mobile.url %}
+                {% if wallpaper_mobile.url != ""%}
                     <img src="{{wallpaper_mobile.url}}" style="max-width: 100%; max-height: 400px; border-radius: 10px; box-shadow: 1px 1px 5px black;" class="wp-mobile-preview-image">
                 {% else %}
-                    <img src="{% static 'images/mobile-wallpaper-placeholder.png' %}" style="max-width: 100%; max-height: 400px; border-radius: 10px; box-shadow: 1px 1px 5px black;" class="wp-mobile-preview-image">
+                    <img src="{% static 'images/main/mobile-wallpaper-placeholder.png' %}" style="max-width: 100%; max-height: 400px; border-radius: 10px; box-shadow: 1px 1px 5px black;" class="wp-mobile-preview-image">
                 {% endif %}
             </div>
             <button class="yb-button-wide rounded align-center" style="width: 100px; margin: auto;">
