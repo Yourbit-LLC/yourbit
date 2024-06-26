@@ -48,9 +48,9 @@ class ProfileImage(models.Model):
 
 class Wallpaper(models.Model):
     profile = models.ForeignKey('yb_profile.Profile', related_name='wallpaper', blank=True, on_delete=models.CASCADE, null=True)
-    background_image = models.ImageField(upload_to='profile/background/%Y/%m/%d', blank=True, default="media/aqua_default_theme.png")
-    background_mobile = models.ImageField(upload_to='profile/background/%Y/%m/%d', blank=True, default="media/aqua_default_theme.png")
-    background_desktop = models.ImageField(upload_to='profile/background/%Y/%m/%d', blank=True, default="media/aqua_default_theme.png")
+    background_image = models.ImageField(upload_to='profile/background/%Y/%m/%d', blank=True, default="static/images/main/desktop-wallpaper-plceholder.png")
+    background_mobile = models.ImageField(upload_to='profile/background/%Y/%m/%d', blank=True, default="static/images/main/mobile-wallpaper-placeholder.png")
+    background_desktop = models.ImageField(upload_to='profile/background/%Y/%m/%d', blank=True, default="static/images/main/desktop-wallpaper-placeholder.png")
 
     def __str__(self):
         try:
