@@ -167,9 +167,3 @@ class CustomBit(CustomBase):
     comment_text_color = models.CharField(max_length=50, default="#ffffff")
     name_color = models.CharField(max_length=50, default="#ffffff")
     username_color = models.CharField(max_length=50, default="#ffffff")
-
-
-
-
-
-    
