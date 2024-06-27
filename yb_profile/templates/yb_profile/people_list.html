@@ -1,6 +1,6 @@
 {% if connections %}
 {% for connection in connections %}
-    <div id="result-people-{{connection.id}}" class="yb-listItem yb-autoText people-item" data-catid="{{connection.id}}" data-username="{{connection.username}}">
+    <div id="result-people-{{connection.id}}" class="yb-listItem yb-autoText people-item" data-catid="{{connection.id}}" data-username="{{connection.username}}" onclick="yb_toggle2WayContainer('people')">
 
         <div class="full-result-image-container">
                 <img class="full-result-image" style="width:100%; position: relative;" src="{{connection.custom.profile_image.medium_thumbnail.url}}">
@@ -21,8 +21,10 @@
                     console.log("Added event listener")
                     people_list_items[i].addEventListener("click", yb_navigateToProfile);
                 }
+
             
         });
+
 
     </script>
 {% else %}
