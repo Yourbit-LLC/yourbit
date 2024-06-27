@@ -18,18 +18,34 @@
 <form class="yb-fillWidth yb-vScroll yb-autoText yb-margin-T10 align-center" method="POST" action="{% url 'settings_profile' %}" style="height: calc(100% - 300px); border-radius: 15px; padding-bottom: 150px;">
 
     {% csrf_token %}
-    <div id="display-contact-email" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">Display Email: </p><input name="email" id='field-email' value="{{profile_info.email}}" class="yb-input-transparent right yb-pText profile-field" style="grid-column: 2;"></div>
 
-      <div id="display-phone" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">Display Phone: </p><input name="phone_number" id='field-display-phone' value="{{profile_info.phone_number}}" class="yb-input-transparent right yb-pText profile-field" style="grid-column: 2;"></div>
+        <div id="bio-preview-container" class="yb-padding-ALL5 font-medium squared yb-bg-autogray yb-pText yb-margin-T10">
 
+        <div id="display-contact-email" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">Display Email: </p><input name="email" id='field-email' value="{{profile_info.email}}" class="yb-input-transparent right yb-pText profile-field" style="grid-column: 2;"></div>
 
-        <div id="display-street-address" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">Street Address: </p><input name="address" id='field-street-address' value="{{profile_info.address}}" class="yb-input-transparent right yb-pText profile-field" style="grid-column: 2;"></div>
+        <div id="display-phone" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">Display Phone: </p><input name="phone_number" id='field-display-phone' value="{{profile_info.phone_number}}" class="yb-input-transparent right yb-pText profile-field" style="grid-column: 2;"></div>
 
-        <div id="display-city" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">City: </p><input name="city" id='field-city' value="{{profile_info.city}}" class="yb-input-transparent right yb-pText profile-field" style="grid-column: 2;"></div>
+        
 
-        <div id="display-state" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">State: </p><input name="state" id='field-state' value="{{profile_info.state}}" class="yb-input-transparent right yb-pText profile-field" style="grid-column: 2;"></div>
+        <div id="display-street-address" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;">
+            <p class="field-cover-label align-left" style="grid-column: 1;">Street Address: </p>
+            <input name="address" id='field-street-address' value="{{profile_info.address}}" class="yb-input-transparent right yb-pText profile-field" style="grid-column: 2;">
+        </div>
 
-        <div id="display-website" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">First Name: </p><input name="website" id='field-website' value="{{profile_info.website}}" class="yb-input-transparent right yb-pText profile-field" style="grid-column: 2;"></div>
+        <div id="display-city" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;">
+            <p class="field-cover-label align-left" style="grid-column: 1;">City: </p>
+            <input name="city" id='field-city' value="{{profile_info.city}}" class="yb-input-transparent right yb-pText profile-field" style="grid-column: 2;">
+        </div>
+
+        <div id="display-state" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;">
+            <p class="field-cover-label align-left" style="grid-column: 1;">State: </p>
+            <input name="state" id='field-state' value="{{profile_info.state}}" class="yb-input-transparent right yb-pText profile-field" style="grid-column: 2;">
+        </div>
+
+        <div id="display-website" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;">
+            <p class="field-cover-label align-left" style="grid-column: 1;">First Name: </p>
+            <input name="website" id='field-website' value="{{profile_info.website}}" class="yb-input-transparent right yb-pText profile-field" style="grid-column: 2;">
+        </div>
 
       
 </form>

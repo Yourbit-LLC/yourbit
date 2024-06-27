@@ -108,7 +108,8 @@ const custom_index = [
 const CORE_TEMPLATE_INDEX = {
     "home": "/bits/templates/bitstream/",
     "customize-main": "/customize/templates/customize/main/",
-    "profile": "/profile/templates/profile/",
+    "profile": `/profile/templates/profile/`,
+    
 };
 
 const DEFAULT_STYLESHEET_INDEX = {
@@ -212,7 +213,7 @@ const TWO_WAY_INDEX = {
             "template" : "/photo/templates/cropper/background/",
             "url" : ""
         },
-        
+
     "profile-image-upload":
         {
             "template" : "/customize/templates/profile-image/",

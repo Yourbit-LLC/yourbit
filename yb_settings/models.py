@@ -59,10 +59,16 @@ class NotificationSettings(models.Model):
 
     notifications_enabled = models.BooleanField(default=True)
 
+    app_notifications = models.BooleanField(default=True)
+    store_notifications = models.BooleanField(default=True)
+
     #New Post Notifications
+    bit_notifications = models.BooleanField(default=True)
     bits_from_friends = models.BooleanField(default=True)
     bits_from_following = models.BooleanField(default=True)
     bits_from_communities = models.BooleanField(default=True)
+    bits_batched_notifications = models.BooleanField(default=True)
+    bits_batched_notification_interval = models.IntegerField(default=1)
 
     new_user_bits_from =  models.ManyToManyField(Profile, blank=True, related_name='custom_list')
     new_orbit_bits_from =  models.ManyToManyField(Orbit, blank=True, related_name='custom_list_orbit')
