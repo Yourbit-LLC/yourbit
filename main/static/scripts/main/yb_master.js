@@ -289,8 +289,16 @@ function yb_revertUIColor() {
         changeColor('--yb-' + custom_index[i], this_data);
     }
 
-    let this_wallpaper = yb_getCustomValues("wallpaper");
-    yb_changeWallpaper(this_wallpaper);
+    let wallpaper_enabled = yb_getCustomValues("wallpaper-on");
+    if (wallpaper_enabled === "True") {
+        let wallpaper = yb_getCustomValues("wallpaper");
+        yb_changeWallpaper(wallpaper);
+    } else {
+        BG_IMAGE.style.display = "none";
+        CONTENT_CONTAINER.classList.remove("yb-bg-transparent");
+        CONTENT_CONTAINER.classList.add("yb-bg-autoGray");
+    }
+
 }
 
 
