@@ -229,6 +229,10 @@ const TWO_WAY_INDEX = {
           
 };
 
+function yb_getCustomValues(key){
+    CUSTOM_VALUES.getAttribute("data-" + key);
+}
+
 function yb_swapSheets(state, sheet_name) {
     if (state === "default") {
         let sheet = DEFAULT_STYLESHEET_INDEX[sheet_name];
@@ -284,6 +288,9 @@ function yb_revertUIColor() {
         
         changeColor('--yb-' + custom_index[i], this_data);
     }
+
+    let this_wallpaper = yb_getCustomValues("wallpaper");
+    yb_changeWallpaper(this_wallpaper);
 }
 
 
@@ -1382,12 +1389,6 @@ function yb_acceptOption(this_id) {
     yb_acceptRequest(this_id);
     yb_closeCard();
 }
-
-function yb_getCustomValues(key){
-    CUSTOM_VALUES.getAttribute("data-" + key);
-}
-
-
 
 
 $(document).ready(function() {
