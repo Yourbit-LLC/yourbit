@@ -52,7 +52,7 @@ lang="en"
         
 
 
-        {% if custom_core.ui_colors_on == True%}
+        {% if custom_core.ui_colors_on == "True" %}
             <link 
                 rel="stylesheet" 
                 id="yb-stylesheet-modifier"
@@ -185,6 +185,7 @@ lang="en"
             data-ui-icon-color="{{user_custom_ui.icon_color}}" 
             data-wp-background-blur = "{{background_blur}}" 
             data-wp-background-brightness = "{{background_brightness}}" 
+            data-custom-ui-on = "{{custom_core.ui_colors_on}}"
             data-bit-colors-on = "{{custom_core.bit_colors_on}}"
             data-only-my-colors = "{{custom_core.only_my_colors}}"
         > 
