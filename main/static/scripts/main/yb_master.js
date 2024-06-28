@@ -263,8 +263,25 @@ function changeColor(property, value) {
     document.documentElement.style.setProperty(property, value);
 }
 
-function yb_changeWallpaper(value) {
-    BG_IMAGE_SOURCE.src = value;
+
+function yb_changeWallpaper(value, profile=false) {
+    if (profile) {
+        var wallpaper_enabled = yb_getProfileData("wallpaper-on");
+        
+    } else {
+        var wallpaper_enabled = yb_getCustomValues("wallpaper-on");
+    }
+
+    if (wallpaper_enabled === "True") {
+        BG_IMAGE.style.display = "block";
+        BG_IMAGE_SOURCE.src = value;
+        
+    } else {
+        BG_IMAGE.style.display = "none";
+        CONTENT_CONTAINER.classList.remove("yb-bg-transparent");
+        CONTENT_CONTAINER.classList.add("yb-bg-autoGray");
+    }
+    
 }
 
 function yb_setProfileUI() {
@@ -276,7 +293,7 @@ function yb_setProfileUI() {
 
     let this_wallpaper = yb_getProfileData("background");
     console.log("This wallpaper: " + this_wallpaper)
-    yb_changeWallpaper(this_wallpaper);
+    yb_changeWallpaper(this_wallpaper, true);
 
 
 }
@@ -289,15 +306,9 @@ function yb_revertUIColor() {
         changeColor('--yb-' + custom_index[i], this_data);
     }
 
-    let wallpaper_enabled = yb_getCustomValues("wallpaper-on");
-    if (wallpaper_enabled === "True") {
-        let wallpaper = yb_getCustomValues("wallpaper");
-        yb_changeWallpaper(wallpaper);
-    } else {
-        BG_IMAGE.style.display = "none";
-        CONTENT_CONTAINER.classList.remove("yb-bg-transparent");
-        CONTENT_CONTAINER.classList.add("yb-bg-autoGray");
-    }
+    let this_wallpaper = yb_getCustomValues("wallpaper");
+    yb_changeWallpaper(this_wallpaper);
+
 
 }
 
