@@ -275,6 +275,8 @@ function yb_changeWallpaper(value, profile=false) {
     if (wallpaper_enabled === "True") {
         BG_IMAGE.style.display = "block";
         BG_IMAGE_SOURCE.src = value;
+        CONTENT_CONTAINER.classList.remove("yb-bg-autoGray");
+        CONTENT_CONTAINER.classList.add("yb-bg-transparent");
         
     } else {
         BG_IMAGE.style.display = "none";

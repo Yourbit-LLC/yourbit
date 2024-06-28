@@ -382,15 +382,7 @@ $(document).ready(function() {
     console.log(user_id)
 
     yb_setProfileUI();
-
-    if (yb_getProfileData("wallpaper-on") == "True") {
-        CONTENT_CONTAINER.classList.remove("yb-bg-autoGray");
-        CONTENT_CONTAINER.classList.add("yb-bg-transparent");
-    } else {
-        CONTENT_CONTAINER.classList.remove("yb-bg-transparent");
-        CONTENT_CONTAINER.classList.add("yb-bg-autoGray");
-    }
-                                                                                                                             
+                                                                                                               
     let swipe_up_element = document.getElementById("swipe-up-element");
     
     button_connect.addEventListener("click", yb_handleConnectClick);
