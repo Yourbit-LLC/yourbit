@@ -177,7 +177,7 @@ Profile Page
     height: 40px;
 }
 
-.splash-page.profile {
+.yb-fsContainer.profile {
     backdrop-filter: blur(20px) brightness(50%);
     -webkit-backdrop-filter: blur(20px) brightness(50%);
     position: fixed;
@@ -190,7 +190,7 @@ Profile Page
     overflow: hidden;
 }
 
-.splash-page.end {    
+.yb-fsContainer.end {    
     height: 80px !important;
     top: 60px !important;
     width: 100vw !important;
