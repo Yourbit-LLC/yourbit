@@ -52,11 +52,10 @@ def Customization(request):
             wallpaper_desktop = None
 
 
-        if custom.ui_colors_on:
-            custom_ui = CustomUI.objects.get(theme=theme)
+        
+        custom_ui = CustomUI.objects.get(theme=theme)
 
-        else:
-            custom_ui = None
+
 
 
         context = {

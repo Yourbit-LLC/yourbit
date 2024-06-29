@@ -102,6 +102,10 @@ function toggleUICustomizations() {
             custom_ui_toggle.classList.remove("fast");
         }
             , 1000);
+        sendUIToggle();
+        for (var i = 0; i < LOGO_PATHS.length; i++) {
+            LOGO_PATHS[i].style.fill = 'gray';
+        }
     } else {
         custom_ui_toggle.classList.remove('yb-red');
         custom_ui_toggle.classList.add('active');
@@ -115,6 +119,11 @@ function toggleUICustomizations() {
             custom_ui_toggle.classList.remove("fast");
         }
             , 1000);
+
+        sendUIToggle();
+        for (var i = 0; i < LOGO_PATHS.length; i++) {
+            LOGO_PATHS[i].style.fill = 'var(--yb-icon-color)';
+        }
 
 
     }

@@ -52,7 +52,7 @@ lang="en"
         
 
 
-        {% if custom_core.ui_colors_on == "True" %}
+        {% if custom_core.ui_colors_on %}
             <link 
                 rel="stylesheet" 
                 id="yb-stylesheet-modifier"
@@ -240,7 +240,7 @@ lang="en"
                     transform: translateX(-50%);">
                 <defs>
                     <style>
-                        {% if custom_core.ui_colors_on %}
+                        {% if custom_core.ui_colors_on == "True" %}
                             .cls-1 {
                                 fill: {{user_custom_ui.icon_color}};
                                 stroke-width: 0px;

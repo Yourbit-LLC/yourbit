@@ -73,7 +73,7 @@ const BG_IMAGE_SOURCE = document.getElementById("bg-image-source");
 
 const VAPID_PUBLIC_KEY = "BDAIHj_HT2qvxVsrE-pvZOGc2TcJeMKUIM0LxStPASodefcu9fucQndG9XSONnd04finmXAueTLmxqBjv9q6H7g";
 
-
+const LOGO_PATHS = document.querySelectorAll(".cls-1");
 
 const TIME_KEEPER = document.getElementById("time-keeper-node");
 var clock_isTicking = false;
