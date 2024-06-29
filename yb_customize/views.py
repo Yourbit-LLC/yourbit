@@ -19,6 +19,27 @@ from yb_profile.models import Profile, Orbit
 from yb_photo.models import Photo
 from yb_photo.utility import process_image
 
+class CustomizeMain(View):
+    def get(request, *args, **kwargs):
+                                
+        if request.user.is_authenticated:
+            init_params = initialize_session(request)
+            return render(
+                request, 
+                "main/index.html",
+                {
+                    'first_login': request.user.first_login,
+                    'location': init_params['last_location'],
+                    'space': init_params['current_space'],
+                    'filter': init_params['filter_chain'],
+                    'sort': init_params['sort_by'],   
+                    'start_function': 'customize_url();',    
+                },
+
+            )
+
+        
+
 
 class CustomizeMenu(View):
     def get(self, request):
