@@ -265,20 +265,27 @@ function changeColor(property, value) {
 
 
 function yb_changeWallpaper(value, profile=false) {
+    let wallpaper_enabled;
     if (profile) {
-        var wallpaper_enabled = yb_getProfileData("wallpaper-on");
+        wallpaper_enabled = yb_getProfileData("wallpaper-on");
+        console.log("Retrieving wallpaper data from profile");
         
     } else {
-        var wallpaper_enabled = yb_getCustomValues("wallpaper-on");
+        console.log("Retrieving wallpaper data from base");
+        wallpaper_enabled = CUSTOM_VALUES.getAttribute("data-wallpaper-on");
     }
 
-    if (wallpaper_enabled === "True") {
+    
+
+    if (wallpaper_enabled == "True") {
+        console.log("Wallpaper enabled " + wallpaper_enabled )
         BG_IMAGE.style.display = "block";
         BG_IMAGE_SOURCE.src = value;
         CONTENT_CONTAINER.classList.remove("yb-bg-autoGray");
         CONTENT_CONTAINER.classList.add("yb-bg-transparent");
         
     } else {
+        console.log("Wallpaper display " + wallpaper_enabled )
         BG_IMAGE.style.display = "none";
         CONTENT_CONTAINER.classList.remove("yb-bg-transparent");
         CONTENT_CONTAINER.classList.add("yb-bg-autoGray");
@@ -308,8 +315,8 @@ function yb_revertUIColor() {
         changeColor('--yb-' + custom_index[i], this_data);
     }
 
-    let this_wallpaper = yb_getCustomValues("wallpaper");
-    yb_changeWallpaper(this_wallpaper);
+    let this_wallpaper = CUSTOM_VALUES.getAttribute("data-wallpaper");
+    yb_changeWallpaper(this_wallpaper, false);
 
 
 }
