@@ -248,12 +248,12 @@ function yb_changeUIState(state) {
         yb_swapSheets("default", "yb-stylesheet-core");
         yb_swapSheets("default", "yb-stylesheet-modifier");
         yb_swapSheets("default", "yb-stylesheet-button");
-        yb_swapSheets("default", "yb-stylesheet-container");
+        // yb_swapSheets("default", "yb-stylesheet-container");
     } else if (state === "modded") {
         yb_swapSheets("modded", "yb-stylesheet-core");
         yb_swapSheets("modded", "yb-stylesheet-modifier");
         yb_swapSheets("modded", "yb-stylesheet-button");
-        yb_swapSheets("modded", "yb-stylesheet-container");
+        // yb_swapSheets("modded", "yb-stylesheet-container");
     }
 }
 
