@@ -37,6 +37,10 @@
     }
 }
 
+.yb-bText {
+    color: var(--yb-button-text-color);
+}
+
 
 .yb-button-popout.left {
     left: 7px;
