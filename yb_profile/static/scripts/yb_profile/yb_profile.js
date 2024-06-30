@@ -382,7 +382,7 @@ $(document).ready(function() {
     console.log(user_id)
 
     yb_setProfileUI();
-                                                                                                               
+    PROFILE_SPLASH_SCREEN.classList.add("profile");                                                                                                               
     let swipe_up_element = document.getElementById("swipe-up-element");
     
     button_connect.addEventListener("click", yb_handleConnectClick);
