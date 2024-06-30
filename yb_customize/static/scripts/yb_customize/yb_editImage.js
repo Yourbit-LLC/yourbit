@@ -40,8 +40,6 @@ function new_image_handler() {
 
 function finishProfileImage(){
     cropped_photo = cropper.getCroppedCanvas().toDataURL();
-
-    
     
     yb_2WayPage(1, "profile-image-edit");
 

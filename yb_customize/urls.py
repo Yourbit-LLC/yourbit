@@ -6,6 +6,7 @@ from .views import *
 urlpatterns = [
     path("bit/", CustomizeBitView.as_view(), name="customize_bit"),
     path("ui/", CustomizeUIView.as_view(), name="customize_ui"),
+    path("profile/", CustomizeProfileView.as_view(), name="customize_profile"),
     path("repair-custom-ui/", user_custom_repair, name="repair_custom_ui"),
     path("bit/toggle/", toggle_custom_bits, name="toggle_bit"),
     path("ui/toggle/", toggle_custom_ui, name="toggle_ui"),

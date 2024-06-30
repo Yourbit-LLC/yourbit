@@ -22,8 +22,10 @@ lang="en"
                 --yb-panel-color: {{user_custom_ui.primary_color}};
                 --yb-bit-color: {{custom_bit.primary_color}};
                 --yb-secondary-color: {{custom_bit.accent_color}};
-                --yb-text-color: {{custom_bit.text_color}};
-                --yb-title-color: {{custom_bit.title_color}};
+                --yb-text-color: {{user_custom_ui.text_color}};
+                --yb-title-color: {{user_custom_ui.title_color}};
+                --yb-bit-text-color: {{custom_bit.text_color}};
+                --yb-bit-title-color: {{custom_bit.title_color}};
                 --yb-fb-icon-color: {{custom_bit.icon_color}};
                 --yb-fb-background-color: {{custom_bit.button_color}};
                 --yb-icon-color: {{user_custom_ui.icon_color}};
@@ -643,6 +645,10 @@ lang="en"
                 <!--Dynamic content will load here-->
             </div>
 
+            <div class="yb-2Way-tetriary yb-fillContainer" id="yb-2way-tetriary-b">
+                <!--Dynamic content will load here-->
+            </div>
+
         </div>
 
         <div class="yb-2Way-container yb-panel" id="yb-dynamic-2way-b" data-state="empty">
@@ -664,6 +670,11 @@ lang="en"
             <div class="yb-2Way-secondary yb-fillContainer" id="yb-2way-secondary-a">
                 <!--Dynamic content will load here-->
                 <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M120-120v-320h80v184l504-504H520v-80h320v320h-80v-184L256-200h184v80H120Z"/></svg>
+            </div>
+
+            
+            <div class="yb-2Way-tetriary yb-fillContainer" id="yb-2way-tetriary-a">
+                <!--Dynamic content will load here-->
             </div>
 
         </div>

@@ -204,7 +204,7 @@ const TWO_WAY_INDEX = {
 
     "cropper-desktop-background":
         {
-            "template" : "/photo/templates/cropper/background/",
+            "template" : "/photo/templates/cropper/desktop-wallpaper/",
             "url" : ""
         },
 

@@ -1,6 +1,6 @@
 try {
     var new_image_button = document.getElementById("new-image-button");
-    var new_image_input = document.getElementById("wallpaper-image-upload");
+    var new_image_input = document.getElementById("background-image-upload");
     
     var hue_slider = document.getElementById("avatar-hue-slider");
     var enable_transparency = document.getElementById("enable-transparency");
@@ -8,7 +8,7 @@ try {
 
 } catch {
     new_image_button = document.getElementById("new-image-button");
-    new_image_input = document.getElementById("profile-image-upload");
+    new_image_input = document.getElementById("background-image-upload");
     image_preview = document.getElementById("profile-image-preview");
     hue_slider = document.getElementById("avatar-hue-slider");
     enable_transparency = document.getElementById("enable-transparency");
@@ -30,30 +30,30 @@ function yb_saveWallpaperImage() {
     new_image_button.addEventListener("click", new_image_handler);
 }
 
+function cropWallpaperImage(){
+    yb_2WayPage(2, "cropper-desktop-background");
+}
+
 function new_image_handler() {
     new_image_input.click();
-
-    new_image_button.removeEventListener("click", new_image_handler);
+    new_image_input.addEventListener("change", cropWallpaperImage);
 
 }
 
-function finishWallpaperImage(){
+function finishDesktopBackgroundImage(){
     cropped_photo = cropper.getCroppedCanvas().toDataURL();
 
-    yb_2WayPage(1, "background-image-edit");
+    yb_2WayPage(3, "cropper-mobile-background");
 
-    let this_image = yb_renderImage(cropped_photo, "profile-icon", `profile-image-preview`, "Preview Image");
-    this_image.setAttribute("style", "height: 100%; width: 100%; object-fit: cover;");
-    image_preview.innerHTML = "";
-    image_preview.appendChild(this_image);
+    cropped_desktop_photo = cropped_photo;
 
-    let photo_upload_field = document.getElementById("background-image-upload");
-    source = photo_upload_field.files[0];
+}
 
-    
-    new_image_button.addEventListener("click", yb_saveWallpaperImage);
+function finishMobileBackgroundImage(){
+    cropped_photo = cropper.getCroppedCanvas().toDataURL();
+    cropped_mobile_photo = cropped_photo;
 
-
+    yb_2WayPage(1, "background-image-upload");
 }
 
 $(document).ready(function() {
@@ -62,7 +62,7 @@ $(document).ready(function() {
     new_image_button.addEventListener("click", new_image_handler);
 
     new_image_input.addEventListener("change", function() {
-        yb_2WayPage(2, "cropper-background");
+        yb_2WayPage(2, "cropper-desktop-background");
         new_image_button.innerHTML = "Save Image";
         new_image_button.style.backgroundColor = "green";
 

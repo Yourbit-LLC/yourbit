@@ -235,6 +235,7 @@ class CustomizeBit(View):
     def post(self, request):
         pass
 
+
 def user_custom_repair(request):
     failures = 0
     successes = 0
@@ -354,6 +355,40 @@ class CustomizeUIView(View):
         custom_ui.save()
 
         return HttpResponse("success")
+    
+class CustomizeProfileView(View):
+    def get(self, request):
+        if request.user.is_authenticated:
+            init_params = initialize_session(request)
+            return render(
+                request, 
+                "main/index.html",
+                {
+                    'first_login': request.user.first_login,
+                    'location': init_params['last_location'],
+                    'space': init_params['current_space'],
+                    'filter': init_params['filter_chain'],
+                    'sort': init_params['sort_by'],   
+                    'start_function': 'customize_profile_splash_url()',    
+                },
+
+            )
+        
+        else:
+            from yb_accounts.forms import RegistrationForm, LoginForm
+            registration_form = RegistrationForm()
+            login_form = LoginForm()
+            return render(
+                request,
+                "registration/login.html",
+                {
+                    'state': 'home',
+                    'registration_form': registration_form,
+                    'login_form': login_form,
+                }
+            )
+    def post(self, request):
+        pass
 
 class WallpaperUpload(View):
     def get(self, request):
