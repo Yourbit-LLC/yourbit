@@ -246,41 +246,56 @@ const TWO_WAY_INDEX = {
         "offsetY": 0,
         "width": 0,
         "height": 0,
-        "rotation": 0deg,
+        "rotation": 0,
         "scale": 1,
-}
+    }
+
+    The instance-id will be used to query the object in the dragon_object_instances object
 
 */
 
+var first_move = true;
 var dragon_object_instances = {};
+var dragon_target;
+var clone_count = 0;
+
+function duplicateObject(object) {
+    let new_object = object.cloneNode(true);
+    return new_object;
+}
+
+function reparentObject(object, new_parent) {
+    new_parent.appendChild(object);
+}
 
 function yb_dragonMouseMove(event) {
-    let target = event.target;
-    let data = dragon_object_instances[target.id];
+    let target = dragon_target;
+    let target_id = target.getAttribute("data-catid");
+    let data = dragon_object_instances[target_id];
 
-    let newX = data["startX"] - event.clientX;
-    let newY = data["startY"] - event.clientY;
 
-    data["startX"] = event.clientX;
-    data["startY"] = event.clientY;
+    let newX = data.startX - event.clientX;
+    let newY = data.startY - event.clientY;
+
+    data.startX = event.clientX;
+    data.startY = event.clientY;
 
     target.style.left = (target.offsetLeft - newX) + "px";
     target.style.top = (target.offsetTop - newY) + "px";
-
-
-
-};
-
-function yb_dragonMouseUp(event) {
-    let target = event.currentTarget;
-    target.removeEventListener("mousemove", yb_dragonMouseMove);
-
 }
 
-function yb_createDragonInstance(id) {
-    let dragon_instance = document.getElementById(id);
+function yb_createDragonInstance(dragon_instance, clone=false) {
 
-    dragon_object_instances[id] = {
+    console.log("Creating dragon instance")
+    let instance_id;
+
+    if (clone) {
+        instance_id = dragon_instance.id;
+    } else {
+        instance_id = dragon_instance.getAttribute("data-catid");
+    }
+
+    dragon_object_instances[instance_id] = {
         "startX": 0,
         "startY": 0,
         "newX": 0,
@@ -290,23 +305,88 @@ function yb_createDragonInstance(id) {
         "rotation": 0,
         "scale": 1,
     }
-
-    dragon_instance.addEventListener("mousedown", yb_dragonDrop);
+    if (!clone) {
+        dragon_instance.addEventListener("mousedown", yb_dragonDrop);
+    } else {
+        dragon_instance.addEventListener("mousedown", function() {yb_dragonDrop(event, true)});
+    }
 }
-    
 
-function yb_dragonDrop(event) {
+function yb_deleteDragonInstance(instance_id) {
+
+    delete dragon_object_instances[instance_id];
+}
+
+function yb_deleteSticker(event) {
+    event.preventDefault();
     let target = event.currentTarget;
 
-    let data = dragon_object_instances[target.id];
+    yb_deleteDragonInstance();
+    target.remove();
+}
+    
+function yb_dragonMouseUp(event) {
+    
+    document.removeEventListener("mousemove", yb_dragonMouseMove);
+    yb_createDragonInstance(dragon_target, true);
+    //right click to delete
+    dragon_target.addEventListener("contextmenu", yb_deleteSticker);
+    
+    dragon_target = null;
 
-    data["startX"] = event.clientX;
-    data["startY"] = event.clientY;
 
-    target.addEventListener("mousemove", yb_dragonMouseMove);
-    target.addEventListener("mouseup", yb_dragonMouseUp);
+}
+
+function yb_dragonDrop(event, clone=false) {
+    console.log("running dragon drop")
+    event.preventDefault();
+    let target = event.currentTarget;
+
+
+    let target_id = target.getAttribute("data-catid");
+    console.log(target_id)
+    let data = dragon_object_instances[target_id];
+    console.log(data)
+
+    //Set the initial position of the object
+
+    data.startX = event.clientX;
+    data.startY = event.clientY;
+
+    if (!clone || event.shiftKey) {
+        clone = target.cloneNode(true);
+        clone.style.position = "fixed";
+        clone.style.zIndex = "1000";
+        CONTENT_CONTAINER.appendChild(clone);
+
+        // Set the initial position of the clone
+        clone.style.left = event.clientX + "px";
+        clone.style.top = event.clientY + "px";
+        clone.style.transform = "translate(-50%, -50%)"; // Center the clone
+        clone_count += 1;
+        clone.id = `dragon-clone-${clone_count}`;
+        dragon_target = clone;
+
+        if (event.shiftKey) {
+            target.remove();
+        }
+    } else {
+        //check if shift key is down
+        target.style.left = event.clientX + "px";
+        target.style.top = event.clientY + "px";
+        target.style.transform = "translate(-50%, -50%)"; // Center the clone
+
+        dragon_target = target;
+    }
+ 
+    document.addEventListener("mousemove", yb_dragonMouseMove);
+    document.addEventListener("mouseup", yb_dragonMouseUp);
+
+    yb_closeDrawer();
     
 }
+
+
 
 function yb_getCustomValues(key){
     CUSTOM_VALUES.getAttribute("data-" + key);

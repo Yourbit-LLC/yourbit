@@ -13,6 +13,8 @@ function yb_searchStickers(search_term) {
 
 $(document).ready(function() {
     //search when user presses enter in search input
+
+    
     $(search_input).on("change keyup", function(e) {
         if (e.key === "Enter") {
             yb_searchStickers(this.value);

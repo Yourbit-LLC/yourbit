@@ -871,6 +871,7 @@ p {
     /* Optional: Set fixed height for each grid item */
     height: 100px;
     width: 100px;
+    z-index: 1000;
   }
   
   .yb-dynamic-grid-img {
