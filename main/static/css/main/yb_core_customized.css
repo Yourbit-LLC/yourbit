@@ -851,3 +851,31 @@ p {
         background-color: rgba(255, 255, 255, 0.2);
     }
 }
+
+.sticker-list-container {
+    position: relative;
+    top: 50px;
+    height: 27vh;
+}
+
+.yb-dynamic-gridContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Adjusted auto-fill */
+    gap: 10px;
+    max-width: 800px; /* Optional: Limit width of grid */
+    height: 27vh;
+  }
+  
+  .yb-dynamic-gridItem {
+    overflow: hidden;
+    /* Optional: Set fixed height for each grid item */
+    height: 100px;
+    width: 100px;
+  }
+  
+  .yb-dynamic-grid-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures images maintain aspect ratio and cover the container */
+  }
+  

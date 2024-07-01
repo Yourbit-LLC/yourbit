@@ -84,6 +84,8 @@ class CustomPage(CustomBase):
     button_border_style = models.CharField(max_length=50, default="solid")
     button_border_color = models.CharField(max_length=50, default="#ffffff")
 
+    stickers = models.ManyToManyField('Sticker', related_name='custom_page', blank=True)
+
 
 class CustomMenu(CustomBase):
     theme = models.ForeignKey(Theme, on_delete=models.CASCADE, default=None, related_name="custom_main_menu")
@@ -105,6 +107,8 @@ class CustomMenu(CustomBase):
     #Borders
     image_border_style = models.CharField(max_length=50, default="solid")
     image_border_color = models.CharField(max_length=50, default="#ffffff")
+
+    stickers = models.ManyToManyField('Sticker', related_name='custom_menu', blank=True)
     
     
 class CustomUI(CustomBase):
@@ -158,6 +162,8 @@ class CustomSplash(CustomBase):
     button_border_style = models.CharField(max_length=50, default="solid")
     button_border_color = models.CharField(max_length=50, default="#ffffff")
 
+    stickers = models.ManyToManyField('Sticker', related_name='custom_splash', blank=True)
+
 class CustomBit(CustomBase):
     theme = models.ForeignKey(Theme, on_delete=models.CASCADE, default=None, related_name="custom_bit")
     
@@ -167,3 +173,19 @@ class CustomBit(CustomBase):
     comment_text_color = models.CharField(max_length=50, default="#ffffff")
     name_color = models.CharField(max_length=50, default="#ffffff")
     username_color = models.CharField(max_length=50, default="#ffffff")
+
+class Sticker(models.Model):
+    image = models.CharField(max_length=500, default=None)
+    x_pos = models.FloatField(default=0)
+    y_pos = models.FloatField(default=0)
+    scale = models.FloatField(default=1)
+    rotation = models.FloatField(default=0)
+    z_index = models.IntegerField(default=0)
+    in_animation = models.CharField(max_length=50, default="none")
+    in_speed = models.IntegerField(default=0)
+    in_delay = models.IntegerField(default=0)
+    idle_animation = models.CharField(max_length=50, default="none")
+    idle_duration = models.IntegerField(default=0)
+    out_animation = models.CharField(max_length=50, default="none")
+    out_speed= models.IntegerField(default=0)
+    

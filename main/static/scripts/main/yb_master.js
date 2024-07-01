@@ -70,6 +70,9 @@ const SUBSCRIPTION_BANNER = document.getElementById("notification-permission-ban
 const BG_IMAGE = document.getElementById("bg-image");
 const BG_IMAGE_SOURCE = document.getElementById("bg-image-source");
 
+const DRAWER = document.getElementById("core-drawer-container");
+const DRAWER_INNER = document.getElementById("drawer-content");
+
 
 const VAPID_PUBLIC_KEY = "BDAIHj_HT2qvxVsrE-pvZOGc2TcJeMKUIM0LxStPASodefcu9fucQndG9XSONnd04finmXAueTLmxqBjv9q6H7g";
 
@@ -126,6 +129,10 @@ const MODDED_STYLESHEET_INDEX = {
     "yb-stylesheet-button": "/static/css/main/yb_buttons_customized.css",
     "yb-stylesheet-container": "/static/css/main/yb_containers_customized.css",
     "yb-stylesheet-bit": "/static/css/yb_bits/yb_bits_customized.css",
+}
+
+const DRAWER_CONTENT = {
+    "browse-stickers": "/customize/stickers/browse/",
 }
 
 const TWO_WAY_INDEX = {
@@ -228,6 +235,78 @@ const TWO_WAY_INDEX = {
     
           
 };
+
+/*
+
+    Data Structure for Dragon Object Instances
+    "instance-id": {
+        "startX": 0,
+        "startY": 0,
+        "offsetX": 0,
+        "offsetY": 0,
+        "width": 0,
+        "height": 0,
+        "rotation": 0deg,
+        "scale": 1,
+}
+
+*/
+
+var dragon_object_instances = {};
+
+function yb_dragonMouseMove(event) {
+    let target = event.target;
+    let data = dragon_object_instances[target.id];
+
+    let newX = data["startX"] - event.clientX;
+    let newY = data["startY"] - event.clientY;
+
+    data["startX"] = event.clientX;
+    data["startY"] = event.clientY;
+
+    target.style.left = (target.offsetLeft - newX) + "px";
+    target.style.top = (target.offsetTop - newY) + "px";
+
+
+
+};
+
+function yb_dragonMouseUp(event) {
+    let target = event.currentTarget;
+    target.removeEventListener("mousemove", yb_dragonMouseMove);
+
+}
+
+function yb_createDragonInstance(id) {
+    let dragon_instance = document.getElementById(id);
+
+    dragon_object_instances[id] = {
+        "startX": 0,
+        "startY": 0,
+        "newX": 0,
+        "newY": 0,
+        "width": 0,
+        "height": 0,
+        "rotation": 0,
+        "scale": 1,
+    }
+
+    dragon_instance.addEventListener("mousedown", yb_dragonDrop);
+}
+    
+
+function yb_dragonDrop(event) {
+    let target = event.currentTarget;
+
+    let data = dragon_object_instances[target.id];
+
+    data["startX"] = event.clientX;
+    data["startY"] = event.clientY;
+
+    target.addEventListener("mousemove", yb_dragonMouseMove);
+    target.addEventListener("mouseup", yb_dragonMouseUp);
+    
+}
 
 function yb_getCustomValues(key){
     CUSTOM_VALUES.getAttribute("data-" + key);
@@ -338,6 +417,20 @@ function yb_launch2WayContainer(page) {
         history.pushState({}, "", this_page.url);
 
     }
+}
+
+
+
+function yb_openDrawer(template) {
+    
+    DRAWER.classList.add("open");
+    $(DRAWER_INNER).load(DRAWER_CONTENT[template]);
+
+}
+
+function yb_closeDrawer() {
+    DRAWER.classList.remove("open");
+    DRAWER_INNER.innerHTML = "";    
 }
 
 function yb_2WayPage(index, page="") {

@@ -6,6 +6,12 @@ from PIL import Image
 from main.views import initialize_session
 from yb_customize.models import *
 from django.utils import timezone, dateformat
+import requests
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
+
 
 # Create your views here.
 class CustomizeProfile(View):
@@ -395,6 +401,82 @@ class WallpaperUpload(View):
 
         
         return render(request, "yb_customize/wallpaper_edit.html")
+    
+    def post(self, request):
+        pass
+
+def retrieve_sticker_list(query=None):
+        api_key = env("GIPHY_API_KEY")
+        if query:
+            giphy_url = f'https://api.giphy.com/v1/stickers/search?api_key={api_key}&q={query}&limit=25&offset=0&rating=g&lang=en'
+        else:
+            giphy_url = f'https://api.giphy.com/v1/stickers/trending?api_key={api_key}&limit=25&offset=0&rating=g&bundle=messaging_non_clips'
+        
+        response = requests.get(giphy_url)
+        data = response.json()
+        
+        
+        data = data['data']
+
+        
+
+        sticker_list = []
+        sticker_iteration = 0
+
+        #For each key in data
+        for item in data:
+            print('\n\n' + str(sticker_iteration) + '\n\n')
+            print(item)
+            
+            
+            sticker_list.append({
+                "url": item['images']['original']['url'],
+                "title": item['title'],
+                "id": item['id'],
+                "username": item['username'],
+            
+            })
+            sticker_iteration += 1
+
+
+
+        is_stickers = True
+
+        print(sticker_list)
+
+        return sticker_list, is_stickers
+
+class StickerList(View):
+    def get(self, request, query=None):
+        #Make API Request to giphy for random list
+
+        
+        print('\n\n\n')
+        print("Retrieving search results for " + query)
+        sticker_response = retrieve_sticker_list(query)
+
+        context = {
+            'sticker_list': sticker_response[0],
+            'is_stickers': sticker_response[1],
+        }
+
+
+        return render(request, "yb_customize/sticker_list.html", context)
+    
+    def post(self, request):
+        pass
+
+class StickerBrowse(View):
+    def get(self, request):
+        query = request.GET.get('query')
+        sticker_response = retrieve_sticker_list(query)
+
+        context = {
+            'sticker_list': sticker_response[0],
+            'is_stickers': sticker_response[1],
+        }
+
+        return render(request, "yb_customize/sticker_browser.html", context)
     
     def post(self, request):
         pass

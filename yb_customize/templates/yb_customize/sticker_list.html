@@ -1,0 +1,18 @@
+
+{% if is_stickers %}
+    <div class="yb-dynamic-gridContainer yb-vScroll" id="gridContainer" style="position: relative; top: 0px;">
+        <!-- Images will be dynamically added here -->
+        {% for sticker in sticker_list %}
+            <div class="yb-dynamic-gridItem" data-catid = "{{sticker.id}}" id="sticker-{{sticker.id}}">
+                <img src="{{sticker.url}}" class="yb-dynamic-grid-img" id="sticker-image-{{sticker.id}}">
+            </div>
+        {% endfor %}
+
+    </div>
+{% else %}
+
+    <div class="yb-fillWidth yb-vScroll">
+        <h3>No Stickers Found</h3>
+    </div>
+
+{% endif %}

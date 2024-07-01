@@ -6,6 +6,7 @@ var button_message = document.getElementById("profile-button-message");
 var button_about  = document.getElementById("profile-button-about");
 var profile_image_button_temp = document.getElementById("change-avatar");
 var wallpaper_button_temp = document.getElementById("change-wallpaper");
+var sticker_button_temp = document.getElementById("add-stickers");
 
 var user_id = yb_getSessionValues("id");
 
@@ -117,6 +118,10 @@ $(document).ready(function() {
     let user_id = yb_getSessionValues("profile-username");
     let logo = document.getElementById('mobile-logo');
     let header = document.getElementById("mobile-header");
+
+    sticker_button_temp.addEventListener("click", function() {
+        yb_openDrawer("browse-stickers");
+    });
 
     // //Hide logo
     // $(logo).fadeOut();
