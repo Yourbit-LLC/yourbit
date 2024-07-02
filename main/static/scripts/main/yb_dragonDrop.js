@@ -234,7 +234,6 @@ function yb_dragonDrop(event, clone=false) {
     }
 
     yb_closeDrawer();
-    yb_clearDragonObjects();
     
     
 }
