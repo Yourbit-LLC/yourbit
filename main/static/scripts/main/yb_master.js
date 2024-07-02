@@ -350,15 +350,19 @@ function yb_launch2WayContainer(page) {
 
 
 function yb_openDrawer(template) {
-    
     DRAWER.classList.add("open");
-    $(DRAWER_INNER).load(DRAWER_CONTENT[template]);
+
+    if (template != DRAWER.getAttribute("data-state")) {
+        DRAWER_INNER.innerHTML = "";
+        $(DRAWER_INNER).load(DRAWER_CONTENT[template]);
+        DRAWER.setAttribute("data-state", template);
+    }
+        
 
 }
 
 function yb_closeDrawer() {
-    DRAWER.classList.remove("open");
-    DRAWER_INNER.innerHTML = "";    
+    DRAWER.classList.remove("open");    
 }
 
 function yb_2WayPage(index, page="") {
