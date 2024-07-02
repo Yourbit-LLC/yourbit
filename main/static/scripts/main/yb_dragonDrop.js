@@ -90,14 +90,13 @@ function yb_createDragonInstance(dragon_instance, clone=false) {
         instance_id = dragon_instance.id;
 
         dragon_instances[instance_id] = {
-            "startX": 0,
-            "startY": 0,
+            "startX": dragon_instance.offsetLeft,
+            "startY": dragon_instance.offsetTop,
             "newX": 0,
             "newY": 0,
-            "width": 0,
-            "height": 0,
-            "rotation": 0,
-            "scale": 1,
+            "rotation": dragon_instance.style.transform,
+            "scale": dragon_instance.style.transform,
+
         }
     } else {
         instance_id = dragon_instance.getAttribute("data-catid");
@@ -107,10 +106,9 @@ function yb_createDragonInstance(dragon_instance, clone=false) {
             "startY": 0,
             "newX": 0,
             "newY": 0,
-            "width": 0,
-            "height": 0,
             "rotation": 0,
             "scale": 1,
+
         }
     
     }
@@ -119,31 +117,29 @@ function yb_createDragonInstance(dragon_instance, clone=false) {
     if (!clone) {
         dragon_instance.addEventListener("mousedown", yb_dragonDrop);
     } else {
-        dragon_instance.addEventListener("mousedown", function() {yb_dragonDrop(event, true)});
+        dragon_instance.addEventListener("mousedown", function(event) {yb_dragonDrop(event, true)});
     }
 }
 
 function yb_deleteDragonInstance(instance_id) {
 
-    delete dragon_objects[instance_id];
+    delete dragon_instances[instance_id];
 }
 
 function yb_deleteSticker(event) {
     event.preventDefault();
     let target = event.currentTarget;
 
-    yb_deleteDragonInstance();
+    yb_deleteDragonInstance(target.id);
     target.remove();
 }
     
 function yb_dragonMouseUp(event) {
     
     document.removeEventListener("mousemove", yb_dragonMouseMove);
-    yb_createDragonInstance(dragon_target, true);
     //right click to delete
     dragon_target.addEventListener("contextmenu", yb_deleteSticker);
-    
-    dragon_target = null;
+    document.removeEventListener("mouseup", yb_dragonMouseUp);
 }
 
 function yb_dragonTouchEnd(event) {
@@ -164,14 +160,20 @@ function yb_dragonDrop(event, clone=false) {
     console.log("running dragon drop")
     event.preventDefault();
     let target = event.currentTarget;
+    let target_id;
+    let data;
 
     isTouch = event.type === "touchstart";
 
-    let target_id = target.getAttribute("data-catid");
-    console.log(target_id)
-    let data = dragon_objects[target_id];
-    console.log(data)
-
+    if (!clone) {
+        target_id = target.getAttribute("data-catid");
+        console.log(target_id)
+        data = dragon_objects[target_id];
+        console.log(data)
+    } else {
+        target_id = target.id;
+        data = dragon_instances[target_id];
+    }
     //Set the initial position of the object
     data.startX = event.clientX;
     data.startY = event.clientY;
@@ -197,7 +199,14 @@ function yb_dragonDrop(event, clone=false) {
         clone.style.transform = "translate(-50%, -50%)"; // Center the clone
         clone_count += 1;
         clone.id = `dragon-clone-${clone_count}`;
+        clone.setAttribute("data-catid", clone.id);
+        console.log(clone.id)
+        console.log(clone.getAttribute("data-catid"))
         dragon_target = clone;
+        yb_createDragonInstance(dragon_target, true);
+
+        console.log(dragon_instances)
+        console.log(dragon_target);
 
         if (event.shiftKey) {
             target.remove();
