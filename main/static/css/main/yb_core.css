@@ -630,7 +630,7 @@ p {
 @media (prefers-color-scheme: dark) {
     
     #logo-name {
-        color: rgb(153, 102, 203);
+        color: gray;
     }
 
     .yb-logo-masthead {
