@@ -1459,7 +1459,8 @@ $(document).ready(function() {
     }
 
     console.log("User Agent:" + navigator.userAgent);
-
+    console.log("Downlink: " + navigator.connection.downlink + " Mbps");
+    console.log("Platform: " + navigator.platform);
 
     if ('serviceWorker' in navigator && 'SyncManager' in window) {
         navigator.serviceWorker.ready
