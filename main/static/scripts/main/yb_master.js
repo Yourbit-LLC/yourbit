@@ -72,7 +72,7 @@ const BG_IMAGE_SOURCE = document.getElementById("bg-image-source");
 
 const DRAWER = document.getElementById("core-drawer-container");
 const DRAWER_INNER = document.getElementById("drawer-content");
-
+const SCREEN_WIDTH = window.screen.width;
 
 const VAPID_PUBLIC_KEY = "BDAIHj_HT2qvxVsrE-pvZOGc2TcJeMKUIM0LxStPASodefcu9fucQndG9XSONnd04finmXAueTLmxqBjv9q6H7g";
 
@@ -291,6 +291,30 @@ function changeColor(property, value) {
     document.documentElement.style.setProperty(property, value);
 }
 
+function yb_getWallpaper() {
+    let type;
+
+    if (SCREEN_WIDTH < 768) {
+        type = "mobile";
+    } else {
+        type = "desktop";
+    }
+    $.ajax({
+        type: 'GET',
+        url: `/customize/get/wallpaper/profile/${type}/`,
+        success: function(response) {
+            console.log(response)
+            let wallpaper = response.wallpaper;
+            yb_changeWallpaper(wallpaper);
+        },
+        error: function(response) {
+            console.log(response);
+        }
+    });
+    
+    
+    return wallpaper;
+}
 
 function yb_changeWallpaper(value, profile=false) {
     let wallpaper_enabled;
@@ -319,6 +343,16 @@ function yb_changeWallpaper(value, profile=false) {
         CONTENT_CONTAINER.classList.add("yb-bg-autoGray");
     }
     
+}
+
+function yb_showWallpaper() {
+    BG_IMAGE.style.display = "block";
+}
+
+function yb_loadWallpaper() {
+    let wallpaper = yb_getWallpaper();
+    yb_changeWallpaper(wallpaper);
+    yb_showWallpaper();
 }
 
 function yb_setProfileUI() {
