@@ -236,6 +236,27 @@ const TWO_WAY_INDEX = {
           
 };
 
+function yb_getPlatform() {
+    try {
+        var platform = navigator.platform;
+    } catch (e) {
+        var platform = "unknown";
+    }
+
+    return platform;
+}
+
+function yb_getTouches() {
+    try {
+        var touches = navigator.maxTouchPoints;
+    } catch (e) {
+        var touches = "unknown";
+    }
+
+    return touches;
+}
+
+
 function yb_getCustomValues(key){
     CUSTOM_VALUES.getAttribute("data-" + key);
 }
@@ -1463,6 +1484,31 @@ $(document).ready(function() {
         console.log("Downlink: " + navigator.connection.downlink + " Mbps");
     } catch(err) {
         console.log("Connection API not supported");
+    }
+
+    try {
+        console.log("Device Memory: " + navigator.deviceMemory + "GB");
+    } catch(err) {
+        console.log("Device Memory API not supported");
+    }
+
+    try {
+        console.log("Hardware Concurrency: " + navigator.hardwareConcurrency);
+    } catch(err) {
+        console.log("Hardware Concurrency API not supported");
+    }
+
+    try {
+        console.log("Max Touch Points: " + navigator.maxTouchPoints);
+    } catch(err) {
+        console.log("Touch Points API not supported");
+    }
+
+    try {
+        console.log("Platform Version: " + navigator.platformVersion);
+    } catch(err) {
+        console.log("Platform Version API not supported");
+    
     }
 
     try {
