@@ -163,7 +163,7 @@ function yb_dragonDrop(event, clone=false) {
     let target_id;
     let data;
 
-    if (device === "mobile") {
+    if (device.toLowerCase() === "mobile") {
         isTouch = true;
     } else {
         isTouch = false;
