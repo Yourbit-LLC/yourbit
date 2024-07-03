@@ -1459,8 +1459,16 @@ $(document).ready(function() {
     }
 
     console.log("User Agent:" + navigator.userAgent);
-    console.log("Downlink: " + navigator.connection.downlink + " Mbps");
-    console.log("Platform: " + navigator.platform);
+    try{
+        console.log("Downlink: " + navigator.connection.downlink + " Mbps");
+    } catch(err) {
+        console.log("Connection API not supported");
+    }
+
+    try {
+        console.log("Platform: " + navigator.platform);
+    } catch(err) {
+        console.log("Platform API not supported");
 
     if ('serviceWorker' in navigator && 'SyncManager' in window) {
         navigator.serviceWorker.ready
