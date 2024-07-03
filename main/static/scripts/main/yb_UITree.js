@@ -1,5 +1,6 @@
 const YB_ICON_INDEX = {
     //Space Buttons
+    "all-icons": document.querySelectorAll(".yb-icon"),
     "space-buttons": document.querySelectorAll(".space-button"),
     "space-button-global": document.getElementById("global-space-button"),
     "space-button-chat": document.getElementById("chat-space-button"),
@@ -8,13 +9,46 @@ const YB_ICON_INDEX = {
 }
 
 const YB_BUTTON_INDEX = {
-    "button-create-menu": document.getElementById("yb-create-menu-button"),
+    "button-create-menu": {
+        "element" : document.getElementById("yb-create-menu-button"),
+        "click": "clickFunction()",
+    },
+    "button-inbox-desktop": {
+        "element": document.getElementById("inbox-button-desktop"),
+        "click": "clickFunction()",
+    },
+    "button-inbox-mobile": {
+        "element": document.getElementById("inbox-button-mobile"),
+        "click": "clickFunction()",
+    },
+    "button-submit-search": {
+        "element": document.getElementById("search-button"),
+        "click": "clickFunction()",
+    },
+    "button-popout-create": {
+        "element": document.getElementById("popout-create-button"),
+        "click": "clickFunction()",
+    },
+    "button-popout-search": {
+        "element": document.getElementById("popout-search-button"),
+        "click": "clickFunction()",
+    },
 
 }
 
 const YB_CONTAINER_INDEX = {
-    "slide-up-core": document.getElementById("yb-slide-up-core"),
-    "create_menu": document.getElementById("yb-create-menu"),
+    "slide-up-core": {
+        "element": document.getElementById("yb-slide-up-core"),
+        "header": document.getElementById("yb-slide-up-core-header"),
+        "content": document.getElementById("yb-slide-up-core-content"),
+    },
+    "create-menu": {
+        "element": document.getElementById("yb-create-menu"),
+        "header": document.getElementById("yb-create-menu-header"),
+        "content": document.getElementById("yb-create-menu-content"),
+    }
+
+
 }
 
 
@@ -43,13 +77,44 @@ const YB_UI_INDEX = {
     "search-container": document.getElementById("search-container"),
 }
 
-function yb_queryUI(key, subkey=null) {
+function yb_queryElement(key) {
     //if key contains space replace with hyphen and ensure all lower
     key = key.replace(" ", "-").toLowerCase();
 
-    if (subkey) {
-        return YB_UI_INDEX[key][subkey];
+    let results = null;
+
+    for (let index in YB_UI_INDEX) {
+        if (index[key]) {
+            return index[key]["element"];
+        }
     }
-    return YB_UI_INDEX[key];
+
+    return results;
+}
+
+function yb_queryUI(key, subkey) {
+    let results = null;
+
+    for (let index in YB_UI_INDEX) {
+        for (let subindex in index)
+            if (subindex == key) {
+                return subindex[subkey];
+            }
+    }
+
+    return results;
+
+}
+
+function yb_getUIGroup(key) {
+    let results = null;
+
+    for (let index in YB_UI_INDEX) {
+        if (index === key) {
+            return index;
+        }
+    }
+
+    return results;
 }
 

@@ -163,7 +163,11 @@ function yb_dragonDrop(event, clone=false) {
     let target_id;
     let data;
 
-    isTouch = event.type === "touchstart";
+    if (device === "mobile") {
+        isTouch = true;
+    } else {
+        isTouch = false;
+    }
 
     if (!clone) {
         target_id = target.getAttribute("data-catid");
@@ -249,7 +253,7 @@ document.addEventListener('contextmenu', function (event) {
 document.addEventListener('click', function (event) {
     if (isTouch) {
         event.preventDefault();
-        isTouch = false;
+        // isTouch = false;
     }
 }, true);
 

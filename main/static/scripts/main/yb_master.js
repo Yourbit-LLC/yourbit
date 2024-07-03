@@ -82,6 +82,7 @@ const VAPID_PUBLIC_KEY = "BDAIHj_HT2qvxVsrE-pvZOGc2TcJeMKUIM0LxStPASodefcu9fucQn
 const LOGO_PATHS = document.querySelectorAll(".cls-1");
 
 const TIME_KEEPER = document.getElementById("time-keeper-node");
+
 var clock_isTicking = false;
 
 // Get the current date
@@ -238,6 +239,36 @@ const TWO_WAY_INDEX = {
     
           
 };
+
+function getOSAndDevice() {
+    const userAgent = navigator.userAgent;
+    let os = "Unknown";
+    let device = "Unknown";
+  
+    if (/android/i.test(userAgent)) {
+      os = "Android";
+      device = "Mobile";
+    } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+      os = "iOS";
+      device = "Mobile";
+    } else if (/Macintosh|Mac OS X/.test(userAgent)) {
+      os = "macOS";
+      device = "Desktop";
+    } else if (/Windows NT/.test(userAgent)) {
+      os = "Windows";
+      device = "Desktop";
+    } else if (/Linux/.test(userAgent)) {
+      os = "Linux";
+      device = "Desktop";
+    }
+  
+    return { os, device };
+}
+
+const { os, device } = getOSAndDevice();
+console.log(`Operating System: ${os}`);
+console.log(`Device: ${device}`);
+  
 
 function yb_getPlatform() {
     try {
