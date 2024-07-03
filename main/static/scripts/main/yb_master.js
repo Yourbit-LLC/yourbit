@@ -1469,6 +1469,7 @@ $(document).ready(function() {
         console.log("Platform: " + navigator.platform);
     } catch(err) {
         console.log("Platform API not supported");
+    }
 
     if ('serviceWorker' in navigator && 'SyncManager' in window) {
         navigator.serviceWorker.ready
