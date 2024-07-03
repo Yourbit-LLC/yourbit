@@ -1458,6 +1458,7 @@ $(document).ready(function() {
         });
     }
 
+    console.log("User Agent:" + navigator.userAgent);
 
 
     if ('serviceWorker' in navigator && 'SyncManager' in window) {
