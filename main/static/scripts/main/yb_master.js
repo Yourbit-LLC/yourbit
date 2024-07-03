@@ -67,8 +67,11 @@ const CUSTOM_VALUES = document.getElementById("user-custom-info");
 const MAIN_LOADING_SCREEN = document.getElementById("yb-loading-main");
 const SUBSCRIPTION_BANNER = document.getElementById("notification-permission-banner");
 
-const BG_IMAGE = document.getElementById("bg-image");
-const BG_IMAGE_SOURCE = document.getElementById("bg-image-source");
+const BG_IMAGE_A = document.getElementById("bg-image-a");
+const BG_IMAGE_SOURCE_A = document.getElementById("bg-image-source-a");
+
+const BG_IMAGE_B = document.getElementById("bg-image-b");
+const BG_IMAGE_SOURCE_B = document.getElementById("bg-image-source-b");
 
 const DRAWER = document.getElementById("core-drawer-container");
 const DRAWER_INNER = document.getElementById("drawer-content");
@@ -331,14 +334,14 @@ function yb_changeWallpaper(value, profile=false) {
 
     if (wallpaper_enabled == "True") {
         console.log("Wallpaper enabled " + wallpaper_enabled )
-        BG_IMAGE.style.display = "block";
-        BG_IMAGE_SOURCE.src = value;
+        BG_IMAGE_A.style.display = "block";
+        BG_IMAGE_SOURCE_A.src = value;
         CONTENT_CONTAINER.classList.remove("yb-bg-autoGray");
         CONTENT_CONTAINER.classList.add("yb-bg-transparent");
         
     } else {
         console.log("Wallpaper display " + wallpaper_enabled )
-        BG_IMAGE.style.display = "none";
+        BG_IMAGE_A.style.display = "none";
         CONTENT_CONTAINER.classList.remove("yb-bg-transparent");
         CONTENT_CONTAINER.classList.add("yb-bg-autoGray");
     }
@@ -346,7 +349,7 @@ function yb_changeWallpaper(value, profile=false) {
 }
 
 function yb_showWallpaper() {
-    BG_IMAGE.style.display = "block";
+    BG_IMAGE_A.style.display = "block";
 }
 
 function yb_loadWallpaper() {
