@@ -149,10 +149,10 @@ function yb_dragonTouchEnd(event) {
 
 }
 
-function yb_dragonStart(e) {
+function yb_dragonStart(event) {
     let target = e.currentTarget;
     dragon_target = target;
-    e.dataTransfer.setData('text/html', target.innerHTML);
+    event.dataTransfer.setData('text/html', target.innerHTML);
 }
 
 
