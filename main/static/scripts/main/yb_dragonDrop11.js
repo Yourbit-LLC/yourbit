@@ -150,7 +150,7 @@ function yb_dragonTouchEnd(event) {
 }
 
 function yb_dragonStart(event) {
-    let target = e.currentTarget;
+    let target = event.currentTarget;
     dragon_target = target;
     event.dataTransfer.setData('text/html', target.innerHTML);
 }
