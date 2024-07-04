@@ -124,6 +124,7 @@ $(document).ready(function() {
         yb_openDrawer("browse-stickers");
     });
 
+    //Added in iteration 2
     splash_screen.addEventListener('dragover', (e) => {
         e.preventDefault();
     });
