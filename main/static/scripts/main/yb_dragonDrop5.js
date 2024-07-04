@@ -62,32 +62,20 @@ function yb_dragonMouseMove(event) {
 
 function yb_dragonTouchMove(event) {
 
-    if (event.touches.length === 1) {
-        let touch = event.touches[0];
-        let target = dragon_target;
-        let target_id = target.getAttribute("data-catid");
-        let data = dragon_instances[target_id];
+
+    let target = dragon_target;
+    let target_id = target.getAttribute("data-catid");
+    let data = dragon_instances[target_id];
 
 
-        let newX = data.startX - touch.clientX;
-        let newY = data.startY - touch.clientY;
+    let newX = data.startX - touch.clientX;
+    let newY = data.startY - touch.clientY;
 
-        data.startX = event.clientX;
-        data.startY = event.clientY;
+    data.startX = event.clientX;
+    data.startY = event.clientY;
 
-        target.style.left = (target.offsetLeft - newX) + "px";
-        target.style.top = (target.offsetTop - newY) + "px";
-    } else if (event.touches.length === 2) {
-        let touch1 = event.touches[0];
-        let touch2 = event.touches[1];
-        let currentDistance = getDistance(touch1, touch2);
-        let currentAngle = getAngle(touch1, touch2);
-
-        let scaleChange = currentDistance / initialDistance;
-        let rotationChange = currentAngle - initialAngle;
-
-        dragon_target.style.transform = `translate(-50%, -50%) scale(${initialScale * scaleChange}) rotate(${initialRotation + rotationChange}deg)`;
-    }
+    target.style.left = (target.offsetLeft - newX) + "px";
+    target.style.top = (target.offsetTop - newY) + "px";
 
 }
 
