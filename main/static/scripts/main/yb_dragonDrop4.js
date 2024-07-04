@@ -61,23 +61,34 @@ function yb_dragonMouseMove(event) {
 }
 
 function yb_dragonTouchMove(event) {
-    if (clone) {
-        if (event.touches.length === 1) {
-            let touch = event.touches[0];
-            clone.style.left = touch.clientX + "px";
-            clone.style.top = touch.clientY + "px";
-        } else if (event.touches.length === 2) {
-            let touch1 = event.touches[0];
-            let touch2 = event.touches[1];
-            let currentDistance = getDistance(touch1, touch2);
-            let currentAngle = getAngle(touch1, touch2);
 
-            let scaleChange = currentDistance / initialDistance;
-            let rotationChange = currentAngle - initialAngle;
+    if (event.touches.length === 1) {
+        let touch = event.touches[0];
+        let target = dragon_target;
+        let target_id = target.getAttribute("data-catid");
+        let data = dragon_instances[target_id];
 
-            clone.style.transform = `translate(-50%, -50%) scale(${initialScale * scaleChange}) rotate(${initialRotation + rotationChange}deg)`;
-        }
+
+        let newX = data.startX - touch.clientX;
+        let newY = data.startY - touch.clientY;
+
+        data.startX = event.clientX;
+        data.startY = event.clientY;
+
+        target.style.left = (target.offsetLeft - newX) + "px";
+        target.style.top = (target.offsetTop - newY) + "px";
+    } else if (event.touches.length === 2) {
+        let touch1 = event.touches[0];
+        let touch2 = event.touches[1];
+        let currentDistance = getDistance(touch1, touch2);
+        let currentAngle = getAngle(touch1, touch2);
+
+        let scaleChange = currentDistance / initialDistance;
+        let rotationChange = currentAngle - initialAngle;
+
+        dragon_target.style.transform = `translate(-50%, -50%) scale(${initialScale * scaleChange}) rotate(${initialRotation + rotationChange}deg)`;
     }
+
 }
 
 //Function to create a new instance of a dragon object
@@ -143,16 +154,15 @@ function yb_dragonMouseUp(event) {
 }
 
 function yb_dragonTouchEnd(event) {
-    if (clone) {
-        document.removeEventListener("touchmove", yb_dragonTouchMove);
-        document.removeEventListener("touchend", yb_dragonTouchEnd);
+    document.removeEventListener("mousemove", yb_dragonMouseMove);
+    //right click to delete
+    dragon_target.addEventListener("contextmenu", yb_deleteSticker);
+    document.removeEventListener("mouseup", yb_dragonMouseUp);
 
-        initialScale *= getDistance(event.changedTouches[0], event.changedTouches[1]) / initialDistance;
-        initialRotation += getAngle(event.changedTouches[0], event.changedTouches[1]) - initialAngle;
+    initialScale *= getDistance(event.changedTouches[0], event.changedTouches[1]) / initialDistance;
+    initialRotation += getAngle(event.changedTouches[0], event.changedTouches[1]) - initialAngle;
 
-        clone.style.pointerEvents = "auto";
-        clone = null;
-    }
+
 }
 
 
