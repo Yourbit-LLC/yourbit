@@ -68,8 +68,8 @@ function yb_dragonTouchMove(event) {
     let data = dragon_instances[target_id];
 
 
-    let newX = data.startX - touch.clientX;
-    let newY = data.startY - touch.clientY;
+    let newX = data.startX - event.clientX;
+    let newY = data.startY - event.clientY;
 
     data.startX = event.clientX;
     data.startY = event.clientY;
@@ -146,10 +146,6 @@ function yb_dragonTouchEnd(event) {
     //right click to delete
     dragon_target.addEventListener("contextmenu", yb_deleteSticker);
     document.removeEventListener("mouseup", yb_dragonMouseUp);
-
-    initialScale *= getDistance(event.changedTouches[0], event.changedTouches[1]) / initialDistance;
-    initialRotation += getAngle(event.changedTouches[0], event.changedTouches[1]) - initialAngle;
-
 
 }
 
