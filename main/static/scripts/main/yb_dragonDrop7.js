@@ -199,6 +199,7 @@ function yb_dragonDrop(event, clone=false) {
         clone.setAttribute("data-catid", clone.id);
         console.log(clone.id)
         console.log(clone.getAttribute("data-catid"))
+        clone.setAttribute("draggable", "true");
         dragon_target = clone;
         yb_createDragonInstance(dragon_target, true);
 
