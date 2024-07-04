@@ -191,9 +191,8 @@ function yb_dragonDrop(event, clone=false) {
         // Set the initial position of the clone
         if (isTouch) {
             console.log("touch")
-            let touch = event.touches[0];
-            clone.style.left = touch.clientX + "px";
-            clone.style.top = touch.clientY + "px";
+            clone.style.left = event.clientX + "px";
+            clone.style.top = event.clientY + "px";
         } else {
             console.log("mouse")
             clone.style.left = event.clientX + "px";
