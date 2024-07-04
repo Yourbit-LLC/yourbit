@@ -150,8 +150,7 @@ function yb_dragonTouchEnd(event) {
 }
 
 function yb_dragonStart(event) {
-    let target = event.currentTarget;
-    dragon_target = target;
+    target = event.currentTarget;
     event.dataTransfer.setData('text/html', target.innerHTML);
 }
 
@@ -225,7 +224,7 @@ function yb_dragonDrop(event, clone=false) {
         dragon_target = target;
     }
  
-    yb_dragonStart();
+    yb_dragonStart(event, dragon_target);
 
     if (event.touches && event.touches.length === 2) {
         initialDistance = getDistance(event.touches[0], event.touches[1]);
