@@ -57,6 +57,7 @@ def settings_notifications(request):
     context = {
         "notification_settings": notifications,
         "notifications_enabled": notifications.notifications_enabled,
+        'bit_notifications': notifications.bit_notifications,
         "bits_from_friends": notifications.bits_from_friends,
         "bits_from_following": notifications.bits_from_following,
         "bits_from_communities": notifications.bits_from_communities,

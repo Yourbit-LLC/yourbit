@@ -153,7 +153,6 @@ button {
         
  }
 
-
 /* The slider */
 .slider {
     position: absolute;
@@ -162,7 +161,7 @@ button {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #CC3333;
+    background-color: #6f00b9;
     -webkit-transition: .4s;
     transition: .4s;
 }
@@ -170,10 +169,10 @@ button {
 .slider:before {
     position: absolute;
     content: "";
-    height: 22px;
-    width: 22px;
-    left: 1.5px;
-    bottom: 1.5px;
+    height: 18px;
+    width: 18px;
+    left: 2px;
+    bottom: 1.1px;
     background-color: rgb(200, 200, 200);
     -webkit-transition: .4s;
     transition: .4s;
@@ -188,16 +187,17 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-    -webkit-transform: translateX(16px);
-    -ms-transform: translateX(16px);
-    transform: translateX(16px);
+    -webkit-transform: translateX(13.5px);
+    -ms-transform: translateX(13.5px);
+    transform: translateX(13.5px);
     transition: 0.5s;
 }
 
 /* Rounded sliders */
 .slider.round {
     border-radius: 27px;
-    height: 25.5px;
+    height: 20px;
+    width: 35px;
 }
 
 .slider.round:before {

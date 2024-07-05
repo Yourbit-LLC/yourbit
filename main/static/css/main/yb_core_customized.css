@@ -81,10 +81,10 @@ button {
 .slider:before {
     position: absolute;
     content: "";
-    height: 11px;
-    width: 11px;
-    left: 1.5px;
-    bottom: 1.5px;
+    height: 18px;
+    width: 18px;
+    left: 2px;
+    bottom: 1.1px;
     background-color: rgb(200, 200, 200);
     -webkit-transition: .4s;
     transition: .4s;
@@ -99,16 +99,17 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-    -webkit-transform: translateX(7.5px);
-    -ms-transform: translateX(7.5px);
-    transform: translateX(7.5px);
+    -webkit-transform: translateX(13.5px);
+    -ms-transform: translateX(13.5px);
+    transform: translateX(13.5px);
     transition: 0.5s;
 }
 
 /* Rounded sliders */
 .slider.round {
     border-radius: 27px;
-    height: 14px;
+    height: 20px;
+    width: 35px;
 }
 
 .slider.round:before {
