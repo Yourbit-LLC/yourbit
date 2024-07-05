@@ -55,6 +55,7 @@ def settings_notifications(request):
     notifications = NotificationSettings.objects.get(settings = my_settings)
 
     context = {
+        "notification_settings": notifications,
         "notifications_enabled": notifications.notifications_enabled,
         "bits_from_friends": notifications.bits_from_friends,
         "bits_from_following": notifications.bits_from_following,
