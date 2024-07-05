@@ -2,29 +2,50 @@
 <div id='div-header' class="div-header">
     
     <div class="cb-panel-back"><svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
-    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb">About {{ current_profile.user.display_name}}</h3>
+    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb"></h3>
     <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('about');"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
 </div>
-<hr>
+<br>
+<h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-pHead yb-center-margin tb">About {{request.user.first_name}}</h3>
+<hr style="border-color: var(--yb-button-color);">
 <div id="inbox-header" style="height: 40px; display:grid; grid-template-columns: 4fr 1fr; column-gap: 20px; scrollbar-width: none; overflow-x: scroll;" class="yb-hScroll yb-fillWidth yb-relative">
     <div id="filter-container" class="yb-flexRow yb-fillWidth yb-gap5 yb-margin-L5">
-        <span class="yb-fillContainer yb-panel" style="z-index: 10; position: absolute;">Work in Progress...</span>
-        <button class="yb-button-wide active medium-wide rounded yb-autoText font-small yb-center-margin tb">General</button>
-        <button class="yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb">Contact</button>
-        <button class="yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb">Education</button>
-        <button class="yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb">Work</button>
+        <span class="yb-fillContainer yb-panel" style="z-index: 10; position: absolute; display: none;">Work in Progress...</span>
+        <button class="yb-button-wide active medium-wide rounded yb-autoText font-small yb-center-margin tb yb-bText">Bio</button>
+        <button class="yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb yb-bText">Contact</button>
+        <button class="yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb yb-bText">Education</button>
+        <button class="yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb yb-bText">Work</button>
 
     </div>
 </div>
-<hr>
-<div id="stuff-list" style="padding: 10px 10px 10px 10px;" class="yb-fillWidth yb-margin-T30">
-    <h4 class="font-gray">Motto</h4>
-    <p class="yb-autoText font-medium">{{ current_profile.motto }}</p>
-    <h4 class="font-gray">Bio</h4>
-    <p class="yb-autoText font-medium">{{ current_profile.bio }}</p>
+<hr style="border-color: var(--yb-button-color);">
+<div id="connection-list" class="yb-fillWidth yb-vScroll yb-margin-T10" style="height: calc(100% - 260px); border-radius: 15px; padding: 5px;">
+    <h4 class="font-gray yb-pHead">Motto</h4>
+    <p class="yb-autoText font-medium yb-pText">
+        {% if profile_info.motto %}
+            {{ profile_info.motto }}
+        {% else %}
+            No motto set.
+        {% endif %}
+    </p>
+    <h4 class="font-gray yb-pHead">Bio</h4>
+    <p class="yb-autoText yb-pText font-medium">
+        {% if profile_info.bio %}
+            {{ profile_info.bio }}
+        {% else %}
+            No bio set.
+        {% endif %}
+    </p>
 </div>
 
 
 <div class="yb-logo-footer small" id="about-menu-footer" style="position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%);">
     <img src="{% static 'images/main/yourbit-logo2023-01.svg' %}" style="width: 100%; position: relative;" alt="YB Logo" class="yb-logo-small">
 </div>
+
+
+<script>
+    $(document).ready(function(){
+        tw_hideLoading();
+    });
+</script>
