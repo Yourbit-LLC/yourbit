@@ -511,6 +511,9 @@
     color: var(--yb-text-color) !important;
 }
 
+.yb-bText {
+    color: var(--yb-button-text-color) !important;
+}
 
 /* media query for light mode text */
 .font-white {
