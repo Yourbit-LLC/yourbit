@@ -6,7 +6,7 @@
     <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('about');"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
 </div>
 <br>
-<h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-pHead yb-center-margin tb">About {{request.user.first_name}}</h3>
+<h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-pHead yb-center-margin tb">About {{current_profile.user.first_name}}</h3>
 <hr style="border-color: var(--yb-button-color);">
 <div id="inbox-header" style="height: 40px; display:grid; grid-template-columns: 4fr 1fr; column-gap: 20px; scrollbar-width: none; overflow-x: scroll;" class="yb-hScroll yb-fillWidth yb-relative">
     <div id="filter-container" class="yb-flexRow yb-fillWidth yb-gap5 yb-margin-L5">
@@ -20,22 +20,28 @@
 </div>
 <hr style="border-color: var(--yb-button-color);">
 <div id="connection-list" class="yb-fillWidth yb-vScroll yb-margin-T10" style="height: calc(100% - 260px); border-radius: 15px; padding: 5px;">
-    <h4 class="font-gray yb-pHead">Motto</h4>
-    <p class="yb-autoText font-medium yb-pText">
-        {% if profile_info.motto %}
-            {{ profile_info.motto }}
-        {% else %}
-            No motto set.
-        {% endif %}
-    </p>
-    <h4 class="font-gray yb-pHead">Bio</h4>
-    <p class="yb-autoText yb-pText font-medium">
-        {% if profile_info.bio %}
-            {{ profile_info.bio }}
-        {% else %}
-            No bio set.
-        {% endif %}
-    </p>
+    <div class="yb-panel squared" style="width: 93%; background-color: rgba(0, 0, 0, 0.5); padding: 5px; margin-bottom: 10px;">
+        <div>
+        <h4 class="font-gray yb-pHead" style="margin:0;">Motto</h4>
+        <p class="yb-autoText font-medium yb-pText">
+            {% if current_profile.motto %}
+                {{ current_profile.motto }}
+            {% else %}
+                No motto set.
+            {% endif %}
+        </p>
+    </div>
+    </div>
+    <div class = "yb-panel squared" style="width: 93%; background-color: rgba(0, 0, 0, 0.5); padding: 5px; margin-bottom: 10px;">
+        <h4 class="font-gray yb-pHead" style="margin:0;">Bio</h4>
+        <p class="yb-autoText yb-pText font-medium">
+            {% if current_profile.bio %}
+                {{ current_profile.bio }}
+            {% else %}
+                No bio set.
+            {% endif %}
+        </p>
+    </div>
 </div>
 
 

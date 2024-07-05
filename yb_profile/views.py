@@ -230,4 +230,15 @@ def block_profile(request, *args, **kwargs):
 
         return JsonResponse({"status": "success"})
 
-    
+def update_profile_info(request, *args, **kwargs):
+    if request.method == "POST":
+        this_profile = Profile.objects.get(user = request.user)
+        profile_info = ProfileInfo.objects.get(profile = this_profile)
+
+        this_profile.bio = request.POST.get("bio")
+        this_profile.motto = request.POST.get("motto")
+        profile_info.save()
+
+        this_profile.save()
+
+        return JsonResponse({"status": "success"})

@@ -72,8 +72,8 @@ class Profile(models.Model):
         """Check if this user is following the given profile."""
         return self.follows.filter(id=profile.id).exists()
 
-    bio = models.CharField(max_length=500, blank=True)
-    motto = models.CharField(max_length=100, blank=True)
+    bio = models.CharField(max_length=500, blank=True, null=True)
+    motto = models.CharField(max_length=100, blank=True, null=True)
 
     space_focus = models.CharField(max_length=100, default="global") #What type of content the user or community primarily focuses on
 

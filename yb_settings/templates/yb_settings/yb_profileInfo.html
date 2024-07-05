@@ -21,61 +21,57 @@
 
         <div id="bio-preview-container" class="yb-padding-ALL5 font-medium squared yb-bg-autogray yb-pText yb-margin-T10">
 
-        <div id="display-contact-email" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">Display Email: </p><input name="email" id='field-email' value="{{profile_info.email}}" class="yb-input-transparent right yb-pText profile-field" style="grid-column: 2;"></div>
+                        
+            <h3>Bio</h3>
+            <div id="display-motto" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Motto: </p>
+                <input name="motto" id='field-motto' value="{% if request.user.profile.motto %}{{request.user.profile.motto}}{% else %}Add Motto{% endif %}" class="yb-input-transparent right {% if request.user.profile.motto %} yb-pText yb-autoText {% else %} font-gray {% endif %} profile-field" style="padding-top: 10px;">
+            </div>
+            <br>
 
-        <div id="display-phone" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">Display Phone: </p><input name="phone_number" id='field-display-phone' value="{{profile_info.phone_number}}" class="yb-input-transparent right yb-pText profile-field" style="grid-column: 2;"></div>
+            <div id="bio-container">
+                <textarea id="bio-field" name="bio" class="yb-bg-autoGray squared {% if request.user.profile.bio %} yb-pText yb-autoText {% else %} font-gray {% endif %} profile-field" style="width: 98%; height: 100px;">{% if request.user.profile.bio %}{{request.user.profile.bio}}{% else %} Add bio {% endif %}</textarea>
+            </div>
+            
+            <br>
+            <h3>Contact Info</h3>
+            <div id="display-contact-email" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">Display Email: </p><input name="email" id='field-email' value="{{profile_info.email}}" class="yb-input-transparent right yb-pText profile-field" style="grid-column: 2;"></div>
 
+            <div id="display-phone" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">Display Phone: </p><input name="phone_number" id='field-display-phone' value="{{profile_info.phone_number}}" class="yb-input-transparent right yb-pText profile-field" style="grid-column: 2;"></div>
+
+            <br>
+            <h3>My Address</h3>
+            <div id="display-street-address" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Street Address: </p>
+                <input name="address" id='field-street-address' value="{{profile_info.address}}" class="yb-input-transparent right yb-pText profile-field" style="grid-column: 2;">
+            </div>
+
+            <div id="display-city" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;">
+                <p class="field-cover-label align-left" style="grid-column: 1;">City: </p>
+                <input name="city" id='field-city' value="{{profile_info.city}}" class="yb-input-transparent right yb-pText profile-field" style="grid-column: 2;">
+            </div>
+
+            <div id="display-state" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;">
+                <p class="field-cover-label align-left" style="grid-column: 1;">State: </p>
+                <input name="state" id='field-state' value="{{profile_info.state}}" class="yb-input-transparent right yb-pText profile-field" style="grid-column: 2;">
+            </div>
+
+            <div id="display-country" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;">
+                <p class="field-cover-label align-left" style="grid-column: 1;">State: </p>
+                <input name="country" id='field-country' value="{{profile_info.country}}" class="yb-input-transparent right yb-pText profile-field" style="grid-column: 2;">
+            </div>
+
+            <div id="display-website" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;">
+                <p class="field-cover-label align-left" style="grid-column: 1;">First Name: </p>
+                <input name="website" id='field-website' value="{{profile_info.website}}" class="yb-input-transparent right yb-pText profile-field" style="grid-column: 2;">
+            </div>
         
-
-        <div id="display-street-address" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;">
-            <p class="field-cover-label align-left" style="grid-column: 1;">Street Address: </p>
-            <input name="address" id='field-street-address' value="{{profile_info.address}}" class="yb-input-transparent right yb-pText profile-field" style="grid-column: 2;">
-        </div>
-
-        <div id="display-city" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;">
-            <p class="field-cover-label align-left" style="grid-column: 1;">City: </p>
-            <input name="city" id='field-city' value="{{profile_info.city}}" class="yb-input-transparent right yb-pText profile-field" style="grid-column: 2;">
-        </div>
-
-        <div id="display-state" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;">
-            <p class="field-cover-label align-left" style="grid-column: 1;">State: </p>
-            <input name="state" id='field-state' value="{{profile_info.state}}" class="yb-input-transparent right yb-pText profile-field" style="grid-column: 2;">
-        </div>
-
-        <div id="display-website" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;">
-            <p class="field-cover-label align-left" style="grid-column: 1;">First Name: </p>
-            <input name="website" id='field-website' value="{{profile_info.website}}" class="yb-input-transparent right yb-pText profile-field" style="grid-column: 2;">
-        </div>
+        </div>  
 
       
 </form>
-<script class="page-script">
+<script class = "page-script" type="text/javascript" src="{% static 'scripts/yb_settings/yb_profileInfo.js' %}"></script>
 
-    $(document).ready(function(){
-        
-        yb_showBackTask();
-        //Get the user ID from session values
-        let this_id = yb_getSessionValues("username");
-        //Get user data
-        $.ajax({
-            url: `/api/profiles/${username}/`,
-            type: "GET",
-            dataType: "json",
-            success: function(data){
-                console.log(data);
-                
-                
-            },
-            error: function(data){
-                console.log(data);
-            }
-        });
-        
-        let load_indicator = document.getElementById("yb-loading-core");
-        load_indicator.style.display = "none";
-        
-    });
-</script>
 <div id="mobile-spacer">
 </div>
 
