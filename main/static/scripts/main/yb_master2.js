@@ -82,6 +82,7 @@ const VAPID_PUBLIC_KEY = "BDAIHj_HT2qvxVsrE-pvZOGc2TcJeMKUIM0LxStPASodefcu9fucQn
 const LOGO_PATHS = document.querySelectorAll(".cls-1");
 
 const TIME_KEEPER = document.getElementById("time-keeper-node");
+const ELEMENT_DIVIDER_1 = document.getElementById("element-divider-1");
 
 var clock_isTicking = false;
 
@@ -933,11 +934,14 @@ const START_BITSTREAM = yb_startBitStream();
 function yb_openCard(content) {
     $(CARD_CONTAINER).load(content);
     CARD_CONTAINER.classList.add("open");
+    ELEMENT_DIVIDER_1.style.display = "block";
+
 }
 
 function yb_closeCard() {
     CARD_CONTAINER.innerHTML = '';
-    CARD_CONTAINER.classList.remove("open")
+    CARD_CONTAINER.classList.remove("open");
+    ELEMENT_DIVIDER_1.style.display = "none";
 }
 
 function yb_hide2WayLoad() {
