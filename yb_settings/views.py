@@ -68,7 +68,7 @@ def settings_notifications(request):
         "bit_mentions": notifications.bit_mentions,
         
     }
-    return render(request, "yb_settings/yb_notificationSettings.html")
+    return render(request, "yb_settings/yb_notificationSettings.html", context)
 
 class SettingsElement(View):
     def get(self, request):
