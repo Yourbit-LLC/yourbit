@@ -17,6 +17,7 @@ urlpatterns = [
     path("upload/profile-image/", update_profile_image, name="update_profile_image"),
     path("upload/background-image/", update_profile_background, name="update_profile_background"),
     path("get/wallpaper/<str:profile_class>/<str:type>/", get_wallpaper, name="get_profile_background"),
+    path("get/wallpaper/<str:profile_class>/connection/<str:username>/<str:type>/", get_wallpaper, name="get_profile_background_connection"),
     path("templates/customize-ui/", CustomizeUI.as_view(), name="customize_ui"),
     path("templates/customize-bit/", CustomizeBit.as_view(), name="customize_core"),
     path("templates/profile-image/", ProfileImageUpload.as_view(), name="customize_profile_image"),

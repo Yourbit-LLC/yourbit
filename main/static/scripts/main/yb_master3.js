@@ -326,14 +326,22 @@ function changeColor(property, value) {
     document.documentElement.style.setProperty(property, value);
 }
 
-function yb_getWallpaper() {
+function yb_getWallpaper(profile=false) {
     let type;
+    let url;
+    let username;
 
     if (SCREEN_WIDTH < 768) {
         type = "mobile";
     } else {
         type = "desktop";
     }
+
+    if (profile) {
+        username = yb_getProfileData("username");
+        url = `/customize/get/wallpaper/profile/connection/${username}/${type}/`;
+    }
+
     $.ajax({
         type: 'GET',
         url: `/customize/get/wallpaper/profile/${type}/`,
@@ -365,6 +373,7 @@ function yb_changeWallpaper(value, profile=false) {
     
 
     if (wallpaper_enabled == "True") {
+        console.log(value);
         console.log("Wallpaper enabled " + wallpaper_enabled )
         BG_IMAGE_A.style.display = "block";
         BG_IMAGE_SOURCE_A.src = value;
@@ -384,8 +393,8 @@ function yb_showWallpaper() {
     BG_IMAGE_A.style.display = "block";
 }
 
-function yb_loadWallpaper() {
-    // let wallpaper = yb_getWallpaper();
+function yb_loadWallpaper(profile = false) {
+    let wallpaper = yb_getWallpaper(profile);
     yb_changeWallpaper(wallpaper);
     yb_showWallpaper();
 }
