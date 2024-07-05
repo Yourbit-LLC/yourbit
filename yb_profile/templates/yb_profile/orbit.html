@@ -1,0 +1,104 @@
+{% load static %}
+
+
+<input id="profile-custom-info" data-panel-color="{{custom_ui.primary_color}}" data-accent-color="{{custom_ui.accent_color}}" data-text-color="{{custom_ui.text_color}}" data-title-color="{{custom_ui.title_color}}" data-icon-color="{{custom_ui.icon_color}}" data-button-color="{{custom_ui.button_color}}" data-button-text-color="{{custom_ui.button_text_color}}" id="profile-colors" style="display: none;"/>
+<link rel="stylesheet" type="text/css" href="{% static 'css/yb_profile/yb_profile.css' %}"/>
+
+{% if current_profile.custom.bit_colors_on %}
+
+    <link rel="stylesheet" href="{% static 'css/yb_bits/yb_bits_customized.css' %}">
+
+{% else %}
+    <link rel="stylesheet" href="{% static 'css/yb_bits/yb_bits.css' %}">
+{% endif %}
+
+<input type="hidden" id="profile-data" value="{{current_profile.username}}" data-id="{{ current_profile.id }}" data-wallpaper-on="{{current_profile.custom.wallpaper_on}}" data-username="{{current_profile.user.username}}" data-background = "{{current_profile.custom.wallpaper.background_image.url}}" data-blur="{{profile.custom.background_blur}}" data-brightness="{{current_profile.custom.background_brightness}}" data-icon-color = "{{current_profile.custom.icon_color}}"/>
+<div id="profile-bit-container" class="bit-container" style="padding-top: 100px;">
+
+</div>
+<div id="profile-page-splash" class="yb-fsContainer">
+
+    <div id="profile-splash-label" class = "yb-splash-label profile yb-center-transform all align-center">
+        <div id="profile-image-container" class="profile-image-container yb-center-margin all plainBorder border-solid narrowBorder circle">
+            <img src="{{current_profile.custom.profile_image.medium_thumbnail.url}}"  id="profile-image-splash" style="width: 100%; border-color:{{profile.custom.accent_color}};"/>
+        </div>
+        <div class="profile-name-splash" id="profile-name-splash">
+            <h2 id="profile-name-header" style="color:{{profile.custom.profile_splash.name_font_color}};" class="profile-name-header">{{current_profile.display_name}}</h2>
+            <b style = "margin: 0px;" id="profile-handle-label" style="color:{{profile.custom.profile_splash.username_font_color}};" class="profile-handle-label">
+                <small>@{{current_profile.user.username}}</small>
+            </b>
+        </div>
+
+
+        <div id="profile-interaction-container" class="profile-CME profile-interaction-container yb-center-margin lr">
+            <button style="color: {{profile.custom.profile_splash.button_text_color}}; background-color: {{profile.custom.profile_splash.button_color}}; width: 25vw; max-width: 150px;" id="profile-button-connect" class="button-profile-interaction yb-button-flex" data-id = "{{current_profile.user.username}}"
+            {% if request.user.id == current_profile.user.id %}
+                data-action="edit"
+            {% else %}
+                {% if current_profile in request.user.profile.following.all or profile in request.user.profile.connections.all %}
+                    data-action="manage"
+                {% else %}
+                    data-action="connect"
+                {% endif %}
+            {% endif %}
+            >
+                
+                {% if request.user.id == current_profile.user.id %}
+                    <span id="connect-button-text" class="profile-interact-text">Edit</span>
+                    <svg class="profile-interact-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill:{{profile.bit_background}};" d="M5 19h1.4l8.625-8.625-1.4-1.4L5 17.6ZM19.3 8.925l-4.25-4.2 1.4-1.4q.575-.575 1.413-.575.837 0 1.412.575l1.4 1.4q.575.575.6 1.388.025.812-.55 1.387ZM17.85 10.4 7.25 21H3v-4.25l10.6-10.6Zm-3.525-.725-.7-.7 1.4 1.4Z"/></svg>
+                {% else %}
+                    {% if current_profile in request.user.profile.following.all or profile in request.user.profile.connections.all %}
+                        <span id="connect-button-text" class="profile-interact-text">Manage</span>
+                    {% else %}
+                        <span id="connect-button-text" class="profile-interact-text">Connect</span>
+                        <svg class="profile-interact-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill:{{profile.bit_background}};" d="M5 19h1.4l8.625-8.625-1.4-1.4L5 17.6ZM19.3 8.925l-4.25-4.2 1.4-1.4q.575-.575 1.413-.575.837 0 1.412.575l1.4 1.4q.575.575.6 1.388.025.812-.55 1.387ZM17.85 10.4 7.25 21H3v-4.25l10.6-10.6Zm-3.525-.725-.7-.7 1.4 1.4Z"/></svg>
+                    {% endif %}
+                {% endif %}
+    
+    
+            </button>
+    
+            <button style="color: {{current_profile.custom.profile_splash.button_text_color}}; background-color: {{profile.custom.custom.profile_splash.button_color}}; width: 25vw; max-width: 150px;" id="profile-button-message" class="button-profile-interaction yb-button-flex" data-id="{{current_profile.user.username}}">
+                {% if request.user.id == current_profile.user.id %}
+                    <span class-"interact-text" class="profile-interact-text">Messages</span>
+                    <svg class="profile-interact-icon profile-message-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill:{{profile.bit_background}};" d="M4 20q-.825 0-1.412-.587Q2 18.825 2 18V6q0-.825.588-1.412Q3.175 4 4 4h16q.825 0 1.413.588Q22 5.175 22 6v12q0 .825-.587 1.413Q20.825 20 20 20Zm8-7L4 8v10h16V8Zm0-2 8-5H4ZM4 8V6v12Z"/></svg>
+                    
+                {% else %}
+                    <span class-"interact-text" class="profile-interact-text">Message</span>
+                    <svg class="profile-interact-icon profile-message-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill:{{profile.bit_background}};" d="M4 20q-.825 0-1.412-.587Q2 18.825 2 18V6q0-.825.588-1.412Q3.175 4 4 4h16q.825 0 1.413.588Q22 5.175 22 6v12q0 .825-.587 1.413Q20.825 20 20 20Zm8-7L4 8v10h16V8Zm0-2 8-5H4ZM4 8V6v12Z"/></svg>
+                {% endif %}
+            </button>
+    
+            <button style="color: {{current_profile.custom.profile_splash.button_text_color}}; background-color: {{profile.custom.profile_splash.button_color}}; width: 25vw; max-width: 150px;" data-username="{{current_profile.user.username}}" id="profile-button-about" class="button-profile-interaction yb-button-flex">
+                <span class-"interact-text" class="profile-interact-text">About</span>
+                <svg class="profile-interact-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill:{{profile.bit_background}};" d="M1 20v-4q0-.85.588-1.425Q2.175 14 3 14h3.275q.5 0 .95.25.45.25.725.675.725.975 1.788 1.525Q10.8 17 12 17q1.225 0 2.288-.55 1.062-.55 1.762-1.525.325-.425.762-.675.438-.25.913-.25H21q.85 0 1.425.575Q23 15.15 23 16v4h-7v-2.275q-.875.625-1.887.95Q13.1 19 12 19q-1.075 0-2.1-.337-1.025-.338-1.9-.963V20Zm11-4q-.95 0-1.8-.438-.85-.437-1.425-1.212-.425-.625-1.062-.987Q7.075 13 6.325 13q.55-.925 2.325-1.463Q10.425 11 12 11q1.575 0 3.35.537 1.775.538 2.325 1.463-.725 0-1.375.363-.65.362-1.075.987-.55.8-1.4 1.225Q12.975 16 12 16Zm-8-3q-1.25 0-2.125-.875T1 10q0-1.275.875-2.138Q2.75 7 4 7q1.275 0 2.138.862Q7 8.725 7 10q0 1.25-.862 2.125Q5.275 13 4 13Zm16 0q-1.25 0-2.125-.875T17 10q0-1.275.875-2.138Q18.75 7 20 7q1.275 0 2.138.862Q23 8.725 23 10q0 1.25-.862 2.125Q21.275 13 20 13Zm-8-3q-1.25 0-2.125-.875T9 7q0-1.275.875-2.138Q10.75 4 12 4q1.275 0 2.137.862Q15 5.725 15 7q0 1.25-.863 2.125Q13.275 10 12 10Z"/></svg>
+            </button>
+        </div>
+        <div id="profile-bio-container" class="splash-bio-container">
+            <h3 id="profile-motto" style="color: {{profile.custom.profile_splash.title_color}};" class="profile-motto">
+                {{cyrrent_profile.profile_info.motto}}
+            </h3>
+            <p id="profile-bio" style="color:{{current_profile.custom.profile_splash.text_color}};" class="splash-bio">
+                {{current_profile.profile_info.user_bio}}
+            </p>
+        </div>
+    </div>
+
+    <div id="swipe-up-element" class="swipe-up-element bobbing-object">
+        <svg id="swipe-up-icon" class='swipe-up-icon yb-autoFill' xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M14.15 30.75 12 28.6l12-12 12 11.95-2.15 2.15L24 20.85Z"/></svg>
+        <p style = "display: none; color: {{current_profile.custom.profile_splash.primary_color}};" class = "swipe-up-text" id="swipe-up-text">Slide up for bitstream</p>
+        <p style = "color: {{current_profile.custom.profile_splash.primary_color}};" class = "swipe-up-text" id="swipe-up-text">Scroll for Bitstream</p>
+    </div>
+
+    <div id="load-indicator-container-profile" class="swipe-up-loading true" class="detail-load-box">
+        <div id="profile-loading" class="loading-circle detailed">
+
+        </div>
+        <p id="load-indicator-label" class="loading-circle-label" style="color: {{profile.custom.profile_splash.primary_color}};">loading bitstream...</p>
+    </div>
+
+</div>
+
+<script class="page-script" type="text/javascript" src="{% static 'scripts/yb_bitstream/yb_bitstream.js' %}"></script>
+<script class="page-script" id="page-script" type="text/javascript" src="{% static 'scripts/yb_profile/yb_profile.js' %}"></script>
+
