@@ -385,7 +385,7 @@ function yb_showWallpaper() {
 }
 
 function yb_loadWallpaper() {
-    let wallpaper = yb_getWallpaper();
+    // let wallpaper = yb_getWallpaper();
     yb_changeWallpaper(wallpaper);
     yb_showWallpaper();
 }
