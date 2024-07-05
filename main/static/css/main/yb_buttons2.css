@@ -230,6 +230,10 @@
     transition: 0.5s;
 }
 
+.bb-button:hover {
+    transform: translateX(-50%) scale(1.03) !important;
+}
+
 @media (prefers-color-scheme:dark) {
     .yb-button-threeQuarter {
         color: white;
