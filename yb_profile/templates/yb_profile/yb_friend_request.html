@@ -16,13 +16,12 @@
     </div>
     <div id="request-message-container" class="request-message align-center yb-autoText">
         <h4>{{friend_request.from_user.motto}}</h4>
-        <h4>{{friend_request.from_user.bio}}</h4>
+        <p>{{friend_request.from_user.bio}}</p>
 
     </div>
 
-    <hr>
-
     <div id="request-response-container">
+        <hr>
         <button class="yb-menu-listButton yb-button-threeQuarter border-none squared yb-margin-T10 yb-widthConstraint-600 yb-autoText bg-gray font-heavy pointer-object" onclick="yb_acceptOption({{friend_request.id}})">Accept</button>
         <button class="yb-menu-listButton yb-button-threeQuarter border-none squared yb-margin-T10 yb-widthConstraint-600 yb-autoText bg-gray font-heavy pointer-object">Decline</button>
     </div>
