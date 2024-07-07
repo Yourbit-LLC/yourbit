@@ -9,7 +9,7 @@
 
 <div class="yb-fillWidth yb-vScroll yb-autoText yb-margin-T10 align-center" ID="feed-settings-form" method="POST" action="{% url 'settings_feed' %}" style="height: calc(100% - 70px); border-radius: 15px; padding-bottom: 150px;">
 
-    <h3>Edit Wallpaper</h3>
+    <h3 class="yb-pHead">Edit Wallpaper</h3>
     <br>
     <section>
         <form id="wallpaper-form" method="POST" enctype="multipart/form-data">
@@ -41,7 +41,7 @@
         <div class="wp-desktop-preview">
             <div class="wp-desktop-preview-inner" style="position: relative;">
                 {% if wallpaper_desktop.url != "" %}
-                    <img src="{{wallpaper_desktop.url}}" style="max-width: 100%; max-height: 353px; border-radius: 10px; box-shadow: 1px 1px 5px black;" class="wp-desktop-preview-image">
+                    <img src="{{wallpaper_desktop.url}}" style="max-width: 100%; max-height: 370px; border-radius: 10px; box-shadow: 1px 1px 5px black;" class="wp-desktop-preview-image">
 
                 {% else %}
                     <img src="{% static 'images/main/desktop-wallpaper-placeholder.png' %}" style="max-width: 100%; max-height: 400px; border-radius: 10px; box-shadow: 1px 1px 5px black;" class="wp-desktop-preview-image">

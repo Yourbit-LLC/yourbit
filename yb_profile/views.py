@@ -165,7 +165,7 @@ class ProfileConnectTemplate(View):
                 "name": "follow",
                 "type": "profile-connect",
                 "object_id": this_profile.id,
-                "action":"yb_followUser()",
+                "action":f"yb_followUser({this_profile.id})",
             }
 
         if user_profile.is_friends_with(this_profile):
@@ -174,7 +174,7 @@ class ProfileConnectTemplate(View):
                 "name": "unfriend",
                 "type": "profile-connect",
                 "object_id": this_profile.id,
-                "action":"yb_unfriendUser()",
+                "action": f"yb_unfriendUser({this_profile.id})",
             }
 
         else:
@@ -183,7 +183,7 @@ class ProfileConnectTemplate(View):
                 "name": "friend",
                 "type": "profile-connect",
                 "object_id": this_profile.id,
-                "action":"yb_friendUser()",
+                "action": f"yb_friendUser({this_profile.id})",
             }
         
         if user_profile.is_blocked(this_profile):
@@ -192,7 +192,7 @@ class ProfileConnectTemplate(View):
                 "name": "unblock",
                 "type": "profile-connect",
                 "object_id": this_profile.id,
-                "action":"yb_unblockUser()",
+                "action":f"yb_unblockUser({this_profile.id})",
             }
         else:
             block_button = {
@@ -200,7 +200,7 @@ class ProfileConnectTemplate(View):
                 "name": "block",
                 "type": "profile-connect",
                 "object_id": this_profile.id,
-                "action":"yb_blockUser()",
+                "action":f"yb_blockUser({this_profile.id})",
             }
         menu_name = "profile-connect"
 
@@ -210,7 +210,7 @@ class ProfileConnectTemplate(View):
                 friend_button,
                 block_button,
             ]
-            
+
         else:
             option_set = [
                 follow_button,

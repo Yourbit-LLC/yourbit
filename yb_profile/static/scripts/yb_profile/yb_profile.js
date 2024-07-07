@@ -174,10 +174,10 @@ $('#back-to-home').click(function() {
 
     // });
 
-function yb_requestFriend() {
+function yb_requestFriend(user_id) {
     let cookie = document.cookie;
     let csrfToken = getCSRF();
-    let user_id = document.getElementById("profile-data").getAttribute("data-id");
+
 
     let this_data = JSON.stringify({
         to_user: user_id
@@ -207,10 +207,10 @@ function yb_requestFriend() {
         }
     )
 }
-function follow() {
+function yb_follow(user_id) {
     let cookie = document.cookie;
     let csrfToken = getCSRF();
-    let user_id = document.getElementById("profile-data").getAttribute("data-id");
+    
     $.ajax(
         {
         type: "POST",
@@ -228,9 +228,8 @@ function follow() {
     )
 }
 
-function yb_block() {
+function yb_block(user_id) {
     let cookie = document.cookie;
-    let profile = document.getElementById("profile-data").getAttribute("data-profile-id");
     let csrfToken = getCSRF();
     $.ajax(
         {
@@ -240,7 +239,7 @@ function yb_block() {
         },
         url: '/profile/block/',
         data: {
-            user_id: profile
+            user_id: user_id
         },
         success: function(data) {
             let response = data;
