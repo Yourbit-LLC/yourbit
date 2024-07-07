@@ -196,6 +196,11 @@ input:focus + .slider {
     background-color: rgba(0, 0, 0, 0.8);
 }
 
+.yb-listItem-option {
+    line-height: 2;
+}
+
+
 input:checked + .slider:before {
     -webkit-transform: translateX(13.5px);
     -ms-transform: translateX(13.5px);

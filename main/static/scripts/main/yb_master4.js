@@ -138,6 +138,7 @@ const MODDED_STYLESHEET_INDEX = {
 
 const DRAWER_CONTENT = {
     "browse-stickers": "/customize/stickers/browse/",
+    "profile-connect": `/profile/templates/connect_menu/`,
 }
 
 const TWO_WAY_INDEX = {
@@ -408,6 +409,7 @@ function yb_setProfileUI() {
 
     let this_wallpaper = yb_getProfileData("background");
     console.log("This wallpaper: " + this_wallpaper)
+    
     yb_changeWallpaper(this_wallpaper, true);
 
 
@@ -442,22 +444,26 @@ function yb_launch2WayContainer(page) {
         $(container_content).html("");
         $(container_content).load(this_page.template)
         history.pushState({}, "", this_page.url);
-
     }
 }
 
 
 
-function yb_openDrawer(template) {
+function yb_openDrawer(template, id=null) {
     DRAWER.classList.add("open");
-
+    console.log(template)
     if (template != DRAWER.getAttribute("data-state")) {
         DRAWER_INNER.innerHTML = "";
-        $(DRAWER_INNER).load(DRAWER_CONTENT[template]);
+        console.log(DRAWER_CONTENT[template]);
+        if (id) {
+            $(DRAWER_INNER).load(DRAWER_CONTENT[template] + id.toString() + "/");
+        } else {
+
+            $(DRAWER_INNER).load(DRAWER_CONTENT[template]);
+        }
         DRAWER.setAttribute("data-state", template);
     }
-        
-
+    
 }
 
 function yb_closeDrawer() {

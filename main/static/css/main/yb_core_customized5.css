@@ -546,6 +546,11 @@ p {
 .yb-splash.base {
     background-color: var(--yb-panel-color);
 }
+
+.yb-listItem-option {
+    line-height: 2;
+}
+
 /*
         Splash Pages - Profile
 */

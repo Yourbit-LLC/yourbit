@@ -141,7 +141,44 @@ class HistoryTemplate(View):
     def get(self, request, *args, **kwargs):
 
         return render(request, "yb_profile/yb_history.html")
-    
+
+class ProfileConnectTemplate(View):
+    def get(self, request, id, *args, **kwargs):
+        this_profile = Profile.objects.get(id = id)
+        menu_name = "profile-connect"
+        
+        option_set = [
+            {
+                "name":"request_friend",
+                "label":"Request Friend",
+                "type": "profile-connect",
+                "object_id": this_profile.id,
+                "action":"yb_requestFriend()"
+            },
+            {
+                "name":"follow",
+                "label":"Follow",
+                "type": "profile-connect",
+                "object_id": this_profile.id,
+                "action":"yb_followUser()"
+            },
+            {
+                "name":"block",
+                "label":"Block",
+                "type": "profile-connect",
+                "object_id": this_profile.id,
+                "action":"yb_blockUser()"
+            },
+        ]
+
+        context = {
+            "menu_name":menu_name,
+            "current_profile":this_profile,
+            "option_set":option_set,
+        }
+
+        return render(request, "main/options_menu.html", context)
+
 class ProfileAboutTemplate(View):
     def get(self, request, username, *args, **kwargs):
         this_user = User.objects.get(username = username)
@@ -152,8 +189,10 @@ class ProfileAboutTemplate(View):
             "current_profile":this_profile,
             "profile_info": this_info,
         }
+
         return render(request, "yb_profile/yb_about.html", context)
-    
+
+
 class ProfilePage(View):
     def get(self, request):
                      
