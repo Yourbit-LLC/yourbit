@@ -10,19 +10,10 @@
 /*
         Core UI
 */
-
-@media (prefers-color-scheme: light) {
-    body {
-        background-color: white;
-    }
-
+body {
+    background-color: (--yb-panel-color);
 }
 
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: black;
-    }
-}
 
 body {
     /*Style*/
@@ -34,94 +25,14 @@ button {
     text-decoration: none !important;
 }
 
-.yb-background-image {
-    position: fixed;
-    top: 0;
-    left: -2vw;
-    width: 103vw;
-    /* The image used */
-  
-    /* Add the blur effect */
-    filter: brightness(80%) saturate(150%) blur(20px);
-    -webkit-filter: brightness(80%) saturate(150%) blur(20px);
-    /* Full height */
-    height: 101vh;
-    
-  
-    /* Center and scale the image nicely */
-    background-position: center;
-    z-index: 1;
-    transition: 1s;
-
-}
-
-.yb-background-overlay {
-    z-index: 2;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-
-}
-
-.sticker-list-container {
-    position: relative;
-    top: 50px;
-    height: 27vh;
-}
-
-.yb-dynamic-gridContainer {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Adjusted auto-fill */
-    gap: 10px;
-    max-width: 800px; /* Optional: Limit width of grid */
-    height: 27vh;
-  }
-  
-  .yb-dynamic-gridItem {
-    overflow: hidden;
-    /* Optional: Set fixed height for each grid item */
-    height: 100px;
-    width: 100px;
-    z-index: 1000;
-  }
-  
-  .yb-dynamic-grid-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensures images maintain aspect ratio and cover the container */
-  }
-  
-@media (prefers-color-scheme: dark) {
-    .yb-background-image {
-        background-color: black;
-    }
-
-    .yb-background-overlay {
-        background-color: rgba(0, 0, 0, 0.2);
-    }
-}
-
-@media (prefers-color-scheme: light) {
-    .yb-background-image {
-        background-color: white;
-    }
-
-    .yb-background-overlay {
-        background-color: rgba(255, 255, 255, 0.2);
-    }
-}
-
-
 
 /* The switch - the box around the slider */
 .yb-switch-round {
     position: relative;
     margin-left: 5px;
     display: inline-block;
-    width: 42px;
-    height: 27px;
+    width: 21px;
+    height: 13.5px;
     margin-top: auto;
     margin-bottom: auto;
 }
@@ -152,6 +63,7 @@ button {
     }
         
  }
+
 
 /* The slider */
 .slider {
@@ -185,21 +97,6 @@ input:checked + .slider {
 input:focus + .slider {
     box-shadow: 0 0 1px #2196F3;
 }
-
-.element-divider-1 {
-    position: fixed; 
-    z-index: 500;
-    top: 0px;
-    left: 0px;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-.yb-listItem-option {
-    line-height: 2;
-}
-
 
 input:checked + .slider:before {
     -webkit-transform: translateX(13.5px);
@@ -303,6 +200,7 @@ p {
         transform: translateY(200%);
         transition: 0.5s;
     }
+
 }
 
 /* Desktop Navigation Bar on Top */
@@ -313,7 +211,7 @@ p {
         position: fixed;
         display: grid;
         grid-template-columns: 115px 1.3fr 4fr 1.5fr 0.75fr;
-        z-index: 1000;
+        z-index: 1004;
         top: 0;
         left: 0;
         margin: 0px;
@@ -328,21 +226,6 @@ p {
 
     }
 
-    @media (prefers-color-scheme: dark) {
-        .yb-navigation {
-            background-color: black;
-
-        }
-
-    }
-
-    @media (prefers-color-scheme: light) {
-        .yb-navigation {
-            background-color: white;
-
-        }
-
-    }
 
     .yb-navigation.hideDesktop {
         transform: translateY(-100%);
@@ -387,13 +270,19 @@ p {
         margin: auto;
         -webkit-backdrop-filter: blur(20px);
         backdrop-filter: blur(20px);
-        z-index: 10;
     }
 
     .yb-space-nav.hidden {
         transform: translateY(300px);
         transition: 0.5s;
     }
+
+    .yb-space-nav {
+        background-color: (--yb-panel-color);
+    }
+
+    
+
 }
 
 .space-button {
@@ -447,18 +336,10 @@ p {
     transition: 0.3s;
     margin: auto;
 }
-@media (prefers-color-scheme: dark){
-    .yb-icon-gridItem {
-        fill: white;
-    }
-}
 
-@media (prefers-color-scheme: light){
-    .yb-icon-gridItem {
-        fill: black !important;
-    }
+.yb-icon-gridItem {
+    fill: var(--yb-icon-color);
 }
-
 
 
 .helper {
@@ -466,21 +347,26 @@ p {
 }
 
 .space-button-icon {
-    fill: gray;
+    fill: var(--yb-icon-color);
+    filter: brightness(80%) saturate(80%);
+    -webkit-filter: brightness(80%) (80%);
+    transition: 0.5s;
 }
 @media (prefers-color-scheme: dark) {
     .space-button-icon.active {
         filter: brightness(200%);
         -webkit-filter: brightness(200%);
+        transition: 0.5s;
     }
 }
 @media (prefers-color-scheme: light){
     .space-button-icon.active {
         filter: brightness(0%);
         -webkit-filter: brightness(0%);
+        transition: 0.5s;
     }
-
 }
+
 .yb-search-form.desktop {
     /* Positioning */
     margin: auto;
@@ -602,84 +488,12 @@ p {
 }
     
 
-@media (prefers-color-scheme: light) {
-    
-    
-    #logo-name {
-        color: gray;
-    }
 
-    .yb-logo-masthead {
-        /*Positioning*/
-        position: relative;
-        margin: auto;
-        fill: black;
-        /*Style*/
-        cursor: pointer;
-    }
 
-    .yb-logo-masthead.mobile {
-        position: absolute;
-        display: block;
-        fill: black;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        height: 30px;
-    }
-
-    .yb-header-logo {
-        /*Positioning*/
-        position: relative;
-        margin: auto 0;
-
-        /*Sizing*/
-        height: 40px;
-        width: 40px;
-
-        /*Style*/
-        cursor: pointer;
-    }
+#logo-name {
+    color: var(--yb-icon-color);
 }
 
-@media (prefers-color-scheme: dark) {
-    
-    #logo-name {
-        color: gray;
-    }
-
-    .yb-logo-masthead {
-        /*Positioning*/
-        position: relative;
-        margin: auto;
-        fill: white;
-        /*Style*/
-        cursor: pointer;
-    }
-
-    .yb-logo-masthead.mobile {
-        position: absolute;
-        display: block;
-        fill: white;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        height: 30px;
-    }
-
-    .yb-header-logo {
-        /*Positioning*/
-        position: relative;
-        margin: auto 0;
-
-        /*Sizing*/
-        height: 40px;
-        width: 40px;
-
-        /*Style*/
-        cursor: pointer;
-    }
-}
 
 .yb-header-logo:hover {
     opacity: 0.8;
@@ -730,8 +544,13 @@ p {
 */
 
 .yb-splash.base {
-    background-color: black;
+    background-color: var(--yb-panel-color);
 }
+
+.yb-listItem-option {
+    line-height: 2;
+}
+
 /*
         Splash Pages - Profile
 */
@@ -739,6 +558,15 @@ p {
 /*
         Splash Pages - Label
 */
+.element-divider-1 {
+    position: fixed; 
+    z-index: 500;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+}
 
 .yb-splash-label {
     display: block;
@@ -755,7 +583,6 @@ p {
 }
 
 .yb-splash-label.profile {
-    transform:translate(-50%, -65%);
     width: 75%;
 }
 
@@ -770,17 +597,15 @@ p {
     
 }
 
-@media (prefers-color-scheme: light) {
-    .yb-icon {
-        fill: black;
-    }
+
+.yb-icon {
+    fill: var(--yb-icon-color);
 }
 
-@media (perfers-color-scheme: dark) {
-    .yb-icon {
-        fill: white;
-    }
+.yb-path {
+    fill: var(--yb-icon-color);
 }
+
 
 .yb-icon:hover {
     opacity: 0.8;
@@ -915,6 +740,23 @@ p {
     }
 }
 
+.yb-listItem {
+    background-color: var(--yb-panel-color);
+    color: var(--yb-title-color);
+    width: 90% !important;
+    box-shadow: 0px 0px 5px 0px black;
+}
+
+.full-result-name {
+    filter: brightness(0.5);
+    -webkit-filter: brightness(0.5);
+}
+
+.full-result-username {
+    filter: brightness(0.5);
+    -webkit-filter: brightness(0.5);
+}
+
 @media screen and (max-width: 768px) {
     .loading-icon-animated {
         position: absolute; 
@@ -952,7 +794,13 @@ p {
 }
 
 .div-header {
-    position: relative; display: grid; grid-template-columns: 28px 5fr 1fr; margin-left: auto; margin-right: auto; width: 100%; height: 40px;
+    position: relative; 
+    display: grid; 
+    grid-template-columns: 28px 5fr 1fr; 
+    margin-left: auto; 
+    margin-right: auto; 
+    width: 100%; 
+    height: 40px;
 }
 
 .cb-panel-back {
@@ -982,3 +830,84 @@ p {
         background-color: rgba(255, 255, 255, 0.5);
     }
 }
+
+
+.yb-background-image {
+    position: fixed;
+    top: 0;
+    left: -2vw;
+    width: 103vw;
+    /* The image used */
+  
+    /* Add the blur effect */
+    filter: brightness(80%) saturate(150%) blur(20px);
+    -webkit-filter: brightness(80%) saturate(150%) blur(20px);
+    /* Full height */
+    height: 101vh;
+    
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    z-index: 1;
+    transition: 1s;
+
+}
+
+.yb-background-overlay {
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+}
+
+@media (prefers-color-scheme: dark) {
+    .yb-background-image {
+        background-color: black;
+    }
+
+    .yb-background-overlay {
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    .yb-background-image {
+        background-color: white;
+    }
+
+    .yb-background-overlay {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+}
+
+.sticker-list-container {
+    position: relative;
+    top: 50px;
+    height: 27vh;
+}
+
+.yb-dynamic-gridContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Adjusted auto-fill */
+    gap: 10px;
+    max-width: 800px; /* Optional: Limit width of grid */
+    height: 27vh;
+  }
+  
+  .yb-dynamic-gridItem {
+    overflow: hidden;
+    /* Optional: Set fixed height for each grid item */
+    height: 100px;
+    width: 100px;
+    z-index: 1000;
+  }
+  
+  .yb-dynamic-grid-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures images maintain aspect ratio and cover the container */
+  }
+  

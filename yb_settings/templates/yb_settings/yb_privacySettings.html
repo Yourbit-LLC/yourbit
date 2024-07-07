@@ -30,12 +30,12 @@
             {% csrf_token %}
             
             <div class="setting-container" style="padding-bottom: 150px;">
-                <h3>Profile</h3>
+                <h3 class="yb-pHead">Profile</h3>
                 <br>
                 <div class = "yb-switch-container-grid">
                     <div>
                         
-                        <p class="yb-switch-label">Allow followers</p>
+                        <p class="yb-switch-label yb-pText">Allow followers</p>
                         <label class="yb-switch-round" id="yb-exclude-shared" >
                             <input type="checkbox" class="checkbox" name="enable_followers" id="yb-check-enable-follow" {% if enable_followers %}checked{%endif%}>
                             <span class="slider round"></span>
@@ -43,7 +43,7 @@
                     </div>     
 
                     <div>
-                        <p class="yb-switch-label">Seach by real name</p>
+                        <p class="yb-switch-label yb-pText">Seach by real name</p>
                         <label class="yb-switch-round" id="yb-real-search" style="grid-column: 2;">
                             <input type="checkbox" class="checkbox" name="searchable" id="yb-check-real-search" {% if searchable %}checked{% endif %}>
                             <span class="slider round"></span>
@@ -66,10 +66,10 @@
                 <!--Real name visibility: Everyone/FriendsOnly/Hide-->
                 <!--dropdown-->
                 <br>
-                <h3>My Info</h3>
+                <h3 class="yb-pHead">My Info</h3>
                 <br>
                 <div id="display-name" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; width: 95%; margin: auto;">
-                    <p class="field-cover-label align-left" style="grid-column: 1; font-size: auto;">Show Real Name: </p>        
+                    <p class="field-cover-label align-left yb-pText" style="grid-column: 1; font-size: auto;">Show Real Name: </p>        
                     <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                         <label class="yb-switch-round" id="display-name" >
                             <input type="checkbox" class="checkbox notification-check" name="real_name_visibility" id="yb-check-default-public" {% if real_name_visibility == True%} checked {% endif %}>
@@ -81,8 +81,8 @@
                 <br>
                 <div id = "field-container-display-name" class="yb-field-container" style="{% if real_name_visibility == True%} opacity: 0.5; {% endif %}">
                     <div id="display-name" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr; width: 95%; margin: auto;">
-                        <p class="field-cover-label align-left" style="grid-column: 1;">Display Name: </p><input name="display_name" id='field-last-name' value="{{user.profile.display_name}}" class="yb-input-transparent right yb-autoText account-field" style="grid-column: 2;"></div>
-                    <input id='field-last-name' value="{{user.display_name}}" class="yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10" style="display:none;">
+                        <p class="field-cover-label align-left yb-pText" style="grid-column: 1;">Display Name: </p><input name="display_name" id='field-last-name' value="{{user.profile.display_name}}" class="yb-input-transparent right yb-autoText account-field" style="grid-column: 2;"></div>
+                    <input id='field-last-name' value="{{user.display_name}}" class="yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10 yb-pText" style="display:none;">
                 </div>
 
 
@@ -94,8 +94,8 @@
                 <div id="yb-field-container-birthday" class="yb-field-containter">
                     <div id = "field-container-bday" class="yb-field-container">
                         <div id="display-bday" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr; width: 95%; margin: auto;">
-                            <p class="field-cover-label align-left" style="grid-column: 1;">Show Birthday To: </p>
-                            <select type="text" class="yb-input-transparent right yb-autoText privacy-field" name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align" style="grid-column: 2;" value="{{birthday_visibility}}">
+                            <p class="field-cover-label align-left yb-pText" style="grid-column: 1;">Show Birthday To: </p>
+                            <select type="text" class="yb-input-transparent right yb-autoText yb-pText privacy-field" name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align" style="grid-column: 2;" value="{{birthday_visibility}}">
                                 <option class="yb-input-option" value="e" {% if birthday_visibility == 'e' %}selected{% endif %}>Everyone</option>
                                 <option class="yb-input-option" value="fr" {% if birthday_visibility == 'fr' %}selected{% endif %}>Friends Only</option>
                                 <option class="yb-input-option" value="no" {% if birthay_visibility == 'no' %}selected{% endif %}>Nobody</option>
@@ -112,8 +112,8 @@
                 <div id="yb-field-container-phone-number" class="yb-field-container">
                     <div id = "field-container-phone" class="yb-field-container">
                         <div id="display-phone" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr; width: 95%; margin: auto;">
-                            <p class="field-cover-label align-left" style="grid-column: 1;">Show Phone To: </p>
-                            <select type="text" class="yb-input-transparent right yb-autoText privacy-field" name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align" style="grid-column: 2;" value="{{birthday_visibility}}">
+                            <p class="field-cover-label align-left yb-pText" style="grid-column: 1;">Show Phone To: </p>
+                            <select type="text" class="yb-input-transparent right yb-autoText yb-pText privacy-field" name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align" style="grid-column: 2;" value="{{birthday_visibility}}">
                                 <option class="yb-input-option" value="e" {% if phone_number_visibility == 'e' %}selected{% endif %}>Everyone</option>
                                 <option class="yb-input-option" value="fr" {% if phone_number_visibility == 'fr' %}selected{% endif %}>Friends Only</option>
                                 <option class="yb-input-option" value="no" {% if phone_number_visibility == 'no' %}selected{% endif %}>Nobody</option>
@@ -130,8 +130,8 @@
                 <div id="yb-field-container-email" class="yb-field-container">
                     <div id = "field-container-email" class="yb-field-container">
                         <div id="display-email" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr; width: 95%; margin: auto;">
-                            <p class="field-cover-label align-left" style="grid-column: 1;">Show Email To: </p>
-                            <select type="text" class="yb-input-transparent right yb-autoText privacy-field" name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align" style="grid-column: 2;" value="{{birthday_visibility}}">
+                            <p class="field-cover-label align-left yb-pText" style="grid-column: 1;">Show Email To: </p>
+                            <select type="text" class="yb-input-transparent right yb-autoText yb-pText privacy-field" name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align" style="grid-column: 2;" value="{{birthday_visibility}}">
                                 <option class="yb-input-option" value="e" {% if email_visibility == 'e' %}selected{% endif %}>Everyone</option>
                                 <option class="yb-input-option" value="fr" {% if email_visibility == 'fr' %}selected{% endif %}>Friends Only</option>
                                 <option class="yb-input-option" value="no" {% if email_visibility == 'no' %}selected{% endif %}>Nobody</option>
@@ -147,8 +147,8 @@
                 <div id="yb-field-container-friend-count" class="yb-field-container">
                     <div id = "field-container-friend-count" class="yb-field-container">
                         <div id="display-friend-count" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr; width: 95%; margin: auto;">
-                            <p class="field-cover-label align-left" style="grid-column: 1;">Show Friend Count To: </p>
-                            <select type="text" class="yb-input-transparent right yb-autoText privacy-field" name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align" style="grid-column: 2;" value="{{birthday_visibility}}">
+                            <p class="field-cover-label align-left yb-pText" style="grid-column: 1;">Show Friend Count To: </p>
+                            <select type="text" class="yb-input-transparent right yb-autoText privacy-field yb-pText" name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align" style="grid-column: 2;" value="{{birthday_visibility}}">
                                 <option class="yb-input-option" value="e" {% if friend_count_visibility == 'e' %}selected{% endif %}>Everyone</option>
                                 <option class="yb-input-option" value="fr" {% if friend_count_visibility == 'fr' %}selected{% endif %}>Friends Only</option>
                                 <option class="yb-input-option" value="no" {% if friend_count_visibility == 'no' %}selected{% endif %}>Nobody</option>
@@ -179,8 +179,8 @@
                     <br>
                     <div id="yb-field-container-display-mailing" class="yb-field-container">
                         <div id="display-real-name" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr; width: 95%; margin: auto;">
-                            <p class="field-cover-label align-left" style="grid-column: 1;">Show Address To: </p>
-                            <select type="text" class="yb-input-transparent yb-input-select right yb-autoText privacy-field" name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align" style="grid-column: 2;">
+                            <p class="field-cover-label align-left yb-pText" style="grid-column: 1;">Show Address To: </p>
+                            <select type="text" class="yb-input-transparent yb-input-select right yb-autoText privacy-field yb-pText" name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align" style="grid-column: 2;">
                                 <option class="yb-input-option" value="e">Everyone</option>
                                 <option class="yb-input-option" value="fr">Friends Only</option>
                                 <option class="yb-input-option" value="no">Nobody</option>
@@ -190,27 +190,27 @@
                     </div>  
                 </div>
                 <br>
-                <h3>Bits</h3>
+                <h3 class="yb-pHead">Bits</h3>
                 <br>
                 <!--Bit Sharing: On/Off-->
                 <!--Switch-->
                 <div class="yb-switch-container-grid">
                     <div>
-                        <p class="yb-switch-label">Allow Sharing</p>
+                        <p class="yb-switch-label yb-pText">Allow Sharing</p>
                         <label class="yb-switch-round" id="yb-exclude-shared" >
                             <input type="checkbox" class="checkbox" name="enable_share" id="yb-check-enable-share">
                             <span class="slider round"></span>
                         </label>
                     </div>
                     <div>
-                        <p class="yb-switch-label">Allow Friends of Friends</p>
+                        <p class="yb-switch-label yb-pText">Allow Friends of Friends</p>
                         <label class="yb-switch-round" id="yb-reach" >
                             <input type="checkbox" class="checkbox" name="exclude_shared" id="yb-check-reach">
                             <span class="slider round"></span>
                         </label>
                     </div>
                     <div>
-                        <p class="yb-switch-label">Default Publish Public</p>
+                        <p class="yb-switch-label yb-pText">Default Publish Public</p>
                         <label class="yb-switch-round" id="yb-exclude-shared" >
                             <input type="checkbox" class="checkbox" name="default_public" id="yb-check-default-public">
                             <span class="slider round"></span>
@@ -218,7 +218,7 @@
                     </div>       
                 </div>
                 <br>
-                <h3>Messaging</h3>
+                <h3 class="yb-pHead">Messaging</h3>
                 <br>
         
                 <!--Messaging (Default Friends Only)-->
@@ -228,8 +228,8 @@
                 <div>
                     <div id = "field-container-message-scope" class="yb-field-container">
                         <div id="display-message-scope" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;">
-                            <p class="field-cover-label align-left" style="grid-column: 1;">Allow Messages From: </p>
-                            <select type="text" class="yb-input-transparent right yb-autoText privacy-field" name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align" style="grid-column: 2;">
+                            <p class="field-cover-label align-left yb-pText" style="grid-column: 1;">Allow Messages From: </p>
+                            <select type="text" class="yb-input-transparent right yb-autoText yb-pText privacy-field" name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align" style="grid-column: 2;">
                                 <option class="yb-input-option" value="e">Everyone</option>
                                 <option class="yb-input-option" value="fr">Friends Only</option>
                                 <option class="yb-input-option" value="no">Nobody</option>
@@ -243,7 +243,7 @@
                 </div>
                 <br>
                 <!--Disclaimer-->
-                <p class="font-small">
+                <p class="font-small yb-pHead">
                     Yourbit does not track your activity outside of the Yourbit app,
                     cookies are used for session only. Messages, personal information, 
                     and, private bits are encrypted in the database and cannot be read

@@ -241,23 +241,15 @@
 }
 
 /* General styles for notification list items */
-@media (prefers-color-scheme: dark){
-    .yb-listItem {
-        background-color: #333;
-        color: #fff;
-        width: 90%;
 
-    }
+.yb-listItem {
+    background-color: var(--yb-panel-color);
+    color: var(--yb-text-color);
+    box-shadow: 0px 0px 10px 0px black;
+
 }
 
-@media (prefers-color-scheme: light){
-    .yb-listItem {
-        background-color: rgb(150, 150, 150);
-        color: #000;
-        width: 90%;
 
-    }
-}
 
 
 /* Styles for seen and unseen notifications */
@@ -422,17 +414,14 @@
     color: white;
 }
 
-@media (prefers-color-scheme: dark) {
-    .yb-panel-wide {
-        background-color: #333;
-    }
+
+.yb-panel-wide {
+    background-color: var(--yb-panel-color);
+    filter: brightness(0.8);
+    -webkit-filter: brightness(0.8);
 }
 
-@media (prefers-color-scheme: light) {
-    .yb-panel-wide {
-        background-color: white;
-    }
-}
+
 
 .yb-panel-wide.panel-gray {
     background-color: #4b4b4b;
@@ -460,7 +449,7 @@
     .yb-2Way-container {
         right: 15px;
         border-radius: 10px;
-        width: 300px;
+        width: 350px;
         height: calc(100vh - 90px);
         top: calc(50% + 30px);
         transform: translate(150%, -50%);
