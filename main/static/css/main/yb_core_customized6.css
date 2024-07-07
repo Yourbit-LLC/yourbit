@@ -741,20 +741,19 @@ p {
 }
 
 .yb-listItem {
-    background-color: var(--yb-panel-color);
-    color: var(--yb-title-color);
+    background-color: var(--yb-button-color);
+    filter: brightness(0.9);
     width: 90% !important;
     box-shadow: 0px 0px 5px 0px black;
 }
 
 .yb-listItem-head {
-    filter: brightness(0.5);
-    -webkit-filter: brightness(0.5);
+    color: var(--yb-button-text-color);
+    
 }
 
 .yb-listItem-body {
-    filter: brightness(0.5);
-    -webkit-filter: brightness(0.5);
+    color: var(--yb-button-text-color);
 }
 
 @media screen and (max-width: 768px) {
