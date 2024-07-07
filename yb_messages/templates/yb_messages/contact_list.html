@@ -5,19 +5,19 @@
             yb-listItem user
             yb-autoText
         "> 
-        <div class="full-result-image-container yb-center-margin all">
-            <img class="full-result-image" style="width:100%; position: relative;" src="{{contact.custom.profile_image.medium_thumbnail.url}}">
-        </div>
+            <div class="full-result-image-container yb-center-margin all">
+                <img class="full-result-image" style="width:100%; position: relative;" src="{{contact.custom.profile_image.medium_thumbnail.url}}">
+            </div>
 
-        <div class="full-result-name-container">
-            <p class="full-result-name yb-listItem-head"><strong>{{contact.display_name}}</strong></p>
-            <p class="full-result-username yb-listItem-body">
-                <small>@{{contact.user.username}}</small>
-            </p>
-        </div>
+            <div class="full-result-name-container">
+                <p class="full-result-name yb-listItem-head"><strong>{{contact.display_name}}</strong></p>
+                <p class="full-result-username yb-listItem-body">
+                    <small>@{{contact.user.username}}</small>
+                </p>
+            </div>
 
             <div id="user-action" class="yb-fillWidth">
-                <button class="yb-button-wide yb-button small circle yb-center-transform tb" data-catid="{{contact.id}}">
+                <button class="yb-button small border-none yb-panel circle yb-center-transform tb" style="height: 35px; width: 35px;" data-catid="{{contact.id}}">
                     <svg class="yb-autoFill" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20">
                         <path class="yb-path" d="M434.5-434.5H191.869v-91H434.5v-242.631h91V-525.5h242.631v91H525.5v242.631h-91V-434.5Z"/>
                     </svg>
