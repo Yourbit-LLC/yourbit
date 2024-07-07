@@ -748,11 +748,13 @@ p {
 }
 
 .yb-listItem-head {
+    font-size: 15px;
     color: var(--yb-button-text-color);
     
 }
 
 .yb-listItem-body {
+    font-size: 13px;
     color: var(--yb-button-text-color);
 }
 

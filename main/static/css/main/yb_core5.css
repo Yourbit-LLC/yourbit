@@ -200,6 +200,14 @@ input:focus + .slider {
     line-height: 2;
 }
 
+.yb-listItem-head {
+    font-size: 15px;
+}
+
+.yb-lisItem-body {
+    font-size: 13px;
+}
+
 
 input:checked + .slider:before {
     -webkit-transform: translateX(13.5px);
