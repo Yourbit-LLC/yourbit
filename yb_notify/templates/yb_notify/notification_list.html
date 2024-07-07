@@ -39,8 +39,8 @@
         unseen 
         {% endif %}
         yb-autoText
-        yb-pText
-        yb-panel
+        
+        
     ">      
     <div id="notification-icon">
         {% if notification.type == 1 %}
@@ -73,10 +73,10 @@
         
     {% endif %}"
     >
-        <b class="font-small yb-autoText">
+        <b class="font-small yb-autoText yb-listItem-head">
             {{notification.title}}
         </b>
-        <p class="yb-autoText">
+        <p class="yb-autoText yb-listItem-body">
             {{notification.body}}
         </p>
 
