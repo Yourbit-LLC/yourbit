@@ -145,31 +145,78 @@ class HistoryTemplate(View):
 class ProfileConnectTemplate(View):
     def get(self, request, id, *args, **kwargs):
         this_profile = Profile.objects.get(id = id)
-        menu_name = "profile-connect"
-        
-        option_set = [
-            {
-                "name":"request_friend",
-                "label":"Request Friend",
+        user_profile = Profile.objects.get(user = request.user)
+
+        follow_button = {}
+        friend_button = {}
+        block_button = {}
+
+        if user_profile.is_following(this_profile):
+            follow_button = {
+                "label":"Unfollow",
+                "name": "unfollow",
                 "type": "profile-connect",
                 "object_id": this_profile.id,
-                "action":"yb_requestFriend()"
-            },
-            {
-                "name":"follow",
+                "action":"yb_unfollowUser()",
+            }
+        else:
+            follow_button = {
                 "label":"Follow",
+                "name": "follow",
                 "type": "profile-connect",
                 "object_id": this_profile.id,
-                "action":"yb_followUser()"
-            },
-            {
-                "name":"block",
+                "action":"yb_followUser()",
+            }
+
+        if user_profile.is_friends_with(this_profile):
+            friend_button = {
+                "label":"Unfriend",
+                "name": "unfriend",
+                "type": "profile-connect",
+                "object_id": this_profile.id,
+                "action":"yb_unfriendUser()",
+            }
+
+        else:
+            friend_button = {
+                "label":"Friend",
+                "name": "friend",
+                "type": "profile-connect",
+                "object_id": this_profile.id,
+                "action":"yb_friendUser()",
+            }
+        
+        if user_profile.is_blocked(this_profile):
+            block_button = {
+                "label":"Unblock",
+                "name": "unblock",
+                "type": "profile-connect",
+                "object_id": this_profile.id,
+                "action":"yb_unblockUser()",
+            }
+        else:
+            block_button = {
                 "label":"Block",
+                "name": "block",
                 "type": "profile-connect",
                 "object_id": this_profile.id,
-                "action":"yb_blockUser()"
-            },
-        ]
+                "action":"yb_blockUser()",
+            }
+        menu_name = "profile-connect"
+
+        if user_profile.is_friends_with(this_profile):
+        
+            option_set = [
+                friend_button,
+                block_button,
+            ]
+            
+        else:
+            option_set = [
+                follow_button,
+                friend_button,
+                block_button,
+            ]
 
         context = {
             "menu_name":menu_name,

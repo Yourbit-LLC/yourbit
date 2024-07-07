@@ -57,6 +57,37 @@ class Profile(models.Model):
         related_name="following",
         blank=True
     )
+
+    blocked_users = models.ManyToManyField(
+        "self",
+        related_name="blocked",
+        symmetrical=False,
+        blank=True
+    )
+
+    def add_friend(self, profile):
+        """Add a friend to this user profile."""
+        self.friends.add(profile)
+        profile.friends.add(self)
+
+    def remove_friend(self, profile):
+        """Remove a friend from this user profile."""
+        self.friends.remove(profile)
+        profile.friends.remove(self)
+
+    def block_user(self, profile):
+        """Block another user profile."""
+        self.blocked_users.add(profile)
+        profile.blocked_users.add(self)
+
+    def is_blocked(self, profile):
+        """Check if this user is blocked by the given profile."""
+        return self.blocked_users.filter(id=profile.id).exists()
+    
+    def unblock_user(self, profile):
+        """Unblock another user profile."""
+        self.blocked_users.remove(profile)
+        profile.blocked_users.remove(self)
     
     def follow(self, profile):
         """Follow another user profile."""
@@ -71,6 +102,10 @@ class Profile(models.Model):
     def is_following(self, profile):
         """Check if this user is following the given profile."""
         return self.follows.filter(id=profile.id).exists()
+    
+    def is_friends_with(self, profile):
+        """Check if this user is friends with the given profile."""
+        return self.friends.filter(id=profile.id).exists()
 
     bio = models.CharField(max_length=500, blank=True, null=True)
     motto = models.CharField(max_length=100, blank=True, null=True)
