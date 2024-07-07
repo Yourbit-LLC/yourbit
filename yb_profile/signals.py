@@ -5,7 +5,7 @@ from yb_settings.models import MySettings, FeedSettings, PrivacySettings, Notifi
 from yb_profile.models import Profile, ProfileInfo
 from yb_systems.models import TaskManager
 from yb_rewards.models import Rewards
-from yb_customize.models import CustomCore, Theme
+from yb_customize.models import CustomCore, Theme, CustomUI
 from yb_notify.models import NotificationCore
 from yb_bits.models import InteractionHistory, Bit, BitStream
 from yb_photo.models import Photo, Wallpaper
@@ -64,6 +64,9 @@ def create_profile(sender, instance, created, **kwargs):
         default_theme.save()
         custom_core.theme = default_theme
         custom_core.save()
+
+        custom_ui = CustomUI(theme=default_theme)
+        custom_ui.save()
 
         #Initialize Task Manager for user continuity
         task_manager = TaskManager(user = instance)

@@ -31,77 +31,7 @@
 <hr>
 
 <div id="conversation-list" class="yb-fillWidth yb-vScroll yb-margin-T10" style="height: calc(100% - 237px); border-radius: 15px;" onload="{{onload}}">
-    {% if conversations == True %}
-        
-        {% for conversation in results %}
-        <div id="conversation-container-{{conversation.id}}" class="conversation-container yb-fillWidth" data-catid="{{conversation.id}}">
-            <div id="conversation-{{conversation.id}}" class="
-                yb-listItem conversation 
-                {% comment %} {% if conversation.has_seen %} 
-                seen 
-                {%else%} 
-                unseen 
-                {% endif %} {% endcomment %}
-                yb-autoText
-            "> 
-                
-                                
-                <div class="full-result-image-container">
-                    <img class="full-result-image" style="width:100%; position: relative;" src="{{conversation.image}}">
-                </div>
-                    
-                
-                <div id="message-contents font-medium">
-                    <b class="yb-autoText yb-listItem-head" style="font-size: 13px; font-weight: 600;">
-                            {{conversation.name}}
-                    </b>
-                    <p class="yb-autoText yb-listItem-body">
-                        {% if conversation.preview != ""%}
-                            {{conversation.preview}}
-                        {% else %}
-                            <i>Attachment</i>
-                        {% endif %}
-                    </p>
-
-                    <div class="font-white blend" id="conversation-time">
-                        <p class="font-small"><small><i>{{conversation.time}}</i></small></p>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-        {% endfor %}
-    {% else %}
-        <div class="yb-fillWidth">
-            <div class="yb-autoText">
-                <br>
-                <p class="align-center yb-margin-T10">No conversations yet</p>
-                <br>
-                <button id="create-new-conversation" class="yb-button-flex font-gray-dark yb-button-halfWidth">+  Create New</button>
-                <script>
-
-                    document.getElementById("create-new-conversation").addEventListener("click", function(){
-                        let container = yb_toggle2WayContainer('messages-new');
-                        if (container[0] === "closing"){
-                            history.pushState(null, null, "/");
-                            container[1].setAttribute("data-state", "empty");
-                        } else {
-                            console.log("not closing")
-                            let container_content = container[1].querySelector(".yb-2Way-content");
-                            container[1].setAttribute("data-state", "messages-new");
-                            yb_purgeScripts(yb_clearContainer);
-                            
-                            $(container_content).load("/messages/templates/new-message/")
-
-                            history.pushState({}, "", '/messages/');
-                    
-                        }
-                    });
-                </script>
-            </div>
-        </div>
-    {% endif %}
+ {% include 'yb/messages.conversation_list.html' %}
 </div>
 <script src="{% static 'scripts/yb_messages/yb_messenger.js' %}"></script>
 <script src="{% static 'scripts/yb_messages/yb_inbox.js' %}"></script>
