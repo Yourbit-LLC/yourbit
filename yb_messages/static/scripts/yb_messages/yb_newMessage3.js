@@ -31,9 +31,9 @@ function yb_conversationAddContact(e) {
     
     contact_search.focus();
     if (iteration == 0) {
-        contact_tag.style.transform = "translateX(0px)";
+        contact_tag.style.transform = "translateY(-50%) translateX(0px)";
     } else {
-        contact_tag.style.transform = `translateX(${recipient_iteration}10px)`;
+        contact_tag.style.transform = `translateY(-50%) translateX(${recipient_iteration}10px)`;
     }
     recipient_iteration += 1;
     contact_search.style.paddingLeft = `${recipient_iteration}10px`;
