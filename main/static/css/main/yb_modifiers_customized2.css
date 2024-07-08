@@ -34,6 +34,7 @@
     background-color: var(--yb-button-color);
 }
 
+
 @media screen and (max-width: 768px) {
     .yb-hblock-2.responsive {
         display: grid;
@@ -291,7 +292,11 @@
     .yb-autoFill {
         fill: black;
     }
-} */
+} 
+
+.yb-bFill {
+    fill: var(--yb-button-text-color);
+}
     
 .yb-fill-white {
     /*Style*/
