@@ -1,7 +1,7 @@
 var contact_search = document.getElementById('contact-search-input');
 var contact_filter_container = document.getElementById('contact-filter-container');
 var selected_contacts = document.getElementById('selected-contacts');
-var recipient_iteration = 1;
+var recipient_iteration = 0;
 
 function yb_conversationRemoveContact(e) {
     let this_id = e.currentTarget.getAttribute("data-catid");
@@ -30,8 +30,14 @@ function yb_conversationAddContact(e) {
     selected_contacts.value += `${this_id},`;
     
     contact_search.focus();
-    contact_search.style.paddingLeft = `${recipient_iteration}10px`;
+    if (iteration == 0) {
+        contact_tag.style.transform = "translateX(0px)";
+    } else {
+        contact_tag.style.transform = `translateX(${recipient_iteration}10px)`;
+    }
     recipient_iteration += 1;
+    contact_search.style.paddingLeft = `${recipient_iteration}10px`;
+    
 
 }
 
