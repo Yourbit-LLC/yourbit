@@ -51,13 +51,17 @@ function yb_createConversation() {
     })
 }
 
+function yb_searchContacts() {
+    
+}
+
 
 $(document).ready(function () {
     $(contact_search).on('change keyup', function() {
         query = this.value;
 
         type = 'user';
-        yb_search("messages", type, query);
+        
     });
     // yb_hide2WayLoad();
     let next_button = document.getElementById("new-message-next");

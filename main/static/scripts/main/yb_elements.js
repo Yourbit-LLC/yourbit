@@ -69,10 +69,10 @@ function yb_buildContactItem(result, type){
 }
 
 function yb_buildFieldTag(label, id) {
-    let new_tag = yb_createElement("div", "field-tag yb-flexRow squared", `tag-${id}`);
+    let new_tag = yb_createElement("div", "field-tag rounded yb-field-background yb-bText", `tag-${id}`);
     new_tag.innerHTML = `
-        <p class="field-tag-label yb-autoText yb-margin-L5">${label}</p>
-        <button class="field-tag-delete" style=" border-width: 0px; color: red; background-color: transparent; font-size: 24px;" data-catid="${id}">&times</button>
+        <p class="field-tag-label yb-autoText yb-margin-L5" style="overflow: hidden;">${label}</p>
+        <button class="field-tag-delete yb-bText" style=" border-width: 0px; background-color: transparent; font-size: 24px;" data-catid="${id}">&times</button>
     `;
 
     return new_tag

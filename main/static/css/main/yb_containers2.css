@@ -958,14 +958,18 @@
 
 .field-tag {
     position: absolute;
-    grid-gap: 5px;
-    width: auto;
+    grid-gap: 2px;
+    width: 100px;
     height: 30px;
     margin-left: 10px;
     top: 50%;
     transform: translateY(-50%);
     background-color: #4b4b4b;
     overflow: hidden;
+    font-size: 12px;
+    line-height: 2;
+    display: grid;
+    grid-template-columns: 70px 30px;
 }
 
 .full-result-image-container {
