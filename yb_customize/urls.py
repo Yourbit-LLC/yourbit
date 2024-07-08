@@ -9,6 +9,7 @@ urlpatterns = [
     path("profile/", CustomizeProfileView.as_view(), name="customize_profile"),
     path("stickers/search/<str:query>/", StickerList.as_view(), name="search_stickers"),
     path("repair-custom-ui/", user_custom_repair, name="repair_custom_ui"),
+    path("repair-custom-bit/", user_custom_repair, name="repair_custom_bit"),
     path("bit/toggle/", toggle_custom_bits, name="toggle_bit"),
     path("ui/toggle/", toggle_custom_ui, name="toggle_ui"),
     path("stickers/browse/", StickerBrowse.as_view(), name="browse_stickers"),

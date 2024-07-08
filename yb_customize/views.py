@@ -262,7 +262,25 @@ def user_custom_repair(request):
 
     return JsonResponse({"successes": successes, "failures": failures})
 
+def user_custom_repair_bits(request):
+    failures = 0
+    successes = 0
 
+    for user in User.objects.all():
+        try:
+            custom_core = CustomCore.objects.get(profile=user.profile)
+            theme = custom_core.theme
+            custom_bit = CustomBit.objects.get(theme=theme)
+            successes += 1
+
+        except:
+            failures += 1
+            custom_core = CustomCore.objects.get(profile=user.profile)
+            theme = custom_core.theme
+            custom_bit = CustomBit.objects.create(theme=theme)
+            custom_bit.save()
+
+    return JsonResponse({"successes": successes, "failures": failures})
 class CustomizeBitView(View):  
     def get(self, request):
         if request.user.is_authenticated:
