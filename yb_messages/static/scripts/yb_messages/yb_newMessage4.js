@@ -25,16 +25,18 @@ function yb_conversationAddContact(e) {
 
     let contact_tag = yb_buildFieldTag(this_name, this_id);
 
-    contact_filter_container.appendChild(contact_tag);
-
-    selected_contacts.value += `${this_id},`;
-    
-    contact_search.focus();
     if (iteration == 0) {
         contact_tag.style.transform = "translateY(-50%) translateX(0px)";
     } else {
         contact_tag.style.transform = `translateY(-50%) translateX(${recipient_iteration}10px)`;
     }
+
+    contact_filter_container.appendChild(contact_tag);
+
+    selected_contacts.value += `${this_id},`;
+    
+    contact_search.focus();
+
     recipient_iteration += 1;
     contact_search.style.paddingLeft = `${recipient_iteration}10px`;
     
