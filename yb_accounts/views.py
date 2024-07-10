@@ -80,7 +80,7 @@ def registration_view(request):
         context['registration_form'] = form
         context["login_form"] = LoginForm()
     
-        return render(request, 'yb_accounts/login.html', context)
+        return render(request, 'registration/login.html', context)
     
 class ForgotPassword(View):
     def get(self, request, *args, **kwargs):
