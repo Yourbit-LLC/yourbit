@@ -1,18 +1,18 @@
 {% if connections %}
-{% for connection in connections %}
-<div id="result-people-{{connection.id}}" class="yb-listItem yb-autoText " data-catid="{{connection.id}}" data-username="ajboston2023">
+    {% for connection in connections %}
+    <div id="result-people-{{connection.id}}" class="yb-listItem yb-autoText " data-catid="{{connection.id}}" data-username="ajboston2023">
 
-    <div class="full-result-image-container">
-            <img class="full-result-image" style="width:100%; position: relative;" src="{{connection.custom.profile_image.medium_thumbnail.url}}">
+        <div class="full-result-image-container">
+                <img class="full-result-image" style="width:100%; position: relative;" src="{{connection.custom.profile_image.medium_thumbnail.url}}">
+        </div>
+        <div class="full-result-name-container">
+            <p class="full-result-name"><strong>{{connection.display_name}}</strong></p>
+            <p class="full-result-username">
+                <small>@{{connection.username}}</small>
+            </p>
+        </div>
     </div>
-    <div class="full-result-name-container">
-        <p class="full-result-name"><strong>{{connection.display_name}}</strong></p>
-        <p class="full-result-username">
-            <small>@{{connection.username}}</small>
-        </p>
-    </div>
-</div>
-{% endfor %}
+    {% endfor %}
 {% else %}
 <div class="yb-fillWidth yb-center-margin yb-margin-T30 yb-margin-B10">
     <h3 class="yb-autoText align-center yb-margin-T10">No connections found</h3>

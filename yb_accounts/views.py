@@ -186,9 +186,12 @@ def login_view(request):
                 return redirect('home')
 
     else:
-        form = LoginForm()
+        login_form = LoginForm()
+        registration_form = RegistrationForm()
+
     
-    context['login_form'] = form
+    context['login_form'] = login_form
+    context['registration_form'] = registration_form
     return render(request, 'registration/login.html', context)
 
 def logout_view(request):
