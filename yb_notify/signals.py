@@ -216,7 +216,7 @@ def create_bit_like_notification(sender, instance, created, **kwargs):
                     }
                 ],
                 'data': {
-                    'url': '/notify/',
+                    'url': "/bits/" + str(bit.id),
                 }
             }
             send_user_notification(user=bit.profile.user, payload=payload, ttl=1000)

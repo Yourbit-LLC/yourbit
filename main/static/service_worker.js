@@ -42,6 +42,10 @@ self.addEventListener('push', (event) => {
             body: pushMessageJSON.body,
             tag: pushMessageJSON.tag,
             icon: pushMessageJSON.icon,
+            actions: pushMessageJSON.actions,
+            data: {
+                url: JSON.parse(event.message).url
+              }
         }));
     } catch(err) {
         console.error(err);
