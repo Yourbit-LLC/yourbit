@@ -25,7 +25,7 @@ function yb_conversationAddContact(e) {
 
     let contact_tag = yb_buildFieldTag(this_name, this_id);
 
-    if (iteration == 0) {
+    if (recipient_iteration == 0) {
         contact_tag.style.transform = "translateY(-50%) translateX(0px)";
     } else {
         contact_tag.style.transform = `translateY(-50%) translateX(${recipient_iteration}10px)`;
