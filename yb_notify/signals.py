@@ -48,9 +48,7 @@ def create_announcement_notification(sender, instance, created, **kwargs):
                         'icon': '/static/images/yourbit_logo.png'
                     }
                 ],
-                'data': {
-                    'url': '/notify/',
-                }
+                'url': '/notify/',
                 
             }
             send_user_notification(user=user, payload=payload, ttl=1000)
@@ -163,13 +161,13 @@ def create_message_notification(sender, instance, created, **kwargs):
                     'actions': [
                         {
                             'action': 'open_url',
-                            'title': 'Open Yourbit',
+                            'title': 'Open Messages',
                             'icon': '/static/images/yourbit_logo.png'
                         }
                     ],
-                    'data': {
-                        'url': '/messages/',
-                    }
+                    
+                    'url': '/messages/',
+                    
                     
                 }
                 send_user_notification(user=member, payload=payload, ttl=1000)
@@ -333,9 +331,7 @@ def create_friend_accept_notification(sender, instance, created, **kwargs):
                     'icon': '/static/images/yourbit_logo.png'
                 }
             ],
-            'data': {
-                'url': '/notify/',
-            }
+            'url': '/profile/user/' + str(instance.to_user.user.username) + '/',
             
             
             }
