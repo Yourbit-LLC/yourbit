@@ -35,6 +35,7 @@ def registration_view(request):
     context = {}
     if request.POST:
         form = RegistrationForm(request.POST)
+        login_form = LoginForm()
         if form.is_valid():
             print("form valid")
             form.save()
@@ -77,8 +78,9 @@ def registration_view(request):
         print("Status:\n\nWrong Request Method")
         form = RegistrationForm()
         context['registration_form'] = form
+        context["login_form"] = LoginForm()
     
-        return render(request, 'yb_accounts/register.html', context)
+        return render(request, 'yb_accounts/login.html', context)
     
 class ForgotPassword(View):
     def get(self, request, *args, **kwargs):
