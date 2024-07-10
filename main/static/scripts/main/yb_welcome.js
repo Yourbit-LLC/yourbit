@@ -7,6 +7,8 @@ const home_header = document.getElementById('welcome-header');
 const login_cancel_button = document.getElementById('go-back-login');
 const signup_cancel_button = document.getElementById('go-back-signup');
 const menu_button = document.getElementById('hamburger-button');
+const back_to_signup = document.getElementById('back-to-sign-up');
+const back_to_login = document.getElementById('back-to-login');
 let currentSection = 0;
 
 
@@ -100,76 +102,95 @@ function scrollToPreviousSection() {
 
 }
 
+function hideLogin() {
+    $(home_header).animate({"top": "0px"}, "fast");
+    $('#login-form').animate({"top": "100vh"}, function() {
+        // Animation complete, hide the element
+        $(this).hide();
+    });
+    history.pushState(null, null, '/');
+    $(floating_actions).show('fast', function() {
+        // Animation complete
+        $(this).animate({"bottom": "35px"}, "fast");
+    });
+    $('.yb-section-container').show();
+    bg_image.style.filter = "brightness(50%) blur(150px)";
+    bg_image.style.webkitFilter = "brightness(50%) blur(150px)";
+}
+
+function showLogin() {
+    $(home_header).animate({"top": "-60px"}, "fast");
+    $(floating_actions).animate({"bottom": "-150px"}, function() {
+        // Animation complete, hide the element
+        $(this).hide();
+
+    });
+    $('#login-form').show('fast', function() {
+        // Animation complete
+        $(this).animate({"top": "0vh"}, "fast");
+    });
+    history.pushState(null, null, '/login/');
+    $('.yb-section-container').hide();
+    bg_image.style.filter = "brightness(20%) blur(150px)";
+    bg_image.style.webkitFilter = "brightness(20%) blur(150px)";
+
+    //Reverse on click of cancel button
+    $(login_cancel_button).click(hideLogin);
+}
+
+function hideSignUp() {
+    $(home_header).animate({"top": "0px"}, "fast");
+    $('#signup-form').animate({"top": "100vh"}, function() {
+        // Animation complete, hide the element
+        $(this).hide();
+    });
+    history.pushState(null, null, '/');
+    $(floating_actions).show('fast', function() {
+        // Animation complete
+        $(this).animate({"bottom": "35px"}, "fast");
+    });
+    $('.yb-section-container').show();
+    bg_image.style.filter = "brightness(50%) blur(150px)";
+    bg_image.style.webkitFilter = "brightness(50%) blur(150px)";
+}
+
+
+function showSignUp() {
+    $(home_header).animate({"top": "-60px"}, "fast");
+    $(floating_actions).animate({"bottom": "-150px"}, function() {
+        // Animation complete, hide the element
+        $(this).hide();
+    });
+    $('#signup-form').show('fast', function() {
+        // Animation complete
+        $(this).animate({"top": "0vh"}, "fast");
+    });
+    $('.yb-section-container').hide();
+    history.pushState(null, null, '/register/');
+    bg_image.style.filter = "brightness(20%) blur(150px)";
+    bg_image.style.webkitFilter = "brightness(20%) blur(150px)";
+
+    //Reverse on click of cancel button
+    $(signup_cancel_button).click(hideSignUp);
+}
+
 $(document).ready(function() {
     // Target the element you want to slide down and hide
 
     // Add a click event handler to trigger the animation
-    $(login_button).click(function() {
-        $(home_header).animate({"top": "-60px"}, "fast");
-        $(floating_actions).animate({"bottom": "-150px"}, function() {
-            // Animation complete, hide the element
-            $(this).hide();
-
-        });
-        $('#login-form').show('fast', function() {
-            // Animation complete
-            $(this).animate({"top": "0vh"}, "fast");
-        });
-        history.pushState(null, null, '/login/');
-        $('.yb-section-container').hide();
-        bg_image.style.filter = "brightness(20%) blur(150px)";
-        bg_image.style.webkitFilter = "brightness(20%) blur(150px)";
-
-        //Reverse on click of cancel button
-        $(login_cancel_button).click(function() {
-            $(home_header).animate({"top": "0px"}, "fast");
-            $('#login-form').animate({"top": "100vh"}, function() {
-                // Animation complete, hide the element
-                $(this).hide();
-            });
-            history.pushState(null, null, '/');
-            $(floating_actions).show('fast', function() {
-                // Animation complete
-                $(this).animate({"bottom": "35px"}, "fast");
-            });
-            $('.yb-section-container').show();
-            bg_image.style.filter = "brightness(50%) blur(150px)";
-            bg_image.style.webkitFilter = "brightness(50%) blur(150px)";
-        });
-    });
+    $(login_button).click(showLogin);
 
     //Sign up button does same thing as login button
-    $(signup_button).click(function() {
-        $(home_header).animate({"top": "-60px"}, "fast");
-        $(floating_actions).animate({"bottom": "-150px"}, function() {
-            // Animation complete, hide the element
-            $(this).hide();
-        });
-        $('#signup-form').show('fast', function() {
-            // Animation complete
-            $(this).animate({"top": "0vh"}, "fast");
-        });
-        $('.yb-section-container').hide();
-        history.pushState(null, null, '/register/');
-        bg_image.style.filter = "brightness(20%) blur(150px)";
-        bg_image.style.webkitFilter = "brightness(20%) blur(150px)";
+    $(signup_button).click(showSignUp);
 
-        //Reverse on click of cancel button
-        $(signup_cancel_button).click(function() {
-            $(home_header).animate({"top": "0px"}, "fast");
-            $('#signup-form').animate({"top": "100vh"}, function() {
-                // Animation complete, hide the element
-                $(this).hide();
-            });
-            history.pushState(null, null, '/');
-            $(floating_actions).show('fast', function() {
-                // Animation complete
-                $(this).animate({"bottom": "35px"}, "fast");
-            });
-            $('.yb-section-container').show();
-            bg_image.style.filter = "brightness(50%) blur(150px)";
-            bg_image.style.webkitFilter = "brightness(50%) blur(150px)";
-        });
+    $(back_to_signup).click(function () {
+        hideLogin();
+        showSignUp();
+    });
+
+    $(back_to_login).click(function () {
+        hideSignUp();
+        showLogin();
     });
 
     //Hamburger menu button
