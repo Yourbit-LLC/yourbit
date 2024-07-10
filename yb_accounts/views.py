@@ -163,10 +163,17 @@ class EmailConfirmation(View):
 
 
 def terms_view(request):
-    template = get_template('yb_accounts/yb-terms.html')
-    
-    return HttpResponse(template.template.source, content_type='text/html')
-    
+    context = {
+        "document": "yb_accounts/tos.htm"
+    }
+    return render(request, 'yb_accounts/yb_doc_viewer.html', context)
+
+def privacy_view(request):
+    context = {
+        "document": "yb_accounts/privacy_policy.htm"
+    }
+    return render(request, 'yb_accounts/yb_doc_viewer.html', context)
+
 def login_view(request):
 
     context = {}

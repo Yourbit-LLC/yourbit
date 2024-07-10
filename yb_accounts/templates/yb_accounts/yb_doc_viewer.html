@@ -1,0 +1,21 @@
+{% load static %}
+<html>
+    <head>
+        <title>Terms of Service</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/main/yb_core5.css'%}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/main/yb_buttons2.css'%}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/main/yb_modifiers2.css'%}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/main/yb_containers2.css'%}">
+        <link rel="manifest" href="{% static 'manifest.json' %}">
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/main/favicon.ico'%}">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1">
+    </head>
+
+    <body>
+        <div class="yb-fillWidth yb-vScroll yb-pText yb-autoText yb-margin-T10 align-left" id="tos-viewer" style="padding-top: 70px; padding-bottom: 150px;">
+            {% include document %}
+        </div>
+    </body>
+
+</html>

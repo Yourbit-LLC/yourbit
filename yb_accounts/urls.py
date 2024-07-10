@@ -29,5 +29,7 @@ urlpatterns = [
         name="password_reset_complete"
     ),
     path('reset-password/', ResetPassword.as_view(), name="reset_password"),
+    path("templates/viewer/terms/", terms_view, name="view-terms"),
+    path("templates/viewer/privacy/", privacy_view, name="view-privacy"),
     
 ]
