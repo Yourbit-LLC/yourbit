@@ -8,7 +8,7 @@ from main.views import initialize_session
 from rest_framework.decorators import api_view
 from django.http import JsonResponse
 
-from yb_profile.models import Profile
+from yb_profile.models import Profile, Orbit
 
 def message_inbox(request):
     from .models import MessageCore
@@ -86,6 +86,73 @@ def message_inbox(request):
     print(context)
 
     return render(request, "yb_messages/messages.html", context)
+
+def filter_contacts_list(request, query):
+    from yb_profile.models import Profile
+    user = request.user
+    profile = user.profile
+
+    connections = False
+
+    if query == "all":
+        try:
+            friends = profile.friends.all()
+        except:
+            friends = None
+
+        try:
+            following = profile.follows.all()
+        except:
+            following = None
+
+        try:
+            followers = profile.followers.all()
+        except:
+            followers = None
+
+
+        #if all query sets are empty return no connections
+        if friends == None and following == None and followers == None:
+            connections = False
+        else:
+            connections = True
+
+        #chain together all the querysets
+        results = list(chain(friends, following, followers))
+
+        context = {
+            "results": results,
+            }
+        return render(request, "yb_messages/contacts_list.html", context)
+
+    elif query == "friends":
+        friends = profile.friends.all()
+        context = {
+            "results": friends,
+            }
+        return render(request, "yb_messages/contacts_list.html", context)
+    
+    elif query == "following":
+        following = profile.follows.all()
+        context = {
+            "results": following,
+            }
+        return render(request, "yb_messages/contacts_list.html", context)
+    
+    elif query == "followers":
+        followers = profile.followers.all()
+        context = {
+            "results": followers,
+            }
+        return render(request, "yb_messages/contacts_list.html", context)
+    
+    elif query == "orbits":
+        orbits = Orbit.objects.filter()
+        context = {
+            "results": orbits,
+            }
+        return render(request, "yb_messages/contacts_list.html", context)
+
 
 def new_conversation_template(request):
     user = request.user 
