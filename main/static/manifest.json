@@ -1,7 +1,7 @@
 {
     "name": "Yourbit",
     "short_name": "Yourbit",
-    "start_url": "https://yourbit.me/",
+    "start_url": "https://yourbit.me",
     "display": "standalone",
     "background_color": "#000000",
     "description": "Your new revolution in social networking.",
@@ -22,10 +22,7 @@
       }
     ],
     "dir": "ltr",
-    "display_override": [
-      "standalone",
-      "window-controls-overlay"
-    ],
+    "display_override": ["window-controls-overlay"],
     "categories": [
       "entertainment",
       "lifestyle",
