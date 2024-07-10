@@ -48,9 +48,9 @@ def create_announcement_notification(sender, instance, created, **kwargs):
                         'icon': '/static/images/yourbit_logo.png'
                     }
                 ],
-                'data': {
-                    'url': '/notify/',
-                }
+                
+                'url': '/notify/',
+                
                 
             }
             send_user_notification(user=user, payload=payload, ttl=1000)
@@ -86,9 +86,9 @@ def create_bug_report_notification(sender, instance, created, **kwargs):
                         'icon': '/static/images/yourbit_logo.png'
                     }
                 ],
-                'data': {
-                    'url': '/notify/',
-                }
+                
+                'url': '/notify/',
+                
                 
             }
             send_user_notification(user=user, payload=payload, ttl=1000)
@@ -124,9 +124,8 @@ def create_feature_request_notification(sender, instance, created, **kwargs):
                         'icon': '/static/images/yourbit_logo.png'
                     }
                 ],
-                'data': {
-                    'url': '/notify/',
-                }
+                
+                'url': '/notify/',
                 
             }
             send_user_notification(user=user, payload=payload, ttl=1000)
@@ -167,9 +166,9 @@ def create_message_notification(sender, instance, created, **kwargs):
                             'icon': '/static/images/yourbit_logo.png'
                         }
                     ],
-                    'data': {
-                        'url': '/messages/',
-                    }
+                    
+                    'url': '/messages/',
+                    
                     
                 }
                 send_user_notification(user=member, payload=payload, ttl=1000)
@@ -215,9 +214,9 @@ def create_bit_like_notification(sender, instance, created, **kwargs):
                         'icon': '/static/images/yourbit_logo.png'
                     }
                 ],
-                'data': {
-                    'url': "/bits/" + str(bit.id),
-                }
+                
+                'url': "/bits/" + str(bit.id),
+                
             }
             send_user_notification(user=bit.profile.user, payload=payload, ttl=1000)
 
@@ -254,9 +253,9 @@ def create_bit_comment_notification(sender, instance, created, **kwargs):
                         'icon': '/static/images/yourbit_logo.png'
                     }
                 ],
-                'data': {
-                    'url': '/notify/',
-                }
+                
+                'url': '/notify/',
+                
                 
             }
             send_user_notification(user=bit.profile.user, payload=payload, ttl=1000)
@@ -294,9 +293,8 @@ def create_friend_request_notification(sender, instance, created, **kwargs):
                     'icon': '/static/images/yourbit_logo.png'
                 }
             ],
-            'data': {
-                'url': '/notify/',
-            }
+            
+            'url': '/notify/',
             
             }
         send_user_notification(user=instance.to_user.user, payload=payload, ttl=1000)
@@ -333,9 +331,9 @@ def create_friend_accept_notification(sender, instance, created, **kwargs):
                     'icon': '/static/images/yourbit_logo.png'
                 }
             ],
-            'data': {
-                'url': '/notify/',
-            }
+            
+            'url': '/notify/',
+            
             
             
             }
