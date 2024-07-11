@@ -54,7 +54,7 @@ function yb_toggleMainMenu() {
 
 const BUTTON_FUNCTIONS = {
     "bitstream": yb_goHome,
-    "messages": yb_messageButton,
+    "messages": yb_showMessagePage,
     "people": yb_showPeoplePage,
     "stuff": yb_showStuffPage,
     "orbits": yb_showOrbitsPage,
