@@ -36,21 +36,6 @@ const YB_BUTTON_INDEX = {
 
 }
 
-const YB_CONTAINER_INDEX = {
-    "slide-up-core": {
-        "element": document.getElementById("yb-slide-up-core"),
-        "header": document.getElementById("yb-slide-up-core-header"),
-        "content": document.getElementById("yb-slide-up-core-content"),
-    },
-    "create-menu": {
-        "element": document.getElementById("yb-create-menu"),
-        "header": document.getElementById("yb-create-menu-header"),
-        "content": document.getElementById("yb-create-menu-content"),
-    }
-
-
-}
-
 
 const YB_UI_INDEX = {
     //Space Buttons

@@ -51,37 +51,6 @@ function yb_toggleMainMenu() {
 
 }
 
-function yb_goHome() {
-    yb_toggleMainMenu();
-    $(CONTENT_CONTAINER).html("");
-    yb_setSessionValues("location", "home")
-    $(CONTENT_CONTAINER).load('/bits/templates/bitstream/');
-    yb_revertUIColor();
-}
-
-function yb_toggleSettingsMenu() {
-    yb_launch2WayContainer("settings");
-}
-
-function yb_showPeoplePage() {
-    yb_launch2WayContainer("people");
-}
-
-function yb_showOrbitsPage() {
-    yb_launch2WayContainer("orbits");
-}
-
-function yb_showHistoryPage() {
-    yb_launch2WayContainer("history");
-}
-
-function yb_showStuffPage() {
-    yb_launch2WayContainer("stuff");
-}
-
-function yb_messageButton() {
-    yb_launch2WayContainer("messages");
-}
 
 const BUTTON_FUNCTIONS = {
     "bitstream": yb_goHome,

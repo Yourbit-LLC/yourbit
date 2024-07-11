@@ -1,4 +1,10 @@
 /*
+    yb_dragonDrop.js
+    Yourbit, LLC, 2023
+    Author: Austin Chaney
+    Created: 6/31/2024
+
+/*
 
     Data Structure for Dragon Object Instances
     "instance-id": {

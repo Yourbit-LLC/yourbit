@@ -1,8 +1,8 @@
 //YB Master JS File
 //Yourbit, LLC - 2023
 //Author: Austin Chaney
-//Date: 10/26/2023
-//Modified: 06/22/2024
+//Created: 10/26/2023
+//Last Modified: 07/11/2024
 
 
 //Master contains functions that are used by multiple pages
@@ -27,7 +27,6 @@ const SEARCH_CONTAINER = document.getElementById('search');
 const CREATE_BUTTON = document.getElementById('yb-create-button');
 const EXIT_CREATE = document.getElementById('cb-panel-close')
 const CREATE_OPTIONS = document.querySelectorAll(".create-option");
-const CONTENT_CONTAINER = document.getElementById('content-container');
 const MASTHEAD_LOGOS = document.querySelectorAll(".yb-logo-masthead");
 const MOBILE_HEADER = document.querySelector('.yb-header');
 const SPOTLIGHT_CONTAINER = document.getElementById('yb-container-spotlight');
@@ -37,7 +36,6 @@ const CARD_CONTAINER = document.getElementById("yb-card")
 const CREATE_POPOUT = document.getElementById("create-button-popout");
 const SEARCH_POPOUT = document.getElementById("search-button-popout");
 
-const SLIDE_UP_CORE = document.getElementById("yb-slide-up-core");
 const CREATE_MENU = document.getElementById("yb-create-menu");
 const CREATE_MENU_BUTTON = document.getElementById("yb-create-menu-button");
 const CMENU_CONTENT = document.getElementById("create-menu-content");
@@ -46,17 +44,7 @@ const MESSAGES_DESKTOP = document.getElementById('messages-quick');
 const NOTIFICATIONS_DESKTOP = document.getElementById('notifications-quick');
 const NOTIFICATIONS_MOBILE = document.getElementById('button-notifications-mobile-header');
 const NAV_BAR = document.querySelector(".yb-navigation");
-const SIDE_CONTAINER_A = document.getElementById("yb-dynamic-2way-a");
-const SIDE_CONTAINER_B = document.getElementById("yb-dynamic-2way-b");
-const SIDE_CONTAINERS = document.querySelectorAll(".yb-2Way-container");
-const FOCUS_CONTAINER = document.getElementById("core-focus-container");
 const MESSAGE_BUTTON_MOBILE = document.getElementById("button-message-mobile-header");
-
-//Prompts
-const PROMPT_CONTAINER = document.getElementById("prompt-container");
-const PROMPT_TITLE = document.getElementById("prompt-content-a");
-const PROMPT_BODY = document.getElementById("prompt-content-b");
-const PROMPT_FOOTER = document.getElementById("prompt-content-c");
 
 const TOP_LAYER = document.getElementById("top-layer");
 const FLOATING_TEXT_CONTAINER = document.getElementById("floating-text");
@@ -73,8 +61,6 @@ const BG_IMAGE_SOURCE_A = document.getElementById("bg-image-source-a");
 const BG_IMAGE_B = document.getElementById("bg-image-b");
 const BG_IMAGE_SOURCE_B = document.getElementById("bg-image-source-b");
 
-const DRAWER = document.getElementById("core-drawer-container");
-const DRAWER_INNER = document.getElementById("drawer-content");
 const SCREEN_WIDTH = window.screen.width;
 
 const VAPID_PUBLIC_KEY = "BDAIHj_HT2qvxVsrE-pvZOGc2TcJeMKUIM0LxStPASodefcu9fucQndG9XSONnd04finmXAueTLmxqBjv9q6H7g";
@@ -83,6 +69,22 @@ const LOGO_PATHS = document.querySelectorAll(".cls-1");
 
 const TIME_KEEPER = document.getElementById("time-keeper-node");
 const ELEMENT_DIVIDER_1 = document.getElementById("element-divider-1");
+
+const DEFAULT_STYLESHEET_INDEX = {
+    "yb-stylesheet-core": "/static/css/main/yb_core.css",
+    "yb-stylesheet-modifier": "/static/css/main/yb_modifiers.css",
+    "yb-stylesheet-button": "/static/css/main/yb_buttons.css",
+    "yb-stylesheet-container": "/static/css/main/yb_containers.css",
+    "yb-stylesheet-bit": "/static/css/yb_bits/yb_bits.css",
+}
+
+const MODDED_STYLESHEET_INDEX = {
+    "yb-stylesheet-core": "/static/css/main/yb_core_customized.css",
+    "yb-stylesheet-modifier": "/static/css/main/yb_modifiers_customized.css",
+    "yb-stylesheet-button": "/static/css/main/yb_buttons_customized.css",
+    "yb-stylesheet-container": "/static/css/main/yb_containers_customized.css",
+    "yb-stylesheet-bit": "/static/css/yb_bits/yb_bits_customized.css",
+}
 
 var clock_isTicking = false;
 
@@ -112,135 +114,6 @@ const custom_index = [
     'button-color',
     'button-text-color'
 ]
-
-const CORE_TEMPLATE_INDEX = {
-    "home": "/bits/templates/bitstream/",
-    "customize-main": "/customize/templates/customize/main/",
-    "profile": `/profile/templates/profile/`,
-    
-};
-
-const DEFAULT_STYLESHEET_INDEX = {
-    "yb-stylesheet-core": "/static/css/main/yb_core.css",
-    "yb-stylesheet-modifier": "/static/css/main/yb_modifiers.css",
-    "yb-stylesheet-button": "/static/css/main/yb_buttons.css",
-    "yb-stylesheet-container": "/static/css/main/yb_containers.css",
-    "yb-stylesheet-bit": "/static/css/yb_bits/yb_bits.css",
-}
-
-const MODDED_STYLESHEET_INDEX = {
-    "yb-stylesheet-core": "/static/css/main/yb_core_customized.css",
-    "yb-stylesheet-modifier": "/static/css/main/yb_modifiers_customized.css",
-    "yb-stylesheet-button": "/static/css/main/yb_buttons_customized.css",
-    "yb-stylesheet-container": "/static/css/main/yb_containers_customized.css",
-    "yb-stylesheet-bit": "/static/css/yb_bits/yb_bits_customized.css",
-}
-
-const DRAWER_CONTENT = {
-    "browse-stickers": "/customize/stickers/browse/",
-    "profile-connect": `/profile/templates/connect_menu/`,
-}
-
-const TWO_WAY_INDEX = {
-    "create": 
-        {
-            "template" : "/core/create-menu/",
-            "url" : "/create/"
-        },
-    "messages" : 
-        {
-            "template" : "/messages/inbox/",
-            "url" : "/messages/"
-        },
-    "notifications": 
-        {
-            "template" : "/notify/template/list/",
-            "url" : "/notify/"
-        },
-    "conversation": 
-        {
-            "template" : "/messages/templates/conversation/",
-            "url" : "/messages/conversation/"
-        },
-    "people":
-        {
-            "template" : "/profile/templates/people/",
-            "url" : "/profile/people/"
-        },
-    "orbits": 
-        {
-            "template" : "/profile/templates/orbits/",
-            "url" : "/profile/orbits/"
-        },
-    "settings": 
-        {
-            "template" : "/settings/root/",
-            "url" : "/settings/"
-        },
-    "stuff": 
-        {
-            "template" : "/profile/templates/stuff/",
-            "url" : "/profile/stuff/"
-        },
-    "history": 
-        {
-            "template" : "/profile/templates/history/",
-            "url" : "/profile/history/"
-        },
-
-    "support-center":
-        {
-            "template" : "/support/templates/support-center/",
-            "url" : "/support/"
-        },
-    "bug-report":
-        {
-            "template" : "/support/templates/bug-report/",
-            "url" : "/support/bug-report/"
-        },
-    "feature-request":
-        {
-            "template" : "/support/templates/feature-request/",
-            "url" : "/support/feature-request/"
-        },
-    "cropper-bit":
-        {   
-            "template" : "/photo/templates/cropper/bit/",
-            "url" : ""
-        },
-
-    "cropper-profile":
-        {
-            "template" : "/photo/templates/cropper/profile/",
-            "url" : ""
-        },
-
-    "cropper-desktop-background":
-        {
-            "template" : "/photo/templates/cropper/desktop-wallpaper/",
-            "url" : ""
-        },
-
-    "cropper-mobile-background":
-        {
-            "template" : "/photo/templates/cropper/background/",
-            "url" : ""
-        },
-
-    "profile-image-upload":
-        {
-            "template" : "/customize/templates/profile-image/",
-            "url" : ""
-        },
-
-    "background-image-upload":
-    {
-        "template" : "/customize/templates/wallpaper/",
-        "url" : ""
-    },
-    
-          
-};
 
 function getOSAndDevice() {
     const userAgent = navigator.userAgent;
@@ -320,16 +193,6 @@ function yb_changeUIState(state) {
         // yb_swapSheets("modded", "yb-stylesheet-container");
     }
 }
-
-function yb_goToPage(page, data=null) {
-
-    if (data != null) {
-        $(CONTENT_CONTAINER).load(CORE_TEMPLATE_INDEX[page] + data.toString() + "/");
-    } else {
-        $(CONTENT_CONTAINER).load(CORE_TEMPLATE_INDEX[page]);
-    }
-}
-
 
 function changeColor(property, value) {
     document.documentElement.style.setProperty(property, value);
@@ -434,77 +297,6 @@ function yb_revertUIColor() {
     let this_wallpaper = CUSTOM_VALUES.getAttribute("data-wallpaper");
     yb_changeWallpaper(this_wallpaper, false);
 
-
-}
-
-
-function yb_launch2WayContainer(page, data=null) {
-    let this_page = TWO_WAY_INDEX[page];
-    console.log("settings shown")
-    let container = yb_toggle2WayContainer(page, true);
-    if (container[0] === "closing"){
-        history.pushState(null, null, "/");
-        container[1].setAttribute("data-state", "empty");
-    } else {
-        console.log("not closing")
-        let container_content = container[1].querySelector(".yb-2Way-content");
-        container[1].setAttribute("data-state", page);
-        $(container_content).html("");
-        if (data) {
-            $(container_content).load(this_page.template + data.toString() + "/");
-        } else {
-            $(container_content).load(this_page.template)
-        }
-        $(container_content).load(this_page.template)
-        history.pushState({}, "", this_page.url);
-    }
-}
-
-
-
-function yb_openDrawer(template, id=null) {
-    DRAWER.classList.add("open");
-    console.log(template)
-    if (template != DRAWER.getAttribute("data-state")) {
-        DRAWER_INNER.innerHTML = "";
-        console.log(DRAWER_CONTENT[template]);
-        if (id) {
-            $(DRAWER_INNER).load(DRAWER_CONTENT[template] + id.toString() + "/");
-        } else {
-
-            $(DRAWER_INNER).load(DRAWER_CONTENT[template]);
-        }
-        DRAWER.setAttribute("data-state", template);
-    }
-    
-}
-
-function yb_closeDrawer() {
-    DRAWER.classList.remove("open");    
-}
-
-function yb_2WayPage(index, page="") {
-    let this_container;
-    for (let i = 0; i < SIDE_CONTAINERS.length; i++) {
-        if (SIDE_CONTAINERS[i].classList.contains("open")) {
-            this_container = SIDE_CONTAINERS[i];
-            break;
-        }
-    }
-
-    let content = this_container.querySelector(".yb-2Way-content");
-    let secondary = this_container.querySelector(".yb-2Way-secondary");
-
-    if (index == 1) {
-        secondary.classList.remove("active");
-        content.classList.remove("inactive");
-        secondary.innerHTML = "";
-
-    } else {
-        secondary.classList.add("active");
-        content.classList.add("inactive");
-        $(secondary).load(TWO_WAY_INDEX[page].template);
-    }
 
 }
 
@@ -929,19 +721,7 @@ function yb_openBitBuilder() {
     CMENU_CONTENT.classList.add("hideUp");
 }
 
-function yb_clear2WayContainer(container){
-    let page_scripts = container.querySelectorAll(".page-script");
-    for (i = 0; i < page_scripts.length; i++){
-        page_scripts[i].remove()
-    }
-    
-    let container_content = container.querySelector(".yb-2Way-content");
-    container_content.innerHTML = "";
 
-    let secondary_content = container.querySelector(".yb-2Way-secondary");
-    secondary_content.innerHTML = "";
-
-}
 function yb_startBitStream() {
     $(CONTENT_CONTAINER).html("");
     if (yb_getSessionValues("fullscreen") === "true"){
@@ -958,196 +738,6 @@ function yb_startBitStream() {
 }
 
 const START_BITSTREAM = yb_startBitStream();
-
-function yb_openCard(content, data=null) {
-    if (data) {
-        $(CARD_CONTAINER).load(content + data.toString() + "/");
-    } else {
-        $(CARD_CONTAINER).load(content);
-    }
-    
-    CARD_CONTAINER.classList.add("open");
-    ELEMENT_DIVIDER_1.style.display = "block";
-}
-
-function yb_closeCard() {
-    CARD_CONTAINER.innerHTML = '';
-    CARD_CONTAINER.classList.remove("open");
-    ELEMENT_DIVIDER_1.style.display = "none";
-}
-
-function yb_hide2WayLoad() {
-    $(".yb-load-iconContainer").addClass("hide");
-
-}
-
-function yb_show2WayLoad() {
-    $(".yb-load-iconContainer").removeClass("hide");
-}
-
-
-function yb_toggle2WayContainer(type, scroll=false){
-
-    console.log(scroll)
-    yb_collapse2Way();
-    if (MAIN_MENU.classList.contains('open')){
-        MAIN_MENU.classList.toggle('open');
-        SIDE_CONTAINER_A.classList.toggle('open');
-
-        if (scroll) {
-            if (SIDE_CONTAINER_A.classList.contains('yb-lockScroll-y')){
-                SIDE_CONTAINER_A.classList.remove('yb-lockScroll-y');
-                SIDE_CONTAINER_A.classList.add('vScroll');
-            } else {
-                SIDE_CONTAINER_A.classList.add('vScroll');
-            } 
-        } else {
-            if (SIDE_CONTAINER_A.classList.contains('vScroll')){
-                SIDE_CONTAINER_A.classList.remove('vScroll');
-                SIDE_CONTAINER_A.classList.add('yb-lockScroll-y');
-            } else {
-                SIDE_CONTAINER_A.classList.add('yb-lockScroll-y');
-            }
-        }
-
-        tw_showLoading();
-
-
-        return ["switching", SIDE_CONTAINER_A];
-    } else {
-        let this_id;
-        let active_type;
-        for (let i = 0; i < SIDE_CONTAINERS.length + 1; i++) {
-            if (SIDE_CONTAINERS[i].classList.contains("open")){
-                this_id = SIDE_CONTAINERS[i].getAttribute("id");
-                console.log(this_id)
-                active_type = SIDE_CONTAINERS[i].getAttribute("data-state");
-                console.log("container_id = " + this_id);
-
-                console.log(active_type)
-                if (active_type === type){
-                    console.log("container is already open");
-                    
-                    
-                    
-                    SIDE_CONTAINERS[i].classList.toggle("open");
-                    yb_clear2WayContainer(SIDE_CONTAINERS[i]);
-
-                    if (yb_getSessionValues('fullscreen') == "false"){
-                        MOBILE_HEADER.classList.remove("hide");
-                        NAV_BAR.classList.remove("hideMobile");
-                        CREATE_POPOUT.classList.remove("hide");
-                        SEARCH_POPOUT.classList.remove("hide");
-                        
-                    }
-
-                    history.pushState(null, null, "/");
-                    return ["closing", SIDE_CONTAINERS[i]];
-                } else {
-                    if (this_id === 'yb-dynamic-2way-a'){
-                        
-                        console.log("container_a is open");
-                        SIDE_CONTAINER_A.classList.toggle("open");
-                        yb_clear2WayContainer(SIDE_CONTAINER_A);
-                        
-                        SIDE_CONTAINER_B.classList.toggle("open");
-
-                        if (scroll) {
-                            if (SIDE_CONTAINER_B.classList.contains('yb-lockScroll-y')){
-                                SIDE_CONTAINER_B.classList.remove('yb-lockScroll-y');
-                                SIDE_CONTAINER_B.classList.add('vScroll');
-                            } else {
-                                SIDE_CONTAINER_B.classList.add('vScroll');
-                            } 
-                        } else {
-                            if (SIDE_CONTAINER_B.classList.contains('vScroll')){
-                                SIDE_CONTAINER_B.classList.remove('vScroll');
-                                SIDE_CONTAINER_B.classList.add('yb-lockScroll-y');
-                            } else {
-                                SIDE_CONTAINER_B.classList.add('yb-lockScroll-y');
-                            }
-                        }
-
-                        tw_showLoading();
-                        
-                        
-                        return ["switching", SIDE_CONTAINER_B];
-
-                    } else {
-
-                        console.log("container_b is open");
-
-                        SIDE_CONTAINER_B.classList.toggle("open");
-                        yb_clear2WayContainer(SIDE_CONTAINER_B);
-                        
-                        SIDE_CONTAINER_A.classList.toggle("open");
-
-                        if (scroll) {
-                            if (SIDE_CONTAINER_A.classList.contains('yb-lockScroll-y')){
-                                SIDE_CONTAINER_A.classList.remove('yb-lockScroll-y');
-                                SIDE_CONTAINER_A.classList.add('vScroll');
-                            } else {
-                                SIDE_CONTAINER_A.classList.add('vScroll');
-                            } 
-                        } else {
-                            if (SIDE_CONTAINER_A.classList.contains('vScroll')){
-                                SIDE_CONTAINER_A.classList.remove('vScroll');
-                                SIDE_CONTAINER_A.classList.add('yb-lockScroll-y');
-                            } else {
-                                SIDE_CONTAINER_A.classList.add('yb-lockScroll-y');
-                            }
-                        }
-
-                        tw_showLoading
-                        return ["switching", SIDE_CONTAINER_A];
-                    } 
-                }
-            } else {
-                if (i === SIDE_CONTAINERS.length - 1){
-                    yb_clear2WayContainer(SIDE_CONTAINER_A);
-                    
-                    MOBILE_HEADER.classList.add("hide");
-                    NAV_BAR.classList.add("hideMobile");
-                    SIDE_CONTAINER_A.classList.add("open");
-                    CREATE_POPOUT.classList.add("hide");
-                    SEARCH_POPOUT.classList.add("hide");
-
-                    if (scroll) {
-                        if (SIDE_CONTAINER_A.classList.contains('yb-lockScroll-y')){
-                            SIDE_CONTAINER_A.classList.remove('yb-lockScroll-y');
-                            SIDE_CONTAINER_A.classList.add('vScroll');
-                        } else {
-                            SIDE_CONTAINER_A.classList.add('vScroll');
-                        } 
-                    } else {
-                        if (SIDE_CONTAINER_A.classList.contains('vScroll')){
-                            SIDE_CONTAINER_A.classList.remove('vScroll');
-                            SIDE_CONTAINER_A.classList.add('yb-lockScroll-y');
-                        } else {
-                            SIDE_CONTAINER_A.classList.add('yb-lockScroll-y');
-                        }
-                    }
-                    tw_showLoading();
-                    return ["opening", SIDE_CONTAINER_A];
-                }
-            }
-            
-        }
-    }
-    
-}
-
-function yb_close2WayContainer() {
-    for (let i = 0; i < SIDE_CONTAINERS.length + 1; i++) {
-        this_object = SIDE_CONTAINERS[i];
-        if (this_object.classList.contains("open")){
-            history.pushState(null, null, "/");
-            this_object.classList.toggle("open");
-            yb_clear2WayContainer(SIDE_CONTAINERS[i]);
-            break;
-        }
-    }
-}
 
 function yb_toggleCreateMenu() {
     let container = yb_toggle2WayContainer('create', true);
@@ -1241,16 +831,6 @@ function yb_closeSpotlight(){
 
 }
 
-function yb_openFocusContainer(source){
-    $(FOCUS_CONTAINER).fadeIn(500);
-    $(FOCUS_CONTAINER).load(source);
-}
-
-function yb_closeFocusContainer(){
-    $(FOCUS_CONTAINER).fadeOut(500);
-    FOCUS_CONTAINER.innerHTML = "";
-}
-
 function yb_navigateToProfile(e) {
     let username;
     yb_setSessionValues('location', 'profile');
@@ -1295,96 +875,6 @@ function yb_submitQuery(){
     })
 }
 
-/*
-    
-    yb_displayPrompt:
-        -Info-
-            --This function allows for the rapid creation of user warnings, alerts, and confirmations
-
-    How to use yb_displayPrompt():
-
-        -Variables-
-            --title (string): The title of the prompt (This will be placed in the header section, keep it short)
-            --message (string): The message to be displayed in the body of the prompt
-            --actions (object): An object containing the actions to be displayed in the footer of the prompt
-
-        -actions = {
-            "name": "The name of the action (string)"
-            "label": "The label to be displayed on the button (string)"
-            "color": "The color of the button (string)"
-            "action" : "The function to be executed when the button is clicked (function)"
-
-        The displayPrompt function does not need a back action defined, a buttion will automatically be appended for this purpose
-
-        -Example-
-
-            yb_displayPrompt(
-                "Example Prompt", 
-                "This prompt will be used as an example", 
-                {
-                    "action1": {
-                        "name": "action1",
-                        "label": "Action 1",
-                        "color": "red",
-                        "action": function(){
-                            console.log("Action 1")
-                        }
-                    },
-                    "action2": {
-                        "name": "action2",
-                        "label": "Action 2",
-                        "color": "blue",
-                        "action": function(){
-                            console.log("Action 2")
-                        }
-                }
-            })
-    
-*/
-
-function yb_displayPrompt(title = "", message = "", actions = {}){
-
-    TOP_LAYER.classList.add("open");
-    PROMPT_CONTAINER.classList.add("open");
-
-    PROMPT_TITLE.innerHTML = `<h3 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">${title}</h3>`;
-
-    PROMPT_BODY.innerHTML = `<p style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">${message}</p>`;
-
-    if (actions.length === 0){
-        let ok_button = yb_createButton("Back", "yb-button-flex squared small-wide font-white", "prompt-action-back", "Ok");
-        ok_button.setAttribute("style", "background-color: var(--yb-button-color) !important;");
-        ok_button.addEventListener("click", yb_closePrompt);
-        PROMPT_FOOTER.appendChild(ok_button);
-    } else {
-        let back_button = yb_createButton("Back", "yb-button-flex squared small-wide font-white", "prompt-action-back", "Back");
-        back_button.setAttribute("style", "background-color: var(--yb-button-color) !important;");
-        back_button.addEventListener("click", yb_closePrompt);
-        PROMPT_FOOTER.appendChild(back_button);
-    }
-
-    for (let key in actions){
-        let this_action = actions[key];
-        let this_button = yb_createButton(this_action.name, "yb-button-flex squared small-wide font-white", `prompt-action-${key}`, this_action.label);
-        this_button.addEventListener("click", this_action.action);
-        this_button.setAttribute("style", `background-color: ${this_action.color} !important; `);
-        PROMPT_FOOTER.appendChild(this_button);
-    }
-
-}
-
-function yb_closePrompt(){
-    
-    TOP_LAYER.classList.remove("open");
-    PROMPT_CONTAINER.classList.remove("open");
-
-    PROMPT_TITLE.innerHTML = "";
-    
-    PROMPT_BODY.innerHTML = "";
-
-    PROMPT_FOOTER.innerHTML = "";
-
-}
 
 /*
     Legacy Function Marked for Removal yb_toggleConversation2Way()
@@ -1605,7 +1095,7 @@ const checkPermission = async () => {
 }
 
 function registerSW(){
-    const swRegistration = navigator.serviceWorker.register('/static/sw.js');
+    const swRegistration = navigator.serviceWorker.register('/static/service-worker.js');
     return swRegistration;
 }
 
@@ -1641,7 +1131,7 @@ $(document).ready(function() {
     let this_browser = console.log(getBrowserName(navigator.userAgent));
     console.log(this_browser);
     if (typeof navigator.serviceWorker !== 'undefined') {
-        navigator.serviceWorker.register('/static/sw.js')
+        navigator.serviceWorker.register('/static/service-worker.js')
         .then(function(registration) {
             console.log('Service Worker registered successfully');
             swRegistration = registration;
