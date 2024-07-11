@@ -346,13 +346,13 @@ function yb_showMessagePage() {
 }
 
 function yb_navigateTo(container, template, data=null){
-    if ("2way" in container) {
+    if (container.includes("2way")) {
         if (data === null){
             yb_launch2WayContainer(template);
         } else {
             yb_launch2WayContainer(template, data);
         }
-    } else if ("content-container" in container) {
+    } else if (container.includes("content-container")) {
         CONTENT_CONTAINER.innerHTML = "";
 
         if (data === null) {
@@ -365,14 +365,14 @@ function yb_navigateTo(container, template, data=null){
         if (template != "profile") {
             yb_revertUIColor();
         } 
-    } else if ("drawer" in container) {
+    } else if (container.includes("drawer")) {
 
         if (data === null) {
             yb_openDrawer(template);
         } else {
             yb_openDrawer(template, data);
         }
-    } else if ("card" in container) {
+    } else if (container.includes("card")) {
         if (data === null) {
             yb_openCard(template);
         } else {
