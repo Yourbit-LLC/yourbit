@@ -179,8 +179,8 @@ class ProfileConnectTemplate(View):
 
         else:
             friend_button = {
-                "label":"Friend",
-                "name": "friend",
+                "label":"Request Friend",
+                "name": "request-friend",
                 "type": "profile-connect",
                 "object_id": this_profile.id,
                 "action": f"yb_friendUser({this_profile.id})",
@@ -213,8 +213,8 @@ class ProfileConnectTemplate(View):
 
         else:
             option_set = [
-                follow_button,
                 friend_button,
+                follow_button,
                 block_button,
             ]
 

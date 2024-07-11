@@ -321,6 +321,14 @@ function yb_changeUIState(state) {
     }
 }
 
+function yb_goToPage(page, data=null) {
+
+    if (data != null) {
+        $(CONTENT_CONTAINER).load(CORE_TEMPLATE_INDEX[page] + data.toString() + "/");
+    } else {
+        $(CONTENT_CONTAINER).load(CORE_TEMPLATE_INDEX[page]);
+    }
+}
 
 
 function changeColor(property, value) {
@@ -430,7 +438,7 @@ function yb_revertUIColor() {
 }
 
 
-function yb_launch2WayContainer(page) {
+function yb_launch2WayContainer(page, data=null) {
     let this_page = TWO_WAY_INDEX[page];
     console.log("settings shown")
     let container = yb_toggle2WayContainer(page, true);
@@ -442,6 +450,11 @@ function yb_launch2WayContainer(page) {
         let container_content = container[1].querySelector(".yb-2Way-content");
         container[1].setAttribute("data-state", page);
         $(container_content).html("");
+        if (data) {
+            $(container_content).load(this_page.template + data.toString() + "/");
+        } else {
+            $(container_content).load(this_page.template)
+        }
         $(container_content).load(this_page.template)
         history.pushState({}, "", this_page.url);
     }
@@ -946,11 +959,15 @@ function yb_startBitStream() {
 
 const START_BITSTREAM = yb_startBitStream();
 
-function yb_openCard(content) {
-    $(CARD_CONTAINER).load(content);
+function yb_openCard(content, data=null) {
+    if (data) {
+        $(CARD_CONTAINER).load(content + data.toString() + "/");
+    } else {
+        $(CARD_CONTAINER).load(content);
+    }
+    
     CARD_CONTAINER.classList.add("open");
     ELEMENT_DIVIDER_1.style.display = "block";
-
 }
 
 function yb_closeCard() {
@@ -1278,7 +1295,54 @@ function yb_submitQuery(){
     })
 }
 
-function yb_displayPrompt(title, message, actions, id=null){
+/*
+    
+    yb_displayPrompt:
+        -Info-
+            --This function allows for the rapid creation of user warnings, alerts, and confirmations
+
+    How to use yb_displayPrompt():
+
+        -Variables-
+            --title (string): The title of the prompt (This will be placed in the header section, keep it short)
+            --message (string): The message to be displayed in the body of the prompt
+            --actions (object): An object containing the actions to be displayed in the footer of the prompt
+
+        -actions = {
+            "name": "The name of the action (string)"
+            "label": "The label to be displayed on the button (string)"
+            "color": "The color of the button (string)"
+            "action" : "The function to be executed when the button is clicked (function)"
+
+        The displayPrompt function does not need a back action defined, a buttion will automatically be appended for this purpose
+
+        -Example-
+
+            yb_displayPrompt(
+                "Example Prompt", 
+                "This prompt will be used as an example", 
+                {
+                    "action1": {
+                        "name": "action1",
+                        "label": "Action 1",
+                        "color": "red",
+                        "action": function(){
+                            console.log("Action 1")
+                        }
+                    },
+                    "action2": {
+                        "name": "action2",
+                        "label": "Action 2",
+                        "color": "blue",
+                        "action": function(){
+                            console.log("Action 2")
+                        }
+                }
+            })
+    
+*/
+
+function yb_displayPrompt(title = "", message = "", actions = {}){
 
     TOP_LAYER.classList.add("open");
     PROMPT_CONTAINER.classList.add("open");
@@ -1287,27 +1351,24 @@ function yb_displayPrompt(title, message, actions, id=null){
 
     PROMPT_BODY.innerHTML = `<p style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">${message}</p>`;
 
+    if (actions.length === 0){
+        let ok_button = yb_createButton("Back", "yb-button-flex squared small-wide font-white", "prompt-action-back", "Ok");
+        ok_button.setAttribute("style", "background-color: var(--yb-button-color) !important;");
+        ok_button.addEventListener("click", yb_closePrompt);
+        PROMPT_FOOTER.appendChild(ok_button);
+    } else {
+        let back_button = yb_createButton("Back", "yb-button-flex squared small-wide font-white", "prompt-action-back", "Back");
+        back_button.setAttribute("style", "background-color: var(--yb-button-color) !important;");
+        back_button.addEventListener("click", yb_closePrompt);
+        PROMPT_FOOTER.appendChild(back_button);
+    }
+
     for (let key in actions){
         let this_action = actions[key];
         let this_button = yb_createButton(this_action.name, "yb-button-flex squared small-wide font-white", `prompt-action-${key}`, this_action.label);
         this_button.addEventListener("click", this_action.action);
         this_button.setAttribute("style", `background-color: ${this_action.color} !important; `);
         PROMPT_FOOTER.appendChild(this_button);
-    }
-
-}
-
-function yb_toggleConversation2Way(id){
-    let container = yb_toggle2WayContainer('conversation', false);
-    if (container[0] === "closing"){
-        history.pushState(null, null, "/");
-        container[1].setAttribute("data-state", "empty");
-    } else {
-        console.log("not closing")
-        let container_content = container[1].querySelector(".yb-2Way-content");
-        container[1].setAttribute("data-state", "conversation");
-        $(container_content).load(`/messages/templates/conversation/${id}/`)
-        history.pushState({}, "", `/messages/conversation/${id}/`);
     }
 
 }
@@ -1324,6 +1385,30 @@ function yb_closePrompt(){
     PROMPT_FOOTER.innerHTML = "";
 
 }
+
+/*
+    Legacy Function Marked for Removal yb_toggleConversation2Way()
+        -Pending Implementation Confirmation-
+
+        Replaced With: yb_launch2WayContainer(page, data=null)
+*/
+
+function yb_toggleConversation2Way(id){
+    let container = yb_toggle2WayContainer('conversation', false);
+    if (container[0] === "closing"){
+        history.pushState(null, null, "/");
+        container[1].setAttribute("data-state", "empty");
+    } else {
+        console.log("not closing")
+        let container_content = container[1].querySelector(".yb-2Way-content");
+        container[1].setAttribute("data-state", "conversation");
+        $(container_content).load(`/messages/templates/conversation/${id}/`)
+        history.pushState({}, "", `/messages/conversation/${id}/`);
+    }
+
+}
+
+
 
 function yb_changeSpace(space_name) {
 

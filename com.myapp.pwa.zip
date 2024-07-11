@@ -1,0 +1,12 @@
+Error generating app package: 
+Received icon "https://myapp.com/icon.png" with invalid Content-Type. Responded with Content-Type "text/html; charset=utf-8"
+stack: Error: Received icon "https://myapp.com/icon.png" with invalid Content-Type. Responded with Content-Type "text/html; charset=utf-8"
+    at ImageHelper.fetchIcon (/app/node_modules/@bubblewrap/core/dist/lib/ImageHelper.js:100:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async TwaGenerator.generateIcons (/app/node_modules/@bubblewrap/core/dist/lib/TwaGenerator.js:210:22)
+    at async TwaGenerator.createTwaProject (/app/node_modules/@bubblewrap/core/dist/lib/TwaGenerator.js:331:13)
+    at async BubbleWrapper.generateTwaProject (file:///app/build/bubbleWrapper.js:89:9)
+    at async BubbleWrapper.generateAppPackage (file:///app/build/bubbleWrapper.js:38:9)
+    at async createAppPackageWith403Fallback (file:///app/routes/project.js:261:16)
+    at async createAppPackage (file:///app/routes/project.js:237:16)
+    at async file:///app/routes/project.js:44:28

@@ -464,165 +464,30 @@ function rewards_browse_url(data){
     
 }
 
-//Redeem rewards
-function rewards_redeem_url(data){
-    $("#content-container").html('');
-    yb_setSessionValues("location","redeem_rewards");
-    history.pushState({}, "", `/rewards/redeem/${data.perk}/`);
-    
-}
-
-//history
-function history_url() {
-    try {
-        yb_purgeScripts(yb_clearContainer);
-    } catch (error) {
-        console.log(error);
-    }
-    
-    $("#content-container").load(`${base_url}/profile/templates/history-html/`);
-    yb_setSessionValues("location", "history");
-    history.pushState({}, "", "/profile/history/all/");
-
-            
-    if (menu.style.visibility === "visible") {
-        yb_show_profile_menu();
-    }
-    
-}
-
-function stuff_url() {
-    try {
-        yb_purgeScripts(yb_clearContainer);
-    } catch (error) {
-        console.log(error);
-    }
-    
-    yb_setSessionValues("location", "stuff");
-    $("#content-container").load(`${base_url}/profile/templates/my-stuff-html/`);
-    
-    history.pushState({}, "", "/profile/stuff/");
-
-            
-    if (menu.style.visibility === "visible") {
-        yb_show_profile_menu();
-    }
-    
-
-}
-
-function cluster_url(cluster_id, cluster_name) {
-    try {
-        yb_purgeScripts(yb_clearContainer);
-    } catch (error) {
-        console.log(error);
-    }
-    
-    yb_setSessionValues("location", "stuff");
-    yb_setSessionValues("cluster", cluster_id);
-    yb_setSessionValues("cluster-name", cluster_name);
-
-    let this_username = yb_getSessionValues("username");
-    $("#content-container").load(`${base_url}/profile/templates/cluster-html/`);
-    
-    history.pushState({}, "", `/profile/${this_username}/cluster/${cluster_name}`);
-
-            
-    if (menu.style.visibility === "visible") {
-        yb_show_profile_menu();
+function yb_navigateTo(container, template, data=null){
+    if ("2way" in container) {
+        if (data === null){
+            yb_launch2WayContainer(template);
+        } else {
+            yb_launch2WayContainer(template, data);
+        }
+    } else if ("content-container" in container) {
+        if (data === null) {
+            yb_goToPage(template);
+        } else {
+            yb_goToPage(template, data);
+        }
+    } else if ("drawer" in container) {
+        if (data === null) {
+            yb_openDrawer(template);
+        } else {
+            yb_openDrawer(template, data);
+        }
+    } else if ("card" in container) {
+        if (data === null) {
+            yb_openCard(template);
+        } else {
+            yb_openCard(template, data);
+        }
     }
 }
-
-function search_url(this_query, this_type) {
-    try {
-        yb_purgeScripts(yb_clearContainer);
-    } catch (error) {
-        console.log(error);
-    }
-    
-    yb_setSessionValues("location", "search");
-    $("#content-container").load(`${base_url}/search/templates/search-results-html/`);
-    
-    history.pushState({}, "", `/search/?query=${this_query}&type=${this_type}`);
-
-            
-    if (menu.style.visibility === "visible") {
-        yb_show_profile_menu();
-    }
-    
-
-}
-
-/*
-    NavigateTo Registry
-    
-    This function is used to navigate to different pages 
-    within Yourbits index
-
-    All urls added above must be registered here in order 
-    to be made operational. It handles tasks that must be
-    performed on every page when navigating to a new page.
-*/
-
-// function yb_navigateTo(destination, data=null) {
-//     let current_location = yb_getSessionValues("location");
-//     let current_space = yb_getSessionValues("space");
-
-//     yb_showLoadingCore();
-//     yb_updatePageTask(destination);
-
-//     if (current_location === "profile") {
-//         yb_revertCustom();
-//     } else if (current_location === "customize-profile") {
-//         if (destination !== "avatar-crop") {
-//             $("#mobile-logo").fadeIn();
-//             $("#edit-header-text").remove();
-//         }
-//     }
-
-//     if (destination === "home") {
-        
-//         home_url(current_space);
-
-//     } else if (destination === "profile") {
-        
-//         profile_url(data);
-
-//     } else if (destination === "search") {
-        
-//         search_url(data);
-
-//     } else if (destination === "customize") {
-        
-//         customize_url();
-
-        
-//     } else if (destination === "connections") {
-        
-//         connections_url();
-//     } else if (destination === "settings") {
-        
-//         settings_url();
-
-//     } else if (destination === "messages") {
-        
-//         messages_inbox_url();
-
-//     } else if (destination === "rewards") {
-        
-//         rewards_url();
-
-//     } else if (destination === "cluster") {
-        
-//         cluster_url();
-//     } else if (destination === "history") {
-        
-//         history_url();
-//     } else if (destination === "stuff") {
-        
-//         stuff_url();
-//     } else if (destination === "avatar-crop") {
-//         avatar_crop_url();
-//     }
-
-// }

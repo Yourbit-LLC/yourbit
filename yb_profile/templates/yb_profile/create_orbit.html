@@ -14,7 +14,7 @@
 
 
 <div id="connection-list" class="yb-fillWidth yb-vScroll yb-margin-T10" style="height: calc(100% - 70px); border-radius: 15px;">
-    <form id="create-orbit-form" class="yb-fillWidth align-center" style="font-weight: 600;" method="POST">
+    <form id="create-orbit-form" class="yb-fillWidth align-center" action="/profile/create/orbit/" style="font-weight: 600;" method="POST">
         {% csrf_token %}
         <br>
         <label for="name" class="yb-autoText yb-pHead font-medium align-center">What are you naming your Orbit?</label>
@@ -42,14 +42,37 @@
         <p class="yb-font-autoGray font-small" style="margin-left: 10px; margin-right: 10px;">Identifying a primary content type helps to classify your orbit for searches containing user media preferences.</p> 
         <br>
         <br>
-        <button type="submit" class="yb-button-flex green font-white yb-center-margin lr">Create</button>
+        <button type="submit" id = "submit-create-orbit" class="yb-button-flex green font-white yb-center-margin lr">Create</button>
 
     </form>
 </div>
 
 
+
 <script>
+    function createOrbit() {
+        var form = $('#create-orbit-form');
+        var url = form.attr('action');
+        var data = form.serialize();
+        tw_showLoading();
+        $.post(url, data, function(response){
+            if(response.success){
+                yb_showNotification(expandNotification, 'Orbit created');
+                yb_toggle2WayContainer('create-orbit');
+            } else {
+                yb_showNotification(expandNotification, 'Error creating orbit');
+            }
+        });
+    }
+
     $(document).ready(function(){
+
         tw_hideLoading();
+
+        //Submit form
+        $('#create-orbit-form').submit(function(e){
+            e.preventDefault();
+            createOrbit();
+        });
     });
 </script>
