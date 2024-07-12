@@ -99,9 +99,9 @@ function yb_resize2Way(size=1) {
 
 }
 
-function yb_filterScroll(container) {
+function yb_filterScroll() {
         
-    let scrollContainer = container.querySelector('.yb-hScroll');
+    let scrollContainer = document.querySelector('.yb-hScroll');
 
     scrollContainer.addEventListener('wheel', (event) => {
         event.preventDefault(); // Prevent the default vertical scroll behavior
@@ -387,7 +387,7 @@ function yb_launch2WayContainer(page, data=null) {
             $(container_content).load(this_page.template)
         }
         $(container_content).load(this_page.template)
-        yb_filterScroll(container[1]);
+        yb_filterScroll();
         history.pushState({}, "", this_page.url);
     }
 }
