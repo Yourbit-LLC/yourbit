@@ -5,3 +5,5 @@ from .models import *
 admin.site.register(Bit)
 admin.site.register(BitComment)
 admin.site.register(Cluster)
+admin.site.register(BitLike)
+admin.site.register(BitDislike)
