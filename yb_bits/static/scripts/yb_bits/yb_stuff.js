@@ -1,4 +1,8 @@
-let filter_buttons = document.getElementsByClassName("history-filter");
+try {
+    var filter_buttons = document.getElementsByClassName("history-filter");
+} catch {
+    filter_buttons = document.getElementsByClassName("history-filter");
+}
 
 function yb_getStuff(filter) {
     $.ajax({
