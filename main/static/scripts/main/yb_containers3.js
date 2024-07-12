@@ -387,7 +387,7 @@ function yb_launch2WayContainer(page, data=null) {
             $(container_content).load(this_page.template)
         }
         $(container_content).load(this_page.template)
-        yb_filterScroll(container);
+        yb_filterScroll(container[1]);
         history.pushState({}, "", this_page.url);
     }
 }
