@@ -47,6 +47,7 @@ function yb_openDrawer(template, id=null, reloadable=true) {
         DRAWER.setAttribute("data-state", template);
     } else {
         if (reloadable == false){
+            DRAWER_INNER.innerHTML = "";
             if (id) {
                 $(DRAWER_INNER).load(DRAWER_CONTENT[template] + id.toString() + "/");
             } else {
