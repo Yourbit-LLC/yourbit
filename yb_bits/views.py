@@ -100,3 +100,30 @@ class CreateCluster(View):
 def bit_focus_view(request, pk, *args, **kwargs):
     this_bit = Bit.objects.get(pk=pk)
     return render(request, "yb_bits/yb_bit_focus.html", {"bit":this_bit})
+
+def like_history_view(request, *args, **kwargs):
+    profile = Profile.objects.get(user=request.user)
+    bit_likes = BitLike.objects.filter(profile=profile).order_by('-time')
+    context = {
+        'bit_likes':bit_likes
+    }
+    return render(request, "yb_bits/yb_bit_list.html", context)
+
+def comment_history_view(request, *args, **kwargs):
+    profile = Profile.objects.get(user=request.user)
+    interaction_history = InteractionHistory.objects.get(profile=profile)
+    interactions = interaction_history.commented_on.all()
+    context = {
+        'interactions':interactions
+    }
+    return render(request, "yb_bits/yb_comment_list.html", context)
+
+def watch_history_view(request, *args, **kwargs):
+    profile = Profile.objects.get(user=request.user)
+    interaction_history = InteractionHistory.objects.get(profile=profile)
+    interactions = interaction_history.watched.all()
+    context = {
+        'interactions':interactions
+    }
+    return render(request, "yb_bits/yb_watch_list.html", context)
+

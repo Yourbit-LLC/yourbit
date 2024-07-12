@@ -1,5 +1,5 @@
 try {
-    let filter_buttons = document.getElementsByClassName("orbit-filter");
+    var filter_buttons = document.getElementsByClassName("orbit-filter");
 } catch {
     filter_buttons = document.getElementsByClassName("orbit-filter");
 }

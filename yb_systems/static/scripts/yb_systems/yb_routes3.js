@@ -29,7 +29,18 @@ const DRAWER_CONTENT = {
     "profile-connect": `/profile/templates/connect_menu/`,
 }
 
-//Register templates to be loaded into a 2Way Container
+/*
+    Below is a directory of templates to be loaded into a 2Way Container
+
+    URL Schema: /<app>/templates/<template-name>/<filter[optional]>/
+
+    When creating urls to a 2Way Container within a urls.py file, use the above format to ensure
+    the template is loaded correctly when using filter options
+
+    The template key is used to load the template into the container
+    The url key is used to set the url in the browser
+*/
+
 const TWO_WAY_INDEX = {
     "create": 
         {
@@ -130,6 +141,25 @@ const TWO_WAY_INDEX = {
     
           
 };
+
+/*
+    Below is a directory of templates to be loaded into list containers
+
+    URL Schema: /<app>/templates/<template-name>/<filter[optional]>/
+
+    Do not include the filter in the index it will be applied by the load list function
+
+    When creating urls to a list within a urls.py file, use the above format to ensure 
+    the list is loaded correctly when using filter options
+*/
+const LIST_TEMPLATE_INDEX = {
+    "people": "/profile/people-list/",
+    "orbits": "/profile/templates/orbits/", //Needs to be updated to match people list format "/orbits-list/"
+    "history": "/profile/history-list/",
+    "conversations": "/messages/conversations-list/",  
+    "contacts": "/messages/list/contacts/",
+
+}
 
 function yb_goToPage(page, data=null) {
 
@@ -343,6 +373,16 @@ function yb_showStuffPage() {
 
 function yb_showMessagePage() {
     yb_navigateTo("2way", "messages");
+}
+
+function yb_loadList(container, template, filter=null){
+    let url = LIST_TEMPLATE_INDEX[template];
+
+    if (filter === null) {
+        $(container).load(template_url);
+    } else {
+        $(container).load(template_url + filter + "/");
+    }
 }
 
 function yb_navigateTo(container, template, data=null){

@@ -1,9 +1,9 @@
 /*
 
-                    session_manager.js
-                    Dated: 11/8/2022
-                    Updated: 11/8/2022
-                    Yourbit, LLC
+        yb_sessions.js
+        Dated: 11/8/2022
+        Updated: 11/8/2022
+        Yourbit, LLC
 
 
 

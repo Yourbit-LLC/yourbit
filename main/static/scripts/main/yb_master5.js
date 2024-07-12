@@ -31,7 +31,6 @@ const MASTHEAD_LOGOS = document.querySelectorAll(".yb-logo-masthead");
 const MOBILE_HEADER = document.querySelector('.yb-header');
 const SPOTLIGHT_CONTAINER = document.getElementById('yb-container-spotlight');
 const SPOTLIGHT_CONTENT =  document.getElementById('spotlight-content');
-const CARD_CONTAINER = document.getElementById("yb-card")
 
 const CREATE_POPOUT = document.getElementById("create-button-popout");
 const SEARCH_POPOUT = document.getElementById("search-button-popout");
@@ -50,16 +49,8 @@ const TOP_LAYER = document.getElementById("top-layer");
 const FLOATING_TEXT_CONTAINER = document.getElementById("floating-text");
 const FLOATING_TEXT_INPUT = document.getElementById("input-floating-text");
 
-const CUSTOM_VALUES = document.getElementById("user-custom-info");
-
 const MAIN_LOADING_SCREEN = document.getElementById("yb-loading-main");
 const SUBSCRIPTION_BANNER = document.getElementById("notification-permission-banner");
-
-const BG_IMAGE_A = document.getElementById("bg-image-a");
-const BG_IMAGE_SOURCE_A = document.getElementById("bg-image-source-a");
-
-const BG_IMAGE_B = document.getElementById("bg-image-b");
-const BG_IMAGE_SOURCE_B = document.getElementById("bg-image-source-b");
 
 const SCREEN_WIDTH = window.screen.width;
 
@@ -70,20 +61,11 @@ const LOGO_PATHS = document.querySelectorAll(".cls-1");
 const TIME_KEEPER = document.getElementById("time-keeper-node");
 const ELEMENT_DIVIDER_1 = document.getElementById("element-divider-1");
 
-const DEFAULT_STYLESHEET_INDEX = {
-    "yb-stylesheet-core": "/static/css/main/yb_core.css",
-    "yb-stylesheet-modifier": "/static/css/main/yb_modifiers.css",
-    "yb-stylesheet-button": "/static/css/main/yb_buttons.css",
-    "yb-stylesheet-container": "/static/css/main/yb_containers.css",
-    "yb-stylesheet-bit": "/static/css/yb_bits/yb_bits.css",
-}
-
-const MODDED_STYLESHEET_INDEX = {
-    "yb-stylesheet-core": "/static/css/main/yb_core_customized.css",
-    "yb-stylesheet-modifier": "/static/css/main/yb_modifiers_customized.css",
-    "yb-stylesheet-button": "/static/css/main/yb_buttons_customized.css",
-    "yb-stylesheet-container": "/static/css/main/yb_containers_customized.css",
-    "yb-stylesheet-bit": "/static/css/yb_bits/yb_bits_customized.css",
+const FEED_PARAMS = {
+    "space": yb_getSessionValues("space"),
+    "page": yb_getSessionValues("page"),
+    "filter": yb_getSessionValues("filter"),
+    "sort": yb_getSessionValues("sort"),
 }
 
 var clock_isTicking = false;
@@ -104,16 +86,6 @@ const year = currentDate.getFullYear();
 
 // Format the date as "MonthName day, year"
 const formattedDate = `${month} ${day}, ${year}`;
-
-const custom_index = [
-    'panel-color',
-    'accent-color',
-    'text-color',
-    'icon-color',
-    'title-color',
-    'button-color',
-    'button-text-color'
-]
 
 function getOSAndDevice() {
     const userAgent = navigator.userAgent;
@@ -165,141 +137,6 @@ function yb_getTouches() {
     return touches;
 }
 
-
-function yb_getCustomValues(key){
-    CUSTOM_VALUES.getAttribute("data-" + key);
-}
-
-function yb_swapSheets(state, sheet_name) {
-    if (state === "default") {
-        let sheet = DEFAULT_STYLESHEET_INDEX[sheet_name];
-        document.getElementById(sheet_name).setAttribute("href", sheet);
-    } else if (state === "modded") {
-        let sheet = MODDED_STYLESHEET_INDEX[sheet_name];
-        document.getElementById(sheet_name).setAttribute("href", sheet);
-    }
-}
-
-function yb_changeUIState(state) {
-    if (state === "default") {
-        yb_swapSheets("default", "yb-stylesheet-core");
-        yb_swapSheets("default", "yb-stylesheet-modifier");
-        yb_swapSheets("default", "yb-stylesheet-button");
-        // yb_swapSheets("default", "yb-stylesheet-container");
-    } else if (state === "modded") {
-        yb_swapSheets("modded", "yb-stylesheet-core");
-        yb_swapSheets("modded", "yb-stylesheet-modifier");
-        yb_swapSheets("modded", "yb-stylesheet-button");
-        // yb_swapSheets("modded", "yb-stylesheet-container");
-    }
-}
-
-function changeColor(property, value) {
-    document.documentElement.style.setProperty(property, value);
-}
-
-function yb_getWallpaper(profile=false) {
-    let type;
-    let url;
-    let username;
-
-    if (SCREEN_WIDTH < 768) {
-        type = "mobile";
-    } else {
-        type = "desktop";
-    }
-
-    if (profile) {
-        username = yb_getProfileData("username");
-        url = `/customize/get/wallpaper/profile/connection/${username}/${type}/`;
-    }
-
-    $.ajax({
-        type: 'GET',
-        url: `/customize/get/wallpaper/profile/${type}/`,
-        success: function(response) {
-            console.log(response)
-            let wallpaper = response.wallpaper;
-            yb_changeWallpaper(wallpaper);
-        },
-        error: function(response) {
-            console.log(response);
-        }
-    });
-    
-    
-    return wallpaper;
-}
-
-function yb_changeWallpaper(value, profile=false) {
-    let wallpaper_enabled;
-    if (profile) {
-        wallpaper_enabled = yb_getProfileData("wallpaper-on");
-        console.log("Retrieving wallpaper data from profile");
-        
-    } else {
-        console.log("Retrieving wallpaper data from base");
-        wallpaper_enabled = CUSTOM_VALUES.getAttribute("data-wallpaper-on");
-    }
-
-    
-
-    if (wallpaper_enabled == "True") {
-        console.log(value);
-        console.log("Wallpaper enabled " + wallpaper_enabled )
-        BG_IMAGE_A.style.display = "block";
-        BG_IMAGE_SOURCE_A.src = value;
-        CONTENT_CONTAINER.classList.remove("yb-bg-autoGray");
-        CONTENT_CONTAINER.classList.add("yb-bg-transparent");
-        
-    } else {
-        console.log("Wallpaper display " + wallpaper_enabled )
-        BG_IMAGE_A.style.display = "none";
-        CONTENT_CONTAINER.classList.remove("yb-bg-transparent");
-        CONTENT_CONTAINER.classList.add("yb-bg-autoGray");
-    }
-    
-}
-
-function yb_showWallpaper() {
-    BG_IMAGE_A.style.display = "block";
-}
-
-function yb_loadWallpaper(profile = false) {
-    let wallpaper = yb_getWallpaper(profile);
-    yb_changeWallpaper(wallpaper);
-    yb_showWallpaper();
-}
-
-function yb_setProfileUI() {
-    for (let i = 0; i < custom_index.length; i++) {
-        let this_style = profile_custom_info.getAttribute(`data-${custom_index[i]}`);
-
-        changeColor(`--yb-${custom_index[i]}`, this_style);
-    }
-
-    let this_wallpaper = yb_getProfileData("background");
-    console.log("This wallpaper: " + this_wallpaper)
-    
-    yb_changeWallpaper(this_wallpaper, true);
-
-
-}
-
-function yb_revertUIColor() {
-    for (let i = 0; i < custom_index.length; i++) {
-
-        let this_data = CUSTOM_VALUES.getAttribute(`data-ui-${custom_index[i]}`);
-        
-        changeColor('--yb-' + custom_index[i], this_data);
-    }
-
-    let this_wallpaper = CUSTOM_VALUES.getAttribute("data-wallpaper");
-    yb_changeWallpaper(this_wallpaper, false);
-
-
-}
-
 function yba_endSequence(class_name) {
     let these_targets = document.querySelectorAll(class_name);
     for (let i = 0; i < these_targets.length; i++) {
@@ -315,47 +152,6 @@ function yba_createSequence(animation, class_name, delay, duration, iterations=1
             setTimeout(function() {
                 these_targets[i].style.animation = `${animation} ${duration}s ease-in-out`;
             }, delay);
-        }
-    }
-}
-
-function yb_resize2Way(size=1) {
-    let container = document.getElementById("yb-dynamic-2way-a");
-    if (size === 1) {
-        container.classList.remove("expanded");
-    } else if (size === 2){
-        container.classList.add("expanded");
-    } else if (size === 3){
-        container.classList.add("expanded2");
-    }
-
-}
-
-function yb_expand2Way() {
-    for (let i = 0; i < SIDE_CONTAINERS.length; i++) {
-        if (SIDE_CONTAINERS[i].classList.contains("open")) {
-            SIDE_CONTAINERS[i].classList.add("expanded");
-            break;
-        }
-    }
-}
-
-function yb_collapse2Way() {
-    for (let i = 0; i < SIDE_CONTAINERS.length; i++) {
-        if (SIDE_CONTAINERS[i].classList.contains("open")) {
-            SIDE_CONTAINERS[i].classList.remove("expanded");
-            SIDE_CONTAINERS[i].classList.remove("expanded2");
-            break;
-        }
-    }
-}
-
-function yb_clearSecondaryContent() {
-    for (let i = 0; i < SIDE_CONTAINERS.length; i++) {
-        if (SIDE_CONTAINERS[i].classList.contains("open")) {
-            let secondary = SIDE_CONTAINERS[i].querySelector(".yb-2Way-secondary");
-            secondary.innerHTML = "";
-            break;
         }
     }
 }
@@ -877,7 +673,7 @@ function yb_submitQuery(){
 
 
 /*
-    Legacy Function Marked for Removal yb_toggleConversation2Way()
+    Legacy Function **MARKED FOR REMOVAL** yb_toggleConversation2Way()
         -Pending Implementation Confirmation-
 
         Replaced With: yb_launch2WayContainer(page, data=null)

@@ -1,6 +1,6 @@
 /*
     yb_containers.js
-    Yourbit, LLC, 2023
+    Yourbit, LLC, 2024
     Author: Austin Chaney
     Created: 7/11/2024
 */
@@ -30,6 +30,7 @@ const SLIDE_UP_CORE = document.getElementById("yb-slide-up-core"); //yb_showSlid
 //Content Focus Container
 const FOCUS_CONTAINER = document.getElementById("core-focus-container");
 
+const CARD_CONTAINER = document.getElementById("yb-card");
 
 function yb_openDrawer(template, id=null) {
     DRAWER.classList.add("open");
@@ -98,7 +99,17 @@ function yb_resize2Way(size=1) {
 
 }
 
-//Legacy Expand 2 Way marked for Removal
+function yb_filterScroll(container) {
+        
+    let scrollContainer = container.querySelector('.yb-hScroll');
+
+    scrollContainer.addEventListener('wheel', (event) => {
+        event.preventDefault(); // Prevent the default vertical scroll behavior
+        scrollContainer.scrollLeft += event.deltaY; // Adjust the horizontal scroll position
+    });
+}
+
+//Legacy Expand 2 Way **MARKED FOR REMOVAL**
 function yb_expand2Way() {
     for (let i = 0; i < SIDE_CONTAINERS.length; i++) {
         if (SIDE_CONTAINERS[i].classList.contains("open")) {
@@ -108,7 +119,7 @@ function yb_expand2Way() {
     }
 }
 
-//Legacy Collapse 2 Way marked for Removal
+//Legacy Collapse 2 Way **MARKED FOR REMOVAL**
 function yb_collapse2Way() {
     for (let i = 0; i < SIDE_CONTAINERS.length; i++) {
         if (SIDE_CONTAINERS[i].classList.contains("open")) {
@@ -156,11 +167,44 @@ function yb_show2WayLoad() {
     $(".yb-load-iconContainer").removeClass("hide");
 }
 
-//This is the primary function for toggling 2 way containers
+/*
+    --2 Way Container Navigation--
+    The following functions are used to navigate between 2 way containers
+
+    This container is called the 2Way container because it slides in from the side on desktop,
+    while on mobile it slides up from the bottom and takes the full screen
+
+    How to use the 2 way container navigation functions:
+        
+        -To launch a new 2Way Container use the following function:
+            yb_launch2WayContainer(page, data)
+                -page: The key of the page in the TWO_WAY_INDEX
+                -data: The data to be passed to the page (optional)
+            
+                This function will automatically switch containers if one is already active
+
+        -To close the current 2Way Container use the following function:
+            yb_toggle2WayContainer(type)
+                -type: The type of the container to be closed, matches the key in the TWO_WAY_INDEX
+
+            -or-
+
+            yb_launch2WayContainer(page) will also close the current container if it is open
+
+        When adding content that loads within a 2 Way container, always ensure to update the directory
+        in the TWO_WAY_INDEX in the yb_systems/routes.js file
+    
+*/
+
+//This is the base function for toggling 2 way containers
 function yb_toggle2WayContainer(type, scroll=false){
 
     console.log(scroll)
+
+    //In case of container expansion begin with collapsing
     yb_collapse2Way();
+
+    //Check if main menu is open, if so, close it
     if (MAIN_MENU.classList.contains('open')){
         MAIN_MENU.classList.toggle('open');
         SIDE_CONTAINER_A.classList.toggle('open');
@@ -181,29 +225,41 @@ function yb_toggle2WayContainer(type, scroll=false){
             }
         }
 
+        //Toggle loading screen on newly active container
         tw_showLoading();
 
-
+        //Return the action of the container and the container element to be loaded
         return ["switching", SIDE_CONTAINER_A];
     } else {
         let this_id;
         let active_type;
+
+        //Iterate through all 2 way containers (A and B)
         for (let i = 0; i < SIDE_CONTAINERS.length + 1; i++) {
+            
+            //Check if current side container is open
             if (SIDE_CONTAINERS[i].classList.contains("open")){
+
+                //Get the ID of the current container
                 this_id = SIDE_CONTAINERS[i].getAttribute("id");
-                console.log(this_id)
-                active_type = SIDE_CONTAINERS[i].getAttribute("data-state");
-                console.log("container_id = " + this_id);
+                
+                //Get the type of the current container
+                active_type = SIDE_CONTAINERS[i].getAttribute("data-state"); //this is the same as the template key in the two way index
+
 
                 console.log(active_type)
+
+                //Compare active_type to type, if its a match, close the container
                 if (active_type === type){
                     console.log("container is already open");
                     
                     
-                    
                     SIDE_CONTAINERS[i].classList.toggle("open");
+
+                    //Clear contents from container to avoid memory leaks
                     yb_clear2WayContainer(SIDE_CONTAINERS[i]);
 
+                    //Check if the current core page is not fullscreen before showing UI
                     if (yb_getSessionValues('fullscreen') == "false"){
                         MOBILE_HEADER.classList.remove("hide");
                         NAV_BAR.classList.remove("hideMobile");
@@ -212,8 +268,12 @@ function yb_toggle2WayContainer(type, scroll=false){
                         
                     }
 
+                    //When closing a container, clear the URL
                     history.pushState(null, null, "/");
+
+                    //Return the action of the container and the container element to be closed
                     return ["closing", SIDE_CONTAINERS[i]];
+                    
                 } else {
                     if (this_id === 'yb-dynamic-2way-a'){
                         
@@ -327,11 +387,12 @@ function yb_launch2WayContainer(page, data=null) {
             $(container_content).load(this_page.template)
         }
         $(container_content).load(this_page.template)
+        yb_filterScroll(container);
         history.pushState({}, "", this_page.url);
     }
 }
 
-//Legacy function for closing a 2 way container marked for removal
+//Legacy function for closing a 2 way container **MARKED FOR REMOVAL**
 function yb_close2WayContainer() {
     for (let i = 0; i < SIDE_CONTAINERS.length + 1; i++) {
         this_object = SIDE_CONTAINERS[i];

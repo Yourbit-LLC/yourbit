@@ -1,5 +1,5 @@
 try {
-    let filter_buttons = document.getElementsByClassName("history-filter");
+    var filter_buttons = document.getElementsByClassName("history-filter");
 } catch {
     filter_buttons = document.getElementsByClassName("history-filter");
 }

@@ -2,7 +2,8 @@
     File: yb_menu.js
     Yourbit, LLC, 2023
     Author: Austin Chaney
-    Date: 11/12/2023
+    Created: 11/12/2023
+    Modified: 7/11/2024
 */
 //Define Main Menu Constants
 const MENU_BUTTON = document.getElementById('profile-icon');
