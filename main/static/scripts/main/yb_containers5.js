@@ -32,7 +32,7 @@ const FOCUS_CONTAINER = document.getElementById("core-focus-container");
 
 const CARD_CONTAINER = document.getElementById("yb-card");
 
-function yb_openDrawer(template, id=null) {
+function yb_openDrawer(template, id=null, reloadable=true) {
     DRAWER.classList.add("open");
     console.log(template)
     if (template != DRAWER.getAttribute("data-state")) {
@@ -41,10 +41,19 @@ function yb_openDrawer(template, id=null) {
         if (id) {
             $(DRAWER_INNER).load(DRAWER_CONTENT[template] + id.toString() + "/");
         } else {
-
+            
             $(DRAWER_INNER).load(DRAWER_CONTENT[template]);
         }
         DRAWER.setAttribute("data-state", template);
+    } else {
+        if (reloadable == false){
+            if (id) {
+                $(DRAWER_INNER).load(DRAWER_CONTENT[template] + id.toString() + "/");
+            } else {
+                
+                $(DRAWER_INNER).load(DRAWER_CONTENT[template]);
+            }
+        }
     }
     
 }
