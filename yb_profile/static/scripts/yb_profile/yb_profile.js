@@ -348,7 +348,7 @@ function yb_handleConnectClick(e) {
         MOBILE_HEADER.classList.remove("hide");
     } else {
         var profile_id = yb_getProfileData("id");
-        yb_openDrawer("profile-connect", profile_id);
+        yb_openDrawer("profile-connect", profile_id, false);
     }
 }
 
