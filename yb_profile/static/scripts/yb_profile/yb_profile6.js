@@ -232,31 +232,23 @@ function yb_requestFollow(user_id) {
 function yb_follow(this_id) {
     
         let actions = {
-            "Cancel": {"name":"cancel", "label":"Cancel", "action":yb_closePrompt, "color": "red"},
             "Confirm": {"name":"confirm", "label": "Confirm", "action": yb_requestFollow, "color": "green"},
         }
         let title = "Follow this user?";
         let body = `This will follow ${active_display_name}.`;
         yb_displayPrompt(title, body, actions, this_id);
 
-        this_option.innerHTML = "Following";
-        this_option.style.backgroundColor = "green";
     
 }
 
 function yb_friend(this_id){
    
     let actions = {
-        "Cancel": {"name": "cancel", "label": "Cancel", "action": yb_closePrompt, "color": "red"},
         "Confirm":{"name": "confirm", "label": "Confirm", "action": yb_requestFriend, "color": "green"},
     }
     let title = "Send Friend Request?";
     let body = `This will send a friend request to ${active_display_name}`;
     yb_displayPrompt(title, body, actions, this_id);
-
-    this_option.innerHTML = "Requesting...";
-    this_option.style.backgroundColor = "yellow";
-
 
 }
     
