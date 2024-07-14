@@ -11,6 +11,7 @@ var video_type_button = document.getElementById("video-type-button");
 var photo_type_button = document.getElementById("photo-type-button");
 var bit_type_field = document.getElementById("bb-field-bitType");
 var type_buttons = document.querySelectorAll(".type-button");
+var private_toggle = document.getElementById("bb-field-bitScope");
 
 var photo_upload_field = document.getElementById("bb-field-bitPhoto");
 var cropped_photo_upload_field = document.getElementById("bb-field-bitPhoto-cropped");
@@ -201,6 +202,9 @@ function yb_handleCreateBit(){
         let tags = document.getElementById("bb-field-bitTags").value;
         this_data.append('tags', tags);
     }
+
+    let scope = document.getElementById("bb-field-bitScope").value;
+    this_data.append('scope', scope);
 
     let title = document.getElementById("bb-field-bitTitle").value;
     this_data.append('title', title);

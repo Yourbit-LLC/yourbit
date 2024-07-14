@@ -178,13 +178,23 @@ class BitViewSet(viewsets.ModelViewSet):
             new_video.save()
             serializer.validated_data['video_upload'] = new_video
 
+        
+        scope = request.data.get('scope')
+        if scope == 'public':
+            is_public = True
+
+        else:
+            is_public = False
+
         #Add additional parameters
         serializer.save(
             display_name = user_profile.display_name, 
             user=self.request.user, 
             profile=user_profile, 
-            custom=custom_bit
+            custom=custom_bit,
+            is_public=is_public
         )
+
 
         headers = self.get_success_headers(serializer.data)
 
