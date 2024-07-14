@@ -175,9 +175,10 @@ $('#back-to-home').click(function() {
 
     // });
 
-function yb_requestFriend(user_id) {
+function yb_requestFriend() {
     let cookie = document.cookie;
     let csrfToken = getCSRF();
+    let user_id = yb_getProfileData("id");
 
 
     let this_data = JSON.stringify({
@@ -208,9 +209,10 @@ function yb_requestFriend(user_id) {
         }
     )
 }
-function yb_requestFollow(user_id) {
+function yb_requestFollow() {
     let cookie = document.cookie;
     let csrfToken = getCSRF();
+    let user_id = yb_getProfileData("id");
     
     $.ajax(
         {
