@@ -230,7 +230,7 @@ function yb_requestFollow(user_id) {
 }
 
 function yb_follow(this_id) {
-    if (this_option_name === "Follow") {
+    
         let actions = {
             "Cancel": {"name":"cancel", "label":"Cancel", "action":yb_closePrompt, "color": "red"},
             "Confirm": {"name":"confirm", "label": "Confirm", "action": yb_requestFollow, "color": "green"},
@@ -241,7 +241,7 @@ function yb_follow(this_id) {
 
         this_option.innerHTML = "Following";
         this_option.style.backgroundColor = "green";
-    }
+    
 }
 
 function yb_friend(this_id){
