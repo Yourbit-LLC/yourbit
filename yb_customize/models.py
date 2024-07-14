@@ -42,6 +42,9 @@ class CustomCore(models.Model):
 
     theme = models.ForeignKey('Theme', related_name='custom', on_delete = models.CASCADE, blank=True, null=True)
 
+    def __str__(self):
+        return f"{self.profile.display_name}'s Custom Core: Active Theme - {self.theme.id}"
+
 #Theme model, this is the model that will be used to store various themes 
 # with foreign key to custom. All theme subtables will be linked here
 class Theme(models.Model):
