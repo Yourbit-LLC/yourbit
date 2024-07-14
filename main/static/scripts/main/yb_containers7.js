@@ -526,7 +526,7 @@ function yb_displayPrompt(title = "", message = "", actions = {}){
         PROMPT_FOOTER.appendChild(ok_button);
     } else {
         let back_button = yb_createButton("Back", "yb-button-flex squared small-wide font-white", "prompt-action-back", "Back");
-        back_button.setAttribute("style", "background-color: var(--yb-button-color) !important;");
+        back_button.setAttribute("style", "background-color: red;");
         back_button.addEventListener("click", yb_closePrompt);
         PROMPT_FOOTER.appendChild(back_button);
     }
