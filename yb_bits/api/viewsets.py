@@ -60,12 +60,14 @@ class BitFeedAPIView(generics.ListAPIView):
             profile_username = self.request.query_params.get('profile')
             profile = Profile.objects.get(user__username=profile_username)
             
-            if active_space != "global":
-                queryset = Bit.objects.filter(profile=profile, type = active_space).order_by(sort_value)
-            
+            if profile.is_friends_with(user_profile):
+                if active_space != "global":
+                    queryset = Bit.objects.filter(profile=profile, type = active_space).order_by(sort_value)
+                
+                else:
+                    queryset = Bit.objects.filter(profile=profile).order_by(sort_value)
             else:
-                queryset = Bit.objects.filter(profile=profile).order_by(sort_value)
-        
+                queryset = Bit.objects.filter(profile=profile, is_public=True).order_by(sort_value)
         else:            
 
            # Start with a base query that applies to all situations
