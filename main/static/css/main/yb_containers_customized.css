@@ -242,12 +242,6 @@
 
 /* General styles for notification list items */
 
-.yb-listItem {
-    background-color: var(--yb-panel-color);
-    color: var(--yb-text-color);
-    box-shadow: 0px 0px 10px 0px black;
-
-}
 
 
 

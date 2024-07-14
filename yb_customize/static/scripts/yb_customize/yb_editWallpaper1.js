@@ -41,7 +41,7 @@ function new_image_handler() {
 }
 
 function finishDesktopBackgroundImage(){
-    cropped_photo = cropper.getCroppedCanvas().toDataURL();
+    let cropped_photo = cropper.getCroppedCanvas().toDataURL();
 
     yb_2WayPage(3, "cropper-mobile-background");
 
@@ -50,7 +50,7 @@ function finishDesktopBackgroundImage(){
 }
 
 function finishMobileBackgroundImage(){
-    cropped_photo = cropper.getCroppedCanvas().toDataURL();
+    let cropped_photo = cropper.getCroppedCanvas().toDataURL();
     cropped_mobile_photo = cropped_photo;
 
     yb_2WayPage(1, "background-image-upload");
