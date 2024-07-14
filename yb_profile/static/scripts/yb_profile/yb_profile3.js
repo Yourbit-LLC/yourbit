@@ -208,7 +208,7 @@ function yb_requestFriend(user_id) {
         }
     )
 }
-function yb_follow(user_id) {
+function yb_requestFollow(user_id) {
     let cookie = document.cookie;
     let csrfToken = getCSRF();
     
@@ -228,6 +228,38 @@ function yb_follow(user_id) {
 
     )
 }
+
+function yb_follow(this_id) {
+    if (this_option_name === "Follow") {
+        let actions = {
+            "Cancel": {"name":"cancel", "label":"Cancel", "action":yb_closePrompt, "color": "red"},
+            "Confirm": {"name":"confirm", "label": "Confirm", "action": yb_follow, "color": "green"},
+        }
+        let title = "Follow this user?";
+        let body = `This will follow ${active_display_name}.`;
+        yb_displayPrompt(title, body, actions, this_id);
+
+        this_option.innerHTML = "Following";
+        this_option.style.backgroundColor = "green";
+    }
+}
+
+function yb_friend(this_id){
+   
+    let actions = {
+        "Cancel": {"name": "cancel", "label": "Cancel", "action": yb_closePrompt, "color": "red"},
+        "Confirm":{"name": "confirm", "label": "Confirm", "action": yb_requestFriend, "color": "green"},
+    }
+    let title = "Send Friend Request?";
+    let body = `This will send a friend request to ${active_display_name}`;
+    yb_displayPrompt(title, body, actions, this_id);
+
+    this_option.innerHTML = "Requesting...";
+    this_option.style.backgroundColor = "yellow";
+
+
+}
+    
 
 function yb_block(user_id) {
     let cookie = document.cookie;
@@ -261,18 +293,7 @@ function yb_handleConnectOptionClick(e){
     let this_option_name = this_option.getAttribute("name");
     
     console.log(this_option_name)
-    if (this_option_name === "Request Friend") {
-        let actions = {
-            "Cancel": {"name": "cancel", "label": "Cancel", "action": yb_closePrompt, "color": "red"},
-            "Confirm":{"name": "confirm", "label": "Confirm", "action": yb_requestFriend, "color": "green"},
-        }
-        let title = "Send Friend Request?";
-        let body = `This will send a friend request to ${active_display_name}`;
-        yb_displayPrompt(title, body, actions, this_id);
 
-        this_option.innerHTML = "Requested";
-        this_option.style.backgroundColor = "yellow";
-    }
     if (this_option_name === "Follow") {
         let actions = {
             "Cancel": {"name":"cancel", "label":"Cancel", "action":yb_closePrompt, "color": "red"},

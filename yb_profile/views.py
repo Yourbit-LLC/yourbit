@@ -183,7 +183,7 @@ class ProfileConnectTemplate(View):
                 "name": "request-friend",
                 "type": "profile-connect",
                 "object_id": this_profile.id,
-                "action": f"yb_requestFriend({this_profile.id})",
+                "action": f"yb_friend({this_profile.id})",
             }
         
         if user_profile.is_blocked(this_profile):
