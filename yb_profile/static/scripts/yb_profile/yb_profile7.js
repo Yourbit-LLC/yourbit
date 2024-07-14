@@ -204,7 +204,7 @@ function yb_requestFriend() {
 
                 showNotification(expandNotification, body);
                 yb_closeSlideUpTemplate();
-                yb_closePrompt();
+                yb_closeDrawer();
             }
         }
     )
@@ -224,6 +224,7 @@ function yb_requestFollow() {
 
         success: function(data) {
             alert("Followed");
+            yb_closeDrawer();
 
         }
     }
