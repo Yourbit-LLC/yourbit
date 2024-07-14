@@ -49,10 +49,10 @@ class ProfileViewset(viewsets.ModelViewSet):
                 return Response(status=status.HTTP_401_UNAUTHORIZED)
             
             else:
-                if user_to_follow in request.user.Profile.follows.all():
+                if user_to_follow in request.user.profile.follows.all():
                     return Response("Already Following User", status=status.HTTP_400_BAD_REQUEST)
                 else:
-                    request.user.Profile.follow(user_to_follow)
+                    request.user.profile.follow(user_to_follow)
                     return Response(status=status.HTTP_204_NO_CONTENT)
         
         except ObjectDoesNotExist:
@@ -67,16 +67,16 @@ class ProfileViewset(viewsets.ModelViewSet):
             if user_to_unfollow == request.user:
                 return Response(status=status.HTTP_400_BAD_REQUEST)
             
-            elif user_to_unfollow.Profile.is_private:
+            elif user_to_unfollow.profile.is_private:
                 return Response(status=status.HTTP_401_UNAUTHORIZED)
             
             else:
                 
-                if user_to_unfollow not in request.user.Profile.follows.all():
+                if user_to_unfollow not in request.user.profile.follows.all():
                     return Response("Not Following User", status=status.HTTP_400_BAD_REQUEST)
                 
                 else:        
-                    request.user.Profile.unfollow(user_to_unfollow)
+                    request.user.profile.unfollow(user_to_unfollow)
                     return Response(status=status.HTTP_204_NO_CONTENT)
                 
         except ObjectDoesNotExist:
