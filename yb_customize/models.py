@@ -126,6 +126,9 @@ class CustomUI(CustomBase):
     blur_amt = models.CharField(max_length=10, default="20")
 
     backdrop_brightness = models.CharField(max_length=10, default="80")
+
+    def __str__(self):
+        return f"A Custom UI by: {self.theme.author.display_name}: Theme - {self.theme.id}"
     
 
 class CustomSplash(CustomBase):
@@ -176,6 +179,11 @@ class CustomBit(CustomBase):
     comment_text_color = models.CharField(max_length=50, default="#ffffff")
     name_color = models.CharField(max_length=50, default="#ffffff")
     username_color = models.CharField(max_length=50, default="#ffffff")
+
+    
+    def __str__(self):
+        return f"A Custom UI by: {self.theme.author.display_name}: Theme - {self.theme.id}"
+    
 
 class Sticker(models.Model):
     image = models.CharField(max_length=500, default=None)
