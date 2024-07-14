@@ -42,16 +42,17 @@ function new_image_handler() {
 
 function finishDesktopBackgroundImage(){
     console.log(cropper);
-    let cropped_photo = cropper.getCroppedCanvas().toDataURL();
-
-    yb_2WayPage(3, "cropper-mobile-background");
+    console.log(cropper.getCroppedCanvas());
+    cropped_photo = cropper.getCroppedCanvas().toDataURL();
 
     cropped_desktop_photo = cropped_photo;
+
+    yb_2WayPage(3, "cropper-mobile-background");
 
 }
 
 function finishMobileBackgroundImage(){
-    let cropped_photo = cropper.getCroppedCanvas().toDataURL();
+    cropped_photo = cropper.getCroppedCanvas().toDataURL();
     cropped_mobile_photo = cropped_photo;
 
     yb_2WayPage(1, "background-image-upload");
