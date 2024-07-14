@@ -41,6 +41,7 @@ function new_image_handler() {
 }
 
 function finishDesktopBackgroundImage(){
+    console.log(cropper);
     let cropped_photo = cropper.getCroppedCanvas().toDataURL();
 
     yb_2WayPage(3, "cropper-mobile-background");
