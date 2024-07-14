@@ -20,6 +20,7 @@ var user_id = yb_getSessionValues("id");
 var profile_id = document.getElementById("profile-data").getAttribute
 ("data-profile-id");
 var active_username = document.getElementById("profile-data").getAttribute("data-username");
+var active_display_name = document.getElementById("profile-data").getAttribute("data-display-name");
 
 var PROFILE_SPLASH_SCREEN = document.getElementById("profile-page-splash");
 var PROFILE_SPLASH_LABEL = document.getElementById("profile-splash-label");
@@ -258,6 +259,7 @@ function yb_handleConnectOptionClick(e){
     let this_option = e.currentTarget;
     let this_id = this_option.getAttribute("data-catid");
     let this_option_name = this_option.getAttribute("name");
+    
     console.log(this_option_name)
     if (this_option_name === "Request Friend") {
         let actions = {
@@ -265,7 +267,7 @@ function yb_handleConnectOptionClick(e){
             "Confirm":{"name": "confirm", "label": "Confirm", "action": yb_requestFriend, "color": "green"},
         }
         let title = "Send Friend Request?";
-        let body = "This will send a friend request to this user.";
+        let body = `This will send a friend request to ${active_display_name}`;
         yb_displayPrompt(title, body, actions, this_id);
 
         this_option.innerHTML = "Requested";
@@ -274,10 +276,10 @@ function yb_handleConnectOptionClick(e){
     if (this_option_name === "Follow") {
         let actions = {
             "Cancel": {"name":"cancel", "label":"Cancel", "action":yb_closePrompt, "color": "red"},
-            "Confirm": {"name":"confirm", "label": "Confirm", "action": follow, "color": "green"},
+            "Confirm": {"name":"confirm", "label": "Confirm", "action": yb_follow, "color": "green"},
         }
         let title = "Follow this user?";
-        let body = "This will follow this user.";
+        let body = `This will follow ${active_display_name}.`;
         yb_displayPrompt(title, body, actions, this_id);
 
         this_option.innerHTML = "Following";
