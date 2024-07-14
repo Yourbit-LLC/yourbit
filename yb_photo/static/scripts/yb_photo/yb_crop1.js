@@ -1,5 +1,5 @@
 
-const cropper = null;
+var cropper;
 
 var square_crop = document.getElementById('profile-image-preview');
 var wide_crop = document.getElementById('background-image-preview');
