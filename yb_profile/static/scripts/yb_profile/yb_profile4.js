@@ -233,7 +233,7 @@ function yb_follow(this_id) {
     if (this_option_name === "Follow") {
         let actions = {
             "Cancel": {"name":"cancel", "label":"Cancel", "action":yb_closePrompt, "color": "red"},
-            "Confirm": {"name":"confirm", "label": "Confirm", "action": yb_follow, "color": "green"},
+            "Confirm": {"name":"confirm", "label": "Confirm", "action": yb_requestFollow, "color": "green"},
         }
         let title = "Follow this user?";
         let body = `This will follow ${active_display_name}.`;
