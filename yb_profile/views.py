@@ -165,7 +165,7 @@ class ProfileConnectTemplate(View):
                 "name": "follow",
                 "type": "profile-connect",
                 "object_id": this_profile.id,
-                "action":f"yb_followUser({this_profile.id})",
+                "action":f"yb_follow({this_profile.id})",
             }
 
         if user_profile.is_friends_with(this_profile):
@@ -183,7 +183,7 @@ class ProfileConnectTemplate(View):
                 "name": "request-friend",
                 "type": "profile-connect",
                 "object_id": this_profile.id,
-                "action": f"yb_friendUser({this_profile.id})",
+                "action": f"yb_requestFriend({this_profile.id})",
             }
         
         if user_profile.is_blocked(this_profile):
