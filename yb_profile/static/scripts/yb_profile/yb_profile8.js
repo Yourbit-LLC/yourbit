@@ -203,12 +203,13 @@ function yb_requestFriend() {
                 let body = `Friend request sent`;
 
                 showNotification(expandNotification, body);
-                yb_closeSlideUpTemplate();
+                yb_closePrompt();
                 yb_closeDrawer();
             }
         }
     )
 }
+
 function yb_requestFollow() {
     let cookie = document.cookie;
     let csrfToken = getCSRF();
@@ -223,7 +224,7 @@ function yb_requestFollow() {
         url: `/profile/api/profile/${user_id}/follow/`,
 
         success: function(data) {
-            alert("Followed");
+            yb_closePrompt();
             yb_closeDrawer();
 
         }
@@ -231,6 +232,26 @@ function yb_requestFollow() {
 
     )
 }
+
+function yb_requestUnfollow() {
+    let cookie = document.cookie;
+    let csrfToken = getCSRF();
+    let user_id = yb_getProfileData("id");
+
+    $.ajax(
+        {
+            type: "POST",
+            headers: {
+                'X-CSRFToken': csrfToken
+            },
+            url: `/profile/api/profile/${user_id}/unfollow/`,
+            success: function(data) {
+                yb_closeDrawer();
+            }
+        }
+    )
+}
+
 
 function yb_follow(this_id) {
     
