@@ -11,7 +11,7 @@
         Core UI
 */
 body {
-    background-color: (--yb-panel-color);
+    background-color: var(--yb-panel-color);
 }
 
 
