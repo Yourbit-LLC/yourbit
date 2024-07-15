@@ -123,7 +123,7 @@ function yb_uploadProfileImage(source, data, profile_class, image_type, wpid=nul
             
             console.log(data.wpid);
             yb_setWPID(data.wpid);
-            yb_2WayPage(1, "background-image-upload");
+            yb_2WayPage(3, "cropper-mobile-background");
             
         },
         error: function(data) {

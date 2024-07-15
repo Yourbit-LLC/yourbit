@@ -58,4 +58,11 @@ class Wallpaper(models.Model):
         
         except:
             return f"Wallpaper {self.id} - Submitted by: Unknown User"
+        
+    #on delete also delete associated image files
+    def delete(self, *args, **kwargs):
+        self.background_image.delete()
+        self.background_mobile.delete()
+        self.background_desktop.delete()
+        super().delete(*args, **kwargs)
     

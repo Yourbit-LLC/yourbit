@@ -55,7 +55,6 @@ function finishDesktopBackgroundImage(){
     yb_uploadProfileImage(image, crop_data, "profile", "desktop", wpid);
 
 
-    yb_2WayPage(3, "cropper-mobile-background");
 
 }
 
@@ -66,6 +65,8 @@ function finishMobileBackgroundImage(){
     let image = new_image_input.files[0];
 
     yb_uploadProfileImage(image, crop_data, "profile", "mobile", wpid);
+
+    yb_2WayPage(1, "background-image-upload");
 
 }
 
