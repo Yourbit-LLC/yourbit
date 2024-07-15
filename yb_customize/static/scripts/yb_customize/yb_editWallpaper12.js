@@ -57,6 +57,7 @@ function finishDesktopBackgroundImage(){
 function finishMobileBackgroundImage(){
     let crop_data = yb_getCropData();
     console.log(crop_data);
+    console.log(wpid)
     let image = new_image_input.files[0];
 
     yb_uploadProfileImage(image, crop_data, "profile", "mobile", wpid);
