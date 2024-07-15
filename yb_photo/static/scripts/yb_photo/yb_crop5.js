@@ -25,7 +25,7 @@ function resetCropper() {
     if (cropper) {
         cropper.destroy();
         cropper = null;
-        $('#profile-image-preview').attr('src', '');
+        
     }
 }
 
