@@ -121,6 +121,7 @@ function yb_uploadProfileImage(source, data, profile_class, image_type, wpid=nul
             console.log(data);
             yb_replaceProfileImages();
             if ("wpid" in data) {
+                console.log(data.wpid);
                 wpid = data.wpid;
             }
         },
