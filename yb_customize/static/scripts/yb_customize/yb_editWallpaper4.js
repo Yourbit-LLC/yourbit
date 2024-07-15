@@ -17,8 +17,13 @@ try {
 }
 
 var cropped_desktop_photo;
-var cropped_mobile_photo
+var cropped_mobile_photo;
 var source;
+
+var x_offset = 0;
+var y_offset = 0;
+var crop_width = 0;
+var crop_height = 0;
 
 function yb_saveWallpaperImage() {
     cropped_image = dataURItoBlob(cropped_photo);
@@ -40,10 +45,12 @@ function new_image_handler() {
 
 }
 
-function finishDesktopBackgroundImage(){
-    console.log(cropper);
-    console.log(cropper.getCroppedCanvas());
-    cropped_photo = cropper.getCroppedCanvas().toDataURL();
+function finishDesktopBackgroundImage(wpid=null){
+    let crop_data = cropper.getData();
+    console.log(crop_data);
+    let image = new_image_input.files[0];
+
+    yb_uploadImage(image, crop_data, "profile", "desktop", wpid);
 
     cropped_desktop_photo = cropped_photo;
 
@@ -51,16 +58,19 @@ function finishDesktopBackgroundImage(){
 
 }
 
-function finishMobileBackgroundImage(){
-    cropped_photo = cropper.getCroppedCanvas().toDataURL();
-    cropped_mobile_photo = cropped_photo;
+function finishMobileBackgroundImage(wpid=null){
+    let crop_data = cropper.getData();
+    console.log(crop_data);
+    let image = new_image_input.files[0];
+
+    yb_uploadImage(image, crop_data, "profile", "mobile", wpid);
 
     yb_2WayPage(1, "background-image-upload");
 }
 
 $(document).ready(function() {
 
-
+    
     new_image_button.addEventListener("click", new_image_handler);
 
     new_image_input.addEventListener("change", function() {

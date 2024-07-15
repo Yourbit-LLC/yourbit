@@ -96,3 +96,30 @@ function submitCustomOption(c_class, option, value) {
     });
 }
 
+function yb_uploadProfileImage(source, data, profile_class, image_type, wpid=null) {
+    var formData = new FormData();
+    formData.append('image', source);
+    formData.append('cropped_image', data);
+    formData.append('type', image_type);
+    formData.append('class', profile_class);
+    formData.append('wpid', wpid);
+
+    let csrf_token = getCSRF();
+    $.ajax({
+        type: 'POST',
+        url: `/photo/upload/`,
+        data: formData,
+        headers: {
+            'X-CSRFToken': csrf_token,
+        },
+        processData: false,
+        contentType: false,
+        success: function(data) {
+            console.log(data);
+            yb_replaceProfileImages();
+        },
+        error: function(data) {
+            console.log(data);
+        }
+    });
+}
