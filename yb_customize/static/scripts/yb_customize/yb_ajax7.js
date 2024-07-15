@@ -122,7 +122,8 @@ function yb_uploadProfileImage(source, data, profile_class, image_type, wpid=nul
             yb_replaceProfileImages();
             
             console.log(data.wpid);
-            wpid = data.wpid;
+            yb_setWPID(data.wpid);
+            yb_2WayPage(1, "background-image-upload");
             
         },
         error: function(data) {
