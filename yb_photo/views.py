@@ -84,6 +84,8 @@ def upload_image(request, *args, **kwargs):
 
                 if custom_core.wallpaper_on == False:
                     custom_core.wallpaper_on = True
+
+                custom_core.save()
                 
                 return JsonResponse({'status': 'success', 'wpid': wallpaper.id}, status=200)
 
