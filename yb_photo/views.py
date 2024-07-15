@@ -66,7 +66,7 @@ def upload_image(request, *args, **kwargs):
                 wpid = request.POST.get("wpid")
                 try:
                     wallpaper = Wallpaper.objects.get(pk=wpid)
-                except Wallpaper.DoesNotExist:
+                except:
                     wallpaper = Wallpaper(profile = request.user.profile)
                     wallpaper.save()
                 if request.POST.get('image_type') == "desktop":
