@@ -47,6 +47,7 @@ def modify_image(original_image_file, crop_data):
     return cropped_image_file
     
 def upload_image(request, *args, **kwargs):
+    from yb_customize.models import CustomCore
     if request.method == 'POST':
     
         print(request.POST)
@@ -77,6 +78,12 @@ def upload_image(request, *args, **kwargs):
                     wallpaper.background_mobile = cropped_image
                 
                 wallpaper.save()
+
+                custom_core = CustomCore.objects.get(profile=request.user.profile)
+                custom_core.wallpaper = wallpaper
+
+                if custom_core.wallpaper_on == False:
+                    custom_core.wallpaper_on = True
                 
                 return JsonResponse({'status': 'success', 'wpid': wallpaper.id}, status=200)
 
