@@ -38,6 +38,7 @@ function initializeOrUpdateCropper(target_ratio, field, preview_block) {
                     crop: function(event) {
                         console.log(event.detail.width);
                         console.log(event.detail.height);
+                        cropImage(target_ratio);
                     }
                 });
             }
@@ -63,6 +64,7 @@ function initializeOrUpdateCropper(target_ratio, field, preview_block) {
                 crop: function(event) {
                     console.log(event.detail.width);
                     console.log(event.detail.height);
+                    cropImage(target_ratio);
                 }
             });
         }
@@ -151,4 +153,17 @@ function uploadImage(type){
         .catch(error => {
         console.error('Error:', error);
         }); */
+}
+
+function cropImage(type) {
+    var canvas = cropper.getCroppedCanvas();
+    console.log(canvas);
+    if (type === "square"){
+        //preview2.src = canvas.toDataURL();
+        return
+    } else {
+        return
+    }
+    
+    
 }
