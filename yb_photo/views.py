@@ -49,7 +49,7 @@ def modify_image(original_image_file, crop_data):
 def upload_image(request, *args, **kwargs):
     if request.method == 'POST':
         this_image = request.FILES.get('source_image')
-        crop_data = json.loads(request.POST.get('crop_data'))
+        crop_data = request.POST.get('crop_data')
         cropped_image = modify_image(this_image , crop_data)
 
         if request.POST.get('image_type') == "desktop" or request.POST.get('image_type') == "mobile":
