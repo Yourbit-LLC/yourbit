@@ -23,29 +23,29 @@ def crop_image(image, crop_data):
     ))
 
 def modify_image(request):
-    if request.method == 'POST' and request.FILES['source_image'] and request.POST['crop_data']:
-        original_image_file = request.FILES['source_image']
-        crop_data = json.loads(request.POST['crop_data'])
-        image_format = original_image_file.name.split('.')[-1].lower()
+    
+    original_image_file = request.FILES['source_image']
+    crop_data = json.loads(request.POST['crop_data'])
+    image_format = original_image_file.name.split('.')[-1].lower()
 
-        if image_format in ['jpg', 'jpeg', 'png']:
-            original_image = Image.open(original_image_file)
-            cropped_image = crop_image(original_image, crop_data)
-            output_io = io.BytesIO()
-            cropped_image.save(output_io, format='JPEG', quality=85)
-            cropped_image_file = ContentFile(output_io.getvalue(), 'cropped.jpg')
-        elif image_format == 'gif':
-            original_image = imageio.mimread(original_image_file)
-            cropped_frames = [crop_image(Image.fromarray(frame), crop_data) for frame in original_image]
-            output_io = io.BytesIO()
-            cropped_frames[0].save(output_io, format='GIF', save_all=True, append_images=cropped_frames[1:], loop=0)
-            cropped_image_file = ContentFile(output_io.getvalue(), 'cropped.gif')
-        else:
-            return JsonResponse({'status': 'failed', 'message': 'Unsupported image format'}, status=400)
-        
+    if image_format in ['jpg', 'jpeg', 'png']:
+        original_image = Image.open(original_image_file)
+        cropped_image = crop_image(original_image, crop_data)
+        output_io = io.BytesIO()
+        cropped_image.save(output_io, format='JPEG', quality=85)
+        cropped_image_file = ContentFile(output_io.getvalue(), 'cropped.jpg')
+    elif image_format == 'gif':
+        original_image = imageio.mimread(original_image_file)
+        cropped_frames = [crop_image(Image.fromarray(frame), crop_data) for frame in original_image]
+        output_io = io.BytesIO()
+        cropped_frames[0].save(output_io, format='GIF', save_all=True, append_images=cropped_frames[1:], loop=0)
+        cropped_image_file = ContentFile(output_io.getvalue(), 'cropped.gif')
+    else:
+        return JsonResponse({'status': 'failed', 'message': 'Unsupported image format'}, status=400)
+    
 
 
-        return cropped_image_file
+    return cropped_image_file
     
 def upload_image(request, *args, **kwargs):
     if request.method == 'POST':
