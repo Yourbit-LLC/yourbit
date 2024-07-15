@@ -45,7 +45,7 @@ function finishDesktopBackgroundImage(wpid=null){
     console.log(crop_data);
     let image = new_image_input.files[0];
 
-    yb_uploadImage(image, crop_data, "profile", "desktop", wpid);
+    yb_uploadProfileImage(image, crop_data, "profile", "desktop", wpid);
 
     cropped_desktop_photo = cropped_photo;
 
@@ -58,7 +58,7 @@ function finishMobileBackgroundImage(wpid=null){
     console.log(crop_data);
     let image = new_image_input.files[0];
 
-    yb_uploadImage(image, crop_data, "profile", "mobile", wpid);
+    yb_uploadProfileImage(image, crop_data, "profile", "mobile", wpid);
 
     yb_2WayPage(1, "background-image-upload");
 }
