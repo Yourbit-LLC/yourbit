@@ -73,7 +73,7 @@ def upload_image(request, *args, **kwargs):
                 try:
                     wallpaper = Wallpaper.objects.get(pk=wpid)
                 except:
-                    wallpaper = Wallpaper(profile = request.user.profile)
+                    wallpaper = Wallpaper(profile = request.user.profile, background_image = this_image)
                     wallpaper.save()
                 if request.POST.get('image_type') == "desktop":
                 
@@ -81,7 +81,7 @@ def upload_image(request, *args, **kwargs):
                 
                 elif request.POST.get('image_type') == "mobile":
                     wallpaper.background_mobile = cropped_image
-                
+
                 wallpaper.save()
 
                 custom_core = CustomCore.objects.get(profile=request.user.profile)
