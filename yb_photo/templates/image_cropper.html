@@ -6,7 +6,7 @@
 </div>
 <hr>
 
-<input type="hidden" id="image-edit-data" value="{{type}}">
+<input type="hidden" id="image-edit-data" value="{{type}}" data-wpid = "{{wpid}}">
 
 <!--Profile image cropper-->
 <div class="yb-cropper-container profile-image yb-center-transform tb yb-fillWidth" style="transition: 0.5s;" id="square-crop-container">
@@ -54,9 +54,17 @@
             } else if (type == "profile"){
                 finishProfileImage();
             } else if (type == "mobile-wallpaper") {
-                finishMobileBackgroundImage();
+                if (wpid != ""){
+                    finishMobileBackgroundImage(wpid);
+                } else {
+                    finishMobileBackgroundImage();
+                }
             } else if (type == "desktop-wallpaper") {
-                finishDesktopBackgroundImage();
+                if (wpid != ""){
+                    finishDesktopBackgroundImage(wpid);
+                } else {
+                    finishDesktopBackgroundImage();
+                }
             }
         });
     });

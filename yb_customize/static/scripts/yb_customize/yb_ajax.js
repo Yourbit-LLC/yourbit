@@ -98,10 +98,10 @@ function submitCustomOption(c_class, option, value) {
 
 function yb_uploadProfileImage(source, data, profile_class, image_type, wpid=null) {
     var formData = new FormData();
-    formData.append('image', source);
-    formData.append('cropped_image', data);
-    formData.append('type', image_type);
-    formData.append('class', profile_class);
+    formData.append('source_image', source);
+    formData.append('crop_data', data);
+    formData.append('image_type', image_type);
+    formData.append('profile_class', profile_class);
     formData.append('wpid', wpid);
 
     let csrf_token = getCSRF();
@@ -117,6 +117,9 @@ function yb_uploadProfileImage(source, data, profile_class, image_type, wpid=nul
         success: function(data) {
             console.log(data);
             yb_replaceProfileImages();
+            if ("wpid" in data) {
+                wpid = data.wpid;
+            }
         },
         error: function(data) {
             console.log(data);

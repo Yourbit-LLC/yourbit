@@ -53,8 +53,6 @@ function finishProfileImage(){
 
     
     new_image_button.addEventListener("click", yb_saveProfileImage);
-
-
 }
 
 $(document).ready(function() {

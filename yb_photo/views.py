@@ -47,8 +47,8 @@ def modify_image(request):
 
         return cropped_image_file
     
-def upload_image(request):
-    if request.method == 'POST' and request.FILES['image']:
+def upload_image(request, *args, **kwargs):
+    if request.method == 'POST':
         cropped_image = modify_image(request)
 
         if request.POST.get['image_type'] == "desktop" or request.POST.get['image_type'] == "mobile":

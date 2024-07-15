@@ -19,6 +19,7 @@ try {
 var cropped_desktop_photo;
 var cropped_mobile_photo;
 var source;
+var wpid = null;
 
 function yb_saveWallpaperImage() {
     cropped_image = dataURItoBlob(cropped_photo);
@@ -40,7 +41,7 @@ function new_image_handler() {
 
 }
 
-function finishDesktopBackgroundImage(wpid=null){
+function finishDesktopBackgroundImage(){
     let crop_data = yb_getCropData();
     console.log(crop_data);
     let image = new_image_input.files[0];
@@ -52,7 +53,7 @@ function finishDesktopBackgroundImage(wpid=null){
 
 }
 
-function finishMobileBackgroundImage(wpid=null){
+function finishMobileBackgroundImage(){
     let crop_data = yb_getCropData();
     console.log(crop_data);
     let image = new_image_input.files[0];
