@@ -22,10 +22,9 @@ def crop_image(image, crop_data):
         crop_data['y'] + crop_data['height']
     ))
 
-def modify_image(request):
+def modify_image(original_image_file, crop_data):
     
-    original_image_file = request.FILES['source_image']
-    crop_data = json.loads(request.POST['crop_data'])
+
     image_format = original_image_file.name.split('.')[-1].lower()
 
     if image_format in ['jpg', 'jpeg', 'png']:
@@ -49,9 +48,11 @@ def modify_image(request):
     
 def upload_image(request, *args, **kwargs):
     if request.method == 'POST':
-        cropped_image = modify_image(request)
+        this_image = request.FILES.get('source_image')
+        crop_data = json.loads(request.POST.get('crop_data'))
+        cropped_image = modify_image(this_image , crop_data)
 
-        if request.POST.get['image_type'] == "desktop" or request.POST.get['image_type'] == "mobile":
+        if request.POST.get('image_type') == "desktop" or request.POST.get('image_type') == "mobile":
             if request.POST.get("wpid"):
                 wpid = request.POST.get("wpid")
                 try:
@@ -59,11 +60,11 @@ def upload_image(request, *args, **kwargs):
                 except Wallpaper.DoesNotExist:
                     wallpaper = Wallpaper(profile = request.user.profile)
                     wallpaper.save()
-                if request.POST.get['image_type'] == "desktop":
+                if request.POST.get('image_type') == "desktop":
                 
                     wallpaper.background_desktop = cropped_image
                 
-                elif request.POST.get['image_type'] == "mobile":
+                elif request.POST.get('image_type') == "mobile":
                     wallpaper.background_mobile = cropped_image
                 
                 wallpaper.save()
