@@ -31,6 +31,11 @@ function yb_saveWallpaperImage() {
     new_image_button.addEventListener("click", new_image_handler);
 }
 
+function yb_setWPID(id){
+    wpid = id;
+}
+
+
 function cropWallpaperImage(){
     yb_2WayPage(2, "cropper-desktop-background");
 }

@@ -120,10 +120,10 @@ function yb_uploadProfileImage(source, data, profile_class, image_type, wpid=nul
         success: function(data) {
             console.log(data);
             yb_replaceProfileImages();
-            if ("wpid" in data) {
-                console.log(data.wpid);
-                wpid = data.wpid;
-            }
+            
+            console.log(data.wpid);
+            wpid = data.wpid;
+            
         },
         error: function(data) {
             console.log(data);
