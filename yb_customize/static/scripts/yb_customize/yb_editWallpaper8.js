@@ -47,7 +47,6 @@ function finishDesktopBackgroundImage(wpid=null){
 
     yb_uploadProfileImage(image, crop_data, "profile", "desktop", wpid);
 
-    cropped_desktop_photo = cropped_photo;
 
     yb_2WayPage(3, "cropper-mobile-background");
 
