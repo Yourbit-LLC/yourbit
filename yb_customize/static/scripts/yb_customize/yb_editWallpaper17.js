@@ -46,6 +46,7 @@ function new_image_handler() {
 
 }
 
+
 function finishDesktopBackgroundImage(){
     let crop_data = yb_getCropData();
     console.log(crop_data);
