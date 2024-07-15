@@ -19,7 +19,7 @@
     </div>  
 </div>
 
-<script src="{% static 'scripts/yb_customize/yb_ajax8.js' %}"></script>
+<script src="{% static 'scripts/yb_customize/yb_ajax9.js' %}"></script>
 <script src="{% static 'scripts/yb_photo/yb_crop6.js' %}"></script>
 
 <script>
@@ -49,6 +49,10 @@
         } 
 
         submit.addEventListener('click', function(){
+            this.disabled = true;
+            this.style.filter = "grayscale(100%)";
+            this.style.webkitFilter = "grayscale(100%)";
+
             if (type == "bit"){
                 finishBitCrop();
             } else if (type == "profile"){
