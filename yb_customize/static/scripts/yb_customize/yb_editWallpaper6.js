@@ -20,11 +20,6 @@ var cropped_desktop_photo;
 var cropped_mobile_photo;
 var source;
 
-var x_offset = 0;
-var y_offset = 0;
-var crop_width = 0;
-var crop_height = 0;
-
 function yb_saveWallpaperImage() {
     cropped_image = dataURItoBlob(cropped_photo);
     uploadProfileImage(source, cropped_image, "background", "desktop");
@@ -46,7 +41,7 @@ function new_image_handler() {
 }
 
 function finishDesktopBackgroundImage(wpid=null){
-    let crop_data = cropper.getData();
+    let crop_data = yb_getCropData();
     console.log(crop_data);
     let image = new_image_input.files[0];
 
@@ -59,7 +54,7 @@ function finishDesktopBackgroundImage(wpid=null){
 }
 
 function finishMobileBackgroundImage(wpid=null){
-    let crop_data = cropper.getData();
+    let crop_data = yb_getCropData();
     console.log(crop_data);
     let image = new_image_input.files[0];
 

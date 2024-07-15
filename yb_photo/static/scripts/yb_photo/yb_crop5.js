@@ -8,6 +8,18 @@ var background_container = document.getElementById("background-container");
 var background = document.getElementById("bg-image");
 var select_button = document.getElementById("select-button");
 
+var cropper_output = {
+    'x': 0,
+    'y': 0,
+    'width': 0,
+    'height': 0
+
+}
+
+
+function yb_getCropData() {
+    return cropper_output;
+}
 
 function resetCropper() {
     if (cropper) {
@@ -36,8 +48,12 @@ function initializeOrUpdateCropper(target_ratio, field, preview_block) {
                     aspectRatio: target_ratio,
                     viewMode: 2,
                     crop: function(event) {
-                        console.log(event.detail.width);
-                        console.log(event.detail.height);
+
+                        cropper_output.x = event.detail.x;
+                        cropper_output.y = event.detail.y;
+                        cropper_output.width = event.detail.width;
+                        cropper_output.height = event.detail.height;
+
                         cropImage(target_ratio);
                     }
                 });
