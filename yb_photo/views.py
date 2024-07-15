@@ -51,9 +51,12 @@ def upload_image(request, *args, **kwargs):
     
         print(request.POST)
         this_image = request.FILES.get('source_image')
-        crop_data = request.POST.get('crop_data')
-        print(crop_data)
-        cropped_image = modify_image(this_image , crop_data)
+        crop_x = request.POST.get('crop_x')
+        crop_y = request.POST.get('crop_y')
+        crop_width = request.POST.get('crop_width')
+        crop_height = request.POST.get('crop_height')
+        
+        cropped_image = modify_image(this_image, crop_data={'x': crop_x, 'y': crop_y, 'width': crop_width, 'height': crop_height})
 
 
 

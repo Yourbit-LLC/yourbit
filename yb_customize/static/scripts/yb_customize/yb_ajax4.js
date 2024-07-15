@@ -99,7 +99,10 @@ function submitCustomOption(c_class, option, value) {
 function yb_uploadProfileImage(source, data, profile_class, image_type, wpid=null) {
     let formData = new FormData();
     formData.append('source_image', source);
-    formData.append('crop_data', data);
+    formData.append('crop_x', data.x);
+    formData.append('crop_y', data.y);
+    formData.append('crop_width', data.width);
+    formData.append('crop_height', data.height);
     formData.append('image_type', image_type);
     formData.append('profile_class', profile_class);
     formData.append('wpid', wpid);
