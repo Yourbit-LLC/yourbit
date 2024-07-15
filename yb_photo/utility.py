@@ -7,6 +7,16 @@ from django.utils import dateformat
 from PIL import Image, ImageOps, ImageSequence
 from .models import Photo
 
+
+def rename_image(user, filename):
+    #Create a timestamp for the image
+    label = "thumbnail_medium"
+    timestamp = dateformat.format(timezone.now(), '%Y%m%d%-H:i-s')
+    #Create a new filename
+    new_filename = f"{user.username}{user.id}{timestamp}{filename}{label}"
+    
+    return new_filename
+
 # Create your views here.
 def generate_tiny_thumbnail(user, source_file):
     # Open the source file
