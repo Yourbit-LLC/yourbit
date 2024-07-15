@@ -113,7 +113,9 @@ function yb_uploadProfileImage(source, data, profile_class, image_type, wpid=nul
             'X-CSRFToken': csrf_token,
         },
         processData: false,
-        contentType: false,
+        contentType: {
+            'Content-Type': 'multipart/form-data',
+        },
         success: function(data) {
             console.log(data);
             yb_replaceProfileImages();
