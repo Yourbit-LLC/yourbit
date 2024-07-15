@@ -22,9 +22,8 @@ def crop_image(image, crop_data):
         float(crop_data['y']) + float(crop_data['height'])
     ))
 
-def modify_image(original_image_file, crop_data):
-    
-
+def modify_image(user, original_image_file, crop_data):
+    from yb_photo.utility import rename_image
     image_format = original_image_file.name.split('.')[-1].lower()
 
     if image_format in ['jpg', 'jpeg', 'png']:
@@ -32,14 +31,21 @@ def modify_image(original_image_file, crop_data):
         cropped_image = crop_image(original_image, crop_data)
         output_io = io.BytesIO()
         cropped_image.save(output_io, format='PNG', quality=85)
-        cropped_image_file = ContentFile(output_io.getvalue(), 'cropped.jpg')
+        new_name = rename_image(user, original_image_file.name, image_format)
+        cropped_image_file = ContentFile(output_io.getvalue(), new_name)
+
     elif image_format == 'gif':
+
         original_image = imageio.mimread(original_image_file)
         cropped_frames = [crop_image(Image.fromarray(frame), crop_data) for frame in original_image]
         output_io = io.BytesIO()
         cropped_frames[0].save(output_io, format='GIF', save_all=True, append_images=cropped_frames[1:], loop=0)
-        cropped_image_file = ContentFile(output_io.getvalue(), 'cropped.gif')
+        new_name = rename_image(user, original_image_file.name, 'gif')
+        cropped_image_file = ContentFile(output_io.getvalue(), new_name)
+        
+
     else:
+
         return JsonResponse({'status': 'failed', 'message': 'Unsupported image format'}, status=400)
     
 
@@ -58,8 +64,7 @@ def upload_image(request, *args, **kwargs):
         crop_width = request.POST.get('crop_width')
         crop_height = request.POST.get('crop_height')
         
-        cropped_image = modify_image(this_image, crop_data={'x': crop_x, 'y': crop_y, 'width': crop_width, 'height': crop_height})
-
+        cropped_image = modify_image(request.user, this_image, crop_data={'x': crop_x, 'y': crop_y, 'width': crop_width, 'height': crop_height})
 
 
         if request.POST.get('image_type') == "desktop" or request.POST.get('image_type') == "mobile":
