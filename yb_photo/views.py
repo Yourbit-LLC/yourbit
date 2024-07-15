@@ -74,8 +74,9 @@ def upload_image(request, *args, **kwargs):
                     wallpaper = Wallpaper.objects.get(pk=wpid)
                 except:
                     wallpaper = Wallpaper(profile = request.user.profile)
-                    wallpaper.background_image = this_image
                     wallpaper.save()
+
+                    wallpaper.background_image = cropped_image
                 if request.POST.get('image_type') == "desktop":
                 
                     wallpaper.background_desktop = cropped_image
