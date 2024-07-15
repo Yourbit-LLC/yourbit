@@ -1,5 +1,5 @@
 function uploadProfileImage(source_image, cropped_image, image_type, profile_class, name=null, wpid=null) {
-    var formData = new FormData();
+    let formData = new FormData();
     formData.append('image', source_image);
     formData.append('cropped_image', cropped_image);
     formData.append('type', image_type);
@@ -97,7 +97,7 @@ function submitCustomOption(c_class, option, value) {
 }
 
 function yb_uploadProfileImage(source, data, profile_class, image_type, wpid=null) {
-    var formData = new FormData();
+    let formData = new FormData();
     formData.append('source_image', source);
     formData.append('crop_data', data);
     formData.append('image_type', image_type);
