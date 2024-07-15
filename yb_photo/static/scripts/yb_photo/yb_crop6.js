@@ -78,8 +78,11 @@ function initializeOrUpdateCropper(target_ratio, field, preview_block) {
                 aspectRatio: target_ratio,
                 viewMode: 2,
                 crop: function(event) {
-                    console.log(event.detail.width);
-                    console.log(event.detail.height);
+
+                    cropper_output.x = event.detail.x;
+                    cropper_output.y = event.detail.y;
+                    cropper_output.width = event.detail.width;
+                    cropper_output.height = event.detail.height;
                     cropImage(target_ratio);
                 }
             });
