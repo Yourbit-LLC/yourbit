@@ -16,10 +16,10 @@ def cropper_view(request, crop_type, *args, **kwargs):
 
 def crop_image(image, crop_data):
     return image.crop((
-        int(crop_data['x']),
-        int(crop_data['y']),
-        int(crop_data['x']) + int(crop_data['width']),
-        int(crop_data['y']) + int(crop_data['height'])
+        float(crop_data['x']),
+        float(crop_data['y']),
+        float(crop_data['x']) + float(crop_data['width']),
+        float(crop_data['y']) + float(crop_data['height'])
     ))
 
 def modify_image(original_image_file, crop_data):
