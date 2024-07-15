@@ -31,7 +31,7 @@ def modify_image(original_image_file, crop_data):
         original_image = Image.open(original_image_file)
         cropped_image = crop_image(original_image, crop_data)
         output_io = io.BytesIO()
-        cropped_image.save(output_io, format='JPEG', quality=85)
+        cropped_image.save(output_io, format='PNG', quality=85)
         cropped_image_file = ContentFile(output_io.getvalue(), 'cropped.jpg')
     elif image_format == 'gif':
         original_image = imageio.mimread(original_image_file)
@@ -51,6 +51,7 @@ def upload_image(request, *args, **kwargs):
     
         print(request.POST)
         this_image = request.FILES.get('source_image')
+        print(this_image)
         crop_x = request.POST.get('crop_x')
         crop_y = request.POST.get('crop_y')
         crop_width = request.POST.get('crop_width')
