@@ -14,7 +14,7 @@
     <section>
         <form id="wallpaper-form" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <div class="yb-hblock-2 yb-gap10 yb-center-margin lr" style="width: 95%;">
+            <div class="yb-hblock-2 responsive yb-gap10 yb-center-margin lr" style="width: 95%;">
                 <input type="file" name="wallpaper" id="wallpaper" style="display:none;">
                 <div class="yb-hblock-2 squared" style="height: 40px; background-color: rgba(25, 25, 25, 0.8); padding: 5px 5px 5px 5px;" >
                     <button type="button" id="wallpaper-toggle" class="yb-button-wide rounded font-white" style="margin: auto; width: 160px; p5adding: 10px 10px 10px 10px; height: 40px !important; background-color: darkgreen; grid-column: 1;">Toggle Wallpaper: ON</button>
