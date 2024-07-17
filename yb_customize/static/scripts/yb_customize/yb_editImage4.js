@@ -43,7 +43,7 @@ function finishProfileImage(){
     console.log(crop_data);
     let image = new_image_input.files[0];
 
-    yb_uploadProfileImage(image, crop_data, "profile", "profile", wpid);
+    yb_uploadProfileImage(image, crop_data, "profile", "profile");
 
     yb_2WayPage(1, "profile-image-edit");
 
