@@ -7,7 +7,7 @@ import json
 import imageio
 from django.core.files.base import ContentFile
 from yb_photo.models import Wallpaper
-    
+from yb_photo.utility import process_image    
 def cropper_view(request, crop_type, *args, **kwargs):
 
     return render(request, "image_cropper.html", {"type": crop_type})
@@ -66,6 +66,7 @@ def upload_image(request, *args, **kwargs):
         
         cropped_image = modify_image(request.user, this_image, crop_data={'x': crop_x, 'y': crop_y, 'width': crop_width, 'height': crop_height})
 
+        custom_core = CustomCore.objects.get(profile=request.user.profile)
 
         if request.POST.get('image_type') == "desktop" or request.POST.get('image_type') == "mobile":
             if request.POST.get("wpid"):
@@ -84,9 +85,14 @@ def upload_image(request, *args, **kwargs):
                 elif request.POST.get('image_type') == "mobile":
                     wallpaper.background_mobile = cropped_image
 
+                elif request.POST.get('image_type') == "profile":
+                    new_image = process_image(request, this_image, cropped_image, is_private = False)
+                    custom_core.profile_image = new_image
+                    custom_core.save()
+                    
+
                 wallpaper.save()
 
-                custom_core = CustomCore.objects.get(profile=request.user.profile)
                 custom_core.wallpaper = wallpaper
 
                 if custom_core.wallpaper_on == False:

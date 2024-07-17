@@ -39,20 +39,15 @@ function new_image_handler() {
 }
 
 function finishProfileImage(){
-    cropped_photo = cropper.getCroppedCanvas().toDataURL();
-    
+    let crop_data = yb_getCropData();
+    console.log(crop_data);
+    console.log(wpid);
+    let image = new_image_input.files[0];
+
+    yb_uploadProfileImage(image, crop_data, "profile", "profile", wpid);
+
     yb_2WayPage(1, "profile-image-edit");
 
-    let this_image = yb_renderImage(cropped_photo, "profile-icon", `profile-image-preview`, "Preview Image");
-    this_image.setAttribute("style", "height: 100%; width: 100%; object-fit: cover;");
-    image_preview.innerHTML = "";
-    image_preview.appendChild(this_image);
-
-    let photo_upload_field = document.getElementById("profile-image-upload");
-    source = photo_upload_field.files[0];
-
-    
-    new_image_button.addEventListener("click", yb_saveProfileImage);
 }
 
 $(document).ready(function() {
