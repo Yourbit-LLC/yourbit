@@ -74,6 +74,8 @@ function finishMobileBackgroundImage(){
 
     yb_2WayPage(1, "background-image-upload");
 
+    new_image_input.addEventListener("change", cropWallpaperImage);
+
 }
 
 $(document).ready(function() {
@@ -82,9 +84,10 @@ $(document).ready(function() {
     new_image_button.addEventListener("click", new_image_handler);
 
     new_image_input.addEventListener("change", function() {
+
+        //Ensure the following function only runs once
         yb_2WayPage(2, "cropper-desktop-background");
-        new_image_button.innerHTML = "Save Image";
-        new_image_button.style.backgroundColor = "green";
+        new_image_input.removeEventListener("change", cropWallpaperImage);
 
 
     });
