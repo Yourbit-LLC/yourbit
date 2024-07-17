@@ -6,6 +6,10 @@ from django.utils import timezone
 from django.utils import dateformat
 from PIL import Image, ImageOps, ImageSequence
 from .models import Photo
+import io
+from django.core.files.base import ContentFile
+from django.http import JsonResponse
+import imageio
 
 
 def rename_image(user, filename, file_type):
@@ -16,6 +20,47 @@ def rename_image(user, filename, file_type):
     new_filename = f"{user.username}{user.id}{timestamp}{filename}{label}.{file_type}"
     
     return new_filename
+
+
+def crop_image(image, crop_data):
+    return image.crop((
+        float(crop_data['x']),
+        float(crop_data['y']),
+        float(crop_data['x']) + float(crop_data['width']),
+        float(crop_data['y']) + float(crop_data['height'])
+    ))
+
+
+
+def modify_image(user, original_image_file, crop_data):
+    from yb_photo.utility import rename_image
+    image_format = original_image_file.name.split('.')[-1].lower()
+
+    if image_format in ['jpg', 'jpeg', 'png']:
+        original_image = Image.open(original_image_file)
+        cropped_image = crop_image(original_image, crop_data)
+        output_io = io.BytesIO()
+        cropped_image.save(output_io, format='PNG', quality=85)
+        new_name = rename_image(user, original_image_file.name, image_format)
+        cropped_image_file = ContentFile(output_io.getvalue(), new_name)
+
+    elif image_format == 'gif':
+
+        original_image = imageio.mimread(original_image_file)
+        cropped_frames = [crop_image(Image.fromarray(frame), crop_data) for frame in original_image]
+        output_io = io.BytesIO()
+        cropped_frames[0].save(output_io, format='GIF', save_all=True, append_images=cropped_frames[1:], loop=0)
+        new_name = rename_image(user, original_image_file.name, 'gif')
+        cropped_image_file = ContentFile(output_io.getvalue(), new_name)
+        
+
+    else:
+
+        return JsonResponse({'status': 'failed', 'message': 'Unsupported image format'}, status=400)
+    
+
+
+    return cropped_image_file
 
 # Create your views here.
 def generate_tiny_thumbnail(user, source_file):
@@ -139,7 +184,7 @@ def generate_medium_thumbnail(user, source_file):
 
     return inmemory_uploaded_file
 
-def generate_large_thumbnail(user, source_file):
+def generate_large_thumbnail(user, source_file, raw_source):
     # Open the source file
     source_file = Image.open(source_file)
     label = "thumbnail_medium"
@@ -161,7 +206,7 @@ def generate_large_thumbnail(user, source_file):
             new_frames.append(new_frame)
 
         # Save the new frames as a GIF
-        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=source_file.info['duration'])
+        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=raw_source.info['duration'])
 
         # Update filename and format
         this_filename = f"{this_username}{this_uid}{timestamp}{label}.gif"
@@ -191,10 +236,10 @@ def process_image(request, source_image = None, cropped_image = None, is_private
     except:
         user = request
 
-    new_photo.tiny_thumbnail = generate_tiny_thumbnail(user, cropped_image)
-    new_photo.small_thumbnail = generate_small_thumbnail(user, cropped_image)
-    new_photo.medium_thumbnail = generate_medium_thumbnail(user, cropped_image)
-    new_photo.large_thumbnail = generate_large_thumbnail(user, cropped_image)
+    new_photo.tiny_thumbnail = generate_tiny_thumbnail(user, cropped_image, source_image)
+    new_photo.small_thumbnail = generate_small_thumbnail(user, cropped_image, source_image)
+    new_photo.medium_thumbnail = generate_medium_thumbnail(user, cropped_image, source_image)
+    new_photo.large_thumbnail = generate_large_thumbnail(user, cropped_image, source_image)
 
     print("Images Cropped")
 

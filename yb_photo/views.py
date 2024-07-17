@@ -7,50 +7,11 @@ import json
 import imageio
 from django.core.files.base import ContentFile
 from yb_photo.models import Wallpaper
-from yb_photo.utility import process_image    
+from yb_photo.utility import process_image, modify_image
 def cropper_view(request, crop_type, *args, **kwargs):
 
     return render(request, "image_cropper.html", {"type": crop_type})
     
-
-
-def crop_image(image, crop_data):
-    return image.crop((
-        float(crop_data['x']),
-        float(crop_data['y']),
-        float(crop_data['x']) + float(crop_data['width']),
-        float(crop_data['y']) + float(crop_data['height'])
-    ))
-
-def modify_image(user, original_image_file, crop_data):
-    from yb_photo.utility import rename_image
-    image_format = original_image_file.name.split('.')[-1].lower()
-
-    if image_format in ['jpg', 'jpeg', 'png']:
-        original_image = Image.open(original_image_file)
-        cropped_image = crop_image(original_image, crop_data)
-        output_io = io.BytesIO()
-        cropped_image.save(output_io, format='PNG', quality=85)
-        new_name = rename_image(user, original_image_file.name, image_format)
-        cropped_image_file = ContentFile(output_io.getvalue(), new_name)
-
-    elif image_format == 'gif':
-
-        original_image = imageio.mimread(original_image_file)
-        cropped_frames = [crop_image(Image.fromarray(frame), crop_data) for frame in original_image]
-        output_io = io.BytesIO()
-        cropped_frames[0].save(output_io, format='GIF', save_all=True, append_images=cropped_frames[1:], loop=0)
-        new_name = rename_image(user, original_image_file.name, 'gif')
-        cropped_image_file = ContentFile(output_io.getvalue(), new_name)
-        
-
-    else:
-
-        return JsonResponse({'status': 'failed', 'message': 'Unsupported image format'}, status=400)
-    
-
-
-    return cropped_image_file
     
 def upload_image(request, *args, **kwargs):
     from yb_customize.models import CustomCore
