@@ -23,11 +23,11 @@ def message_inbox(request):
         message_core = MessageCore.objects.create(profile = profile)
 
     try:
-        conversations = message_core.conversations.all()
+        conversations = message_core.conversations.all().order_by("-time_modified")
         onload = None 
 
     except:
-        conversations = message_core.conversations.all()
+        conversations = message_core.conversations.all().order_by("-time_modified")
         onload = "yb_handleMessageClick()"
 
     if len(conversations) == 0:
