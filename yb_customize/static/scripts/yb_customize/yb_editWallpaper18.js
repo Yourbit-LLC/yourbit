@@ -1,5 +1,5 @@
 try {
-    var new_image_button = document.getElementById("new-image-button");
+    var new_image_button = document.getElementById("new-wallpaper-button");
     var new_image_input = document.getElementById("background-image-upload");
     
     var hue_slider = document.getElementById("avatar-hue-slider");
@@ -7,7 +7,7 @@ try {
     var enable_border = document.getElementById("enable-border");
 
 } catch {
-    new_image_button = document.getElementById("new-image-button");
+    new_image_button = document.getElementById("new-wallpaper-button");
     new_image_input = document.getElementById("background-image-upload");
     image_preview = document.getElementById("profile-image-preview");
     hue_slider = document.getElementById("avatar-hue-slider");
@@ -37,6 +37,7 @@ function yb_setWPID(id){
 
 
 function cropWallpaperImage(){
+    console.log("from edit wallpaper js");
     yb_2WayPage(2, "cropper-desktop-background");
 }
 
