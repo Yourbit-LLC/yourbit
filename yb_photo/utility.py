@@ -70,7 +70,6 @@ def generate_tiny_thumbnail(user, source_file, raw_source):
     this_username = user.username
     this_uid = user.id
     timestamp = dateformat.format(timezone.now(), '%Y%m%d%-H:i-s')
-    this_filename = f"{this_username}{this_uid}{timestamp}{label}.png"
 
     # Check if the source file is a GIF
     if source_file.format == 'GIF':
@@ -85,8 +84,11 @@ def generate_tiny_thumbnail(user, source_file, raw_source):
             new_frames.append(new_frame)
 
         # Save the new frames as a GIF
-        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=100)  
 
+        this_filename = f"{this_username}{this_uid}{timestamp}{label}.gif"
+
+        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=100)  
+        format = 'image/gif'
     else:
         # Handle non-GIF image resizing
         lthumb_io = BytesIO()
@@ -94,6 +96,7 @@ def generate_tiny_thumbnail(user, source_file, raw_source):
         squared_image = ImageOps.fit(large_image, (32, 32), Image.ANTIALIAS)
         squared_image.save(lthumb_io, format='PNG', quality=80)
         format = 'image/png'
+        this_filename = f"{this_username}{this_uid}{timestamp}{label}.png"
 
     # Create InMemoryUploadedFile
     inmemory_uploaded_file = InMemoryUploadedFile(lthumb_io, None, this_filename, format, lthumb_io.tell(), None)
@@ -108,7 +111,7 @@ def generate_small_thumbnail(user, source_file, raw_source):
     this_username = user.username
     this_uid = user.id
     timestamp = dateformat.format(timezone.now(), '%Y%m%d%-H:i-s')
-    this_filename = f"{this_username}{this_uid}{timestamp}{label}.png"
+    
     print("File Format " + source_file.format)
     # Check if the source file is a GIF
     if source_file.format == 'GIF':
@@ -127,6 +130,7 @@ def generate_small_thumbnail(user, source_file, raw_source):
 
         # Update filename and format
         this_filename = f"{this_username}{this_uid}{timestamp}{label}.gif"
+        
         format = 'image/gif'
     else:
         # Handle non-GIF image resizing
@@ -135,6 +139,7 @@ def generate_small_thumbnail(user, source_file, raw_source):
         squared_image = ImageOps.fit(large_image, (64, 64), Image.ANTIALIAS)
         squared_image.save(lthumb_io, format='PNG', quality=80)
         format = 'image/png'
+        this_filename = f"{this_username}{this_uid}{timestamp}{label}.png"
 
     # Create InMemoryUploadedFile
     inmemory_uploaded_file = InMemoryUploadedFile(lthumb_io, None, this_filename, format, lthumb_io.tell(), None)
@@ -148,7 +153,7 @@ def generate_medium_thumbnail(user, source_file, raw_source):
     this_username = user.username
     this_uid = user.id
     timestamp = dateformat.format(timezone.now(), '%Y%m%d%-H:i-s')
-    this_filename = f"{this_username}{this_uid}{timestamp}{label}.png"
+    
 
     # Check if the source file is a GIF
     if source_file.format == 'GIF':
@@ -175,6 +180,7 @@ def generate_medium_thumbnail(user, source_file, raw_source):
         squared_image = ImageOps.fit(large_image, (256, 256), Image.ANTIALIAS)
         squared_image.save(lthumb_io, format='PNG', quality=80)
         format = 'image/png'
+        this_filename = f"{this_username}{this_uid}{timestamp}{label}.png"
 
     # Create InMemoryUploadedFile
     inmemory_uploaded_file = InMemoryUploadedFile(lthumb_io, None, this_filename, format, lthumb_io.tell(), None)
@@ -188,7 +194,7 @@ def generate_large_thumbnail(user, source_file, raw_source):
     this_username = user.username
     this_uid = user.id
     timestamp = dateformat.format(timezone.now(), '%Y%m%d%-H:i-s')
-    this_filename = f"{this_username}{this_uid}{timestamp}{label}.png"
+    
 
     # Check if the source file is a GIF
     if source_file.format == 'GIF':
@@ -215,6 +221,7 @@ def generate_large_thumbnail(user, source_file, raw_source):
         squared_image = ImageOps.fit(large_image, (512, 512), Image.ANTIALIAS)
         squared_image.save(lthumb_io, format='PNG', quality=80)
         format = 'image/png'
+        this_filename = f"{this_username}{this_uid}{timestamp}{label}.png"
 
     # Create InMemoryUploadedFile
     inmemory_uploaded_file = InMemoryUploadedFile(lthumb_io, None, this_filename, format, lthumb_io.tell(), None)
