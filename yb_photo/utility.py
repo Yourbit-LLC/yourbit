@@ -73,17 +73,13 @@ def generate_tiny_thumbnail(user, source_file, raw_source):
 
     # Check if the source file is a GIF
     if source_file.format == 'GIF':
-        # Create a new BytesIO object for the thumbnail
+        original_image = imageio.mimread(source_file)
+        new_frames = [Image.fromarray(frame) for frame in original_image]
         lthumb_io = BytesIO()
 
-        # Handle GIF resizing with imageio
-        frames = ImageSequence.Iterator(source_file)
-        new_frames = []
-        for frame in frames:
-            new_frame = ImageOps.fit(frame.convert('RGBA'), (32, 32), Image.ANTIALIAS)
-            new_frames.append(new_frame)
-
-        # Save the new frames as a GIF
+        # Handle GIF resizing
+        for frame in new_frames:
+            frame.thumbnail((32, 32), Image.ANTIALIAS)
 
         this_filename = f"{this_username}{this_uid}{timestamp}{label}.gif"
 
