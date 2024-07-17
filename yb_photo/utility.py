@@ -85,7 +85,7 @@ def generate_tiny_thumbnail(user, source_file, raw_source):
             new_frames.append(new_frame)
 
         # Save the new frames as a GIF
-        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=raw_source.info.get('duration', 0))  
+        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=100)  
 
     else:
         # Handle non-GIF image resizing
@@ -123,7 +123,7 @@ def generate_small_thumbnail(user, source_file, raw_source):
             new_frames.append(new_frame)
 
         # Save the new frames as a GIF
-        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=raw_source.info.get('duration', 0))
+        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=100)
 
         # Update filename and format
         this_filename = f"{this_username}{this_uid}{timestamp}{label}.gif"
@@ -163,7 +163,7 @@ def generate_medium_thumbnail(user, source_file, raw_source):
             new_frames.append(new_frame)
 
         # Save the new frames as a GIF
-        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=raw_source.info.get('duration', 0))
+        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=100)
 
         # Update filename and format
         this_filename = f"{this_username}{this_uid}{timestamp}{label}.gif"
@@ -203,7 +203,7 @@ def generate_large_thumbnail(user, source_file, raw_source):
             new_frames.append(new_frame)
 
         # Save the new frames as a GIF
-        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=raw_source.info.get('duration', 0))
+        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=100)
 
         # Update filename and format
         this_filename = f"{this_username}{this_uid}{timestamp}{label}.gif"
