@@ -63,7 +63,7 @@ def modify_image(user, original_image_file, crop_data):
     return cropped_image_file
 
 # Create your views here.
-def generate_tiny_thumbnail(user, source_file):
+def generate_tiny_thumbnail(user, source_file, raw_source):
     # Open the source file
     source_file = Image.open(source_file)
     label = "thumbnail_medium"
@@ -85,7 +85,7 @@ def generate_tiny_thumbnail(user, source_file):
             new_frames.append(new_frame)
 
         # Save the new frames as a GIF
-        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=source_file.info['duration'])
+        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=raw_source.info['duration'])
 
         # Update filename and format
         this_filename = f"{this_username}{this_uid}{timestamp}{label}.gif"
@@ -104,7 +104,7 @@ def generate_tiny_thumbnail(user, source_file):
     return inmemory_uploaded_file
 
 
-def generate_small_thumbnail(user, source_file):
+def generate_small_thumbnail(user, source_file, raw_source):
     # Open the source file
     source_file = Image.open(source_file)
     label = "thumbnail_medium"
@@ -126,7 +126,7 @@ def generate_small_thumbnail(user, source_file):
             new_frames.append(new_frame)
 
         # Save the new frames as a GIF
-        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=source_file.info['duration'])
+        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=raw_source.info['duration'])
 
         # Update filename and format
         this_filename = f"{this_username}{this_uid}{timestamp}{label}.gif"
@@ -144,7 +144,7 @@ def generate_small_thumbnail(user, source_file):
 
     return inmemory_uploaded_file
 
-def generate_medium_thumbnail(user, source_file):
+def generate_medium_thumbnail(user, source_file, raw_source):
     # Open the source file
     source_file = Image.open(source_file)
     label = "thumbnail_medium"
@@ -166,7 +166,7 @@ def generate_medium_thumbnail(user, source_file):
             new_frames.append(new_frame)
 
         # Save the new frames as a GIF
-        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=source_file.info['duration'])
+        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=raw_source.info['duration'])
 
         # Update filename and format
         this_filename = f"{this_username}{this_uid}{timestamp}{label}.gif"
