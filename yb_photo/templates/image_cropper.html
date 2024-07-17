@@ -51,22 +51,6 @@
 
         let type = $('#image-edit-data').val();
         let submit = document.getElementById('image-cropper-save');
-        function startUp() {
-            if (type == "bit"){
-                console.log("bit");
-                previewBitCrop();
-            } else if (type == "profile"){
-                console.log("profile");
-                previewProfileImage();
-            } else if (type == "mobile-wallpaper") {
-                console.log("mobile-wallpaper");
-                previewMobileBackgroundImage();
-            } else if (type == "desktop-wallpaper") {
-                console.log("desktop-wallpaper");
-                previewDesktopBackgroundImage();
-            } 
-
-        }
 
         submit.addEventListener('click', function(){
             this.disabled = true;
