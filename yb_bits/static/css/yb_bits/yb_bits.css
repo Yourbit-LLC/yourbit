@@ -121,7 +121,6 @@
 }
 .yb-bit-shell.createMedia {
     text-align: center;
-    background-color: black;
     grid-template-rows: 55px auto auto auto auto auto auto auto;
     padding: 5px 5px 5px 5px;
 
