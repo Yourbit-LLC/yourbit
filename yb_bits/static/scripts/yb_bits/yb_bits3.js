@@ -124,7 +124,13 @@ function createHeader(bit) {
     header.appendChild(profileImageContainer);
 
     const userInfo = yb_createElement("p", "yb-userInfo-bit", `bit-info-${bit.id}`);
-    userInfo.innerHTML = `<strong class="bit-name" style="color:${bit.custom.title_color};">${bit.display_name}</strong><br> <small class="bit-username" style="color:${bit.custom.text_color};">@${bit.user.username}</small>`;
+    if (yb_getCustomValues("bit-colors-on")){
+        userInfo.innerHTML = `<strong class="bit-name" style="color:${bit.custom.title_color};">${bit.display_name}</strong><br> <small class="bit-username" style="color:${bit.custom.text_color};">@${bit.user.username}</small>`;    
+    }
+    else {
+        userInfo.innerHTML = `<strong class="bit-name">${bit.display_name}</strong><br> <small class="bit-username">@${bit.user.username}</small>`;
+    }
+    
     header.appendChild(userInfo);
 
     const timeLabel = yb_createElement("p", "yb-timeLabel-bit", `time-posted-${bit.id}`);
@@ -453,7 +459,11 @@ function yb_buildBit(bit){
     
     //Prepare new bit by creating an element
     new_bit = yb_createElement("div",`yb-element-background yb-bit-shell ${type}bit`, `bit-${id}`);
-    new_bit.style.backgroundColor = primary_color;
+    
+    if (yb_getCustomValues("bit-colors-on")){
+        new_bit.style.backgroundColor = primary_color;
+    }
+    
 
     //Apply All Attributes: element id, element class, data type, data-id, data-button-color, data icon color, data background color, style
     new_bit.setAttribute("data-type", `${type}`);
