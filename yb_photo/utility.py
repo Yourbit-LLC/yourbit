@@ -77,7 +77,7 @@ def generate_tiny_thumbnail(user, source_file, raw_source):
         # Create a new BytesIO object for the thumbnail
         lthumb_io = BytesIO()
 
-        # Handle GIF resizing
+        # Handle GIF resizing with imageio
         frames = ImageSequence.Iterator(source_file)
         new_frames = []
         for frame in frames:
@@ -85,11 +85,8 @@ def generate_tiny_thumbnail(user, source_file, raw_source):
             new_frames.append(new_frame)
 
         # Save the new frames as a GIF
-        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=raw_source.info['duration'])
+        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=raw_source.info.get('duration', 0))  
 
-        # Update filename and format
-        this_filename = f"{this_username}{this_uid}{timestamp}{label}.gif"
-        format = 'image/gif'
     else:
         # Handle non-GIF image resizing
         lthumb_io = BytesIO()
@@ -126,7 +123,7 @@ def generate_small_thumbnail(user, source_file, raw_source):
             new_frames.append(new_frame)
 
         # Save the new frames as a GIF
-        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=raw_source.info['duration'])
+        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=raw_source.info.get('duration', 0))
 
         # Update filename and format
         this_filename = f"{this_username}{this_uid}{timestamp}{label}.gif"
@@ -166,7 +163,7 @@ def generate_medium_thumbnail(user, source_file, raw_source):
             new_frames.append(new_frame)
 
         # Save the new frames as a GIF
-        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=raw_source.info['duration'])
+        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=raw_source.info.get('duration', 0))
 
         # Update filename and format
         this_filename = f"{this_username}{this_uid}{timestamp}{label}.gif"
@@ -206,7 +203,7 @@ def generate_large_thumbnail(user, source_file, raw_source):
             new_frames.append(new_frame)
 
         # Save the new frames as a GIF
-        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=raw_source.info['duration'])
+        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=raw_source.info.get('duration', 0))
 
         # Update filename and format
         this_filename = f"{this_username}{this_uid}{timestamp}{label}.gif"
