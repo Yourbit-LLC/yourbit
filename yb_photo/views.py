@@ -85,12 +85,7 @@ def upload_image(request, *args, **kwargs):
                 elif request.POST.get('image_type') == "mobile":
                     wallpaper.background_mobile = cropped_image
 
-                elif request.POST.get('image_type') == "profile":
-                    new_image = process_image(request, this_image, cropped_image, is_private = False)
-                    custom_core.profile_image = new_image
-                    custom_core.save()
-                    
-
+                
                 wallpaper.save()
 
                 custom_core.wallpaper = wallpaper
@@ -98,9 +93,20 @@ def upload_image(request, *args, **kwargs):
                 if custom_core.wallpaper_on == False:
                     custom_core.wallpaper_on = True
 
-                custom_core.save()
-                
                 return JsonResponse({'status': 'success', 'wpid': wallpaper.id}, status=200)
+
+
+        elif request.POST.get('image_type') == "profile":
+            new_image = process_image(request, this_image, cropped_image, is_private = False)
+            custom_core.profile_image = new_image
+
+            return JsonResponse({'status': 'success', 'image': custom_core.profile_image.url}, status=200)
+            
+
+
+        custom_core.save()
+                
+        
 
     else:
         return JsonResponse({'status': 'failed', 'message': 'No image uploaded'}, status=400)
