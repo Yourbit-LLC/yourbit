@@ -181,7 +181,7 @@ class ConversationView(View):
 
         this_conversation = Conversation.objects.get(id = this_id)
         
-        messages = Message.objects.filter(conversation = this_conversation).order_by("-time")
+        messages = Message.objects.filter(conversation = this_conversation).order_by("time")
 
         members = this_conversation.members.all()
 
