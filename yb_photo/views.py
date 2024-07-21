@@ -19,13 +19,14 @@ def upload_image(request, *args, **kwargs):
     
         print(request.POST)
         this_image = request.FILES.get('source_image')
+        image_type = request.POST.get('image_type')
         print(this_image)
         crop_x = request.POST.get('crop_x')
         crop_y = request.POST.get('crop_y')
         crop_width = request.POST.get('crop_width')
         crop_height = request.POST.get('crop_height')
         
-        cropped_image = modify_image(request.user, this_image, crop_data={'x': crop_x, 'y': crop_y, 'width': crop_width, 'height': crop_height})
+        cropped_image = modify_image(image_type, request.user, this_image, crop_data={'x': crop_x, 'y': crop_y, 'width': crop_width, 'height': crop_height})
 
         custom_core = CustomCore.objects.get(profile=request.user.profile)
 
@@ -58,8 +59,8 @@ def upload_image(request, *args, **kwargs):
 
 
         elif request.POST.get('image_type') == "profile":
-            new_image = process_image(request, this_image, cropped_image, is_private = False)
-            custom_core.profile_image = new_image
+            
+            custom_core.profile_image = cropped_image
 
             return JsonResponse({'status': 'success', 'image': custom_core.profile_image.url}, status=200)
             

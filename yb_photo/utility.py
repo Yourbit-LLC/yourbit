@@ -32,7 +32,7 @@ def crop_image(image, crop_data):
 
 
 
-def modify_image(user, original_image_file, crop_data):
+def modify_image(image_type, user, original_image_file, crop_data):
     from yb_photo.utility import rename_image
     image_format = original_image_file.name.split('.')[-1].lower()
 
@@ -59,6 +59,9 @@ def modify_image(user, original_image_file, crop_data):
         return JsonResponse({'status': 'failed', 'message': 'Unsupported image format'}, status=400)
     
 
+    if image_type == "profile":
+
+        cropped_image_file = process_image(user, original_image_file, cropped_image_file, is_private = False)
 
     return cropped_image_file
 
