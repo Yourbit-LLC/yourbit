@@ -76,7 +76,7 @@ def generate_tiny_thumbnail(user, source_file, raw_source):
 
     # Check if the source file is a GIF
     if source_file.format == 'GIF':
-        original_image = imageio.mimread(source_file)
+        original_image = source_file
         new_frames = [Image.fromarray(frame) for frame in original_image]
         lthumb_io = BytesIO()
 
@@ -105,7 +105,7 @@ def generate_tiny_thumbnail(user, source_file, raw_source):
 
 def generate_small_thumbnail(user, source_file, raw_source):
     # Open the source file
-    source_file = Image.open(source_file)
+    source_file = source_file
     label = "thumbnail_medium"
     this_username = user.username
     this_uid = user.id
@@ -147,7 +147,7 @@ def generate_small_thumbnail(user, source_file, raw_source):
 
 def generate_medium_thumbnail(user, source_file, raw_source):
     # Open the source file
-    source_file = Image.open(source_file)
+    source_file = source_file
     label = "thumbnail_medium"
     this_username = user.username
     this_uid = user.id
@@ -188,7 +188,7 @@ def generate_medium_thumbnail(user, source_file, raw_source):
 
 def generate_large_thumbnail(user, source_file, raw_source):
     # Open the source file
-    source_file = Image.open(source_file)
+    source_file = source_file
     label = "thumbnail_medium"
     this_username = user.username
     this_uid = user.id
