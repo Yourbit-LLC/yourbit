@@ -182,7 +182,7 @@
     
     border-width: 2px;
     border-style: solid;
-    border-color: calc(var(--yb-button-color) + 20%);
+    border-color: var(--yb-button-text-color);
 }
 
 .filter-tab.hover {
