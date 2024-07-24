@@ -354,9 +354,7 @@
     backdrop-filter: blur(80px);
     -webkit-backdrop-filter: blur(80px);
 }
-.yb-button-wide {
-    background-color: var(--yb-button-color); 
-}
+
 
 
 

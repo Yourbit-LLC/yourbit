@@ -348,9 +348,7 @@
         backdrop-filter: blur(80px);
         -webkit-backdrop-filter: blur(80px);
     }
-    .yb-button-wide {
-        background-color: rgb(35, 35, 35); 
-    }
+
 }
 
 @media (prefers-color-scheme: light) {
@@ -358,9 +356,6 @@
         background-color: rgba(255, 255, 255, 0.75);
         backdrop-filter: blur(80px);
         -webkit-backdrop-filter: blur(80px);
-    }
-    .yb-button-wide {
-        background-color: rgb(200, 200, 200); 
     }
 }
 
