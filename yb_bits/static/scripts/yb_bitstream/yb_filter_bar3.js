@@ -69,8 +69,8 @@ function yb_filterPanelHandler() {
             }
         }
         this.classList.add("active");
+        yb_getFilterPanel(template);
     }
-    yb_getFilterPanel(template);
 }
 
 feed_filter_btns.forEach(btn => {
