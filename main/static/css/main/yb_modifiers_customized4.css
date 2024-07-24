@@ -294,9 +294,6 @@
     }
 } 
 
-.yb-bFill {
-    fill: var(--yb-button-text-color);
-}
     
 .yb-fill-white {
     /*Style*/
@@ -520,6 +517,10 @@
 
 .yb-bText {
     color: var(--yb-button-text-color) !important;
+}
+
+.yb-bFill {
+    fill: var(--yb-button-text-color) !important;
 }
 
 /* media query for light mode text */
