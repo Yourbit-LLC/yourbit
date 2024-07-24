@@ -305,6 +305,10 @@ function yb_getNotificationList(notify_class, show_seen = 'True') {
 
 function yb_handleFilterClick() {
     yb_getNotificationList(this.getAttribute('data-notify-class'));
+    for (let i = 0; i < notify_filter_buttons.length; i++){
+        notify_filter_buttons[i].classList.remove('active');
+    }
+    this.classList.add('active');
 }
 
 $(document).ready(function () {
