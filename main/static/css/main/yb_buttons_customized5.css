@@ -167,20 +167,19 @@
 
         background-color: var(--yb-button-color); 
 
-        filter: brightness(0.5);
-        -webkit-filter: brightness(0.5);
-
 }
 
 .filter-tab.active {
     /*Style*/
-    filter: brightness(1);
-    -webkit-filter: brightness(1);
+    filter: brightness(0.5);
+    -webkit-filter: brightness(0.5);
 }
 
 .yb-button-wide.active {
 
     background-color: black;
+    filter: brightness(0.5);
+    -webkit-filter: brightness(0.5);
     
     border-width: 2px;
     border-style: solid;
