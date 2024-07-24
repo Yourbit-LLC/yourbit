@@ -177,7 +177,6 @@
 
 .yb-button-wide.active {
 
-    background-color: black;
     filter: brightness(0.5);
     -webkit-filter: brightness(0.5);
     
@@ -195,18 +194,6 @@
 
 }
 
-.yb-button-wide.active {
-    filter: brightness(1);
-    -webkit-filter: brightness(1);
-}
-
-
-.yb-button-wide.active {
-    background-color: white;
-    color: black;
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-    border-color: black;
-}
 
 .yb-button-wide {
     background-color: var(--yb-button-color); 
