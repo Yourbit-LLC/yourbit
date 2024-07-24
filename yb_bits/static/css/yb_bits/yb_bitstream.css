@@ -5,4 +5,14 @@
         margin-right: auto;
     }
 }
+
+.yb-filter-icon {
+    filter: brightness(0.5);
+    -webkit-filter: brightness(0.5);
+}
+
+.yb-filter-icon.active {
+    filter: brightness(1);
+    -webkit-filter: brightness(1);
+}
     
