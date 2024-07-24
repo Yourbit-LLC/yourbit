@@ -700,6 +700,8 @@ function yb_changeSpace(space_name) {
 
     yb_setSessionValues('space', space_name);
 
+    yb_setSessionValues('bitstream-page', 1);
+
     let space_label;
     let space_icon;
 
