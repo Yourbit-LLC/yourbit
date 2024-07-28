@@ -185,7 +185,7 @@ def login_view(request):
 
     if request.POST:
         login_form = LoginForm(request.POST)
-        if form.is_valid():
+        if login_form.is_valid():
             email = request.POST['email']
             password = request.POST['password']
             user = authenticate(email=email, password=password)
