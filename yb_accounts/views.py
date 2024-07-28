@@ -184,7 +184,7 @@ def login_view(request):
         
 
     if request.POST:
-        form = LoginForm(request.POST)
+        login_form = LoginForm(request.POST)
         if form.is_valid():
             email = request.POST['email']
             password = request.POST['password']
@@ -199,7 +199,7 @@ def login_view(request):
         registration_form = RegistrationForm()
 
     
-    context['login_form'] = LoginForm()
+    context['login_form'] = login_form
     context['registration_form'] = registration_form
     return render(request, 'registration/login.html', context)
 
