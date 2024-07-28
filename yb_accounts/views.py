@@ -199,7 +199,7 @@ def login_view(request):
         registration_form = RegistrationForm()
 
     
-    context['login_form'] = login_form
+    context['login_form'] = LoginForm()
     context['registration_form'] = registration_form
     return render(request, 'registration/login.html', context)
 
