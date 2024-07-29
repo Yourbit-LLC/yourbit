@@ -420,14 +420,14 @@ function yb_navigateTo(container, template, data=null, reloadable=true) {
             if (reloadable) {
                 yb_openDrawer(template);
             } else {
-                yb_openDrawer(template, reloadable=false);
+                yb_openDrawer(template);
             }
             
         } else {
             if (reloadable) {
                 yb_openDrawer(template, data);
             } else {
-                yb_openDrawer(template, data, reloadable=false);
+                yb_openDrawer(template, data);
             }
             
         }
