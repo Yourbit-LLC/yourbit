@@ -8,6 +8,7 @@ urlpatterns = [
     #URL for API
     path('api/', include('yb_bits.routers')),
     path('api/bitstream/', BitFeedAPIView.as_view(), name='bitstream'),
+    path("delete-cluster/", delete_cluster, name="delete-cluster"),
 
     #URL for views
     path('templates/builder/<int:pk>/edit/', bit_builder_view, name="bit-builder"),

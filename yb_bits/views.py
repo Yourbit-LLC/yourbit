@@ -224,3 +224,13 @@ def bit_options_menu(request, id, *args, **kwargs):
     }
         
     return render(request, "main/options_menu.html", context)
+
+def delete_cluster(request, *args, **kwargs):
+    if request.method != "POST":
+        return JsonResponse({"status":"failed"})
+    
+    else:
+        this_id = request.POST.get("id")
+        cluster = Cluster.objects.get(pk=this_id)
+        cluster.delete()
+        return JsonResponse({"status":"success"})

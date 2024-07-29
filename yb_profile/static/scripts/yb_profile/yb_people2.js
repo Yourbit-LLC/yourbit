@@ -2,10 +2,12 @@
 try{
     var filter_buttons = document.getElementsByClassName("people-filter");
     var list_container = document.getElementById('connection-list');
+    var filter_value = "all";
 
 } catch {
     list_container = document.getElementById()
     filter_buttons = document.getElementsByClassName("people-filter");
+    filter_value = "all";
 }
 
 function clearPeopleList(){
@@ -15,6 +17,23 @@ function clearPeopleList(){
 function yb_listPeople(filter){
     clearPeopleList();
     $(list_container).load(`/profile/people-list/${filter}/`);
+}
+
+function yb_disconnect(id) {
+    $.ajax({
+        type: 'POST',
+        url: '/profile/disconnect/',
+        data: {
+            'id': id,
+        },
+        success: function(response) {
+            document.getElementById('result-people-' + id).remove();
+        },
+        error: function(response) {
+            console.log(response);
+        }
+    });
+
 }
 
 $(document).ready(function () {

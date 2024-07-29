@@ -342,3 +342,22 @@ def update_profile_info(request, *args, **kwargs):
         this_profile.save()
 
         return JsonResponse({"status": "success"})
+    
+def disconnect_view(request, *args, **kwargs):
+    if request.method == "POST":
+        profile_id = request.POST.get("profile_id")
+        this_profile = Profile.objects.get(id = profile_id)
+        this_user = request.user.profile
+        
+        if this_user.is_friends_with(this_profile):
+            this_user.friends.remove(this_profile)
+            this_profile.friends.remove(this_user)
+
+        if this_user.is_following(this_profile):
+            this_user.follows.remove(this_profile)
+            this_profile.followers.remove(this_user)
+
+        this_user.save()
+        this_profile.save()
+
+        return JsonResponse({"status": "success"})
