@@ -345,7 +345,7 @@ def update_profile_info(request, *args, **kwargs):
     
 def disconnect_view(request, *args, **kwargs):
     if request.method == "POST":
-        profile_id = request.POST.get("profile_id")
+        profile_id = request.POST.get("id")
         this_profile = Profile.objects.get(id = profile_id)
         this_user = request.user.profile
 
