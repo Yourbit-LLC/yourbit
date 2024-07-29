@@ -221,4 +221,4 @@ def bit_options_menu(request, id, *args, **kwargs):
         "option_set":option_set,
     }
         
-    return render(request, "yb_bits/yb_bit_options.html", context)
+    return render(request, "main/options_menu.html", context)
