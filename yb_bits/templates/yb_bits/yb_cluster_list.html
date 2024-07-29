@@ -28,16 +28,7 @@
     <script>
 
         document.getElementById("create-cluster-list").addEventListener("click", function(){
-            yb_toggle2WayContainer('stuff');
-            SEARCH_FIELD.focus();
-            yb_openSpotlight("stuff");
-            setTimeout(function(){
-                SEARCH_CONTAINER.classList.add("yb-pulseSmall");
-            }, 400);
-            
-            setTimeout(function(){
-                SEARCH_CONTAINER.classList.remove("yb-pulseSmall");
-            }, 1000);
+            yb_navigateTo('2way', 'create-cluster');
             
         });
     </script>

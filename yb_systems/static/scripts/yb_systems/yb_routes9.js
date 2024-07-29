@@ -48,6 +48,11 @@ const TWO_WAY_INDEX = {
             "template" : "/core/create-menu/",
             "url" : "/create/"
         },
+    "create-cluster":
+        {
+            "template" : "/core/templates/create/cluster/",
+            "url" : "/create/cluster/"
+        },
     "messages" : 
         {
             "template" : "/messages/inbox/",
