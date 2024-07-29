@@ -60,7 +60,7 @@ class BitFeedAPIView(generics.ListAPIView):
             profile_username = self.request.query_params.get('profile')
             profile = Profile.objects.get(user__username=profile_username)
             
-            if profile.is_friends_with(user_profile):
+            if profile.is_friends_with(user_profile) or profile.is_family_with(user_profile) or self.request.user == profile.user:
                 if active_space != "global":
                     queryset = Bit.objects.filter(profile=profile, type = active_space).order_by(sort_value)
                 
