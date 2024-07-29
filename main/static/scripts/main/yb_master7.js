@@ -646,6 +646,13 @@ function yb_navigateToProfile(e) {
     if (MAIN_LOADING_SCREEN.style.display === "block"){
         $(MAIN_LOADING_SCREEN).fadeOut(500).animate({opacity: 0}, 500);
     }
+
+    for (let i = 0; i < SIDE_CONTAINERS.length; i++){
+        if (SIDE_CONTAINERS[i].classList.contains("open")){
+            let this_state = SIDE_CONTAINERS[i].getAttribute("data-state");
+            yb_toggle2WayContainer(this_state);
+        }
+    }
 }
 
 function yb_submitQuery(){
