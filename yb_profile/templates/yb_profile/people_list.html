@@ -2,10 +2,10 @@
 {% for connection in connections %}
     <div id="result-people-{{connection.id}}" class="yb-listItem yb-autoText people-item" data-catid="{{connection.id}}" data-username="{{connection.username}}">
 
-        <div class="full-result-image-container people-sub-item">
+        <div class="full-result-image-container people-sub-item" data-username="{{connection.username}}">
                 <img class="full-result-image" style="width:100%; position: relative;" src="{{connection.custom.profile_image.medium_thumbnail.url}}" onclick="yb_toggle2WayContainer('people')">
         </div>
-        <div class="full-result-name-container people-sub-item" onclick="yb_toggle2WayContainer('people')">
+        <div class="full-result-name-container people-sub-item" data-username="{{connection.username}}" onclick="yb_toggle2WayContainer('people')">
             <p class="full-result-name yb-listItem-head"><strong>{{connection.display_name}}</strong></p>
             <p class="full-result-username yb-listItem-body">
                 <small>@{{connection.user.username}}</small>
