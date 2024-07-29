@@ -37,7 +37,7 @@ function yb_disconnect(id) {
 }
 
 function yb_confirmDisconnect(id, name){
-    let confirm = window.confirm("Are you sure you want to disconnect?");
+    let confirm = window.confirm(`Are you sure you want to disconnect from ${name}?`);
     if (confirm){
         yb_disconnect(id);
     }
