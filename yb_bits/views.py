@@ -95,7 +95,7 @@ class CreateCluster(View):
 
         serialized_cluster = ClusterSerializer(new_cluster, many=False)
 
-        return JsonResponse({"cluster": serialized_cluster.data})
+        return JsonResponse({"status": "success", "cluster": serialized_cluster.data})
     
 def bit_focus_view(request, pk, *args, **kwargs):
     this_bit = Bit.objects.get(pk=pk)
