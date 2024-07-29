@@ -20,11 +20,16 @@ function yb_listPeople(filter){
 }
 
 function yb_disconnect(id) {
+    //csrf token
+    let csrf_token = getCSRF();
     $.ajax({
         type: 'POST',
         url: '/profile/disconnect/',
         data: {
             'id': id,
+        },
+        headers: {
+            'X-CSRFToken': csrf_token
         },
         success: function(response) {
             document.getElementById('result-people-' + id).remove();
