@@ -360,6 +360,7 @@ function customize_ui_url(data=null){
 
 
 function yb_goHome() {
+    yb_toggleMainMenu();
     yb_navigateTo("content-container", "home");
 }
 
