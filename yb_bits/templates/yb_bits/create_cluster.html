@@ -35,7 +35,7 @@
 
 
 <div id="connection-list" class="yb-fillWidth yb-vScroll yb-margin-T10" style="height: calc(100% - 70px); border-radius: 15px;">
-    <form id="create-cluster-form" class="yb-fillWidth align-center" style="font-weight: 600;" method="POST">
+    <form id="create-cluster-form" class="yb-fillWidth align-center" style="font-weight: 600;" method="POST" action="/core/create/cluster/">
         {% csrf_token %}
         <br>
         <label for="name" class="yb-autoText yb-pHead font-medium align-center">What are you naming this Cluster?</label>
@@ -65,6 +65,7 @@
 <script>
     $(document).ready(function(){
         $('#create-cluster-form').submit(function(e){
+            console.log('submitting');
             e.preventDefault();
             var form = $(this);
             var url = form.attr('action');

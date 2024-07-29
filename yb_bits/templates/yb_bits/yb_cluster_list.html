@@ -1,0 +1,41 @@
+{% load static %}
+
+{% if is_clusters %}
+{% for cluster in clusters %}
+    <div id="result-clusters-{{cluster.id}}" class="yb-listItem yb-autoText cluster-item" data-catid="{{cluster.id}}" data-username="{{cluster.name}}" onclick="yb_navigateTo('2way', 'cluster', '{{cluster.id}}');">
+
+        <div class="full-result-image-container">
+                
+        </div>
+        <div class="full-result-name-container">
+            <p class="full-result-name yb-listItem-head"><strong>{{cluster.name}}</strong></p>
+            <p class="full-result-username yb-listItem-body">
+                <small>{{cluster.type}}</small>
+            </p>
+        </div>
+    </div>
+{% endfor %}
+
+{% else %}
+    <div class="yb-fillWidth yb-center-margin yb-margin-T30 yb-margin-B10">
+        <h3 class="yb-autoText align-center yb-margin-T10">No Clusters found</h3>
+    </div>
+    <br>
+    <button id="create-cluster-list" class="yb-button-flex bg-gray-dark font-gray yb-button-halfWidth">+  Create Cluster</button>
+    <script>
+
+        document.getElementById("create-cluster-list").addEventListener("click", function(){
+            yb_toggle2WayContainer('stuff');
+            SEARCH_FIELD.focus();
+            yb_openSpotlight("stuff");
+            setTimeout(function(){
+                SEARCH_CONTAINER.classList.add("yb-pulseSmall");
+            }, 400);
+            
+            setTimeout(function(){
+                SEARCH_CONTAINER.classList.remove("yb-pulseSmall");
+            }, 1000);
+            
+        });
+    </script>
+{% endif %}

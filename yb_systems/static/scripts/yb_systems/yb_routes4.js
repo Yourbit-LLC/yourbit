@@ -87,6 +87,12 @@ const TWO_WAY_INDEX = {
             "template" : "/profile/templates/history/",
             "url" : "/profile/history/"
         },
+    
+    "cluster": 
+        {
+            "template" : "/bits/templates/cluster/",
+            "url" : "/bits/cluster/"
+        },
 
     "support-center":
         {
@@ -134,10 +140,10 @@ const TWO_WAY_INDEX = {
         },
 
     "background-image-upload":
-    {
-        "template" : "/customize/templates/wallpaper/",
-        "url" : ""
-    },
+        {
+            "template" : "/customize/templates/wallpaper/",
+            "url" : ""
+        },
     
           
 };
@@ -396,9 +402,11 @@ function yb_navigateTo(container, template, data=null){
         CONTENT_CONTAINER.innerHTML = "";
 
         if (data === null) {
+
             yb_goToPage(template);
 
         } else {
+
             yb_goToPage(template, data);
         }
 

@@ -139,6 +139,7 @@ class Cluster(models.Model):
     bits = models.ManyToManyField('yb_bits.Bit', related_name = 'clustered_bit', blank=True)
     bit_count = models.IntegerField(default=0)
     is_public = models.BooleanField(default=False)
+    time = models.DateTimeField(default=timezone.now)
 
 
 class BitComment(models.Model):

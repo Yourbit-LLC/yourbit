@@ -5,6 +5,7 @@ from django.http import JsonResponse
 from yb_accounts.models import Account as User
 from main.views import initialize_session
 from yb_customize.models import CustomUI, CustomCore
+from yb_bits.models import Cluster
 
 # Create your views here.
 #Profile Page
@@ -117,6 +118,22 @@ class FriendRequestTemplate(View):
         }
 
         return render(request, "yb_profile/yb_friend_request.html", context)
+    
+
+class StuffTemplate(View):
+    def get(self, request, *args, **kwargs):
+        profile = Profile.objects.get(user=request.user)
+        clusters = Cluster.objects.filter(profile=profile)
+        if not clusters:
+            is_clusters = False
+        else :
+            is_clusters = True
+
+        context = {
+            'is_clusters':is_clusters,
+            'clusters':clusters
+        }
+        return render(request, "yb_bits/yb_stuff.html", context)
 
 class OrbitListTemplate(View):
     def get(self, request, *args, **kwargs):
@@ -131,11 +148,8 @@ class OrbitListTemplate(View):
             "following":following,
         }
         return render(request, "yb_profile/yb_orbits.html", context)
+    
 
-class StuffTemplate(View):
-    def get(self, request, *args, **kwargs):
-
-        return render(request, "yb_bits/yb_stuff.html")
 
 class HistoryTemplate(View):
     def get(self, request, *args, **kwargs):

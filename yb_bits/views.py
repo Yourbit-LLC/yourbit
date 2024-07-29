@@ -136,3 +136,29 @@ def filter_panel_view(request, *args, **kwargs):
 
 def customize_panel_view(request, *args, **kwargs):
     return render(request, "yb_bits/yb_customize_panel.html")
+
+def list_clusters(request, *args, **kwargs):
+    profile = Profile.objects.get(user=request.user)
+    clusters = Cluster.objects.filter(profile=profile)
+    if not clusters:
+        is_clusters = False
+    else :
+        is_clusters = True
+
+    context = {
+        'is_clusters':is_clusters,
+        'clusters':clusters
+    }
+    return render(request, "yb_bits/yb_cluster_list.html", context)
+
+
+def cluster_view(request, id, *args, **kwargs):
+    this_cluster = Cluster.objects.get(pk=id)
+    bits = this_cluster.bits.all()
+    
+    if not bits:
+        is_bits = False
+    else :
+        is_bits = True
+
+    return render(request, "yb_bits/yb_cluster_view.html", {"cluster":this_cluster, "is_bits":is_bits})

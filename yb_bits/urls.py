@@ -17,5 +17,6 @@ urlpatterns = [
     path('templates/filter/sort/', sort_panel_view, name="filter-panel-sort"),
     path('templates/filter/filter/', filter_panel_view, name="filter-panel-filter"),
     path('templates/filter/customize/', customize_panel_view, name="filter-panel-customize"),
+    path('templates/cluster/<int:id>/', cluster_view, name="cluster-view"),
     
 ]
