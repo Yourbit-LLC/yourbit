@@ -348,7 +348,7 @@ def disconnect_view(request, *args, **kwargs):
         profile_id = request.POST.get("profile_id")
         this_profile = Profile.objects.get(id = profile_id)
         this_user = request.user.profile
-        
+
         if this_user.is_friends_with(this_profile):
             this_user.friends.remove(this_profile)
             this_profile.friends.remove(this_user)
@@ -361,3 +361,6 @@ def disconnect_view(request, *args, **kwargs):
         this_profile.save()
 
         return JsonResponse({"status": "success"})
+    
+    else:
+        return JsonResponse({"status": "failed"})
