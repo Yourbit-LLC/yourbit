@@ -36,6 +36,13 @@ function yb_disconnect(id) {
 
 }
 
+function yb_confirmDisconnect(id){
+    let confirm = window.confirm("Are you sure you want to disconnect?");
+    if (confirm){
+        yb_disconnect(id);
+    }
+}
+
 $(document).ready(function () {
     // yb_hide2WayLoad();
     for (let i = 0; i < filter_buttons.length; i++){
