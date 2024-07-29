@@ -11,7 +11,13 @@
                 <small>@{{connection.user.username}}</small>
             </p>
         </div>
+            
+        
+        <div id="notification-close">
+            <button class="yb-button-close notification" onclick="yb_dismissNotification({{notification.id}})">&times;</button>
+        </div>
     </div>
+
 {% endfor %}
     <script>
         $(document).ready(function(){

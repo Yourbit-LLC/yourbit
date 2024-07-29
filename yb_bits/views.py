@@ -158,7 +158,7 @@ def cluster_view(request, id, *args, **kwargs):
     
     if not bits:
         is_bits = False
-    else :
+    else:
         is_bits = True
 
     return render(request, "yb_bits/yb_cluster_view.html", {"cluster":this_cluster, "is_bits":is_bits})
