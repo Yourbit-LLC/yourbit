@@ -166,7 +166,7 @@ def cluster_view(request, id, *args, **kwargs):
 def bit_options_menu(request, id, *args, **kwargs):
     this_bit = Bit.objects.get(pk=id)
     option_set = [] 
-    if this_bit.user == request.user:
+    if this_bit.profile.user == request.user:
         #edit bit, add to cluster, hide bit, delete bit
             edit_bit_button = {
                 "label":"Edit Bit",

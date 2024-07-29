@@ -392,7 +392,7 @@ function yb_loadList(container, template, filter=null){
     }
 }
 
-function yb_navigateTo(container, template, data=null){
+function yb_navigateTo(container, template, data=null, reloadable=true) {
     if (container.includes("2way")) {
         if (data === null){
             yb_launch2WayContainer(template);
@@ -417,9 +417,19 @@ function yb_navigateTo(container, template, data=null){
     } else if (container.includes("drawer")) {
 
         if (data === null) {
-            yb_openDrawer(template);
+            if (reloadable) {
+                yb_openDrawer(template);
+            } else {
+                yb_openDrawer(template, reloadable=false);
+            }
+            
         } else {
-            yb_openDrawer(template, data);
+            if (reloadable) {
+                yb_openDrawer(template, data);
+            } else {
+                yb_openDrawer(template, data, reloadable=false);
+            }
+            
         }
     } else if (container.includes("card")) {
         if (data === null) {
