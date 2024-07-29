@@ -30,8 +30,9 @@
 
     <b class="align-center yb-pHead" style="color:gray; font-size: 18px; letter-spacing: 2px;">{{cluster.name|upper}}</b>
     <p style="font-size: small; font-weight: 550; padding-left: 5px; padding-right: 5px; font-family: 'Roboto', sans-serif; text-align: center;" class="yb-autoText yb-pText">A cluster for {{cluster.type}}{% if cluster.type == "any" %}thing {% else %}s{%endif%}</p>
-</div>
 
+</div>
+<hr>
 
 <div id="connection-list" class="yb-fillWidth yb-vScroll yb-margin-T10" style="height: calc(100% - 260px); border-radius: 15px;">
     {% if is_bits %}

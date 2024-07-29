@@ -162,3 +162,63 @@ def cluster_view(request, id, *args, **kwargs):
         is_bits = True
 
     return render(request, "yb_bits/yb_cluster_view.html", {"cluster":this_cluster, "is_bits":is_bits})
+
+def bit_options_menu(request, id, *args, **kwargs):
+    this_bit = Bit.objects.get(pk=id)
+    option_set = [] 
+    if this_bit.user == request.user:
+        #edit bit, add to cluster, hide bit, delete bit
+            edit_bit_button = {
+                "label":"Edit Bit",
+                "name": "edit",
+                "type": "bit-option",
+                "object_id": this_bit.id,
+                "action":f"yb_editBit({this_bit.id})",
+            }
+
+            delete_bit_button = {
+                "label":"Delete Bit",
+                "name": "delete",
+                "type": "bit-option",
+                "object_id": this_bit.id,
+                "action":f"yb_deleteBit({this_bit.id})",
+            }
+
+            option_set.append(edit_bit_button)
+            option_set.append(delete_bit_button)
+            
+    else:
+
+        #report bit, hide bit
+        report_bit_button = {
+            "label":"Report Bit",
+            "name": "report",
+            "type": "bit-option",
+            "object_id": this_bit.id,
+            "action":f"yb_reportBit({this_bit.id})",
+        }
+        option_set.append(report_bit_button)
+
+    add_to_cluster_button = {
+        "label":"Add to Cluster",
+        "name": "add",
+        "type": "bit-option",
+        "object_id": this_bit.id,
+        "action":f"yb_addToCluster({this_bit.id})",
+    }
+    option_set.append(add_to_cluster_button)
+
+    hide_bit_button = {
+        "label":"Hide Bit",
+        "name": "hide",
+        "type": "bit-option",
+        "object_id": this_bit.id,
+        "action":f"yb_hideBit({this_bit.id})",
+    }
+    option_set.append(hide_bit_button)
+    context = {
+        "menu_name": "Bit Options",
+        "option_set":option_set,
+    }
+        
+    return render(request, "yb_bits/yb_bit_options.html", context)

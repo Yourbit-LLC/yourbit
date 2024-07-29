@@ -27,6 +27,7 @@ const CORE_TEMPLATE_INDEX = {
 const DRAWER_CONTENT = {
     "browse-stickers": "/customize/stickers/browse/",
     "profile-connect": `/profile/templates/connect_menu/`,
+    "bit-options": "/bits/templates/options/",
 }
 
 /*
