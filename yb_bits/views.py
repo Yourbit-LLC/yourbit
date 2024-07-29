@@ -166,6 +166,25 @@ def cluster_view(request, id, *args, **kwargs):
 def bit_options_menu(request, id, *args, **kwargs):
     this_bit = Bit.objects.get(pk=id)
     option_set = [] 
+
+    add_to_cluster_button = {
+        "label":"Add to Cluster",
+        "name": "add",
+        "type": "bit-option",
+        "object_id": this_bit.id,
+        "action":f"yb_addToCluster({this_bit.id})",
+    }
+    option_set.append(add_to_cluster_button)
+
+    hide_bit_button = {
+        "label":"Hide Bit",
+        "name": "hide",
+        "type": "bit-option",
+        "object_id": this_bit.id,
+        "action":f"yb_hideBit({this_bit.id})",
+    }
+    option_set.append(hide_bit_button)
+
     if this_bit.profile.user == request.user:
         #edit bit, add to cluster, hide bit, delete bit
             edit_bit_button = {
@@ -199,23 +218,6 @@ def bit_options_menu(request, id, *args, **kwargs):
         }
         option_set.append(report_bit_button)
 
-    add_to_cluster_button = {
-        "label":"Add to Cluster",
-        "name": "add",
-        "type": "bit-option",
-        "object_id": this_bit.id,
-        "action":f"yb_addToCluster({this_bit.id})",
-    }
-    option_set.append(add_to_cluster_button)
-
-    hide_bit_button = {
-        "label":"Hide Bit",
-        "name": "hide",
-        "type": "bit-option",
-        "object_id": this_bit.id,
-        "action":f"yb_hideBit({this_bit.id})",
-    }
-    option_set.append(hide_bit_button)
     context = {
         "menu_name": "Bit Options",
         "option_set":option_set,
