@@ -145,7 +145,7 @@ function createHeader(bit) {
     `
     header.appendChild(ybMoreButton)
     ybMoreButton.addEventListener("click", function(e){
-        yb_navigateTo("drawer", "bit-options", bit.id)
+        yb_navigateTo("drawer", "bit-options", bit.id, false)
     })
 
     return header;
