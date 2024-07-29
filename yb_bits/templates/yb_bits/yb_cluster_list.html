@@ -10,7 +10,7 @@
         <div class="full-result-name-container" onclick="yb_navigateTo('2way', 'cluster', '{{cluster.id}}');">
             <p class="full-result-name yb-listItem-head"><strong>{{cluster.name}}</strong></p>
             <p class="full-result-username yb-listItem-body">
-                <small>{{cluster.type}} - {{cluster.bits.all.count}} bits</small>
+                <small>{{cluster.type}} - {% if cluster.bits.all.count == 0 %}No {% else %}{{cluster.bits.all.count}}{% endif %} bits</small>
             </p>
         </div>
         <div id="item-delete-{{cluster.id}}">
