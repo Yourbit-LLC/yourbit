@@ -106,6 +106,14 @@ class Profile(models.Model):
     def is_friends_with(self, profile):
         """Check if this user is friends with the given profile."""
         return self.friends.filter(id=profile.id).exists()
+    
+    def is_family_with(self, profile):
+        """Check if this user is family with the given profile."""
+        return self.family.filter(id=profile.id).exists()
+    
+    def is_followed_by(self, profile):
+        """Check if this user is followed by the given profile."""
+        return self.followers.filter(id=profile.id).exists()
 
     bio = models.CharField(max_length=500, blank=True, null=True)
     motto = models.CharField(max_length=100, blank=True, null=True)
