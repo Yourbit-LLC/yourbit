@@ -10,6 +10,9 @@ import io
 from django.core.files.base import ContentFile
 from django.http import JsonResponse
 import imageio
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def rename_image(user, filename, file_type):
@@ -68,44 +71,39 @@ def modify_image(image_type, user, original_image_file, crop_data):
 
     return cropped_image_file
 
-# Create your views here.
 def generate_tiny_thumbnail(user, source_file, raw_source):
-    # Open the source file
-    label = "thumbnail_medium"
+    label = "thumbnail_tiny"
     this_username = user.username
     this_uid = user.id
     timestamp = dateformat.format(timezone.now(), '%Y%m%d%-H:i-s')
 
-    # Check if the source file is a GIF
+    lthumb_io = BytesIO()
+
     if source_file.format == 'GIF':
         original_image = source_file
         new_frames = [frame.copy() for frame in ImageSequence.Iterator(original_image)]
-        lthumb_io = BytesIO()
 
-        # Handle GIF resizing
         for frame in new_frames:
             frame.thumbnail((32, 32), Image.ANTIALIAS)
 
-        this_filename = f"{this_username}{this_uid}{timestamp}{label}.gif"
-
         duration = original_image.info.get('duration', 100)
-
+        this_filename = f"{this_username}{this_uid}{timestamp}{label}.gif"
         new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=duration)
         format = 'image/gif'
     else:
-        # Handle non-GIF image resizing
-        lthumb_io = BytesIO()
         large_image = source_file.copy()
         squared_image = ImageOps.fit(large_image, (32, 32), Image.ANTIALIAS)
         squared_image.save(lthumb_io, format='PNG', quality=80)
         format = 'image/png'
         this_filename = f"{this_username}{this_uid}{timestamp}{label}.png"
 
-    # Create InMemoryUploadedFile
-    inmemory_uploaded_file = InMemoryUploadedFile(lthumb_io, None, this_filename, format, lthumb_io.tell(), None)
+    lthumb_io.seek(0)
 
-    return inmemory_uploaded_file
-
+    # Use InMemoryUploadedFile for both GIF and non-GIF
+    thumbnail_file = InMemoryUploadedFile(lthumb_io, None, this_filename, format, lthumb_io.tell(), None)
+    
+    print("Thumbnail Created")
+    return thumbnail_file
 
 def generate_small_thumbnail(user, source_file, raw_source):
     # Open the source file
@@ -117,6 +115,7 @@ def generate_small_thumbnail(user, source_file, raw_source):
     print("File Format " + source_file.format)
     # Check if the source file is a GIF
     if source_file.format == 'GIF':
+        print("File format is gif. NOT RETURNING AN IN MEMORY UPLOADED FILE!")
         original_image = source_file
         new_frames = [frame.copy() for frame in ImageSequence.Iterator(original_image)]
         lthumb_io = BytesIO()
@@ -131,6 +130,12 @@ def generate_small_thumbnail(user, source_file, raw_source):
 
         new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=duration)
         format = 'image/gif'
+
+        
+        cropped_image_file = ContentFile(lthumb_io.getvalue(), this_filename)
+
+        print("Thumbnail Created")
+        return cropped_image_file
     else:
         # Handle non-GIF image resizing
         lthumb_io = BytesIO()
@@ -140,10 +145,13 @@ def generate_small_thumbnail(user, source_file, raw_source):
         format = 'image/png'
         this_filename = f"{this_username}{this_uid}{timestamp}{label}.png"
 
-    # Create InMemoryUploadedFile
-    inmemory_uploaded_file = InMemoryUploadedFile(lthumb_io, None, this_filename, format, lthumb_io.tell(), None)
+        lthumb_io.seek(0)
 
-    return inmemory_uploaded_file
+        # Create InMemoryUploadedFile
+        inmemory_uploaded_file = InMemoryUploadedFile(lthumb_io, None, this_filename, format, lthumb_io.tell(), None)
+
+        print("Thumbnail Created")
+        return inmemory_uploaded_file
 
 def generate_medium_thumbnail(user, source_file, raw_source):
     # Open the source file
@@ -155,6 +163,7 @@ def generate_medium_thumbnail(user, source_file, raw_source):
 
     # Check if the source file is a GIF
     if source_file.format == 'GIF':
+        print("File format is gif. NOT RETURNING AN IN MEMORY UPLOADED FILE!")
         original_image = source_file
         new_frames = [frame.copy() for frame in ImageSequence.Iterator(original_image)]
         lthumb_io = BytesIO()
@@ -168,6 +177,12 @@ def generate_medium_thumbnail(user, source_file, raw_source):
         
         new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=duration)
         format = 'image/gif'
+
+        cropped_image_file = ContentFile(lthumb_io.getvalue(), this_filename)
+
+        print("Thumbnail Created")
+
+        return cropped_image_file
     else:
         # Handle non-GIF image resizing
         lthumb_io = BytesIO()
@@ -177,10 +192,13 @@ def generate_medium_thumbnail(user, source_file, raw_source):
         format = 'image/png'
         this_filename = f"{this_username}{this_uid}{timestamp}{label}.png"
 
-    # Create InMemoryUploadedFile
-    inmemory_uploaded_file = InMemoryUploadedFile(lthumb_io, None, this_filename, format, lthumb_io.tell(), None)
+        lthumb_io.seek(0)
 
-    return inmemory_uploaded_file
+        # Create InMemoryUploadedFile
+        inmemory_uploaded_file = InMemoryUploadedFile(lthumb_io, None, this_filename, format, lthumb_io.tell(), None)
+
+        print("Thumbnail Created")
+        return inmemory_uploaded_file
 
 def generate_large_thumbnail(user, source_file, raw_source):
     # Open the source file
@@ -192,6 +210,7 @@ def generate_large_thumbnail(user, source_file, raw_source):
 
     # Check if the source file is a GIF
     if source_file.format == 'GIF':
+        print("File format is gif. NOT RETURNING AN IN MEMORY UPLOADED FILE!")
         original_image = source_file
         new_frames = [frame.copy() for frame in ImageSequence.Iterator(original_image)]
         lthumb_io = BytesIO()
@@ -205,6 +224,12 @@ def generate_large_thumbnail(user, source_file, raw_source):
 
         new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=duration)
         format = 'image/gif'
+
+        
+        cropped_image_file = ContentFile(lthumb_io.getvalue(), this_filename)
+
+        print("Thumbnail Created")
+        return cropped_image_file
     else:
         # Handle non-GIF image resizing
         lthumb_io = BytesIO()
@@ -214,16 +239,18 @@ def generate_large_thumbnail(user, source_file, raw_source):
         format = 'image/png'
         this_filename = f"{this_username}{this_uid}{timestamp}{label}.png"
 
-    # Create InMemoryUploadedFile
-    inmemory_uploaded_file = InMemoryUploadedFile(lthumb_io, None, this_filename, format, lthumb_io.tell(), None)
+        lthumb_io.seek(0)
 
-    return inmemory_uploaded_file
+        # Create InMemoryUploadedFile
+        inmemory_uploaded_file = InMemoryUploadedFile(lthumb_io, None, this_filename, format, lthumb_io.tell(), None)
+        
+        print("Thumbnail Created")
+        
+        return inmemory_uploaded_file
 
 def process_image(request, source_image = None, cropped_image = None, is_private = False):
-
     print("Processing image...")
 
-    #Create new photo instance
     new_photo = Photo(image=source_image)
 
     try:
@@ -231,9 +258,8 @@ def process_image(request, source_image = None, cropped_image = None, is_private
     except:
         user = request
 
-    
+    # Ensure cropped_image is opened correctly
     cropped_image = Image.open(io.BytesIO(cropped_image.read()))
-
 
     new_photo.tiny_thumbnail = generate_tiny_thumbnail(user, cropped_image, source_image)
     new_photo.small_thumbnail = generate_small_thumbnail(user, cropped_image, source_image)
@@ -243,9 +269,13 @@ def process_image(request, source_image = None, cropped_image = None, is_private
     print("Images Cropped")
 
     new_photo.is_private = is_private
-    new_photo.save()
+
+    try:
+        new_photo.save()
+    except Exception as e:
+        logger.error(f"Error saving new_photo: {e}")
+        raise
 
     print("Processing Complete")
 
     return new_photo
-

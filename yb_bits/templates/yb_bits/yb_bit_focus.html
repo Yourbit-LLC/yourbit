@@ -50,7 +50,7 @@
         </div>
 
     {% elif bit.type == "photo"%}
-        {% for photo in bit.photos %}
+        {% for photo in bit.photos.all %}
         <div id="photo-container-{{bit.id}}" class="attached-photo-container">
                 <img id="photo-bit-{{bit.id}}" class="attached-photo" src="{{photo.large_thumbnail.url}}" data-id="163" data-index="0">
             </div>
