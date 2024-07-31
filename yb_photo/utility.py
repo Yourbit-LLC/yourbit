@@ -36,6 +36,8 @@ def modify_image(image_type, user, original_image_file, crop_data):
     from yb_photo.utility import rename_image
     image_format = original_image_file.name.split('.')[-1].lower()
 
+    print(image_type)
+
     if image_format in ['jpg', 'jpeg', 'png']:
         original_image = Image.open(original_image_file)
         cropped_image = crop_image(original_image, crop_data)
@@ -53,12 +55,13 @@ def modify_image(image_type, user, original_image_file, crop_data):
         new_name = rename_image(user, original_image_file.name, 'gif')
         cropped_image_file = ContentFile(output_io.getvalue(), new_name)
         
+        
 
     else:
 
         return JsonResponse({'status': 'failed', 'message': 'Unsupported image format'}, status=400)
     
-
+    print(image_type)
     if image_type == "profile":
 
         cropped_image_file = process_image(user, original_image_file, cropped_image_file, is_private = False)
@@ -68,7 +71,6 @@ def modify_image(image_type, user, original_image_file, crop_data):
 # Create your views here.
 def generate_tiny_thumbnail(user, source_file, raw_source):
     # Open the source file
-    source_file = Image.open(source_file)
     label = "thumbnail_medium"
     this_username = user.username
     this_uid = user.id
@@ -77,7 +79,7 @@ def generate_tiny_thumbnail(user, source_file, raw_source):
     # Check if the source file is a GIF
     if source_file.format == 'GIF':
         original_image = source_file
-        new_frames = [Image.fromarray(frame) for frame in original_image]
+        new_frames = [frame.copy() for frame in ImageSequence.Iterator(original_image)]
         lthumb_io = BytesIO()
 
         # Handle GIF resizing
@@ -86,7 +88,9 @@ def generate_tiny_thumbnail(user, source_file, raw_source):
 
         this_filename = f"{this_username}{this_uid}{timestamp}{label}.gif"
 
-        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=100)  
+        duration = original_image.info.get('duration', 100)
+
+        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=duration)
         format = 'image/gif'
     else:
         # Handle non-GIF image resizing
@@ -105,7 +109,6 @@ def generate_tiny_thumbnail(user, source_file, raw_source):
 
 def generate_small_thumbnail(user, source_file, raw_source):
     # Open the source file
-    source_file = source_file
     label = "thumbnail_medium"
     this_username = user.username
     this_uid = user.id
@@ -114,22 +117,19 @@ def generate_small_thumbnail(user, source_file, raw_source):
     print("File Format " + source_file.format)
     # Check if the source file is a GIF
     if source_file.format == 'GIF':
-        # Create a new BytesIO object for the thumbnail
+        original_image = source_file
+        new_frames = [frame.copy() for frame in ImageSequence.Iterator(original_image)]
         lthumb_io = BytesIO()
 
         # Handle GIF resizing
-        frames = ImageSequence.Iterator(source_file)
-        new_frames = []
-        for frame in frames:
-            new_frame = ImageOps.fit(frame.convert('RGBA'), (64, 64), Image.ANTIALIAS)
-            new_frames.append(new_frame)
+        for frame in new_frames:
+            frame.thumbnail((64, 64), Image.ANTIALIAS)
 
-        # Save the new frames as a GIF
-        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=100)
-
-        # Update filename and format
         this_filename = f"{this_username}{this_uid}{timestamp}{label}.gif"
-        
+
+        duration = original_image.info.get('duration', 100)
+
+        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=duration)
         format = 'image/gif'
     else:
         # Handle non-GIF image resizing
@@ -147,7 +147,6 @@ def generate_small_thumbnail(user, source_file, raw_source):
 
 def generate_medium_thumbnail(user, source_file, raw_source):
     # Open the source file
-    source_file = source_file
     label = "thumbnail_medium"
     this_username = user.username
     this_uid = user.id
@@ -156,21 +155,18 @@ def generate_medium_thumbnail(user, source_file, raw_source):
 
     # Check if the source file is a GIF
     if source_file.format == 'GIF':
-        # Create a new BytesIO object for the thumbnail
+        original_image = source_file
+        new_frames = [frame.copy() for frame in ImageSequence.Iterator(original_image)]
         lthumb_io = BytesIO()
 
         # Handle GIF resizing
-        frames = ImageSequence.Iterator(source_file)
-        new_frames = []
-        for frame in frames:
-            new_frame = ImageOps.fit(frame.convert('RGBA'), (256, 256), Image.ANTIALIAS)
-            new_frames.append(new_frame)
+        for frame in new_frames:
+            frame.thumbnail((256, 256), Image.ANTIALIAS)
 
-        # Save the new frames as a GIF
-        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=100)
-
-        # Update filename and format
         this_filename = f"{this_username}{this_uid}{timestamp}{label}.gif"
+        duration = original_image.info.get('duration', 100)
+        
+        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=duration)
         format = 'image/gif'
     else:
         # Handle non-GIF image resizing
@@ -188,7 +184,6 @@ def generate_medium_thumbnail(user, source_file, raw_source):
 
 def generate_large_thumbnail(user, source_file, raw_source):
     # Open the source file
-    source_file = source_file
     label = "thumbnail_medium"
     this_username = user.username
     this_uid = user.id
@@ -197,21 +192,18 @@ def generate_large_thumbnail(user, source_file, raw_source):
 
     # Check if the source file is a GIF
     if source_file.format == 'GIF':
-        # Create a new BytesIO object for the thumbnail
+        original_image = source_file
+        new_frames = [frame.copy() for frame in ImageSequence.Iterator(original_image)]
         lthumb_io = BytesIO()
 
         # Handle GIF resizing
-        frames = ImageSequence.Iterator(source_file)
-        new_frames = []
-        for frame in frames:
-            new_frame = ImageOps.fit(frame.convert('RGBA'), (512, 512), Image.ANTIALIAS)
-            new_frames.append(new_frame)
+        for frame in new_frames:
+            frame.thumbnail((512, 512), Image.ANTIALIAS)
 
-        # Save the new frames as a GIF
-        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=100)
-
-        # Update filename and format
         this_filename = f"{this_username}{this_uid}{timestamp}{label}.gif"
+        duration = original_image.info.get('duration', 100)
+
+        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=duration)
         format = 'image/gif'
     else:
         # Handle non-GIF image resizing
@@ -238,6 +230,10 @@ def process_image(request, source_image = None, cropped_image = None, is_private
         user = request.user
     except:
         user = request
+
+    
+    cropped_image = Image.open(io.BytesIO(cropped_image.read()))
+
 
     new_photo.tiny_thumbnail = generate_tiny_thumbnail(user, cropped_image, source_image)
     new_photo.small_thumbnail = generate_small_thumbnail(user, cropped_image, source_image)

@@ -59,10 +59,11 @@ def upload_image(request, *args, **kwargs):
 
 
         elif request.POST.get('image_type') == "profile":
-            
+            from yb_photo.api.serializers import PhotoSerializer
             custom_core.profile_image = cropped_image
+            custom_core.save()
 
-            return JsonResponse({'status': 'success', 'image': custom_core.profile_image.url}, status=200)
+            return JsonResponse({'status': 'success'}, status=200)
             
 
 

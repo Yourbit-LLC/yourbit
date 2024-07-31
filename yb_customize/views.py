@@ -23,7 +23,7 @@ class CustomizeProfile(View):
 
 from yb_profile.models import Profile, Orbit
 from yb_photo.models import Photo
-from yb_photo.utility import process_image
+from yb_photo.utility import process_image, modify_image
 
 class CustomizeMain(View):
     def get(request, *args, **kwargs):
@@ -69,9 +69,9 @@ def update_profile_image(request):
         return HttpResponse("Invalid request type")
 
     source_image = request.FILES.get('image')
-    cropped_image = request.FILES.get('cropped_image')
+    crop_data = request.POST.get('crop_data')
 
-    new_photo = process_image(request, source_image, cropped_image)
+    new_photo = modify_image('profile', request.user, source_image, crop_data)
 
     if request.POST.get('class') == 'profile':
         new_photo.profile = this_profile
