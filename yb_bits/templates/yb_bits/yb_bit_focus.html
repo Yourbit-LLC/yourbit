@@ -15,11 +15,11 @@
             <img style="object-fit:fill; border-radius: 50%; width: 100%;" src="{{bit.profile.custom.profile_image.small_thumbnail.url}}">
         </div>
         <p id="bit-info-{{bit.id}}" class="yb-userInfo-bit">
-            <strong class="bit-name" style="color:#ffffff;">
+            <strong class="bit-name" style="color:{{custom_bit.title_color}};">
                 {{bit.profile.display_name}}
             </strong>
             <br> 
-            <small class="bit-username" style="color:#ffffff;">
+            <small class="bit-username" style="color:{{custom_bit.title_color}};">
                 @{{bit.profile.username}}
             </small>
         </p>
@@ -36,7 +36,7 @@
             </svg>
         </div>
     </div>
-    <div id="title-bit-{{bit.id}}" class="yb-title-bit yb-margin-T10">
+    <div id="title-bit-{{bit.id}}" class="yb-title-bit yb-margin-T10" style="color: {{custom_bit.title_color}};">
         <h2 class="yb-autoText align-center">
             {{bit.title}}
         </h2>
@@ -58,7 +58,7 @@
     {% endif %}
 
     
-    <div id="body-bit-{{bit.id}}" class="yb-body-bit">
+    <div id="body-bit-{{bit.id}}" class="yb-body-bit" style="color: {{custom_bit.text_color}};">
         <p id="bit-bodyText-{{bit.id}}" class="yb-bodyText-bit yb-autoText font-medium">
             {{bit.body | linebreaksbr}}
         </p>
