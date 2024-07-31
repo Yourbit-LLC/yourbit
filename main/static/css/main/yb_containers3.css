@@ -35,20 +35,19 @@
     
     }
     
-    
 }
 
 @media screen and (min-width: 768px){
     .yb-card {
         /*Positioning*/
         position: fixed;
-        top: 200%;
+        top: 100%;
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 1002;
         border-radius: 25px;
 
-        height: 500px;
+        height: 610px;
         width: 650px;
 
         /*Style*/
@@ -228,7 +227,7 @@
     max-height: 100px;
     min-height: 40px;
     padding: 10px;
-    column-gap: 10px;
+    column-gap: 20px;
 
     /*Style*/
     border-radius: 10px;
@@ -239,11 +238,6 @@
     transition: 0.5s;
 
 }
-
-/* General styles for notification list items */
-
-
-
 
 
 /* Styles for seen and unseen notifications */
@@ -408,14 +402,17 @@
     color: white;
 }
 
-
-.yb-panel-wide {
-    background-color: var(--yb-panel-color);
-    filter: brightness(0.8);
-    -webkit-filter: brightness(0.8);
+@media (prefers-color-scheme: dark) {
+    .yb-panel-wide {
+        background-color: #333;
+    }
 }
 
-
+@media (prefers-color-scheme: light) {
+    .yb-panel-wide {
+        background-color: white;
+    }
+}
 
 .yb-panel-wide.panel-gray {
     background-color: #4b4b4b;
@@ -510,13 +507,74 @@
     transition: 0.3s;
 }
 
+
+.yb-2Way-tetriary {
+    transform: translateX(100%);
+    transition: 0.3s;
+}
+
+.yb-2Way-tetriary.active {
+    transform: translateX(0);
+    transition: 0.3s;
+}
+
+
+.yb-container-drawer {
+    position: fixed;
+    z-index: 99;
+    box-shadow: black 0px 0px 50px 0px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+
+}
+
+@media screen and (max-width: 768px) {
+    .yb-container-drawer {
+        right: 0px;
+        bottom: 0px;
+        width: 100vw;
+        height: 45vh;
+        
+        transform: translateY(100vh);
+        transition: 0.25s;
+        
+    
+    }
+
+    .yb-container-drawer.open {
+        transform: translateY(0);
+        transition: 0.25s;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .yb-container-drawer {
+        left: 50%;
+        bottom: 0px;
+        width: 100vw;
+        max-width: 750px;
+        height: 35vh;
+        transform: translateY(100vh) translateX(-50%);
+        transition: 0.25s;
+        
+    }
+
+    .yb-container-drawer.open {
+        transform: translateY(0) translateX(-50%);
+        transition: 0.25s;
+    }
+        
+    
+}
+
+
 @media screen and (max-width: 768px) {
     .yb-2Way-container {
         right: 0px;
         bottom: 0px;
         width: 100vw;
         height: 100vh;
-        top: 0px;
         transform: translateY(100vh);
         transition: 0.25s;
         overflow-y: scroll;
@@ -579,9 +637,9 @@
     overflow: hidden;
     z-index: 3;
     overflow-y: scroll;
-    -webkit-backdrop-filter: blur(20px);
+    /* -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
-    
+     */
 
 }
 
@@ -900,22 +958,26 @@
 
 .field-tag {
     position: absolute;
-    grid-gap: 5px;
-    width: auto;
+    grid-gap: 2px;
+    width: 100px;
     height: 30px;
     margin-left: 10px;
     top: 50%;
     transform: translateY(-50%);
     background-color: #4b4b4b;
     overflow: hidden;
+    font-size: 12px;
+    line-height: 2;
+    display: grid;
+    grid-template-columns: 70px 30px;
 }
 
 .full-result-image-container {
     position: relative;
     display: block;
     object-fit: contain;
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     margin-left: auto;
     margin-right: auto;
