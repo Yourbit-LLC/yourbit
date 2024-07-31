@@ -5,7 +5,7 @@
 
         <div class="full-result-image-container" onclick="yb_viewBit({{bit.id}})">
             {% if bit.type == "photo"%}
-                <img src="{{bit.thumbnail}}" class="full-result-image" alt="{{bit.title}}">
+                <img src="{{bit.photos.first.medium_thumbnail}}" class="full-result-image" alt="{{bit.title}}">
             {% endif %}
         </div>
         <div class="full-result-name-container" onclick="yb_viewBit({{bit.id}})">
