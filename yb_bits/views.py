@@ -154,7 +154,10 @@ def list_clusters(request, *args, **kwargs):
 
 def select_clusters(request, bit_id, *args, **kwargs):
     profile = Profile.objects.get(user=request.user)
-    clusters = Cluster.objects.filter(profile=profile)
+    
+    this_bit = Bit.objects.get(pk=bit_id)
+
+    clusters = Cluster.objects.filter(profile=profile, type__in=[this_bit.type, "any"])
 
     if not clusters:
         is_clusters = False
