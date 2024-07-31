@@ -99,6 +99,13 @@ class Bit(models.Model):
             f"({self.time: %Y-%m-%d %H:%M}): "
             f"{self.body[:30]}..."
         )
+    
+    def is_liked(self, user):
+        return self.likes.filter(user=user).exists()
+    
+    def is_disliked(self, user):
+        return self.dislikes.filter(user=user).exists()
+    
 
     # def save(self, *args, **kwargs):
     #     super(Bit, self).save(*args, **kwargs)

@@ -1144,8 +1144,8 @@ function yb_hidePopoutCard() {
 }
 
 function yb_viewBit(bit_id, comment_id = null) {
-    let url = `/bits/templates/bit/focus/${bit_id}/`;
-    yb_openFocusContainer(url);
+    
+    yb_openFocusContainer("bit", bit_id);
 }
 
 function yb_sendThanks(profile_id) {

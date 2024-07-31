@@ -452,10 +452,28 @@ function yb_closeCard() {
 
 */
 
+const FOCUS_INDEX = {
+    "bit" : {
+        "template": "/bits/templates/bit/focus/",
+        "url": "/bits/view/",
+    },
+    "video" : {
+        "template": "/bits/templates/video/focus/",
+        "url": "/bits/view/",
+    }
+}
+
+
 //Open the content focus container with content from a specified source
-function yb_openFocusContainer(source){
+function yb_openFocusContainer(template, data=null) {
     $(FOCUS_CONTAINER).fadeIn(500);
-    $(FOCUS_CONTAINER).load(source);
+    if (data) {
+        $(FOCUS_CONTAINER).load(FOCUS_INDEX[template].template + data.toString() + "/");
+    } else {
+        $(FOCUS_CONTAINER).load(FOCUS_INDEX[template].template);
+    }
+
+    history.pushState({}, "", FOCUS_INDEX[template].url + data.toString() + "/");
 }
 
 //Close the content focus container
