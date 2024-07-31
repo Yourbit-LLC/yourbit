@@ -9,9 +9,18 @@
             {% endif %}
         </div>
         <div class="full-result-name-container" onclick="yb_viewBit({{bit.id}})">
-            <p class="full-result-name yb-listItem-head"><strong>{{bit.title}}</strong></p>
+            {% if bit.title != "" %}
+                <p class="full-result-name yb-listItem-head"><strong>{{bit.title}}</strong></p>
+            {% elif bit.body != "" %}
+                <p class="full-result-name yb-listItem-body">
+                    <small>{{bit.body|slice:":150"}}</small>
+                </p>
+            {% else %}
+                <p class="full-result-name yb-listItem-head"><strong>Untitled Bit by {{bit.user.display_name}}</strong></p>
+            {% endif %}
+
             <p class="full-result-username yb-listItem-body">
-                <small>{{bit.body|slice:":150"}}</small>
+                Posted by: {{bit.user.username}} on {{bit.created|date:"F j, Y"}}
             </p>
         </div>
     </div>
