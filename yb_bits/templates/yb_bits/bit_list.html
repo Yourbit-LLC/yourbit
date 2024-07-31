@@ -8,7 +8,7 @@
                 <img src="{{bit.thumbnail}}" class="full-result-image" alt="{{bit.title}}">
             {% endif %}
         </div>
-        <div class="full-result-name-container" onclick="yb_viewBit({{click_handler}})">
+        <div class="full-result-name-container" onclick="yb_viewBit({{bit.id}})">
             <p class="full-result-name yb-listItem-head"><strong>{{bit.title}}</strong></p>
             <p class="full-result-username yb-listItem-body">
                 <small>{{bit.body|slice:":150"}}</small>
