@@ -810,7 +810,6 @@ p {
 
 .yb-container-focus {
     position: fixed;
-    z-index: 1003;
     top: 0px;
     left: 0px;
     width: 100vw;
@@ -818,6 +817,19 @@ p {
     -webkit-backdrop-filter: blur(50px);
     backdrop-filter: blur(40px);
     display: none;
+}
+
+
+@media screen and (max-width: 768px) {
+    .yb-container-focus {
+        z-index: 1005;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .yb-container-focus {
+        z-index: 1003;
+    }
 }
 
 @media (prefers-color-scheme: dark) {
