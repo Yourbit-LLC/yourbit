@@ -1,0 +1,26 @@
+{% load static %}
+{% if is_bits %}
+{% for bit in bits %}
+    <div id="result-bits-{{bit.id}}" class="yb-listItem yb-autoText bit-item" data-catid="{{bit.id}}" data-username="{{bit.title}}">
+
+        <div class="full-result-image-container" onclick="{{click_handler}}{{bit.id}})">
+            {% if bit.type == "photo"%}
+                <img src="{{bit.thumbnail}}" class="full-result-image" alt="{{bit.title}}">
+            {% endif %}
+        </div>
+        <div class="full-result-name-container" onclick="yb_viewBit({{click_handler}})">
+            <p class="full-result-name yb-listItem-head"><strong>{{bit.title}}</strong></p>
+            <p class="full-result-username yb-listItem-body">
+                <small>{{bit.body|slice:":150"}}</small>
+            </p>
+        </div>
+    </div>
+{% endfor %}
+{% else %}
+<div class="yb-fillWidth yb-center-margin yb-margin-T30 yb-margin-B10">
+    <h3 class="yb-autoText align-center yb-margin-T10">No Bits found</h3>
+</div>
+<br>
+
+
+{% endif %}

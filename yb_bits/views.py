@@ -101,13 +101,6 @@ def bit_focus_view(request, pk, *args, **kwargs):
     this_bit = Bit.objects.get(pk=pk)
     return render(request, "yb_bits/yb_bit_focus.html", {"bit":this_bit})
 
-def like_history_view(request, *args, **kwargs):
-    profile = Profile.objects.get(user=request.user)
-    bit_likes = BitLike.objects.filter(profile=profile).order_by('-time')
-    context = {
-        'bit_likes':bit_likes
-    }
-    return render(request, "yb_bits/yb_bit_list.html", context)
 
 def comment_history_view(request, *args, **kwargs):
     profile = Profile.objects.get(user=request.user)
@@ -182,7 +175,7 @@ def cluster_view(request, id, *args, **kwargs):
     else:
         is_bits = True
 
-    return render(request, "yb_bits/yb_cluster_view.html", {"cluster":this_cluster, "is_bits":is_bits, "bits":bits})
+    return render(request, "yb_bits/yb_cluster_view.html", {"cluster":this_cluster, "is_bits":is_bits, "click_handler":"yb_viewBit(", "bits":bits})
 
 def bit_options_menu(request, id, *args, **kwargs):
     this_bit = Bit.objects.get(pk=id)

@@ -153,9 +153,27 @@ class OrbitListTemplate(View):
 
 
 class HistoryTemplate(View):
+    
     def get(self, request, *args, **kwargs):
+        from yb_bits.models import BitLike
+        
+        bit_likes = BitLike.objects.filter(user=request.user).order_by('-time')
 
-        return render(request, "yb_profile/yb_history.html")
+        bits = []
+        if not bit_likes:
+            is_bits = False
+        else:
+            is_bits = True
+            for like in bit_likes:
+                bits.append(like.bit)
+
+        context = {
+            'bits':bits,
+            'is_bits':is_bits,
+            'click_handler':"yb_viewBit(",
+        }
+
+        return render(request, "yb_profile/yb_history.html", context)
 
 class ProfileConnectTemplate(View):
     def get(self, request, id, *args, **kwargs):
