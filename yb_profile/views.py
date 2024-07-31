@@ -231,7 +231,7 @@ def history_list(request, filter, *args, **kwargs):
         'click_handler':"yb_viewBit(",
     }
 
-    return render(request, "yb_profile/yb_history.html", context)
+    return render(request, "yb_bits/bit_list.html", context)
 
 class HistoryTemplate(View):
     
