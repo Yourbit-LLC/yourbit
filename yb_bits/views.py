@@ -167,7 +167,7 @@ def select_clusters(request, bit_id, *args, **kwargs):
         'bit_id':bit_id,
         'page_action':"selecting",
     }
-    return render(request, "yb_bits/yb_cluster_list.html", context)
+    return render(request, "yb_bits/cluster_select.html", context)
 
 
 def cluster_view(request, id, *args, **kwargs):
@@ -268,4 +268,4 @@ def add_to_cluster(request, *args, **kwargs):
         this_cluster.bits.add(this_bit)
         this_cluster.save()
 
-        return JsonResponse({"status":"success"})
+        return JsonResponse({"status":"success", "cluster_name":this_cluster.name})

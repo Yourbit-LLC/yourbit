@@ -671,7 +671,8 @@ function yb_addToCluster(cluster_id, bit_id) {
         },
         success: function(data){
             console.log(data);
-            yb_showNotification(expandNotification, "Bit added to cluster");
+            showNotification(expandNotification, "Bit added to " + data.cluster_name);
+            yb_closeDrawer();
         }
     })
 }
