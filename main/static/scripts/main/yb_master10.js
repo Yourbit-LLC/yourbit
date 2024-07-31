@@ -1148,6 +1148,13 @@ function yb_viewBit(bit_id, comment_id = null) {
     yb_openFocusContainer("bit", bit_id);
 }
 
+//Close the card container
+function yb_closeCard() {
+    CARD_CONTAINER.innerHTML = '';
+    CARD_CONTAINER.classList.remove("open");
+    ELEMENT_DIVIDER_1.style.display = "none";
+}
+
 function yb_sendThanks(profile_id) {
     
     let csrf = getCSRF();

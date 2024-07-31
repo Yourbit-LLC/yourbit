@@ -439,13 +439,6 @@ function yb_openCard(content, data=null) {
     ELEMENT_DIVIDER_1.style.display = "block";
 }
 
-//Close the card container
-function yb_closeCard() {
-    CARD_CONTAINER.innerHTML = '';
-    CARD_CONTAINER.classList.remove("open");
-    ELEMENT_DIVIDER_1.style.display = "none";
-}
-
 /*
 
     Content Focus Container
