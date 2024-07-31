@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 from yb_accounts.models import Account
 from yb_settings.models import PrivacySettings
-from django_recaptcha.fields import ReCaptchaV3, ReCaptchaField
+from captcha.fields import ReCaptchaV3, ReCaptchaField
 
 
 
