@@ -150,7 +150,88 @@ class OrbitListTemplate(View):
         }
         return render(request, "yb_profile/yb_orbits.html", context)
     
+def history_list(request, filter, *args, **kwargs):
 
+    if filter == "liked":
+        from yb_bits.models import BitLike
+            
+        bit_likes = BitLike.objects.filter(user=request.user).order_by('-time')
+
+        bits = []
+        if not bit_likes:
+            is_bits = False
+        else:
+            is_bits = True
+            for like in bit_likes:
+                bits.append(like.bit)
+
+    if filter == "disliked":
+        from yb_bits.models import BitDislike
+            
+        bit_dislikes = BitDislike.objects.filter(user=request.user).order_by('-time')
+
+        bits = []
+        if not bit_dislikes:
+            is_bits = False
+        else:
+            is_bits = True
+            for dislike in bit_dislikes:
+                bits.append(dislike.bit)
+
+    if filter == "watched":
+        from yb_bits.models import InteractionHistory
+
+        profile = Profile.objects.get(user=request.user)
+        try:
+            interaction_history = InteractionHistory.objects.get(profile=profile)
+
+        except:
+            interaction_history = InteractionHistory(profile=profile)
+            interaction_history.save()
+
+        interactions = interaction_history.watched.all()
+
+        bits = []
+
+        if not interactions:
+            is_bits = False
+        else:
+            is_bits = True
+            for interaction in interactions:
+                bits.append(interaction)
+
+    if filter == "comments":
+        from yb_bits.models import InteractionHistory
+
+        profile = Profile.objects.get(user=request.user)
+
+        try:
+            interaction_history = InteractionHistory.objects.get(profile=profile)
+
+        except:
+            interaction_history = InteractionHistory(profile=profile)
+            interaction_history.save()
+        interactions = interaction_history.commented_on.all()
+
+        bits = []
+
+        if not interactions:
+            is_bits = False
+        else:
+            is_bits = True
+            for interaction in interactions:
+                bits.append(interaction)
+
+    
+
+        
+    context = {
+        'bits':bits,
+        'is_bits':is_bits,
+        'click_handler':"yb_viewBit(",
+    }
+
+    return render(request, "yb_profile/yb_history.html", context)
 
 class HistoryTemplate(View):
     
