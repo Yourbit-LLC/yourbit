@@ -5,9 +5,9 @@
 
         <div class="full-result-image-container" onclick="yb_viewBit({{bit.id}})">
             {% if bit.type == "photo"%}
-                <img src="{{bit.photos.first.medium_thumbnail.url}}" class="full-result-image" alt="{{bit.title}}">
+                <img style="width: 100%;" src="{{bit.photos.first.medium_thumbnail.url}}" class="full-result-image" alt="{{bit.title}}">
             {% else %}
-                <img src="{{bit.profile.custom.profile_image.medium_thumbnail.url}}" class="full-result-image" alt="{{bit.title}}">
+                <img style="width: 100%;" src="{{bit.profile.custom.profile_image.medium_thumbnail.url}}" class="full-result-image" alt="{{bit.title}}">
             {% endif %}
         </div>
         <div class="full-result-name-container" onclick="yb_viewBit({{bit.id}})">
