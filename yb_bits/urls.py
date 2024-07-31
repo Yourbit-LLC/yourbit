@@ -9,8 +9,12 @@ urlpatterns = [
     path('api/', include('yb_bits.routers')),
     path('api/bitstream/', BitFeedAPIView.as_view(), name='bitstream'),
     path("delete-cluster/", delete_cluster, name="delete-cluster"),
+    path("add-to-cluster/", add_to_cluster, name="add-to-cluster"),
+    
 
     #URL for views
+    path("templates/list-clusters/", list_clusters, name="list-clusters"),
+    path("templates/select-clusters/<int:bit_id>/", select_clusters, name="list-clusters"),
     path('templates/builder/<int:pk>/edit/', bit_builder_view, name="bit-builder"),
     path('templates/builder/', bit_builder_view, name="bit-builder"),
     path('templates/bitstream/', bitstream_view, name="bit-feed"),

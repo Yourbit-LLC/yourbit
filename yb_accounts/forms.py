@@ -5,6 +5,9 @@ from django.contrib.auth.forms import UserCreationForm
 
 from yb_accounts.models import Account
 from yb_settings.models import PrivacySettings
+from django_recaptcha.fields import ReCaptchaV3, ReCaptchaField
+
+
 
 class DateInput(forms.DateInput):
     input_type = 'date'
@@ -12,7 +15,7 @@ class DateInput(forms.DateInput):
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(max_length=60, help_text='*Required')
     dob = forms.DateField(help_text='*Required',widget=DateInput)
-    
+    captcha = ReCaptchaField(widget=ReCaptchaV3, label='')
     class Meta:
         model = Account
         fields = ("email", "username", "first_name", "last_name", "dob", "password1", "password2")
@@ -46,7 +49,7 @@ class RegistrationForm(UserCreationForm):
 
 class LoginForm(forms.ModelForm):
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
-
+    captcha = ReCaptchaField(widget=ReCaptchaV3, label='')
     class Meta:
         model = Account
         fields = ('email', 'password')
@@ -65,3 +68,5 @@ class LoginForm(forms.ModelForm):
 
         self.fields['email'].widget.attrs.update({'placeholder': 'Email'})
         self.fields['password'].widget.attrs.update({'placeholder': 'Password'})
+
+        

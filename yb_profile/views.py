@@ -131,7 +131,8 @@ class StuffTemplate(View):
 
         context = {
             'is_clusters':is_clusters,
-            'clusters':clusters
+            'clusters':clusters,
+            'page_action':"view",
         }
         return render(request, "yb_bits/yb_stuff.html", context)
 

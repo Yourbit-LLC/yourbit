@@ -36,7 +36,7 @@
 
 <div id="connection-list" class="yb-fillWidth yb-vScroll yb-margin-T10" style="height: calc(100% - 260px); border-radius: 15px;">
     {% if is_bits %}
-        {% for bit in bits.all %}
+        {% for bit in bits %}
             <div id="result-bits-{{bit.id}}" class="yb-listItem yb-autoText bit-item" data-catid="{{bit.id}}" data-username="{{bit.title}}" onclick="yb_toggle2WayContainer('people')">
 
                 <div class="full-result-image-container">

@@ -147,7 +147,25 @@ def list_clusters(request, *args, **kwargs):
 
     context = {
         'is_clusters':is_clusters,
-        'clusters':clusters
+        'clusters':clusters,
+        'page_action':"viewing",
+    }
+    return render(request, "yb_bits/yb_cluster_list.html", context)
+
+def select_clusters(request, bit_id, *args, **kwargs):
+    profile = Profile.objects.get(user=request.user)
+    clusters = Cluster.objects.filter(profile=profile)
+
+    if not clusters:
+        is_clusters = False
+    else :
+        is_clusters = True
+
+    context = {
+        'is_clusters':is_clusters,
+        'clusters':clusters,
+        'bit_id':bit_id,
+        'page_action':"selecting",
     }
     return render(request, "yb_bits/yb_cluster_list.html", context)
 
@@ -161,7 +179,7 @@ def cluster_view(request, id, *args, **kwargs):
     else:
         is_bits = True
 
-    return render(request, "yb_bits/yb_cluster_view.html", {"cluster":this_cluster, "is_bits":is_bits})
+    return render(request, "yb_bits/yb_cluster_view.html", {"cluster":this_cluster, "is_bits":is_bits, "bits":bits})
 
 def bit_options_menu(request, id, *args, **kwargs):
     this_bit = Bit.objects.get(pk=id)
@@ -172,7 +190,7 @@ def bit_options_menu(request, id, *args, **kwargs):
         "name": "add",
         "type": "bit-option",
         "object_id": this_bit.id,
-        "action":f"yb_addToCluster({this_bit.id})",
+        "action":f"yb_listClusters({this_bit.id})",
     }
     option_set.append(add_to_cluster_button)
 
@@ -233,4 +251,21 @@ def delete_cluster(request, *args, **kwargs):
         this_id = request.POST.get("id")
         cluster = Cluster.objects.get(pk=this_id)
         cluster.delete()
+        return JsonResponse({"status":"success"})
+    
+def add_to_cluster(request, *args, **kwargs):
+    if request.method != "POST":
+        return JsonResponse({"status":"failed"})
+    
+    else:
+        cluster_id = request.POST.get("cluster_id")
+        bit_id = request.POST.get("bit_id")
+
+        print("bit_id", bit_id)
+        
+        this_cluster = Cluster.objects.get(pk=cluster_id)
+        this_bit = Bit.objects.get(pk=bit_id)
+        this_cluster.bits.add(this_bit)
+        this_cluster.save()
+
         return JsonResponse({"status":"success"})

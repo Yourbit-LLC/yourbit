@@ -655,6 +655,32 @@ function yb_navigateToProfile(e) {
     }
 }
 
+function yb_addToCluster(cluster_id, bit_id) {
+    let csrf = getCSRF();
+    let url = "/bits/add-to-cluster/";
+    let data = {
+        'bit_id': bit_id,
+        'cluster_id': cluster_id,
+    }
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: data,
+        headers: {
+            'X-CSRFToken': csrf
+        },
+        success: function(data){
+            console.log(data);
+            yb_showNotification(expandNotification, "Bit added to cluster");
+        }
+    })
+}
+
+function yb_listClusters(bit_id) {
+    yb_openDrawer("list-clusters", bit_id, false);
+}
+
+
 function yb_submitQuery(){
     let search_term = SEARCH_FIELD.value;
     let csrf = getCSRF();

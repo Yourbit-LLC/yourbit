@@ -25,15 +25,17 @@
     
         {% endif %}
         </div>
-        <div class="full-result-name-container" onclick="yb_navigateTo('2way', 'cluster', '{{cluster.id}}');">
+        <div class="full-result-name-container" onclick="{% if page_action == "view" %}yb_navigateTo('2way', 'cluster', '{{cluster.id}}'){% else %}yb_addToCluster({{cluster.id}}, {{bit_id}}){% endif %};">
             <p class="full-result-name yb-listItem-head"><strong>{{cluster.name}}</strong></p>
             <p class="full-result-username yb-listItem-body">
                 <small>{{cluster.type}}  -  {% if cluster.bits.all.count == 0 %}No {% else %}{{cluster.bits.all.count}}{% endif %} bits</small>
             </p>
         </div>
+        {% if page_action == "view" %}
         <div id="item-delete-{{cluster.id}}">
             <button class="yb-button-close notification" onclick="yb_deleteCluster({{cluster.id}})">&times;</button>
         </div>
+        {% endif %}
     </div>
 {% endfor %}
 

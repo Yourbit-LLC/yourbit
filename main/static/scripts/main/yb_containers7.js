@@ -33,7 +33,9 @@ const FOCUS_CONTAINER = document.getElementById("core-focus-container");
 const CARD_CONTAINER = document.getElementById("yb-card");
 
 function yb_openDrawer(template, id=null, reloadable=true) {
-    DRAWER.classList.add("open");
+    if (!DRAWER.classList.contains("open")) {
+        DRAWER.classList.add("open");   
+    }
     console.log(template)
     if (reloadable == false) {
         DRAWER_CONTENT[template] = DRAWER_CONTENT[template].split("?")[0];
