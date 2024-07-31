@@ -3,7 +3,7 @@
 {% for bit in bits %}
     <div id="result-bits-{{bit.id}}" class="yb-listItem yb-autoText bit-item" data-catid="{{bit.id}}" data-username="{{bit.title}}">
 
-        <div class="full-result-image-container" onclick="{{click_handler}}{{bit.id}})">
+        <div class="full-result-image-container" onclick="yb_viewBit({{bit.id}})">
             {% if bit.type == "photo"%}
                 <img src="{{bit.thumbnail}}" class="full-result-image" alt="{{bit.title}}">
             {% endif %}
