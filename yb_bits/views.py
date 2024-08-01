@@ -8,12 +8,13 @@ from .models import *
 # Create your views here.
 def bit_builder_view(request):
     bit_form = BitForm()
-    return render(request, "yb_bits/yb_bitBuilder.html", {"bit_form":bit_form})
+    print("bit_builder_view")
+    return render(request, "yb_bits/yb_bitBuilder.html", {"bit_form":bit_form, "build_mode":"create"})
 
 def edit_bit_view(request, pk):
     this_bit = Bit.objects.get(pk=pk)
     bit_form = BitForm(instance=this_bit)
-    return render(request, "yb_bits/yb_bitBuilder.html", {"bit_form":bit_form})
+    return render(request, "yb_bits/yb_bitBuilder.html", {"bit_form":bit_form, "build_mode":"edit"})
 
 def bitstream_view(request):
     return render(request, "yb_bits/yb_bitStream.html")
