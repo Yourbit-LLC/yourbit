@@ -152,6 +152,12 @@ const TWO_WAY_INDEX = {
             "url" : ""
         },
     
+    "edit-bit":
+        {
+            "template" : "/bits/edit-bit/",
+            "url" : ""
+        },
+    
           
 };
 

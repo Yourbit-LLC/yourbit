@@ -10,6 +10,11 @@ def bit_builder_view(request):
     bit_form = BitForm()
     return render(request, "yb_bits/yb_bitBuilder.html", {"bit_form":bit_form})
 
+def edit_bit_view(request, pk):
+    this_bit = Bit.objects.get(pk=pk)
+    bit_form = BitForm(instance=this_bit)
+    return render(request, "yb_bits/yb_bitBuilder.html", {"bit_form":bit_form})
+
 def bitstream_view(request):
     return render(request, "yb_bits/yb_bitStream.html")
 
@@ -206,7 +211,7 @@ def bit_options_menu(request, id, *args, **kwargs):
                 "name": "edit",
                 "type": "bit-option",
                 "object_id": this_bit.id,
-                "action":f"yb_editBit({this_bit.id})",
+                "action":f"yb_navigateTo('2way', 'edit-bit', {this_bit.id})",
             }
 
             delete_bit_button = {
@@ -262,6 +267,21 @@ def add_to_cluster(request, *args, **kwargs):
         this_cluster = Cluster.objects.get(pk=cluster_id)
         this_bit = Bit.objects.get(pk=bit_id)
         this_cluster.bits.add(this_bit)
+        this_cluster.save()
+
+        return JsonResponse({"status":"success", "cluster_name":this_cluster.name})
+    
+def remove_from_cluster(request, *args, **kwargs):
+    if request.method != "POST":
+        return JsonResponse({"status":"failed"})
+    
+    else:
+        cluster_id = request.POST.get("cluster_id")
+        bit_id = request.POST.get("bit_id")
+        
+        this_cluster = Cluster.objects.get(pk=cluster_id)
+        this_bit = Bit.objects.get(pk=bit_id)
+        this_cluster.bits.remove(this_bit)
         this_cluster.save()
 
         return JsonResponse({"status":"success", "cluster_name":this_cluster.name})

@@ -10,6 +10,8 @@ urlpatterns = [
     path('api/bitstream/', BitFeedAPIView.as_view(), name='bitstream'),
     path("delete-cluster/", delete_cluster, name="delete-cluster"),
     path("add-to-cluster/", add_to_cluster, name="add-to-cluster"),
+    path("remove-from-cluster/", remove_from_cluster, name="remove-from-cluster"),
+    path("edit-bit/<int:pk>/", edit_bit_view, name="edit-bit"),
     
 
     #URL for views
