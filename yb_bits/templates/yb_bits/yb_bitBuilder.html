@@ -80,7 +80,7 @@
 
         
 
-        <textarea id="bb-field-body" class="yb-builderBit yb-tform-cntrOrigin bb-field bg-gray-dark yb-autoText squared font-medium align-left border-solid narrowBorder" placeholder="{% if build_mode == "edit"%}{%if bit.body != ""%}{{bit.body}}{%else%}Description{%endif%}" style="position: relative; height: 30px; width: 75%; {% if build_mode == "edit" %}{% if bit.body != "" %}transform": "translateX(-50%) scale(1,1);{%else%}display:none;{%endif%} margin-left: auto; margin-right: auto;"></textarea>
+        <textarea id="bb-field-body" class="yb-builderBit yb-tform-cntrOrigin bb-field bg-gray-dark yb-autoText squared font-medium align-left border-solid narrowBorder" placeholder="{% if build_mode == "edit"%}{%if bit.body != ""%}{{bit.body}}{%else%}Description{%endif%}{%endif%}" style="position: relative; height: 30px; width: 75%; {% if build_mode == "edit" %}{% if bit.body != "" %}transform": "translateX(-50%) scale(1,1);{%else%}display:none;{%endif%} margin-left: auto; margin-right: auto;"></textarea>
         {% comment %} {{ bit_form.body }} {% endcomment %}
         <button type="button" id="description-bit-preview-button" style="height: 25px; width: 75%;             {% if build_mode == "edit" %}
                 {% if bit.title != "" %}
