@@ -18,6 +18,7 @@ class BitStream(models.Model):
     photo_bits = models.ManyToManyField('Bit', related_name='photo_bits', blank=True)
     hidden_bits = models.ManyToManyField('Bit', related_name='hidden_bits', blank=True)
     unseen_bits = models.ManyToManyField('Bit', related_name='bit_stream', blank=True)
+    unfed_bits = models.ManyToManyField('Bit', related_name='unfed_bits', blank=True)
     seen_bits = models.ManyToManyField('Bit', related_name='seen_bits', blank=True)
 
 class Bit(models.Model):
