@@ -50,6 +50,9 @@ class BitFeedAPIView(generics.ListAPIView):
 
         active_space = self.request.query_params.get('space')
 
+        bitstream_object = BitStream.objects.get(profile=user_profile)
+        hidden_bits = bitstream_object.hidden_bits.all()
+
         print(active_space)
 
         print(sort_value)
@@ -62,12 +65,12 @@ class BitFeedAPIView(generics.ListAPIView):
             
             if profile.is_friends_with(user_profile) or profile.is_family_with(user_profile) or self.request.user == profile.user:
                 if active_space != "global":
-                    queryset = Bit.objects.filter(profile=profile, type = active_space).order_by(sort_value)
+                    queryset = Bit.objects.filter(profile=profile, type = active_space).order_by(sort_value).exclude(id__in=hidden_bits)
                 
                 else:
-                    queryset = Bit.objects.filter(profile=profile).order_by(sort_value)
+                    queryset = Bit.objects.filter(profile=profile).order_by(sort_value).exclude(id__in=hidden_bits)
             else:
-                queryset = Bit.objects.filter(profile=profile, is_public=True).order_by(sort_value)
+                queryset = Bit.objects.filter(profile=profile, is_public=True).order_by(sort_value).exclude(id__in=hidden_bits)
         else:            
 
            # Start with a base query that applies to all situations
@@ -82,7 +85,7 @@ class BitFeedAPIView(generics.ListAPIView):
                 base_query &= models.Q(type=active_space)
 
             # Now apply the base_query to the queryset and finalize with distinct and order_by
-            queryset = Bit.objects.filter(base_query).distinct().order_by(sort_value)
+            queryset = Bit.objects.filter(base_query).distinct().order_by(sort_value).exclude(id__in=hidden_bits)
 
         print(queryset)
 
