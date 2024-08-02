@@ -91,12 +91,12 @@ def update_feeds(sender, instance, created, **kwargs):
     if len(followers) > 0:
 
         for follower in followers:
-            
-            follower.unfed_bits.add(instance)
+            this_interaction_history = InteractionHistory.objects.get(profile = follower.profile)
+            this_interaction_history.add(instance)
             follower.unseen_bits.add(instance)
 
     if len(friends) > 0:
         for friend in friends:
-            
-            friend.unfed_bits.add(instance)
+            this_interaction_history = InteractionHistory.objects.get(profile = friend.profile)
+            this_interaction_history.unfed_bits.add(instance)
             friend.unseen_bits.add(instance)
