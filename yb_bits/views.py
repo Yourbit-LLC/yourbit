@@ -22,11 +22,11 @@ def bitstream_view(request):
 def set_user_bitstreams(request, *args, **kwargs):
     for user in User.objects.all():
         fails = 0
+        user_profile = Profile.objects.get(user=user)
         try:
-            user_profile = Profile.objects.get(user=user)
             bitstream = BitStream.objects.get(profile=user_profile)
         except:
-            bitstream = BitStream(profile=user_profile)
+            bitstream = BitStream(profile=user_profile, user=user)
             fails += 1
             bitstream.save()
 
