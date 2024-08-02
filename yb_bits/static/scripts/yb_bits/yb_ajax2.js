@@ -10,6 +10,17 @@ function yb_createBit(this_data, csrf_token) {
         headers: {
             'X-CSRFToken': csrf_token,
         },
+        xhr: function() {
+            var xhr = new window.XMLHttpRequest();
+            xhr.upload.addEventListener('progress', function(evt) {
+                if (evt.lengthComputable) {
+                    var percentComplete = (evt.loaded / evt.total) * 100;
+                    // $('#progressBar').css('width', percentComplete + '%');
+                    $('#button-submit-bit').text('Uploading... (' + percentComplete.toFixed(2) + '%)');
+                }
+            }, false);
+            return xhr;
+        },
         processData: false,
         contentType: false,
         success: function(response) {
@@ -29,10 +40,8 @@ function yb_createBit(this_data, csrf_token) {
             }
             // yb_getFeed(true); //Located in yb_bits/static/scripts/yb_bits/yb_ajax.js
         },
-        error: function(response) {
-            console.log(response);
-            
-
+        error: function(jqXHR, textStatus, errorThrown) {
+            $('#status').text('Upload failed: ' + textStatus);
         }
     });
 }
