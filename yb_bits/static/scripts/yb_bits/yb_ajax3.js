@@ -16,7 +16,7 @@ function yb_createBit(this_data, csrf_token) {
                 if (evt.lengthComputable) {
                     var percentComplete = (evt.loaded / evt.total) * 100;
                     // $('#progressBar').css('width', percentComplete + '%');
-                    $('#button-submit-bit').text('Uploading... (' + percentComplete.toFixed(2) + '%)');
+                    $('#button-submit-bit').html('Uploading... (' + percentComplete.toFixed(2) + '%)');
                 }
             }, false);
             return xhr;
