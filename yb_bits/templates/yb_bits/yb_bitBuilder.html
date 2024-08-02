@@ -67,7 +67,7 @@
             <p>Upload Video</p>
         </div>
         <video id="video-bit-preview" class="yb-video-bit" style="{% if build_mode == 'edit' and bit.type is not 'video' %}display: none;{% elif build_mode is not 'edit' %}display:none;{%endif%}" controls>
-            <source src="{{bit.video_upload.video.url}}" type="video/mp4">
+            <source src="{{bit.video_upload.video.url}}" type="video/*">
         </video>
         
         <input type="file" id="bb-field-bitPhoto" accept="image/*" class="yb-builderBit yb-tform-cntrOrigin bb-field bg-gray-dark yb-autoText squared" style="display:none; transform:scale(0,0);">
