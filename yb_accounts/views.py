@@ -181,10 +181,12 @@ def login_view(request):
     user = request.user
     if user.is_authenticated:
         return redirect('home')
-        
+    
+    login_form = LoginForm(request.POST)
+    registration_form = RegistrationForm()
 
     if request.POST:
-        login_form = LoginForm(request.POST)
+        
         if login_form.is_valid():
             email = request.POST['email']
             password = request.POST['password']
@@ -194,11 +196,6 @@ def login_view(request):
                 login(request, user)
                 return redirect('home')
 
-    else:
-        login_form = LoginForm()
-        registration_form = RegistrationForm()
-
-    
     context['login_form'] = login_form
     context['registration_form'] = registration_form
     return render(request, 'registration/login.html', context)
