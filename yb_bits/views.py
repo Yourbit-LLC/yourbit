@@ -19,6 +19,19 @@ def edit_bit_view(request, pk):
 def bitstream_view(request):
     return render(request, "yb_bits/yb_bitStream.html")
 
+def set_user_bitstreams(request, *args, **kwargs):
+    for user in User.objects.all():
+        fails = 0
+        try:
+            user_profile = Profile.objects.get(user=user)
+            bitstream = BitStream.objects.get(profile=user_profile)
+        except:
+            bitstream = BitStream(profile=user_profile)
+            fails += 1
+            bitstream.save()
+
+    return HttpResponse("Bitstreams set for all users: " + str(fails) + " fails")
+
 # class PublishMediaBit(View):
     
 #     def post(request, *args, **kwargs):
