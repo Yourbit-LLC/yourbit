@@ -195,7 +195,7 @@ def cluster_view(request, id, *args, **kwargs):
     else:
         is_bits = True
 
-    return render(request, "yb_bits/yb_cluster_view.html", {"cluster":this_cluster, "is_bits":is_bits, "click_handler":"yb_viewBit(", "bits":bits})
+    return render(request, "yb_bits/yb_cluster_view.html", {"cluster":this_cluster, "is_bits":is_bits, "bit_page":"stuff", "click_handler":"yb_viewBit(", "bits":bits})
 
 def bit_options_menu(request, id, *args, **kwargs):
     this_bit = Bit.objects.get(pk=id)
