@@ -229,6 +229,7 @@ def history_list(request, filter, *args, **kwargs):
         'bits':bits,
         'is_bits':is_bits,
         'click_handler':"yb_viewBit(",
+        "bit_page": "history"
     }
 
     return render(request, "yb_bits/bit_list.html", context)
@@ -252,6 +253,7 @@ class HistoryTemplate(View):
             'bits':bits,
             'is_bits':is_bits,
             'click_handler':"yb_viewBit(",
+            "bit_page": "history"
         }
 
         return render(request, "yb_profile/yb_history.html", context)

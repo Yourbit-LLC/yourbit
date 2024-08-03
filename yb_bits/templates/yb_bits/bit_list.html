@@ -26,10 +26,12 @@
                 Posted by: {{bit.user.username}} on {{bit.time|date:"F j, Y"}}
             </p>
         </div>
-        
-        <div id="item-delete-{{cluster.id}}">
-            <button class="yb-button-close notification" onclick="yb_deleteCluster({{cluster.id}})">&times;</button>
-        </div>
+        {% if bit_page is not "history" %}
+            
+            <div id="item-delete-{{cluster.id}}">
+                <button class="yb-button-close notification" onclick="yb_deleteCluster({{cluster.id}})">&times;</button>
+            </div>
+        {% endif %}
     </div>
 {% endfor %}
 {% else %}
