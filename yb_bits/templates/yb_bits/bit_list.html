@@ -21,6 +21,10 @@
                 <p class="full-result-name yb-listItem-head"><strong>Untitled Bit by {{bit.display_name}}</strong></p>
             {% endif %}
 
+            <div id="item-delete-{{cluster.id}}">
+                <button class="yb-button-close notification" onclick="yb_deleteCluster({{cluster.id}})">&times;</button>
+            </div>
+
             <p class="full-result-username yb-listItem-body">
                 Posted by: {{bit.user.username}} on {{bit.time|date:"F j, Y"}}
             </p>

@@ -226,6 +226,15 @@ class BitViewSet(viewsets.ModelViewSet):
             raise PermissionDenied("You do not have permission to delete this object.")
 
         return super().destroy(request, *args, **kwargs)
+    
+    def hide(self, request, *args, **kwargs):
+        instance = self.get_object()
+        user_profile = Profile.objects.get(user=self.request.user)
+        bitstream_object = BitStream.objects.get(profile=user_profile)
+        bitstream_object.hidden_bits.add(instance)
+        bitstream_object.save()
+
+        return Response({"status": "success"}, status=status.HTTP_200_OK)
 
     
 class LikeViewSet(viewsets.ModelViewSet):

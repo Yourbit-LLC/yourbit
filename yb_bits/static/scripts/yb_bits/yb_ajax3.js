@@ -434,4 +434,26 @@ function yb_deleteBit(bitID) {
 
 }
 
+function yb_hideBit(bitID) {
+    let csrf_token = getCSRF();
+    $.ajax({
+        type: 'POST',
+        url: `/bits/api/bits/${bitID}/hide/`,
+        headers: {
+            'X-CSRFToken': csrf_token,
+        },
+        success: function(response) {
+            let deleting_bit = document.getElementById(`bit-${bitID}`);
+            deleting_bit.remove();
+
+            console.log("Successfully hidden bit")
+            //Update the feed
+            console.log(response)
+        },
+        error: function(response) {
+            //Error
+            console.log("Server failed to hide bit")
+        }
+    });
+}
 
