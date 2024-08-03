@@ -227,6 +227,7 @@ class BitViewSet(viewsets.ModelViewSet):
 
         return super().destroy(request, *args, **kwargs)
     
+    @action(detail=True, methods=['post'])
     def hide(self, request, *args, **kwargs):
         instance = self.get_object()
         user_profile = Profile.objects.get(user=self.request.user)
