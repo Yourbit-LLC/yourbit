@@ -133,6 +133,7 @@ class StuffTemplate(View):
             'is_clusters':is_clusters,
             'clusters':clusters,
             'page_action':"view",
+            "bit_page": "stuff"
         }
         return render(request, "yb_bits/yb_stuff.html", context)
 

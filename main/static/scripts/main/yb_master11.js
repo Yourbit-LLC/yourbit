@@ -677,6 +677,28 @@ function yb_addToCluster(cluster_id, bit_id) {
     })
 }
 
+function yb_removeFromCluster(cluster_id, bit_id) {
+    let csrf = getCSRF();
+    let url = "/bits/remove-from-cluster/";
+    let data = {
+        'bit_id': bit_id,
+        'cluster_id': cluster_id,
+    }
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: data,
+        headers: {
+            'X-CSRFToken': csrf
+        },
+        success: function(data){
+            console.log(data);
+            showNotification(expandNotification, "Bit removed from " + data.cluster_name);
+        }
+    })
+}
+
+
 function yb_listClusters(bit_id) {
     yb_openDrawer("list-clusters", bit_id, false);
 }

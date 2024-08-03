@@ -161,6 +161,7 @@ def list_clusters(request, *args, **kwargs):
         'is_clusters':is_clusters,
         'clusters':clusters,
         'page_action':"viewing",
+        "bit_page": "stuff"
     }
     return render(request, "yb_bits/yb_cluster_list.html", context)
 
@@ -254,6 +255,7 @@ def bit_options_menu(request, id, *args, **kwargs):
     context = {
         "menu_name": "Bit Options",
         "option_set":option_set,
+        "bit_page": "stuff"
     }
         
     return render(request, "main/options_menu.html", context)
