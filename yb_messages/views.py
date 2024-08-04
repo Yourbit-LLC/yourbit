@@ -44,6 +44,7 @@ def message_inbox(request):
         for conversation in conversations:
 
             members = conversation.members.all()
+            
 
             print(conversation.id)
 
@@ -66,12 +67,14 @@ def message_inbox(request):
                 if len(conversation.members.all()) > 2:
                     conversation_data[iteration]["name"] = str(conversation.members.count()) + " People"
                     conversation_data[iteration]["image"] = user.profile.custom.profile_image.small_thumbnail
+                    conversation_data[iteration]["is_group"] = True
 
                 else:
                     for member in members:
                         if member !=  request.user:
                             conversation_data[iteration]["name"] = member.profile.display_name
                             conversation_data[iteration]["image"] = member.profile.custom.profile_image.small_thumbnail.url
+                            conversation_data[iteration]["is_group"] = False
 
             iteration += 1
 
