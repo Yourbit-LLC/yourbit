@@ -421,10 +421,10 @@ function yb_deleteBit(bitID) {
         success: function(response) {
             let deleting_bit = document.getElementById(`bit-${bitID}`);
             deleting_bit.remove();
+            yb_closeDrawer();
 
             console.log("Successfully deleted bit")
             //Update the feed
-            console.log(response)
         },
         error: function(response) {
             //Error
@@ -448,7 +448,8 @@ function yb_hideBit(bitID) {
 
             console.log("Successfully hidden bit")
             //Update the feed
-            console.log(response)
+            
+            yb_closeDrawer();
         },
         error: function(response) {
             //Error

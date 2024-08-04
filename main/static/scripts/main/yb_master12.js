@@ -692,8 +692,15 @@ function yb_removeFromCluster(cluster_id, bit_id) {
             'X-CSRFToken': csrf
         },
         success: function(data){
-            console.log(data);
+            try {
+                let this_item = document.getElementById("result-bits-" + bit_id);
+                this_item.remove();
+            } catch {
+                console.log("Cluster view not open")
+            }
+            
             showNotification(expandNotification, "Bit removed from " + data.cluster_name);
+
         }
     })
 }
