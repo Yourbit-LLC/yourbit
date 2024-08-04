@@ -223,7 +223,7 @@ function yb_createBody(bit) {
     }
     paragraph.innerHTML = bit.body;
 
-    if (bit.type === "chat" && bit.body.length > 400){
+    if (bit.type === "chat" && bit.body.length > 800){
         let show_more_backdrop = yb_createElement("div", "yb-showMore-backdrop", `show-more-backdrop-${bit.id}`);
         let show_more = yb_createElement("p", "yb-showMore-bit yb-autoText", `show-more-${bit.id}`);
         show_more.innerHTML = "Show More";
