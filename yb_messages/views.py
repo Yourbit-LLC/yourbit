@@ -223,7 +223,32 @@ class ConversationView(View):
 
         else:
             if len(this_conversation.members.all()) > 2:
-                context["conversation_name"] = str(this_conversation.members.count()) + " People"
+                    display_name = ""
+                    contact_iteration = 1
+
+                    for member in this_conversation.members.all():
+                        this_display_name = member.profile.display_name.split(" ")
+                        
+                        if member != request.user:
+                            if this_conversation.members.count() == 3:
+                                if contact_iteration == 1:
+                                    display_name += this_display_name[0] + " " + this_display_name[1][0] + "." + " and "
+                                    contact_iteration += 1
+                                
+                                else:
+                                    display_name += this_display_name[0] + " " + this_display_name[1][0]  + "."
+
+
+                            else:
+
+                                if contact_iteration <= this_conversation.members.count()-1:
+                                    display_name += this_display_name[0] + " " + this_display_name[1][0]  + "." + ", "
+                                    contact_iteration += 1
+
+                                else:
+                                    display_name += " and " + this_display_name[0] + " " + this_display_name[1][0]  + "."
+
+                    context["conversation_name"] = display_name
 
             else:
                 for member in members:
