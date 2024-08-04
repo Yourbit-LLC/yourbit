@@ -66,9 +66,10 @@ def message_inbox(request):
             else:
                 if len(conversation.members.all()) > 2:
                     display_name = ""
+
                     for member in conversation.members.all():
                         this_display_name = member.profile.display_name.split(" ")
-                        display_name = this_display_name[0] + " "
+                        display_name += this_display_name[0] + " "
 
                     conversation_data[iteration]["name"] = display_name
                     conversation_data[iteration]["image"] = user.profile.custom.profile_image.small_thumbnail
