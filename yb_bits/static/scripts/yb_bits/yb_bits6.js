@@ -214,7 +214,7 @@ function yb_addMedia(type, bit) {
 */
 
 function yb_createBody(bit) {
-    const body = yb_createElement("div", "yb-body-bit", `body-bit-${bit.id}`);
+    var body = yb_createElement("div", "yb-body-bit", `body-bit-${bit.id}`);
     let custom = bit.custom;
     let text_color = custom.text_color;
     const paragraph = yb_createElement("p", "yb-bodyText-bit yb-autoText font-medium", `bit-bodyText-${bit.id}`);
@@ -223,7 +223,7 @@ function yb_createBody(bit) {
     }
     paragraph.innerHTML = bit.body;
 
-    if (bit.type === "chat" && bit.body.length > 200){
+    if (bit.type === "chat" && bit.body.length > 400){
         let show_more_backdrop = yb_createElement("div", "yb-showMore-backdrop", `show-more-backdrop-${bit.id}`);
         let show_more = yb_createElement("p", "yb-showMore-bit yb-autoText", `show-more-${bit.id}`);
         show_more.innerHTML = "Show More";

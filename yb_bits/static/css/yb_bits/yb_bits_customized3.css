@@ -181,8 +181,7 @@
     grid-row: 2;
 }
 
-
-.yb-bodyText-bit {
+.yb-body-bit {
     position: relative;
     background-color:transparent;
     border-radius: 10px;
@@ -194,7 +193,11 @@
     overflow: hidden;
     transition: 0.5s;
     color: var(--yb-bit-text-color);
+
 }
+
+
+
 
 .yb-body-bit.expanded {
     max-height: none;
