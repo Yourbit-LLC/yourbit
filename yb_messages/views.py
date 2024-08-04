@@ -75,14 +75,17 @@ def message_inbox(request):
                             if conversation.members.count() == 3:
                                 if contact_iteration == 1:
                                     display_name += this_display_name[0] + " and "
+                                    contact_iteration += 1
                                 
                                 else:
                                     display_name += this_display_name[0]
+
 
                             else:
 
                                 if contact_iteration <= conversation.members.count()-1:
                                     display_name += this_display_name[0] + ", "
+                                    contact_iteration += 1
 
                                 else:
                                     display_name += " and " + this_display_name[0]
