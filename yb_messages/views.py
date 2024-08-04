@@ -67,7 +67,7 @@ def message_inbox(request):
                 if len(conversation.members.all()) > 2:
                     display_name = ""
                     for member in conversation.members.all():
-                        this_display_name = member.display_name.split(" ")
+                        this_display_name = member.profile.display_name.split(" ")
                         display_name = this_display_name[0] + " "
 
                     conversation_data[iteration]["name"] = display_name
