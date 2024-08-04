@@ -49,7 +49,7 @@
             
 
             {% else %}
-
+                    <p style="padding-left: 10px;" class="yb-pText font-small">{{message.from_user.profile.display_name}}</p>
                     {% if message.images %}
                         {% for image in message.images.all %}
 
