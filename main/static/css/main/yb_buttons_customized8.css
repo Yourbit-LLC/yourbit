@@ -250,7 +250,8 @@
 }
 
 .yb-button-threeQuarter:hover {
-    background-color: white;
+    filter: brightness(0.5);
+    -webkit-filter: brightness(0.5);
     color: #4b4b4b;
     transform: scale(1.03);
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
