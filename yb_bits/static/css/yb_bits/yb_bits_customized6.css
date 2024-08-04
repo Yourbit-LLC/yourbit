@@ -218,8 +218,8 @@
 .yb-showMore-bit {
     position: absolute;
     bottom: 5px;
-    left: 0px;
-    width: 100%;
+    left: 50%;
+    width: 100px;
     height: 40px;
     display: flex;
     justify-content: center;
@@ -228,10 +228,11 @@
     font-weight: bold;
     cursor: pointer;
     z-index: 5;
-    color: skyblue;
-
+    color: var(--yb-fb-icon-button);
+    transform: translateX(-50%);
+    background-color: var(--yb-fb-background-color);
+    border-radius: 25px;
 }
-
 
 
 .yb-container-bitFeedback {

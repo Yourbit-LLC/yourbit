@@ -244,8 +244,8 @@
 .yb-showMore-bit {
     position: absolute;
     bottom: 5px;
-    left: 0px;
-    width: 100%;
+    left: 50%;
+    width: 100px;
     height: 40px;
     display: flex;
     justify-content: center;
@@ -255,10 +255,10 @@
     cursor: pointer;
     z-index: 5;
     color: skyblue;
-
+    transform: translateX(-50%);
+    background-color: black;
+    border-radius: 25px;
 }
-
-
 
 .yb-container-bitFeedback {
     display: flex;
