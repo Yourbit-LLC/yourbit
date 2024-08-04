@@ -66,10 +66,28 @@ def message_inbox(request):
             else:
                 if len(conversation.members.all()) > 2:
                     display_name = ""
+                    contact_iteration = 1
 
                     for member in conversation.members.all():
                         this_display_name = member.profile.display_name.split(" ")
-                        display_name += this_display_name[0] + " "
+                        
+                        if member != request.user:
+                            if conversation.members.count() == 3:
+                                if contact_iteration == 1:
+                                    display_name += this_display_name[0] + " and "
+                                
+                                else:
+                                    display_name += this_display_name[0]
+
+                            else:
+
+                                if contact_iteration <= conversation.members.count()-1:
+                                    display_name += this_display_name[0] + ", "
+
+                                else:
+                                    display_name += " and " + this_display_name[0]
+
+
 
                     conversation_data[iteration]["name"] = display_name
                     conversation_data[iteration]["image"] = user.profile.custom.profile_image.small_thumbnail
