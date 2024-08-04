@@ -52,7 +52,7 @@
                     {% if message.images %}
                         {% for image in message.images.all %}
 
-                            <div id="message-{{message.id}}" class='message-bubble message-bubble-left' style="background-color: transparent;">
+                            <div id="message-{{message.id}}" class='message-bubble message-bubble-left' style="background-color: transparent;" onclick="yb_fullScreenImage('{{image.image.url}}')">
                                 <img src="{{ image.image.url }}" class="message-photo"/>
                             </div>
                         {% endfor %}
@@ -70,7 +70,9 @@
                             <div class="message-body">{{ message.body }}</div>
                         </div>
                     {% endif %}
+                    
                     <p style="padding-left: 10px;" class="yb-pText font-small">{{message.from_user.profile.display_name}}</p>
+                    
                 
             
 
