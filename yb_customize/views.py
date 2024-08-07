@@ -60,6 +60,7 @@ class ProfileImageUpload(View):
     
     def post(self, request):
         pass
+    
 def update_profile_image(request):
     if request.POST.get('class') == 'profile':
         this_profile = Profile.objects.get(user=request.user)

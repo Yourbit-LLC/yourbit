@@ -18,6 +18,7 @@ def upload_image(request, *args, **kwargs):
     if request.method == 'POST':
     
         print(request.POST)
+        print(request.FILES)
         this_image = request.FILES.get('source_image')
         image_type = request.POST.get('image_type')
         print(this_image)

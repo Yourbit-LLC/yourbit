@@ -188,12 +188,11 @@ window.onload = function() {
         console.log(this_type)
 
         if (this_type === 'profile') {
-            console.log("uploading profile image")
-            source_image = profile_img_upload.files[0];
-            
-            console.log("Cropped Image: " + cropped_image + "\n");
-            console.log("Cropped Image URL: " + croppedImageDataURL + "\n");
+            this.disabled = true;
+            finishProfileImage(profile_img_upload);
 
+            yb_hideCropper(false);
+            
             profile_upload_button.innerHTML = "Change Profile Image"
             document.getElementById('onboarding-heading-1').innerHTML = `Thats a good look for you. Click next to Continue.`;
             PROFILE_IMAGE_PREVIEW.innerHTML = `
@@ -203,7 +202,7 @@ window.onload = function() {
             nextButtons[current].innerHTML = "Next";
 
 
-            console.log(source_image)
+
         } else if (this_type === 'background') {
             console.log("uploading background image")
             source_image = background_img_upload.files[0];
@@ -223,9 +222,6 @@ window.onload = function() {
             
         }
         
-        
-        // Send cropped image data to server to upload
-        uploadProfileImage(source_image, cropped_image, this_type, this_class, this_name, wpid);
     });
 
 

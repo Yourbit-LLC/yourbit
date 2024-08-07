@@ -23,10 +23,14 @@ function yb_saveProfileImage() {
     cropped_image = dataURItoBlob(cropped_photo);
     uploadProfileImage(source, cropped_image, "profile", "profile");
 
-    new_image_button.removeEventListener("click", yb_saveProfileImage);
-    new_image_button.innerHTML = "New Image";
-    new_image_button.style.backgroundColor = "gray";
-    new_image_button.addEventListener("click", new_image_handler);
+    try {
+        new_image_button.removeEventListener("click", yb_saveProfileImage);
+        new_image_button.innerHTML = "New Image";
+        new_image_button.style.backgroundColor = "gray";
+        new_image_button.addEventListener("click", new_image_handler);
+    } catch(err) {
+        console.log("In onboarding")
+    }
 }
 
 function new_image_handler() {
@@ -38,29 +42,36 @@ function new_image_handler() {
 
 }
 
-function finishProfileImage(){
+function finishProfileImage(image_input){
     let crop_data = yb_getCropData();
     console.log(crop_data);
-    let image = new_image_input.files[0];
+    let image = image_input.files[0];
 
     yb_uploadProfileImage(image, crop_data, "profile", "profile");
 
-    yb_2WayPage(1, "profile-image-edit");
+    try {
+        yb_2WayPage(1, "profile-image-edit");
+    } catch(err) {
+        console.log("No 2 Way. Onboarding.")
+    }
 
 }
 
 $(document).ready(function() {
 
+    try {
+        new_image_button.addEventListener("click", new_image_handler);
 
-    new_image_button.addEventListener("click", new_image_handler);
-
-    new_image_input.addEventListener("change", function() {
-        yb_2WayPage(2, "cropper-profile");
-        new_image_button.innerHTML = "Save Image";
-        new_image_button.style.backgroundColor = "green";
+        new_image_input.addEventListener("change", function() {
+            yb_2WayPage(2, "cropper-profile");
+            new_image_button.innerHTML = "Save Image";
+            new_image_button.style.backgroundColor = "green";
 
 
-    });
+        });
+    } catch(err) {
+        console.log("On Onboarding \n\n -Message from yb_editImage4 \n\n"+ err)
+    }
 
 
 

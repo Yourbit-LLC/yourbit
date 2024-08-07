@@ -80,6 +80,9 @@ def create_profile(sender, instance, created, **kwargs):
         notification_core.save()
         user_profile.save()
 
+        bitstream = BitStream(user = instance, profile = user_profile)
+        bitstream.save()
+
 @receiver(post_save, sender=Bit)
 def update_feeds(sender, instance, created, **kwargs):
     user_profile = instance.profile

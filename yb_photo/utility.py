@@ -37,6 +37,7 @@ def crop_image(image, crop_data):
 
 def modify_image(image_type, user, original_image_file, crop_data):
     from yb_photo.utility import rename_image
+    
     image_format = original_image_file.name.split('.')[-1].lower()
 
     print(image_type)
@@ -107,7 +108,7 @@ def generate_tiny_thumbnail(user, source_file, raw_source):
 
 def generate_small_thumbnail(user, source_file, raw_source):
     # Open the source file
-    label = "thumbnail_medium"
+    label = "thumbnail_small"
     this_username = user.username
     this_uid = user.id
     timestamp = dateformat.format(timezone.now(), '%Y%m%d%-H:i-s')
@@ -202,7 +203,7 @@ def generate_medium_thumbnail(user, source_file, raw_source):
 
 def generate_large_thumbnail(user, source_file, raw_source):
     # Open the source file
-    label = "thumbnail_medium"
+    label = "thumbnail_large"
     this_username = user.username
     this_uid = user.id
     timestamp = dateformat.format(timezone.now(), '%Y%m%d%-H:i-s')

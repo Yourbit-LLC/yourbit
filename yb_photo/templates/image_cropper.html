@@ -58,7 +58,7 @@
             if (type == "bit"){
                 finishBitCrop();
             } else if (type == "profile"){
-                finishProfileImage();
+                finishProfileImage(document.getElementById("profile-image-upload"));
             } else if (type == "mobile-wallpaper") {
                 if (wpid != ""){
                     finishMobileBackgroundImage(wpid);
