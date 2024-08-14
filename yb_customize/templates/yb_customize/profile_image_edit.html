@@ -7,63 +7,74 @@
 
 <div class="yb-fillWidth yb-vScroll yb-autoText yb-margin-T10 align-center" ID="feed-settings-form" method="POST" action="{% url 'settings_feed' %}" style="height: calc(100% - 70px); border-radius: 15px; padding-bottom: 150px;">
     <div class="yb-fillWidth align-center" style="position: relative;" >
-        <div class="large-profile-image preview yb-center-margin lr" id="profile-image-preview" style="height: 256px; width: 256px; border-color:{{accent_color}}; overflow: hidden;">
+        <div class="large-profile-image preview yb-center-margin lr" id="profile-image-preview" style="position: relative; height: 256px; width: 256px; border: {{custom_core.image_border_style}}; border-color:{{custom_core.image_border_color}}; overflow: hidden;">
+            <div id="image-co-color-preview" class="profile-image-overlay" style="background-color: {{custom_core.image_overlay_color}}; opacity: {{custom_core.image_overlay_strength}};"></div>
             <img src="{{profile_thumbnail_medium}}" class="profile-icon" id="profile-image-preview"/>
         </div>
         <input type = "file" id="profile-image-upload" accept=".jpg,.jpeg,.png" style="display: none;"/>
         <br>
         <br>
-        <button id="new-image-button" class="yb-button-wide rounded font-white" style="padding: 10px 10px 10px 10px; height: 40px !important; background-color: #3399ff">New Image</button>
+        <button id="new-image-button" class="yb-button-wide rounded font-white" style="padding: 10px 10px 10px 10px; height: 40px !important; background-color: #3399ff">Change Image</button>
         <br>
         <br>
         <hr>
-        <div id="edit-options" class="align-center">
+        <form id="edit-options" class="align-center">
             <br>
             <h3 class="yb-autoText">Edit Image</h3>
             <br>
             <div>
-                <div id="enable-border-container" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; width: 95%; margin: auto;">
-                    <p class="field-cover-label yb-pText align-left" style="grid-column: 1;">Image Hue </p>  
-                    <input type="range" id="avatar-hue-slider" style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; text-align: left;" class="hue" min="0" max="360" step="1" value="0">      
+                <div id="enable-color-overlay" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; grid-template-rows: 40px 30px auto 30px; width: 95%; margin: auto; grid-gap: 10px;">
+                    <h3 class="align-center squared yb-autoText-reversed" style="grid-row: 1; grid-column-start: 1; grid-column-end: 3; width: 33%; margin: 5px auto; line-height: 2; height: 30px; background-color: rgba(0,0,0,0.5);">Adjust Color</h3>
+                    <p class="field-cover-label yb-pText align-left" style="grid-column: 1; grid-row: 2;">Color Overlay </p>  
+                    <div class = "color-circle yb-center-margin tb" id="image-co-color-circle" name="image-co" style="position: relative; margin-right: 10px; background-color: {{custom_core.image_overlay_color}}; grid-column: 2; grid-row: 2; height: 25px; width: 25px;"></div>  
+                    <input class="coloris color-input" type="text" name="image-co" style="display: none;" id="image-co-color-picker" value="{{custom_core.image_overlay_color}}">  
+                    <hr style="grid-row: 3; grid-column-start: 1; grid-column-end: 3; width: 100%;">
+                    <p class="field-cover-label yb-pText align-left" style="grid-column: 1; grid-row: 4;">Strength </p>  
+                    <input type="range" id="image-co-strength-slider" style="position: absolute; top: 50%; grid-column: 2; grid-row: 4; transform: translateY(-100%); right: 5px; text-align: left;" class="co-strength" min="0" max="1" step="0.1" value="{{custom_core.image_overlay_strength}}">      
                     
                 </div>
             </div>
             
             <br>
-            <div id="enable-transparency-container" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; width: 95%; margin: auto;">
+            <div id="enable-transparency-container" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; grid-template-rows: 40px 40px; width: 95%; margin: auto; grid-gap: 10px;">
+                <h3 class="align-center squared yb-autoText-reversed" style="grid-row: 1; grid-column-start: 1; grid-column-end: 3; width: 50%; margin: 5px auto; line-height: 2; height: 30px; background-color: rgba(0,0,0,0.5);">Transparency Settings</h3>
                 <p class="field-cover-label yb-pText align-left" style="grid-column: 1;">Enable Transparency <br><small><i>*Requires transparent image</i></small></p>        
-                <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
+                <div style="position: absolute; top: calc(50% + 10px); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="yb-exclude-shared" >
-                        <input type="checkbox" class="checkbox notification-check" name="default_public" id="yb-check-default-public">
+                        <input type="checkbox" class="checkbox image-check" name="transparency" id="yb-check-transparency">
                         <span class="slider round"></span>
                     </label>
                 </div>       
             </div>
             <br>
-            <div id="enable-border-container" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; width: 95%; margin: auto;">
-                <p class="field-cover-label yb-pText align-left" style="grid-column: 1;">Enable Border </p>        
-                <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
-                    <label class="yb-switch-round" id="yb-exclude-shared" >
-                        <input type="checkbox" class="checkbox notification-check" name="default_public" id="yb-check-default-public">
-                        <span class="slider round"></span>
-                    </label>
-                </div>       
+            <div id="enable-border-container" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; grid-template-rows: 40px 30px auto 30px; width: 95%; margin: auto; grid-gap: 10px;">
+                <h3 class="align-center squared yb-autoText-reversed" style="grid-row: 1; grid-column-start: 1; grid-column-end: 3; width: 33%; margin: 5px auto; line-height: 2; height: 30px; background-color: rgba(0,0,0,0.5);">Border Settings</h3>
+                    <p class="field-cover-label yb-pText align-left" style="grid-column: 1; grid-row: 2;">Enable Border </p>        
+                    <div style="position: absolute; top: 20%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left; grid-column: 2; grid-row: 2;">
+                        <label class="yb-switch-round" id="yb-exclude-shared" >
+                            
+                            <input type="checkbox" class="checkbox image-check" name="enable_border" id="yb-check-border" {% if custom_core.image_border_style == 'solid' %}checked{%endif%}>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>      
+                
+                    <hr style="grid-row: 3; grid-column-start: 1; grid-column-end: 3; width: 100%;">
+                
+                    <p class="field-cover-label yb-pText align-left" style="grid-column: 1; grid-row: 4; ">Border Color </p>    
+                    <div class = "color-circle yb-center-margin tb" id="image-bco-color-circle" name="image-bco" style="position: relative; margin-right: 10px; background-color: {{custom_core.image_border_color}}; grid-column: 2; grid-row: 4; height: 25px; width: 25px;"></div>  
+                    <input class="coloris color-input" type="text" name="image-bco" style="display: none;" id="image-bco-color-picker" value="{{custom_core.image_border_color}}">  
+                    
+                        
+                
             </div>
+
             <br>
-            <div>
-                <div id="enable-border-container" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; width: 95%; margin: auto;">
-                    <p class="field-cover-label yb-pText align-left" style="grid-column: 1;">Border Color </p>        
-                    <input type="color" id="avatar-border-color" style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; text-align: left;" value="{{accent_color}}">
-                    </div>       
-                </div>
-            </div>
-            <br>
-            <button id="avatar-save-button" class="yb-button-wide green rounded" style="padding: 10px 10px 10px 10px; height: 40px !important; width: 75px;">Save</button>
-        </div>
+            <button id="avatar-save-button" type="button" class="yb-button-wide green rounded" style="padding: 10px 10px 10px 10px; height: 40px !important; width: 75px;">Save</button>
+        </form>
         <hr>
     </div>
 </div>
-<script src="{% static 'scripts/yb_customize/yb_editImage4.js' %}"></script>
+<script src="{% static 'scripts/yb_customize/yb_editImage5.js' %}"></script>
 
 
 <script>

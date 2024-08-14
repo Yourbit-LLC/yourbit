@@ -56,7 +56,10 @@ class CustomizeMenu(View):
 
 class ProfileImageUpload(View):
     def get(self, request):
-        return render(request, "yb_customize/profile_image_edit.html")
+        custom_core = CustomCore.objects.get(profile = request.user.profile)
+        theme = custom_core.theme
+        custom_ui = CustomUI.objects.get(theme = theme)
+        return render(request, "yb_customize/profile_image_edit.html", context = {"custom_ui": custom_ui})
     
     def post(self, request):
         pass
@@ -499,3 +502,59 @@ class StickerBrowse(View):
     
     def post(self, request):
         pass
+
+
+
+def edit_profile_image(request, *args, **kwargs):
+    if request.user.is_authenticated:
+        color_overlay = request.POST.get('color_overlay')
+        overlay_strength = request.POST.get('overlay_strength')
+        enable_transparency = request.POST.get("enable_transparency")
+        enable_border = request.POST.get("enable_border")
+        border_color = request.POST.get("border_color")
+
+        if enable_border == "true":
+            enable_border = True
+        else:
+            enable_border = False
+
+        if enable_transparency == "true":
+            enable_transparency = True
+
+        else:
+            enable_transparency = False
+
+        custom_core = CustomCore.objects.get(profile = request.user.profile)
+        custom_core.image_overlay_color = color_overlay
+        custom_core.image_overlay_strength = overlay_strength
+        custom_core.image_transparency = enable_transparency
+        
+        if enable_border == True:
+            custom_core.image_border_style = "solid"
+
+        else:
+            custom_core.image_border_style = "none"
+
+        custom_core.image_border_color = border_color
+
+        custom_core.save()
+
+        return HttpResponse("success")
+
+def edit_wallpaper_image(request, *args, **kwargs):
+    if request.user.is_authenticated:
+
+        custom_core = CustomCore.objects.get(profile = request.user.profile)
+     
+        color_overlay = request.POST.get('color_overlay')
+        overlay_strength = request.POST.get('overlay_strength')
+        brightness = request.POST.get('brightness')
+        blur_amount = request.POST.get('blur_amount')
+
+        
+        custom_core.wallpaper_blur = blur_amount
+        custom_core.wallpaper_brightness = brightness
+        custom_core.wallpaper_color = color_overlay
+        custom_core.wallpaper_overlay_strength = overlay_strength
+
+        custom_core.save()

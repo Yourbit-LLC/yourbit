@@ -845,6 +845,17 @@ p {
 }
 
 
+.profile-image-overlay {
+    position: absolute;
+    z-index: 3;
+    top: 0px;
+    left: 0px;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+}
+
 .yb-background-image {
     position: fixed;
     top: 0;

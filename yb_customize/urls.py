@@ -6,7 +6,8 @@ from .views import *
 urlpatterns = [
     path("bit/", CustomizeBitView.as_view(), name="customize_bit"),
     path("ui/", CustomizeUIView.as_view(), name="customize_ui"),
-    path("profile/", CustomizeProfileView.as_view(), name="customize_profile"),
+    path("profile/", CustomizeProfileView.as_view(), name="customize_profile_view"),
+    path("pfp/edit/", edit_profile_image, name="customize_profile_image"),
     path("stickers/search/<str:query>/", StickerList.as_view(), name="search_stickers"),
     path("repair-custom-ui/", user_custom_repair, name="repair_custom_ui"),
     path("repair-custom-bit/", user_custom_repair, name="repair_custom_bit"),
@@ -23,5 +24,6 @@ urlpatterns = [
     path("templates/customize-bit/", CustomizeBit.as_view(), name="customize_core"),
     path("templates/profile-image/", ProfileImageUpload.as_view(), name="customize_profile_image"),
     path("templates/wallpaper/", WallpaperUpload.as_view(), name="customize_wallpaper"),
+    path('', CustomizeMain.as_view(), name = "customize-main")
 
 ]

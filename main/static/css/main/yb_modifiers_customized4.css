@@ -50,6 +50,25 @@
 
 }
 
+@media (prefers-color-scheme: light) {
+
+    .yb-autoText-reversed {
+        /*Style*/
+        color: white;
+    }
+
+}
+
+@media (prefers-color-scheme: dark){
+
+    .yb-autoText-reversed {
+        /*Style*/
+        color: black;
+    }
+
+
+}
+
 .yb-center-margin.all {
     /*Positioning*/
     margin: auto;

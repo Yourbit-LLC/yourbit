@@ -20,8 +20,8 @@ class CustomCore(models.Model):
     wallpaper = models.ForeignKey('yb_photo.Wallpaper', related_name='custom_background', on_delete = models.CASCADE, blank=True, null=True)
     wallpaper_blur = models.CharField(max_length=10, default="20")
     wallpaper_brightness = models.CharField(max_length=10, default="80")
-    wallpaper_saturation = models.CharField(max_length=10, default="80")
-    wallpaper_hue = models.CharField(max_length=10, default="0")
+    wallpaper_overlay_strength = models.CharField(max_length=10, default="0.5")
+    wallpaper_color = models.CharField(max_length=10, default="0")
     
     #Quick Appearance Settings
     user_colors_on = models.BooleanField(default=False)
@@ -32,6 +32,20 @@ class CustomCore(models.Model):
     text_colors_on = models.BooleanField(default=False)
     bit_colors_on = models.BooleanField(default=False)
     flat_mode_on = models.BooleanField(default=False)
+
+    
+    #Borders
+    image_border_style = models.CharField(max_length=50, default="solid")
+    image_border_color = models.CharField(max_length=50, default="#ffffff")
+
+    image_overlay_color = models.CharField(max_length=50, default="transparent")
+    image_overlay_strength = models.CharField(max_length=5, default="0.5")
+
+    #If image is a transparent png, this option will render alpha channel
+    image_transparency = models.BooleanField(default=False)
+    
+    #Background color to bleed through transparent pngs
+    image_background_color = models.CharField(max_length=50, default="#ffffff")
 
     #Shared Appearance Settings
     #Color Syncing
@@ -101,16 +115,6 @@ class CustomMenu(CustomBase):
     #Profile Image Options
     image_shape = models.IntegerField(default=0) #shape options = 0: circle, 1: square, 2: rounded square
     
-    #If image is a transparent png, this option will render alpha channel
-    image_transparency = models.BooleanField(default=False)
-    
-    #Background color to bleed through transparent pngs
-    image_background_color = models.CharField(max_length=50, default="#ffffff")
-    
-    #Borders
-    image_border_style = models.CharField(max_length=50, default="solid")
-    image_border_color = models.CharField(max_length=50, default="#ffffff")
-
     stickers = models.ManyToManyField('Sticker', related_name='custom_menu', blank=True)
     
     

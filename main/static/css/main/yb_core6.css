@@ -186,7 +186,26 @@ input:focus + .slider {
     box-shadow: 0 0 1px #2196F3;
 }
 
-.element-divider-1 {
+input:checked + .slider:before {
+    -webkit-transform: translateX(13.5px);
+    -ms-transform: translateX(13.5px);
+    transform: translateX(13.5px);
+    transition: 0.5s;
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 27px;
+    height: 20px;
+    width: 35px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+
+.layer-divider-1 {
     position: fixed; 
     z-index: 500;
     top: 0px;
@@ -209,23 +228,6 @@ input:focus + .slider {
 }
 
 
-input:checked + .slider:before {
-    -webkit-transform: translateX(13.5px);
-    -ms-transform: translateX(13.5px);
-    transform: translateX(13.5px);
-    transition: 0.5s;
-}
-
-/* Rounded sliders */
-.slider.round {
-    border-radius: 27px;
-    height: 20px;
-    width: 35px;
-}
-
-.slider.round:before {
-    border-radius: 50%;
-}
 
 .yb-header {
     /*Positioning*/
@@ -965,6 +967,17 @@ p {
         top: calc(50% + 31vh);
     }
     
+}
+
+.profile-image-overlay {
+    position: absolute;
+    z-index: 3;
+    top: 0px;
+    left: 0px;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
 }
 
 @media screen and (min-width: 768px) {

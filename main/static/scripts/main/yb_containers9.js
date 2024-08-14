@@ -403,7 +403,7 @@ function yb_launch2WayContainer(page, data=null) {
         } else {
             $(container_content).load(this_page.template)
         }
-        $(container_content).load(this_page.template)
+        
         yb_filterScroll();
         history.pushState({}, "", this_page.url);
     }
@@ -436,7 +436,7 @@ function yb_openCard(content, data=null) {
     }
     
     CARD_CONTAINER.classList.add("open");
-    ELEMENT_DIVIDER_1.style.display = "block";
+    LAYER_DIVIDER_1.style.display = "block";
 }
 
 /*

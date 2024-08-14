@@ -32,6 +32,20 @@
     animation: yb-bounceDown 3s linear infinite;
   }
 
+  @keyframes yb-border-blink {
+    0% { border-color: white; }
+    50% { border-color: gray; }
+    100% { border-color: white; }
+  } 
+
+
+    /*Border blink*/
+    @media screen and (prefers-reduced-motion: reduce) {
+      .yb-border-blink {
+        border-color: white;
+      }
+    }
+
   @keyframes yb-bounce-adaptY50 {
     0% { transform: translateY(-50%) scale(1); }
     50% { transform: translateY(-50%) scale(1.1); }

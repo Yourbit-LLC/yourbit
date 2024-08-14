@@ -59,7 +59,7 @@ Profile Page
 .profile-image-border.preview {
     margin-left: auto;
     margin-right: auto;
-    animation: yb-pulse-small 1s infinite;
+    animation: yb-border-blink 2s infinite;
     animation-delay: 0.25s;
     border-radius: 20px;
     padding: 2px 2px 2px 2px;
@@ -243,7 +243,7 @@ Profile Page
 }
 
 .splash-bio-container.preview {
-    animation: yb-pulse-small 1s infinite;
+    animation: yb-border-blink 2s infinite;
     animation-delay: 1s;
     
 }
@@ -262,7 +262,7 @@ Profile Page
 }
 
 .profile-name-splash.preview {
-    animation: yb-pulse-small 1s infinite;
+    animation: yb-border-blink 2s infinite;
     animation-delay: 0.5s;
     border-radius: 20px;
     
@@ -333,7 +333,7 @@ Profile Page
 
 .profile-interaction-container.preview {
     
-    animation: yb-pulse-small 1s infinite;
+    animation: yb-border-blink 2s infinite;
     animation-delay: 0.75s;
     border-radius: 20px;
     padding: 2px 2px 2px 2px;

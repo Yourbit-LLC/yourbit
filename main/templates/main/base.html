@@ -455,8 +455,9 @@ lang="en"
             <!--End Quick Actions-->
 
             
-            <div style="overflow: hidden;" onclick="requestNotificationPermission()" class="menu-button profile-image-thumbnail medium border-solid plainBorder narrowBorder circle" id = "profile-icon">
-                <img src="{{profile_thumbnail_medium}}" class="yb-element-accent profile-icon" style="border-color: {{custom_interface.accent_color}}; width: 100%;" id="profile-pic-button">
+            <div style="overflow: hidden; border-color: {{custom_core.image_border_color}};" onclick="requestNotificationPermission()" class="menu-button profile-image-thumbnail medium border-solid plainBorder narrowBorder circle" id = "profile-icon">
+                <div class="profile-image-overlay" style="background-color: {{custom_core.image_overlay_color}}; opacity: {{custom_core.image_overlay_strength}};"></div>
+                <img src="{{profile_thumbnail_medium}}" class="yb-element-accent profile-icon" style="width: 100%;" id="profile-pic-button">
             </div>
 
         </nav>
@@ -470,7 +471,8 @@ lang="en"
             
             <!--Profile menu profile container-->
             <div class="yb-menu-profile">
-                <div style="overflow: hidden;" class="profile-image-thumbnail xxlarge border-solid plainBorder narrowBorder circle yb-center-margin all" id = "profile-icon-menu" data-username="{{user.username}}">
+                <div style="overflow: hidden; border-color: {{custom_core.image_border_color}};" class="profile-image-thumbnail xxlarge border-solid plainBorder narrowBorder circle yb-center-margin all" id = "profile-icon-menu" data-username="{{user.username}}" >
+                    <div class="profile-image-overlay" style="background-color: {{custom_core.image_overlay_color}}; opacity: {{custom_core.image_overlay_strength}};"></div>
                     <img src="{{profile_thumbnail_medium}}" class="yb-element-accent profile-icon" style="width: 100%;" id="profile-pic-menu">
                 </div>
 
@@ -705,7 +707,7 @@ lang="en"
             </div>
         </div>
 
-        <div class="element-divider-1" id="element-divider-1" style="display:none;">
+        <div class="layer-divider-1" id="element-divider-1" style="display:none;">
 
         </div>
 

@@ -59,7 +59,7 @@ const VAPID_PUBLIC_KEY = "BDAIHj_HT2qvxVsrE-pvZOGc2TcJeMKUIM0LxStPASodefcu9fucQn
 const LOGO_PATHS = document.querySelectorAll(".cls-1");
 
 const TIME_KEEPER = document.getElementById("time-keeper-node");
-const ELEMENT_DIVIDER_1 = document.getElementById("element-divider-1");
+const LAYER_DIVIDER_1 = document.getElementById("layer-divider-1");
 
 const FEED_PARAMS = {
     "space": yb_getSessionValues("space"),
@@ -86,6 +86,15 @@ const year = currentDate.getFullYear();
 
 // Format the date as "MonthName day, year"
 const formattedDate = `${month} ${day}, ${year}`;
+
+function yb_positionLayerDivider(behind_element) {
+    this_index = behind_element.style.zIndex;
+    LAYER_DIVIDER_1.style.zIndex = z_layer
+}
+function yb_showLayerDivider(behind_element){
+    yb_positionLayerDivider(behind_element);
+    LAYER_DIVIDER_1.style.display = "block";
+}
 
 function getOSAndDevice() {
     const userAgent = navigator.userAgent;
@@ -1213,7 +1222,7 @@ function yb_viewBit(bit_id, comment_id = null) {
 function yb_closeCard() {
     CARD_CONTAINER.innerHTML = '';
     CARD_CONTAINER.classList.remove("open");
-    ELEMENT_DIVIDER_1.style.display = "none";
+    LAYER_DIVIDER_1.style.display = "none";
 }
 
 function yb_sendThanks(profile_id) {

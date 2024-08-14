@@ -245,7 +245,7 @@ class Onboarding(View):
             if user.is_authenticated:
                 user.onboarding_complete = True
                 user.save()
-                return redirect('home')
+                return redirect('customize_profile_view')
             else:
                 return redirect('login')
         else:

@@ -22,6 +22,13 @@ $('#back-to-home').click(function() {
     window.location.href = `${base_url}/bitstream/home/`
 });
 
+function yb_hideEditableSplash() {
+    $(splash_screen).fadeOut('fast');
+}
+
+function yb_showEditableSplash() {
+    $(splash_screen).fadeIn('fast');
+}
 function yb_handleEditName() {
     let these_options = {
         "name-color": {
@@ -110,6 +117,7 @@ function yb_handleEditProfileImage() {
 
 function yb_handleEditWallpaper() {
     yb_launch2WayContainer("background-image-upload");
+    yb_hideEditableSplash();
     yb_resize2Way(3);
 
 }

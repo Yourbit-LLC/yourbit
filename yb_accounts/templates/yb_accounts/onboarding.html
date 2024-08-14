@@ -70,6 +70,13 @@
                 0% { transform: translateX(0) rotate(0deg); }
                 100% { transform: translateX(100px) rotate(720deg); }
             }
+            select {
+                margin-top: 10px;
+            }
+
+            input {
+                margin-top: 10px;
+            }
 
             @keyframes colorBlast {
                 0% { background-color: #fff; }
@@ -94,7 +101,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         
     
-        <div id="confetti-wrapper" class="yb-panel" style="z-index: 1;"></div>
+        <div id="confetti-wrapper" class="yb-bg-adaptive" style="z-index: 1;"></div>
 
         <script>
             document.addEventListener('DOMContentLoaded', (event) => {
@@ -115,7 +122,7 @@
                 }
             });
         </script>
-        <div id="container-1" class="yb-fillContainer" style="overflow-y: scroll; z-index: 2;">
+        <div id="container-1" class="yb-fillContainer" style="overflow-y: hidden; z-index: 2;">
 
             <!--Introduction-->
             <div id="onboarding-1" class="align-center yb-fillContainer">
@@ -134,78 +141,50 @@
             <div id="onboarding-2" hidden>
                 {% csrf_token %}
                 <form id="profile-image-form" class="align-center">
-                    <h3 id="onboarding-heading-1" class="yb-autoText">Let's start with the profile picture...</h3>
-                    <div id="onboarding-image-container">
-                        <svg class="yb-center-margin lr yb-relative yb-autoFill" xmlns="http://www.w3.org/2000/svg" height="256" viewBox="0 -960 960 960" width="256"><path d="M252-256q51-36 106.5-57T480-334q66 0 121.5 21T708-256q41-41 66.5-98T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 69 25.5 126t66.5 98Zm228-210q-48 0-81-33t-33-81q0-48 33-81t81-33q48 0 81 33t33 81q0 48-33 81t-81 33Zm0 334q-73 0-136.5-27T233-233q-47-47-74-110.5T132-480q0-73 27-136.5T233-727q47-47 110.5-74T480-828q73 0 136.5 27T727-727q47 47 74 110.5T828-480q0 73-27 136.5T727-233q-47 47-110.5 74T480-132Z"/></svg>
+                    <h3 id="onboarding-heading-1" class="yb-autoText">Let's start with the profile info...</h3>
+
+                    <div class="yb-input-container">
+                        <br>
+                        <label class="yb-autoText" for="gender">What's your gender?</label>
+                        <br>
+                        <select class="yb-input-singleLine yb-font-autoGray yb-bg-autoGray yb-bText plainBorder narrowBorder squared yb-field-background" style="height: 32px !important; width: 90%; max-width: 700px;" name="gender" id="gender">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="prefer not to say">Prefer not to say</option>
+                            <option value="check bio">Refer to bio</option>
+                        </select>
                     </div>
-                    
-                    
-                    <input type="file" name="image" id="profile-image-upload" accept="image/*" onchange="previewProfileImage()" hidden>
-                    <div id="profile-image-buttons" class="yb-fillWidth yb-flexColumn yb-gap5 align-center">
-                        <button type="button" id="profile-trigger" class="yb-button-wide bg-autoGray rounded yb-autoText yb-center-margin all" style="width: 70%; max-width: 225px;">Upload Image</button>
-                        
-                        <button type="button" id="onboarding-2-next" class="yb-button-wide bg-autoGray rounded yb-autoText yb-center-margin all" style="width: 70%; max-width: 225px;" hidden>Skip For Now</button>
-                        <button type="button" id="onboarding-2-back" class="yb-button-wide bg-autoGray rounded yb-autoText yb-center-margin all" style="width: 70%; max-width: 225px;">Back</button>
+
+                    <div class="yb-input-container">
+                        <br>
+                        <label class="yb-autoText" for="motto">Motto</label>
+                        <br>
+                        <input class="yb-input-singleLine yb-font-autoGray yb-bg-autoGray yb-bText plainBorder narrowBorder squared yb-field-background" style="height: 32px !important; width: 90%; max-width: 700px;" type="text" name="motto" id="motto" placeholder="Motto">
                     </div>
-                </form>
-            </div>
 
-            <!--Profile image cropper-->
-            <div class="yb-cropper-container profile-image yb-center-transform tb yb-fillWidth" style="transition: 0.5s;" id="square-crop-container" hidden>
-                <div class = "yb-cropper-preview-container" style = "max-height: 75vh;">
-                    <img id="crop-image-preview" style="object-fit: contain; max-width:100%; height: 100%; max-height: calc(100%-140px);"/>
-                    <input type="hidden" id="cropper-output" value="">
-                </div>
-                <div id="profile-cropper-submission-controls" class="align-center yb-margin-T10" style="width:100%; background-color: rgba(0, 0, 0, 0.5);">
-                    <button id="profile-back-button" style="width: 120px;" class = "yb-button-wide yb-red font-white">Back</button>
-                    <button id="image-cropper-save" class="yb-button-wide green font-white" type = "button" style="width: 120px;" name="inactive" data-type="none" data-class="none">Save</button>
-                </div>  
-            </div>
-
-
-
-
-            <!--Background Image Menu-->
-            <div id="onboarding-3" hidden>
-                <form id="background-image-form" class="align-center">
-                    <h3 id="onboarding-heading-2" class="yb-autoText">Would you like to add a background image?</h3>
-                    <div id="onboarding-background-container">
-                        <svg class="yb-center-margin lr yb-autoFill yb-relative" xmlns="http://www.w3.org/2000/svg" height="256" viewBox="0 -960 960 960" width="256"><path d="M224.615-160Q197-160 178.5-178.5 160-197 160-224.615v-510.77Q160-763 178.5-781.5 197-800 224.615-800h510.77Q763-800 781.5-781.5 800-763 800-735.385v510.77Q800-197 781.5-178.5 763-160 735.385-160h-510.77Zm0-40h510.77q9.23 0 16.923-7.692Q760-215.385 760-224.615v-510.77q0-9.23-7.692-16.923Q744.615-760 735.385-760h-510.77q-9.23 0-16.923 7.692Q200-744.615 200-735.385v510.77q0 9.23 7.692 16.923Q215.385-200 224.615-200ZM300-300h366.154L553.077-450.769 448.462-318.462l-70.001-84.615L300-300ZM200-200v-560 560Z"/></svg>
+                    <div id="bio-container">
+                        <br>
+                        <label class="yb-autoText" for="bio">Bio</label>
+                        <br>
+                        <textarea id="bio-field" name="bio" class="yb-bg-autoGray squared {% if request.user.profile.bio %} yb-pText yb-autoText {% else %} font-gray {% endif %} profile-field" style="width: 98%; height: 100px; max-width: 700px;">{% if request.user.profile.bio %}{{request.user.profile.bio}}{% else %} Add bio {% endif %}</textarea>
                     </div>
-                    <div id="background-image-buttons" class="yb-fillWidth yb-flexColumn yb-gap5 align-center">
-                        <button type="button" id="background-trigger" class="yb-button-wide bg-autoGray rounded yb-autoText yb-center-margin all" style="width: 70%; max-width: 225px;">Upload Image</button>
-                        <input type="file" name="image" id="background-image-upload" accept="image/*" hidden>
 
-                        <button type="button" id="onboarding-3-next" class="yb-button-wide bg-autoGray rounded yb-autoText yb-center-margin all" style="width: 70%; max-width: 225px;" hidden>Skip For Now</button>
-                        <button type="button" id="onboarding-3-back" class="yb-button-wide bg-autoGray rounded yb-autoText yb-center-margin all" style="width: 70%; max-width: 225px;">Back</button>
+                    <div id="tag-container">
+                        <br>
+                        <label class="yb-autoText" for="tags">Profile Tags</label>
+                        <br>
+                        <textarea id="tags-field" name="tags" class="yb-bg-autoGray squared {% if request.user.profile.bio %} yb-pText yb-autoText {% else %} font-gray {% endif %} profile-field" style="width: 98%; height: 100px; max-width: 700px;">{% if request.user.profile.bio %}{{request.user.profile.bio}}{% else %} Add bio {% endif %}</textarea>
+                    </div>
+                    <br>
+                    <div id="profile-info-buttons" class="yb-flexRow yb-center-margin all yb-gap10" style="width: 250px;">
+                        <button type="button" id="onboarding-2-back" class="yb-button-wide bg-autoGray rounded yb-autoText yb-relative" style="width: 120px;">Back</button>
+                        <button type="button" id="onboarding-2-next" class="yb-button-wide bg-autoGray rounded yb-autoText yb-relative" style="width: 120px;" hidden>Next</button>
                     </div>
                 </form>
-
-            </div>
-            <div id="select-aspect-ratio" hidden>
-                <div class="yb-fillWidth yb-flexColumn yb-gap5 align-center">
-                    
-                    <!--This section allows the user to crop the background image according to device, here they are selecting between the mobile and desktop options-->
-                    <h3 id="onboarding-heading-crop" class="yb-autoText">Crop Background Image?</h3>
-                    <h4 class="yb-autoText">Desktop</h4>
-                    <div id="desktop-crop-option" onclick="previewDesktopBackgroundImage()" style="width: 320px; height: 180px; overflow:hidden;" class="bg-autoGray rounded squared yb-center-margin lr yb-relative pointer-object">
-                        <p class="font-white yb-center-transform all squared black" style="z-index: 2; height: 30px; width: 120px; line-height: 1.75;">Click to Edit</p>
-                        <img id="desktop-preview-output" style="z-index: 1; width: 100%; min-height:100%" class="yb-center-transform all" src="">
-                    </div>
-                    
-                    <h4 class="yb-autoText">Mobile</h4>
-                    <div id="mobile-crop-option" onclick="previewMobileBackgroundImage()" style="height: 570px; width: 270px; margin-bottom: 10px; overflow:hidden;" class="bg-autoGray rounded squared yb-center-margin lr yb-relative pointer-object" >
-                        <p class="font-white yb-center-transform all squared black" style="z-index: 2; height: 30px; width: 120px; line-height: 1.75;">Click to Edit</p>
-                        <img id="mobile-preview-output" style="z-index: 1; min-height:100%" class="yb-center-transform all" src="">
-                    </div>
-
-                    <button type="button" id="background-main-confirm" class="yb-button-wide yb-autoText yb-center-margin all green" style="width: 70%; max-width: 225px; margin-bottom: 20px;">Confirm</button>
-                </div>
             </div>
 
 
-
-            <div id="onboarding-4" hidden>
+            <div id="onboarding-3" style="padding-bottom: 50px;" hidden>
                 <form class="align-center yb-flexColumn yb-gap10 align-center" method="POST">
                     {% csrf_token %}
                     <h3 class="yb-autoText">Now, let's setup some privacy settings...</h3>
@@ -213,7 +192,7 @@
                         
                         <label class="yb-autoText" for="display_real_name">Who can see your real name?</label>
                         <br>
-                        <select class="yb-input-select squared bg-autoGray rounded yb-autoText" name="real_name_visibility" id="display_real_name" name="real_name_visibility">
+                        <select class="yb-input-singleLine yb-font-autoGray yb-bg-autoGray yb-bText plainBorder narrowBorder squared yb-field-background" style="height: 32px !important; width: 90%; max-width: 700px;" name="real_name_visibility" id="display_real_name" name="real_name_visibility">
                             <option value="e">Everyone</option>
                             <option value="fo">Friends Only</option>
                             <option value="no">Nobody</option>
@@ -223,13 +202,13 @@
                     <br>
                     <div class="yb-input-container" style="display: none;">
                         <label class="yb-autoText" for="display_name">What would you like us to refer to you as instead?</label>
-                        <input class="yb-input-singleLine rounded bg-autoGray rounded" type="text" name="display_name" id="display_name" placeholder="Display Name">
+                        <input class="yb-input-singleLine yb-font-autoGray yb-bg-autoGray yb-bText plainBorder narrowBorder squared yb-field-background" style="height: 32px !important; width: 90%; max-width: 700px;" type="text" name="display_name" id="display_name" placeholder="Display Name">
                     </div>
                     <br>
                     <div class="yb-input-container align-center">
                         <label class="yb-autoText" for="comment-privacy">Who can see your comments?</label>
                         <br>
-                        <select class="yb-input-select squared bg-autoGray rounded yb-autoText" name="comment_vsibility" id="comment-privacy">
+                        <select class="yb-input-singleLine yb-font-autoGray yb-bg-autoGray yb-bText plainBorder narrowBorder squared yb-field-background" style="height: 32px !important; width: 90%; max-width: 700px;" name="comment_vsibility" id="comment-privacy">
                             <option value="e">Everyone</option>
                             <option value="fo">Friends Only</option>
                             <option value="no">Nobody</option>
@@ -239,7 +218,7 @@
                     <div class="yb-input-container align-center">
                         <label class="yb-autoText" for="message-permissions">Who can message you?</label>
                         <br>
-                        <select class="yb-input-select squared bg-autoGray rounded yb-autoText" name="message_availability" id="message-permissions">
+                        <select class="yb-input-singleLine yb-font-autoGray yb-bg-autoGray yb-bText plainBorder narrowBorder squared yb-field-background" style="height: 32px !important; width: 90%; max-width: 700px;" name="message_availability" id="message-permissions">
                             <option value="e">Everyone</option>
                             <option value="fo">Friends Only</option>
                             <option value="no">Nobody</option>
@@ -254,7 +233,7 @@
                             <small><i>Followers do not require 2 way confirmation, and can only see public posts.</i></small>
                         </label>
                         <br>
-                        <select class="yb-input-select squared bg-autoGray rounded yb-autoText" name="enable_followers" id="allow-followers">
+                        <select class="yb-input-singleLine yb-font-autoGray yb-bg-autoGray yb-bText plainBorder narrowBorder squared yb-field-background" style="height: 32px !important; width: 90%; max-width: 700px;" name="enable_followers" id="allow-followers">
                             <option value="True">Allow Followers</option>
                             <option value="False">Disallow Followers</option>
                         </select>
@@ -268,7 +247,7 @@
                             <small><i>Private posts can only be seen by you and your friends.</i></small>
                         </label>
                         <br>
-                        <select class="yb-input-select squared bg-autoGray rounded yb-autoText" name="default_public" id="default-posting">
+                        <select class="yb-input-singleLine yb-font-autoGray yb-bg-autoGray yb-bText plainBorder narrowBorder squared yb-field-background" style="height: 32px !important; width: 90%; max-width: 700px;" name="default_public" id="default-posting">
                             <option value="True">Public</option>
                             <option value="False">Private</option>
                         </select>
@@ -278,15 +257,15 @@
                     <div class="yb-input-container" class="yb-input-container align-center">
                         <label class="yb-autoText" for="search-visibility"><small><i>Last one for this section...</small></i><br>Do you want to be visible in search, or found by link only?</label>
                         <br>
-                        <select class="yb-input-select squared bg-autoGray rounded yb-autoText" name="searchable" id="search-visibility">
+                        <select class="yb-input-singleLine yb-font-autoGray yb-bg-autoGray yb-bText plainBorder narrowBorder squared yb-field-background" style="height: 32px !important; width: 90%; max-width: 700px;" name="searchable" id="search-visibility">
                             <option value="True">Visible</option>
                             <option value="False">Link Only</option>
                         </select>
                     </div>
 
                     <div id="privacy-buttons" class="yb-flexRow yb-center-margin all yb-gap10">
-                        <button type="button" id="onboarding-4-back" class="yb-button-wide bg-autoGray rounded yb-autoText yb-relative" style="width: 120px;">Back</button>
-                        <button type="submit" id="onboarding-4-next" class="yb-button-wide bg-autoGray rounded yb-autoText yb-relative" style="width: 120px;" hidden>Looks Good!</button>
+                        <button type="button" id="onboarding-3-back" class="yb-button-wide bg-autoGray rounded yb-autoText yb-relative" style="width: 120px;">Back</button>
+                        <button type="submit" id="onboarding-3-next" class="yb-button-wide bg-autoGray rounded yb-autoText yb-relative" style="width: 120px;" hidden>Looks Good!</button>
                     </div>
 
                 </form>
@@ -295,7 +274,6 @@
         </div>
 
     </body>
-    <script src="{% static 'scripts/yb_photo/yb_crop6.js' %}"></script>
     <script src="{% static 'scripts/yb_customize/yb_editImage4.js' %}"></script>
     <script src="{% static 'scripts/yb_systems/yb_sessions.js' %}"></script>
     <script src="{% static 'scripts/yb_customize/yb_ajax9.js' %}"></script>

@@ -249,6 +249,12 @@
     .yb-fill-autoGray {
         fill: rgb(97, 97, 97);
     }
+
+    
+    .yb-bg-adaptive {
+        background-color: white;        
+    }
+
     
 }
 
@@ -263,6 +269,11 @@
 
     .yb-fill-autoGray {
         fill: rgb(70, 70, 70);
+    }
+
+        
+    .yb-bg-adaptive {
+        background-color: black;        
     }
 }
 
@@ -516,6 +527,11 @@
         color: black;
     }
 
+    .yb-autoText-reversed {
+        /*Style*/
+        color: white;
+    }
+
 }
 
 @media (prefers-color-scheme: dark){
@@ -523,6 +539,12 @@
         /*Style*/
         color: white;
     }
+
+    .yb-autoText-reversed {
+        /*Style*/
+        color: white;
+    }
+
 
 }
 

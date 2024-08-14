@@ -15,19 +15,22 @@
     <div class="grid-overlay">
     
     </div>
+
     <div id="profile-splash-label" class = "yb-splash-label profile yb-center-transform all align-center">
-        <div class="profile-image-border preview" style="height: 25vw; width: 25vw; border: 2px solid gray;">
-            <img src="{{profile_thumbnail_medium}}" class="large-profile-image preview profile-icon" id="profile-image-splash" style="height: 95%; width: 95%; border-color:{{user.profile.custom.profile_splash.image_border_color}};"/>
+        <div id="profile-image-container" class="profile-image-container yb-center-margin all plainBorder border-solid narrowBorder circle" style="overflow: hidden; margin-bottom: 10px; border: {{custom_core.image_border_style}}; border-color: {{custom_core.image_border_color}};">
+            <div class="profile-image-overlay" style="background-color: {{custom_core.image_overlay_color}}; opacity: {{custom_core.image_overlay_strength}};"></div>
+            <img src="{{custom_core.profile_image.large_thumbnail.url}}"  id="profile-image-splash" style="width: 100%; border-color:{{profile.custom.accent_color}};"/>
         </div>
-        <div class="profile-name-splash preview" id="profile-name-splash" style="border: 2px solid gray;">
-            <h2 id="profile-name-header" style="color:{{user.profile.custom.profile_splash.title_color}};" class="profile-name-header">{{user.first_name}} {{user.last_name}}</h2>
-            <b id="profile-handle-label" style="color:{{user.profile.custom.profile_splash_text_color}};" class="profile-handle-label">
+
+        <div class="profile-name-splash preview" id="profile-name-splash" style="border: 2px solid gray; width: fit-content; margin: auto; padding: 15px;">
+            <h2 id="profile-name-header" style="color:{{custom_ui.title_color}}; margin-top: 0px; margin-bottom: 10px;" class="profile-name-header">{{user.first_name}} {{user.last_name}}</h2>
+            <b id="profile-handle-label" style="color:{{custom_ui.text_color}};" class="profile-handle-label">
                 <small>@{{user.username}}</small>
             </b>
         </div>
 
 
-        <div id="profile-interaction-container" class="profile-interaction-container profile-CME profile-interaction-container preview yb-center-margin lr" style="border: 2px solid gray;">
+        <div id="profile-interaction-container" class="profile-interaction-container profile-CME profile-interaction-container preview yb-center-margin lr" style="border: 2px solid gray; width: fit-content;">
             <button style="color: {{user.profile.custom.profile_splash.button_text_color}}; background-color: {{user.profile.profile_splash.button_color}};" id="profile-button-connect" class="button-profile-interaction yb-button-flex" data-id = "{{profile.id}}">
                 
                 {% if request.user.id == profile.user.id %}
