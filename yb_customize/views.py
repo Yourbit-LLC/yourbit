@@ -558,3 +558,56 @@ def edit_wallpaper_image(request, *args, **kwargs):
         custom_core.wallpaper_overlay_strength = overlay_strength
 
         custom_core.save()
+
+class SplashFontEdit(View):
+    def get(self, request, option):
+        custom_core = CustomCore.objects.get(profile = request.user.profile)
+        try:
+            custom_splash = CustomSplash.objects.get(theme = custom_core.theme)
+        except:
+            custom_splash = CustomSplash(theme = custom_core.theme)
+            custom_splash.save()
+
+    
+        template = 'text_font_edit'
+
+
+
+        context = {
+            'text_color': custom_splash.username_font_color,
+            'text_size':  custom_splash.username_font_size,
+            'title_color': custom_splash.name_font_color,
+            'title_size': custom_splash.name_font_size,
+        }
+        return render(request, f"yb_customize/{template}.html", context)
+    
+    def post(self, request, option):
+        custom_core = CustomCore.objects.get(profile = request.user.profile)
+        custom_ui = CustomUI.objects.get(theme = custom_core.theme)
+        custom_ui.font = request.POST.get('font')
+        custom_ui.save()
+
+        return JsonResponse({"success": "success"})
+    
+class SplashButtonEdit(View):
+    def get(self, request):
+        custom_core = CustomCore.objects.get(profile = request.user.profile)
+        custom_splash = CustomSplash.objects.get_or_create(theme = custom_core.theme)
+        context = {
+            'button_color': custom_splash.button_color,
+            'button_text_color': custom_splash.button_text_color,
+            'button-shape': custom_splash.button_shape,
+            'button-border-style': custom_splash.button_border_style,
+            'button-border-color': custom_splash.button_border_color,
+        }
+        return render(request, "yb_customize/profile_button_edit.html", context)
+    
+    def post(self, request):
+        custom_core = CustomCore.objects.get(profile = request.user.profile)
+        custom_ui = CustomUI.objects.get(theme = custom_core.theme)
+        custom_ui.button_color = request.POST.get('button_color')
+        custom_ui.button_text_color = request.POST.get('button_text_color')
+
+        custom_ui.save()
+
+        return JsonResponse({"success": "success"})

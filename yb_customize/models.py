@@ -75,7 +75,9 @@ class CustomBase(models.Model):
     icon_color = models.CharField(max_length=50, default="#ffffff")
     accent_color = models.CharField(max_length=50, default="#ffffff")
     text_color = models.CharField(max_length=50, default="#ffffff")
+    text_size = models.CharField(max_length=50, default="14")
     title_color = models.CharField(max_length=50, default="#ffffff")
+    title_size = models.CharField(max_length=50, default="18")
     button_color = models.CharField(max_length=50, default="#ffffff")
     button_text_color = models.CharField(max_length=50, default="#000000")
 
@@ -140,13 +142,13 @@ class CustomSplash(CustomBase):
     logo_color = models.CharField(max_length=50, default="#ffffff")
 
     #Profile Name Options
-    name_font = models.CharField(max_length=50, default="Arial")
-    name_font_size = models.CharField(max_length=50, default="50")
+    name_font = models.CharField(max_length=50, default="roboto/sans-serif")
+    name_font_size = models.CharField(max_length=50, default="3")
     name_font_color = models.CharField(max_length=50, default="#ffffff")
 
     #Profile Username Options
-    username_font = models.CharField(max_length=50, default="Arial")
-    username_font_size = models.CharField(max_length=50, default="30")
+    username_font = models.CharField(max_length=50, default="roboto/sans-serif")
+    username_font_size = models.CharField(max_length=50, default="2")
     username_font_color = models.CharField(max_length=50, default="#ffffff")
 
     #Profile Image Options

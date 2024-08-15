@@ -22,7 +22,7 @@
             <img src="{{custom_core.profile_image.large_thumbnail.url}}"  id="profile-image-splash" style="width: 100%; border-color:{{profile.custom.accent_color}};"/>
         </div>
 
-        <div class="profile-name-splash preview" id="profile-name-splash" style="border: 2px solid gray; width: fit-content; margin: auto; padding: 15px;">
+        <div class="profile-name-splash preview" id="profile-name-splash" style="border: 2px solid gray; width: fit-content; margin: auto; padding: 15px;" onclick="yb_navigateTo('drawer', 'profile-text-edit', null, false);">
             <h2 id="profile-name-header" style="color:{{custom_ui.title_color}}; margin-top: 0px; margin-bottom: 10px;" class="profile-name-header">{{user.first_name}} {{user.last_name}}</h2>
             <b id="profile-handle-label" style="color:{{custom_ui.text_color}};" class="profile-handle-label">
                 <small>@{{user.username}}</small>
@@ -30,7 +30,7 @@
         </div>
 
 
-        <div id="profile-interaction-container" class="profile-interaction-container profile-CME profile-interaction-container preview yb-center-margin lr" style="border: 2px solid gray; width: fit-content;">
+        <div id="profile-interaction-container" class="profile-interaction-container profile-CME profile-interaction-container preview yb-center-margin lr" style="border: 2px solid gray; width: fit-content;" onclick="yb_navigateTo('drawer', 'profile-button-edit', null, false);">
             <button style="color: {{user.profile.custom.profile_splash.button_text_color}}; background-color: {{user.profile.profile_splash.button_color}};" id="profile-button-connect" class="button-profile-interaction yb-button-flex" data-id = "{{profile.id}}">
                 
                 {% if request.user.id == profile.user.id %}

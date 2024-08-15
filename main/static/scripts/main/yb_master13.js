@@ -1,3 +1,13 @@
+/**
+ * @fileoverview This file contains the YB Master JS functions and constants used by multiple pages.
+ * @description This file defines various constants, functions, and variables used throughout the application.
+ * @module YB_Master
+ * @version 1.0.0
+ * @license Yourbit, LLC - 2023
+ * @author Austin Chaney
+ * @created 10/26/2023
+ * @lastModified 07/11/2024
+ */
 //YB Master JS File
 //Yourbit, LLC - 2023
 //Author: Austin Chaney

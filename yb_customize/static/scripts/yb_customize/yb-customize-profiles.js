@@ -29,44 +29,7 @@ function yb_hideEditableSplash() {
 function yb_showEditableSplash() {
     $(splash_screen).fadeIn('fast');
 }
-function yb_handleEditName() {
-    let these_options = {
-        "name-color": {
-            "label": "Name Color",
-            "function": updateCustom, 
-            "type": "color",
-            "position": "horizontal"
-        }, 
-        "username-color": {
-            "label": "Username Color",
-            "function": updateCustom, 
-            "type": "color",
-            "position": "horizontal"
-        }, 
-        "change-name": {
-            "label": "Change Name",
-            "function": versatile_test, 
-            "type": "button",
-            "position": "vertical"
-        },
-        "change-username": {
-            "label": "Change Username",
-            "function":versatile_test,
-            "type": "button",
-            "action": "Change",
-            "position": "vertical"
-        },
-        "cancel": {
-            "label": "Cancel",
-            "function": versatile_test,
-            "type": "button",
-            "position": "vertical"
-        }
-    };
 
-    yb_flexCard("Edit Name Block", these_options);
-
-}
 
 function yb_handleEditBio() {
     let these_options = {
@@ -169,8 +132,7 @@ $(document).ready(function() {
 
     //Editing Profile Name
     let profile_name_option = document.getElementById("profile-name-splash");
-    //Event Listener for name preview container
-    profile_name_option.addEventListener("click", yb_handleEditName);
+    
 
     //Editing Profile Buttons
     let profile_button_option = document.getElementById("profile-interaction-container");
