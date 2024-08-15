@@ -598,13 +598,14 @@ class SplashButtonEdit(View):
         except:
             custom_splash = CustomSplash(theme = custom_core.theme)
             custom_splash.save()
-            
+
         context = {
             'button_color': custom_splash.button_color,
             'button_text_color': custom_splash.button_text_color,
-            'button-shape': custom_splash.button_shape,
-            'button-border-style': custom_splash.button_border_style,
-            'button-border-color': custom_splash.button_border_color,
+            'button_shape': custom_splash.button_shape,
+            'text_size': custom_splash.button_text_size,
+            'button_border_style': custom_splash.button_border_style,
+            'button_border_color': custom_splash.button_border_color,
         }
         return render(request, "yb_customize/profile_button_edit.html", context)
     
