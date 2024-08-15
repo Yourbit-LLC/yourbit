@@ -592,7 +592,13 @@ class SplashFontEdit(View):
 class SplashButtonEdit(View):
     def get(self, request):
         custom_core = CustomCore.objects.get(profile = request.user.profile)
-        custom_splash = CustomSplash.objects.get_or_create(theme = custom_core.theme)
+        try:
+            custom_splash = CustomSplash.objects.get(theme = custom_core.theme)
+
+        except:
+            custom_splash = CustomSplash(theme = custom_core.theme)
+            custom_splash.save()
+            
         context = {
             'button_color': custom_splash.button_color,
             'button_text_color': custom_splash.button_text_color,

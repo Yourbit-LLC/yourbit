@@ -17,7 +17,7 @@
     </div>
 
     <div id="profile-splash-label" class = "yb-splash-label profile yb-center-transform all align-center">
-        <div id="profile-image-container" class="profile-image-container yb-center-margin all plainBorder border-solid narrowBorder circle" style="overflow: hidden; margin-bottom: 10px; border: {{custom_core.image_border_style}}; border-color: {{custom_core.image_border_color}};">
+        <div id="profile-image-container" class="profile-image-container yb-center-margin all plainBorder border-solid narrowBorder circle" style="overflow: hidden; margin-bottom: 10px; border: {{custom_core.image_border_style}}; border-color: {{custom_core.image_border_color}};" onclick="yb_navigateTo('2way', 'profile-image-upload', null, false); yb_expand2Way(1);">
             <div class="profile-image-overlay" style="background-color: {{custom_core.image_overlay_color}}; opacity: {{custom_core.image_overlay_strength}};"></div>
             <img src="{{custom_core.profile_image.large_thumbnail.url}}"  id="profile-image-splash" style="width: 100%; border-color:{{profile.custom.accent_color}};"/>
         </div>
