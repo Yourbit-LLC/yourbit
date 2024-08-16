@@ -24,9 +24,9 @@
             <img src="{{current_profile.custom.profile_image.medium_thumbnail.url}}"  id="profile-image-splash" style="width: 100%; border-color:{{profile.custom.accent_color}};"/>
         </div>
         <div class="profile-name-splash" id="profile-name-splash">
-            <h2 id="profile-name-header" class="profile-name-header yb-pHead">{{current_profile.display_name}}</h2>
+            <h2 id="profile-name-header" class="profile-name-header yb-name-size{{custom_splash.name_font_size}} yb-pHead">{{current_profile.display_name}}</h2>
             <b style = "margin: 0px;" id="profile-handle-label" class="profile-handle-label yb-pText">
-                <small>@{{current_profile.user.username}}</small>
+                <small class="{{custom_splash.username_font_size}}">@{{current_profile.user.username}}</small>
             </b>
         </div>
 

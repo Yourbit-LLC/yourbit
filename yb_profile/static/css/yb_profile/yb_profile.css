@@ -55,6 +55,45 @@ Profile Page
     border: 3px solid white;
 }
 
+.yb-name-size1 {
+    font-size: 14px;
+}
+
+.yb-name-size2 {
+    font-size: 16px;
+}
+
+.yb-name-size3 {
+    font-size: 18px;
+}
+
+.yb-name-size4 {
+    font-size: 20px;
+}
+
+.yb-name-size5 {
+    font-size: 22px;
+}
+
+.yb-username-size1 {
+    font-size: 12px;
+}
+
+.yb-username-size2 {
+    font-size: 14px;
+}
+
+.yb-username-size3 {
+    font-size: 16px;
+}
+
+.yb-username-size4 {
+    font-size: 18px;
+}
+
+.yb-username-size5 {
+    font-size: 20px;
+}
 
 .profile-image-border.preview {
     margin-left: auto;
@@ -265,8 +304,13 @@ Profile Page
     animation: yb-border-blink 2s infinite;
     animation-delay: 0.5s;
     border-radius: 20px;
-    
+    transition: 0.5s;
+}
 
+.profile-name-splash.preview:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: 0.5s;
 }
 
 .button-dropdown {
@@ -338,7 +382,13 @@ Profile Page
     border-radius: 20px;
     padding: 2px 2px 2px 2px;
     z-index: 101;
-    
+    transition: 0.5s;
+}
+
+.profile-interaction-container.preview:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: 0.5s;
 }
 
 .profile-interact-text.end {
@@ -353,7 +403,7 @@ Profile Page
     left: 0px;
     pointer-events: none;
     background-image: linear-gradient(to right, rgba(100, 100, 100, 0.3) 2px, transparent 1px), linear-gradient(to bottom, rgba(100, 100, 100, 0.3) 2px, transparent 1px);
-    background-size: 20vw 20vw;
+    background-size: 10vw 10vw;
     z-index: 100;
     animation: yb-flash-soft 5s infinite;
 }
@@ -453,8 +503,14 @@ Profile Page
     width: 192px;
     height: 192px;
     overflow: hidden;
-    
+    transition: 0.5s;
 
+}
+
+.profile-image-container:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: 0.5s;;
 }
 
 .yb-editBarLabel {

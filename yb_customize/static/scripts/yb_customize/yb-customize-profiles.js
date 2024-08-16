@@ -5,6 +5,8 @@ var button_connect = document.getElementById("profile-button-connect");
 var button_message = document.getElementById("profile-button-message");
 var button_about  = document.getElementById("profile-button-about");
 var profile_image_button_temp = document.getElementById("change-avatar");
+var profile_name = document.getElementById("profile-name-header");
+var profile_handle = document.getElementById("profile-handle-label");
 var wallpaper_button_temp = document.getElementById("change-wallpaper");
 var sticker_button_temp = document.getElementById("add-stickers");
 var splash_screen = document.getElementById("profile-page-splash");
@@ -31,51 +33,9 @@ function yb_showEditableSplash() {
 }
 
 
-function yb_handleEditBio() {
-    let these_options = {
-        "motto-color": {
-            "label": "Motto Color",
-            "function": versatile_test, 
-            "type": "color",
-            "position": "horizontal"
-        }, 
-        "bio-color": {
-            "label": "Bio Color",
-            "action" : versatile_test, 
-            "type": "color",
-            "position": "horizontal"
-        },
-        "change-motto": {
-            "label": "Change Motto",
-            "function": versatile_test,
-            "type": "button",
-            "action": "Change",
-            "position": "vertical"
-        },
-        "change-bio": {
-            "label": "Change Bio",
-            "function": versatile_test,
-            "type": "button",
-            "action": "Change",
-            "position": "vertical"
-        },
-        "cancel": {
-            "label": "Cancel",
-            "function": versatile_test,
-            "type": "button",
-            "action":"",
-            "position": "vertical"
-        }
-    };
-
-    yb_flexCard("Edit Bio Block", these_options);
-    
-
-}
-
 function yb_handleEditProfileImage() {
     yb_launch2WayContainer("profile-image-upload");
-    yb_expand2Way();
+    
 }
 
 function yb_handleEditWallpaper() {
@@ -84,6 +44,41 @@ function yb_handleEditWallpaper() {
     yb_resize2Way(3);
 
 }
+
+function yb_recolorSplashText(value) {
+    
+    profile_handle.style.color = value;
+
+}
+
+function yb_recolorSplashTitle(value) {
+    profile_name.style.color = value;
+}
+
+function yb_resizeSplashText(value) {
+    for (let i=0; i < 5; i++) {
+        for (let i = 0; i < profile_handle.classList.length; i++) {
+            if (profile_handle.classList[i].includes("yb-username-size")) {
+                profile_handle.classList.remove(profile_handle.classList[i]);
+                break;
+            }
+        }
+    }
+    profile_handle.classList.add("yb-username-size" + value);
+}
+
+function yb_resizeSplashTitle(value) {
+    for (let i=0; i < 5; i++) {
+        for (let i = 0; i < profile_name.classList.length; i++) {
+            if (profile_name.classList[i].includes("yb-name-size")) {
+                profile_name.classList.remove(profile_name.classList[i]);
+                break;
+            }
+        }
+    }
+    profile_name.classList.add("yb-name-size" + value);
+}
+    
 
 $(document).ready(function() {
     //Initialize Data

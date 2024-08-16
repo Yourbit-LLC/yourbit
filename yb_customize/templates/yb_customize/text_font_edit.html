@@ -10,11 +10,11 @@
             <div id="font-style-section" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; grid-template-rows: 30px 25px auto 25px; width: 95%; margin: auto; grid-gap: 5px;">
                 <h3 class="align-center squared yb-autoText-reversed" style="grid-row: 1; grid-column-start: 1; grid-column-end: 3; width: 33%; margin: 5px auto; line-height: 2; height: 30px; background-color: rgba(0,0,0,0.5);">Name Font</h3>
                 <p class="field-cover-label yb-autoText yb-pText align-left" style="grid-column: 1; grid-row: 2;">Font Color </p>  
-                <div class = "color-circle yb-center-margin tb" id="image-co-color-circle" name="image-co" style="position: relative; margin-right: 10px; background-color: {{title_color}}; grid-column: 2; grid-row: 2; height: 25px; width: 25px;"></div>  
-                <input class="coloris color-input" type="text" name="image-co" style="display: none;" id="image-co-color-picker" value="{{title_color}}">  
+                <div class = "color-circle yb-center-margin tb" id="title-font-color-circle" name="image-co" style="position: relative; margin-right: 10px; background-color: {{title_color}}; grid-column: 2; grid-row: 2; height: 25px; width: 25px;"></div>  
+                <input class="coloris color-input" type="text" name="title-font" style="display: none;" id="title-font-color-picker" value="{{title_color}}">  
                 <hr style="grid-row: 3; grid-column-start: 1; grid-column-end: 3; width: 100%; border-color: gray;">
                 <p class="field-cover-label yb-autoText yb-pText align-left" style="grid-column: 1; grid-row: 4;">Font Size </p>  
-                <input type="range" id="font-size-text-slider" style="position: absolute; top: 50%; grid-column: 2; grid-row: 4; transform: translateY(-100%); right: 5px; text-align: left;" class="yb-ranger" min="0" max="5" step="1" value="{{title_size}}">      
+                <input type="range" id="title-font-size-slider" style="position: absolute; top: 50%; grid-column: 2; grid-row: 4; transform: translateY(-100%); right: 5px; text-align: left;" class="yb-ranger" min="1" max="5" step="1" value="{{title_size}}">      
 
                 
             </div>
@@ -26,14 +26,16 @@
             <div id="font-style-section" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; grid-template-rows: 30px 25px auto 25px;; width: 95%; margin: auto; grid-gap: 5px;">
                 <h3 class="align-center squared yb-autoText-reversed" style="grid-row: 1; grid-column-start: 1; grid-column-end: 3; width: 33%; margin: 5px auto; line-height: 2; height: 30px; background-color: rgba(0,0,0,0.5);">Username Font</h3>
                 <p class="field-cover-label yb-autoText yb-pText align-left" style="grid-column: 1; grid-row: 2;">Font Color </p>  
-                <div class = "color-circle yb-center-margin tb" id="image-co-color-circle" name="image-co" style="position: relative; margin-right: 10px; background-color: {{text_color}}; grid-column: 2; grid-row: 2; height: 25px; width: 25px;"></div>  
-                <input class="coloris color-input" type="text" name="image-co" style="display: none;" id="image-co-color-picker" value="{{text_color}}">  
+                <div class = "color-circle yb-center-margin tb" id="text-font-color-circle" name="image-co" style="position: relative; margin-right: 10px; background-color: {{text_color}}; grid-column: 2; grid-row: 2; height: 25px; width: 25px;"></div>  
+                <input class="coloris color-input" type="text" name="image-co" style="display: none;" id="text-font-color-picker" value="{{text_color}}">  
                 <hr style="grid-row: 3; grid-column-start: 1; grid-column-end: 3; width: 100%; border-color: gray;">
                 <p class="field-cover-label yb-autoText yb-pText align-left" style="grid-column: 1; grid-row: 4;">Font Size </p>  
-                <input type="range" id="font-size-text-slider" style="position: absolute; top: 50%; grid-column: 2; grid-row: 4; transform: translateY(-100%); right: 5px; text-align: left;" class="yb-ranger" min="0" max="5" step="1" value="{{text_size}}">      
+                <input type="range" id="text-font-size-slider" style="position: absolute; top: 50%; grid-column: 2; grid-row: 4; transform: translateY(-100%); right: 5px; text-align: left;" class="yb-ranger" min="1" max="5" step="1" value="{{text_size}}">      
 
                 
             </div>
         </div>
     </div>
 </div>
+
+<script src="{% static 'scripts/yb_customize/splash_text_edit.js' %}"></script>

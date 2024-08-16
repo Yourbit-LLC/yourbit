@@ -16,7 +16,14 @@ environ.Env.read_env()
 # Create your views here.
 class CustomizeProfile(View):
     def get(self, request):
-        return render(request, "yb_customize/editable_profile_splash.html")
+        custom_core = CustomCore.objects.get(profile = request.user.profile)
+        theme = custom_core.theme
+        custom_splash = CustomSplash.objects.get(theme = theme)
+        
+        context = {
+            'custom_splash': custom_splash,
+        }
+        return render(request, "yb_customize/editable_profile_splash.html", context)
     
     def post(self, request):
         pass
@@ -388,6 +395,7 @@ class CustomizeProfileView(View):
     def get(self, request):
         if request.user.is_authenticated:
             init_params = initialize_session(request)
+            
             return render(
                 request, 
                 "main/index.html",

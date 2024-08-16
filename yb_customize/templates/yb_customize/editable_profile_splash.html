@@ -12,19 +12,22 @@
         <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb align-left yb-pText" onclick="customize_url('')">Back</h3>
         <div></div>
     </div>
+    <div class="yb-drawer-focus">
+
+    </div>
     <div class="grid-overlay">
     
     </div>
 
     <div id="profile-splash-label" class = "yb-splash-label profile yb-center-transform all align-center">
-        <div id="profile-image-container" class="profile-image-container yb-center-margin all plainBorder border-solid narrowBorder circle" style="overflow: hidden; margin-bottom: 10px; border: {{custom_core.image_border_style}}; border-color: {{custom_core.image_border_color}};" onclick="yb_navigateTo('2way', 'profile-image-upload', null, false); yb_expand2Way(1);">
+        <div id="profile-image-container" class="profile-image-container  yb-blink-soft infinite yb-center-margin all plainBorder border-solid narrowBorder circle" style="overflow: hidden; margin-bottom: 10px; border: {{custom_core.image_border_style}}; border-color: {{custom_core.image_border_color}};" onclick="yb_navigateTo('2way', 'profile-image-upload', null, false);">
             <div class="profile-image-overlay" style="background-color: {{custom_core.image_overlay_color}}; opacity: {{custom_core.image_overlay_strength}};"></div>
             <img src="{{custom_core.profile_image.large_thumbnail.url}}"  id="profile-image-splash" style="width: 100%; border-color:{{profile.custom.accent_color}};"/>
         </div>
 
         <div class="profile-name-splash preview" id="profile-name-splash" style="border: 2px solid gray; width: fit-content; margin: auto; padding: 15px;" onclick="yb_navigateTo('drawer', 'profile-text-edit', null, false);">
-            <h2 id="profile-name-header" style="color:{{custom_ui.title_color}}; margin-top: 0px; margin-bottom: 10px;" class="profile-name-header">{{user.first_name}} {{user.last_name}}</h2>
-            <b id="profile-handle-label" style="color:{{custom_ui.text_color}};" class="profile-handle-label">
+            <h2 id="profile-name-header" style="color:{{custom_ui.title_color}}; margin-top: 0px; margin-bottom: 10px;" class="profile-name-header yb-name-size{{custom_splash.name_font_size}}">{{user.first_name}} {{user.last_name}}</h2>
+            <b id="profile-handle-label" style="color:{{custom_ui.text_color}};" class="profile-handle-label yb-name-size{{custom_splash.username_font_size}}">
                 <small>@{{user.username}}</small>
             </b>
         </div>
