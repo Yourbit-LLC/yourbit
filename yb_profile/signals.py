@@ -49,11 +49,26 @@ def create_profile(sender, instance, created, **kwargs):
         message_core = MessageCore(profile = user_profile)
         message_core.save()
 
+                #Initialize Task Manager for user continuity
+        task_manager = TaskManager(user = instance)
+        task_manager.save()
+
+        #Initialize Notification Core for managing user notifications
+        notification_core = NotificationCore(profile = user_profile)
+        notification_core.save()
+        user_profile.save()
+
+        bitstream = BitStream(user = instance, profile = user_profile)
+        bitstream.save()
+
         #Initialize Customization Modules
         from yb_photo.utility import process_image
         custom_core = CustomCore(profile=user_profile)
-        default_profile_image = process_image(instance, static("images/main/default-profile-image.png"), static("images/main/default-profile-image.png"), False)
-        
+
+        try:
+            default_profile_image = process_image(instance, static("images/main/default-profile-image.png"), static("images/main/default-profile-image.png"), False)
+        except:
+            default_profile_image = Photo.objects.get(pk=36)
         #Set the image and image thumbnail fields to static file for default_profile_image.png
         
         custom_core.profile_image = default_profile_image
@@ -71,17 +86,6 @@ def create_profile(sender, instance, created, **kwargs):
         custom_bit = CustomBit(theme=default_theme)
         custom_bit.save()
 
-        #Initialize Task Manager for user continuity
-        task_manager = TaskManager(user = instance)
-        task_manager.save()
-
-        #Initialize Notification Core for managing user notifications
-        notification_core = NotificationCore(profile = user_profile)
-        notification_core.save()
-        user_profile.save()
-
-        bitstream = BitStream(user = instance, profile = user_profile)
-        bitstream.save()
 
 @receiver(post_save, sender=Bit)
 def update_feeds(sender, instance, created, **kwargs):
