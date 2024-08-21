@@ -206,4 +206,24 @@ class FriendRequest(models.Model):
     message = models.CharField(max_length = 200, blank=True)
     time = models.DateTimeField(default=timezone.now)
 
-    
+
+class SessionProfile(models.Model):
+    #Model for session profiles
+    session_key = models.CharField(max_length=150, default="")
+    session_start = models.DateTimeField(default=timezone.now)
+    session_end = models.DateTimeField(default=timezone.now)
+    session_duration = models.IntegerField(default=0)
+    session_active = models.BooleanField(default=False)
+
+class PageAccess(models.Model):
+    #Model for page access
+    profile = models.OneToOneField(SessionProfile, related_name='page_access', blank=True, on_delete=models.CASCADE)
+    page = models.CharField(max_length=150, default="")
+    previous_page = models.CharField(max_length=150, default="")
+    button_used = models.CharField(max_length=150, default="")
+    time = models.DateTimeField(default=timezone.now)
+
+class AnonymousProfile(models.Model):
+    #Model for anonymous profiles
+    profile = models.OneToOneField(Profile, related_name='anonymous_profile', blank=True, on_delete=models.CASCADE)
+    session_profiles = models.ManyToManyField(SessionProfile, related_name='session_profiles', blank=True)

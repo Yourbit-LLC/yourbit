@@ -53,6 +53,12 @@ class CustomizeMain(View):
 
         
 
+def complete_tutorial(request, type):
+    custom_core = CustomCore.objects.get(profile = request.user.profile)
+    custom_core.splash_tutorial_complete = True
+    custom_core.save()
+    
+    return JsonResponse({"success": "success"})
 
 class CustomizeMenu(View):
     def get(self, request):

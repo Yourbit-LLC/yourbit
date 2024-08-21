@@ -186,3 +186,9 @@
 
 
 <script src="{% static 'scripts/yb_customize/ui_editor.js' %}"></script>
+<script>
+    $(document).ready(function() {
+        $(MAIN_LOADING_SCREEN).fadeOut(500).animate({opacity: 0}, 500);
+    });
+
+</script>

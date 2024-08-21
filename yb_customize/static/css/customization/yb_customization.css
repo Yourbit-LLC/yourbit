@@ -776,3 +776,97 @@
     transition: 0.3s;
 
 }
+
+.yb-customize-toolbar-inner {
+    width: 98%;
+    height: 35px;
+    max-width: 900px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr 1fr 1fr 1fr;
+    column-gap: 5px;
+    position: fixed;
+    top: 70px;
+    z-index: 999;
+    background-color: black;
+}
+
+.yb-tb-button-save {
+    display: block;
+    position: relative;
+    height: 80%;
+    width: 95%;
+    background-color: rgb(0, 35, 0);
+    color: white;
+    margin: auto;
+    transition: 0.5s;
+    grid-column: 6;
+    border-width: 0px;
+    font-size: 16px;
+}
+
+
+.yb-tb-button-save.ready {
+    background-color: rgb(37, 154, 37);
+    transition: 0.5s;
+}
+
+.yb-tb-button-new {
+    display: block;
+    position: relative;
+    height: 70%;
+    width: 100%;
+    color: white;
+    margin: auto;
+    transition: 0.5s;
+    grid-column: 3;
+    border-width: 0px;
+    font-size: 14px;
+}
+
+.yb-tb-button-new.ready {
+    background-color: rgb(62, 62, 232);
+    transition: 0.5s;
+}
+
+.yb-tb-button-undo {
+    display: block;
+    position: relative;
+    height: 70%;
+    width: 100%;
+    color: white;
+    margin: auto;
+    transition: 0.5s;
+    grid-column: 5;
+    border-width: 0px;
+    font-size: 14px;
+}
+
+.yb-tb-button-reset {
+    display: block;
+    position: relative;
+    height: 70%;
+    width: 100%;
+    color: white;
+    margin: auto;
+    transition: 0.5s;
+    grid-column: 4;
+    border-width: 0px;
+    font-size: 14px;
+}
+
+.yb-tb-button-back {
+    position: relative; 
+    display: grid; 
+    grid-template-columns: 1fr 3fr; 
+    line-height: 1.5;
+    height: 80%;
+    width: 95%;
+    color: white;
+    margin: auto;
+    transition: 0.5s;
+    grid-column: 1;
+    border-width: 0px;
+    font-size: 16px;
+}

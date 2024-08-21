@@ -29,6 +29,7 @@ const SLIDE_UP_CORE = document.getElementById("yb-slide-up-core"); //yb_showSlid
 
 //Content Focus Container
 const FOCUS_CONTAINER = document.getElementById("core-focus-container");
+const DRAWER_FOCUS_CONTAINER = document.getElementById("drawer-focus-container");
 
 const CARD_CONTAINER = document.getElementById("yb-card");
 
@@ -383,6 +384,14 @@ function yb_toggle2WayContainer(type, scroll=false){
         }
     }
     
+}
+
+function yb_showDrawerFocus() {
+    DRAWER_FOCUS_CONTAINER.classList.add("show");
+}
+
+function yb_hideDrawerFocus() {
+    DRAWER_FOCUS_CONTAINER.classList.remove("show");
 }
 
 //Launch a 2 way container with a page defined in TWO_WAY_INDEX

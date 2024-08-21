@@ -56,6 +56,8 @@ class CustomCore(models.Model):
 
     theme = models.ForeignKey('Theme', related_name='custom', on_delete = models.CASCADE, blank=True, null=True)
 
+    splash_tutorial_complete = models.BooleanField(default=False)
+
     def __str__(self):
         return f"{self.profile.display_name}'s Custom Core: Active Theme - {self.theme.id}"
 

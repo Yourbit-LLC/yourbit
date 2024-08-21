@@ -1,13 +1,111 @@
-<div class="tutorial-overlay" id="profile-custom-tutorial">
-    <div id="image-instructions">
-        <p class="instruction-text-container">To change your profile image click on this button</p>
+<div class="yb-tutorial-overlay font-white" id="profile-custom-tutorial">
+    <h3 class="yb-next-button yb-bounceDown-infinite green rounded" id="tutorial-next" style="position: absolute; top: 75px; right: 25px; font-size: 20px; cursor: pointer; padding: 10px;">Next</h3>
+    <h3 id="tutorial-title" style="transition: 0.5s;" class"align-center">Customization Tutorial: 1/4</h3>
+    <div id="image-instructions" class="yb-hover infinite" style="position: absolute; top: 140px; width: 100%;">
+        <div style="position: relative; width: 100%;">
+            <p class="instruction-text-container align-center yb-blink-soft twice" style="position: absolute; width: fit-content; left: 50%; transform: translateX(-50%);">Click on your profile image to modify it</p>
+        </div>
         <div class="instruction-icon-container">
         </div>
     </div>
-    
-    <div id="wallpaper-instructions">
-        <p>To change or edit your wallpaper image click this button here</p>
+
+    <div id="text-instructions" class="yb-hover infinite" style="position: fixed; top: 350px; width: 100%; z-index: 1006; display: none;">
+        <div style="position: relative; width: 100%;">
+            <p class="instruction-text-container align-center yb-blink-soft" style="position: absolute; width: fit-content; left: 50%; transform: translateX(-50%);">Click the name container to edit your font</p>
+        </div>
         <div class="instruction-icon-container">
-        </div>        
+        </div>
     </div>
+
+    <div id="button-instructions" class="yb-hover infinite" style="position: fixed; bottom: 300px; width: 100%; z-index: 1006; display: none;">
+        <div style="position: relative; width: 100%;">
+            <p class="instruction-text-container align-center yb-blink-soft" style="position: absolute; width: fit-content; left: 50%; transform: translateX(-50%);">Click the buttons below to customize their appearance</p>
+        </div>
+        <div class="instruction-icon-container">
+        </div>
+    </div>
+
+    
+    <div id="wallpaper-instructions" class="yb-hover infinite" style="position: fixed; bottom: 130px; width: 100%; z-index: 1006; display: none;">
+        <div style="position: relative; width: 100%;">
+            <p class="instruction-text-container align-center yb-blink-soft" style="position: absolute; width: fit-content; left: 50%; transform: translateX(-50%);">Click the button below to edit your wallpaper</p>
+        </div>
+        <div class="instruction-icon-container">
+        </div>
+    </div>
+
 </div>
+
+<script>
+    var page = 0;
+    var tutorial_elements =[
+        "image-instructions",
+        "text-instructions",
+        "button-instructions",
+        "wallpaper-instructions"
+    ];
+
+    var page_elements = [
+        "profile-image-container",
+        "profile-name-splash",
+        "profile-interaction-container",
+        "additional-options"
+    ];
+    var nextButton = document.getElementById('tutorial-next');
+    $(document).ready(function(){
+        $('#profile-splash-label').css('z-index', '1005');
+
+        for (i = 1; i < page_elements.length; i++){
+            document.getElementById(page_elements[i]).style.filter = 'brightness(0.5) blur(2px)';
+        }
+
+
+        nextButton.addEventListener('click', function(){
+            page++;
+            $('#tutorial-title').text('Customization Tutorial: ' + (page + 1) + '/4');
+
+ 
+            if (page < 4){
+                document.getElementById(page_elements[page]).style.filter = 'brightness(1)';
+                document.getElementById(page_elements[page-1]).style.filter = 'brightness(0.5) blur(2px) opacity(0.5)';
+                document.getElementById(page_elements[page-1]).style.transform = 'scale(0.9)';
+                if (page < 3) {
+                    document.getElementById(page_elements[page]).classList.add('yb-bounceDown-1');
+                    
+                }
+            } else {
+                page = 0;
+                $('#profile-custom-tutorial').css('display', 'none');
+                for (i = 0; i < page_elements.length; i++){
+                    document.getElementById(page_elements[i]).style.filter = 'brightness(1)';
+                    document.getElementById(page_elements[i]).classList.remove('yb-bounceDown-1');
+                    document.getElementById(page_elements[page]).style.transform = 'scale(1)';
+                }
+
+                $.ajax({
+                    url: '/customize/complete-tutorial/splash/',
+                    type: 'POST',
+                    headers: {
+                        'X-CSRFToken': '{{csrf_token}}'
+                    },
+                    data: {
+                        'tutorial': 'profile'
+                    },
+                    success: function(data){
+                        console.log(data);
+                        showNotification(expandNotification, "Tutorial Completed");
+                    }
+                });
+            }
+            
+
+            for(var i = 0; i < tutorial_elements.length; i++){
+                if(i == page){
+                    $('#' + tutorial_elements[i]).css('display', 'block');
+                } else {
+                    $('#' + tutorial_elements[i]).css('display', 'none');
+                }
+            }
+        });
+    });
+</script>

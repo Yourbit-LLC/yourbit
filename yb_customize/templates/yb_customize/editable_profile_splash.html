@@ -1,26 +1,31 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/yb_profile/yb_profile.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'css/customization/yb_customization.css' %}"/>
 <style>
 
 </style>
 
 <div id="profile-page-splash" class="yb-fsContainer profile">
     
+    <form class="master-form">
+        <input type="hidden" id="master-name-color" value="{{custom_splash.name_font_color}}">
+        <input type="hidden" id="master-username-color" value="{{custom_splash.username_font_color}}">
+        <input type="hidden" id="master-name-size" value="{{custom_splash.name_font_size}}">
+        <input type="hidden" id="master-username-size" value="{{custom_splash.username_font_size}}">
+    </form>
 
-    <div id='div-header' style="padding-top: 70px;" class="div-header">
-        <div class="cb-panel-back" onclick="customize_url('')"><svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
-        <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb align-left yb-pText" onclick="customize_url('')">Back</h3>
-        <div></div>
-    </div>
-    <div class="yb-drawer-focus">
 
+    <div class="yb-customize-toolbar squared">
+        {% include "yb_customize/customization_toolbar.html" %}
     </div>
-    <div class="grid-overlay">
     
-    </div>
+    {% if custom_core.splash_tutorial_completed == False %}
+        {% include "yb_customize/custom_profile_tutorial.html" %}
+    {% endif %}
+    <div class="grid-overlay"></div>
 
     <div id="profile-splash-label" class = "yb-splash-label profile yb-center-transform all align-center">
-        <div id="profile-image-container" class="profile-image-container  yb-blink-soft infinite yb-center-margin all plainBorder border-solid narrowBorder circle" style="overflow: hidden; margin-bottom: 10px; border: {{custom_core.image_border_style}}; border-color: {{custom_core.image_border_color}};" onclick="yb_navigateTo('2way', 'profile-image-upload', null, false);">
+        <div id="profile-image-container" class="profile-image-container  yb-blink-soft infinite yb-center-margin all plainBorder border-solid narrowBorder circle" style="overflow: hidden; margin-bottom: 10px; border: {{custom_core.image_border_style}}; border-color: {{custom_core.image_border_color}}; z-index: 50;" onclick="yb_navigateTo('2way', 'profile-image-upload', null, false);">
             <div class="profile-image-overlay" style="background-color: {{custom_core.image_overlay_color}}; opacity: {{custom_core.image_overlay_strength}};"></div>
             <img src="{{custom_core.profile_image.large_thumbnail.url}}"  id="profile-image-splash" style="width: 100%; border-color:{{profile.custom.accent_color}};"/>
         </div>
@@ -80,8 +85,8 @@
 
 </div>
 
-<div id="additional-options" class="yb-gap5" style="z-index: 1001;">
-    <div id="change-avatar" class="yb-flexRow yb-gap5">
+<div id="additional-options" class="yb-gap5" style="z-index: 999;">
+    <div id="change-avatar" class="yb-flexRow yb-gap5" style="display: none;">
 
         <div class="yb-circle-button mini">
             <svg class="mini-button-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
@@ -101,12 +106,12 @@
             </svg>
         </div>
 
-        <p class="font-gray font-medium yb-editBarLabel">Wallpaper</p>
+        <p class="font-gray font-medium yb-editBarLabel"> Wallpaper</p>
     
     </div>
 
     
-    <div class="yb-flexRow yb-gap5" id="add-stickers">
+    <div class="yb-flexRow yb-gap5" id="add-stickers" style="display:none;">
 
         <div class="yb-circle-button mini">
             <svg class="mini-button-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
@@ -122,3 +127,8 @@
 
 {% comment %} <script class="page-script" id="page-script" type="text/javascript" src="{% static 'scripts/yb_customize/customCore.js' %}"></script> {% endcomment %}
 <script class="page-script" id="page-script" type="text/javascript" src="{% static 'scripts/yb_customize/yb-customize-profiles.js' %}"></script>
+<script>
+    $(document).ready(function() {
+        $(MAIN_LOADING_SCREEN).fadeOut(500).animate({opacity: 0}, 500);
+    })
+</script>

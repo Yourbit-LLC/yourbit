@@ -196,6 +196,7 @@
 <script>
     $(document).ready(function() {
         yb_startClock("time-label", "decorated-time");
+        $(MAIN_LOADING_SCREEN).fadeOut(500).animate({opacity: 0}, 500);
     });
 </script>
 

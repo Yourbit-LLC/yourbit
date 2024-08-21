@@ -6,6 +6,7 @@ from .views import *
 urlpatterns = [
     path("bit/", CustomizeBitView.as_view(), name="customize_bit"),
     path("ui/", CustomizeUIView.as_view(), name="customize_ui"),
+    path("complete-tutorial/<str:type>/", complete_tutorial, name="complete_tutorial"),
     path("profile/", CustomizeProfileView.as_view(), name="customize_profile_view"),
     path("pfp/edit/", edit_profile_image, name="customize_profile_image"),
     path("stickers/search/<str:query>/", StickerList.as_view(), name="search_stickers"),

@@ -68,6 +68,10 @@
     animation: yb-blink-soft 2.5s linear infinite;
 }
 
+.yb-blink-soft.twice {
+    animation: yb-blink-soft 1s linear 2 alternate;
+}
+
 @keyframes yb-flash {
     /* Increase brightness to 120 then beack down */
     0% { filter: brightness(100%); 
@@ -200,4 +204,29 @@
 @keyframes yb-fade-out {
     0% { opacity: 1; }
     100% { opacity: 0; }
+}
+
+@keyframes yb-hover {
+    0% {transform: translateY(0);}
+    50% {transform: translateY(-5px);}
+    100% {transform: translateY(0);}
+}
+
+.yb-hover {
+    animation: yb-hover 2s linear 1;
+}
+
+.yb-hover.infinite {
+    animation: yb-hover 2s linear infinite;
+}
+
+@keyframes yb-hover-soft {
+    0% {transform: translateY(0);}
+    50% {transform: translateY(-2px);}
+    100% {transform: translateY(0);}
+}
+
+
+.yb-hover-soft {
+    animation: yb-hover-soft 0.5s linear 1;
 }

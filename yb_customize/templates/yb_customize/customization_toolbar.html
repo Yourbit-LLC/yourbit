@@ -1,0 +1,32 @@
+<div class="yb-fillWidth yb-customize-toolbar-inner squared" style="height: 35px;">
+    <div class="yb-tb-button-back squared yb-bg-autoGray" onclick="customize_url('')">
+        <div class="cb-panel-back"><svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
+        <p class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb align-left yb-pText">Back</p>
+    </div>
+    <div style="display: grid; grid-template-columns: 120px auto; grid-column: 2; text-align: left; line-height: 1.5; font-weight: 550; margin-left: 10px;">
+        <p class="yb-font-autoGray">
+            Active Theme
+        </p>
+        <select type="text" id="theme-name" class="yb-input-transparent yb-font-autoGray yb-pText squared" style="padding-left: 10px; font-weight: bold; font-size: 14px; width: 100%; border: solid 1px gray; height: 25px; margin: auto; background-color: transparent;" value="{{custom_core.theme.id}}">
+            <option value="{{custom_core.theme.id}}">{{custom_core.theme.name}}</option>
+        </select>
+    
+    </div>
+
+    <button class="yb-tb-button-new squared yb-bg-autoGray">
+        New Theme
+    </button>
+    
+    <button class="yb-tb-button-reset squared yb-bg-autoGray">
+        Reset
+    </button>
+
+    <button class="yb-tb-button-undo squared yb-bg-autoGray">
+        Undo
+    </button>
+
+    <button class="yb-tb-button-save squared">
+        Save
+    </button>
+
+</div>

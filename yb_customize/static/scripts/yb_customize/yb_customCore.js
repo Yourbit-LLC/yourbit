@@ -90,19 +90,19 @@ const UI_CUSTOM = {
 
 */
 const DEFAULT_STYLESHEET_INDEX = {
-    "yb-stylesheet-core": "/static/css/main/yb_core.css",
-    "yb-stylesheet-modifier": "/static/css/main/yb_modifiers.css",
-    "yb-stylesheet-button": "/static/css/main/yb_buttons.css",
-    "yb-stylesheet-container": "/static/css/main/yb_containers.css",
-    "yb-stylesheet-bit": "/static/css/yb_bits/yb_bits.css",
+    "yb-stylesheet-core": "/static/css/main/yb_core6.css",
+    "yb-stylesheet-modifier": "/static/css/main/yb_modifiers3.css",
+    "yb-stylesheet-button": "/static/css/main/yb_buttons6.css",
+    "yb-stylesheet-container": "/static/css/main/yb_containers6.css",
+    "yb-stylesheet-bit": "/static/css/yb_bits/yb_bits5.css",
 }
 
 const MODDED_STYLESHEET_INDEX = {
-    "yb-stylesheet-core": "/static/css/main/yb_core_customized.css",
-    "yb-stylesheet-modifier": "/static/css/main/yb_modifiers_customized.css",
-    "yb-stylesheet-button": "/static/css/main/yb_buttons_customized.css",
-    "yb-stylesheet-container": "/static/css/main/yb_containers_customized.css",
-    "yb-stylesheet-bit": "/static/css/yb_bits/yb_bits_customized.css",
+    "yb-stylesheet-core": "/static/css/main/yb_core_customized10.css",
+    "yb-stylesheet-modifier": "/static/css/main/yb_modifiers_customized4.css",
+    "yb-stylesheet-button": "/static/css/main/yb_buttons_customized9.css",
+    "yb-stylesheet-container": "/static/css/main/yb_containers_customized1.css",
+    "yb-stylesheet-bit": "/static/css/yb_bits/yb_bits_customized7.css",
 }
 
 //Legacy custom index **MARKED FOR REMOVAL**

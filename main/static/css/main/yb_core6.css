@@ -66,6 +66,17 @@ button {
 
 }
 
+.yb-tutorial-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    padding-top: 70px;
+}
+
 .sticker-list-container {
     position: relative;
     top: 50px;
@@ -1033,4 +1044,20 @@ p {
     .yb-container-focus {
         background-color: rgba(255, 255, 255, 0.5);
     }
+}
+
+.yb-drawer-focus {
+    position: fixed;
+    z-index: 98;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    -webkit-backdrop-filter: blur(50px);
+    backdrop-filter: blur(40px);
+    display: none;
+}
+
+.yb-drawer-focus.show {
+    display: block;
 }
