@@ -27,6 +27,7 @@ urlpatterns = [
     path("templates/wallpaper/", WallpaperUpload.as_view(), name="customize_wallpaper"),
     path("templates/profile/edit/font/<str:option>/", SplashFontEdit.as_view(), name="edit_font"),
     path("templates/profile/edit/button/", SplashButtonEdit.as_view(), name="edit_button"),
+    path("templates/create-theme/", CreateTheme.as_view(), name="create_theme"),
 
     path('', CustomizeMain.as_view(), name = "customize-main")
 

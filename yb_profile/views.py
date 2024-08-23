@@ -389,6 +389,20 @@ class ProfilePage(View):
                 }
             )
         
+def profile_onboarding(request, *args, **kwargs):
+    if request.method == "POST":
+        this_profile = Profile.objects.get(user = request.user)
+
+        this_profile.gender = request.POST.get("gender")
+        this_profile.bio = request.POST.get("bio")
+        this_profile.motto = request.POST.get("motto")
+        this_profile.save()
+
+        return JsonResponse({"status": "success"})
+    
+    else:
+        return JsonResponse({"status": "failed"})
+        
 class CreateOrbit(View):
     def get(self, request):
         

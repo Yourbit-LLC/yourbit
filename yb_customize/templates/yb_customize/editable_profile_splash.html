@@ -19,8 +19,10 @@
         {% include "yb_customize/customization_toolbar.html" %}
     </div>
     
-    {% if custom_core.splash_tutorial_completed == False %}
+    {% if not custom_core.splash_tutorial_complete %}
+
         {% include "yb_customize/custom_profile_tutorial.html" %}
+
     {% endif %}
     <div class="grid-overlay"></div>
 

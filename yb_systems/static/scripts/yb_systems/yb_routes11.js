@@ -160,6 +160,12 @@ const TWO_WAY_INDEX = {
             "template" : "/bits/edit-bit/",
             "url" : ""
         },
+
+        "create-theme":
+        {
+            "template" : "/customize/templates/create-theme/",
+            "url" : ""
+        },
     
           
 };

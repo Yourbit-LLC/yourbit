@@ -1,5 +1,7 @@
 from django.db import models
 from yb_accounts.models import Account as User
+# import timezone from django
+from django.utils import timezone
 
 # Create your models here.
 
@@ -65,7 +67,9 @@ class CustomCore(models.Model):
 # with foreign key to custom. All theme subtables will be linked here
 class Theme(models.Model):
     name = models.CharField(max_length=50, default="untitled theme")
+    description = models.CharField(max_length=500, default="No description")
     author = models.OneToOneField(User, related_name='author', blank=True, on_delete=models.CASCADE)
+    time = models.DateTimeField(default=timezone.localtime)
 
 class Font(models.Model): 
     name = models.CharField(max_length=50, default="Arial")

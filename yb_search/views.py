@@ -4,7 +4,7 @@ from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from django.db.models import F
 from yb_bits.models import Bit
 from yb_accounts.models import Account as User
-from yb_profile.models import Profile
+from yb_profile.models import Profile, Orbit
 from yb_profile.api.serializers import ProfileResultSerializer
 from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
 import requests
@@ -12,6 +12,8 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from yb_accounts.api.serializers import UserResultSerializer
 from main.views import initialize_session
 from django.views import View
+
+from django.db.models import Q
 
 #initialize environment variables
 import environ
@@ -113,6 +115,58 @@ def search(request):
     # print(search_filter + '\n')
     # print(results)
 
+def contact_search(request, query, filter):
+    user_results = []
+
+    if filter == 'all':
+        username_filter = Profile.objects.filter(username__icontains = query, public_messages = True)
+        for result in username_filter:
+            this_profile = Profile.objects.get(user=result)
+            if this_profile not in user_results:
+                user_results.append(this_profile)
+
+        user_profile_filter = Profile.objects.filter(Q(display_name__icontains=query) & (Q(public_messages=True) | Q(friends__in=request.user.profile.friends.all()))).distinct()
+        for result in user_profile_filter:
+            if result not in user_results:
+                user_results.append(result)
+
+    elif filter == 'friends':
+        user_profile_filter = Profile.objects.filter(Q(friends__in=request.user.profile.friends.all())).distinct()
+        for result in user_profile_filter:
+            if result not in user_results:
+                user_results.append(result)
+
+    elif filter == 'public':
+        username_filter = Profile.objects.filter(username__icontains = query, public_messages = True)
+        for result in username_filter:
+            this_profile = Profile.objects.get(user=result)
+            if this_profile not in user_results:
+                user_results.append(this_profile)
+
+    elif filter == 'followers':
+        user_profile_filter = Profile.objects.filter(Q(display_name__icontains=query) & (Q(public_messages=True) | Q(followers__in=request.user.profile.followers.all()))).distinct()
+        for result in user_profile_filter:
+            if result not in user_results:
+                user_results.append(result)
+
+    elif filter == 'following':
+        user_profile_filter = Profile.objects.filter(Q(display_name__icontains=query) & (Q(public_messages=True) | Q(following__in=request.user.profile.following.all()))).distinct()
+        for result in user_profile_filter:
+            if result not in user_results:
+                user_results.append(result)
+
+    elif filter == 'orbits':
+        user_profile_filter = Orbit.objects.filter(Q(display_name__icontains=query) & (Q(public_messages=True) | Q(orbits__in=request.user.profile.orbits.all()))).distinct()
+        for result in user_profile_filter:
+            if result not in user_results:
+                user_results.append(result)
+
+
+    serialized_users = ProfileResultSerializer(user_results, many=True).data
+    
+    result_count = len(user_results)
+
+    return JsonResponse({'results_found': True, 'result_count':result_count, 'results':serialized_users})
 
 #External search functions
 def get_trending_stickers(request):
@@ -203,3 +257,5 @@ class SearchElement(View):
                     'login_form': login_form,
                 }
             )
+        
+

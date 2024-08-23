@@ -28,6 +28,7 @@ class Profile(models.Model):
     )
     
     is_private = models.BooleanField(default=False)
+    public_messages = models.BooleanField(default=False)
     is_briefings = models.BooleanField(default=False)
 
         #System information

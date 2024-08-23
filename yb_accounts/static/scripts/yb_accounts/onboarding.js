@@ -37,6 +37,25 @@ const backButtons = {
 const form = document.getElementById('onboarding-form');
 
 const next = (current) => {
+    if (current == 2) {
+        //submit bio form with ajax
+        const bio_form = document.getElementById('bio-form');
+        const bio_data = new FormData(bio_form);
+        $.ajax({
+            url: bio_form.action,
+            type: bio_form.method,
+            data: bio_data,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+        
+    };
     containers[current].hidden = true;
     containers[current + 1].hidden = false;
 }

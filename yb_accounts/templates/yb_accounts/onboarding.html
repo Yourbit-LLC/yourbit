@@ -139,8 +139,10 @@
 
             <!--Profile Image Menu-->
             <div id="onboarding-2" hidden>
-                {% csrf_token %}
-                <form id="profile-image-form" class="align-center">
+                    
+                <form id="bio-form" class="align-center" method="POST" action="/profile/info/onboarding/">
+                    {% csrf_token %}
+                                                         
                     <h3 id="onboarding-heading-1" class="yb-autoText">Let's start with the profile info...</h3>
 
                     <div class="yb-input-container">
@@ -169,12 +171,12 @@
                         <textarea id="bio-field" name="bio" class="yb-bg-autoGray squared {% if request.user.profile.bio %} yb-pText yb-autoText {% else %} font-gray {% endif %} profile-field" style="width: 98%; height: 100px; max-width: 700px;">{% if request.user.profile.bio %}{{request.user.profile.bio}}{% else %} Add bio {% endif %}</textarea>
                     </div>
 
-                    <div id="tag-container">
+                    {% comment %} <div id="tag-container">
                         <br>
                         <label class="yb-autoText" for="tags">Profile Tags</label>
                         <br>
                         <textarea id="tags-field" name="tags" class="yb-bg-autoGray squared {% if request.user.profile.bio %} yb-pText yb-autoText {% else %} font-gray {% endif %} profile-field" style="width: 98%; height: 100px; max-width: 700px;">{% if request.user.profile.bio %}{{request.user.profile.bio}}{% else %} Add bio {% endif %}</textarea>
-                    </div>
+                    </div> {% endcomment %}
                     <br>
                     <div id="profile-info-buttons" class="yb-flexRow yb-center-margin all yb-gap10" style="width: 250px;">
                         <button type="button" id="onboarding-2-back" class="yb-button-wide bg-autoGray rounded yb-autoText yb-relative" style="width: 120px;">Back</button>

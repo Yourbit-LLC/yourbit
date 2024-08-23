@@ -102,6 +102,18 @@ def update_profile_image(request):
 
     return HttpResponse("success")
 
+class CreateTheme(View):
+    def get(self, request):
+        return render(request, "yb_customize/create_theme.html")
+    
+    def post(self, request):
+        new_theme = Theme(name=request.POST.get('name'), author=request.user, description=request.POST.get('description'))
+        new_theme.save()
+
+        return JsonResponse({"success": "success"})
+    
+
+    
 def update_profile_background(request):
     from yb_profile.models import Profile, Orbit
     from yb_photo.models import Wallpaper

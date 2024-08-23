@@ -7,6 +7,7 @@ urlpatterns = [
     path("user/<str:username>/", ProfileView.as_view(), name="user_profile"),
     path("page/<str:username>/", OrbitView.as_view(), name="page_profile"),
     path("profile-info/update/", update_profile_info, name="update_profile_info"),
+    path("info/onboarding/", profile_onboarding, name="onboarding"),
     path("templates/people/", PeopleViewTemplate.as_view(), name="people_template"),
     path("templates/orbits/", OrbitListTemplate.as_view(), name="orbit_template"),
     path("templates/stuff/", StuffTemplate.as_view(), name="stuff_template"),
