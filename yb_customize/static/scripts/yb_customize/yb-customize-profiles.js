@@ -10,8 +10,48 @@ var profile_handle = document.getElementById("profile-handle-label");
 var wallpaper_button_temp = document.getElementById("change-wallpaper");
 var sticker_button_temp = document.getElementById("add-stickers");
 var splash_screen = document.getElementById("profile-page-splash");
+var master_form = document.getElementById("splash-master-form");
+var master_name_color = document.getElementById("master-name-font-color");
+var master_username_color = document.getElementById("master-username-font-color");
+var master_name_size = document.getElementById("master-name-size");
+var master_username_size = document.getElementById("master-username-size");
+var master_button_color = document.getElementById("master-button-color");
+var master_button_text_color = document.getElementById("master-button-text-color");
+var master_button_text_size = document.getElementById("master-button-size");
+var master_button_shape = document.getElementById("master-button-shape");
+
+
 
 var user_id = yb_getSessionValues("id");
+
+//Edit history {"field" : "value"} for change over time and undo functionality
+var edit_history = [
+
+]
+
+
+//Initial values for fields used for reset button
+var initial_values = [
+
+];
+function yb_undo() {
+
+    // Iterate through the initial settings
+    for (let i = 0; i < initial_settings.length; i++) {
+        const field = initial_settings[i].field;
+
+        // Check if there's an edit history for this field
+        if (edit_history[field] && edit_history[field].length > 1) {
+            // Remove the last (current) value from the edit history
+            edit_history[field].pop();
+
+            // Update the initial settings with the previous value
+            initial_settings[i].value = edit_history[field][edit_history[field].length - 1];
+        }
+    }
+
+}
+
 
 function preventScroll(event) {
     if (isSwiping) {
@@ -45,14 +85,38 @@ function yb_handleEditWallpaper() {
 
 }
 
+function yb_pushToHistory(field_name, value) {
+    let field_string = field_name;
+    edit_history.push({[field_string] : value});
+    console.log(edit_history);
+}
+
 function yb_recolorSplashText(value) {
     
+    //Update Input Trigger
+    let color_circle = document.getElementById("username-font-color-circle");
+    color_circle.style.backgroundColor = value;
+
+    //Change appearance
     profile_handle.style.color = value;
+
+    //Push to master form
+    master_username_color.value = value;
+
+
 
 }
 
 function yb_recolorSplashTitle(value) {
+    
+    //Update Input Trigger
+    let color_circle = document.getElementById("name-font-color-circle");
+    color_circle.style.backgroundColor = value;
+
+    //Change appearance
     profile_name.style.color = value;
+    master_name_color.value = value;
+
 }
 
 function yb_resizeSplashText(value) {
@@ -64,7 +128,9 @@ function yb_resizeSplashText(value) {
             }
         }
     }
+    master_username_size.value = value;
     profile_handle.classList.add("yb-username-size" + value);
+
 }
 
 function yb_resizeSplashTitle(value) {
@@ -76,7 +142,55 @@ function yb_resizeSplashTitle(value) {
             }
         }
     }
+    master_name_size.value = value;
     profile_name.classList.add("yb-name-size" + value);
+
+    
+}
+
+function yb_recolorSplashButton(value) {
+    
+    //Update Input Trigger
+    let color_circle = document.getElementById("button-text-color-circle");
+    color_circle.style.backgroundColor = value;
+    
+    //Change appearance
+    button_connect.style.backgroundColor = value;
+    button_message.style.backgroundColor = value;
+    button_about.style.backgroundColor = value;
+
+    //Push to master form
+    master_button_color.value = value;
+
+    //Update edit history
+    edit_history.push({"button-color" : value});
+
+    console.log(edit_history);
+
+}
+
+function yb_recolorSplashButtonText(value) {
+    //Update Input Trigger
+    let color_circle = document.getElementById("button-text-color-circle");
+    color_circle.style.backgroundColor = value;
+
+    //Change appearance
+    button_connect.style.color = value;
+    button_message.style.color = value;
+    button_about.style.color = value;
+
+    //Push to master form
+    master_button_text_color.value = value;
+    
+    //Update edit history
+    edit_history["button-text-color"] = value;
+
+    console.log(edit_history);
+}
+
+function yb_submitSplashChanges() {
+    //Submit changes
+    master_form.submit();
 }
     
 

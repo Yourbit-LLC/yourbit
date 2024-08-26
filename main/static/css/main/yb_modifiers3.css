@@ -700,3 +700,43 @@
 .yb-spacer {
     height: 150px;
 }
+
+.yb-buttonText-size1 {
+    font-size: 10px;
+}
+
+.yb-buttonText-size2 {
+    font-size: 12px;
+}
+
+.yb-buttonText-size3 {
+    font-size: 14px;
+}
+
+.yb-buttonText-size4 {
+    font-size: 16px;
+}
+
+.yb-buttonText-size5 {
+    font-size: 18px;
+}
+
+.yb-panelTextSize1 {
+    font-size: 10px;
+}
+
+.yb-panelTextSize2 {
+    font-size: 12px;
+}
+
+.yb-panelTextSize3 {
+    font-size: 14px;
+}
+
+.yb-panelTextSize4 {
+    font-size: 16px;
+}
+
+.yb-panelTextSize5 {
+    font-size: 18px;
+}

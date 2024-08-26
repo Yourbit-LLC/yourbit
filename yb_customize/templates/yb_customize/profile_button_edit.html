@@ -1,7 +1,7 @@
 {% load static %}
 <div class="yb-drawer-search" id="sticker-search-bar">
     <h3 class="yb-autoText yb-pText align-center">Edit Buttons</h3>
-    <div class='yb-close-drawer' id='yb-drawer-close' onclick="yb_closeDrawer();"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
+    <div class='yb-close-drawer' id='yb-drawer-close' onclick="yb_closeDrawer(); yb_focusOff('profile-interaction-container', 'editable');"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
 </div>
 <hr style="border-color: gray;">
 
@@ -38,14 +38,26 @@
                         <br>
                         <input type="radio" id="squared" name="shape" value="squared">
                     </div>  
-                </div>     
+                </div>
+
             </div>
         </div>
         <br>
         <div style="padding-bottom: 50px;">
-            <div id="font-style-section" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; grid-template-rows: 30px 25px auto 25px; width: 95%; margin: auto; grid-gap: 10px;">
+            <div id="font-style-section" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; grid-template-rows: 30px 25px auto 25px auto 25px; width: 95%; margin: auto; grid-gap: 10px;">
                 <h3 class="align-center squared font-white" style="grid-row: 1; grid-column-start: 1; grid-column-end: 3; width: 33%; margin: 5px auto; line-height: 2; height: 30px; background-color: rgba(0,0,0,0.5);">Adjust Font</h3>
-                <p class="field-cover-label yb-autoText yb-pText align-left" style="grid-column: 1; grid-row: 2;">
+                
+                                
+                <p class="field-cover-label yb-autoText yb-pText align-left" style="grid-column: 1; grid-row: 2;">Label</p>
+                <div id="yb-field-container-align-text" class="yb-field-container" style="grid-column: 2; grid-row: 2;">
+                    <select type="text" class='notify-field yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoGray' name="yb-align-text" id="yb-align-text" style="width: 95%; margin-left: auto; margin-right: auto;">
+                        <option value="0">Text</option>
+                        <option value="1">Icons</option>
+                    </select>
+                </div>
+
+                <hr style="grid-row: 3; grid-column-start: 1; grid-column-end: 3; width: 100%; border-color: gray;">
+                <p class="field-cover-label yb-autoText yb-pText align-left" style="grid-column: 1; grid-row: 4;">
                     Font Color 
                     <small style="color: skyblue; margin-left: 20px;"> 
                         <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" style="position: relative; top: 30%; margin-right: 3px;" height="20px" fill="cyan"><path d="M446.67-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h166.67v66.67H280q-55.56 0-94.44 38.84-38.89 38.84-38.89 94.33 0 55.49 38.89 94.49 38.88 39 94.44 39h166.67V-280ZM323.33-446.67v-66.66h313.34v66.66H323.33Zm190 166.67v-66.67H680q55.56 0 94.44-38.84 38.89-38.84 38.89-94.33 0-55.49-38.89-94.49-38.88-39-94.44-39H513.33V-680H680q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H513.33Z"/></svg>
@@ -53,10 +65,10 @@
                         Button Text
                     </small> 
                 </p>  
-                <div class = "color-circle yb-center-margin tb" id="image-co-color-circle" name="image-co" style="position: relative; margin-right: 10px; background-color: {{button_text_color}}; grid-column: 2; grid-row: 2; height: 25px; width: 25px;"></div>  
+                <div class = "color-circle yb-center-margin tb" id="image-co-color-circle" name="image-co" style="position: relative; margin-right: 10px; background-color: {{button_text_color}}; grid-column: 2; grid-row: 4; height: 25px; width: 25px;"></div>  
                 <input class="coloris color-input" type="text" name="image-co" style="display: none;" id="image-co-color-picker" value="{{button_text_color}}">  
-                <hr style="grid-row: 3; grid-column-start: 1; grid-column-end: 3; width: 100%; border-color: gray;">
-                <p class="field-cover-label yb-autoText yb-pText align-left" style="grid-column: 1; grid-row: 4;">
+                <hr style="grid-row: 5; grid-column-start: 1; grid-column-end: 3; width: 100%; border-color: gray;">
+                <p class="field-cover-label yb-autoText yb-pText align-left" style="grid-column: 1; grid-row: 6;">
                     Font Size
                                         
                     <small style="color: skyblue; margin-left: 20px;"> 
@@ -65,7 +77,7 @@
                         Button Text
                     </small> 
                 </p>  
-                <input type="range" id="font-size-text-slider"  class="yb-ranger" min="0" max="5" step="1" value="{{text_size}}">   
+                <input type="range" id="font-size-text-slider"  class="yb-ranger" min="0" max="5" step="1" style="grid-column: 2;" value="{{text_size}}">   
 
             </div>
 

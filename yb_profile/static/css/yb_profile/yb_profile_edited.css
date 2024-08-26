@@ -354,7 +354,7 @@ Profile Page
     pointer-events: none;
     background-image: linear-gradient(to right, rgba(100, 100, 100, 0.3) 2px, transparent 1px), linear-gradient(to bottom, rgba(100, 100, 100, 0.3) 2px, transparent 1px);
     background-size: 20vw 20vw;
-    z-index: 100;
+    z-index: 0;
     animation: yb-flash-soft 5s infinite;
 }
 

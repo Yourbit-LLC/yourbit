@@ -7,13 +7,17 @@
 
 <div id="profile-page-splash" class="yb-fsContainer profile">
     
-    <form class="master-form">
-        <input type="hidden" id="master-name-color" value="{{custom_splash.name_font_color}}">
-        <input type="hidden" id="master-username-color" value="{{custom_splash.username_font_color}}">
-        <input type="hidden" id="master-name-size" value="{{custom_splash.name_font_size}}">
-        <input type="hidden" id="master-username-size" value="{{custom_splash.username_font_size}}">
+    <form class="master-form" id="splash-master-form">
+        <input type="hidden" id="master-name-font-color" value="{{custom_splash.name_font_color}}">
+        <input type="hidden" id="master-username-font-color" value="{{custom_splash.username_font_color}}">
+        <input type="hidden" id="master-name-font-size" value="{{custom_splash.name_font_size}}">
+        <input type="hidden" id="master-username-font-size" value="{{custom_splash.username_font_size}}">
     </form>
 
+    
+    <div class="yb-drawer-focus-layer" id="drawer-focus-container">
+
+    </div>
 
     <div class="yb-customize-toolbar squared">
         {% include "yb_customize/customization_toolbar.html" %}
@@ -25,14 +29,14 @@
 
     {% endif %}
     <div class="grid-overlay"></div>
-
+    
     <div id="profile-splash-label" class = "yb-splash-label profile yb-center-transform all align-center">
-        <div id="profile-image-container" class="profile-image-container  yb-blink-soft infinite yb-center-margin all plainBorder border-solid narrowBorder circle" style="overflow: hidden; margin-bottom: 10px; border: {{custom_core.image_border_style}}; border-color: {{custom_core.image_border_color}}; z-index: 50;" onclick="yb_navigateTo('2way', 'profile-image-upload', null, false);">
+        <div id="profile-image-container" class="profile-image-container editable yb-blink-soft infinite yb-center-margin all plainBorder border-solid narrowBorder circle" style="overflow: hidden; margin-bottom: 10px; border: {{custom_core.image_border_style}}; border-color: {{custom_core.image_border_color}}; z-index: 50;" onclick="yb_navigateTo('2way', 'profile-image-upload', null, false);">
             <div class="profile-image-overlay" style="background-color: {{custom_core.image_overlay_color}}; opacity: {{custom_core.image_overlay_strength}};"></div>
             <img src="{{custom_core.profile_image.large_thumbnail.url}}"  id="profile-image-splash" style="width: 100%; border-color:{{profile.custom.accent_color}};"/>
         </div>
 
-        <div class="profile-name-splash preview" id="profile-name-splash" style="border: 2px solid gray; width: fit-content; margin: auto; padding: 15px;" onclick="yb_navigateTo('drawer', 'profile-text-edit', null, false);">
+        <div class="profile-name-splash preview editable" id="profile-name-splash" style="border: 2px solid gray; width: fit-content; margin: auto; padding: 15px;" onclick="yb_navigateTo('drawer', 'profile-text-edit', null, false); yb_focusOn('profile-name-splash', 'editable');">
             <h2 id="profile-name-header" style="color:{{custom_ui.title_color}}; margin-top: 0px; margin-bottom: 10px;" class="profile-name-header yb-name-size{{custom_splash.name_font_size}}">{{user.first_name}} {{user.last_name}}</h2>
             <b id="profile-handle-label" style="color:{{custom_ui.text_color}};" class="profile-handle-label yb-name-size{{custom_splash.username_font_size}}">
                 <small>@{{user.username}}</small>
@@ -40,7 +44,7 @@
         </div>
 
 
-        <div id="profile-interaction-container" class="profile-interaction-container profile-CME profile-interaction-container preview yb-center-margin lr" style="border: 2px solid gray; width: fit-content;" onclick="yb_navigateTo('drawer', 'profile-button-edit', null, false);">
+        <div id="profile-interaction-container" class="profile-interaction-container editable profile-CME profile-interaction-container preview yb-center-margin lr" style="border: 2px solid gray; width: fit-content;" onclick="yb_navigateTo('drawer', 'profile-button-edit', null, false); yb_focusOn('profile-interaction-container', 'editable');">
             <button style="color: {{user.profile.custom.profile_splash.button_text_color}}; background-color: {{user.profile.profile_splash.button_color}};" id="profile-button-connect" class="button-profile-interaction yb-button-flex" data-id = "{{profile.id}}">
                 
                 {% if request.user.id == profile.user.id %}
@@ -108,12 +112,12 @@
             </svg>
         </div>
 
-        <p class="font-gray font-medium yb-editBarLabel"> Wallpaper</p>
+        <p class="font-gray font-medium yb-editBarLabel toolbar-button"> Wallpaper</p>
     
     </div>
 
     
-    <div class="yb-flexRow yb-gap5" id="add-stickers" style="display:none;">
+    <div class="yb-flexRow yb-gap5 toolbar-button" id="add-stickers" style="display:none;">
 
         <div class="yb-circle-button mini">
             <svg class="mini-button-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">

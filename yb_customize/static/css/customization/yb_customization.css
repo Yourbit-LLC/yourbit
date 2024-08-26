@@ -15,6 +15,26 @@
     background: -webkit-linear-gradient(top, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%);
     background: linear-gradient(to bottom, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%);
 }
+@media screen and (prefers-color-scheme: dark){
+
+    .toolbar-button:hover {
+        cursor: pointer;
+        color: black;
+        background-color: white;
+        fill: black;
+    }
+}
+
+@media screen and (prefers-color-scheme: light){
+
+    .toolbar-button:hover {
+        cursor: pointer;
+        color: white;
+        background-color: black;
+        fill: white;
+    }
+}
+
 
 
 @media screen and (min-width: 700px) {
@@ -784,7 +804,7 @@
     left: 50%;
     transform: translate(-50%, 0);
     display: grid;
-    grid-template-columns: 1fr 3fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 3fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 1fr;
     column-gap: 5px;
     position: fixed;
     top: 70px;
@@ -801,7 +821,7 @@
     color: white;
     margin: auto;
     transition: 0.5s;
-    grid-column: 6;
+    grid-column: 9;
     border-width: 0px;
     font-size: 16px;
 }
@@ -822,7 +842,19 @@
     transition: 0.5s;
     grid-column: 3;
     border-width: 0px;
-    font-size: 14px;
+}
+
+.yb-tb-button-browse {
+    display: block;
+    position: relative;
+    height: 70%;
+    width: 100%;
+    color: white;
+    margin: auto;
+    transition: 0.5s;
+    grid-column: 4;
+    border-width: 0px;
+
 }
 
 .yb-tb-button-new.ready {
@@ -838,9 +870,9 @@
     color: white;
     margin: auto;
     transition: 0.5s;
-    grid-column: 5;
+    grid-column: 8;
     border-width: 0px;
-    font-size: 14px;
+    
 }
 
 .yb-tb-button-reset {
@@ -851,9 +883,9 @@
     color: white;
     margin: auto;
     transition: 0.5s;
-    grid-column: 4;
+    grid-column: 7;
     border-width: 0px;
-    font-size: 14px;
+    
 }
 
 .yb-tb-button-back {
@@ -868,5 +900,46 @@
     transition: 0.5s;
     grid-column: 1;
     border-width: 0px;
-    font-size: 16px;
+    
+}
+
+
+.yb-tb-button-preview {
+    position: relative; 
+    line-height: 1.5;
+    height: 80%;
+    width: 95%;
+    color: white;
+    margin: auto;
+    transition: 0.5s;
+    grid-column-start: 5;
+    grid-column-end: 7;
+    border-width: 0px;
+    
+}
+
+.yb-splash-label.focus {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: 0.5s;
+    z-index: 11;
+}
+
+.editable.blurred {
+    display: none;
+}
+
+.editable.focus {
+    position: absolute;
+    
+    top: 50%;
+    left: 50%;
+    
+    transition: 0.5s;
+    z-index: 11;
+    transform: translate(-50%, -50%);
+    
+    transition: 0.5s;
 }

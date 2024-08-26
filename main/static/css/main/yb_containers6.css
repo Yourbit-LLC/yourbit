@@ -78,6 +78,22 @@
 
 }
 
+.yb-drawer-focus-layer {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    display: none;
+
+}
+
+.yb-drawer-focus-layer.show {
+    display: block;
+
+}
+
 .yb-popup-menu.open {
     transform: translate(-50%, 0);
     transition: 0.5s;

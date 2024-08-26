@@ -11,32 +11,34 @@
     <p style="font-size: small; font-weight: 550; padding-left: 5px; padding-right: 5px; font-family: 'Roboto', sans-serif; text-align: center;" class="yb-autoText yb-pText">Create a new theme and share it with others</p>
 </div>
 
-<div id="create-theme" class="yb-fillWidth yb-vScroll yb-margin-T10 align-center" style="height: calc(100% - 260px); border-radius: 15px;">
+<div id="create-theme" class="yb-fillWidth yb-vScroll yb-margin-T10 align-center" style="height: calc(100% - 150px); border-radius: 15px;">
     {% csrf_token %}
     <br>
     <label for="name" class="yb-autoText yb-pHead font-medium align-center">What are you naming your Theme?</label>
     <br>
     <br>
-    <input id="co-name-field" name="name" class="yb-input-singleLine yb-bText yb-font-autoGray plainBorder narrowBorder squared yb-field-background" placeholder="Untitled Theme" style="height: 25px !important; width: 90%;">
+    <input id="ct-name-field" name="name" class="yb-input-singleLine yb-bText yb-font-autoGray plainBorder narrowBorder squared yb-bg-autoGray" placeholder="Untitled Theme" style="height: 25px !important; width: 90%;">
     <br>
     <br>
-    <label for = "type" id="co-type-label" class="yb-autoText font-medium align-center yb-pHead">Who can see this theme?</label>
+    <label for = "description" id="ct-bio-label" class="yb-autoText font-medium align-center yb-pHead">Give a short description</label>
     <br>
     <br>
-    <select id="co-type-field" name="type" class="yb-input-singleLine yb-font-autoGray yb-bText plainBorder narrowBorder squared yb-field-background" style="height: 30px !important; width: 90%;">
+    <div id="description-container" class="yb-field-multiLine" style="width: 95%; margin: auto;" name="bio-container">
+        <textarea id="description-field" name="description" class="yb-bg-autoGray squared yb-pText yb-autoText theme-field" style="width: 98%; height: 100px;">
+
+        </textarea>
+    </div>
+    <br>
+    <br>
+    <label for = "type" id="ct-type-label" class="yb-autoText font-medium align-center yb-pHead">Who can see this theme?</label>
+    <br>
+    <br>
+    <select id="ct-type-field" name="type" name="visibility" class="yb-input-singleLine yb-font-autoGray yb-bText plainBorder narrowBorder squared yb-bg-autoGray" style="height: 30px !important; width: 90%;">
         <option value="e">Everyone</option>
         <option value="ff">Friends/Followers</option>
         <option value="fo">Friends Only</option>
         <option value="me">Just me</option>
     </select>
-    <br>
-    <p class="yb-font-autoGray font-small" style="margin-left: 10px; margin-right: 10px;">Give a short description</p> 
-    
-    <div id="bio-container">
-        <textarea id="bio-field" name="bio" class="yb-bg-autoGray squared yb-pText yb-autoText theme-field" style="width: 98%; height: 100px;">
-
-        </textarea>
-    </div>
     <br>
     <br>
     <button type="submit" id = "submit-create-orbit" class="yb-button-flex green font-white yb-center-margin lr">Create</button>

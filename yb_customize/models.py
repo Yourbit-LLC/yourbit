@@ -69,6 +69,7 @@ class Theme(models.Model):
     name = models.CharField(max_length=50, default="untitled theme")
     description = models.CharField(max_length=500, default="No description")
     author = models.OneToOneField(User, related_name='author', blank=True, on_delete=models.CASCADE)
+    visibility = models.CharField(max_length=50, default="me")
     time = models.DateTimeField(default=timezone.localtime)
 
 class Font(models.Model): 

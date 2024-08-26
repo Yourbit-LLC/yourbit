@@ -29,7 +29,7 @@ const SLIDE_UP_CORE = document.getElementById("yb-slide-up-core"); //yb_showSlid
 
 //Content Focus Container
 const FOCUS_CONTAINER = document.getElementById("core-focus-container");
-const DRAWER_FOCUS_CONTAINER = document.getElementById("drawer-focus-container");
+const DRAWER_FOCUS_CONTAINER = document.getElementById("yb-drawer-focus-container");
 
 const CARD_CONTAINER = document.getElementById("yb-card");
 
@@ -386,16 +386,54 @@ function yb_toggle2WayContainer(type, scroll=false){
     
 }
 
-function yb_showDrawerFocus() {
-    DRAWER_FOCUS_CONTAINER.classList.add("show");
+function yb_showDrawerFocus(this_id) {
+    let this_element = document.getElementById(this_id);
+    this_element.classList.add("show");
 }
 
-function yb_hideDrawerFocus() {
-    DRAWER_FOCUS_CONTAINER.classList.remove("show");
+function yb_hideDrawerFocus(this_id) {
+    let this_element = document.getElementById(this_id);
+    this_element.classList.remove("show");
+}
+
+function yb_focusOn(this_id, group_class) {
+    let this_element = document.getElementById(this_id);
+    this_element.classList.add("focus");
+    this_element.classList.remove("preview");
+    this_element.style.border = "none";
+
+
+    let this_class = document.getElementsByClassName(group_class);
+
+    for (let i = 0; i < this_class.length; i++) {
+        if (this_class[i].id != this_id){
+            this_class[i].classList.add("blurred");
+            
+        }
+    }
+
+}
+
+function yb_focusOff(this_id, group_class) {
+    let this_element = document.getElementById(this_id);
+    this_element.classList.remove("focus");
+    this_element.classList.add("preview");
+    this_element.style.border = "2px solid white";
+    
+
+    let this_class = document.getElementsByClassName(group_class);
+
+    for (let i = 0; i < this_class.length; i++) {
+        if (this_class[i].id != this_id){
+            this_class[i].classList.remove("blurred");
+        }
+    }
+
 }
 
 //Launch a 2 way container with a page defined in TWO_WAY_INDEX
 function yb_launch2WayContainer(page, data=null) {
+    
     let this_page = TWO_WAY_INDEX[page];
     console.log("settings shown")
     let container = yb_toggle2WayContainer(page, true);

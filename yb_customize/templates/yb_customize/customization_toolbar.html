@@ -1,7 +1,7 @@
 <div class="yb-fillWidth yb-customize-toolbar-inner squared" style="height: 35px;">
-    <div class="yb-tb-button-back squared yb-bg-autoGray" onclick="customize_url('')">
-        <div class="cb-panel-back"><svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
-        <p class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb align-left yb-pText">Back</p>
+    <div class="yb-tb-button-back squared yb-autoText yb-autoFill yb-pText toolbar-button yb-bg-autoGray" onclick="customize_url('')">
+        <div class="cb-panel-back"><svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
+        <p class="yb-fillWidth yb-margin-L10 yb-center-margin tb align-left">Back</p>
     </div>
     <div style="display: grid; grid-template-columns: 120px auto; grid-column: 2; text-align: left; line-height: 1.5; font-weight: 550; margin-left: 10px;">
         <p class="yb-font-autoGray">
@@ -13,19 +13,27 @@
     
     </div>
 
-    <button class="yb-tb-button-new squared yb-bg-autoGray" onclick="yb_navigateTo('2way', 'create-theme');">
-        New Theme
+    <button class="yb-tb-button-new toolbar-button squared font-small yb-bg-autoGray" onclick="yb_navigateTo('2way', 'create-theme');">
+        New
     </button>
-    
-    <button class="yb-tb-button-reset squared yb-bg-autoGray">
+
+    <button class="yb-tb-button-browse toolbar-button font-small squared yb-bg-autoGray">
+        Browse
+    </button>  
+
+    <button class="yb-tb-button-preview toolbar-button font-small squared yb-bg-autoGray" onclick="yb_showIframe('/profile/')">
+        Mobile Preview
+    </button>  
+
+    <button class="yb-tb-button-reset toolbar-button squared font-small yb-bg-autoGray">
         Reset
     </button>
 
-    <button class="yb-tb-button-undo squared yb-bg-autoGray">
+    <button class="yb-tb-button-undo toolbar-button squared font-small yb-bg-autoGray">
         Undo
     </button>
 
-    <button class="yb-tb-button-save squared">
+    <button class="yb-tb-button-save toolbar-button squared">
         Save
     </button>
 

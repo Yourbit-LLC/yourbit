@@ -41,6 +41,7 @@ const MASTHEAD_LOGOS = document.querySelectorAll(".yb-logo-masthead");
 const MOBILE_HEADER = document.querySelector('.yb-header');
 const SPOTLIGHT_CONTAINER = document.getElementById('yb-container-spotlight');
 const SPOTLIGHT_CONTENT =  document.getElementById('spotlight-content');
+const MOBILE_IFRAME = document.getElementById('yb-iframe-mobile');
 
 const CREATE_POPOUT = document.getElementById("create-button-popout");
 const SEARCH_POPOUT = document.getElementById("search-button-popout");
@@ -469,7 +470,18 @@ function yb_getStagedFiles(type){
     }
 }
 
+function yb_showIframe(url){
+    let preview_window = document.getElementById("mobile-preview");
+    preview_window.setAttribute("src", url);
+    MOBILE_IFRAME.style.display = "block";
 
+}
+
+function yb_hideIframe(){
+    let preview_window = document.getElementById("mobile-preview");
+    MOBILE_IFRAME.style.display = "none";
+    preview_window.setAttribute("src", "");
+}
 
 function yb_loadSlideUpTemplate(type, source) {
     let slide_up_core = document.getElementById("yb-slide-up-core");

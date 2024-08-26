@@ -26,14 +26,35 @@ class CustomizeProfile(View):
         return render(request, "yb_customize/editable_profile_splash.html", context)
     
     def post(self, request):
-        pass
+        custom_core = CustomCore.objects.get(profile = request.user.profile)
+        theme = custom_core.theme
+        custom_splash = CustomSplash.objects.get(theme = theme)
+
+        custom_splash.username_font_color = request.POST.get('username_font_color')
+        custom_splash.username_font_size = request.POST.get('username_font_size')
+        custom_splash.name_font_color = request.POST.get('name_font_color')
+        custom_splash.name_font_size = request.POST.get('name_font_size')
+        
+        custom_splash.button_text_color = request.POST.get('button_text_color')
+        custom_splash.button_text_size = request.POST.get('button_text_size')
+        custom_splash.button_shape = request.POST.get('button_shape')
+        custom_splash.button_color = request.POST.get('button_color')
+        
+        custom_splash.save()
+
+        context = {
+            'custom_splash': custom_splash,
+        }
+        return render(request, "yb_customize/editable_profile_splash.html", context)
+    
+        
 
 from yb_profile.models import Profile, Orbit
 from yb_photo.models import Photo
 from yb_photo.utility import process_image, modify_image
 
 class CustomizeMain(View):
-    def get(request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
                                 
         if request.user.is_authenticated:
             init_params = initialize_session(request)
@@ -107,7 +128,12 @@ class CreateTheme(View):
         return render(request, "yb_customize/create_theme.html")
     
     def post(self, request):
-        new_theme = Theme(name=request.POST.get('name'), author=request.user, description=request.POST.get('description'))
+        new_theme = Theme(
+            name=request.POST.get('name'), 
+            author=request.user, 
+            description=request.POST.get('description'),
+            visibility=request.POST.get('visibility'),
+        )
         new_theme.save()
 
         return JsonResponse({"success": "success"})
