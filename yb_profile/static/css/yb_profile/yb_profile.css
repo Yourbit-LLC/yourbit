@@ -380,7 +380,7 @@ Profile Page
     animation: yb-border-blink 2s infinite;
     animation-delay: 0.75s;
     border-radius: 20px;
-    padding: 2px 2px 2px 2px;
+    padding: 6px 6px 6px 6px;
     z-index: 101;
     transition: 0.5s;
 }

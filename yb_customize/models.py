@@ -177,10 +177,11 @@ class CustomSplash(CustomBase):
     backdrop_opacity = models.CharField(max_length=50, default="0.5")
 
     #Interaction buttons
-    button_shape = models.IntegerField(default=0) #shape options = 0: circle, 1: square, 2: rounded square
+    button_shape = models.IntegerField(default=0) #shape options = 0: rounded 2: squared
     button_border_style = models.CharField(max_length=50, default="solid")
     button_border_color = models.CharField(max_length=50, default="#ffffff")
     button_text_size = models.CharField(max_length=50, default="3")
+    button_format = models.CharField(max_length=50, default="0") #Shape options = 0: text 1: icon 2: icon and text
 
     stickers = models.ManyToManyField('Sticker', related_name='custom_splash', blank=True)
 

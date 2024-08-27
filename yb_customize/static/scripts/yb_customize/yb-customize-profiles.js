@@ -19,8 +19,11 @@ var master_button_color = document.getElementById("master-button-color");
 var master_button_text_color = document.getElementById("master-button-text-color");
 var master_button_text_size = document.getElementById("master-button-size");
 var master_button_shape = document.getElementById("master-button-shape");
+var master_panel_color = document.getElementById("master-splash-panel-color");
+var splash_panel_color_trigger = document.getElementById("splash-panel-color-circle");
+var splash_panel_color_input = document.getElementById("splash-panel-color-picker");
 
-
+var splash_buttons = document.getElementsByClassName("button-profile-interaction")
 
 var user_id = yb_getSessionValues("id");
 
@@ -50,6 +53,36 @@ function yb_undo() {
         }
     }
 
+}
+
+function yb_reset() {
+    // Iterate through the initial settings
+    for (let i = 0; i < initial_settings.length; i++) {
+        const field = initial_settings[i].field;
+        const value = initial_settings[i].value;
+
+        // Check if there's an edit history for this field
+        if (edit_history[field]) {
+            // Remove the edit history for this field
+            delete edit_history[field];
+        }
+
+        // Update the initial settings with the previous value
+        initial_settings[i].value = value;
+    }
+
+}
+
+function yb_changePanelColor(value) {
+    //Update Input Trigger
+    let color_circle = document.getElementById("splash-panel-color-circle");
+    color_circle.style.backgroundColor = value;
+
+    //Change appearance
+    splash_screen.style.backgroundColor = value;
+
+    //Push to master form
+    master_panel_color.value = value;
 }
 
 
@@ -151,7 +184,7 @@ function yb_resizeSplashTitle(value) {
 function yb_recolorSplashButton(value) {
     
     //Update Input Trigger
-    let color_circle = document.getElementById("button-text-color-circle");
+    let color_circle = document.getElementById("button-color-circle");
     color_circle.style.backgroundColor = value;
     
     //Change appearance
@@ -161,11 +194,6 @@ function yb_recolorSplashButton(value) {
 
     //Push to master form
     master_button_color.value = value;
-
-    //Update edit history
-    edit_history.push({"button-color" : value});
-
-    console.log(edit_history);
 
 }
 
@@ -182,15 +210,25 @@ function yb_recolorSplashButtonText(value) {
     //Push to master form
     master_button_text_color.value = value;
     
-    //Update edit history
-    edit_history["button-text-color"] = value;
-
-    console.log(edit_history);
 }
 
 function yb_submitSplashChanges() {
     //Submit changes
     master_form.submit();
+}
+
+function yb_changeButtonShape(value) {
+    if (value === '0') {
+        for (var i = 0; i < splash_buttons.length; i++) {
+            splash_buttons[i].classList.remove('squared');
+            splash_buttons[i].classList.add('rounded');
+        }
+    } else {
+        for (var i = 0; i < splash_buttons.length; i++) {
+            splash_buttons[i].classList.remove('rounded');
+            splash_buttons[i].classList.add('squared');
+        }
+    }
 }
     
 
@@ -217,6 +255,19 @@ $(document).ready(function() {
         stickerElement.style.left = `${e.clientX - profile.offsetLeft}px`;
         stickerElement.style.top = `${e.clientY - profile.offsetTop}px`;
         profile.appendChild(stickerElement);
+    });
+
+    splash_panel_color_trigger.addEventListener("click", function() {
+        splash_panel_color_input.click();
+    });
+
+    splash_panel_color_input.addEventListener("input", function() {
+        var value = this.value;
+        yb_changePanelColor(value);
+    });
+
+    splash_panel_color_input.addEventListener("change", function() {
+        yb_pushToHistory('splash-panel-color', this.value);
     });
 
     // //Hide logo
