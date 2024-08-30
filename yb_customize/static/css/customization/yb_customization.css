@@ -15,23 +15,46 @@
     background: -webkit-linear-gradient(top, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%);
     background: linear-gradient(to bottom, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%);
 }
+
+.toolbar-button {
+    fill: white;
+    filter: brightness(0.3);
+    -webkit-filter: brightness(0.3);
+    transition: 0.5s;
+}
+
+.toolbar-button.ready {
+    fill: white;
+    filter: brightness(1);
+    -webkit-filter: brightness(1);
+    transition: 0.5s;
+}
+
 @media screen and (prefers-color-scheme: dark){
 
     .toolbar-button:hover {
+        cursor: not-allowed;
+        
+    }
+
+    .toolbar-button.ready:hover {
         cursor: pointer;
-        color: black;
-        background-color: white;
-        fill: black;
+        filter: brightness(0.6);
+        -webkit-filter: brightness(0.6);
     }
 }
 
 @media screen and (prefers-color-scheme: light){
 
     .toolbar-button:hover {
+        cursor: not-allowed;
+
+    }
+
+    .toolbar-button.ready:hover {
         cursor: pointer;
-        color: white;
-        background-color: black;
-        fill: white;
+        filter: brightness(0.6);
+        -webkit-filter: brightness(0.6);
     }
 }
 
@@ -800,12 +823,12 @@
 .yb-customize-toolbar-inner {
     width: 98%;
     height: 35px;
-    max-width: 900px;
+    max-width: 950px;
     left: 50%;
     transform: translate(-50%, 0);
     display: grid;
-    grid-template-columns: 1fr 3fr 0.5fr 0.5fr 0.5fr 0.25fr 0.25fr 0.25fr 0.25fr 0.25fr 0.5fr;
-    column-gap: 5px;
+    grid-template-columns: 0.75fr 3fr 1fr 2fr 1fr;
+    column-gap: 3px;
     position: fixed;
     top: 70px;
     z-index: 999;
@@ -817,19 +840,18 @@
     position: relative;
     height: 80%;
     width: 95%;
-    background-color: rgb(0, 35, 0);
+    background-color: gray;
     color: white;
-    margin: auto;
     transition: 0.5s;
-    grid-column: 11;
     border-width: 0px;
     font-size: 16px;
-    grid-row: 1;
+    grid-column: 5;
+    margin: auto;
 }
 
 
 .yb-tb-button-save.ready {
-    background-color: rgb(37, 154, 37);
+    background-color: #32CD32;;
     transition: 0.5s;
 }
 
@@ -841,8 +863,8 @@
     color: white;
     margin: auto;
     transition: 0.5s;
-    grid-column: 3;
     border-width: 0px;
+    background-color: #8A2BE2;
 }
 
 .yb-tb-button-browse {
@@ -853,8 +875,8 @@
     color: white;
     margin: auto;
     transition: 0.5s;
-    grid-column: 4;
     border-width: 0px;
+    background-color: #8A2BE2;
 
 }
 
@@ -871,8 +893,17 @@
     color: white;
     margin: auto;
     transition: 0.5s;
-    grid-column: 10;
     border-width: 0px;
+    grid-column: 3;
+    background-color: gray;
+    transition: 0.5s;
+    
+}
+
+.yb-tb-button-undo.ready {
+    background-color: #FF8C00;
+    transition: 0.5s;
+
 }
 
 .yb-tb-button-undo {
@@ -883,9 +914,16 @@
     color: white;
     margin: auto;
     transition: 0.5s;
-    grid-column: 9;
+    grid-column: 2;
     border-width: 0px;
+    background-color: gray;
+    transition: 0.5s;
     
+}
+
+.yb-tb-button-undo.ready {
+    background-color: #FF8C00;
+    transition: 0.5s;
 }
 
 .yb-tb-button-reset {
@@ -896,9 +934,15 @@
     color: white;
     margin: auto;
     transition: 0.5s;
-    grid-column: 8;
+    grid-column: 1;
     border-width: 0px;
+    background-color: gray;
     
+}
+
+.yb-tb-button-reset.ready {
+    background-color: #FF4500;
+    transition: 0.5s;
 }
 
 .yb-tb-button-back {
@@ -925,9 +969,8 @@
     color: white;
     margin: auto;
     transition: 0.5s;
-    grid-column: 6;
     border-width: 0px;
-    
+    background-color: #1E90FF;
 }
 
 .yb-splash-label.focus {

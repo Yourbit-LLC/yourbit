@@ -888,8 +888,9 @@
 
 .yb-prompt-footer {
     position: relative;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
     grid-gap: 20px;
     width: 100%;
     height: 100%;

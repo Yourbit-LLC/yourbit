@@ -233,6 +233,7 @@ class ChangePassword(View):
 class SettingsFeed(View):
     def get(self, request):
         return render(request, "yb_settings/yb_feedSettings.html")
+    
     def post(self, request):
         feed_settings = FeedSettings.objects.get(user = request.user)
         feed_settings.show_friends = request.POST['show_friends']
@@ -251,3 +252,66 @@ class SettingsFeed(View):
         feed_settings.default_space = request.POST['default_space']
         feed_settings.current_space = request.POST['current_space']
         feed_settings.save()
+
+class SettingsNotifications(View):
+    def post(self, request):
+        my_settings = MySettings.objects.get(user=request.user)
+        notifications = NotificationSettings.objects.get(settings=my_settings)
+
+        #App Notifications
+        notifications.notifications_enabled = True if request.POST.get('notifications_enabled') == 'on' else False
+        notifications.app_notifications = True if request.POST.get('app_notifications') == 'on' else False
+        notifications.store_notifications = True if request.POST.get('store_notifications') == 'on' else False
+        
+        #Bit Notifications
+        print(request.POST.get('bit_notifications'))
+        notifications.bit_notifications = True if request.POST.get('bit_notifications') == 'on' else False
+        notifications.bits_from_friends = True if request.POST.get('bits_from_friends') == 'on' else False
+        notifications.bits_from_following = True if request.POST.get('bits_from_following') == 'on' else False
+        notifications.bits_from_communities = True if request.POST.get('bits_from_communities') == 'on' else False
+        # notifications.new_user_bits_from = True if request.POST.get('new_user_bits_from') == 'on' else False
+        # notifications.new_orbit_bits_from = True if request.POST.get('new_orbit_bits_from') == 'on' else False
+        notifications.bit_likes = True if request.POST.get('bit_likes') == 'on' else False
+        notifications.bit_comments = True if request.POST.get('bit_comments') == 'on' else False
+        notifications.bit_shares = True if request.POST.get('bit_shares') == 'on' else False
+        notifications.bit_mentions = True if request.POST.get('bit_mentions') == 'on' else False
+        
+        #Batching Settings
+        notifications.batched_bit_notifications = True if request.POST.get('batched_bit_notifications') == 'on' else False
+        notifications.batched_bit_interval = request.POST.get('batched_bit_interval')
+
+        #Comment Notifications
+        notifications.my_bit_comments = True if request.POST.get('my_bit_comments') == 'on' else False
+        notifications.my_comment_replies = True if request.POST.get('my_comment_replies') == 'on' else False
+        notifications.bits_commented_on = True if request.POST.get('bits_commented_on') == 'on' else False
+
+        #Connection Notifications
+        notifications.follow_notifications = True if request.POST.get('follow_notifications') == 'on' else False
+        notifications.friend_request_notifications = True if request.POST.get('friend_notifications') == 'on' else False
+        notifications.messages_from = request.POST.get('messages_from')
+
+        notifications.save()
+
+        return JsonResponse({"success":True, "message":"Notification settings updated"})
+    
+def change_password_template(request):
+    return render(request, "yb_settings/yb_changePassword.html")
+
+
+class ClusterSettings(View):
+    
+    def get(self, request, id = None, *args, **kwargs):
+        from yb_bits.models import Cluster
+        this_cluster = Cluster.objects.get(id = id)
+        return render(request, "yb_settings/yb_clusterSettings.html", {"cluster": this_cluster})
+
+    def post(self, request, id = None, *args, **kwargs):
+        from yb_bits.models import Cluster
+        this_cluster = Cluster.objects.get(id = id)
+        this_cluster.name = request.POST['name']
+        this_cluster.description = request.POST['description']
+        this_cluster.visibility = request.POST['visibility']
+        this_cluster.type = request.POST['type']
+        this_cluster.others_can_edit = True if request.POST.get('others_can_edit') == 'on' else False
+        this_cluster.save()
+        return JsonResponse({"success":True, "message":"Cluster updated"})

@@ -166,6 +166,17 @@ const TWO_WAY_INDEX = {
             "template" : "/customize/templates/create-theme/",
             "url" : ""
         },
+    "change-password":
+        {
+            "template" : "/settings/templates/change-password/",
+            "url" : ""
+        },
+
+    "cluster-settings":
+        {
+            "template" : "/settings/templates/cluster/",
+            "url" : ""
+        },
     
           
 };

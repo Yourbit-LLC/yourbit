@@ -20,14 +20,17 @@
         <h4 class="yb-pHead">Account Information</h4>
         <!--Edit Name-->
         <div id = "field-container-first-name" class="yb-field-container">
-            <div id="display-first-name" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-autoText yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">First Name: </p><input name="first_name" id='field-first-name' value="{{user.first_name}}" class="yb-input-transparent right yb-autoText yb-pText account-field" style="grid-column: 2;"></div>
+            <div id="display-first-name" class="yb-field-split squared yb-bg-autoGray yb-autoText yb-pText yb-margin-T10">
+                <p class="field-cover-label align-left" style="grid-column: 1;">First Name: </p>
+                <input name="first_name" id='field-first-name' value="{{user.first_name}}" class="yb-input-transparent right yb-autoText yb-pText account-field" style="grid-column: 2;">
+            </div>
             
         
         </div>
         
         
         <div id = "field-container-last-name" class="yb-field-container">
-            <div id="display-last-name" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-autoText yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">Last Name: </p><input name="last_name" id='field-last-name' value="{{user.last_name}}" class="yb-input-transparent right yb-autoText yb-pText account-field" style="grid-column: 2;"></div>
+            <div id="display-last-name" class="yb-field-split squared yb-bg-autoGray yb-autoText yb-pText"><p class="field-cover-label align-left" style="grid-column: 1;">Last Name: </p><input name="last_name" id='field-last-name' value="{{user.last_name}}" class="yb-input-transparent right yb-autoText yb-pText account-field" style="grid-column: 2;"></div>
             <input id='field-last-name' value="{{user.last_name}}" class="yb-input-singleLine yb-panel squared yb-pText yb-margin-T10" style="display:none;">
         </div>
         <br>
@@ -52,6 +55,7 @@
         <div id="field-container-username" class="yb-field-container">
             <div id="display-username" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-autoText yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">Username: </p><input name="username" id='field-username' value="{{user.username}}" class="yb-input-transparent right yb-autoText yb-pText account-field" style="grid-column: 2;"></div>
             <input id='field-username' value="{{user.username}}" class="yb-input-singleLine yb-panel squared yb-pText yb-margin-T10" style="display:none;">
+            <p class="yb-field-error under"></p>
         </div>
 
         <!--Edit Email Address-->
@@ -59,6 +63,7 @@
         <div id="field-container-email-address" class="yb-field-container">
             <div id="display-email" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-autoText yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">Email: </p><input name="email" id='field-email' value="{{user.email}}" class="yb-input-transparent right yb-autoText yb-pText account-field" style="grid-column: 2;"></div>
             <input id='field-email-address' value="{{user.email}}" class="yb-input-singleLine yb-panel squared yb-pText yb-margin-T10" style="display:none;">
+            <p class="yb-field-error under"></p>
         </div>
         
         <!--Edit Phone Number-->
@@ -66,6 +71,7 @@
         <div id = "field-container-phone-number" class="yb-field-container">
             <div id="display-phone-number" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-autoText yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">Phone: </p><input name="phone_number" type="tel" id='field-phone' value="{{user.phone_number}}" class="yb-input-transparent right yb-autoText yb-pText account-field" style="grid-column: 2;"></div>
             <input id='field-phone-number' value="{{user.phone_number}}" class="yb-input-singleLine yb-panel squared yb-pText yb-margin-T10" style="display: none;">
+            <p class="yb-field-error under"></p>
         </div>    
     </div>
     <br>
@@ -79,7 +85,7 @@
             Click the button below to change your password.
         </p>
         <br>
-        <button type="button" style="width:150px;" class="wide-button">Change Password</button>
+        <button type="button" style="width:150px;" class="wide-button" onclick="yb_navigateTo('2way', 'change-password')">Change Password</button>
         <br>
         <br>
         <input id="checkbox-password-reminder" style="background-color: rgba(255,255,255, 0.5); color: white;" type="checkbox">

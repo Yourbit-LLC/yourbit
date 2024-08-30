@@ -78,7 +78,7 @@ function yb_closeDrawer() {
 */
 
 //Navigate to a 2 Way Page registered in the TWO_WAY_INDEX (yb_systems/routes.js)
-function yb_2WayPage(index, page="") {
+function yb_2WayPage(index, page="", data=null) {
     let this_container;
     for (let i = 0; i < SIDE_CONTAINERS.length; i++) {
         if (SIDE_CONTAINERS[i].classList.contains("open")) {
@@ -98,7 +98,12 @@ function yb_2WayPage(index, page="") {
     } else {
         secondary.classList.add("active");
         content.classList.add("inactive");
-        $(secondary).load(TWO_WAY_INDEX[page].template);
+
+        if (data) {
+            $(secondary).load(TWO_WAY_INDEX[page].template + data.toString() + "/");
+        } else {
+            $(secondary).load(TWO_WAY_INDEX[page].template);
+        }
     }
 
 }
@@ -570,6 +575,19 @@ function yb_closeFocusContainer(){
     
 */
 
+function yb_closePrompt(){
+    
+    TOP_LAYER.classList.remove("open");
+    PROMPT_CONTAINER.classList.remove("open");
+
+    PROMPT_TITLE.innerHTML = "";
+    
+    PROMPT_BODY.innerHTML = "";
+
+    PROMPT_FOOTER.innerHTML = "";
+
+}
+
 function yb_displayPrompt(title = "", message = "", actions = {}){
 
     TOP_LAYER.classList.add("open");
@@ -581,12 +599,12 @@ function yb_displayPrompt(title = "", message = "", actions = {}){
 
     if (actions.length === 0){
         let ok_button = yb_createButton("Back", "yb-button-flex squared small-wide font-white", "prompt-action-back", "Ok");
-        ok_button.setAttribute("style", "background-color: var(--yb-button-color) !important;");
+        ok_button.setAttribute("style", "background-color: var(--yb-button-color) !important; width: 100%;");
         ok_button.addEventListener("click", yb_closePrompt);
         PROMPT_FOOTER.appendChild(ok_button);
     } else {
         let back_button = yb_createButton("Back", "yb-button-flex squared small-wide font-white", "prompt-action-back", "Back");
-        back_button.setAttribute("style", "background-color: red;");
+        back_button.setAttribute("style", "background-color: rgb(55, 55, 55); width: 100%; color: white;");
         back_button.addEventListener("click", yb_closePrompt);
         PROMPT_FOOTER.appendChild(back_button);
     }
@@ -595,21 +613,8 @@ function yb_displayPrompt(title = "", message = "", actions = {}){
         let this_action = actions[key];
         let this_button = yb_createButton(this_action.name, "yb-button-flex squared small-wide font-white", `prompt-action-${key}`, this_action.label);
         this_button.addEventListener("click", this_action.action);
-        this_button.setAttribute("style", `background-color: ${this_action.color} !important; `);
+        this_button.setAttribute("style", `background-color: ${this_action.color} !important; width: 100%;`);
         PROMPT_FOOTER.appendChild(this_button);
     }
-
-}
-
-function yb_closePrompt(){
-    
-    TOP_LAYER.classList.remove("open");
-    PROMPT_CONTAINER.classList.remove("open");
-
-    PROMPT_TITLE.innerHTML = "";
-    
-    PROMPT_BODY.innerHTML = "";
-
-    PROMPT_FOOTER.innerHTML = "";
 
 }

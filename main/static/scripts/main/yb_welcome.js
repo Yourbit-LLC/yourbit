@@ -9,7 +9,22 @@ const signup_cancel_button = document.getElementById('go-back-signup');
 const menu_button = document.getElementById('hamburger-button');
 const back_to_signup = document.getElementById('back-to-sign-up');
 const back_to_login = document.getElementById('back-to-login');
+const pwa_popup = document.getElementById('pwa-popup');
+const pwa_content_android = document.getElementById('pwa-content-android');
+const pwa_content_ios = document.getElementById('pwa-content-ios');
 let currentSection = 0;
+
+//If mobile device, show PWA popup based on android or ios
+if (navigator.userAgent.match(/Android/i)) {
+    pwa_popup.style.display = "block";
+    pwa_popup.classList.add('show');
+    pwa_content_android.classList.add('show');
+} else if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
+    pwa_popup.style.display = "block";
+    pwa_popup.classList.add('show');
+    pwa_content_ios.classList.add('show');
+    
+}
 
 
 document.addEventListener('keydown', (e) => {

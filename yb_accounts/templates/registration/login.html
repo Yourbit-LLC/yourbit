@@ -528,7 +528,21 @@
     {% comment %} <footer style="background-color: rgb(35,35,35); width: 100vw; position: absolute; bottom: 0;">
         <p>© 2021 Yourbit, LLC. All rights reserved.</p>
     </footer> {% endcomment %}
+    <div id="pwa-popup">
+        <div id="pwa-popup-content-android">
+            <h3>Install Yourbit</h3>
+            <p>Install Yourbit to your device for a more immersive experience.</p>
+            <button id="install-button">Install</button>
+            <button id="dismiss-button">Dismiss</button>
+        </div>
 
+        <div id="pwa-popup-content-ios">
+            <h3>Install Yourbit</h3>
+            <p>Install Yourbit to your device for a more immersive experience.</p>
+            <button id="install-button">Install</button>
+            <button id="dismiss-button">Dismiss</button>
+        </div>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="{% static 'scripts/main/yb_welcome.js' %}"></script>
 

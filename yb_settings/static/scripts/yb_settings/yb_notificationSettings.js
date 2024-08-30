@@ -7,8 +7,10 @@ try {
 }
 
 function saveNotificationSettings() {
+    
     var form = $('#notification-settings-form');
     var formData = form.serialize();
+    
     $.ajax({
         url: form.attr('action'),
         type: 'POST',
@@ -24,6 +26,7 @@ function saveNotificationSettings() {
 }
 
 $(document).ready(function () {
+
     for (var i = 0; i < notify_fields.length; i++) {
         notify_fields[i].addEventListener('blur', function () {
             saveNotificationSettings();
@@ -31,8 +34,9 @@ $(document).ready(function () {
     }
 
     for (var i = 0; i < notify_checkboxes.length; i++) {
-        notify_checkboxes[i].addEventListener('click', function () {
+        notify_checkboxes[i].addEventListener('input', function () {
             saveNotificationSettings();
         });
     }
+
 });

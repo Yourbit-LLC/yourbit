@@ -1304,9 +1304,3 @@ function yb_declineRequest() {
 }
 
 
-
-
-
-
-
-

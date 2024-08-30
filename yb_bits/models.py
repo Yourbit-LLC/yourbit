@@ -144,10 +144,14 @@ class Cluster(models.Model):
     name = models.CharField(max_length=100)
     profile = models.ForeignKey('yb_profile.Profile', on_delete= models.CASCADE, related_name = 'cluster', null=True)
     type = models.CharField(max_length=100, default="all")
-    bits = models.ManyToManyField('yb_bits.Bit', related_name = 'clustered_bit', blank=True)
+    description = models.CharField(max_length=500, default="")
+    bits = models.ManyToManyField('yb_bits.Bit', related_name = 'cluster', blank=True)
     bit_count = models.IntegerField(default=0)
-    is_public = models.BooleanField(default=False)
+    visibility = models.CharField(max_length=100, default="e")
     time = models.DateTimeField(default=timezone.now)
+    others_can_edit = models.BooleanField(default=False)
+    edit_allow_list = models.ManyToManyField(User, related_name = 'edit_allow_list', blank=True)
+
 
 
 class BitComment(models.Model):
@@ -245,6 +249,18 @@ class Interaction(models.Model):
     #Amount of time bit, or its contents, were visible on screen in milliseconds
     time_on_screen = models.IntegerField(null=True)
 
+class SharedBit(models.Model):
+    #Model for a shared bit
+    bit = models.ForeignKey(Bit, related_name="shared_bit", on_delete=models.CASCADE, default=None)
+    user = models.ForeignKey(User, related_name="shared_bit", on_delete=models.CASCADE, default=None)
+    time = models.DateTimeField(default=timezone.now)
+
+class ClusteredBit(models.Model):
+    #Model for a bit in a cluster
+    bit = models.ForeignKey(Bit, related_name="clustered_bit", on_delete=models.CASCADE, default=None)
+    cluster = models.ForeignKey(Cluster, related_name="clustered_bit", on_delete=models.CASCADE, default=None)
+    time = models.DateTimeField(default=timezone.now)
+    rank = models.IntegerField(default=0)
 
 #Interaction history table indexes all Yourbit Interactions as they are created. Interactions
 #are referenced in 3 places which allow for quicker queries and scope.

@@ -80,14 +80,19 @@ class NotificationSettings(models.Model):
     bit_mentions = models.BooleanField(default=True)
     bit_shares = models.BooleanField(default=True)
     bit_shares_from = models.CharField(max_length=100, default='e')
+    bit_donations = models.BooleanField(default=True)
     
+    #Batching Bit Notifications
+    batched_bit_notifications = models.BooleanField(default=False)
+    batched_bit_interval = models.IntegerField(default=1)
 
     #Comment Notifications 
-    my_bit_comments = models.BooleanField(default=True)
-    my_comment_replies = models.BooleanField(default=True)
-    bits_commented_on = models.BooleanField(default=True)
+    my_bit_comments = models.BooleanField(default=True) #Notify when other users comment on a users posted bit
+    my_comment_replies = models.BooleanField(default=True) #Notify when other users reply to a users comment
+    bits_commented_on = models.BooleanField(default=True) #Notify when a bit a user has commented on is commented on by another user
 
     #High Profile Management
     follow_notifications = models.BooleanField(default=True)
-    batched_notifications = models.BooleanField(default=True)
-    batched_notification_interval = models.IntegerField(default=1)
+    friend_request_notifications = models.BooleanField(default=True)
+    messages_from = models.CharField(max_length=100, default='e')
+    
