@@ -134,9 +134,18 @@ $(document).ready(function () {
 
             this.classList.add('active');
 
-            //Scroll to element with matching name
             var tab_content = document.getElementById(tab_name);
-            tab_content.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+            var parent = tab_content.parentElement; // Adjust this if your element is nested deeper
+            var rect = tab_content.getBoundingClientRect();
+            var parentRect = parent.getBoundingClientRect();
+            
+            // Calculate the offset to scroll
+            var offsetTop = rect.top - parentRect.top + parent.scrollTop;
+            
+            parent.scrollTo({
+                top: offsetTop,
+                behavior: "smooth"
+            });
         });
     }
 
