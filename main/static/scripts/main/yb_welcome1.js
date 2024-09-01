@@ -14,17 +14,17 @@ const pwa_content_android = document.getElementById('pwa-content-android');
 const pwa_content_ios = document.getElementById('pwa-content-ios');
 let currentSection = 0;
 
-//If mobile device, show PWA popup based on android or ios
-if (navigator.userAgent.match(/Android/i)) {
-    pwa_popup.style.display = "block";
-    pwa_popup.classList.add('show');
-    pwa_content_android.classList.add('show');
-} else if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
-    pwa_popup.style.display = "block";
-    pwa_popup.classList.add('show');
-    pwa_content_ios.classList.add('show');
+// //If mobile device, show PWA popup based on android or ios
+// if (navigator.userAgent.match(/Android/i)) {
+//     pwa_popup.style.display = "block";
+//     pwa_popup.classList.add('show');
+//     pwa_content_android.classList.add('show');
+// } else if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
+//     pwa_popup.style.display = "block";
+//     pwa_popup.classList.add('show');
+//     pwa_content_ios.classList.add('show');
     
-}
+// }
 
 
 document.addEventListener('keydown', (e) => {
