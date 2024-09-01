@@ -452,6 +452,30 @@
     
 }
 
+.less-hScroll {
+    position: absolute;
+    z-index: 2;
+    left: 0px;
+    padding-left: 10px;
+    /* gradientfill for fadeout effect fading out from right to left */
+    background: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 90%);
+    height: 100%;
+    width: 40px;
+}
+
+
+.more-hScroll {
+    position: absolute;
+    z-index: 2;
+    right: 0px;
+    padding-right: 10px;
+    /* gradientfill for fadeout effect fading out from right to left */
+    background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 90%);
+    height: 100%;
+    width: 40px;
+    text-align: right;
+}
+
 @media screen and (min-width: 768px) {
     .yb-2Way-container {
         right: 15px;

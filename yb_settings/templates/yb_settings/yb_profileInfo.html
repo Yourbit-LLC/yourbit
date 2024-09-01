@@ -2,7 +2,7 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/yb_settings/yourbit_settings.css' %}"/>
 <div id='div-header' class="div-header">
-    <div class="cb-panel-back" onclick="yb_toggleSettingsMenu()"><svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
+    <div class="cb-panel-back" onclick="yb_backWarning('2Way', 'settings');"><svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
     <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb"></h3>
     <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('settings-profile');"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
 </div>
@@ -14,23 +14,33 @@
 </div>
 <p class="yb-font-autoGray align-center font-small" style="font-weight: 550;">Manage info visibility in privacy settings:</p>
 <button class="yb-button-flex bg-autoGray font-gray yb-button-halfWidth squared" style="">Privacy Settings</button>
-
+<br>
 <hr>
-<div id="inbox-header" style="height: 40px; scrollbar-width: none; display:grid; grid-template-columns: 4fr 1fr; column-gap: 20px; overflow-x: hidden;" class="yb-hScroll yb-fillWidth yb-relative">
-    <div id="filter-container" class="yb-flexRow yb-fillWidth yb-gap5 yb-margin-L5">
-        <button class="message-filter yb-button-wide active medium-wide rounded yb-autoText font-small yb-center-margin tb yb-form-tab" name="about-tab">About Me</button>
-        <button class="message-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb yb-form-tab" name="contact-tab">Contact</button>
-        <button class="message-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb yb-form-tab" name="location-tab">Location</button>
-        <button class="message-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb yb-form-tab" name="education-tab">Education</button>
-        <button class="message-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb yb-form-tab" name="work-tab">Work</button>
+<div style="position: relative; width: 100%">
+    <div class="less-hScroll yb-center-transform tb" onclick="yb_lessHScroll('pfis-filter')" style="display:none;">
+        <svg class="yb-center-transform all" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"></path></svg>
+    </div>
+    <div id="pfis-filter" style="height: 40px; scrollbar-width: none; display:grid; grid-template-columns: 4fr 1fr; column-gap: 20px; overflow-x: auto;" class="yb-hScroll yb-fillWidth yb-relative">
 
+        <div id="pfis-filter-container" class="yb-flexRow tab-filter yb-fillWidth yb-gap5 yb-margin-L5">
+            <button class="message-filter yb-button-wide active medium-wide rounded yb-autoText font-small yb-center-margin tb yb-form-tab" name="about-tab">About Me</button>
+            <button class="message-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb yb-form-tab" name="contact-tab">Contact</button>
+            <button class="message-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb yb-form-tab" name="location-tab">Location</button>
+            <button class="message-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb yb-form-tab" name="education-tab">Education</button>
+            <button class="message-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb yb-form-tab" name="work-tab">Work</button>
+
+        </div>
+    </div>
+    
+    <div class="more-hScroll yb-center-transform tb" onclick="yb_moreHScroll('pfis-filter')">
+        <svg class="yb-center-transform all" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
     </div>
 </div>
 <hr>
 
 <input type="hidden" id="yb-form-config" data-form-id="cluster-settings-form" data-message="Cluster Settings Saved" data-change-state="false">
 
-<form class="yb-fillWidth yb-vScroll yb-autoText yb-margin-T10 align-center" method="POST" action="{% url 'settings_profile' %}" style="height: calc(100% - 300px); border-radius: 15px; padding-bottom: 150px;">
+<form class="yb-fillWidth yb-form-container yb-vScroll yb-autoText yb-margin-T10 align-center" method="POST" action="{% url 'settings_profile' %}" style="height: calc(100% - 300px); border-radius: 15px; padding-bottom: 20px;">
 
     {% csrf_token %}
 
@@ -43,7 +53,7 @@
             <br>
 
             <div id="bio-container">
-                <textarea id="bio-field" name="bio" class="yb-bg-autoGray squared {% if request.user.profile.bio %} yb-pText yb-autoText {% else %} font-gray {% endif %} profile-field yb-form-textArea" style="width: 98%; height: 100px;">{% if request.user.profile.bio %}{{request.user.profile.bio}}{% else %} Add bio {% endif %}</textarea>
+                <textarea id="bio-field" name="bio" class="yb-bg-autoGray yb-text-area border-none yb-form-textArea squared {% if request.user.profile.bio %} yb-pText yb-autoText {% else %} font-gray {% endif %} profile-field yb-form-textArea" style="width: 98%; height: 100px;">{% if request.user.profile.bio %}{{request.user.profile.bio}}{% else %} Add bio {% endif %}</textarea>
             </div>
         </section>
             
@@ -51,12 +61,12 @@
         
         <section class = "setting-sub-container" id="contact-tab">
             <h3 style="yb-font-autoGray">Contact Info</h3>
-            <div id="display-contact-email" class="yb-field-split squared yb-bg-autoGray yb-pText">
+            <div id="display-contact-email" class="yb-field-split top yb-bg-autoGray yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Display Email: </p>
                 <input name="email" id='field-email' value="{{profile_info.email}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
             </div>
 
-            <div id="display-phone" class="yb-field-split squared yb-bg-autoGray yb-pText">
+            <div id="display-phone" class="yb-field-split bottom yb-bg-autoGray yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Display Phone: </p>
                 <input name="phone_number" id='field-display-phone' value="{{profile_info.phone_number}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
             </div>
@@ -66,27 +76,27 @@
 
         <section class = "setting-sub-container" id="location-tab">
             <h3 style="yb-font-autoGray">My Address</h3>
-            <div id="display-street-address" class="yb-field-split squared yb-bg-autoGray yb-pText">
+            <div id="display-street-address" class="yb-field-split top yb-bg-autoGray yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Street Address: </p>
                 <input name="address" id='field-street-address' value="{{profile_info.address}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
             </div>
 
-            <div id="display-city" class="yb-field-split squared yb-bg-autoGray yb-pText">
+            <div id="display-city" class="yb-field-split middle yb-bg-autoGray yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">City: </p>
                 <input name="city" id='field-city' value="{{profile_info.city}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
             </div>
 
-            <div id="display-state" class="yb-field-split squared yb-bg-autoGray yb-pText">
+            <div id="display-state" class="yb-field-split middle yb-bg-autoGray yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">State: </p>
                 <input name="state" id='field-state' value="{{profile_info.state}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
             </div>
 
-            <div id="display-country" class="yb-field-split squared yb-bg-autoGray yb-pText">
+            <div id="display-country" class="yb-field-split middle yb-bg-autoGray yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">State: </p>
                 <input name="country" id='field-country' value="{{profile_info.country}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
             </div>
 
-            <div id="display-website" class="yb-field-split squared yb-bg-autoGray yb-pText">
+            <div id="display-website" class="yb-field-split bottom yb-bg-autoGray yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">First Name: </p>
                 <input name="website" id='field-website' value="{{profile_info.website}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
             </div>

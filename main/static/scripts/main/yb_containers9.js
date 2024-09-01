@@ -618,3 +618,29 @@ function yb_displayPrompt(title = "", message = "", actions = {}){
     }
 
 }
+
+function yb_moreHScroll(container) {
+    let scrollContainer = document.getElementById(container);
+    let container_parent = scrollContainer.parentElement;
+    let less_scroll_icon = container_parent.getElementsByClassName("less-hScroll")[0];
+    let more_scroll_icon = container_parent.getElementsByClassName("more-hScroll")[0];
+
+    more_scroll_icon.style.display = "none";
+    less_scroll_icon.style.display = "block";
+
+    //Scroll left to the end of the container
+    scrollContainer.scrollLeft = scrollContainer.scrollWidth;
+}
+
+function yb_lessHScroll(container) {
+    let scrollContainer = document.getElementById(container);
+    let container_parent = scrollContainer.parentElement;
+    let less_scroll_icon = container_parent.getElementsByClassName("less-hScroll")[0];
+    let more_scroll_icon = container_parent.getElementsByClassName("more-hScroll")[0];
+
+    more_scroll_icon.style.display = "block";
+    less_scroll_icon.style.display = "none";
+
+    //Scroll right to the beginning of the container
+    scrollContainer.scrollLeft = 0;
+}

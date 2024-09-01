@@ -30,7 +30,7 @@
         
         
         <div id = "field-container-last-name" class="yb-field-container">
-            <div id="display-last-name" class="yb-field-split squared yb-bg-autoGray yb-autoText yb-pText"><p class="field-cover-label align-left" style="grid-column: 1;">Last Name: </p><input name="last_name" id='field-last-name' value="{{user.last_name}}" class="yb-input-transparent right yb-autoText yb-pText account-field" style="grid-column: 2;"></div>
+            <div id="display-last-name" class="yb-field-split squared yb-bg-autoGray yb-autoText yb-pText yb-margin-T10"><p class="field-cover-label align-left" style="grid-column: 1;">Last Name: </p><input name="last_name" id='field-last-name' value="{{user.last_name}}" class="yb-input-transparent right yb-autoText yb-pText account-field" style="grid-column: 2;"></div>
             <input id='field-last-name' value="{{user.last_name}}" class="yb-input-singleLine yb-panel squared yb-pText yb-margin-T10" style="display:none;">
         </div>
         <br>
@@ -45,7 +45,7 @@
         </div>
         <br>
         <div id = "field-container-display-name" class="yb-field-container" style="{% if real_name_visibility %}opacity: 0.5;{% endif %}">
-            <div id="display-name" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-autoText yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr; width: 95%; margin: auto;">
+            <div id="display-name" class="yb-field-split top yb-bg-autoGray yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Display Name: </p><input name="display_name" id='field-last-name' value="{{user.profile.display_name}}" class="yb-input-transparent right yb-autoText yb-pText account-field" style="grid-column: 2;"></div>
             <input id='field-last-name' value="{{user.display_name}}" class="yb-input-singleLine yb-panel squared yb-pText yb-margin-T10" style="display:none;">
         </div>
@@ -53,7 +53,10 @@
         <!--Edit Username-->
 
         <div id="field-container-username" class="yb-field-container">
-            <div id="display-username" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-autoText yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">Username: </p><input name="username" id='field-username' value="{{user.username}}" class="yb-input-transparent right yb-autoText yb-pText account-field" style="grid-column: 2;"></div>
+            <div id="display-username" class="yb-field-split top yb-bg-autoGray yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Username: </p>
+                <input name="username" id='field-username' value="{{user.username}}" class="yb-input-transparent right yb-autoText yb-pText account-field" style="grid-column: 2;">
+            </div>
             <input id='field-username' value="{{user.username}}" class="yb-input-singleLine yb-panel squared yb-pText yb-margin-T10" style="display:none;">
             <p class="yb-field-error under"></p>
         </div>
@@ -61,7 +64,10 @@
         <!--Edit Email Address-->
         
         <div id="field-container-email-address" class="yb-field-container">
-            <div id="display-email" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-autoText yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">Email: </p><input name="email" id='field-email' value="{{user.email}}" class="yb-input-transparent right yb-autoText yb-pText account-field" style="grid-column: 2;"></div>
+            <div id="display-email" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-autoText yb-pText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Email: </p>
+                <input name="email" id='field-email' value="{{user.email}}" class="yb-input-transparent right yb-autoText yb-pText account-field" style="grid-column: 2;">
+            </div>
             <input id='field-email-address' value="{{user.email}}" class="yb-input-singleLine yb-panel squared yb-pText yb-margin-T10" style="display:none;">
             <p class="yb-field-error under"></p>
         </div>

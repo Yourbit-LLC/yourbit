@@ -183,5 +183,36 @@ $(document).ready(function () {
         });
     }
 
+    const form_container = document.querySelector('.yb-form-container');
+
+    const observerOptions = {
+        root: form_container, // Use the viewport as the container
+        rootMargin: '0px 0px -70% 0px',
+        threshold: 0 // 50% of the section must be visible
+    };
+
+    const sections = document.querySelectorAll('.setting-sub-container');
+    const tabs = document.querySelectorAll('.yb-form-tab');
+    
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Remove active class from all tabs
+                tabs.forEach(tab => tab.classList.remove('active'));
+
+                // Add active class to the corresponding tab
+                const activeTab = document.querySelector(`.message-filter[name="${entry.target.id}"]`);
+                if (activeTab) {
+                    activeTab.classList.add('active');
+                }
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+
 
 });

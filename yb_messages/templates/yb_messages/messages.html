@@ -17,15 +17,23 @@
 </div>
 
 <hr>
-<div id="inbox-header" style="height: 40px; scrollbar-width: none; display:grid; grid-template-columns: 4fr 1fr; column-gap: 20px; overflow-x: hidden;" class="yb-hScroll yb-fillWidth yb-relative">
-    <div id="filter-container" class="yb-flexRow yb-fillWidth yb-gap5 yb-margin-L5">
-        <span class="yb-fillContainer yb-panel align-center yb-font-autoGray" style="line-height: 2; z-index: 10; position: absolute;"><p><b>Work in Progress...</b> Filter Bar</p></span>
-        <button class="message-filter yb-button-wide active medium-wide rounded yb-autoText font-small yb-center-margin tb" name="all">Everyone</button>
-        <button class="message-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb" name="friends">Friends</button>
-        <button class="message-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb" name="followers">Followers</button>
-        <button class="message-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb" name="orbits">Orbits</button>
-        <button class="message-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb" name="public">Public</button>
+<div style="position: relative; width: 100%">
+    <div class="less-hScroll yb-center-transform tb" onclick="yb_lessHScroll('inbox-filter')" style="display:none;">
+        <svg class="yb-center-transform all" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"></path></svg>
+    </div>
+    <div id="inbox-filter" style="height: 40px; scrollbar-width: none; display:grid; grid-template-columns: 4fr 1fr; column-gap: 20px; overflow-x: hidden;" class="yb-hScroll yb-fillWidth yb-relative">
+            <div id="filter-container" class="yb-flexRow yb-fillWidth yb-gap5 yb-margin-L5">
+                {% comment %} <span class="yb-fillContainer yb-panel align-center yb-font-autoGray" style="line-height: 2; z-index: 10; position: absolute;"><p><b>Work in Progress...</b> Filter Bar</p></span> {% endcomment %}
+                <button class="message-filter yb-button-wide active medium-wide rounded yb-autoText font-small yb-center-margin tb" name="all">Everyone</button>
+                <button class="message-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb" name="friends">Friends</button>
+                <button class="message-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb" name="followers">Followers</button>
+                <button class="message-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb" name="orbits">Orbits</button>
+                <button class="message-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb" name="public">Public</button>
 
+            </div>
+    </div>
+    <div class="more-hScroll yb-center-transform tb" onclick="yb_moreHScroll('inbox-filter')">
+        <svg class="yb-center-transform all" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
     </div>
 </div>
 <hr>

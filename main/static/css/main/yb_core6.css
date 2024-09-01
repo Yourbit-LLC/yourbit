@@ -24,6 +24,10 @@
     }
 }
 
+hr {
+    margin: 0;
+}
+
 body {
     /*Style*/
     font-family: 'Roboto', sans-serif;
