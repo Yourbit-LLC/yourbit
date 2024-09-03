@@ -481,3 +481,32 @@ def disconnect_view(request, *args, **kwargs):
     
     else:
         return JsonResponse({"status": "failed"})
+    
+
+class CustomProfilePreview(View):
+    def get(self, request, *args, **kwargs):
+        from yb_customize.models import CustomSplash
+        this_profile = Profile.objects.get(user = request.user)
+        custom = CustomCore.objects.get(profile = this_profile)
+        custom_splash = CustomSplash.objects.get(theme = custom.theme)
+
+        context = {
+            "custom_splash":custom_splash,
+            "current_profile":this_profile,
+        }
+
+        return render(request, "yb_profile/yb_profile.html", context)
+    
+    def post(self, request, *args, **kwargs):
+        this_profile = Profile.objects.get(user = request.user)
+        custom = CustomCore.objects.get(profile = this_profile)
+        custom_splash = request.POST.get("custom_splash")
+        custom_ui = CustomUI.objects.get(theme = custom.theme)
+
+        context = {
+            "custom_splash":custom_splash,
+            "custom_ui": custom_ui,
+            "current_profile":this_profile,
+        }
+
+        return render(request, "yb_profile/yb_profile.html", context)

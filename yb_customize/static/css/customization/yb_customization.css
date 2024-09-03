@@ -820,33 +820,158 @@
 
 }
 
-.yb-customize-toolbar-inner {
-    width: 98%;
-    height: 35px;
-    max-width: 950px;
-    left: 50%;
-    transform: translate(-50%, 0);
-    display: grid;
-    grid-template-columns: 0.75fr 3fr 1fr 2fr 1fr;
-    column-gap: 3px;
-    position: fixed;
-    top: 70px;
-    z-index: 999;
-    background-color: black;
+@media screen and (min-width: 760px){
+
+    .yb-customize-toolbar-inner {
+        width: 98%;
+        height: 35px;
+        max-width: 950px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        display: grid;
+        grid-template-columns: 0.75fr 3fr 1fr 2fr 1fr;
+        column-gap: 3px;
+        position: fixed;
+        top: 70px;
+        z-index: 999;
+        background-color: black;
+    }
+
+    .yb-tb-button-back {
+        position: relative; 
+        display: grid; 
+        grid-template-columns: 1fr 3fr; 
+        line-height: 1.5;
+        height: 70%;
+        width: 95%;
+        color: white;
+        margin: auto;
+        transition: 0.5s;
+        grid-column: 1;
+        border-width: 0px;
+    }
+
+    
+    .yb-tb-button-save {
+        display: block;
+        position: relative;
+        height: 80%;
+        width: 95%;
+        background-color: gray;
+        color: white;
+        transition: 0.5s;
+        border-width: 0px;
+        font-size: 16px;
+        grid-column: 5;
+        margin: auto;
+    }
+
+    .yb-tb-button-preview {
+        position: relative; 
+        line-height: 1.5;
+        height: 70%;
+        width: 95%;
+        color: white;
+        margin: auto;
+        transition: 0.5s;
+        border-width: 0px;
+        background-color: #1E90FF;
+    }
+
+    .yb-tb-undo-section {
+        grid-column: 4;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 3px;
+        padding-left: 5px;
+        padding-right: 5px;
+        border-left: 1px solid gray;
+        border-right: 1px solid gray;
+    }
+
+    .yb-tb-theme-section {
+        grid-column: 2;
+        display: grid;
+        grid-template-columns: 5fr 1fr 1.5fr;
+        grid-gap: 3px;
+        padding-right: 5px;
+        border-right: 1px solid gray;
+        border-left: 1px solid gray;
+    }
 }
 
-.yb-tb-button-save {
-    display: block;
-    position: relative;
-    height: 80%;
-    width: 95%;
-    background-color: gray;
-    color: white;
-    transition: 0.5s;
-    border-width: 0px;
-    font-size: 16px;
-    grid-column: 5;
-    margin: auto;
+@media screen and(max-width: 760px){
+
+    .yb-customize-toolbar-inner {
+        width: 98%;
+        height: 75px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        display: grid;
+        grid-template-columns: 0.75fr 3fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        column-gap: 3px;
+        position: fixed;
+        top: 10px;
+        z-index: 999;
+        background-color: black;
+    }
+
+    .yb-tb-theme-section {
+        grid-column-start: 2;
+        grid-column-end: 4;
+        display: grid;
+        grid-template-columns: 5fr 1fr 1.5fr;
+        grid-row: 1;
+        grid-gap: 3px;
+        padding-right: 5px;
+    }
+
+    .yb-tb-button-back {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        line-height: 1.5;
+        height: 70px;
+        width: 95%;
+        color: white;
+        margin: auto;
+        transition: 0.5s;
+        grid-column: 1;
+        border-width: 0px;
+        grid-row-start: 1;
+        grid-row-end: 3;
+    }
+    .yb-tb-undo-section {
+        grid-column: 2;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 3px;
+        padding-left: 5px;
+        padding-right: 5px;
+        border-left: 1px solid gray;
+        grid-row: 2;
+        border-right: 1px solid gray;
+    }
+
+    .yb-tb-button-save {
+        display: block;
+        position: relative;
+        height: 80%;
+        width: 95%;
+        background-color: gray;
+        color: white;
+        transition: 0.5s;
+        border-width: 0px;
+        font-size: 16px;
+        grid-column: 3;
+        grid-row: 2;
+        margin: auto;
+    }
+
+    .yb-tb-button-preview {
+        display: none;
+    }
 }
 
 
@@ -943,34 +1068,6 @@
 .yb-tb-button-reset.ready {
     background-color: #FF4500;
     transition: 0.5s;
-}
-
-.yb-tb-button-back {
-    position: relative; 
-    display: grid; 
-    grid-template-columns: 1fr 3fr; 
-    line-height: 1.5;
-    height: 70%;
-    width: 95%;
-    color: white;
-    margin: auto;
-    transition: 0.5s;
-    grid-column: 1;
-    border-width: 0px;
-    
-}
-
-
-.yb-tb-button-preview {
-    position: relative; 
-    line-height: 1.5;
-    height: 70%;
-    width: 95%;
-    color: white;
-    margin: auto;
-    transition: 0.5s;
-    border-width: 0px;
-    background-color: #1E90FF;
 }
 
 .yb-splash-label.focus {
