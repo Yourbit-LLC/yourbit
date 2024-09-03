@@ -38,7 +38,7 @@ const CREATE_BUTTON = document.getElementById('yb-create-button');
 const EXIT_CREATE = document.getElementById('cb-panel-close')
 const CREATE_OPTIONS = document.querySelectorAll(".create-option");
 const MASTHEAD_LOGOS = document.querySelectorAll(".yb-logo-masthead");
-const MOBILE_HEADER = document.querySelector('.yb-header');
+const MOBILE_HEADER = document.getElementById('yb-mobile-header');
 const SPOTLIGHT_CONTAINER = document.getElementById('yb-container-spotlight');
 const SPOTLIGHT_CONTENT =  document.getElementById('spotlight-content');
 const MOBILE_IFRAME = document.getElementById('yb-iframe-mobile');
@@ -97,6 +97,54 @@ const year = currentDate.getFullYear();
 
 // Format the date as "MonthName day, year"
 const formattedDate = `${month} ${day}, ${year}`;
+
+function yb_hideMobileHeader() {
+    if (MOBILE_HEADER.classList.contains("hide") === false){
+        MOBILE_HEADER.classList.add("hide");
+    }
+}
+
+function yb_showMobileHeader() {
+    if (MOBILE_HEADER.classList.contains("hide")){
+        MOBILE_HEADER.classList.remove("hide");
+    }
+}
+
+function yb_hideMobileNavigation() {
+    if (NAV_BAR.classList.contains("hideMobile") === false){
+        NAV_BAR.classList.add("hideMobile");
+    }
+    if (CREATE_POPOUT.classList.contains("hide") === false){
+        CREATE_POPOUT.classList.add("hide");
+    }
+    if (SEARCH_POPOUT.classList.contains("hide") === false){
+        SEARCH_POPOUT.classList.add("hide");
+    }
+    
+}
+
+function yb_showMobileNavigation() {
+    if (NAV_BAR.classList.contains("hideMobile")){
+        NAV_BAR.classList.remove("hideMobile");
+    }
+    if (CREATE_POPOUT.classList.contains("hide")){
+        CREATE_POPOUT.classList.remove("hide");
+    }
+    if (SEARCH_POPOUT.classList.contains("hide")){
+        SEARCH_POPOUT.classList.remove("hide");
+    }
+    
+}
+
+function yb_hideMobileUI() {
+    yb_hideMobileHeader();
+    yb_hideMobileNavigation();
+}
+
+function yb_showMobileUI() {
+    yb_showMobileHeader();
+    yb_showMobileNavigation();
+}
 
 function yb_positionLayerDivider(behind_element) {
     this_index = behind_element.style.zIndex;
@@ -668,10 +716,6 @@ function yb_navigateToProfile(e) {
     }
     $("#content-container").load(`/profile/user/${username}/`);
     yb_closeSpotlight();
-    MOBILE_HEADER.classList.toggle("hide");
-    NAV_BAR.classList.add("hideMobile");
-    CREATE_POPOUT.classList.add("hide");
-    SEARCH_POPOUT.classList.add("hide");
     yb_setSessionValues('fullscreen', 'true');
 
     if (MAIN_LOADING_SCREEN.style.display === "block"){
