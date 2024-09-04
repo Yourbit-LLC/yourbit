@@ -72,6 +72,7 @@ def people_list(request, filter, *args, **kwargs):
             chain(results_list), key=attrgetter('display_name'), reverse=False
         )
     except:
+        print
         if len(results_list) == 0:
             connections = None
         else:
