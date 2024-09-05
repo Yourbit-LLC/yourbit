@@ -17,6 +17,12 @@ var photo_upload_field = document.getElementById("bb-field-bitPhoto");
 var cropped_photo_upload_field = document.getElementById("bb-field-bitPhoto-cropped");
 var video_upload_field = document.getElementById("bb-field-bitVideo");
 
+var bit_schedule_button = document.getElementById("bb-schedule-button");
+var bit_options_button = document.getElementById("bb-options-button");
+var bit_monetize_button = document.getElementById("bb-monetize-button");
+var bit_customize_button = document.getElementById("bb-customize-button");
+
+
 var cropped_photo;
 
 //Function for generating bits
@@ -422,4 +428,20 @@ $(document).ready(function(){
     yb_startClock("time-label", "decorated-time");
 
     $("#bit-date-preview").html(formattedDate);
+
+    bit_schedule_button.addEventListener("click", function(){
+        yb_2WayPage(2, "schedule-bit");
+    });
+
+    bit_options_button.addEventListener("click", function(){
+        yb_2WayPage(2, "bit-publish-options");
+    });
+
+    bit_monetize_button.addEventListener("click", function(){
+        yb_2WayPage(2, "monetize-bit");
+    });
+
+    bit_customize_button.addEventListener("click", function(){
+        yb_2WayPage(2, "bb-customize-bit");
+    });
 });

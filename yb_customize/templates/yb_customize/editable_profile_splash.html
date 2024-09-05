@@ -8,15 +8,17 @@
 <div id="profile-page-splash" class="yb-fsContainer profile">
     
     <form class="master-form" id="splash-master-form">
-        <input type="hidden" id="master-name-font-color" value="{{custom_splash.name_font_color}}">
-        <input type="hidden" id="master-username-font-color" value="{{custom_splash.username_font_color}}">
-        <input type="hidden" id="master-name-font-size" value="{{custom_splash.name_font_size}}">
-        <input type="hidden" id="master-username-font-size" value="{{custom_splash.username_font_size}}">
-        <input type="hidden" id="master-button-color" value="{{custom_splash.button_color}}">
-        <input type="hidden" id="master-button-text-color" value="{{custom_splash.button_text_color}}">
-        <input type="hidden" id="master-button-shape" value="{{custom_splash.button_shape}}">
-        <input type="hidden" id="master-button-format" value="{{custom_splash.button_format}}">
-        <input type="hidden" id="master-splash-panel-color" value="{{custom_splash.panel_color}}">
+        <input name="name_font_color" type="hidden" id="master-name-font-color" value="{{custom_splash.name_font_color}}">
+        <input name="username_font_color" type="hidden" id="master-username-font-color" value="{{custom_splash.username_font_color}}">
+        <input name="name_font_size" type="hidden" id="master-name-font-size" value="{{custom_splash.name_font_size}}">
+        <input name="username_font_size" type="hidden" id="master-username-font-size" value="{{custom_splash.username_font_size}}">
+        <input name="button_color" type="hidden" id="master-button-color" value="{{custom_splash.button_color}}">
+        <input name="button_text_color" type="hidden" id="master-button-text-color" value="{{custom_splash.button_text_color}}">
+        <input name="button_shape" type="hidden" id="master-button-shape" value="{{custom_splash.button_shape}}">
+
+        <!--The button format category defines if the button has an icon or text-->
+        <input name="button_format" type="hidden" id="master-button-format" value="{{custom_splash.button_format}}"> 
+        <input name="splash_color" type="hidden" id="master-splash-panel-color" value="{{custom_splash.panel_color}}">
     </form>
 
     
@@ -42,8 +44,8 @@
         </div>
 
         <div class="profile-name-splash preview editable" id="profile-name-splash" style="border: 2px solid gray; width: fit-content; margin: auto; padding: 15px;" onclick="yb_navigateTo('drawer', 'profile-text-edit', null, false); yb_focusOn('profile-name-splash', 'editable');">
-            <h2 id="profile-name-header" style="color:{{custom_ui.title_color}}; margin-top: 0px; margin-bottom: 10px;" class="profile-name-header yb-name-size{{custom_splash.name_font_size}}">{{user.first_name}} {{user.last_name}}</h2>
-            <b id="profile-handle-label" style="color:{{custom_ui.text_color}};" class="profile-handle-label yb-name-size{{custom_splash.username_font_size}}">
+            <h2 id="profile-name-header" style="color:{{custom_splash.name_font_color}}; margin-top: 0px; margin-bottom: 10px;" class="profile-name-header yb-name-size{{custom_splash.name_font_size}}">{{user.first_name}} {{user.last_name}}</h2>
+            <b id="profile-handle-label" style="color:{{custom_splash.username_font_color}};" class="profile-handle-label yb-name-size{{custom_splash.username_font_size}}">
                 <small>@{{user.username}}</small>
             </b>
         </div>

@@ -27,5 +27,10 @@ urlpatterns = [
     path('templates/filter/customize/', customize_panel_view, name="filter-panel-customize"),
     path('templates/cluster/<int:id>/', cluster_view, name="cluster-view"),
     path("templates/options/<int:id>/", bit_options_menu, name="bit-options"),
+    path("templates/builder/options/", BitBuildOptions.as_view(), name="build-bit-options"),
+    path("templates/builder/scheduling/", BitBuildScheduling.as_view(), name="build-bit-scheduling"),
+    path("templates/builder/monetization/", BitBuildMonetize.as_view(), name="build-bit-monetization"),
+    path("templates/builder/customize/", BitBuildCustomize.as_view(), name="build-bit-customize"),
+    path("templates/builder/thumbnail/", BitThumbnailSetup.as_view(), name="build-bit-customize"),
     
 ]

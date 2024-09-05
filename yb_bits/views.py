@@ -301,3 +301,28 @@ def remove_from_cluster(request, *args, **kwargs):
         this_cluster.save()
 
         return JsonResponse({"status":"success", "cluster_name":this_cluster.name})
+    
+class BitBuildOptions(View):
+
+    def get(self, request):
+        return render(request, "yb_bits/bit_options.html")
+    
+class BitBuildScheduling(View):
+    
+    def get(self, request):
+        return render(request, "yb_bits/bit_schedule.html")
+        
+class BitBuildMonetize(View):
+        
+    def get(self, request):
+        return render(request, "yb_bits/bit_monetization.html")
+    
+class BitBuildCustomize(View):
+
+    def get(self, request):
+        return render(request, "yb_bits/bit_customize.html")
+    
+class BitThumbnailSetup(View):
+    
+        def get(self, request):
+            return render(request, "yb_bits/bit_thumbnail.html")

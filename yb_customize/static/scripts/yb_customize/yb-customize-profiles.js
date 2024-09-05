@@ -23,7 +23,9 @@ var master_panel_color = document.getElementById("master-splash-panel-color");
 var splash_panel_color_trigger = document.getElementById("splash-panel-color-circle");
 var splash_panel_color_input = document.getElementById("splash-panel-color-picker");
 
-var splash_buttons = document.getElementsByClassName("button-profile-interaction")
+var splash_buttons = document.getElementsByClassName("button-profile-interaction");
+
+var save_button = document.getElementsByClassName("yb-tb-button-save");
 
 var user_id = yb_getSessionValues("id");
 
@@ -240,7 +242,24 @@ function yb_recolorSplashButtonText(value) {
 
 function yb_submitSplashChanges() {
     //Submit changes
-    master_form.submit();
+    master_form_instance = $(master_form);
+    let csrf_token = getCSRF();
+    $.ajax({
+        url: `${base_url}/customize/templates/profile-splash/`,
+        type: 'POST',
+        data: master_form_instance.serialize(),
+        headers: {
+            "X-CSRFToken": csrf_token
+        },
+        success: function(data) {
+            showNotification(expandNotification, "Changes saved successfully!")
+            console.log(data);
+        },
+        error: function(data) {
+            console.log(data);
+            showNotification(expandNotification, "Oops, something went wrong...")
+        }
+    });
 }
 
 function yb_changeButtonShape(value) {
@@ -357,5 +376,7 @@ $(document).ready(function() {
         });
         
     });
+
+    save_button[0].addEventListener("click", yb_submitSplashChanges);
 
 });

@@ -177,6 +177,33 @@ const TWO_WAY_INDEX = {
             "template" : "/settings/templates/cluster/",
             "url" : ""
         },
+    "bit-publish-options":
+        {
+            "template" : "/bits/templates/builder/options/",
+            "url" : ""
+        },
+    "schedule-bit":
+        {
+            "template" : "/bits/templates/builder/scheduling/",
+            "url" : ""
+        },
+
+    "monetize-bit":
+        {
+            "template" : "/bits/templates/builder/monetization/",
+            "url" : ""
+        },
+
+    "bb-customize-bit":
+        {
+            "template" : "/bits/templates/builder/customize/",
+            "url" : ""
+        },
+    "bit-builder-thumbnail":
+        {
+            "template" : "/bits/templates/builder/thumbnail/",
+            "url" : ""
+        },
     
           
 };
