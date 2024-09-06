@@ -1,9 +1,9 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/yb_settings/yourbit_settings.css' %}"/>
 <div id='div-header' class="div-header">
-    <div class="cb-panel-back" onclick="yb_toggleMainMenu()"><svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
-    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb" onclick="yb_toggleMainMenu()"></h3>
-    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('messages');"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
+    <div class="cb-panel-back" onclick="yb_2WayPage(1);"><svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
+    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb" onclick="yb_2WayPage(1);"></h3>
+    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('conversation-settings');"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
 </div>
 
 <div class="yb-flexColumn" id="messages-info">
@@ -14,12 +14,14 @@
 
 <form class="yb-fillWidth yb-vScroll yb-pText yb-margin-T10 align-center" id="account-settings-form" method="POST" action="{% url 'settings_account' %}" style="height: calc(100% - 200px); border-radius: 15px; padding-bottom: 150px;">
     <section class = "setting-sub-container" id="about-tab">
-        <h4 class="yb-pHead">Access</h4>
+        <h4 class="yb-pHead">General</h4>
 
         <div id="display-conversation-name" class="yb-field-split squared yb-bg-autoGray yb-autoText yb-pText">
             <p class="field-cover-label align-left" style="grid-column: 1;">Conversation Name: </p>
             <input name="email" id='field-email' value="{{profile_info.email}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
         </div>
+
+        <h4 class="yb-pHead">Access</h4>
 
         <div id="display-birthday-visibilty" class="yb-field-split top yb-bg-autoGray yb-autoText yb-pText">
             <p class="field-cover-label align-left" style="grid-column: 1;">Allow Joining</p>
@@ -38,6 +40,8 @@
                 </label>
             </div>
         </div>
+
+        <h4 class="yb-pHead">Customize</h4>
 
         <div id="font-style-section" class="yb-field-split top yb-bg-autoGray yb-pText" style="position: relative;">
             <p class="field-cover-label yb-autoText yb-pText align-left" style="grid-column: 1;">
