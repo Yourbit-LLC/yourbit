@@ -43,7 +43,7 @@
         
         <div class="setting-sub-container">
             <h3 class="yb-pHead">Publicity</h3>
-            <div id="prv-enableFollowers-container" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr;">
+            <div id="prv-enableFollowers-container" class="yb-field-split top yb-bg-autoGray yb-pText" style="position: relative;">
                 <p class="field-cover-label yb-pText yb-autoText align-left" style="grid-column: 1;">Enable Followers </p>        
                 <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="yb-exclude-shared" >
@@ -54,7 +54,7 @@
             </div>
 
             <!--Search by real name switch-->
-            <div "prv-search-real-name" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr;">
+            <div "prv-search-real-name" class="yb-field-split middle yb-bg-autoGray yb-pText" style="position: relative;">
                 <p class="field-cover-label yb-pText yb-autoText align-left" style="grid-column: 1;">Search by Real Name </p>        
                 <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="yb-real-search" >
@@ -65,8 +65,8 @@
             </div>
 
             <!--Default post public-->
-            <div id="prv-default-post" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr;">
-                <p class="field-cover-label yb-pText yb-autoText align-left" style="grid-column: 1;">Public bits default</p>        
+            <div id="prv-default-post" class="yb-field-split middle yb-bg-autoGray yb-pText" style="position: relative;">
+                <p class="field-cover-label yb-pText yb-autoText align-left" style="grid-column: 1;">Post bits to public</p>        
                 <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="prv-default-post" >
                         <input type="checkbox" class="checkbox notification-check bit-subsetting" name="default_post_public" id="prv-default-post" {% if default_post_public %}checked{% endif %}>
@@ -76,7 +76,7 @@
             </div>
 
             <!-- Allow sharing -->
-            <div id="prv-allow-sharing" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr;">
+            <div id="prv-allow-sharing" class="yb-field-split middle yb-bg-autoGray yb-pText" style="position: relative;">
                 <p class="field-cover-label yb-pText yb-autoText align-left" style="grid-column: 1;">Allow bit Sharing </p>        
                 <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="prv-allow-sharing" >
@@ -88,7 +88,7 @@
 
 
             <!-- Suggest me -->
-            <div id="prv-suggest-me" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr;">
+            <div id="prv-suggest-me" class="yb-field-split bottom yb-bg-autoGray yb-pText" style="position: relative;">
                 <p class="field-cover-label yb-pText yb-autoText align-left" style="grid-column: 1;">Suggest me </p>        
                 <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="prv-suggest-me" >
@@ -105,8 +105,8 @@
             <!--dropdown-->
             <br>
             <div class="setting-sub-container">
-                <h3 class="yb-pHead">Info</h3>
-                <div id="display-name" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; width: 95%;">
+                <h3 class="yb-pHead">Profile Info</h3>
+                <div id="display-name" class="yb-field-split top yb-bg-autoGray yb-pText" style="position: relative;">
                     <p class="field-cover-label align-left yb-pText" style="grid-column: 1; font-size: auto;">Show Real Name: </p>        
                     <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                         <label class="yb-switch-round" id="display-name" >
@@ -116,14 +116,14 @@
                     </div>
                 </div>
                 <div id = "field-container-display-name" class="yb-field-container" style="{% if real_name_visibility == True%} opacity: 0.5; {% endif %}">
-                    <div id="display-name" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr; width: 95%;">
+                    <div id="display-name" class="yb-field-split middle yb-bg-autoGray yb-pText" style="position: relative;">
                         <p class="field-cover-label align-left yb-pText" style="grid-column: 1;">Display Name: </p><input name="display_name" id='field-last-name' value="{{user.profile.display_name}}" class="yb-input-transparent right yb-autoText account-field" style="grid-column: 2;"></div>
                     <input id='field-last-name' value="{{user.display_name}}" class="yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10 yb-pText" style="display:none;">
                 </div>
 
                 <div id="yb-field-container-birthday" class="yb-field-containter">
                     <div id = "field-container-bday" class="yb-field-container">
-                        <div id="display-bday" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr; width: 95%; ">
+                        <div id="display-bday" class="yb-field-split middle yb-bg-autoGray yb-pText" style="position: relative;">
                             <p class="field-cover-label align-left yb-pText" style="grid-column: 1;">Show Birthday To: </p>
                             <select type="text" class="yb-input-transparent right yb-autoText yb-pText privacy-field" name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align" style="grid-column: 2;" value="{{birthday_visibility}}">
                                 <option class="yb-input-option" value="e" {% if birthday_visibility == 'e' %}selected{% endif %}>Everyone</option>
@@ -136,7 +136,7 @@
 
                 <div id="yb-field-container-phone-number" class="yb-field-container">
                     <div id = "field-container-phone" class="yb-field-container">
-                        <div id="display-phone" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr; width: 95%;">
+                        <div id="display-phone" class="yb-field-split middle yb-bg-autoGray yb-pText" style="position: relative;">
                             <p class="field-cover-label align-left yb-pText" style="grid-column: 1;">Show Phone To: </p>
                             <select type="text" class="yb-input-transparent right yb-autoText yb-pText privacy-field" name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align" style="grid-column: 2;" value="{{birthday_visibility}}">
                                 <option class="yb-input-option" value="e" {% if phone_number_visibility == 'e' %}selected{% endif %}>Everyone</option>
@@ -152,7 +152,7 @@
  
         
             <div id = "field-container-email" class="yb-field-container">
-                <div id="display-email" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr; width: 95%;">
+                <div id="display-email" class="yb-field-split middle yb-bg-autoGray yb-pText" style="position: relative;">
                     <p class="field-cover-label align-left yb-pText" style="grid-column: 1;">Show Email To: </p>
                     <select type="text" class="yb-input-transparent right yb-autoText yb-pText privacy-field" name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align" style="grid-column: 2;" value="{{birthday_visibility}}">
                         <option class="yb-input-option" value="e" {% if email_visibility == 'e' %}selected{% endif %}>Everyone</option>
@@ -166,7 +166,7 @@
 
             <div id="yb-field-container-friend-count" class="yb-field-container">
                 <div id = "field-container-friend-count" class="yb-field-container">
-                    <div id="display-friend-count" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr; width: 95%;">
+                    <div id="display-friend-count" class="yb-field-split bottom yb-bg-autoGray yb-pText" style="position: relative;">
                         <p class="field-cover-label align-left yb-pText" style="grid-column: 1;">Show Friend Count To: </p>
                         <select type="text" class="yb-input-transparent right yb-autoText privacy-field yb-pText" name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align" style="grid-column: 2;" value="{{birthday_visibility}}">
                             <option class="yb-input-option" value="e" {% if friend_count_visibility == 'e' %}selected{% endif %}>Everyone</option>

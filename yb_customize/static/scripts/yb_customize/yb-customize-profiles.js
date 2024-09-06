@@ -25,6 +25,10 @@ var splash_panel_color_input = document.getElementById("splash-panel-color-picke
 
 var splash_buttons = document.getElementsByClassName("button-profile-interaction");
 
+var undo_button = document.getElementById("yb-tb-button-undo");
+var redo_button = document.getElementById("yb-tb-button-redo");
+var reset_button = document.getElementById("yb-tb-button-reset");
+
 var save_button = document.getElementsByClassName("yb-tb-button-save");
 
 var user_id = yb_getSessionValues("id");
@@ -59,6 +63,10 @@ function yb_undo() {
             // Update the preview with the previous value
             document.getElementById(field).innerHTML = initial_settings[i].value;
         }
+    }
+
+    if (!redo_button.classList.contains("ready")) {
+        redo_button.classList.add("ready");
     }
 
 }
@@ -101,6 +109,13 @@ function yb_reset() {
 
 }
 
+function yb_readySaveButton() {
+    save_button[0].classList.add("ready");
+    undo_button.classList.add("ready");
+    reset_button.classList.add("ready");
+}
+
+
 function yb_changePanelColor(value) {
     //Update Input Trigger
     let color_circle = document.getElementById("splash-panel-color-circle");
@@ -111,6 +126,8 @@ function yb_changePanelColor(value) {
 
     //Push to master form
     master_panel_color.value = value;
+
+    yb_readySaveButton();
 }
 
 
@@ -164,6 +181,7 @@ function yb_recolorSplashText(value) {
     //Push to master form
     master_username_color.value = value;
 
+    yb_readySaveButton();
 
 
 }
@@ -177,6 +195,8 @@ function yb_recolorSplashTitle(value) {
     //Change appearance
     profile_name.style.color = value;
     master_name_color.value = value;
+
+    yb_readySaveButton();
 
 }
 
@@ -192,6 +212,8 @@ function yb_resizeSplashText(value) {
     master_username_size.value = value;
     profile_handle.classList.add("yb-username-size" + value);
 
+    yb_readySaveButton();
+
 }
 
 function yb_resizeSplashTitle(value) {
@@ -205,6 +227,8 @@ function yb_resizeSplashTitle(value) {
     }
     master_name_size.value = value;
     profile_name.classList.add("yb-name-size" + value);
+
+    yb_readySaveButton();
 
     
 }
@@ -223,6 +247,8 @@ function yb_recolorSplashButton(value) {
     //Push to master form
     master_button_color.value = value;
 
+    yb_readySaveButton();
+
 }
 
 function yb_recolorSplashButtonText(value) {
@@ -237,6 +263,8 @@ function yb_recolorSplashButtonText(value) {
 
     //Push to master form
     master_button_text_color.value = value;
+
+    yb_readySaveButton();
     
 }
 
