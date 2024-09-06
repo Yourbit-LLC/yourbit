@@ -116,11 +116,26 @@ def message_inbox(request):
     print(context)
 
     return render(request, "yb_messages/messages.html", context)
+class ConversationSettings(View):
+    def get(self, request, id, *args, **kwargs):
+        this_conversation = Conversation.objects.get(id = id)
+        return render(request, "yb_messages/conversation_settings.html", context={"conversation": this_conversation})
 
-def conversation_settings_template(request, id):
-    this_conversation = Conversation.objects.get(id = id)
-    return render(request, "yb_messages/conversation_settings.html", context={"conversation": this_conversation})
+    def post(self, request, id, *args, **kwargs):
+        this_conversation = Conversation.objects.get(id = id)
+        this_conversation.name = request.POST.get("name")
+        if this_conversation.name != "Untitled Conversation":
+            this_conversation.is_name = True
+        else:
+            this_conversation.is_name = False
 
+        this_conversation.from_user_color = request.POST.get("from_user_color")
+        this_conversation.to_user_color = request.POST.get("to_user_color")
+
+        this_conversation.is_joinable = True if request.POST.get("is_joinable") == "on" else False
+        this_conversation.members = request.POST.get("members")
+        this_conversation.save()
+        return render(request, "yb_messages/conversation_settings.html", context={"conversation": this_conversation})
 def filter_contacts_list(request, query):
     from yb_profile.models import Profile
     user = request.user
