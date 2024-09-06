@@ -143,6 +143,7 @@
     background-color: #f5f5f5;
     border-color: #e6e6e6;
     color: black;
+    fill: black !important;
     /* animation: yb-pulse-small 0.5s linear 1; */
     transform: scale(1.03);
 }

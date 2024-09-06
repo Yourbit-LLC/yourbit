@@ -236,12 +236,13 @@
     transform: scale(1.03);
 }
 
-
+.yb-button-wide:hover svg {
+    fill: black;
+}
 
 .yb-button-wide.active {
     /*Style*/
     background-color: black;
-    
     border-width: 2px;
     border-style: solid;
 }
@@ -281,7 +282,6 @@
         background-color: rgb(200, 200, 200);
     }
 }
-
 
 .yb-button-flex {
     /*button that changes size based on text inside with no border color and a small amount of padding around the text */
@@ -356,8 +356,6 @@
         color: black;
     }
 }
-
-
 
 .yb-button-halfWidth {
     display: block;

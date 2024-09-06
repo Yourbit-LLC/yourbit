@@ -284,3 +284,6 @@
 
 }
 
+.yb-field-error {
+    display: none;
+}

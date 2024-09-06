@@ -25,11 +25,11 @@ try {
 
 function yb_continue_back(back_type, back_location, data=null) {
         
-    if (back_type = "page") {
+    if (back_type == "page") {
 
         yb_2WayPage(back_location);
-    } else if (back_type = "2Way") {
-        yb_navigateTo("2Way", back_location, data);
+    } else if (back_type == "2way") {
+        yb_navigateTo("2way", back_location, data);
     } else {
         yb_navigateTo("core", back_location);
     }

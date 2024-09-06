@@ -16,7 +16,7 @@
 
 <form id="bit-schedule-settings-form" method="POST" action="/settings/templates/cluster/{{cluster.id}}/" class="yb-fillWidth yb-vScroll yb-autoText yb-margin-T10 align-center" style="height: calc(100% - 150px); border-radius: 15px;">
     {% csrf_token %}
-    <h4 class="yb-pHead">Post Time</h4>
+    <h4 class="yb-pHead">Publication</h4>
     <div class="setting-sub-container yb-autoText yb-pText">
         <!--Cluster Type-->
         <div id="field-container-bit-deploy" class="yb-field-container">
@@ -25,6 +25,36 @@
                 <select name="type" id='field-cluster-type' value="now" class="yb-input-transparent right yb-autoText yb-pText yb-form-field" style="grid-column: 2;">
                     <option class="yb-input-option" value="all" {% if cluster.type == 'all' %}selected{% endif %}>Post Now</option>
                     <option class="yb-input-option" value="chats" {% if cluster.type == 'chat' %}selected{% endif %}>Post Later</option>
+                </select>
+        </div>
+
+        <div id="field-container-post-date" class="yb-field-container">
+            <div id="display-post-date" class="yb-field-split squared yb-bg-autoGray yb-autoText yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Specify Date </p>
+                <input type="date" name="name" id='field-post-date' value="{{cluster.name}}" class="yb-input-transparent right yb-autoText yb-pText yb-form-field" style="grid-column: 2;">
+            </div>
+            <p class="yb-field-error under"></p>
+        </div>
+
+        <div id="field-container-post-date" class="yb-field-container">
+            <div id="display-post-date" class="yb-field-split squared yb-bg-autoGray yb-autoText yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Specify Time </p>
+                <input type="time" name="name" id='field-post-date'  class="yb-input-transparent right yb-autoText yb-pText yb-form-field" style="grid-column: 2;">
+            </div>
+            <p class="yb-field-error under"></p>
+        </div>
+    </div>
+    <h4 class="yb-pHead">Evaporation</h4>
+    <div class="setting-sub-container yb-autoText yb-pText">
+        <!--Cluster Type-->
+        <div id="field-container-bit-deploy" class="yb-field-container">
+            <div id="display-bit-deploy" class="yb-field-split squared yb-bg-autoGray yb-autoText yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">When should this bit delete? </p>
+                <select name="type" id='field-cluster-type' value="now" class="yb-input-transparent right yb-autoText yb-pText yb-form-field" style="grid-column: 2;">
+                    <option class="yb-input-option" value="day" {% if cluster.type == 'all' %}selected{% endif %}>1 day from now</option>
+                    <option class="yb-input-option" value="week" {% if cluster.type == 'chat' %}selected{% endif %}>1 week from now</option>
+                    <option class="yb-input-option" value="month" {% if cluster.type == 'chat' %}selected{% endif %}>1 month from now</option>
+                    <option class="yb-input-option" value="custom" {% if cluster.type == 'chat' %}selected{% endif %}>Set custom date</option>
                 </select>
         </div>
 
