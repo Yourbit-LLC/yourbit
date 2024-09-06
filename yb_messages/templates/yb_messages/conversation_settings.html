@@ -14,6 +14,12 @@
 <form class="yb-fillWidth yb-vScroll yb-pText yb-margin-T10 align-center" id="account-settings-form" method="POST" action="{% url 'settings_account' %}" style="height: calc(100% - 200px); border-radius: 15px; padding-bottom: 150px;">
     <section class = "setting-sub-container" id="about-tab">
         <h4 class="yb-pHead">Access</h4>
+
+        <div id="display-conversation-name" class="yb-field-split top yb-bg-autoGray yb-pText">
+            <p class="field-cover-label align-left" style="grid-column: 1;">Conversation Name: </p>
+            <input name="email" id='field-email' value="{{profile_info.email}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+        </div>
+
         <div id="display-birthday-visibilty" class="yb-field-split top yb-bg-autoGray yb-autoText yb-pText">
             <p class="field-cover-label align-left" style="grid-column: 1;">Allow Joining</p>
             <select name="type" id='field-cluster-type' value="now" class="yb-input-transparent right yb-autoText yb-pText yb-form-field" style="grid-column: 2;">
@@ -23,7 +29,7 @@
             </select>
         </div>
         <div id="ntfy-appUpdates-container" class="yb-field-split bottom yb-bg-autoGray yb-pText" style="position: relative;">
-            <p class="field-cover-label yb-pText yb-autoText align-left" style="grid-column: 1; font-size: auto;">Friends can Invite</p>        
+            <p class="field-cover-label yb-pText yb-autoText align-left" style="grid-column: 1; font-size: auto;">Members can Invite</p>        
             <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                 <label class="yb-switch-round" id="yb-exclude-shared" >
                     <input type="checkbox" class="checkbox notification-check" name="app_notifications" id="nts-app-notifications" {% if notification_settings.app_notifications %} checked {% endif %}>
@@ -32,7 +38,18 @@
             </div>
         </div>
 
+        <div id="font-style-section" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; width: 95%; margin: auto; grid-gap: 5px;">
+            <h3 class="align-center squared yb-autoText-reversed" style="grid-row: 1; grid-column-start: 1; grid-column-end: 3; width: 33%; margin: 5px auto; line-height: 2; height: 30px; background-color: rgba(0,0,0,0.5);">From User Color</h3>
+            <div class = "color-circle yb-center-margin tb" id="username-font-color-circle" name="username-font-color" style="position: relative; margin-right: 10px; background-color: {{text_color}}; grid-column: 2; grid-row: 2; height: 25px; width: 25px;"></div>  
+            <input class="coloris color-input font-color-input" type="text" name="username-font-color" style="display: none;" id="username-font-color-picker" value="{{text_color}}">  
+        </div>
 
+        
+        <div id="font-style-section" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; width: 95%; margin: auto; grid-gap: 5px;">
+            <h3 class="align-center squared yb-autoText-reversed" style="grid-row: 1; grid-column-start: 1; grid-column-end: 3; width: 33%; margin: 5px auto; line-height: 2; height: 30px; background-color: rgba(0,0,0,0.5);">To User Color</h3>
+            <div class = "color-circle yb-center-margin tb" id="username-font-color-circle" name="username-font-color" style="position: relative; margin-right: 10px; background-color: {{text_color}}; grid-column: 2; grid-row: 2; height: 25px; width: 25px;"></div>  
+            <input class="coloris color-input font-color-input" type="text" name="username-font-color" style="display: none;" id="username-font-color-picker" value="{{text_color}}">  
+        </div>
 
     </section>
 </form>
