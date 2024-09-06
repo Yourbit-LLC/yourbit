@@ -204,6 +204,12 @@ const TWO_WAY_INDEX = {
             "template" : "/bits/templates/builder/thumbnail/",
             "url" : ""
         },
+
+        "conversation-settings":
+        {
+            "template" : "/messages/templates/conversation-settings/",
+            "url" : ""
+        },
     
           
 };

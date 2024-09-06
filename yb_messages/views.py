@@ -117,6 +117,10 @@ def message_inbox(request):
 
     return render(request, "yb_messages/messages.html", context)
 
+def conversation_settings_template(request, id):
+    this_conversation = Conversation.objects.get(id = id)
+    return render(request, "yb_messages/conversation_settings.html", context={"conversation": this_conversation})
+
 def filter_contacts_list(request, query):
     from yb_profile.models import Profile
     user = request.user
