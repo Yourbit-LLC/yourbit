@@ -135,6 +135,7 @@ class ConversationSettings(View):
         this_conversation.is_joinable = True if request.POST.get("is_joinable") == "on" else False
         this_conversation.members = request.POST.get("members")
         this_conversation.save()
+        
         return render(request, "yb_messages/conversation_settings.html", context={"conversation": this_conversation})
 def filter_contacts_list(request, query):
     from yb_profile.models import Profile
