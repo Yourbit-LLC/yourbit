@@ -15,6 +15,7 @@ urlpatterns = [
     path("templates/about/<str:username>/", ProfileAboutTemplate.as_view(), name="history_template"),
     path("templates/friend_request/<int:id>/", FriendRequestTemplate.as_view(), name="friend_request_template"),
     path("templates/connect_menu/<int:id>/", ProfileConnectTemplate.as_view(), name="connect_menu_template"),
+    path("templates/orbit-setup/<int:id>/", OrbitSetup.as_view(), name="orbit_menu_template"),
     path("create/orbit/", CreateOrbit.as_view(), name="create_orbit"),
     path("people-list/<str:filter>/", people_list, name="people_list"),
     path("history-list/<str:filter>/", history_list, name="history_list"),

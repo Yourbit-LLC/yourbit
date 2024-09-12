@@ -522,7 +522,6 @@ function yb_showIframe(url){
     let preview_window = document.getElementById("mobile-preview");
     preview_window.setAttribute("src", url);
     MOBILE_IFRAME.style.display = "block";
-
 }
 
 function yb_hideIframe(){

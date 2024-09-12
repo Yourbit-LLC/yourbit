@@ -57,10 +57,11 @@
         tw_showLoading();
         $.post(url, data, function(response){
             if(response.success){
-                yb_showNotification(expandNotification, 'Orbit created');
-                yb_toggle2WayContainer('create-orbit');
+                let orbit = response.orbit;
+                showNotification(expandNotification, 'Orbit created');
+                yb_2WayPage(2, 'orbit-setup', orbit.id);
             } else {
-                yb_showNotification(expandNotification, 'Error creating orbit');
+                showNotification(expandNotification, 'Error creating orbit');
             }
         });
     }

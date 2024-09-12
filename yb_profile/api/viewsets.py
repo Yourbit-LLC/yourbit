@@ -95,15 +95,15 @@ class ProfileViewset(viewsets.ModelViewSet):
 #Orbits Viewset
 
 
-class CommunityViewset(viewsets.ModelViewSet):
+class OrbitViewset(viewsets.ModelViewSet):
     queryset = Orbit.objects.all()
-    serializer_class = CommunityResultSerializer
+    serializer_class = OrbitResultSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['handle', 'display_name']
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
-        serializer = CommunityResultSerializer(instance)
+        serializer = OrbitResultSerializer(instance)
         return Response(serializer.data)
     
     def get_queryset(self):

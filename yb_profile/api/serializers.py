@@ -19,13 +19,13 @@ class ProfileResultSerializer(serializers.ModelSerializer):
     def get_customcore(self, obj):
         custom_core = CustomCore.objects.get(profile=obj)
         return SlimCustomSerializer(custom_core).data
-class CommunityResultSerializer(serializers.ModelSerializer):
+class OrbitResultSerializer(serializers.ModelSerializer):
     
         customcore = serializers.SerializerMethodField()
     
         class Meta: 
             model = Orbit
-            fields = ['display_name', 'customcore']
+            fields = ['display_name', 'id', 'customcore']
     
         def get_customcore(self, obj):
             """

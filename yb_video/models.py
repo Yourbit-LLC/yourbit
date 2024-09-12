@@ -6,7 +6,9 @@ from yb_accounts.models import Account as User
 
 class Video(models.Model):
     #Model for attached video to bit
+    storage_type = models.CharField(max_length=50, default="yb")
     video = models.FileField(blank = True, upload_to='media/profile/videos/%Y/%m/%d/%H:%M')
+    cf_url = models.CharField(max_length=255, default="")
     user = models.ForeignKey(User, related_name = "video", on_delete=models.DO_NOTHING, blank=True)
     uploaded = models.DateTimeField(default=timezone.now)
     modified = models.DateTimeField(default=timezone.now)
@@ -47,4 +49,12 @@ class VideoWidget(models.Model):
     animation_duration = models.IntegerField(default=0)
     
     time = models.DateTimeField(default=timezone.now)
+
+class VideoUpload(models.Model):
+    file_name = models.CharField(max_length=255)
+    total_chunks = models.IntegerField()
+    received_chunks = models.IntegerField(default=0)
+    status = models.CharField(max_length=50, default='pending')  # 'pending', 'completed'
+    file_path = models.CharField(max_length=1024, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 

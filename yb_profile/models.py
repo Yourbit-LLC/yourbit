@@ -131,12 +131,27 @@ class Profile(models.Model):
     
 class Orbit(models.Model):
     #Model for a community profile
+    display_name = models.CharField(max_length=150, default="")
+    username = models.CharField(max_length=150, default="")
     profile = models.ManyToManyField(Profile, related_name='orbit', blank=True)
     followers = models.ManyToManyField(Profile, related_name='orbit_followers', blank=True)
     is_public = models.BooleanField(default=False)
+    
+    #System information
+    current_timezone = models.CharField(max_length=150, default="America/New_York")
+    alerted_notifications = models.BooleanField(default=False)
+
+
     date_started = models.DateField(default=timezone.now)
     location_started = models.CharField(max_length = 150)
     team_size = models.IntegerField(default = 1)
+
+    
+    bio = models.CharField(max_length=500, blank=True, null=True)
+    motto = models.CharField(max_length=100, blank=True, null=True)
+
+    space_focus = models.CharField(max_length=100, default="any") #What type of content the user or community primarily focuses on
+
 
 
 class ProfileInfo(models.Model):
@@ -185,6 +200,7 @@ class ProfileInfo(models.Model):
     
 class OrbitInfo(models.Model):
     profile = models.OneToOneField(Orbit, related_name='community_profile_info', blank=True, on_delete=models.CASCADE)
+    email = models.CharField(max_length=150)
     date_started = models.DateField(default=timezone.now)
     location_started = models.CharField(max_length = 150)
     team_size = models.IntegerField(default = 1)

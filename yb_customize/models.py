@@ -12,6 +12,7 @@ class CustomCore(models.Model):
 
     #Profile Connections
     profile = models.OneToOneField('yb_profile.Profile', related_name='custom', blank=True, on_delete=models.CASCADE, null=True)
+    orbit = models.OneToOneField('yb_profile.Orbit', related_name='custom', blank=True, on_delete=models.CASCADE, null=True)
     is_new_user = models.BooleanField(default=True)
 
     #Universal profile image variables by reference to photo object
@@ -60,15 +61,23 @@ class CustomCore(models.Model):
 
     splash_tutorial_complete = models.BooleanField(default=False)
 
+
     def __str__(self):
-        return f"{self.profile.display_name}'s Custom Core: Active Theme - {self.theme.id}"
+        try:
+            return f"{self.profile.display_name}'s Custom Core: Active Theme - {self.theme.id}"
+        except:
+            try:
+                return f"{self.orbit.display_name}'s Custom Core: Active Theme - {self.theme.id}"
+            except:
+                return "Unknown error has occurred."
 
 #Theme model, this is the model that will be used to store various themes 
 # with foreign key to custom. All theme subtables will be linked here
 class Theme(models.Model):
     name = models.CharField(max_length=50, default="untitled theme")
     description = models.CharField(max_length=500, default="No description")
-    author = models.OneToOneField(User, related_name='author', blank=True, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, related_name='author', blank=True, on_delete=models.CASCADE)
+    orbit = models.ForeignKey('yb_profile.Orbit', related_name='theme', blank=True, on_delete=models.CASCADE, null=True)
     visibility = models.CharField(max_length=50, default="me")
     time = models.DateTimeField(default=timezone.localtime)
 

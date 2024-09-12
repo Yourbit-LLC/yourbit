@@ -4,7 +4,7 @@ from django.views import View
 from django.http import JsonResponse
 from yb_accounts.models import Account as User
 from main.views import initialize_session
-from yb_customize.models import CustomUI, CustomCore
+from yb_customize.models import CustomUI, CustomCore, CustomBit, CustomSplash
 from yb_bits.models import Cluster
 
 # Create your views here.
@@ -151,6 +151,22 @@ class OrbitListTemplate(View):
             "following":following,
         }
         return render(request, "yb_profile/yb_orbits.html", context)
+    
+class OrbitSetup(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, "yb_profile/orbit_setup.html")
+    
+    def post(self, request, *args, **kwargs):
+        orbit_name = request.POST.get("name")
+        orbit_type = request.POST.get("type")
+
+        this_custom = CustomCore.objects.get(profile = request.user.profile)
+        custom_ui = CustomUI.objects.get(theme = this_custom.theme)
+
+        new_orbit = Orbit(profile = request.user.profile, name = orbit_name, type=orbit_type, custom = custom_ui)
+        new_orbit.save()
+
+        return JsonResponse({"success": True, "orbit": new_orbit})
     
 def history_list(request, filter, *args, **kwargs):
 
@@ -411,16 +427,38 @@ class CreateOrbit(View):
        
     
     def post(self, request):
+
+        from yb_customize.models import CustomCore, Theme
+        from yb_profile.api.serializers import OrbitResultSerializer
         orbit_name = request.POST.get("name")
         orbit_type = request.POST.get("type")
 
-        this_custom = CustomCore.objects.get(profile = request.user.profile)
-        custom_ui = CustomUI.objects.get(theme = this_custom.theme)
+        new_orbit = Orbit(display_name = orbit_name, space_focus=orbit_type)
 
-        new_orbit = Orbit(profile = request.user.profile, name = orbit_name, type=orbit_type, custom = custom_ui)
+
         new_orbit.save()
 
-        return JsonResponse({"orbit": new_orbit})
+        new_orbit.profile.add(request.user.profile)
+        new_orbit.save()
+
+        this_custom = CustomCore.objects.create(orbit = new_orbit)
+        
+        theme = Theme.objects.create(orbit = new_orbit, author=request.user)
+        theme.save()
+
+        this_custom.theme = theme
+        this_custom.save()
+
+        custom_bit = CustomBit.objects.create(theme = theme, images = this_custom)
+        custom_bit.save()
+
+        custom_ui = CustomUI.objects.create(theme = theme)
+        custom_ui.save()
+
+        serialized_data = OrbitResultSerializer(new_orbit).data
+        print(serialized_data)
+        
+        return JsonResponse({"success": True, "orbit": serialized_data})
     
 def follow_profile(request, *args, **kwargs):
     if request.method == "POST":
@@ -485,11 +523,23 @@ def disconnect_view(request, *args, **kwargs):
     
 
 class CustomProfilePreview(View):
-    def get(self, request, *args, **kwargs):
-        from yb_customize.models import CustomSplash
+    def post(self, request, *args, **kwargs):
+    
         this_profile = Profile.objects.get(user = request.user)
-        custom = CustomCore.objects.get(profile = this_profile)
-        custom_splash = CustomSplash.objects.get(theme = custom.theme)
+
+        custom_splash = {}
+        
+        custom_splash["primary_color"] = request.POST.get("primary_color")
+
+        custom_splash["username_font_color"] = request.POST.get("username_font_color")
+        custom_splash["username_font_size"] = request.POST.get("username_font_size")
+
+        custom_splash["name_font_color"] = request.POST.get("name_font_color")
+        custom_splash["name_font_size"] = request.POST.get("name_font_size")
+
+        custom_splash["button_text_color"] = request.POST.get("button_text_color")
+        custom_splash["button_color"] = request.POST.get("button_color")
+        custom_splash["button_shape"] = request.POST.get("button_shape")
 
         context = {
             "custom_splash":custom_splash,

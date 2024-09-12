@@ -205,11 +205,17 @@ const TWO_WAY_INDEX = {
             "url" : ""
         },
 
-        "conversation-settings":
-        {
-            "template" : "/messages/templates/conversation-settings/",
-            "url" : ""
-        },
+    "conversation-settings":
+    {
+        "template" : "/messages/templates/conversation-settings/",
+        "url" : ""
+    },
+
+    "orbit-setup": {
+        "template" : "/profile/templates/orbit-setup/",
+        "url" : ""
+    },
+    
     
           
 };

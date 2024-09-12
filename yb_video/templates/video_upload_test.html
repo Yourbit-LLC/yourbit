@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{%load static %}
+<html>
+    <head>
+        <title>Upload Video</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/yb_settings/yourbit_settings.css' %}"/>
+    </head>
+    <script 
+    src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js">
+</script>
+
+    <body>
+        <input id='csrf-token' type='hidden' value={{csrf_token}}>
+        <input type="file" id="video-upload-input" name="video">
+        <button id="video-upload-button">Upload Video</button>
+    </body>
+
+    <script src="https://unpkg.com/tus-js-client/dist/tus.js"></script>
+    <script type="text/javascript" src="{% static 'scripts/yb_systems/yb_sessions.js' %}"></script>
+    <script type="text/javascript" src="{% static 'scripts/yb_video/video_upload.js' %}">
+
+    </script>
+    <script>
+        $(document).ready(function(){
+            let upload_input = document.getElementById('video-upload-input');
+            let upload_button = document.getElementById('video-upload-button');
+            upload_button.addEventListener('click', function(){
+                yb_startUpload('video-upload-input');
+            });
+
+        });
+    </script>
+</html>
