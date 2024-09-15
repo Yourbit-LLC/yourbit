@@ -304,6 +304,26 @@ function yb_changeButtonShape(value) {
     }
 }
     
+function yb_showMobilePreview(type="profile") {
+    let csrf_token = getCSRF();
+    $.ajax({
+        url: `${base_url}/customize/templates/mobile-preview/`,
+        type: 'POST',
+        data: {
+            type: type,
+            user_id: user_id
+        },
+        headers: {
+            "X-CSRFToken": csrf_token
+        },
+        success: function(data) {
+            console.log(data);
+            let preview_window = document.getElementById("mobile-preview");
+            preview_window.setAttribute("src", data.url);
+            MOBILE_IFRAME.style.display = "block";
+        }
+    });
+}
 
 $(document).ready(function() {
     //Initialize Data

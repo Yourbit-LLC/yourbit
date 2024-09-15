@@ -5,7 +5,7 @@
 
 </style>
 
-<div id="profile-page-splash" class="yb-fsContainer profile">
+<div id="profile-page-splash" style="background-color: {{custom_splash.primary_color}};" class="yb-fsContainer profile">
     
     <form class="master-form" id="splash-master-form">
         <input name="name_font_color" type="hidden" id="master-name-font-color" value="{{custom_splash.name_font_color}}">
@@ -52,18 +52,18 @@
 
 
         <div id="profile-interaction-container" class="profile-interaction-container editable profile-CME profile-interaction-container preview yb-center-margin lr" style="border: 2px solid gray; width: fit-content;" onclick="yb_navigateTo('drawer', 'profile-button-edit', null, false); yb_focusOn('profile-interaction-container', 'editable');">
-            <button style="color: {{user.profile.custom.profile_splash.button_text_color}}; background-color: {{user.profile.profile_splash.button_color}};" id="profile-button-connect" class="button-profile-interaction yb-button-flex {% if custom_splash.button_shape == 0 %}rounded{% else %} squared {% endif %} {% if button_format == 0%} bt-format-text {% elif button_format == 1 %} bt-format-icon {%else%} bt-format-hybrid{% endif %}">
+            <button style="color: {{custom_splash.button_text_color}}; background-color: {{custom_splash.button_color}};" id="profile-button-connect" class="button-profile-interaction yb-button-flex {% if custom_splash.button_shape == 0 %}rounded{% else %} squared {% endif %} {% if button_format == 0%} bt-format-text {% elif button_format == 1 %} bt-format-icon {%else%} bt-format-hybrid{% endif %}">
                 <span>Connect</span>
 
             </button>
     
-            <button style="color: {{user.profile.custom.profile_splash.button_text_color}}; background-color: {{user.profile.custom.profile_splash.button_color}};" id="profile-button-message" class="button-profile-interaction yb-button-flex {% if custom_splash.button_shape == 0 %}rounded{% else %} squared {% endif %}">
+            <button style="color: {{custom_splash.button_text_color}}; background-color: {{custom_splash.button_color}};" id="profile-button-message" class="button-profile-interaction yb-button-flex {% if custom_splash.button_shape == 0 %}rounded{% else %} squared {% endif %}">
 
                 <span>Messages</span>
 
             </button>
     
-            <button style="color: {{user.profile.custom.profile_splash.button_text_color}}; background-color: {{user.profile.profile_splash.button_color}};" id="profile-button-about" class="button-profile-interaction yb-button-flex {% if custom_splash.button_shape == 0 %}rounded{% else %} squared {% endif %} {% if button_format == 0%} bt-format-text {% elif button_format == 1 %} bt-format-icon {%else%} bt-format-hybrid{% endif %}">
+            <button style="color: {{custom_splash.button_text_color}}; background-color: {{custom_splash.button_color}};" id="profile-button-about" class="button-profile-interaction yb-button-flex {% if custom_splash.button_shape == 0 %}rounded{% else %} squared {% endif %} {% if button_format == 0%} bt-format-text {% elif button_format == 1 %} bt-format-icon {%else%} bt-format-hybrid{% endif %}">
                 <span>About</span>
             </button>
         {% comment %} </div>
@@ -112,7 +112,7 @@
             </svg>
         </div>
 
-        <p class="font-gray font-medium yb-editBarLabel toolbar-button"> Wallpaper</p>
+        <p class="font-gray font-medium yb-editBarLabel"> Wallpaper</p>
     
     </div>
 

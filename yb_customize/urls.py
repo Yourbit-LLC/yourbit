@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib import admin
 from django.urls import path, include
 from .views import *
+from yb_profile.views import CustomProfilePreview
 
 urlpatterns = [
     path("bit/", CustomizeBitView.as_view(), name="customize_bit"),
@@ -28,6 +29,7 @@ urlpatterns = [
     path("templates/profile/edit/font/<str:option>/", SplashFontEdit.as_view(), name="edit_font"),
     path("templates/profile/edit/button/", SplashButtonEdit.as_view(), name="edit_button"),
     path("templates/create-theme/", CreateTheme.as_view(), name="create_theme"),
+    path("templates/profile/preview/mobile/", CustomProfilePreview.as_view(), name="preview_mobile"),
 
     path('', CustomizeMain.as_view(), name = "customize-main")
 

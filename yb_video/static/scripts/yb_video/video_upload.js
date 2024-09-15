@@ -1,4 +1,5 @@
 
+
 function yb_sendVideoToServer(url) {
     //Use the upload url returned from cloud flare and send to yourbit server to store in database
     $.ajax({
@@ -43,12 +44,13 @@ function yb_startUpload(input_id) {
             // Step 2: Start the upload using tus.js
             const upload = new tus.Upload(file, {
                 endpoint: uploadURL, // Pre-signed upload URL
-                chunkSize: 5242880, // Optional: 5MB chunks
+                chunkSize: 50 * 256 * 1024, 
                 retryDelays: [0, 3000, 5000, 10000, 20000],
                 metadata: {
                     filename: file.name,
-                    filetype: 'video/MP4'
+                    filetype: file.type
                 },
+                uploadSize: file.size,
                 onError: function (error) {
                     console.error("Failed to upload file:", error);
                 },

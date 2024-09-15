@@ -17,7 +17,7 @@
 
 </div>
 
-<div id="profile-page-splash" class="yb-fsContainer">
+<div id="profile-page-splash" style="background-color:{{custom_splash.primary_color}};" class="yb-fsContainer">
 
     <div id="profile-splash-label" class = "yb-splash-label profile yb-center-transform all align-center">
         <div id="profile-image-container" class="profile-image-container yb-center-margin all plainBorder border-solid narrowBorder circle" style="overflow: hidden; border: {{custom_core.image_border_style}}; border-color: {{custom_core.image_border_color}};">
@@ -25,15 +25,15 @@
             <img src="{{current_profile.custom.profile_image.medium_thumbnail.url}}"  id="profile-image-splash" style="width: 100%; border-color:{{profile.custom.accent_color}};"/>
         </div>
         <div class="profile-name-splash" id="profile-name-splash">
-            <h2 id="profile-name-header" class="profile-name-header yb-name-size{{custom_splash.name_font_size}} yb-pHead">{{current_profile.display_name}}</h2>
-            <b style = "margin: 0px;" id="profile-handle-label" class="profile-handle-label yb-pText">
+            <h2 id="profile-name-header" class="profile-name-header yb-name-size{{custom_splash.name_font_size}} yb-pHead" style="color: {{custom_splash.name_font_color}};">{{current_profile.display_name}}</h2>
+            <b style = "margin: 0px; color: {{custom_splash.username_font_color}};" id="profile-handle-label" class="profile-handle-label yb-pText">
                 <small class="{{custom_splash.username_font_size}}">@{{current_profile.user.username}}</small>
             </b>
         </div>
 
 
         <div id="profile-interaction-container" class="profile-CME profile-interaction-container yb-center-margin lr">
-            <button style="color: {{profile.custom.profile_splash.button_text_color}}; background-color: var(--yb-button-color); width: 25vw; max-width: 150px;" id="profile-button-connect" class="button-profile-interaction yb-button-flex" data-id = "{{current_profile.user.username}}"
+            <button style="color: {{custom_splash.button_text_color}}; background-color: {{custom_splash.button_color}}; width: 25vw; max-width: 150px;" id="profile-button-connect" class="button-profile-interaction yb-button-flex {% if custom_splash.button_shape == 0 %}rounded{% else %} squared {% endif %} {% if button_format == 0%} bt-format-text {% elif button_format == 1 %} bt-format-icon {%else%} bt-format-hybrid{% endif %}" data-id = "{{current_profile.user.username}}"
             {% if request.user.id == current_profile.user.id %}
                 data-action="edit"
             {% else %}
@@ -61,37 +61,37 @@
     
             </button>
     
-            <button style="color: {{current_profile.custom.profile_splash.button_text_color}}; background-color: var(--yb-button-color); width: 25vw; max-width: 150px;" id="profile-button-message" class="button-profile-interaction yb-button-flex" data-id="{{current_profile.user.username}}">
+            <button style="color: {{custom_splash.button_text_color}}; background-color: {{custom_splash.button_color}}; width: 25vw; max-width: 150px;" id="profile-button-message" class="button-profile-interaction yb-button-flex {% if custom_splash.button_shape == 0 %}rounded{% else %} squared {% endif %} {% if button_format == 0%} bt-format-text {% elif button_format == 1 %} bt-format-icon {%else%} bt-format-hybrid{% endif %}" data-id="{{current_profile.user.username}}">
                 {% if request.user.id == current_profile.user.id %}
                     <span class-"interact-text" class="profile-interact-text yb-bText">Messages</span>
-                    <svg class="profile-interact-icon profile-message-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill:var(--yb-button-text-color);" d="M4 20q-.825 0-1.412-.587Q2 18.825 2 18V6q0-.825.588-1.412Q3.175 4 4 4h16q.825 0 1.413.588Q22 5.175 22 6v12q0 .825-.587 1.413Q20.825 20 20 20Zm8-7L4 8v10h16V8Zm0-2 8-5H4ZM4 8V6v12Z"/></svg>
+                    <svg class="profile-interact-icon profile-message-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill:{{custom_splash.button_text_color}};" d="M4 20q-.825 0-1.412-.587Q2 18.825 2 18V6q0-.825.588-1.412Q3.175 4 4 4h16q.825 0 1.413.588Q22 5.175 22 6v12q0 .825-.587 1.413Q20.825 20 20 20Zm8-7L4 8v10h16V8Zm0-2 8-5H4ZM4 8V6v12Z"/></svg>
                     
                 {% else %}
                     <span class-"interact-text" class="profile-interact-text yb-bText">Message</span>
-                    <svg class="profile-interact-icon profile-message-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill:var(--yb-button-text-color);" d="M4 20q-.825 0-1.412-.587Q2 18.825 2 18V6q0-.825.588-1.412Q3.175 4 4 4h16q.825 0 1.413.588Q22 5.175 22 6v12q0 .825-.587 1.413Q20.825 20 20 20Zm8-7L4 8v10h16V8Zm0-2 8-5H4ZM4 8V6v12Z"/></svg>
+                    <svg class="profile-interact-icon profile-message-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill:{{custom_splash.button_text_color}};" d="M4 20q-.825 0-1.412-.587Q2 18.825 2 18V6q0-.825.588-1.412Q3.175 4 4 4h16q.825 0 1.413.588Q22 5.175 22 6v12q0 .825-.587 1.413Q20.825 20 20 20Zm8-7L4 8v10h16V8Zm0-2 8-5H4ZM4 8V6v12Z"/></svg>
                 {% endif %}
             </button>
     
-            <button style="color: {{current_profile.custom.profile_splash.button_text_color}}; background-color: var(--yb-button-color); width: 25vw; max-width: 150px;" data-username="{{current_profile.username}}" id="profile-button-about" class="button-profile-interaction yb-button-flex">
+            <button style="color: {{custom_splash.button_text_color}}; background-color: {{custom_splash.button_color}}; width: 25vw; max-width: 150px;" data-username="{{current_profile.username}}" id="profile-button-about" class="button-profile-interaction yb-button-flex {% if custom_splash.button_shape == 0 %}rounded{% else %} squared {% endif %} {% if button_format == 0%} bt-format-text {% elif button_format == 1 %} bt-format-icon {%else%} bt-format-hybrid{% endif %}">
                 <span class-"interact-text" class="profile-interact-text yb-bText">About</span>
                 <svg class="profile-interact-icon" height="24" viewBox="0 -64 512 512" width="24" xmlns="http://www.w3.org/2000/svg"><path style="fill:var(--yb-button-text-color);" d="m453.332031 384h-394.664062c-32.363281 0-58.667969-26.304688-58.667969-58.667969v-266.664062c0-32.363281 26.304688-58.667969 58.667969-58.667969h394.664062c32.363281 0 58.667969 26.304688 58.667969 58.667969v266.664062c0 32.363281-26.304688 58.667969-58.667969 58.667969zm-394.664062-352c-14.699219 0-26.667969 11.96875-26.667969 26.667969v266.664062c0 14.699219 11.96875 26.667969 26.667969 26.667969h394.664062c14.699219 0 26.667969-11.96875 26.667969-26.667969v-266.664062c0-14.699219-11.96875-26.667969-26.667969-26.667969zm0 0"/><path style="fill:var(--yb-button-text-color);" d="m160 192c-29.398438 0-53.332031-23.9375-53.332031-53.332031 0-29.398438 23.933593-53.335938 53.332031-53.335938s53.332031 23.9375 53.332031 53.335938c0 29.394531-23.933593 53.332031-53.332031 53.332031zm0-74.667969c-11.753906 0-21.332031 9.578125-21.332031 21.335938 0 11.753906 9.578125 21.332031 21.332031 21.332031s21.332031-9.578125 21.332031-21.332031c0-11.757813-9.578125-21.335938-21.332031-21.335938zm0 0"/><path style="fill:var(--yb-button-text-color);" d="m240 298.667969c-8.832031 0-16-7.167969-16-16v-10.667969c0-14.699219-11.96875-26.667969-26.667969-26.667969h-74.664062c-14.699219 0-26.667969 11.96875-26.667969 26.667969v10.667969c0 8.832031-7.167969 16-16 16s-16-7.167969-16-16v-10.667969c0-32.363281 26.304688-58.667969 58.667969-58.667969h74.664062c32.363281 0 58.667969 26.304688 58.667969 58.667969v10.667969c0 8.832031-7.167969 16-16 16zm0 0"/><path style="fill:var(--yb-button-text-color);" d="m432 128h-117.332031c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h117.332031c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/><path style="fill:var(--yb-button-text-color);" d="m432 213.332031h-117.332031c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h117.332031c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/><path style="fill:var(--yb-button-text-color);" d="m432 298.667969h-117.332031c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h117.332031c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/></svg>
                 
             </button>
         </div>
         <div id="profile-bio-container" class="splash-bio-container">
-            <h3 id="profile-motto" style="color: {{profile.custom.profile_splash.title_color}};" class="profile-motto">
+            <h3 id="profile-motto" style="color: {{custom_splash.title_color}};" class="profile-motto">
                 {{cyrrent_profile.profile_info.motto}}
             </h3>
-            <p id="profile-bio" style="color:{{current_profile.custom.profile_splash.text_color}};" class="splash-bio">
+            <p id="profile-bio" style="color:{{custom_splash.text_color}};" class="splash-bio">
                 {{current_profile.profile_info.user_bio}}
             </p>
         </div>
     </div>
 
     <div id="swipe-up-element" class="swipe-up-element bobbing-object">
-        <svg id="swipe-up-icon" class='swipe-up-icon yb-autoFill' xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M14.15 30.75 12 28.6l12-12 12 11.95-2.15 2.15L24 20.85Z"/></svg>
-        <p style = "display: none; color: {{current_profile.custom.profile_splash.primary_color}};" class = "swipe-up-text" id="swipe-up-text">Slide up for bitstream</p>
-        <p style = "color: {{current_profile.custom.profile_splash.primary_color}};" class = "swipe-up-text" id="swipe-up-text">Scroll for Bitstream</p>
+        <svg id="swipe-up-icon" class='swipe-up-icon yb-autoFill' style="fill:{{custom_splash.name_color}}" xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M14.15 30.75 12 28.6l12-12 12 11.95-2.15 2.15L24 20.85Z"/></svg>
+        <p style = "display: none; color: {{custom_splash.name_color}};" class = "swipe-up-text" id="swipe-up-text">Slide up for bitstream</p>
+        <p style = "color: {{custom_splash.name_color}};" class = "swipe-up-text" id="swipe-up-text">Scroll for Bitstream</p>
     </div>
 
     <div id="load-indicator-container-profile" class="swipe-up-loading true" class="detail-load-box">

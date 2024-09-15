@@ -15,6 +15,7 @@ class ProfileView(View):
         this_profile = Profile.objects.get(user = that_user)
         custom = CustomCore.objects.get(profile = this_profile)
         custom_ui = CustomUI.objects.get(theme = custom.theme)
+        custom_splash = CustomSplash.objects.get(theme = custom.theme)
 
         context = {
             "location":"profile",
@@ -22,6 +23,7 @@ class ProfileView(View):
             "sort":"chrono",
             "current_profile":this_profile,
             "custom_ui":custom_ui,
+            "custom_splash": custom_splash,
 
         }
         return render(request, "yb_profile/yb_profile.html", context)
