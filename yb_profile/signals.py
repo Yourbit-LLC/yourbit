@@ -88,7 +88,7 @@ def create_profile(sender, instance, created, **kwargs):
         custom_bit = CustomBit(theme=default_theme, images = custom_core)
         custom_bit.save()
 
-        custom_splash = CustomSplash(theme=default_theme, images = custom_core)
+        custom_splash = CustomSplash(theme=default_theme)
         custom_splash.save()
 
 

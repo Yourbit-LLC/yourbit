@@ -13,7 +13,8 @@
     <p style="font-size: small; font-weight: 550; padding-left: 5px; padding-right: 5px; font-family: 'Roboto', sans-serif; text-align: center;" class="yb-autoText yb-pText">Edit conversation settings</p>
 </div>
 
-<form class="yb-fillWidth yb-vScroll yb-pText yb-margin-T10 align-center" id="account-settings-form" method="POST" action="{% url 'settings_account' %}" style="height: calc(100% - 200px); border-radius: 15px; padding-bottom: 150px;">
+<form class="yb-fillWidth yb-vScroll yb-pText yb-margin-T10 align-center" id="conversation-settings-form" method="POST" action="{% url 'conversation-settings' %}" style="height: calc(100% - 200px); border-radius: 15px; padding-bottom: 150px;">
+    {% csrf_token %}
     <section class = "setting-sub-container" id="about-tab">
         <h4 class="yb-pHead">General</h4>
 
@@ -64,6 +65,28 @@
     </section>
 
     
-    <button class="yb-button-wide bg-autoGray font-gray yb-button-halfWidth squared yb-form-save"  style="margin-top: 20px;">Save Changes</button>
+    <button type="submit" id="save-settings" class="yb-button-wide bg-autoGray font-gray yb-button-halfWidth squared yb-form-save"  style="margin-top: 20px;">Save Changes</button>
 
 </form>
+
+<script>
+    $(document).ready(function(){
+        //On form submit prevent default
+        $('#conversation-settings-form').submit(function(e){
+            e.preventDefault();
+            var form = $(this);
+            var url = form.attr('action');
+            var data = form.serialize();
+            tw_showLoading();
+            $.post(url, data, function(response){
+                if(response.success){
+                    showNotification(expandNotification, 'Settings saved');
+                    tw_hideLoading();
+                } else {
+                    showNotification(expandNotification, 'Error saving settings');
+                    tw_hideLoading();
+                }
+            });
+        });
+    })
+</script>
