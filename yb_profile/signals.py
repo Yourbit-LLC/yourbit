@@ -5,7 +5,7 @@ from yb_settings.models import MySettings, FeedSettings, PrivacySettings, Notifi
 from yb_profile.models import Profile, ProfileInfo
 from yb_systems.models import TaskManager
 from yb_rewards.models import Rewards
-from yb_customize.models import CustomCore, Theme, CustomUI, CustomBit
+from yb_customize.models import CustomCore, Theme, CustomUI, CustomBit, CustomSplash
 from yb_notify.models import NotificationCore
 from yb_bits.models import InteractionHistory, Bit, BitStream
 from yb_photo.models import Photo, Wallpaper
@@ -49,9 +49,11 @@ def create_profile(sender, instance, created, **kwargs):
         message_core = MessageCore(profile = user_profile)
         message_core.save()
 
-                #Initialize Task Manager for user continuity
+        #Initialize Task Manager for user continuity
         task_manager = TaskManager(user = instance)
         task_manager.save()
+
+        
 
         #Initialize Notification Core for managing user notifications
         notification_core = NotificationCore(profile = user_profile)
@@ -85,6 +87,9 @@ def create_profile(sender, instance, created, **kwargs):
 
         custom_bit = CustomBit(theme=default_theme, images = custom_core)
         custom_bit.save()
+
+        custom_splash = CustomSplash(theme=default_theme, images = custom_core)
+        custom_splash.save()
 
 
 @receiver(post_save, sender=Bit)
