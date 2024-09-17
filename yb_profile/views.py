@@ -24,6 +24,7 @@ class ProfileView(View):
             "current_profile":this_profile,
             "custom_ui":custom_ui,
             "custom_splash": custom_splash,
+            "profile_view_mode": "live",
 
         }
         return render(request, "yb_profile/yb_profile.html", context)
@@ -390,6 +391,7 @@ class ProfilePage(View):
                     'space': init_params['current_space'],
                     'filter': init_params['filter_chain'],
                     'sort': init_params['sort_by'],   
+                    'view_mode': "live",
                     'start_function': f"yb_navigateToProfile('{request.user.username}')",
                 },
 
@@ -546,20 +548,8 @@ class CustomProfilePreview(View):
         context = {
             "custom_splash":custom_splash,
             "current_profile":this_profile,
+            'profile_view_mode': "preview",
         }
 
-        return render(request, "yb_profile/yb_profile.html", context)
+        return render(request, "yb_profile/yb_profile_preview.html", context)
     
-    def post(self, request, *args, **kwargs):
-        this_profile = Profile.objects.get(user = request.user)
-        custom = CustomCore.objects.get(profile = this_profile)
-        custom_splash = request.POST.get("custom_splash")
-        custom_ui = CustomUI.objects.get(theme = custom.theme)
-
-        context = {
-            "custom_splash":custom_splash,
-            "custom_ui": custom_ui,
-            "current_profile":this_profile,
-        }
-
-        return render(request, "yb_profile/yb_profile.html", context)

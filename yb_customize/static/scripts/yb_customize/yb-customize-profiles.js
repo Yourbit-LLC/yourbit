@@ -306,20 +306,20 @@ function yb_changeButtonShape(value) {
     
 function yb_showMobilePreview(type="profile") {
     let csrf_token = getCSRF();
+    let master_form_instance = $(master_form);
     $.ajax({
-        url: `${base_url}/customize/templates/mobile-preview/`,
+        url: `/customize/templates/profile/preview/mobile/`,
         type: 'POST',
-        data: {
-            type: type,
-            user_id: user_id
-        },
+        data: master_form_instance.serialize(),
+        
         headers: {
             "X-CSRFToken": csrf_token
         },
         success: function(data) {
             console.log(data);
             let preview_window = document.getElementById("mobile-preview");
-            preview_window.setAttribute("src", data.url);
+            let iframeDocument = preview_window.contentDocument || preview_window.contentWindow.document;
+            iframeDocument.body.innerHTML = data;
             MOBILE_IFRAME.style.display = "block";
         }
     });

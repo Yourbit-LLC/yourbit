@@ -30,7 +30,6 @@ urlpatterns = [
     path("templates/profile/edit/button/", SplashButtonEdit.as_view(), name="edit_button"),
     path("templates/create-theme/", CreateTheme.as_view(), name="create_theme"),
     path("templates/profile/preview/mobile/", CustomProfilePreview.as_view(), name="preview_mobile"),
-
     path('', CustomizeMain.as_view(), name = "customize-main")
 
 ]

@@ -530,7 +530,7 @@ Profile Page
 .swipe-up-loading {
     position: absolute;
     display: none;
-    bottom: 100px;
+    bottom: 2vh;
     width: 100%;
     text-align: center;
     color: white;
