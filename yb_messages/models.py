@@ -27,8 +27,13 @@ class Conversation(models.Model):
     name = models.CharField(max_length=100, default = "Untitled Conversation")
     members = models.ManyToManyField(User, related_name='members')
     is_joinable = models.BooleanField(default=False)
+    members_can_invite = models.BooleanField(default=False)
+    
     is_community = models.BooleanField(default=False)
+    
+    
     from_user_color = models.CharField(max_length=100, default="#1E90FF")
+
     to_user_color = models.CharField(max_length=100, default="rgb(65, 65, 65)")
     time_modified = models.DateTimeField(default=timezone.now)
     stickers = models.ManyToManyField('ChatSticker', blank=True)
