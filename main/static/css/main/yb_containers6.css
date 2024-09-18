@@ -37,6 +37,30 @@
     
 }
 
+.yb-summary-box {
+    width: 200px;
+    height: 120px;
+    border-radius: 10px;
+    text-align: left;
+    padding: 10px;
+    transition: 0.5s;
+    overflow: hidden;
+}
+
+@media screen and (prefers-color-scheme: dark) {
+    .yb-summary-box {
+        background-color: #333;
+        color: gray;
+    }
+}
+
+@media screen and (prefers-color-scheme: light) {
+    .yb-summary-box {
+        background-color: white;
+        color: gray;
+    }
+}
+
 @media screen and (min-width: 768px){
     .yb-card {
         /*Positioning*/
@@ -1157,6 +1181,7 @@
     position: relative;
     display: grid; 
     grid-template-columns: 1fr 40px;
+    grid-template-rows: 50px auto;
     border-radius: 10px;
     width: 98%;
     max-width: 750px;
@@ -1164,7 +1189,20 @@
     margin-bottom: 10px;
     font-weight: 600;
     padding: 5px;
-   
+    transition: 0.5s;
+    overflow: hidden;
+}
+
+.yb-expandable-container.expanded {
+    height: 200px;
+    transition: 0.5s;
+}
+
+.yb-expandable-container:hover {
+    cursor: pointer;
+    transform: scale(1.005);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: 0.5s;
 }
 
 @media screen and (prefers-color-scheme: dark) {
