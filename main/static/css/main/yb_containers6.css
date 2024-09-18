@@ -1127,3 +1127,54 @@
         background-color: darkgray;
     }
 }
+
+@media screen and (max-width: 768px) {
+    .yb-qGrid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        max-width: 350px;
+        height: 150px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .yb-qGrid {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        height: 50px;
+        max-width: 750px;
+    }
+}
+.yb-qGrid {
+    position: relative;
+    display: grid;
+    width: 98%;
+    margin: auto;
+    grid-gap: 10px;
+
+}
+
+.yb-expandable-container {
+    position: relative;
+    display: grid; 
+    grid-template-columns: 1fr 40px;
+    border-radius: 10px;
+    width: 98%;
+    max-width: 750px;
+    height: 50px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    padding: 5px;
+   
+}
+
+@media screen and (prefers-color-scheme: dark) {
+    .yb-expandable-container {
+        background-color: #333;
+    }
+}
+
+@media screen and (prefers-color-scheme: light) {
+    .yb-expandable-container {
+        background-color: rgb(220, 220, 220);
+    }
+}

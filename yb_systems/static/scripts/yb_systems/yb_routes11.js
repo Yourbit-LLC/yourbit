@@ -20,6 +20,7 @@ const CORE_TEMPLATE_INDEX = {
     "home": "/bits/templates/bitstream/",
     "customize-main": "/customize/templates/customize/main/",
     "profile": `/profile/templates/profile/`,
+    "support-center":"/support/templates/support-center/"
     
 };
 

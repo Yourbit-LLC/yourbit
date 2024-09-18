@@ -19,6 +19,37 @@
     
 }
 
+.yb-button-split13 {
+    display:grid; 
+    grid-template-columns: 1fr 3fr; 
+    width: fit-content; 
+    grid-gap: 10px; 
+    line-height: 2; 
+    font-weight: 550; 
+    font-size: 16px;
+    border-radius: 20px;
+    padding: 5px 5px 5px 5px;
+    
+}
+
+.shadow {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+@media screen and (prefers-color-scheme: dark) {
+    .yb-button-split13 {
+        color: white;
+        background-color: black;
+    }
+}
+
+@media screen and (prefers-color-scheme: light) {
+    .yb-button-split13 {
+        color: black;
+        background-color: white;
+    }
+}
+
+
 .filter-tab {
     /*Positioning*/
     position: relative;

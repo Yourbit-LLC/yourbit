@@ -19,6 +19,33 @@
     
 }
 
+
+.yb-button-split13 {
+    display:grid; 
+    grid-template-columns: 1fr 3fr; 
+    width: fit-content; 
+    grid-gap: 10px; 
+    line-height: 2; 
+    font-weight: 550; 
+    font-size: 16px;
+    border-radius: 20px;
+    padding: 5px 5px 5px 5px;
+}
+
+@media screen and (prefers-color-scheme: dark) {
+    .yb-button-split13 {
+        color: white;
+        background-color: black;
+    }
+}
+
+@media screen and (prefers-color-scheme: light) {
+    .yb-button-split13 {
+        color: black;
+        background-color: white;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .yb-2Way-expand {
         display: none;

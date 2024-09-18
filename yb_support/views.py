@@ -11,7 +11,7 @@ def support_center_template(request):
     context = {
         "known_issues": issues,
     }
-    return render(request, 'yb_support_center.html', context)
+    return render(request, 'yb_support_home.html', context)
 
 def report_bug_template(request):
     return render(request, 'yb_report_bug.html')

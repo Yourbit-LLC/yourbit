@@ -75,7 +75,7 @@ function yb_handleMenuGridLink(link) {
 }
 
 function yb_handleSupportClick() {
-    yb_launch2WayContainer("support-center");
+    yb_navigateTo("content-container", "support-center");
 }
 
 $(document).ready(function () {
