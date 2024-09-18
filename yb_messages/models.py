@@ -26,7 +26,7 @@ class Conversation(models.Model):
     is_name = models.BooleanField(default = False)
     name = models.CharField(max_length=100, default = "Untitled Conversation")
     members = models.ManyToManyField(User, related_name='members')
-    is_joinable = models.BooleanField(default=False)
+    can_join = models.IntegerField(default=0) # 0 = no one, 1 = friends, 2 = everyone
     members_can_invite = models.BooleanField(default=False)
     
     is_community = models.BooleanField(default=False)

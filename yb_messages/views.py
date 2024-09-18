@@ -134,7 +134,7 @@ class ConversationSettings(View):
         this_conversation.to_user_color = request.POST.get("to_user_color")
 
         this_conversation.is_joinable = True if request.POST.get("is_joinable") == "on" else False
-        this_conversation.members = request.POST.get("members")
+        this_conversation.members_can_invite = True if request.POST.get("members_can_invite") == "on" else False
         this_conversation.save()
         
         return render(request, "yb_messages/conversation_settings.html", context={"conversation": this_conversation})
