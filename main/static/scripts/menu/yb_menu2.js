@@ -76,6 +76,7 @@ function yb_handleMenuGridLink(link) {
 
 function yb_handleSupportClick() {
     yb_navigateTo("content-container", "support-center");
+    yb_toggleMainMenu();
 }
 
 $(document).ready(function () {

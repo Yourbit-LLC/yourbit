@@ -8,6 +8,13 @@ import imageio
 from django.core.files.base import ContentFile
 from yb_photo.models import Wallpaper
 from yb_photo.utility import process_image, modify_image
+
+import requests
+import jwt
+import datetime
+from YourbitGold.settings import env
+import os
+from django.views.decorators.csrf import csrf_exempt
 def cropper_view(request, crop_type, *args, **kwargs):
 
     return render(request, "image_cropper.html", {"type": crop_type})
@@ -74,3 +81,32 @@ def upload_image(request, *args, **kwargs):
 
     else:
         return JsonResponse({'status': 'failed', 'message': 'No image uploaded'}, status=400)
+    
+
+
+def get_cloudflare_image_url(request):
+    if request.method == 'POST':
+        headers = {
+            "Authorization": f"Bearer {env('CLOUDFLARE_IMAGES_API_KEY')}",
+            'Tus-Resumable': '1.0.0',
+        }
+
+        stream_api_url = f"https://api.cloudflare.com/client/v4/accounts/{env('CLOUDFLARE_STREAM_ACCOUNT_ID')}/images/v2/direct_upload"
+
+        print(env('CLOUDFLARE_STREAM_API_KEY'))
+
+        try:
+            print("Requesting upload URL from Cloudflare Stream API")
+            response = requests.post(stream_api_url, headers=headers, json={"maxDurationSeconds": 300})
+            if response.status_code == 200:
+                # Return the signed URL to the client
+                upload_url = response.json().get('result', {}).get('uploadURL')
+                return JsonResponse({"upload_url": upload_url})
+            else:
+                print("Error:", response.json())
+                return JsonResponse({"status": "error", "message": response.json()}, status=400)
+
+        except Exception as e:
+            return JsonResponse({"status": "error", "message": str(e)}, status=500)
+
+    return JsonResponse({"error": "Invalid request method"}, status=405)

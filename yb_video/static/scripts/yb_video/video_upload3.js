@@ -12,6 +12,7 @@ function yb_startUpload(file, chunksize, endpoint) {
             expiry: getExpiryDate().toISOString(),
             maxDurationSeconds: 3600,
             name: file.name,
+            filetype: file.type,
         },
         onError(error) {
             console.error('Failed to upload file:', error);
@@ -23,6 +24,7 @@ function yb_startUpload(file, chunksize, endpoint) {
             
             
         },
+
 
     }
 

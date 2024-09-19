@@ -45,6 +45,7 @@
     padding: 10px;
     transition: 0.5s;
     overflow: hidden;
+    position: relative;
 }
 
 @media screen and (prefers-color-scheme: dark) {
@@ -1191,6 +1192,7 @@
     padding: 5px;
     transition: 0.5s;
     overflow: hidden;
+    pointer-events: auto;
 }
 
 .yb-expandable-container.expanded {

@@ -64,8 +64,15 @@ function yb_startUpload(input_id) {
                 }
             });
 
-            // Step 3: Start the upload
-            upload.start();
+            upload.findPreviousUploads().then(function (previousUploads) {
+                // Found previous uploads so we select the first one.
+                if (previousUploads.length) {
+                  upload.resumeFromPreviousUpload(previousUploads[0])
+                }
+            
+                // Start the upload
+                upload.start()
+            });
         },
         error: function (data) {
             console.log(data);

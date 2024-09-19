@@ -37,6 +37,9 @@
             <div class="yb-expandable-content yb-flexRow yb-fillWidth yb-hScroll yb-gap10" style="display: none;">
                 {% for issue in known_issues %}
                     <div class="yb-summary-box" style="box-shadow: 0 1px 2px {{issue.priority}};">
+                        {% if user.is_supervisor %}
+                        <div style="position: absolute; height: 25px; width: 25px; top: 5px; right: -10px; cursor: pointer; font-size: 14px; border-radius: 10px;" onclick="deleteIssue({{issue.id}})">X</div>
+                        {% endif %}
                         <h3 style="font-size: 16px;">{{ issue.subject }}</h3>
                         <p class="font-small" style="font-weight: 500px; color: {{issue.priority}};">{% if issue.priority == "red" %}High Priority {% elif issue.priority == "green"%}Cosmetic{% else %}Medium Priority{% endif %}</p>
                         <hr>
