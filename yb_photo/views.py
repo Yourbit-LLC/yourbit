@@ -110,3 +110,6 @@ def get_cloudflare_image_url(request):
             return JsonResponse({"status": "error", "message": str(e)}, status=500)
 
     return JsonResponse({"error": "Invalid request method"}, status=405)
+
+def test_upload(request):
+    return render(request, "image_upload_test.html")

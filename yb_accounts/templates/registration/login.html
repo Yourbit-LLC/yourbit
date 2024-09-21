@@ -116,7 +116,7 @@
                 {% csrf_token %}
                 {% for field in login_form %}
                     <div class="fieldWrapper">
-                        {{ field.errors }}
+                        
                         {{ field.label_tag }} 
                         <br>
                         {{ field }}
