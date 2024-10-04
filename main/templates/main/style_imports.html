@@ -1,0 +1,67 @@
+{% load static %}
+
+<link 
+    rel="stylesheet" 
+    href="{% static 'css/main/yb_animations.css' %}"/>
+
+
+<link 
+    rel="stylesheet" 
+    id="yb-stylesheet-container"
+    href="{% static 'css/main/yb_containers6.css' %}"/>
+
+
+
+{% if custom_core.ui_colors_on %}
+    <link 
+        rel="stylesheet" 
+        id="yb-stylesheet-modifier"
+        href="{% static 'css/main/yb_modifiers_customized4.css' %}"/>
+
+    <link 
+        rel="stylesheet" 
+        id="yb-stylesheet-core"
+        href="{% static 'css/main/yb_core_customized10.css' %}"/>
+{% comment %} 
+        
+    <link 
+        rel="stylesheet" 
+        id="yb-stylesheet-container"
+        href="{% static 'css/main/yb_containers_customized.css' %}"/> {% endcomment %}
+
+    <link 
+        rel="stylesheet" 
+        id="yb-stylesheet-button"
+        href="{% static 'css/main/yb_buttons_customized9.css' %}"/>
+
+{% else %}
+    <link 
+        rel="stylesheet" 
+        id="yb-stylesheet-core"
+        href="{% static 'css/main/yb_core6.css' %}"/>
+
+
+    <link 
+        rel="stylesheet" 
+        id="yb-stylesheet-modifier"
+        href="{% static 'css/main/yb_modifiers3.css' %}"/>
+
+    <link 
+        rel="stylesheet" 
+        id="yb-stylesheet-button"
+        href="{% static 'css/main/yb_buttons6.css' %}"/>
+
+
+
+
+{% endif %}
+
+
+<link 
+    rel="stylesheet" 
+    href="{% static 'css/main/yb_inputs.css' %}"/>
+
+<link 
+    rel="stylesheet" 
+    href="{% static 'css/main/coloris.css' %}"/>
+<!--End Core Styles-->

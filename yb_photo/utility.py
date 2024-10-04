@@ -9,11 +9,16 @@ from .models import Photo
 import io
 from django.core.files.base import ContentFile
 from django.http import JsonResponse
+from django.conf import settings
 import imageio
 import logging
+import requests
+from .thumbnails import *
+from yb_photo.models import *
 
 logger = logging.getLogger(__name__)
 
+CLOUDFLARE_IMAGE_ACCOUNT_ID = settings.CLOUDFLARE_STREAM_ACCOUNT_ID
 
 def rename_image(user, filename, file_type):
     #Create a timestamp for the image
@@ -35,12 +40,12 @@ def crop_image(image, crop_data):
 
 
 
-def modify_image(image_type, user, original_image_file, crop_data):
+def modify_image(user, original_image_file, crop_data):
     from yb_photo.utility import rename_image
+
+
     
     image_format = original_image_file.name.split('.')[-1].lower()
-
-    print(image_type)
 
     if image_format in ['jpg', 'jpeg', 'png']:
         original_image = Image.open(original_image_file)
@@ -49,205 +54,35 @@ def modify_image(image_type, user, original_image_file, crop_data):
         cropped_image.save(output_io, format='PNG', quality=85)
         new_name = rename_image(user, original_image_file.name, image_format)
         cropped_image_file = ContentFile(output_io.getvalue(), new_name)
+        return cropped_image_file
 
     elif image_format == 'gif':
 
-        original_image = imageio.mimread(original_image_file)
+        # Read the original file into memory
+        original_image_file.seek(0)
+        image_data = original_image_file.read()
+
+        # Load the original GIF using imageio from the bytes in memory
+        original_image = imageio.mimread(image_data)
+
+        # Open the image using PIL from the same bytes to access metadata like 'duration'
+        pil_image = Image.open(io.BytesIO(image_data))
+
+
         cropped_frames = [crop_image(Image.fromarray(frame), crop_data) for frame in original_image]
         output_io = io.BytesIO()
-        cropped_frames[0].save(output_io, format='GIF', save_all=True, append_images=cropped_frames[1:], loop=0)
+        duration = pil_image.info.get('duration', 100)  # Default to 100 if not present
+
+        cropped_frames[0].save(output_io, format='GIF', save_all=True, append_images=cropped_frames[1:], loop=0, duration=duration)
         new_name = rename_image(user, original_image_file.name, 'gif')
         cropped_image_file = ContentFile(output_io.getvalue(), new_name)
+        return cropped_image_file
         
         
 
     else:
 
         return JsonResponse({'status': 'failed', 'message': 'Unsupported image format'}, status=400)
-    
-    print(image_type)
-    if image_type == "profile":
-
-        cropped_image_file = process_image(user, original_image_file, cropped_image_file, is_private = False)
-
-    return cropped_image_file
-
-def generate_tiny_thumbnail(user, source_file, raw_source):
-    label = "thumbnail_tiny"
-    this_username = user.username
-    this_uid = user.id
-    timestamp = dateformat.format(timezone.now(), '%Y%m%d%-H:i-s')
-
-    lthumb_io = BytesIO()
-
-    if source_file.format == 'GIF':
-        original_image = source_file
-        new_frames = [frame.copy() for frame in ImageSequence.Iterator(original_image)]
-
-        for frame in new_frames:
-            frame.thumbnail((32, 32), Image.ANTIALIAS)
-
-        duration = original_image.info.get('duration', 100)
-        this_filename = f"{this_username}{this_uid}{timestamp}{label}.gif"
-        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=duration)
-        format = 'image/gif'
-    else:
-        large_image = source_file.copy()
-        squared_image = ImageOps.fit(large_image, (32, 32), Image.ANTIALIAS)
-        squared_image.save(lthumb_io, format='PNG', quality=80)
-        format = 'image/png'
-        this_filename = f"{this_username}{this_uid}{timestamp}{label}.png"
-
-    lthumb_io.seek(0)
-
-    # Use InMemoryUploadedFile for both GIF and non-GIF
-    thumbnail_file = InMemoryUploadedFile(lthumb_io, None, this_filename, format, lthumb_io.tell(), None)
-    
-    print("Thumbnail Created")
-    return thumbnail_file
-
-def generate_small_thumbnail(user, source_file, raw_source):
-    # Open the source file
-    label = "thumbnail_small"
-    this_username = user.username
-    this_uid = user.id
-    timestamp = dateformat.format(timezone.now(), '%Y%m%d%-H:i-s')
-    
-    print("File Format " + source_file.format)
-    # Check if the source file is a GIF
-    if source_file.format == 'GIF':
-        print("File format is gif. NOT RETURNING AN IN MEMORY UPLOADED FILE!")
-        original_image = source_file
-        new_frames = [frame.copy() for frame in ImageSequence.Iterator(original_image)]
-        lthumb_io = BytesIO()
-
-        # Handle GIF resizing
-        for frame in new_frames:
-            frame.thumbnail((64, 64), Image.ANTIALIAS)
-
-        this_filename = f"{this_username}{this_uid}{timestamp}{label}.gif"
-
-        duration = original_image.info.get('duration', 100)
-
-        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=duration)
-        format = 'image/gif'
-
-        
-        cropped_image_file = ContentFile(lthumb_io.getvalue(), this_filename)
-
-        print("Thumbnail Created")
-        return cropped_image_file
-    else:
-        # Handle non-GIF image resizing
-        lthumb_io = BytesIO()
-        large_image = source_file.copy()
-        squared_image = ImageOps.fit(large_image, (64, 64), Image.ANTIALIAS)
-        squared_image.save(lthumb_io, format='PNG', quality=80)
-        format = 'image/png'
-        this_filename = f"{this_username}{this_uid}{timestamp}{label}.png"
-
-        lthumb_io.seek(0)
-
-        # Create InMemoryUploadedFile
-        inmemory_uploaded_file = InMemoryUploadedFile(lthumb_io, None, this_filename, format, lthumb_io.tell(), None)
-
-        print("Thumbnail Created")
-        return inmemory_uploaded_file
-
-def generate_medium_thumbnail(user, source_file, raw_source):
-    # Open the source file
-    label = "thumbnail_medium"
-    this_username = user.username
-    this_uid = user.id
-    timestamp = dateformat.format(timezone.now(), '%Y%m%d%-H:i-s')
-    
-
-    # Check if the source file is a GIF
-    if source_file.format == 'GIF':
-        print("File format is gif. NOT RETURNING AN IN MEMORY UPLOADED FILE!")
-        original_image = source_file
-        new_frames = [frame.copy() for frame in ImageSequence.Iterator(original_image)]
-        lthumb_io = BytesIO()
-
-        # Handle GIF resizing
-        for frame in new_frames:
-            frame.thumbnail((256, 256), Image.ANTIALIAS)
-
-        this_filename = f"{this_username}{this_uid}{timestamp}{label}.gif"
-        duration = original_image.info.get('duration', 100)
-        
-        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=duration)
-        format = 'image/gif'
-
-        cropped_image_file = ContentFile(lthumb_io.getvalue(), this_filename)
-
-        print("Thumbnail Created")
-
-        return cropped_image_file
-    else:
-        # Handle non-GIF image resizing
-        lthumb_io = BytesIO()
-        large_image = source_file.copy()
-        squared_image = ImageOps.fit(large_image, (256, 256), Image.ANTIALIAS)
-        squared_image.save(lthumb_io, format='PNG', quality=80)
-        format = 'image/png'
-        this_filename = f"{this_username}{this_uid}{timestamp}{label}.png"
-
-        lthumb_io.seek(0)
-
-        # Create InMemoryUploadedFile
-        inmemory_uploaded_file = InMemoryUploadedFile(lthumb_io, None, this_filename, format, lthumb_io.tell(), None)
-
-        print("Thumbnail Created")
-        return inmemory_uploaded_file
-
-def generate_large_thumbnail(user, source_file, raw_source):
-    # Open the source file
-    label = "thumbnail_large"
-    this_username = user.username
-    this_uid = user.id
-    timestamp = dateformat.format(timezone.now(), '%Y%m%d%-H:i-s')
-    
-
-    # Check if the source file is a GIF
-    if source_file.format == 'GIF':
-        print("File format is gif. NOT RETURNING AN IN MEMORY UPLOADED FILE!")
-        original_image = source_file
-        new_frames = [frame.copy() for frame in ImageSequence.Iterator(original_image)]
-        lthumb_io = BytesIO()
-
-        # Handle GIF resizing
-        for frame in new_frames:
-            frame.thumbnail((512, 512), Image.ANTIALIAS)
-
-        this_filename = f"{this_username}{this_uid}{timestamp}{label}.gif"
-        duration = original_image.info.get('duration', 100)
-
-        new_frames[0].save(lthumb_io, format='GIF', save_all=True, append_images=new_frames[1:], loop=0, duration=duration)
-        format = 'image/gif'
-
-        
-        cropped_image_file = ContentFile(lthumb_io.getvalue(), this_filename)
-
-        print("Thumbnail Created")
-        return cropped_image_file
-    else:
-        # Handle non-GIF image resizing
-        lthumb_io = BytesIO()
-        large_image = source_file.copy()
-        squared_image = ImageOps.fit(large_image, (512, 512), Image.ANTIALIAS)
-        squared_image.save(lthumb_io, format='PNG', quality=80)
-        format = 'image/png'
-        this_filename = f"{this_username}{this_uid}{timestamp}{label}.png"
-
-        lthumb_io.seek(0)
-
-        # Create InMemoryUploadedFile
-        inmemory_uploaded_file = InMemoryUploadedFile(lthumb_io, None, this_filename, format, lthumb_io.tell(), None)
-        
-        print("Thumbnail Created")
-        
-        return inmemory_uploaded_file
 
 def process_image(request, source_image = None, cropped_image = None, is_private = False):
     print("Processing image...")
@@ -278,5 +113,200 @@ def process_image(request, source_image = None, cropped_image = None, is_private
         raise
 
     print("Processing Complete")
+
+    return new_photo
+
+
+def get_image_url_from_cloudflare(image_id, variant="public"):
+    return f"https://imagedelivery.net/{settings.CLOUDFLARE_ACCOUNT_HASH}/{image_id}/{variant}"
+    
+
+def generate_image_urls(image_id):
+    return {
+        'image_url': 
+            get_image_url_from_cloudflare(
+                image_id, 
+                variant="public"
+            ),
+        'tiny_thumbnail_url': 
+            get_image_url_from_cloudflare(
+                image_id, 
+                variant="tinyThumbnail"
+            ),
+        'small_thumbnail_url': 
+            get_image_url_from_cloudflare(
+                image_id, 
+                variant="smallThumbnail"
+            ),
+        'medium_thumbnail_url': 
+            get_image_url_from_cloudflare(
+                image_id, 
+                variant="mediumThumbnail"
+            ),
+        'large_thumbnail_url': 
+            get_image_url_from_cloudflare(
+                image_id, 
+                variant="largeThumbnail"
+            )
+    }
+
+def generate_wallpaper_urls(image_id):
+    return {
+        'image_url': get_image_url_from_cloudflare(image_id, variant="public"),
+        'desktop_wallpaper': get_image_url_from_cloudflare(image_id, variant="desktopCropWallpaper"),
+        'mobile_wallpaper': get_image_url_from_cloudflare(image_id, variant="mobileCropWallpaper"),
+    }
+
+def generate_video_thumb_urls(image_id):
+    return {
+        'image_url': get_image_url_from_cloudflare(image_id, variant="public"),
+        'tiny_thumbnail_url': get_image_url_from_cloudflare(image_id, variant="tinyVideoThumbnail"),
+        'small_thumbnail_url': get_image_url_from_cloudflare(image_id, variant="smallVideoThumbnail"),
+        'medium_thumbnail_url': get_image_url_from_cloudflare(image_id, variant="mediumVideoThumbnail"),
+        'large_thumbnail_url': get_image_url_from_cloudflare(image_id, variant="largeVideoThumbnail"),
+        'xlarge_thumbnail_url': get_image_url_from_cloudflare(image_id, variant="xlVideoThumbnail")
+    }
+
+
+def send_image_to_cloudflare(image_file):
+    # Cloudflare API URL for image uploads
+    image_api_url = f"https://api.cloudflare.com/client/v4/accounts/{settings.CLOUDFLARE_STREAM_ACCOUNT_ID}/images/v1"
+    
+    # Authorization header with API token
+    headers = {
+        "Authorization": f"Bearer {settings.CLOUDFLARE_IMAGES_API_KEY}"
+    }
+    
+    # Open the image file and send it with the request
+    with image_file.open('rb') as f:
+        files = {'file': (image_file.name, f)}
+        response = requests.post(image_api_url, headers=headers, files=files)
+    
+    # Raise an error if the request fails
+    response.raise_for_status()
+    
+    # Return the uploaded image ID
+    return response.json()["result"]["id"]
+
+def upload_image_cf(request, image_type="profile"):
+    from yb_photo.utility import generate_image_urls
+    print(request.FILES)
+    image = request.FILES.get('image')
+    crop_data = request.POST.get('crop_data')
+
+    crop_data = json.loads(crop_data)
+    image = modify_image(request.user, image, crop_data)
+
+    image_id = send_image_to_cloudflare(image)
+    
+    if image_type == "general":
+        new_photo = Photo.objects.create(
+            storage_type="cf", 
+            ext_id=image_id, 
+            profile=request.user.profile
+        )
+    
+        urls = generate_image_urls(image_id)
+
+        new_photo.ext_url = urls['image_url']
+        new_photo.tiny_thumbnail_ext = urls['tiny_thumbnail_url']
+        new_photo.small_thumbnail_ext = urls['small_thumbnail_url']
+        new_photo.medium_thumbnail_ext = urls['medium_thumbnail_url']
+        new_photo.large_thumbnail_ext = urls['large_thumbnail_url']
+
+        new_photo.save()
+        
+
+    elif image_type == "profile":
+        profile_type = request.POST.get('profile_class')
+        if profile_type == "user":
+            new_photo = Photo.objects.create(
+                storage_type="cf", 
+                ext_id=image_id, 
+                profile=request.user.profile
+            )
+
+            urls = generate_image_urls(image_id)
+
+            new_photo.ext_url = urls['image_url']
+            new_photo.tiny_thumbnail_ext = urls['tiny_thumbnail_url']
+            new_photo.small_thumbnail_ext = urls['small_thumbnail_url']
+            new_photo.medium_thumbnail_ext = urls['medium_thumbnail_url']
+            new_photo.large_thumbnail_ext = urls['large_thumbnail_url']
+
+            profile_image = ProfileImage.objects.create(
+                profile = request.user.profile,
+                photo = new_photo
+            )
+
+            profile_image.save()
+            
+                
+        else:
+            from yb_profile.models import Orbit
+            orbit_id = request.POST.get("orbit_id")
+            this_orbit = Orbit.objects.get(pk=orbit_id)
+
+            new_photo = Photo.objects.create(
+                storage_type="cf", 
+                ext_id=image_id, 
+                orbit=this_orbit
+            )
+
+            urls = generate_image_urls(image_id)
+
+            new_photo.ext_url = urls['image_url']
+            new_photo.tiny_thumbnail_ext = urls['tiny_thumbnail_url']
+            new_photo.small_thumbnail_ext = urls['small_thumbnail_url']
+            new_photo.medium_thumbnail_ext = urls['medium_thumbnail_url']
+            new_photo.large_thumbnail_ext = urls['large_thumbnail_url']
+
+            profile_image = ProfileImage.objects.create(
+                orbit=this_orbit,
+                photo = new_photo
+            ) 
+
+        new_photo.save()
+
+    elif image_type == "video_thumbnail":
+        new_photo = VideoThumbnail.objects.get(upload_id = request.data.get("upload_id"))
+    
+        urls = generate_video_thumb_urls(image_id)
+        new_photo.ext_url = urls['image_url']
+        new_photo.small_thumbnail_ext = urls['small_thumbnail_url']
+        new_photo.medium_thumbnail_ext = urls['medium_thumbnail_url']
+        new_photo.large_thumbnail_ext = urls['large_thumbnail_url']
+        new_photo.xlarge_thumbnail_ext = urls['xlarge_thumbnail_url']
+
+        new_photo.save()
+        
+
+    elif image_type == "desktop" or image_type == "mobile":
+        if request.POST.get("wpid"):
+            wpid = request.POST.get("wpid")
+            try:
+                new_photo = Wallpaper.objects.get(pk=wpid)
+                image_urls = generate_image_urls(new_photo.ext_id)
+
+            except:
+            
+                new_photo = Wallpaper.objects.create(
+                    storage_type="cf", 
+                    ext_id=image_id, 
+                    profile=request.user.profile
+                )
+
+                image_urls = generate_image_urls(image_id)
+                main_url = image_urls["image_url"]
+                new_photo.ext_url = main_url
+
+            if request.POST.get('image_type') == "desktop":
+                new_photo.background_desktop_ext = image_urls["desktop_wallpaper"]
+
+
+            elif request.POST.get('image_type') == "mobile":
+                new_photo.background_desktop_ext = image_urls["mobile_wallpaper"] 
+            
+            new_photo.save()
 
     return new_photo

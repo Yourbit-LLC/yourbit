@@ -1,0 +1,61 @@
+<!--Space navigator allows people to switch between content types on the network-->
+<div class = "yb-space-nav">
+    <!--Global Space Button-->
+    <div id = "global-space-button" name='global' data-location="home" class = "space-button active">
+        <svg class="yb-icon space-button-icon active"xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+            <path class='yb-ui-icon space-button-icon' d="M5.35 17.9q-2.45 0-4.175-1.725-1.725-1.725-1.725-4.2 0-2.45 1.713-4.188Q2.875 6.05 5.35 6.05q1 0 1.937.325Q8.225 6.7 8.95 7.4l1.525 1.475L8.5 10.65 7.15 9.4q-.375-.35-.838-.525Q5.85 8.7 5.35 8.7q-1.35 0-2.3.962-.95.963-.95 2.338 0 1.35.95 2.3.95.95 2.3.95.5 0 .962-.175.463-.175.838-.525l7.9-7.15q.725-.7 1.663-1.025.937-.325 1.937-.325 2.45 0 4.175 1.725Q24.55 9.5 24.55 11.95q0 2.475-1.713 4.212Q21.125 17.9 18.65 17.9q-1 0-1.937-.325-.938-.325-1.663-1.025l-1.525-1.425 2-1.8 1.325 1.225q.375.35.838.525.462.175.962.175 1.35 0 2.3-.963.95-.962.95-2.337 0-1.35-.95-2.3-.95-.95-2.3-.95-.5 0-.962.175-.463.175-.838.525l-7.9 7.15q-.725.7-1.663 1.025-.937.325-1.937.325Z"/>
+        </svg>
+        <div class="helper" id="global-helper">All</div>
+    </div>
+    
+    <!--Chat Space Button-->
+    <div id = "chat-space-button" name='chat' data-location="home" class = "space-button">
+        <svg class="yb-icon space-button-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+            <path class='yb-ui-icon space-button-icon' d="M3 18v-2h12v2Zm0-5v-2h18v2Zm0-5V6h18v2Z"/>
+        </svg>
+        <div class="helper" id="chat-helper">Chats</div>
+    </div>
+    
+    <!--Video Space Button-->
+    <div id = "video-space-button" name='video' data-location="home" class = "space-button" >
+        <svg class="yb-icon space-button-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+            <path class='yb-ui-icon space-button-icon' d="m9.15 17.15 8-5.15-8-5.15ZM12 22.8q-2.25 0-4.213-.85-1.962-.85-3.424-2.312Q2.9 18.175 2.05 16.212 1.2 14.25 1.2 12t.85-4.225Q2.9 5.8 4.363 4.338q1.462-1.463 3.424-2.301Q9.75 1.2 12 1.2t4.225.837q1.975.838 3.438 2.301 1.462 1.462 2.299 3.437Q22.8 9.75 22.8 12q0 2.25-.838 4.212-.837 1.963-2.299 3.426Q18.2 21.1 16.225 21.95q-1.975.85-4.225.85Zm0-2.65q3.425 0 5.788-2.363Q20.15 15.425 20.15 12t-2.362-5.788Q15.425 3.85 12 3.85q-3.425 0-5.787 2.362Q3.85 8.575 3.85 12q0 3.425 2.363 5.787Q8.575 20.15 12 20.15ZM12 12Z"/>
+        </svg>
+        <div class="helper" id="video-helper">Videos</div>
+    </div>
+    
+    <!--Photo Space Button-->
+    <div id = "photo-space-button" name='photo' data-location="home" class = "space-button">
+        <svg class="yb-icon space-button-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px">
+            <path class='yb-ui-icon space-button-icon' d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-4.86 8.86l-3 3.87L9 13.14 6 17h12l-3.86-5.14z"/>
+        </svg>
+        <div class="helper" id="photo-helper">Photos</div>
+    </div>
+    
+
+    <div id='back-to-home' class='yb-button-popUp' style="display: none;">
+        <svg id='back-to-home-icon'xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m12 20-8-8 8-8 1.425 1.4-5.6 5.6H20v2H7.825l5.6 5.6Z"/></svg>
+        <p id='back-to-home-label'>Go to Feed</p>
+    </div>
+
+    {% comment %} 
+    <div class = "minibar" id='minibar' style='display: none;'>
+        <div class='task-icon' id='back-task' style='display: none;'>
+            <svg class='task-icon-svg' xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" width="24"><path d="M480 896 160 576l320-320 57 56-224 224h487v80H313l224 224-57 56Z"/></svg>
+        </div>
+    </div>  
+    {% endcomment %}
+
+    <div class='mini-widget' style='display:none;'>
+        
+    </div>
+
+    <div class="yb-player-card">
+
+    </div>
+
+    <div id='gradiant-overlay'>
+    
+    </div>  
+
+</div>

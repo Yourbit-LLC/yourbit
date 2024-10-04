@@ -7,6 +7,7 @@ from main.views import initialize_session
 from yb_customize.models import CustomUI, CustomCore, CustomBit, CustomSplash
 from yb_bits.models import Cluster
 
+
 # Create your views here.
 #Profile Page
 class ProfileView(View):
@@ -156,10 +157,12 @@ class OrbitListTemplate(View):
         return render(request, "yb_profile/yb_orbits.html", context)
     
 class OrbitSetup(View):
+
     def get(self, request, *args, **kwargs):
         return render(request, "yb_profile/orbit_setup.html")
     
     def post(self, request, *args, **kwargs):
+    
         orbit_name = request.POST.get("name")
         orbit_type = request.POST.get("type")
 
@@ -169,6 +172,8 @@ class OrbitSetup(View):
         new_orbit = Orbit(profile = request.user.profile, name = orbit_name, type=orbit_type, custom = custom_ui)
         new_orbit.save()
 
+      
+        #Initialize User Settings Modules
         return JsonResponse({"success": True, "orbit": new_orbit})
     
 def history_list(request, filter, *args, **kwargs):

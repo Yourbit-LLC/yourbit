@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{%load static %}
+<html>
+  <head>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@mux/mux-uploader"
+    ></script>
+  </head>
+  <body>
+    <mux-uploader></mux-uploader>
+  </body>
+  
+  <script>
+    const muxUploader = document.querySelector("mux-uploader");
+    /*
+      Endpoint should be a function that returns a promise and resolves
+      with a string for the upload URL.
+    */
+    muxUploader.endpoint = function () {
+      /*
+        In this example, your server endpoint would return the upload URL
+        in the response body "https://storage.googleapis.com/video..."
+      */
+      return fetch("/video/api/get-mux-url/").then(res => res.text());
+    };
+
+    muxUploader.addEventListener("success", function (event) {
+      console.log("Upload successful!", event);
+      upload_id = event.detail.upload_id;
+    });
+  </script>
+</html>

@@ -22,13 +22,16 @@ function submitCustomOption(c_class, option, value) {
     });
 }
 
-function yb_uploadProfileImage(source, data, profile_class, image_type, wpid=null) {
+function yb_uploadProfileImage(source, data, profile_class, image_type="profile", wpid=null) {
     let formData = new FormData();
-    formData.append('source_image', source);
-    formData.append('crop_x', data.x);
-    formData.append('crop_y', data.y);
-    formData.append('crop_width', data.width);
-    formData.append('crop_height', data.height);
+    let crop_data = {
+        'x': data.x,
+        'y': data.y,
+        'width': data.width,
+        'height': data.height
+    }
+    formData.append('crop_data', JSON.stringify(crop_data))
+    formData.append('image', source);
     formData.append('image_type', image_type);
     formData.append('profile_class', profile_class);
     formData.append('wpid', wpid);
@@ -50,7 +53,6 @@ function yb_uploadProfileImage(source, data, profile_class, image_type, wpid=nul
                 yb_setWPID(data.wpid);
             } catch(err) {
                 console.log("No profile images to replace");
-
             }
             
             console.log(data.wpid);

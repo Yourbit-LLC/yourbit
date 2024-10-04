@@ -175,6 +175,7 @@ def privacy_view(request):
     return render(request, 'yb_accounts/yb_doc_viewer.html', context)
 
 def login_view(request):
+    from main.models import UserSession
 
     context = {}
 
@@ -194,6 +195,13 @@ def login_view(request):
 
             if user:
                 login(request, user)
+                try: 
+                    user_session = UserSession.objects.get(user=user)
+                
+                except:
+                    user_session = UserSession(user=user)
+                    user_session.save()
+                    
                 return redirect('home')
 
     context['login_form'] = login_form

@@ -26,12 +26,12 @@ class Profile(models.Model):
         symmetrical=False,
         blank=True
     )
-    
+       
     is_private = models.BooleanField(default=False)
     public_messages = models.BooleanField(default=False)
     is_briefings = models.BooleanField(default=False)
 
-        #System information
+    #System information
     current_timezone = models.CharField(max_length=150, default="America/New_York")
     alerted_notifications = models.BooleanField(default=False)
 
@@ -121,6 +121,7 @@ class Profile(models.Model):
 
     space_focus = models.CharField(max_length=100, default="global") #What type of content the user or community primarily focuses on
 
+    managed_orbits = models.ManyToManyField('Orbit', related_name='managed_orbits', blank=True)
     restrict_friends = models.BooleanField(default=False)
     friend_code = models.CharField(max_length=100, blank=True, null=True)
     friend_requests = models.ManyToManyField('FriendRequest', related_name='friend_requests', blank=True)

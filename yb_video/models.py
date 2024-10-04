@@ -8,7 +8,11 @@ class Video(models.Model):
     #Model for attached video to bit
     storage_type = models.CharField(max_length=50, default="yb")
     video = models.FileField(blank = True, upload_to='media/profile/videos/%Y/%m/%d/%H:%M')
-    cf_url = models.CharField(max_length=255, default="")
+    ext_url = models.CharField(max_length=1000, default="")
+    ext_id = models.CharField(max_length=255, default="")
+    thumbnail = models.OneToOneField('yb_photo.VideoThumbnail', related_name = "thumbnail", on_delete=models.CASCADE, blank=True, null=True)
+    upload_id = models.CharField(max_length=255, default="")
+    upload_status = models.CharField(max_length=50, default="preparing") # 'preparing', 'uploading', 'ready', 'failed'
     user = models.ForeignKey(User, related_name = "video", on_delete=models.DO_NOTHING, blank=True)
     uploaded = models.DateTimeField(default=timezone.now)
     modified = models.DateTimeField(default=timezone.now)

@@ -1,0 +1,21 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/yb_video/hangar.css' %}">
+<script src="{% static 'yb_video/js/hangar.js' %}"></script>
+<div class="yb-hangar-window">
+    <div class="yb-sidebar">
+        <div class="yb-sidebar-video">
+            <video id="video" class="yb-video-player" preload="auto" width="640" height="264" data-setup='{}'>
+                <source src="{{ video_url }}" type='video/mp4'>
+            </video>
+        </div>      
+
+        <div class="yb-sidebar-menu">
+        </div>
+    </div>
+    <div class="yb-editor-area">
+
+    </div>
+</div>
+{% endblock %}

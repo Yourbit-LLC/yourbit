@@ -12,6 +12,7 @@ var photo_type_button = document.getElementById("photo-type-button");
 var bit_type_field = document.getElementById("bb-field-bitType");
 var type_buttons = document.querySelectorAll(".type-button");
 var private_toggle = document.getElementById("bb-field-bitScope");
+var upload_id_field = document.getElementById('bb-field-uploadId')
 
 var photo_upload_field = document.getElementById("bb-field-bitPhoto");
 var cropped_photo_upload_field = document.getElementById("bb-field-bitPhoto-cropped");
@@ -21,6 +22,8 @@ var bit_schedule_button = document.getElementById("bb-schedule-button");
 var bit_options_button = document.getElementById("bb-options-button");
 var bit_monetize_button = document.getElementById("bb-monetize-button");
 var bit_customize_button = document.getElementById("bb-customize-button");
+var muxUploader = document.querySelector("mux-uploader");
+var video_upload_id = "";
 
 
 var cropped_photo;
@@ -142,10 +145,6 @@ function yb_clickFieldButton(button, field){
             });
         });
         
-        
-
-
-
 }
 
 function yb_blurTextField(field, button, preview) {
@@ -188,7 +187,7 @@ function yb_blurTextField(field, button, preview) {
     };
 }
 
-function yb_handleCreateBit(){
+function yb_assembleBitData() {
     let type = document.getElementById("bb-field-bitType").value;
     this_data = new FormData();
     this_data.append('type', type);
@@ -196,17 +195,28 @@ function yb_handleCreateBit(){
         let image = document.getElementById("bb-field-bitPhoto").files[0];
         this_data.append('image', image);
 
-        var cropped_image = dataURItoBlob(cropped_photo);
-        this_data.append('cropped_image', cropped_image);
+        var crop_data = yb_getCropData();
+        this_data.append('crop_data', JSON.stringify(crop_data));
 
         let tags = document.getElementById("bb-field-bitTags").value;
         this_data.append('tags', tags);
 
     } else if (type === "video"){
-        let video = document.getElementById("bb-field-bitVideo").files[0];
-        this_data.append('video', video);
+        let upload_id = document.getElementById("bb-field-uploadId").value;
+        this_data.append('upload_id', upload_id);
         let tags = document.getElementById("bb-field-bitTags").value;
         this_data.append('tags', tags);
+
+        let thumbnail_option = document.getElementById("bb-field-thumbnailOption").value;
+        this_data.append("thumbnail_option", thumbnail_option);
+
+        if (thumbnail_option == "upload"){
+            let thumbnail_image = document.getElementById("bb-field-thumbnail");
+            this_data.append('thumbnail', thumbnail_image);
+        } else if (thumbnail_option == "choose") {
+            let thumbnail_frame = document.getElementById("bb-frame-select");
+            this_data.append("thumbnail_frame", thumbnail_frame)
+        }
     }
 
     let scope = document.getElementById("bb-field-bitScope").value;
@@ -223,11 +233,60 @@ function yb_handleCreateBit(){
 
     yb_createBit(this_data, csrf_token); //Located in yb_bits/static/scripts/yb_bits/yb_ajax.js
 
+}
+
+
+/*
+  Endpoint should be a function that returns a promise and resolves
+  with a string for the upload URL.
+*/
+
+muxUploader.endpoint = function () {
+    // Fetch the upload details from the server
+    return fetch("/video/api/get-mux-url/")
+      .then(res => res.json()) // Parse the response as JSON
+      .then(data => {
+        // Separate upload_id and upload_url
+        document.getElementById("bb-field-uploadId").value = data.upload_id; // Store the upload_id for future reference
+        return data.upload_url;    // Return the upload_url for the mux uploader
+      })
+      .catch(err => {
+        console.error("Error fetching the Mux URL:", err);
+      });
+  };
+
+muxUploader.addEventListener("success", function (event) {
+  console.log("Upload successful!", event);
+  yb_assembleBitData();
+});  
+
+function yb_handleCreateBit(){
+    let type = document.getElementById("bb-field-bitType").value;
+    if (type === "video"){
+        const file = video_upload_field.files[0];  // Get the file from your custom file input
+        if (file) {
+            
+            const hiddenFileInput = muxUploader.shadowRoot.querySelector('input[type="file"]');
+
+            if (hiddenFileInput) {
+                // Create a new DataTransfer object to simulate user file selection
+                const dataTransfer = new DataTransfer();
+                dataTransfer.items.add(file);  // Add the file to the DataTransfer object
+                
+                // Assign the file to the Mux Uploader's hidden input field
+                hiddenFileInput.files = dataTransfer.files;
+
+                // Trigger the 'change' event to start the upload
+                hiddenFileInput.dispatchEvent(new Event('change'));
+            }
+        }
+    }
+    else {
+        yb_assembleBitData();
+    }
 }  
 
 $(document).ready(function(){
-
-
     let title_button = document.getElementById("title-bit-preview-button");
     let title_field = document.getElementById("bb-field-bitTitle");
     title_button.addEventListener("click", function(){
@@ -399,24 +458,9 @@ $(document).ready(function(){
             // add_photo_button.appendChild(this_image);
             // add_photo_button.classList.add("fast");
             // add_photo_button.classList.add("yb-bounceDown-once");
-
-            let file = photo_upload_field.files[0];
-
-            const fileName = file.name;
-            const fileExtension = fileName.split('.').pop().toLowerCase();
-
-            if (fileExtension != "gif") {
-                yb_2WayPage(2, "cropper-bit");
-                yb_expand2Way();
-            } else {
-                cropped_photo = URL.createObjectURL(file);
-                let this_image = yb_renderImage(cropped_photo, "bit-preview-image", `bit-preview-image`, "Preview Image");
-                add_photo_button.innerHTML = "";
-                add_photo_button.appendChild(this_image);
-                add_photo_button.classList.add("fast");
-                add_photo_button.classList.add("yb-bounceDown-once");
-            }
-
+            yb_2WayPage(2, "cropper-bit");
+            yb_expand2Way();
+           
         });
         
     });
@@ -425,7 +469,12 @@ $(document).ready(function(){
         video_upload_field.click();
     });
 
-    yb_startClock("time-label", "decorated-time");
+    video_upload_field.addEventListener("change", function(event){
+        
+        yb_2WayPage(2, 'video-setup');
+        yb_expand2Way();
+    })
+
 
     $("#bit-date-preview").html(formattedDate);
 
@@ -444,4 +493,6 @@ $(document).ready(function(){
     bit_customize_button.addEventListener("click", function(){
         yb_2WayPage(2, "bb-customize-bit");
     });
+
+    yb_startClock("time-label", "decorated-time");
 });

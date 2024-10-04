@@ -2,6 +2,7 @@
 from django.urls import reverse
 from django.contrib.auth import authenticate, login
 from yb_settings.models import MySettings
+from yb_profile.models import Orbit
 
 # def CoreUI(request):
 #     bit_form = BitForm()
@@ -23,24 +24,45 @@ from yb_settings.models import MySettings
 def Customization(request):
     from yb_profile.models import Profile
     from yb_customize.models import CustomCore, CustomBit, CustomUI
+    from yb_profile.models import Orbit
+    from main.models import UserSession
     if request.user.is_authenticated:
-        profile = Profile.objects.get(user=request.user)
-        custom = CustomCore.objects.get(profile=profile)
+
+        user_session = UserSession.objects.get(user=request.user)
+        user_profile = Profile.objects.get(user=request.user)
+
+        if user_session.current_context == "self":
+            profile = Profile.objects.get(user=request.user)
+            custom = CustomCore.objects.get(profile=profile)
+
+        else:
+            profile = Orbit.objects.get(username=user_session.current_context)
+            custom = CustomCore.objects.get(orbit=profile)
+        
+        
 
         theme = custom.theme
         
         profile_image_object = custom.profile_image
-        profile_image = profile_image_object.image
-        profile_thumbnail_small = profile_image_object.small_thumbnail.url
-        profile_thumbnail_medium = profile_image_object.medium_thumbnail.url
-        profile_thumbnail_large = profile_image_object.large_thumbnail.url
 
+        if profile_image_object.storage_type == "yb":
+            profile_image = profile_image_object.image
+            profile_thumbnail_small = profile_image_object.small_thumbnail.url
+            profile_thumbnail_medium = profile_image_object.medium_thumbnail.url
+            profile_thumbnail_large = profile_image_object.large_thumbnail.url
+        else:
+            profile_image = profile_image_object.ext_url
+            profile_thumbnail_small = profile_image_object.small_thumbnail_ext
+            profile_thumbnail_medium = profile_image_object.medium_thumbnail_ext
+            profile_thumbnail_large = profile_image_object.large_thumbnail_ext
+            
         display_name = profile.display_name
         username = profile.user.username
         
         wallpaper_enabled = custom.wallpaper_on
         wallpaper_object = custom.wallpaper
         wallpaper = wallpaper_object.background_image
+
         try:
             wallpaper_mobile = wallpaper_object.background_mobile
         except:
@@ -55,11 +77,13 @@ def Customization(request):
         
         custom_ui = CustomUI.objects.get(theme=theme)
 
-
+        #Filter orbits by profile contains user profile
+        orbits = profile.managed_orbits.all()
 
 
         context = {
             'profile_image': profile_image,
+            'user_profile': user_profile,
             'profile_thumbnail_small': profile_thumbnail_small,
             'profile_thumbnail_medium': profile_thumbnail_medium,
             'profile_thumbnail_large': profile_thumbnail_large,
@@ -71,6 +95,7 @@ def Customization(request):
             'custom_core': custom,
             'wallpaper_enabled': wallpaper_enabled,
             'user_custom_ui': custom_ui,
+            'user_orbits': orbits,
         }
 
         bit_colors_on = custom.bit_colors_on

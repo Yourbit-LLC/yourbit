@@ -6,7 +6,6 @@ class UserSession(models.Model):
     session_key = models.CharField(max_length=100, blank=True)
     session_data = models.TextField()
     current_context = models.CharField(default="self", max_length=100, blank=True) #self for users own profile, use orbit handle for orbits
-    expire_date = models.DateTimeField()
     session_key_hash = models.CharField(max_length=100, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)

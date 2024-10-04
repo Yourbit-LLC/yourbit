@@ -13,5 +13,6 @@ urlpatterns = [
     path("create/cluster/", CreateCluster.as_view(), name="post_cluster"),
     path("create/orbit/", CreateOrbit.as_view(), name="post_orbit"),
     path("create/", CreateElement.as_view(), name="create-element"),
+    path("switch-perspective/", change_user_perspective, name="switch-perspective"),
 ]
 

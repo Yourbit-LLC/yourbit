@@ -40,6 +40,7 @@ class Bit(models.Model):
     body = models.CharField(max_length=5000, blank=True)
 
     time = models.DateTimeField(default=timezone.localtime)
+    status = models.CharField(max_length=100, default="pending")
     evaporate = models.BooleanField(default=False)
     evapoation_date = models.DateTimeField(default=timezone.localtime)
     is_scheduled = models.BooleanField(default=False)

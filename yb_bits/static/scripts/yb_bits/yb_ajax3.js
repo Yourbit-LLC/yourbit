@@ -1,6 +1,31 @@
 
 
-//Functioning for submitting a new bit or bit edit
+//Function for handling a response to create bit request
+function yb_handleCreateBitResponse(response) {
+
+    //Build the bit using the information from the response
+    let this_bit = yb_buildBit(response.bit_info);
+
+    //Get the users current core page location
+    let current_location = yb_getSessionValues('location');
+
+    //Check if user is located at app home to prevent error when trying to append new bit
+    if (current_location === 'home') {
+
+        //Get home feed container
+        let bit_container = document.getElementById("bit-container");
+
+        //If in feed place bit at current location
+        bit_container.prepend(this_bit.built_bit);
+        this_bit.built_bit.classList.add("yb-bounceDown-1");
+    } else {
+        //If not at home show notification of creation success
+        let body = "Bit created successfully";
+        showNotification(expandNotification, body);
+    }
+}
+
+//Function for submitting a create bit request
 function yb_createBit(this_data, csrf_token) {
     
     $.ajax({
@@ -10,44 +35,27 @@ function yb_createBit(this_data, csrf_token) {
         headers: {
             'X-CSRFToken': csrf_token,
         },
-        xhr: function() {
-            var xhr = new window.XMLHttpRequest();
-            xhr.upload.addEventListener('progress', function(evt) {
-                if (evt.lengthComputable) {
-                    var percentComplete = (evt.loaded / evt.total) * 100;
-                    // $('#progressBar').css('width', percentComplete + '%');
-                    $('#button-submit-bit').html('Uploading... (' + percentComplete.toFixed(2) + '%)');
-                }
-            }, false);
-            return xhr;
-        },
+
         processData: false,
         contentType: false,
         success: function(response) {
             console.log(response);
-            yb_toggle2WayContainer('create-bit'); //Located in main/static/scripts/main/main.js
-            
-            let this_bit = yb_buildBit(response);
-            let current_location = yb_getSessionValues('location');
 
-            if (current_location === 'home') {
-                let bit_container = document.getElementById("bit-container");
-                bit_container.prepend(this_bit.built_bit);
-                this_bit.built_bit.classList.add("yb-bounceDown-1");
-            } else {
-                let body = "Bit created successfully";
-                showNotification(expandNotification, body);
-            }
+            //Close the create container
+            yb_toggle2WayContainer('create-bit');
+
+            //Handle response and proceed to confirmation action
+            yb_handleCreateBitResponse(response);
+
             // yb_getFeed(true); //Located in yb_bits/static/scripts/yb_bits/yb_ajax.js
         },
-        error: function(jqXHR, textStatus, errorThrown) {
+        error: function(textStatus) {
             $('#status').text('Upload failed: ' + textStatus);
         }
     });
 }
 
 // Function for updating comment stream
-
 function yb_updateComments(update, response, bitId) {
     console.log(bitId)
     let this_bit = document.getElementById(`bit-${bitId}`);

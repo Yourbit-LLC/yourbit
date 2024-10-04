@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from yb_accounts.models import Account as User
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from .models import *
 
 # Create your views here.
 def initialize_session(request):
@@ -141,5 +142,11 @@ class CreateElement(View):
                     'registration_form': registration_form,
                     'login_form': login_form,
                 }
-            )
-        
+            )       
+def change_user_perspective(request, *args, **kwargs):
+
+    user_session = UserSession.objects.get(user=request.user)
+    user_session.current_context = request.POST.get('username')
+    user_session.save()
+
+    return HttpResponse("success")

@@ -165,7 +165,12 @@ function yb_addMedia(type, bit) {
         let photo = bit.photos[index]
         let attachment_container = yb_createElement("div", "attached-photo-container", `photo-container-${bit.id}`);
         let attachment = yb_createElement("img", "attached-photo", `photo-bit-${bit.id}`);
-        attachment.setAttribute("src", photo.large_thumbnail);
+
+        if (photo.storage_type != "yb"){
+            attachment.setAttribute("src", photo.large_thumbnail_ext);
+        } else {
+            attachment.setAttribute("src", photo.large_thumbnail);
+        }
         attachment.setAttribute('data-id', bit.id);
         attachment.setAttribute('data-index', index);
 
@@ -185,13 +190,26 @@ function yb_addMedia(type, bit) {
     if (type === 'video'){
         let bit_video = bit.video_upload;
         let attached_video_container = yb_createElement("div", "attached-video-container", `video-container-${bit.id}`);
+        let video_player;
 
-        let video_player = yb_createElement("video", "attached-video", `video-${bit.id}`);
-        
-        video_player.setAttribute("controls", "true");
-        video_player.setAttribute("playsinline", "true");
-        video_player.setAttribute("data-id", bit.id);
-        video_player.setAttribute("src", bit_video.video);
+        if (bit_video. storage_type == "yb"){
+            video_player = yb_createElement("video", "attached-video", `video-${bit.id}`);
+            video_player.setAttribute("controls", "true");
+            video_player.setAttribute("playsinline", "true");
+            video_player.setAttribute("data-id", bit.id);
+        } else {
+            video_player = yb_createElement("mux-player", "attached-video", `video-${bit.id}`);
+            video_player.setAttribute("playback-id", bit_video.ext_id);
+            video_player.setAttribute("metadata-video-title", bit.title)
+            video_player.setAttribute("metadata-viewer-user-id", bit.display_name)
+            video_player.setAttribute("accent-color", bit.custom.primary_color)
+        }
+
+        if (bit_video.storage_type != "yb"){
+            video_player.setAttribute("src", bit_video.ext_url);
+        } else {
+            video_player.setAttribute("src", bit_video.video);
+        }
         video_player.setAttribute("style", "max-width: 100%; max-height:100%; margin-left: auto; margin-right: auto; display: block;");
         // let video_source = yb_createElement("source", `video-source-${bit.id}`, "video-source");
         // video_source.setAttribute("src", `${bit_video}`);

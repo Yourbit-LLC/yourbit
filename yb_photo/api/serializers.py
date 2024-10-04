@@ -14,7 +14,7 @@ from django.utils import timezone
 class PhotoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Photo
-        fields = ['id', 'image', 'tiny_thumbnail', 'small_thumbnail', 'medium_thumbnail', 'large_thumbnail']
+        fields = ['id', 'image', 'tiny_thumbnail', 'small_thumbnail', 'medium_thumbnail', 'large_thumbnail', 'tiny_thumbnail_ext', 'small_thumbnail_ext', 'medium_thumbnail_ext', 'large_thumbnail_ext']
 
         
 class PhotoStickerSerializer(serializers.ModelSerializer):

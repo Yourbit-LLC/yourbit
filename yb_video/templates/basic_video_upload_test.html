@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Conversion with Time Limit</title>
+</head>
+<body>
+    <h1>Upload and Convert MP4 to WebM (Max 10 Minutes)</h1>
+    <input type="file" id="uploader" accept="video/mp4" />
+    <video id="outputVideo" controls></video>
+    <p id="message"></p>
+    
+    <script type="module">
+        import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg';
+
+        const ffmpeg = createFFmpeg({ log: true });
+        const MAX_DURATION = 600;  // 10 minutes in seconds (600 seconds)
+
+        document.getElementById('uploader').addEventListener('change', async (event) => {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const videoElement = document.createElement('video');
+            videoElement.preload = 'metadata';
+
+            videoElement.onloadedmetadata = async function() {
+                // Check video duration
+                window.URL.revokeObjectURL(videoElement.src); // Clean up memory
+                const duration = videoElement.duration;
+                
+                if (duration > MAX_DURATION) {
+                    document.getElementById('message').textContent = "Video exceeds the 10-minute limit. Please upload a shorter video.";
+                    return;
+                }
+
+                document.getElementById('message').textContent = "Video is within the time limit. Processing...";
+
+                const reader = new FileReader();
+                reader.readAsArrayBuffer(file);
+                reader.onload = async () => {
+                    const arrayBuffer = reader.result;
+
+                    // Load ffmpeg.wasm core
+                    await ffmpeg.load();
+
+                    // Write the file to ffmpeg's in-memory file system
+                    ffmpeg.FS('writeFile', 'input.mp4', new Uint8Array(arrayBuffer));
+
+                    // Run the FFmpeg command to convert MP4 to WebM
+                    await ffmpeg.run('-i', 'input.mp4', 'output.webm');
+
+                    // Get the resulting WebM file from ffmpeg's file system
+                    const data = ffmpeg.FS('readFile', 'output.webm');
+
+                    // Create a URL for the resulting video
+                    const videoBlob = new Blob([data.buffer], { type: 'video/webm' });
+                    const videoUrl = URL.createObjectURL(videoBlob);
+
+                    // Display the converted video
+                    document.getElementById('outputVideo').src = videoUrl;
+
+                    // Optional: Save the converted video by creating a download link
+                    const downloadLink = document.createElement('a');
+                    downloadLink.href = videoUrl;
+                    downloadLink.download = 'converted.webm';
+                    downloadLink.textContent = 'Download Converted Video';
+                    document.body.appendChild(downloadLink);
+
+                    document.getElementById('message').textContent = "Video successfully converted.";
+                };
+            };
+
+            // Set video source for loading metadata
+            videoElement.src = URL.createObjectURL(file);
+        });
+    </script>
+</body>
+</html>

@@ -122,6 +122,16 @@ function yb_resize2Way(size=1) {
 
 }
 
+function yb_dropDownMenu(menu_id) {
+    let this_menu = document.getElementById(menu_id);
+    this_menu.classList.toggle("open");
+}
+
+function yb_showMenuDivider(){
+    let menu_divider = document.getElementById("menu-divider");
+    menu_divider.classList.toggle("show");
+}
+
 function yb_filterScroll() {
         
     let scrollContainer = document.querySelector('.yb-hScroll');

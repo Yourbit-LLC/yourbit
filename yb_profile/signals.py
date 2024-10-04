@@ -9,6 +9,7 @@ from yb_customize.models import CustomCore, Theme, CustomUI, CustomBit, CustomSp
 from yb_notify.models import NotificationCore
 from yb_bits.models import InteractionHistory, Bit, BitStream
 from yb_photo.models import Photo, Wallpaper
+from main.models import UserSession
 from yb_messages.models import MessageCore
 from django.templatetags.static import static
 
@@ -90,6 +91,9 @@ def create_profile(sender, instance, created, **kwargs):
 
         custom_splash = CustomSplash(theme=default_theme)
         custom_splash.save()
+
+        user_session = UserSession(user=instance, current_context="self")
+        user_session.save()
 
 
 @receiver(post_save, sender=Bit)

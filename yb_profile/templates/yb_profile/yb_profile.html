@@ -22,7 +22,7 @@
     <div id="profile-splash-label" class = "yb-splash-label profile yb-center-transform all align-center">
         <div id="profile-image-container" class="profile-image-container yb-center-margin all plainBorder border-solid narrowBorder circle" style="overflow: hidden; border: {{custom_core.image_border_style}}; border-color: {{custom_core.image_border_color}};">
             <div class="profile-image-overlay" style="background-color: {{custom_core.image_overlay_color}}; opacity: {{custom_core.image_overlay_strength}};"></div>
-            <img src="{{current_profile.custom.profile_image.medium_thumbnail.url}}"  id="profile-image-splash" style="width: 100%; border-color:{{profile.custom.accent_color}};"/>
+            <img src="{% if current_profile.custom.profile_image.storage_type == "yb" %}{{current_profile.custom.profile_image.medium_thumbnail.url}}{%else%}{{current_profile.custom.profile_image.medium_thumbnail_ext}}{% endif %}"  id="profile-image-splash" style="width: 100%; border-color:{{profile.custom.accent_color}};"/>
         </div>
         <div class="profile-name-splash" id="profile-name-splash">
             <h2 id="profile-name-header" class="profile-name-header yb-name-size{{custom_splash.name_font_size}} yb-pHead" style="color: {{custom_splash.name_font_color}};">{{current_profile.display_name}}</h2>

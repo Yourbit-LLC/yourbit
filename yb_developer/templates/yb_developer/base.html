@@ -1,0 +1,20 @@
+{% load static %}
+
+<html>
+    <head>
+        <title>{{request.user.first_name}}'s Journal</title>
+        {% include 'main/style_imports.html' %}
+    </head>
+    <body>
+        <section>
+            <div>
+                <!--Yourbit Logo here-->
+            </div>
+            <nav>
+                <!--Journal Navigation Here-->
+            </nav>
+        </section>
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>

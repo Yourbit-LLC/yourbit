@@ -2,7 +2,7 @@
 {%load static %}
 <html>
     <head>
-        <title>Upload Video</title>
+        <title>Upload Photo</title>
         <link rel="stylesheet" type="text/css" href="{% static 'css/yb_settings/yourbit_settings.css' %}"/>
     </head>
     <script 
@@ -10,9 +10,10 @@
 </script>
 <script src="{% static 'scripts/yb_photo/yb_photo_upload.js' %}"></script>
 
-    <body>
+    <form id="image-form" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
         <input type="file" id="fileInput" />
-        <button class="upload-button" id="video-upload-button">Upload Video</button>
+        <button type="button" class="upload-button" name="image_field" id="video-upload-button">Upload Photo</button>
         
         <div class="for-ProgressBar"></div>
         
@@ -20,20 +21,17 @@
             <ol></ol>
         </div>
         <input type="hidden" id="csrf-token" value="{{ csrf_token }}">
-    </body>
+    </form>
 <!-- Load Uppy UMD version from a CDN -->
 <script src="https://releases.transloadit.com/uppy/v3.0.1/uppy.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/tus-js-client@latest/dist/tus.min.js"></script>
-<script src="{% static 'scripts/yb_video/video_upload3.js' %}"></script>
+
 
 <script>
     const upload = document.getElementById('video-upload-button');
     upload.addEventListener('click', async (event) => {
         event.preventDefault();
-        const selectFile = document.getElementById('fileInput');
-        const file = selectFile.files[0];
-        
-        yb_startImageUpload(file);
+        yb_startImageUpload();
     });
 </script>
 

@@ -4,36 +4,53 @@
     <head>
         <title>Upload Video</title>
         <link rel="stylesheet" type="text/css" href="{% static 'css/yb_settings/yourbit_settings.css' %}"/>
-    </head>
-    <script 
-    src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js">
-</script>
-
-    <body>
-        <input type="file" id="fileInput" />
-        <button class="upload-button" id="video-upload-button">Upload Video</button>
         
-        <div class="for-ProgressBar"></div>
-        
-        <div class="uploaded-files">
-            <ol></ol>
-        </div>
-        <input type="hidden" id="csrf-token" value="{{ csrf_token }}">
-    </body>
+        <script 
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js">
+        </script>
+        <link href="https://releases.transloadit.com/uppy/v3.0.1/uppy.min.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="drag-drop-area" style="height: 300px"></div>
+    <div class="for-ProgressBar"></div>
+    <button id="video-upload-button" class="upload-button" style="font-size: 30px; margin: 20px">Upload</button>
+    <div class="uploaded-files" style="margin-top: 50px">
+      <ol></ol>
+    </div>
 <!-- Load Uppy UMD version from a CDN -->
-<script src="https://releases.transloadit.com/uppy/v3.0.1/uppy.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/tus-js-client@latest/dist/tus.min.js"></script>
 <script src="{% static 'scripts/yb_video/video_upload3.js' %}"></script>
 
-<script>
-    const upload = document.getElementById('video-upload-button');
-    upload.addEventListener('click', async (event) => {
-        event.preventDefault();
-        const selectFile = document.getElementById('fileInput');
-        const file = selectFile.files[0];
-        
-        yb_startUpload(file, 50 * 1024 * 1024, 'http://127.0.0.1:8787');
-    });
-</script>
+<script type="module">
+    import {
+      Uppy,
+      Tus,
+      DragDrop,
+      ProgressBar,
+    } from 'https://releases.transloadit.com/uppy/v3.0.1/uppy.min.mjs';
+
+    const uppy = new Uppy({ debug: true, autoProceed: true });
+
+    const onUploadSuccess = el => (file, response) => {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = response.uploadURL;
+      a.target = '_blank';
+      a.appendChild(document.createTextNode(file.name));
+      li.appendChild(a);
+
+      document.querySelector(el).appendChild(li);
+    };
+
+    uppy
+      .use(DragDrop, { target: '#drag-drop-area' })
+      .use(Tus, { endpoint: '/video/api/get_tus_url/', chunkSize: 150 * 1024 * 1024, allowedMetaFields: ['filename', 'filetype'] })
+      .use(ProgressBar, { target: '.for-ProgressBar', hideAfterFinish: false })
+      .on('upload-success', onUploadSuccess('.uploaded-files ol'));
+
+    const VIDEO_BUTTON = document.getElementById('video-upload-button');
+    VIDEO_BUTTON.addEventListener('click', () => uppy.upload());
+
+  </script>
 
 </html>

@@ -96,6 +96,7 @@ function previewProfileImage() {
     initializeOrUpdateCropper(1, "profile-image-upload", "crop-image-preview");
 }
 
+//Use for video thumnails
 function previewDesktopBackgroundImage() {
     initializeOrUpdateCropper(16/9, "background-image-upload", "crop-image-preview");
 }

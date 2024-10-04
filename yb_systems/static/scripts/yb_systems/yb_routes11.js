@@ -216,6 +216,10 @@ const TWO_WAY_INDEX = {
         "template" : "/profile/templates/orbit-setup/",
         "url" : ""
     },
+
+    "video-setup": {
+        "template": "/video/templates/video-setup/"
+    }
     
     
           

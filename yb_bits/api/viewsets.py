@@ -167,23 +167,44 @@ class BitViewSet(viewsets.ModelViewSet):
             custom_bit = CustomBit.objects.create(theme=theme, images = custom_core)
 
         if 'image' in request.FILES:
-            from yb_photo.utility import process_image
+            from yb_photo.utility import upload_image_cf
 
             print("Creating a photobit.")
-            
-            photo_data = request.FILES['image']
-            photo_data_cropped = request.FILES['cropped_image']
-            new_photo = process_image(request, photo_data, photo_data_cropped, False)
-            new_photo.save()
+            new_photo = upload_image_cf(request, "general") 
             serializer.validated_data['photos'] = [new_photo]
- 
-        if 'video' in request.FILES:
-            video_data = request.FILES['video']
-            new_video = Video.objects.create(video=video_data, user=self.request.user)
-            new_video.save()
-            serializer.validated_data['video_upload'] = new_video
 
-        
+        if request.data.get("type") == "video":
+            from yb_photo.models import VideoThumbnail
+            upload_id = request.data.get("upload_id")
+            video_object = Video.objects.get(upload_id=upload_id)
+            serializer.validated_data['video_upload'] = video_object
+
+            thumbnail_object = video_object.thumbnail
+            thumbnail_option = request.data.get("thumbnail_option")
+
+            if thumbnail_option == "choose":
+                from yb_video.services import generate_mux_thumbnails
+                thumbnail_frame = request.data.get("thumbnail_frame")
+                thumbnails = generate_mux_thumbnails(True, thumbnail_frame)
+                thumbnail_object.tiny_thumbnail_ext = thumbnails["tiny_thumbnail"]
+                thumbnail_object.small_thumbnail_ext = thumbnails["small_thumbnail"]
+                thumbnail_object.medium_thumbnail_ext = thumbnails["medium_thumbnail"]
+                thumbnail_object.large_thumbnail_ext = thumbnails["large_thumbnail"]
+                thumbnail_object.xlarge_thumbnail_ext = thumbnails['xlarge_thumbnail']
+
+            elif thumbnail_option == "middle":
+                from yb_video.services import generate_mux_thumbnails
+                thumbnails = generate_mux_thumbnails(False)
+                thumbnail_object.tiny_thumbnail_ext = thumbnails["tiny_thumbnail"]
+                thumbnail_object.small_thumbnail_ext = thumbnails["small_thumbnail"]
+                thumbnail_object.medium_thumbnail_ext = thumbnails["medium_thumbnail"]
+                thumbnail_object.large_thumbnail_ext = thumbnails["large_thumbnail"]
+                thumbnail_object.xlarge_thumbnail_ext = thumbnails['xlarge_thumbnail']
+
+            else:
+                from yb_photo.utility import upload_image_cf
+                upload_image_cf(request, "video_thumbnail")
+
         scope = request.data.get('scope')
         if scope == 'public':
             is_public = True
@@ -206,8 +227,13 @@ class BitViewSet(viewsets.ModelViewSet):
         new_bit = Bit.objects.get(id=serializer.data['id'])
         rendered_bit = BitSerializer(new_bit, context={'user_tz': user_profile.current_timezone, 'request': request})
 
-        return Response(rendered_bit.data, status=status.HTTP_201_CREATED, headers=headers)
-    
+   
+        new_bit.status = "ready"
+        new_bit.is_live = True
+        new_bit.save()
+
+        return Response({"bit_info": rendered_bit.data}, status=status.HTTP_201_CREATED, headers=headers)
+
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
         user_profile = Profile.objects.get(user=self.request.user)

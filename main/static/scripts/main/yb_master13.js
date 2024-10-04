@@ -705,6 +705,26 @@ function yb_closeSpotlight(){
 
 }
 
+function yb_switchUserPerspective(orbit_name) {
+    let csrf = getCSRF();
+    let url = "/core/switch-perspective/";
+    let data = {
+        'username': orbit_name,
+    }
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: data,
+        headers: {
+            'X-CSRFToken': csrf
+        },
+        success: function(data){
+            console.log(data);
+            location.reload();
+        }
+    })
+}
+
 function yb_navigateToProfile(e) {
     let username;
     yb_setSessionValues('location', 'profile');
