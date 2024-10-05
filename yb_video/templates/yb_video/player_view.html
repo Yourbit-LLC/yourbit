@@ -1,5 +1,10 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/yb_video/player2.css' %}">
+<meta property="og:title" content="{{bit.title}}" />
+<meta property="og:type" content="video.movie" />
+<meta property="og:url" content="https://yourbit.me/bits/view/{{bit.id}}/" />
+<meta property="og:image" content="{{bit.video_upload.thumbnail.medium_thumbnail_ext}}" />
+<meta property="og:video" content="{{bit.video_upload.ext_url}}" />
 <div class="yb-player-grid">
     <div class="yb-flexColumn player-scroll-section yb-vScroll">
         <div id="yb-player" class="yb-player" style="aspect-ratio: 16 / 9;">

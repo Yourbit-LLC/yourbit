@@ -66,6 +66,15 @@ def set_user_bitstreams(request, *args, **kwargs):
 
     return HttpResponse("Bitstreams set for all users: " + str(fails) + " fails")
 
+def bit_builder_share_view(request, id, *args, **kwargs):
+    bit_form = BitForm()
+    this_bit = Bit.objects.get(pk=id)
+    print("bit_builder_view")
+    return render(request, "yb_bits/yb_bitBuilder.html", {"bit_form":bit_form, "build_mode":"share"})
+
+    
+
+
 class ShareMenuTemplate(View):
     def get(self, request, id, *args, **kwargs):
         this_bit = Bit.objects.get(pk=id)

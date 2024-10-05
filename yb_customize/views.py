@@ -337,6 +337,8 @@ def user_custom_repair_bits(request):
             custom_bit.save()
 
     return JsonResponse({"successes": successes, "failures": failures})
+
+
 class CustomizeBitView(View):  
     def get(self, request):
         if request.user.is_authenticated:
