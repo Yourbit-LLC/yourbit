@@ -66,6 +66,44 @@ def set_user_bitstreams(request, *args, **kwargs):
 
     return HttpResponse("Bitstreams set for all users: " + str(fails) + " fails")
 
+class ShareMenuTemplate(View):
+    def get(self, request, id, *args, **kwargs):
+        this_bit = Bit.objects.get(pk=id)
+    
+        repost_button = {
+            "label":"Repost",
+            "name": "repost",
+            "type": "bit-repost",
+            "object_id": this_bit.id,
+            "action":f"yb_startRepost({this_bit.id})",
+        }
+
+        share_button = {
+            "label":"Share...",
+            "name": "share",
+            "type": "bit-share",
+            "object_id": this_bit.id,
+            "action":f"yb_startShare({this_bit.id})",
+        }
+
+
+        menu_name = "share-bit"
+
+
+        option_set = [
+            repost_button,
+            share_button
+        ]
+
+        context = {
+            "menu_name":menu_name,
+            "bit":this_bit,
+            "option_set":option_set,
+        }
+
+        return render(request, "main/options_menu.html", context)
+
+
 # class PublishMediaBit(View):
     
 #     def post(request, *args, **kwargs):

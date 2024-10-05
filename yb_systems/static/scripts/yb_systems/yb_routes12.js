@@ -34,6 +34,7 @@ const DRAWER_CONTENT = {
     "profile-button-edit": "/customize/templates/profile/edit/button/",
     "bit-options": "/bits/templates/options/",
     "list-clusters": "/bits/templates/select-clusters/",
+    "share-bit": "/bits/templates/share-menu/"
 }
 
 /*
@@ -221,7 +222,7 @@ const TWO_WAY_INDEX = {
     "video-setup": {
         "template": "/video/templates/video-setup/"
     }
-    
+
     
           
 };

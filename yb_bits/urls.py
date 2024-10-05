@@ -33,5 +33,6 @@ urlpatterns = [
     path("templates/builder/monetization/", BitBuildMonetize.as_view(), name="build-bit-monetization"),
     path("templates/builder/customize/", BitBuildCustomize.as_view(), name="build-bit-customize"),
     path("templates/builder/thumbnail/", BitThumbnailSetup.as_view(), name="build-bit-customize"),
+    path("templates/share-menu/<int:id>/", ShareMenuTemplate.as_view(), name="share-menu-template")
     
 ]

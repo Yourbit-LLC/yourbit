@@ -1300,7 +1300,21 @@ function yb_hidePopoutCard() {
 
 function yb_viewBit(bit_id, comment_id = null) {
     
-    yb_navigateTo("content-container", "bit-focus", bit_id)
+    yb_navigateTo("content-container", "bit-focus", bit_id);
+}
+
+function yb_startRepost(bit_id) {
+    yb_navigateTo("2Way", "edit-bit", bit_id);
+
+}
+
+function yb_startShare(bit_id) {
+    let url = "https://yourbit.me/bits/view/" + bit_id + "/";
+    data = {
+        "url" : url,
+        "title" : "Check out this bit on Yourbit!",
+    };
+    navigator.share(data);
 }
 
 //Close the card container
