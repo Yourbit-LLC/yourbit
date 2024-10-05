@@ -14,7 +14,7 @@
 </div>
 
 <form class="yb-fillWidth yb-vScroll yb-pText yb-margin-T10 align-center" id="account-settings-form" method="POST" action="{% url 'settings_account' %}" style="height: calc(100% - 200px); border-radius: 15px; padding-bottom: 150px;">
-
+    {% csrf_token %}
     <section class="setting-sub-container">
         <div id="orbit-visibilty" class="yb-field-split top yb-bg-autoGray yb-autoText yb-pText">
             <p class="field-cover-label align-left" style="grid-column: 1;">Who can see this orbit?</p>
@@ -74,7 +74,7 @@
             </div>
     </section>
     
-    <button class="yb-button-wide bg-autoGray font-gray yb-button-halfWidth squared yb-form-save"  style="margin-top: 20px;">Continue</button>
+    <button type="button" class="yb-button-wide bg-autoGray font-gray yb-button-halfWidth squared yb-form-save"  style="margin-top: 20px;">Continue</button>
 </form>
 
 
@@ -88,14 +88,25 @@
             var form = $('#setup-orbit-form');
             var url = form.attr('action');
             var data = form.serialize();
+            let csrf_token = getCSRF();
+
+
             tw_showLoading();
-            $.post(url, data, function(response){
-                if(response.success){
-                    let orbit = response.orbit;
-                    showNotification(expandNotification, 'Orbit setup');
-                    yb_navigateTo('core', 'customize-orbit', orbit.id);
-                } else {
-                    showNotification(expandNotification, 'Error setting up orbit');
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: data,
+                headers: {
+                    'X-CSRFToken': csrf_token // Include CSRF token in the headers
+                },
+                success: function(response) {
+                    if (response.success) {
+                        let orbit = response.orbit;
+                        showNotification(expandNotification, 'Orbit setup');
+                        yb_navigateTo('core', 'customize-orbit', orbit.id);
+                    } else {
+                        showNotification(expandNotification, 'Error setting up orbit');
+                    }
                 }
             });
         }

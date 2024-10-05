@@ -43,20 +43,26 @@ def search(request):
             
     #Return count of bit results
     bit_result_count = len(bit_results)
+    if "us" in search_filter:
+        #Filter for user results
+        user_results = []
+        profile_objects = Profile.objects.filter(username__icontains = query)
+        for result in profile_objects:
+            if result not in user_results:
+                user_results.append(result)
 
-    #Filter for user results
-    user_results = []
-    username_filter = User.objects.filter(username__icontains = query)
-    for result in username_filter:
-        this_profile = Profile.objects.get(user=result)
-        if this_profile not in user_results:
-            user_results.append(this_profile)
+        user_profile_filter = Profile.objects.filter(display_name__icontains = query)
+        for result in user_profile_filter:
+            if result not in user_results:
+                user_results.append(result)
 
-    user_profile_filter = Profile.objects.filter(display_name__icontains = query)
-    for result in user_profile_filter:
-        if result not in user_results:
-            user_results.append(result)
+    if "or" in search_filter:
+        orbit_results = []
+        for result in orbit_results:
+            if result not in orbit_results:
+                orbit_results.append(result)
 
+        # serialized_orbits = OrbitResultSerializer(orbit_results, many=True).data
 
     #Return count of user results
     user_result_count = len(user_results)

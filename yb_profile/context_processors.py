@@ -77,6 +77,10 @@ def Customization(request):
         
         custom_ui = CustomUI.objects.get(theme=theme)
 
+        user_session = UserSession.objects.get(user = request.user)
+        user_context = user_session.current_context
+
+
         #Filter orbits by profile contains user profile
         orbits = profile.managed_orbits.all()
 
@@ -96,6 +100,7 @@ def Customization(request):
             'wallpaper_enabled': wallpaper_enabled,
             'user_custom_ui': custom_ui,
             'user_orbits': orbits,
+            'user_context':user_context
         }
 
         bit_colors_on = custom.bit_colors_on
