@@ -72,7 +72,13 @@ def bit_builder_share_view(request, id, *args, **kwargs):
     print("bit_builder_view")
     return render(request, "yb_bits/yb_bitBuilder.html", {"bit_form":bit_form, "build_mode":"share"})
 
-    
+def view_bit_landing(request, id, *args, **kwargs):
+    this_bit = Bit.objects.get(pk=id)
+    context = {
+        "bit": this_bit
+    }
+
+    return render(request, "main/player_splash.html", context)
 
 
 class ShareMenuTemplate(View):

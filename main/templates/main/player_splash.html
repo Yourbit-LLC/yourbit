@@ -1,0 +1,19 @@
+<html>
+<head>
+    <meta property="og:title" content="{{bit.title}}" />
+    <meta property="og:type" content="video.movie" />
+    <meta property="og:url" content="https://yourbit.me/bits/view/{{bit.id}}/" />
+    <meta property="og:image" content="{{bit.video_upload.thumbnail.medium_thumbnail_ext}}" />
+    <meta property="og:video" content="{{bit.video_upload.ext_url}}" />
+</head>
+<body>
+    <h1 style="position: relative; margin: auto;">Redirecting to content...</h3>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", (event) => {
+        setTimeout(function() {
+            window.location.href = "/bits/templates/view/{{bit.id}}/"
+        }, 1000)
+      });
+</script>
+</html>

@@ -13,7 +13,7 @@ urlpatterns = [
     path("remove-from-cluster/", remove_from_cluster, name="remove-from-cluster"),
     path("edit-bit/<int:pk>/", edit_bit_view, name="edit-bit"),
     path("set-user-bitstreams/", set_user_bitstreams, name="set-user-bitstreams"),
-    path("view/<int:id>/", view_bit, name="bit-view"),
+    path("view/<int:id>/", view_bit_landing, name="bit-view"),
     
 
     #URL for views
@@ -34,6 +34,6 @@ urlpatterns = [
     path("templates/builder/monetization/", BitBuildMonetize.as_view(), name="build-bit-monetization"),
     path("templates/builder/customize/", BitBuildCustomize.as_view(), name="build-bit-customize"),
     path("templates/builder/thumbnail/", BitThumbnailSetup.as_view(), name="build-bit-customize"),
-    path("templates/share-menu/<int:id>/", ShareMenuTemplate.as_view(), name="share-menu-template")
-    
+    path("templates/share-menu/<int:id>/", ShareMenuTemplate.as_view(), name="share-menu-template"),
+    path("templates/view/<int:id>/", view_bit, name="bit-view"),
 ]
