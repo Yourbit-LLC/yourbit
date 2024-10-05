@@ -162,7 +162,9 @@ class OrbitSetup(View):
         return render(request, "yb_profile/orbit_setup.html")
     
     def post(self, request, *args, **kwargs):
-    
+        
+        this_profile = request.user.profile
+
         orbit_name = request.POST.get("name")
         orbit_type = request.POST.get("type")
 
@@ -172,6 +174,8 @@ class OrbitSetup(View):
         new_orbit = Orbit(profile = request.user.profile, name = orbit_name, type=orbit_type, custom = custom_ui)
         new_orbit.save()
 
+        this_profile.managed_orbits.add(new_orbit)
+        this_profile.save()
       
         #Initialize User Settings Modules
         return JsonResponse({"success": True, "orbit": new_orbit})
