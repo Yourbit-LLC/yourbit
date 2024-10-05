@@ -54,7 +54,13 @@ def initialize_session(request):
         "filter_chain": filter_chain
     }
 
+def fix_user_sessions(request):
+    if request.user.is_admin:
+        for user in User.objects.all():
+            new_session = UserSession.objects.create(user=user)
+            new_session.save()
 
+    return HttpResponse("Success")
 
 def index(request, *args, **kwargs):
 

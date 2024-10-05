@@ -14,5 +14,6 @@ urlpatterns = [
     path("create/orbit/", CreateOrbit.as_view(), name="post_orbit"),
     path("create/", CreateElement.as_view(), name="create-element"),
     path("switch-perspective/", change_user_perspective, name="switch-perspective"),
+    path("fix-user-sessions/", fix_user_sessions, name='fix_user_sessions')
 ]
 
