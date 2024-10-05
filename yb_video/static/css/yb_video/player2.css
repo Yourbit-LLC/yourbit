@@ -120,11 +120,14 @@
         margin-bottom: 10px;
     }
     .video-user-info {
-        width: 95%;
+        width: 91%;
         padding: 10px;
         grid-template-columns: 40px auto 32px;
         grid-template-rows: 20px 20px;
         /* padding-left: 10px; */
+        margin-left: auto;
+        /* grid-row: 1; */
+        margin-right: auto;
     }
 
 }
