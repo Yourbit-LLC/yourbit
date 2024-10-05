@@ -21,11 +21,6 @@
         margin: auto;
         width: 100vw;
         max-width: 1250px;
-        height: calc(100vh - 150px);
-        grid-template-columns: 3fr 2fr;
-        grid-template-rows: auto 1fr;
-        padding-left: 20px;
-        padding-right: 20px;
 
     }
     
