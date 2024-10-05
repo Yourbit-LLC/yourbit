@@ -1,0 +1,57 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/yb_video/player.css' %}">
+<div class="yb-player-grid">
+    <div id="yb-player" class="yb-player shadow">
+        {% if bit.storage_type == "yb" %}
+        <div id="video-container-{{bit.id}}" class="attached-video-container">
+            <video id="video-{{bit.id}}" class="attached-video" controls="true" playsinline="true" data-id="{{bit.id}}" src="{{bit.video_upload.video.url}}" style="max-width: 100%; max-height:100%; margin-left: auto; margin-right: auto; display: block;">
+
+            </video>
+        </div>
+        {% else %}
+            <mux-player
+                playback-id="{{bit.video_upload.ext_id}}"
+                metadata-video-title="{{bit.title}}"
+                metadata-viewer-user-id="{{bit.username}}"
+                accent-color="{{bit.custom.primary_color}}"
+            ></mux-player>
+        {% endif %}
+    </div>
+
+    <section class="yb-player-info yb-autoText">
+        <h3 style="margin-bottom: 10px; padding-left: 5px; grid-row: 1;">{{bit.title}}</h3>
+        <div class="video-user-info">
+            <img class="video-pfp" style="object-fit:fill; border-radius: 50%; width: 100%;" src="{% if storage_type == "yb"%}{{bit.profile.custom.profile_image.small_thumbnail.url}}{% else %}{{bit.profile.custom.profile_image.small_thumbnail_ext}}{%endif%}">
+            <p style="font-size: 14px; padding-left: 5px;"><b>{{bit.profile.display_name}}</b></p>
+            <p style="font-size: 10px; grid-column: 2; padding-left: 5px;">@{{bit.profile.username}}</p>
+            <div style="grid-column: 3; grid-row-start: 1; grid-row-end: 2; height: 32px;" class="yb-center-margin tb">
+            <svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#e8eaed"><path d="M720-400v-120H600v-80h120v-120h80v120h120v80H800v120h-80Zm-360-80q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM40-160v-112q0-34 17.5-62.5T104-378q62-31 126-46.5T360-440q66 0 130 15.5T616-378q29 15 46.5 43.5T680-272v112H40Zm80-80h480v-32q0-11-5.5-20T580-306q-54-27-109-40.5T360-360q-56 0-111 13.5T140-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T440-640q0-33-23.5-56.5T360-720q-33 0-56.5 23.5T280-640q0 33 23.5 56.5T360-560Zm0-80Zm0 400Z"/></svg>
+            </div>
+        </div>
+        
+        <div class="yb-player-actions">
+            {% include 'yb_bits/bit_interactions.html' %}
+        </div>
+
+    </section>
+
+    <section class="yb-player-comments">
+        <header>
+            <h3 class="yb-autoText" style="margin-bottom: 10px; margin-top: 5px; padding-left: 10px;">Comments</h3>
+        </header>
+        <article class="video-panel-content-container">
+        </article>
+        <div id="field-write-comment-{{bit.id}}" class="yb-container-commentField">
+            <input id="field-write-comment-{{bit.id}}" class="yb-field-commentField field-border yb-autoText" placeholder="Write Comment">
+            <button id="button-submit-comment-{{bit.id}}" class="yb-send-comment" name="send_comment" data-catid="{{bit.id}}">
+                <svg style="display: block; top: 50%; left: 50%; transform: translate(-50%, -50%); position: absolute;" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                    <path style="fill: white;" d="M6 19.05 7.975 18.25Q7.725 17.525 7.513 16.775Q7.3 16.025 7.175 15.275L6 16.075Q6 16.075 6 16.075Q6 16.075 6 16.075ZM10 18H14Q14.45 17 14.725 15.562Q15 14.125 15 12.625Q15 10.15 14.175 7.937Q13.35 5.725 12 4.525Q10.65 5.725 9.825 7.937Q9 10.15 9 12.625Q9 14.125 9.275 15.562Q9.55 17 10 18ZM12 13Q11.175 13 10.588 12.412Q10 11.825 10 11Q10 10.175 10.588 9.587Q11.175 9 12 9Q12.825 9 13.413 9.587Q14 10.175 14 11Q14 11.825 13.413 12.412Q12.825 13 12 13ZM18 19.05V16.075Q18 16.075 18 16.075Q18 16.075 18 16.075L16.825 15.275Q16.7 16.025 16.488 16.775Q16.275 17.525 16.025 18.25ZM12 1.975Q14.475 3.775 15.738 6.55Q17 9.325 17 13Q17 13 17 13Q17 13 17 13L19.1 14.4Q19.525 14.675 19.763 15.125Q20 15.575 20 16.075V22L15.025 20H8.975L4 22V16.075Q4 15.575 4.238 15.125Q4.475 14.675 4.9 14.4L7 13Q7 13 7 13Q7 13 7 13Q7 9.325 8.262 6.55Q9.525 3.775 12 1.975Z"></path>
+                </svg>
+            </button>
+        </div>
+    </section>
+
+    <section id="yb-player-controls" class="floating-controls">
+    </section>
+
+</div>

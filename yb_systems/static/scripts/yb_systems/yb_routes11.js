@@ -20,7 +20,8 @@ const CORE_TEMPLATE_INDEX = {
     "home": "/bits/templates/bitstream/",
     "customize-main": "/customize/templates/customize/main/",
     "profile": `/profile/templates/profile/`,
-    "support-center":"/support/templates/support-center/"
+    "support-center":"/support/templates/support-center/",
+    "bit-focus": "/bits/templates/bit/focus/"
     
 };
 
@@ -478,6 +479,7 @@ function yb_navigateTo(container, template, data=null, reloadable=true) {
         }
     } else if (container.includes("content-container")) {
         CONTENT_CONTAINER.innerHTML = "";
+        console.log("launching page in content container");
 
         if (data === null) {
 

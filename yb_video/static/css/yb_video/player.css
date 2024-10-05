@@ -1,0 +1,100 @@
+.yb-player-grid {
+    display: grid;
+    position:relative;
+    margin: auto;
+    width: 100vw;
+    max-width: 1250px;
+    height: calc(100vh - 150px);
+    grid-template-columns: 3fr 2fr;
+    grid-template-rows: auto 1fr;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.yb-player {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    grid-row: 1;
+    grid-column: 1;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.yb-player-info {
+    position: relative;
+    grid-row: 2;
+    grid-column: 1;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 10px;
+    grid-template-rows: 30px 60px;
+
+}
+
+.video-user-info {
+    position: relative;
+    display: grid;
+    width: 100%;
+    background-color: rgb(50, 50, 50);
+    border-radius: 10px;
+    padding: 10px;
+    grid-template-columns: 40px auto 32px;
+    grid-template-rows: 20px 20px;
+    padding-left: 10px;
+    grid-column: 1;
+    height: 40px;
+}
+
+.yb-player-actions {
+    position: relative;
+    grid-column: 2;
+    /* padding: 10px; */
+    background-color: rgb(25, 25, 25);
+    height: 65px;
+    width: 97%;
+    margin-left: auto;
+    margin-right: 0;
+    border-radius: 10px;
+}
+
+.video-pfp {
+    position: relative;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column: 1;
+
+}
+
+#content-container {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+.yb-container-bitFeedback {
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    background-color: transparent !important;
+    width: 100% !important;
+}
+
+.yb-player-comments {
+    position: relative;
+    background-color: rgb(35, 35, 35);
+    grid-column: 2;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    height: 98%;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.video-panel-content-container {
+    width: 100%;
+    height: calc(100% - 90px);
+    background-color: rgba(20, 20, 20);
+    margin: auto;
+    border-radius: 15px;
+}

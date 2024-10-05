@@ -19,6 +19,40 @@ def edit_bit_view(request, pk):
 def bitstream_view(request):
     return render(request, "yb_bits/yb_bitStream.html")
 
+def view_bit(request, id, *args, **kwargs):
+    from main.views import initialize_session
+                    
+    if request.user.is_authenticated:
+        init_params = initialize_session(request)
+        
+        return render(
+            request, 
+            "main/index.html",
+            {
+                'first_login': request.user.first_login,
+                'location': "bit-view",
+                'space': init_params['current_space'],
+                'filter': init_params['filter_chain'],
+                'sort': init_params['sort_by'],   
+                'start_function': f"yb_navigateTo('content-container', 'bit-focus', {id})",    
+            },
+
+        )
+    else:
+        from yb_accounts.forms import RegistrationForm, LoginForm
+        registration_form = RegistrationForm()
+        login_form = LoginForm()
+        return render(
+            request,
+            "registration/login.html",
+            {
+                'state': 'home',
+                'registration_form': registration_form,
+                'login_form': login_form,
+            }
+        )       
+
+
 def set_user_bitstreams(request, *args, **kwargs):
     for user in User.objects.all():
         fails = 0
@@ -323,6 +357,7 @@ class BitBuildCustomize(View):
         return render(request, "yb_bits/bit_customize.html")
     
 class BitThumbnailSetup(View):
+
+    def get(self, request):
+        return render(request, "yb_bits/bit_thumbnail.html")
     
-        def get(self, request):
-            return render(request, "yb_bits/bit_thumbnail.html")

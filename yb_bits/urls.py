@@ -13,6 +13,7 @@ urlpatterns = [
     path("remove-from-cluster/", remove_from_cluster, name="remove-from-cluster"),
     path("edit-bit/<int:pk>/", edit_bit_view, name="edit-bit"),
     path("set-user-bitstreams/", set_user_bitstreams, name="set-user-bitstreams"),
+    path("view/<int:id>/", view_bit, name="bit-view"),
     
 
     #URL for views

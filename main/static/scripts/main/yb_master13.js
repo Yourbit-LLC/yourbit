@@ -1300,7 +1300,7 @@ function yb_hidePopoutCard() {
 
 function yb_viewBit(bit_id, comment_id = null) {
     
-    yb_openFocusContainer("bit", bit_id);
+    yb_navigateTo("content-container", "bit-focus", bit_id)
 }
 
 //Close the card container
