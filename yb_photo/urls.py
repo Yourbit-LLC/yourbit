@@ -13,4 +13,5 @@ urlpatterns = [
     path('image-upload-test/', test_upload, name='image-upload-test'),
     path('upload/', upload_image, name='upload_image'),
     path("templates/cropper/<str:crop_type>/", cropper_view, name="cropper_template"),
+    path("reset-images-to-yb/", reset_images_to_yb, name="reset_images_to_yb")
 ]

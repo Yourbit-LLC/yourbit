@@ -26,7 +26,11 @@ def cropper_view(request, crop_type, *args, **kwargs):
     return render(request, "image_cropper.html", {"type": crop_type})
 
     
-    
+def reset_images_to_yb(request):
+    if request.user.is_admin:
+        for photo in Photo.objects.all():
+            photo.storage_type = "yb"
+            photo.save()
 def upload_image(request, *args, **kwargs):
     from yb_customize.models import CustomCore
     from yb_photo.utility import upload_image_cf
