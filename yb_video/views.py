@@ -208,7 +208,7 @@ def ready_upload(request):
         playback_id = data["data"]["playback_ids"][0]["id"]
         video_url = f"https://stream.mux.com/{playback_id}.m3u8"
 
-        thumbnail_url = f"https://image.mux.com/{playback_id}/thumbnail.png?width=214&height=121&time=1"
+        thumbnail_url = f"https://image.mux.com/{playback_id}/thumbnail.png?width=960&height=540&time=1"
 
         print(f"Playback ID: {playback_id}")
         print(f"Video URL: {video_url}")

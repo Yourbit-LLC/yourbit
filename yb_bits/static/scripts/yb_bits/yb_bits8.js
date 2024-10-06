@@ -197,26 +197,39 @@ function yb_addMedia(type, bit) {
         let bit_video = bit.video_upload;
         let attached_video_container = yb_createElement("div", "attached-video-container", `video-container-${bit.id}`);
         let video_player;
-
-        if (bit_video. storage_type == "yb"){
+        console.log(bit_video)
+        if (bit_video.storage_type == "yb"){
             video_player = yb_createElement("video", "attached-video", `video-${bit.id}`);
             video_player.setAttribute("controls", "true");
             video_player.setAttribute("playsinline", "true");
             video_player.setAttribute("data-id", bit.id);
         } else {
-            video_player = yb_createElement("mux-player", "attached-video", `video-${bit.id}`);
-            video_player.setAttribute("playback-id", bit_video.ext_id);
-            video_player.setAttribute("metadata-video-title", bit.title)
-            video_player.setAttribute("metadata-viewer-user-id", bit.display_name)
-            video_player.setAttribute("accent-color", bit.custom.primary_color)
+            // video_player = yb_createElement("mux-player", "attached-video", `video-${bit.id}`);
+            // video_player.setAttribute("playback-id", bit_video.ext_id);
+            // video_player.setAttribute("metadata-video-title", bit.title)
+            // video_player.setAttribute("metadata-viewer-user-id", bit.display_name)
+            // video_player.setAttribute("accent-color", bit.custom.primary_color)
+            video_player = yb_createElement("img", "attached-video", `thumbnail-${bit.id}`)
+            video_player.style.width = "100%";
+            video_thumbnail = bit_video.thumbnail
+            video_player.setAttribute("src", video_thumbnail.ext_url);
+            video_player.addEventListener("click", function() {
+                yb_navigateTo("content-container", "bit-focus", bit.id);
+            })
+            let play_button = yb_createElement("div", "yb-play-icon circle yb-center-transform all", `play-icon-${bit.id}`)
+            play_button.style.width = "120px";
+            play_button.style.height = "120px";
+            play_button.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+            play_button.style.zIndex = "2";
+            play_button.innerHTML = `
+                <svg class="yb-center-transform all" xmlns="http://www.w3.org/2000/svg" height="96px" viewBox="0 -960 960 960" width="96px" fill="#e8eaed"><path d="M305.87-250.09v-465.82q0-18.53 11.87-29.35 11.86-10.83 27.5-10.83 5.24 0 10.72 1.28 5.47 1.29 11.1 4.38l366.51 234.52q8.97 6.13 13.75 14.39 4.77 8.26 4.77 18.52t-4.77 18.52q-4.78 8.26-13.75 14.39L367.06-215.57q-5.63 3.09-11.12 4.09-5.49 1-10.74 1-15.68 0-27.5-10.41-11.83-10.42-11.83-29.2Z"/></svg>
+            `
+            attached_video_container.appendChild(play_button);
+            attached_video_container.addEventListener("mouseenter", function() {
+                play_button.style.backgroundColor = bit.custom.primary_color
+            })
         }
-
-        if (bit_video.storage_type != "yb"){
-            video_player.setAttribute("src", bit_video.ext_url);
-        } else {
-            video_player.setAttribute("src", bit_video.video);
-        }
-        video_player.setAttribute("style", "max-width: 100%; max-height:100%; margin-left: auto; margin-right: auto; display: block;");
+        // video_player.setAttribute("style", "max-width: 100%; max-height:100%; margin-left: auto; margin-right: auto; display: block;");
         // let video_source = yb_createElement("source", `video-source-${bit.id}`, "video-source");
         // video_source.setAttribute("src", `${bit_video}`);
         

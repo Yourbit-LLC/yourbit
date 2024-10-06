@@ -104,6 +104,12 @@
 
 }
 
+.attached-video-container:hover .play-icon {
+    background-color: white;
+    color: black;
+}
+
+
 .bit-view-count {
     text-align: right;
     grid-column: 3;

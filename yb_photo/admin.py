@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Photo, Wallpaper
+from .models import Photo, Wallpaper, VideoThumbnail
 from django.contrib.auth.admin import UserAdmin
 
 # Register your models here.
@@ -15,3 +15,4 @@ class PhotoAdmin(UserAdmin):
 
 admin.site.register(Photo)
 admin.site.register(Wallpaper)
+admin.site.register(VideoThumbnail)

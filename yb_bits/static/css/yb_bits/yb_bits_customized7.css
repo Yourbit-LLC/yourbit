@@ -68,6 +68,10 @@
 
 }
 
+.attached-video-container:hover .play-icon {
+    background-color: var(--yb-bit-primary-color);
+}
+
 .bit-view-count {
     grid-column: 3;
     text-align: right;

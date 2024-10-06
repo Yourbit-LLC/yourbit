@@ -21,3 +21,8 @@ class PhotoStickerSerializer(serializers.ModelSerializer):
     class Meta:
         model = PhotoSticker
         fields = '__all__'
+
+class VideoThumbnailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VideoThumbnail
+        fields = '__all__'
