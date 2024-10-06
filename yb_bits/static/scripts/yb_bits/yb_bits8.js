@@ -110,12 +110,18 @@ function yb_bitMenu(e){
 
 function createHeader(bit) {
 
-    const header = yb_createElement("div", "yb-header-bit", `header-bit-${bit.id}`);
+    const header = yb_createElement("div", `yb-header-bit ${bit.type}`, `header-bit-${bit.id}`);
     const profileImageContainer = yb_createElement("div", "element-accent profile-image-thumbnail tiny yb-center-margin all", `profile-image-${bit.id}`);
     let custom = bit.custom;
     let images = custom.images;
     let profile_image = images.profile_image;
-    let thumbnail = profile_image.small_thumbnail;
+    let thumbnail; 
+
+    if (profile_image.storage_type == "yb") {
+        thumbnail = profile_image.small_thumbnail;
+    } else {
+        thumbnail = profile_image.tiny_thumbnail_ext
+    }
     
     if (yb_getCustomValues("bit-colors-on") && !yb_getCustomValues("bit-colors-on")){
         profileImageContainer.style.borderColor = bit.custom.accent_color;
@@ -268,15 +274,32 @@ function yb_createBody(bit) {
 */
 
 function createTitle(bit) {
-    const title = yb_createElement("div", "yb-title-bit yb-margin-T10", `title-bit-${bit.id}`);
+    const title = yb_createElement("div", `yb-title-bit yb-margin-T10 ${bit.type}`, `title-bit-${bit.id}`);
     let custom = bit.custom;
     let title_color;
-
-    if (yb_getCustomValues("bit-colors-on") && !yb_getCustomValues("bit-colors-on")){
+    
+    if (CUSTOM_CONFIG["bit-colors-on"] == "True"){
         title_color = custom.title_color;
-        title.innerHTML = `<h2 class="yb-autoText align-center yb-titleText-bit" style="color: ${title_color};">${bit.title}</h2>`;
+        
+        if (bit.type == "video") {
+            title.innerHTML = `
+                <svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="${title_color}"><path d="m380-300 280-180-280-180v360ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+                <h2 class="yb-titleText-bit ${bit.type}" style="color: ${title_color};">${bit.title}</h2>
+                <p class="bit-view-count" style="color: ${bit.custom.text_color};">${bit.view_count} views</p>
+            `;
+        } else {
+            title.innerHTML = `<h2 class="yb-titleText-bit ${bit.type}" style="color: ${title_color};">${bit.title}</h2>`;
+        }
     } else {
-        title.innerHTML = `<h2 class="yb-autoText align-center yb-titleText-bit">${bit.title}</h2>`;
+        if (bit.type == "video") {
+            title.innerHTML = `
+                <svg class="yb_autoFill yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="m380-300 280-180-280-180v360ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+                <h2 class="yb-autoText yb-titleText-bit ${bit.type}">${bit.title}</h2>
+                <p class="bit-view-count" style="color: ${bit.custom.text_color};">${bit.view_count} views</p>
+            `;
+        } else {
+            title.innerHTML = `<h2 class="yb-autoText yb-titleText-bit ${bit.type}">${bit.title}</h2>`;
+        }
     }
     return title;
 }
@@ -507,14 +530,6 @@ function yb_buildBit(bit){
     //generate header
     new_bit.appendChild(createHeader(bit));
 
-    //Title
-    let rendered_title = createTitle(bit);
-    new_bit.appendChild(rendered_title);
-    
-    console.log("Title Color: " + title_color);
-
-
-
     //Content Attachments
     if (type === "video" || type === "photo"){
         let media = yb_addMedia(type, bit);
@@ -522,7 +537,15 @@ function yb_buildBit(bit){
         new_bit.appendChild(media); 
     }
 
+    let rendered_title = createTitle(bit);
+    new_bit.appendChild(rendered_title);
 
+    
+    console.log("Title Color: " + title_color);
+
+
+
+    if (type != "video") {
     //Body
     let rendered_body = yb_createBody(bit);
     rendered_body.style.color = text_color;
@@ -531,21 +554,22 @@ function yb_buildBit(bit){
     
 
     //Append interaction container
-    new_bit.appendChild(yb_createInteractions(bit));
+        new_bit.appendChild(yb_createInteractions(bit));
 
-    //Comment Label
-    let comment_label = yb_createElement("p", "comment-label", `comment-label-${id}`);
-    comment_label.innerHTML = "Comments";
-    comment_label.setAttribute("style", `display: none; color: ${title_color}; font-weight: bold;`)
-    new_bit.appendChild(comment_label);
+        //Comment Label
+        let comment_label = yb_createElement("p", "comment-label", `comment-label-${id}`);
+        comment_label.innerHTML = "Comments";
+        comment_label.setAttribute("style", `display: none; color: ${title_color}; font-weight: bold;`)
+        new_bit.appendChild(comment_label);
 
-    //Comment Container
-    let comment_container = yb_createElement("div", "yb-comment-container", `comment-container-${id}`);
-    new_bit.appendChild(comment_container);
+        //Comment Container
+        let comment_container = yb_createElement("div", "yb-comment-container", `comment-container-${id}`);
+        new_bit.appendChild(comment_container);
     
-
-    //Append comment field
-    new_bit.appendChild(yb_buildCommentField(bit));
+        
+        //Append comment field
+        new_bit.appendChild(yb_buildCommentField(bit));
+    }
 
     return {'element_id':element_id, 'built_bit':new_bit}
 }

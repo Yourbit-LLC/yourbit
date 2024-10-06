@@ -62,10 +62,18 @@
 
 .yb-bit-shell.videobit {
     
-    grid-template-rows: 30px auto 30px 20px fit-content 10px fit-content 50px auto auto;
+    grid-template-rows: 50px auto auto;
     text-align: center;
 
 
+}
+
+.bit-view-count {
+    grid-column: 3;
+    text-align: right;
+    padding-right: 10px;
+    font-weight: 550;
+    margin: auto;
 }
 
 .yb-bit-shell.photobit {
@@ -118,6 +126,10 @@
     padding: 0 10px;
     box-sizing: border-box;
     grid-row: 1;
+}
+
+.yb-header-bit.video {
+    grid-row: 1 !important;
 }
 
 .yb-button-bitOptions {
@@ -173,9 +185,30 @@
     transition: 0.5s;
 }
 
+.yb-title-bit.video {
+    display: grid;
+    grid-template-columns: 30px auto 80px;
+    grid-row: 3 !important;
+    text-align: left !important;
+    height: fit-content;
+    margin-top: 0px;
+    width: 100%;
+    padding-left: 10px;
+    padding-left: 10px;
+}
+
+
 .yb-titleText-bit {
     color: var(--yb-bit-title-color);
+
 }
+
+.yb-titleText-bit.video {
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+
+}
+
 
 .yb-title-bit.preview {
     grid-row: 2;
@@ -624,7 +657,7 @@
     display: block;
     margin: auto;
     width: 100%;
-    grid-row: 3;
+    grid-row: 2;
     background-color: black;
     border-radius: 10px;
     overflow: hidden;

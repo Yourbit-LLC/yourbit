@@ -98,10 +98,18 @@
 
 .yb-bit-shell.videobit {
     
-    grid-template-rows: 30px auto 30px 20px fit-content 10px fit-content 50px auto auto;
+    grid-template-rows: 50px auto auto;
     text-align: center;
 
 
+}
+
+.bit-view-count {
+    text-align: right;
+    grid-column: 3;
+    padding-right: 10px;
+    font-weight: 550;
+    margin: auto;
 }
 
 .yb-bit-shell.photobit {
@@ -155,6 +163,11 @@
     grid-row: 1;
 }
 
+.yb-header-bit.video {
+    grid-row: 3 !important;
+}
+
+
 .yb-button-bitOptions {
     text-align: center;
     width: 24px;
@@ -207,10 +220,26 @@
     text-align: center;
 }
 
+.yb-title-bit.video {
+    display: grid;
+    grid-template-columns: 30px auto 80px;
+    grid-row: 3 !important;
+    height: fit-content;
+    margin-top: 0px;
+    width: 100%;
+    text-align: left !important;
+    padding-left: 10px;
+}
+
 .yb-title-bit.preview {
     grid-row: 2;
 }
 
+.yb-titleText-bit.video {
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+
+}
 
 .yb-body-bit {
     position: relative;
@@ -649,7 +678,7 @@
     display: block;
     margin: auto;
     width: 100%;
-    grid-row: 3;
+    grid-row: 2;
     background-color: black;
     border-radius: 10px;
     

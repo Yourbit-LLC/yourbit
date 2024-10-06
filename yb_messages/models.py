@@ -25,7 +25,7 @@ class MessageCore(models.Model):
 class Conversation(models.Model):
     is_name = models.BooleanField(default = False)
     name = models.CharField(max_length=100, default = "Untitled Conversation")
-    user_members = models.ManyToManyField('yb_profile.Profile', related_name='user_members', blank=True)
+    members = models.ManyToManyField('yb_profile.Profile', related_name='user_members', blank=True)
     orbit_members = models.ManyToManyField('yb_profile.Orbit', related_name="orbit_members", blank=True)
     can_join = models.IntegerField(default=0) # 0 = no one, 1 = friends, 2 = everyone
     members_can_invite = models.BooleanField(default=False)
