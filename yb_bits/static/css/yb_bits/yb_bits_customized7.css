@@ -72,6 +72,11 @@
     background-color: var(--yb-bit-primary-color);
 }
 
+
+.yb-play-icon {
+    transition: 0.5s;
+}
+
 .bit-view-count {
     grid-column: 3;
     text-align: right;

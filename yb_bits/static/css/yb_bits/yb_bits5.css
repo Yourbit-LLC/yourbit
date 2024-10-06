@@ -109,6 +109,10 @@
     color: black;
 }
 
+.yb-play-icon {
+    transition: 0.5s;
+}
+
 
 .bit-view-count {
     text-align: right;

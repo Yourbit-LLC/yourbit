@@ -226,8 +226,18 @@ function yb_addMedia(type, bit) {
             `
             attached_video_container.appendChild(play_button);
             attached_video_container.addEventListener("mouseenter", function() {
-                play_button.style.backgroundColor = bit.custom.primary_color
-            })
+                play_button.style.backgroundColor = bit.custom.primary_color;
+                this.classList.add("yb-playerBounceDown-once");
+
+            });
+
+            attached_video_container.addEventListener("mouseleave", function() {
+                play_button.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+                this.classList.remove("yb-playerBounceDown-once");
+
+            });
+
+            
         }
         // video_player.setAttribute("style", "max-width: 100%; max-height:100%; margin-left: auto; margin-right: auto; display: block;");
         // let video_source = yb_createElement("source", `video-source-${bit.id}`, "video-source");

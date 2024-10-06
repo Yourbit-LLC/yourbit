@@ -16,6 +16,7 @@
             </div>
             {% else %}
                 <mux-player
+                    id="yb-video-player"
                     playback-id="{{bit.video_upload.ext_id}}"
                     metadata-video-title="{{bit.title}}"
                     metadata-viewer-user-id="{{bit.username}}"
@@ -81,5 +82,12 @@
 
     <section id="yb-player-controls" class="floating-controls">
     </section>
+
+    <script>
+        let video = document.getElementById("yb-video-player");
+        $(video).ready(function() {
+            video.play();
+        })
+    </script>
 
 </div>
