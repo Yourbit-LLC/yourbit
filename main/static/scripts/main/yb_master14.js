@@ -72,6 +72,8 @@ const LOGO_PATHS = document.querySelectorAll(".cls-1");
 const TIME_KEEPER = document.getElementById("time-keeper-node");
 const LAYER_DIVIDER_1 = document.getElementById("layer-divider-1");
 
+const BOTTOM_GRADIENT = document.getElementById("gradient-overlay")
+
 const FEED_PARAMS = {
     "space": yb_getSessionValues("space"),
     "page": yb_getSessionValues("page"),
@@ -113,6 +115,7 @@ function yb_showMobileHeader() {
 function yb_hideMobileNavigation() {
     if (NAV_BAR.classList.contains("hideMobile") === false){
         NAV_BAR.classList.add("hideMobile");
+        BOTTOM_GRADIENT.style.display = "none";
     }
     if (CREATE_POPOUT.classList.contains("hide") === false){
         CREATE_POPOUT.classList.add("hide");
@@ -126,6 +129,7 @@ function yb_hideMobileNavigation() {
 function yb_showMobileNavigation() {
     if (NAV_BAR.classList.contains("hideMobile")){
         NAV_BAR.classList.remove("hideMobile");
+        BOTTOM_GRADIENT.style.display = "block";
     }
     if (CREATE_POPOUT.classList.contains("hide")){
         CREATE_POPOUT.classList.remove("hide");
