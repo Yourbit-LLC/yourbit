@@ -173,14 +173,17 @@
 
 }
 
+
+
+.yb-field-commentField {
+    border-color: gray !important; 
+}
+
+
 @media (prefers-color-scheme: dark) {
 #content-container {
     background-color: rgba(0, 0, 0, 0.8) !important;
 }
-.yb-player-comments {
-    background-color: rgb(35, 35, 35);
-}
-
 .yb-player-actions {
     background-color: rgb(25, 25, 25);
 }
@@ -204,9 +207,6 @@
 @media (prefers-color-scheme: light) {
     #content-container {
         background-color: rgba(255, 255, 255, 0.8) !important;
-    }
-    .yb-player-comments {
-        background-color: rgb(200, 200, 200);
     }
     .yb-player-actions {
         background-color: rgb(200, 200, 200);
@@ -235,22 +235,62 @@
 .yb-player-comments {
     position: relative;
     
-    grid-column: 2;
-    grid-row-start: 1;
-    grid-row-end: 3;
-    height: 95%;
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 20px;
-    padding: 10px;
-    top: 1.5%;
+}
+
+@media screen and (min-width: 768px) {
+    .yb-player-comments {
+        grid-column: 2;
+        grid-row-start: 1;
+        grid-row-end: 3;
+        height: 95%;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 20px;
+        padding: 10px;
+        top: 1.5%;
+    }
+
+    .video-panel-content-container {
+        background-color: rgba(0,0,0, 0.5);
+    }
+
+    .mobile-video-comment-divider {
+        display: none;
+    }
+    @media (prefers-color-scheme: light) {
+        .yb-player-comments {
+            background-color: rgb(255, 255, 255);
+        }
+    }
+
+    @media (prefers-color-scheme: dark) {
+        .yb-player-comments {
+            background-color: rgb(35, 35, 35);
+        }
+    }
+
+}
+
+
+@media screen and (max-width: 768px) {
+    .yb-player-comments {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        height: calc(100vh - 550px);
+    }
+
+
+    
+    .mobile-video-comment-divider {
+        display: block;
+    }
 }
 
 .video-panel-content-container {
     width: 100%;
     height: calc(100% - 90px);
-    background-color: rgba(0,0,0, 0.5);
     margin: auto;
     border-radius: 15px;
 }
