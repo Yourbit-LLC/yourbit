@@ -338,11 +338,6 @@ function createTitle(bit) {
     * @returns {object} interactions - the interactions element
 */
 
-function yb_pressShare(event){
-    let this_bit = event.currentTarget;
-    let bit_id = this_bit.getAttribute("data-id")
-    yb_navigateTo("drawer", "share-bit", bit_id);
-}
 
 function yb_createInteractions(bit) {
     let bit_interactions = yb_createElement("div", `yb-container-bitFeedback`, `bit-feedback-${bit.type}`);

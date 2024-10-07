@@ -132,10 +132,17 @@ function yb_sendComment(bitId, commentBody, csrf_token) {
             console.log('Comment posted successfully:', data);
             // Update UI with the new comment
             let comment_container = document.getElementById(`comment-container-${bitId}`);
-            if (comment_container.classList.contains("open")) {
+            if (yb_getSessionValues("location") == "player"){
+            
                 yb_getComments(false, bitId);
+
             } else {
-                yb_showComments(bitId);
+                if (comment_container.classList.contains("open")) {
+                    yb_getComments(false, bitId);
+                } else {
+                    yb_showComments(bitId);
+                }
+
             }
             
             comment_count = document.getElementById(`comment-count-${bitId}`).innerHTML;
@@ -266,7 +273,6 @@ function yb_sendLike(bitId, data=null, csrf_token) {
         success: function(response) {
             //Update the feed
             console.log(response)
-            yb_getLikes(true, bitId);
         },
         error: function(response) {
             //Error

@@ -80,13 +80,32 @@
     height: 40px;
 }
 
+#video-about-header {
+    display: grid;
+    grid-template-rows: 30px 20px auto;
+    background-color: rgb(25, 25, 25);
+    border-radius: 10px;
+    width: 95.5%;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    grid-template-columns: auto 60px;
+    transition: 0.5s;
+}
+
+#video-about-header:hover {
+    filter: brightness(200%);
+    -webkit-filter: brightness(200%);
+    transition: 0.5s;
+    cursor: pointer;
+}
 
 @media screen and (min-width: 768px){
     .yb-player-info {
         display: grid;
         grid-template-columns: 1fr 2fr;
         grid-gap: 5px;
-        grid-template-rows: 25px 20px 60px;
+        grid-template-rows: 50px 60px;
 
     }
 

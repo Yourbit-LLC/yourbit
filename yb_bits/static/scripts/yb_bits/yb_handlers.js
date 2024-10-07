@@ -5,9 +5,16 @@ function getElementId(e) {
 function yb_pressSendComment(e){
     // Retrieves the ID of the current target element
     let this_id = e.currentTarget.getAttribute("data-catid");
+    let element_id;
     console.log(this_id)
+
     // Constructs the element ID using the retrieved ID
-    let element_id = `bit-${this_id}`;
+    if (yb_getSessionValues("location") == "player"){
+        element_id = `player-comments`
+    } else {
+        element_id = `bit-${this_id}`;
+    }
+
     console.log(element_id)
     // Retrieves the bit element using the constructed ID
     let this_bit = document.getElementById(element_id);
@@ -199,6 +206,12 @@ function yb_pressLike(e){
     console.log(element_id)
     let this_bit = document.getElementById(element_id);
     yb_toggleBitButton("like", this_id, this_bit);
+}
+
+function yb_pressShare(event){
+    let this_bit = event.currentTarget;
+    let bit_id = this_bit.getAttribute("data-id")
+    yb_navigateTo("drawer", "share-bit", bit_id);
 }
 
 // Function for handling the click event of the dislike button
