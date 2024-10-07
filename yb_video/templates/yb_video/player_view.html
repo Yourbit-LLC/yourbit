@@ -107,6 +107,7 @@
         }
         $(video).ready(function() {
             video.play();
+            yb_hideMobileUI();
             about_section.addEventListener("click", function(){
                 console.log("clicked")
                 let about_state = about_section.getAttribute("data-state")

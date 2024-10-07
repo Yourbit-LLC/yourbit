@@ -118,8 +118,19 @@
     text-align: right;
     grid-column: 3;
     padding-right: 10px;
-    font-weight: 550;
+    font-weight: 500;
     margin: auto;
+}
+@media screen and (max-width: 768px){
+    .ybv-preview-title {
+        font-size: 16px;
+    }
+}
+
+@media screen and (min-width: 768px){
+    .ybv-preview-title {
+        font-size: 20px;
+    }
 }
 
 .yb-bit-shell.photobit {
