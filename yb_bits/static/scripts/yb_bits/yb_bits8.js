@@ -127,8 +127,10 @@ function createHeader(bit) {
         profileImageContainer.style.borderColor = bit.custom.accent_color;
     }
     profileImageContainer.innerHTML = `<img style="object-fit:fill; border-radius: 50%; width: 100%;" src="${thumbnail}">`;
+    profileImageContainer.setAttribute("data-username", bit.user.username)
     header.appendChild(profileImageContainer);
 
+    profileImageContainer.addEventListener("click", yb_navigateToProfile)
     const userInfo = yb_createElement("p", "yb-userInfo-bit", `bit-info-${bit.id}`);
     if (yb_getCustomValues("bit-colors-on") && !yb_getCustomValues("bit-colors-on")){
         userInfo.innerHTML = `<strong class="bit-name" style="color:${bit.custom.title_color};">${bit.display_name}</strong><br> <small class="bit-username" style="color:${bit.custom.text_color};">@${bit.user.username}</small>`;    
@@ -136,6 +138,8 @@ function createHeader(bit) {
     else {
         userInfo.innerHTML = `<strong class="bit-name">${bit.display_name}</strong><br> <small class="bit-username">@${bit.user.username}</small>`;
     }
+    userInfo.setAttribute("data-username", bit.user.username);
+    userInfo.addEventListener("click", yb_navigateToProfile)
     
     header.appendChild(userInfo);
 
