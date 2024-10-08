@@ -455,6 +455,7 @@ p {
         -webkit-backdrop-filter: blur(20px);
         backdrop-filter: blur(20px);
         z-index: 10;
+        transition: 0.5s;
     }
 
     .yb-space-nav.hidden {

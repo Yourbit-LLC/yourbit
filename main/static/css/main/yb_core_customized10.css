@@ -308,6 +308,7 @@ p {
         margin: auto;
         -webkit-backdrop-filter: blur(20px);
         backdrop-filter: blur(20px);
+        transition: 0.5s;
     }
 
     .yb-space-nav.hidden {
