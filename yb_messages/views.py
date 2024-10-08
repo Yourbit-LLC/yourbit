@@ -71,7 +71,7 @@ def message_inbox(request):
                     for member in conversation.members.all():
                         this_display_name = member.display_name.split(" ")
                         
-                        if member != request.user:
+                        if member != request.user.profile:
                             if conversation.members.count() == 3:
                                 if contact_iteration == 1:
                                     display_name += this_display_name[0] + " " + this_display_name[1][0] + "." + " and "
