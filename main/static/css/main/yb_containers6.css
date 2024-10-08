@@ -450,9 +450,14 @@
 .yb-2Way-container {
     position: fixed;
     z-index: 99;
-    box-shadow: black 0px 0px 50px 0px;
     overflow-x: hidden;
 
+}
+
+@media screen and (min-width: 768px) {
+    .yb-2Way-container {
+        box-shadow: black 0px 0px 50px 0px;
+    }
 }
 
 @media screen and (max-width: 768px) {
