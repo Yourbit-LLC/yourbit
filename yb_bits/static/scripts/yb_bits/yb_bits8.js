@@ -203,6 +203,7 @@ function yb_addMedia(type, bit) {
             video_player.setAttribute("controls", "true");
             video_player.setAttribute("playsinline", "true");
             video_player.setAttribute("data-id", bit.id);
+            video_player.setAttribute("src", bit_video.video);
         } else {
             // video_player = yb_createElement("mux-player", "attached-video", `video-${bit.id}`);
             // video_player.setAttribute("playback-id", bit_video.ext_id);
