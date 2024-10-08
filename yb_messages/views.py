@@ -98,7 +98,7 @@ def message_inbox(request):
 
                 else:
                     for member in members:
-                        if member !=  request.user:
+                        if member !=  request.user.profile:
                             conversation_data[iteration]["name"] = member.display_name
                             conversation_data[iteration]["image"] = member.custom.profile_image.small_thumbnail.url
                             conversation_data[iteration]["is_group"] = False
