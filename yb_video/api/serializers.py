@@ -8,4 +8,4 @@ class VideoSerializer(serializers.ModelSerializer):
     thumbnail = VideoThumbnailSerializer(many=False, read_only = True)
     class Meta:
         model = Video
-        fields = ['id', 'video', 'ext_id', 'thumbnail', 'uploaded', 'modified', 'user']
+        fields = ['id', 'video', 'storage_type', 'ext_id', 'thumbnail', 'uploaded', 'modified', 'user']
