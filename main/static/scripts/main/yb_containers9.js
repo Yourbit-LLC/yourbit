@@ -35,7 +35,8 @@ const CARD_CONTAINER = document.getElementById("yb-card");
 
 function yb_openDrawer(template, id=null, reloadable=true) {
     if (!DRAWER.classList.contains("open")) {
-        DRAWER.classList.add("open");   
+        DRAWER.classList.add("open");
+        yb_hideMobileNavigation();
     }
     console.log(template)
     if (reloadable == false) {
@@ -68,7 +69,8 @@ function yb_openDrawer(template, id=null, reloadable=true) {
 }
 
 function yb_closeDrawer() {
-    DRAWER.classList.remove("open");    
+    DRAWER.classList.remove("open"); 
+    yb_showMobileNavigation();   
 }
 
 
