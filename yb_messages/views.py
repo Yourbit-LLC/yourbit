@@ -69,7 +69,7 @@ def message_inbox(request):
                     contact_iteration = 1
 
                     for member in conversation.members.all():
-                        this_display_name = member.profile.display_name.split(" ")
+                        this_display_name = member.display_name.split(" ")
                         
                         if member != request.user:
                             if conversation.members.count() == 3:
@@ -99,8 +99,8 @@ def message_inbox(request):
                 else:
                     for member in members:
                         if member !=  request.user:
-                            conversation_data[iteration]["name"] = member.profile.display_name
-                            conversation_data[iteration]["image"] = member.profile.custom.profile_image.small_thumbnail.url
+                            conversation_data[iteration]["name"] = member.display_name
+                            conversation_data[iteration]["image"] = member.custom.profile_image.small_thumbnail.url
                             conversation_data[iteration]["is_group"] = False
 
             iteration += 1
