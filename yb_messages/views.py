@@ -275,7 +275,7 @@ class ConversationView(View):
             else:
                 for member in members:
                     if member !=  request.user:
-                        context["conversation_name"] = member.profile.display_name
+                        context["conversation_name"] = member.display_name
         try:
             last_message = messages.last()
             last_id = last_message.id
