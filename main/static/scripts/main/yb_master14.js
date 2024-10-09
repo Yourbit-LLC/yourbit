@@ -741,9 +741,7 @@ function yb_navigateToProfile(e) {
     yb_closeSpotlight();
     yb_setSessionValues('fullscreen', 'true');
 
-    if (MAIN_LOADING_SCREEN.style.display === "block"){
-        $(MAIN_LOADING_SCREEN).fadeOut(500).animate({opacity: 0}, 500);
-    }
+    $(MAIN_LOADING_SCREEN).fadeIn(100).animate({opacity: 1}, 100);
 
     for (let i = 0; i < SIDE_CONTAINERS.length; i++){
         if (SIDE_CONTAINERS[i].classList.contains("open")){

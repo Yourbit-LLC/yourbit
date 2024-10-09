@@ -109,6 +109,9 @@
 <script>
     $(document).ready(function(){
         yb_hideMobileUI();
+        if (MAIN_LOADING_SCREEN.style.display === "block"){
+            $(MAIN_LOADING_SCREEN).fadeOut(500).animate({opacity: 0}, 500);
+        }
     })
 
     
