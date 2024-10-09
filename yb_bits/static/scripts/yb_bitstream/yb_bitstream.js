@@ -35,7 +35,7 @@ function onScrollToBottom() {
   function checkScroll() {
     console.log("scrolling...")
     var { scrollTop, scrollHeight, clientHeight } = CONTENT_CONTAINER;
-    if (scrollTop + clientHeight >= scrollHeight - 150) { // -5 is a small threshold to trigger the event a bit before reaching the bottom
+    if (scrollTop + clientHeight >= scrollHeight - 450) { // -5 is a small threshold to trigger the event a bit before reaching the bottom
         console.log("scroll to bottom detected")
         onScrollToBottom();
         CONTENT_CONTAINER.removeEventListener("scroll", checkScroll);
