@@ -208,6 +208,7 @@ function yb_addMedia(type, bit) {
             video_player.setAttribute("playsinline", "true");
             video_player.setAttribute("data-id", bit.id);
             video_player.setAttribute("src", bit_video.video);
+            video_player.style.height = "100%";
         } else {
             // video_player = yb_createElement("mux-player", "attached-video", `video-${bit.id}`);
             // video_player.setAttribute("playback-id", bit_video.ext_id);
@@ -215,7 +216,7 @@ function yb_addMedia(type, bit) {
             // video_player.setAttribute("metadata-viewer-user-id", bit.display_name)
             // video_player.setAttribute("accent-color", bit.custom.primary_color)
             video_player = yb_createElement("img", "attached-video", `thumbnail-${bit.id}`)
-            video_player.style.width = "100%";
+            video_player.style.height = "100%";
             video_thumbnail = bit_video.thumbnail
             video_player.setAttribute("src", video_thumbnail.ext_url);
             video_player.addEventListener("click", function() {

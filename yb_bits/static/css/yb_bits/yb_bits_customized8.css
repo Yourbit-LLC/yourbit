@@ -671,6 +671,7 @@
     border-radius: 10px;
     overflow: hidden;
     border: 2px solid black;
+    aspect-ratio: 16 / 9;
 
 }
 

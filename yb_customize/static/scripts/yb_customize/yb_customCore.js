@@ -94,7 +94,7 @@ const DEFAULT_STYLESHEET_INDEX = {
     "yb-stylesheet-modifier": "/static/css/main/yb_modifiers3.css",
     "yb-stylesheet-button": "/static/css/main/yb_buttons6.css",
     "yb-stylesheet-container": "/static/css/main/yb_containers6.css",
-    "yb-stylesheet-bit": "/static/css/yb_bits/yb_bits5.css",
+    "yb-stylesheet-bit": "/static/css/yb_bits/yb_bits6.css",
 }
 
 const MODDED_STYLESHEET_INDEX = {
@@ -102,7 +102,7 @@ const MODDED_STYLESHEET_INDEX = {
     "yb-stylesheet-modifier": "/static/css/main/yb_modifiers_customized4.css",
     "yb-stylesheet-button": "/static/css/main/yb_buttons_customized9.css",
     "yb-stylesheet-container": "/static/css/main/yb_containers_customized1.css",
-    "yb-stylesheet-bit": "/static/css/yb_bits/yb_bits_customized7.css",
+    "yb-stylesheet-bit": "/static/css/yb_bits/yb_bits_customized8.css",
 }
 
 //Legacy custom index **MARKED FOR REMOVAL**

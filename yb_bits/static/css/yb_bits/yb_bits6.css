@@ -702,7 +702,7 @@
     grid-row: 2;
     background-color: black;
     border-radius: 10px;
-    
+    aspect-ratio: 16 / 9;
     overflow: hidden;
     border: 2px solid black;
 
