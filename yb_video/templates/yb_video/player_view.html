@@ -143,8 +143,8 @@
           
             // Listener for when the video's metadata is loaded
             const video_rect = element.getBoundingClientRect();
-            const width = rect.width;
-            const height = rect.height;
+            const width = video_rect.width;
+            const height = video_rect.height;
         
             // Calculate aspect ratio
             const aspectRatio = width / height;
