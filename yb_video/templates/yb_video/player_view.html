@@ -97,6 +97,7 @@
     <script>
         try {
             var video = document.getElementById("yb-video-player");
+            var videoContainer = document.getElementById("yb-player");
             var about_section = document.getElementById("video-about-header");
             var description = document.getElementById("yb-player-description");
             var send_comment = document.querySelector(".yb-send-comment");
@@ -138,22 +139,20 @@
 
             send_comment.addEventListener("click", yb_pressSendComment);
 
-            const videoElement = document.getElementById('mux-player');
+            const videoElement = document.querySelector('video');
           
             // Listener for when the video's metadata is loaded
-            videoElement.addEventListener('loadedmetadata', () => {
-              const videoWidth = videoElement.videoWidth;
-              const videoHeight = videoElement.videoHeight;
-          
-              // Calculate aspect ratio
-              const aspectRatio = videoWidth / videoHeight;
-          
-              console.log(`Video resolution: ${videoWidth}x${videoHeight}`);
-              console.log(`Aspect Ratio: ${aspectRatio}`);
-          
-              // Set aspect-ratio style of the #yb-player element
-              video.style.aspectRatio = `${videoWidth} / ${videoHeight}`;
-            });
+            const videoWidth = videoElement.videoWidth;
+            const videoHeight = videoElement.videoHeight;
+        
+            // Calculate aspect ratio
+            const aspectRatio = videoWidth / videoHeight;
+        
+            console.log(`Video resolution: ${videoWidth}x${videoHeight}`);
+            console.log(`Aspect Ratio: ${aspectRatio}`);
+        
+            // Set aspect-ratio style of the #yb-player element
+            video.style.aspectRatio = `${videoWidth} / ${videoHeight}`;
 
 
 
