@@ -43,7 +43,7 @@ class NotificationCoreViewSet(viewsets.ModelViewSet):
     serializer_class = NotificationCoreSerializer
 
     def get_queryset(self):
-        profile = Profile.objects(username = self.request.user.active_profile)
+        profile = Profile.objects.get(username = self.request.user.active_profile)
         return self.queryset.filter(profile=profile)
     
     #Get unseen notification count
