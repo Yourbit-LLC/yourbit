@@ -195,8 +195,11 @@ class CreateCluster(View):
     
         cluster_name = request.POST.get("name")
         cluster_type = request.POST.get("type")
+        active_profile = request.POST.get("active_profile")
 
-        new_cluster = Cluster(profile = request.user.profile, name = cluster_name, type=cluster_type)
+        this_profile = Profile.objects.get(username=active_profile)
+
+        new_cluster = Cluster(profile = this_profile, name = cluster_name, type=cluster_type)
         new_cluster.save()
 
         serialized_cluster = ClusterSerializer(new_cluster, many=False)

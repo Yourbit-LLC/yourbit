@@ -138,6 +138,23 @@
 
             send_comment.addEventListener("click", yb_pressSendComment);
 
+            const videoElement = document.getElementById('mux-player');
+          
+            // Listener for when the video's metadata is loaded
+            videoElement.addEventListener('loadedmetadata', () => {
+              const videoWidth = videoElement.videoWidth;
+              const videoHeight = videoElement.videoHeight;
+          
+              // Calculate aspect ratio
+              const aspectRatio = videoWidth / videoHeight;
+          
+              console.log(`Video resolution: ${videoWidth}x${videoHeight}`);
+              console.log(`Aspect Ratio: ${aspectRatio}`);
+          
+              // Set aspect-ratio style of the #yb-player element
+              video.style.aspectRatio = `${videoWidth} / ${videoHeight}`;
+            });
+
 
 
         })

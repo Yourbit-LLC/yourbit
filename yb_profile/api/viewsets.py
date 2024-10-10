@@ -39,6 +39,7 @@ class ProfileViewset(viewsets.ModelViewSet):
     @action(detail=True, methods=['post'])
     def follow(self, request, pk=None):
         """Endpoint to follow a user."""
+        profile = Profile.objects.get(username=self.request.user.active_profile)
         try:
             user_to_follow = self.get_object()
 
@@ -49,10 +50,10 @@ class ProfileViewset(viewsets.ModelViewSet):
                 return Response(status=status.HTTP_401_UNAUTHORIZED)
             
             else:
-                if user_to_follow in request.user.profile.follows.all():
+                if user_to_follow in profile.follows.all():
                     return Response("Already Following User", status=status.HTTP_400_BAD_REQUEST)
                 else:
-                    request.user.profile.follow(user_to_follow)
+                    profile.follow(user_to_follow)
                     return Response(status=status.HTTP_204_NO_CONTENT)
         
         except ObjectDoesNotExist:
@@ -61,6 +62,7 @@ class ProfileViewset(viewsets.ModelViewSet):
     @action(detail=True, methods=['post'])
     def unfollow(self, request, pk=None):
         """Endpoint to unfollow a user."""
+        profile = Profile.objects.get(username = self.request.user.active_profile)
         try:
             user_to_unfollow = self.get_object()
 
@@ -72,11 +74,11 @@ class ProfileViewset(viewsets.ModelViewSet):
             
             else:
                 
-                if user_to_unfollow not in request.user.profile.follows.all():
+                if user_to_unfollow not in profile.follows.all():
                     return Response("Not Following User", status=status.HTTP_400_BAD_REQUEST)
                 
                 else:        
-                    request.user.profile.unfollow(user_to_unfollow)
+                    profile.unfollow(user_to_unfollow)
                     return Response(status=status.HTTP_204_NO_CONTENT)
                 
         except ObjectDoesNotExist:
@@ -92,84 +94,6 @@ class ProfileViewset(viewsets.ModelViewSet):
 
 
 
-#Orbits Viewset
-
-
-class OrbitViewset(viewsets.ModelViewSet):
-    queryset = Orbit.objects.all()
-    serializer_class = OrbitResultSerializer
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['handle', 'display_name']
-
-    def retrieve(self, request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = OrbitResultSerializer(instance)
-        return Response(serializer.data)
-    
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        username = self.request.query_params.get('username')
-        if username:
-            queryset = queryset.filter(handle=username)
-        return queryset
-    
-    @action(detail=True, methods=['post'])
-    def follow(self, request, pk=None):
-        """Endpoint to follow a user."""
-
-        #Try and get object by ID
-        try:
-            user_to_follow = self.get_object()
-
-        #If object does not exist, return 404
-        except ObjectDoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
-        
-        #If user is trying to follow themselves, return 400
-        if user_to_follow == request.user:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
-        
-        #If user is trying to follow a private account, return 401
-        elif user_to_follow.Orbit.is_private:
-            return Response(status=status.HTTP_401_UNAUTHORIZED)
-        
-        else:
-            #If user is already following the account, return 400
-            if user_to_follow in request.user.Profile.follows.all():
-                return Response("Already Following User", status=status.HTTP_400_BAD_REQUEST)
-            
-            #If user is not already following the account, follow the account
-            else:
-                request.user.Profile.follow(user_to_follow)
-                return Response(status=status.HTTP_204_NO_CONTENT)
-        
-    @action(detail=True, methods=['post'])
-    def unfollow(self, request, pk=None):
-        """Endpoint to unfollow a user."""
-        
-        try:
-            user_to_unfollow = self.get_object()
-
-        except ObjectDoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
-
-        if user_to_unfollow == request.user:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
-        
-        elif user_to_unfollow.Orbit.is_private:
-            return Response(status=status.HTTP_401_UNAUTHORIZED)
-        
-        else:
-            
-            if user_to_unfollow not in request.user.Profile.follows.all():
-                return Response("Not Following User", status=status.HTTP_400_BAD_REQUEST)
-            
-            else:        
-                request.user.Profile.unfollow(user_to_unfollow)
-                return Response(status=status.HTTP_204_NO_CONTENT)
-
-        
-    
 
 #Profile Information Viewset
         
@@ -271,7 +195,9 @@ class FriendRequestViewset(viewsets.ModelViewSet):
         from_user = friend_request.from_user
         to_user = friend_request.to_user
 
-        if to_user == request.user.profile:
+        user_profile = Profile.objects.get(username = request.user.active_profile)
+
+        if to_user == user_profile:
             from_user.friends.add(to_user)
             to_user.friends.add(from_user)
 

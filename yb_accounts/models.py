@@ -45,6 +45,8 @@ class Account(AbstractBaseUser):
     last_name = models.CharField(max_length=150, default = None)
     phone_number = models.CharField(max_length=15, null=True, blank=True, default = None)
     dob = models.DateField(max_length=12, default= None)
+
+    active_profile = models.CharField(max_length=150, default="self")
     
     #Timekeeper
     date_joined = models.DateTimeField(verbose_name='date-joined', auto_now_add=True)

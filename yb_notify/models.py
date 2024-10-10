@@ -32,7 +32,6 @@ class Notification(models.Model):
     title = models.CharField(max_length=100, blank=True, null=True)
     body = models.CharField(max_length=300, blank=True, null=True)
     from_user = models.ForeignKey('yb_profile.Profile', related_name='notification_from_user', on_delete=models.CASCADE, null=True) #connected to profile so users personal information cannot be retrieved
-    from_community = models.ForeignKey('yb_profile.Orbit', related_name='notification_from_community', on_delete=models.CASCADE, blank=True, null=True)
     
     #Notification Details
     custom = models.ForeignKey(CustomCore, on_delete=models.CASCADE, related_name='+', blank=True, null=True)

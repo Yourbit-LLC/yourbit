@@ -35,7 +35,7 @@
             {% if request.user.id == current_profile.user.id %}
                 data-action="edit"
             {% else %}
-                {% if current_profile in request.user.profile.following.all or profile in request.user.profile.connections.all %}
+                {% if current_profile in active_profile.following.all or profile active_profile.connections.all %}
                     data-action="manage"
                 {% else %}
                     data-action="connect"
@@ -47,7 +47,7 @@
                     <span id="connect-button-text" class="profile-interact-text">Edit</span>
                     <svg class="profile-interact-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill:{{profile.bit_background}};" d="M5 19h1.4l8.625-8.625-1.4-1.4L5 17.6ZM19.3 8.925l-4.25-4.2 1.4-1.4q.575-.575 1.413-.575.837 0 1.412.575l1.4 1.4q.575.575.6 1.388.025.812-.55 1.387ZM17.85 10.4 7.25 21H3v-4.25l10.6-10.6Zm-3.525-.725-.7-.7 1.4 1.4Z"/></svg>
                 {% else %}
-                    {% if current_profile in request.user.profile.following.all or profile in request.user.profile.connections.all %}
+                    {% if current_profile in active_profile.following.all or profile in active_profile.connections.all %}
                         <span id="connect-button-text" class="profile-interact-text">Manage</span>
                     {% else %}
                         <span id="connect-button-text" class="profile-interact-text">Connect</span>

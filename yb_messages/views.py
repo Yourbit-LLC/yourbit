@@ -8,13 +8,14 @@ from main.views import initialize_session
 from rest_framework.decorators import api_view
 from django.http import JsonResponse
 
-from yb_profile.models import Profile, Orbit
+from yb_profile.models import Profile
 
 def message_inbox(request):
     from .models import MessageCore
     user = request.user
 
-    profile = Profile.objects.get(user = user)
+    active_profile = request.user.active_profile
+    profile = Profile.objects.get(username = active_profile)
 
     try:
         message_core = MessageCore.objects.get(profile = profile) 
@@ -61,7 +62,7 @@ def message_inbox(request):
 
             if conversation.is_name == True:
                 conversation_data[iteration]["name"] = conversation.name
-                conversation_data[conversation]["image"] = user.profile.custom.profile_image.small_thumbnail
+                conversation_data[conversation]["image"] = profile.custom.profile_image.small_thumbnail
 
             else:
                 if len(conversation.members.all()) > 2:
@@ -71,7 +72,7 @@ def message_inbox(request):
                     for member in conversation.members.all():
                         this_display_name = member.display_name.split(" ")
                         
-                        if member != request.user.profile:
+                        if member != profile:
                             if conversation.members.count() == 3:
                                 if contact_iteration == 1:
                                     display_name += this_display_name[0] + " " + this_display_name[1][0] + "." + " and "
@@ -93,12 +94,12 @@ def message_inbox(request):
 
 
                     conversation_data[iteration]["name"] = display_name
-                    conversation_data[iteration]["image"] = user.profile.custom.profile_image.small_thumbnail
+                    conversation_data[iteration]["image"] = profile.custom.profile_image.small_thumbnail
                     conversation_data[iteration]["is_group"] = True
 
                 else:
                     for member in members:
-                        if member !=  request.user.profile:
+                        if member !=  profile:
                             conversation_data[iteration]["name"] = member.display_name
                             conversation_data[iteration]["image"] = member.custom.profile_image.small_thumbnail.url
                             conversation_data[iteration]["is_group"] = False
@@ -142,7 +143,7 @@ class ConversationSettings(View):
 def filter_contacts_list(request, query):
     from yb_profile.models import Profile
     user = request.user
-    profile = user.profile
+    profile = Profile.objects.get(username=user.active_profile)
 
     connections = False
 
@@ -197,18 +198,11 @@ def filter_contacts_list(request, query):
             "results": followers,
             }
         return render(request, "yb_messages/contacts_list.html", context)
-    
-    elif query == "orbits":
-        orbits = Orbit.objects.filter()
-        context = {
-            "results": orbits,
-            }
-        return render(request, "yb_messages/contacts_list.html", context)
 
 
 def new_conversation_template(request):
     user = request.user 
-    profile = user.profile
+    profile = Profile.objects.get(username=user.active_profile)
     friends = profile.friends.all()
 
     context = {}

@@ -8,7 +8,6 @@ class Photo(models.Model):
     #Model for a photo uploaded by a user
     profile = models.ForeignKey('yb_profile.Profile', related_name = "photo", on_delete=models.CASCADE, blank=True, null=True)
     is_community = models.BooleanField(default=False)
-    community_profile = models.ForeignKey('yb_profile.Orbit', related_name = "photo", on_delete=models.CASCADE, blank=True, null=True)
     
     #Define storage type for photo to identify source fields
     storage_type = models.CharField(max_length=100, default="cf") #current possible locations are: 'yb' - Yourbit, 'cf' - CloudFlare, 'ex' - External
@@ -54,7 +53,6 @@ class PhotoSticker(models.Model):
 
 class ProfileImage(models.Model):
     profile = models.ForeignKey('yb_profile.Profile', related_name = "profile_image", on_delete=models.CASCADE, blank=True, null=True)
-    orbit = models.ForeignKey("yb_profile.Orbit", related_name="orbit_image", on_delete=models.CASCADE, blank=True, null=True)
     photo = models.ForeignKey('Photo', related_name = "profile_image", on_delete=models.CASCADE, blank=True, null=True)
     time = models.DateTimeField(default=timezone.now)
 

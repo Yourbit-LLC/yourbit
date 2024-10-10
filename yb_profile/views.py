@@ -31,17 +31,7 @@ class ProfileView(View):
         return render(request, "yb_profile/yb_profile.html", context)
 
 #Page Profile
-class OrbitView(View):
-    def get(self, request, username, *args, **kwargs):
-        this_profile = Orbit.objects.get(handle = username)
-        context = {
-            "location":"profile",
-            "space":"global",
-            "sort":"chrono",
-            "current_profile":this_profile,
-        }
-        return render(request, "yb_profile/yb_profile.html", context)
-    
+  
 def people_list(request, filter, *args, **kwargs):
     from itertools import chain
     from operator import attrgetter
@@ -149,7 +139,7 @@ class OrbitListTemplate(View):
 
         this_profile = Profile.objects.get(user = request.user)
         
-        following = this_profile.orbit_follows.all()
+        following = this_profile.follows.filter(is_orbit=True)
 
         context = {
             "following":following,
@@ -163,15 +153,13 @@ class OrbitSetup(View):
     
     def post(self, request, *args, **kwargs):
         
-        this_profile = request.user.profile
+        this_profile = Profile.objects.get(username=request.user.active_profile)
 
         orbit_name = request.POST.get("name")
+        orbit_handle = request.POST.get("username")
         orbit_type = request.POST.get("type")
 
-        this_custom = CustomCore.objects.get(profile = request.user.profile)
-        custom_ui = CustomUI.objects.get(theme = this_custom.theme)
-
-        new_orbit = Orbit(profile = request.user.profile, name = orbit_name, type=orbit_type, custom = custom_ui)
+        new_orbit = Profile(user = request.user, is_orbit=True, display_name = orbit_name, username=orbit_handle, type=orbit_type)
         new_orbit.save()
 
         this_profile.managed_orbits.add(new_orbit)
@@ -440,19 +428,17 @@ class CreateOrbit(View):
        
     
     def post(self, request):
-
+        from yb_profile.api.serializers import ProfileResultSerializer
         from yb_customize.models import CustomCore, Theme
-        from yb_profile.api.serializers import OrbitResultSerializer
         orbit_name = request.POST.get("name")
+        orbit_handle = request.POST.get("username")
         orbit_type = request.POST.get("type")
 
-        new_orbit = Orbit(display_name = orbit_name, space_focus=orbit_type)
+        new_orbit = Profile(user=request.user, display_name = orbit_name, username = orbit_handle, space_focus=orbit_type)
 
 
         new_orbit.save()
 
-        new_orbit.profile.add(request.user.profile)
-        new_orbit.save()
 
         this_custom = CustomCore.objects.create(orbit = new_orbit)
         
@@ -468,7 +454,7 @@ class CreateOrbit(View):
         custom_ui = CustomUI.objects.create(theme = theme)
         custom_ui.save()
 
-        serialized_data = OrbitResultSerializer(new_orbit).data
+        serialized_data = ProfileResultSerializer(new_orbit).data
         print(serialized_data)
         
         return JsonResponse({"success": True, "orbit": serialized_data})
@@ -477,7 +463,7 @@ def follow_profile(request, *args, **kwargs):
     if request.method == "POST":
         profile_id = request.POST.get("profile_id")
         this_profile = Profile.objects.get(id = profile_id)
-        this_user = request.user.profile
+        this_user = Profile.objects.get(username=request.user.active_profile)
 
         this_user.follows.add(this_profile)
         this_profile.followers.add(this_user)
@@ -491,7 +477,7 @@ def block_profile(request, *args, **kwargs):
     if request.method == "POST":
         profile_id = request.POST.get("profile_id")
         this_profile = Profile.objects.get(id = profile_id)
-        this_user = request.user.profile
+        this_user = Profile.objects.get(username=request.user.active_profile)
 
         this_user.blocked.add(this_profile)
         
@@ -501,7 +487,7 @@ def block_profile(request, *args, **kwargs):
 
 def update_profile_info(request, *args, **kwargs):
     if request.method == "POST":
-        this_profile = Profile.objects.get(user = request.user)
+        this_profile = Profile.objects.get(username = request.user.active_profile)
         profile_info = ProfileInfo.objects.get(profile = this_profile)
 
         this_profile.bio = request.POST.get("bio")
@@ -516,7 +502,7 @@ def disconnect_view(request, *args, **kwargs):
     if request.method == "POST":
         profile_id = request.POST.get("id")
         this_profile = Profile.objects.get(id = profile_id)
-        this_user = request.user.profile
+        this_user = Profile.objects.get(username=request.user.active_profile)
 
         if this_user.is_friends_with(this_profile):
             this_user.friends.remove(this_profile)

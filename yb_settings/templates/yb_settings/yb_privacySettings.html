@@ -117,7 +117,7 @@
                 </div>
                 <div id = "field-container-display-name" class="yb-field-container" style="{% if real_name_visibility == True%} opacity: 0.5; {% endif %}">
                     <div id="display-name" class="yb-field-split middle yb-bg-autoGray yb-pText" style="position: relative;">
-                        <p class="field-cover-label align-left yb-pText" style="grid-column: 1;">Display Name: </p><input name="display_name" id='field-last-name' value="{{user.profile.display_name}}" class="yb-input-transparent right yb-autoText account-field" style="grid-column: 2;"></div>
+                        <p class="field-cover-label align-left yb-pText" style="grid-column: 1;">Display Name: </p><input name="display_name" id='field-last-name' value="{{active_profile.display_name}}" class="yb-input-transparent right yb-autoText account-field" style="grid-column: 2;"></div>
                     <input id='field-last-name' value="{{user.display_name}}" class="yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10 yb-pText" style="display:none;">
                 </div>
 

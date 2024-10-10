@@ -27,11 +27,9 @@ class MessageCoreViewSet(viewsets.ModelViewSet):
     serializer_class = MessageCoreSerializer
     permission_classes = [permissions.IsAuthenticated]
     
-    def get_queryset(self):
-        return MessageCore.objects.filter(profile=self.request.user.profile)
-    
     def perform_create(self, serializer):
-        serializer.save(profile=self.request.user.profile)
+        profile = Profile.objects.get(username=self.request.user.active_username)
+        serializer.save(profile=profile)
 
 
 class ConversationViewSet(viewsets.ModelViewSet):

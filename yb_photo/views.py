@@ -34,6 +34,7 @@ def reset_images_to_yb(request):
 def upload_image(request, *args, **kwargs):
     from yb_customize.models import CustomCore
     from yb_photo.utility import upload_image_cf
+    from yb_profile.models import Profile
 
     if request.method == 'POST':
     
@@ -47,7 +48,8 @@ def upload_image(request, *args, **kwargs):
         photo_object = upload_image_cf(request, image_type)
         
 
-        custom_core = CustomCore.objects.get(profile=request.user.profile)
+        profile_object = Profile.objects.get(username=request.user.active_profile)
+        custom_core = CustomCore.objects.get(profile=profile_object)
 
         if request.POST.get('image_type') == "desktop" or request.POST.get('image_type') == "mobile":
             custom_core.wallpaper = photo_object

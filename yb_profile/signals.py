@@ -31,8 +31,18 @@ def create_profile(sender, instance, created, **kwargs):
         user_profile = Profile(user=instance, username = instance.username, display_name = default_display_name)
         user_profile.save()
 
+        #Initialize Task Manager for user continuity
+        task_manager = TaskManager(user = instance)
+        task_manager.save()
+
+        user_session = UserSession(user=instance, current_context="self")
+        user_session.save()
+
+@receiver(post_save, sender=Profile)
+def setup_instances(sender, instance, created, **kwargs):
+    if created:
         #Initialize User Settings Modules
-        settings = MySettings(user=instance, profile=user_profile)
+        settings = MySettings(profile=instance)
         settings.save()
         feed = FeedSettings(settings=settings)
         feed.save()
@@ -42,31 +52,25 @@ def create_profile(sender, instance, created, **kwargs):
         notifications.save()
         rewards = Rewards(user=instance)
         rewards.save()
-        history = InteractionHistory(user=instance, profile=user_profile)
+        history = InteractionHistory(user=instance, profile=instance)
         history.save()
-        profile_info = ProfileInfo(profile=user_profile)
+        profile_info = ProfileInfo(profile=instance)
         profile_info.save()
 
-        message_core = MessageCore(profile = user_profile)
+        message_core = MessageCore(profile = instance)
         message_core.save()
 
-        #Initialize Task Manager for user continuity
-        task_manager = TaskManager(user = instance)
-        task_manager.save()
-
-        
-
         #Initialize Notification Core for managing user notifications
-        notification_core = NotificationCore(profile = user_profile)
+        notification_core = NotificationCore(profile = instance)
         notification_core.save()
-        user_profile.save()
+        instance.save()
 
-        bitstream = BitStream(user = instance, profile = user_profile)
+        bitstream = BitStream(user = instance, profile = instance)
         bitstream.save()
 
         #Initialize Customization Modules
         from yb_photo.utility import process_image
-        custom_core = CustomCore(profile=user_profile)
+        custom_core = CustomCore(profile=instance)
 
         try:
             default_profile_image = process_image(instance, static("images/main/default-profile-image.png"), static("images/main/default-profile-image.png"), False)
@@ -75,7 +79,7 @@ def create_profile(sender, instance, created, **kwargs):
         #Set the image and image thumbnail fields to static file for default_profile_image.png
         
         custom_core.profile_image = default_profile_image
-        default_wallpaper = Wallpaper(profile = user_profile)
+        default_wallpaper = Wallpaper(profile = instance)
         default_wallpaper.save()
         custom_core.wallpaper = default_wallpaper
         default_theme = Theme(name = "Default", author = instance)
@@ -91,10 +95,6 @@ def create_profile(sender, instance, created, **kwargs):
 
         custom_splash = CustomSplash(theme=default_theme)
         custom_splash.save()
-
-        user_session = UserSession(user=instance, current_context="self")
-        user_session.save()
-
 
 @receiver(post_save, sender=Bit)
 def update_feeds(sender, instance, created, **kwargs):

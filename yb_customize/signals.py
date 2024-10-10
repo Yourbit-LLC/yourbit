@@ -2,7 +2,7 @@
 from django.dispatch import Signal
 from django.dispatch import receiver
 from django.db.models.signals import post_save, pre_save
-from yb_profile.models import Profile, Orbit
+from yb_profile.models import Profile
 from yb_customize.models import *
 
 # Define your signals here
@@ -34,32 +34,5 @@ def create_profile(sender, instance, created, **kwargs):
         custom_colors.save()
 
         #Create custom bit object for customizations to bits
-        custom_bit = CustomBit(custom=custom)
-        custom_bit.save()
-
-
-# Define your signals here
-@receiver(post_save, sender=Orbit)
-def create_profile(sender, instance, created, **kwargs):
-    if created:
-        theme = Theme(name="", author = instance.user)
-        theme.save()
-        
-        custom = CustomCore(community_profile=instance)
-        custom.theme = theme
-        custom.save()
-        
-        custom_page = CustomPage(custom=custom)
-        custom_page.save()
-
-        custom_menu = CustomMenu(custom=custom)
-        custom_menu.save()
-
-        custom_ui = CustomUI(custom=custom)
-        custom_ui.save()
-
-        custom_colors = CustomSplash(custom=custom)
-        custom_colors.save()
-
         custom_bit = CustomBit(custom=custom)
         custom_bit.save()

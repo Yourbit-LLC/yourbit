@@ -6,6 +6,7 @@ from ..models import Notification, NotificationCore
 from .serializers import NotificationSerializer, NotificationCoreSerializer
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
+from yb_profile.models import Profile
 
 class NotificationViewSet(viewsets.ModelViewSet):
     queryset = Notification.objects.all()
@@ -42,7 +43,8 @@ class NotificationCoreViewSet(viewsets.ModelViewSet):
     serializer_class = NotificationCoreSerializer
 
     def get_queryset(self):
-        return self.queryset.filter(profile=self.request.user.profile)
+        profile = Profile.objects(username = self.request.user.active_username)
+        return self.queryset.filter(profile=profile)
     
     #Get unseen notification count
     @action(detail=False, methods=['get'])

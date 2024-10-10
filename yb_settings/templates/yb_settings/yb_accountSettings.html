@@ -46,8 +46,8 @@
         
         <div id = "field-container-display-name" class="yb-field-container" style="{% if real_name_visibility %}opacity: 0.5;{% endif %}">
             <div id="display-name" class="yb-field-split middle yb-bg-autoGray yb-pText">
-                <p class="field-cover-label align-left yb-autoText yb-pText" style="grid-column: 1;">Display Name: </p><input name="display_name" id='field-last-name' value="{{user.profile.display_name}}" class="yb-input-transparent right yb-autoText yb-pText account-field" style="grid-column: 2;"></div>
-            <input id='field-last-name' value="{{user.display_name}}" class="yb-input-singleLine yb-panel squared yb-pText" style="display:none;">
+                <p class="field-cover-label align-left yb-autoText yb-pText" style="grid-column: 1;">Display Name: </p><input name="display_name" id='field-last-name' value="{{active_profile.display_name}}" class="yb-input-transparent right yb-autoText yb-pText account-field" style="grid-column: 2;"></div>
+            <input id='field-last-name' value="{{active_profile.display_name}}" class="yb-input-singleLine yb-panel squared yb-pText" style="display:none;">
         </div>
 
         <!--Edit Username-->

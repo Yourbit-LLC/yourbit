@@ -2,7 +2,6 @@
 from django.urls import reverse
 from django.contrib.auth import authenticate, login
 from yb_settings.models import MySettings
-from yb_profile.models import Orbit
 
 # def CoreUI(request):
 #     bit_form = BitForm()
@@ -24,7 +23,6 @@ from yb_profile.models import Orbit
 def Customization(request):
     from yb_profile.models import Profile
     from yb_customize.models import CustomCore, CustomBit, CustomUI
-    from yb_profile.models import Orbit
     from main.models import UserSession
     if request.user.is_authenticated:
 
@@ -33,12 +31,11 @@ def Customization(request):
 
         if user_session.current_context == "self":
             profile = Profile.objects.get(user=request.user)
-            custom = CustomCore.objects.get(profile=profile)
 
         else:
-            profile = Orbit.objects.get(username=user_session.current_context)
-            custom = CustomCore.objects.get(orbit=profile)
+            profile = Profile.objects.get(username = user_session.current_context)
         
+        custom = CustomCore.objects.get(profile=profile)
         
 
         theme = custom.theme
@@ -81,10 +78,6 @@ def Customization(request):
         user_context = user_session.current_context
 
 
-        #Filter orbits by profile contains user profile
-        orbits = profile.managed_orbits.all()
-
-
         context = {
             'profile_image': profile_image,
             'user_profile': user_profile,
@@ -99,8 +92,7 @@ def Customization(request):
             'custom_core': custom,
             'wallpaper_enabled': wallpaper_enabled,
             'user_custom_ui': custom_ui,
-            'user_orbits': orbits,
-            'user_context':user_context
+            'active_profile':user_context
         }
 
         bit_colors_on = custom.bit_colors_on

@@ -19,24 +19,7 @@ class ProfileResultSerializer(serializers.ModelSerializer):
     def get_customcore(self, obj):
         custom_core = CustomCore.objects.get(profile=obj)
         return SlimCustomSerializer(custom_core).data
-class OrbitResultSerializer(serializers.ModelSerializer):
-    
-        customcore = serializers.SerializerMethodField()
-    
-        class Meta: 
-            model = Orbit
-            fields = ['display_name', 'id', 'customcore']
-    
-        def get_customcore(self, obj):
-            """
-            This method is called to get the value of the 'customcore' field.
-            'obj' is the Profile instance that's being serialized.
-            """
-    
-            if hasattr(obj, 'customcore'):  # Check if the Profile instance has a related CustomCore instance
-                return SlimCustomSerializer(obj.custom).data  # If it does, serialize the CustomCore instance and return the serialized data
-            return None  # If it doesn't, return None
-        
+
 class ProfileInfoSerializer(serializers.ModelSerializer):
 
     class Meta: 

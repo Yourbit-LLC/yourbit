@@ -1,10 +1,9 @@
 from django.db import models
 from yb_accounts.models import Account as User
-from yb_profile.models import Profile, Orbit
+from yb_profile.models import Profile
 
 # Create your models here.
 class MySettings(models.Model):
-    user = models.OneToOneField(User, on_delete = models.CASCADE)
     profile = models.OneToOneField(Profile, on_delete = models.CASCADE, blank=True, null=True)
 
 class PrivacySettings(models.Model):
@@ -70,8 +69,7 @@ class NotificationSettings(models.Model):
     bits_batched_notifications = models.BooleanField(default=True)
     bits_batched_notification_interval = models.IntegerField(default=1)
 
-    new_user_bits_from =  models.ManyToManyField(Profile, blank=True, related_name='custom_list')
-    new_orbit_bits_from =  models.ManyToManyField(Orbit, blank=True, related_name='custom_list_orbit')
+    new_bits_from =  models.ManyToManyField(Profile, blank=True, related_name='custom_list')
 
     bit_likes = models.BooleanField(default=True)
     bit_likes_from = models.CharField(max_length=100, default='e')

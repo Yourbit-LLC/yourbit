@@ -30,7 +30,7 @@ def send_video_to_mux(request):
     if request.user.is_authenticated:
         from yb_photo.models import VideoThumbnail
         upload_url = get_mux_url(request)
-
+        user_profile = Profile.objects.get(username=request.user.active_profile)
         new_video = Video.objects.create(
             user=request.user,
             upload_status="preparing",
@@ -40,7 +40,7 @@ def send_video_to_mux(request):
 
         new_thumbnail = VideoThumbnail.objects.create(
             storage_type="mx",
-            profile=request.user.profile,
+            profile=user_profile,
             upload_id = upload_url.data.id
         )
 

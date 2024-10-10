@@ -20,10 +20,12 @@ def addToCore(notification, profile):
 @receiver(post_save, sender=Announcement)
 def create_announcement_notification(sender, instance, created, **kwargs):
     if created:
+        
         for user in User.objects.all():
+            user_profile = Profile.objects.get(username=user.active_profile)
             notification = Notification(
                 from_user = Profile.objects.get(username = "achaney55"),
-                to_user = user.profile,
+                to_user = user_profile,
                 body = instance.body,
                 type = 7,
                 link = "/announcements/",
@@ -33,7 +35,7 @@ def create_announcement_notification(sender, instance, created, **kwargs):
 
             notification.save()
 
-            addToCore(notification, user.profile)
+            addToCore(notification, user_profile)
 
             #Send Push Notification
             payload = {
@@ -59,9 +61,10 @@ def create_announcement_notification(sender, instance, created, **kwargs):
 def create_bug_report_notification(sender, instance, created, **kwargs):
     if created:
         for user in User.objects.filter(is_admin = True):
+            user_profile = Profile.objects.get(username=user.active_profile)
             notification = Notification(
                 from_user = Profile.objects.get(username = "achaney55"),
-                to_user = user.profile,
+                to_user = user_profile,
                 body = instance.body,
                 type = 0,
                 link = "/support/",
@@ -71,7 +74,7 @@ def create_bug_report_notification(sender, instance, created, **kwargs):
 
             notification.save()
 
-            addToCore(notification, user.profile)
+            addToCore(notification, user_profile)
 
             #Send Push Notification
             payload = {
@@ -97,9 +100,10 @@ def create_bug_report_notification(sender, instance, created, **kwargs):
 def create_feature_request_notification(sender, instance, created, **kwargs):
     if created:
         for user in User.objects.filter(is_admin = True):
+            user_profile = Profile.objects.get(username=user.active_profile)
             notification = Notification(
                 from_user = Profile.objects.get(username = "achaney55"),
-                to_user = user.profile,
+                to_user = user_profile,
                 body = instance.body,
                 type = 0,
                 link = "/support/",
@@ -109,7 +113,7 @@ def create_feature_request_notification(sender, instance, created, **kwargs):
 
             notification.save()
 
-            addToCore(notification, user.profile)
+            addToCore(notification, user_profile)
 
             #Send Push Notification
             payload = {
@@ -138,24 +142,25 @@ def create_message_notification(sender, instance, created, **kwargs):
         members = conversation.members.all()
         for member in members:
             if member != instance.from_user:
+
                 notification = Notification(
-                    to_user = member.profile,
-                    from_user = instance.from_user.profile,
+                    to_user = member,
+                    from_user = instance.from_user,
                     body = instance.body[:100],
                     type = 6,
                     link = "/messages/" + str(conversation.id),
                     conversation = conversation,
-                    title = "Message from " + instance.from_user.profile.display_name[:50],
+                    title = "Message from " + instance.from_user.display_name[:50],
                     notify_class = 1
                 )
 
                 notification.save()
 
-                addToCore(notification, member.profile)
+                addToCore(notification, member)
 
                 # #Send Push Notification
                 payload = {
-                    "title": "New Message from " + instance.from_user.profile.display_name, 
+                    "title": "New Message from " + instance.from_user.display_name, 
                     "body": "They said: " + '"' + instance.body[:100] + '"', 
                     "icon": "/static/images/2023-logo-draft.png",
                     'tag': 'yourbit',
@@ -179,11 +184,12 @@ def create_bit_like_notification(sender, instance, created, **kwargs):
     if instance.user != instance.bit.profile.user:
         if created:
             bit = instance.bit
+            profile = Profile.objects.get(username = instance.user.active_profile)
             notification = Notification(
                 bit = bit,
-                from_user = instance.user.profile,
+                from_user = profile,
                 to_user = bit.profile,
-                body = instance.user.profile.display_name + " has liked your bit",
+                body = profile.display_name + " has liked your bit",
                 type = 1,
                 link = "/bits/" + str(bit.id),
                 title = "New Like",
@@ -203,7 +209,7 @@ def create_bit_like_notification(sender, instance, created, **kwargs):
                 notification_body = bit.body[:100]
 
             payload = {
-                "title": "New Like from " + instance.user.profile.display_name, 
+                "title": "New Like from " + profile.display_name, 
                 "body" : notification_body, 
                 "icon": "/static/images/2023-logo-draft.png",
                 'tag': 'yourbit',
@@ -226,11 +232,12 @@ def create_bit_comment_notification(sender, instance, created, **kwargs):
     if instance.user != instance.bit.profile.user:
         if created:
             bit = instance.bit
+            profile = Profile.objects.get(username = instance.user.active_profile)
             notification = Notification(
                 bit = bit,
                 to_user = bit.profile,
-                from_user = instance.user.profile,
-                body = instance.user.profile.display_name + " has commented on your bit",
+                from_user = profile,
+                body = profile.display_name + " has commented on your bit",
                 type = 2,
                 link = "/bits/" + str(bit.id),
                 title = "New Comment",
@@ -242,7 +249,7 @@ def create_bit_comment_notification(sender, instance, created, **kwargs):
 
             #Send Push Notification
             payload = {
-                "title": "New Comment from " + instance.user.profile.display_name, 
+                "title": "New Comment from " + profile.display_name, 
                 "body": instance.body, 
                 "icon": "/static/images/2023-logo-draft.png",
                 'tag': 'yourbit',
@@ -265,12 +272,13 @@ def create_bit_comment_notification(sender, instance, created, **kwargs):
 @receiver(post_save, sender=FriendRequest)
 def create_friend_request_notification(sender, instance, created, **kwargs):
     if created:
+
         notification = Notification(
             to_user = instance.to_user,
             from_user = instance.from_user,
-            body = instance.from_user.user.username + " has sent you a friend request",
+            body = instance.from_user.username + " has sent you a friend request",
             type = 4,
-            link = "/profile/" + str(instance.from_user.user.username),
+            link = "/profile/" + str(instance.from_user.username),
             title = "New Friend Request",
             notify_class = 0,
             friend_request = instance
@@ -283,7 +291,7 @@ def create_friend_request_notification(sender, instance, created, **kwargs):
         #Send Push Notification
         payload = {
             "title": "New Friend Request", 
-            "body": instance.from_user.user.username + " has sent you a friend request", 
+            "body": instance.from_user.username + " has sent you a friend request", 
             "icon": "/static/images/2023-logo-draft.png",
             'tag': 'yourbit',
             'actions': [
@@ -306,9 +314,9 @@ def create_friend_accept_notification(sender, instance, created, **kwargs):
         notification = Notification(
             to_user = instance.from_user,
             from_user = instance.to_user,
-            body = instance.to_user.user.username + " has accepted your friend request",
+            body = instance.to_user.username + " has accepted your friend request",
             type = 5,
-            link = "/profile/" + str(instance.to_user.user.username),
+            link = "/profile/" + str(instance.to_user.username),
             title = "Friend Request Accepted",
             notify_class = 0,
             friend_request = instance
@@ -321,7 +329,7 @@ def create_friend_accept_notification(sender, instance, created, **kwargs):
         #Send Push Notification
         payload = {
             "title": "Friend Request Accepted", 
-            "body": instance.to_user.user.username + " has accepted your friend request", 
+            "body": instance.to_user.username + " has accepted your friend request", 
             "icon": "/static/images/2023-logo-draft.png",
             'tag': 'yourbit',
             'actions': [

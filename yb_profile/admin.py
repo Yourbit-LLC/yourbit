@@ -3,5 +3,4 @@ from .models import *
 # Register your models here.
 admin.site.register(Profile)
 admin.site.register(FriendRequest)
-admin.site.register(Orbit)
 admin.site.register(ProfileInfo)

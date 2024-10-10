@@ -11,11 +11,9 @@ class MessageCore(models.Model):
     # 1 = everyone, 2 = friends, 3 = no one
     receive_from = models.IntegerField(default=1)
     
-    blocked_users = models.ManyToManyField(User, blank=True, related_name='blocked_users')
+    blocked_users = models.ManyToManyField('yb_profile.Profile', blank=True, related_name='blocked_senders')
     muted_user_conversations = models.ManyToManyField('Conversation', blank=True, related_name='muted_user_conversations')
     muted_community_conversations = models.ManyToManyField('Conversation', blank=True, related_name='muted_community_conversations')
-    allowed_communities = models.ManyToManyField('yb_profile.Orbit', blank=True, related_name='allowed_communities')
-    blocked_communities = models.ManyToManyField('yb_profile.Orbit', blank=True, related_name='blocked_communities')
     start_by_phone = models.BooleanField(default=False)
     start_by_email = models.BooleanField(default=False)
     start_by_username = models.BooleanField(default=False)
@@ -26,15 +24,12 @@ class Conversation(models.Model):
     is_name = models.BooleanField(default = False)
     name = models.CharField(max_length=100, default = "Untitled Conversation")
     members = models.ManyToManyField('yb_profile.Profile', related_name='user_members', blank=True)
-    orbit_members = models.ManyToManyField('yb_profile.Orbit', related_name="orbit_members", blank=True)
     can_join = models.IntegerField(default=0) # 0 = no one, 1 = friends, 2 = everyone
     members_can_invite = models.BooleanField(default=False)
     
     is_community = models.BooleanField(default=False)
-    
-    
+        
     from_user_color = models.CharField(max_length=100, default="#1E90FF")
-
     to_user_color = models.CharField(max_length=100, default="rgb(65, 65, 65)")
     time_modified = models.DateTimeField(default=timezone.now)
     stickers = models.ManyToManyField('ChatSticker', blank=True)
@@ -45,7 +40,7 @@ class Conversation(models.Model):
 #Message is contained in a conversation
 class Message(models.Model):
     conversation = models.ForeignKey('Conversation', related_name='conversation', on_delete=models.CASCADE, default=None)
-    from_user = models.ForeignKey(User, related_name="sender", on_delete=models.CASCADE, blank=True)
+    from_user = models.ForeignKey('yb_profile.Profile', related_name="sender", on_delete=models.CASCADE, blank=True)
     body = models.CharField(max_length = 1500, blank=True)
     videos = models.ManyToManyField('yb_video.Video', blank=True)
     images = models.ManyToManyField('yb_photo.Photo', blank=True)

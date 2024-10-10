@@ -16,7 +16,8 @@ environ.Env.read_env()
 # Create your views here.
 class CustomizeProfile(View):
     def get(self, request):
-        custom_core = CustomCore.objects.get(profile = request.user.profile)
+        profile_object = Profile.objects.get(username=request.user.active_profile)
+        custom_core = CustomCore.objects.get(profile = profile_object)
         theme = custom_core.theme
         custom_splash = CustomSplash.objects.get(theme = theme)
         
@@ -26,7 +27,8 @@ class CustomizeProfile(View):
         return render(request, "yb_customize/editable_profile_splash.html", context)
     
     def post(self, request):
-        custom_core = CustomCore.objects.get(profile = request.user.profile)
+        profile_object = Profile.objects.get(username = request.user.active_profile)
+        custom_core = CustomCore.objects.get(profile = profile_object)
         theme = custom_core.theme
         custom_splash = CustomSplash.objects.get(theme = theme)
 
@@ -50,7 +52,7 @@ class CustomizeProfile(View):
     
         
 
-from yb_profile.models import Profile, Orbit
+from yb_profile.models import Profile
 from yb_photo.models import Photo
 from yb_photo.utility import process_image, modify_image
 
@@ -76,7 +78,8 @@ class CustomizeMain(View):
         
 
 def complete_tutorial(request, type):
-    custom_core = CustomCore.objects.get(profile = request.user.profile)
+    profile_object = Profile.objects.get(user=request.user)
+    custom_core = CustomCore.objects.get(profile = profile_object)
     custom_core.splash_tutorial_complete = True
     custom_core.save()
     
@@ -91,7 +94,8 @@ class CustomizeMenu(View):
 
 class ProfileImageUpload(View):
     def get(self, request):
-        custom_core = CustomCore.objects.get(profile = request.user.profile)
+        profile_object = Profile.objects.get(username = request.user.active_profile)
+        custom_core = CustomCore.objects.get(profile = profile_object)
         theme = custom_core.theme
         custom_ui = CustomUI.objects.get(theme = theme)
         return render(request, "yb_customize/profile_image_edit.html", context = {"custom_ui": custom_ui})
@@ -102,8 +106,6 @@ class ProfileImageUpload(View):
 def update_profile_image(request):
     if request.POST.get('class') == 'profile':
         this_profile = Profile.objects.get(user=request.user)
-    elif request.POST.get('class') == 'community':
-        this_profile = Orbit.objects.get(handle=request.POST.get('handle'))
     else:
         return HttpResponse("Invalid request type")
 
@@ -142,7 +144,7 @@ class CreateTheme(View):
 
     
 def update_profile_background(request):
-    from yb_profile.models import Profile, Orbit
+    from yb_profile.models import Profile
     from yb_photo.models import Wallpaper
 
     wpid = request.POST.get('wpid')
@@ -154,10 +156,6 @@ def update_profile_background(request):
         print("updating user profile")
         this_profile = Profile.objects.get(user = request.user)
         
-    elif profile_class == 'orbit':
-        print("updating community profile")
-        this_profile = Orbit.objects.get(handle = request.POST.get('handle'))
-    
     else:
         print("Invalid Entry For Type => " + "'" + profile_class + "'")
         
@@ -214,7 +212,7 @@ def update_profile_background(request):
 
 def get_wallpaper(request, profile_class, type):
     from yb_photo.models import Wallpaper
-    from yb_profile.models import Profile, Orbit
+    from yb_profile.models import Profile
     from yb_customize.models import CustomCore
 
     this_profile = None
@@ -222,9 +220,6 @@ def get_wallpaper(request, profile_class, type):
     if profile_class == 'profile':
         this_profile = Profile.objects.get(user=request.user)
         custom_core = CustomCore.objects.get(profile=this_profile)
-    elif profile_class == 'orbit':
-        this_profile = Orbit.objects.get(handle=request.GET.get('handle'))
-        custom_core = CustomCore.objects.get(community_profile=this_profile)
     else:
         return HttpResponse("Invalid request type")
 
@@ -243,28 +238,32 @@ def get_wallpaper(request, profile_class, type):
     return FileResponse(wallpaper, content_type="image/png")
 
 def toggle_only_my_colors(request):
-    custom_core = CustomCore.objects.get(profile=request.user.profile)
+    profile_object = Profile.objects.get(username=request.user.active_profile)
+    custom_core = CustomCore.objects.get(profile=profile_object)
     custom_core.only_my_colors = not custom_core.only_my_colors
     custom_core.save()
 
     return JsonResponse({"success": "success"})
 
 def toggle_custom_ui(request):
-    custom_core = CustomCore.objects.get(profile=request.user.profile)
+    profile_object = Profile.objects.get(username=request.user.active_profile)
+    custom_core = CustomCore.objects.get(profile=profile_object)
     custom_core.ui_colors_on = not custom_core.ui_colors_on
     custom_core.save()
 
     return JsonResponse({"success": "success"})   
 
 def toggle_custom_bits(request):
-    custom_core = CustomCore.objects.get(profile=request.user.profile)
+    profile_object = Profile.objects.get(username=request.user.active_profile)
+    custom_core = CustomCore.objects.get(profile=profile_object)
     custom_core.bit_colors_on = not custom_core.bit_colors_on
     custom_core.save()
 
     return JsonResponse({"success": "success"})
 
 def toggle_wallpaper(request):
-    custom_core = CustomCore.objects.get(profile=request.user.profile)
+    profile_object = Profile.objects.get(username=request.user.active_profile)
+    custom_core = CustomCore.objects.get(profile=profile_object)
     custom_core.wallpaper_on = not custom_core.wallpaper_on
     custom_core.save()
 
@@ -272,8 +271,8 @@ def toggle_wallpaper(request):
 
 class CustomizeUI(View):
     def get(self, request):
-        profile = Profile.objects.get(user=request.user)
-        custom_core = CustomCore.objects.get(profile=profile)
+        profile_object = Profile.objects.get(username=request.user.active_profile)
+        custom_core = CustomCore.objects.get(profile=profile_object)
         theme = custom_core.theme
         custom_ui = CustomUI.objects.get(theme=theme)
         context = {
@@ -303,15 +302,16 @@ def user_custom_repair(request):
     successes = 0
 
     for user in User.objects.all():
+        user_profile = Profile.objects.get(username=user.active_profile)
         try:
-            custom_core = CustomCore.objects.get(profile=user.profile)
+            custom_core = CustomCore.objects.get(profile=user_profile)
             theme = custom_core.theme
             custom_ui = CustomUI.objects.get(theme=theme)
             successes += 1
 
         except:
             failures += 1
-            custom_core = CustomCore.objects.get(profile=user.profile)
+            custom_core = CustomCore.objects.get(profile=user_profile)
             theme = custom_core.theme
             custom_ui = CustomUI.objects.create(theme=theme)
             custom_ui.save()
@@ -323,6 +323,7 @@ def user_custom_repair_bits(request):
     successes = 0
 
     for user in User.objects.all():
+        user_profile = Profile.objects.get(username=user.active_profile)
         try:
             custom_core = CustomCore.objects.get(profile=user.profile)
             theme = custom_core.theme
@@ -372,7 +373,8 @@ class CustomizeBitView(View):
             )
     
     def post(self, request):
-        custom_core = CustomCore.objects.get(profile=request.user.profile)
+        profile_object = Profile.objects.get(username=request.user.active_profile)
+        custom_core = CustomCore.objects.get(profile=profile_object)
         theme = custom_core.theme
         custom_bit = CustomBit.objects.get(theme=theme)
 
@@ -420,7 +422,8 @@ class CustomizeUIView(View):
             )
     
     def post(self, request):
-        custom_core = CustomCore.objects.get(profile=request.user.profile)
+        profile_object = Profile.objects.get(username=request.user.active_profile)
+        custom_core = CustomCore.objects.get(profile=profile_object)
         theme = custom_core.theme
         try:
             custom_ui = CustomUI.objects.get(theme=theme)
@@ -579,7 +582,8 @@ def edit_profile_image(request, *args, **kwargs):
         else:
             enable_transparency = False
 
-        custom_core = CustomCore.objects.get(profile = request.user.profile)
+        profile_object = Profile.objects.get(username=request.user.active_profile)
+        custom_core = CustomCore.objects.get(profile=profile_object)
         custom_core.image_overlay_color = color_overlay
         custom_core.image_overlay_strength = overlay_strength
         custom_core.image_transparency = enable_transparency
@@ -599,7 +603,8 @@ def edit_profile_image(request, *args, **kwargs):
 def edit_wallpaper_image(request, *args, **kwargs):
     if request.user.is_authenticated:
 
-        custom_core = CustomCore.objects.get(profile = request.user.profile)
+        profile_object = Profile.objects.get(username=request.user.active_profile)
+        custom_core = CustomCore.objects.get(profile=profile_object)
      
         color_overlay = request.POST.get('color_overlay')
         overlay_strength = request.POST.get('overlay_strength')
@@ -616,7 +621,8 @@ def edit_wallpaper_image(request, *args, **kwargs):
 
 class SplashFontEdit(View):
     def get(self, request, option):
-        custom_core = CustomCore.objects.get(profile = request.user.profile)
+        profile_object = Profile.objects.get(username=request.user.active_profile)
+        custom_core = CustomCore.objects.get(profile=profile_object)
         try:
             custom_splash = CustomSplash.objects.get(theme = custom_core.theme)
         except:
@@ -637,7 +643,8 @@ class SplashFontEdit(View):
         return render(request, f"yb_customize/{template}.html", context)
     
     def post(self, request, option):
-        custom_core = CustomCore.objects.get(profile = request.user.profile)
+        profile_object = Profile.objects.get(username=request.user.active_profile)
+        custom_core = CustomCore.objects.get(profile=profile_object)
         custom_ui = CustomUI.objects.get(theme = custom_core.theme)
         custom_ui.font = request.POST.get('font')
         custom_ui.save()
@@ -646,7 +653,8 @@ class SplashFontEdit(View):
     
 class SplashButtonEdit(View):
     def get(self, request):
-        custom_core = CustomCore.objects.get(profile = request.user.profile)
+        profile_object = Profile.objects.get(username=request.user.active_profile)
+        custom_core = CustomCore.objects.get(profile=profile_object)
         try:
             custom_splash = CustomSplash.objects.get(theme = custom_core.theme)
 
@@ -665,7 +673,8 @@ class SplashButtonEdit(View):
         return render(request, "yb_customize/profile_button_edit.html", context)
     
     def post(self, request):
-        custom_core = CustomCore.objects.get(profile = request.user.profile)
+        profile_object = Profile.objects.get(username=request.user.active_profile)
+        custom_core = CustomCore.objects.get(profile=profile_object)
         custom_ui = CustomUI.objects.get(theme = custom_core.theme)
         custom_ui.button_color = request.POST.get('button_color')
         custom_ui.button_text_color = request.POST.get('button_text_color')

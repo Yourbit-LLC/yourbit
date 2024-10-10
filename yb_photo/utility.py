@@ -190,6 +190,8 @@ def send_image_to_cloudflare(image_file):
 
 def upload_image_cf(request, image_type="profile"):
     from yb_photo.utility import generate_image_urls
+    from yb_profile.models import Profile
+    profile_object = Profile.objects.get(username = request.user.active_profile)
     print(request.FILES)
     image = request.FILES.get('image')
     crop_data = request.POST.get('crop_data')
@@ -203,7 +205,7 @@ def upload_image_cf(request, image_type="profile"):
         new_photo = Photo.objects.create(
             storage_type="cf", 
             ext_id=image_id, 
-            profile=request.user.profile
+            profile=profile_object
         )
     
         urls = generate_image_urls(image_id)
@@ -223,7 +225,7 @@ def upload_image_cf(request, image_type="profile"):
             new_photo = Photo.objects.create(
                 storage_type="cf", 
                 ext_id=image_id, 
-                profile=request.user.profile
+                profile=profile_object
             )
 
             urls = generate_image_urls(image_id)
@@ -235,38 +237,11 @@ def upload_image_cf(request, image_type="profile"):
             new_photo.large_thumbnail_ext = urls['large_thumbnail_url']
 
             profile_image = ProfileImage.objects.create(
-                profile = request.user.profile,
+                profile = profile_object,
                 photo = new_photo
             )
 
             profile_image.save()
-            
-                
-        else:
-            from yb_profile.models import Orbit
-            orbit_id = request.POST.get("orbit_id")
-            this_orbit = Orbit.objects.get(pk=orbit_id)
-
-            new_photo = Photo.objects.create(
-                storage_type="cf", 
-                ext_id=image_id, 
-                orbit=this_orbit
-            )
-
-            urls = generate_image_urls(image_id)
-
-            new_photo.ext_url = urls['image_url']
-            new_photo.tiny_thumbnail_ext = urls['tiny_thumbnail_url']
-            new_photo.small_thumbnail_ext = urls['small_thumbnail_url']
-            new_photo.medium_thumbnail_ext = urls['medium_thumbnail_url']
-            new_photo.large_thumbnail_ext = urls['large_thumbnail_url']
-
-            profile_image = ProfileImage.objects.create(
-                orbit=this_orbit,
-                photo = new_photo
-            ) 
-
-        new_photo.save()
 
     elif image_type == "video_thumbnail":
         new_photo = VideoThumbnail.objects.get(upload_id = request.data.get("upload_id"))
@@ -293,7 +268,7 @@ def upload_image_cf(request, image_type="profile"):
                 new_photo = Wallpaper.objects.create(
                     storage_type="cf", 
                     ext_id=image_id, 
-                    profile=request.user.profile
+                    profile=profile_object
                 )
 
                 image_urls = generate_image_urls(image_id)
