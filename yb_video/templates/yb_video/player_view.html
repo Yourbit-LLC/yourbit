@@ -140,25 +140,22 @@
 
             send_comment.addEventListener("click", yb_pressSendComment);
 
-            const videoElement = document.getElementsByTagName("video")[0]
-
-            videoElement.addEventListener('play', function() {
-                console.log('The video is now playing!');
-                
             
-                // Listener for when the video's metadata is loaded
-                const video_rect = videoElement.getBoundingClientRect();
-                const width = video_rect.width;
-                const height = video_rect.height;
+            console.log('The video is now playing!');
             
-                // Calculate aspect ratio
-                const aspectRatio = width / height;
-            
-                // Set aspect-ratio style of the #yb-player element
-                videoContainer.style.aspectRatio = `${width} / ${height}`;
+        
+            // Listener for when the video's metadata is loaded
+            const video_rect = video.getBoundingClientRect();
+            const width = video_rect.width;
+            const height = video_rect.height;
+        
+            // Calculate aspect ratio
+            const aspectRatio = width / height;
+        
+            // Set aspect-ratio style of the #yb-player element
+            videoContainer.style.aspectRatio = `${width} / ${height}`;
 
 
-              });
 
 
         })
