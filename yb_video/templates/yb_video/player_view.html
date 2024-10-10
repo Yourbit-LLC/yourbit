@@ -140,7 +140,7 @@
 
             send_comment.addEventListener("click", yb_pressSendComment);
 
-            const videoElement = document.querySelector('video');
+            const videoElement = document.getElementsByTagName("video")[0]
 
             videoElement.addEventListener('play', function() {
                 console.log('The video is now playing!');
