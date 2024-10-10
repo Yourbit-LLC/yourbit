@@ -12,9 +12,11 @@ from .models import *
 def initialize_session(request):
     from yb_settings.models import MySettings, FeedSettings
     from yb_systems.models import TaskManager
+    from yb_profile.models import Profile
     print(request)
     this_user = request.user
-    these_settings = MySettings.objects.get(user=this_user)
+    active_profile = Profile.objects.get(username=this_user.active_profile)
+    these_settings = MySettings.objects.get(profile=active_profile)
     this_state = TaskManager.objects.get(user=this_user)
     last_location = this_state.last_location
     
