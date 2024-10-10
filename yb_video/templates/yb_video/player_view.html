@@ -140,10 +140,11 @@
 
             send_comment.addEventListener("click", yb_pressSendComment);
 
+            const videoElement = document.querySelector('video');
+
             videoElement.addEventListener('play', function() {
                 console.log('The video is now playing!');
                 
-                const videoElement = document.querySelector('video');
             
                 // Listener for when the video's metadata is loaded
                 const video_rect = videoElement.getBoundingClientRect();
