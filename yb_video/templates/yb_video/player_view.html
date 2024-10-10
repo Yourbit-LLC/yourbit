@@ -7,7 +7,7 @@
 <meta property="og:video" content="{{bit.video_upload.ext_url}}" />
 <div class="yb-player-grid">
     <div class="yb-flexColumn player-scroll-section yb-vScroll">
-        <div id="yb-player" class="yb-player" style="aspect-ratio: 16 / 9;">
+        <div id="yb-player" class="yb-player" style="aspect-ratio: 16 / 9; max-height: 500px;">
             {% if bit.storage_type == "yb" %}
             <div id="video-container-{{bit.id}}" class="attached-video-container">
                 <video id="video-{{bit.id}}" class="attached-video" controls="true" playsinline="true" data-id="{{bit.id}}" src="{{bit.video_upload.video.url}}" style="max-width: 100%; max-height:100%; margin-left: auto; margin-right: auto; display: block;">
