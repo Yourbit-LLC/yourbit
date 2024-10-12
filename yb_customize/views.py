@@ -325,14 +325,14 @@ def user_custom_repair_bits(request):
     for user in User.objects.all():
         user_profile = Profile.objects.get(username=user.active_profile)
         try:
-            custom_core = CustomCore.objects.get(profile=user.profile)
+            custom_core = CustomCore.objects.get(profile=user_profile)
             theme = custom_core.theme
             custom_bit = CustomBit.objects.get(theme=theme)
             successes += 1
 
         except:
             failures += 1
-            custom_core = CustomCore.objects.get(profile=user.profile)
+            custom_core = CustomCore.objects.get(profile=user_profile)
             theme = custom_core.theme
             custom_bit = CustomBit.objects.create(theme=theme)
             custom_bit.save()

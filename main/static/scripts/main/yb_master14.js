@@ -1196,6 +1196,12 @@ $(document).ready(function() {
         yb_openSpotlight();
     });
 
+    window.addEventListener('beforeunload', () => {
+        console.log("Clearing bitstream data");
+        sessionStorage.removeItem('savedBitstream'); // Clear the specific saved feed
+    });
+    
+
     for (let i = 0; i < MASTHEAD_LOGOS.length; i++) {
         MASTHEAD_LOGOS[i].addEventListener('click', function() {
             yb_startBitStream()

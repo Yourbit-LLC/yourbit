@@ -72,6 +72,8 @@ function yb_updateFeed(update, data) {
 
             detectScrollToBottom();
             $("load-indicator-container-bitstream").hide();
+
+            sessionStorage.setItem('savedBitstream', CONTENT_CONTAINER.innerHTML);
         } else {
             
             $("#load-indicator-container-bitstream").hide();
@@ -96,6 +98,11 @@ function yb_updateFeed(update, data) {
             yb_renderBit(blueprint);
             
         }
+
+        
+        if (yb_getSessionValues('location') != 'profile'){
+            sessionStorage.setItem('savedBitstream', CONTENT_CONTAINER.innerHTML);
+        }
         detectScrollToBottom();
 
         $("#load-indicator-container-bitstream").hide();
@@ -103,6 +110,10 @@ function yb_updateFeed(update, data) {
 
 
     }
+
+    $(MAIN_LOADING_SCREEN).fadeOut(500).animate({opacity: 0}, 500);
+
+
 }
 
 function yb_requestFeed(data=null) {
@@ -129,7 +140,6 @@ function yb_requestFeed(data=null) {
             } else {
                 console.log("User navigated away from the feed. Stopping render...")
                 }
-            $(MAIN_LOADING_SCREEN).fadeOut(500).animate({opacity: 0}, 500);
             
             if (yb_getSessionValues('location') != 'profile'){
                 bit_container.classList.add('open');
@@ -189,10 +199,29 @@ function yb_getFeed(update = false, next_page = false, previous_page = false) {
     yb_requestFeed(request_data);
 }
 
+function yb_loadFeed() {
+    // Check if feed data is already in sessionStorage
+    const savedFeed = sessionStorage.getItem('savedBitstream');
+    if (yb_getSessionValues('location') != 'profile'){
+        if (savedFeed) {
+            // Parse and render the saved feed
+            console.log("Loading Saved Bitstream");
+            CONTENT_CONTAINER.innerHTML = savedFeed
+            document.getElementById("bit-container").classList.add("open");
+        } else {
+            // If no feed in sessionStorage, fetch it from the server
+            yb_getFeed();
+        }
+    }else {
+        yb_getFeed();
+    }
+}
+
+
 
 $(document).ready(function() {
     yb_setSessionValues('bitstream-page', 1);
-    yb_getFeed();
+    yb_loadFeed();
 
 
 });
