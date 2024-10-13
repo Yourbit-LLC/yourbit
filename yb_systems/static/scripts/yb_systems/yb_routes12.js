@@ -418,7 +418,7 @@ function customize_profile_splash_url(data=null){
     }
     console.log("function");
     
-    $("#content-container").load(`${base_url}/customize/templates/profile-splash/`);
+    $("#content-container-b").load(`${base_url}/customize/templates/profile-splash/`);
     yb_setSessionValues("location","customize-profile");
     history.pushState({}, "", `/customize/profile/`);
     
@@ -432,7 +432,7 @@ function customize_bit_url(data=null){
     }
     console.log("function");
 
-    $("#content-container").load(`${base_url}/customize/templates/customize-bit/`);
+    $("#content-container-b").load(`${base_url}/customize/templates/customize-bit/`);
     yb_setSessionValues("location","customize-bit");
     history.pushState({}, "", `/customize/bit/`);
 }
@@ -445,7 +445,7 @@ function customize_ui_url(data=null){
     }
     console.log("function");
 
-    $("#content-container").load(`${base_url}/customize/templates/customize-ui/`);
+    $("#content-container-b").load(`${base_url}/customize/templates/customize-ui/`);
     yb_setSessionValues("location","customize-ui");
     history.pushState({}, "", `/customize/ui/`);
 }
