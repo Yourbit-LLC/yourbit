@@ -18,7 +18,7 @@ const LOADING_CORE = document.getElementById("yb-loading-main");
 //Register templates to be loaded into the content container
 const CORE_TEMPLATE_INDEX = {
     "home": "/bits/templates/bitstream/",
-    "customize-main": "/customize/templates/customize/main/",
+    "customize-main": "/customize/templates/main/",
     "profile": `/profile/templates/profile/`,
     "support-center":"/support/templates/support-center/",
     "bit-focus": "/bits/templates/bit/focus/"
