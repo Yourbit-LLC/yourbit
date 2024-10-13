@@ -258,7 +258,9 @@ function yb_goToPage(page, data=null) {
             } else {
                 $(CONTENT_CONTAINER_A).load(CORE_TEMPLATE_INDEX[page]);
             }
-        } 
+        } else {
+            detectScrollToBottom();
+        }
     } else {
         CONTENT_CONTAINER_B.classList.add("show")
         CONTENT_CONTAINER_A.classList.remove("show")

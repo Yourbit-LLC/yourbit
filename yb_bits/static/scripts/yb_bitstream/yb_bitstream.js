@@ -61,8 +61,10 @@ function detectScrollToBottom() {
 
     if (yb_getSessionValues("location") == "home"){
         CONTENT_CONTAINER_A.addEventListener('scroll', checkScroll);
+        CONTENT_CONTAINER_B.removeEventListener('scroll', checkScroll);
     } else if (yb_getSessionValues("location") == "profile") {
         CONTENT_CONTAINER_B.addEventListener('scroll', checkScroll);
+        CONTENT_CONTAINER_A.removeEventListener('scroll', checkScroll);
     }
 }  
 
