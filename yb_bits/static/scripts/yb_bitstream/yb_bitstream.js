@@ -82,7 +82,6 @@ function yb_updateFeed(update, data) {
                 yb_renderBit(blueprint);
             }
 
-            detectScrollToBottom();
             $("load-indicator-container-bitstream").hide();
 
             
