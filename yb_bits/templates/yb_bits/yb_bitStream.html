@@ -38,10 +38,11 @@
 <br>
 
 <script class="page-script" type="text/javascript" src="{% static 'scripts/yb_bits/yb_bits10.js' %}"></script>
-<script class="page-script" type="text/javascript" src="{% static 'scripts/yb_bitstream/yb_bitstream.js' %}"></script>
 
 <script>
     $(document).ready(function() {
         yb_showMobileUI();
+        yb_setSessionValues('bitstream-page', 1);
+        yb_getFeed();
     });
 </script>

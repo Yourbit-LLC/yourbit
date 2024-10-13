@@ -19,6 +19,36 @@ def edit_bit_view(request, pk):
 def bitstream_view(request):
     return render(request, "yb_bits/yb_bitStream.html")
 
+def generate_test_bits(request, amount, *args, **kwargs):
+    if request.user.is_authenticated:
+        if request.user.is_admin:
+            from yb_customize.models import CustomCore, CustomBit
+            import random
+            import string   
+            for i in range(amount):
+                this_profile = Profile.objects.get(username=request.user.active_profile)
+                custom_core = CustomCore.objects.get(profile=this_profile)
+                custom_bit = CustomBit.objects.get(theme = custom_core.theme)
+
+                #dynamiically generate a random test body and test title
+
+                body = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
+                title = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
+                
+
+                new_bit = Bit.objects.create(
+                    user=request.user, 
+                    profile=this_profile, 
+                    type="chat", 
+                    title=title, 
+                    body=body,
+                    custom = custom_bit
+                )
+                new_bit.save()
+            
+            return HttpResponse(str(amount) + " test bits generated as " + request.user.active_profile)
+
+
 def view_bit(request, id, *args, **kwargs):
     from main.views import initialize_session
                     

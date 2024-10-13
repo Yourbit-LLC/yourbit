@@ -1,17 +1,25 @@
+var bit_container;
 
-if (yb_getSessionValues('location') === 'profile') {
-    var bit_container = document.getElementById("profile-bit-container");
-} else {
 
-    var bit_container = document.getElementById("bit-container");
+function yb_getBitContainer() {
+    if (yb_getSessionValues('location') === 'profile') {
+        bit_container = document.getElementById("profile-bit-container");
+    } else {
+
+        bit_container = document.getElementById("bit-container");
+    }
+
+    return bit_container;
+
 }
+
 
 
 function yb_renderBit(data) {
     
 
     let this_bit = yb_buildBit(data);
-    bit_container.appendChild(this_bit.built_bit);
+    yb_getBitContainer().appendChild(this_bit.built_bit);
 
     
 }
@@ -26,7 +34,7 @@ function yb_showSwipeUp() {
 }
 
 function onScrollToBottom() {
-    console.log("User has scrolled to the bottom of the container!");
+    console.log("User has scrolled to the bottom of the container! More now please...");
     // Place your logic here that needs to be executed when the bottom is reached
     $("load-indicator-container-bitstream").show();
     yb_getFeed(true, true);
@@ -54,7 +62,7 @@ function detectScrollToBottom() {
 
     console.log("Detecting scroll to bottom")
 
-    if (!bit_container) {
+    if (!yb_getBitContainer()) {
         console.error("Container not found");
         return;
     }
@@ -81,7 +89,7 @@ function yb_updateFeed(update, data) {
                 let blueprint = data[i];
                 yb_renderBit(blueprint);
             }
-
+            detectScrollToBottom();
             $("load-indicator-container-bitstream").hide();
 
             
@@ -97,7 +105,7 @@ function yb_updateFeed(update, data) {
     } else {
         //Update the feed
         console.log("appending html...")
-        $(bit_container).html('');
+        $(yb_getBitContainer()).html('');
 
         if (yb_getSessionValues('location') === 'profile'){
             console.log("profile data")
@@ -150,7 +158,7 @@ function yb_requestFeed(data=null) {
                 }
             
             if (yb_getSessionValues('location') != 'profile'){
-                bit_container.classList.add('open');
+                yb_getBitContainer().classList.add('open');
             }
             
             console.log(response)
@@ -206,12 +214,3 @@ function yb_getFeed(update = false, next_page = false, previous_page = false) {
     // Send the request to the backend
     yb_requestFeed(request_data);
 }
-
-
-
-$(document).ready(function() {
-    yb_setSessionValues('bitstream-page', 1);
-    yb_getFeed();
-
-
-});

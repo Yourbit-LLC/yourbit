@@ -14,6 +14,7 @@ urlpatterns = [
     path("edit-bit/<int:pk>/", edit_bit_view, name="edit-bit"),
     path("set-user-bitstreams/", set_user_bitstreams, name="set-user-bitstreams"),
     path("view/<int:id>/", view_bit_landing, name="bit-view"),
+    path("generate-test-bits/<int:amount>/", generate_test_bits, name="generate-testbits"),
     
 
     #URL for views
