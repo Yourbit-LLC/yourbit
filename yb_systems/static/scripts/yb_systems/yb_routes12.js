@@ -248,8 +248,9 @@ const LIST_TEMPLATE_INDEX = {
 
 function yb_goToPage(page, data=null) {
     if (page == "home") {
-        CONTENT_CONTAINER_A.classList.add("show")
-        CONTENT_CONTAINER_B.classList.remove("show")
+        CONTENT_CONTAINER_A.classList.add("show");
+        CONTENT_CONTAINER_B.classList.remove("show");
+        yb_showMobileUI()
         if (CONTENT_CONTAINER_A.innerHTML == "") {
         
             if (data != null) {
