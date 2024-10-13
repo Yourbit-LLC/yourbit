@@ -498,7 +498,7 @@ function yb_navigateTo(container, template, data=null, reloadable=true) {
     } else if (container.includes("content-container")) {
         CONTENT_CONTAINER_B.innerHTML = "";
         console.log("launching page in content container");
-        
+        yb_setSessionValues("location", template)
    
         if (data === null) {
 
