@@ -500,21 +500,21 @@ function yb_loadProfileWidget() {
     console.log(these_tasks);
 }
 
-function yb_showWidget(type, callback) {
-    $('.mini-widget').fadeIn();
-    $("#content-container").css("filter", "blur(50px)");
-    $("#content-container").css("webkit-filter", "blur(50px)");
+// function yb_showWidget(type, callback) {
+//     $('.mini-widget').fadeIn();
+//     $("#content-container").css("filter", "blur(50px)");
+//     $("#content-container").css("webkit-filter", "blur(50px)");
 
 
-    let mini_widget = document.querySelector(".mini-widget");
+//     let mini_widget = document.querySelector(".mini-widget");
 
     
-    callback();
+//     callback();
         
 
 
 
-}
+// }
 
 function yb_hideWidget() {
     $('.mini-widget').html("");   

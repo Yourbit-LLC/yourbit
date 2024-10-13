@@ -7,7 +7,9 @@
 
 
 //Core Content
-const CONTENT_CONTAINER = document.getElementById('content-container'); //yb_goToPage(template, data=null)
+const CONTENT_CONTAINERS = document.querySelectorAll(".content-container");
+const CONTENT_CONTAINER_A = document.getElementById('content-container-a'); //yb_goToPage(template, data=null)
+const CONTENT_CONTAINER_B = document.getElementById('content-container-b'); //yb_goToPage(template, data=null)
 
 
 //2 Way Containers

@@ -186,7 +186,7 @@ function yb_dragonDrop(event, clone=false) {
         clone = target.cloneNode(true);
         clone.style.position = "fixed";
         clone.style.zIndex = "1000";
-        CONTENT_CONTAINER.appendChild(clone);
+        CONTENT_CONTAINER_B.appendChild(clone);
 
         // Set the initial position of the clone
         if (isTouch) {

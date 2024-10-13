@@ -601,7 +601,7 @@ function yb_openBitBuilder() {
 
 
 function yb_startBitStream() {
-    $(CONTENT_CONTAINER).html("");
+    $(CONTENT_CONTAINER_A).html("");
     if (yb_getSessionValues("fullscreen") === "true"){
         MOBILE_HEADER.classList.remove("hide");
         NAV_BAR.classList.remove("hideMobile");
@@ -612,7 +612,7 @@ function yb_startBitStream() {
     }   
     yb_setSessionValues("location", "home");
     
-    $(CONTENT_CONTAINER).load('/bits/templates/bitstream/');
+    $(CONTENT_CONTAINER_A).load('/bits/templates/bitstream/');
 }
 
 const START_BITSTREAM = yb_startBitStream();
@@ -737,7 +737,9 @@ function yb_navigateToProfile(e) {
     } catch(err) {
         username = e;
     }
-    $("#content-container").load(`/profile/user/${username}/`);
+    $("#content-container-b").load(`/profile/user/${username}/`);
+    CONTENT_CONTAINER_A.classList.remove("show")
+    CONTENT_CONTAINER_B.classList.add("show")
     yb_closeSpotlight();
     yb_setSessionValues('fullscreen', 'true');
 
@@ -953,7 +955,11 @@ function yb_changeSpace(space_name) {
             this_button.querySelector(".yb-icon").classList.add("active");
             
             yb_getFeed()
-            CONTENT_CONTAINER.scrollTo(0, 0);
+            if (yb_getSessionValues("location") == "home"){
+                CONTENT_CONTAINER_A.scrollTo(0, 0);
+            } else {
+                CONTENT_CONTAINER_B.scrollTo(0, 0);
+            }
 
         }
         catch(err) {

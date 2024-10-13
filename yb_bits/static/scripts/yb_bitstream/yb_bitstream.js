@@ -34,11 +34,18 @@ function onScrollToBottom() {
 
   function checkScroll() {
     console.log("scrolling...")
-    var { scrollTop, scrollHeight, clientHeight } = CONTENT_CONTAINER;
+    let active_container;
+
+    if (yb_getSessionValues("location") == "home"){
+        active_container = CONTENT_CONTAINER_A;
+    } else {
+        active_container = CONTENT_CONTAINER_B;
+    }
+    var { scrollTop, scrollHeight, clientHeight } = active_container;
     if (scrollTop + clientHeight >= scrollHeight - 1200) { // -5 is a small threshold to trigger the event a bit before reaching the bottom
         console.log("scroll to bottom detected")
         onScrollToBottom();
-        CONTENT_CONTAINER.removeEventListener("scroll", checkScroll);
+        active_container.removeEventListener("scroll", checkScroll);
     }
   }
   
@@ -52,8 +59,11 @@ function detectScrollToBottom() {
         return;
     }
 
-
-    CONTENT_CONTAINER.addEventListener('scroll', checkScroll);
+    if (yb_getSessionValues("location") == "home"){
+        CONTENT_CONTAINER_A.addEventListener('scroll', checkScroll);
+    } else {
+        CONTENT_CONTAINER_B.addEventListener('scroll', checkScroll);
+    }
 }  
 
  
@@ -73,7 +83,7 @@ function yb_updateFeed(update, data) {
             detectScrollToBottom();
             $("load-indicator-container-bitstream").hide();
 
-            sessionStorage.setItem('savedBitstream', CONTENT_CONTAINER.innerHTML);
+            
         } else {
             
             $("#load-indicator-container-bitstream").hide();
@@ -99,10 +109,7 @@ function yb_updateFeed(update, data) {
             
         }
 
-        
-        if (yb_getSessionValues('location') != 'profile'){
-            sessionStorage.setItem('savedBitstream', CONTENT_CONTAINER.innerHTML);
-        }
+
         detectScrollToBottom();
 
         $("#load-indicator-container-bitstream").hide();
@@ -199,29 +206,11 @@ function yb_getFeed(update = false, next_page = false, previous_page = false) {
     yb_requestFeed(request_data);
 }
 
-function yb_loadFeed() {
-    // Check if feed data is already in sessionStorage
-    const savedFeed = sessionStorage.getItem('savedBitstream');
-    if (yb_getSessionValues('location') != 'profile'){
-        if (savedFeed) {
-            // Parse and render the saved feed
-            console.log("Loading Saved Bitstream");
-            CONTENT_CONTAINER.innerHTML = savedFeed
-            document.getElementById("bit-container").classList.add("open");
-        } else {
-            // If no feed in sessionStorage, fetch it from the server
-            yb_getFeed();
-        }
-    }else {
-        yb_getFeed();
-    }
-}
-
 
 
 $(document).ready(function() {
     yb_setSessionValues('bitstream-page', 1);
-    yb_loadFeed();
+    yb_getFeed();
 
 
 });

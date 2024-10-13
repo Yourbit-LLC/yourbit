@@ -247,11 +247,25 @@ const LIST_TEMPLATE_INDEX = {
 }
 
 function yb_goToPage(page, data=null) {
-
-    if (data != null) {
-        $(CONTENT_CONTAINER).load(CORE_TEMPLATE_INDEX[page] + data.toString() + "/");
+    if (page == "home") {
+        CONTENT_CONTAINER_A.classList.add("show")
+        CONTENT_CONTAINER_B.classList.remove("show")
+        if (CONTENT_CONTAINER_A.innerHTML == "") {
+        
+            if (data != null) {
+                $(CONTENT_CONTAINER_A).load(CORE_TEMPLATE_INDEX[page] + data.toString() + "/");
+            } else {
+                $(CONTENT_CONTAINER_A).load(CORE_TEMPLATE_INDEX[page]);
+            }
+        } 
     } else {
-        $(CONTENT_CONTAINER).load(CORE_TEMPLATE_INDEX[page]);
+        CONTENT_CONTAINER_B.classList.add("show")
+        CONTENT_CONTAINER_A.classList.remove("show")
+        if (data != null) {
+            $(CONTENT_CONTAINER_B).load(CORE_TEMPLATE_INDEX[page] + data.toString() + "/");
+        } else {
+            $(CONTENT_CONTAINER_B).load(CORE_TEMPLATE_INDEX[page]);
+        }
     }
 }
 
@@ -295,7 +309,7 @@ function yb_purgeScripts(callback){
     }
 }
 
-function yb_clearContainer(){
+function yb_clearContainer(type){
     $("#content-container").empty();
     $("#page-header").remove();
     
@@ -311,7 +325,7 @@ function home_url(data){
     
     //load content
 
-    $('#content-container').load('/bitstream/feed-html/');
+    $('#content-container-a').load('/bitstream/feed-html/');
     
     let menu = document.getElementById("profile-menu");
     
@@ -353,7 +367,7 @@ function profile_url(data){
     }
 
     
-    $("#content-container").load(`${base_url}/profile/templates/profile/${data.username}/`)
+    $("#content-container-b").load(`${base_url}/profile/templates/profile/${data.username}/`)
     $("#page-header").remove();
     history.pushState({}, "", `/profile/${data.username}/`)
 
@@ -384,7 +398,9 @@ function customize_profile_url(data=null){
     }
     console.log("function");
     
-    $("#content-container").load(`${base_url}/customize/templates/profile/`);
+    $("#content-container-b").load(`${base_url}/customize/templates/profile/`);
+    CONTENT_CONTAINER_A.style.display="none";
+    CONTENT_CONTAINER_B.style.display="block";
     yb_setSessionValues("location","customize-profile");
     history.pushState({}, "", `/profile/customize/profile/`);
     
@@ -479,9 +495,10 @@ function yb_navigateTo(container, template, data=null, reloadable=true) {
             yb_launch2WayContainer(template, data);
         }
     } else if (container.includes("content-container")) {
-        CONTENT_CONTAINER.innerHTML = "";
+        CONTENT_CONTAINER_B.innerHTML = "";
         console.log("launching page in content container");
-
+        
+   
         if (data === null) {
 
             yb_goToPage(template);
@@ -494,6 +511,8 @@ function yb_navigateTo(container, template, data=null, reloadable=true) {
         if (template != "profile") {
             yb_revertUIColor();
         } 
+
+
     } else if (container.includes("drawer")) {
 
         if (data === null) {

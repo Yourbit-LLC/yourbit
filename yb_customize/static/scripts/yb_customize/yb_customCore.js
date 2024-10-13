@@ -210,14 +210,18 @@ function yb_changeWallpaper(value, profile=false) {
         console.log("Wallpaper enabled " + wallpaper_enabled )
         BG_IMAGE_A.style.display = "block";
         BG_IMAGE_SOURCE_A.src = value;
-        CONTENT_CONTAINER.classList.remove("yb-bg-autoGray");
-        CONTENT_CONTAINER.classList.add("yb-bg-transparent");
+        CONTENT_CONTAINER_A.classList.remove("yb-bg-autoGray");
+        CONTENT_CONTAINER_B.classList.remove("yb-bg-autoGray");
+        CONTENT_CONTAINER_A.classList.add("yb-bg-transparent");
+        CONTENT_CONTAINER_B.classList.add("yb-bg-transparent");
         
     } else {
         console.log("Wallpaper display " + wallpaper_enabled )
         BG_IMAGE_A.style.display = "none";
-        CONTENT_CONTAINER.classList.remove("yb-bg-transparent");
-        CONTENT_CONTAINER.classList.add("yb-bg-autoGray");
+        CONTENT_CONTAINER_A.classList.remove("yb-bg-transparent");
+        CONTENT_CONTAINER_B.classList.remove("yb-bg-transparent");
+        CONTENT_CONTAINER_A.classList.add("yb-bg-autoGray");
+        CONTENT_CONTAINER_B.classList.add("yb-bg-autoGray");
     }
     
 }
