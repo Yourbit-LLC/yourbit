@@ -33,50 +33,71 @@ function yb_showSwipeUp() {
     swipe_up.classList.add("show");
 }
 
+// Utility to throttle function execution
+function throttle(func, limit) {
+    let lastCall = 0;
+    return function (...args) {
+        const now = (new Date()).getTime();
+        if (now - lastCall >= limit) {
+            lastCall = now;
+            return func(...args);
+        }
+    };
+}
+
 function onScrollToBottom() {
     console.log("User has scrolled to the bottom of the container! More now please...");
-    // Place your logic here that needs to be executed when the bottom is reached
+    // Your logic here that needs to be executed when the bottom is reached
     $("load-indicator-container-bitstream").show();
     yb_getFeed(true, true);
-  }
+}
 
-  function checkScroll() {
-    console.log("scrolling...")
+function checkScroll() {
+    console.log("scrolling...");
     let active_container;
 
-    if (yb_getSessionValues("location") == "home"){
+    // Check session values outside the scroll handler for efficiency
+    if (yb_getSessionValues("location") === "home") {
         active_container = CONTENT_CONTAINER_A;
     } else {
         active_container = CONTENT_CONTAINER_B;
     }
-    var { scrollTop, scrollHeight, clientHeight } = active_container;
-    if (scrollTop + clientHeight >= scrollHeight - 1200) { // -5 is a small threshold to trigger the event a bit before reaching the bottom
-        console.log("scroll to bottom detected")
+
+    const { scrollTop, scrollHeight, clientHeight } = active_container;
+
+    // Adjust threshold if needed for user experience
+    if (scrollTop + clientHeight >= scrollHeight - 200) {
+        console.log("scroll to bottom detected");
         onScrollToBottom();
-        active_container.removeEventListener("scroll", checkScroll);
+        active_container.removeEventListener("scroll", throttledCheckScroll);
     }
-  }
-  
-  // Function to detect scroll to the bottom of a specific container
+}
+
+// Function to detect scroll to bottom of a specific container
 function detectScrollToBottom() {
+    console.log("Detecting scroll to bottom");
 
-    console.log("Detecting scroll to bottom")
-
+    // Ensure the bit container exists before setting event listeners
     if (!yb_getBitContainer()) {
         console.error("Container not found");
         return;
     }
 
-    if (yb_getSessionValues("location") == "home"){
-        CONTENT_CONTAINER_A.addEventListener('scroll', checkScroll);
-        CONTENT_CONTAINER_B.removeEventListener('scroll', checkScroll);
-    } else if (yb_getSessionValues("location") == "profile") {
-        CONTENT_CONTAINER_B.addEventListener('scroll', checkScroll);
-        CONTENT_CONTAINER_A.removeEventListener('scroll', checkScroll);
-    }
-}  
+    const location = yb_getSessionValues("location");
 
- 
+    // Remove the listener from the inactive container
+    if (location === "home") {
+        CONTENT_CONTAINER_A.addEventListener('scroll', throttledCheckScroll);
+        CONTENT_CONTAINER_B.removeEventListener('scroll', throttledCheckScroll);
+    } else if (location === "profile") {
+        CONTENT_CONTAINER_B.addEventListener('scroll', throttledCheckScroll);
+        CONTENT_CONTAINER_A.removeEventListener('scroll', throttledCheckScroll);
+    }
+}
+
+// Throttle scroll handler to improve performance
+const throttledCheckScroll = throttle(checkScroll, 200);
+
 function yb_updateFeed(update, data) {
     //Update the feed
     console.log("updating display...")
