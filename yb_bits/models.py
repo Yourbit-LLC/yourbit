@@ -192,10 +192,47 @@ class BitNewView(models.Model):
     user = models.ForeignKey(User, related_name = "bit_new_views", on_delete=models.CASCADE, blank=True)
     time = models.DateTimeField(default=timezone.now)
 
+class VideoSkipPoints(models.Model):
+    #Model for a skip point on a video bit
+    bit = models.ForeignKey(Bit, related_name = "video_skip_points", on_delete=models.CASCADE, blank=True)
+    profile = models.ForeignKey(Profile, related_name = "video_skip_points", on_delete=models.CASCADE, blank=True)
+    skip_start = models.CharField(max_length=100, default="")
+    skip_end = models.CharField(max_length=100, default="")
+    time = models.DateTimeField(default=timezone.now)
+
+class VideoPausePoints(models.Model):
+    #Model for a pause point on a video bit
+    bit = models.ForeignKey(Bit, related_name = "video_pause_points", on_delete=models.CASCADE, blank=True)
+    profile = models.ForeignKey(Profile, related_name = "video_pause_points", on_delete=models.CASCADE, blank=True)
+    pause_time = models.CharField(max_length=100, default="")
+    time = models.DateTimeField(default=timezone.now)
+
+class VideoRewindPoints(models.Model):
+    #Model for a rewind point on a video bit
+    bit = models.ForeignKey(Bit, related_name = "video_rewind_points", on_delete=models.CASCADE, blank=True)
+    profile = models.ForeignKey(Profile, related_name = "video_rewind_points", on_delete=models.CASCADE, blank=True)
+    rewind_start = models.CharField(max_length=100, default="")
+    rewind_end = models.CharField(max_length=100, default="")
+    time = models.DateTimeField(default=timezone.now)
+
+class VideoEngagementPoints(models.Model):
+    #Model for a engagement point on a video bit
+    bit = models.ForeignKey(Bit, related_name = "video_engagements", on_delete=models.CASCADE, blank=True)
+    profile = models.ForeignKey(Profile, related_name = "video_engagement_points", on_delete=models.CASCADE, blank=True)
+    engagement_time = models.CharField(max_length=100, default="")
+    type = models.CharField(max_length=100, default="") #comment, like, dislike, share, donation, follow
+    time = models.DateTimeField(default=timezone.now)
+
 class VideoBitWatch(models.Model):
     #Model for a view on a video bit
-    video = models.ForeignKey('yb_video.Video', related_name = "video_bit_watch", on_delete=models.CASCADE, blank=True)
-    user = models.ForeignKey(User, related_name = "video_bit_watch", on_delete=models.CASCADE, blank=True)
+    bit = models.ForeignKey(Bit, related_name = "video_bit_watch", on_delete=models.CASCADE, blank=True)
+    profile = models.ForeignKey(Profile, related_name = "video_bit_watch", on_delete=models.CASCADE, blank=True)
+    watch_percent = models.FloatField(null=True)
+    exit_time = models.CharField(max_length=100, default="")
+    skip_points = models.ManyToManyField(VideoSkipPoints, related_name = "video_bit_watch", blank=True)
+    pause_points = models.ManyToManyField(VideoPausePoints, related_name = "video_bit_watch", blank=True)
+    rewind_points = models.ManyToManyField(VideoRewindPoints, related_name = "video_bit_watch", blank=True)
+    engagement_points = models.ManyToManyField(VideoEngagementPoints, related_name = "video_bit_watch", blank=True)
     time = models.DateTimeField(default=timezone.now)
 
 #Interaction History
@@ -283,5 +320,5 @@ class InteractionHistory(models.Model):
 
     unfed_bits = models.ManyToManyField(Bit, related_name="unfed_bits", blank=True)
     unseen_bits = models.ManyToManyField(Bit, related_name="unseen_bits", blank=True)
-    watched = models.ManyToManyField(Bit, related_name = "watched_bits", blank=True)
+    watched = models.ManyToManyField(VideoBitWatch, related_name = "watched_bits", blank=True)
     seen_bits = models.ManyToManyField(Bit, related_name = "bits_seen", blank=True)

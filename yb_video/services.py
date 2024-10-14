@@ -6,7 +6,6 @@ from django.conf import settings
 from yb_accounts.models import Account as User
 from yb_profile.models import Profile
 from yb_video.models import Video
-import requests
 
 
 configuration = mux_python.Configuration()
@@ -54,10 +53,14 @@ def get_mux_web_token(video_id):
     return encoded
 
 def get_mux_data(video_id):
-    request_url = f"https://stats.mux.com/counts?token={get_mux_web_token(video_id)}"
-    response = requests.get(request_url)
-    print(response.json())
-    return response.json()
+    api_instance = mux_python.AssetsApi(mux_python.ApiClient(configuration))
+    try:
+        api_response = api_instance.get_asset(video_id)
+        print(api_response)
+        return api_response
+    except ApiException as e:
+        print("Exception when calling VideoApi->get_video: %s\n" % e)
+
 
 def send_video_to_mux(request):
     # Get the direct upload URL from Mux
