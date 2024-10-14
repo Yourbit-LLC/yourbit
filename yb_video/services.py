@@ -6,6 +6,8 @@ from django.conf import settings
 from yb_accounts.models import Account as User
 from yb_profile.models import Profile
 from yb_video.models import Video
+import requests
+
 
 configuration = mux_python.Configuration()
 configuration.username = settings.MUX_TOKEN_ID
@@ -24,6 +26,38 @@ def get_mux_url(request):
     except ApiException as e:
         print("Exception when calling VideoUrlApi->create_video_url: %s\n" % e)
 
+def get_mux_web_token(video_id):
+    import jwt
+    import base64
+    import time
+
+    my_id = video_id              # Enter the id for which you would like to get counts here
+    my_id_type = "playback_id"         # Enter the type of ID provided in my_id; one of video_id | asset_id | playback_id | live_stream_id
+    signing_key_id = settings.MUX_SIGNING_KEY # Enter your signing key id here
+    private_key_base64 = settings.MUX_PRIVATE_KEY # Enter your base64 encoded private key here
+
+    private_key = base64.b64decode(private_key_base64)
+
+    payload = {
+        'sub': my_id,
+        'aud': my_id_type,
+        'exp': int(time.time()) + 3600, # 1 hour
+    }
+    headers = {
+        'kid': signing_key_id
+    }
+
+    encoded = jwt.encode(payload, private_key, algorithm="RS256", headers=headers)
+    
+    print(encoded)
+    
+    return encoded
+
+def get_mux_data(video_id):
+    request_url = f"https://stats.mux.com/counts?token={get_mux_web_token(video_id)}"
+    response = requests.get(request_url)
+    print(response.json())
+    return response.json()
 
 def send_video_to_mux(request):
     # Get the direct upload URL from Mux

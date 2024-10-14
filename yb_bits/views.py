@@ -3,6 +3,8 @@ from django.views import View
 from .forms import BitForm
 from django.http import JsonResponse, HttpResponse
 from .models import *
+import uuid
+import json
 
 
 # Create your views here.
@@ -238,7 +240,21 @@ class CreateCluster(View):
     
 def bit_focus_view(request, pk, *args, **kwargs):
     this_bit = Bit.objects.get(pk=pk)
-    return render(request, "yb_bits/yb_bit_focus.html", {"bit":this_bit})
+
+    context = {
+        "bit": this_bit
+    }
+    if this_bit.type == "video":
+
+        video_object = this_bit.video_upload
+
+        if video_object.storage_type == "mx":
+
+            from yb_video.services import get_mux_data
+            video_data = get_mux_data(video_object.ext_id)
+            context['video_data'] = video_data
+
+    return render(request, "yb_bits/yb_bit_focus.html", context)
 
 
 def comment_history_view(request, *args, **kwargs):
