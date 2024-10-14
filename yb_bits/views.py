@@ -254,7 +254,7 @@ def bit_focus_view(request, pk, *args, **kwargs):
         #Update user interaction history
         this_profile = Profile.objects.get(username=request.user.active_profile)
         this_history = InteractionHistory.objects.get(profile=this_profile)
-        new_watch = VideoBitWatch.objects.create(profile=this_profile, video=this_bit)
+        new_watch = VideoBitWatch.objects.create(profile=this_profile, bit=this_bit)
         this_history.watched.add(new_watch)
         this_history.save()
 
