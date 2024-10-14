@@ -200,7 +200,7 @@ class CustomBit(CustomBase):
 
     
     def __str__(self):
-        return f"A Custom UI by: {self.theme.author.first_name}: Theme - {self.theme.id}"
+        return f"A Custom UI by: {self.theme.author.display_name}: Theme - {self.theme.id}"
     
 
 class Sticker(models.Model):
