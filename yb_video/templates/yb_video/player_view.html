@@ -5,6 +5,11 @@
 <meta property="og:url" content="https://yourbit.me/bits/view/{{bit.id}}/" />
 <meta property="og:image" content="{{bit.video_upload.thumbnail.medium_thumbnail_ext}}" />
 <meta property="og:video" content="{{bit.video_upload.ext_url}}" />
+<style>
+    mux-player {
+        --controls-backdrop-color: {{bit.custom.primary_color}};
+    }
+</style>
 <div class="yb-player-grid">
     <div class="yb-flexColumn player-scroll-section yb-vScroll">
         <div id="yb-player" class="yb-player" style="aspect-ratio: 16 / 9; max-height: 500px;">
@@ -21,8 +26,9 @@
                     playback-id="{{bit.video_upload.ext_id}}"
                     metadata-video-title="{{bit.title}}"
                     metadata-viewer-user-id="{{bit.username}}"
-                    accent-color="{{bit.custom.primary_color}}"
-                    primary-color="{{bit.custom.accent_color}}"
+                    
+                    accent-color="{{bit.custom.title_color}}"
+                    primary-color="{{bit.custom.text_color}}"
                 ></mux-player>
             {% endif %}
         </div>
