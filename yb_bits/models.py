@@ -194,39 +194,39 @@ class BitNewView(models.Model):
 
 class VideoSkipPoints(models.Model):
     #Model for a skip point on a video bit
-    bit = models.ForeignKey(Bit, related_name = "video_skip_points", on_delete=models.CASCADE, blank=True)
-    profile = models.ForeignKey(Profile, related_name = "video_skip_points", on_delete=models.CASCADE, blank=True)
+    bit = models.ForeignKey(Bit, related_name = "video_skip_points", on_delete=models.CASCADE, blank=True, null=True)
+    profile = models.ForeignKey(Profile, related_name = "video_skip_points", on_delete=models.CASCADE, blank=True, null=True)
     skip_start = models.CharField(max_length=100, default="")
     skip_end = models.CharField(max_length=100, default="")
     time = models.DateTimeField(default=timezone.now)
 
 class VideoPausePoints(models.Model):
     #Model for a pause point on a video bit
-    bit = models.ForeignKey(Bit, related_name = "video_pause_points", on_delete=models.CASCADE, blank=True)
-    profile = models.ForeignKey(Profile, related_name = "video_pause_points", on_delete=models.CASCADE, blank=True)
+    bit = models.ForeignKey(Bit, related_name = "video_pause_points", on_delete=models.CASCADE, blank=True, null=True)
+    profile = models.ForeignKey(Profile, related_name = "video_pause_points", on_delete=models.CASCADE, blank=True, null=True)
     pause_time = models.CharField(max_length=100, default="")
     time = models.DateTimeField(default=timezone.now)
 
 class VideoRewindPoints(models.Model):
     #Model for a rewind point on a video bit
-    bit = models.ForeignKey(Bit, related_name = "video_rewind_points", on_delete=models.CASCADE, blank=True)
-    profile = models.ForeignKey(Profile, related_name = "video_rewind_points", on_delete=models.CASCADE, blank=True)
+    bit = models.ForeignKey(Bit, related_name = "video_rewind_points", on_delete=models.CASCADE, blank=True, null=True)
+    profile = models.ForeignKey(Profile, related_name = "video_rewind_points", on_delete=models.CASCADE, blank=True, null=True)
     rewind_start = models.CharField(max_length=100, default="")
     rewind_end = models.CharField(max_length=100, default="")
     time = models.DateTimeField(default=timezone.now)
 
 class VideoEngagementPoints(models.Model):
     #Model for a engagement point on a video bit
-    bit = models.ForeignKey(Bit, related_name = "video_engagements", on_delete=models.CASCADE, blank=True)
-    profile = models.ForeignKey(Profile, related_name = "video_engagement_points", on_delete=models.CASCADE, blank=True)
+    bit = models.ForeignKey(Bit, related_name = "video_engagements", on_delete=models.CASCADE, blank=True, null=True)
+    profile = models.ForeignKey(Profile, related_name = "video_engagement_points", on_delete=models.CASCADE, blank=True, null=True)
     engagement_time = models.CharField(max_length=100, default="")
     type = models.CharField(max_length=100, default="") #comment, like, dislike, share, donation, follow
     time = models.DateTimeField(default=timezone.now)
 
 class VideoBitWatch(models.Model):
     #Model for a view on a video bit
-    bit = models.ForeignKey(Bit, related_name = "video_bit_watch", on_delete=models.CASCADE, blank=True)
-    profile = models.ForeignKey(Profile, related_name = "video_bit_watch", on_delete=models.CASCADE, blank=True)
+    bit = models.ForeignKey(Bit, related_name = "video_bit_watch", on_delete=models.CASCADE, blank=True, null=True)
+    profile = models.ForeignKey(Profile, related_name = "video_bit_watch", on_delete=models.CASCADE, blank=True, null=True)
     watch_percent = models.FloatField(null=True)
     exit_time = models.CharField(max_length=100, default="")
     skip_points = models.ManyToManyField(VideoSkipPoints, related_name = "video_bit_watch", blank=True)
@@ -289,14 +289,14 @@ class Interaction(models.Model):
 
 class SharedBit(models.Model):
     #Model for a shared bit
-    bit = models.ForeignKey(Bit, related_name="shared_bit", on_delete=models.CASCADE, default=None)
-    user = models.ForeignKey(User, related_name="shared_bit", on_delete=models.CASCADE, default=None)
+    bit = models.ForeignKey(Bit, related_name="shared_bit", on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(User, related_name="shared_bit", on_delete=models.CASCADE, null=True, blank=True)
     time = models.DateTimeField(default=timezone.now)
 
 class ClusteredBit(models.Model):
     #Model for a bit in a cluster
-    bit = models.ForeignKey(Bit, related_name="clustered_bit", on_delete=models.CASCADE, default=None)
-    cluster = models.ForeignKey(Cluster, related_name="clustered_bit", on_delete=models.CASCADE, default=None)
+    bit = models.ForeignKey(Bit, related_name="clustered_bit", on_delete=models.CASCADE, default=None, blank=True)
+    cluster = models.ForeignKey(Cluster, related_name="clustered_bit", on_delete=models.CASCADE, default=None, blank=True)
     time = models.DateTimeField(default=timezone.now)
     rank = models.IntegerField(default=0)
 
