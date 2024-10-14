@@ -41,11 +41,8 @@ catch {
 
 
 function yb_getFilterPanel(template) {
-    fetch(template)
-        .then(response => response.text())
-        .then(data => {
-            filter_panel.innerHTML = data;
-        });
+    $(filter_panel).load(template);
+
 }
 
 function yb_closeFilterPanel() {
@@ -60,16 +57,20 @@ function yb_closeFilterPanel() {
 function yb_filterPanelHandler() {
     var filter_panel_type = this.getAttribute("data-type");
     var template = filter_panel_index[filter_panel_type]["template"];
-    if (this.classList.contains("active")) {
-        yb_closeFilterPanel();
-    } else {
-        for (var i = 0; i < feed_filter_btns.length; i++) {
-            if (feed_filter_btns[i].classList.contains("active")) {
-                feed_filter_btns[i].classList.remove("active");
+    if (filter_panel_type == "refresh") {
+        yb_getFeed();
+    } else{
+        if (this.classList.contains("active")) {
+            yb_closeFilterPanel();
+        } else {
+            for (var i = 0; i < feed_filter_btns.length; i++) {
+                if (feed_filter_btns[i].classList.contains("active")) {
+                    feed_filter_btns[i].classList.remove("active");
+                }
             }
+            this.classList.add("active");
+            yb_getFilterPanel(template);
         }
-        this.classList.add("active");
-        yb_getFilterPanel(template);
     }
 }
 

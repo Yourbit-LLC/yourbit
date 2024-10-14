@@ -16,7 +16,7 @@ from .serializers import *
 from rest_framework.throttling import UserRateThrottle, AnonRateThrottle
 from rest_framework.authtoken.models import Token
 from django.utils import timezone
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.shortcuts import get_object_or_404
 from rest_framework.exceptions import PermissionDenied
 
@@ -39,6 +39,7 @@ class BitFeedAPIView(generics.ListAPIView):
     def get_queryset(self):
         user_profile = Profile.objects.get(user=self.request.user)  # Assuming the user is authenticated
 
+        print(self.request)
         # Get friends and followers
         friends = user_profile.friends.all()
         family = user_profile.family.all()
@@ -46,6 +47,12 @@ class BitFeedAPIView(generics.ListAPIView):
 
         # Add logic to filter based on URL parameters
         filter_value = self.request.query_params.get('filter', None)
+        filter_value = filter_value.split('-')
+
+        #remove blank value at beginning from filter value
+        filter_value.pop(0)
+        print(filter_value)
+
         sort_value = self.request.query_params.get('sort')
 
         active_space = self.request.query_params.get('space')
@@ -73,19 +80,43 @@ class BitFeedAPIView(generics.ListAPIView):
                 queryset = Bit.objects.filter(profile=profile, is_public=True).order_by(sort_value).exclude(id__in=hidden_bits)
         else:            
 
-           # Start with a base query that applies to all situations
-            base_query = models.Q(profile__in=friends) | \
-                        models.Q(profile__in=follows) | \
-                        models.Q(is_public=True) | \
-                        models.Q(user=self.request.user)
-
+            base_query = Q()
+            
+            # Check for friends (symmetrical relationship to profiles)
+            if 'fr' in filter_value:
+                friends = user_profile.friends.all()  # Assuming you have a many-to-many relationship for friends
+                base_query |= Q(profile__in=friends)
+            
+            # Check for following (symmetrical relationship to profiles)
+            if 'fo' in filter_value:
+                following = user_profile.follows.all()  # Assuming a many-to-many relationship for following
+                base_query |= Q(profile__in=following)
+            
+            # Check for communities (followed profiles where is_orbit is True)
+            if 'co' in filter_value:
+                following = user_profile.follows.all()
+                communities = Profile.objects.filter(following__in=following, is_orbit=True)
+                base_query |= Q(profile__in=communities)
+            
+            # Check for public bits (is_public field set to True)
+            if 'p' in filter_value:
+                base_query |= Q(is_public=True)
+            
+            # Check for the user's own posts (me)
+            if 'me' in filter_value:
+                base_query |= Q(profile=user_profile)
+    
             # Check if the active space is not global
             if active_space != "global":
                 # Add the type filter to the base query
                 base_query &= models.Q(type=active_space)
 
             # Now apply the base_query to the queryset and finalize with distinct and order_by
-            queryset = Bit.objects.filter(base_query).distinct().order_by(sort_value).exclude(id__in=hidden_bits)
+                # Now get the bits/posts that match the constructed query
+            if sort_value == "-like_count":
+                queryset = Bit.objects.filter(base_query).annotate(like_count=Count('likes')).distinct().order_by(sort_value).exclude(id__in=hidden_bits)    
+            else:
+                queryset = Bit.objects.filter(base_query).distinct().order_by(sort_value).exclude(id__in=hidden_bits)
 
         print(queryset)
 
