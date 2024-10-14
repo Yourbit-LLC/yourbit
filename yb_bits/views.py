@@ -246,8 +246,6 @@ def bit_focus_view(request, pk, *args, **kwargs):
     }
     if this_bit.type == "video":
         from yb_bits.models import VideoBitWatch, InteractionHistory
-        
-        video_object = this_bit.video_upload
 
         # Update watch count
         this_bit.watch_count += 1
@@ -260,7 +258,7 @@ def bit_focus_view(request, pk, *args, **kwargs):
         this_history.watched.add(new_watch)
         this_history.save()
 
-    return render(request, "yb_bits/yb_bit_focus.html")
+    return render(request, "yb_bits/yb_bit_focus.html", context)
 
 
 def comment_history_view(request, *args, **kwargs):

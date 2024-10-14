@@ -47,7 +47,8 @@ class BitSerializer(serializers.ModelSerializer):
             'dislike_count', 
             'share_count', 
             'comment_count',
-            'is_liked'
+            'is_liked',
+            'watch_count',
         ]
 
     # Methods to calculate counts
