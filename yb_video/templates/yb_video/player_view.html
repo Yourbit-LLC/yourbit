@@ -6,9 +6,19 @@
 <meta property="og:image" content="{{bit.video_upload.thumbnail.medium_thumbnail_ext}}" />
 <meta property="og:video" content="{{bit.video_upload.ext_url}}" />
 <style>
-    mux-player {
-        --controls-backdrop-color: {{bit.custom.primary_color}};
-    }
+
+    mux-player::part(center play button) {
+        display: block;
+      }
+
+      mux-player::part(center seek-forward button) {
+        display: block;
+      }
+
+      mux-player::part(center seek-backward button) {
+        display: block;
+      }
+
 </style>
 <div class="yb-player-grid">
     <div class="yb-flexColumn player-scroll-section yb-vScroll">
@@ -26,7 +36,7 @@
                     playback-id="{{bit.video_upload.ext_id}}"
                     metadata-video-title="{{bit.title}}"
                     metadata-viewer-user-id="{{bit.username}}"
-                    
+                    metadata-viewer-user-name="{{bit.profile.display_name}}"
                     accent-color="{{bit.custom.icon_color}}"
                     primary-color="{{bit.custom.button_color}}"
                 ></mux-player>
