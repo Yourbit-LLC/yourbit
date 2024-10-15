@@ -7,18 +7,11 @@
 <meta property="og:video" content="{{bit.video_upload.ext_url}}" />
 <style>
 
-    mux-player::part(center play button) {
-        display: block;
-      }
-
-      mux-player::part(center seek-forward button) {
-        display: block;
-      }
-
-      mux-player::part(center seek-backward button) {
-        display: block;
-      }
-
+    mux-player {
+        --center-seek-backward-button: block;
+        --center-seek-forward-button: block;
+        --center-play-button: block;
+    }
 </style>
 <div class="yb-player-grid">
     <div class="yb-flexColumn player-scroll-section yb-vScroll">
