@@ -202,6 +202,8 @@ def upload_image_cf(request, image_type="profile"):
     image = modify_image(request.user, image, crop_data)
 
     image_id = send_image_to_cloudflare(image)
+    print(image_type)
+    
     
     if image_type == "general":
         new_photo = Photo.objects.create(
@@ -211,6 +213,7 @@ def upload_image_cf(request, image_type="profile"):
         )
     
         urls = generate_image_urls(image_id)
+        print(urls)
 
         new_photo.ext_url = urls['image_url']
         new_photo.tiny_thumbnail_ext = urls['tiny_thumbnail_url']
@@ -223,7 +226,9 @@ def upload_image_cf(request, image_type="profile"):
 
     elif image_type == "profile":
         profile_type = request.POST.get('profile_class')
+        print(profile_type)
         if profile_type == "user":
+
             new_photo = Photo.objects.create(
                 storage_type="cf", 
                 ext_id=image_id, 
@@ -231,7 +236,7 @@ def upload_image_cf(request, image_type="profile"):
             )
 
             urls = generate_image_urls(image_id)
-
+            print(urls)
             new_photo.ext_url = urls['image_url']
             new_photo.tiny_thumbnail_ext = urls['tiny_thumbnail_url']
             new_photo.small_thumbnail_ext = urls['small_thumbnail_url']
