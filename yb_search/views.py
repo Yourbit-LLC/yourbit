@@ -27,25 +27,32 @@ def search(request):
     
     #Get query and filter from request
     query = request.GET.get('query')
-    search_filter = request.GET.get('filter')
+    
 
-    #Filter for bit results
-    bit_results = []
-    bit_body_filter = Bit.objects.filter(body__icontains = query)
-    for result in bit_body_filter:
-        if result not in bit_results:
-            bit_results.append(result)
-    bit_title_filter = Bit.objects.filter(title__icontains = query)
-    for result in bit_title_filter:
-        if result not in bit_results:   
-            bit_results.append(result)
+    # #Filter for bit results
+    # bit_results = []
+    # bit_body_filter = Bit.objects.filter(body__icontains = query)
+    # for result in bit_body_filter:
+    #     if result not in bit_results:
+    #         bit_results.append(result)
+    # bit_title_filter = Bit.objects.filter(title__icontains = query)
+    # for result in bit_title_filter:
+    #     if result not in bit_results:   
+    #         bit_results.append(result)
 
             
-    #Return count of bit results
-    bit_result_count = len(bit_results)
+    # #Return count of bit results
+    # bit_result_count = len(bit_results)
+
+    filter_value = request.GET.get('filter', None)
+    search_filter = filter_value.split('-')
+
+    user_results = []
+
+    print(search_filter)
+    
     if "us" in search_filter:
         #Filter for user results
-        user_results = []
         profile_objects = Profile.objects.filter(username__icontains = query)
         for result in profile_objects:
             if result not in user_results:
@@ -57,16 +64,16 @@ def search(request):
                 user_results.append(result)
 
     if "or" in search_filter:
-        orbit_results = []
+        
         orbit_objects_by_username = Profile.objects.filter(username__icontains = query, is_orbit=True)
         for result in orbit_objects_by_username:
             if result not in user_results:
-                orbit_results.append(result)
+                user_results.append(result)
 
         orbit_objects_by_name = Profile.objects.filter(display_name__icontains = query, is_orbit=True)
         for result in orbit_objects_by_name:
             if result not in user_results:
-                orbit_results.append(result)
+                user_results.append(result)
 
 
         # serialized_orbits = OrbitResultSerializer(orbit_results, many=True).data
@@ -77,7 +84,6 @@ def search(request):
     serialized_users = ProfileResultSerializer(user_results, many=True).data
 
     #Return total count of results
-    result_count = user_result_count + bit_result_count
 
     #     # Calculate ranking scores based on search relevance
     # results = serialized_users.annotate(
@@ -108,7 +114,7 @@ def search(request):
 
 
 
-    return JsonResponse({'results_found': True, 'result_count':result_count, 'results':serialized_users})
+    return JsonResponse({'results_found': True, 'result_count':user_result_count, 'results':serialized_users})
 
 
     
