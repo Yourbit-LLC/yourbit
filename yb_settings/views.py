@@ -14,7 +14,7 @@ def settings_profile(request):
     return render(request, "yb_settings/yb_profileInfo.html")
 
 def settings_privacy(request):
-    active_profile = Profile.objects.get(username=request.user.active_user)
+    active_profile = Profile.objects.get(username=request.user.active_profile)
     my_settings = MySettings.objects.get(profile = active_profile)
     privacy = PrivacySettings.objects.get(settings = my_settings)
     context = {
@@ -43,7 +43,7 @@ def settings_feed(request):
     return render(request, "yb_settings/yb_feedSettings.html")
 
 def settings_account(request):
-    active_profile = Profile.objects.get(username=request.user.active_user)
+    active_profile = Profile.objects.get(username=request.user.active_profile)
     my_settings = MySettings.objects.get(profile = active_profile)
     privacy = PrivacySettings.objects.get(settings = my_settings)
 
@@ -53,7 +53,7 @@ def settings_account(request):
     return render(request, "yb_settings/yb_accountSettings.html", context)
 
 def settings_notifications(request):
-    active_profile = Profile.objects.get(username=request.user.active_user)
+    active_profile = Profile.objects.get(username=request.user.active_profile)
     my_settings = MySettings.objects.get(profile = active_profile)
     notifications = NotificationSettings.objects.get(settings = my_settings)
 
@@ -162,7 +162,7 @@ def set_all_false(request):
 
 class SettingsPrivacy(View):
     def get(self, request):
-        active_profile = Profile.objects.get(username=request.user.active_user)
+        active_profile = Profile.objects.get(username=request.user.active_profile)
         my_settings = MySettings.objects.get(profile = active_profile)
         privacy = PrivacySettings.objects.get(settings = my_settings)
         context = {
@@ -204,7 +204,7 @@ class SettingsPrivacy(View):
 
 class AccountSettings(View):
     def get(self, request):
-        active_profile = Profile.objects.get(username=request.user.active_user)
+        active_profile = Profile.objects.get(username=request.user.active_profile)
         my_settings = MySettings.objects.get(profile = active_profile)
         privacy = PrivacySettings.objects.get(settings = my_settings)
 
@@ -259,7 +259,7 @@ class SettingsFeed(View):
 
 class SettingsNotifications(View):
     def post(self, request):
-        active_profile = Profile.objects.get(username=request.user.active_user)
+        active_profile = Profile.objects.get(username=request.user.active_profile)
         my_settings = MySettings.objects.get(profile = active_profile)
         notifications = NotificationSettings.objects.get(settings=my_settings)
 

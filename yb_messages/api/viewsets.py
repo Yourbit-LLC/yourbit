@@ -28,7 +28,7 @@ class MessageCoreViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
     
     def perform_create(self, serializer):
-        profile = Profile.objects.get(username=self.request.user.active_username)
+        profile = Profile.objects.get(username=self.request.user.active_profile)
         serializer.save(profile=profile)
 
 
