@@ -11,11 +11,17 @@
         --center-seek-backward-button: block;
         --center-seek-forward-button: block;
         --center-play-button: block;
+        --controls-backdrop-color: transparent;
     }
 </style>
 <div class="yb-player-grid">
     <div class="yb-flexColumn player-scroll-section yb-vScroll">
         <div id="yb-player" class="yb-player" style="aspect-ratio: 16 / 9; max-height: 500px;">
+            <div class="video-countdown-container" id="countdown-container">
+                <h4>Next Video in:</h4>
+                <h4 id="countdown">10</h4>
+
+            </div>
             {% if bit.storage_type == "yb" %}
             <div id="video-container-{{bit.id}}" class="attached-video-container">
                 <video id="video-{{bit.id}}" class="attached-video" controls="true" playsinline="true" data-id="{{bit.id}}" src="{{bit.video_upload.video.url}}" style="max-width: 100%; max-height:100%; margin-left: auto; margin-right: auto; display: block;">
@@ -121,9 +127,47 @@
             send_comment = document.querySelector(".yb-send-comment");
 
         }
+
+        // Function to update the countdown every second
+        function updateCountdown(countdownTime) {
+            const countdownElement = document.getElementById('countdown');
+    
+            // Update the text content to show the current countdown time
+            countdownElement.innerText = countdownTime;
+    
+            // Check if the countdown is over
+            if (countdownTime > 0) {
+                countdownTime--; // Decrease the countdown by 1
+            } else {
+                clearInterval(timerInterval); // Stop the countdown when it reaches 0
+                yb_nextVideo();
+            }
+        }
+
+        function startCountdown() {
+            let countdownTime = 10;
+            muxPlayer.style.setProperty('--controls-backdrop-color', video.getAttribute('primary-color'));
+            updateCountdown(countdownTime);
+            timerInterval = setInterval(updateCountdown, 1000, countdownTime);
+
+        }
+    
+        // Start the countdown and update it every second (1000ms)
+        const timerInterval = setInterval(updateCountdown, 1000);
         $(video).ready(function() {
             video.play();
             yb_hideMobileUI();
+
+            video.addEventListener('ended', function() {
+                // Action to take when the video ends
+                alert('Video has finished playing!');
+                if (VIDEO_QUEUE.length > 0) {
+                    startCountdown();
+                } else {
+                    console.log("No more videos in queue")
+                }
+            });
+
             about_section.addEventListener("click", function(){
                 console.log("clicked")
                 let about_state = about_section.getAttribute("data-state")

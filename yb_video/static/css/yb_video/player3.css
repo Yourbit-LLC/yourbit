@@ -188,6 +188,13 @@
     background-color: rgb(25, 25, 25);
 }
 
+.video-countdown-container {
+    margin: auto;
+    color: white;
+    text-align: center;
+    mix-blend-mode: difference;
+}
+
 .video-user-info {
     background-color: rgb(50, 50, 50);
 }

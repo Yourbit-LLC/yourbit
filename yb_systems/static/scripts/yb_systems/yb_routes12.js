@@ -545,3 +545,9 @@ function yb_navigateTo(container, template, data=null, reloadable=true) {
 
 
 }
+
+function yb_getNextVideo() {
+    let video_id = VIDEO_QUEUE.shift();
+    yb_navigateTo("content-container", "bit-focus", video_id);
+    
+}

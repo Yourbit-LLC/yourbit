@@ -51,10 +51,14 @@ var back_button_active = false;
 
 var fullscreen_view = false;
 
+const VIDEO_QUEUE = []
+
 function getCSRF() {
     let csrf_token = document.querySelector('[name=csrfmiddlewaretoken]').value;
     return csrf_token;
 }
+
+const CSRF_TOKEN = getCSRF();
 
 function yb_syncState() {
     $.ajax(
