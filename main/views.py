@@ -153,8 +153,8 @@ class CreateElement(View):
             )       
 def change_user_perspective(request, *args, **kwargs):
 
-    user_session = UserSession.objects.get(user=request.user)
-    user_session.current_context = request.POST.get('username')
-    user_session.save()
+    this_user = request.user
+    this_user.active_profile = request.POST.get('username')
+    this_user.save()
 
     return HttpResponse("success")
