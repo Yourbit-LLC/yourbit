@@ -83,7 +83,7 @@ class PeopleViewTemplate(View):
         from itertools import chain
         from operator import attrgetter
 
-        this_profile = Profile.objects.get(user = request.user)
+        this_profile = Profile.objects.get(username = request.user.active_profile)
         friends = this_profile.friends.all()
         followers = this_profile.followers.all()
         following = this_profile.follows.all()
@@ -137,7 +137,7 @@ class OrbitListTemplate(View):
         from itertools import chain
         from operator import attrgetter
 
-        this_profile = Profile.objects.get(user = request.user)
+        this_profile = Profile.objects.get(username = request.user.active_profile)
         
         following = this_profile.follows.filter(is_orbit=True)
 
@@ -279,7 +279,7 @@ class HistoryTemplate(View):
 class ProfileConnectTemplate(View):
     def get(self, request, id, *args, **kwargs):
         this_profile = Profile.objects.get(id = id)
-        user_profile = Profile.objects.get(user = request.user)
+        user_profile = Profile.objects.get(username = request.user.active_profile)
 
         follow_button = {}
         friend_button = {}
@@ -409,7 +409,7 @@ class ProfilePage(View):
         
 def profile_onboarding(request, *args, **kwargs):
     if request.method == "POST":
-        this_profile = Profile.objects.get(user = request.user)
+        this_profile = Profile.objects.get(username = request.user.active_profile)
 
         this_profile.gender = request.POST.get("gender")
         this_profile.bio = request.POST.get("bio")
