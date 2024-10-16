@@ -14,8 +14,8 @@
 
         <div style="position: relative; width: 100%;">
             <div class="user-info-menu yb-bg-autoGray" onclick="yb_dropDownMenu('menu-profile-dropdown'); yb_showMenuDivider();">
-                <h3 id="yb-menu-name" class="font-white align-center yb-pHead">{{user.first_name}} {{user.last_name}}</h3>
-                <p id="yb-menu-username" class="font-white font-medium align-center yb-pText"><small>@</small>{{user.username}}</p>
+                <h3 id="yb-menu-name" class="font-white align-center yb-pHead">{{user_profile.display_name}}</h3>
+                <p id="yb-menu-username" class="font-white font-medium align-center yb-pText"><small>@</small>{{user_profile.username}}</p>
                 <svg class="user-info-expand" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="white"><path d="M480-344 240-584l47.33-47.33L480-438.67l192.67-192.66L720-584 480-344Z"/></svg>
                 <div class="yb-dropdown yb-bg-autoGray yb-vScroll" id="menu-profile-dropdown">
                     {% for orbit in user_orbits %}
