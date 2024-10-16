@@ -150,7 +150,6 @@
         function startCountdown() {
             let countdownTime = 10;
             video.style.setProperty('--controls-backdrop-color', video.getAttribute('primary-color'));
-            updateCountdown(countdownTime);
             timerInterval = setInterval(updateCountdown, 1000, countdownTime);
 
         }
