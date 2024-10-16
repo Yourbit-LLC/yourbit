@@ -9,7 +9,7 @@ function yb_buildListItem(result, action=null){
     let user = result.user
 
     let name = result.display_name;
-    let handle = user.username;
+    let handle = result.username;
     let element_id = `${type}-${id}`;
     let new_item = yb_createElement("div", "yb-listItem yb-autoText", `result-${element_id}`);
     new_item.setAttribute("data-catid", `${id}`);
