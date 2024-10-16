@@ -434,10 +434,13 @@ class CreateOrbit(View):
         orbit_handle = request.POST.get("username")
         orbit_type = request.POST.get("type")
 
+        this_profile = request.user.profile.first()
+
         new_orbit = Profile(user=request.user, is_orbit=True, display_name = orbit_name, username = orbit_handle, space_focus=orbit_type)
-
-
         new_orbit.save()
+
+        this_profile.managed_orbits.add(new_orbit)
+        this_profile.save()
 
         serialized_data = ProfileResultSerializer(new_orbit).data
         print(serialized_data)
