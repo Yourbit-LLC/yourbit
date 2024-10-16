@@ -89,6 +89,7 @@ def Customization(request):
             'wallpaper': wallpaper,
             'wallpaper_mobile': wallpaper_mobile,
             'wallpaper_desktop': wallpaper_desktop,
+            'user_orbits': profile.managed_orbits.all(),
             'custom_core': custom,
             'wallpaper_enabled': wallpaper_enabled,
             'user_custom_ui': custom_ui,
