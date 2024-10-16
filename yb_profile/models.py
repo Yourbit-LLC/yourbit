@@ -124,7 +124,7 @@ class Profile(models.Model):
     # Add any other user-specific fields
 
     def __str__(self):
-        return self.user.username
+        return self.username
     
 
 
