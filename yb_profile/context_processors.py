@@ -33,7 +33,7 @@ def Customization(request):
             profile = Profile.objects.get(username=request.user.active_profile)
 
         else:
-            profile = Profile.objects.get(username = user_session.current_context)
+            profile = Profile.objects.get(username = request.user.active_profile)
         
         custom = CustomCore.objects.get(profile=profile)
         
