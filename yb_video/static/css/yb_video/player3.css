@@ -193,6 +193,7 @@
     color: white;
     text-align: center;
     mix-blend-mode: difference;
+    display: none;
 }
 
 .video-user-info {

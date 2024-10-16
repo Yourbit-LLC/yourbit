@@ -119,8 +119,10 @@
             var about_section = document.getElementById("video-about-header");
             var description = document.getElementById("yb-player-description");
             var send_comment = document.querySelector(".yb-send-comment");
+            var countdown_container = document.getElementById("countdown-container");
         } catch {
             video = document.getElementById("yb-video-player");
+            countdown_container = document.getElementById("countdown-container");
             videoContainer = document.getElementById("yb-player");
             about_section = document.getElementById("video-about-header");
             description = document.getElementById("yb-player-description");
@@ -160,8 +162,8 @@
 
             video.addEventListener('ended', function() {
                 // Action to take when the video ends
-                alert('Video has finished playing!');
                 if (VIDEO_QUEUE.length > 0) {
+                    countdown_container.style.display = "block";
                     startCountdown();
                 } else {
                     console.log("No more videos in queue")
