@@ -113,10 +113,17 @@ class BitFeedAPIView(generics.ListAPIView):
 
             # Now apply the base_query to the queryset and finalize with distinct and order_by
                 # Now get the bits/posts that match the constructed query
-            if sort_value == "-like_count":
-                queryset = Bit.objects.filter(base_query).annotate(like_count=Count('likes')).distinct().order_by(sort_value).exclude(id__in=hidden_bits)    
+
+            if 'me' not in filter_value:
+                if sort_value == "-like_count":
+                    queryset = Bit.objects.filter(base_query).annotate(like_count=Count('likes')).distinct().order_by(sort_value).exclude(id__in=hidden_bits, profile=user_profile)    
+                else:
+                    queryset = Bit.objects.filter(base_query).distinct().order_by(sort_value).exclude(id__in=hidden_bits, profile=user_profile)
             else:
-                queryset = Bit.objects.filter(base_query).distinct().order_by(sort_value).exclude(id__in=hidden_bits)
+                if sort_value == "-like_count":
+                    queryset = Bit.objects.filter(base_query).annotate(like_count=Count('likes')).distinct().order_by(sort_value).exclude(id__in=hidden_bits)    
+                else:
+                    queryset = Bit.objects.filter(base_query).distinct().order_by(sort_value).exclude(id__in=hidden_bits)
 
         print(queryset)
 
