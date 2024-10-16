@@ -191,7 +191,9 @@
 .video-countdown-container {
     position: absolute;
     z-index: 10;
-    margin: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     color: white;
     text-align: center;
     mix-blend-mode: difference;

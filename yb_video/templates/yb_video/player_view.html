@@ -1,5 +1,5 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/yb_video/player4.css' %}">
+<link rel="stylesheet" href="{% static 'css/yb_video/player5.css' %}">
 <meta property="og:title" content="{{bit.title}}" />
 <meta property="og:type" content="video.movie" />
 <meta property="og:url" content="https://yourbit.me/bits/view/{{bit.id}}/" />
@@ -142,13 +142,13 @@
                 countdownTime--; // Decrease the countdown by 1
             } else {
                 clearInterval(timerInterval); // Stop the countdown when it reaches 0
-                yb_nextVideo();
+                yb_getNextVideo();
             }
         }
 
         function startCountdown() {
             let countdownTime = 10;
-            muxPlayer.style.setProperty('--controls-backdrop-color', video.getAttribute('primary-color'));
+            video.style.setProperty('--controls-backdrop-color', video.getAttribute('primary-color'));
             updateCountdown(countdownTime);
             timerInterval = setInterval(updateCountdown, 1000, countdownTime);
 
