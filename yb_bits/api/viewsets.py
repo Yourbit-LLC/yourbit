@@ -68,7 +68,7 @@ class BitFeedAPIView(generics.ListAPIView):
         if 'profile' in self.request.query_params:
             #If so user wants bits for a specific profile
             profile_username = self.request.query_params.get('profile')
-            profile = Profile.objects.get(user__username=profile_username)
+            profile = Profile.objects.get(username=profile_username)
             
             if profile.is_friends_with(user_profile) or profile.is_family_with(user_profile) or self.request.user == profile.user:
                 if active_space != "global":
