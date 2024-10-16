@@ -14,7 +14,7 @@ class ProfileResultSerializer(serializers.ModelSerializer):
 
     class Meta: 
         model = Profile
-        fields = ['display_name', 'user', 'customcore']
+        fields = ['id','display_name', 'user', 'customcore']
 
     def get_customcore(self, obj):
         custom_core = CustomCore.objects.get(profile=obj)
