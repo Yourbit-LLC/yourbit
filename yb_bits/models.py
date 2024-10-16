@@ -11,8 +11,8 @@ from django.contrib.postgres.fields import ArrayField
 # Create your models here.
 
 class BitStream(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, blank=True, null=True)
     video_bits = models.ManyToManyField('Bit', related_name='all_bits', blank=True)
     chat_bits = models.ManyToManyField('Bit', related_name='chat_bits', blank=True)
     photo_bits = models.ManyToManyField('Bit', related_name='photo_bits', blank=True)
@@ -305,7 +305,7 @@ class ClusteredBit(models.Model):
 class InteractionHistory(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE, default=None, null=True, blank=True, related_name='interactions')
     profile = models.OneToOneField(
-        Profile, on_delete=models.DO_NOTHING, default=None, null=True, blank=True, related_name='interactions'
+        Profile, on_delete=models.CASCADE, default=None, null=True, blank=True, related_name='interactions'
     )
 
     liked_bits = models.ManyToManyField(Bit, related_name="liked_bits", blank=True)

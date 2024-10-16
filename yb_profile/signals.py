@@ -68,7 +68,7 @@ def setup_instances(sender, instance, created, **kwargs):
         notification_core.save()
         instance.save()
 
-        bitstream = BitStream(user = instance, profile = instance)
+        bitstream = BitStream(profile = instance)
         bitstream.save()
 
         #Initialize Customization Modules
