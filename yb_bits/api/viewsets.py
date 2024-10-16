@@ -37,7 +37,7 @@ class BitFeedAPIView(generics.ListAPIView):
     serializer_class = BitSerializer
 
     def get_queryset(self):
-        user_profile = Profile.objects.get(user=self.request.user)  # Assuming the user is authenticated
+        user_profile = Profile.objects.get(username=self.request.user.active_profile)  # Assuming the user is authenticated
 
         print(self.request)
         # Get friends and followers
@@ -148,7 +148,7 @@ class BitFeedAPIView(generics.ListAPIView):
 
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
-        this_profile = Profile.objects.get(user=self.request.user)
+        this_profile = Profile.objects.get(username=self.request.user.active_profile)
         user_tz = this_profile.current_timezone
 
         print("user tz" + user_tz)
@@ -194,7 +194,7 @@ class BitViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
 
         #Get custom core for profile images
-        user_profile = Profile.objects.get(user=self.request.user)
+        user_profile = Profile.objects.get(username=self.request.user.active_profile)
         custom_core = CustomCore.objects.get(profile=user_profile)
         theme = custom_core.theme
         
@@ -274,7 +274,7 @@ class BitViewSet(viewsets.ModelViewSet):
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
-        user_profile = Profile.objects.get(user=self.request.user)
+        user_profile = Profile.objects.get(username=self.request.user.active_profile)
         timezone = user_profile.current_timezone
 
         serializer = self.get_serializer(instance, context={'user_tz': timezone, 'request': request})
@@ -294,7 +294,7 @@ class BitViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['post'])
     def hide(self, request, *args, **kwargs):
         instance = self.get_object()
-        user_profile = Profile.objects.get(user=self.request.user)
+        user_profile = Profile.objects.get(username=self.request.user.active_profile)
         bitstream_object = BitStream.objects.get(profile=user_profile)
         bitstream_object.hidden_bits.add(instance)
         bitstream_object.save()

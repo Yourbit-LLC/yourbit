@@ -303,7 +303,7 @@ class ClusteredBit(models.Model):
 #Interaction history table indexes all Yourbit Interactions as they are created. Interactions
 #are referenced in 3 places which allow for quicker queries and scope.
 class InteractionHistory(models.Model):
-    user = models.OneToOneField(User, on_delete = models.CASCADE)
+    user = models.OneToOneField(User, on_delete = models.CASCADE, default=None, null=True, blank=True, related_name='interactions')
     profile = models.OneToOneField(
         Profile, on_delete=models.DO_NOTHING, default=None, null=True, blank=True, related_name='interactions'
     )

@@ -27,10 +27,10 @@ def Customization(request):
     if request.user.is_authenticated:
 
         user_session = UserSession.objects.get(user=request.user)
-        user_profile = Profile.objects.get(user=request.user)
+        user_profile = Profile.objects.get(username=request.user.active_profile)
 
         if user_session.current_context == "self":
-            profile = Profile.objects.get(user=request.user)
+            profile = Profile.objects.get(username=request.user.active_profile)
 
         else:
             profile = Profile.objects.get(username = user_session.current_context)

@@ -31,6 +31,9 @@ def create_profile(sender, instance, created, **kwargs):
         user_profile = Profile(user=instance, username = instance.username, display_name = default_display_name)
         user_profile.save()
 
+        rewards = Rewards(user=instance)
+        rewards.save()
+
         #Initialize Task Manager for user continuity
         task_manager = TaskManager(user = instance)
         task_manager.save()
@@ -50,10 +53,10 @@ def setup_instances(sender, instance, created, **kwargs):
         privacy.save()
         notifications = NotificationSettings(settings = settings)
         notifications.save()
-        rewards = Rewards(user=instance)
-        rewards.save()
-        history = InteractionHistory(user=instance, profile=instance)
+
+        history = InteractionHistory(profile=instance)
         history.save()
+        
         profile_info = ProfileInfo(profile=instance)
         profile_info.save()
 
