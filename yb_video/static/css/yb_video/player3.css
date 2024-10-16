@@ -189,6 +189,8 @@
 }
 
 .video-countdown-container {
+    position: absolute;
+    z-index: 10;
     margin: auto;
     color: white;
     text-align: center;
