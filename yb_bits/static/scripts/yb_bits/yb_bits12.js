@@ -198,7 +198,7 @@ function yb_addMedia(type, bit) {
     }
 
     if (type === 'video'){
-        VIDEO_QEUE.push(bit.id);
+        VIDEO_QUEUE.push(bit.id);
         let bit_video = bit.video_upload;
         let attached_video_container = yb_createElement("div", "attached-video-container", `video-container-${bit.id}`);
         let video_player;
