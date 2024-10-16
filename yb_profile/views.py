@@ -439,21 +439,6 @@ class CreateOrbit(View):
 
         new_orbit.save()
 
-
-        this_custom = CustomCore.objects.create(orbit = new_orbit)
-        
-        theme = Theme.objects.create(orbit = new_orbit, author=request.user)
-        theme.save()
-
-        this_custom.theme = theme
-        this_custom.save()
-
-        custom_bit = CustomBit.objects.create(theme = theme, images = this_custom)
-        custom_bit.save()
-
-        custom_ui = CustomUI.objects.create(theme = theme)
-        custom_ui.save()
-
         serialized_data = ProfileResultSerializer(new_orbit).data
         print(serialized_data)
         
