@@ -116,9 +116,9 @@ class BitFeedAPIView(generics.ListAPIView):
 
             if 'me' not in filter_value:
                 if sort_value == "-like_count":
-                    queryset = Bit.objects.filter(base_query).annotate(like_count=Count('likes')).distinct().order_by(sort_value).exclude(id__in=hidden_bits, profile=user_profile)    
+                    queryset = Bit.objects.filter(base_query).annotate(like_count=Count('likes')).distinct().order_by(sort_value).exclude(id__in=hidden_bits).exclude(profile=user_profile)  
                 else:
-                    queryset = Bit.objects.filter(base_query).distinct().order_by(sort_value).exclude(id__in=hidden_bits, profile=user_profile)
+                    queryset = Bit.objects.filter(base_query).distinct().order_by(sort_value).exclude(id__in=hidden_bits).exclude(profile=user_profile)
             else:
                 if sort_value == "-like_count":
                     queryset = Bit.objects.filter(base_query).annotate(like_count=Count('likes')).distinct().order_by(sort_value).exclude(id__in=hidden_bits)    
