@@ -121,6 +121,7 @@
             var send_comment = document.querySelector(".yb-send-comment");
             var countdown_container = document.getElementById("countdown-container");
             var timerInterval;
+            var countdownTime = 10;
         } catch {
             video = document.getElementById("yb-video-player");
             countdown_container = document.getElementById("countdown-container");
@@ -128,11 +129,11 @@
             about_section = document.getElementById("video-about-header");
             description = document.getElementById("yb-player-description");
             send_comment = document.querySelector(".yb-send-comment");
-
+            countdownTime = 10;
         }
 
         // Function to update the countdown every second
-        function updateCountdown(countdownTime) {
+        function updateCountdown() {
             const countdownElement = document.getElementById('countdown');
     
             // Update the text content to show the current countdown time
@@ -148,7 +149,6 @@
         }
 
         function startCountdown() {
-            let countdownTime = 10;
             video.style.setProperty('--controls-backdrop-color', video.getAttribute('primary-color'));
             timerInterval = setInterval(updateCountdown, 1000, countdownTime);
 
