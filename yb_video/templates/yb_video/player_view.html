@@ -120,6 +120,7 @@
             var description = document.getElementById("yb-player-description");
             var send_comment = document.querySelector(".yb-send-comment");
             var countdown_container = document.getElementById("countdown-container");
+            var timerInterval;
         } catch {
             video = document.getElementById("yb-video-player");
             countdown_container = document.getElementById("countdown-container");
@@ -153,9 +154,6 @@
             timerInterval = setInterval(updateCountdown, 1000, countdownTime);
 
         }
-    
-        // Start the countdown and update it every second (1000ms)
-        const timerInterval = setInterval(updateCountdown, 1000);
         $(video).ready(function() {
             video.play();
             yb_hideMobileUI();
