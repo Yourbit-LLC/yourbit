@@ -243,6 +243,8 @@ def upload_image_cf(request, image_type="profile"):
             new_photo.medium_thumbnail_ext = urls['medium_thumbnail_url']
             new_photo.large_thumbnail_ext = urls['large_thumbnail_url']
 
+            new_photo.save()
+
             profile_image = ProfileImage.objects.create(
                 profile = profile_object,
                 photo = new_photo
