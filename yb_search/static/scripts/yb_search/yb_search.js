@@ -63,7 +63,7 @@ function yb_getSearchResults(location, type, query) {
         type: 'GET',
         url: '/search/results/',
         data: { 
-            type: type,
+            filter: type,
             query: query
         },
         success: function(response){
