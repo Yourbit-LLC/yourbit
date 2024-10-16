@@ -118,10 +118,12 @@ def process_image(request, source_image = None, cropped_image = None, is_private
 
 
 def get_image_url_from_cloudflare(image_id, variant="public"):
+    print("Image URL " + variant)
     return f"https://imagedelivery.net/{settings.CLOUDFLARE_ACCOUNT_HASH}/{image_id}/{variant}"
     
 
 def generate_image_urls(image_id):
+    print("Generating image urls")
     return {
         'image_url': 
             get_image_url_from_cloudflare(
