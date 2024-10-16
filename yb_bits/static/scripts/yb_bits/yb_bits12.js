@@ -221,11 +221,12 @@ function yb_addMedia(type, bit) {
             video_thumbnail = bit_video.thumbnail
             video_player.setAttribute("src", video_thumbnail.ext_url);
             video_player.addEventListener("click", function() {
-                let index = VIDEO_QUEUE.indexOf(bit.id);
-                if (index !== -1) {
-                    VIDEO_QUEUE.splice(index, 1); // Removes 'banana'
+                if (VIDEO_QUEUE.length > 0){
+                    if (VIDEO_QUEUE.includes(bit.id)){
+                        let index = VIDEO_QUEUE.indexOf(bit.id);
+                        VIDEO_QUEUE.splice(index, 1); // Removes 'banana'
+                    }    
                 }
-                
                 yb_navigateTo("content-container", "bit-focus", bit.id);
             })
             let play_button = yb_createElement("div", "yb-play-icon circle yb-center-transform all", `play-icon-${bit.id}`)
