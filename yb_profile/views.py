@@ -434,7 +434,7 @@ class CreateOrbit(View):
         orbit_handle = request.POST.get("username")
         orbit_type = request.POST.get("type")
 
-        this_profile = request.user.profile.first()
+        this_profile = request.user.owned_profile.first()
 
         new_orbit = Profile(user=request.user, is_orbit=True, display_name = orbit_name, username = orbit_handle, space_focus=orbit_type)
         new_orbit.save()
