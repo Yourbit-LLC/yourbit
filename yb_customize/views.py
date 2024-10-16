@@ -78,7 +78,7 @@ class CustomizeMain(View):
         
 
 def complete_tutorial(request, type):
-    profile_object = Profile.objects.get(user=request.user)
+    profile_object = Profile.objects.get(username=request.user.active_profile)
     custom_core = CustomCore.objects.get(profile = profile_object)
     custom_core.splash_tutorial_complete = True
     custom_core.save()
@@ -105,7 +105,7 @@ class ProfileImageUpload(View):
     
 def update_profile_image(request):
     if request.POST.get('class') == 'profile':
-        this_profile = Profile.objects.get(user=request.user)
+        this_profile = Profile.objects.get(username=request.user.active_profile)
     else:
         return HttpResponse("Invalid request type")
 
@@ -218,7 +218,7 @@ def get_wallpaper(request, profile_class, type):
     this_profile = None
 
     if profile_class == 'profile':
-        this_profile = Profile.objects.get(user=request.user)
+        this_profile = Profile.objects.get(username=request.user.active_profile)
         custom_core = CustomCore.objects.get(profile=this_profile)
     else:
         return HttpResponse("Invalid request type")

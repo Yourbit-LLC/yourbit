@@ -17,7 +17,7 @@ class NotificationViewSet(viewsets.ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         from yb_profile.models import Profile
-        user_profile = Profile.objects.get(user=request.user)  # Assuming the user is authenticated
+        user_profile = Profile.objects.get(username=request.user.active_profile)  # Assuming the user is authenticated
         queryset = Notification.objects.filter(to_user=user_profile)
 
         #Filter by query param

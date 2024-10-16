@@ -262,7 +262,7 @@ def bit_focus_view(request, pk, *args, **kwargs):
 
 
 def comment_history_view(request, *args, **kwargs):
-    profile = Profile.objects.get(user=request.user)
+    profile = Profile.objects.get(username=request.user.active_profile)
     interaction_history = InteractionHistory.objects.get(profile=profile)
     interactions = interaction_history.commented_on.all()
     context = {
@@ -271,7 +271,7 @@ def comment_history_view(request, *args, **kwargs):
     return render(request, "yb_bits/yb_comment_list.html", context)
 
 def watch_history_view(request, *args, **kwargs):
-    profile = Profile.objects.get(user=request.user)
+    profile = Profile.objects.get(username=request.user.active_profile)
     interaction_history = InteractionHistory.objects.get(profile=profile)
     interactions = interaction_history.watched.all()
     context = {
@@ -290,7 +290,7 @@ def customize_panel_view(request, *args, **kwargs):
     return render(request, "yb_bits/yb_customize_panel.html")
 
 def list_clusters(request, *args, **kwargs):
-    profile = Profile.objects.get(user=request.user)
+    profile = Profile.objects.get(username=request.user.active_profile)
     clusters = Cluster.objects.filter(profile=profile)
     if not clusters:
         is_clusters = False
@@ -306,7 +306,7 @@ def list_clusters(request, *args, **kwargs):
     return render(request, "yb_bits/yb_cluster_list.html", context)
 
 def select_clusters(request, bit_id, *args, **kwargs):
-    profile = Profile.objects.get(user=request.user)
+    profile = Profile.objects.get(username=request.user.active_profile)
     
     this_bit = Bit.objects.get(pk=bit_id)
 

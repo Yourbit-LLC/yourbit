@@ -43,7 +43,7 @@ class PhotoViewSet(viewsets.ModelViewSet):
             photo = Photo.objects.get(id=pk)
             
             #Get user profile
-            user_profile = Profile.objects.get(user=request.user)
+            user_profile = Profile.objects.get(username=request.user.active_profile)
 
             #Verify permission
             permission = get_object_permissions(user_profile, photo)

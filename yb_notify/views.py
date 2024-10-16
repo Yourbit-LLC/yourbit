@@ -21,7 +21,7 @@ class GetNotifications(View):
 def notifications_html(request):
     from yb_profile.models import Profile
     from .models import NotificationCore
-    this_profile = Profile.objects.get(user=request.user)
+    this_profile = Profile.objects.get(username=request.user.active_profile)
     notification_core = NotificationCore.objects.get(profile=this_profile)
     unseen_notifications = notification_core.unseen_notifications.all().order_by('-time')
     seen_notifications = notification_core.seen_notifications.all().order_by('-time')
@@ -40,7 +40,7 @@ def notification_list(request, filter, *args, **kwargs):
     from .models import NotificationCore
     #Get show seen from request params
     show_seen = request.GET.get('seen', False)
-    this_profile = Profile.objects.get(user=request.user)
+    this_profile = Profile.objects.get(username=request.user.active_profile)
     notification_core = NotificationCore.objects.get(profile=this_profile)
 
     if filter == 'all':

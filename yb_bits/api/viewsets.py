@@ -400,7 +400,7 @@ class CommentViewSet(viewsets.ModelViewSet):
         return queryset
     def list(self, request, *args, **kwargs):
 
-        user_profile = Profile.objects.get(user=request.user)
+        user_profile = Profile.objects.get(username=request.user.active_profile)
         timezone = user_profile.current_timezone
         print(timezone)
         serializer = self.get_serializer_context()

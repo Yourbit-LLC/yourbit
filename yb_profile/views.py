@@ -117,7 +117,7 @@ class FriendRequestTemplate(View):
 
 class StuffTemplate(View):
     def get(self, request, *args, **kwargs):
-        profile = Profile.objects.get(user=request.user)
+        profile = Profile.objects.get(username=request.user.active_profile)
         clusters = Cluster.objects.filter(profile=profile)
         if not clusters:
             is_clusters = False
@@ -199,7 +199,7 @@ def history_list(request, filter, *args, **kwargs):
     if filter == "watched":
         from yb_bits.models import InteractionHistory
 
-        profile = Profile.objects.get(user=request.user)
+        profile = Profile.objects.get(username=request.user.active_profile)
         try:
             interaction_history = InteractionHistory.objects.get(profile=profile)
 
