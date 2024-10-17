@@ -31,8 +31,14 @@ $(document).ready(function() {
 
                 yb_setSessionValues("filter", current_filter);
             } 
+            
             yb_setSessionValues('bitstream-page', 1);
-            yb_getBitContainer().innerHTML = "";
+
+            let current_container = yb_getBitContainer();
+            
+            current_container.classList.remove('open');
+            current_container.innerHTML = "";
+            
             yb_getFeed();
         });
     }
