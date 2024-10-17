@@ -143,9 +143,7 @@ class OrbitListTemplate(View):
         context = {
             "connections":following,
         }
-
-        if not following:
-            context["is_connections"] = False
+        
         return render(request, "yb_profile/yb_orbits.html", context)
     
 class OrbitSetup(View):
