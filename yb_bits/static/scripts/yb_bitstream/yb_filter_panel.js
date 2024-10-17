@@ -31,7 +31,8 @@ $(document).ready(function() {
 
                 yb_setSessionValues("filter", current_filter);
             } 
-
+            yb_setSessionValues('bitstream-page', 1);
+            yb_getBitContainer().innerHTML = "";
             yb_getFeed();
         });
     }

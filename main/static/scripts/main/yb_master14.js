@@ -72,7 +72,13 @@ const LOGO_PATHS = document.querySelectorAll(".cls-1");
 const TIME_KEEPER = document.getElementById("time-keeper-node");
 const LAYER_DIVIDER_1 = document.getElementById("layer-divider-1");
 
-const BOTTOM_GRADIENT = document.getElementById("gradient-overlay")
+const BOTTOM_GRADIENT = document.getElementById("gradient-overlay");
+
+//Initialize touch variables for gestures
+var toustStartY = 0;
+var touchEndY = 0;
+var touchStartX = 0;
+var touchEndX = 0;
 
 const FEED_PARAMS = {
     "space": yb_getSessionValues("space"),
@@ -706,6 +712,34 @@ function yb_closeSpotlight(){
         SEARCH_POPOUT.classList.remove("hide");
         NAV_BAR.classList.remove("hideMobile");
     }
+
+}
+
+function yb_enableSwipeDown(element, action, threshold=50, speed=0.3) {
+    // Attach an event listener for touchstart event
+    element.addEventListener("touchstart", function(event) {
+        
+        touchStartX = event.changedTouches[0].screenX;
+        touchStartY = event.changedTouches[0].screenY;
+        // Add an event listener for touchend event
+        
+    });
+
+    element.addEventListener("touchend", function(event) {
+        touchEndX = event.changedTouches[0].screenX;
+        touchEndY = event.changedTouches[0].screenY;
+      
+        const deltaX = touchEndX - touchStartX;
+        const deltaY = touchEndY - touchStartY;
+      
+        if (Math.abs(deltaX) < Math.abs(deltaY)) {
+
+          if (deltaY > threshold) {
+            console.log('Swiped Down');
+            action();
+          } 
+        }
+    });
 
 }
 

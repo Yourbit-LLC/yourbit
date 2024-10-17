@@ -7,6 +7,7 @@ from django.views import View
 from main.views import initialize_session
 from rest_framework.decorators import api_view
 from django.http import JsonResponse
+from django.core.paginator import Paginator
 
 from yb_profile.models import Profile
 
@@ -228,6 +229,22 @@ class ConversationView(View):
         this_conversation = Conversation.objects.get(id = this_id)
         
         messages = Message.objects.filter(conversation = this_conversation).order_by("time")
+
+        
+        p = Paginator(queryset, 10)
+
+        page = self.request.query_params.get('page')
+
+        print("\n\n" + page + "\n\n")
+
+        if page:
+
+            try:
+                queryset = p.page(page)
+
+            except:
+                queryset = None
+
 
         members = this_conversation.members.all()
 
