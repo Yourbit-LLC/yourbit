@@ -231,19 +231,19 @@ class ConversationView(View):
         messages = Message.objects.filter(conversation = this_conversation).order_by("time")
 
         
-        p = Paginator(messages, 10)
+        # p = Paginator(messages, 10)
 
-        page = self.request.query_params.get('page')
+        # page = self.request.GET.get('page')
 
-        print("\n\n" + page + "\n\n")
+        # print("\n\n" + page + "\n\n")
 
-        if page:
+        # if page:
 
-            try:
-                messages = p.page(page)
+        #     try:
+        #         messages = p.page(page)
 
-            except:
-                messages = None
+        #     except:
+        #         messages = None
 
 
         members = this_conversation.members.all()
