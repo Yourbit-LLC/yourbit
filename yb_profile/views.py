@@ -41,23 +41,23 @@ def people_list(request, filter, *args, **kwargs):
     print(filter)
     #if filter contains fr
     if filter == 'fr-fo-fn':
-        friends = this_profile.friends.all()
-        followers = this_profile.followers.all()
-        following = this_profile.follows.all()
+        friends = this_profile.friends.all().exclude(is_orbit=True)
+        followers = this_profile.followers.all().exclude(is_orbit=True)
+        following = this_profile.follows.all().exclude(is_orbit=True)
         results_list.append(friends)
         results_list.append(followers)
         results_list.append(following)
 
     elif filter == 'fr':
-        friends = this_profile.friends.all()
+        friends = this_profile.friends.all().exclude(is_orbit=True)
         results_list.append(friends)
 
     elif filter == 'fo':
-        followers = this_profile.followers.all()
+        followers = this_profile.followers.all().exclude(is_orbit=True)
         results_list.append(followers)
 
     elif filter == 'fn':
-        following = this_profile.follows.all()
+        following = this_profile.follows.all().exclude(is_orbit=True)
         results_list.append(following)
 
     try:
@@ -141,8 +141,11 @@ class OrbitListTemplate(View):
         following = this_profile.follows.filter(is_orbit=True)
 
         context = {
-            "following":following,
+            "connections":following,
         }
+
+        if not following:
+            context["is_connections"] = False
         return render(request, "yb_profile/yb_orbits.html", context)
     
 class OrbitSetup(View):
