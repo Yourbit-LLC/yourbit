@@ -231,7 +231,7 @@ class ConversationView(View):
         messages = Message.objects.filter(conversation = this_conversation).order_by("time")
 
         
-        p = Paginator(queryset, 10)
+        p = Paginator(messages, 10)
 
         page = self.request.query_params.get('page')
 
@@ -240,10 +240,10 @@ class ConversationView(View):
         if page:
 
             try:
-                queryset = p.page(page)
+                messages = p.page(page)
 
             except:
-                queryset = None
+                messages = None
 
 
         members = this_conversation.members.all()
