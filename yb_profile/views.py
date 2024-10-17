@@ -12,8 +12,7 @@ from yb_bits.models import Cluster
 #Profile Page
 class ProfileView(View):
     def get(self, request, username, *args, **kwargs):
-        that_user = User.objects.get(username = username)
-        this_profile = Profile.objects.get(username = that_user.active_profile)
+        this_profile = Profile.objects.get(username = username)
         custom = CustomCore.objects.get(profile = this_profile)
         custom_ui = CustomUI.objects.get(theme = custom.theme)
         custom_splash = CustomSplash.objects.get(theme = custom.theme)
