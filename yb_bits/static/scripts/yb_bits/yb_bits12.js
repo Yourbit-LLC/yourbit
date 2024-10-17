@@ -138,7 +138,7 @@ function createHeader(bit) {
     else {
         userInfo.innerHTML = `<strong class="bit-name">${bit.display_name}</strong><br> <small class="bit-username">@${bit.user.username}</small>`;
     }
-    userInfo.setAttribute("data-username", bit.user.username);
+    userInfo.setAttribute("data-username", bit.profile.username);
     userInfo.addEventListener("click", yb_navigateToProfile)
     
     header.appendChild(userInfo);
