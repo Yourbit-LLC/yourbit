@@ -6,7 +6,7 @@ function yb_buildListItem(result, action=null){
         id = result.user.id
     }
     
-    let user = result.user
+    
 
     let name = result.display_name;
     let handle = result.username;
@@ -14,9 +14,15 @@ function yb_buildListItem(result, action=null){
     let new_item = yb_createElement("div", "yb-listItem yb-autoText", `result-${element_id}`);
     new_item.setAttribute("data-catid", `${id}`);
     new_item.setAttribute("data-username", `${handle}`);
+    let image; 
+    if (result.customcore.profile_image.storage_type == "yb") {
+        image = result.customcore.profile_image.small_thumbnail;
+    } else {
+        image = result.customcore.profile_image.small_thumbnail_ext
+    }
     new_item.innerHTML =`
         <div class = 'full-result-image-container'>
-            <img class='full-result-image' style="width: 100%; position:relative;" src="${result.customcore.profile_image.small_thumbnail}">
+            <img class='full-result-image' style="width: 100%; position:relative;" src="${image}">
         </div>
         <div class='full-result-name-container'>
             <p class = 'full-result-name'><strong>${name}</strong></p>
