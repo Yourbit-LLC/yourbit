@@ -136,7 +136,7 @@ function createHeader(bit) {
         userInfo.innerHTML = `<strong class="bit-name" style="color:${bit.custom.title_color};">${bit.display_name}</strong><br> <small class="bit-username" style="color:${bit.custom.text_color};">@${bit.profile.username}</small>`;    
     }
     else {
-        userInfo.innerHTML = `<strong class="bit-name">${bit.display_name}</strong><br> <small class="bit-username">@${bit.user.username}</small>`;
+        userInfo.innerHTML = `<strong class="bit-name">${bit.display_name}</strong><br> <small class="bit-username">@${bit.profile.username}</small>`;
     }
     userInfo.setAttribute("data-username", bit.profile.username);
     userInfo.addEventListener("click", yb_navigateToProfile)
