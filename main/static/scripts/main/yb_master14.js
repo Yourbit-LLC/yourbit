@@ -1161,6 +1161,8 @@ function yb_acceptOption(this_id) {
 $(document).ready(function() {
     let this_browser = console.log(getBrowserName(navigator.userAgent));
     console.log(this_browser);
+
+    showNotification(expandNotification, "Active as " + "<b color: " + yb_getCustomValues("ui-title-color") + ">@" + yb_getSessionValues("username") + "</b>");
     if (typeof navigator.serviceWorker !== 'undefined') {
         navigator.serviceWorker.register('/static/service-worker.js')
         .then(function(registration) {
@@ -1253,6 +1255,8 @@ $(document).ready(function() {
 
 
     yb_updateTimezone();
+
+
 
 
     if (window.matchMedia('(display-mode: standalone)').matches) {
