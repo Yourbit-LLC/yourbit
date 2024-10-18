@@ -246,6 +246,11 @@ const LIST_TEMPLATE_INDEX = {
 
 }
 
+var last_page = "home";
+var last_data = null;
+var last_container = "content-container";
+
+
 function yb_goToPage(page, data=null) {
     if (page == "home") {
         CONTENT_CONTAINER_A.classList.add("show");
@@ -282,6 +287,8 @@ function yb_showLoadingCore(){
 function yb_hideLoadingCore(){
     LOADING_CORE.style.display = "none";
 }
+
+
 
 
 function yb_purgeScripts(callback){
@@ -490,8 +497,15 @@ function yb_loadList(container, template, filter=null){
     }
 }
 
+function yb_setLast(container, page, data) {
+    last_container = container;
+    last_page = page;
+    last_data = data;
+}
+
 function yb_navigateTo(container, template, data=null, reloadable=true) {
     if (container.includes("2way")) {
+        yb_setLast(container, template, data);
         if (data === null){
             yb_launch2WayContainer(template);
         } else {
@@ -501,6 +515,7 @@ function yb_navigateTo(container, template, data=null, reloadable=true) {
         CONTENT_CONTAINER_B.innerHTML = "";
         console.log("launching page in content container");
         yb_setSessionValues("location", template)
+        yb_setLast(container, template, data);
    
         if (data === null) {
 
@@ -551,3 +566,11 @@ function yb_getNextVideo() {
     yb_navigateTo("content-container", "bit-focus", video_id);
     
 }
+
+function yb_goBack() {
+    yb_navigateTo(last_container, last_page, last_data);
+}
+
+window.addEventListener('popstate', function(event) {
+    yb_goBack();
+  });
