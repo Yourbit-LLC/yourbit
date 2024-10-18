@@ -11,6 +11,7 @@ import pytz
 from django.utils.timezone import make_aware, get_default_timezone
 
 from yb_accounts.api.serializers import UserSerializer
+from yb_profile.api.serializers import ProfileResultSerializer
 
 # serializers.py
 class BitSerializer(serializers.ModelSerializer):
@@ -19,6 +20,7 @@ class BitSerializer(serializers.ModelSerializer):
     from yb_photo.api.serializers import PhotoSerializer
     
     user = UserBitSerializer(read_only=True)
+    profile = ProfileResultSerializer(read_only=True)
     custom = CustomBitSerializer(read_only=True)
     
     # Custom serializer fields for counts
