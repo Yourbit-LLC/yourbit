@@ -143,7 +143,7 @@ class OrbitListTemplate(View):
         context = {
             "connections":following,
         }
-        
+
         return render(request, "yb_profile/yb_orbits.html", context)
     
 class OrbitSetup(View):
@@ -389,7 +389,7 @@ class ProfilePage(View):
                     'filter': init_params['filter_chain'],
                     'sort': init_params['sort_by'],   
                     'view_mode': "live",
-                    'start_function': f"yb_navigateToProfile('{request.user.username}')",
+                    'start_function': f"yb_navigateToProfile('{request.user.active_profile}')",
                 },
 
             )
@@ -406,6 +406,40 @@ class ProfilePage(View):
                     'login_form': login_form,
                 }
             )
+        
+class VisitProfile(View):
+    def get(self, request, username, *args, **kwargs):
+                     
+        if request.user.is_authenticated:
+            init_params = initialize_session(request)
+            return render(
+                request, 
+                "main/index.html",
+                {
+                    'first_login': request.user.first_login,
+                    'location': init_params['last_location'],
+                    'space': init_params['current_space'],
+                    'filter': init_params['filter_chain'],
+                    'sort': init_params['sort_by'],   
+                    'view_mode': "live",
+                    'start_function': f"yb_navigateToProfile('{username}')",
+                },
+
+            )
+        else:
+            from yb_accounts.forms import RegistrationForm, LoginForm
+            registration_form = RegistrationForm()
+            login_form = LoginForm()
+            return render(
+                request,
+                "registration/login.html",
+                {
+                    'state': 'home',
+                    'registration_form': registration_form,
+                    'login_form': login_form,
+                }
+            )
+        
         
 def profile_onboarding(request, *args, **kwargs):
     if request.method == "POST":

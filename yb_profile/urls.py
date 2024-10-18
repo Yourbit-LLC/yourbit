@@ -20,5 +20,6 @@ urlpatterns = [
     path("history-list/<str:filter>/", history_list, name="history_list"),
     path("disconnect/", disconnect_view, name="disconnect"),
     path("api/", include("yb_profile.routers")),
+    path('<str:username>/', VisitProfile.as_view(), name="profile_visit"),
     path('', ProfilePage.as_view(), name="profile_page"),
 ]

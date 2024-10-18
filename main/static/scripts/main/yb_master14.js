@@ -786,7 +786,7 @@ function yb_navigateToProfile(e) {
         }
     }
 
-    history.pushState({container:"content-container", template:"profile", data:username}, "profile", `/profile/user/${username}/`);
+    history.pushState({container:"content-container", template:"profile", data:username}, "profile", `/profile/${username}/`);
 }
 
 function yb_addToCluster(cluster_id, bit_id) {
