@@ -282,9 +282,9 @@ function yb_goToPage(page, data=null) {
         if (CONTENT_CONTAINER_A.innerHTML == "") {
         
             if (data != null) {
-                $(CONTENT_CONTAINER_A).load(CORE_TEMPLATE_INDEX[page.template] + data.toString() + "/");
+                $(CONTENT_CONTAINER_A).load(CORE_TEMPLATE_INDEX[page].template + data.toString() + "/");
             } else {
-                $(CONTENT_CONTAINER_A).load(CORE_TEMPLATE_INDEX[page.template]);
+                $(CONTENT_CONTAINER_A).load(CORE_TEMPLATE_INDEX[page].template);
             }
         } 
         detectScrollToBottom();
@@ -293,9 +293,9 @@ function yb_goToPage(page, data=null) {
         CONTENT_CONTAINER_B.classList.add("show")
         CONTENT_CONTAINER_A.classList.remove("show")
         if (data != null) {
-            $(CONTENT_CONTAINER_B).load(CORE_TEMPLATE_INDEX[page.template] + data.toString() + "/");
+            $(CONTENT_CONTAINER_B).load(CORE_TEMPLATE_INDEX[page].template + data.toString() + "/");
         } else {
-            $(CONTENT_CONTAINER_B).load(CORE_TEMPLATE_INDEX[page.template]);
+            $(CONTENT_CONTAINER_B).load(CORE_TEMPLATE_INDEX[page].template);
         }
     }
 }
@@ -529,7 +529,7 @@ function yb_setLast(container, page, data) {
 function yb_navigateTo(container, template, data=null, reloadable=true) {
     if (container.includes("2way")) {
         yb_setLast(container, template, data);
-        history.pushState({container:container, template:template, data:data}, template, CORE_TEMPLATE_INDEX[template]["url"]);
+        history.pushState({container:container, template:template, data:data}, template, TWO_WAY_INDEX[template].url);
         if (data === null){
             yb_launch2WayContainer(template);
             active_cotainer = "2way";
@@ -542,7 +542,7 @@ function yb_navigateTo(container, template, data=null, reloadable=true) {
         yb_setSessionValues("location", template)
         yb_setLast(container, template, data);
         active_cotainer = "content-container";
-        history.pushState({container:container, template:template, data:data}, template, CORE_TEMPLATE_INDEX[template]["url"]);
+        history.pushState({container:container, template:template, data:data}, template, CORE_TEMPLATE_INDEX[template].url);
    
         if (data === null) {
 
