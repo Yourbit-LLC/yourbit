@@ -17,11 +17,28 @@ const LOADING_CORE = document.getElementById("yb-loading-main");
 
 //Register templates to be loaded into the content container
 const CORE_TEMPLATE_INDEX = {
-    "home": "/bits/templates/bitstream/",
-    "customize-main": "/customize/templates/main/",
-    "profile": `/profile/templates/profile/`,
-    "support-center":"/support/templates/support-center/",
-    "bit-focus": "/bits/templates/bit/focus/"
+    "home": {
+        "template": "/bits/templates/bitstream/",
+        "url": "/bitstream/"
+    },
+    "customize-main": 
+        {
+            "template": "/customize/templates/main/",
+            "url": "/customize/"
+        },
+    "profile": {
+        "template": `/profile/templates/profile/`,
+        "url": "/profile/"
+    },
+    "support-center": {
+        "template": "/support/templates/support-center/",
+        "url": "/support/"
+    },
+    "bit-focus": {
+        "template": "/bits/templates/bit/focus/",
+        "url": "/bits/focus/"
+    }
+        
     
 };
 
@@ -250,6 +267,12 @@ var last_page = "home";
 var last_data = null;
 var last_container = "content-container";
 
+var next_page = null;
+var next_data = null;
+var next_container = null;
+
+var active_cotainer = "content-container";
+
 
 function yb_goToPage(page, data=null) {
     if (page == "home") {
@@ -259,9 +282,9 @@ function yb_goToPage(page, data=null) {
         if (CONTENT_CONTAINER_A.innerHTML == "") {
         
             if (data != null) {
-                $(CONTENT_CONTAINER_A).load(CORE_TEMPLATE_INDEX[page] + data.toString() + "/");
+                $(CONTENT_CONTAINER_A).load(CORE_TEMPLATE_INDEX[page.template] + data.toString() + "/");
             } else {
-                $(CONTENT_CONTAINER_A).load(CORE_TEMPLATE_INDEX[page]);
+                $(CONTENT_CONTAINER_A).load(CORE_TEMPLATE_INDEX[page.template]);
             }
         } 
         detectScrollToBottom();
@@ -270,9 +293,9 @@ function yb_goToPage(page, data=null) {
         CONTENT_CONTAINER_B.classList.add("show")
         CONTENT_CONTAINER_A.classList.remove("show")
         if (data != null) {
-            $(CONTENT_CONTAINER_B).load(CORE_TEMPLATE_INDEX[page] + data.toString() + "/");
+            $(CONTENT_CONTAINER_B).load(CORE_TEMPLATE_INDEX[page.template] + data.toString() + "/");
         } else {
-            $(CONTENT_CONTAINER_B).load(CORE_TEMPLATE_INDEX[page]);
+            $(CONTENT_CONTAINER_B).load(CORE_TEMPLATE_INDEX[page.template]);
         }
     }
 }
@@ -506,8 +529,10 @@ function yb_setLast(container, page, data) {
 function yb_navigateTo(container, template, data=null, reloadable=true) {
     if (container.includes("2way")) {
         yb_setLast(container, template, data);
+        history.pushState({container:container, template:template, data:data}, template, CORE_TEMPLATE_INDEX[template]["url"]);
         if (data === null){
             yb_launch2WayContainer(template);
+            active_cotainer = "2way";
         } else {
             yb_launch2WayContainer(template, data);
         }
@@ -516,6 +541,8 @@ function yb_navigateTo(container, template, data=null, reloadable=true) {
         console.log("launching page in content container");
         yb_setSessionValues("location", template)
         yb_setLast(container, template, data);
+        active_cotainer = "content-container";
+        history.pushState({container:container, template:template, data:data}, template, CORE_TEMPLATE_INDEX[template]["url"]);
    
         if (data === null) {
 
@@ -572,5 +599,8 @@ function yb_goBack() {
 }
 
 window.addEventListener('popstate', function(event) {
-    yb_goBack();
-  });
+    console.log(event.state);
+    yb_navigateTo(event.state.container, event.state.template, event.state.data);
+        
+
+});

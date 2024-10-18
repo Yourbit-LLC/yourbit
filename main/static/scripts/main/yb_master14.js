@@ -630,9 +630,9 @@ function yb_toggleCreateMenu() {
         let container_content = container[1].querySelector(".yb-2Way-content");
         container[1].setAttribute("data-state", "create");
         $(container_content).load("/core/create-menu/");
-        history.pushState({}, "", '/create/');
+        history.pushState({container:'2way', template:"create", data:null}, "create", '/create/');
     } else {
-        history.pushState(null, null, "/");
+        history.pushState({container:"content-container", template:yb_getSessionValues("location")}, null, "/"); //Session values location only tracks content-container locaitons
         container[1].setAttribute("data-state", "empty");
     }
 }
@@ -785,6 +785,8 @@ function yb_navigateToProfile(e) {
             yb_toggle2WayContainer(this_state);
         }
     }
+
+    history.pushState({container:"content-container", template:"profile", data:username}, "profile", `/profile/user/${username}/`);
 }
 
 function yb_addToCluster(cluster_id, bit_id) {
@@ -1218,6 +1220,7 @@ $(document).ready(function() {
         });
     }
 
+    history.replaceState({container:"content-container", template:yb_getSessionValues("location"), data:null}, "home", "/bitstream/");
 
 
     SEARCH_BUTTON.addEventListener('mouseover', yb_searchMouseOver);

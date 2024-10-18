@@ -41,5 +41,7 @@ urlpatterns = [
     path('logout/', logout_view, name='logout'),
     path('register/', registration_view, name='register'),
     path(r'^webpush/', include('webpush.urls')),
+    path('bitstream/', index, name='home'),
     path('', index, name='home'),
+    
 ]
