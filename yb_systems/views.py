@@ -84,6 +84,7 @@ def SyncTask(request, *args, **kwargs):
     active_profile = Profile.objects.get(username=request.user.active_profile)
     task_manager = TaskManager.objects.get(user=active_profile)
     task_manager.current_space = request.POST.get('space')
+    task_manager.current_location = request.POST.get('location')
     task_manager.current_page = request.POST.get('current_page')
     task_manager.current_data = request.POST.get('current_data')
     task_manager.current_container = request.POST.get('current_container')
