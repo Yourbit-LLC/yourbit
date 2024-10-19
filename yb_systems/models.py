@@ -161,7 +161,7 @@ class TaskManager(models.Model):
     user = models.OneToOneField(Profile, related_name = 'tasks', on_delete=models.CASCADE)
     
     #Current Task: 0=Home, 1=Comment, 2=Message, 3=Profile, 4=Video
-    last_location = models.CharField(max_length=500, default="home")
+    current_location = models.CharField(max_length=500, default="home")
     current_page = models.CharField(max_length=500, default="home")
     current_data = models.CharField(max_length=500, default="")
     current_container = models.CharField(max_length=500, default="content-container")
