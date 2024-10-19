@@ -263,15 +263,16 @@ const LIST_TEMPLATE_INDEX = {
 
 }
 
+//Internal back tracking variables
 var last_page = "home";
 var last_data = null;
 var last_container = "content-container";
 
-var next_page = null;
-var next_data = null;
-var next_container = null;
+//Current page tracking variables to be sent to server on page load for cross device continuity
+var current_page = "home";
+var current_data = null;
+var current_container = "content-container";
 
-var active_cotainer = "content-container";
 
 
 function yb_goToPage(page, data=null) {
@@ -521,9 +522,13 @@ function yb_loadList(container, template, filter=null){
 }
 
 function yb_setLast(container, page, data) {
-    last_container = container;
-    last_page = page;
-    last_data = data;
+    last_container = current_container;
+    last_page = current_page;
+    last_data = current_data;
+
+    current_container = container;
+    current_page = page;
+    current_data = data;
 }
 
 function yb_navigateTo(container, template, data=null, reloadable=true) {

@@ -1,6 +1,7 @@
 from django.db import models
 from yb_accounts.models import Account as User
 from django.utils import timezone
+from yb_profile.models import Profile
 
 # Create your models here.
 class UserEvent(models.Model):
@@ -154,14 +155,16 @@ class UserFeedbackEvent(UserEvent):
 
 
 class TaskManager(models.Model):
+    
     #Task manager models keep track of the users session state for restoration on login
 
-    user = models.OneToOneField(User, related_name = 'tasks', on_delete=models.CASCADE)
+    user = models.OneToOneField(Profile, related_name = 'tasks', on_delete=models.CASCADE)
     
     #Current Task: 0=Home, 1=Comment, 2=Message, 3=Profile, 4=Video
     last_task = models.IntegerField(default = 0)
-    last_url = models.CharField(max_length=500)
-    last_location = models.CharField(max_length=500)
+    last_page = models.CharField(max_length=500, default="home")
+    last_data = models.CharField(max_length=500, default="")
+    last_container = models.CharField(max_length=500, default="content-container")
     
     is_tasks = models.BooleanField(default = False)
     home_task = models.BooleanField(default = False)
