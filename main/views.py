@@ -17,8 +17,8 @@ def initialize_session(request):
     this_user = request.user
     active_profile = Profile.objects.get(username=this_user.active_profile)
     these_settings = MySettings.objects.get(profile=active_profile)
-    this_state = TaskManager.objects.get(user=this_user)
-    last_location = this_state.last_location
+    this_state = TaskManager.objects.get(user=active_profile)
+    last_location = this_state.current_location
     
     #Get active feed settings
     feed_settings = FeedSettings.objects.get(settings=these_settings)
@@ -50,7 +50,7 @@ def initialize_session(request):
         filter_chain += '-me'
 
     return {
-        "last_location": "home",
+        "last_location": last_location,
         "current_space": current_space, 
         "sort_by": sort_by, 
         "filter_chain": filter_chain
