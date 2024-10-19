@@ -70,6 +70,9 @@
 </form>
 
 <script>
+    var bubble_color_selectors = document.querySelectorAll('.color-circle');
+    var bubble_color_inputs = document.querySelectorAll('.color-input');
+    var submit_conversation_settings = document.getElementById('save-settings');
     $(document).ready(function(){
         //On form submit prevent default
         $('#conversation-settings-form').submit(function(e){
@@ -90,3 +93,4 @@
         });
     })
 </script>
+<script class = "page-script" type="text/javascript" src="{% static 'scripts/main/yb_forms.js' %}"></script>

@@ -82,7 +82,7 @@ class Font(models.Model):
 class CustomBase(models.Model):
     
     primary_color = models.CharField(max_length=50, default = "#4b4b4b")
-    icon_color = models.CharField(max_length=50, default="#ffffff")
+    icon_color = models.CharField(max_length=50, default="#000000")
     accent_color = models.CharField(max_length=50, default="#ffffff")
     text_color = models.CharField(max_length=50, default="#ffffff")
     text_size = models.CharField(max_length=50, default="14")
