@@ -275,6 +275,40 @@ var current_container = "content-container";
 
 
 
+function yb_sendTaskData(data, url) {
+    let csrf_token = getCSRF();
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: data,
+        headers: {
+            'X-CSRFToken': csrf_token
+        },
+        success: function(response) {
+            console.log(response);
+        },
+        error: function(response) {
+            console.log(response);
+        }
+    });
+}
+
+
+function yb_syncTask() {
+    let location = yb_getSessionValues("location");
+    let space = yb_getSessionValues("space");
+    
+    let data = {
+        location:location, 
+        space:space, 
+        username:username,
+        current_page:current_page,
+        current_data:current_data,
+        current_container:current_container
+    };
+    yb_sendTaskData(data, "/systems/tasks/sync/");
+}
+
 function yb_goToPage(page, data=null) {
     if (page == "home") {
         CONTENT_CONTAINER_A.classList.add("show");
@@ -529,6 +563,8 @@ function yb_setLast(container, page, data) {
     current_container = container;
     current_page = page;
     current_data = data;
+
+    yb_syncTask();
 }
 
 function yb_navigateTo(container, template, data=null, reloadable=true) {

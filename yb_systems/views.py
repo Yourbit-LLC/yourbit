@@ -75,10 +75,20 @@ class GetTasks(View):
 class CurrentTask(View):
     def get(self, request, *args, **kwargs):
         task_manager = TaskManager.objects.get(user=request.user)
-        current_task = task_manager.current_task
-        last_url = task_manager.last_url
+        current_task = task_manager.current_page
+        current_data = task_manager.current_data
 
-        JsonResponse({'last_url':last_url, 'current_task':current_task})
+        JsonResponse({'current_data':current_data, 'current_task':current_task})
+
+def SyncTask(request, *args, **kwargs):
+    active_profile = Profile.objects.get(username=request.user.active_profile)
+    task_manager = TaskManager.objects.get(user=active_profile)
+    task_manager.current_space = request.POST.get('space')
+    task_manager.current_page = request.POST.get('current_page')
+    task_manager.current_data = request.POST.get('current_data')
+    task_manager.current_container = request.POST.get('current_container')
+    task_manager.save()
+    return JsonResponse({'success':'success'})
 
 class StartTask(View):
     def post(self, request, *args, **kwargs):

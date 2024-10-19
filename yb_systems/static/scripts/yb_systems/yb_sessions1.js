@@ -58,8 +58,6 @@ function getCSRF() {
     return csrf_token;
 }
 
-const CSRF_TOKEN = getCSRF();
-
 function yb_syncState() {
     $.ajax(
         {

@@ -161,10 +161,10 @@ class TaskManager(models.Model):
     user = models.OneToOneField(Profile, related_name = 'tasks', on_delete=models.CASCADE)
     
     #Current Task: 0=Home, 1=Comment, 2=Message, 3=Profile, 4=Video
-    last_task = models.IntegerField(default = 0)
-    last_page = models.CharField(max_length=500, default="home")
-    last_data = models.CharField(max_length=500, default="")
-    last_container = models.CharField(max_length=500, default="content-container")
+    last_location = models.CharField(max_length=500, default="home")
+    current_page = models.CharField(max_length=500, default="home")
+    current_data = models.CharField(max_length=500, default="")
+    current_container = models.CharField(max_length=500, default="content-container")
     
     is_tasks = models.BooleanField(default = False)
     home_task = models.BooleanField(default = False)
@@ -173,8 +173,8 @@ class TaskManager(models.Model):
     profile_task = models.BooleanField(default = False)
     video_task = models.BooleanField(default = False)
     
-    last_video = models.ManyToManyField('yb_bits.Bit', related_name = 'last_video', blank=True)
-    last_space = models.CharField(max_length = 10, blank=True)
+    current_video = models.ManyToManyField('yb_bits.Bit', related_name = 'last_video', blank=True)
+    current_space = models.CharField(max_length = 10, blank=True)
     feed_filters = models.CharField(max_length = 30, default='-fr-fo-me-c-p', blank=True)
     recent_videos = models.ManyToManyField('yb_bits.Bit', related_name='video_recent', blank=True)
     recent_comment = models.ManyToManyField('yb_bits.Bit', related_name = 'comment_sections', blank=True)
