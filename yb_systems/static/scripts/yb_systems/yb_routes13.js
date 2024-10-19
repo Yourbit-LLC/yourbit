@@ -297,12 +297,18 @@ function yb_sendTaskData(data, url) {
 function yb_syncTask() {
     let location = yb_getSessionValues("location");
     let space = yb_getSessionValues("space");
+    let syncData;
+    if (yb_getSessionValues("location") === "profile") {
+        syncData = yb_getSessionValues("profile-username");
+    } else {
+        syncData = current_data;
+    }
     
     let data = {
         location:location, 
         space:space, 
         current_page:current_page,
-        current_data:current_data,
+        current_data:syncData,
         current_container:current_container
     };
     yb_sendTaskData(data, "/systems/tasks/sync/");
