@@ -301,7 +301,6 @@ function yb_syncTask() {
     let data = {
         location:location, 
         space:space, 
-        username:username,
         current_page:current_page,
         current_data:current_data,
         current_container:current_container
