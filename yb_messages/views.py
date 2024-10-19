@@ -337,8 +337,8 @@ def check_new_messages(request, id, last_message):
     from .api.serializers import MessageSerializer
     user = request.user
     this_conversation = Conversation.objects.get(id=id)
-
-    new_messages = Message.objects.filter(id__gt=int(last_message), conversation=this_conversation).exclude(from_user = request.user)
+    active_profile = Profile.objects.get(username = user.active_profile)
+    new_messages = Message.objects.filter(id__gt=int(last_message), conversation=this_conversation).exclude(from_user = active_profile)
 
     if len(new_messages) > 0:
         messages_serialized = MessageSerializer(new_messages, many=True)
