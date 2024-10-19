@@ -294,12 +294,12 @@ function yb_sendTaskData(data, url) {
 }
 
 
-function yb_syncTask() {
+function yb_syncTask(template, page_data=null) {
     let location = yb_getSessionValues("location");
     let space = yb_getSessionValues("space");
     let syncData;
-    if (yb_getSessionValues("location") === "profile") {
-        syncData = yb_getSessionValues("profile-username");
+    if (template === "profile") {
+        syncData = page_data;
     } else {
         syncData = current_data;
     }
@@ -569,7 +569,7 @@ function yb_setLast(container, page, data) {
     current_page = page;
     current_data = data;
 
-    yb_syncTask();
+    yb_syncTask(page, data);
 }
 
 function yb_navigateTo(container, template, data=null, reloadable=true) {

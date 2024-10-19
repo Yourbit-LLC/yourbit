@@ -776,6 +776,7 @@ function yb_navigateToProfile(e) {
     CONTENT_CONTAINER_B.classList.add("show")
     yb_closeSpotlight();
     yb_setSessionValues('fullscreen', 'true');
+    yb_setLast("content-container", "profile", username);
 
     $(MAIN_LOADING_SCREEN).fadeIn(100).animate({opacity: 1}, 100);
 
