@@ -138,7 +138,10 @@ class OrbitListTemplate(View):
 
         this_profile = Profile.objects.get(username = request.user.active_profile)
         
-        following = this_profile.follows.filter(is_orbit=True)
+        if this_profile.managed_orbits.count() > 0:
+            following = this_profile.managed_orbits.all()
+        else:
+            following = this_profile.follows.filter(is_orbit=True)
 
         context = {
             "connections":following,
