@@ -176,29 +176,70 @@ def filter_contacts_list(request, query):
 
         context = {
             "results": results,
+            "connections": connections,
             }
-        return render(request, "yb_messages/contacts_list.html", context)
+        return render(request, "yb_messages/contact_list.html", context)
 
     elif query == "friends":
         friends = profile.friends.all()
+
+        if len(friends) == 0:
+            connections = False
+
+        else:
+            connections = True
+
+
         context = {
             "results": friends,
+            "connections": connections,
             }
-        return render(request, "yb_messages/contacts_list.html", context)
+        return render(request, "yb_messages/contact_list.html", context)
     
     elif query == "following":
         following = profile.follows.all()
+
+        if len(following) == 0:
+            connections = False
+
+        else:
+            connections = True
+
         context = {
             "results": following,
+            "connections": connections,
             }
-        return render(request, "yb_messages/contacts_list.html", context)
+        return render(request, "yb_messages/contact_list.html", context)
     
     elif query == "followers":
         followers = profile.followers.all()
+
+        if len(followers) == 0:
+            connections = False
+        
+        else:
+            connections = True
+
         context = {
             "results": followers,
+            "connections": connections,
             }
-        return render(request, "yb_messages/contacts_list.html", context)
+        return render(request, "yb_messages/contact_list.html", context)
+    
+        
+    elif query == "orbits":
+        orbits = profile.followers.filter(is_orbit=True)
+
+        if len(orbits) == 0:
+            connections = False
+
+        else:
+            connections = True
+        context = {
+            "results": orbits,
+            "connections": connections
+            }
+        return render(request, "yb_messages/contact_list.html", context)
 
 
 def new_conversation_template(request):

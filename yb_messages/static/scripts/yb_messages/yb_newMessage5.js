@@ -1,7 +1,9 @@
 var contact_search = document.getElementById('contact-search-input');
 var contact_filter_container = document.getElementById('contact-filter-container');
+var contact_filters = document.getElementsByClassName('contact-filter');
 var selected_contacts = document.getElementById('selected-contacts');
 var recipient_iteration = 0;
+var contact_list = document.getElementById('contact-list');
 
 function yb_conversationRemoveContact(e) {
     let this_id = e.currentTarget.getAttribute("data-catid");
@@ -64,6 +66,14 @@ function yb_createConversation() {
     })
 }
 
+function yb_getContacts(event) {
+    let this_element = event.currentTarget;
+    let this_filter = event.currentTarget.getAttribute("name");
+    contact_list.innerHTML = "";
+    $(contact_list).load("/messages/list/contacts/"+this_filter+"/");
+    yb_updateActiveTab("contact-filter", this_element);
+
+}
 
 $(document).ready(function () {
     $(contact_search).on('change keyup', function() {
@@ -72,6 +82,11 @@ $(document).ready(function () {
         type = 'user';
         
     });
+
+    for (var i = 0; i < contact_filters.length; i++) {
+        contact_filters[i].addEventListener("click", yb_getContacts);
+    }
+
     // yb_hide2WayLoad();
     let next_button = document.getElementById("new-message-next");
     

@@ -81,6 +81,14 @@ function yb_closeDrawer() {
     
 */
 
+function yb_updateActiveTab(class_name, this_tab) {
+    let tabs = document.getElementsByClassName(class_name);
+    for (var i = 0; i < tabs.length; i++) {
+        tabs[i].classList.remove("active");
+    }
+    this_tab.classList.add("active");
+}
+
 //Navigate to a 2 Way Page registered in the TWO_WAY_INDEX (yb_systems/routes.js)
 function yb_2WayPage(index, page="", data=null) {
     let this_container;

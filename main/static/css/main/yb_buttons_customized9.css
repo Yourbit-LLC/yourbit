@@ -83,8 +83,9 @@
 .yb-button-plain:hover {
     background-color: transparent;
     border: none;
+    top: 50%;
     color: skyblue;
-    transform: scale(1.08);
+    transform: scale(1.08) translateY(-50%);
     transition: 0.5s;
     cursor: pointer;
 }
