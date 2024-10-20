@@ -1437,3 +1437,33 @@ function yb_declineRequest() {
 }
 
 
+const loadPointRegistry = [];
+
+const loadPointObserver = new IntersectionObserver(function(entries, loadPointObserver) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            let point_index = entry.target.getAttribute("data-point");
+        
+            let request_data = {
+                "update": true,
+                "page": point_index + 3,
+            }
+
+            yb_getFeed(request_data);
+
+        
+            loadPointObserver.unobserve(entry.target);
+        }
+    });
+}, {threshold: 0.5});
+
+
+
+function yb_createLoadPoint() {
+    let this_count = loadPointRegistry.length;
+    let load_point = document.createElement("hr");
+    load_point.classList.add("yb-load-point");
+    load_point.setAttribute("data-point", this_count);
+    loadPointRegistry.push(load_point);
+    return load_point;
+}

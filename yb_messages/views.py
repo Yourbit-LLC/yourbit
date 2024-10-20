@@ -301,7 +301,7 @@ class ConversationView(View):
                     contact_iteration = 1
 
                     for member in this_conversation.members.all():
-                        this_display_name = member.profile.display_name.split(" ")
+                        this_display_name = member.display_name.split(" ")
                         
                         if member != request.user:
                             if this_conversation.members.count() == 3:

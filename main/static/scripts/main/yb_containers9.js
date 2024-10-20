@@ -86,6 +86,7 @@ function yb_updateActiveTab(class_name, this_tab) {
     for (var i = 0; i < tabs.length; i++) {
         tabs[i].classList.remove("active");
     }
+    
     this_tab.classList.add("active");
 }
 

@@ -1,4 +1,26 @@
 var bit_container;
+var bitstream_index = new Map();
+var bitstream_data = new Map();
+
+const bitObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      const post = entry.target;
+
+      if (entry.isIntersecting) {
+        // Post has entered the viewport
+        console.log(`${post.id} has entered the viewport`);
+        post.classList.add('in-view');  // Optional: Highlight visible post
+      } else {
+        // Post has left the viewport
+        console.log(`${post.id} has left the viewport`);
+        post.classList.remove('in-view');  // Remove highlight when out of view
+      }
+    });
+  }, {
+    root: null,  // Defaults to the viewport
+    threshold: 0.1  // Trigger when 10% of the post is visible
+  });
+
 
 
 function yb_getBitContainer() {
@@ -20,6 +42,7 @@ function yb_renderBit(data) {
 
     let this_bit = yb_buildBit(data);
     yb_getBitContainer().appendChild(this_bit.built_bit);
+    bitObserver.observe(this_bit.built_bit);
 
     
 }
@@ -102,13 +125,20 @@ function yb_updateFeed(update, data) {
     //Update the feed
     console.log("updating display...")
     console.log(update)
+    let iteration = 0;
     if (update === true) {
         //Append the feed
         console.log("appending html...")
         if (data.length > 0) {
             for (let i = 0; i < data.length; i++) {
                 let blueprint = data[i];
-                yb_renderBit(blueprint);
+                if (iteration != 4) {
+                    yb_renderBit(blueprint);
+                } else {
+                    let load_point = yb_createLoadPoint();
+                    yb_getBitContainer().appendChild(load_point);
+                }
+                iteration += 1;
             }
             detectScrollToBottom();
             $("load-indicator-container-bitstream").hide();
@@ -191,7 +221,7 @@ function yb_requestFeed(data=null) {
     });
 }
 
-function yb_getFeed(update = false, next_page = false, previous_page = false) {
+function yb_getFeed(data={}) {
     // Initialize variables
     let sort_setting = yb_getSessionValues('sort');
     console.log(sort_setting)
@@ -201,10 +231,10 @@ function yb_getFeed(update = false, next_page = false, previous_page = false) {
     let request_data;
 
     // Adjust page number for next or previous page requests
-    if (next_page) {
+    if (data.next_page) {
         page += 1;
         yb_setSessionValues('bitstream-page', page);
-    } else if (previous_page) {
+    } else if (data.previous_page) {
         page -= 1;
         yb_setSessionValues('bitstream-page', page);
     }
@@ -217,9 +247,9 @@ function yb_getFeed(update = false, next_page = false, previous_page = false) {
     // Update the session values
     yb_setSessionValues('bitstream-page', page);
 
-    // Create the request data
+    // Create the request data 
     request_data = {
-        'update': update,
+        'update': data.update,
         'filter': filter_setting,
         'sort': sort_setting,
         'space': space,
