@@ -91,6 +91,8 @@ function yb_2WayPage(index, page="", data=null) {
         }
     }
 
+    
+
     let content = this_container.querySelector(".yb-2Way-content");
     let secondary = this_container.querySelector(".yb-2Way-secondary");
 
@@ -100,6 +102,7 @@ function yb_2WayPage(index, page="", data=null) {
         secondary.innerHTML = "";
 
     } else {
+        history.pushState({container:"2way-page", template:page, data:data}, page, TWO_WAY_INDEX[page].url);
         secondary.classList.add("active");
         content.classList.add("inactive");
 

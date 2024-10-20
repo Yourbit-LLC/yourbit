@@ -77,6 +77,16 @@ const TWO_WAY_INDEX = {
             "template" : "/core/templates/create/cluster/",
             "url" : "/create/cluster/"
         },
+    "create-bit":
+        {
+            "template" : "/core/templates/create/bit/",
+            "url" : "/create/bit/"
+        },
+    "create-orbit":
+        {
+            "template" : "/core/templates/create/orbit/",
+            "url" : "/create/orbit/"
+        },
     "messages" : 
         {
             "template" : "/messages/inbox/",
@@ -181,7 +191,7 @@ const TWO_WAY_INDEX = {
             "url" : ""
         },
 
-        "create-theme":
+    "create-theme":
         {
             "template" : "/customize/templates/create-theme/",
             "url" : ""
@@ -576,11 +586,18 @@ function yb_navigateTo(container, template, data=null, reloadable=true) {
     if (container.includes("2way")) {
         yb_setLast(container, template, data);
         history.pushState({container:container, template:template, data:data}, template, TWO_WAY_INDEX[template].url);
-        if (data === null){
-            yb_launch2WayContainer(template);
-            active_cotainer = "2way";
+        
+        //Check if page, only time navigateTo should be used for pages is when going back
+        if (container.includes("page")){
+            yb_2WayPage(1); //Any time the history state includes page it will typically be the second page
         } else {
-            yb_launch2WayContainer(template, data);
+            
+            if (data === null){
+                yb_launch2WayContainer(template);
+                active_cotainer = "2way";
+            } else {
+                yb_launch2WayContainer(template, data);
+            }
         }
     } else if (container.includes("content-container")) {
         CONTENT_CONTAINER_B.innerHTML = "";
@@ -640,8 +657,12 @@ function yb_getNextVideo() {
     
 }
 
-function yb_goBack() {
-    yb_navigateTo(last_container, last_page, last_data);
+function yb_goBack(page=false) {
+    if (page) {
+        yb_navigateTo("2way-page", last_page, last_data);
+    } else {
+        yb_navigateTo(last_container, last_page, last_data);
+    }
 }
 
 window.addEventListener('popstate', function(event) {

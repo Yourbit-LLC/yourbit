@@ -31,21 +31,7 @@ $(document).ready(function () {
 
 
             } else{
-                var url = "/core/templates/create/" + option;
-
-
-                let container = yb_toggle2WayContainer(`create-${option}`, true);
-                if (container[0] != "closing"){
-                    
-                    let container_content = container[1].querySelector(".yb-2Way-content");
-                    container[1].setAttribute("data-state", `create-${option}`);
-                    $(container_content).load(url);
-                    history.pushState({}, "", `/core/create/${option}/`);
-                } else {
-                    history.pushState(null, null, "/");
-                    container[1].setAttribute("data-state", "empty");
-                }
-
+                yb_2WayPage(2, `create-${option}`);
             }
             
         });
