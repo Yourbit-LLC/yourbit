@@ -1,6 +1,10 @@
-var bit_container;
-var bitstream_index = new Map();
-var bitstream_data = new Map();
+var bit_container; //The container that is currently active containing bits
+var bitstream_index = new Map(); //Stores captured information on each bit in bitstream
+var bitstream_data = new Map(); //Stores captured information on current bitstream
+var loaded_bits = []; //Stores IDs of bits that have been loaded
+var unloaded_bits = []; //Stores IDs of bits that have been unloaded
+const SPACES = ["global", "chat", "video", "photo"]
+
 
 const bitObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
@@ -21,6 +25,48 @@ const bitObserver = new IntersectionObserver((entries, observer) => {
     threshold: 0.1  // Trigger when 10% of the post is visible
   });
 
+  var bs_loadPointRegistry = [];
+
+
+  const bs_loadPointObserver = new IntersectionObserver(function(entries, loadPointObserver) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            let point_state = entry.target.getAttribute("data-state");
+            let point_type = entry.target.getAttribute("data-type");
+            let point_page = entry.target.getAttribute("data-page");
+            let request_data;
+            console.log("load_point passed. Loading Page: " + point_page);
+            if (point_state === "future") { 
+                request_data = {
+                    "update": true,
+                    "page": point_page,
+                }
+                yb_getFeed(request_data);
+                entry.target.setAttribute("data-state", "past");
+            } else if (point_state === "past") {
+                return;
+            }
+
+            
+            
+        }
+    });
+}, {threshold: 0.5});
+
+
+
+function yb_createLoadPoint(type) {
+    let this_count = bs_loadPointRegistry.length;
+    let load_point = document.createElement("hr");
+    load_point.classList.add("yb-load-point");
+    load_point.setAttribute("data-point", this_count);
+    load_point.setAttribute("data-state", "future");
+    load_point.setAttribute("data-type", type);
+    load_point.setAttribute("data-page", this_count + 4);
+    bs_loadPointRegistry.push(load_point);
+    bs_loadPointObserver.observe(load_point);
+    return load_point;
+}
 
 
 function yb_getBitContainer() {
@@ -68,79 +114,54 @@ function throttle(func, limit) {
     };
 }
 
-function onScrollToBottom() {
-    console.log("User has scrolled to the bottom of the container! More now please...");
-    // Your logic here that needs to be executed when the bottom is reached
-    $("load-indicator-container-bitstream").show();
-    yb_getFeed(true, true);
-}
+// function onScrollToBottom() {
+    // console.log("User has scrolled to the bottom of the container! More now please...");
+    // // Your logic here that needs to be executed when the bottom is reached
+    // $("load-indicator-container-bitstream").show();
+    // data = {"update": true, };
+    // yb_getFeed(true, true);
+// }
 
-function checkScroll() {
-    console.log("scrolling...");
-    let active_container;
-
-    // Check session values outside the scroll handler for efficiency
-    if (yb_getSessionValues("location") === "home") {
-        active_container = CONTENT_CONTAINER_A;
-    } else {
-        active_container = CONTENT_CONTAINER_B;
-    }
-
-    const { scrollTop, scrollHeight, clientHeight } = active_container;
-
-    // Adjust threshold if needed for user experience
-    if (scrollTop + clientHeight >= scrollHeight - 200) {
-        console.log("scroll to bottom detected");
-        onScrollToBottom();
-        active_container.removeEventListener("scroll", throttledCheckScroll);
-    }
-}
-
-// Function to detect scroll to bottom of a specific container
-function detectScrollToBottom() {
-    console.log("Detecting scroll to bottom");
-
-    // Ensure the bit container exists before setting event listeners
-    if (!yb_getBitContainer()) {
-        console.error("Container not found");
-        return;
-    }
-
-    const location = yb_getSessionValues("location");
-
-    // Remove the listener from the inactive container
-    if (location === "home") {
-        CONTENT_CONTAINER_A.addEventListener('scroll', throttledCheckScroll);
-        CONTENT_CONTAINER_B.removeEventListener('scroll', throttledCheckScroll);
-    } else if (location === "profile") {
-        CONTENT_CONTAINER_B.addEventListener('scroll', throttledCheckScroll);
-        CONTENT_CONTAINER_A.removeEventListener('scroll', throttledCheckScroll);
-    }
-}
-
-// Throttle scroll handler to improve performance
-const throttledCheckScroll = throttle(checkScroll, 200);
 
 function yb_updateFeed(update, data) {
     //Update the feed
     console.log("updating display...")
     console.log(update)
-    let iteration = 0;
+
+    let current_bit_container;
+    
+    if (yb_getSessionValues('space') != data.space){
+        current_bit_container = document.getElementById(data.space + "-bit-subcontainer");
+    } else {
+        yb_getBitContainer();
+    }
+
     if (update === true) {
         //Append the feed
         console.log("appending html...")
         if (data.length > 0) {
+
+            //Render Bit Data to bitstream
             for (let i = 0; i < data.length; i++) {
                 let blueprint = data[i];
-                if (iteration != 4) {
-                    yb_renderBit(blueprint);
-                } else {
-                    let load_point = yb_createLoadPoint();
-                    yb_getBitContainer().appendChild(load_point);
-                }
-                iteration += 1;
+                yb_renderBit(blueprint);
+
             }
-            detectScrollToBottom();
+
+            //Create a load point to end the section
+            let load_point = yb_createLoadPoint("bitstream");
+            yb_getBitContainer().appendChild(load_point);
+            
+
+            if (data.page === 2) {
+                
+                //Preload the next page
+                let next_data = {"update": true, "page": 3};
+                yb_getFeed(next_data);
+            }
+
+
+            
             $("load-indicator-container-bitstream").hide();
 
             
@@ -169,8 +190,15 @@ function yb_updateFeed(update, data) {
             
         }
 
+        //Create a load point to end the section
+        let load_point = yb_createLoadPoint("bitstream");
+        yb_getBitContainer().appendChild(load_point);
 
-        detectScrollToBottom();
+        //Preload the next page
+        let next_data = {"update": true, "page": 2};
+        yb_getFeed(next_data);
+
+
 
         $("#load-indicator-container-bitstream").hide();
         $("#no-bits-message").show();
@@ -221,31 +249,43 @@ function yb_requestFeed(data=null) {
     });
 }
 
-function yb_getFeed(data={}) {
+function yb_preLoadSpaces() {
+    for (let i = 0; i < SPACES.length; i++) {
+        let space = SPACES[i];
+        if (space != yb_getSessionValues('space')) {
+            let space_data = {
+                'update': false,
+                'page': 1,
+                'space_override': space,
+            }
+            yb_requestFeed(space_data);
+        }
+    }
+}
+
+function yb_getFeed(data={"update": false, "page": 1}) {
     // Initialize variables
     let sort_setting = yb_getSessionValues('sort');
     console.log(sort_setting)
     let filter_setting = yb_getSessionValues('filter');
-    let space = yb_getSessionValues('space');
-    let page = parseInt(yb_getSessionValues('bitstream-page')) || 1; // Default to page 1 if not set
+    
+    //Define Space
+    let space;
+    if (data.space_override) {
+        //If space override is container in data, use that space
+        space = data.space_override;
+    } else {   
+        //Otherwise, use the session space
+        space = yb_getSessionValues('space');
+    }
+    
     let request_data;
 
     // Adjust page number for next or previous page requests
-    if (data.next_page) {
-        page += 1;
-        yb_setSessionValues('bitstream-page', page);
-    } else if (data.previous_page) {
-        page -= 1;
-        yb_setSessionValues('bitstream-page', page);
-    }
-
-    console.log("Page: " + page)
-
-    // Ensure the page number doesn't fall below 1
-    page = Math.max(page, 1);
+    console.log("Page: " + data.page)
 
     // Update the session values
-    yb_setSessionValues('bitstream-page', page);
+    yb_setSessionValues('bitstream-page', data.page);
 
     // Create the request data 
     request_data = {
@@ -253,7 +293,7 @@ function yb_getFeed(data={}) {
         'filter': filter_setting,
         'sort': sort_setting,
         'space': space,
-        'page': page,
+        'page': data.page,
     }
 
     if (yb_getSessionValues('location') === 'profile') {

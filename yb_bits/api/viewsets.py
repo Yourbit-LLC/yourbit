@@ -127,12 +127,11 @@ class BitFeedAPIView(generics.ListAPIView):
 
         print(queryset)
 
-        p = Paginator(queryset, 8)
+        p = Paginator(queryset, 4)
 
         page = self.request.query_params.get('page')
 
         print("\n\n" + page + "\n\n")
-
         if page:
 
             try:

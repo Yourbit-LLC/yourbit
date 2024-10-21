@@ -28,6 +28,10 @@ hr {
     margin: 0;
 }
 
+.yb-load-point {
+    visibility: hidden;
+}
+
 .user-info-menu {
     position: relative;
     width: 75%;
