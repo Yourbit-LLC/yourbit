@@ -161,8 +161,9 @@ function yb_updateFeed(update, data) {
             }
 
 
+            $("#load-indicator-container-bitstream").show();
             
-            $("load-indicator-container-bitstream").hide();
+            $("#no-bits-message").hide();
 
             
         } else {
@@ -176,32 +177,36 @@ function yb_updateFeed(update, data) {
         
     } else {
         //Update the feed
-        console.log("appending html...")
-        $(yb_getBitContainer()).html('');
+        if (data.length > 0) {
+            console.log("appending html...")
+            $(yb_getBitContainer()).html('');
 
-        if (yb_getSessionValues('location') === 'profile'){
-            console.log("profile data")
-            yb_showSwipeUp();
+            if (yb_getSessionValues('location') === 'profile'){
+                console.log("profile data")
+                yb_showSwipeUp();
+            }
+
+            for (let i = 0; i < data.length; i++) {
+                let blueprint = data[i];
+                yb_renderBit(blueprint);
+                
+            }
+
+            //Create a load point to end the section
+            let load_point = yb_createLoadPoint("bitstream");
+            yb_getBitContainer().appendChild(load_point);
+
+            //Preload the next page
+            let next_data = {"update": true, "page": 2};
+            yb_getFeed(next_data);
+
+            $("#load-indicator-container-bitstream").show();
+            $("#no-bits-message").hide();
+        } else {
+            $("#load-indicator-container-bitstream").hide();
+            $("#no-bits-message").show();
         }
 
-        for (let i = 0; i < data.length; i++) {
-            let blueprint = data[i];
-            yb_renderBit(blueprint);
-            
-        }
-
-        //Create a load point to end the section
-        let load_point = yb_createLoadPoint("bitstream");
-        yb_getBitContainer().appendChild(load_point);
-
-        //Preload the next page
-        let next_data = {"update": true, "page": 2};
-        yb_getFeed(next_data);
-
-
-
-        $("#load-indicator-container-bitstream").hide();
-        $("#no-bits-message").show();
 
 
     }
