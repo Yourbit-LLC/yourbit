@@ -471,3 +471,18 @@ function yb_hideBit(bitID) {
         }
     });
 }
+
+function yb_getBit(id, container) {
+    $.ajax({
+        type: 'GET',
+        url: `/bits/api/bits/${id}/`,
+        success: function(response) {
+            console.log(response);
+            let new_bit = yb_buildBit(response);
+            container.appendChild(new_bit.built_bit);
+        },
+        error: function(response) {
+            console.log(response);
+        }
+    });
+}

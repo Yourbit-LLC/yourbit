@@ -85,6 +85,7 @@ class BitSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         ret = super().to_representation(instance)
         user_tz_str = self.context.get('user_tz')
+        print("This timezone: " + user_tz_str)
         this_time = instance.time
         user_tz = pytz.timezone(user_tz_str)
         if user_tz:

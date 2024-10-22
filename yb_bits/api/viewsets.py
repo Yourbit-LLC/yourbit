@@ -169,10 +169,17 @@ class BitViewSet(viewsets.ModelViewSet):
     queryset = Bit.objects.all()
     serializer_class = BitSerializer
 
-    def get_serializer_class(self):
+    def get_serializer(self, *args, **kwargs):
+        # Add context with user timezone and request in all serializer calls
         if self.action == 'create':
             return CreateBitSerializer
-        return BitSerializer
+        
+        else:
+            kwargs['context'] = kwargs.get('context', {})
+            user_profile = Profile.objects.get(username=self.request.user.active_profile)
+            kwargs['context']['user_tz'] = user_profile.current_timezone
+            kwargs['context']['request'] = self.request
+            return super().get_serializer(*args, **kwargs)
 
     def get_queryset(self):
         queryset = Bit.objects.all()
@@ -273,10 +280,7 @@ class BitViewSet(viewsets.ModelViewSet):
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
-        user_profile = Profile.objects.get(username=self.request.user.active_profile)
-        timezone = user_profile.current_timezone
-
-        serializer = self.get_serializer(instance, context={'user_tz': timezone, 'request': request})
+        serializer = self.get_serializer(instance)
         return Response(serializer.data)
     
 
