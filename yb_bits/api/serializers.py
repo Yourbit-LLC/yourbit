@@ -19,7 +19,7 @@ class BitSerializer(serializers.ModelSerializer):
     from yb_customize.api.serializers import CustomBitSerializer
     from yb_photo.api.serializers import PhotoSerializer
     
-    user = UserBitSerializer(read_only=True)
+    
     profile = ProfileResultSerializer(read_only=True)
     custom = CustomBitSerializer(read_only=True)
     
