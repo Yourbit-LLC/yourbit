@@ -304,6 +304,14 @@ class BitViewSet(viewsets.ModelViewSet):
 
         return Response({"status": "success"}, status=status.HTTP_200_OK)
     
+    @action(detail=True, methods=['get'])
+    def comments(self, request, *args, **kwargs):
+        bit_id = self.request.query_params.get('bit_id')
+        bit = get_object_or_404(Bit, pk=bit_id)
+        comments = bit.comments.all()
+        serializer = BitCommentSerializer(comments, many=True)
+        return Response(serializer.data)
+    
 
     
 class LikeViewSet(viewsets.ModelViewSet):
@@ -339,10 +347,9 @@ class LikeViewSet(viewsets.ModelViewSet):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     
     #Endpoint to list out liked bits by a specific user and return serialized bits
-    @action(detail=False, methods=['get'])
-    def liked(self, request, *args, **kwargs):
+    def list(self, request, *args, **kwargs):
         user_profile = Profile.objects.get(username=request.user.active_profile)
-        queryset = Bit.objects.filter(likes__user=request.user)
+        queryset = Bit.objects.filter(likes__profile=user_profile).order_by('-time')
         serializer = BitSerializer(queryset, many=True, context={'user_tz': user_profile.current_timezone, 'request': request})
         return Response(serializer.data)
 
@@ -377,6 +384,12 @@ class DislikeViewsSet(viewsets.ModelViewSet):
 
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+    
+    def list(self, request, *args, **kwargs):
+        user_profile = Profile.objects.get(username=request.user.active_profile)
+        queryset = Bit.objects.filter(dislikes__profile=user_profile).order_by('-time')
+        serializer = BitSerializer(queryset, many=True, context={'user_tz': user_profile.current_timezone, 'request': request})
+        return Response(serializer.data)
 
 class CommentViewSet(viewsets.ModelViewSet):
     queryset = BitComment.objects.all().order_by('-time')

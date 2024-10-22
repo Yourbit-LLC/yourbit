@@ -103,10 +103,15 @@ class Bit(models.Model):
         )
     
     def is_liked(self, user):
-        return self.likes.filter(user=user).exists()
+        user_profile = Profile.objects.get(username = user.active_profile)
+        return self.likes.filter(profile=user_profile).exists()
     
     def is_disliked(self, user):
-        return self.dislikes.filter(user=user).exists()
+        user_profile = Profile.objects.get(username = user.active_profile)
+        return self.dislikes.filter(profile=user_profile).exists()
+    
+    def get_comments(self):
+        return self.comments.all()
     
 
     # def save(self, *args, **kwargs):
