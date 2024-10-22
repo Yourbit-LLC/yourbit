@@ -1288,4 +1288,5 @@
     transition: 0.5s;
     overflow: hidden;
     pointer-events: auto;
+    grid-gap: 5px;
 }
