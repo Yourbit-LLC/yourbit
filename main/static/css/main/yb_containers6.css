@@ -1278,7 +1278,8 @@
     grid-template-columns: 1fr 4fr;
     background-color: black;
     text-decoration: none;
-    color: white;
+    color: skyblue;
+    fill: skyblue;
     width: fit-content;
     line-height: 1.5;
     font-size: 12.5px;
