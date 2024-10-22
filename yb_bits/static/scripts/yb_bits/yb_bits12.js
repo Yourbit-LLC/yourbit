@@ -270,6 +270,35 @@ function yb_addMedia(type, bit) {
     }
 }
 
+
+function makeLinksClickable(text) {
+    // Updated pattern to match URLs without http/https
+    const urlPattern = /(https?:\/\/[^\s]+|www\.[^\s]+|[a-zA-Z0-9-]+\.[a-zA-Z]{2,}(\/[^\s]*)?)/g;
+    // Replace URLs with clickable links, adding http:// if missing
+    return text.replace(urlPattern, function(url) {
+        // Prepend http:// if the URL doesn't start with http or https
+        let href = url.startsWith('http') ? url : 'http://' + url;
+
+        let domainName;
+
+        try {
+            const urlObj = new URL(href);
+            domainName = urlObj.hostname; // Extract the domain name
+        } catch (e) {
+            console.error('Invalid URL:', url);
+            domainName = url; // Fallback to the original URL if invalid
+        }
+        return `
+            <a class="yb-link-ext" href="${href}" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#e8eaed">
+                    <path d="M480.28-96Q401-96 331-126t-122.5-82.5Q156-261 126-330.96t-30-149.5Q96-560 126-629.5q30-69.5 82.5-122T330.96-834q69.96-30 149.5-30t149.04 30q69.5 30 122 82.5T834-629.28q30 69.73 30 149Q864-401 834-331t-82.5 122.5Q699-156 629.28-126q-69.73 30-149 30ZM432-172v-68q-20 0-34-14.1T384-288v-48L175-545q-4 19-5.5 35t-1.5 30q0 115 74.5 203T432-172Zm288-109q18-21 31.5-44t22.36-48.55q8.86-25.56 13.5-52.5Q792-453 792-480q0-94.61-52-172.8Q688-731 600-768v24q0 29.7-21.15 50.85Q557.7-672 528-672h-96v48q0 20.4-13.8 34.2Q404.4-576 384-576h-48v96h240q20.4 0 34.2 13.8Q624-452.4 624-432v96h41q23 0 39 16t16 39Z"/>
+                </svg>
+                <p>${domainName}</p>
+            </a>
+         `;
+    });
+}
+
 /*
     * Function to create the body of a bit
     * @param {object} bit - the bit object
@@ -284,7 +313,7 @@ function yb_createBody(bit) {
     if (yb_getCustomValues("bit-colors-on") && !yb_getCustomValues("bit-colors-on")){
         paragraph.style.color = text_color;
     }
-    paragraph.innerHTML = bit.body;
+    paragraph.innerHTML = makeLinksClickable(bit.body);
 
     if (bit.type === "chat" && bit.body.length > 800){
         let show_more_backdrop = yb_createElement("div", "yb-showMore-backdrop", `show-more-backdrop-${bit.id}`);
@@ -323,21 +352,21 @@ function createTitle(bit) {
         if (bit.type == "video") {
             title.innerHTML = `
                 <svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="${title_color}"><path d="m380-300 280-180-280-180v360ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
-                <h2 class="yb-titleText-bit ${bit.type} ybv-preview-title" style="color: ${title_color};">${bit.title}</h2>
+                <h2 class="yb-titleText-bit ${bit.type} ybv-preview-title" style="color: ${title_color};">${makeLinksClickable(bit.title)}</h2>
                 <p class="bit-view-count" style="color: ${bit.custom.text_color};">${bit.watch_count} views</p>
             `;
         } else {
-            title.innerHTML = `<h2 class="yb-titleText-bit ${bit.type}" style="color: ${title_color};">${bit.title}</h2>`;
+            title.innerHTML = `<h2 class="yb-titleText-bit ${bit.type}" style="color: ${title_color};">${makeLinksClickable(bit.title)}</h2>`;
         }
     } else {
         if (bit.type == "video") {
             title.innerHTML = `
                 <svg class="yb_autoFill yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="m380-300 280-180-280-180v360ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
-                <h2 class="yb-autoText yb-titleText-bit ybv-preview-title ${bit.type}"">${bit.title}</h2>
+                <h2 class="yb-autoText yb-titleText-bit ybv-preview-title ${bit.type}"">${makeLinksClickable(bit.title)}</h2>
                 <p class="bit-view-count" style="color: ${bit.custom.text_color};">${bit.view_count} views</p>
             `;
         } else {
-            title.innerHTML = `<h2 class="yb-autoText yb-titleText-bit ${bit.type}">${bit.title}</h2>`;
+            title.innerHTML = `<h2 class="yb-autoText yb-titleText-bit ${bit.type}">${makeLinksClickable(bit.title)}</h2>`;
         }
     }
     return title;
