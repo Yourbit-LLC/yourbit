@@ -158,20 +158,20 @@ class Cluster(models.Model):
 class BitComment(models.Model):
     #Model for a comment on a bit
     bit = models.ForeignKey(Bit, related_name = "bit_comments", on_delete=models.CASCADE, blank=True, null=True)
-    user = models.ForeignKey(Profile, related_name = "comments", on_delete=models.CASCADE, blank=True)
+    profile = models.ForeignKey(Profile, related_name = "comments", on_delete=models.CASCADE, blank=True)
     body = models.CharField(max_length=5000)
     time = models.DateTimeField(default=timezone.localtime)
 
 class BitLike(models.Model):
     #Model for a like on a bit
     bit = models.ForeignKey(Bit, related_name = "bit_likes", on_delete=models.CASCADE, blank=True)
-    user = models.ForeignKey(Profile, related_name = "bit_likes", on_delete=models.CASCADE, blank=True)
+    profile = models.ForeignKey(Profile, related_name = "bit_likes", on_delete=models.CASCADE, blank=True)
     time = models.DateTimeField(default=timezone.now)
 
 class BitDislike(models.Model):
     #Model for a dislike on a bit
     bit = models.ForeignKey(Bit, related_name = "bit_dislikes", on_delete=models.CASCADE, blank=True)
-    user = models.ForeignKey(Profile, related_name = "bit_dislikes", on_delete=models.CASCADE, blank=True)
+    profile = models.ForeignKey(Profile, related_name = "bit_dislikes", on_delete=models.CASCADE, blank=True)
     time = models.DateTimeField(default=timezone.now)
 
 class BitShare(models.Model):
@@ -183,13 +183,13 @@ class BitShare(models.Model):
 class BitView(models.Model):
     #Model for a view on a bit
     bit = models.ForeignKey(Bit, related_name = "bit_views", on_delete=models.CASCADE, blank=True)
-    user = models.ForeignKey(Profile, related_name = "bit_views", on_delete=models.CASCADE, blank=True)
+    profile = models.ForeignKey(Profile, related_name = "bit_views", on_delete=models.CASCADE, blank=True)
     time = models.DateTimeField(default=timezone.now)
 
 class BitNewView(models.Model):
     #Model for a new view on a bit
     bit = models.ForeignKey(Bit, related_name = "bit_new_views", on_delete=models.CASCADE, blank=True)
-    user = models.ForeignKey(Profile, related_name = "bit_new_views", on_delete=models.CASCADE, blank=True)
+    profile = models.ForeignKey(Profile, related_name = "bit_new_views", on_delete=models.CASCADE, blank=True)
     time = models.DateTimeField(default=timezone.now)
 
 class VideoSkipPoints(models.Model):
