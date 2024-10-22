@@ -259,8 +259,8 @@ class HistoryTemplate(View):
     
     def get(self, request, *args, **kwargs):
         from yb_bits.models import BitLike
-        
-        bit_likes = BitLike.objects.filter(user=request.user).order_by('-time')
+        this_profile = Profile.objects.get(username=request.user.active_profile)
+        bit_likes = BitLike.objects.filter(profile=this_profile).order_by('-time')
 
         bits = []
         if not bit_likes:

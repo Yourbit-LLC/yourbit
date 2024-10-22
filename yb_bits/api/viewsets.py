@@ -401,13 +401,14 @@ class CommentViewSet(viewsets.ModelViewSet):
         
         bit_id = serializer.validated_data.get('bit')
 
+        profile = Profile.objects.get(username=request.user.active_profile)
         
         if isinstance(bit_id, Bit):
             bit = bit_id
         else:
             bit = get_object_or_404(Bit, pk=bit_id)
         
-        comment = serializer.save(user=request.user)
+        comment = serializer.save(profile=profile)
 
         # Add the comment to the Bit instance
         bit.comments.add(comment)

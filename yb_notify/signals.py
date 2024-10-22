@@ -229,7 +229,7 @@ def create_bit_like_notification(sender, instance, created, **kwargs):
 #Create a notification on creation of bit comment
 @receiver(post_save, sender=BitComment)
 def create_bit_comment_notification(sender, instance, created, **kwargs):
-    if instance.user != instance.bit.profile.user:
+    if instance.profile != instance.bit.profile:
         if created:
             bit = instance.bit
             profile = Profile.objects.get(username = instance.user.active_profile)
