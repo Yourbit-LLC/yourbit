@@ -645,8 +645,8 @@ function yb_buildBit(bit){
 
 function yb_buildComment(comment){
     //Set up variables
-    let user = comment.user;
-    let sender_name = user.first_name + " " + user.last_name;
+    let user = comment.profile;
+    let sender_name = user.display_name;
     let custom = comment.custom;
     let comment_id = comment.id;
     let time = comment.time;
