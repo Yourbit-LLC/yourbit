@@ -24,6 +24,7 @@ var bit_monetize_button = document.getElementById("bb-monetize-button");
 var bit_customize_button = document.getElementById("bb-customize-button");
 var muxUploader = document.querySelector("mux-uploader");
 var video_upload_id = "";
+var build_mode = document.getElementById("bb-field-buildMode").value;
 
 
 var cropped_photo;
@@ -286,6 +287,7 @@ function yb_handleCreateBit(){
     }
 }  
 
+
 $(document).ready(function(){
     let title_button = document.getElementById("title-bit-preview-button");
     let title_field = document.getElementById("bb-field-bitTitle");
@@ -334,7 +336,12 @@ $(document).ready(function(){
     }
 
     bit_submit_button.addEventListener("click", function(){
-        yb_handleCreateBit();
+        if (build_mode === "create"){
+            yb_handleCreateBit();
+        } else {
+            yb_handleEditBit();
+        }
+        
         //disable button
         bit_submit_button.disabled = true;
         bit_submit_button.innerHTML = "Uploading...";

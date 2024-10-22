@@ -18,6 +18,7 @@
         <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb" onclick="yb_toggleCreateMenu()"></h3>
         <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('create-bit')"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
         <input type="hidden" id="bb-field-bitType" value="chat">
+        <input type="hidden" id="bb-field-buildMode" value="{{build_mode}}">
     </header>
 
 
@@ -52,7 +53,7 @@
         </div>
         
         <!--Title Field-->
-        <input type="text" id="bb-field-bitTitle" class="yb-builderBit yb-tform-cntrOrigin bb-field yb-autoText squared font-large font-heavy align-center border-solid narrowBorder" style="position: relative; height: 30px; width: 75%; {% if build_mode == 'edit' and bit.title is not '' %}transform: translateX(-50%) scale(1,1);{%else%}display:none;{%endif%} margin-left: auto; margin-right: auto;" placeholder="{% if build_mode == 'edit' and bit.title is not ''%}{{bit.title}}{%else%}Title{%endif%}">
+        <input type="text" id="bb-field-bitTitle" class="yb-builderBit yb-tform-cntrOrigin bb-field yb-autoText squared font-large font-heavy align-center border-solid narrowBorder" style="position: relative; height: 30px; width: 75%; {% if build_mode == 'edit' and bit.title is not '' %}scale(1,1);{%else%}display:none;{%endif%} margin-left: auto; margin-right: auto;" placeholder="{% if build_mode == 'edit' and bit.title is not ''%}{{bit.title}}{%else%}Title{%endif%}">
         {% comment %} {{ bit_form.title }} {% endcomment %}
         <button type="button" style="height: 25px; width: 75%;
             {% if build_mode == "edit" %}
@@ -102,13 +103,19 @@
 
         <!-- Description Field -->
 
-        <textarea id="bb-field-body" class="yb-builderBit yb-text-area yb-tform-cntrOrigin bb-field bg-gray-dark yb-autoText squared font-medium align-left border-solid narrowBorder" placeholder="{% if build_mode == 'edit' and bit.body is not ''%}{{bit.body}}{%else%}Description{%endif%}" style="position: relative; height: 100px; width: 95%; {% if build_mode == 'edit' and bit.body is not '' %}transform: translateX(-50%) scale(1,1);{%else%}display:none;{%endif%} margin-left: auto; margin-right: auto;"></textarea>
+        <textarea id="bb-field-body" class="yb-builderBit yb-text-area yb-tform-cntrOrigin bb-field bg-gray-dark yb-autoText squared font-medium align-left border-solid narrowBorder" style="position: relative; height: 100px; width: 95%; {% if build_mode == 'edit' and bit.body != '' %}transform: scale(1,1);{%else%}display:none;{%endif%} margin-left: auto; margin-right: auto;">
+            {% if build_mode == 'edit' and bit.body != ''%}{{bit.body}}{%else%}Description{%endif%}
+        </textarea>
         {% comment %} {{ bit_form.body }} {% endcomment %}
-        <button type="button" id="description-bit-preview-button" style="height: 25px; width: 75%;             {% if build_mode == 'edit' %}
+        <button 
+            type="button" id="description-bit-preview-button" 
+            style="height: 25px; width: 75%;             
+            {% if build_mode == 'edit' %}
                 {% if bit.title != '' %}
                     transform: translateX(-50%) scale(0); display:none;
                 {%endif%}
-            {%endif%}" class = "yb-button-flex squared transparent font-white font-small yb-center-transform lr bb-button">
+            {%endif%}" 
+            class = "yb-button-flex squared transparent font-white font-small yb-center-transform lr bb-button">
             Add Description
         </button>
 
