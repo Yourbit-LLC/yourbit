@@ -43,6 +43,7 @@ class BitSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'profile',
+            'display_name',
             'custom',
             'title',
             'body',

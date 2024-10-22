@@ -555,7 +555,7 @@ function yb_buildBit(bit){
     //User and Profile
     let user = bit.profile;
 
-    let name = user.display_name
+    let name = bit.display_name
 
     let username = user.username;
 
