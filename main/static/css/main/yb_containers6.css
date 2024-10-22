@@ -1280,10 +1280,11 @@
     text-decoration: none;
     color: white;
     width: fit-content;
-    line-height: 1;
+    line-height: 1.5;
+    font-size: 12.5px;
     border-radius: 10px;
     height: 25px;
-    padding: 5px;
+    padding: 2px  5px 5px 2px;
     border-radius: 10px;
     transition: 0.5s;
     overflow: hidden;
