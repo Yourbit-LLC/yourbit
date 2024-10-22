@@ -111,7 +111,11 @@ function yb_bitMenu(e){
 function createHeader(bit) {
 
     const header = yb_createElement("div", `yb-header-bit ${bit.type}`, `header-bit-${bit.id}`);
-    const profileImageContainer = yb_createElement("div", "element-accent profile-image-thumbnail tiny yb-center-margin all", `profile-image-${bit.id}`);
+    const profileImageContainer = yb_createElement("div", "element-accent profile-image-thumbnail small yb-center-margin all", `profile-image-${bit.id}`);
+    //Create a variable that sets to the bit.custom.accent_color, if undefined, set to white
+    let border_color = bit.custom.accent_color ? bit.custom.accent_color : "white";
+    profileImageContainer.style.border = `2px solid ${border_color}`;
+    
     let custom = bit.custom;
     let images = custom.images;
     let profile_image = images.profile_image;
