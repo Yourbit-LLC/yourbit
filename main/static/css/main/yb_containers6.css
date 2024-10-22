@@ -438,7 +438,7 @@
     display: block;
     object-fit: contain;
     transition: 1s;
-    
+    border-radius: 50%;
 
 }
 
