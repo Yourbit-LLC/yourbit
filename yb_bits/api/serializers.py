@@ -42,7 +42,6 @@ class BitSerializer(serializers.ModelSerializer):
         model = Bit
         fields = [
             'id',
-            'user',
             'profile',
             'custom',
             'title',

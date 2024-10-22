@@ -553,9 +553,9 @@ function yb_buildBit(bit){
     let element_id = `#bit-${bit.id}`;
 
     //User and Profile
-    let user = bit.user;
+    let user = bit.profile;
 
-    let name = bit.display_name
+    let name = user.display_name
 
     let username = user.username;
 
