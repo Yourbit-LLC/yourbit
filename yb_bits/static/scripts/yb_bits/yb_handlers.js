@@ -246,14 +246,9 @@ function yb_pressEdit(e){
     console.log(this_id)
     let element_id = `bit-${this_id}`;
     console.log(element_id)
-    let this_bit = document.getElementById(element_id);
-    let edit_button = this_bit.querySelector(`.edit-button`);
-    let edit_data = {
-        'bit_id': this_id,
-    };
 
     // Sends a request to edit the bit
-    yb_editBit(this_id, edit_data);
+    yb_navigateTo("2way", "edit-bit", this_id);
 }
 
 function yb_contractBit(e) {

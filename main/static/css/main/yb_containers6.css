@@ -1274,7 +1274,7 @@
 
 .yb-link-ext {
     position: relative;
-    display: grid;
+    display: inline-grid;
     grid-template-columns: 1fr 4fr;
     background-color: black;
     text-decoration: none;

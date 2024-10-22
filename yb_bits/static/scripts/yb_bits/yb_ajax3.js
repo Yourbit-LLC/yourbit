@@ -471,4 +471,3 @@ function yb_hideBit(bitID) {
         }
     });
 }
-

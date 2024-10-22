@@ -187,8 +187,8 @@ const TWO_WAY_INDEX = {
     
     "edit-bit":
         {
-            "template" : "/bits/edit-bit/",
-            "url" : ""
+            "template" : "/bits/templates/edit-bit/",
+            "url" : "/bits/edit/"
         },
 
     "create-theme":

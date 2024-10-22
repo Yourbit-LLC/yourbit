@@ -18,6 +18,7 @@ urlpatterns = [
     
 
     #URL for views
+    path("templates/edit-bit/<int:id>/", edit_bit_view, name="edit-bit"),
     path("templates/list-clusters/", list_clusters, name="list-clusters"),
     path("templates/select-clusters/<int:bit_id>/", select_clusters, name="list-clusters"),
     path('templates/builder/edit/<int:pk>/', bit_builder_view, name="bit-builder"),
