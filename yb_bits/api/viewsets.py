@@ -306,8 +306,7 @@ class BitViewSet(viewsets.ModelViewSet):
     
     @action(detail=True, methods=['get'])
     def comments(self, request, *args, **kwargs):
-        bit_id = self.request.query_params.get('bit_id')
-        bit = get_object_or_404(Bit, pk=bit_id)
+        bit = self.get_object()
         comments = bit.comments.all()
         serializer = BitCommentSerializer(comments, many=True)
         return Response(serializer.data)
