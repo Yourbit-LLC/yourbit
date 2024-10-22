@@ -40,7 +40,24 @@ class BitSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Bit
-        fields = '__all__'
+        fields = [
+            'id',
+            'user',
+            'profile',
+            'custom',
+            'title',
+            'body',
+            'photos',
+            'video_upload',
+            'time',
+            'like_count',
+            'dislike_count',
+            'share_count',
+            'comment_count',
+            'is_liked',
+            'is_disliked',
+            'watch_count',
+        ]
         read_only_fields = [
             'id', 
             'user', 
