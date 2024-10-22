@@ -471,7 +471,7 @@ $(document).ready(function(){
 
     video_upload_field.addEventListener("change", function(event){
         
-        yb_2WayPage(2, 'video-setup');
+        yb_2WayPage(3, 'video-setup');
         yb_expand2Way();
     })
 
@@ -479,19 +479,19 @@ $(document).ready(function(){
     $("#bit-date-preview").html(formattedDate);
 
     bit_schedule_button.addEventListener("click", function(){
-        yb_2WayPage(2, "schedule-bit");
+        yb_2WayPage(3, "schedule-bit");
     });
 
     bit_options_button.addEventListener("click", function(){
-        yb_2WayPage(2, "bit-publish-options");
+        yb_2WayPage(3, "bit-publish-options");
     });
 
     bit_monetize_button.addEventListener("click", function(){
-        yb_2WayPage(2, "monetize-bit");
+        yb_2WayPage(3, "monetize-bit");
     });
 
     bit_customize_button.addEventListener("click", function(){
-        yb_2WayPage(2, "bb-customize-bit");
+        yb_2WayPage(3, "bb-customize-bit");
     });
 
     yb_startClock("time-label", "decorated-time");

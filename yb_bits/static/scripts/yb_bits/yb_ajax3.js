@@ -42,7 +42,7 @@ function yb_createBit(this_data, csrf_token) {
             console.log(response);
 
             //Close the create container
-            yb_toggle2WayContainer('create-bit');
+            yb_toggle2WayContainer('create');
 
             //Handle response and proceed to confirmation action
             yb_handleCreateBitResponse(response);

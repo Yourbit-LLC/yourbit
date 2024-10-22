@@ -57,7 +57,7 @@
         const randomFrameButton = document.getElementById('randomize-frame');
         const thumbnailOptionDropdown = document.getElementById("thumbnail-preset-options");
         const thumbnailUploadButton = document.getElementById("upload-thumbnail")
-        const videoSetupContinueButon = document.getElementById("vs-continue");
+        const videoSetupContinueButton = document.getElementById("vs-continue");
         const videoFrame = document.getElementById("thumbnail-preview")
 
         //Submit form
@@ -158,8 +158,8 @@
             document.getElementById("bb-field-thumbnailImage").click();
         });
 
-        videoSetupContinueButon.addEventListener("click", function() {
-            yb_2WayPage(1);
+        videoSetupContinueButton.addEventListener("click", function() {
+            yb_2WayPage(2);
             yb_collapse2Way(1);
             document.getElementById("add-video-button").innerHTML = `
                 <img id="thumbnail-bit-preview" class="yb-center-transform tb" style="left: 0px; width: 100%;" src = ${videoFrame.src}>
