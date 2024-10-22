@@ -303,6 +303,7 @@ class BitViewSet(viewsets.ModelViewSet):
         bitstream_object.save()
 
         return Response({"status": "success"}, status=status.HTTP_200_OK)
+    
 
     
 class LikeViewSet(viewsets.ModelViewSet):
@@ -336,6 +337,14 @@ class LikeViewSet(viewsets.ModelViewSet):
 
         
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
+    #Endpoint to list out liked bits by a specific user and return serialized bits
+    @action(detail=False, methods=['get'])
+    def liked(self, request, *args, **kwargs):
+        user_profile = Profile.objects.get(username=request.user.active_profile)
+        queryset = Bit.objects.filter(likes__user=request.user)
+        serializer = BitSerializer(queryset, many=True, context={'user_tz': user_profile.current_timezone, 'request': request})
+        return Response(serializer.data)
 
 class DislikeViewsSet(viewsets.ModelViewSet):
     queryset = BitDislike.objects.all()

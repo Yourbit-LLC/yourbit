@@ -165,19 +165,19 @@ class BitComment(models.Model):
 class BitLike(models.Model):
     #Model for a like on a bit
     bit = models.ForeignKey(Bit, related_name = "bit_likes", on_delete=models.CASCADE, blank=True)
-    user = models.ForeignKey(User, related_name = "bit_likes", on_delete=models.CASCADE, blank=True)
+    user = models.ForeignKey(Profile, related_name = "bit_likes", on_delete=models.CASCADE, blank=True)
     time = models.DateTimeField(default=timezone.now)
 
 class BitDislike(models.Model):
     #Model for a dislike on a bit
     bit = models.ForeignKey(Bit, related_name = "bit_dislikes", on_delete=models.CASCADE, blank=True)
-    user = models.ForeignKey(User, related_name = "bit_dislikes", on_delete=models.CASCADE, blank=True)
+    user = models.ForeignKey(Profile, related_name = "bit_dislikes", on_delete=models.CASCADE, blank=True)
     time = models.DateTimeField(default=timezone.now)
 
 class BitShare(models.Model):
     #Model for a share on a bit
 
-    user = models.ForeignKey(User, related_name = "bit_shares", on_delete=models.CASCADE, blank=True)
+    user = models.ForeignKey(Profile, related_name = "bit_shares", on_delete=models.CASCADE, blank=True)
     time = models.DateTimeField(default=timezone.now)
 
 class BitView(models.Model):
