@@ -104,21 +104,38 @@ function yb_2WayPage(index, page="", data=null) {
 
     let content = this_container.querySelector(".yb-2Way-content");
     let secondary = this_container.querySelector(".yb-2Way-secondary");
+    let tetriary = this_container.querySelector(".yb-2Way-tetriary");
 
     if (index == 1) {
         secondary.classList.remove("active");
+        tetriary.classList.remove("active");
         content.classList.remove("inactive");
         secondary.innerHTML = "";
 
+    } else if (index == 2) {
+        
+        secondary.classList.add("active");
+        tetriary.classList.remove("active");
+        content.classList.add("inactive");
+        if (page != ""){
+            history.pushState({container:"2way-page", template:page, data:data}, page, TWO_WAY_INDEX[page].url);
+            if (data) {
+                $(secondary).load(TWO_WAY_INDEX[page].template + data.toString() + "/");
+            } else {
+                $(secondary).load(TWO_WAY_INDEX[page].template);
+            }
+        }
+
     } else {
         history.pushState({container:"2way-page", template:page, data:data}, page, TWO_WAY_INDEX[page].url);
-        secondary.classList.add("active");
+        tetriary.classList.add("active");
         content.classList.add("inactive");
+        secondary.classList.remove("active");
 
         if (data) {
-            $(secondary).load(TWO_WAY_INDEX[page].template + data.toString() + "/");
+            $(tetriary).load(TWO_WAY_INDEX[page].template + data.toString() + "/");
         } else {
-            $(secondary).load(TWO_WAY_INDEX[page].template);
+            $(tetriary).load(TWO_WAY_INDEX[page].template);
         }
     }
 

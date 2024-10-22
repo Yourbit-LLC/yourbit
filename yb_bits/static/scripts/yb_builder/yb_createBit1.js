@@ -348,7 +348,7 @@ function finishBitCrop(){
     cropped_photo = cropper.getCroppedCanvas().toDataURL();
     let cropped_photo_field = document.getElementById("bb-field-bitPhoto-cropped");
     
-    yb_2WayPage(1, "cropper-bit");
+    yb_2WayPage(2);
     yb_collapse2Way();
     
     let photo = photo_upload_field.files[0];
@@ -458,7 +458,7 @@ $(document).ready(function(){
             // add_photo_button.appendChild(this_image);
             // add_photo_button.classList.add("fast");
             // add_photo_button.classList.add("yb-bounceDown-once");
-            yb_2WayPage(2, "cropper-bit");
+            yb_2WayPage(3, "cropper-bit");
             yb_expand2Way();
            
         });

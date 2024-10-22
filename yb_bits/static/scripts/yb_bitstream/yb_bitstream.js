@@ -263,7 +263,7 @@ function yb_preLoadSpaces() {
                 'page': 1,
                 'space_override': space,
             }
-            yb_requestFeed(space_data);
+            yb_getFeed(space_data);
         }
     }
 }
