@@ -317,7 +317,6 @@ function yb_createBody(bit) {
     paragraph.innerHTML = makeLinksClickable(bit.body);
 
     if (bit.type === "chat" && bit.body.length > 500){
-        paragraph.style.lineHeight = "1.75";
         console.log("Chat bit with long body")
         let show_more_backdrop = yb_createElement("div", "yb-showMore-backdrop", `show-more-backdrop-${bit.id}`);
         let show_more = yb_createElement("p", "yb-showMore-bit yb-autoText", `show-more-${bit.id}`);
