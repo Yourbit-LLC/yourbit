@@ -1250,7 +1250,7 @@ $(document).ready(function() {
 
     for (let i = 0; i < MASTHEAD_LOGOS.length; i++) {
         MASTHEAD_LOGOS[i].addEventListener('click', function() {
-            yb_startBitStream()
+            yb_navigateTo("content-container", "home");
         })
     }
 
