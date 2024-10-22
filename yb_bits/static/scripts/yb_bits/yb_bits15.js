@@ -310,6 +310,7 @@ function yb_createBody(bit) {
     let custom = bit.custom;
     let text_color = custom.text_color;
     const paragraph = yb_createElement("p", "yb-bodyText-bit yb-autoText font-medium", `bit-bodyText-${bit.id}`);
+    paragraph.style.lineHeight = "1.5";
     if (yb_getCustomValues("bit-colors-on") && !yb_getCustomValues("bit-colors-on")){
         paragraph.style.color = text_color;
     }
