@@ -50,6 +50,7 @@ class BitSerializer(serializers.ModelSerializer):
             'photos',
             'video_upload',
             'time',
+            'type',
             'like_count',
             'dislike_count',
             'share_count',
