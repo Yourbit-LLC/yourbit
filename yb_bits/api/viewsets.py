@@ -347,9 +347,28 @@ class LikeViewSet(viewsets.ModelViewSet):
     
     #Endpoint to list out liked bits by a specific user and return serialized bits
     def list(self, request, *args, **kwargs):
+        
         user_profile = Profile.objects.get(username=request.user.active_profile)
         queryset = Bit.objects.filter(likes__profile=user_profile).order_by('-time')
-        serializer = BitSerializer(queryset, many=True, context={'user_tz': user_profile.current_timezone, 'request': request})
+
+        #Check if page in query params
+        if 'page' in request.query_params:
+            page = request.query_params.get('page')
+            p = Paginator(queryset, 4)
+
+            try:
+                queryset = p.page(page)
+
+            except:
+                queryset = None
+
+            serializer = BitSerializer(queryset, many=True, context={'user_tz': user_profile.current_timezone, 'request': request})
+
+        else:
+            serializer = BitSerializer(queryset, many=True, context={'user_tz': user_profile.current_timezone, 'request': request})
+
+
+
         return Response(serializer.data)
 
 class DislikeViewsSet(viewsets.ModelViewSet):
