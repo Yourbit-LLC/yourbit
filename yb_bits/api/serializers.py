@@ -58,6 +58,8 @@ class BitSerializer(serializers.ModelSerializer):
             'is_liked',
             'is_disliked',
             'watch_count',
+            'is_public',
+            'is_tips'
 
         ]
         read_only_fields = [
