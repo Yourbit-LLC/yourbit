@@ -57,7 +57,8 @@ class BitSerializer(serializers.ModelSerializer):
             'comment_count',
             'is_liked',
             'is_disliked',
-            'watch_count',
+            'view_count',
+
         ]
         read_only_fields = [
             'id', 
