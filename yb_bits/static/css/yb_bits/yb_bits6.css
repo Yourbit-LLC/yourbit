@@ -310,13 +310,13 @@
     border-radius: 25px;
 }
 
-@media and (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
     .yb-showMore-bit {
-        background-color: white;
+        background-color: gray;
     }
 }
 
-@media and (prefers-color-scheme: light) {
+@media (prefers-color-scheme: light) {
     .yb-showMore-bit {
         background-color: black;
     }
