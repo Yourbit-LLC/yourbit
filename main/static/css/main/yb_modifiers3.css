@@ -371,7 +371,7 @@
 
 @media (prefers-color-scheme: dark) {
     .yb-panel {
-        background-color: rgba(0, 0, 0, 0.75);
+        background-color: var(--yb-default-panel-color);
         backdrop-filter: blur(80px);
         -webkit-backdrop-filter: blur(80px);
     }
@@ -380,7 +380,7 @@
 
 @media (prefers-color-scheme: light) {
     .yb-panel {
-        background-color: rgba(255, 255, 255, 0.75);
+        background-color: var(--yb-default-panel-color);
         backdrop-filter: blur(80px);
         -webkit-backdrop-filter: blur(80px);
     }
