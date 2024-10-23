@@ -63,7 +63,11 @@ def message_inbox(request):
 
             if conversation.is_name == True:
                 conversation_data[iteration]["name"] = conversation.name
-                conversation_data[conversation]["image"] = profile.custom.profile_image.small_thumbnail
+
+                if profile.custom.profile_image.storage_type == "yb":
+                    conversation_data[iteration]["image"] = profile.custom.profile_image.small_thumbnail.url
+                else:
+                    conversation_data[conversation]["image"] = profile.custom.profile_image.small_thumbnail_ext
 
             else:
                 if len(conversation.members.all()) > 2:
