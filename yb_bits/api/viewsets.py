@@ -307,7 +307,7 @@ class BitViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['get'])
     def comments(self, request, *args, **kwargs):
         bit = self.get_object()
-        comments = bit.comments.all()
+        comments = bit.comments.all().order_by('-time')
         serializer = BitCommentSerializer(comments, many=True)
         return Response(serializer.data)
     
