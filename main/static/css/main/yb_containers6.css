@@ -1101,6 +1101,7 @@
     margin-right: auto;
     transition: 0.5s;
     overflow: hidden;
+    border: 1px solid white;
 }
 
 .yb-container-floatingText {
