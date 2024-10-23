@@ -15,7 +15,7 @@
 
 </div>
 
-<hr>
+
 <div id="inbox-header" style="height: 40px; scrollbar-width: none; display:grid; grid-template-columns: 4fr 1fr; column-gap: 20px; overflow-x: hidden;" class="yb-hScroll yb-fillWidth yb-relative">
     <div id="filter-container" class="yb-flexRow yb-fillWidth yb-gap5 yb-margin-L5">
         <button class="message-filter yb-button-wide active medium-wide rounded yb-autoText font-small yb-center-margin tb" name="app">App</button>
@@ -25,7 +25,7 @@
 
     </div>
 </div>
-<hr>
+
 
 <form id="notification-settings-form" method="POST" action="{% url 'update_notification_settings' %}" class="yb-fillWidth yb-vScroll yb-pText yb-margin-T10 align-center" style="height: calc(100% - 200px); border-radius: 15px;">
     {% csrf_token %}
