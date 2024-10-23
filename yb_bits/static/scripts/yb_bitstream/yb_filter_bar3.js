@@ -80,6 +80,6 @@ feed_filter_btns.forEach(btn => {
 });
 
 feed_refresh.addEventListener("click", function() {
-    yb_startBitstream();
+    yb_getFeed();
 });
 
