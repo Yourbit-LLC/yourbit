@@ -1,11 +1,14 @@
-<div id="single-bit-container" class="yb-fillWidth" data-id="{{bit.id}}">
+<div id="single-bit-container" class="yb-fillWidth" data-id="{{bit.id}}" style="padding-bottom:150px">
 </div>
 
 <script>
+    tw_hideLoading();
+
     $(document).ready(function(){
-        tw_hideLoading();
+
         let this_container = document.getElementById('single-bit-container');
         let this_id = this_container.getAttribute('data-id');
         yb_getBit(this_id, this_container);
+
     });
 </script>

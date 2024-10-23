@@ -72,7 +72,9 @@ function yb_openDrawer(template, id=null, reloadable=true) {
 
 function yb_closeDrawer() {
     DRAWER.classList.remove("open"); 
-    yb_showMobileNavigation();   
+    if (yb_getSessionValues('fullscreen') == "false"){
+        yb_showMobileNavigation();   
+    }
 }
 
 
