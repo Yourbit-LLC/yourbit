@@ -281,13 +281,13 @@ def watch_history_view(request, *args, **kwargs):
 
 
 def sort_panel_view(request, *args, **kwargs):
-    return render(request, "yb_bits/yb_sort_panel.html")
+    return render(request, "yb_bits/filter_bar/filter_panels/yb_sort_panel.html")
 
 def filter_panel_view(request, *args, **kwargs):
-    return render(request, "yb_bits/yb_filter_panel.html")
+    return render(request, "yb_bits/filter_bar/filter_panels/yb_filter_panel.html")
 
 def customize_panel_view(request, *args, **kwargs):
-    return render(request, "yb_bits/yb_customize_panel.html")
+    return render(request, "yb_bits/filter_bar/filter_panels/yb_customize_panel.html")
 
 def list_clusters(request, *args, **kwargs):
     profile = Profile.objects.get(username=request.user.active_profile)
