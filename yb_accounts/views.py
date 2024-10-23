@@ -64,7 +64,7 @@ def registration_view(request):
             from_email = 'no-reply@yourbit.me'
             send_mail(subject, strip_tags(html_message), from_email, recipient_list, html_message=html_message)
             print("Status:\n\nForm Valid")
-            return redirect('email_confirmation')
+            return redirect('interact-terms')
 
     
         else:
@@ -164,16 +164,69 @@ class EmailConfirmation(View):
 
 def terms_view(request):
     context = {
-        "document": "yb_accounts/tos.htm"
+        "document": "yb_accounts/tos.htm",
+        "view_mode": "view",
+        "document_name": "terms"
     }
     return render(request, 'yb_accounts/yb_doc_viewer.html', context)
+
+def interactive_terms(request):
+    context = {
+
+        "document": "yb_accounts/tos.htm",
+        "view_mode": "interactive",
+        "document_name": "terms"
+    }
+    return render(request, 'yb_accounts/yb_doc_viewer.html', context)
+
+def terms_accept(request):
+    user = request.user
+    if user.is_authenticated:
+        action = request.POST.get('action')
+        #split action by -
+        action = action.split("-")
+        if action[0] == "accept":
+
+            user.terms_accepted = True
+
+        elif action[0] == "decline":
+            user.terms_accepted = False
+
+        user.save()
+        return redirect('interact-privacy')
+    else:
+        return redirect('login')
 
 def privacy_view(request):
     context = {
-        "document": "yb_accounts/privacy_policy.htm"
+        "document": "yb_accounts/privacy_policy.htm",
+        "view_mode": "view",
+        "document_name": "privacy"
     }
     return render(request, 'yb_accounts/yb_doc_viewer.html', context)
 
+def interactive_privacy(request):
+    context = {
+        "document": "yb_accounts/privacy_policy.htm",
+        "view_mode": "interactive",
+        "document_name": "privacy"
+    }
+    return render(request, 'yb_accounts/yb_doc_viewer.html', context)
+
+def privacy_accept(request):
+    user = request.user
+    if user.is_authenticated:
+        action = request.POST.get('action')
+        #split action by -
+        action = action.split("-")
+        if action[0] == "accept":
+            user.privacy_accepted = True
+        elif action[0] == "decline":
+            user.privacy_accepted = False
+        user.save()
+        return redirect('email_confirmation')
+    else:
+        return redirect('login')
 def login_view(request):
     from main.models import UserSession
 

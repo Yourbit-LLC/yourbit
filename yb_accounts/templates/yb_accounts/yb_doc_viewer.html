@@ -12,6 +12,7 @@
         <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1">
     </head>
 
+    <input type="hidden" id="view-mode" value="{{view_mode}}">
     <body>
         <div class="yb-bg-autoGray" style="position: fixed; z-index: 2; height: 70px; top: 0px; left: 0px; width: 100vw; display: grid; grid-template-columns: 20px auto;">
             <a href="/login" class="cb-panel-back" ><svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></a>
@@ -24,6 +25,43 @@
         <div class="yb-vScroll font-black align-left squared" id="tos-viewer" style="position: relative; overflow-x: hidden; padding-left: 10px; padding-right: 10px; z-index: 1; margin-top: 80px; left : 50%; transform: translateX(-50%); background-color: white; padding-bottom: 150px;">
             {% include document %}
         </div>
+        {% if view_mode == "interactive" %}
+            <div id="terms-interaction-container">
+                {% csrf_token %}
+                <!--Accept and decline buttons-->
+                <button type="button" class="yb-button-wide terms-button rounded yb-red font-white" name="accept-{{document_name}}">Accept</button>
+                <button type="button" class="yb-button-wide terms-button rounded green font-white" name="decline-{{document_name}}">Decline</button>
+            </div>
+            <script>
+                var button_container = document.getElementById("terms-interaction-container");
+                var buttons = button_container.getElementsByClassName("terms-button");
+
+                for (var i = 0; i < buttons.length; i++) {
+                    buttons[i].addEventListener("click", function() {
+                        var action = this.name;
+                        var url = "/templates/" + action + "/";
+                        var csrf_token = document.getElementsByName("csrfmiddlewaretoken")[0].value;
+
+                        $.ajax({
+                            type: "POST",
+                            url: url,
+                            data: {
+                                action: action
+                            },
+                            headers: {
+                                "X-CSRFToken": csrf_token
+                            },
+                            success: function(data) {
+                                console.log(data);
+                            }
+                        });
+                }
+                
+                
+            </script>
+        
+        {% endif %}
     </body>
+
 
 </html>
