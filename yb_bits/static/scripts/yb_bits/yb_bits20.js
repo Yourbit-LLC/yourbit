@@ -127,7 +127,7 @@ function createHeader(bit) {
         thumbnail = profile_image.tiny_thumbnail_ext
     }
     
-    if (yb_getSessionValues("bit-colors-on") && !yb_getSessionValues("bit-colors-on")){
+    if (yb_getSessionValues("bit-colors-on") == "True" && yb_getSessionValues("only-my-colors") == "False"){
         profileImageContainer.style.borderColor = bit.custom.accent_color;
     }
     profileImageContainer.innerHTML = `
@@ -138,7 +138,7 @@ function createHeader(bit) {
 
     profileImageContainer.addEventListener("click", yb_navigateToProfile)
     const userInfo = yb_createElement("p", "yb-userInfo-bit", `bit-info-${bit.id}`);
-    if (yb_getSessionValues("bit-colors-on") && !yb_getSessionValues("bit-colors-on")){
+    if (yb_getSessionValues("bit-colors-on") == "True" && yb_getSessionValues("only-my-colors") == "False"){
         userInfo.innerHTML = `<strong class="bit-name" style="color:${bit.custom.title_color};">${bit.display_name}</strong><br> <small class="bit-username" style="color:${bit.custom.text_color};">@${bit.profile.username}</small>`;    
     }
     else {
@@ -317,7 +317,7 @@ function yb_createBody(bit) {
     let text_color = custom.text_color;
     const paragraph = yb_createElement("p", "yb-bodyText-bit yb-autoText font-medium", `bit-bodyText-${bit.id}`);
     paragraph.style.lineHeight = "1.5";
-    if (yb_getSessionValues("bit-colors-on") && !yb_getSessionValues("bit-colors-on")){
+    if (yb_getSessionValues("bit-colors-on") == "True" && yb_getSessionValues("only-my-colors") == "False"){
         paragraph.style.color = text_color;
     }
     paragraph.innerHTML = makeLinksClickable(bit.body);
@@ -413,7 +413,7 @@ function yb_createInteractions(bit) {
     if (bit.is_liked){
         like_button.innerHTML = `<svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path id="like-icon-${bit.id}" class="yb-bit-icon active" style="fill: ${bit.custom.icon_color};" d="M15.5 11Q16.15 11 16.575 10.575Q17 10.15 17 9.5Q17 8.85 16.575 8.425Q16.15 8 15.5 8Q14.85 8 14.425 8.425Q14 8.85 14 9.5Q14 10.15 14.425 10.575Q14.85 11 15.5 11ZM8.5 11Q9.15 11 9.575 10.575Q10 10.15 10 9.5Q10 8.85 9.575 8.425Q9.15 8 8.5 8Q7.85 8 7.425 8.425Q7 8.85 7 9.5Q7 10.15 7.425 10.575Q7.85 11 8.5 11ZM12 17.5Q13.775 17.5 15.137 16.525Q16.5 15.55 17.1 14H15.45Q14.925 14.9 14.025 15.45Q13.125 16 12 16Q10.875 16 9.975 15.45Q9.075 14.9 8.55 14H6.9Q7.5 15.55 8.863 16.525Q10.225 17.5 12 17.5ZM12 22Q9.925 22 8.1 21.212Q6.275 20.425 4.925 19.075Q3.575 17.725 2.788 15.9Q2 14.075 2 12Q2 9.925 2.788 8.1Q3.575 6.275 4.925 4.925Q6.275 3.575 8.1 2.787Q9.925 2 12 2Q14.075 2 15.9 2.787Q17.725 3.575 19.075 4.925Q20.425 6.275 21.212 8.1Q22 9.925 22 12Q22 14.075 21.212 15.9Q20.425 17.725 19.075 19.075Q17.725 20.425 15.9 21.212Q14.075 22 12 22ZM12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12ZM12 20Q15.325 20 17.663 17.663Q20 15.325 20 12Q20 8.675 17.663 6.337Q15.325 4 12 4Q8.675 4 6.338 6.337Q4 8.675 4 12Q4 15.325 6.338 17.663Q8.675 20 12 20Z"/></svg>`;
         like_button.classList.add("active");
-        if (yb_getSessionValues("bit-colors-on") && !yb_getSessionValues("bit-colors-on")){
+        if (yb_getSessionValues("bit-colors-on") == "True" && yb_getSessionValues("only-my-colors") == "False"){
             like_button.style.backgroundColor = bit.custom.button_color;
         }
         
@@ -448,7 +448,7 @@ function yb_createInteractions(bit) {
         `;
         dislike_button.classList.add("active");
 
-        if (yb_getSessionValues("bit-colors-on") && !yb_getSessionValues("bit-colors-on")){
+        if (yb_getSessionValues("bit-colors-on") == "True" && yb_getSessionValues("only-my-colors") == "False"){
             dislike_button.style.backgroundColor = bit.custom.button_color;
         }
         
