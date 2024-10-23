@@ -80,6 +80,11 @@ feed_filter_btns.forEach(btn => {
 });
 
 feed_refresh.addEventListener("click", function() {
-    yb_getFeed();
+    let data = {
+        "update": false,
+        "page": 1,
+    }
+    yb_getBitContainer().innerHTML = "";
+    yb_getFeed(data);
 });
 
