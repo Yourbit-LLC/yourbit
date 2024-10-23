@@ -81,7 +81,7 @@ function activateSetButtons() {
     });
 }
 
-function yb_sendBitToggle() {
+function yb_sendBitToggle(action) {
     let csrf_token = getCSRF();
     $.ajax({
         type: 'POST',
@@ -91,7 +91,7 @@ function yb_sendBitToggle() {
         },
         success: function (response) {
             console.log(response);
-            showNotification(expandNotification, "Bit Colors Off");
+            showNotification(expandNotification, "Bit Colors "+action);
         },
         error: function (response) {
             console.log(response);
@@ -118,7 +118,7 @@ function toggleBitCustomizations() {
         }
             , 1000);
 
-        yb_sendBitToggle();
+        yb_sendBitToggle("Off");
     } else {
         customization_toggle.classList.remove('yb-red');
         customization_toggle.classList.add('active');
@@ -133,7 +133,7 @@ function toggleBitCustomizations() {
         }
             , 1000);
 
-        yb_sendBitToggle();
+        yb_sendBitToggle("On");
     }
 
 }
