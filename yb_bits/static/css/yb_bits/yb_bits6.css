@@ -306,8 +306,20 @@
     z-index: 5;
     color: skyblue;
     transform: translateX(-50%);
-    background-color: black;
+    
     border-radius: 25px;
+}
+
+@media and (prefers-color-scheme: dark) {
+    .yb-showMore-bit {
+        background-color: white;
+    }
+}
+
+@media and (prefers-color-scheme: light) {
+    .yb-showMore-bit {
+        background-color: black;
+    }
 }
 
 .yb-container-bitFeedback {
