@@ -95,7 +95,10 @@ def message_inbox(request):
 
 
                     conversation_data[iteration]["name"] = display_name
-                    conversation_data[iteration]["image"] = profile.custom.profile_image.small_thumbnail
+                    if profile.custom.profile_image.storage_type == "yb":
+                        conversation_data[iteration]["image"] = profile.custom.profile_image.small_thumbnail.url
+                    else:
+                        conversation_data[iteration]["image"] = profile.custom.profile_image.small_thumbnail_ext
                     conversation_data[iteration]["is_group"] = True
 
                 else:
