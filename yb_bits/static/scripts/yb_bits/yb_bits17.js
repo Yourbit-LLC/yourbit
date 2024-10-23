@@ -545,7 +545,7 @@ function yb_buildCommentField(bit) {
     
 */
 
-function yb_buildBit(bit){
+function yb_buildBit(bit, interactions=true){
     
     console.log("Build bit running...");
     console.log(bit);
@@ -625,21 +625,22 @@ function yb_buildBit(bit){
         
 
     //Append interaction container
-        new_bit.appendChild(yb_createInteractions(bit));
+        if (interactions){
+            new_bit.appendChild(yb_createInteractions(bit));
+            //Comment Label
+            let comment_label = yb_createElement("p", "comment-label", `comment-label-${id}`);
+            comment_label.innerHTML = "Comments";
+            comment_label.setAttribute("style", `display: none; color: ${title_color}; font-weight: bold;`)
+            new_bit.appendChild(comment_label);
 
-        //Comment Label
-        let comment_label = yb_createElement("p", "comment-label", `comment-label-${id}`);
-        comment_label.innerHTML = "Comments";
-        comment_label.setAttribute("style", `display: none; color: ${title_color}; font-weight: bold;`)
-        new_bit.appendChild(comment_label);
-
-        //Comment Container
-        let comment_container = yb_createElement("div", "yb-comment-container", `comment-container-${id}`);
-        new_bit.appendChild(comment_container);
-    
+            let comment_container = yb_createElement("div", "yb-comment-container", `comment-container-${id}`);
+            new_bit.appendChild(comment_container);
         
-        //Append comment field
-        new_bit.appendChild(yb_buildCommentField(bit));
+            //Append comment field
+            new_bit.appendChild(yb_buildCommentField(bit)); 
+
+        }
+        
     }
 
     return {'element_id':element_id, 'built_bit':new_bit}
