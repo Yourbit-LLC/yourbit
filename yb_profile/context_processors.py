@@ -76,6 +76,7 @@ def Customization(request):
 
         user_session = UserSession.objects.get(user = request.user)
         user_context = user_session.current_context
+        
 
 
         context = {

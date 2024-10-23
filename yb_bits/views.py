@@ -284,7 +284,18 @@ def sort_panel_view(request, *args, **kwargs):
     return render(request, "yb_bits/filter_bar/filter_panels/yb_sort_panel.html")
 
 def filter_panel_view(request, *args, **kwargs):
-    return render(request, "yb_bits/filter_bar/filter_panels/yb_filter_panel.html")
+    from yb_settings.models import FeedSettings, MySettings
+    profile = Profile.objects.get(username=request.user.active_profile)
+    my_settings = MySettings.objects.get(profile=profile)
+    feed_settings = FeedSettings.objects.get(settings=my_settings)
+    context = {
+        "show_friends":feed_settings.show_friends,
+        "show_following":feed_settings.show_following,
+        "show_orbits":feed_settings.show_communities,
+        "show_public":feed_settings.show_public,
+        "show_me":feed_settings.show_my_bits,
+    }
+    return render(request, "yb_bits/filter_bar/filter_panels/yb_filter_panel.html", context)
 
 def customize_panel_view(request, *args, **kwargs):
     return render(request, "yb_bits/filter_bar/filter_panels/yb_customize_panel.html")

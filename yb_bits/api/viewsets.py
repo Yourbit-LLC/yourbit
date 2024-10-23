@@ -31,7 +31,7 @@ from yb_video.models import Video
 from yb_photo.models import Photo
 
 from django.core.paginator import Paginator
-
+from main.views import generate_bs_filter_chain, update_bs_filter_chain
 
 class BitFeedAPIView(generics.ListAPIView):
     serializer_class = BitSerializer
@@ -81,6 +81,8 @@ class BitFeedAPIView(generics.ListAPIView):
         else:            
 
             base_query = Q()
+            if filter_value != ['']:    
+                update_bs_filter_chain(user_profile, filter_value)
             
             # Check for friends (symmetrical relationship to profiles)
             if 'fr' in filter_value:
