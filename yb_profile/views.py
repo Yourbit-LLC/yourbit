@@ -366,7 +366,7 @@ class ProfileConnectTemplate(View):
 class ProfileAboutTemplate(View):
     def get(self, request, username, *args, **kwargs):
         this_user = User.objects.get(username = username)
-        this_profile = Profile.objects.get(user = this_user)
+        this_profile = Profile.objects.get(username = this_user.active_profile)
         this_info = ProfileInfo.objects.get(profile = this_profile)
 
         context = {
