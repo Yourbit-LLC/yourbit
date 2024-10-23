@@ -56,10 +56,10 @@ function yb_closeFilterPanel() {
 
 function yb_filterPanelHandler() {
     var filter_panel_type = this.getAttribute("data-type");
-    var template = filter_panel_index[filter_panel_type]["template"];
     if (filter_panel_type == "refresh") {
         yb_getFeed();
     } else{
+        var template = filter_panel_index[filter_panel_type]["template"];
         if (this.classList.contains("active")) {
             yb_closeFilterPanel();
         } else {
