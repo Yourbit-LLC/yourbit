@@ -587,6 +587,8 @@ function yb_buildBit(bit, interactions=true){
     //Prepare new bit by creating an element
     new_bit = yb_createElement("div",`yb-element-background yb-bit-shell ${type}bit`, `bit-${id}`);
     
+    console.log(yb_getCustomValues("bit-colors-on"));   
+    console.log(yb_getCustomValues("only-my-colors"));
     if (yb_getCustomValues("bit-colors-on") == "True" && yb_getCustomValues("only-my-colors") == "False"){
         new_bit.style.backgroundColor = primary_color;
     }
