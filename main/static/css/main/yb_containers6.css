@@ -530,7 +530,7 @@
     left: 0px;
     padding-left: 10px;
     /* gradientfill for fadeout effect fading out from right to left */
-    background: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 90%);
+    background: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1), var(--yb-default-panel-color) 90%);
     height: 100%;
     width: 40px;
 }
