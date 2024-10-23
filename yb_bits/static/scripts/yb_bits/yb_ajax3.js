@@ -178,10 +178,7 @@ function yb_getComments(update, bitId) {
     console.log(bitId);
     $.ajax({
         type: 'GET',
-        url: `/bits/api/comments/`,
-        data: {
-            'bit_id': bitId,
-        },
+        url: `/bits/api/bits/${bitId}/comments/`,
         success: function(response) {
             //Update the feed
             console.log(response)

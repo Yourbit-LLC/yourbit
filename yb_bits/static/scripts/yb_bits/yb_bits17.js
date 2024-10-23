@@ -130,7 +130,9 @@ function createHeader(bit) {
     if (yb_getCustomValues("bit-colors-on") && !yb_getCustomValues("bit-colors-on")){
         profileImageContainer.style.borderColor = bit.custom.accent_color;
     }
-    profileImageContainer.innerHTML = `<img style="object-fit:fill; border-radius: 50%; width: 100%;" src="${thumbnail}">`;
+    profileImageContainer.innerHTML = `
+        <img style="object-fit:fill; border-radius: 50%; width: 100%;" src="${thumbnail}">
+    `;
     profileImageContainer.setAttribute("data-username", bit.profile.username)
     header.appendChild(profileImageContainer);
 
