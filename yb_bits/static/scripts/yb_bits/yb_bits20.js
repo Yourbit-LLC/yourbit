@@ -487,9 +487,10 @@ function yb_createInteractions(bit) {
     share_button.setAttribute("data-id", bit.id)
     bit_interactions.appendChild(share_button);
 
-    share_button.addEventListener("click", yb_pressShare);
 
     if (bit.is_public) {
+        share_button.addEventListener("click", yb_pressShare);
+
         let share_counter = yb_createElement("p", "counter", `share-count-${bit.id}`);
         share_counter.innerHTML = "0";
         bit_interactions.appendChild(share_counter);
