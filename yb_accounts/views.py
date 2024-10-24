@@ -57,7 +57,7 @@ def registration_view(request):
             message = render_to_string('yb_accounts/verification_email.html', {
                 'user': account,
                 'verification_key': verification_key,
-                'logo_image':"https://objects-in-yourbit.us-southeast-1.linodeobjects.com/images/logo-flat.png",
+                'logo_image':"/static/images/main/yourbit-logo2023.svg", #load image from static
             })
             html_message = message
             recipient_list = [account.email]

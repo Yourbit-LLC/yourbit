@@ -481,14 +481,15 @@ function yb_createInteractions(bit) {
     comment_counter.innerHTML = comment_count;
     bit_interactions.appendChild(comment_counter);
 
-    //Shares
-    let share_button = yb_createButton("share", "yb-button-feedback", `share-${bit.id}`);
-    share_button.innerHTML = `<svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill: white;" d="M6 23Q5.175 23 4.588 22.413Q4 21.825 4 21V10Q4 9.175 4.588 8.587Q5.175 8 6 8H9V10H6Q6 10 6 10Q6 10 6 10V21Q6 21 6 21Q6 21 6 21H18Q18 21 18 21Q18 21 18 21V10Q18 10 18 10Q18 10 18 10H15V8H18Q18.825 8 19.413 8.587Q20 9.175 20 10V21Q20 21.825 19.413 22.413Q18.825 23 18 23ZM11 16V4.825L9.4 6.425L8 5L12 1L16 5L14.6 6.425L13 4.825V16Z"/></svg>`
-    share_button.setAttribute("data-id", bit.id)
-    bit_interactions.appendChild(share_button);
-
-
     if (bit.is_public) {
+        
+        //Shares
+        let share_button = yb_createButton("share", "yb-button-feedback", `share-${bit.id}`);
+        share_button.innerHTML = `<svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path style="fill: white;" d="M6 23Q5.175 23 4.588 22.413Q4 21.825 4 21V10Q4 9.175 4.588 8.587Q5.175 8 6 8H9V10H6Q6 10 6 10Q6 10 6 10V21Q6 21 6 21Q6 21 6 21H18Q18 21 18 21Q18 21 18 21V10Q18 10 18 10Q18 10 18 10H15V8H18Q18.825 8 19.413 8.587Q20 9.175 20 10V21Q20 21.825 19.413 22.413Q18.825 23 18 23ZM11 16V4.825L9.4 6.425L8 5L12 1L16 5L14.6 6.425L13 4.825V16Z"/></svg>`
+        share_button.setAttribute("data-id", bit.id)
+        bit_interactions.appendChild(share_button);
+
+
         share_button.addEventListener("click", yb_pressShare);
 
         let share_counter = yb_createElement("p", "counter", `share-count-${bit.id}`);
