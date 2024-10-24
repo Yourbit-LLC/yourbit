@@ -41,7 +41,7 @@ def registration_view(request):
             form.save()
             email = form.cleaned_data.get('email')
             raw_password = form.cleaned_data.get('password1')
-            account = authenticate(email=email, password=raw_password)
+            account = authenticate(email=str(email).lower(), password=raw_password)
             login(request, account)
         
             # Generate a verification token for the user
@@ -242,9 +242,9 @@ def login_view(request):
     if request.POST:
         
         if login_form.is_valid():
-            email = request.POST['email'].lower()
+            email = request.POST['email']
             password = request.POST['password']
-            user = authenticate(email=email, password=password)
+            user = authenticate(email=str(email).lower(), password=password)
 
             if user:
                 login(request, user)
