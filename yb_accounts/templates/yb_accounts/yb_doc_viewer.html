@@ -78,7 +78,7 @@
                                 "X-CSRFToken": csrf_token
                             },
                             success: function(data) {
-                                if action.includes("accept") {
+                                if (action.includes("accept")) {
                                     if action.includes("terms") {
                                         window.location.href = "/accounts/templates/interact-privacy/";
                                     }
