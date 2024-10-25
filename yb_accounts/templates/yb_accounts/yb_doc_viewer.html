@@ -65,7 +65,7 @@
                 for (var i = 0; i < buttons.length; i++) {
                     buttons[i].addEventListener("click", function() {
                         var action = this.name;
-                        var url = "/templates/" + action + "/";
+                        var url = "/accounts/templates/" + action + "/";
                         var csrf_token = document.getElementsByName("csrfmiddlewaretoken")[0].value;
 
                         $.ajax({
