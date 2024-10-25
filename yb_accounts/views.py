@@ -64,7 +64,7 @@ def registration_view(request):
             from_email = 'no-reply@yourbit.me'
             send_mail(subject, strip_tags(html_message), from_email, recipient_list, html_message=html_message)
             print("Status:\n\nForm Valid")
-            return redirect('interact-terms')
+            return redirect('onboarding')
 
     
         else:
