@@ -199,7 +199,7 @@ class BitViewSet(viewsets.ModelViewSet):
         from yb_customize.models import CustomCore
         from yb_bits.api.serializers import BitSerializer
         serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
+        serializer.is_valid(self, raise_exception=True)
 
         #Get custom core for profile images
         user_profile = Profile.objects.get(username=self.request.user.active_profile)
