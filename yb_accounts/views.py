@@ -31,6 +31,29 @@ def generate_verification_key():
     letters_and_digits = string.ascii_letters + string.digits
     return ''.join(random.choices(letters_and_digits, k=length))
 
+def send_confirmation_email(user):
+    subject = 'Yourbit Account Verification'
+    verification_key = generate_verification_key()
+    message = render_to_string('yb_accounts/verification_email.html', {
+        'user': user,
+        'verification_key': verification_key,
+        'logo_image':"/static/images/main/yourbit-logo2023-01.svg", #load image from static
+    })
+    html_message = message
+    recipient_list = [user.email]
+    from_email = 'no-reply@yourbit.me'
+    send_mail(subject, strip_tags(html_message), from_email, recipient_list, html_message=html_message)
+    print("Status:\n\nForm Valid")
+    return redirect('interact-terms')
+
+def test_verification_email(request):
+    user = request.user
+    if user.is_authenticated:
+        if user.is_admin:
+            send_confirmation_email(user)
+            return HttpResponse("Email Sent")
+    
+
 def registration_view(request):
     context = {}
     if request.POST:
@@ -53,21 +76,7 @@ def registration_view(request):
             account.save()
 
             # Send a verification email to the user
-            subject = 'Yourbit Account Verification'
-            
-            message = render_to_string('yb_accounts/verification_email.html', {
-                'user': account,
-                'verification_key': verification_key,
-                'logo_image':"main/static/images/main/yourbit-logo2023.svg", #load image from static
-            })
-            html_message = message
-            recipient_list = [account.email]
-            from_email = 'no-reply@yourbit.me'
-            send_mail(subject, strip_tags(html_message), from_email, recipient_list, html_message=html_message)
-            print("Status:\n\nForm Valid")
-            return redirect('interact-terms')
-
-    
+            send_confirmation_email(account)
         else:
             print("Status:\n\nForm Invalid")
             for field_name, error_messages in form.errors.items():
@@ -225,7 +234,7 @@ def privacy_accept(request):
         if action[0] == "accept":
             user.privacy_accepted = True
             user.save()
-            
+
         elif action[0] == "decline":
             user.delete()
         

@@ -8,6 +8,7 @@ urlpatterns = [
     path('signup/', registration_view, name="signup"),
     path('onboarding/', Onboarding.as_view(), name="onboarding"),
     path('email_confirmation/', EmailConfirmation.as_view(), name="email_confirmation"),
+    path('test-email-confirm/', test_verification_email, name="test-email-confirm"),
     path(
         'forgot-password/',
         auth_views.PasswordResetView.as_view(template_name="yb_accounts/forgot_password.html", subject_template_name="yb_accounts/password_reset_subject.txt", email_template_name="yb_accounts/password_reset_email.html"),
