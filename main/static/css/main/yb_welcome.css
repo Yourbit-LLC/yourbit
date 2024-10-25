@@ -38,17 +38,17 @@
         
         .yb-container-floatingAction.center {
             display: grid;
+            grid-template-columns: 1fr 1fr;
             position: fixed;
             bottom: 35px;
             left: 50%;
             transform: translate(-50%);
             height: 40px;
             width: 70vw;
-            grid-template-columns: 1fr 1fr;
-            column-gap: 8px;
-            
+            max-width: 300px;
+            column-gap: 10px;
             border-radius: 30px;
-            padding: 4px 4px 4px 4px;
+            padding: 6px;
             background-color: black;
             z-index: 3;
             
