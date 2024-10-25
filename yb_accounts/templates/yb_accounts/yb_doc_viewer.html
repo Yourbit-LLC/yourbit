@@ -79,7 +79,7 @@
                             },
                             success: function(data) {
                                 if (action.includes("accept")) {
-                                    if action.includes("terms") {
+                                    if (action.includes("terms")) {
                                         window.location.href = "/accounts/templates/interact-privacy/";
                                     }
                                     else {
