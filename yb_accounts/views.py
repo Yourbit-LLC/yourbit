@@ -37,7 +37,7 @@ def send_confirmation_email(user):
     message = render_to_string('yb_accounts/verification_email.html', {
         'user': user,
         'verification_key': verification_key,
-        'logo_image':"static/images/main/2023-logo-draft.png", #load image from static
+        'logo_image':"https://www.yourbit.me/static/images/main/2023-logo-draft.png", #load image from static
     })
     html_message = message
     recipient_list = [user.email]
