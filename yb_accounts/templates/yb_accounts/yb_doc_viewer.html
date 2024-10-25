@@ -26,11 +26,33 @@
             {% include document %}
         </div>
         {% if view_mode == "interactive" %}
-            <div id="terms-interaction-container">
+            <style>
+                .terms-interaction-container {
+                    position: fixed;
+                    display: grid;
+                    bottom: 20px;
+                    z-index: 100;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background-color: black;
+                    width: 300px;
+                    /* height: 50px; */
+                    grid-template-columns: 1fr 1fr;
+                    padding: 5px;
+                    grid-gap: 10px;
+                }
+
+                .terms-button {
+                    margin: auto;
+                    width: 100%;
+                }
+            </style>
+            <div id="terms-interaction-container" class="terms-interaction-container">
                 {% csrf_token %}
+
                 <!--Accept and decline buttons-->
-                <button type="button" class="yb-button-wide terms-button rounded yb-red font-white" name="accept-{{document_name}}">Accept</button>
-                <button type="button" class="yb-button-wide terms-button rounded green font-white" name="decline-{{document_name}}">Decline</button>
+                <button type="button" class="yb-button-flex terms-button rounded yb-red font-white" name="decline-{{document_name}}">Decline</button>
+                <button type="button" class="yb-button-flex terms-button rounded green font-white" name="accept-{{document_name}}">Accept</button>
             </div>
             <script>
                 var button_container = document.getElementById("terms-interaction-container");
@@ -55,6 +77,7 @@
                                 console.log(data);
                             }
                         });
+                });
                 }
                 
                 
