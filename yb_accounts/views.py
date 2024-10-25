@@ -49,6 +49,7 @@ def registration_view(request):
 
             # Set the token for the user account and save it to the database
             account.verification_token = verification_key
+            account.active_profile = account.username
             account.save()
 
             # Send a verification email to the user
@@ -57,14 +58,14 @@ def registration_view(request):
             message = render_to_string('yb_accounts/verification_email.html', {
                 'user': account,
                 'verification_key': verification_key,
-                'logo_image':"/static/images/main/yourbit-logo2023.svg", #load image from static
+                'logo_image':"main/static/images/main/yourbit-logo2023.svg", #load image from static
             })
             html_message = message
             recipient_list = [account.email]
             from_email = 'no-reply@yourbit.me'
             send_mail(subject, strip_tags(html_message), from_email, recipient_list, html_message=html_message)
             print("Status:\n\nForm Valid")
-            return redirect('onboarding')
+            return redirect('interact-terms')
 
     
         else:
