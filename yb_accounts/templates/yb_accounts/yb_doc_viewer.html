@@ -78,6 +78,19 @@
                                 "X-CSRFToken": csrf_token
                             },
                             success: function(data) {
+                                if action.includes("accept") {
+                                    if action.includes("terms") {
+                                        window.location.href = "/accounts/templates/interact-privacy/";
+                                    }
+                                    else {
+                                        window.location.href = "/accounts/templates/home/";
+                                    }
+                                    
+                                }
+                                else {
+                                    window.location.href = "/accounts/templates/login/";
+                                }
+
                                 console.log(data);
                             }
                         });

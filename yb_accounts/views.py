@@ -189,12 +189,14 @@ def terms_accept(request):
         if action[0] == "accept":
 
             user.terms_accepted = True
+            user.save()
 
         elif action[0] == "decline":
-            user.terms_accepted = False
+            
+            #delete user account
+            user.delete()
 
-        user.save()
-        return redirect('interact-privacy')
+        return JsonResponse({'success':'success'})
     else:
         return redirect('login')
 
@@ -222,9 +224,11 @@ def privacy_accept(request):
         action = action.split("-")
         if action[0] == "accept":
             user.privacy_accepted = True
+            user.save()
+            
         elif action[0] == "decline":
-            user.privacy_accepted = False
-        user.save()
+            user.delete()
+        
         return redirect('email_confirmation')
     else:
         return redirect('login')
