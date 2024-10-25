@@ -175,7 +175,7 @@ class BitViewSet(viewsets.ModelViewSet):
         # Add context with user timezone and request in all serializer calls
         print(self.action)
         if self.action == 'create':
-            return CreateBitSerializer
+            return CreateBitSerializer(*args, **kwargs)
         
         else:
             kwargs['context'] = kwargs.get('context', {})
@@ -199,7 +199,7 @@ class BitViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         from yb_customize.models import CustomCore
         serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(self, raise_exception=True)
+        serializer.is_valid(raise_exception=True)
 
         #Get custom core for profile images
         user_profile = Profile.objects.get(username=self.request.user.active_profile)
