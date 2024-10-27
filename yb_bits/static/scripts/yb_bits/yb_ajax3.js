@@ -37,7 +37,7 @@ function yb_createBit(this_data, csrf_token) {
         },
 
         processData: false,
-        contentType: false,
+        contentType: "application/json",
         success: function(response) {
             console.log(response);
 

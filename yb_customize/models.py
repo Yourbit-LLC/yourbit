@@ -189,7 +189,7 @@ class CustomSplash(CustomBase):
     stickers = models.ManyToManyField('Sticker', related_name='custom_splash', blank=True)
 
 class CustomBit(CustomBase):
-    theme = models.ForeignKey(Theme, on_delete=models.CASCADE, default=None, related_name="custom_bit")
+    theme = models.ForeignKey(Theme, on_delete=models.CASCADE, blank=True, default=None, related_name="custom_bit")
     
     #Retrieve profile images from custom core, labeled images for easy memorization on front end, 
     images = models.ForeignKey(CustomCore, on_delete=models.CASCADE, default=None, related_name="custom_bit")

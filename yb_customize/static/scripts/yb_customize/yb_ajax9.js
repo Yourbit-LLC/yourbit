@@ -31,7 +31,7 @@ function yb_uploadProfileImage(source, data, profile_class, image_type="profile"
         'height': data.height
     }
     formData.append('crop_data', JSON.stringify(crop_data))
-    formData.append('image', source);
+    formData.append('photo', source);
     formData.append('image_type', image_type);
     formData.append('profile_class', profile_class);
     formData.append('wpid', wpid);

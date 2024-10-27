@@ -109,7 +109,7 @@ def update_profile_image(request):
     else:
         return HttpResponse("Invalid request type")
 
-    source_image = request.FILES.get('image')
+    source_image = request.FILES.get('photo')
     crop_data = request.POST.get('crop_data')
 
     new_photo = modify_image('profile', request.user, source_image, crop_data)

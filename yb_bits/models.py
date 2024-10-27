@@ -63,6 +63,11 @@ class Bit(models.Model):
     is_public = models.BooleanField(default=False)
     is_tips = models.BooleanField(default=False)
     is_title =models.CharField(max_length=10, default='none')
+    has_ads = models.BooleanField(default=False)
+    requires_subscription = models.BooleanField(default=False)
+    is_comments = models.BooleanField(default=True)
+    is_shareable = models.BooleanField(default=False)
+    is_feedback = models.BooleanField(default=True)
 
     #Links and widgets
     contains_video_link = models.BooleanField(default=False)

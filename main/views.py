@@ -156,7 +156,7 @@ def create_menu_template(request, *args, **kwargs):
 
 def create_bit_template(request, *args, **kwargs):
     
-    return render(request, "yb_bits/yb_bitBuilder.html", {"build_mode":"create"})
+    return render(request, "yb_bits/bit_builder/yb_bitBuilder.html", {"build_mode":"create"})
 
 def create_cluster_template(request, *args, **kwargs):
     return render(request, "yb_bits/create_cluster.html")

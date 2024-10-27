@@ -19,6 +19,10 @@ from django.utils import timezone
 from django.db.models import Q, Count
 from django.shortcuts import get_object_or_404
 from rest_framework.exceptions import PermissionDenied
+from rest_framework.parsers import JSONParser, MultiPartParser
+
+#import json.loads
+import json
 
 
 #Viewset for chat bits
@@ -170,6 +174,7 @@ class BitFeedAPIView(generics.ListAPIView):
 class BitViewSet(viewsets.ModelViewSet):
     queryset = Bit.objects.all()
     serializer_class = BitSerializer
+    parser_classes = [JSONParser, MultiPartParser]
 
     def get_serializer(self, *args, **kwargs):
         # Add context with user timezone and request in all serializer calls
@@ -198,7 +203,9 @@ class BitViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         from yb_customize.models import CustomCore
-        serializer = self.get_serializer(data=request.data)
+        bit_data = request.data.get("data")
+        bit_config = request.data.get("config")
+        serializer = self.get_serializer(data=bit_data)
         serializer.is_valid(raise_exception=True)
 
         #Get custom core for profile images
@@ -206,31 +213,48 @@ class BitViewSet(viewsets.ModelViewSet):
         custom_core = CustomCore.objects.get(profile=user_profile)
         theme = custom_core.theme
         
-        try:
+        
+        if bit_config.get("is_customized"):
+            custom_overrides = bit_config.get("custom_overrides")
+            try:
+                custom_bit = CustomBit.objects.create(
+                    images = custom_core,
+                    primary_color = custom_overrides.get("primary_color"),
+                    accent_color = custom_overrides.get("accent_color"),
+                    title_color = custom_overrides.get("title_color"),
+                    text_color = custom_overrides.get("text_color"),
+                    button_color = custom_overrides.get("button_color"),
+                    button_text_color = custom_overrides.get("button_text_color"),
+                    
+                )
+                
+            except CustomBit.DoesNotExist:
+                custom_bit = CustomBit.objects.create(theme=theme, images = custom_core)
+
+
+        else:
             custom_bit = CustomBit.objects.get(theme=theme)
         
-        except CustomBit.DoesNotExist:
-            custom_bit = CustomBit.objects.create(theme=theme, images = custom_core)
 
-        if 'image' in request.FILES:
+        if bit_data.get("type") == "photo":
             from yb_photo.utility import upload_image_cf
 
             print("Creating a photobit.")
             new_photo = upload_image_cf(request, "general") 
             serializer.validated_data['photos'] = [new_photo]
 
-        if request.data.get("type") == "video":
+        if bit_data.get("type") == "video":
             from yb_photo.models import VideoThumbnail
-            upload_id = request.data.get("upload_id")
+            upload_id = bit_data.get("upload_id")
             video_object = Video.objects.get(upload_id=upload_id)
             serializer.validated_data['video_upload'] = video_object
 
             thumbnail_object = video_object.thumbnail
-            thumbnail_option = request.data.get("thumbnail_option")
+            thumbnail_option = bit_data.get("thumbnail_option")
 
             if thumbnail_option == "choose":
                 from yb_video.services import generate_mux_thumbnails
-                thumbnail_frame = request.data.get("thumbnail_frame")
+                thumbnail_frame = bit_data.get("thumbnail_frame")
                 thumbnails = generate_mux_thumbnails(True, thumbnail_frame)
                 thumbnail_object.tiny_thumbnail_ext = thumbnails["tiny_thumbnail"]
                 thumbnail_object.small_thumbnail_ext = thumbnails["small_thumbnail"]
@@ -251,7 +275,7 @@ class BitViewSet(viewsets.ModelViewSet):
                 from yb_photo.utility import upload_image_cf
                 upload_image_cf(request, "video_thumbnail")
 
-        scope = request.data.get('scope')
+        scope = bit_data.get('scope')
         if scope == 'public':
             is_public = True
 
@@ -273,9 +297,39 @@ class BitViewSet(viewsets.ModelViewSet):
         new_bit = Bit.objects.get(id=serializer.data['id'])
         rendered_bit = BitSerializer(new_bit, context={'user_tz': user_profile.current_timezone, 'request': request})
 
+        if bit_config.get("is_secheduled"):
+            new_bit.status = "scheduled"
+            new_bit.is_live = False
+            new_bit.is_scheduled = True
+            scheduled_date = bit_config.get("scheduled_date")
+            scheduled_time = bit_config.get("scheduled_time")
+            
+            if scheduled_date and scheduled_time:
+                scheduled_datetime_str = f"{scheduled_date} {scheduled_time}"
+                scheduled_datetime = timezone.datetime.strptime(scheduled_datetime_str, "%Y-%m-%d %H:%M:%S")
+                new_bit.scheduled_publish_time = scheduled_datetime
+
+        else:
    
-        new_bit.status = "ready"
-        new_bit.is_live = True
+            new_bit.status = "ready"
+            new_bit.is_live = True
+
+        if bit_config.get("has_expiration"):
+            expiration_date = bit_config.get("expiration_date")
+            expiration_time = bit_config.get("expiration_time")
+            new_bit.evaporate = True
+            expiration_datetime_str = f"{expiration_date} {expiration_time}"
+            expiration_datetime = timezone.datetime.strptime(expiration_datetime_str, "%Y-%m-%d %H:%M:%S")
+            new_bit.evapoation_date = expiration_datetime
+
+        #Monetization Options
+        new_bit.is_tips = bit_config.get("is_donations")
+        new_bit.has_ads = bit_config.get("has_ads")
+        new_bit.requires_subscription = bit_config.get("require_subscription") 
+        new_bit.is_comments = bit_config.get("is_comments")
+        new_bit.is_shareable = bit_config.get("is_shareable")
+        new_bit.is_feedback = bit_config.get("is_feedback")
+
         new_bit.save()
 
         return Response({"bit_info": rendered_bit.data}, status=status.HTTP_201_CREATED, headers=headers)
