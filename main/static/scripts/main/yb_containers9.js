@@ -318,9 +318,11 @@ function yb_toggle2WayContainer(type, scroll=false){
 
 
                 console.log(active_type)
+                console.log(type)
 
                 //Compare active_type to type, if its a match, close the container
                 if (active_type === type){
+                    console.log(active_type)
                     console.log("container is already open");
                     try {
                         yb_2WayPage(1);
