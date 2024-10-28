@@ -271,6 +271,7 @@ function yb_toggle2WayContainer(type, scroll=false){
     console.log(scroll)
 
     //In case of container expansion begin with collapsing
+    
     yb_collapse2Way();
 
     //Check if main menu is open, if so, close it
@@ -309,8 +310,6 @@ function yb_toggle2WayContainer(type, scroll=false){
             //Check if current side container is open
             if (SIDE_CONTAINERS[i].classList.contains("open")){
 
-                yb_2WayPage(1);
-
                 //Get the ID of the current container
                 this_id = SIDE_CONTAINERS[i].getAttribute("id");
                 
@@ -323,6 +322,11 @@ function yb_toggle2WayContainer(type, scroll=false){
                 //Compare active_type to type, if its a match, close the container
                 if (active_type === type){
                     console.log("container is already open");
+                    try {
+                        yb_2WayPage(1);
+                    } catch {
+                        console.log("No secondary page to clear")
+                    }
                     
                     
                     SIDE_CONTAINERS[i].classList.toggle("open");
@@ -350,7 +354,11 @@ function yb_toggle2WayContainer(type, scroll=false){
                         
                         console.log("container_a is open");
                         SIDE_CONTAINER_A.classList.toggle("open");
-                        yb_2WayPage(1);
+                        try {
+                            yb_2WayPage(1);
+                        } catch {
+                            console.log("No secondary page to clear")
+                        }
                         yb_clear2WayContainer(SIDE_CONTAINER_A);
                         
                         SIDE_CONTAINER_B.classList.toggle("open");
@@ -381,7 +389,11 @@ function yb_toggle2WayContainer(type, scroll=false){
                         console.log("container_b is open");
 
                         SIDE_CONTAINER_B.classList.toggle("open");
-                        yb_2WayPage(1);
+                        try {
+                            yb_2WayPage(1);
+                        } catch {
+                            console.log("No secondary page to clear")
+                        }
                         yb_clear2WayContainer(SIDE_CONTAINER_B);
                         
                         SIDE_CONTAINER_A.classList.toggle("open");
