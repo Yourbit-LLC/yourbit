@@ -329,6 +329,7 @@ function yb_goToPage(page, data=null) {
         CONTENT_CONTAINER_A.classList.add("show");
         CONTENT_CONTAINER_B.classList.remove("show");
         yb_showMobileUI()
+        yb_setSessionValues("fullscreen", false);
         if (CONTENT_CONTAINER_A.innerHTML == "") {
         
             if (data != null) {

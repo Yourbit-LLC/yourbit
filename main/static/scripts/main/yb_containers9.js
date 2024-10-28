@@ -113,6 +113,7 @@ function yb_2WayPage(index, page="", data=null) {
         tetriary.classList.remove("active");
         content.classList.remove("inactive");
         secondary.innerHTML = "";
+        tetriary.innerHTML = "";
 
     } else if (index == 2) {
         
@@ -308,6 +309,8 @@ function yb_toggle2WayContainer(type, scroll=false){
             //Check if current side container is open
             if (SIDE_CONTAINERS[i].classList.contains("open")){
 
+                yb_2WayPage(1);
+
                 //Get the ID of the current container
                 this_id = SIDE_CONTAINERS[i].getAttribute("id");
                 
@@ -347,6 +350,7 @@ function yb_toggle2WayContainer(type, scroll=false){
                         
                         console.log("container_a is open");
                         SIDE_CONTAINER_A.classList.toggle("open");
+                        yb_2WayPage(1);
                         yb_clear2WayContainer(SIDE_CONTAINER_A);
                         
                         SIDE_CONTAINER_B.classList.toggle("open");
@@ -377,6 +381,7 @@ function yb_toggle2WayContainer(type, scroll=false){
                         console.log("container_b is open");
 
                         SIDE_CONTAINER_B.classList.toggle("open");
+                        yb_2WayPage(1);
                         yb_clear2WayContainer(SIDE_CONTAINER_B);
                         
                         SIDE_CONTAINER_A.classList.toggle("open");
