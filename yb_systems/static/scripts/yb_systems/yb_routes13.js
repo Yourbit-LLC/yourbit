@@ -339,7 +339,7 @@ function yb_goToPage(page, data=null) {
             }
         } 
         
-        CONTENT_CONTAINER_B.removeEventListener('scroll', checkScroll);
+        
     } else {
         CONTENT_CONTAINER_B.classList.add("show")
         CONTENT_CONTAINER_A.classList.remove("show")
