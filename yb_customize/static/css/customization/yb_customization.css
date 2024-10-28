@@ -1108,6 +1108,18 @@
     }
 }
 
+.yb-dr-section-label {
+    grid-row: 1;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    width: auto;
+    padding: 0px 10px 0px 10px;
+    margin: 10px auto;
+    line-height: 2;
+    height: 30px;
+    background-color: rgba(0,0,0,0.5);
+}
+
 /* Default state - gray */
 .button-shape-icon {
     fill: gray;
