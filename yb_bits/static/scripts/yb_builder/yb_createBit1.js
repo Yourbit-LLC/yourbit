@@ -23,8 +23,7 @@ function yb_getCustomBitOverrides() {
 }
 
 
-
-const builderFields = {
+var builderFields = {
     "data":
     {
         "title": document.getElementById("bb-field-bitTitle"),
@@ -76,7 +75,7 @@ const builderFields = {
 
 }
 
-const builderButtons = {
+var builderButtons = {
     "title": document.getElementById("title-bit-preview-button"),
     "photo": document.getElementById("add-photo-button"),
     "video": document.getElementById("add-video-button"),
@@ -89,7 +88,7 @@ const builderButtons = {
     "customize": document.getElementById("bb-customize-button"),
 }
 
-const bitBuilder = {
+var bitBuilder = {
     "field": Object.assign(
         {}, 
         builderFields.config, 
@@ -98,6 +97,8 @@ const bitBuilder = {
     ),
     "button": builderButtons,
 }
+
+
 
 console.log(bitBuilder);
 

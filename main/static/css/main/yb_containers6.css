@@ -195,6 +195,16 @@
     padding-left: 15px;
 
 }
+@media screen and (max-width: 768px){
+    .yb-drawer-search {
+        height: 40px;
+    }
+    
+    .yb-drawer-search h3 {
+        position: relative;
+        top: 5px;
+    }
+}
 
 .yb-card hr {
     border: 1px solid white;

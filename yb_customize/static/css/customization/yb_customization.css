@@ -1082,18 +1082,30 @@
 .editable.blurred {
     display: none;
 }
+@media screen and (min-width: 700px) {
+    .editable.focus {
+        position: absolute;
+        
+        top: 50%;
+        left: 50%;
+        
+        transition: 0.5s;
+        z-index: 11;
+        transform: translate(-50%, -60%);
+        
+        transition: 0.5s;
+    }
+}
 
-.editable.focus {
-    position: absolute;
-    
-    top: 50%;
-    left: 50%;
-    
-    transition: 0.5s;
-    z-index: 11;
-    transform: translate(-50%, -50%);
-    
-    transition: 0.5s;
+@media screen and (max-width: 700px) {
+    .editable.focus {
+        position: absolute;
+        top: 35%;
+        left: 50%;
+        transform: translate(-50%, -100%);
+        transition: 0.5s;
+        z-index: 11;
+    }
 }
 
 /* Default state - gray */
