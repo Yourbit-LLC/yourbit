@@ -198,7 +198,7 @@ def upload_image_cf(request, image_type="profile"):
     image = request.FILES.get('photo')
     crop_data = request.POST.get('crop_data')
 
-    crop_data = crop_data
+    crop_data = json.loads(crop_data)
     image = modify_image(request.user, image, crop_data)
 
     image_id = send_image_to_cloudflare(image)

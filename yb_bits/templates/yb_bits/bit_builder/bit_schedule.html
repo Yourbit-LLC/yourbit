@@ -22,9 +22,9 @@
         <div id="field-container-bit-deploy" class="yb-field-container">
             <div id="display-bit-deploy" class="yb-field-split squared yb-bg-autoGray yb-autoText yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">When would you like to post? </p>
-                <select name="type" id='field-cluster-type' value="now" class="yb-input-transparent right yb-autoText yb-pText yb-form-field" style="grid-column: 2;">
-                    <option class="yb-input-option" value="all" {% if cluster.type == 'all' %}selected{% endif %}>Post Now</option>
-                    <option class="yb-input-option" value="chats" {% if cluster.type == 'chat' %}selected{% endif %}>Post Later</option>
+                <select name="isScheduled" id='field-cluster-type' value="now" class="yb-input-transparent right yb-autoText yb-pText yb-form-field" style="grid-column: 2;">
+                    <option class="yb-input-option" value="true" {% if cluster.type == 'all' %}selected{% endif %}>Post Now</option>
+                    <option class="yb-input-option" value="false" {% if cluster.type == 'chat' %}selected{% endif %}>Post Later</option>
                 </select>
         </div>
 

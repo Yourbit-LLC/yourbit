@@ -18,7 +18,7 @@
         <p class="field-cover-label yb-pText yb-autoText align-left" style="grid-column: 1;">Enable Comments </p>        
         <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
             <label class="yb-switch-round" id="yb-enable-sharing" >
-                <input type="checkbox" class="checkbox notification-check" name="default_public" id="nts-notifications-enabled" {% if bit_settings.comments_enabled %} checked {% endif %}>
+                <input type="checkbox" class="checkbox notification-check" name="isComments" id="nts-notifications-enabled" {% if bit_settings.comments_enabled %} checked {% endif %}>
                 <span class="slider round"></span>
             </label>
         </div>       
@@ -29,7 +29,7 @@
         <p class="field-cover-label yb-pText yb-autoText align-left" style="grid-column: 1;">Enable Sharing </p>        
         <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
             <label class="yb-switch-round" id="yb-enable-sharing" >
-                <input type="checkbox" class="checkbox notification-check" name="default_public" id="nts-notifications-enabled" {% if bit_settings.sharing_enabled %} checked {% endif %}>
+                <input type="checkbox" class="checkbox notification-check" name="isShareable" id="nts-notifications-enabled" {% if bit_settings.sharing_enabled %} checked {% endif %}>
                 <span class="slider round"></span>
             </label>
         </div>       
@@ -41,7 +41,7 @@
         <p class="field-cover-label yb-pText yb-autoText align-left" style="grid-column: 1;">Enable Feedback </p>        
         <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
             <label class="yb-switch-round" id="yb-enable-feedback" >
-                <input type="checkbox" class="checkbox notification-check" name="default_public" id="nts-notifications-enabled" {% if bit_settings.feedback_enabled %} checked {% endif %}>
+                <input type="checkbox" class="checkbox notification-check" name="isFeedback" id="nts-notifications-enabled" {% if bit_settings.feedback_enabled %} checked {% endif %}>
                 <span class="slider round"></span>
             </label>
         </div>       

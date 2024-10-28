@@ -105,25 +105,26 @@ console.log(bitBuilder);
 //Function for retrieving values of bit configuration fields
 function yb_getBitConfig(){
     //Get the value from each field, if the field is a checkbox, return true or false
-    let config = {};
+    let config = new FormData();
     for (let field in builderFields.config){
         if (builderFields.config[field].type === "checkbox"){
-            config[field] = builderFields.config[field].checked ? true : false; 
+            config.append(field, builderFields.config[field].checked ? true : false);
         } else {
-            if (field == "photo"){
-                config[field] = builderFields.data.photo.files[0];
-            } else {
-                config[field] = builderFields.config[field].value;
-            }
+ 
+            config.append(field, builderFields.config[field].value);
+        
         }
     }
 
     if (builderFields.config.is_customized.checked == true){
         let custom_overrides = builderFields.custom_overrides;
-        config["custom_overrides"] = {};
+        let list_custom_overrides = {};
         for (let field in custom_overrides){
             config.custom_overrides[field] = custom_overrides[field].value;
         }
+
+        config.append("custom_overrides", JSON.stringify(list_custom_overrides));
+
     }
 
     return config;
@@ -131,29 +132,39 @@ function yb_getBitConfig(){
 
 //Function for retrieving values of bit data fields
 function yb_getBitData(){
-    let data = {};
+    let data = new FormData();
 
     for (let field in builderFields.data){
         console.log(field)
         if (builderFields.data[field].type === "checkbox"){
-            data[field] = builderFields.data[field].checked ? true : false;
+            data.append(field, builderFields.data[field].checked ? true : false);
         } else {
-            data[field] = builderFields.data[field].value;
+            if (field == "photo" || field == "video"){
+                data.append(field, builderFields.data[field].files[0]);
+            } else {
+                data.append(field, builderFields.data[field].value);
+            }
         }
     }
 
     if (builderFields.data.type.value === "photo"){
-        data["crop_data"] = yb_getCropData();
+        data.append("crop_data", JSON.stringify(    yb_getCropData()));
     }
 
     return data;
 }
 
 function yb_assembleBitPackage() {
-    return {
-        "config": yb_getBitConfig(),
-        "data": yb_getBitData(),
+    let packaged_data = new FormData();
+
+    for (const [key, value] of yb_getBitData().entries()) { 
+        packaged_data.append(key, value); // Append each entry in bit data to packaged_data
     }
+    for (const [key, value] of yb_getBitConfig().entries()) { 
+        packaged_data.append(key, value); // Append each entry in bit data to packaged_data
+    }
+
+    return packaged_data;
 }
 
 var cropped_photo;
@@ -218,7 +229,7 @@ function yb_assembleBitData() {
 
     let csrf_token = getCSRF();
 
-    yb_createBit(JSON.stringify(yb_assembleBitPackage()), csrf_token); //Located in yb_bits/static/scripts/yb_bits/yb_ajax.js
+    yb_createBit(yb_assembleBitPackage(), csrf_token); //Located in yb_bits/static/scripts/yb_bits/yb_ajax.js
 
 }
 

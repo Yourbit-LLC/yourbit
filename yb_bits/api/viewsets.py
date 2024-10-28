@@ -203,8 +203,8 @@ class BitViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         from yb_customize.models import CustomCore
-        bit_data = request.data.get("data")
-        bit_config = request.data.get("config")
+        bit_data = request.data
+
         serializer = self.get_serializer(data=bit_data)
         serializer.is_valid(raise_exception=True)
 
@@ -213,9 +213,9 @@ class BitViewSet(viewsets.ModelViewSet):
         custom_core = CustomCore.objects.get(profile=user_profile)
         theme = custom_core.theme
         
-        
-        if bit_config.get("is_customized"):
-            custom_overrides = bit_config.get("custom_overrides")
+        print(bit_data)
+        if bit_data.get("is_customized") == "true":
+            custom_overrides = bit_data.get("custom_overrides")
             try:
                 custom_bit = CustomBit.objects.create(
                     images = custom_core,
@@ -236,7 +236,7 @@ class BitViewSet(viewsets.ModelViewSet):
             custom_bit = CustomBit.objects.get(theme=theme)
         
 
-        if bit_data.get("type") == "photo":
+        if "photo" in request.FILES:
             from yb_photo.utility import upload_image_cf
 
             print("Creating a photobit.")
@@ -297,12 +297,12 @@ class BitViewSet(viewsets.ModelViewSet):
         new_bit = Bit.objects.get(id=serializer.data['id'])
         rendered_bit = BitSerializer(new_bit, context={'user_tz': user_profile.current_timezone, 'request': request})
 
-        if bit_config.get("is_secheduled"):
+        if bit_data.get("is_scheduled") == "true":
             new_bit.status = "scheduled"
             new_bit.is_live = False
             new_bit.is_scheduled = True
-            scheduled_date = bit_config.get("scheduled_date")
-            scheduled_time = bit_config.get("scheduled_time")
+            scheduled_date = bit_data.get("scheduled_date")
+            scheduled_time = bit_data.get("scheduled_time")
             
             if scheduled_date and scheduled_time:
                 scheduled_datetime_str = f"{scheduled_date} {scheduled_time}"
@@ -314,21 +314,21 @@ class BitViewSet(viewsets.ModelViewSet):
             new_bit.status = "ready"
             new_bit.is_live = True
 
-        if bit_config.get("has_expiration"):
-            expiration_date = bit_config.get("expiration_date")
-            expiration_time = bit_config.get("expiration_time")
+        if bit_data.get("has_expiration") == "true":
+            expiration_date = bit_data.get("expiration_date")
+            expiration_time = bit_data.get("expiration_time")
             new_bit.evaporate = True
             expiration_datetime_str = f"{expiration_date} {expiration_time}"
             expiration_datetime = timezone.datetime.strptime(expiration_datetime_str, "%Y-%m-%d %H:%M:%S")
             new_bit.evapoation_date = expiration_datetime
 
         #Monetization Options
-        new_bit.is_tips = bit_config.get("is_donations")
-        new_bit.has_ads = bit_config.get("has_ads")
-        new_bit.requires_subscription = bit_config.get("require_subscription") 
-        new_bit.is_comments = bit_config.get("is_comments")
-        new_bit.is_shareable = bit_config.get("is_shareable")
-        new_bit.is_feedback = bit_config.get("is_feedback")
+        new_bit.is_tips = True if bit_data.get("is_donations") == "true" else False
+        new_bit.has_ads = True if bit_data.get("has_ads") == "true" else False
+        new_bit.requires_subscription = True if bit_data.get("requires_subscription") == "true" else False
+        new_bit.is_comments = True if bit_data.get("is_comments") == "true" else False
+        new_bit.is_shareable = True if bit_data.get("is_shareable") == "true" else False
+        new_bit.is_feedback = True if bit_data.get("is_feedback") == "true" else False
 
         new_bit.save()
 
