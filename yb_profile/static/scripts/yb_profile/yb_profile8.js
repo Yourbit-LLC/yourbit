@@ -383,7 +383,7 @@ function yb_assembleConnectMenu() {
 function yb_handleConnectClick(e) {
     let action = this.getAttribute("data-action");
     if (action === "edit") {
-        customize_url("")
+        yb_navigateTo("content-container", "customize-main");
         MOBILE_HEADER.classList.remove("hide");
     } else {
         var profile_id = yb_getProfileData("id");
