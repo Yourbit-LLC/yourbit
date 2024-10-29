@@ -32,6 +32,10 @@
     padding: 5px 5px 5px 5px;
 }
 
+.yb-button-split13:hover {
+    cursor: pointer;
+}
+
 @media screen and (prefers-color-scheme: dark) {
     .yb-button-split13 {
         color: white;

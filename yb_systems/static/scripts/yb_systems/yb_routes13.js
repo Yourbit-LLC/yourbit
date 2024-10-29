@@ -141,12 +141,12 @@ const TWO_WAY_INDEX = {
         },
     "bug-report":
         {
-            "template" : "/support/templates/bug-report/",
+            "template" : "/support/templates/report-bug/",
             "url" : "/support/bug-report/"
         },
     "feature-request":
         {
-            "template" : "/support/templates/feature-request/",
+            "template" : "/support/templates/request-feature/",
             "url" : "/support/feature-request/"
         },
     "cropper-bit":

@@ -35,6 +35,11 @@
 
 .yb-button-split13:hover {
     cursor: pointer;
+}
+
+
+.yb-button-split13:hover {
+    cursor: pointer;
     transform: scale(1.05);
     transition: 0.5s;
 }
