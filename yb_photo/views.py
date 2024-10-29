@@ -25,7 +25,9 @@ def cropper_view(request, crop_type, *args, **kwargs):
 
     return render(request, "image_cropper.html", {"type": crop_type})
 
-    
+def camera_test(request):
+    return render(request, "yb_camera.html")
+
 def reset_images_to_yb(request):
     if request.user.is_admin:
         for photo in Photo.objects.all():

@@ -232,7 +232,7 @@ def create_bit_comment_notification(sender, instance, created, **kwargs):
     if instance.profile != instance.bit.profile:
         if created:
             bit = instance.bit
-            profile = Profile.objects.get(username = instance.user.active_profile)
+            profile = instance.profile
             notification = Notification(
                 bit = bit,
                 to_user = bit.profile,

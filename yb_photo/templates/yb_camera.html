@@ -1,17 +1,27 @@
 {% load static %}
 <!--Camera Page-->
+<html>
 <link rel="stylesheet" type="text/css" href="{% static 'css/yb_photo/yb_camera.css' %}"/>
-<div id='div-header' class="div-header">
-    <div class="cb-panel-back" onclick="yb_2WayPage(1);"><svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
-    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb"></h3>
-    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('camera');"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
+
+<body style="background-color: black;">
+<div>
+    <h2 style="color: white;">Yourbit Live Camera Test</h3>
+
+    <video id="video" style="top: 0; width: 100%;" autoplay playsinline></video>
 </div>
+<script>
+   async function startCamera() {
+      const videoElement = document.getElementById('video');
+      try {
+         // Request camera stream (set video: { facingMode: 'environment' } for back camera)
+         const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+         videoElement.srcObject = stream;
+      } catch (err) {
+         console.error("Error accessing camera: ", err);
+      }
+   }
 
-<div id="camera-viewfinder" class="yb-fillWidth yb-fillHeight">
-    <video id="video" class="yb-fillWidth yb-fillHeight" autoplay>
-    </video>
-    <canvas id="canvas" class="yb-fillWidth yb-fillHeight"></canvas>
-</div>
-
-
-
+   startCamera();
+</script>
+</body>
+</html>
