@@ -13,6 +13,20 @@
         </div>
     </div>
     {% endfor %}
+    <script>
+        $(document).ready(function(){
+            var orbit_list_items = document.getElementsByClassName("yb-listItem");
+            
+                for (var i = 0; i < orbit_list_items.length; i++){
+                    console.log("Added event listener");
+                    orbit_list_items[i].addEventListener("click", yb_navigateToProfile);
+                    
+                }
+    
+    
+            
+        });
+    </script>
 {% else %}
 <div class="yb-fillWidth yb-center-margin yb-margin-T30 yb-margin-B10">
     <h3 class="yb-autoText align-center yb-margin-T10">No connections found</h3>
@@ -32,19 +46,6 @@
         setTimeout(function(){
             SEARCH_CONTAINER.classList.remove("yb-pulseSmall");
         }, 1000);
-    });
-
-    $(document).ready(function(){
-        var orbit_list_items = document.getElementsByClassName("yb-listItem");
-        
-            for (var i = 0; i < orbit_list_items.length; i++){
-                console.log("Added event listener");
-                orbit_list_items[i].addEventListener("click", yb_navigateToProfile);
-                
-            }
-
-
-        
     });
 </script>
 {% endif %}
