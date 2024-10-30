@@ -2,10 +2,10 @@
     {% for connection in connections %}
     <div id="result-people-{{connection.id}}" class="yb-listItem yb-autoText " data-catid="{{connection.id}}" data-username="{{connection.username}}" onclick="yb_navigateToProfile();">
 
-        <div class="full-result-image-container">
+        <div class="full-result-image-container orbit-sub-item" >
                 <img class="full-result-image" style="width:100%; position: relative;" src="{{connection.custom.profile_image.medium_thumbnail.url}}">
         </div>
-        <div class="full-result-name-container">
+        <div class="full-result-name-container orbit-sub-item">
             <p class="full-result-name"><strong>{{connection.display_name}}</strong></p>
             <p class="full-result-username">
                 <small>@{{connection.username}}</small>
@@ -32,6 +32,19 @@
         setTimeout(function(){
             SEARCH_CONTAINER.classList.remove("yb-pulseSmall");
         }, 1000);
+    });
+
+    $(document).ready(function(){
+        var orbit_list_items = document.getElementsByClassName("orbit-sub-item");
+            
+        for (var i = 0; i < people_list_items.length; i++){
+            console.log("Added event listener");
+            people_list_items[i].addEventListener("click", yb_navigateToProfile);
+            
+        }
+
+
+        
     });
 </script>
 {% endif %}
