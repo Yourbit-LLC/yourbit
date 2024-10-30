@@ -35,13 +35,13 @@
     });
 
     $(document).ready(function(){
-        var orbit_list_items = document.getElementsByClassName("orbit-sub-item");
-            
-        for (var i = 0; i < people_list_items.length; i++){
-            console.log("Added event listener");
-            people_list_items[i].addEventListener("click", yb_navigateToProfile);
-            
-        }
+        var orbit_list_items = document.getElementsByClassName("yb-listItem");
+        
+            for (var i = 0; i < orbit_list_items.length; i++){
+                console.log("Added event listener");
+                orbit_list_items[i].addEventListener("click", yb_navigateToProfile);
+                
+            }
 
 
         
