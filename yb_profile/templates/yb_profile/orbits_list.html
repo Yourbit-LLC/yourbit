@@ -1,6 +1,6 @@
 {% if connections %}
     {% for connection in connections %}
-    <div id="result-people-{{connection.id}}" class="yb-listItem yb-autoText " data-catid="{{connection.id}}" data-username="ajboston2023">
+    <div id="result-people-{{connection.id}}" class="yb-listItem yb-autoText " data-catid="{{connection.id}}" data-username="{{connection.username}}">
 
         <div class="full-result-image-container">
                 <img class="full-result-image" style="width:100%; position: relative;" src="{{connection.custom.profile_image.medium_thumbnail.url}}">
