@@ -16,6 +16,16 @@ const submit_signup = document.getElementById('submit-signup');
 const submit_login = document.getElementById('submit-login');
 let currentSection = 0;
 
+
+// Render each widget manually and store the widgetId
+const loginWidgetId = turnstile.render('#login-turnstile', {
+    sitekey: '0x4AAAAAAAkRMoW7uwLsbC_G'
+});
+const signUpWidgetId = turnstile.render('#signup-turnstile', {
+    sitekey: '0x4AAAAAAAkRMoW7uwLsbC_G'
+});
+
+
 // //If mobile device, show PWA popup based on android or ios
 // if (navigator.userAgent.match(/Android/i)) {
 //     pwa_popup.style.display = "block";
@@ -164,7 +174,7 @@ function yb_attempt_login() {
                 error.textContent = "Incorrect email or password. Please try again.";
                 error.style.display = 'block';
 
-                turnstile.reset('login-turnstile');
+                turnstile.reset(loginWidgetId);
             }
 
         }
@@ -210,7 +220,7 @@ function yb_attempt_signup() {
                 console.error('Unexpected error:', response);
             }
 
-            turnstile.reset('signup-turnstile');
+            turnstile.reset(signUpWidgetId);
         }
     });
 }
@@ -291,6 +301,7 @@ function showSignUp() {
 }
 
 $(document).ready(function() {
+
     submit_signup.addEventListener('click', yb_attempt_signup);
     submit_login.addEventListener('click', yb_attempt_login);
 
