@@ -312,7 +312,9 @@ def login_view(request):
     if not is_local_request(request):
         #Verify turnstile token
         if request.POST.get('cf-turnstile-response'):
-            if not validate_turnstile_token(request):
+            token = request.POST.get('cf-turnstile-response')
+            user_ip = get_client_ip(request)
+            if not validate_turnstile_token(token, user_ip):
                 return JsonResponse(
                     {
                         'status': 'failed', 
