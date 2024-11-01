@@ -231,6 +231,18 @@
         fill: black !important;
     }
 
+    .video-countdown-container {
+        position: absolute;
+        z-index: 10;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        text-align: center;
+        mix-blend-mode: difference;
+        display: none;
+    }
+
     .counter {
         color: black !important;
     }
@@ -241,8 +253,6 @@
     background-color: transparent !important;
     width: 100% !important;
 }
-
-
 
 .yb-player-comments {
     position: relative;
