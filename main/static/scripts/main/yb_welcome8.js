@@ -181,7 +181,7 @@ function yb_attempt_signup() {
         processData: false,   // Prevent jQuery from processing FormData
         contentType: false,   // Prevent jQuery from setting Content-Type header
         success: function(response) {
-            window.location.href = '/templates/interact-terms/';
+            window.location.href = '/accounts/templates/interact-terms/';
         },
         error: function(response) {
             if (response.status === 400) {
