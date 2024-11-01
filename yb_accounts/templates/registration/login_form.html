@@ -1,0 +1,35 @@
+{% load static %}
+<form method="POST" id="login-form" style="background-color: rgba(0, 0, 0, 0.5); position: fixed; height: 100vh; width: 100vw; left: 0px; display:none; top: 100vh; z-index: 5;">
+    <div class="logo-form">
+        <img style="width: 100%;" src="{% static 'images/main/2023-logo-draft.png' %}">
+    </div>
+    <h3 style="color: white; font-family: 'Arial', sans-serif; margin-top: 60px; text-align: center;">Login to Yourbit</h3>
+    <div id="field-shelf" style="font-family: 'Arial', sans-serif; text-align: center; position: relative; margin: 10px auto; color: white; display: flex; flex-direction: column; max-width: 600px; width: 100%; align-items: center;">
+        {% csrf_token %}
+        <div class="login-error-top squared" id="login-error" style="display: none; padding: 5px; font-weight: 550; margin-bottom: 10px; background-color: #830000; color: pink;"></div>
+        {% for field in login_form %}
+            <div class="fieldWrapper">
+                
+                {{ field.label_tag }} 
+                <br>
+                {{ field }}
+                {% if field.help_text %}
+                    <p class="help">{{ field.help_text|safe }}</p>
+                {% endif %}
+            </div>
+            <br>
+        {% endfor %}
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAAkRMoW7uwLsbC_G"></div>
+        <input type="hidden" name="next" value="{{ next }}" />
+        <div id="button-container">
+            <button class="yb-button-wide yb-fillWidth rounded" id="go-back-login" style="background-color: darkred; color:white;" type="button">Cancel</button>
+            <button class="yb-button-wide yb-fillWidth rounded" id="submit-login" style="background-color: green; color:white;" type="button">Login</button>
+        </div>
+        <br>
+        <a style="font-size: small;" href="/accounts/forgot-password/">Forgot Password?</a>
+        <p style="font-size: small;" >Don't have an account? <a id="back-to-sign-up">Sign Up</a></p>
+        <p style="font-size: small;"><a href="/accounts/templates/viewer/terms/">Terms of Service</a> | <a href="/accounts/templates/viewer/privacy/">Privacy Policy</a></p>
+        <p style="font-size: small;">© 2023 Yourbit, LLC. All rights reserved.</p>
+    </div>
+
+</form>

@@ -197,17 +197,20 @@ li {
     font-size: 36px;
 }
 
+.fieldWrapper {
+    margin-top: 10px;
+}
+
 .field {
     position: relative;
     height: 50px;
     background-color: transparent;
     backdrop-filter: brightness(300%) blur(10px);
     -webkit-backdrop-filter: brightness(300%) blur(10px);
-    margin-bottom: 20px;
     border-radius: 10px;
     width: 70vw;
     border-width: 0px;
-    margin-top: 10px;
+    margin-top: 5px;
     padding-left: 10px;
     color: white;
     font-size: 14px;
@@ -216,7 +219,8 @@ li {
 }
 
 label {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    margin-left: 5px;
     color: rgb(150, 150, 150);
     font-size: 14px;
     font-weight: 600;

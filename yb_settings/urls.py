@@ -17,6 +17,7 @@ urlpatterns = [
     path("templates/change-password/", change_password_template, name="settings_password"),
     path("templates/cluster/<int:id>/", ClusterSettings.as_view(), name="settings_cluster"),
     path("dev_cmd/real_name_ovrd/", set_all_false, name="real_name_ovrd"),
+    path("account/change-password/", change_password, name="change_password"),
     path("", SettingsElement.as_view(), name="settings_main"),
 
 ]

@@ -4,6 +4,8 @@ from django.views import View
 from yb_settings.models import *
 from yb_profile.models import Profile, ProfileInfo
 from django.http import JsonResponse, HttpResponse
+# import login required
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -41,6 +43,21 @@ def settings_subscription(request):
 
 def settings_feed(request):
     return render(request, "yb_settings/yb_feedSettings.html")
+
+@login_required
+def change_password(request):
+    user = request.user
+    old_password = request.POST['old_password']
+    new_password = request.POST['new_password']
+
+    if user.check_password(old_password):
+        user.set_password(new_password)
+        user.save()
+        return JsonResponse({"success":True, "message":"Password changed successfully"})
+    else:
+        return JsonResponse({"success":False, "message":"Incorrect password"})
+    
+
 
 def settings_account(request):
     active_profile = Profile.objects.get(username=request.user.active_profile)

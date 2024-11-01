@@ -12,6 +12,8 @@ const back_to_login = document.getElementById('back-to-login');
 const pwa_popup = document.getElementById('pwa-popup');
 const pwa_content_android = document.getElementById('pwa-content-android');
 const pwa_content_ios = document.getElementById('pwa-content-ios');
+const submit_signup = document.getElementById('submit-signup');
+const submit_login = document.getElementById('submit-login');
 let currentSection = 0;
 
 // //If mobile device, show PWA popup based on android or ios
@@ -117,6 +119,100 @@ function scrollToPreviousSection() {
 
 }
 
+function prevalidateLogin() {
+    let form = document.getElementById('login-form');
+    let email = form.querySelector('input[name="email"]');
+    let password = form.querySelector('input[name="password"]');
+    let emailError = document.getElementById('email-error');
+    let passwordError = document.getElementById('password-error');
+    let valid = true;
+    
+    if (email.value === '') {
+        emailError.textContent = 'Email is required';
+        emailError.style.display = 'block';
+        valid = false;
+        
+    } 
+
+    if (password.value === '') {
+        passwordError.textContent = 'Password is required';
+        passwordError.style.display = 'block';
+        valid = false;
+        
+    } 
+
+    return valid;
+}
+
+function yb_attempt_login() {
+    let form = document.getElementById('login-form');
+    let form_data = new FormData(form);
+    $.ajax({
+        type: 'POST',
+        url: '/login/',
+        data: form_data,
+        processData: false,   // Prevent jQuery from processing FormData
+        contentType: false,   // Prevent jQuery from setting Content-Type header
+        success: function(response) {
+            
+            window.location.href = '/bitstream/';
+ 
+        },
+        error: function(response) {
+            if (response.status === 400) {        
+                let error = document.getElementById('login-error');
+                error.textContent = "Incorrect email or password. Please try again.";
+                error.style.display = 'block';
+            }
+        }
+    });
+}
+function yb_attempt_signup() {
+    let form = document.getElementById('signup-form');
+    let form_data = new FormData(form);
+
+    $.ajax({
+        type: 'POST',
+        url: '/register/',
+        data: form_data,
+        processData: false,   // Prevent jQuery from processing FormData
+        contentType: false,   // Prevent jQuery from setting Content-Type header
+        success: function(response) {
+            window.location.href = '/templates/interact-terms/';
+        },
+        error: function(response) {
+            if (response.status === 400) {
+                const errors = response.responseJSON.errors;
+
+                if (errors) {
+                    // Loop through each error and display it
+                    for (let field_name in errors) {
+                        let error_field = document.getElementById('error-' + field_name);
+                        if (error_field) {
+                            error_field.textContent = errors[field_name].join(', ');
+                            error_field.style.display = 'block';
+                        }
+                    }
+
+                    // Scroll to the first error message
+                    let first_error_key = Object.keys(errors)[0];
+                    let first_error_message = document.getElementById('error-' + first_error_key);
+                    if (first_error_message) {
+                        first_error_message.scrollIntoView({ behavior: 'smooth' });
+                    }
+                } else {
+                    console.error('Error: No detailed error messages received from server.');
+                }
+            } else {
+                console.error('Unexpected error:', response);
+            }
+        }
+    });
+}
+
+
+
+
 function hideLogin() {
     $(home_header).animate({"top": "0px"}, "fast");
     $('#login-form').animate({"top": "100vh"}, function() {
@@ -190,7 +286,8 @@ function showSignUp() {
 }
 
 $(document).ready(function() {
-    // Target the element you want to slide down and hide
+    submit_signup.addEventListener('click', yb_attempt_signup);
+    submit_login.addEventListener('click', yb_attempt_login);
 
     // Add a click event handler to trigger the animation
     $(login_button).click(showLogin);

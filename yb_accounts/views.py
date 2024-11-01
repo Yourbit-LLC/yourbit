@@ -13,6 +13,7 @@ from django.template.loader import render_to_string, get_template
 from django.utils.html import strip_tags
 from .models import Account as User
 from django.http import FileResponse
+from yb_profile.models import Profile
 
 # Create your views here.
 
@@ -78,43 +79,73 @@ def test_verification_email(request):
             return HttpResponse("Email Sent")
     
 
+from django.http import JsonResponse
+from django.contrib.auth import login, authenticate
+from yb_systems.services import validate_turnstile_token, is_local_request, get_client_ip
+
 def registration_view(request):
     context = {}
     if request.POST:
         form = RegistrationForm(request.POST)
         login_form = LoginForm()
+
+        #Check if local request
+        if not is_local_request(request):
+            #Verify turnstile token
+            if request.POST.get('cf-turnstile-response'):
+                token = request.POST.get('cf-turnstile-response')
+                user_ip = get_client_ip(request)
+                if not validate_turnstile_token(token, user_ip):
+                    return JsonResponse({'status': 'failed', 'message': 'Invalid Turnstile Token'}, status=400)
+            else:
+                return JsonResponse({'status': 'failed', 'message': 'Invalid Turnstile Token'}, status=400)
+                
         if form.is_valid():
             print("form valid")
-            form.save()
+
+            #Check if username exists in profile objects
+            username = form.cleaned_data.get('username')
+            try:
+                profile = Profile.objects.get(username=username)
+                return JsonResponse({'status': 'failed', 'errors': {'username': 'Profile with this Username already exists.'}}, status=400)
+            except Profile.DoesNotExist:
+                form.save()
+
+            # Get email and password, authenticate and login
             email = form.cleaned_data.get('email')
             raw_password = form.cleaned_data.get('password1')
             account = authenticate(email=str(email).lower(), password=raw_password)
             login(request, account)
         
-            # Generate a verification token for the user
+            # Generate and save verification token
             verification_key = generate_verification_key()
-
-            # Set the token for the user account and save it to the database
             account.verification_token = verification_key
             account.active_profile = account.username
             account.save()
 
-            # Send a verification email to the user
+            # Send a verification email
             send_confirmation_email(account)
+
+            # Respond with success status
+            return JsonResponse({'status': 'success', 'message': 'Account created successfully.'})
+
         else:
-            print("Status:\n\nForm Invalid")
+            # Collect form errors
+            error_list = {}
             for field_name, error_messages in form.errors.items():
                 print(f"Errors for field '{field_name}': {', '.join(error_messages)}")
-            context['registration_form'] = form
-            return render(request, 'yb_accounts/register.html', context)
-        
-    else:
-        print("Status:\n\nWrong Request Method")
-        form = RegistrationForm()
-        context['registration_form'] = form
-        context["login_form"] = LoginForm()
-    
-        return render(request, 'registration/login.html', context)
+                error_list[field_name] = error_messages
+
+            # Respond with errors and failed status
+            return JsonResponse({
+                'status': 'failed',
+                'message': 'Form Invalid',
+                'errors': error_list
+            }, status=400)
+
+    # Respond with a method not allowed error if not POST
+    return JsonResponse({'status': 'failed', 'message': 'Invalid request method.'}, status=405)
+
     
 class ForgotPassword(View):
     def get(self, request, *args, **kwargs):
@@ -277,6 +308,28 @@ def login_view(request):
     login_form = LoginForm(request.POST)
     registration_form = RegistrationForm()
 
+    #Check if local request
+    if not is_local_request(request):
+        #Verify turnstile token
+        if request.POST.get('cf-turnstile-response'):
+            if not validate_turnstile_token(request):
+                return JsonResponse(
+                    {
+                        'status': 'failed', 
+                        'message': 'Invalid Turnstile Token'
+                    },
+                    status=400
+                )
+        else:
+            return JsonResponse(
+                {
+                    'status': 'failed', 
+                    'message': 'Invalid Turnstile Token'
+                },
+                status=400
+            )
+            
+
     if request.POST:
         
         if login_form.is_valid():
@@ -286,6 +339,7 @@ def login_view(request):
 
             if user:
                 login(request, user)
+
                 try: 
                     user_session = UserSession.objects.get(user=user)
                 
@@ -293,11 +347,9 @@ def login_view(request):
                     user_session = UserSession(user=user)
                     user_session.save()
                     
-                return redirect('home')
+                return JsonResponse({'status': 'success', 'message': 'Login Successful'}, status=200)
 
-    context['login_form'] = login_form
-    context['registration_form'] = registration_form
-    return render(request, 'registration/login.html', context)
+    return JsonResponse({'status': 'failed', 'message': 'Check your email and password combination and try again.'}, status=400)
 
 def logout_view(request):
     logout(request)

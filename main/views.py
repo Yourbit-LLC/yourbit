@@ -64,6 +64,8 @@ def update_bs_filter_chain(profile, filter_chain):
 
     feed_settings.save()
 
+
+
 def initialize_session(request):
     from yb_settings.models import MySettings, FeedSettings
     from yb_systems.models import TaskManager

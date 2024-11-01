@@ -33,6 +33,12 @@ class RegistrationForm(UserCreationForm):
         self.fields['password1'].widget.attrs.update({'class': 'field'})
         self.fields['password2'].widget.attrs.update({'class': 'field'})
 
+                
+        self.fields['username'].widget.attrs.update({'id': 'id_username_new'})
+        self.fields['first_name'].widget.attrs.update({'id': 'id_first_name_new'})
+        self.fields['last_name'].widget.attrs.update({'id': 'id_last_name_new'})
+        self.fields['dob'].widget.attrs.update({'id': 'id_dob_new'})
+        
         #Placeholders
         self.fields['email'].widget.attrs.update({'placeholder': 'Email'})
         

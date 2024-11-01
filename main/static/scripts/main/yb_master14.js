@@ -1258,8 +1258,7 @@ $(document).ready(function() {
     yb_updateTimezone();
 
 
-
-
+    //Display standalone check for browser/pwa specific actions
     if (window.matchMedia('(display-mode: standalone)').matches) {
         console.log('display-mode is standalone');
         SEARCH_POPOUT.classList.add("pwa-standalone");

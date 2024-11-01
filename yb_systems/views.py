@@ -12,9 +12,7 @@ from django.core.mail import send_mail
 from yb_profile.models import Profile
 #import response from dajngo
 from django.http import HttpResponse
-
-
-
+    
 class EmailTest(View):
     def get(self, request, *args, **kwargs):
         send_mail(
