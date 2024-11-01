@@ -163,7 +163,10 @@ function yb_attempt_login() {
                 let error = document.getElementById('login-error');
                 error.textContent = "Incorrect email or password. Please try again.";
                 error.style.display = 'block';
+
+                turnstile.reset('login-turnstile');
             }
+
         }
     });
 }
@@ -206,6 +209,8 @@ function yb_attempt_signup() {
             } else {
                 console.error('Unexpected error:', response);
             }
+
+            turnstile.reset('signup-turnstile');
         }
     });
 }
