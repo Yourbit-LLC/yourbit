@@ -257,12 +257,6 @@ function showLogin() {
 
 function hideSignUp() {
     // Render each widget manually and store the widgetId
-    const loginWidgetId = turnstile.render('#login-turnstile', {
-        sitekey: '0x4AAAAAAAkRMoW7uwLsbC_G'
-    });
-    const signUpWidgetId = turnstile.render('#signup-turnstile', {
-        sitekey: '0x4AAAAAAAkRMoW7uwLsbC_G'
-    });
     
     $(home_header).animate({"top": "0px"}, "fast");
     $('#signup-form').animate({"top": "100vh"}, function() {
@@ -300,6 +294,12 @@ function showSignUp() {
 }
 
 $(document).ready(function() {
+    const loginWidgetId = turnstile.render('#login-turnstile', {
+        sitekey: '0x4AAAAAAAkRMoW7uwLsbC_G'
+    });
+    const signUpWidgetId = turnstile.render('#signup-turnstile', {
+        sitekey: '0x4AAAAAAAkRMoW7uwLsbC_G'
+    });
 
     submit_signup.addEventListener('click', yb_attempt_signup);
     submit_login.addEventListener('click', yb_attempt_login);
