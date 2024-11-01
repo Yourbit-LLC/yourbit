@@ -17,15 +17,6 @@ const submit_login = document.getElementById('submit-login');
 let currentSection = 0;
 
 
-// Render each widget manually and store the widgetId
-const loginWidgetId = turnstile.render('#login-turnstile', {
-    sitekey: '0x4AAAAAAAkRMoW7uwLsbC_G'
-});
-const signUpWidgetId = turnstile.render('#signup-turnstile', {
-    sitekey: '0x4AAAAAAAkRMoW7uwLsbC_G'
-});
-
-
 // //If mobile device, show PWA popup based on android or ios
 // if (navigator.userAgent.match(/Android/i)) {
 //     pwa_popup.style.display = "block";
@@ -265,6 +256,14 @@ function showLogin() {
 }
 
 function hideSignUp() {
+    // Render each widget manually and store the widgetId
+    const loginWidgetId = turnstile.render('#login-turnstile', {
+        sitekey: '0x4AAAAAAAkRMoW7uwLsbC_G'
+    });
+    const signUpWidgetId = turnstile.render('#signup-turnstile', {
+        sitekey: '0x4AAAAAAAkRMoW7uwLsbC_G'
+    });
+    
     $(home_header).animate({"top": "0px"}, "fast");
     $('#signup-form').animate({"top": "100vh"}, function() {
         // Animation complete, hide the element
