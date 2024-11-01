@@ -15,6 +15,8 @@ const pwa_content_ios = document.getElementById('pwa-content-ios');
 const submit_signup = document.getElementById('submit-signup');
 const submit_login = document.getElementById('submit-login');
 let currentSection = 0;
+var loginWidgetId;
+var signUpWidgetId;
 
 
 // //If mobile device, show PWA popup based on android or ios
@@ -26,9 +28,6 @@ let currentSection = 0;
 //     pwa_popup.style.display = "block";
 //     pwa_popup.classList.add('show');
 //     pwa_content_ios.classList.add('show');
-    
-// }
-
 
 document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowDown') {
@@ -294,10 +293,10 @@ function showSignUp() {
 }
 
 $(document).ready(function() {
-    const loginWidgetId = turnstile.render('#login-turnstile', {
+    loginWidgetId = turnstile.render('#login-turnstile', {
         sitekey: '0x4AAAAAAAkRMoW7uwLsbC_G'
     });
-    const signUpWidgetId = turnstile.render('#signup-turnstile', {
+    signUpWidgetId = turnstile.render('#signup-turnstile', {
         sitekey: '0x4AAAAAAAkRMoW7uwLsbC_G'
     });
 
