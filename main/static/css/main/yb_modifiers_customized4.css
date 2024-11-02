@@ -285,7 +285,7 @@
     }
 
     .yb-fill-autoGray {
-        fill: rgb(97, 97, 97);
+        fill: rgb(110, 110, 110);
     }
     
 }
@@ -300,7 +300,7 @@
     }
 
     .yb-fill-autoGray {
-        fill: rgb(70, 70, 70);
+        fill: rgb(225, 225, 225);
     }
 }
 
@@ -326,6 +326,8 @@
     .yb-autoFill {
         fill: black;
     }
+
+    
 } 
 
     
