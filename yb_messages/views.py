@@ -135,8 +135,15 @@ class ConversationSettings(View):
         else:
             this_conversation.is_name = False
 
-        this_conversation.from_user_color = request.POST.get("from_user_color")
-        this_conversation.to_user_color = request.POST.get("to_user_color")
+        if request.POST.get("from_user_color") != "":
+            this_conversation.from_user_color = request.POST.get("from_user_color")
+        else:
+            print("From user color missing")
+
+        if request.POST.get("to_user_color") != "":
+            this_conversation.to_user_color = request.POST.get("to_user_color")
+        else:
+            print("To user color missing")
 
         this_conversation.is_joinable = True if request.POST.get("is_joinable") == "on" else False
         this_conversation.members_can_invite = True if request.POST.get("members_can_invite") == "on" else False
