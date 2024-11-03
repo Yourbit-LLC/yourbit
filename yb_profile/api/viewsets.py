@@ -156,7 +156,7 @@ class FriendRequestViewset(viewsets.ModelViewSet):
         from .serializers import ProfileResultSerializer
         to_user = request.data.get('to_user')
         print("\n\nCreating friend request to user: \n" + to_user + "\n\n")
-        to_user_profile = Profile.objects.get(username=to_user.active_profile)
+        to_user_profile = Profile.objects.get(username=to_user)
         to_user_settings = MySettings.objects.get(profile = to_user_profile)
 
         to_user_privacy = PrivacySettings.objects.get(settings = to_user_settings)
