@@ -22,7 +22,7 @@
 
         <div id="display-conversation-name" class="yb-field-split squared yb-bg-autoGray yb-autoText yb-pText">
             <p class="field-cover-label align-left" style="grid-column: 1;">Conversation Name: </p>
-            <input name="email" id='field-email' value="{{conversation.name}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+            <input name="name" id='field-conversation-name' value="{{conversation.name}}" class="yb-input-transparent right yb-autoText yb-pText profile-field yb-form-field" style="grid-column: 2;">
         </div>
 
         <h4 class="yb-pHead">Access</h4>
@@ -51,8 +51,8 @@
             <p class="field-cover-label yb-autoText yb-pText align-left" style="grid-column: 1;">
                 To User Color
             </p>
-            <div class = "color-circle yb-center-margin tb" id="username-font-color-circle" name="username-font-color" style="position: relative; margin-right: 10px; background-color: {{conversation.to_user_color}}; grid-column: 2; height: 25px; width: 25px;"></div>  
-            <input class="coloris color-input font-color-input" type="text" name="username-font-color" style="display: none;" id="username-font-color-picker" value="{{conversation.to_user_color}}">  
+            <div class = "color-circle yb-center-margin tb" id="to-user-color-circle" name="to-user-color" style="position: relative; margin-right: 10px; background-color: {{conversation.to_user_color}}; grid-column: 2; height: 25px; width: 25px;"></div>  
+            <input class="coloris color-input" type="text" name="to-user-color" style="display: none;" id="to-user-color-picker" value="{{conversation.to_user_color}}">  
         </div>
 
         
@@ -60,8 +60,8 @@
             <p class="field-cover-label yb-autoText yb-pText align-left" style="grid-column: 1;">
                 From User Color
             </p>
-            <div class = "color-circle yb-center-margin tb" id="username-font-color-circle" name="username-font-color" style="position: relative; margin-right: 10px; background-color: {{conversation.from_user_color}}; grid-column: 2;  height: 25px; width: 25px;"></div>  
-            <input class="coloris color-input font-color-input" type="text" name="username-font-color" style="display: none;" id="username-font-color-picker" value="{{conversation.from_user_color}}">  
+            <div class = "color-circle yb-center-margin tb" id="from-user-color-circle" name="from-user-color" style="position: relative; margin-right: 10px; background-color: {{conversation.from_user_color}}; grid-column: 2;  height: 25px; width: 25px;"></div>  
+            <input class="coloris color-input" type="text" name="from-user-color" style="display: none;" id="from-user-color-picker" value="{{conversation.from_user_color}}">  
         </div>
 
     </section>
@@ -72,27 +72,5 @@
 </form>
 
 <script>
-    var bubble_color_selectors = document.querySelectorAll('.color-circle');
-    var bubble_color_inputs = document.querySelectorAll('.color-input');
-    var submit_conversation_settings = document.getElementById('save-settings');
-    $(document).ready(function(){
-        //On form submit prevent default
-        $('#conversation-settings-form').submit(function(e){
-            e.preventDefault();
-            var form = $(this);
-            var url = form.attr('action');
-            var data = form.serialize();
-            tw_showLoading();
-            $.post(url, data, function(response){
-                if(response.success){
-                    showNotification(expandNotification, 'Settings saved');
-                    tw_hideLoading();
-                } else {
-                    showNotification(expandNotification, 'Error saving settings');
-                    tw_hideLoading();
-                }
-            });
-        });
-    })
 </script>
 <script class = "page-script" type="text/javascript" src="{% static 'scripts/main/yb_forms.js' %}"></script>

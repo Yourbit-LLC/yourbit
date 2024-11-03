@@ -1,26 +1,33 @@
 try {
-    var live_fields = document.querySelectorAll('.yb-live-field');
-    var form_fields = document.querySelectorAll('.yb-form-field');
+    //Form configuration fields from hidden input field
     var form_config = document.getElementById('yb-form-config');
-    var live_text_areas = document.querySelectorAll('.yb-live-textArea');
-    var text_areas = document.querySelectorAll('.yb-form-textArea');
     var form_id = form_config.getAttribute('data-form-id');
+    var form = document.getElementById(form_id);
     var message = form_config.getAttribute('data-message');
-    var change_state = false
-    var save_button = document.getElementsByClassName('yb-form-save');
-    var form_tabs = document.querySelectorAll('.yb-form-tab');
+
+    //Fields in form
+    var live_fields = form.querySelectorAll('.yb-live-field');
+    var form_fields = form.querySelectorAll('.yb-form-field');
+    var color_buttons = form.querySelectorAll('.color-circle');
+    var color_fields = form.querySelectorAll('.color-input');
+    var live_color_fields = form.querySelectorAll('.live-color-input');
+    var live_text_areas = form.querySelectorAll('.yb-live-textArea');
+    var text_areas = form.querySelectorAll('.yb-form-textArea');
+    var change_state = false    
+    var save_button = form.getElementsByClassName('yb-form-save');
+    var form_tabs = form.querySelectorAll('.yb-form-tab');
 } catch(e) {
     console.log(e);
-    live_fields = document.querySelectorAll('.yb-live-field');
-    form_fields = document.querySelectorAll('.yb-form-field');
     form_config = document.getElementById('yb-form-config');
-    live_text_areas = document.querySelectorAll('.yb-live-textArea');
-    text_areas = document.querySelectorAll('.yb-form-textArea');
     form_id = form_config.getAttribute('data-form-id');
     message = form_config.getAttribute('data-message');
+    live_fields = form.querySelectorAll('.yb-live-field');
+    form_fields = form.querySelectorAll('.yb-form-field');
+    live_text_areas = form.querySelectorAll('.yb-live-textArea');
+    text_areas = form.querySelectorAll('.yb-form-textArea');
     change_state = false
-    save_button = document.getElementsByClassName('yb-form-save');
-    form_tabs = document.querySelectorAll('.yb-form-tab');
+    save_button = form.getElementsByClassName('yb-form-save');
+    form_tabs = form.querySelectorAll('.yb-form-tab');
 }
 
 function yb_continue_back(back_type, back_location, data=null) {
@@ -36,7 +43,7 @@ function yb_continue_back(back_type, back_location, data=null) {
 }
 
 function yb_submitForm(form_id, success_message="Form Submitted Successfully") {
-    let form = $(`#${form_id}`);
+    
     let formData = form.serialize();
 
     $.ajax({
@@ -183,6 +190,25 @@ $(document).ready(function () {
         });
     }
 
+    for (var i = 0; i < color_buttons.length; i++) {
+        color_buttons[i].addEventListener('click', function () {
+            let color_input = this.nextElementSibling;
+            color_input.click();
+        });
+    }
+
+    for (var i = 0; i < color_fields.length; i++) {
+        color_fields[i].addEventListener('input', function () {
+            let color_input = this.previousElementSibling;
+            let color = this.value;
+            color_input.style.backgroundColor = color;
+            change_state = true;
+            save_button[0].style.backgroundColor = "green";
+            save_button[0].style.color = "white";
+        });
+    }
+
+
     const form_container = document.querySelector('.yb-form-container');
 
     const observerOptions = {
@@ -194,7 +220,7 @@ $(document).ready(function () {
     const sections = document.querySelectorAll('.setting-sub-container');
     const tabs = document.querySelectorAll('.yb-form-tab');
     
-
+    try {
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -213,6 +239,9 @@ $(document).ready(function () {
     sections.forEach(section => {
         observer.observe(section);
     });
+    } catch(e) {
+        console.log(e);
+    }
 
 
 });
