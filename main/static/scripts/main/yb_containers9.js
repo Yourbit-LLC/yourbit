@@ -464,6 +464,15 @@ function yb_toggle2WayContainer(type, scroll=false){
         }
     }
     
+    
+}
+
+function yb_getActive2Way() {
+    for (let i = 0; i < SIDE_CONTAINERS.length; i++) {
+        if (SIDE_CONTAINERS[i].classList.contains("open")){
+            return SIDE_CONTAINERS[i];
+        }
+    }
 }
 
 function yb_showDrawerFocus(this_id) {

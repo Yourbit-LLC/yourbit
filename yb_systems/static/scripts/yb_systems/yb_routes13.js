@@ -584,6 +584,22 @@ function yb_setLast(container, page, data) {
     yb_syncTask(page, data);
 }
 
+function yb_reload(container) {
+    if (container === "2way") {
+        let active_container = yb_getActive2Way();
+        let page = active_container.getAttribute("data-state");
+        active_container.innerHTML = "";
+        $(active_container).load(TWO_WAY_INDEX[page].template);
+    }
+
+    else if (container === "content-container") {
+        let page = yb_getSessionValues("location");
+        $(CONTENT_CONTAINER_B).load(CORE_TEMPLATE_INDEX[page].template);
+
+    }
+
+}
+
 function yb_navigateTo(container, template, data=null, reloadable=true) {
     if (container.includes("2way")) {
         yb_setLast(container, template, data);
