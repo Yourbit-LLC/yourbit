@@ -588,8 +588,9 @@ function yb_reload(container) {
     if (container === "2way") {
         let active_container = yb_getActive2Way();
         let page = active_container.getAttribute("data-state");
-        active_container.innerHTML = "";
-        $(active_container).load(TWO_WAY_INDEX[page].template);
+        let container_content = active_container.querySelector(".yb-2way-content");
+        container_content.innerHTML = "";
+        $(container_content).load(TWO_WAY_INDEX[page].template);
     }
 
     else if (container === "content-container") {
