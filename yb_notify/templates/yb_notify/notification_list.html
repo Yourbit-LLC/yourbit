@@ -80,7 +80,8 @@
     {% else %} 
             
         {% if notification.type == 1 or notification.type == 2 or notification.type == 7%} 
-            yb_navigateTo('content-container', 'bit-focus', '{{notification.bit.id}}')
+            yb_navigateTo('content-container', 'bit-focus', '{{notification.bit.id}}');
+            yb_toggle2WayContainer('notifcations');
             
         {% elif notification.type == 3 or notification.type == 5%} 
             yb_navigateToProfile()
