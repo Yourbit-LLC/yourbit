@@ -178,7 +178,7 @@ $('#back-to-home').click(function() {
 function yb_requestFriend() {
     let cookie = document.cookie;
     let csrfToken = getCSRF();
-    let user_id = yb_getProfileData("id");
+    let user_id = yb_getProfileData("username");
 
 
     let this_data = JSON.stringify({
