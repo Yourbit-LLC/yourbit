@@ -20,7 +20,9 @@ try {
     console.log(e);
     form_config = document.getElementById('yb-form-config');
     form_id = form_config.getAttribute('data-form-id');
+    form = document.getElementById(form_id);
     message = form_config.getAttribute('data-message');
+    
     live_fields = form.querySelectorAll('.yb-live-field');
     form_fields = form.querySelectorAll('.yb-form-field');
     live_text_areas = form.querySelectorAll('.yb-live-textArea');

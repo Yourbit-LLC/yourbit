@@ -83,9 +83,6 @@
     font-weight: 550;
     transition: all 0.2s ease-in-out;
     padding: 5px 5px 5px 5px;
-
-    filter: brightness(0.5);
-    -webkit-filter: brightness(0.5);
     transition: 0.25s;
 
 }
@@ -145,8 +142,8 @@
 
 .filter-tab.active {
     /*Style*/
-    filter: brightness(1);
-    -webkit-filter: brightness(1);
+    filter: brightness(0.5);
+    -webkit-filter: brightness(0.5);
     transition: 0.25s;
 }
 
