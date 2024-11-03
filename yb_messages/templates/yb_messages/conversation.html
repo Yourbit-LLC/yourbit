@@ -14,71 +14,7 @@
 
     <div id='message-container'>
         <!--Messages are appended here-->
-        {% for message in messages reversed %}
-            {% if message.from_user == user_profile %}
-
-                    {% if message.images%}
-                        {% for image in message.images.all %}
-                            <div id="message-{{message.id}}" class='message-bubble message-bubble-right' style="background-color: transparent;" onclick="yb_fullScreenImage('{{image.image.url}}')">
-
-                                <img src="{{ image.image.url }}" class="message-photo"/>   
-                                           
-                            </div>
-                        {% endfor %}
-                    {% elif message.videos %}
-                        {% for video in message.videos.all %}
-                            <div id="message-{{message.id}}" class='message-bubble message-bubble-right' style="background-color: transparent;">
-                                <video src="{{ video.video.url }}" class="message-video" controls></video>
-                            </div>
-                        {% endfor %}
-
-                    {% endif %}
-                    {% if message.body != "" %}
-                    
-                        <div id="message-{{message.id}}" class='message-bubble message-bubble-right' style="background-color: {{conversation.from_user_color}}">
-                            <div class="message-body">{{ message.body }}</div>
-                        </div>
-
-                        <div class='message-timestamp' style="display:none;">
-                            <div class="message-time">{{ message.time }}</div>
-    
-                        </div>
-                    {% endif %}
-
-            
-            
-
-            {% else %}
-                    {% if message.images %}
-                        {% for image in message.images.all %}
-
-                            <div id="message-{{message.id}}" class='message-bubble message-bubble-left' style="background-color: transparent;" onclick="yb_fullScreenImage('{{image.image.url}}')">
-                                <img src="{{ image.image.url }}" class="message-photo"/>
-                            </div>
-                        {% endfor %}
-                    {% elif message.videos %}
-                    {% for video in message.videos.all %}
-                        <div id="message-{{message.id}}" class='message-bubble message-bubble-left' style="background-color: transparent;">
-                            <video src="{{ video.video.url }}" class="message-video" style="width: 100px; height: 100px;" controls></video>
-
-                        </div>
-                        {% endfor %}
-                    {% endif %}
-
-                    {% if message.body != "" %}
-                        <div id="message-{{message.id}}" class='message-bubble message-bubble-left' style="background-color: {{conversation.to_user_color}}">
-                            <div class="message-body">{{ message.body }}</div>
-                        </div>
-                    {% endif %}
-                    
-                    <p style="padding-left: 10px;" class="yb-pText font-small">{{message.from_user.display_name}}</p>
-                    
-                
-            
-
-            {% endif %}
-        {% endfor %}
-
+        {% include 'yb_messages/message_list.html' %}
     </div>
 
     <div id="message-input">

@@ -270,6 +270,7 @@ const LIST_TEMPLATE_INDEX = {
     "history": "/profile/history-list/",
     "conversations": "/messages/conversations-list/",  
     "contacts": "/messages/list/contacts/",
+    "messages": "/messages/list/message-list/",
 
 }
 

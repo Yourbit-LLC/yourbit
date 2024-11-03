@@ -338,11 +338,22 @@ function yb_toggle2WayContainer(type, scroll=false){
 
                     //Check if the current core page is not fullscreen before showing UI
                     if (yb_getSessionValues('fullscreen') == "false"){
+                        
+
                         MOBILE_HEADER.classList.remove("hide");
+                        
                         NAV_BAR.classList.remove("hideMobile");
                         CREATE_POPOUT.classList.remove("hide");
                         SEARCH_POPOUT.classList.remove("hide");
+                    
                         
+                    } else {
+                        if (yb_getSessionValues("location") != "customize-main"){
+                            
+                            MOBILE_HEADER.classList.remove("hide");
+                        
+                        }
+
                     }
 
                     //When closing a container, clear the URL
