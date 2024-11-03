@@ -1,5 +1,6 @@
 try {
     var feed_filter_btns = document.querySelectorAll(".ff-button");
+    var stickyElement = document.getElementById('yb-browse-nav');
     var sort_btn = document.getElementById("ff-button-sort");
     var filter_by = document.getElementById("ff-button-filter");
     var feed_refresh = document.getElementById("ff-button-refresh");
@@ -19,6 +20,7 @@ try {
 }
 
 catch {
+    stickyElement = document.getElementById('yb-browse-nav');
     feed_filter_btns = document.querySelectorAll(".ff-button");
     sort_btn = document.getElementById("ff-button-sort");
     filter_by = document.getElementById("ff-button-filter");
@@ -88,3 +90,32 @@ feed_refresh.addEventListener("click", function() {
     yb_getFeed(data);
 });
 
+
+
+function throttle(callback, delay) {
+    let lastTime = 0;
+    return function (...args) {
+      const now = new Date().getTime();
+      if (now - lastTime >= delay) {
+        callback(...args);
+        lastTime = now;
+      }
+    };
+  }
+  
+ 
+$(document).ready(function() {
+    // Observe the sticky element
+    document.addEventListener(
+        'scroll',
+        throttle(() => {
+          const topPosition = stickyElement.getBoundingClientRect().top;
+          if (topPosition <= 0) {
+            stickyElement.classList.add('fixed');
+          } else {
+            stickyElement.classList.remove('fixed');
+          }
+        }, 100) // Adjust delay as needed
+      );
+}
+);

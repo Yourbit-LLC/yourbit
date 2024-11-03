@@ -274,6 +274,8 @@ class ConversationView(View):
         
         messages = Message.objects.filter(conversation = this_conversation).order_by("time")
 
+        active_profile = Profile.objects.get(username = request.user.active_profile)
+
         
         # p = Paginator(messages, 10)
 
@@ -306,7 +308,7 @@ class ConversationView(View):
                     for member in this_conversation.members.all():
                         this_display_name = member.display_name.split(" ")
                         
-                        if member != request.user:
+                        if member != active_profile:
                             if this_conversation.members.count() == 3:
                                 if contact_iteration == 1:
                                     display_name += this_display_name[0] + " " + this_display_name[1][0] + "." + " and "
@@ -329,7 +331,7 @@ class ConversationView(View):
 
             else:
                 for member in members:
-                    if member !=  request.user:
+                    if member !=  active_profile:
                         context["conversation_name"] = member.display_name
         try:
             last_message = messages.last()
