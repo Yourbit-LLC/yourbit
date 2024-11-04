@@ -135,12 +135,12 @@ class ConversationSettings(View):
         else:
             this_conversation.is_name = False
 
-        if request.POST.get("from_user_color") != "":
+        if request.POST.get("from_user_color"):
             this_conversation.from_user_color = request.POST.get("from_user_color")
         else:
             print("From user color missing")
 
-        if request.POST.get("to_user_color") != "":
+        if request.POST.get("to_user_color"):
             this_conversation.to_user_color = request.POST.get("to_user_color")
         else:
             print("To user color missing")

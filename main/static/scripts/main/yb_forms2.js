@@ -22,7 +22,7 @@ try {
     form_id = form_config.getAttribute('data-form-id');
     form = document.getElementById(form_id);
     message = form_config.getAttribute('data-message');
-    
+
     live_fields = form.querySelectorAll('.yb-live-field');
     form_fields = form.querySelectorAll('.yb-form-field');
     live_text_areas = form.querySelectorAll('.yb-live-textArea');
@@ -46,7 +46,7 @@ function yb_continue_back(back_type, back_location, data=null) {
 
 function yb_submitForm(form_id, success_message="Form Submitted Successfully") {
     
-    let formData = form.serialize();
+    let formData = $(form).serialize();
 
     $.ajax({
         type: "POST",
