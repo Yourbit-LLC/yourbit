@@ -142,9 +142,9 @@ class SettingsProfile(View):
         profile_info.country = request.POST['country']
 
         profile_info.high_school = request.POST['high_school']
-        profile_info.year_graduated_hs = request.POST['year_graduated_hs']
-        profile_info.college = request.POST['college']
-        profile_info.year_graduated_u = request.POST['year_graduated_u']
+        # profile_info.year_graduated_hs = request.POST['year_graduated_hs']
+        # profile_info.college = request.POST['college']
+        # profile_info.year_graduated_u = request.POST['year_graduated_u']
         # profile_info.field_of_study = request.POST['field_of_study']
 
         # profile_info.hometown = request.POST['hometown']
