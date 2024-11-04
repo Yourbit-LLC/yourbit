@@ -126,8 +126,8 @@ class SettingsProfile(View):
     def get(self, request):
         return render(request, "yb_settings/yb_profileInfo.html")
     def post(self, request):
-        profile_info = ProfileInfo.objects.get(user = request.user)
-        profile = Profile.objects.get(user = request.user)
+        profile = Profile.objects.get(username = request.user.active_profile)
+        profile_info = ProfileInfo.objects.get(profile=profile)
 
         profile.display_name = request.POST['display_name']
         profile.bio = request.POST['bio']
