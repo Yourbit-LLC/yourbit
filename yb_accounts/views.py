@@ -12,6 +12,7 @@ from django.core.mail import send_mail
 from django.template.loader import render_to_string, get_template
 from django.utils.html import strip_tags
 from .models import Account as User
+from yb_api.models import UserAPIKey
 from django.http import FileResponse
 from yb_profile.models import Profile
 
@@ -409,3 +410,21 @@ class Onboarding(View):
 class WelcomeTest(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'main/welcome.html')
+
+
+class RequestAPIKey(View):
+    
+    def get(self, request, *args, **kwargs):
+        context = {}
+        return render(request, 'yb_accounts/request_api_key.html', context)
+    
+    def post(self, request, *args, **kwargs):
+        user = request.user
+        if user.is_authenticated:
+            this_profile = Profile.objects.get(username=user.active_profile)
+            this_name = request.POST.get('name')
+            api_key, key = UserAPIKey.objects.create_key(name=this_name, profile=this_profile)
+            user_api_key = UserAPIKey.objects.get_from_key(key)
+            return JsonResponse({'status': 'success', 'message': 'API key created successfully.', 'response': key})
+        else:
+            return JsonResponse({'status': 'failed', 'message': 'User not authenticated.'}, status=401)

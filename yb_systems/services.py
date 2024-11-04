@@ -39,3 +39,4 @@ def validate_turnstile_token(token, user_ip):
         return True
     else:
         return False
+    

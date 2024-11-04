@@ -14,7 +14,7 @@
 
 </div>
 
-<input type="hidden" id="yb-form-config" data-form-id="cluster-settings-form" data-message="Cluster Settings Saved" data-change-state="false">
+<input type="hidden" id="yb-form-config" data-form-id="cluster-settings-form" data-message="Cluster Settings Saved" data-saves="true" data-change-state="false">
 
 <form id="cluster-settings-form" method="POST" action="/settings/templates/cluster/{{cluster.id}}/" class="yb-fillWidth yb-vScroll yb-autoText yb-margin-T10 align-center" style="height: calc(100% - 150px); border-radius: 15px;">
     {% csrf_token %}

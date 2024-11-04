@@ -82,6 +82,7 @@ class Account(AbstractBaseUser):
     is_active = models.BooleanField(default=True) 
     negative_strikes = models.IntegerField(default=0)
     positive_actions = models.IntegerField(default=0)
+    api_key = models.CharField(max_length=150, default=None, null=True)
 
 
     USERNAME_FIELD = 'email'

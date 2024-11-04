@@ -247,8 +247,13 @@ const TWO_WAY_INDEX = {
     },
 
     "video-setup": {
-        "template": "/video/templates/video-setup/"
-    }
+        "template": "/video/templates/video-setup/",
+        "url" : ""
+    },
+    "manage-keys": {
+        "template": "/accounts/templates/manage-keys/",
+        "url" : ""
+    },
 
     
           

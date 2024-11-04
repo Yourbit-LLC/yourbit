@@ -54,8 +54,19 @@ function yb_submitForm(form_id, success_message="Form Submitted Successfully") {
         data: formData,
 
         success: function(data){
-            if (data.success) {
+            if (typeof data === "string") {
+                data = JSON.parse(data);
+            }
+            if (data.status == "success") {
                 showNotification(expandNotification, success_message);
+                if (form.getElementsByClassName("response-container")) {
+                    let response_container = form.getElementsByClassName("response-container")[0];
+                    console.log(data)
+                    console.log(data.response)
+                    response_container.getElementsByClassName("response-text")[0].innerHTML = data.response;
+                    save_button[0].style.display = "none";
+                    response_container.style.display = "block";
+                }
             } else {
                showNotification(expandNotification, "Oops! Something went wrong..."); 
             }
@@ -69,34 +80,35 @@ function yb_backWarning(back_type, back_location, data=null) {
     if (change_state == false) {
         yb_continue_back(back_type, back_location, data);
     } else {
-        
-        yb_displayPrompt(
-            "You have unsaved changes.",
-            "Select an option to continue...",
-            {
-                "continue": {
-                    "name": "continue",
-                    "label": "Don't Save",
-                    "color": "red",
-                    "action": function () {
-                        yb_continue_back(back_type, back_location, data);
-                        yb_closePrompt();
+        if (form_config.getAttribute('data-saves') == "true") {
+            yb_displayPrompt(
+                "You have unsaved changes.",
+                "Select an option to continue...",
+                {
+                    "continue": {
+                        "name": "continue",
+                        "label": "Don't Save",
+                        "color": "red",
+                        "action": function () {
+                            yb_continue_back(back_type, back_location, data);
+                            yb_closePrompt();
+                        },
                     },
-                },
 
-                "save": {
-                    "name": "save",
-                    "label": "Save and Continue",
-                    "color": "green",
-                    "action": function () {
-                        yb_submitForm(form_id, message);
-                        yb_continue_back(back_type, back_location, data);
-                        yb_closePrompt();
-                    }, 
-            
-                },
-            }
-        );
+                    "save": {
+                        "name": "save",
+                        "label": "Save and Continue",
+                        "color": "green",
+                        "action": function () {
+                            yb_submitForm(form_id, message);
+                            yb_continue_back(back_type, back_location, data);
+                            yb_closePrompt();
+                        }, 
+                
+                    },
+                }
+            );
+        }
     }
 
 }

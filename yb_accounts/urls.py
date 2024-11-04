@@ -36,5 +36,6 @@ urlpatterns = [
     path("templates/interact-privacy/", interactive_privacy, name="interact-privacy"),
     path("templates/viewer/terms/", terms_view, name="view-terms"),
     path("templates/viewer/privacy/", privacy_view, name="view-privacy"),
+    path("templates/manage-keys/", RequestAPIKey.as_view(), name="request-api-key"),
     
 ]

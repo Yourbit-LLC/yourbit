@@ -36,121 +36,139 @@ from yb_photo.models import Photo
 
 from django.core.paginator import Paginator
 from main.views import generate_bs_filter_chain, update_bs_filter_chain
-from rest_framework.permissions import IsAuthenticated
-from yb_api.permissions import HasUserAPIKey
-from yb_api.models import UserAPIKey  # Adjust import paths as needed
 
 class BitFeedAPIView(generics.ListAPIView):
     serializer_class = BitSerializer
-    permission_classes = [IsAuthenticated | HasUserAPIKey]  # Allow either session or API key-based auth
-
-    def get_api_user(self):
-        """Retrieve user associated with the API key or fall back to session-based authentication."""
-        # First, try to authenticate using API key
-        api_key = self.request.headers.get("Authorization", "").replace("Api-Key ", "")
-        if api_key:
-            try:
-                user_api_key = UserAPIKey.objects.get_from_key(api_key)
-                return user_api_key.user  # Return the associated user from API key
-            except UserAPIKey.DoesNotExist:
-                pass
-
-        # Fallback to session-based user (CSRF token required for this method)
-        return self.request.user if self.request.user.is_authenticated else None
 
     def get_queryset(self):
-        # Get the authenticated user, either from the API key or session
-        user = self.get_api_user()
-        if not user:
-            return Bit.objects.none()  # Return empty queryset if no user found
+        user_profile = Profile.objects.get(username=self.request.user.active_profile)  # Assuming the user is authenticated
 
-        user_profile = Profile.objects.get(username=user.active_profile)
         print(self.request)
-
-        # Retrieve friends, family, follows
+        # Get friends and followers
         friends = user_profile.friends.all()
         family = user_profile.family.all()
         follows = user_profile.follows.all()
 
-        # URL parameter filtering
-        filter_value = self.request.query_params.get('filter', '').split('-')
-        filter_value.pop(0)  # Remove blank value at start
+        # Add logic to filter based on URL parameters
+        filter_value = self.request.query_params.get('filter', None)
+        filter_value = filter_value.split('-')
+
+        #remove blank value at beginning from filter value
+        filter_value.pop(0)
+        print(filter_value)
+
         sort_value = self.request.query_params.get('sort')
+
         active_space = self.request.query_params.get('space')
 
         bitstream_object = BitStream.objects.get(profile=user_profile)
         hidden_bits = bitstream_object.hidden_bits.all()
 
-        # Profile-specific request
+        print(active_space)
+
+        print(sort_value)
+
+        #Check if profile is in request query params
         if 'profile' in self.request.query_params:
+            #If so user wants bits for a specific profile
             profile_username = self.request.query_params.get('profile')
             profile = Profile.objects.get(username=profile_username)
-
-            # Check relationships with user
-            if profile.is_friends_with(user_profile) or profile.is_family_with(user_profile) or user == profile.user:
-                queryset = Bit.objects.filter(profile=profile, type=active_space).order_by(sort_value).exclude(id__in=hidden_bits) if active_space != "global" else Bit.objects.filter(profile=profile).order_by(sort_value).exclude(id__in=hidden_bits)
+            
+            if profile.is_friends_with(user_profile) or profile.is_family_with(user_profile) or self.request.user == profile.user:
+                if active_space != "global":
+                    queryset = Bit.objects.filter(profile=profile, type = active_space).order_by(sort_value).exclude(id__in=hidden_bits)
+                
+                else:
+                    queryset = Bit.objects.filter(profile=profile).order_by(sort_value).exclude(id__in=hidden_bits)
             else:
                 queryset = Bit.objects.filter(profile=profile, is_public=True).order_by(sort_value).exclude(id__in=hidden_bits)
-        else:
-            # Construct base query with filters
-            base_query = Q()
-            if filter_value != ['']:
-                update_bs_filter_chain(user_profile, filter_value)
+        else:            
 
-            # Apply filters for friends, follows, communities, public, and self posts
+            base_query = Q()
+            if filter_value != ['']:    
+                update_bs_filter_chain(user_profile, filter_value)
+            
+            # Check for friends (symmetrical relationship to profiles)
             if 'fr' in filter_value:
+                friends = user_profile.friends.all()  # Assuming you have a many-to-many relationship for friends
                 base_query |= Q(profile__in=friends)
+            
+            # Check for following (symmetrical relationship to profiles)
             if 'fo' in filter_value:
-                base_query |= Q(profile__in=follows)
+                following = user_profile.follows.all()  # Assuming a many-to-many relationship for following
+                base_query |= Q(profile__in=following)
+            
+            # Check for communities (followed profiles where is_orbit is True)
             if 'co' in filter_value:
-                communities = Profile.objects.filter(following__in=follows, is_orbit=True)
+                following = user_profile.follows.all()
+                communities = Profile.objects.filter(following__in=following, is_orbit=True)
                 base_query |= Q(profile__in=communities)
+            
+            # Check for public bits (is_public field set to True)
             if 'p' in filter_value:
                 base_query |= Q(is_public=True)
+            
+            # Check for the user's own posts (me)
             if 'me' in filter_value:
                 base_query |= Q(profile=user_profile)
-
-            # Filter by space type if not global
+    
+            # Check if the active space is not global
             if active_space != "global":
-                base_query &= Q(type=active_space)
+                # Add the type filter to the base query
+                base_query &= models.Q(type=active_space)
 
-            # Query with sorting and filtering
-            exclude_user_profile = Q(profile=user_profile) if 'me' not in filter_value else Q()
-            if sort_value == "-like_count":
-                queryset = Bit.objects.filter(base_query).annotate(like_count=Count('likes')).distinct().order_by(sort_value).exclude(id__in=hidden_bits).exclude(exclude_user_profile)
+            # Now apply the base_query to the queryset and finalize with distinct and order_by
+                # Now get the bits/posts that match the constructed query
+
+            if 'me' not in filter_value:
+                if sort_value == "-like_count":
+                    queryset = Bit.objects.filter(base_query).annotate(like_count=Count('likes')).distinct().order_by(sort_value).exclude(id__in=hidden_bits).exclude(profile=user_profile)  
+                else:
+                    queryset = Bit.objects.filter(base_query).distinct().order_by(sort_value).exclude(id__in=hidden_bits).exclude(profile=user_profile)
             else:
-                queryset = Bit.objects.filter(base_query).distinct().order_by(sort_value).exclude(id__in=hidden_bits).exclude(exclude_user_profile)
+                if sort_value == "-like_count":
+                    queryset = Bit.objects.filter(base_query).annotate(like_count=Count('likes')).distinct().order_by(sort_value).exclude(id__in=hidden_bits)    
+                else:
+                    queryset = Bit.objects.filter(base_query).distinct().order_by(sort_value).exclude(id__in=hidden_bits)
 
         print(queryset)
 
-        # Paginate
-        paginator = Paginator(queryset, 4)
-        page = self.request.query_params.get('page')
-        try:
-            queryset = paginator.page(page)
-        except:
-            queryset = None
+        p = Paginator(queryset, 4)
 
-        return queryset
+        page = self.request.query_params.get('page')
+
+        print("\n\n" + page + "\n\n")
+        if page:
+
+            try:
+                queryset = p.page(page)
+
+            except:
+                queryset = None
+
+
+        # You may want to handle exceptions for invalid input or missing parameters
+
+        return queryset  # Modify this to apply your filtering and sorting logic
 
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
-        user = self.get_api_user()
-        if not user:
-            return Response({"detail": "Unauthorized"}, status=status.HTTP_401_UNAUTHORIZED)
+        this_profile = Profile.objects.get(username=self.request.user.active_profile)
+        user_tz = this_profile.current_timezone
 
-        user_profile = Profile.objects.get(username=user.active_profile)
-        user_tz = user_profile.current_timezone
+        print("user tz" + user_tz)
         page = self.paginate_queryset(queryset)
-
         if page is not None:
-            if len(queryset) < 2:
+            print(queryset)
+            if len(queryset < 2):
                 return Response({"detail": "Invalid page number"}, status=status.HTTP_400_BAD_REQUEST)
+            
             else:
                 serializer = self.get_serializer(page, many=True)
                 return self.get_paginated_response(serializer.data)
 
-        serializer = self.get_serializer(queryset, many=True, context={'user_tz': user_tz, 'request': request})
+    
+        serializer = self.get_serializer(queryset, many=True, context={'user_tz': user_tz,'request': request})
         return Response(serializer.data)
 
 class BitViewSet(viewsets.ModelViewSet):

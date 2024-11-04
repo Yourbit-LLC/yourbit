@@ -1358,6 +1358,19 @@ function yb_viewBit(bit_id, comment_id = null) {
     yb_navigateTo("content-container", "bit-focus", bit_id);
 }
 
+function copyToClipboard(element_id) {
+    let this_field = document.getElementById(element_id);
+
+    // Copy the text from the field to the clipboard
+    navigator.clipboard.writeText(this_field.innerHTML).then(() => {
+        // Provide feedback that the copy was successful
+        showNotification(expandNotification, "Text copied to clipboard");   
+    }).catch(err => {
+        console.error("Failed to copy text: ", err);
+        showNotification(expandNotification, "Failed to copy text to clipboard");
+    });
+}
+
 function yb_startRepost(bit_id) {
     yb_navigateTo("2Way", "edit-bit", bit_id);
 
