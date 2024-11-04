@@ -50,8 +50,7 @@ function yb_submitForm(form_id, success_message="Form Submitted Successfully") {
 
     $.ajax({
         type: "POST",
-        url: form.attr('action'),
-        type:"POST",
+        url: $(form).attr('action'),
         data: formData,
 
         success: function(data){
