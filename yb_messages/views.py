@@ -147,8 +147,8 @@ class ConversationSettings(View):
         else:
             print("To user color missing")
 
-        this_conversation.is_joinable = True if request.POST["is-joinable"] == "on" else False
-        this_conversation.members_can_invite = True if request.POST["members-can-invite"] == "on" else False
+        # this_conversation.is_joinable = True if request.POST["is-joinable"] == "on" else False
+        # this_conversation.members_can_invite = True if request.POST["members-can-invite"] == "on" else False
         this_conversation.save()
         
         return render(request, "yb_messages/conversation_settings.html", context={"conversation": this_conversation})
