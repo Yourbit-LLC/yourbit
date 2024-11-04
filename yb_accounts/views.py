@@ -12,7 +12,7 @@ from django.core.mail import send_mail
 from django.template.loader import render_to_string, get_template
 from django.utils.html import strip_tags
 from .models import Account as User
-from yb_api.models import UserAPIKey
+# from yb_api.models import UserAPIKey
 from django.http import FileResponse
 from yb_profile.models import Profile
 
