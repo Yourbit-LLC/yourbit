@@ -137,18 +137,18 @@ class ConversationSettings(View):
         else:
             this_conversation.is_name = False
 
-        if request.POST["from_user_color"]:
-            this_conversation.from_user_color = request.POST["from_user_color"]
+        if request.POST["from-user-color"]:
+            this_conversation.from_user_color = request.POST["from-user-color"]
         else:
             print("From user color missing")
 
-        if request.POST["to_user_color"]:
-            this_conversation.to_user_color = request.POST["to_user_color"]
+        if request.POST["to-user-color"]:
+            this_conversation.to_user_color = request.POST["to-user-color"]
         else:
             print("To user color missing")
 
-        this_conversation.is_joinable = True if request.POST["is_joinable"] == "on" else False
-        this_conversation.members_can_invite = True if request.POST["members_can_invite"] == "on" else False
+        this_conversation.is_joinable = True if request.POST["is-joinable"] == "on" else False
+        this_conversation.members_can_invite = True if request.POST["members-can-invite"] == "on" else False
         this_conversation.save()
         
         return render(request, "yb_messages/conversation_settings.html", context={"conversation": this_conversation})
