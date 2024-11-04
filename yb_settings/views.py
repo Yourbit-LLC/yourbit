@@ -129,6 +129,7 @@ class SettingsProfile(View):
         profile = Profile.objects.get(username = request.user.active_profile)
         profile_info = ProfileInfo.objects.get(profile=profile)
         print(request.POST)
+        print(request.POST["bio"])
         profile.bio = request.POST['bio']
         profile.motto = request.POST['motto']
         
@@ -161,7 +162,7 @@ class SettingsProfile(View):
 
         profile_info.save()
 
-        return JsonResponse({"success":True, "message":"Profile updated"})
+        return JsonResponse({"status":"success", "message":"Profile updated"})
 
 def set_all_false(request):
     if request.user.is_admin:
