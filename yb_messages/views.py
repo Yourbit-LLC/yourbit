@@ -130,7 +130,6 @@ class ConversationSettings(View):
 
     def post(self, request, id, *args, **kwargs):
         this_conversation = Conversation.objects.get(id = id)
-        request.POST = json.loads(request.POST)
         this_conversation.name = request.POST.get("name")
         if this_conversation.name != "Untitled Conversation":
             this_conversation.is_name = True
@@ -138,7 +137,7 @@ class ConversationSettings(View):
             this_conversation.is_name = False
 
         if request.POST.get("from_user_color"):
-            this_conversation.from_user_color = request.POST.get("from_user_color")
+            this_conversation.from_user_color = json.loads(request.POST.get("from_user_color"))
         else:
             print("From user color missing")
 
