@@ -132,6 +132,8 @@ class SettingsProfile(View):
         print(request.POST["bio"])
         profile.bio = request.POST['bio']
         profile.motto = request.POST['motto']
+
+        profile.save()
         
         profile_info.email = request.POST['email']
         profile_info.phone_number = request.POST['phone_number']
