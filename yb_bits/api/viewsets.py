@@ -51,7 +51,7 @@ class BitFeedAPIView(generics.ListAPIView):
         if api_key:
             try:
                 user_api_key = UserAPIKey.objects.get_from_key(api_key)
-                return user_api_key.user  # Return the associated user from API key
+                return user_api_key.profile.user  # Return the associated user from API key
             except UserAPIKey.DoesNotExist:
                 pass
 
