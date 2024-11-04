@@ -3,8 +3,8 @@ from django.conf import settings
 from rest_framework_api_key.models import APIKey
 from yb_accounts.models import Account as User
 
-class UserAPIKey(APIKey):
-    profile = models.ForeignKey('yb_profile.Profile', on_delete=models.CASCADE, related_name="api_keys", null=True, blank=True)
+# class UserAPIKey(APIKey):
+#     profile = models.ForeignKey('yb_profile.Profile', on_delete=models.CASCADE, related_name="api_keys", null=True, blank=True)
 
 class DeveloperPublicKey(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='developer_keys')
