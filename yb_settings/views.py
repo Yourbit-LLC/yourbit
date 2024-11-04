@@ -141,19 +141,15 @@ class SettingsProfile(View):
         profile_info.state = request.POST['state']
         profile_info.country = request.POST['country']
 
-        profile_info.industry = request.POST['industry']
-
-        profile_info.currently_attending_hs = request.POST['currently_attending_hs']
         profile_info.high_school = request.POST['high_school']
         profile_info.year_graduated_hs = request.POST['year_graduated_hs']
-        profile_info.currently_attending_u = request.POST['currently_attending_u']
         profile_info.college = request.POST['college']
         profile_info.year_graduated_u = request.POST['year_graduated_u']
         profile_info.field_of_study = request.POST['field_of_study']
 
         profile_info.hometown = request.POST['hometown']
         profile_info.country = request.POST['country']
-        profile_info.country_of_origin = request.POST['country_of_origin']
+        # profile_info.country_of_origin = request.POST['country_of_origin']
 
         profile_info.religion = request.POST['religion']
         profile_info.place_of_worship = request.POST['place_of_worship']
