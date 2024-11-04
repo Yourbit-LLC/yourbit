@@ -128,7 +128,7 @@ class SettingsProfile(View):
     def post(self, request):
         profile = Profile.objects.get(username = request.user.active_profile)
         profile_info = ProfileInfo.objects.get(profile=profile)
-
+        print(request.POST)
         profile.bio = request.POST['bio']
         profile.motto = request.POST['motto']
         
