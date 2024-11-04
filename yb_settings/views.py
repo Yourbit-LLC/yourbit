@@ -147,8 +147,7 @@ class SettingsProfile(View):
         profile_info.year_graduated_u = request.POST['year_graduated_u']
         # profile_info.field_of_study = request.POST['field_of_study']
 
-        profile_info.hometown = request.POST['hometown']
-        profile_info.country = request.POST['country']
+        # profile_info.hometown = request.POST['hometown']
         # profile_info.country_of_origin = request.POST['country_of_origin']
 
         # profile_info.religion = request.POST['religion']
