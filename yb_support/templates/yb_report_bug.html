@@ -39,6 +39,7 @@
     </form>
     <script class="page-script">
         document.getElementById('create-bug-report-form').addEventListener('submit', function(e) {
+            e.preventDefault();
             $.ajax({
                 type: 'POST',
                 url: '/support/report-bug/',
