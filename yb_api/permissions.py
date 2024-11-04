@@ -13,7 +13,7 @@ class HasUserAPIKey(BasePermission):
         try:
             # Validate the API key and get the associated user
             user_api_key = UserAPIKey.objects.get_from_key(api_key)
-            request.user = user_api_key.user  # Associate the user with the request
+            request.user = user_api_key.profile.user  # Associate the user with the request
             return True
         except UserAPIKey.DoesNotExist:
             raise AuthenticationFailed("Invalid API key")
