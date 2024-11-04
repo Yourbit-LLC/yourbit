@@ -131,24 +131,24 @@ class ConversationSettings(View):
     def post(self, request, id, *args, **kwargs):
         print(request.POST)
         this_conversation = Conversation.objects.get(id = id)
-        this_conversation.name = request.POST.get("name")
+        this_conversation.name = request.POST["name"]
         if this_conversation.name != "Untitled Conversation":
             this_conversation.is_name = True
         else:
             this_conversation.is_name = False
 
-        if request.POST.get("from_user_color"):
-            this_conversation.from_user_color = request.POST.get("from_user_color")
+        if request.POST["from_user_color"]:
+            this_conversation.from_user_color = request.POST["from_user_color"]
         else:
             print("From user color missing")
 
-        if request.POST.get("to_user_color"):
-            this_conversation.to_user_color = request.POST.get("to_user_color")
+        if request.POST["to_user_color"]:
+            this_conversation.to_user_color = request.POST["to_user_color"]
         else:
             print("To user color missing")
 
-        this_conversation.is_joinable = True if request.POST.get("is_joinable") == "on" else False
-        this_conversation.members_can_invite = True if request.POST.get("members_can_invite") == "on" else False
+        this_conversation.is_joinable = True if request.POST["is_joinable"] == "on" else False
+        this_conversation.members_can_invite = True if request.POST["members_can_invite"] == "on" else False
         this_conversation.save()
         
         return render(request, "yb_messages/conversation_settings.html", context={"conversation": this_conversation})
