@@ -129,8 +129,8 @@ class SettingsProfile(View):
         profile = Profile.objects.get(username = request.user.active_profile)
         profile_info = ProfileInfo.objects.get(profile=profile)
 
-        profile.bio = request.POST.get('bio')
-        profile.motto = request.POST.get('motto')
+        profile.bio = request.POST['bio']
+        profile.motto = request.POST['motto']
         
         profile_info.email = request.POST['email']
         profile_info.phone_number = request.POST['phone_number']
