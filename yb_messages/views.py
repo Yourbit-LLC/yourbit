@@ -8,6 +8,7 @@ from main.views import initialize_session
 from rest_framework.decorators import api_view
 from django.http import JsonResponse
 from django.core.paginator import Paginator
+import json
 
 from yb_profile.models import Profile
 
@@ -129,6 +130,7 @@ class ConversationSettings(View):
 
     def post(self, request, id, *args, **kwargs):
         this_conversation = Conversation.objects.get(id = id)
+        request.POST = json.loads(request.POST)
         this_conversation.name = request.POST.get("name")
         if this_conversation.name != "Untitled Conversation":
             this_conversation.is_name = True
