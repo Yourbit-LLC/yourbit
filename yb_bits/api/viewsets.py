@@ -38,7 +38,7 @@ from django.core.paginator import Paginator
 from main.views import generate_bs_filter_chain, update_bs_filter_chain
 from rest_framework.permissions import IsAuthenticated
 from yb_api.permissions import HasUserAPIKey
-# from yb_api.models import UserAPIKey  # Adjust import paths as needed
+from yb_api.models import UserAPIKey  # Adjust import paths as needed
 
 class BitFeedAPIView(generics.ListAPIView):
     serializer_class = BitSerializer

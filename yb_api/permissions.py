@@ -1,5 +1,5 @@
 from rest_framework.permissions import BasePermission
-# from yb_api.models import UserAPIKey
+from yb_api.models import UserAPIKey
 from rest_framework.exceptions import AuthenticationFailed
 
 class HasUserAPIKey(BasePermission):
