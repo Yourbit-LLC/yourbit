@@ -161,6 +161,8 @@ class SettingsProfile(View):
 
         profile_info.save()
 
+        return JsonResponse({"success":True, "message":"Profile updated"})
+
 def set_all_false(request):
     if request.user.is_admin:
         privacy_settings = PrivacySettings.objects.all()
