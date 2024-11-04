@@ -129,6 +129,7 @@ class ConversationSettings(View):
         return render(request, "yb_messages/conversation_settings.html", context={"conversation": this_conversation})
 
     def post(self, request, id, *args, **kwargs):
+        print(request.POST)
         this_conversation = Conversation.objects.get(id = id)
         this_conversation.name = request.POST.get("name")
         if this_conversation.name != "Untitled Conversation":
@@ -137,7 +138,7 @@ class ConversationSettings(View):
             this_conversation.is_name = False
 
         if request.POST.get("from_user_color"):
-            this_conversation.from_user_color = json.loads(request.POST.get("from_user_color"))
+            this_conversation.from_user_color = request.POST.get("from_user_color")
         else:
             print("From user color missing")
 
