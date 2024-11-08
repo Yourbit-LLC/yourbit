@@ -70,7 +70,7 @@ class CustomizeMain(View):
                     'space': init_params['current_space'],
                     'filter': init_params['filter_chain'],
                     'sort': init_params['sort_by'],   
-                    'start_function': 'customize_url();',    
+                    'start_function': 'yb_navigateTo("content-container", "customize-main");',    
                 },
 
             )
