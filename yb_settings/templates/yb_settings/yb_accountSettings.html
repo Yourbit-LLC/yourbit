@@ -14,7 +14,7 @@
 
 </div>
 
-<input type="hidden" id="yb-form-config" data-form-id="account-settings-form" data-message="Conversation Settings Saved" data-change-state="false" data-saves="true">
+<input type="hidden" id="yb-form-config" data-form-id="account-settings-form" data-message="Account Settings Updated" data-change-state="false" data-saves="true">
 
 <form class="yb-fillWidth yb-vScroll yb-pText yb-margin-T10 align-center" id="account-settings-form" method="POST" action="{% url 'settings_account' %}" style="height: calc(100% - 200px); border-radius: 15px; padding-bottom: 150px;">
     {% csrf_token %}
@@ -71,7 +71,7 @@
                 <input name="email" id='field-email' value="{{user.email}}" class="yb-input-transparent yb-form-field right yb-autoText yb-pText account-field" style="grid-column: 2;">
             </div>
             
-            <p id="email-error" class="yb-field-error underyb-bg-autoGray" style="color:red; font-size: 12px;"></p>
+            <p id="email-error" class="yb-field-error under yb-bg-autoGray" style="color:red; font-size: 12px;"></p>
         </div>
         
         <!--Edit Phone Number-->
@@ -107,8 +107,8 @@
         <button type="button" style="width:150px;" class="wide-button" onclick="yb_navigateTo('2way', 'change-password')">Change Password</button>
         <br>
         <br>
-        <input id="checkbox-password-reminder" style="background-color: rgba(255,255,255, 0.5); color: white;" type="checkbox">
-        <label for="checkbox-password-reminder"><small>Send me reminders to update my password</small></label>
+        {% comment %} <input id="checkbox-password-reminder" style="background-color: rgba(255,255,255, 0.5); color: white;" type="checkbox">
+        <label for="checkbox-password-reminder"><small>Send me reminders to update my password</small></label> {% endcomment %}
     </div>
     <br>
     <div class="setting-sub-container yb-autoText yb-pText">
@@ -128,7 +128,7 @@
         </p> {% endcomment %}
         <br>
         <br>
-        <button type="button" style="width:150px; background-color:red; color: white; box-shadow: 0px 0px 10px red;" class="yb-button-wide"><b>Delete Account<b></button>
+        <button type="button" style="width:150px; background-color:red; color: white; box-shadow: 0px 0px 10px red;" class="yb-button-wide squared"><b>Delete Account<b></button>
     </div>
 </form>
 
