@@ -17,6 +17,27 @@ class GetNotifications(View):
     def post(self, request):
         pass
 
+def click_notification(request, notification_id):
+    from yb_profile.models import Profile
+    from .models import NotificationCore
+    this_profile = Profile.objects.get(username=request.user.active_profile)
+    notification_core = NotificationCore.objects.get(profile=this_profile)
+    notification = notification_core.unseen_notifications.get(id=notification_id)
+
+    if notification.type == 3:
+        this_bit = notification.bit
+
+        context = {
+            "bit": this_bit,
+            "comment": notification.comment,
+
+        }
+        return render(request, "yb_bits/bit_focus.html", context)
+
+    notification_core.unseen_notifications.remove(notification)
+    notification_core.seen_notifications.add(notification)
+
+    return HttpResponse("Success")
 
 def notifications_html(request):
     from yb_profile.models import Profile

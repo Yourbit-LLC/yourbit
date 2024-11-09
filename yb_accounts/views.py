@@ -428,3 +428,20 @@ class RequestAPIKey(View):
             return JsonResponse({'status': 'success', 'message': 'API key created successfully.', 'response': key})
         else:
             return JsonResponse({'status': 'failed', 'message': 'User not authenticated.'}, status=401)
+        
+def validate_field(request, field, *args, **kwargs):
+    if field == "username":
+        username = request.POST.get('field_value')
+        try:
+            user = User.objects.get(username=username)
+            return JsonResponse({'status': 'failed', 'message': 'Profile with this Username already exists.'})
+        except User.DoesNotExist:
+            return JsonResponse({'status': 'success', 'message': 'Username available.'})
+        
+    elif field == "email":
+        email = request.POST.get('field_value')
+        try:
+            user = User.objects.get(email=email)
+            return JsonResponse({'status': 'failed', 'message': 'Profile with this Email already exists.'})
+        except User.DoesNotExist:
+            return JsonResponse({'status': 'success', 'message': 'Email available.'})

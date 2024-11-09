@@ -16,6 +16,12 @@ try {
     var change_state = false    
     var save_button = form.getElementsByClassName('yb-form-save');
     var form_tabs = form.querySelectorAll('.yb-form-tab');
+    var validated_fields = [
+        "email",
+        "username",
+        "password",
+        "password2",
+    ]
 } catch(e) {
     console.log(e);
     form_config = document.getElementById('yb-form-config');
@@ -30,6 +36,12 @@ try {
     change_state = false
     save_button = form.getElementsByClassName('yb-form-save');
     form_tabs = form.querySelectorAll('.yb-form-tab');
+    validated_fields = [
+        "email",
+        "username",
+        "password",
+        "password2",
+    ]
 }
 
 function yb_continue_back(back_type, back_location, data=null) {
@@ -47,7 +59,7 @@ function yb_continue_back(back_type, back_location, data=null) {
 function yb_submitForm(form_id, success_message="Form Submitted Successfully") {
     
     let formData = $(form).serialize();
-
+    
     $.ajax({
         type: "POST",
         url: $(form).attr('action'),
@@ -113,6 +125,46 @@ function yb_backWarning(back_type, back_location, data=null) {
 
 }
 
+function yb_validateField(field) {
+    let field_name = field.name;
+    let field_value = field.value;
+    let url = "/accounts/validate_field/" + field_name + "/";
+    let field_valid = false;
+    let csrf_token = getCSRF();
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: {
+            "field_value": field_value,
+        },
+
+        headers: {
+            "X-CSRFToken": csrf_token,
+        },
+        success: function(data) {
+            if (data.status == "success") {
+                
+                save_button[0].style.backgroundColor = "green";
+                save_button[0].style.color = "white";
+                save_button[0].style.disabled = false;
+            } else {
+                field_valid = false;
+                document.getElementById(field_name + "-error").innerHTML = data.message;
+                document.getElementById(field_name + "-error").style.display = "block";
+                save_button[0].style.backgroundColor = "gray";
+                save_button[0].style.color = "white";
+                save_button[0].style.disabled = true;
+            }
+        },
+        error: function(data) {
+            field_valid = false;
+            document.getElementById(field_name + "-error").innerHTML = data.message;
+        }
+
+    });
+    
+}
+
 $(document).ready(function () {
 
     console.log('loaded');
@@ -135,8 +187,14 @@ $(document).ready(function () {
         form_fields[i].addEventListener('input', function () {
             change_state = true;
             console.log('changed');
-            save_button[0].style.backgroundColor = "green";
-            save_button[0].style.color = "white";
+            if (validated_fields.includes(this.name)) {
+                yb_validateField(this);
+            }
+            else{
+                save_button[0].style.backgroundColor = "green";
+                save_button[0].style.color = "white";
+
+            }
             
         });
     }

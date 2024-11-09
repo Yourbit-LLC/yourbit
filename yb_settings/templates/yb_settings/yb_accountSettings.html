@@ -14,6 +14,8 @@
 
 </div>
 
+<input type="hidden" id="yb-form-config" data-form-id="account-settings-form" data-message="Conversation Settings Saved" data-change-state="false" data-saves="true">
+
 <form class="yb-fillWidth yb-vScroll yb-pText yb-margin-T10 align-center" id="account-settings-form" method="POST" action="{% url 'settings_account' %}" style="height: calc(100% - 200px); border-radius: 15px; padding-bottom: 150px;">
     {% csrf_token %}
     <div class = "setting-sub-container">
@@ -55,10 +57,10 @@
         <div id="field-container-username" class="yb-field-container">
             <div id="display-username" class="yb-field-split middle yb-bg-autoGray yb-autoText  yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Username: </p>
-                <input name="username" id='field-username' value="{{user.username}}" class="yb-input-transparent right yb-autoText yb-pText account-field" style="grid-column: 2;">
+                <input name="username" id='field-username' value="{{user.username}}" class="yb-input-transparent yb-form-field right yb-autoText yb-pText account-field" style="grid-column: 2;">
             </div>
             <input id='field-username' value="{{user.username}}" class="yb-input-singleLine yb-panel squared yb-pText" style="display:none;">
-            <p class="yb-field-error under"></p>
+            <p id="username-error" class="yb-field-error under yb-bg-autoGray" style="color:red; font-size: 12px;"></p>
         </div>
 
         <!--Edit Email Address-->
@@ -66,10 +68,10 @@
         <div id="field-container-email-address" class="yb-field-container">
             <div id="display-email" class="yb-field-split middle yb-bg-autoGray yb-autoText yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Email: </p>
-                <input name="email" id='field-email' value="{{user.email}}" class="yb-input-transparent right yb-autoText yb-pText account-field" style="grid-column: 2;">
+                <input name="email" id='field-email' value="{{user.email}}" class="yb-input-transparent yb-form-field right yb-autoText yb-pText account-field" style="grid-column: 2;">
             </div>
-            <input id='field-email-address' value="{{user.email}}" class="yb-input-singleLine yb-panel yb-pText" style="display:none;">
-            <p class="yb-field-error under"></p>
+            
+            <p id="email-error" class="yb-field-error underyb-bg-autoGray" style="color:red; font-size: 12px;"></p>
         </div>
         
         <!--Edit Phone Number-->
@@ -79,6 +81,7 @@
             <input id='field-phone-number' value="{{user.phone_number}}" class="yb-input-singleLine yb-panel squared yb-pText" style="display: none;">
             <p class="yb-field-error under"></p>
         </div>    
+        <button class="yb-button-wide bg-autoGray font-gray yb-button-halfWidth squared yb-form-save" type="button" style="margin-top: 20px;" disabled>Save Changes</button>
     </div>
     <br>
     <div class = "setting-sub-container yb-autoText yb-pText">
@@ -134,7 +137,8 @@
 </div>
 
 {% comment %} <script class="page-script" type="text/javascript" src="{% static 'scripts/yb-account-settings.js' %}"></script> {% endcomment %}
-<script class = "page-script" type="text/javascript" src="{% static 'scripts/yb_settings/yb_accountSettings.js' %}"></script>
+{% comment %} <script class = "page-script" type="text/javascript" src="{% static 'scripts/yb_settings/yb_accountSettings.js' %}"></script> {% endcomment %}
+<script class = "page-script" type="text/javascript" src="{% static 'scripts/main/yb_forms3.js' %}"></script>
 <script>
     $(document).ready(function(){
         tw_hideLoading();
