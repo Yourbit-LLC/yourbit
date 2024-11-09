@@ -147,6 +147,8 @@ function yb_validateField(field) {
                 save_button[0].style.backgroundColor = "green";
                 save_button[0].style.color = "white";
                 save_button[0].style.disabled = false;
+                document.getElementById(field_name + "-error").style.display = "none";
+
             } else {
                 field_valid = false;
                 document.getElementById(field_name + "-error").innerHTML = data.message;
