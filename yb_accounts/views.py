@@ -377,7 +377,7 @@ class Onboarding(View):
         from yb_settings.forms import ShortPrivacyForm
         from yb_profile.models import Profile
         user = request.user
-        user_profile = Profile.objects.get(user=user)
+        user_profile = Profile.objects.get(username=user.active_profile)
         
 
         form = ShortPrivacyForm(request.POST)

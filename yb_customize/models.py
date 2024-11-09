@@ -203,6 +203,16 @@ class CustomBit(CustomBase):
         return f"A Custom UI by: {self.theme.author.display_name}: Theme - {self.theme.id}"
     
 
+class CustomConversation(CustomBase):
+    image = models.ForeignKey('yb_photo.Photo', related_name='custom_conversation', blank=True, on_delete=models.CASCADE, null=True)
+    wallpaper = models.ForeignKey('yb_photo.Wallpaper', related_name='custom_conversation', on_delete = models.CASCADE, blank=True, null=True)
+    conversation = models.ForeignKey('yb_messages.Conversation', related_name='custom_conversation', blank=True, on_delete=models.CASCADE, null=True)
+    profile = models.ForeignKey('yb_profile.Profile', related_name='custom_conversation', blank=True, on_delete=models.CASCADE, null=True)
+    to_user_color = models.CharField(max_length=50, default="#ffffff")
+    from_user_color = models.CharField(max_length=50, default="#ffffff")
+    sync_custom = models.BooleanField(default=False)
+
+
 class Sticker(models.Model):
     image = models.CharField(max_length=500, default=None)
     x_pos = models.FloatField(default=0)
