@@ -133,23 +133,23 @@ class MessageViewSet(viewsets.ModelViewSet):
         this_id = self.request.data.get("id")  # Use parentheses () instead of square brackets []
         conversation = Conversation.objects.get(id=this_id)
         body = self.request.data.get("body")  # Use parentheses () instead of square brackets []
-
+        from_user = Profile.objects.get(username=self.request.user.active_profile)
         print(self.request.data.get("is_images"))
 
         if self.request.data.get("is_images"):
             from yb_photo.utility import process_image
             processed_image = process_image(self.request, self.request.FILES["image"], self.request.FILES["image"], False)
             processed_image.save()
-            serializer.save(from_user=self.request.user, body=body, conversation=conversation, images=[processed_image])
+            serializer.save(from_user=from_user, body=body, conversation=conversation, images=[processed_image])
 
         elif self.request.data.get("is_videos"):
             from yb_video.utility import save_video
             video = save_video(self.request, self.request.FILES["video"])
             video.save()
-            serializer.save(from_user=self.request.user, body=body, conversation=conversation, videos=[video])
+            serializer.save(from_user=from_user, body=body, conversation=conversation, videos=[video])
 
         else:
-            serializer.save(from_user=self.request.user, body=body, conversation=conversation)
+            serializer.save(from_user=from_user, body=body, conversation=conversation)
         
 
         new_message = Message.objects.get(id=serializer.data['id'])
