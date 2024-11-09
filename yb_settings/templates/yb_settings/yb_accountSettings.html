@@ -24,7 +24,7 @@
         <div id = "field-container-first-name" class="yb-field-container">
             <div id="display-first-name" class="yb-field-split top squared yb-bg-autoGray yb-autoText yb-pText yb-margin-T10">
                 <p class="field-cover-label align-left" style="grid-column: 1;">First Name: </p>
-                <input name="first_name" id='field-first-name' value="{{user.first_name}}" class="yb-input-transparent right yb-autoText yb-pText account-field" style="grid-column: 2;">
+                <input name="first_name" id='field-first-name' value="{{user.first_name}}" class="yb-input-transparent yb-form-field right yb-autoText yb-pText account-field" style="grid-column: 2;">
             </div>
             
         
@@ -33,22 +33,22 @@
         
         <div id = "field-container-last-name" class="yb-field-container">
             <div id="display-last-name" class="yb-field-split middle yb-bg-autoGray yb-autoText yb-pText"><p class="field-cover-label align-left" style="grid-column: 1;">Last Name: </p><input name="last_name" id='field-last-name' value="{{user.last_name}}" class="yb-input-transparent right yb-autoText yb-pText account-field" style="grid-column: 2;"></div>
-            <input id='field-last-name' value="{{user.last_name}}" class="yb-input-singleLine yb-panel squared yb-pText" style="display:none;">
+            <input id='field-last-name' value="{{user.last_name}}" class="yb-input-singleLine yb-form-field yb-panel squared yb-pText" style="display:none;">
         </div>
         
-        <div id="display-name" class="yb-field-split middle squared yb-bg-autoGray yb-autoText yb-pText">
+        <div id="display-name" style="position:relative;" class="yb-field-split middle squared yb-bg-autoGray yb-autoText yb-pText">
             <p class="field-cover-label align-left yb-autoText yb-pText" style="grid-column: 1; font-size: auto;">Show Real Name: </p>        
             <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                 <label class="yb-switch-round" id="display-name" >
                     <input type="checkbox" class="checkbox notification-check" name="real_name_visibility" id="yb-check-default-public" {% if real_name_visibility %} checked {% endif %}>
-                    <span class="slider round"  style="transform: translateY(-70%);"></span>
+                    <span class="slider round"  style=""></span>
                 </label>
             </div>
         </div>
         
         <div id = "field-container-display-name" class="yb-field-container" style="{% if real_name_visibility %}opacity: 0.5;{% endif %}">
             <div id="display-name" class="yb-field-split middle yb-bg-autoGray yb-pText">
-                <p class="field-cover-label align-left yb-autoText yb-pText" style="grid-column: 1;">Display Name: </p><input name="display_name" id='field-last-name' value="{{active_profile.display_name}}" class="yb-input-transparent right yb-autoText yb-pText account-field" style="grid-column: 2;"></div>
+                <p class="field-cover-label align-left yb-autoText yb-pText" style="grid-column: 1;">Display Name: </p><input name="display_name" id='field-last-name' value="{{active_profile.display_name}}" class="yb-input-transparent yb-form-field right yb-autoText yb-pText account-field" style="grid-column: 2;"></div>
             <input id='field-last-name' value="{{active_profile.display_name}}" class="yb-input-singleLine yb-panel squared yb-pText" style="display:none;">
         </div>
 
@@ -77,7 +77,7 @@
         <!--Edit Phone Number-->
         
         <div id = "field-container-phone-number" class="yb-field-container">
-            <div id="display-phone-number" class="yb-field-split bottom yb-bg-autoGray yb-autoText yb-pText"><p class="field-cover-label align-left" style="grid-column: 1;">Phone: </p><input name="phone_number" type="tel" id='field-phone' value="{{user.phone_number}}" class="yb-input-transparent right yb-autoText yb-pText account-field" style="grid-column: 2;"></div>
+            <div id="display-phone-number" class="yb-field-split bottom yb-bg-autoGray yb-autoText yb-pText"><p class="field-cover-label align-left" style="grid-column: 1;">Phone: </p><input name="phone_number" type="tel" id='field-phone' value="{{user.phone_number}}" class="yb-input-transparent yb-form-field right yb-autoText yb-pText account-field" style="grid-column: 2;"></div>
             <input id='field-phone-number' value="{{user.phone_number}}" class="yb-input-singleLine yb-panel squared yb-pText" style="display: none;">
             <p class="yb-field-error under"></p>
         </div>    
