@@ -239,6 +239,14 @@ class AccountSettings(View):
         
         user.save()
 
+        profile = Profile.objects.get(username = request.user.active_profile)
+        profile.username = request.POST['username']
+        if request.POST['real_name_visibility'] == 'on':
+            profile.display_name = request.POST['first_name'] + " " + request.POST['last_name']
+        else:
+            profile.display_name = request.POST['display_name']
+        profile.save()
+
         return JsonResponse({"success":True, "message":"Account settings updated"})
 
 class ChangePassword(View):
