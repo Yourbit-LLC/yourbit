@@ -176,7 +176,7 @@ def create_message_notification(sender, instance, created, **kwargs):
                     
                     
                 }
-                send_user_notification(user=member, payload=payload, ttl=1000)
+                send_user_notification(user=member.user, payload=payload, ttl=1000)
 
 #Create a notification on like of a bit
 @receiver(post_save, sender=BitLike)
