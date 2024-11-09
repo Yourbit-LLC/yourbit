@@ -143,11 +143,17 @@ function yb_validateField(field) {
         },
         success: function(data) {
             if (data.status == "success") {
-                
-                save_button[0].style.backgroundColor = "green";
-                save_button[0].style.color = "white";
-                save_button[0].style.disabled = false;
-                document.getElementById(field_name + "-error").style.display = "none";
+                if (data.message !="is_default") {
+                    save_button[0].style.backgroundColor = "green";
+                    save_button[0].style.color = "white";
+                    save_button[0].style.disabled = false;
+                    document.getElementById(field_name + "-error").style.display = "none";
+                } else {
+                    document.getElementById(field_name + "-error").style.display = "none";
+                    save_button[0].style.backgroundColor = "gray";
+                    save_button[0].style.color = "white";
+                    save_button[0].style.disabled = true;
+                }
 
             } else {
                 field_valid = false;

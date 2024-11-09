@@ -433,8 +433,12 @@ def validate_field(request, field, *args, **kwargs):
     if field == "username":
         username = request.POST.get('field_value')
         try:
+
             user = User.objects.get(username=username)
-            return JsonResponse({'status': 'failed', 'message': 'Profile with this Username already exists.'})
+            if user == request.user:
+                return JsonResponse({'status': 'success', 'message': 'is_default'})
+            else:
+                return JsonResponse({'status': 'failed', 'message': 'Profile with this Username already exists.'})
         except User.DoesNotExist:
             return JsonResponse({'status': 'success', 'message': 'Username available.'})
         
