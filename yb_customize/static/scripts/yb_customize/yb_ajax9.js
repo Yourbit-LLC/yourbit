@@ -49,8 +49,14 @@ function yb_uploadProfileImage(source, data, profile_class, image_type="profile"
         success: function(data) {
             console.log(data);
             try {
-                yb_replaceProfileImages();
                 yb_setWPID(data.wpid);
+
+                try {
+                    yb_replaceProfileImages();
+                }
+                catch(err) {
+                    console.log("Issue with replacing profile images");
+                }
             } catch(err) {
                 console.log("No profile images to replace");
             }
