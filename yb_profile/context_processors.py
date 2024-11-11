@@ -61,12 +61,18 @@ def Customization(request):
         wallpaper = wallpaper_object.background_image
 
         try:
-            wallpaper_mobile = wallpaper_object.background_mobile
+            if wallpaper.storage_type == "yb":
+                wallpaper_mobile = wallpaper_object.background_mobile
+            else:
+                wallpaper_mobile = wallpaper_object.background_mobile_ext
         except:
             wallpaper_mobile = None
 
         try:
-            wallpaper_desktop = wallpaper_object.background_desktop
+            if wallpaper.storage_type == "yb":
+                wallpaper_desktop = wallpaper_object.background_desktop
+            else:
+                wallpaper_desktop = wallpaper_object.background_desktop_ext
         except:
             wallpaper_desktop = None
 
