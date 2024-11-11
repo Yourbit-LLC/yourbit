@@ -280,7 +280,7 @@ def upload_image_cf(request, image_type="profile"):
                     profile=profile_object
                 )
 
-                image_urls = generate_image_urls(image_id)
+                image_urls = generate_wallpaper_urls(image_id)
                 main_url = image_urls["image_url"]
                 new_photo.ext_url = main_url
 
