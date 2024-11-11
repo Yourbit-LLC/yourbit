@@ -58,7 +58,7 @@ def Customization(request):
         
         wallpaper_enabled = custom.wallpaper_on
         wallpaper_object = custom.wallpaper
-        wallpaper = wallpaper_object.background_image
+        wallpaper = wallpaper_object.ext_url
 
         try:
             if wallpaper.storage_type == "yb":
