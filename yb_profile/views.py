@@ -6,7 +6,7 @@ from yb_accounts.models import Account as User
 from main.views import initialize_session
 from yb_customize.models import CustomUI, CustomCore, CustomBit, CustomSplash
 from yb_bits.models import Cluster
-
+from django.conf import settings
 
 # Create your views here.
 #Profile Page
@@ -17,6 +17,8 @@ class ProfileView(View):
         custom_ui = CustomUI.objects.get(theme = custom.theme)
         custom_splash = CustomSplash.objects.get(theme = custom.theme)
 
+        this_wallpaper = custom.wallpaper
+        wallpaper_url = f'{settings.IMAGE_BASE_URL}/{settings.CLOUDFLARE_ACCOUNT_HASH}/{this_wallpaper.background_desktop_id}/desktopCropWallpaper'
         context = {
             "location":"profile",
             "space":"global",
@@ -25,6 +27,8 @@ class ProfileView(View):
             "custom_ui":custom_ui,
             "custom_splash": custom_splash,
             "profile_view_mode": "live",
+            "profile_wallpaper": wallpaper_url,
+            
 
         }
         return render(request, "yb_profile/yb_profile.html", context)
