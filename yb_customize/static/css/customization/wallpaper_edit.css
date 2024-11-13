@@ -1,32 +1,42 @@
 
+.wp-desktop-preview-image {
+    aspect-ratio: 16 / 9; 
+    border: 2px solid gray;
+    border-radius: 10px; 
+    box-shadow: 1px 1px 5px black;
+}
+.wp-mobile-preview-image {
+    aspect-ratio: 9 / 19.5;
+    border: 2px solid gray;
+    border-radius: 10px; 
+    box-shadow: 1px 1px 5px black;
+}
+
 @media screen and (min-width: 768px){
     .wp-desktop-preview-image {
-        aspect-ratio: 16 / 9; 
-        height: 345px; 
-        border-radius: 10px; 
-        box-shadow: 1px 1px 5px black;
+        
+        height: 320px; 
+
     }
 
     .wp-mobile-preview-image {
-        aspect-ratio: 9 /19.5;
-        height: 345px; 
-        border-radius: 10px; 
-        box-shadow: 1px 1px 5px black;
+        
+        height: 320px; 
+
     }
 }
 
 @media screen and (max-width: 768px){
     .wp-desktop-preview-image {
-        aspect-ratio: 16 / 9; 
+        
         height: 150px;
-        border-radius: 10px; 
-        box-shadow: 1px 1px 5px black;
+
     }
     .wp-mobile-preview-image {
-        aspect-ratio: 9 / 19.5;
+        
         height: 150px;
-        border-radius: 10px; 
-        box-shadow: 1px 1px 5px black;
+
     }
     
 }
+

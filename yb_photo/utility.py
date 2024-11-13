@@ -270,27 +270,16 @@ def upload_image_cf(request, image_type="profile"):
             wpid = request.POST.get("wpid")
             try:
                 new_photo = Wallpaper.objects.get(pk=wpid)
-                image_urls = generate_image_urls(new_photo.ext_id)
+                new_photo.background_mobile_id = image_id
 
             except:
             
                 new_photo = Wallpaper.objects.create(
                     storage_type="cf", 
-                    ext_id=image_id, 
+                    background_desktop_id=image_id, 
                     profile=profile_object
                 )
 
-                image_urls = generate_wallpaper_urls(image_id)
-                main_url = image_urls["image_url"]
-                new_photo.ext_url = main_url
-
-            if request.POST.get('image_type') == "desktop":
-                new_photo.background_desktop_ext = image_urls["desktop_wallpaper"]
-
-
-            elif request.POST.get('image_type') == "mobile":
-                new_photo.background_desktop_ext = image_urls["mobile_wallpaper"] 
-            
             new_photo.save()
 
     return new_photo

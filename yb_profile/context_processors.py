@@ -2,7 +2,10 @@
 from django.urls import reverse
 from django.contrib.auth import authenticate, login
 from yb_settings.models import MySettings
+from django.conf import settings
 
+
+cloudflare_base = settings.IMAGE_BASE_URL
 # def CoreUI(request):
 #     bit_form = BitForm()
 #     search_bar = SearchBar()
@@ -58,13 +61,13 @@ def Customization(request):
         
         wallpaper_enabled = custom.wallpaper_on
         wallpaper_object = custom.wallpaper
-        wallpaper = wallpaper_object.ext_url
+        wallpaper = wallpaper_object
 
         try:
             if wallpaper.storage_type == "yb":
                 wallpaper_mobile = wallpaper_object.background_mobile
             else:
-                wallpaper_mobile = wallpaper_object.background_mobile_ext
+                wallpaper_mobile = f'{cloudflare_base}/{settings.CLOUDFLARE_ACCOUNT_HASH}/{wallpaper_object.background_mobile_id}/mobileCropWallpaper'
         except:
             wallpaper_mobile = None
 
@@ -72,7 +75,7 @@ def Customization(request):
             if wallpaper.storage_type == "yb":
                 wallpaper_desktop = wallpaper_object.background_desktop
             else:
-                wallpaper_desktop = wallpaper_object.background_desktop_ext
+                wallpaper_desktop = f'{cloudflare_base}/{settings.CLOUDFLARE_ACCOUNT_HASH}/{wallpaper_object.background_desktop_id}/desktopCropWallpaper'
         except:
             wallpaper_desktop = None
 

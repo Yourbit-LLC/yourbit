@@ -56,12 +56,6 @@ function finishDesktopBackgroundImage(){
 
     yb_uploadProfileImage(image, crop_data, "profile", "desktop", wpid);
 
-    setTimeout(function() {
-        yb_2WayPage(3, "cropper-mobile-background");
-    }, 250);
-
-    
-
 }
 
 function finishMobileBackgroundImage(){

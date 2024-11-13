@@ -121,7 +121,6 @@ def registration_view(request):
             # Generate and save verification token
             verification_key = generate_verification_key()
             account.verification_token = verification_key
-            account.active_profile = account.username
             account.save()
 
             # Send a verification email

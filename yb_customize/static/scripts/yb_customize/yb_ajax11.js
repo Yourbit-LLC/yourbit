@@ -50,6 +50,10 @@ function yb_uploadProfileImage(source, data, profile_class, image_type="profile"
             console.log(data);
             try {
                 yb_setWPID(data.wpid);
+                if (image_type == "desktop") {
+                    yb_getActive2Way().querySelector('[id^="yb-2way-secondary"]').innerHTML = "";
+                    yb_2WayPage(3, "cropper-mobile-background");
+                }
 
                 // try {
                 //     yb_replaceProfileImages();
