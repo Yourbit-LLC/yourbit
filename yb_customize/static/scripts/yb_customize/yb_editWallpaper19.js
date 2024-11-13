@@ -70,12 +70,50 @@ function finishMobileBackgroundImage(){
 
 }
 
+function yb_applyWallpaperSetting(event) {
+    let csrf_token = getCSRF();
+    let object = event.target;
+    $.ajax({
+        type: "POST",
+        url: "/customize/update-wallpaper-setting/",
+        data: {
+            "action": object.name,
+            "value": object.value
+        },
+        headers: {
+            "X-CSRFToken": csrf_token
+        },
+        success: function(response) {
+            console.log(response);
+        }
+    })
+
+}
+
+function updateWallpaperBrightness() {
+    let brightness = brightness_slider.value;
+    //Change root variable
+    document.documentElement.style.setProperty("--yb-wallpaper-brightness", brightness + "%");
+    
+}
+
+function updateWallpaperBlur() {
+    let blur = blur_slider.value;
+
+    document.documentElement.style.setProperty("--yb-wallpaper-blur", blur + "px");
+    
+}
+
 $(document).ready(function() {
 
     
     new_image_button.addEventListener("click", new_image_handler);
 
-    
+    blur_slider.addEventListener("input", updateWallpaperBlur);
+    blur_slider.addEventListener("change", yb_applyWallpaperSetting);
+
+    brightness_slider.addEventListener("input", updateWallpaperBrightness);
+    brightness_slider.addEventListener("change", yb_applyWallpaperSetting);
 
     new_image_input.addEventListener("change", function() {
 

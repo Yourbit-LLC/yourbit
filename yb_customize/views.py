@@ -142,74 +142,6 @@ class CreateTheme(View):
         return JsonResponse({"success": "success"})
     
 
-    
-def update_profile_background(request):
-    from yb_profile.models import Profile
-    from yb_photo.models import Wallpaper
-
-    wpid = request.POST.get('wpid')
-    print("wpid => " + wpid)
-    this_profile = None
-    profile_class = request.POST.get('class')
-
-    if profile_class == 'profile':
-        print("updating user profile")
-        this_profile = Profile.objects.get(user = request.user)
-        
-    else:
-        print("Invalid Entry For Type => " + "'" + profile_class + "'")
-        
-    if (wpid == "null"):
-        print("Existing Wallpaper Not Found \n\n Creating New One...")
-        new_wallpaper = Wallpaper(profile=this_profile)
-        this_stage = 1
-
-    else:
-        print("Existing Wallpaper Found")
-        new_wallpaper = Wallpaper.objects.get(id = wpid)
-        this_stage = 2
-
-    source_image = request.FILES.get('image')
-    new_wallpaper.background_image = source_image
-
-    custom_core = this_profile.custom
-    
-
-    if request.POST.get('name') == 'desktop':
-        desktop_img = request.FILES.get('cropped_image')
-
-        label = "dt-wp"
-        this_username = this_profile.user.username
-        this_uid = this_profile.user.id
-        
-        timestamp = dateformat.format(timezone.now(), '%Y%m%d%-H:i-s')
-        this_filename = f"{this_username}{this_uid}{timestamp}{label}.png"
-
-        desktop_img.name = this_filename
-
-        new_wallpaper.background_desktop = desktop_img
-        
-
-    elif request.POST.get('name') == 'mobile':
-        mobile_img = request.FILES.get('cropped_image')
-
-        label = "mo-wp"
-        this_username = this_profile.user.username
-        this_uid = this_profile.user.id
-        
-        timestamp = dateformat.format(timezone.now(), '%Y%m%d%-H:i-s')
-        this_filename = f"{this_username}{this_uid}{timestamp}{label}.png"
-
-        mobile_img.name = this_filename
-        new_wallpaper.background_mobile = mobile_img
-    
-    new_wallpaper.save()
-
-    custom_core.wallpaper = new_wallpaper
-    custom_core.save()
-
-    return JsonResponse({"success": "success", "stage": this_stage, "wpid": new_wallpaper.id})
-
 def get_wallpaper(request, profile_class, type):
     from yb_photo.models import Wallpaper
     from yb_profile.models import Profile
@@ -237,6 +169,21 @@ def get_wallpaper(request, profile_class, type):
     print("wallpaper => " + str(wallpaper))
     return FileResponse(wallpaper, content_type="image/png")
 
+def update_wallpaper_settings(request):
+    profile_object = Profile.objects.get(username=request.user.active_profile)
+    custom_core = CustomCore.objects.get(profile=profile_object)
+    if request.POST.get('action') == 'brightness':
+        custom_core.wallpaper_brightness = request.POST.get('value')
+
+    elif request.POST.get('action') == 'blur':
+        custom_core.wallpaper_blur = request.POST.get('value')
+
+    try:
+        custom_core.save()
+        return JsonResponse({"success": "success"})
+    except:
+        return JsonResponse({"error": "error"})
+    
 def toggle_only_my_colors(request):
     profile_object = Profile.objects.get(username=request.user.active_profile)
     custom_core = CustomCore.objects.get(profile=profile_object)
