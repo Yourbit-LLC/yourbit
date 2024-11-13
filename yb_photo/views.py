@@ -33,6 +33,14 @@ def reset_images_to_yb(request):
         for photo in Photo.objects.all():
             photo.storage_type = "yb"
             photo.save()
+
+def generate_wallpaper_urls(request):
+    if request.user.is_admin:
+        for wallpaper in Wallpaper.objects.all():
+            wallpaper.background_mobile_url = f'{settings.IMAGE_BASE_URL}/{settings.CLOUDFLARE_ACCOUNT_HASH}/{wallpaper.background_mobile_id}/mobileCropWallpaper'
+            wallpaper.background_desktop_url = f'{settings.IMAGE_BASE_URL}/{settings.CLOUDFLARE_ACCOUNT_HASH}/{wallpaper.background_desktop_id}/desktopCropWallpaper'
+            wallpaper.save()
+    return JsonResponse({"status": "success"})
 def upload_image(request, *args, **kwargs):
     from yb_customize.models import CustomCore
     from yb_photo.utility import upload_image_cf

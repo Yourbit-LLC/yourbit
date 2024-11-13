@@ -26,3 +26,8 @@ class VideoThumbnailSerializer(serializers.ModelSerializer):
     class Meta:
         model = VideoThumbnail
         fields = '__all__'
+
+class WallpaperSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Wallpaper
+        fields = '__all__'

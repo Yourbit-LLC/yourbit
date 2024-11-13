@@ -157,40 +157,6 @@ function changeColor(property, value) {
 }
 
 
-//Function to retrieve wallpaper based on screen width
-function yb_getWallpaper(profile=false) {
-    let type;
-    let url;
-    let username;
-
-    if (SCREEN_WIDTH < 768) {
-        type = "mobile";
-    } else {
-        type = "desktop";
-    }
-
-    if (profile) {
-        username = yb_getProfileData("username");
-        url = `/customize/get/wallpaper/profile/connection/${username}/${type}/`;
-    }
-
-    $.ajax({
-        type: 'GET',
-        url: `/customize/get/wallpaper/profile/${type}/`,
-        success: function(response) {
-            console.log(response)
-            let wallpaper = response.wallpaper;
-            yb_changeWallpaper(wallpaper);
-        },
-        error: function(response) {
-            console.log(response);
-        }
-    });
-    
-    
-    return wallpaper;
-}
-
 //Function to change the wallpaper between profiles **NEEDS REFACTORING**
 function yb_changeWallpaper(value, profile=false) {
     let wallpaper_enabled;
@@ -237,6 +203,37 @@ function yb_loadWallpaper(profile = false) {
     yb_changeWallpaper(wallpaper);
     yb_showWallpaper();
 }
+
+
+//Function to retrieve wallpaper based on screen width
+function yb_getWallpaper(id) {
+    let type;
+
+    if (SCREEN_WIDTH < 768) {
+        type = "mobile";
+    } else {
+        type = "desktop";
+    }
+
+    $.ajax({
+        type: 'GET',
+        url: `/photo/api/wallpaper/${id}`,
+        success: function(response) {
+            console.log(response)
+            let wallpaper = response.wallpaper;
+            if (type === "desktop") {
+                wallpaper = response.background_desktop_url;
+            } else {
+                wallpaper = response.background_mobile_url;
+            }
+            yb_changeWallpaper(wallpaper);
+        },
+        error: function(response) {
+            console.log(response);
+        }
+    });
+}
+
 
 //Function for adapting UI customizations to current profile
 function yb_setProfileUI() {

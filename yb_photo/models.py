@@ -63,8 +63,11 @@ class Wallpaper(models.Model):
     background_desktop = models.ImageField(upload_to='profile/background/%Y/%m/%d', blank=True, default="static/images/main/desktop-wallpaper-placeholder.png")
 
     storage_type = models.CharField(max_length=100, default="cf")
+    
     background_mobile_id = models.CharField(max_length=1000, default="")
+    background_mobile_url = models.CharField(max_length=1000, default="")
     background_desktop_id = models.CharField(max_length=1000, default="")
+    background_desktop_url = models.CharField(max_length=1000, default="")
 
     def __str__(self):
         try:

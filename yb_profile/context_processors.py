@@ -86,7 +86,8 @@ def Customization(request):
         user_session = UserSession.objects.get(user = request.user)
         user_context = user_session.current_context
         
-
+        print(custom.wallpaper_blur)
+        print(custom.wallpaper_brightness)
 
         context = {
             'profile_image': profile_image,
@@ -103,9 +104,12 @@ def Customization(request):
             'custom_core': custom,
             'wallpaper_enabled': wallpaper_enabled,
             'user_custom_ui': custom_ui,
-            'active_profile':user_context
+            'active_profile':user_context,
+            "wallpaper_blur": custom.wallpaper_blur,
+            "wallpaper_brightness": custom.wallpaper_brightness,
         }
 
+        print(context)
         bit_colors_on = custom.bit_colors_on
 
 

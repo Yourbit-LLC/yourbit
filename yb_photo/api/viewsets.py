@@ -13,9 +13,6 @@ from django.utils import timezone
 from yb_profile.models import Profile as Profile
 from rest_framework.throttling import UserRateThrottle, AnonRateThrottle
 
-class PhotoUploadView(generics.CreateAPIView):
-    queryset = Photo.objects.all()
-    serializer_class = PhotoSerializer
 
 class PhotoViewSet(viewsets.ModelViewSet):
     
@@ -94,3 +91,6 @@ class PhotoViewSet(viewsets.ModelViewSet):
             #Return 400
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class WallpaperViewSet(viewsets.ModelViewSet):
+    queryset = Wallpaper.objects.all()
+    serializer_class = WallpaperSerializer

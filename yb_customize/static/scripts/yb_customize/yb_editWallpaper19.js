@@ -1,18 +1,16 @@
 try {
     var new_image_button = document.getElementById("new-wallpaper-button");
     var new_image_input = document.getElementById("background-image-upload");
+    var blur_slider = document.getElementById("wallpaper-blur");
+    var brightness_slider = document.getElementById("wallpaper-brightness");
     
-    var hue_slider = document.getElementById("avatar-hue-slider");
-    var enable_transparency = document.getElementById("enable-transparency");
-    var enable_border = document.getElementById("enable-border");
+
 
 } catch {
     new_image_button = document.getElementById("new-wallpaper-button");
     new_image_input = document.getElementById("background-image-upload");
-    image_preview = document.getElementById("profile-image-preview");
-    hue_slider = document.getElementById("avatar-hue-slider");
-    enable_transparency = document.getElementById("enable-transparency");
-    enable_border = document.getElementById("enable-border");
+    blur_slider = document.getElementById("wallpaper-brightness");
+    brightness_slider = document.getElementById("wallpaper-blur");
 
 }
 
@@ -76,6 +74,8 @@ $(document).ready(function() {
 
     
     new_image_button.addEventListener("click", new_image_handler);
+
+    
 
     new_image_input.addEventListener("change", function() {
 
