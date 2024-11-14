@@ -77,12 +77,12 @@ href="{% static 'css/customization/wallpaper_edit.css' %}"/>
                 <div style="text-align: left; height: 40px; background-color: rgba(25, 25, 25, 0.8); padding: 5px 5px 5px 5px;" class="squared">
                     <div class="yb-hblock-2">
                         <label for="wallpaper_brightness" class="yb-autoText yb-pText" >Brightness</label>
-                        <input type="range" id="wallpaper-brightness" name="brightness" value="80" step="5" max="100" min="0" style="width: 120px;">
+                        <input type="range" id="wallpaper-brightness" name="brightness" value="{{wallpaper_brightness}}" step="5" max="100" min="0" style="width: 120px;">
                     </div>
                     
                     <div class="yb-hblock-2">
                         <label for="wallpaper_blur" class="yb-autoText yb-pText">Blur</label>
-                        <input type="range" id="wallpaper-blur" name="blur" value="40" step="5" max="120" min="0" style="width: 120px;">
+                        <input type="range" id="wallpaper-blur" name="blur" value="{{wallpaper_blur}}" step="5" max="120" min="0" style="width: 120px;">
                     </div>
                     
                 </div>
