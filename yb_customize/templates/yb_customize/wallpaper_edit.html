@@ -30,24 +30,28 @@ href="{% static 'css/customization/wallpaper_edit.css' %}"/>
     <div class="yb-hblock-auto responsive" style="position:relative;">
         <div class="wp-desktop-preview">
             <div class="wp-desktop-preview-inner" style="position: relative;">
-                {% if wallpaper != "" %}
-                    <img src="{{wallpaper_desktop}}" class="wp-desktop-preview-image">
+                <div class="wp-desktop-preview-image yb-center-margin lr">
+                    {% if wallpaper != "" %}
+                        <img src="{{wallpaper_desktop}}" class="wallpaper-preview" style="height: 100%; width: 100%;">
 
-                {% else %}
-                    <img src="{% static 'images/main/desktop-wallpaper-placeholder.png' %}" style="max-width: 100%; max-height: 400px; border-radius: 10px; box-shadow: 1px 1px 5px black;" class="wp-desktop-preview-image">
-                {% endif %}
-                
-
+                    {% else %}
+                        <img src="{% static 'images/main/desktop-wallpaper-placeholder.png' %}" style="max-width: 100%; max-height: 400px; border-radius: 10px; box-shadow: 1px 1px 5px black;" class="wp-desktop-preview-image">
+                    {% endif %}
+        
+                </div>
             </div>
 
         </div>
         <div class="wp-mobile-preview" >
+            
             <div class="wp-mobile-preview-inner" style="position: relative;">
-                {% if wallpaper_mobile.url != ""%}
-                    <img src="{{wallpaper_mobile}}" class="wp-mobile-preview-image">
-                {% else %}
-                    <img src="{% static 'images/main/mobile-wallpaper-placeholder.png' %}" style="max-width: 100%; max-height: 400px; border-radius: 10px; box-shadow: 1px 1px 5px black;" class="wp-mobile-preview-image">
-                {% endif %}
+                <div class="wp-mobile-preview-image yb-center-margin lr">
+                    {% if wallpaper_mobile.url != ""%}
+                        <img src="{{wallpaper_mobile}}" class="wallpaper-preview" style="height: 100%; width: 100%;">
+                    {% else %}
+                        <img src="{% static 'images/main/mobile-wallpaper-placeholder.png' %}" style="max-width: 100%; max-height: 400px; border-radius: 10px; box-shadow: 1px 1px 5px black;" class="wp-mobile-preview-image">
+                    {% endif %}
+                </div>
 
             </div>
         </div>

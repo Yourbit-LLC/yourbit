@@ -4,12 +4,14 @@
     border: 2px solid gray;
     border-radius: 10px; 
     box-shadow: 1px 1px 5px black;
+    overflow: hidden;
 }
 .wp-mobile-preview-image {
     aspect-ratio: 9 / 19.5;
     border: 2px solid gray;
     border-radius: 10px; 
     box-shadow: 1px 1px 5px black;
+    overflow:hidden;
 }
 
 @media screen and (min-width: 768px){
@@ -40,3 +42,7 @@
     
 }
 
+.wallpaper-preview {
+    -webkit-filter: blur(var(--yb-wallpaper-blur)) brightness(var(--yb-wallpaper-brightness));
+    filter: blur(var(--yb-wallpaper-blur)) brightness(var(--yb-wallpaper-brightness));
+}

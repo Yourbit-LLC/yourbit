@@ -169,8 +169,6 @@ function yb_changeWallpaper(value, profile=false) {
         wallpaper_enabled = CUSTOM_VALUES.getAttribute("data-wallpaper-on");
     }
 
-    
-
     if (wallpaper_enabled == "True") {
         console.log(value);
         console.log("Wallpaper enabled " + wallpaper_enabled )
