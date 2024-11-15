@@ -100,8 +100,10 @@ def message_inbox(request):
 
                 else:
                     for member in members:
+                        print("Conversation "+ str(iteration) + ":\n")
                         print(member.display_name)
                         print(this_profile.display_name)
+                        print("\n\n")
                         if member !=  this_profile:
                             conversation_data[iteration]["name"] = member.display_name
                             if member.custom.profile_image.storage_type == "yb":
