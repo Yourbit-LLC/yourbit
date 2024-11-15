@@ -64,8 +64,7 @@ def message_inbox(request):
 
             if conversation.is_name == True:
                 conversation_data[iteration]["name"] = conversation.name
-                conversation_data[iteration]["image"] = profile.custom.profile_image.small_thumbnail
-
+                conversation_data[iteration]["image"] = profile.custom.profile_image.photo.small_thumbnail_ext
             else:
                 if len(conversation.members.all()) > 2:
                     display_name = ""
