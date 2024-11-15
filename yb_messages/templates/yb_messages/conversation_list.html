@@ -30,7 +30,7 @@
             </b>
             <p class="yb-autoText yb-listItem-body">
                 {% if conversation.preview != ""%}
-                    {{conversation.preview}}
+                    {{conversation.preview | safe}}
                 {% else %}
                     <i>Attachment</i>
                 {% endif %}
