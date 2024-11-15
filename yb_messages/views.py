@@ -64,7 +64,7 @@ def message_inbox(request):
 
             if conversation.is_name == True:
                 conversation_data[iteration]["name"] = conversation.name
-                conversation_data[iteration]["image"] = profile.custom.profile_image.photo.small_thumbnail_ext
+                conversation_data[iteration]["image"] = profile.custom.profile_image.small_thumbnail_ext
             else:
                 if len(conversation.members.all()) > 2:
                     display_name = ""
@@ -95,7 +95,7 @@ def message_inbox(request):
 
 
                     conversation_data[iteration]["name"] = display_name
-                    conversation_data[iteration]["image"] = profile.custom.profile_image.small_thumbnail
+                    conversation_data[iteration]["image"] = profile.custom.profile_image.small_thumbnail_ext
                     conversation_data[iteration]["is_group"] = True
 
                 else:
@@ -103,7 +103,7 @@ def message_inbox(request):
                         if member !=  profile:
                             conversation_data[iteration]["name"] = member.display_name
                             if member.custom.profile_image.storage_type == "yb":
-                                conversation_data[iteration]["image"] = member.custom.profile_image.small_thumbnail.url
+                                conversation_data[iteration]["image"] = member.custom.profile_image.small_thumbnail_ext
                             else:
                                 conversation_data[iteration]["image"] = member.custom.profile_image.small_thumbnail_ext
                             conversation_data[iteration]["is_group"] = False
