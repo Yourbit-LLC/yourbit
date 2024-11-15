@@ -17,13 +17,13 @@ def message_inbox(request):
     user = request.user
 
     active_profile = request.user.active_profile
-    profile = Profile.objects.get(username = active_profile)
+    this_profile = Profile.objects.get(username = active_profile)
 
     try:
-        message_core = MessageCore.objects.get(profile = profile) 
+        message_core = MessageCore.objects.get(profile = this_profile) 
 
     except:
-        message_core = MessageCore.objects.create(profile = profile)
+        message_core = MessageCore.objects.create(profile = this_profile)
 
     try:
         conversations = message_core.conversations.all().order_by("-time_modified")
@@ -64,7 +64,7 @@ def message_inbox(request):
 
             if conversation.is_name == True:
                 conversation_data[iteration]["name"] = conversation.name
-                conversation_data[iteration]["image"] = profile.custom.profile_image.small_thumbnail_ext
+                conversation_data[iteration]["image"] = this_profile.custom.profile_image.small_thumbnail_ext
             else:
                 if len(conversation.members.all()) > 2:
                     display_name = ""
@@ -73,7 +73,7 @@ def message_inbox(request):
                     for member in conversation.members.all():
                         this_display_name = member.display_name.split(" ")
                         
-                        if member != profile:
+                        if member != this_profile:
                             if conversation.members.count() == 3:
                                 if contact_iteration == 1:
                                     display_name += this_display_name[0] + " " + this_display_name[1][0] + "." + " and "
@@ -95,15 +95,15 @@ def message_inbox(request):
 
 
                     conversation_data[iteration]["name"] = display_name
-                    conversation_data[iteration]["image"] = profile.custom.profile_image.small_thumbnail_ext
+                    conversation_data[iteration]["image"] = this_profile.custom.profile_image.small_thumbnail_ext
                     conversation_data[iteration]["is_group"] = True
 
                 else:
                     for member in members:
-                        if member !=  profile:
+                        if member !=  this_profile:
                             conversation_data[iteration]["name"] = member.display_name
                             if member.custom.profile_image.storage_type == "yb":
-                                conversation_data[iteration]["image"] = member.custom.profile_image.small_thumbnail_ext
+                                conversation_data[iteration]["image"] = member.custom.profile_image.small_thumbnail.url
                             else:
                                 conversation_data[iteration]["image"] = member.custom.profile_image.small_thumbnail_ext
                             conversation_data[iteration]["is_group"] = False
