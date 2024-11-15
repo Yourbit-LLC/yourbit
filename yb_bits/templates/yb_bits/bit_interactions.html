@@ -47,6 +47,15 @@
             </svg>
         </button>
     {% endif %}
+
+    {% if bit.type == "video" %}
+        <!--Add to library-->
+        <button id="add-to-library-{{bit.id}}" class="yb-button-feedback pointer-object" name="add-to-library" data-catid="{{bit.id}}">
+            <svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                <path d="M434.5-434.5H191.869v-91H434.5v-242.631h91V-525.5h242.631v91H525.5v242.631h-91V-434.5Z"/>
+            </svg>
+        </button>
+    {% endif %}
 </div>
 
 <script>
