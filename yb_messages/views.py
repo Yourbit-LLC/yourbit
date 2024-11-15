@@ -52,11 +52,11 @@ def message_inbox(request):
 
             preview_message = Message.objects.filter(conversation = conversation).last()
             
-            if preview_message.from_user == user:
+            if preview_message.from_user == this_profile:
                 preview_text = "<b>You:</b> " + preview_message.body[:70] + '...'
 
             else:
-                preview_text = preview_message.from_user.user.first_name + ": " + preview_message.body[:150] + '...' 
+                preview_text = preview_message.from_user.user.first_name + ": " + preview_message.body[:70] + '...' 
             conversation_data.append({"id": conversation.id, "time":conversation.time_modified, "preview": preview_text})
 
             
