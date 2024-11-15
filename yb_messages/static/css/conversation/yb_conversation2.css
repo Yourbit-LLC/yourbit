@@ -14,7 +14,18 @@ body {
     bottom: 0px;
 }
 
+@media only screen and (prefers-color-scheme: dark){
+    #message-field::placeholder {
+        color: rgb(25,25,25)
+    }
+}
 
+
+@media only screen and (prefers-color-scheme: light){
+    #message-field::placeholder {
+        color: rgb(75,75,75)
+    }
+}
 
 #message-input {
     text-align: center;
