@@ -47,7 +47,6 @@ def message_inbox(request):
         for conversation in conversations:
 
             members = conversation.members.all()
-            
 
             print(conversation.id)
 
@@ -67,6 +66,8 @@ def message_inbox(request):
                 conversation_data[iteration]["image"] = this_profile.custom.profile_image.small_thumbnail_ext
             else:
                 if len(conversation.members.all()) > 2:
+                    print("Group Conversation "+ str(iteration) + ":\n")
+
                     display_name = ""
                     contact_iteration = 1
 
@@ -74,6 +75,8 @@ def message_inbox(request):
                         this_display_name = member.display_name.split(" ")
                         
                         if member != this_profile:
+                            print(member.display_name)
+                            print(this_profile.display_name)
                             if conversation.members.count() == 3:
                                 if contact_iteration == 1:
                                     display_name += this_display_name[0] + " " + this_display_name[1][0] + "." + " and "
@@ -92,7 +95,7 @@ def message_inbox(request):
                                 else:
                                     display_name += " and " + this_display_name[0] + " " + this_display_name[1][0]  + "."
 
-
+                    print("\n\n")
 
                     conversation_data[iteration]["name"] = display_name
                     conversation_data[iteration]["image"] = this_profile.custom.profile_image.small_thumbnail_ext
