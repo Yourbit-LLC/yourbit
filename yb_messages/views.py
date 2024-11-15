@@ -158,109 +158,65 @@ class ConversationSettings(View):
         this_conversation.save()
         
         return render(request, "yb_messages/conversation_settings.html", context={"conversation": this_conversation})
-    
-def filter_contacts_list(request, query):
-    from yb_profile.models import Profile
-    user = request.user
-    profile = Profile.objects.get(username=user.active_profile)
 
-    connections = False
+def filter_contacts_list(request, contact_filter, query=None):
+    """
+    This view filters the contact list based on the filter passed in the URL.
+    The filter can be "all", "friends", "following", "followers", or "orbits".
+    If a query is provided, it searches contacts by the query; otherwise, it
+    returns all connections for the selected filter.
+    """
+    # Retrieve the active user profile
+    profile = Profile.objects.get(username=request.user.active_profile)
 
-    if query == "all":
-        try:
-            friends = profile.friends.all()
-        except:
-            friends = None
+    connections = False  # Initialize connections variable
 
-        try:
-            following = profile.follows.all()
-        except:
-            following = None
+    # Helper function to filter by search query
+    def apply_search_filter(queryset, query):
+        if query:  # Apply search filter only if query is provided
+            return queryset.filter(Q(username__icontains=query) | Q(full_name__icontains=query))
+        return queryset  # Return original queryset if no query
 
-        try:
-            followers = profile.followers.all()
-        except:
-            followers = None
+    # Default results
+    results = []
 
+    if contact_filter == "all":
+        friends = apply_search_filter(profile.friends.all(), query)
+        following = apply_search_filter(profile.follows.all(), query)
+        followers = apply_search_filter(profile.followers.all(), query)
 
-        #if all query sets are empty return no connections
-        if friends == None and following == None and followers == None:
-            connections = False
-        else:
-            connections = True
-
-        #chain together all the querysets
+        # Chain together all the querysets
         results = list(chain(friends, following, followers))
+        connections = any([friends.exists(), following.exists(), followers.exists()])
 
-        context = {
-            "results": results,
-            "connections": connections,
-            }
-        return render(request, "yb_messages/contact_list.html", context)
+    elif contact_filter == "friends":
+        results = apply_search_filter(profile.friends.all(), query)
+        connections = results.exists()
 
-    elif query == "friends":
-        friends = profile.friends.all()
+    elif contact_filter == "following":
+        results = apply_search_filter(profile.follows.all(), query)
+        connections = results.exists()
 
-        if len(friends) == 0:
-            connections = False
+    elif contact_filter == "followers":
+        results = apply_search_filter(profile.followers.all(), query)
+        connections = results.exists()
 
-        else:
-            connections = True
-
-
-        context = {
-            "results": friends,
-            "connections": connections,
-            }
-        return render(request, "yb_messages/contact_list.html", context)
-    
-    elif query == "following":
-        following = profile.follows.all()
-
-        if len(following) == 0:
-            connections = False
-
-        else:
-            connections = True
-
-        context = {
-            "results": following,
-            "connections": connections,
-            }
-        return render(request, "yb_messages/contact_list.html", context)
-    
-    elif query == "followers":
-        followers = profile.followers.all()
-
-        if len(followers) == 0:
-            connections = False
-        
-        else:
-            connections = True
-
-        context = {
-            "results": followers,
-            "connections": connections,
-            }
-        return render(request, "yb_messages/contact_list.html", context)
-    
-        
-    elif query == "orbits":
+    elif contact_filter == "orbits":
         orbits = profile.followers.filter(is_orbit=True)
+        results = apply_search_filter(orbits, query)
+        connections = results.exists()
 
-        if len(orbits) == 0:
-            connections = False
-
-        else:
-            connections = True
-        context = {
-            "results": orbits,
-            "connections": connections
-            }
-        return render(request, "yb_messages/contact_list.html", context)
-
+    context = {
+        "results": results,
+        "connections": connections,
+    }
+    return render(request, "yb_messages/contact_list.html", context)
 
 def new_conversation_template(request):
+    """
+        This view is used to render the new conversation 
+        template and return it to client.
+    """
     user = request.user 
     profile = Profile.objects.get(username=user.active_profile)
     friends = profile.friends.all()
