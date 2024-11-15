@@ -63,13 +63,18 @@ def message_inbox(request):
 
             if conversation.is_name == True:
                 conversation_data[iteration]["name"] = conversation.name
-                conversation_data[iteration]["image"] = this_profile.custom.profile_image.small_thumbnail_ext
+                for member in members:
+                    if member !=  this_profile:
+                        if member.custom.profile_image.storage_type == "yb":
+                            conversation_data[iteration]["image"] = member.custom.profile_image.small_thumbnail.url
+                        else:
+                            conversation_data[iteration]["image"] = member.custom.profile_image.small_thumbnail_ext
             else:
                 if len(conversation.members.all()) > 2:
                     print("Group Conversation "+ str(iteration) + ":\n")
 
                     display_name = ""
-                    contact_iteration = 1
+                    contact_iteration = 0
 
                     for member in conversation.members.all():
                         this_display_name = member.display_name.split(" ")
