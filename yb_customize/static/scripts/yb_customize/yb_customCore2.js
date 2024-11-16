@@ -181,8 +181,8 @@ function yb_changeWallpaper(value, profile=false) {
         BG_IMAGE_A.style.display = "block";
         BG_IMAGE_SOURCE_A.src = value;
         //Edit root variable
-        document.documentElement.style.setProperty("--yb-wallpaper-blur", blur_setting);
-        document.documentElement.style.setProperty("--yb-wallpaper-brightness", brightness_setting);
+        document.documentElement.style.setProperty("--yb-wallpaper-blur", blur_setting + "px");
+        document.documentElement.style.setProperty("--yb-wallpaper-brightness", brightness_setting + "%");
         CONTENT_CONTAINER_A.classList.remove("yb-bg-autoGray");
         CONTENT_CONTAINER_B.classList.remove("yb-bg-autoGray");
         CONTENT_CONTAINER_A.classList.add("yb-bg-transparent");
@@ -191,8 +191,8 @@ function yb_changeWallpaper(value, profile=false) {
     } else {
         console.log("Wallpaper display " + wallpaper_enabled )
         BG_IMAGE_A.style.display = "none";
-        document.documentElement.style.setProperty("--yb-wallpaper-blur", blur_setting);
-        document.documentElement.style.setProperty("--yb-wallpaper-brightness", brightness_setting);
+        document.documentElement.style.setProperty("--yb-wallpaper-blur", blur_setting + "px");
+        document.documentElement.style.setProperty("--yb-wallpaper-brightness", brightness_setting + "%");
         CONTENT_CONTAINER_A.classList.remove("yb-bg-transparent");
         CONTENT_CONTAINER_B.classList.remove("yb-bg-transparent");
         CONTENT_CONTAINER_A.classList.add("yb-bg-autoGray");
