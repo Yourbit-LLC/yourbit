@@ -160,13 +160,19 @@ function changeColor(property, value) {
 //Function to change the wallpaper between profiles **NEEDS REFACTORING**
 function yb_changeWallpaper(value, profile=false) {
     let wallpaper_enabled;
+    let blur_setting;
+    let brightness_setting;
     if (profile) {
         wallpaper_enabled = yb_getProfileData("wallpaper-on");
+        blur_setting = yb_getProfileData("blur");
+        brightness_setting = yb_getProfileData("brightness");
         console.log("Retrieving wallpaper data from profile");
         
     } else {
         console.log("Retrieving wallpaper data from base");
         wallpaper_enabled = CUSTOM_VALUES.getAttribute("data-wallpaper-on");
+        blur_setting = CUSTOM_VALUES.getAttribute("data-wallpaper-blur");
+        brightness_setting = CUSTOM_VALUES.getAttribute("data-wallpaper-brightness");
     }
 
     if (wallpaper_enabled == "True") {
@@ -174,6 +180,9 @@ function yb_changeWallpaper(value, profile=false) {
         console.log("Wallpaper enabled " + wallpaper_enabled )
         BG_IMAGE_A.style.display = "block";
         BG_IMAGE_SOURCE_A.src = value;
+        //Edit root variable
+        document.documentElement.style.setProperty("--yb-wallpaper-blur", blur_setting);
+        document.documentElement.style.setProperty("--yb-wallpaper-brightness", brightness_setting);
         CONTENT_CONTAINER_A.classList.remove("yb-bg-autoGray");
         CONTENT_CONTAINER_B.classList.remove("yb-bg-autoGray");
         CONTENT_CONTAINER_A.classList.add("yb-bg-transparent");
@@ -182,6 +191,8 @@ function yb_changeWallpaper(value, profile=false) {
     } else {
         console.log("Wallpaper display " + wallpaper_enabled )
         BG_IMAGE_A.style.display = "none";
+        document.documentElement.style.setProperty("--yb-wallpaper-blur", blur_setting);
+        document.documentElement.style.setProperty("--yb-wallpaper-brightness", brightness_setting);
         CONTENT_CONTAINER_A.classList.remove("yb-bg-transparent");
         CONTENT_CONTAINER_B.classList.remove("yb-bg-transparent");
         CONTENT_CONTAINER_A.classList.add("yb-bg-autoGray");
