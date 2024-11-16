@@ -903,8 +903,8 @@ p {
     /* The image used */
   
     /* Add the blur effect */
-    filter: brightness(var(--yb-wallpaper-brightness)) saturate(150%) blur(var(--yb-wallpaper-blur));
-    -webkit-filter: brightness(var(--yb-wallpaper-brightness)) saturate(150%) blur(var(--yb-wallpaper-blur));
+    filter: brightness(var(--yb-wallpaper-brightness)) blur(var(--yb-wallpaper-blur));
+    -webkit-filter: brightness(var(--yb-wallpaper-brightness)) blur(var(--yb-wallpaper-blur));
     /* Full height */
     height: 101vh;
     
