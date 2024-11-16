@@ -23,6 +23,7 @@ class ProfileView(View):
             "location":"profile",
             "space":"global",
             "sort":"chrono",
+            "custom_profile":custom,
             "current_profile":this_profile,
             "custom_ui":custom_ui,
             "custom_splash": custom_splash,
