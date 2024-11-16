@@ -173,6 +173,8 @@ function yb_changeWallpaper(value, profile=false) {
         wallpaper_enabled = CUSTOM_VALUES.getAttribute("data-wallpaper-on");
         blur_setting = CUSTOM_VALUES.getAttribute("data-wallpaper-blur");
         brightness_setting = CUSTOM_VALUES.getAttribute("data-wallpaper-brightness");
+        document.documentElement.style.setProperty("--yb-wallpaper-blur", blur_setting + "px");
+        document.documentElement.style.setProperty("--yb-wallpaper-brightness", brightness_setting + "%");
     }
 
     if (wallpaper_enabled == "True") {
@@ -191,8 +193,6 @@ function yb_changeWallpaper(value, profile=false) {
     } else {
         console.log("Wallpaper display " + wallpaper_enabled )
         BG_IMAGE_A.style.display = "none";
-        document.documentElement.style.setProperty("--yb-wallpaper-blur", blur_setting + "px");
-        document.documentElement.style.setProperty("--yb-wallpaper-brightness", brightness_setting + "%");
         CONTENT_CONTAINER_A.classList.remove("yb-bg-transparent");
         CONTENT_CONTAINER_B.classList.remove("yb-bg-transparent");
         CONTENT_CONTAINER_A.classList.add("yb-bg-autoGray");
