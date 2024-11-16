@@ -167,36 +167,56 @@ function yb_changeWallpaper(value, profile=false) {
         blur_setting = yb_getProfileData("blur");
         brightness_setting = yb_getProfileData("brightness");
         console.log("Retrieving wallpaper data from profile");
+
+        if (wallpaper_enabled == "True") {
+            console.log(value);
+            console.log("Wallpaper enabled " + wallpaper_enabled )
+            BG_IMAGE_A.style.display = "block";
+            BG_IMAGE_SOURCE_A.src = value;
+            //Edit root variable
+            document.documentElement.style.setProperty("--yb-wallpaper-blur", blur_setting + "px");
+            document.documentElement.style.setProperty("--yb-wallpaper-brightness", brightness_setting + "%");
+            CONTENT_CONTAINER_A.classList.remove("yb-bg-autoGray");
+            CONTENT_CONTAINER_B.classList.remove("yb-bg-autoGray");
+            CONTENT_CONTAINER_A.classList.add("yb-bg-transparent");
+            CONTENT_CONTAINER_B.classList.add("yb-bg-transparent");
+            
+        } else {
+            console.log("Wallpaper display " + wallpaper_enabled )
+            BG_IMAGE_A.style.display = "none";
+            CONTENT_CONTAINER_A.classList.remove("yb-bg-transparent");
+            CONTENT_CONTAINER_B.classList.remove("yb-bg-transparent");
+            CONTENT_CONTAINER_A.classList.add("yb-bg-autoGray");
+            CONTENT_CONTAINER_B.classList.add("yb-bg-autoGray");
+        }
         
     } else {
         console.log("Retrieving wallpaper data from base");
         wallpaper_enabled = CUSTOM_VALUES.getAttribute("data-wallpaper-on");
         blur_setting = CUSTOM_VALUES.getAttribute("data-wallpaper-blur");
         brightness_setting = CUSTOM_VALUES.getAttribute("data-wallpaper-brightness");
-        document.documentElement.style.setProperty("--yb-wallpaper-blur", blur_setting + "px");
-        document.documentElement.style.setProperty("--yb-wallpaper-brightness", brightness_setting + "%");
-    }
 
-    if (wallpaper_enabled == "True") {
-        console.log(value);
-        console.log("Wallpaper enabled " + wallpaper_enabled )
-        BG_IMAGE_A.style.display = "block";
-        BG_IMAGE_SOURCE_A.src = value;
-        //Edit root variable
-        document.documentElement.style.setProperty("--yb-wallpaper-blur", blur_setting + "px");
-        document.documentElement.style.setProperty("--yb-wallpaper-brightness", brightness_setting + "%");
-        CONTENT_CONTAINER_A.classList.remove("yb-bg-autoGray");
-        CONTENT_CONTAINER_B.classList.remove("yb-bg-autoGray");
-        CONTENT_CONTAINER_A.classList.add("yb-bg-transparent");
-        CONTENT_CONTAINER_B.classList.add("yb-bg-transparent");
-        
-    } else {
-        console.log("Wallpaper display " + wallpaper_enabled )
-        BG_IMAGE_A.style.display = "none";
-        CONTENT_CONTAINER_A.classList.remove("yb-bg-transparent");
-        CONTENT_CONTAINER_B.classList.remove("yb-bg-transparent");
-        CONTENT_CONTAINER_A.classList.add("yb-bg-autoGray");
-        CONTENT_CONTAINER_B.classList.add("yb-bg-autoGray");
+        if (wallpaper_enabled == "True") {
+            console.log(value);
+            console.log("Wallpaper enabled " + wallpaper_enabled )
+            BG_IMAGE_A.style.display = "block";
+            BG_IMAGE_SOURCE_A.src = value;
+            //Edit root variable
+            document.documentElement.style.setProperty("--yb-wallpaper-blur", blur_setting + "px");
+            document.documentElement.style.setProperty("--yb-wallpaper-brightness", brightness_setting + "%");
+            CONTENT_CONTAINER_A.classList.remove("yb-bg-autoGray");
+            CONTENT_CONTAINER_B.classList.remove("yb-bg-autoGray");
+            CONTENT_CONTAINER_A.classList.add("yb-bg-transparent");
+            CONTENT_CONTAINER_B.classList.add("yb-bg-transparent");
+            
+        } else {
+            console.log("Wallpaper display " + wallpaper_enabled )
+            BG_IMAGE_A.style.display = "none";
+            CONTENT_CONTAINER_A.classList.remove("yb-bg-transparent");
+            CONTENT_CONTAINER_B.classList.remove("yb-bg-transparent");
+            CONTENT_CONTAINER_A.classList.add("yb-bg-autoGray");
+            CONTENT_CONTAINER_B.classList.add("yb-bg-autoGray");
+        }
     }
     
 }
