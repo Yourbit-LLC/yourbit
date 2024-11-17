@@ -51,19 +51,21 @@
                     }, 1000);
                 });
 
-                $(doocument).ready(function(){
-                    console.log("Contact List: " + selected_contact_list);
-                    for (var i = 0; i < selected_contact_list.length; i++) {
-                        let this_id = selected_contact_list[i];
-                        let this_element = contact_list.querySelector(`#add-contact-button-${this_id}`);
-                        this_element.style.backgroundColor = "#A8071A";
-                        this_element.classList.add("selected");
-                        let this_icon = this_element.querySelector('[id^="add-contact-icon"]');
-                        this_icon.style.transform = "translate(-50%, -50%) rotate(-405deg)";
-                    }
-                });
             </script>
         </div>
     </div>
 </div>
 {% endif %}
+<script>
+    $(doocument).ready(function(){
+        console.log("Contact List: " + selected_contact_list);
+        for (var i = 0; i < selected_contact_list.length; i++) {
+            let this_id = selected_contact_list[i];
+            let this_element = contact_list.querySelector(`#add-contact-button-${this_id}`);
+            this_element.style.backgroundColor = "#A8071A";
+            this_element.classList.add("selected");
+            let this_icon = this_element.querySelector('[id^="add-contact-icon"]');
+            this_icon.style.transform = "translate(-50%, -50%) rotate(-405deg)";
+        }
+    });
+</script>
