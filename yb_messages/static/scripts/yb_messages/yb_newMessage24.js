@@ -1,6 +1,7 @@
 var contact_search = document.getElementById('contact-search-input');
 var contact_filter_container = document.getElementById('contact-filter-container');
 var contact_filters = document.getElementsByClassName('contact-filter');
+var selected_contact_list = [];
 var selected_contact_filter = document.getElementById('selected-contact-filter');
 var tag_container = document.getElementById('yb-tagContainer');
 var tag_container_height = tag_container.offsetHeight;
@@ -30,6 +31,9 @@ function yb_conversationRemoveContact(e) {
         contact_list.style.height = `${contact_list.offsetHeight + tag_container_height}px`;
         tag_container_height = tag_container.offsetHeight;
     }
+
+    //remove id from selected content list
+    selected_contact_list = selected_contact_list.filter(item => item !== this_id);
 
     this_button.style.backgroundColor = "black";
     this_icon.style.transform = "translate(-50%, -50%) rotate(0deg)";
@@ -85,13 +89,19 @@ function yb_conversationAddContact(e) {
             tag_container_height = tag_container.offsetHeight;
         }
 
+        
+
         this_element.classList.add("selected");
+
+        selected_contact_list.push(this_id);
 
     }
 
     
 
     contact_search.focus();
+    //After focus highlight all text
+    contact_search.select();
     
 
 }
@@ -134,6 +144,8 @@ function yb_getContacts(event) {
     
     yb_updateActiveTab("contact-filter", this_element);
 
+    
+
 }
 
 $(document).ready(function () {
@@ -155,7 +167,17 @@ $(document).ready(function () {
     for (var i = 0; i < contact_filters.length; i++) {
         contact_filters[i].addEventListener("click", yb_getContacts);
     }
-
+    //Add event listener to contact-list onload
+    contact_list.onload = function() {
+        for (var i = 0; i < selected_contact_list.length; i++) {
+            let this_id = selected_contact_list[i];
+            let this_element = contact_list.querySelector(`#add-contact-button-${this_id}`);
+            this_element.style.backgroundColor = "#A8071A";
+            this_element.classList.add("selected");
+            let this_icon = this_element.querySelector('[id^="add-contact-icon"]');
+            this_icon.style.transform = "translate(-50%, -50%) rotate(-405deg)";
+        }
+    }
     // yb_hide2WayLoad();
     let next_button = document.getElementById("new-message-next");
     
