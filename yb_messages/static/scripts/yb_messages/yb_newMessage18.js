@@ -3,9 +3,11 @@ var contact_filter_container = document.getElementById('contact-filter-container
 var contact_filters = document.getElementsByClassName('contact-filter');
 var selected_contact_filter = document.getElementById('selected-contact-filter');
 var tag_container = document.getElementById('yb-tagContainer');
+var tag_container_height = tag_container.offsetHeight;
 var selected_contacts = document.getElementById('selected-contacts');
 var recipient_iteration = 0;
 var contact_list = document.getElementById('contact-list');
+
 
 function yb_conversationRemoveContact(e) {
     let this_id = e.currentTarget.getAttribute("data-catid");
@@ -21,6 +23,11 @@ function yb_conversationRemoveContact(e) {
     contact_search.focus();
     recipient_iteration -= 1;
     contact_search.style.paddingLeft = `${recipient_iteration}10px`;
+
+    if (tag_container.offsetHeight < tag_container_height) {
+        contact_list.style.height = `${contact_list.offsetHeight + tag_container_height}px`;
+        tag_container_height = tag_container.offsetHeight;
+    }
 }
 
 function yb_conversationAddContact(e) {
@@ -58,8 +65,14 @@ function yb_conversationAddContact(e) {
         contact_search.value = "";
 
         recipient_iteration += 1;
+
+        if (tag_container.offsetHeight > tag_container_height) {
+            contact_list.style.height = `${contact_list.offsetHeight - tag_container_height}px`;
+            tag_container_height = tag_container.offsetHeight;
+        }
     }
 
+    
 
     contact_search.focus();
     
