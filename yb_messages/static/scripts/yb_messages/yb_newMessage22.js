@@ -37,6 +37,16 @@ function yb_conversationRemoveContact(e) {
     this_button.classList.remove("selected");
 }
 
+function yb_refreshContacts() {
+    contact_list.innerHTML = "";
+
+    
+    $(contact_list).load("/messages/list/contacts/"+selected_contact_filter+"/");
+    
+    
+    yb_updateActiveTab("contact-filter", this_element);
+}
+
 function yb_conversationAddContact(e) {
     let this_id = e.currentTarget.getAttribute("data-catid");
     let this_name = e.currentTarget.getAttribute("data-username");
@@ -78,6 +88,8 @@ function yb_conversationAddContact(e) {
         }
 
         this_element.classList.add("selected");
+
+        yb_refreshContacts();
     }
 
     
@@ -107,6 +119,8 @@ function yb_createConversation() {
         }
     })
 }
+
+
 
 function yb_getContacts(event) {
     let this_element = event.currentTarget;

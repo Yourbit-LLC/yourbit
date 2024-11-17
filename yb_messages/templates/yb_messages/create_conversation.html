@@ -21,18 +21,18 @@
 </div>
 <div id="filter-container" class="yb-flexRow yb-fillWidth yb-gap5 yb-margin-L5 yb-margin-T10">
     <input type="hidden" id="contact-filter" value="everyone"/>
-    <button class="yb-button-wide contact-filter active medium-wide rounded yb-autoText font-small yb-center-margin tb" name="all">Everyone</button>
-    <button class="yb-button-wide contact-filter medium-wide rounded yb-autoText font-small yb-center-margin tb" name="friends">Friends</button>
-    <button class="yb-button-wide contact-filter medium-wide rounded yb-autoText font-small yb-center-margin tb" name="followers">Followers</button>
-    <button class="yb-button-wide contact-filter medium-wide rounded yb-autoText font-small yb-center-margin tb" name="following">Following</button>
-    <button class="yb-button-wide contact-filter medium-wide rounded yb-autoText font-small yb-center-margin tb" name="orbits">Orbits</button>
+    <button id="contact-filter-all" class="yb-button-wide contact-filter active medium-wide rounded yb-autoText font-small yb-center-margin tb" name="all">Everyone</button>
+    <button id="contact-filter-friends" class="yb-button-wide contact-filter medium-wide rounded yb-autoText font-small yb-center-margin tb" name="friends">Friends</button>
+    <button id="contact-filter-followers" class="yb-button-wide contact-filter medium-wide rounded yb-autoText font-small yb-center-margin tb" name="followers">Followers</button>
+    <button id="contact-filter-following" class="yb-button-wide contact-filter medium-wide rounded yb-autoText font-small yb-center-margin tb" name="following">Following</button>
+    <button id="contact-filter-orbits" class="yb-button-wide contact-filter medium-wide rounded yb-autoText font-small yb-center-margin tb" name="orbits">Orbits</button>
 </div>
 
 <div id="contact-list" class="yb-fillWidth yb-vScroll yb-margin-T10" style="height: calc(100% - 260px); border-radius: 15px;">
     {% include "yb_messages/contact_list.html"%}
 </div>
 
-<script src="{% static 'scripts/yb_messages/yb_newMessage21.js' %}"></script>
+<script src="{% static 'scripts/yb_messages/yb_newMessage22.js' %}"></script>
 <div class="yb-logo-footer small" id="create-menu-footer" style="position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%);">
     <img src="{% static 'images/main/yourbit-logo2023-01.svg' %}" style="width: 100%; position: relative;" alt="YB Logo" class="yb-logo-small">
 </div>
