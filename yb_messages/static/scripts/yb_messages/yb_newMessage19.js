@@ -13,6 +13,8 @@ function yb_conversationRemoveContact(e) {
     let this_id = e.currentTarget.getAttribute("data-catid");
     let this_name = e.currentTarget.getAttribute("data-username");
     let this_tag = document.getElementById(`tag-${this_id}`);
+    let this_button = contact_list.querySelector("#add-contact-button-"+this_id);
+    let this_icon = this_button.querySelector('[id^="add-contact-icon"]');
 
     this_tag.remove();
 
@@ -28,13 +30,16 @@ function yb_conversationRemoveContact(e) {
         contact_list.style.height = `${contact_list.offsetHeight + tag_container_height}px`;
         tag_container_height = tag_container.offsetHeight;
     }
+
+    this_button.style.backgroundColor = "black";
+    this_icon.style.transform = "translate(-50%, -50%) rotate(0deg)";
 }
 
 function yb_conversationAddContact(e) {
     let this_id = e.currentTarget.getAttribute("data-catid");
     let this_name = e.currentTarget.getAttribute("data-username");
     let this_element = e.currentTarget;
-    let this_icon = this_element.querySelector("#add-contact-icon");
+    let this_icon = this_element.querySelector('[id^="add-contact-icon"]');
 
     //Get theme preference from browser media
     let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? "dark" : "light";
@@ -70,6 +75,8 @@ function yb_conversationAddContact(e) {
             contact_list.style.height = `${contact_list.offsetHeight - tag_container_height}px`;
             tag_container_height = tag_container.offsetHeight;
         }
+
+        this_element.classList.add("selected");
     }
 
     
