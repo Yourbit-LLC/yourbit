@@ -188,7 +188,7 @@ def filter_contacts_list(request, contact_filter):
     # Helper function to filter by search query
     def apply_search_filter(queryset, query):
         if query:  # Apply search filter only if query is provided
-            return queryset.filter(Q(username__icontains=query) | Q(full_name__icontains=query))
+            return queryset.filter(Q(username__icontains=query) | Q(display_name__icontains=query))
         return queryset  # Return original queryset if no query
 
     # Default results
