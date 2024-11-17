@@ -63,7 +63,7 @@ class ConversationViewSet(viewsets.ModelViewSet):
 
         member_profiles = []
         for member in members_split:
-            member_profiles.append(User.objects.get(id=member))
+            member_profiles.append(Profile.objects.get(id=member))
 
         print("Member Profiles: " + str(member_profiles))
 
