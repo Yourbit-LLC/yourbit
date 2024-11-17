@@ -1085,11 +1085,16 @@
 }
 
 .field-tag {
-    position: relative;
-    grid-gap: 2px;
-    width: 100px;
-    height: 30px;
-    margin-left: 10px;
+
+    padding: 4px 6px;
+    background-color: #f0f0f0; /* Adjust to fit your theme */
+    border-radius: 4px;
+    font-size: 14px;
+    display: inline-block;
+    white-space: nowrap;
+
+    /* width: 100px; */
+ 
     /* top: 50%; */
     /* transform: translateY(-50%); */
     background-color: #4b4b4b;
