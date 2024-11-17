@@ -30,7 +30,6 @@ class ProfileView(View):
             "profile_view_mode": "live",
             "profile_wallpaper": wallpaper_url,
             
-
         }
         return render(request, "yb_profile/yb_profile.html", context)
 

@@ -895,6 +895,21 @@ p {
     opacity: 0.5;
 }
 
+@media only screen and (prefers-color-scheme: dark){
+    input::placeholder {
+        color: rgb(25,25,25);
+        font-family: Arial, Helvetica, sans-serif;
+    }
+}
+
+
+@media only screen and (prefers-color-scheme: light){
+    input::placeholder {
+        color: rgb(75,75,75);
+        font-family: Arial, Helvetica, sans-serif;
+    }
+}
+
 .yb-background-image {
     position: fixed;
     top: 0;
