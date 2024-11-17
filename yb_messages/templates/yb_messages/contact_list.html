@@ -52,7 +52,7 @@
                 });
 
                 $(doocument).ready(function(){
-                    
+                    console.log(selected_contact_list);
                     for (var i = 0; i < selected_contact_list.length; i++) {
                         let this_id = selected_contact_list[i];
                         let this_element = contact_list.querySelector(`#add-contact-button-${this_id}`);
