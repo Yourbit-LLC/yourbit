@@ -1,6 +1,7 @@
 var contact_search = document.getElementById('contact-search-input');
 var contact_filter_container = document.getElementById('contact-filter-container');
 var contact_filters = document.getElementsByClassName('contact-filter');
+var selected_contact_filter = document.getElementById('selected-contact-filter');
 var tag_container = document.getElementById('yb-tagContainer');
 var selected_contacts = document.getElementById('selected-contacts');
 var recipient_iteration = 0;
@@ -63,6 +64,8 @@ function yb_createConversation() {
 function yb_getContacts(event) {
     let this_element = event.currentTarget;
     let this_filter = event.currentTarget.getAttribute("name");
+    selected_contact_filter = this_filter;
+
     contact_list.innerHTML = "";
     if (contact_search.value == "") {
         $(contact_list).load("/messages/list/contacts/"+this_filter+"/?q="+query+"/");   
@@ -79,6 +82,19 @@ $(document).ready(function () {
 
         type = 'user';
         
+    });
+
+    contact_search.addEventListener("keyup", function(event) {
+        if (event.key == 'Enter') {
+            event.preventDefault();
+            yb_createConversation();
+        } else {
+            if (contact_search.value == "") {
+                $(contact_list).load(`/messages/list/contacts/${selected_contact_filter}/`);
+            } else {
+                $(contact_list).load("/messages/list/contacts/search/?q="+query+"/");
+            }
+        }
     });
 
     for (var i = 0; i < contact_filters.length; i++) {
