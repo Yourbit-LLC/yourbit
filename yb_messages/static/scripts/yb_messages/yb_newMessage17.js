@@ -27,7 +27,7 @@ function yb_conversationAddContact(e) {
     let this_id = e.currentTarget.getAttribute("data-catid");
     let this_name = e.currentTarget.getAttribute("data-username");
     let this_element = e.currentTarget;
-    let this_icon = this_element.getElementById("add-contact-icon");
+    let this_icon = this_element.querySelector("#add-contact-icon");
 
     //Get theme preference from browser media
     let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? "dark" : "light";
