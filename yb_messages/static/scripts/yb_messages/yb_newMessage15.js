@@ -26,15 +26,45 @@ function yb_conversationRemoveContact(e) {
 function yb_conversationAddContact(e) {
     let this_id = e.currentTarget.getAttribute("data-catid");
     let this_name = e.currentTarget.getAttribute("data-username");
+    let this_element = e.currentTarget;
 
-    let contact_tag = yb_buildFieldTag(this_name, this_id);
+    //Get theme preference from browser media
+    let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? "dark" : "light";
 
-    tag_container.appendChild(contact_tag);
-    contact_tag.querySelector(".field-tag-delete").addEventListener("click", yb_conversationRemoveContact);
+    if (this_element.classList.contains("selected")){
 
-    selected_contacts.value += `${this_id},`;
+        this_element.style.backgroundColor = "black";
+
+        yb_conversationRemoveContact(e);
+
+        let this_icon = this_element.getElementById("add-contact-icon");
+        this_icon.style.transform = "translate(-50%, -50%) rotate(0deg)";
+
+        this_element.classList.remove("selected");
     
-    contact_search.value = "";
+    
+    } else {
+        if (theme == "dark"){
+            this_element.style.backgroundColor = "#A8071A";
+        } else {
+            this_element.style.backgroundColor = "#FFB3B4";
+        }
+        this_element.classList.add("selected");
+
+        
+        let contact_tag = yb_buildFieldTag(this_name, this_id);
+
+        tag_container.appendChild(contact_tag);
+        contact_tag.querySelector(".field-tag-delete").addEventListener("click", yb_conversationRemoveContact);
+        this_icon.style.transform = "translate(-50%, -50%) rotate(-405deg)";
+    
+        selected_contacts.value += `${this_id},`;
+        
+        contact_search.value = "";
+
+        recipient_iteration += 1;
+    }
+
 
     contact_search.focus();
     
