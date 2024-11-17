@@ -50,6 +50,18 @@
                         SEARCH_CONTAINER.classList.remove("yb-pulseSmall");
                     }, 1000);
                 });
+
+                $(doocument).ready(function(){
+                    
+                    for (var i = 0; i < selected_contact_list.length; i++) {
+                        let this_id = selected_contact_list[i];
+                        let this_element = contact_list.querySelector(`#add-contact-button-${this_id}`);
+                        this_element.style.backgroundColor = "#A8071A";
+                        this_element.classList.add("selected");
+                        let this_icon = this_element.querySelector('[id^="add-contact-icon"]');
+                        this_icon.style.transform = "translate(-50%, -50%) rotate(-405deg)";
+                    }
+                });
             </script>
         </div>
     </div>

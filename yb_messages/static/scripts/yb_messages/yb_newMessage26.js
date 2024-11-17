@@ -135,6 +135,7 @@ function yb_getContacts(event) {
     selected_contact_filter = this_filter;
 
     contact_list.innerHTML = "";
+
     if (contact_search.value != "") {
         query = contact_search.value;
         $(contact_list).load("/messages/list/contacts/"+this_filter+"/?q="+query);   
@@ -143,20 +144,6 @@ function yb_getContacts(event) {
     }
     
     yb_updateActiveTab("contact-filter", this_element);
-
-    //Add event listener to contact-list onload
-    contact_list.onload = function() {
-        for (var i = 0; i < selected_contact_list.length; i++) {
-            let this_id = selected_contact_list[i];
-            let this_element = contact_list.querySelector(`#add-contact-button-${this_id}`);
-            this_element.style.backgroundColor = "#A8071A";
-            this_element.classList.add("selected");
-            let this_icon = this_element.querySelector('[id^="add-contact-icon"]');
-            this_icon.style.transform = "translate(-50%, -50%) rotate(-405deg)";
-        }
-    }
-
-    
 
 }
 
@@ -172,18 +159,6 @@ $(document).ready(function () {
                 $(contact_list).load(`/messages/list/contacts/${selected_contact_filter.value}/`);
             } else {
                 $(contact_list).load(`/messages/list/contacts/${selected_contact_filter.value}/?q=${contact_search.value}`);
-            }
-        }
-
-        //Add event listener to contact-list onload
-        contact_list.onload = function() {
-            for (var i = 0; i < selected_contact_list.length; i++) {
-                let this_id = selected_contact_list[i];
-                let this_element = contact_list.querySelector(`#add-contact-button-${this_id}`);
-                this_element.style.backgroundColor = "#A8071A";
-                this_element.classList.add("selected");
-                let this_icon = this_element.querySelector('[id^="add-contact-icon"]');
-                this_icon.style.transform = "translate(-50%, -50%) rotate(-405deg)";
             }
         }
     });
