@@ -41,7 +41,7 @@ function yb_refreshContacts() {
     contact_list.innerHTML = "";
 
     
-    $(contact_list).load("/messages/list/contacts/"+selected_contact_filter+"/");
+    $(contact_list).load("/messages/list/contacts/"+selected_contact_filter.value+"/");
     
 }
 
