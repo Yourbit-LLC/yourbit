@@ -42,6 +42,8 @@ function yb_refreshContacts() {
 
     
     $(contact_list).load("/messages/list/contacts/"+selected_contact_filter.value+"/");
+
+    contact_list.style.height = `${contact_list.offsetHeight - tag_container_height}px`;
     
 }
 
@@ -75,8 +77,6 @@ function yb_conversationAddContact(e) {
         this_icon.style.transform = "translate(-50%, -50%) rotate(-405deg)";
     
         selected_contacts.value += `${this_id},`;
-        
-        contact_search.value = "";
 
         recipient_iteration += 1;
 
@@ -87,7 +87,6 @@ function yb_conversationAddContact(e) {
 
         this_element.classList.add("selected");
 
-        yb_refreshContacts();
     }
 
     
