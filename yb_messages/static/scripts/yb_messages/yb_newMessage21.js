@@ -148,5 +148,7 @@ $(document).ready(function () {
     // yb_hide2WayLoad();
     let next_button = document.getElementById("new-message-next");
     
-    next_button.addEventListener("click", yb_createConversation)
+    next_button.addEventListener("click", yb_createConversation);
+
+    contact_search.focus();
 });
