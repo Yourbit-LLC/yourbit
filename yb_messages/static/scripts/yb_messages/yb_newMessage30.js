@@ -141,7 +141,7 @@ function yb_createConversation() {
 function yb_getContacts(event) {
     let this_element = event.currentTarget;
     let this_filter = event.currentTarget.getAttribute("name");
-    selected_contact_filter = this_filter;
+    selected_contact_filter.value = this_filter;
 
     contact_list.innerHTML = "";
 
