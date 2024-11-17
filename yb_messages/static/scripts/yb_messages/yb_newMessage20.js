@@ -33,6 +33,8 @@ function yb_conversationRemoveContact(e) {
 
     this_button.style.backgroundColor = "black";
     this_icon.style.transform = "translate(-50%, -50%) rotate(0deg)";
+
+    this_button.classList.remove("selected");
 }
 
 function yb_conversationAddContact(e) {
@@ -52,7 +54,6 @@ function yb_conversationAddContact(e) {
 
         this_icon.style.transform = "translate(-50%, -50%) rotate(0deg)";
 
-        this_element.classList.remove("selected");
     
     
     } else {
