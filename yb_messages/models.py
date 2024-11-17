@@ -31,7 +31,10 @@ class Conversation(models.Model):
         
     from_user_color = models.CharField(max_length=100, default="#1E90FF")
     to_user_color = models.CharField(max_length=100, default="rgb(65, 65, 65)")
+    
+    time = models.DateTimeField(default=timezone.now)
     time_modified = models.DateTimeField(default=timezone.now)
+    
     stickers = models.ManyToManyField('ChatSticker', blank=True)
     messages = models.ManyToManyField('Message', related_name="messages", blank=True)
 #Conversations are parent to messages in the database model. 
