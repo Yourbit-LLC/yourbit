@@ -92,7 +92,7 @@ $(document).ready(function () {
             if (contact_search.value == "") {
                 $(contact_list).load(`/messages/list/contacts/${selected_contact_filter}/`);
             } else {
-                $(contact_list).load("/messages/list/contacts/search/?q="+query+"/");
+                $(contact_list).load("/messages/list/contacts/search/?q="+query);
             }
         }
     });
