@@ -97,7 +97,7 @@ function yb_conversationAddContact(e) {
 
         selected_contact_list.push(this_id);
 
-        contact_search.innerHTML = "";
+        contact_search.value = "";
         yb_refreshContacts();
 
     }
