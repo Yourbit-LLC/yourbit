@@ -44,14 +44,9 @@ function yb_conversationAddContact(e) {
     
     
     } else {
-        if (theme == "dark"){
-            this_element.style.backgroundColor = "#A8071A";
-        } else {
-            this_element.style.backgroundColor = "#FFB3B4";
-        }
-        this_element.classList.add("selected");
-
         
+        this_element.style.backgroundColor = "#A8071A";
+
         let contact_tag = yb_buildFieldTag(this_name, this_id);
 
         tag_container.appendChild(contact_tag);
