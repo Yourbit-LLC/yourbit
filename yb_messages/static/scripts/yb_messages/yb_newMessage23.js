@@ -43,8 +43,6 @@ function yb_refreshContacts() {
     
     $(contact_list).load("/messages/list/contacts/"+selected_contact_filter+"/");
     
-    
-    yb_updateActiveTab("contact-filter", this_element);
 }
 
 function yb_conversationAddContact(e) {
