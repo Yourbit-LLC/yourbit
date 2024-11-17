@@ -1,6 +1,7 @@
 var contact_search = document.getElementById('contact-search-input');
 var contact_filter_container = document.getElementById('contact-filter-container');
 var contact_filters = document.getElementsByClassName('contact-filter');
+var tag_container = document.getElementById('yb-tagContainer');
 var selected_contacts = document.getElementById('selected-contacts');
 var recipient_iteration = 0;
 var contact_list = document.getElementById('contact-list');
@@ -33,14 +34,13 @@ function yb_conversationAddContact(e) {
         contact_tag.style.transform = `translateY(-50%) translateX(${recipient_iteration}10px)`;
     }
 
-    contact_filter_container.appendChild(contact_tag);
+    tag_container.appendChild(contact_tag);
 
     selected_contacts.value += `${this_id},`;
     
-    contact_search.focus();
+    contact_search.value = "";
 
-    recipient_iteration += 1;
-    contact_search.style.paddingLeft = `${recipient_iteration}10px`;
+    contact_search.focus();
     
 
 }

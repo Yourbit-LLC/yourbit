@@ -115,10 +115,16 @@ button {
 
 
 @media only screen and (prefers-color-scheme: dark){
-    input::placeholder {
+    .yb-input-singleLine::placeholder {
         color: rgb(25,25,25);
         font-family: Arial, Helvetica, sans-serif;
     }
+
+    .yb-form-field::placeholder {
+        color: rgb(25,25,25);
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
     textarea::placeholder {
         color: rgb(25,25,25);
         font-family: Arial, Helvetica, sans-serif;
@@ -127,10 +133,17 @@ button {
 
 
 @media only screen and (prefers-color-scheme: light){
-    input::placeholder {
+    .yb-input-singleLine::placeholder {
         color: rgb(75,75,75);
         font-family: Arial, Helvetica, sans-serif;
     }
+
+    
+    .yb-form-field::placeholder {
+        color: rgb(75,75,75);
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    
 
     textarea::placeholder {
         color: rgb(75,75,75);
