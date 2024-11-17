@@ -97,8 +97,12 @@ function yb_conversationAddContact(e) {
 
         selected_contact_list.push(this_id);
 
+        if (contact_search.value != "") {
+            yb_refreshContacts();
+        }
+
         contact_search.value = "";
-        yb_refreshContacts();
+    
 
     }
 
