@@ -30,6 +30,7 @@ function yb_conversationAddContact(e) {
     let contact_tag = yb_buildFieldTag(this_name, this_id);
 
     tag_container.appendChild(contact_tag);
+    contact_tag.querySelector(".field-tag-delete").addEventListener("click", yb_conversationRemoveContact);
 
     selected_contacts.value += `${this_id},`;
     
