@@ -68,7 +68,8 @@ function yb_getContacts(event) {
 
     contact_list.innerHTML = "";
     if (contact_search.value != "") {
-        $(contact_list).load("/messages/list/contacts/"+this_filter+"/?q="+query+"/");   
+        query = contact_search.value;
+        $(contact_list).load("/messages/list/contacts/"+this_filter+"/?q="+query);   
     } else {
         $(contact_list).load("/messages/list/contacts/"+this_filter+"/");
     }
@@ -78,12 +79,7 @@ function yb_getContacts(event) {
 }
 
 $(document).ready(function () {
-    $(contact_search).on('change keyup', function() {
-        query = this.value;
 
-        type = 'user';
-        
-    });
 
     contact_search.addEventListener("keyup", function(event) {
         if (event.key == 'Enter') {
@@ -91,9 +87,9 @@ $(document).ready(function () {
             yb_createConversation();
         } else {
             if (contact_search.value == "") {
-                $(contact_list).load(`/messages/list/contacts/${selected_contact_filter}/`);
+                $(contact_list).load(`/messages/list/contacts/${selected_contact_filter.value}/`);
             } else {
-                $(contact_list).load(`/messages/list/contacts/${selected_contact_filter}/?q=${query}`);
+                $(contact_list).load(`/messages/list/contacts/${selected_contact_filter.value}/?q=${contact_search.value}`);
             }
         }
     });
