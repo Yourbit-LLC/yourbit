@@ -170,7 +170,7 @@ class ConversationSettings(View):
         
         return render(request, "yb_messages/conversation_settings.html", context={"conversation": this_conversation})
 
-def filter_contacts_list(request, contact_filter, query=None):
+def filter_contacts_list(request, contact_filter):
     """
     This view filters the contact list based on the filter passed in the URL.
     The filter can be "all", "friends", "following", "followers", or "orbits".
@@ -179,6 +179,9 @@ def filter_contacts_list(request, contact_filter, query=None):
     """
     # Retrieve the active user profile
     profile = Profile.objects.get(username=request.user.active_profile)
+
+        # Get the search query from request.GET, defaulting to None if not provided
+    query = request.GET.get('q', None)
 
     connections = False  # Initialize connections variable
 

@@ -64,6 +64,10 @@ function yb_getContacts(event) {
     let this_element = event.currentTarget;
     let this_filter = event.currentTarget.getAttribute("name");
     contact_list.innerHTML = "";
+    if (contact_search.value == "") {
+        $(contact_list).load("/messages/list/contacts/"+this_filter+"/?q="+query+"/");   
+    }
+
     $(contact_list).load("/messages/list/contacts/"+this_filter+"/");
     yb_updateActiveTab("contact-filter", this_element);
 
