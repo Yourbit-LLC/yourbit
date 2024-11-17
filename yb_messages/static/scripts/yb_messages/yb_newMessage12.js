@@ -67,11 +67,12 @@ function yb_getContacts(event) {
     selected_contact_filter = this_filter;
 
     contact_list.innerHTML = "";
-    if (contact_search.value == "") {
+    if (contact_search.value != "") {
         $(contact_list).load("/messages/list/contacts/"+this_filter+"/?q="+query+"/");   
+    } else {
+        $(contact_list).load("/messages/list/contacts/"+this_filter+"/");
     }
-
-    $(contact_list).load("/messages/list/contacts/"+this_filter+"/");
+    
     yb_updateActiveTab("contact-filter", this_element);
 
 }
