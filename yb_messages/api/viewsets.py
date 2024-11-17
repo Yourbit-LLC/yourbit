@@ -97,7 +97,7 @@ class ConversationViewSet(viewsets.ModelViewSet):
                 new_conversation = Conversation.objects.get(id=serializer.data['id'])
 
                 for member in new_conversation.members.all():
-                    message_core = MessageCore.objects.get(profile = member.profile)
+                    message_core = MessageCore.objects.get(profile = member)
                     message_core.conversations.add(new_conversation)
                     message_core.save()
 
@@ -108,12 +108,13 @@ class ConversationViewSet(viewsets.ModelViewSet):
 
             if str(self.request.user.id) not in members:
                 members += str(self.request.user.id)
+
             serializer.save(members=members)
 
             new_conversation = Conversation.objects.get(id=serializer.data['id'])
 
             for member in new_conversation.members.all():
-                message_core = MessageCore.objects.get(profile = member.profile)
+                message_core = MessageCore.objects.get(profile = member)
                 message_core.conversations.add(new_conversation)
                 message_core.save()
 
