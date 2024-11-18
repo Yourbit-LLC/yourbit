@@ -1099,7 +1099,7 @@
     display: grid;
     grid-template-columns: 70px 30px;
     transform: scale(0);
-    transition: 0.3s;
+    transition: 0.2s;
 }
 
 .field-tag.end {
