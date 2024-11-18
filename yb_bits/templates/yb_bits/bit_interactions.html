@@ -1,4 +1,4 @@
-<div id="bit-{{bit.id}}" data-bit-id="{{bit.id}}" class="yb-container-bitFeedback">
+<div id="bit-{{bit.id}}" data-bit-id="{{bit.id}}" class="yb-container-bitFeedback prerender-feedback">
     
     <button id="like-{{bit.id}}" class="yb-button-feedback pointer-object" name="like" data-catid="{{bit.id}}">
         <svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
@@ -59,11 +59,11 @@
 </div>
 
 <script>
-    let feedback_container = document.getElementsByClassName("yb-container-bitFeedback")[0];
+    let feedback_container = document.getElementsByClassName("prerender-feedback")[0];
     let bit_id = feedback_container.getAttribute("data-bit-id")
-    let like_button = document.getElementById(`like-${bit_id}`);
-    let dislike_button = document.getElementById(`dislike-${bit_id}`);
-    let share_button = document.getElementById(`share-${bit_id}`);
+    let like_button = feedback_container.getElementById(`like-${bit_id}`);
+    let dislike_button = feedback_container.getElementById(`dislike-${bit_id}`);
+    let share_button = feedback_container.getElementById(`share-${bit_id}`);
     $(document).ready(function(){
         like_button.addEventListener("click", yb_pressLike);
         dislike_button.addEventListener("click", yb_pressDislike);
