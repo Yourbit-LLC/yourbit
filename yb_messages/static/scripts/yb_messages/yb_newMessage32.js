@@ -16,16 +16,16 @@ function yb_conversationRemoveContact(e) {
     let this_tag = document.getElementById(`tag-${this_id}`);
     let this_button = contact_list.querySelector("#add-contact-button-"+this_id);
     let this_icon = this_button.querySelector('[id^="add-contact-icon"]');
-
-    this_tag.remove();
+    this_tag.classList.remove("end");
+    setTimeout(function() {
+        this_tag.remove();
+    }, 300);
 
     let current_value = selected_contacts.value;
     let new_value = current_value.replace(`${this_id},`, "");
     selected_contacts.value = new_value;
 
     contact_search.focus();
-    recipient_iteration -= 1;
-    contact_search.style.paddingLeft = `${recipient_iteration}10px`;
 
     if (tag_container.offsetHeight < tag_container_height) {
         contact_list.style.height = `${contact_list.offsetHeight + tag_container_height}px`;
