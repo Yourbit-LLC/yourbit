@@ -93,7 +93,7 @@ const DEFAULT_STYLESHEET_INDEX = {
     "yb-stylesheet-core": "/static/css/main/yb_core6.css",
     "yb-stylesheet-modifier": "/static/css/main/yb_modifiers3.css",
     "yb-stylesheet-button": "/static/css/main/yb_buttons6.css",
-    "yb-stylesheet-container": "/static/css/main/yb_containers8.css",
+    "yb-stylesheet-container": "/static/css/main/yb_containers9.css",
     "yb-stylesheet-bit": "/static/css/yb_bits/yb_bits6.css",
 }
 
