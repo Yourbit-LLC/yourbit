@@ -298,7 +298,7 @@ def filter_panel_view(request, *args, **kwargs):
     return render(request, "yb_bits/filter_bar/filter_panels/yb_filter_panel.html", context)
 
 def customize_panel_view(request, *args, **kwargs):
-    return render(request, "yb_bits/filter_bar/filter_panels/yb_customize_panel.html")
+    return render(request, "yb_bits/filter_bar/filter_panels/yb_custom_panel.html")
 
 def list_clusters(request, *args, **kwargs):
     profile = Profile.objects.get(username=request.user.active_profile)
