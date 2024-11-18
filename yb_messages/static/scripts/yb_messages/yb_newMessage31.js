@@ -79,6 +79,7 @@ function yb_conversationAddContact(e) {
         let contact_tag = yb_buildFieldTag(this_name, this_id);
 
         tag_container.appendChild(contact_tag);
+        contact_tag.classList.add("end");
         contact_tag.querySelector(".field-tag-delete").addEventListener("click", yb_conversationRemoveContact);
         this_icon.style.transform = "translate(-50%, -50%) rotate(-405deg)";
     

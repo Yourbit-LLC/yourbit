@@ -1085,13 +1085,11 @@
 }
 
 .field-tag {
-    padding: 0px 4px;
-    background-color: #f0f0f0;
-    border-radius: 4px;
-    font-size: 14px;
-    display: inline-block;
-    white-space: nowrap;
-    /* width: 100px; */
+    position: relative;
+    grid-gap: 2px;
+    width: 100px;
+    height: 30px;
+    margin-left: 10px;
     /* top: 50%; */
     /* transform: translateY(-50%); */
     background-color: #4b4b4b;
@@ -1100,6 +1098,14 @@
     line-height: 2;
     display: grid;
     grid-template-columns: 70px 30px;
+    transform: scale(0);
+    transition: 0.5s;
+}
+
+.field-tag.end {
+    transform: scale(1);
+    transition: 0.5s;
+    animation: yb-bounceDown 0.25s ease-in-out 1;
 }
 
 .full-result-image-container {
