@@ -10,7 +10,7 @@ $(document).ready(function() {
         panel_buttons[i].addEventListener('click', function() {
             // Toggle the filter panel
             let filter_option = this.getAttribute("data-sort");
-            let current_filter = yb_getSessionValues("sort");
+            let current_sort = yb_getSessionValues("sort");
 
             //check if filter option is in the is in the current filter string
             if (current_filter.includes(filter_option)) {
@@ -22,11 +22,11 @@ $(document).ready(function() {
                 yb_setSessionValues("sort", current_filter);
             } else {
                 //add the filter option
-                current_filter += "-"+filter_option;
+                current_sort = filter_option;
                 //add the active class
                 this.classList.add("active");
 
-                yb_setSessionValues("sort", current_filter);
+                yb_setSessionValues("sort", current_sort);
             } 
             
             yb_setSessionValues('bitstream-page', 1);
