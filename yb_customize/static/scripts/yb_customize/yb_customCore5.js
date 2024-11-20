@@ -257,7 +257,7 @@ function yb_overrideBitColors(user_default = false, bit_colors = false) {
 
             //Gather all of the bit elements
             let this_name = this_bit.querySelector(".bit-name");
-            let this_username = this_bit.querySelector(".yb-bit-username");
+            let this_username = this_bit.querySelector(".bit-username");
             let this_title = this_bit.querySelector(".yb-title-bit");
             let this_text = this_bit.querySelector(".yb-body-bit");
             let these_buttons = this_bit.querySelectorAll(".yb-button-feedback");
@@ -301,7 +301,7 @@ function yb_overrideBitColors(user_default = false, bit_colors = false) {
 
                 //Gather all of the bit elements
                 let this_name = this_bit.querySelector(".bit-name");
-                let this_username = this_bit.querySelector(".yb-bit-username");
+                let this_username = this_bit.querySelector(".bit-username");
                 let this_title = this_bit.querySelector(".yb-title-bit");
                 let this_text = this_bit.querySelector(".yb-body-bit");
                 let these_buttons = this_bit.querySelectorAll(".yb-button-feedback");
@@ -343,7 +343,7 @@ function yb_overrideBitColors(user_default = false, bit_colors = false) {
 
                 //Gather all of the bit elements
                 let this_name = this_bit.querySelector(".bit-name");
-                let this_username = this_bit.querySelector(".yb-bit-username");
+                let this_username = this_bit.querySelector(".bit-username");
                 let this_title = this_bit.querySelector(".yb-title-bit");
                 let this_text = this_bit.querySelector(".yb-body-bit");
                 let these_buttons = this_bit.querySelectorAll(".yb-button-feedback");
