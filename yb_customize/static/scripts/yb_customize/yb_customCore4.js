@@ -244,13 +244,13 @@ function yb_loadWallpaper(profile = false) {
 
 function yb_overrideBitColors(user_default = false, bit_colors = false) {
     if (user_default === true) {
-        for (let i = 0; i < BIT_ELEMENTS.length; i++) {
+        for (let i = 0; i < bit_elements.length; i++) {
             /* 
                 Function to change bit color to and from user default, app default, or mixed theme
             */
 
             //Identify current bit element
-            let this_bit = BIT_ELEMENTS[i];
+            let this_bit = bit_elements[i];
 
             //Get the bit id
             let this_id = this_bit.getAttribute("data-bit-id");
@@ -287,13 +287,13 @@ function yb_overrideBitColors(user_default = false, bit_colors = false) {
         }
     } else {
         if (bit_colors === true) {
-            for (let i = 0; i < BIT_ELEMENTS.length; i++) {
+            for (let i = 0; i < bit_elements.length; i++) {
                 /* 
                     Function to change bit color to and from user default, app default, or mixed theme
                 */
 
                 //Identify current bit element
-                let this_bit = BIT_ELEMENTS[i];
+                let this_bit = bit_elements[i];
 
 
                 //Get the bit id
@@ -330,13 +330,13 @@ function yb_overrideBitColors(user_default = false, bit_colors = false) {
                 
             }
         } else {
-            for (let i = 0; i < BIT_ELEMENTS.length; i++) {
+            for (let i = 0; i < bit_elements.length; i++) {
                 /* 
                     Function to change bit color to and from user default, app default, or mixed theme
                 */
 
                 //Identify current bit element
-                let this_bit = BIT_ELEMENTS[i];
+                let this_bit = bit_elements[i];
 
                 //Get the bit id
                 let this_id = this_bit.getAttribute("data-bit-id");
@@ -365,7 +365,7 @@ function yb_overrideBitColors(user_default = false, bit_colors = false) {
 
 function yb_toggleMyColors(toggle) {
     if (toggle === true) {
-        for (let i = 0; i < BIT_ELEMENTS.length; i++) {
+        for (let i = 0; i < bit_elements.length; i++) {
             yb_changeBitColor(true);
         }
     } else {

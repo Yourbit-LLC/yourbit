@@ -4,7 +4,7 @@ var bitstream_data = new Map(); //Stores captured information on current bitstre
 var loaded_bits = []; //Stores IDs of bits that have been loaded
 var unloaded_bits = []; //Stores IDs of bits that have been unloaded
 const SPACES = ["global", "chat", "video", "photo"]
-const BIT_ELEMENTS = document.getElementsByClassName("yb-bit-shell");
+var bit_elements;
 
 const bitObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
@@ -165,6 +165,8 @@ function yb_updateFeed(update, data) {
             
             $("#no-bits-message").hide();
 
+            bit_elements = document.getElementsByClassName("yb-bit-shell");
+
             
         } else {
             
@@ -202,6 +204,8 @@ function yb_updateFeed(update, data) {
 
             $("#load-indicator-container-bitstream").show();
             $("#no-bits-message").hide();
+
+            bit_elements = document.getElementsByClassName("yb-bit-shell");
         } else {
             $("#load-indicator-container-bitstream").hide();
             $("#no-bits-message").show();
