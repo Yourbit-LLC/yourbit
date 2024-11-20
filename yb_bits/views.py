@@ -3,6 +3,7 @@ from django.views import View
 from .forms import BitForm
 from django.http import JsonResponse, HttpResponse
 from .models import *
+from yb_customize.models import CustomCore, CustomBit
 import uuid
 import json
 
@@ -298,7 +299,14 @@ def filter_panel_view(request, *args, **kwargs):
     return render(request, "yb_bits/filter_bar/filter_panels/yb_filter_panel.html", context)
 
 def customize_panel_view(request, *args, **kwargs):
-    return render(request, "yb_bits/filter_bar/filter_panels/yb_custom_panel.html")
+    user_profile = Profile.objects.get(username=request.user.active_profile)
+    custom_core = CustomCore.objects.get(profile=user_profile)
+    custom_bit = CustomBit.objects.get(theme=custom_core.theme)
+    context = {
+        "custom_core":custom_core,
+        "custom_bit":custom_bit
+    }
+    return render(request, "yb_bits/filter_bar/filter_panels/yb_custom_panel.html", context)
 
 def list_clusters(request, *args, **kwargs):
     profile = Profile.objects.get(username=request.user.active_profile)

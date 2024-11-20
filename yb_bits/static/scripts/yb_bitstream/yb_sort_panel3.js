@@ -1,5 +1,6 @@
 try {
     var sort_buttons = document.getElementsByClassName("yb-filter-icon");
+
 } catch {
     sort_buttons = document.getElementsByClassName("yb-filter-icon");
 }
@@ -11,6 +12,8 @@ $(document).ready(function() {
             // Toggle the filter panel
             let filter_option = this.getAttribute("data-sort");
             let current_sort = yb_getSessionValues("sort");
+
+            console.log("Current Sort: " + current_sort);
 
             //check if filter option is in the is in the current filter string
             if (current_sort.includes(filter_option)) {
@@ -40,4 +43,3 @@ $(document).ready(function() {
         });
     }
 });
-
