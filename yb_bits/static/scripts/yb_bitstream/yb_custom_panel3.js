@@ -1,14 +1,14 @@
 try {
-    var panel_buttons = document.getElementsByClassName("yb-filter-icon");
+    var custom_panel_buttons = document.getElementsByClassName("yb-filter-icon");
 } catch (e) {
     console.error(e);
-    panel_buttons = document.getElementsByClassName("yb-filter-icon");
+    custom_panel_buttons = document.getElementsByClassName("yb-filter-icon");
 }
 
 $(document).ready(function() {
-    console.log("sort-panel-ready");
-    for (var i = 0; i < panel_buttons.length; i++) {
-        panel_buttons[i].addEventListener('click', function() {
+    console.log("custom-panel-ready");
+    for (var i = 0; i < custom_panel_buttons.length; i++) {
+        custom_panel_buttons[i].addEventListener('click', function() {
             console.log("panel button clicked");
             let action = this.getAttribute("data-action");
             if (action == "custom-ui") {
