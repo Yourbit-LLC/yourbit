@@ -75,11 +75,58 @@ $(document).ready(function() {
                     yb_setCustomValues("wallpaper", "True");
                 }
             } else if (action == "flat-mode") {
-                yb_changeUIState("default");
-                yb_overrideBitColors(false, false);
+                if (this.classList.contains("active")) {
+                    if (yb_getCustomValues("wallpaper-on") == "True") {
+                        CONTENT_CONTAINER_A.classList.remove("yb-bg-autFlat");
+                        CONTENT_CONTAINER_A.classList.add("yb-bg-transparent");
+                        CONTENT_CONTAINER_B.classList.remove("yb-bg-autoFlat");
+                        CONTENT_CONTAINER_B.classList.add("yb-bg-transparent");
+                    } else {
+                        CONTENT_CONTAINER_A.classList.remove("yb-bg-autoFlat");
+                        CONTENT_CONTAINER_A.classList.add("yb-bg-autoGray");
+                        CONTENT_CONTAINER_B.classList.remove("yb-bg-autoFlat");
+                        CONTENT_CONTAINER_B.classList.add("yb-bg-autoGray");
+                    }
+
+                    if (yb_getCustomValues("custom-ui-on") == "True") {
+                        yb_changeUIState("modded");
+                    } else {
+                        yb_changeUIState("default");
+                    }
+
+                    if (yb_getCustomValues("bit-colors-on") == "True") {
+                        let only_my_colors = yb_getSessionValues("only-my-colors");
+                        if (only_my_colors == "True") {
+                            yb_overrideBitColors(true, true);
+                        } else {
+                            yb_overrideBitColors(false, true);
+                        }
+                    } else {
+                        yb_overrideBitColors(false, false);
+                    }
+
+                    this.classList.remove("active");
+                }
+
+                } else {
+                    yb_changeUIState("default");
+                    yb_overrideBitColors(false, false);
+                    //update root variables
+                    document.documentElement.style.setProperty('--yb-separator-display', 'block');
+                    if (yb_getCustomValues("wallpaper-on") == "True") {
+                        CONTENT_CONTAINER_A.classList.remove("yb-bg-transparent");
+                        CONTENT_CONTAINER_A.classList.add("yb-bg-autoFlat");
+                        CONTENT_CONTAINER_B.classList.remove("yb-bg-transparent");
+                        CONTENT_CONTAINER_B.classList.add("yb-bg-autoFlat");
+                    } else {
+                        CONTENT_CONTAINER_A.classList.remove("yb-bg-autoGray");
+                        CONTENT_CONTAINER_A.classList.add("yb-bg-autoFlat");
+                        CONTENT_CONTAINER_B.classList.remove("yb-bg-autoGray");
+                        CONTENT_CONTAINER_B.classList.add("yb-bg-autoFlat");
+                    }
+                }
 
             }
-            
-        });
+        );
     }
 });

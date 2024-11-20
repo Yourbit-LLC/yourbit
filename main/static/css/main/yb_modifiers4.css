@@ -262,6 +262,10 @@
         background-color: gray;
     }
 
+    .yb-bg-autoFlat {
+        background-color: white;
+    }
+
     .yb-font-autoGray {
         color: rgb(96, 96, 96);
     }
@@ -281,6 +285,10 @@
 @media screen and (prefers-color-scheme: dark) {
     .yb-bg-autoGray {
         background-color: rgb(25, 25, 25);
+    }
+
+    .yb-bg-autoFlat {
+        background-color: black;
     }
 
     .yb-font-autoGray {

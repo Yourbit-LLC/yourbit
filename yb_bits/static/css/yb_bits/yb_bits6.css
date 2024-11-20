@@ -20,7 +20,7 @@
     transition: 0.3s;
     cursor: pointer;
     pointer-events: auto;
-    background-color: rgb(70, 70, 70);
+    background-color: var(--default-bit-background);
     box-shadow: 0px 1px 5px black;
 
     padding: 5px;
@@ -53,7 +53,7 @@
         transition: 0.3s;
         cursor: pointer;
         pointer-events: auto;
-        background-color: rgb(255, 255, 255);
+        background-color: var(--default-bit-background);
         box-shadow: 0px 1px 5px black;
         transition: 0.5s;
         padding: 5px;

@@ -291,12 +291,20 @@
     .yb-fill-autoGray {
         fill: rgb(110, 110, 110);
     }
+
+    .yb-bg-autoFlat {
+        background-color: white;
+    }
     
 }
 
 @media screen and (prefers-color-scheme: dark) {
     .yb-bg-autoGray {
         background-color: rgb(25, 25, 25);
+    }
+
+    .yb-bg-autoFlat {
+        background-color: black;
     }
 
     .yb-font-autoGray {

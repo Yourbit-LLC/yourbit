@@ -46,11 +46,11 @@
                     \O_______________O/
 
 ****************************************************-->
-<section id='content-container-a' class="content-container show {% if wallpaper_enabled %} yb-bg-transparent {% else %} yb-bg-autoGray {% endif %}">
+<section id='content-container-a' class="content-container show {% if custom_core.flat_mode_on %}yb-bg-autoFlat {% else %}{% if wallpaper_enabled %} yb-bg-transparent {% else %} yb-bg-autoGray {% endif %}{% endif %}">
     
 </section>
 
-<section id='content-container-b' class="content-container {% if wallpaper_enabled %} yb-bg-transparent {% else %} yb-bg-autoGray {% endif %}">
+<section id='content-container-b' class="content-container {% if custom_core.flat_mode_on %}yb-bg-autoFlat{% if wallpaper_enabled %} yb-bg-transparent {% else %} yb-bg-autoGray {% endif %}{% endif %}">
     
 </section>
 {% endblock %}
