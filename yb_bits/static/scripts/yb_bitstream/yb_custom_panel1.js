@@ -7,8 +7,8 @@ try {
 
 $(document).ready(function() {
     console.log("sort-panel-ready");
-    for (var i = 0; i < sort_buttons.length; i++) {
-        sort_buttons[i].addEventListener('click', function() {
+    for (var i = 0; i < panel_buttons.length; i++) {
+        panel_buttons[i].addEventListener('click', function() {
             let action = this.getAttribute("data-action");
             if (action == "custom-ui") {
                 if (this.classList.contains("active")) {
