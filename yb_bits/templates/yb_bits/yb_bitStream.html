@@ -2,10 +2,10 @@
 
 {% if custom_core.bit_colors_on %}
 
-    <link rel="stylesheet" href="{% static 'css/yb_bits/yb_bits_customized8.css' %}">
+    <link rel="stylesheet" id="yb-stylesheet-bit" href="{% static 'css/yb_bits/yb_bits_customized8.css' %}">
 
 {% else %}
-    <link rel="stylesheet" href="{% static 'css/yb_bits/yb_bits6.css' %}">
+    <link rel="stylesheet" id="yb-stylesheet-bit" href="{% static 'css/yb_bits/yb_bits6.css' %}">
 {% endif %}
 
 <link rel="stylesheet" href="{% static 'css/yb_bits/yb_bitstream.css' %}">
