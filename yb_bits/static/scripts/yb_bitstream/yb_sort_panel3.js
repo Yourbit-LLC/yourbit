@@ -19,7 +19,7 @@ $(document).ready(function() {
                 //remove the active class
                 this.classList.remove("active");
 
-                yb_setSessionValues("sort", current_filter);
+                yb_setSessionValues("sort", current_sort);
             } else {
                 //add the filter option
                 current_sort = filter_option;
