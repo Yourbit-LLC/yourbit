@@ -605,6 +605,8 @@ function yb_buildBit(bit, interactions=true){
     new_bit.setAttribute("data-icon-color", `${feedback_icon_color}`);
     new_bit.setAttribute("data-secondary-color", `${accent_color}`);
     new_bit.setAttribute("data-primary-color", `${primary_color}`);
+    new_bit.setAttribute("data-title-color", `${title_color}`);
+    new_bit.setAttribute("data-text-color", `${text_color}`);
 
     //generate header
     new_bit.appendChild(createHeader(bit));

@@ -106,7 +106,7 @@ const MODDED_STYLESHEET_INDEX = {
 }
 
 //Legacy custom index **MARKED FOR REMOVAL**
-const custom_index = [
+const custom_ui_index = [
     'panel-color',
     'accent-color',
     'text-color',
@@ -114,6 +114,15 @@ const custom_index = [
     'title-color',
     'button-color',
     'button-text-color'
+]
+
+const custom_bit_index = [
+    'primary-color',
+    'secondary-color',
+    'title-color',
+    'text-color',
+    'icon-color',
+    'button-color'
 ]
 
 function yb_getCustomValues(key){
@@ -233,6 +242,137 @@ function yb_loadWallpaper(profile = false) {
     yb_showWallpaper();
 }
 
+function yb_overrideBitColors(user_default = false, bit_colors = false) {
+    if (user_default === true) {
+        for (let i = 0; i < BIT_ELEMENTS.length; i++) {
+            /* 
+                Function to change bit color to and from user default, app default, or mixed theme
+            */
+
+            //Identify current bit element
+            let this_bit = BIT_ELEMENTS[i];
+
+            //Get the bit id
+            let this_id = this_bit.getAttribute("data-bit-id");
+
+            //Gather all of the bit elements
+            let this_name = this_bit.querySelector(".bit-name");
+            let this_username = this_bit.querySelector(".yb-bit-icon");
+            let this_title = this_bit.querySelector(".yb-title-bit");
+            let this_text = this_bit.querySelector(".yb-body-bit");
+            let these_buttons = this_bit.querySelectorAll(".yb-button-feedback");
+            let these_icons = this_bit.querySelectorAll(".yb-icon-bit");
+
+            this_bit.style.backgroundColor = yb_getCustomValues("bit-primary-color");
+            this_name.style.color = yb_getCustomValues("bit-title-color");
+            this_username.style.color = yb_getCustomValues("bit-text-color");
+
+            //For each bit icon if the icon is active apply custom active color
+            for (icon in these_icons) {
+                if (icon.classList.contains("active")) {
+                    icon.style.fill = yb_getCustomValues("bit-icon-color");
+                }
+            }
+
+            //For each button if the button is active apply custom active color
+            for (button in these_buttons) {
+                if (button.classList.contains("active")) {
+                    button.style.backgroundColor = yb_getCustomValues("bit-button-color");
+                }
+            }
+
+            this_title.style.color = yb_getCustomValues("bit-title-color");
+            this_text.style.color = yb_getCustomValues("bit-text-color");
+            
+        }
+    } else {
+        if (bit_colors === true) {
+            for (let i = 0; i < BIT_ELEMENTS.length; i++) {
+                /* 
+                    Function to change bit color to and from user default, app default, or mixed theme
+                */
+
+                //Identify current bit element
+                let this_bit = BIT_ELEMENTS[i];
+
+
+                //Get the bit id
+                let this_id = this_bit.getAttribute("data-bit-id");
+
+                //Gather all of the bit elements
+                let this_name = this_bit.querySelector(".bit-name");
+                let this_username = this_bit.querySelector(".yb-bit-icon");
+                let this_title = this_bit.querySelector(".yb-title-bit");
+                let this_text = this_bit.querySelector(".yb-body-bit");
+                let these_buttons = this_bit.querySelectorAll(".yb-button-feedback");
+                let these_icons = this_bit.querySelectorAll(".yb-icon-bit");
+
+                this_bit.style.backgroundColor = this_bit.getAttribute("data-primary-color");
+                this_name.style.color = this_bit.getAttribute("data-title-color");
+                this_username.style.color = this_bit.getAttribute("data-text-color");
+
+                //For each bit icon if the icon is active apply custom active color
+                for (icon in these_icons) {
+                    if (icon.classList.contains("active")) {
+                        icon.style.fill = this_bit.getAttribute("data-icon-color");
+                    }
+                }
+
+                //For each button if the button is active apply custom active color
+                for (button in these_buttons) {
+                    if (button.classList.contains("active")) {
+                        button.style.backgroundColor = this_bit.getAttribute("data-button-color");
+                    }
+                }
+
+                this_title.style.color = this_bit.getAttribute("data-title-color");
+                this_text.style.color = this_bit.getAttribute("data-text-color");
+                
+            }
+        } else {
+            for (let i = 0; i < BIT_ELEMENTS.length; i++) {
+                /* 
+                    Function to change bit color to and from user default, app default, or mixed theme
+                */
+
+                //Identify current bit element
+                let this_bit = BIT_ELEMENTS[i];
+
+                //Get the bit id
+                let this_id = this_bit.getAttribute("data-bit-id");
+
+                //Gather all of the bit elements
+                let this_name = this_bit.querySelector(".bit-name");
+                let this_username = this_bit.querySelector(".yb-bit-icon");
+                let this_title = this_bit.querySelector(".yb-title-bit");
+                let this_text = this_bit.querySelector(".yb-body-bit");
+                let these_buttons = this_bit.querySelectorAll(".yb-button-feedback");
+                let these_icons = this_bit.querySelectorAll(".yb-icon-bit");
+
+                this_bit.style.backgroundColor = "initial";
+                this_name.style.color = "initial";
+                this_username.style.color = "initial";
+                this_title.style.color = "initial";
+                this_text.style.color = "initial";
+                these_buttons.style.backgroundColor = "initial";
+                these_icons.style.fill = "initial";
+
+            }
+        }
+    }
+    
+}
+
+function yb_toggleMyColors(toggle) {
+    if (toggle === true) {
+        for (let i = 0; i < BIT_ELEMENTS.length; i++) {
+            yb_changeBitColor(true);
+        }
+    } else {
+        
+    }
+}
+
 
 //Function to retrieve wallpaper based on screen width
 function yb_getWallpaper(id) {
@@ -266,10 +406,10 @@ function yb_getWallpaper(id) {
 
 //Function for adapting UI customizations to current profile
 function yb_setProfileUI() {
-    for (let i = 0; i < custom_index.length; i++) {
-        let this_style = profile_custom_info.getAttribute(`data-${custom_index[i]}`);
+    for (let i = 0; i < custom_ui_index.length; i++) {
+        let this_style = profile_custom_info.getAttribute(`data-${custom_ui_index[i]}`);
 
-        changeColor(`--yb-${custom_index[i]}`, this_style);
+        changeColor(`--yb-${custom_ui_index[i]}`, this_style);
     }
 
     let this_wallpaper = yb_getProfileData("background");
@@ -282,11 +422,11 @@ function yb_setProfileUI() {
 
 //Function for reverting customization back to active user preferences
 function yb_revertUIColor() {
-    for (let i = 0; i < custom_index.length; i++) {
+    for (let i = 0; i < custom_ui_index.length; i++) {
 
-        let this_data = CUSTOM_VALUES.getAttribute(`data-ui-${custom_index[i]}`);
+        let this_data = CUSTOM_VALUES.getAttribute(`data-ui-${custom_ui_index[i]}`);
         
-        changeColor('--yb-' + custom_index[i], this_data);
+        changeColor('--yb-' + custom_ui_index[i], this_data);
     }
 
     let this_wallpaper = CUSTOM_VALUES.getAttribute("data-wallpaper");
