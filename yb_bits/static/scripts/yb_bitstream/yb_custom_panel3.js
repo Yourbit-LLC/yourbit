@@ -25,9 +25,9 @@ $(document).ready(function() {
                 let only_my_colors = yb_getSessionValues("only-my-colors");
                 
                 if (only_my_colors == "True") {
-                    only_my_colors = false
-                } else {
                     only_my_colors = true
+                } else {
+                    only_my_colors = false
                 }
 
                 if (this.classList.contains("active")) {
@@ -97,19 +97,28 @@ $(document).ready(function() {
                     if (yb_getCustomValues("bit-colors-on") == "True") {
                         let only_my_colors = yb_getSessionValues("only-my-colors");
                         if (only_my_colors == "True") {
+                            yb_swapSheets("modded", "yb-stylesheet-bit");
                             yb_overrideBitColors(true, true);
                         } else {
-                            yb_overrideBitColors(false, true);
+                            //check media for dark mode
+                            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                                document.documentElement.style.setProperty('--default-bit-background', 'rgb(70, 70, 70)');
+                            } else {
+                                document.documentElement.style.setProperty('--default-bit-background', 'rgb(255, 255, 255)');
+                                yb_overrideBitColors(false, true);
+                            }
+                            yb_overrideBitColors(false, false);
                         }
                     } else {
                         yb_overrideBitColors(false, false);
                     }
 
                     this.classList.remove("active");
-                }
+                
 
                 } else {
                     yb_changeUIState("default");
+                    yb_swapSheets("default", "yb-stylesheet-bit");
                     yb_overrideBitColors(false, false);
                     //update root variables
                     document.documentElement.style.setProperty('--yb-separator-display', 'block');
@@ -127,6 +136,6 @@ $(document).ready(function() {
                 }
 
             }
-        );
+        });
     }
 });
