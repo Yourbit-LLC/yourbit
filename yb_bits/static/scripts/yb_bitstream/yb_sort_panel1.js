@@ -6,8 +6,8 @@ try {
 
 $(document).ready(function() {
     console.log("sort-panel-ready");
-    for (var i = 0; i < panel_buttons.length; i++) {
-        panel_buttons[i].addEventListener('click', function() {
+    for (var i = 0; i < sort_buttons.length; i++) {
+        sort_buttons[i].addEventListener('click', function() {
             // Toggle the filter panel
             let filter_option = this.getAttribute("data-sort");
             let current_sort = yb_getSessionValues("sort");
