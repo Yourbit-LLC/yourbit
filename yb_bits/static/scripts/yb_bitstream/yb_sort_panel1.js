@@ -13,9 +13,9 @@ $(document).ready(function() {
             let current_sort = yb_getSessionValues("sort");
 
             //check if filter option is in the is in the current filter string
-            if (current_filter.includes(filter_option)) {
+            if (current_sort.includes(filter_option)) {
                 //remove the filter option
-                current_filter = current_filter.replace(filter_option, "");
+                current_sort = current_sort.replace(filter_option, "");
                 //remove the active class
                 this.classList.remove("active");
 
