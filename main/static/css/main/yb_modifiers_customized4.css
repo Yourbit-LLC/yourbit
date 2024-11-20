@@ -7,6 +7,10 @@
     margin-right: auto;
 }
 
+.yb-half-opacity {
+    opacity: 0.5;
+}
+
 .yb-center-margin.tb {
     /*Positioning*/
     margin-top: auto;

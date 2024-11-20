@@ -35,6 +35,10 @@
     grid-gap: 10px;
 }
 
+.yb-half-opacity {
+    opacity: 0.5;
+}
+
 
 @media screen and (max-width: 768px) {
     .yb-hblock-2.responsive {

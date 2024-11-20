@@ -124,10 +124,7 @@ function toggleUICustomizations() {
         for (var i = 0; i < LOGO_PATHS.length; i++) {
             LOGO_PATHS[i].style.fill = 'var(--yb-icon-color)';
         }
-
-
     }
-
 }
 
 function updateUIToggle() {
