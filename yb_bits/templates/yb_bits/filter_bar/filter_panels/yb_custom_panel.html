@@ -28,7 +28,7 @@
         <p class="yb-autoText yb-pText align-center">Custom Bits</p>
     </div>
     
-    <div data-action="only-my-colors" class="yb-flexColumn yb-filter-icon {% if not custom_core.flat_mode_on %}{% if custom_core.only_my_colors %}active{% endif %}{% else %} yb-half-opacity {% endif %}">
+    <div data-action="only-my-colors" class="yb-flexColumn yb-filter-icon {% if not custom_core.flat_mode_on %}{% if custom_core.bit_colors_on %}{% if custom_core.only_my_colors %}active{% endif %}{% else %}yb-half-opacity{% endif %}{% else %} yb-half-opacity {% endif %}">
         <object type="image/svg+xml" style="pointer-events: none;" data="{% static 'icons/bit-icon-my-colors.svg' %}" class="yb-center-margin all"></object>
         <p class="yb-autoText yb-pText align-center">
             Only My Colors
