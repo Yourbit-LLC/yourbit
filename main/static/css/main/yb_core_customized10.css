@@ -1013,3 +1013,6 @@ p {
     object-fit: cover; /* Ensures images maintain aspect ratio and cover the container */
   }
   
+.flat-bit-separator {
+    display: none;
+}

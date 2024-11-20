@@ -74,6 +74,10 @@ $(document).ready(function() {
                     yb_loadWallpaper(wallpaper);
                     yb_setCustomValues("wallpaper", "True");
                 }
+            } else if (action == "flat-mode") {
+                yb_changeUIState("default");
+                yb_overrideBitColors(false, false);
+
             }
             
         });
