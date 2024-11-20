@@ -91,7 +91,7 @@ const UI_CUSTOM = {
 */
 const DEFAULT_STYLESHEET_INDEX = {
     "yb-stylesheet-core": "/static/css/main/yb_core6.css",
-    "yb-stylesheet-modifier": "/static/css/main/yb_modifiers3.css",
+    "yb-stylesheet-modifier": "/static/css/main/yb_modifiers4.css",
     "yb-stylesheet-button": "/static/css/main/yb_buttons6.css",
     "yb-stylesheet-container": "/static/css/main/yb_containers9.css",
     "yb-stylesheet-bit": "/static/css/yb_bits/yb_bits6.css",
@@ -99,7 +99,7 @@ const DEFAULT_STYLESHEET_INDEX = {
 
 const MODDED_STYLESHEET_INDEX = {
     "yb-stylesheet-core": "/static/css/main/yb_core_customized10.css",
-    "yb-stylesheet-modifier": "/static/css/main/yb_modifiers_customized4.css",
+    "yb-stylesheet-modifier": "/static/css/main/yb_modifiers_customized5.css",
     "yb-stylesheet-button": "/static/css/main/yb_buttons_customized9.css",
     "yb-stylesheet-container": "/static/css/main/yb_containers_customized1.css",
     "yb-stylesheet-bit": "/static/css/yb_bits/yb_bits_customized8.css",
