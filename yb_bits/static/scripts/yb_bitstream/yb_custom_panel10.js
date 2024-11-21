@@ -109,6 +109,8 @@ $(document).ready(function() {
                             }
                             yb_overrideBitColors(false, false);
                         }
+
+                        
                     } else {
                         yb_overrideBitColors(false, false);
                     }
@@ -142,6 +144,8 @@ $(document).ready(function() {
                             console.error(e);
                         }
                     }
+
+                    this.classList.add("active");
                 }
 
             }
