@@ -260,25 +260,29 @@ function yb_overrideBitColors(user_default = false, bit_colors = false) {
             let this_username = this_bit.querySelector(".bit-username");
             let this_title = this_bit.querySelector(".yb-title-bit");
             let this_text = this_bit.querySelector(".yb-body-bit");
-            let these_buttons = this_bit.querySelectorAll(".yb-button-feedback");
-            let these_icons = this_bit.querySelectorAll(".yb-icon-bit");
 
             this_bit.style.backgroundColor = yb_getCustomValues("bit-primary-color");
             this_name.style.color = yb_getCustomValues("bit-title-color");
             this_username.style.color = yb_getCustomValues("bit-text-color");
 
-            //For each bit icon if the icon is active apply custom active color
-            for (icon in these_icons) {
-                if (icon.classList.contains("active")) {
-                    icon.style.fill = yb_getCustomValues("bit-icon-color");
+            try {
+                let these_buttons = this_bit.querySelectorAll(".yb-button-feedback");
+                let these_icons = this_bit.querySelectorAll(".yb-icon-bit");
+                
+                for (icon in these_icons) {
+                    if (icon.classList.contains("active")) {
+                        icon.style.fill = this_bit.getAttribute("data-icon-color");
+                    }
                 }
-            }
 
-            //For each button if the button is active apply custom active color
-            for (button in these_buttons) {
-                if (button.classList.contains("active")) {
-                    button.style.backgroundColor = yb_getCustomValues("bit-button-color");
+                //For each button if the button is active apply custom active color
+                for (button in these_buttons) {
+                    if (button.classList.contains("active")) {
+                        button.style.backgroundColor = this_bit.getAttribute("data-button-color");
+                    }
                 }
+            } catch {
+                console.log("No buttons found");
             }
 
             this_title.style.color = yb_getCustomValues("bit-title-color");
@@ -304,26 +308,33 @@ function yb_overrideBitColors(user_default = false, bit_colors = false) {
                 let this_username = this_bit.querySelector(".bit-username");
                 let this_title = this_bit.querySelector(".yb-title-bit");
                 let this_text = this_bit.querySelector(".yb-body-bit");
-                let these_buttons = this_bit.querySelectorAll(".yb-button-feedback");
-                let these_icons = this_bit.querySelectorAll(".yb-icon-bit");
+
 
                 this_bit.style.backgroundColor = this_bit.getAttribute("data-primary-color");
                 this_name.style.color = this_bit.getAttribute("data-title-color");
                 this_username.style.color = this_bit.getAttribute("data-text-color");
 
                 //For each bit icon if the icon is active apply custom active color
-                for (icon in these_icons) {
-                    if (icon.classList.contains("active")) {
-                        icon.style.fill = this_bit.getAttribute("data-icon-color");
+                try {
+                    let these_buttons = this_bit.querySelectorAll(".yb-button-feedback");
+                    let these_icons = this_bit.querySelectorAll(".yb-icon-bit");
+                    
+                    for (icon in these_icons) {
+                        if (icon.classList.contains("active")) {
+                            icon.style.fill = this_bit.getAttribute("data-icon-color");
+                        }
                     }
+    
+                    //For each button if the button is active apply custom active color
+                    for (button in these_buttons) {
+                        if (button.classList.contains("active")) {
+                            button.style.backgroundColor = this_bit.getAttribute("data-button-color");
+                        }
+                    }
+                } catch {
+                    console.log("No buttons found");
                 }
 
-                //For each button if the button is active apply custom active color
-                for (button in these_buttons) {
-                    if (button.classList.contains("active")) {
-                        button.style.backgroundColor = this_bit.getAttribute("data-button-color");
-                    }
-                }
 
                 this_title.style.color = this_bit.getAttribute("data-title-color");
                 this_text.style.color = this_bit.getAttribute("data-text-color");
@@ -347,7 +358,7 @@ function yb_overrideBitColors(user_default = false, bit_colors = false) {
                 let this_title = this_bit.querySelector(".yb-title-bit");
                 let this_text = this_bit.querySelector(".yb-body-bit");
                 
-                let these_icons = this_bit.querySelectorAll(".yb-icon-bit");
+                
 
                 this_bit.style.backgroundColor = "initial";
                 this_name.style.color = "initial";
@@ -356,12 +367,13 @@ function yb_overrideBitColors(user_default = false, bit_colors = false) {
                 this_text.style.color = "initial";
                 try {
                     let these_buttons = this_bit.querySelectorAll(".yb-button-feedback");
+                    let these_icons = this_bit.querySelectorAll(".yb-icon-bit");
                     these_buttons.style.backgroundColor = "initial";
+                    these_icons.style.fill = "initial";
                 } catch {
                     console.log("No buttons found");
                 }
                 
-                these_icons.style.fill = "initial";
 
             }
         }
