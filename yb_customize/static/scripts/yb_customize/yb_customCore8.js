@@ -271,22 +271,29 @@ function yb_overrideBitColors(user_default = false, bit_colors = false) {
                 
                 for (icon in these_icons) {
                     if (icon.classList.contains("active")) {
-                        icon.style.fill = this_bit.getAttribute("data-icon-color");
+                        icon.style.fill = yb_getCustomValues("bit-icon-color");
                     }
                 }
 
                 //For each button if the button is active apply custom active color
                 for (button in these_buttons) {
                     if (button.classList.contains("active")) {
-                        button.style.backgroundColor = this_bit.getAttribute("data-button-color");
+                        button.style.backgroundColor = yb_getCustomValues("bit-button-color");
                     }
                 }
             } catch {
                 console.log("No buttons found");
             }
-
-            this_title.style.color = yb_getCustomValues("bit-title-color");
-            this_text.style.color = yb_getCustomValues("bit-text-color");
+            try {
+                this_title.style.color = yb_getCustomValues("bit-title-color");
+            } catch {
+                console.log("No title found");
+            }
+            try {
+                this_text.style.color = yb_getCustomValues("bit-text-color");
+            } catch {
+                console.log("No text found");
+            }
             
         }
     } else {
@@ -335,9 +342,16 @@ function yb_overrideBitColors(user_default = false, bit_colors = false) {
                     console.log("No buttons found");
                 }
 
-
-                this_title.style.color = this_bit.getAttribute("data-title-color");
-                this_text.style.color = this_bit.getAttribute("data-text-color");
+                try {
+                    this_title.style.color = this_bit.getAttribute("data-title-color");
+                } catch {
+                    console.log("No title found");
+                }
+                try {
+                    this_text.style.color = this_bit.getAttribute("data-text-color");
+                } catch {
+                    console.log("No text found");
+                }
                 
             }
         } else {
@@ -363,8 +377,18 @@ function yb_overrideBitColors(user_default = false, bit_colors = false) {
                 this_bit.style.backgroundColor = "initial";
                 this_name.style.color = "initial";
                 this_username.style.color = "initial";
-                this_title.style.color = "initial";
-                this_text.style.color = "initial";
+                try {
+                    this_title.style.color = "initial";
+                } catch {
+                    console.log("No title found");
+                }
+
+                try {
+                    
+                    this_text.style.color = "initial";
+                } catch {
+                    console.log("No text found");
+                }
                 try {
                     let these_buttons = this_bit.querySelectorAll(".yb-button-feedback");
                     let these_icons = this_bit.querySelectorAll(".yb-icon-bit");
