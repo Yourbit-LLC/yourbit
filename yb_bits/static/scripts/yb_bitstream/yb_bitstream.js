@@ -88,6 +88,8 @@ function yb_renderBit(data) {
 
     let this_bit = yb_buildBit(data);
     yb_getBitContainer().appendChild(this_bit.built_bit);
+    let bit_separator = yb_createElement("hr", "flat-bit-separator", `bit-separator-${data.id}`);
+    yb_getBitContainer().appendChild(bit_separator);
     bitObserver.observe(this_bit.built_bit);
 
     
