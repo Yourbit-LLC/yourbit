@@ -49,10 +49,12 @@ $(document).ready(function() {
                 if (this.classList.contains("active")) {
                     this.classList.remove("active");
                     yb_overrideBitColors(false, true);
+                    yb_swapSheets("default", "yb-stylesheet-bit");
                     yb_setSessionValues("only-my-colors", "False");
                 } else {
                     this.classList.add("active");
                     yb_overrideBitColors(true, true);
+                    yb_swapSheets("modded", "yb-stylesheet-bit");
                     yb_setSessionValues("only-my-colors", "True");
                     
                 }
