@@ -346,7 +346,7 @@ function yb_overrideBitColors(user_default = false, bit_colors = false) {
                 let this_username = this_bit.querySelector(".bit-username");
                 let this_title = this_bit.querySelector(".yb-title-bit");
                 let this_text = this_bit.querySelector(".yb-body-bit");
-                let these_buttons = this_bit.querySelectorAll(".yb-button-feedback");
+                
                 let these_icons = this_bit.querySelectorAll(".yb-icon-bit");
 
                 this_bit.style.backgroundColor = "initial";
@@ -354,7 +354,13 @@ function yb_overrideBitColors(user_default = false, bit_colors = false) {
                 this_username.style.color = "initial";
                 this_title.style.color = "initial";
                 this_text.style.color = "initial";
-                these_buttons.style.backgroundColor = "initial";
+                try {
+                    let these_buttons = this_bit.querySelectorAll(".yb-button-feedback");
+                    these_buttons.style.backgroundColor = "initial";
+                } catch {
+                    console.log("No buttons found");
+                }
+                
                 these_icons.style.fill = "initial";
 
             }
