@@ -591,10 +591,15 @@ function yb_buildBit(bit, interactions=true){
     
     console.log(yb_getSessionValues("bit-colors-on"));   
     console.log(yb_getSessionValues("only-my-colors"));
-    if (yb_getSessionValues("bit-colors-on") == "True" && yb_getSessionValues("only-my-colors") == "False"){
-        new_bit.style.backgroundColor = primary_color;
-    } else if (yb_getCustomValues("flat-mode-on") == "True"){
+
+    
+    if (yb_getCustomValues("flat-mode-on") == "True"){
         new_bit.style.backgroundColor = "transparent";
+    } else {
+        if (yb_getSessionValues("bit-colors-on") == "True" && yb_getSessionValues("only-my-colors") == "False"){
+            new_bit.style.backgroundColor = primary_color;
+        } 
+
     }
     
 
