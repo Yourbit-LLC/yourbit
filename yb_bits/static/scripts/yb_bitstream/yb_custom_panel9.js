@@ -120,9 +120,7 @@ $(document).ready(function() {
                     yb_changeUIState("default");
                     yb_swapSheets("default", "yb-stylesheet-bit");
                     yb_overrideBitColors(false, false);
-                    for (bit in bit_elements) {
-                        bit_elements[bit].style.backgroundColor = "transparent";
-                    }
+
                     //update root variables
                     document.documentElement.style.setProperty('--yb-separator-display', 'block');
                     if (CUSTOM_CONFIG["wallpaper-on"] == "True") {
@@ -135,6 +133,14 @@ $(document).ready(function() {
                         document.getElementById("content-container-a").classList.add("yb-bg-autoFlat");
                         document.getElementById("content-container-b").classList.remove("yb-bg-autoGray");
                         document.getElementById("content-container-b").classList.add("yb-bg-autoFlat");
+                    }
+
+                    for (bit in bit_elements) {
+                        try{
+                            bit_elements[bit].style.backgroundColor = "transparent";
+                        } catch (e) {
+                            console.error(e);
+                        }
                     }
                 }
 
