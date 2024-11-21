@@ -124,6 +124,8 @@ $(document).ready(function() {
                     yb_swapSheets("default", "yb-stylesheet-bit");
                     yb_overrideBitColors(false, false);
                     yb_setCustomValues("flat-mode-on", "False");
+                    yb_setCustomValues("custom-ui-on", "False");
+                    yb_setCustomValues("bit-colors-on", "False");
                     //update root variables
                     document.documentElement.style.setProperty('--yb-separator-display', 'block');
                     if (CUSTOM_CONFIG["wallpaper-on"] == "True") {
