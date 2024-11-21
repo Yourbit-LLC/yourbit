@@ -76,7 +76,7 @@ $(document).ready(function() {
                 }
             } else if (action == "flat-mode") {
                 if (this.classList.contains("active")) {
-                    if (yb_getCustomValues("wallpaper-on") == "True") {
+                    if (CUSTOM_CONFIG["wallpaper-on"] == "True") {
                         CONTENT_CONTAINER_A.classList.remove("yb-bg-autFlat");
                         CONTENT_CONTAINER_A.classList.add("yb-bg-transparent");
                         CONTENT_CONTAINER_B.classList.remove("yb-bg-autoFlat");
@@ -94,7 +94,7 @@ $(document).ready(function() {
                         yb_changeUIState("default");
                     }
 
-                    if (yb_getCustomValues("bit-colors-on") == "True") {
+                    if (CUSTOM_CONFIG["wallpaper-on"] == "True") {
                         let only_my_colors = yb_getSessionValues("only-my-colors");
                         if (only_my_colors == "True") {
                             yb_swapSheets("modded", "yb-stylesheet-bit");
@@ -122,7 +122,7 @@ $(document).ready(function() {
                     yb_overrideBitColors(false, false);
                     //update root variables
                     document.documentElement.style.setProperty('--yb-separator-display', 'block');
-                    if (yb_getCustomValues("wallpaper-on") == "True") {
+                    if (CUSTOM_CONFIG["wallpaper-on"] == "True") {
                         document.getElementById("content-container-a").classList.remove("yb-bg-transparent");
                         document.getElementById("content-container-a").classList.add("yb-bg-autoFlat");
                         document.getElementById("content-container-b").classList.remove("yb-bg-transparent");
