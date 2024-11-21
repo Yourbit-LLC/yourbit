@@ -120,6 +120,9 @@ $(document).ready(function() {
                     yb_changeUIState("default");
                     yb_swapSheets("default", "yb-stylesheet-bit");
                     yb_overrideBitColors(false, false);
+                    for (bit in bit_elements) {
+                        bit_elements[bit].style.backgroundColor = "transparent";
+                    }
                     //update root variables
                     document.documentElement.style.setProperty('--yb-separator-display', 'block');
                     if (CUSTOM_CONFIG["wallpaper-on"] == "True") {
