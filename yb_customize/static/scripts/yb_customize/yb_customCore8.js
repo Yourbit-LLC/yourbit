@@ -248,6 +248,7 @@ function yb_overrideBitColors(user_default = false, bit_colors = false) {
             /* 
                 Function to change bit color to and from user default, app default, or mixed theme
             */
+            yb_swapSheets("modded", "yb-stylesheet-bit");
 
             //Identify current bit element
             let this_bit = bit_elements[i];
@@ -302,6 +303,8 @@ function yb_overrideBitColors(user_default = false, bit_colors = false) {
                 /* 
                     Function to change bit color to and from user default, app default, or mixed theme
                 */
+
+                yb_swapSheets("modded", "yb-stylesheet-bit");
 
                 //Identify current bit element
                 let this_bit = bit_elements[i];
@@ -360,6 +363,7 @@ function yb_overrideBitColors(user_default = false, bit_colors = false) {
                     Function to change bit color to and from user default, app default, or mixed theme
                 */
 
+                yb_swapSheets("default", "yb-stylesheet-bit");
                 //Identify current bit element
                 let this_bit = bit_elements[i];
 
