@@ -76,6 +76,7 @@ $(document).ready(function() {
                 }
             } else if (action == "flat-mode") {
                 if (this.classList.contains("active")) {
+                    yb_setCustomValues("flat-mode-on", "False");
                     if (CUSTOM_CONFIG["wallpaper-on"] == "True") {
                         CONTENT_CONTAINER_A.classList.remove("yb-bg-autFlat");
                         CONTENT_CONTAINER_A.classList.add("yb-bg-transparent");
@@ -122,7 +123,7 @@ $(document).ready(function() {
                     yb_changeUIState("default");
                     yb_swapSheets("default", "yb-stylesheet-bit");
                     yb_overrideBitColors(false, false);
-
+                    yb_setCustomValues("flat-mode-on", "False");
                     //update root variables
                     document.documentElement.style.setProperty('--yb-separator-display', 'block');
                     if (CUSTOM_CONFIG["wallpaper-on"] == "True") {
