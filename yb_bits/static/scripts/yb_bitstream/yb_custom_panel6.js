@@ -123,15 +123,15 @@ $(document).ready(function() {
                     //update root variables
                     document.documentElement.style.setProperty('--yb-separator-display', 'block');
                     if (yb_getCustomValues("wallpaper-on") == "True") {
-                        CONTENT_CONTAINER_A.classList.remove("yb-bg-transparent");
-                        CONTENT_CONTAINER_A.classList.add("yb-bg-autoFlat");
-                        CONTENT_CONTAINER_B.classList.remove("yb-bg-transparent");
-                        CONTENT_CONTAINER_B.classList.add("yb-bg-autoFlat");
+                        document.getElementById("content-container-a").classList.remove("yb-bg-transparent");
+                        document.getElementById("content-container-a").classList.add("yb-bg-autoFlat");
+                        document.getElementById("content-container-b").classList.remove("yb-bg-transparent");
+                        document.getElementById("content-container-b").classList.add("yb-bg-autoFlat");
                     } else {
-                        CONTENT_CONTAINER_A.classList.remove("yb-bg-autoGray");
-                        CONTENT_CONTAINER_A.classList.add("yb-bg-autoFlat");
-                        CONTENT_CONTAINER_B.classList.remove("yb-bg-autoGray");
-                        CONTENT_CONTAINER_B.classList.add("yb-bg-autoFlat");
+                        document.getElementById("content-container-a").classList.remove("yb-bg-autoGray");
+                        document.getElementById("content-container-a").classList.add("yb-bg-autoFlat");
+                        document.getElementById("content-container-b").classList.remove("yb-bg-autoGray");
+                        document.getElementById("content-container-b").classList.add("yb-bg-autoFlat");
                     }
                 }
 
