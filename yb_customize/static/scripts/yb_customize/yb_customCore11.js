@@ -378,26 +378,26 @@ function yb_overrideBitColors(user_default = false, bit_colors = false) {
                 
                 
 
-                this_bit.style.backgroundColor = "initial";
-                this_name.style.color = "initial";
-                this_username.style.color = "initial";
+                this_bit.style.backgroundColor = "";
+                this_name.style.color = "";
+                this_username.style.color = "";
                 try {
-                    this_title.style.color = "initial";
+                    this_title.style.color = "";
                 } catch {
                     console.log("No title found");
                 }
 
                 try {
                     
-                    this_text.style.color = "initial";
+                    this_text.style.color = "";
                 } catch {
                     console.log("No text found");
                 }
                 try {
                     let these_buttons = this_bit.querySelectorAll(".yb-button-feedback");
                     let these_icons = this_bit.querySelectorAll(".yb-icon-bit");
-                    these_buttons.style.backgroundColor = "initial";
-                    these_icons.style.fill = "initial";
+                    these_buttons.style.backgroundColor = "";
+                    these_icons.style.fill = "";
                 } catch {
                     console.log("No buttons found");
                 }
