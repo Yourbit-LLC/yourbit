@@ -145,7 +145,6 @@ def fix_conversation_settings(request):
             
             return HttpResponse("Success")
 
-
 class ConversationSettings(View):
     def get(self, request, id, *args, **kwargs):
         this_conversation = Conversation.objects.get(id = id)
@@ -262,6 +261,7 @@ def new_conversation_template(request):
 
 class ConversationView(View):
     def get(self, request, id, *args, **kwargs):
+        from yb_customize.models import CustomConversation
 
         this_id = id
         
@@ -273,6 +273,8 @@ class ConversationView(View):
 
         active_profile = Profile.objects.get(username = request.user.active_profile)
 
+        custom_conversation = CustomConversation.objects.get(conversation = this_conversation, profile = active_profile)
+        context["custom_conversation"] = custom_conversation
         
         # p = Paginator(messages, 10)
 
