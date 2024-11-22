@@ -135,7 +135,7 @@ def message_inbox(request):
 
     return render(request, "yb_messages/messages.html", context)
 
-def fix_conversation_settings(request, id):
+def fix_conversation_settings(request):
     if request.user.is_authenticated:
         if request.user.is_admin:
             from yb_customize.models import CustomConversation
