@@ -29,6 +29,7 @@ const BG_IMAGE_SOURCE_B = document.getElementById("bg-image-source-b");
 const CUSTOM_CONFIG = {
     "wallpaper-on": CUSTOM_VALUES.getAttribute("data-wallpaper-on"),
     "custom-ui-on": CUSTOM_VALUES.getAttribute("data-custom-ui-on"),
+    "flat-mode-on": CUSTOM_VALUES.getAttribute("data-flat-mode-on"),
     "bit-colors-on": CUSTOM_VALUES.getAttribute("data-bit-colors-on"),
     "only-my-colors": CUSTOM_VALUES.getAttribute("data-only-my-colors"),
 }

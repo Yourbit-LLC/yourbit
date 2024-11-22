@@ -593,7 +593,7 @@ function yb_buildBit(bit, interactions=true){
     console.log(yb_getSessionValues("only-my-colors"));
 
     
-    if (yb_getCustomValues("flat-mode-on") == "True"){
+    if (CUSTOM_CONFIG["flat-mode-on"] == "True"){
         new_bit.style.backgroundColor = "transparent";
     } else {
         if (yb_getSessionValues("bit-colors-on") == "True" && yb_getSessionValues("only-my-colors") == "False"){
