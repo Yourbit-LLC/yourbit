@@ -10,7 +10,7 @@ from django.http import JsonResponse
 from django.core.paginator import Paginator
 import json
 from django.http import HttpResponse
-
+from yb_customize.models import CustomConversation
 from yb_profile.models import Profile
 
 def message_inbox(request):
@@ -148,10 +148,11 @@ def fix_conversation_settings(request):
 class ConversationSettings(View):
     def get(self, request, id, *args, **kwargs):
         this_conversation = Conversation.objects.get(id = id)
-        return render(request, "yb_messages/conversation_settings.html", context={"conversation": this_conversation})
+        this_profile = Profile.objects.get(username = request.user.active_profile)
+        this_custom = CustomConversation.objects.get(conversation = this_conversation, profile = this_profile)
+        return render(request, "yb_messages/conversation_settings.html", context={"conversation": this_conversation, "custom_conversation": this_custom})
 
     def post(self, request, id, *args, **kwargs):
-        from yb_customize.models import CustomConversation
         print(request.POST)
         this_conversation = Conversation.objects.get(id = id)
         this_profile = Profile.objects.get(username = request.user.active_profile)
