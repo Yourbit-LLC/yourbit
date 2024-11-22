@@ -9,6 +9,7 @@ from rest_framework.decorators import api_view
 from django.http import JsonResponse
 from django.core.paginator import Paginator
 import json
+from django.http import HttpResponse
 
 from yb_profile.models import Profile
 
@@ -133,6 +134,17 @@ def message_inbox(request):
     print(context)
 
     return render(request, "yb_messages/messages.html", context)
+
+def fix_conversation_settings(request, id):
+    if request.user.is_authenticated:
+        if request.user.is_admin:
+            from yb_customize.models import CustomConversation
+            for conversation in Conversation.objects.all():
+                for member in conversation.members.all():
+                    CustomConversation.objects.create(conversation=conversation, member=member)
+            
+            return HttpResponse("Success")
+
 
 class ConversationSettings(View):
     def get(self, request, id, *args, **kwargs):
