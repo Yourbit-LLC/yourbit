@@ -154,7 +154,8 @@ class ConversationSettings(View):
         from yb_customize.models import CustomConversation
         print(request.POST)
         this_conversation = Conversation.objects.get(id = id)
-        this_custom = CustomConversation.objects.get(conversation = this_conversation, profile = request.user.active_profile)
+        this_profile = Profile.objects.get(username = request.user.active_profile)
+        this_custom = CustomConversation.objects.get(conversation = this_conversation, profile = this_profile)
         this_conversation.name = request.POST["name"]
         
         if this_conversation.name != "Untitled Conversation":
