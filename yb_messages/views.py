@@ -141,7 +141,7 @@ def fix_conversation_settings(request):
             from yb_customize.models import CustomConversation
             for conversation in Conversation.objects.all():
                 for member in conversation.members.all():
-                    CustomConversation.objects.create(conversation=conversation, member=member)
+                    CustomConversation.objects.create(conversation=conversation, profile=member)
             
             return HttpResponse("Success")
 
