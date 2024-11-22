@@ -183,7 +183,7 @@ class ConversationSettings(View):
         # e
         this_conversation.save()
         
-        return render(request, "yb_messages/conversation_settings.html", context={"conversation": this_conversation})
+        return JsonResponse({"status": "success"})
 
 def filter_contacts_list(request, contact_filter):
     """
