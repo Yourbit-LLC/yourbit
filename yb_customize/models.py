@@ -208,10 +208,14 @@ class CustomConversation(CustomBase):
     wallpaper = models.ForeignKey('yb_photo.Wallpaper', related_name='custom_conversation', on_delete = models.CASCADE, blank=True, null=True)
     conversation = models.ForeignKey('yb_messages.Conversation', related_name='custom_conversation', blank=True, on_delete=models.CASCADE, null=True)
     profile = models.ForeignKey('yb_profile.Profile', related_name='custom_conversation', blank=True, on_delete=models.CASCADE, null=True)
-    to_user_color = models.CharField(max_length=50, default="#ffffff")
-    from_user_color = models.CharField(max_length=50, default="#ffffff")
+    primary_color = models.CharField(max_length=50, default = "#4b4b4b")
+    title_color = models.CharField(max_length=50, default="#ffffff")
+    button_color = models.CharField(max_length=50, default="#ffffff")
+    to_user_color = models.CharField(max_length=50, default="rgb(65, 65, 65)")
+    to_user_text_color = models.CharField(max_length=50, default="#ffffff")
+    from_user_color = models.CharField(max_length=50, default="#1E90FF")
+    from_user_text_color = models.CharField(max_length=50, default="#ffffff")
     sync_custom = models.BooleanField(default=False)
-
 
 class Sticker(models.Model):
     image = models.CharField(max_length=500, default=None)
