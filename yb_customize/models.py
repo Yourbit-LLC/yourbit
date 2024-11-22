@@ -33,7 +33,7 @@ class CustomCore(models.Model):
     ui_colors_on = models.BooleanField(default=False)
     text_colors_on = models.BooleanField(default=False)
     bit_colors_on = models.BooleanField(default=False)
-    flat_mode_on = models.BooleanField(default=False)
+    flat_mode_on = models.BooleanField(default=True)
 
     
     #Borders
