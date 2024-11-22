@@ -44,9 +44,13 @@ lang="en"
                     --yb-flat-mode: 1;
                     --yb-separator-display: block;
                     --default-bit-background: transparent;
+                    --bit-backdrop-filter: none;
+                    --bit-shadow: none;
                 {% else %}
                     --yb-flat-mode: 0;
                     --yb-separator-display: none;
+                    --bit-backdrop-filter: blur(40px) brightness(90%);
+                    --bit-shadow: 0px 1px 5px black;
 
                     @media (prefers-color-scheme: dark) {
                         --default-bit-background: rgb(70, 70, 70);

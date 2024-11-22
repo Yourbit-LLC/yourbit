@@ -21,12 +21,12 @@
     cursor: pointer;
     pointer-events: auto;
     background-color: var(--default-bit-background);
-    box-shadow: 0px 1px 5px black;
+    box-shadow: var(--bit-shadow);
 
     padding: 5px;
     transition: 0.5s;
-    backdrop-filter: blur(40px) brightness(90%);
-    -webkit-backdrop-filter: blur(40px) brightness(90%);
+    backdrop-filter: var(--bit-backdrop-filter);
+    -webkit-backdrop-filter: var(--bit-backdrop-filter);
 }
 
     .field-border {
@@ -54,12 +54,14 @@
         cursor: pointer;
         pointer-events: auto;
         background-color: var(--default-bit-background);
-        box-shadow: 0px 1px 5px black;
-        transition: 0.5s;
+        box-shadow: var(--bit-shadow);
+    
         padding: 5px;
-        backdrop-filter: blur(40px) brightness(90%);
-        -webkit-backdrop-filter: blur(40px) brightness(90%);
+        transition: 0.5s;
+        backdrop-filter: var(--bit-backdrop-filter);
+        -webkit-backdrop-filter: var(--bit-backdrop-filter);
     }
+    
 
     .field-border {
         border: 2px solid gray;
