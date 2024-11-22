@@ -151,8 +151,10 @@ class ConversationSettings(View):
         return render(request, "yb_messages/conversation_settings.html", context={"conversation": this_conversation})
 
     def post(self, request, id, *args, **kwargs):
+        from yb_customize.models import CustomConversation
         print(request.POST)
         this_conversation = Conversation.objects.get(id = id)
+        this_custom = CustomConversation.objects.get(conversation = this_conversation, profile = request.user.active_profile)
         this_conversation.name = request.POST["name"]
         
         if this_conversation.name != "Untitled Conversation":
@@ -162,14 +164,14 @@ class ConversationSettings(View):
             this_conversation.is_name = False
 
         if request.POST["from-user-color"]:
-            this_conversation.from_user_color = request.POST["from-user-color"]
+            this_custom.from_user_color = request.POST["from-user-color"]
         
         else:
             print("From user color missing")
 
         
         if request.POST["to-user-color"]:
-            this_conversation.to_user_color = request.POST["to-user-color"]
+            this_custom.to_user_color = request.POST["to-user-color"]
         
         else:
             print("To user color missing")
