@@ -167,6 +167,7 @@ class ConversationSettings(View):
 
         if request.POST["from-user-color"]:
             this_custom.from_user_color = request.POST["from-user-color"]
+            
         
         else:
             print("From user color missing")
@@ -178,6 +179,7 @@ class ConversationSettings(View):
         else:
             print("To user color missing")
 
+        this_custom.save()
         # this_conversation.is_joinable = True if request.POST["is-joinable"] == "on" else False
         # this_conversation.members_can_invite = True if request.POST["members-can-invite"] == "on" else Fals
         # e
