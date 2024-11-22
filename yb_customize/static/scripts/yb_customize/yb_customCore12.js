@@ -126,6 +126,65 @@ const custom_bit_index = [
     'button-color'
 ]
 
+function sendUIToggle() {
+    let csrf_token = getCSRF();
+
+    $.ajax({
+        type: 'POST',
+        url: '/customize/ui/toggle/',
+        headers: {
+            'X-CSRFToken': csrf_token
+        },
+        success: function (response) {
+            console.log(response);
+        },
+        error: function (response) {
+            console.log(response);
+            showNotification(expandNotification, "Something went wrong...");
+        }
+    });
+
+}
+
+function sendFlatModeToggle() {
+    let csrf_token = getCSRF();
+
+    $.ajax({
+        type: 'POST',
+        url: '/customize/flat-ui/toggle/',
+        headers: {
+            'X-CSRFToken': csrf_token
+        },
+        success: function (response) {
+            console.log(response);
+        },
+        error: function (response) {
+            console.log(response);
+            showNotification(expandNotification, "Something went wrong...");
+        }
+    });
+
+}
+
+function yb_sendBitToggle(action) {
+    let csrf_token = getCSRF();
+    $.ajax({
+        type: 'POST',
+        url: '/customize/bit/toggle/',
+        headers: {
+            'X-CSRFToken': csrf_token
+        },
+        success: function (response) {
+            console.log(response);
+        },
+        error: function (response) {
+            console.log(response);
+            showNotification(expandNotification, "Something went wrong...");
+        }
+    });
+}
+
+
 function yb_getCustomValues(key){
     CUSTOM_VALUES.getAttribute("data-" + key);
 }

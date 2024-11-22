@@ -81,28 +81,6 @@ function activateSetButtons() {
     });
 }
 
-function yb_sendBitToggle(action) {
-    let csrf_token = getCSRF();
-    $.ajax({
-        type: 'POST',
-        url: '/customize/bit/toggle/',
-        headers: {
-            'X-CSRFToken': csrf_token
-        },
-        success: function (response) {
-            console.log(response);
-            showNotification(expandNotification, "Bit Colors "+action);
-        },
-        error: function (response) {
-            console.log(response);
-            showNotification(expandNotification, "Something went wrong...");
-        }
-    });
-}
-
-
-
-
 function toggleBitCustomizations() {
     if (customization_toggle.classList.contains('active')) {
         customization_toggle.classList.remove('active');

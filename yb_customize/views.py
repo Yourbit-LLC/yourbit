@@ -75,6 +75,13 @@ class CustomizeMain(View):
 
             )
 
+def toggle_flat_mode(request):
+    profile_object = Profile.objects.get(username=request.user.active_profile)
+    custom_core = CustomCore.objects.get(profile=profile_object)
+    custom_core.flat_mode_on = not custom_core.flat_mode_on
+    custom_core.save()
+
+    return JsonResponse({"success": "success"})
         
 
 def complete_tutorial(request, type):

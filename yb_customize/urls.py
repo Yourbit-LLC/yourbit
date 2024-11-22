@@ -15,6 +15,7 @@ urlpatterns = [
     path("repair-custom-bit/", user_custom_repair, name="repair_custom_bit"),
     path("bit/toggle/", toggle_custom_bits, name="toggle_bit"),
     path("ui/toggle/", toggle_custom_ui, name="toggle_ui"),
+    path("flat-ui/toggle/", toggle_flat_mode, name="toggle_flat_ui"),
     path("stickers/browse/", StickerBrowse.as_view(), name="browse_stickers"),
     path("templates/main/", CustomizeMenu.as_view(), name="customize_main"),
     path("templates/profile-splash/", CustomizeProfile.as_view(), name="customize_profile"),

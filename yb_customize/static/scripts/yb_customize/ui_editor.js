@@ -67,27 +67,6 @@ function activateSetButtons() {
     });
 }
 
-function sendUIToggle() {
-    let csrf_token = getCSRF();
-
-    $.ajax({
-        type: 'POST',
-        url: '/customize/ui/toggle/',
-        headers: {
-            'X-CSRFToken': csrf_token
-        },
-        success: function (response) {
-            console.log(response);
-            showNotification(expandNotification, "Custom UI Toggled");
-        },
-        error: function (response) {
-            console.log(response);
-            showNotification(expandNotification, "Something went wrong...");
-        }
-    });
-
-}
-
 function toggleUICustomizations() {
     if (custom_ui_toggle.classList.contains('active')) {
         custom_ui_toggle.classList.remove('active');
