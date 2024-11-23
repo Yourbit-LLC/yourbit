@@ -42,6 +42,8 @@ def Customization(request):
         
 
         theme = custom.theme
+
+        custom_bit = CustomBit.objects.get(theme=theme)
         
         profile_image_object = custom.profile_image
 
@@ -104,6 +106,7 @@ def Customization(request):
             'custom_core': custom,
             'wallpaper_enabled': wallpaper_enabled,
             'user_custom_ui': custom_ui,
+            'custom_bit': custom_bit,
             'active_profile':user_context,
             "wallpaper_blur": custom.wallpaper_blur,
             "wallpaper_brightness": custom.wallpaper_brightness,
