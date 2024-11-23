@@ -304,6 +304,7 @@ function yb_loadWallpaper(profile = false) {
 
 function yb_overrideBitColors(user_default = false, bit_colors = false) {
     if (user_default === true) {
+        console.log("User default is true");
         for (let i = 0; i < bit_elements.length; i++) {
             /* 
                 Function to change bit color to and from user default, app default, or mixed theme
@@ -322,9 +323,9 @@ function yb_overrideBitColors(user_default = false, bit_colors = false) {
             let this_title = this_bit.querySelector(".yb-title-bit");
             let this_text = this_bit.querySelector(".yb-body-bit");
 
-            this_bit.style.backgroundColor = yb_getCustomValues("bit-primary-color");
-            this_name.style.color = yb_getCustomValues("bit-title-color");
-            this_username.style.color = yb_getCustomValues("bit-text-color");
+            this_bit.style.backgroundColor = BIT_CUSTOM["primary-color"];
+            this_name.style.color = BIT_CUSTOM["title-color"];
+            this_username.style.color = BIT_CUSTOM["text-color"];
 
             try {
                 let these_buttons = this_bit.querySelectorAll(".yb-button-feedback");
@@ -332,26 +333,26 @@ function yb_overrideBitColors(user_default = false, bit_colors = false) {
                 
                 for (icon in these_icons) {
                     if (icon.classList.contains("active")) {
-                        icon.style.fill = yb_getCustomValues("bit-icon-color");
+                        icon.style.fill = BIT_CUSTOM["icon-color"];
                     }
                 }
 
                 //For each button if the button is active apply custom active color
                 for (button in these_buttons) {
                     if (button.classList.contains("active")) {
-                        button.style.backgroundColor = yb_getCustomValues("bit-button-color");
+                        button.style.backgroundColor = BIT_CUSTOM["button-color"];
                     }
                 }
             } catch {
                 console.log("No buttons found");
             }
             try {
-                this_title.style.color = yb_getCustomValues("bit-title-color");
+                this_title.style.color = BIT_CUSTOM["title-color"];
             } catch {
                 console.log("No title found");
             }
             try {
-                this_text.style.color = yb_getCustomValues("bit-text-color");
+                this_text.style.color = BIT_CUSTOM["text-color"];
             } catch {
                 console.log("No text found");
             }
