@@ -41,6 +41,7 @@ def generate_wallpaper_urls(request):
             wallpaper.background_desktop_url = f'{settings.IMAGE_BASE_URL}/{settings.CLOUDFLARE_ACCOUNT_HASH}/{wallpaper.background_desktop_id}/desktopCropWallpaper'
             wallpaper.save()
     return JsonResponse({"status": "success"})
+
 def upload_image(request, *args, **kwargs):
     from yb_customize.models import CustomCore
     from yb_photo.utility import upload_image_cf

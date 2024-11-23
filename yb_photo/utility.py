@@ -16,9 +16,42 @@ import requests
 from .thumbnails import *
 from yb_photo.models import *
 
+
 logger = logging.getLogger(__name__)
 
 CLOUDFLARE_IMAGE_ACCOUNT_ID = settings.CLOUDFLARE_STREAM_ACCOUNT_ID
+
+def generate_cloudflare_presigned_url(image_id, expiration=3600):
+    """
+    Generate a presigned URL for an image in Cloudflare Images.
+
+    Args:
+        image_id (str): The ID of the image in Cloudflare Images.
+        expiration (int): Time in seconds for the presigned URL to remain valid.
+
+    Returns:
+        str: A presigned URL for the image.
+    """
+    url = f"https://api.cloudflare.com/client/v4/accounts/{settings.CLOUDFLARE_ACCOUNT_ID}/images/v1/delivery_tokens"
+    headers = {
+        "Authorization": f"Bearer {settings.CLOUDFLARE_API_TOKEN}",
+        "Content-Type": "application/json",
+    }
+    payload = {
+        "expiry": expiration,
+        "requiresSignedURLs": True,
+    }
+
+    try:
+        response = requests.post(url, json=payload, headers=headers)
+        response.raise_for_status()  # Raise an error for non-2xx responses
+
+        delivery_token = response.json()["result"]["token"]
+        signed_url = f"{settings.IMAGE_BASE_URL}/{settings.CLOUDFLARE_ACCOUNT_HASH}/{image_id}/public?token={delivery_token}"
+        return signed_url
+    except requests.RequestException as e:
+        raise ValueError(f"Could not generate Cloudflare presigned URL: {e}")
+
 
 def rename_image(user, filename, file_type):
     #Create a timestamp for the image
@@ -195,12 +228,15 @@ def upload_image_cf(request, image_type="profile"):
     from yb_profile.models import Profile
     profile_object = Profile.objects.get(username = request.user.active_profile)
     print(request.FILES)
-    image = request.FILES.get('photo')
-    crop_data = request.POST.get('crop_data')
+    image = request.FILES.get('photo') 
+    if request.POST.get('crop_data'):
+        crop_data = request.POST.get('crop_data')
 
-    crop_data = json.loads(crop_data)
-    image = modify_image(request.user, image, crop_data)
+        crop_data = json.loads(crop_data)
+        image = modify_image(request.user, image, crop_data)
 
+    else:
+        image = image
     image_id = send_image_to_cloudflare(image)
     print(image_type)
     
