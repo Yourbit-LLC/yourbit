@@ -16,9 +16,11 @@ $(document).ready(function() {
             if (action == "custom-ui") {
                 if (this.classList.contains("active")) {
                     this.classList.remove("active");
+                    sendUIToggle();
                     yb_changeUIState('default');
                 } else {
                     this.classList.add("active");
+                    sendUIToggle();
                     yb_changeUIState('modded');
                 }
             }
@@ -37,14 +39,14 @@ $(document).ready(function() {
                     //Set user default to false, to ignore user color overridem and bit colors to false to remove all color overrides
                     yb_overrideBitColors(false, false);
                     only_my_colors_button.classList.add("yb-half-opacity");
-                    sendBitToggle("off");
+                    yb_sendBitToggle("off");
                     yb_setSessionValues("bit-colors-on", "False");
                 } else {
                     this.classList.add("active");
                     //Set user default to value of only_my_colors to decide if user color overrides should be applied set bit colors to true to apply color overrides
                     yb_overrideBitColors(only_my_colors, true);
                     only_my_colors_button.classList.remove("yb-half-opacity");
-                    sendBitToggle("on");
+                    yb_sendBitToggle("on");
                     yb_setSessionValues("bit-colors-on", "True");
                 }
 
