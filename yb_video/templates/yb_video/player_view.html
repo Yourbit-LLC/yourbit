@@ -114,20 +114,22 @@
     <script>
         try {
             var video = document.getElementById("yb-video-player");
+            var comment_container = document.getElementById("player-comments");
             var videoContainer = document.getElementById("yb-player");
             var about_section = document.getElementById("video-about-header");
             var description = document.getElementById("yb-player-description");
-            var send_comment = document.querySelector(".yb-send-comment");
+            var send_comment = comment_container.querySelector(".yb-send-comment");
             var countdown_container = document.getElementById("countdown-container");
             var timerInterval;
             var countdownTime = 5;
         } catch {
             video = document.getElementById("yb-video-player");
+            comment_container = document.getElementById("player-comments");
             countdown_container = document.getElementById("countdown-container");
             videoContainer = document.getElementById("yb-player");
             about_section = document.getElementById("video-about-header");
             description = document.getElementById("yb-player-description");
-            send_comment = document.querySelector(".yb-send-comment");
+            send_comment = comment_container.querySelector(".yb-send-comment");
             countdownTime = 5;
         }
 
