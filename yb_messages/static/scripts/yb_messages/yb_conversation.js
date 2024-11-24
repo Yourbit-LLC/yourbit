@@ -289,7 +289,7 @@ $(document).ready(function(){
         if (photo_input.files.length > 0){
             photo = true;
             this_data.append("is_images", true);
-            this_data.append("image", photo_input.files[0]);
+            this_data.append("photo", photo_input.files[0]);
         } else if (video_input.files.length > 0){
             video = true;
             this_data.append("is_videos", true);
