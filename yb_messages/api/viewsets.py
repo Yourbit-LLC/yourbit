@@ -139,7 +139,7 @@ class MessageViewSet(viewsets.ModelViewSet):
 
         if self.request.data.get("is_images"):
             from yb_photo.utility import upload_image_cf
-            attached_image = upload_image_cf(self.request, "message")
+            attached_image = upload_image_cf(self.request, "general")
             serializer.save(from_user=from_user, body=body, conversation=conversation, images=[attached_image])
 
         elif self.request.data.get("is_videos"):
