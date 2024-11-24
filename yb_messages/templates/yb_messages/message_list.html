@@ -3,9 +3,9 @@
 
             {% if message.images%}
                 {% for image in message.images.all %}
-                    <div id="message-{{message.id}}" class='message-bubble message-bubble-right' style="background-color: transparent;" onclick="yb_fullScreenImage('{{image.image.url}}')">
+                    <div id="message-{{message.id}}" class='message-bubble message-bubble-right' style="background-color: transparent;" onclick="yb_fullScreenImage('{{image.ext_url}}')">
 
-                        <img src="{{ image.image.ext_url }}" class="message-photo"/>   
+                        <img src="{{ image.ext_url }}" class="message-photo"/>   
                                 
                     </div>
                 {% endfor %}
