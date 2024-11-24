@@ -16,6 +16,7 @@ urlpatterns = [
     path("bit/toggle/", toggle_custom_bits, name="toggle_bit"),
     path("ui/toggle/", toggle_custom_ui, name="toggle_ui"),
     path("flat-ui/toggle/", toggle_flat_mode, name="toggle_flat_ui"),
+    path("only-my-colors/toggle/", toggle_only_my_colors, name="toggle_only_my_colors"),
     path("stickers/browse/", StickerBrowse.as_view(), name="browse_stickers"),
     path("templates/main/", CustomizeMenu.as_view(), name="customize_main"),
     path("templates/profile-splash/", CustomizeProfile.as_view(), name="customize_profile"),

@@ -184,6 +184,24 @@ function yb_sendBitToggle(action) {
     });
 }
 
+function yb_omcBitToggle() {
+    let csrf_token = getCSRF();
+    $.ajax({
+        type: 'POST',
+        url: '/customize/only-my-colors/toggle/',
+        headers: {
+            'X-CSRFToken': csrf_token
+        },
+        success: function (response) {
+            console.log(response);
+        },
+        error: function (response) {
+            console.log(response);
+            showNotification(expandNotification, "Something went wrong...");
+        }
+    });
+}
+
 
 function yb_getCustomValues(key){
     CUSTOM_VALUES.getAttribute("data-" + key);

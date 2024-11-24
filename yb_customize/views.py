@@ -223,6 +223,7 @@ def toggle_wallpaper(request):
 
     return JsonResponse({"success": "success"})
 
+
 class CustomizeUI(View):
     def get(self, request):
         profile_object = Profile.objects.get(username=request.user.active_profile)
