@@ -5,13 +5,14 @@ function getElementId(e) {
 function yb_pressSendComment(e){
     // Retrieves the ID of the current target element
     console.log("send comment pressed");
+    let this_element = e.currentTarget;
     let this_id = e.currentTarget.getAttribute("data-catid");
     let element_id;
     console.log(this_id)
 
     // Constructs the element ID using the retrieved ID
-    if (yb_getSessionValues("location") == "player"){
-        element_id = `player-comments`
+    if (yb_getSessionValues("location") == "bit-focus"){
+        element_id = this_element.getAttribute("data-field-override");
     } else {
         element_id = `bit-${this_id}`;
     }
