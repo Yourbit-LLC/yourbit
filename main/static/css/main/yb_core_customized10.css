@@ -934,6 +934,10 @@ p {
     }
 }
 
+.yb-load-point {
+    visibility: hidden;
+}
+
 .yb-background-image {
     position: fixed;
     top: 0;
