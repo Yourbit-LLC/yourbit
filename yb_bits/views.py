@@ -241,9 +241,11 @@ class CreateCluster(View):
     
 def bit_focus_view(request, pk, *args, **kwargs):
     this_bit = Bit.objects.get(pk=pk)
+    these_comments = BitComment.objects.filter(bit=this_bit)
 
     context = {
-        "bit": this_bit
+        "bit": this_bit,
+        "comments": these_comments
     }
     if this_bit.type == "video":
         from yb_bits.models import VideoBitWatch, InteractionHistory

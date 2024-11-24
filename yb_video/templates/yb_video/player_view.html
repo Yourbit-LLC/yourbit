@@ -93,7 +93,7 @@
                     </div>
                 <div>
             {% else %}
-            
+                    {% include 'yb_bits/bit_comments.html' %}
             {% endif %}
         </article>
         <div id="field-write-comment-{{bit.id}}" class="yb-container-commentField">
@@ -152,6 +152,10 @@
             timerInterval = setInterval(updateCountdown, 1000, countdownTime);
 
         }
+
+        $(document).ready(function(){
+            send_comment.addEventListener("click", yb_pressSendComment);
+        });
         $(video).ready(function() {
             video.play();
 
@@ -191,7 +195,6 @@
                 }
             })
 
-            send_comment.addEventListener("click", yb_pressSendComment);
 
             
             console.log('The video is now playing!');

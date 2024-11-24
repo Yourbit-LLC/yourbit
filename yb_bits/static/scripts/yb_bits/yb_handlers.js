@@ -4,6 +4,7 @@ function getElementId(e) {
 // Function for sending a new comment on a bit
 function yb_pressSendComment(e){
     // Retrieves the ID of the current target element
+    console.log("send comment pressed");
     let this_id = e.currentTarget.getAttribute("data-catid");
     let element_id;
     console.log(this_id)
