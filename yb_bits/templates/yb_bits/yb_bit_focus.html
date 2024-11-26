@@ -1,5 +1,22 @@
 {% load static %}
+
 {% if custom_core.bit_colors_on %}
+    {% if custom_core.only_my_colors == False %}
+        <style>
+            :root {
+        
+                {% comment %}
+                    The styles below refer to the current bits custom color settings for use in the associated css files
+                {% endcomment %}
+                --yb-bit-primary-color: {{bit.custom.primary_color}};
+                --yb-bit-secondary-color: {{bit.custom.accent_color}};
+                --yb-bit-text-color: {{bit.custom.text_color}};
+                --yb-bit-title-color: {{bit.custom.title_color}};
+                --yb-fb-icon-color: {{bit.custom.icon_color}};
+                --yb-fb-background-color: {{bit.custom.button_color}};
+            }
+        </style>
+    {% endif %}
 
     <link rel="stylesheet" href="{% static 'css/yb_bits/yb_bits_customized8.css' %}">
 

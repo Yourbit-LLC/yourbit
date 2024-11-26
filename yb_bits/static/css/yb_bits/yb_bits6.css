@@ -751,3 +751,8 @@
         fill: gray;
     }
 }
+
+
+.bit-background {
+    background-color: var(--default-bit-background);
+}
