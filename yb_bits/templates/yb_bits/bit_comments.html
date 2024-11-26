@@ -1,7 +1,7 @@
 {% for comment in comments %}
     {% if comment.profile == user_profile %}
         <div id="comment-shell-{{comment.id}}" class="yb-comment-shell">
-            <div id="{{comment.id}}" class="yb-comment-item right font-medium yb-bg-autoGray yb-autoText" data-catid="{{comment.id}}">
+            <div id="{{comment.id}}" class="yb-comment-item right font-medium yb-gray bit-background-color bit-text-color" data-catid="{{comment.id}}">
                 <div id="delete-comment-{{comment.id}}" class="yb-delete-comment pointer-object circle border-none" data-catid="{{comment.id}}" data-bitid="{{comment.bit.id}}">
                     <svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
                         <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"></path>

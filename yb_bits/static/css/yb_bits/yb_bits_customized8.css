@@ -716,3 +716,11 @@
 .bit-button-color {
     color: var(--yb-bit-button-color);
 }
+
+.bit-bg-dark-1 {
+    background-color: color-mix(in srgb, var(--yb-bit-primary-color), black 30%);
+}
+
+.bit-bg-dark-2 {
+    background-color: color-mix(in srgb, var(--yb-bit-primary-color), black 50%);
+}
