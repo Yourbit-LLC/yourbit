@@ -1,19 +1,44 @@
 {% load static %}
+<style>
+    {% if custom_core.bit_colors_on == False %}
+        @media (prefers-color-scheme: dark) {
+            .yb-player-actions {
+                background-color: rgb(25, 25, 25);
+            }
+
+            
+            .video-user-info {
+                background-color: rgb(50, 50, 50);
+            }
+        }
+        @media (prefers-color-scheme: light) {
+
+            .yb-player-actions {
+                background-color: rgb(200, 200, 200);
+            }
+
+            .video-user-info {
+                background-color: rgb(255, 255, 255);
+            }
+        
+        }
+
+        
+        mux-player {
+            --center-seek-backward-button: block;
+            --center-seek-forward-button: block;
+            --center-play-button: block;
+            --controls-backdrop-color: transparent;
+        }
+    {% endif %}
+</style>
 <link rel="stylesheet" href="{% static 'css/yb_video/player6.css' %}">
 <meta property="og:title" content="{{bit.title}}" />
 <meta property="og:type" content="video.movie" />
 <meta property="og:url" content="https://yourbit.me/bits/view/{{bit.id}}/" />
 <meta property="og:image" content="{{bit.video_upload.thumbnail.medium_thumbnail_ext}}" />
 <meta property="og:video" content="{{bit.video_upload.ext_url}}" />
-<style>
 
-    mux-player {
-        --center-seek-backward-button: block;
-        --center-seek-forward-button: block;
-        --center-play-button: block;
-        --controls-backdrop-color: transparent;
-    }
-</style>
 <div class="yb-player-grid">
     <div class="yb-flexColumn player-scroll-section yb-vScroll">
         <div id="yb-player" class="yb-player" style="aspect-ratio: 16 / 9; max-height: 500px;">
