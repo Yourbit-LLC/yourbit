@@ -183,9 +183,6 @@
 .content-container {
     background-color: rgba(0, 0, 0, 0.8) !important;
 }
-.yb-player-actions {
-    background-color: rgb(25, 25, 25);
-}
 
 .video-countdown-container {
     position: absolute;
@@ -199,9 +196,6 @@
     display: none;
 }
 
-.video-user-info {
-    background-color: rgb(50, 50, 50);
-}
 
 
 #feedback-icon-source path {
@@ -218,12 +212,6 @@
 @media (prefers-color-scheme: light) {
     .content-container {
         background-color: rgba(255, 255, 255, 0.8) !important;
-    }
-    .yb-player-actions {
-        background-color: rgb(200, 200, 200);
-    }
-    .video-user-info {
-        background-color: rgb(255, 255, 255);
     }
 
     #feedback-icon-source path {
