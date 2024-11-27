@@ -398,7 +398,7 @@
 /* Right-aligned comments */
 .yb-comment-item.right {
     margin-left: auto; /* push to the right */
-    margin-right: 0;
+    margin-right: 5px;
 }
 
 /* Container styles */
