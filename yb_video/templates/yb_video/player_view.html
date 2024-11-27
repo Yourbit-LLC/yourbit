@@ -43,10 +43,10 @@
             {% endif %}
         </div>
         
-        <section class="yb-player-info yb-autoText bit-title-color bit-bg-dark-1">
-            <h3 style="padding-left: 10px; grid-row: 1; margin-top: auto; margin-bottom: auto;">{{bit.title}}</h3>
+        <section class="yb-player-info yb-autoText">
+            <h3 class="bit-title-color" style="padding-left: 10px; grid-row: 1; margin-top: auto; margin-bottom: auto;">{{bit.title}}</h3>
 
-            <div class="video-user-info bit-bg-dark-2">
+            <div class="video-user-info bit-bg-dark-1">
                 <img class="video-pfp" style="object-fit:fill; border: 2px solid {{bit.custom.accent_color}}; border-radius: 50%; width: 100%;" src="{% if storage_type == "yb"%}{{bit.profile.custom.profile_image.small_thumbnail.url}}{% else %}{{bit.profile.custom.profile_image.small_thumbnail_ext}}{%endif%}">
                 <p class="bit-title-color" style="font-size: 14px; padding-left: 5px;"><b>{{bit.profile.display_name}}</b></p>
                 <p class="bit-text-color" style="font-size: 10px; grid-column: 2; padding-left: 5px;">@{{bit.profile.username}}</p>
@@ -55,7 +55,7 @@
                 </div>
             </div>
             
-            <div class="yb-player-actions">
+            <div class="yb-player-actions bit-bg-dark-2">
                 {% include 'yb_bits/bit_interactions.html' %}
             </div>
         </section>
