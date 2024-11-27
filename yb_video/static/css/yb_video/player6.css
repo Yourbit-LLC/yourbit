@@ -3,10 +3,9 @@
         display: grid;
         position:relative;
         margin: auto;
-        width: 100vw;
         max-width: 1250px;
         height: calc(100vh - 115px);
-        grid-template-columns: 3fr 2fr;
+        grid-template-columns: 4fr 2fr;
         grid-template-rows: auto 1fr;
         padding-left: 20px;
         padding-right: 20px;
