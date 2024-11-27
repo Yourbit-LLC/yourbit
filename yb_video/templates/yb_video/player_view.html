@@ -129,6 +129,7 @@
                     {% include 'yb_bits/bit_comments.html' %}
             {% endif %}
         </article>
+
         <div id="field-write-comment-{{bit.id}}" class="yb-container-commentField">
             <input id="field-write-comment-{{bit.id}}" class="yb-field-commentField field-border yb-autoText" placeholder="Write Comment">
             <button data-field-override="player-comments" id="button-submit-comment-{{bit.id}}" class="yb-send-comment" name="send_comment" data-catid="{{bit.id}}">
@@ -138,6 +139,10 @@
             </button>
         </div>
     </section>
+
+    <div class="yb-video-list" id="up-next-list" style = "text-align: left; position: relative; width: 100%; grid-row-start: 1; grid-row-end: 3; height: 45%;">
+        <h4>Up Next</h4>
+    </div>
 
     <section id="yb-player-controls" class="floating-controls">
     </section>
