@@ -62,7 +62,6 @@
 .yb-player-actions {
     position: relative;
     /* padding: 10px; */
-    background-color: rgb(25, 25, 25);
     height: 60px;
     width: 97%;
 
@@ -82,7 +81,7 @@
 #video-about-header {
     display: grid;
     grid-template-rows: 30px 20px auto;
-    background-color: rgb(25, 25, 25);
+    
     border-radius: 10px;
     width: 95.5%;
     padding: 10px;
