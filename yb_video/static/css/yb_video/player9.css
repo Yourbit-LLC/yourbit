@@ -246,12 +246,19 @@
 }
 
 @media screen and (min-width: 768px) {
-    .yb-player-comments {
+    .yb-video-sidebar {
+        position: relative;
+        width: 99%;
         grid-column: 2;
         grid-row-start: 1;
         grid-row-end: 3;
+    }
+    
+    .yb-player-comments {
+
         height: 53.5%;
-        width: 99%;
+        width: 100%;
+       
         margin-left: auto;
         margin-right: auto;
         border-radius: 20px;
@@ -267,10 +274,28 @@
         display: none;
     }
 
+    .yb-video-list {
+        text-align: left; 
+        position: relative; 
+        width: 100%; 
+        grid-row-start: 1; 
+        grid-row-end: 3; 
+        height: 45%;
+    }
+
 }
 
 
 @media screen and (max-width: 768px) {
+    .yb-video-sidebar {
+        position: relative;
+        width: 100%;
+    }
+
+    .yb-video-list {
+        display: none;
+    }
+    
     .yb-player-comments {
         width: 100%;
         margin-left: auto;
