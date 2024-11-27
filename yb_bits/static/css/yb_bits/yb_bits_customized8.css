@@ -608,12 +608,11 @@
 .yb-delete-comment {
     position: absolute;
     text-decoration: none;
-    left: -40px;
-    top : 50%;
-    height: 35px;
-    width: 35px;
+    left: -30px;
+    top : 10px;
+    height: 25px;
+    width: 25px;
     text-align: center;
-    transform: translateY(-50%);
     font-size: 25px;
     background-color: gray;
 
