@@ -7,7 +7,7 @@ def is_local_request(request):
     Determines if the request is from a local environment based on the host.
     """
     host = request.get_host()
-    return host.startswith('localhost') or host.startswith('127.0.0.1')
+    return host.startswith('localhost') or host.startswith('127.0.0.1') or host.startswith('yourbit.ngrok.dev')
 
 # This is the demo secret key. Replace with a secure key for production.
 TURNSTILE_SECRET_KEY = settings.TURNSTILE_SECRET_KEY
