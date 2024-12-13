@@ -1,12 +1,12 @@
 {
-    "name": "Yourbit",
-    "short_name": "Yourbit",
+    "name": "Yourbit Dev",
+    "short_name": "YB Dev",
     "start_url": "https://yourbit.me",
     "display": "standalone",
     "background_color": "#000000",
     "description": "Your new revolution in social networking.",
     "lang": "en-US",
-    "orientation": "portrait",
+    "orientation": "any",
     "scope": "https://yourbit.me",
     "theme_color": "#000000",
     "icons": [
