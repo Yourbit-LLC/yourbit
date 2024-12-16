@@ -196,7 +196,7 @@ function yb_addMedia(type, bit) {
             let source = this.getAttribute("src");
             let this_id = this.getAttribute("data-id");
             let this_index = this.getAttribute("data-index");
-            yb_openImage(source, this_index, this_id)
+            yb_openImage(this_id)
 
         })
 
