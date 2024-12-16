@@ -1199,6 +1199,12 @@
     height: 100%;
     z-index: 1005;
     background-color: black;
+    transition: 0.5s;
+}
+
+.photo-viewer.open {
+    top: 0px;
+    transition: 0.5s;
 }
 
 .full-screen-image {

@@ -843,10 +843,8 @@ function yb_removeFromCluster(cluster_id, bit_id) {
 
 function yb_closeImage() {
 
-    console.log("Swiped down to exit fullscreen!");
-    $('.photo-viewer').animate({"top": "100vh"}, 200);
-    $('.photo-viewer').fadeOut(200);
-    $('.photo-viewer').remove();
+    PHOTO_VIEWER.classList.remove("open");
+    PHOTO_VIEWER.innerHTML = "";
 
 
 }
