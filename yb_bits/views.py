@@ -488,3 +488,10 @@ class BitThumbnailSetup(View):
     def get(self, request):
         return render(request, "yb_bits/bit_builder/bit_thumbnail.html")
     
+
+def view_full_image(request, id):
+    this_bit = Bit.objects.get(pk=id)
+    context = {
+        "bit":this_bit
+    }
+    return render(request, "yb_bits/full_screen_image.html", context)

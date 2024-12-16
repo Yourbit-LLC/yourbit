@@ -293,9 +293,7 @@ label {
 }
 
 .side-menu.open {
-    
     display: block;
-    
     transform: translateX(0%);
 }
 

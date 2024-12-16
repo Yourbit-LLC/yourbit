@@ -35,6 +35,10 @@ const DRAWER_FOCUS_CONTAINER = document.getElementById("yb-drawer-focus-containe
 
 const CARD_CONTAINER = document.getElementById("yb-card");
 
+const PHOTO_VIEWER = document.getElementById("photo-viewer");
+
+
+
 function yb_openDrawer(template, id=null, reloadable=true) {
     if (!DRAWER.classList.contains("open")) {
         DRAWER.classList.add("open");
@@ -727,4 +731,9 @@ function yb_lessHScroll(container) {
 
     //Scroll right to the beginning of the container
     scrollContainer.scrollLeft = 0;
+}
+
+  
+function yb_openImage(this_id){
+    $(PHOTO_VIEWER).load(`/bits/templates/image/${this_id}/`);
 }

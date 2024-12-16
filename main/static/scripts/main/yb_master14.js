@@ -1447,3 +1447,34 @@ function yb_declineRequest() {
         }
     })
 }
+
+// Function to lock orientation to portrait
+function yb_lockOrientation() {
+    if (screen.orientation && screen.orientation.lock) {
+      screen.orientation.lock("portrait").catch(err => {
+        console.warn("Orientation lock failed:", err);
+      });
+    } else {
+      console.warn("Screen Orientation API is not supported in this browser.");
+    }
+  }
+  
+  // Function to unlock orientation
+  function yb_unlockOrientation() {
+    if (screen.orientation && screen.orientation.unlock) {
+      screen.orientation.unlock();
+    } else {
+      console.warn("Screen Orientation API is not supported in this browser.");
+    }
+  }
+  
+  // Example usage: Lock orientation on specific pages
+  document.addEventListener("DOMContentLoaded", () => {
+    const isPortraitOnlyPage = window.location.pathname === "/portrait-only-page";
+    if (isPortraitOnlyPage) {
+      yb_lockOrientation();
+    } else {
+      yb_unlockOrientation();
+    }
+  });
+  

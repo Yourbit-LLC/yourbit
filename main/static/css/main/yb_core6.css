@@ -1162,3 +1162,16 @@ p {
 .flat-bit-separator {
     display:var(--yb-separator-display);
 }
+
+
+/* Restrict content display for portrait mode as a hint */
+/* @media screen and (orientation: landscape) {
+    body {
+      transform: rotate(90deg);
+      transform-origin: center;
+      overflow: hidden;
+      width: 100vh; Use viewport height for width in landscape
+      height: 100vw; Use viewport width for height in landscape
+    }
+  } */
+  
