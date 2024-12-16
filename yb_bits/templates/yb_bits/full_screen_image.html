@@ -4,12 +4,12 @@
     <div class="yb-button-close" id="cb-panel-close" onclick="yb_closeImage();"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path class="yb-fill-white" d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"></path></svg></div>
 </div>
 <img src="{{bit.photos.first.large_thumbnail_ext}}" class="full-screen-image" id="full-screen-image">
-<div class="photo-info-container" id="photo-info-container-fs" style="padding-left: 10px; color: white; text-shadow: 1px 1px 2px black; position: absolute; bottom: 60px;">
+<div class="photo-info-container" id="photo-info-container-fs" style="padding-left: 10px; color: white; text-shadow: 1px 1px 2px black; position: absolute; bottom: 70px;">
 
     <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb">{{bit.display_name}}</h3>
     <p class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb">{{bit.title}}</p>
 </div>
 
-<div id="interaction-container-fs" class="photo-interaction-container" style="position: absolute; display: grid; grid-template-columns: 50px auto 50px auto 50px auto 50px auto 50px; width: 100%; bottom: 0px; left: 0px;">
+<div id="interaction-container-fs" class="photo-interaction-container" style="position: absolute; display: grid; grid-template-columns: 50px auto 50px auto 50px auto 50px auto 50px; width: 100%; bottom: 0px; left: 0px; padding: 10px;">
     {% include "yb_bits/bit_interactions.html" %}
 </div>
