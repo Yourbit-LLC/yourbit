@@ -735,6 +735,8 @@ function yb_lessHScroll(container) {
 
   
 function yb_openImage(this_id){
+    
     $(PHOTO_VIEWER).load(`/bits/templates/image/${this_id}/`);
     PHOTO_VIEWER.classList.add("open");
+    
 }
