@@ -304,7 +304,7 @@ $(document).ready(function() {
     submit_login.addEventListener('click', yb_attempt_login);
 
     // Add a click event handler to trigger the animation
-    $(login_button).click(showLogin);
+    login_button.addEventListener("click", showLogin);
 
     //Sign up button does same thing as login button
     $(signup_button).click(showSignUp);
