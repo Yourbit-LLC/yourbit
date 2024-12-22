@@ -29,83 +29,83 @@ var signUpWidgetId;
 //     pwa_popup.classList.add('show');
 //     pwa_content_ios.classList.add('show');
 
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowDown') {
-        scrollToNextSection();
-    }
-});
+// document.addEventListener('keydown', (e) => {
+//     if (e.key === 'ArrowDown') {
+//         scrollToNextSection();
+//     }
+// });
 
-document.addEventListener('wheel', (e) => {
-    if (e.deltaY > 150) {
-        scrollToNextSection();
-    }
-});
+// document.addEventListener('wheel', (e) => {
+//     if (e.deltaY > 150) {
+//         scrollToNextSection();
+//     }
+// });
 
-function scrollToNextSection() {
-    if (currentSection < sections.length - 1) {
-        currentSection++;
-        sections[currentSection].scrollIntoView({ behavior: 'smooth' });
-        if (currentSection == 1) {
-            let video = document.getElementById("video-terrain-scan");
-            video.play();
-        }
-        if (currentSection == 2) {
-            let video = document.getElementById("video-color-your-world");
-            video.play();
-        }
-    }
-}
+// function scrollToNextSection() {
+//     if (currentSection < sections.length - 1) {
+//         currentSection++;
+//         sections[currentSection].scrollIntoView({ behavior: 'smooth' });
+//         if (currentSection == 1) {
+//             let video = document.getElementById("video-terrain-scan");
+//             video.play();
+//         }
+//         if (currentSection == 2) {
+//             let video = document.getElementById("video-color-your-world");
+//             video.play();
+//         }
+//     }
+// }
 
-let isScrolling = false;
-const scrollDelay = 800; // Adjust this value to set the delay between section transitions
+// let isScrolling = false;
+// const scrollDelay = 800; // Adjust this value to set the delay between section transitions
 
-// ... (previous code)
+// // ... (previous code)
 
-let startY = 0;
-let endY = 0;
+// let startY = 0;
+// let endY = 0;
 
-document.addEventListener('wheel', (e) => {
-    if (!isScrolling) {
-        if (e.deltaY > 150) {
-            scrollToNextSection();
-        } else {
-            scrollToPreviousSection();
-        }
-        isScrolling = true;
-        setTimeout(() => {
-            isScrolling = false;
-        }, scrollDelay);
-    }
-});
+// document.addEventListener('wheel', (e) => {
+//     if (!isScrolling) {
+//         if (e.deltaY > 150) {
+//             scrollToNextSection();
+//         } else {
+//             scrollToPreviousSection();
+//         }
+//         isScrolling = true;
+//         setTimeout(() => {
+//             isScrolling = false;
+//         }, scrollDelay);
+//     }
+// });
 
-document.addEventListener('touchstart', (e) => {
-    startY = e.touches[0].clientY;
-});
+// document.addEventListener('touchstart', (e) => {
+//     startY = e.touches[0].clientY;
+// });
 
-document.addEventListener('touchmove', (e) => {
-    endY = e.touches[0].clientY;
-});
+// document.addEventListener('touchmove', (e) => {
+//     endY = e.touches[0].clientY;
+// });
 
-document.addEventListener('touchend', () => {
-    if (!isScrolling) {
-        if (endY+150 < startY) {
-            scrollToNextSection();
-        } else {
-            scrollToPreviousSection();
-        }
-        isScrolling = true;
-        setTimeout(() => {
-            isScrolling = false;
-        }, scrollDelay);
-    }
-});
+// document.addEventListener('touchend', () => {
+//     if (!isScrolling) {
+//         if (endY+150 < startY) {
+//             scrollToNextSection();
+//         } else {
+//             scrollToPreviousSection();
+//         }
+//         isScrolling = true;
+//         setTimeout(() => {
+//             isScrolling = false;
+//         }, scrollDelay);
+//     }
+// });
 
-function scrollToPreviousSection() {
-    if (currentSection > 0) {
-        currentSection--;
-        sections[currentSection].scrollIntoView({ behavior: 'smooth' });
-    }
-}
+// function scrollToPreviousSection() {
+//     if (currentSection > 0) {
+//         currentSection--;
+//         sections[currentSection].scrollIntoView({ behavior: 'smooth' });
+//     }
+// }
 
 // ...
 
