@@ -29,6 +29,9 @@ urlpatterns = [
         auth_views.PasswordResetCompleteView.as_view(template_name="yb_accounts/reset_password_done.html"), 
         name="password_reset_complete"
     ),
+    path("register/", SignupPage.as_view(), name="register"),
+    path("authenticate/", LoginPage.as_view(), name="authenticate"),
+
     path('reset-password/', ResetPassword.as_view(), name="reset_password"),
     path("templates/accept-terms/", terms_accept, name="accept-terms"),
     path("templates/accept-privacy/", privacy_accept, name="accept-privacy"),

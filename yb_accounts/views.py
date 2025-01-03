@@ -115,16 +115,17 @@ def registration_view(request):
             # Get email and password, authenticate and login
             email = form.cleaned_data.get('email')
             raw_password = form.cleaned_data.get('password1')
-            account = authenticate(email=str(email).lower(), password=raw_password)
+            account = authenticate(username=username, password=raw_password)
             login(request, account)
         
             # Generate and save verification token
+            this_account = User.objects.get(username = username)
             verification_key = generate_verification_key()
-            account.verification_token = verification_key
-            account.save()
+            this_account.verification_token = verification_key
+            this_account.save()
 
             # Send a verification email
-            send_confirmation_email(account)
+            send_confirmation_email(this_account)
 
             # Respond with success status
             return JsonResponse({'status': 'success', 'message': 'Account created successfully.'})
@@ -335,9 +336,9 @@ def login_view(request):
     if request.POST:
         
         if login_form.is_valid():
-            email = request.POST['email']
+            username = request.POST['username']
             password = request.POST['password']
-            user = authenticate(email=str(email).lower(), password=password)
+            user = authenticate(username=str(username).lower(), password=password)
 
             if user:
                 login(request, user)
@@ -351,7 +352,7 @@ def login_view(request):
                     
                 return JsonResponse({'status': 'success', 'message': 'Login Successful'}, status=200)
 
-    return JsonResponse({'status': 'failed', 'message': 'Check your email and password combination and try again.'}, status=400)
+    return JsonResponse({'status': 'failed', 'message': 'Check your username and password combination and try again.'}, status=400)
 
 def logout_view(request):
     logout(request)
@@ -448,3 +449,13 @@ def validate_field(request, field, *args, **kwargs):
             return JsonResponse({'status': 'failed', 'message': 'Profile with this Email already exists.'})
         except User.DoesNotExist:
             return JsonResponse({'status': 'success', 'message': 'Email available.'})
+        
+
+
+class LoginPage(View):
+    def get(self, request, *args, **kwargs):
+        return render(request,'registration/login_form.html')
+
+class SignupPage(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'registration/signup_form.html')

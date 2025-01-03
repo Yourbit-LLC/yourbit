@@ -85,8 +85,8 @@ class Account(AbstractBaseUser):
     api_key = models.CharField(max_length=150, default=None, null=True)
 
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', 'first_name', 'last_name', 'dob',]
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['email', 'first_name', 'last_name', 'dob',]
 
     objects = MyAccountManager()
 

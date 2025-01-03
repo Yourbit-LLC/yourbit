@@ -58,21 +58,21 @@ class LoginForm(forms.ModelForm):
     
     class Meta:
         model = Account
-        fields = ('email', 'password')
+        fields = ('username', 'password')
 
     def clean(self):
-        email = self.cleaned_data['email']
+        username = self.cleaned_data['username']
         password = self.cleaned_data['password']
-        if not authenticate(email=email, password=password):
+        if not authenticate(username=username, password=password):
             raise forms.ValidationError("Invalid Login")
 
     def __init__(self, *args, **kwargs):
         super(LoginForm, self).__init__(*args, **kwargs)
 
-        self.fields['email'].widget.attrs.update({'class': 'field'})
+        self.fields['username'].widget.attrs.update({'class': 'field'})
         self.fields['password'].widget.attrs.update({'class': 'field'})
 
-        self.fields['email'].widget.attrs.update({'placeholder': 'Email'})
+        self.fields['username'].widget.attrs.update({'placeholder': 'Username'})
         self.fields['password'].widget.attrs.update({'placeholder': 'Password'})
 
         

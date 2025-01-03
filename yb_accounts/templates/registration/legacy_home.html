@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Welcome to Yourbit</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main/yb_buttons6.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main/yb_modifiers4.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/yb_accounts/login.css'%}">
+    <link rel="manifest" href="{% static 'manifest.json' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/main/favicon.ico'%}">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1">
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+
+</head>
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/static/sw.js').then(function(registration) {
+                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            }, function(err) {
+                console.log('ServiceWorker registration failed: ', err);
+            });
+        });
+    }
+</script>
+
+    <body style="margin: 0; overflow: hidden; background-color: black;">
+        <div class="feathered-background" style="background: url('{% static 'images/main/AdobeStock_62108294.jpeg'%}') no-repeat center center fixed;">
+            
+        </div>
+        <div id="welcome-header">
+            <div id="logo-header">
+                <img style="height: 25px; margin-top: 5px;" src="{% static 'images/main/yourbit-logo2023-01.svg' %}">
+            </div>
+            <div class="hamburger-button closed" id="hamburger-button">
+                <svg xmlns="http://www.w3.org/2000/svg" height="28" viewBox="0 -960 960 960" width="28"><path id="hamburger-path" class="hamburger-path closed" d="M120-240v-66.666h720V-240H120Zm0-206.667v-66.666h720v66.666H120Zm0-206.667V-720h720v66.666H120Z"/></svg>
+            </div>
+
+        </div>
+            
+        <div class="yb-container-floatingAction center">
+                
+            <button class="yb-button-wide rounded" id="login-button" style = "width: 100%; grid-column: 1; color: white; font-weight: 575; font-size: 14px; height: 100%; background-color: #33cc33;">Login</button>
+
+            <button class="yb-button-wide rounded" id="signup-button" style = "width: 100%; grid-column: 2; color: white; font-weight: 575; font-size: 14px; height: 100%; background-color: #0066ff;">Sign Up</button>
+    
+        </div>
+
+        <div class="yb-section-container" id="yb-sect1">
+            <div class = "section-content">
+                <img src="{% static 'images/main/yourbit-logo2023-01.svg' %}" style="margin-left: auto; margin-right: auto; width: 40vw; max-width: 175px; margin-top: 10vh; margin-bottom: 10vh;">
+                <h1 style="font-style: light;">Welcome to Yourbit</h1>
+                <p style="margin: 10px; 10px;">The revolutionary new social platform centered around you</p>
+                <br>
+            </div>
+            <!-- Section 1 content here -->
+        </div>
+        <div class="yb-section-container">
+            <video class="section-video" id="video-terrain-scan" autoplay muted loop playsinline>
+                <source src="{% static 'videos/terrainscan0001-0070.avi'%}" type="video/avi">
+            </video>
+            <!-- Section 2 content here -->
+            <div class="section-content">
+                <h3>Mold your Social Landscape</h3>
+
+                    <p style="margin: 10px; 10px;">Yourbit's modular design empowers you to finely craft your experience. 
+                        Toggle features on and off at your discretion, allowing you to define 
+                        and curate your own unique social setting.
+                    </p>
+                    
+                    <br>
+            </div>
+
+
+
+        </div>
+        <div class = "yb-section-container">
+            <!--Describe personalization functionality-->
+            
+            <video class="section-video" id="video-color-your-world" autoplay muted loop playsinline>
+                <source src="{% static 'videos/color_your_world_bkd_DONE0001-0031.avi'%}" type="video/avi">
+            </video>
+            <div class="section-content">
+
+                <!-- Section 1 content here -->
+                <h3>Color Your World</h3>
+                <p style="margin: 10px; 10px;">With Yourbit, you can customize your UI and your profile. 
+                    Incorporate captivating background images, infuse vibrant splashes of color,
+                    and showcase your distinctive personality to all who explore your profile.
+                </p>
+
+            </div>
+
+        </div>
+        <div class="yb-section-container">
+            <!-- Section 3 content here -->
+            <div class = "section-content">
+                <h3>A Revolution in Privacy</h3>
+
+                <p style="margin: 10px; 10px;">Yourbit sets the gold standard for privacy, surpassing all other social platforms. 
+                    Take charge of your messaging preferences, refine discoverability settings, and control the visibility of data showcased on your profile. 
+                    With Yourbit, you'll receive alerts whenever your data is transmitted beyond the site for third-party processing. 
+                    This unwavering transparency ensures you're constantly informed about your data's journey and maintains your authority over access rights.
+                </p>
+            </div>
+        </div>
+
+        {% include 'registration/login_form.html' %}
+
+        {% include 'registration/sign_up_form.html' %}
+
+        <div id="side-menu" class="side-menu closed">
+            <div id="side-menu-content">
+                <div id="side-menu-header-logo" style="width: 40px; margin-left: auto; margin-right: auto;">
+                    <img style="width: 100%;" src="{% static 'images/main/2023-logo-draft.png' %}">
+                </div>
+                
+                <div id="side-menu-body">
+
+                    <div id="side-menu-body-content">
+                        <h4><a href="#" style="color: cyan;">Home</a></h4>
+                        <h4><a href="#">About Yourbit</a></h4>
+                        <h4><a href="#">Developers</a></h4>
+                        <h4><a href="#">Shop</a></h4>
+                        <h4><a href="#">Support</a></h4>
+                    </div>
+                </div>
+            </div>
+
+            <div id="menu-footer" style="position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); width: 90%;">
+                <p style="font-size: small;"><a href="/accounts/templates/viewer/terms/">Terms of Service</a> | <a href="/accounts/templates/viewer/privacy/">Privacy Policy</a></p>
+                <p style="font-size: small;">© 2023 Yourbit, LLC. All rights reserved.</p>
+            </div> 
+        </div>
+
+        {% comment %} <footer style="background-color: rgb(35,35,35); width: 100vw; position: absolute; bottom: 0;">
+            <p>© 2021 Yourbit, LLC. All rights reserved.</p>
+        </footer> {% endcomment %}
+        <div id="pwa-popup" style="display:none;">
+            <div id="pwa-popup-content-android">
+                <h3>Install Yourbit</h3>
+                <p>Install Yourbit to your device for a more immersive experience.</p>
+                <button id="install-button">Install</button>
+                <button id="dismiss-button">Dismiss</button>
+            </div>
+
+            <div id="pwa-popup-content-ios">
+                <h3>Install Yourbit</h3>
+                <p>Install Yourbit to your device for a more immersive experience.</p>
+                <button id="install-button">Install</button>
+                <button id="dismiss-button">Dismiss</button>
+            </div>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="{% static 'scripts/main/yb_welcome8.js' %}"></script>
+
+    </body>
+</html>
