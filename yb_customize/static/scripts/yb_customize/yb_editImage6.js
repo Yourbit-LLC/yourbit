@@ -67,6 +67,22 @@ function finishProfileImage(image_input){
 
     try {
         yb_2WayPage(1, "profile-image-edit");
+
+        // Create a URL for the selected image file
+        let imageUrl = URL.createObjectURL(image);
+
+        // Update the src of the image with the ID 'profile-image-splash'
+        let splashImage = document.getElementById("profile-image-splash");
+        if (splashImage) {
+            splashImage.src = imageUrl;
+        }
+
+        // Update the src of all images with the class 'profile-icon'
+        let profileIcons = document.querySelectorAll(".profile-icon");
+        profileIcons.forEach(icon => {
+            icon.src = imageUrl;
+        });
+        
     } catch(err) {
         console.log("No 2 Way. Onboarding.")
     }
