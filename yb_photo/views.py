@@ -70,7 +70,7 @@ def upload_image(request, *args, **kwargs):
         if request.POST.get('image_type') ==  'profile':
             custom_core.profile_image = photo_object
             custom_core.save()
-            return JsonResponse({'status': 'success', 'wpid': photo_object.id, 'ext_url': photo_object.ext_url}, status=200)
+            return JsonResponse({'status': 'success', 'wpid': photo_object.id, 'ext_url': photo_object.large_thumbnail_ext}, status=200)
 
     else:
         return JsonResponse({'status': 'failed', 'message': 'No image uploaded'}, status=400)
