@@ -55,6 +55,25 @@ function yb_uploadProfileImage(source, data, profile_class, image_type="profile"
                     yb_2WayPage(3, "cropper-mobile-background");
                 }
 
+                    // Create a URL for the selected image file
+                let imageUrl = data.ext_url
+
+                // Update the src of all images with the class 'profile-icon'
+                let profileIcons = document.querySelectorAll(".profile-icon");
+                profileIcons.forEach(icon => {
+                    icon.src = imageUrl;
+                });
+
+                try {
+                    // Update the src of the image with the ID 'profile-image-splash'
+                    let splashImage = document.getElementById("profile-image-splash");
+                    if (splashImage) {
+                        splashImage.src = imageUrl;
+                    }
+                } catch {
+                    console.log("No splash image detected.")
+                }
+
                 // try {
                 //     yb_replaceProfileImages();
                 // }
