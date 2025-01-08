@@ -870,8 +870,8 @@ function yb_fullScreenImage(source){
     viewer.appendChild(viewing_image);
     document.body.appendChild(viewer);
 
-    $('.photo-viewer').fadeIn(200);
-    $('.photo-viewer').animate({"top": "0px"}, 200);
+    $('#temp-photo-viewer').fadeIn(200);
+    $('#temp-photo-viewer').animate({"top": "0px"}, 200);
 
 }
 
