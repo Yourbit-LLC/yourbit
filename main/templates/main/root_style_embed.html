@@ -1,0 +1,43 @@
+<style>
+    :root {
+        --yb-panel-color: {{user_custom_ui.primary_color}};
+        --yb-bit-primary-color: {{custom_bit.primary_color}};
+        --yb-bit-secondary-color: {{custom_bit.accent_color}};
+        --yb-text-color: {{user_custom_ui.text_color}};
+        --yb-title-color: {{user_custom_ui.title_color}};
+        --yb-bit-text-color: {{custom_bit.text_color}};
+        --yb-bit-title-color: {{custom_bit.title_color}};
+        --yb-fb-icon-color: {{custom_bit.icon_color}};
+        --yb-fb-background-color: {{custom_bit.button_color}};
+        --yb-icon-color: {{user_custom_ui.icon_color}};
+        --yb-button-color: {{user_custom_ui.button_color}};
+        --yb-button-text-color: {{user_custom_ui.button_text_color}};
+        --yb-wallpaper-blur: {{wallpaper_blur}}px;
+        --yb-wallpaper-brightness: {{wallpaper_brightness}}%;
+        --scrollbar-track-color: transparent; /* Transparent track */
+        --scrollbar-thumb-color: rgb(55, 55, 55); /* Gray handle */   
+
+        {% if custom_core.flat_mode_on == True %}
+            --yb-flat-mode: 1;
+            --yb-separator-display: block;
+            --default-bit-background: transparent;
+            --bit-backdrop-filter: none;
+            --bit-shadow: none;
+        {% else %}
+            --yb-flat-mode: 0;
+            --yb-separator-display: none;
+            --bit-backdrop-filter: blur(40px) brightness(90%);
+            --bit-shadow: 0px 1px 5px black;
+
+            @media (prefers-color-scheme: dark) {
+                --default-bit-background: rgb(70, 70, 70);
+            } 
+
+            @media (prefers-color-scheme: light) {
+                --default-bit-background: rgb(255, 255, 255);
+                
+            }
+        {% endif %}
+    }
+
+</style>

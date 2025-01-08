@@ -19,51 +19,13 @@ lang="en"
         <script
             defer
             src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"
-            ></script>
-        <!--Root CSS Variables-->
-        <style>
-            :root {
-                --yb-panel-color: {{user_custom_ui.primary_color}};
-                --yb-bit-primary-color: {{custom_bit.primary_color}};
-                --yb-bit-secondary-color: {{custom_bit.accent_color}};
-                --yb-text-color: {{user_custom_ui.text_color}};
-                --yb-title-color: {{user_custom_ui.title_color}};
-                --yb-bit-text-color: {{custom_bit.text_color}};
-                --yb-bit-title-color: {{custom_bit.title_color}};
-                --yb-fb-icon-color: {{custom_bit.icon_color}};
-                --yb-fb-background-color: {{custom_bit.button_color}};
-                --yb-icon-color: {{user_custom_ui.icon_color}};
-                --yb-button-color: {{user_custom_ui.button_color}};
-                --yb-button-text-color: {{user_custom_ui.button_text_color}};
-                --yb-wallpaper-blur: {{wallpaper_blur}}px;
-                --yb-wallpaper-brightness: {{wallpaper_brightness}}%;
-                --scrollbar-track-color: transparent; /* Transparent track */
-                --scrollbar-thumb-color: rgb(55, 55, 55); /* Gray handle */   
-
-                {% if custom_core.flat_mode_on == True %}
-                    --yb-flat-mode: 1;
-                    --yb-separator-display: block;
-                    --default-bit-background: transparent;
-                    --bit-backdrop-filter: none;
-                    --bit-shadow: none;
-                {% else %}
-                    --yb-flat-mode: 0;
-                    --yb-separator-display: none;
-                    --bit-backdrop-filter: blur(40px) brightness(90%);
-                    --bit-shadow: 0px 1px 5px black;
-
-                    @media (prefers-color-scheme: dark) {
-                        --default-bit-background: rgb(70, 70, 70);
-                    } 
-
-                    @media (prefers-color-scheme: light) {
-                        --default-bit-background: rgb(255, 255, 255);
-                        
-                    }
-                {% endif %}
-            }
-
-        </style>
+        ></script>
+        
+            <!--Root CSS Variables-->
+        {% if request.user.is_authenticated %}
+            {% include 'main/root_style_embed.html' %}
+        {% endif %}
+        
         <!--End Root CSS Variables-->
 
         <!--Core Styles-->
@@ -169,58 +131,10 @@ lang="en"
         <div id="bg-image-b" class="yb-background-image" style="display:none;">
             <img style="min-width:100%; min-height: 100%;" id="bg-image-source-b" src="{{wallpaper_desktop}}"></img>
         </div>
-        
 
-        <!--Session values for loading dynamic pages-->
-        <input 
-            type='hidden' 
-            id='session_values' 
-            data-first-login="{{first_login}}"
-            data-location="{{location}}" 
-            data-primary-color="{{bit_background}}" 
-            data-default-public= "{{default_public}}" 
-            data-ui="visible" 
-            data-space="{{space}}" 
-            data-filter="{{filter}}" 
-            data-sort = "{{sort}}" 
-            data-username="{{user_profile.username}}" 
-            data-id="{{request.user.id}}" 
-            data-user-profile="{{active_profile.id}}"
-            data-profile-username = ""
-            data-bitstream-page = "1"
-            data-fullscreen = "false"
-            data-logged-in = "{{request.user.is_authenticated}}"
-            data-user-context = "{{user_context}}"
-            data-bit-colors-on = "{{custom_core.bit_colors_on}}"
-            data-only-my-colors = "{{custom_core.only_my_colors}}"
-            
-        >
-
-        <!--Customization values for loading dynamic pages-->
-        <input 
-            type='hidden' 
-            id='user-custom-info' 
-            data-bit-primary-color="{{custom_bit.primary_color}}" 
-            data-bit-accent-color="{{custom_bit.accent_color}}"
-            data-bit-text-color="{{custom_bit.text_color}}" 
-            data-bit-title-color="{{custom_bit.title_color}}" 
-            data-bit-icon-color="{{custom_bit.feedback_icon_color}}" 
-            data-bit-background-color="{{custom_bit.button_color}}" 
-            data-wallpaper-on="{{custom_core.wallpaper_on}}"
-            data-wallpaper-id = "{{wallpaper.id}}"
-            data-wallpaper = "{{wallpaper_desktop}}" 
-            data-ui-panel-color="{{user_custom_ui.primary_color}}"
-            data-ui-accent-color="{{user_custom_ui.accent_color}}"
-            data-ui-text-color="{{user_custom_ui.text_color}}"
-            data-ui-title-color="{{user_custom_ui.title_color}}"
-            data-ui-button-color="{{user_custom_ui.button_color}}"
-            data-ui-button-text-color="{{user_custom_ui.button_text_color}}"
-            data-ui-icon-color="{{user_custom_ui.icon_color}}" 
-            data-wallpaper-blur = "{{wallpaper_blur}}" 
-            data-wallpaper-brightness = "{{wallpaper_brightness}}" 
-            data-custom-ui-on = "{{custom_core.ui_colors_on}}"
-            data-flat-mode-on = "{{custom_core.flat_mode_on}}"
-        > 
+        {% if request.user.is_authenticated %}
+            {% include 'main/user_data_values.html' %}
+        {% endif %}
 
 
         <input type="hidden" id="yb-timekeeper-node" data-month="" data-day="" data-hours="" data-minutes="" data-seconds="">
@@ -252,67 +166,15 @@ lang="en"
         </div>
         
         
-        
-        <div class="yb-panel yb-header" id="yb-mobile-header">
-            <div class="yb-header-content yb-fillContainer yb-relative">
+        <!-- Mobile UI header -->
+        {% if request.user.is_authenticated %}
+            {% include 'main/mobile_header_auth.html' %}
+            
+         {% else %}
+            {% include'main/mobile_header_noauth.html' %}
+         {% endif %}
 
-                <!--Support Button-->
-                <div id="button-message-mobile-header" class="button-support" style="height: 100%; width: 50px">
-                    {% comment %} <svg xmlns="http://www.w3.org/2000/svg" style="position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);" height="28" viewBox="0 96 960 960" width="28"><path style="fill:white;" d="M478 816q21 0 35.5-14.5T528 766q0-21-14.5-35.5T478 716q-21 0-35.5 14.5T428 766q0 21 14.5 35.5T478 816Zm-36-154h74q0-33 7.5-52t42.5-52q26-26 41-49.5t15-56.5q0-56-41-86t-97-30q-57 0-92.5 30T342 438l66 26q5-18 22.5-39t53.5-21q32 0 48 17.5t16 38.5q0 20-12 37.5T506 530q-44 39-54 59t-10 73Zm38 314q-83 0-156-31.5T197 859q-54-54-85.5-127T80 576q0-83 31.5-156T197 293q54-54 127-85.5T480 176q83 0 156 31.5T763 293q54 54 85.5 127T880 576q0 83-31.5 156T763 859q-54 54-127 85.5T480 976Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg> {% endcomment %}
-                    <svg xmlns="http://www.w3.org/2000/svg" style="position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);" height="32" width="32"><path class='yb-autoFill yb-path' d="M4 20q-.825 0-1.412-.587Q2 18.825 2 18V6q0-.825.588-1.412Q3.175 4 4 4h16q.825 0 1.413.588Q22 5.175 22 6v12q0 .825-.587 1.413Q20.825 20 20 20Zm8-7L4 8v10h16V8Zm0-2 8-5H4ZM4 8V6v12Z"/></svg>
-                </div>
 
-                <!--Header Logo-->
-                <?xml version="1.0" encoding="UTF-8"?>
-                <svg id="mobile-logo" class="yb-logo-masthead mobile" data-name="Layer 3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 493.65 276.27" style="width: 65px;
-                    grid-column: 2;
-                    position: absolute;
-                    top: 10px;
-                    left: 50%;
-                    transform: translateX(-50%);">
-                <defs>
-                    <style>
-                        {% if custom_core.ui_colors_on == "True" %}
-                            .cls-1 {
-                                fill: {{user_custom_ui.icon_color}};
-                                stroke-width: 0px;
-                            }
-
-                        {% else %}
-                            @media (prefers-color-scheme: dark){
-                                .cls-1 {
-                                fill: gray;
-                                stroke-width: 0px;
-                                }
-                            }
-                        
-                            @media (prefers-color-scheme: light) {
-                                .cls-1 {
-                                fill: gray;
-                                stroke-width: 0px;
-                                }
-                            }
-                        {% endif %}
-                    </style>
-                </defs>
-                <path class="cls-1" d="m167.41,223.42c-1.39-10.1-4.62-19.17-10.1-27.4-6.84-10.28-15.7-18.36-26.96-23.42-3.82-1.72-5.33-4.51-6.6-7.93-1.92-5.17-2.25-10.67-3.19-16.04-1.44-8.19-2.17-16.47-1.89-24.81.28-8.14,1.08-16.22,2.99-24.16.5-2.08.1-4.2.8-6.34,7.39-22.64,18.81-42.78,36.33-59.17,10.02-9.37,21.35-16.84,33.79-22.61,12.07-5.6,24.78-9.06,37.93-10.67,11.83-1.45,23.68-1.1,35.47.93,22.57,3.89,42.69,13.04,60.39,27.63,2.73,2.25,5.85,4.07,8.17,6.79,5.75,6.73,11.59,13.4,16.46,20.84,6.31,9.64,11.31,19.92,14.78,30.91,3.03,9.61,4.93,19.44,5.67,29.51,1.27,17.38-1.02,34.26-6.54,50.76-.53,1.58-1.29,2.35-2.82,2.94-8.65,3.38-17.16,7.13-25.88,10.33-15.32,5.62-30.75,10.95-46.38,15.69-17.62,5.35-35.42,10.03-53.37,14.07-15.27,3.43-30.6,6.69-46.13,8.83-7.55,1.04-15.04,2.51-22.92,3.32Zm13.95-75.17c-.55.99-.38,1.45-.25,1.93,2.26,7.99,7.22,14.26,13.42,19.36,15.27,12.58,32.98,18.25,52.7,16.61,10.79-.9,21.07-4.15,30.73-9.2,11.67-6.1,20.54-15.03,27.11-26.34.47-.81,1.21-1.67.36-2.87-41.28,12.83-82.69,13.57-124.08.51Zm112.32-57.35c.02-8.1-2.76-15.16-8.07-20.45-4.09-4.07-9.01-4.86-13.17-2.05-2.11,1.43-3.56,3.46-4.58,5.75-3.01,6.77-2.67,13.69-.67,20.61.95,3.29,2.76,6.18,5,8.78,5.55,6.47,13.44,6.07,18.16-.93,2.39-3.54,3.37-7.48,3.32-11.72Zm-69.31-6.91c.08-3.21-.78-6.24-1.91-9.18-1.12-2.93-2.9-5.4-5.66-7.01-4.96-2.88-10.49.33-13.62,3.96-2.4,2.78-4.13,5.97-5.27,9.49-2.45,7.64-2.4,15.06,2.19,21.92,4.05,6.07,11.16,6.58,16.46,1.58,6.02-5.69,7.69-12.92,7.8-20.77Z"/>
-                <path class="cls-1" d="m105.43,94.52c-.61,3.7-1.2,7.2-1.76,10.71-.21,1.3-1.26,1.63-2.23,2.09-11.68,5.63-22.92,12.06-33.89,18.93-10.98,6.87-21.5,14.45-31.22,23.03-7.68,6.78-14.74,14.25-20,23.1-3.17,5.34-5.7,11.16-5.51,17.59.13,4.21.97,8.25,3.61,11.89,5.07,6.99,12.11,10.98,19.8,14.33,7.68,3.34,15.78,5.02,24.19,6.9.37-4.86,2.22-9.27,4.32-13.58,3.68-7.51,8.83-13.73,15.94-18.3,5.08-3.26,10.46-5.78,16.38-6.86,16.16-2.96,30.21,1.23,41.97,12.82,8.15,8.03,12.43,17.85,13.38,29.17.93,10.95-2.24,20.82-8.19,29.9-4.59,7-10.89,12.21-18.37,15.61-11.18,5.08-22.81,5.91-34.64,1.84-11.27-3.88-19.79-11.13-25.55-21.37-2.7-4.8-4.79-10.05-5.23-15.72-.11-1.37-.55-2.12-2.17-2.39-11.1-1.85-21.77-5.35-31.85-10.2-7.8-3.76-14.71-9-19.48-16.58-3.73-5.92-5.22-12.19-4.88-19.29.35-7.46,3.07-13.98,6.61-20.1,3.47-6,7.68-11.62,12.53-16.7,11.4-11.92,24.4-21.8,38.2-30.72,14.02-9.07,28.53-17.27,43.67-24.33,1.33-.62,2.45-1.75,4.37-1.78Z"/>
-                <path class="cls-1" d="m377.15,176.83c2.07-5.24,3.87-9.85,5.71-14.45.38-.95,1.07-1.5,2.07-1.96,12.68-5.83,24.83-12.66,36.8-19.78,12.56-7.46,24.55-15.84,35.51-25.5,7.1-6.27,13.92-12.95,18.97-21.19,2.9-4.73,5.08-9.7,6.2-15.06,1.55-7.35-.7-13.78-5.76-19.21-1.06-1.13-2.42-1.98-3.56-2.88-8.17,12.52-21.51,14.03-30.31,10.94-10.67-3.75-18.32-13.59-17.2-27.68-2.91-.87-5.99-.94-8.99-1.34-10.55-1.4-21.2-1.47-31.82-1.62-7.81-.11-15.65.02-23.43.68-3.18.27-4.87-.59-6.53-2.96-1.45-2.08-3.26-3.91-5.18-6.17,5.71-.49,10.96-1.11,16.23-1.35,5.82-.27,11.66-.05,17.48-.29,7.05-.29,14.08.13,21.12.31,7.62.2,15.2,1.21,22.76,2.22,1.57.21,2.53-.04,3.55-1.34,6.92-8.84,16.17-11.83,26.82-9.31,11.24,2.66,18.98,12.77,18.81,23.71-.03,2.31.87,3.49,2.66,4.78,7.18,5.16,12.54,12.03,13.94,20.71.99,6.14,1.08,12.64-1.26,18.93-4.4,11.79-11.89,21.31-20.54,30.19-9.9,10.18-21.2,18.53-32.91,26.43-13.17,8.89-27.1,16.42-41.18,23.7-6.32,3.27-12.85,6.12-19.95,9.48Z"/>
-                <path class="cls-1" d="m178.93,233.27c61.04-8.7,120.19-24.59,177.57-47.64-.03,2.36-1.3,3.98-2.29,5.61-4.57,7.53-9.81,14.56-15.64,21.2-2.34,2.66-4.35,5.65-7.16,7.81-6.95,5.35-13.81,10.84-21.39,15.32-14.98,8.86-31.07,14.43-48.34,16.68-16.17,2.11-32.16,1.2-47.94-2.79-11.81-2.98-22.92-7.78-33.44-13.94-.81-.47-1.56-.98-1.38-2.27Z"/>
-                </svg>
-                {% comment %} <img id="mobile-logo" class="yb-logo-masthead mobile" src="{% static 'images/main/yourbit-logo2023-01.svg'%}"/> {% endcomment %}
-                <div id="button-notifications-mobile-header" class="button-notifications" style="position: absolute; right: 0px; top: 0px; height: 50px; width: 50px">
-                    <div style="position:relative; top: 0px; left: 0px; height: 100%; width: 100%;">
-                        <div class="yb-status-indicator notification-status yb-red mobile" id="notification-status">
-                            <!--
-                                Nothing goes in here, this div appears as a small red circle on the notifcation icon when new notifications exist
-                            -->
-                        </div>
-                        <svg class="yb-notification-bell mobile yb-center-transform all" xmlns="http://www.w3.org/2000/svg" height="28" viewBox="0 -960 960 960" width="28"><path class="yb-autoFill yb-center-margin all yb-path" d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160ZM480-80q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80Z"/></svg>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         {% include 'main/spotlight_container.html' %}
         <div id = "floating-text" class="yb-container-floatingText">
@@ -320,101 +182,17 @@ lang="en"
         </div>
 
 
+        {% if request.user.is_authenticated %}
+            {% include 'main/yb_navbar_auth.html' %}
 
-        <!--Navigation Bar-->
-        <nav class="yb-navigation yb-panel" id="nav-bar-desktop">
-            <div id="name-masthead" class="yb-flexRow yb-margin-L5">
-                <?xml version="1.0" encoding="UTF-8"?>
-                <svg id="Layer_3" data-name="Layer 3" class = "desktop-element yb-logo-masthead" style="width: 40%;"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 493.65 276.27">
-                <defs>
-                    <style>
-                        {% if custom_core.ui_colors_on %}
-                            .cls-1 {
-                                fill: {{user_custom_ui.icon_color}};
-                                stroke-width: 0px;
-                            }
-                        {% else %}
-                            
-                            .cls-1 {
-                                fill: gray;
-                                stroke-width: 0px;
-                            }
-   
-                        {% endif %}
-                        </style>
-                    </defs>
-                    <path class="cls-1" d="m167.41,223.42c-1.39-10.1-4.62-19.17-10.1-27.4-6.84-10.28-15.7-18.36-26.96-23.42-3.82-1.72-5.33-4.51-6.6-7.93-1.92-5.17-2.25-10.67-3.19-16.04-1.44-8.19-2.17-16.47-1.89-24.81.28-8.14,1.08-16.22,2.99-24.16.5-2.08.1-4.2.8-6.34,7.39-22.64,18.81-42.78,36.33-59.17,10.02-9.37,21.35-16.84,33.79-22.61,12.07-5.6,24.78-9.06,37.93-10.67,11.83-1.45,23.68-1.1,35.47.93,22.57,3.89,42.69,13.04,60.39,27.63,2.73,2.25,5.85,4.07,8.17,6.79,5.75,6.73,11.59,13.4,16.46,20.84,6.31,9.64,11.31,19.92,14.78,30.91,3.03,9.61,4.93,19.44,5.67,29.51,1.27,17.38-1.02,34.26-6.54,50.76-.53,1.58-1.29,2.35-2.82,2.94-8.65,3.38-17.16,7.13-25.88,10.33-15.32,5.62-30.75,10.95-46.38,15.69-17.62,5.35-35.42,10.03-53.37,14.07-15.27,3.43-30.6,6.69-46.13,8.83-7.55,1.04-15.04,2.51-22.92,3.32Zm13.95-75.17c-.55.99-.38,1.45-.25,1.93,2.26,7.99,7.22,14.26,13.42,19.36,15.27,12.58,32.98,18.25,52.7,16.61,10.79-.9,21.07-4.15,30.73-9.2,11.67-6.1,20.54-15.03,27.11-26.34.47-.81,1.21-1.67.36-2.87-41.28,12.83-82.69,13.57-124.08.51Zm112.32-57.35c.02-8.1-2.76-15.16-8.07-20.45-4.09-4.07-9.01-4.86-13.17-2.05-2.11,1.43-3.56,3.46-4.58,5.75-3.01,6.77-2.67,13.69-.67,20.61.95,3.29,2.76,6.18,5,8.78,5.55,6.47,13.44,6.07,18.16-.93,2.39-3.54,3.37-7.48,3.32-11.72Zm-69.31-6.91c.08-3.21-.78-6.24-1.91-9.18-1.12-2.93-2.9-5.4-5.66-7.01-4.96-2.88-10.49.33-13.62,3.96-2.4,2.78-4.13,5.97-5.27,9.49-2.45,7.64-2.4,15.06,2.19,21.92,4.05,6.07,11.16,6.58,16.46,1.58,6.02-5.69,7.69-12.92,7.8-20.77Z"/>
-                    <path class="cls-1" d="m105.43,94.52c-.61,3.7-1.2,7.2-1.76,10.71-.21,1.3-1.26,1.63-2.23,2.09-11.68,5.63-22.92,12.06-33.89,18.93-10.98,6.87-21.5,14.45-31.22,23.03-7.68,6.78-14.74,14.25-20,23.1-3.17,5.34-5.7,11.16-5.51,17.59.13,4.21.97,8.25,3.61,11.89,5.07,6.99,12.11,10.98,19.8,14.33,7.68,3.34,15.78,5.02,24.19,6.9.37-4.86,2.22-9.27,4.32-13.58,3.68-7.51,8.83-13.73,15.94-18.3,5.08-3.26,10.46-5.78,16.38-6.86,16.16-2.96,30.21,1.23,41.97,12.82,8.15,8.03,12.43,17.85,13.38,29.17.93,10.95-2.24,20.82-8.19,29.9-4.59,7-10.89,12.21-18.37,15.61-11.18,5.08-22.81,5.91-34.64,1.84-11.27-3.88-19.79-11.13-25.55-21.37-2.7-4.8-4.79-10.05-5.23-15.72-.11-1.37-.55-2.12-2.17-2.39-11.1-1.85-21.77-5.35-31.85-10.2-7.8-3.76-14.71-9-19.48-16.58-3.73-5.92-5.22-12.19-4.88-19.29.35-7.46,3.07-13.98,6.61-20.1,3.47-6,7.68-11.62,12.53-16.7,11.4-11.92,24.4-21.8,38.2-30.72,14.02-9.07,28.53-17.27,43.67-24.33,1.33-.62,2.45-1.75,4.37-1.78Z"/>
-                    <path class="cls-1" d="m377.15,176.83c2.07-5.24,3.87-9.85,5.71-14.45.38-.95,1.07-1.5,2.07-1.96,12.68-5.83,24.83-12.66,36.8-19.78,12.56-7.46,24.55-15.84,35.51-25.5,7.1-6.27,13.92-12.95,18.97-21.19,2.9-4.73,5.08-9.7,6.2-15.06,1.55-7.35-.7-13.78-5.76-19.21-1.06-1.13-2.42-1.98-3.56-2.88-8.17,12.52-21.51,14.03-30.31,10.94-10.67-3.75-18.32-13.59-17.2-27.68-2.91-.87-5.99-.94-8.99-1.34-10.55-1.4-21.2-1.47-31.82-1.62-7.81-.11-15.65.02-23.43.68-3.18.27-4.87-.59-6.53-2.96-1.45-2.08-3.26-3.91-5.18-6.17,5.71-.49,10.96-1.11,16.23-1.35,5.82-.27,11.66-.05,17.48-.29,7.05-.29,14.08.13,21.12.31,7.62.2,15.2,1.21,22.76,2.22,1.57.21,2.53-.04,3.55-1.34,6.92-8.84,16.17-11.83,26.82-9.31,11.24,2.66,18.98,12.77,18.81,23.71-.03,2.31.87,3.49,2.66,4.78,7.18,5.16,12.54,12.03,13.94,20.71.99,6.14,1.08,12.64-1.26,18.93-4.4,11.79-11.89,21.31-20.54,30.19-9.9,10.18-21.2,18.53-32.91,26.43-13.17,8.89-27.1,16.42-41.18,23.7-6.32,3.27-12.85,6.12-19.95,9.48Z"/>
-                    <path class="cls-1" d="m178.93,233.27c61.04-8.7,120.19-24.59,177.57-47.64-.03,2.36-1.3,3.98-2.29,5.61-4.57,7.53-9.81,14.56-15.64,21.2-2.34,2.66-4.35,5.65-7.16,7.81-6.95,5.35-13.81,10.84-21.39,15.32-14.98,8.86-31.07,14.43-48.34,16.68-16.17,2.11-32.16,1.2-47.94-2.79-11.81-2.98-22.92-7.78-33.44-13.94-.81-.47-1.56-.98-1.38-2.27Z"/>
-                </svg>
-                
-                <p id="logo-name" class="desktop-element" style="margin: auto; font-weight: 675;">Yourbit</p>
-            </div>
-
-            <!--Space Navigation-->
-            {% include 'main/yb_space_bar.html' %}
-            
-            <!--Start Search-->
-
-            <!--Search box must disappear at half width and become button until the button is clicked 
-                in which the search bar will expand to fill entire element-->
-
-            <form class = "yb-search-form desktop desktop-element" id = "search" method="POST" action="{% url 'search-results' %}">
-                {% csrf_token %}
-                <input id="full-url" type="hidden" name="last_page" value="{{ request.path }}">
-                <input id="field-search-filter" type="hidden" name="filter" value="">
-                <input type="text" id="desktop-search-bar" class="yb-search-bar desktop font-medium font-lightBold" placeholder="Search Yourbit">
-                <button class="yb-search-button desktop" id="search-button" type="button" name="search"><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path id="search-icon" d="m19.825 21.65-6.35-6.35q-.75.575-1.837.912-1.088.338-2.213.338-2.975 0-5.037-2.062-2.063-2.063-2.063-5.038t2.063-5.038Q6.45 2.35 9.425 2.35t5.038 2.062q2.062 2.063 2.062 5.038 0 1.125-.312 2.15-.313 1.025-.913 1.825l6.375 6.375Zm-10.4-7.75q1.875 0 3.163-1.288 1.287-1.287 1.287-3.162t-1.287-3.163Q11.3 5 9.425 5 7.55 5 6.263 6.287 4.975 7.575 4.975 9.45q0 1.875 1.288 3.162Q7.55 13.9 9.425 13.9Z"/></svg></button>
-                
-            </form>
-            <!--End Search-->
-
-            <!--Quick Actions-->
-
-            <div class = "yb-nav-actions desktop-element" id="quick-actions" method="GET" action="">
-                {% csrf_token %}
-                
-                <div class="quick-button" id="create-quick" >
-                    <svg class="yb-autoFill" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
-                        <path class="yb-path" d="M434.5-434.5H191.869v-91H434.5v-242.631h91V-525.5h242.631v91H525.5v242.631h-91V-434.5Z"/>
-                    </svg>
-                </div>
-
-                <div class="quick-button" id="notifications-quick" style="position: relative;" >
-                    <div class="yb-status-indicator notification-status yb-red" id="notification-status">
-                        <!--
-                            Nothing goes in here, this div appears as a small red circle on the notifcation icon when new notifications exist
-                        -->
-                    </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="quick-button-background" height="24" width="24">
-                        <path class="yb-autoFill yb-path" d="M3.55 19.05V16.4h2.025v-6.375q0-2.15 1.263-3.863Q8.1 4.45 10.15 3.875v-.7q0-.775.538-1.313.537-.537 1.312-.537t1.312.537q.538.538.538 1.313v.7q2.05.575 3.313 2.287 1.262 1.713 1.262 3.863V16.4h2.025v2.65ZM12 11.325Zm0 11.325q-.95 0-1.625-.675T9.7 20.35h4.6q0 .95-.675 1.625T12 22.65ZM8.225 16.4h7.55v-6.375q0-1.575-1.1-2.675-1.1-1.1-2.675-1.1-1.575 0-2.675 1.1-1.1 1.1-1.1 2.675Z"/>
-                    </svg>
-                    <div class="helper" id="notification-helper">
-                        Notifications
-                    </div>
-                </div>
-                <div class="quick-button" href="" id="messages-quick" >
-                    <svg xmlns="http://www.w3.org/2000/svg" class="quick-button-background" height="24" width="24">
-                        <path class="yb-autoFill yb-path" d="M3.85 20.75q-1.1 0-1.875-.775Q1.2 19.2 1.2 18.1V5.9q0-1.1.775-1.875.775-.775 1.875-.775h16.3q1.1 0 1.875.775.775.775.775 1.875v12.2q0 1.1-.775 1.875-.775.775-1.875.775ZM12 13.575 3.85 8.6v9.5h16.3V8.6ZM12 11l8.35-5.1H3.65ZM3.65 8.6V5.9v12.2H3.85h-.2Z"/>
-                    </svg>
-                    <div class="helper" id="messages-helper">Messages</div>
-                </div>
-
-            </div>
-
-            <!--End Quick Actions-->
-
-            
-            <div style="overflow: hidden; border-color: {{custom_core.image_border_color}};" onclick="requestNotificationPermission()" class="menu-button profile-image-thumbnail medium border-solid plainBorder narrowBorder circle" id = "profile-icon">
-                <div class="profile-image-overlay" style="background-color: {{custom_core.image_overlay_color}}; opacity: {{custom_core.image_overlay_strength}};"></div>
-                <img src="{{profile_thumbnail_medium}}" class="yb-element-accent profile-icon" style="width: 100%;" id="profile-pic-button">
-            </div>
-
-        </nav>
+        {% else %}
+            {% include'main/yb_navbar_noauth.html' %}
+        {% endif %}
 
         <!--Profile Menu 2 Way container element-->
-        {% include 'main/menu.html' %}
+        {% if request.user.is_authenticated %}
+            {% include 'main/menu.html' %}
+        {% endif %}
 
 
         {% block content %}

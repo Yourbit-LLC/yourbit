@@ -7,7 +7,7 @@ urlpatterns = [
     #URL for API
     path('signup/', registration_view, name="signup"),
     path('onboarding/', Onboarding.as_view(), name="onboarding"),
-    path('email_confirmation/', EmailConfirmation.as_view(), name="email_confirmation"),
+    path('email-confirmation/', EmailConfirmation.as_view(), name="email_confirmation"),
     path('test-email-confirm/', test_verification_email, name="test-email-confirm"),
     path(
         'forgot-password/',

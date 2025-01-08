@@ -297,6 +297,7 @@ def privacy_accept(request):
         return redirect('email_confirmation')
     else:
         return redirect('login')
+    
 def login_view(request):
     from main.models import UserSession
 

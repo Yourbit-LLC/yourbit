@@ -1,0 +1,51 @@
+
+<!--Session values for loading dynamic pages-->
+<input 
+    type='hidden' 
+    id='session_values' 
+    data-first-login="{{first_login}}"
+    data-location="{{location}}" 
+    data-primary-color="{{bit_background}}" 
+    data-default-public= "{{default_public}}" 
+    data-ui="visible" 
+    data-space="{{space}}" 
+    data-filter="{{filter}}" 
+    data-sort = "{{sort}}" 
+    data-username="{{user_profile.username}}" 
+    data-id="{{request.user.id}}" 
+    data-user-profile="{{active_profile.id}}"
+    data-profile-username = ""
+    data-bitstream-page = "1"
+    data-fullscreen = "false"
+    data-logged-in = "{{request.user.is_authenticated}}"
+    data-user-context = "{{user_context}}"
+    data-bit-colors-on = "{{custom_core.bit_colors_on}}"
+    data-only-my-colors = "{{custom_core.only_my_colors}}"
+    
+>
+
+<!--Customization values for loading dynamic pages-->
+<input 
+    type='hidden' 
+    id='user-custom-info' 
+    data-bit-primary-color="{{custom_bit.primary_color}}" 
+    data-bit-accent-color="{{custom_bit.accent_color}}"
+    data-bit-text-color="{{custom_bit.text_color}}" 
+    data-bit-title-color="{{custom_bit.title_color}}" 
+    data-bit-icon-color="{{custom_bit.feedback_icon_color}}" 
+    data-bit-background-color="{{custom_bit.button_color}}" 
+    data-wallpaper-on="{{custom_core.wallpaper_on}}"
+    data-wallpaper-id = "{{wallpaper.id}}"
+    data-wallpaper = "{{wallpaper_desktop}}" 
+    data-ui-panel-color="{{user_custom_ui.primary_color}}"
+    data-ui-accent-color="{{user_custom_ui.accent_color}}"
+    data-ui-text-color="{{user_custom_ui.text_color}}"
+    data-ui-title-color="{{user_custom_ui.title_color}}"
+    data-ui-button-color="{{user_custom_ui.button_color}}"
+    data-ui-button-text-color="{{user_custom_ui.button_text_color}}"
+    data-ui-icon-color="{{user_custom_ui.icon_color}}" 
+    data-wallpaper-blur = "{{wallpaper_blur}}" 
+    data-wallpaper-brightness = "{{wallpaper_brightness}}" 
+    data-custom-ui-on = "{{custom_core.ui_colors_on}}"
+    data-flat-mode-on = "{{custom_core.flat_mode_on}}"
+> 
