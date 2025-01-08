@@ -36,6 +36,8 @@ def generate_verification_key():
 def send_confirmation_email(user):
     subject = 'Yourbit Account Verification'
     verification_key = generate_verification_key()
+    user.verification_token = verification_key
+    user.save()
     message = render_to_string('yb_accounts/verification_email.html', {
         'user': user,
         'verification_key': verification_key,
@@ -120,9 +122,6 @@ def registration_view(request):
         
             # Generate and save verification token
             this_account = User.objects.get(username = username)
-            verification_key = generate_verification_key()
-            this_account.verification_token = verification_key
-            this_account.save()
 
             # Send a verification email
             send_confirmation_email(this_account)
