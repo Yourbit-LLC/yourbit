@@ -410,7 +410,7 @@ class CustomizeProfileView(View):
                     'space': init_params['current_space'],
                     'filter': init_params['filter_chain'],
                     'sort': init_params['sort_by'],   
-                    'start_function': 'customize_profile_splash_url(); yb_',    
+                    'start_function': 'customize_profile_splash_url();',    
                 },
 
             )
