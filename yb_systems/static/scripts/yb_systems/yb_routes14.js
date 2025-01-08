@@ -506,6 +506,8 @@ function customize_profile_splash_url(data=null){
     console.log("function");
     
     $("#content-container-b").load(`${base_url}/customize/templates/profile-splash/`);
+    CONTENT_CONTAINER_A.classList.remove("show")
+    CONTENT_CONTAINER_B.classList.add("show")
     yb_setSessionValues("location","customize-profile");
     history.pushState({}, "", `/customize/profile/`);
     
