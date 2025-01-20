@@ -58,6 +58,8 @@ function yb_checkNotification() {
 }
 
 $(document).ready(function(){
-    yb_checkNotification();
-    setInterval(yb_checkNotification, 10000, 'all');
+    if (USER_AUTHORIZED == "true"){
+        yb_checkNotification();
+        setInterval(yb_checkNotification, 10000, 'all');
+    }
 });

@@ -1175,3 +1175,11 @@ p {
     }
   } */
   
+  .nav-auth {
+    grid-column-start: 4;
+    grid-column-end: 6;
+    width: 100%;
+    
+    margin: auto;
+    justify-content: space-around;
+  }

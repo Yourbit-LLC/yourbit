@@ -24,7 +24,11 @@ lang="en"
             <!--Root CSS Variables-->
         {% if request.user.is_authenticated %}
             {% include 'main/root_style_embed.html' %}
+            <input type="hidden" id="auth-status" data-user-authenticated="true">
+        {% else %}
+            <input type="hidden" id="auth-status" data-user-authenticated="false">
         {% endif %}
+        
         
         <!--End Root CSS Variables-->
 
@@ -132,9 +136,9 @@ lang="en"
             <img style="min-width:100%; min-height: 100%;" id="bg-image-source-b" src="{{wallpaper_desktop}}"></img>
         </div>
 
-        {% if request.user.is_authenticated %}
-            {% include 'main/user_data_values.html' %}
-        {% endif %}
+        
+        {% include 'main/user_data_values.html' %}
+        
 
 
         <input type="hidden" id="yb-timekeeper-node" data-month="" data-day="" data-hours="" data-minutes="" data-seconds="">
@@ -286,10 +290,13 @@ lang="en"
     <script type="text/javascript" src="{% static 'scripts/main/yb_containers9.js' %}"></script>
     <script type="text/javascript" src="{% static 'scripts/yb_systems/yb_routes14.js' %}"></script>
     <script type="text/javascript" src="{% static 'scripts/main/coloris.js' %}"></script>
-    <script type="text/javascript" src="{% static 'scripts/yb_customize/yb_customCore15.js' %}"></script>
-    <script type="text/javascript" src="{% static 'scripts/main/yb_dragonDrop5.js' %}"></script>
+    {% if request.user.is_authenticated %}
+        
+        <script type="text/javascript" src="{% static 'scripts/main/yb_create.js' %}"></script>
+        <script type="text/javascript" src="{% static 'scripts/yb_customize/yb_customCore15.js' %}"></script>
+    {% endif %}
     <script type="text/javascript" src="{% static 'scripts/yb_notify/yb_notify.js' %}"></script>
-    <script type="text/javascript" src="{% static 'scripts/main/yb_create.js' %}"></script>
+    {% comment %} <script type="text/javascript" src="{% static 'scripts/main/yb_dragonDrop5.js' %}"></script> {% endcomment %}
     <script type="text/javascript" src="{% static 'scripts/main/yb_globalEvents.js' %}"></script>
     <script type="text/javascript" src="{% static 'scripts/main/yb_coreHandlers.js' %}"></script>
     <script type="text/javascript" src="{% static 'scripts/yb_search/yb_search.js' %}"></script>
@@ -297,6 +304,8 @@ lang="en"
     <script type="text/javascript" src="{% static 'scripts/main/yb_2Way.js' %}"></script>
     <script type="text/javascript" src="{% static 'scripts/main/yb_master16.js' %}"></script>
     <script type="text/javascript" src="{% static 'scripts/yb_bitstream/yb_bitstream1.js' %}"></script>
-    <script type="text/javascript" src="{% static 'scripts/menu/yb_menu2.js' %}"></script>
+    {% if request.user.is_authenticated %}
+        <script type="text/javascript" src="{% static 'scripts/menu/yb_menu2.js' %}"></script>
+    {% endif %}
     <script type="text/javascript" src="{% static 'scripts/yb_bits/yb_bits25.js' %}"></script>
 </html>

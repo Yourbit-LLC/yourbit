@@ -127,17 +127,16 @@ def index(request, *args, **kwargs):
 
         )
     else:
-        from yb_accounts.forms import RegistrationForm, LoginForm
-        registration_form = RegistrationForm()
-        login_form = LoginForm()
         return render(
-            request,
-            "registration/login.html",
+            request, 
+            "main/index.html",
             {
-                'state': 'home',
-                'registration_form': registration_form,
-                'login_form': login_form,
-            }
+                'space': 'global',
+                'filter': 'p',
+                'sort': '-time',    
+                'start_function': '',    
+            },
+
         )
         
 def sign_up(request, *args, **kwargs):

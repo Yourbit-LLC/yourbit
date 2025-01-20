@@ -22,7 +22,7 @@
     <div id="search-filter" style="height: 40px; display:grid; grid-template-columns: 4fr 1fr; column-gap: 20px; scrollbar-width: none; overflow-x: hidden;" class="yb-hScroll yb-fillWidth yb-relative">
         
         <div id="filter-container" class="yb-flexRow yb-fillWidth yb-gap5 yb-margin-L5">
-            {% comment %} <span class="yb-fillContainer yb-panel align-center yb-font-autoGray" style="line-height: 2; z-index: 10; position: absolute;"><p><b>Work in Progress...</b> Filter Bar</p></span> {% endcomment %}
+            
             <button class="search-filter yb-button-wide active medium-wide rounded yb-autoText font-small yb-center-margin tb" name="pr-or-bt-vd">All</button>
             <button class="search-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb" name="pr">People</button>
             <button class="search-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb" name="or">Orbits</button>
@@ -39,5 +39,6 @@
 <hr>
 
 <div id="search-result-list" class="yb-fillWidth yb-vScroll yb-margin-T10" style="height: calc(100% - 260px); border-radius: 15px;">
-    {% include 'yb_search/result_list.html' %}
+    {% include 'search/result_list.html' %}
 </div>
+

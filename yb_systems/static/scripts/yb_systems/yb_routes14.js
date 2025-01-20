@@ -37,6 +37,10 @@ const CORE_TEMPLATE_INDEX = {
     "bit-focus": {
         "template": "/bits/templates/bit/focus/",
         "url": "/bits/focus/"
+    },
+    "search": {
+        "template":"/search/templates/search/",
+        "url":"/search/"
     }
         
     
@@ -587,8 +591,10 @@ function yb_setLast(container, page, data) {
     current_container = container;
     current_page = page;
     current_data = data;
-
-    yb_syncTask(page, data);
+    
+    if (USER_AUTHORIZED == "true") {
+        yb_syncTask(page, data);
+    }
 }
 
 function yb_reload(container) {
@@ -643,7 +649,9 @@ function yb_navigateTo(container, template, data=null, reloadable=true) {
         }
 
         if (template != "profile") {
-            yb_revertUIColor();
+            if (USER_AUTHORIZED == "true") {
+                yb_revertUIColor();
+            }
         } 
 
 

@@ -278,3 +278,34 @@ class SearchElement(View):
             )
         
 
+class NewSearchPage(View):
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            init_params = initialize_session(request)
+            return render(
+                request, 
+                "main/index.html",
+                {
+                    'first_login': request.user.first_login,
+                    'location': init_params['last_location'],
+                    'space': init_params['current_space'],
+                    'filter': init_params['filter_chain'],
+                    'sort': init_params['sort_by'],   
+                    'start_function': "yb_navigateTo('content-container', 'search');",    
+                },
+
+            )
+        else:
+            return render(
+                request, 
+                "main/index.html",
+                {
+                    'space': 'global',
+                    'filter': 'p',
+                    'sort': '-time', 
+                    'start_function': "yb_navigateTo('content-container', 'search');",    
+                },
+            )
+        
+def search_template(request):
+    return render(request, 'search/yb_search.html')

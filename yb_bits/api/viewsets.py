@@ -36,13 +36,13 @@ from yb_photo.models import Photo
 
 from django.core.paginator import Paginator
 from main.views import generate_bs_filter_chain, update_bs_filter_chain
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from yb_api.permissions import HasUserAPIKey
 from yb_api.models import UserAPIKey  # Adjust import paths as needed
 
 class BitFeedAPIView(generics.ListAPIView):
     serializer_class = BitSerializer
-    permission_classes = [IsAuthenticated | HasUserAPIKey]  # Allow either session or API key-based auth
+    permission_classes = [AllowAny]  # Allow either session or API key-based auth
 
     def get_api_user(self):
         """Retrieve user associated with the API key or fall back to session-based authentication."""
@@ -62,7 +62,7 @@ class BitFeedAPIView(generics.ListAPIView):
         # Get the authenticated user, either from the API key or session
         user = self.get_api_user()
         if not user:
-            return Bit.objects.none()  # Return empty queryset if no user found
+            return Bit.objects.filter(is_public=True)  # Return empty queryset if no user found
 
         user_profile = Profile.objects.get(username=user.active_profile)
         print(self.request)
@@ -137,10 +137,12 @@ class BitFeedAPIView(generics.ListAPIView):
         queryset = self.get_queryset()
         user = self.get_api_user()
         if not user:
-            return Response({"detail": "Unauthorized"}, status=status.HTTP_401_UNAUTHORIZED)
+            user_tz = request.query_params.get('timezone')
 
-        user_profile = Profile.objects.get(username=user.active_profile)
-        user_tz = user_profile.current_timezone
+        else:
+            user_profile = Profile.objects.get(username=user.active_profile)
+            user_tz = user_profile.current_timezone
+        
         page = self.paginate_queryset(queryset)
 
         if page is not None:

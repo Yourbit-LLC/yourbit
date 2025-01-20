@@ -73,6 +73,7 @@ const TIME_KEEPER = document.getElementById("time-keeper-node");
 const LAYER_DIVIDER_1 = document.getElementById("layer-divider-1");
 
 const BOTTOM_GRADIENT = document.getElementById("gradient-overlay");
+const USER_AUTHORIZED = document.getElementById("auth-status").value;
 
 //Initialize touch variables for gestures
 var toustStartY = 0;
@@ -1165,7 +1166,20 @@ $(document).ready(function() {
     let this_browser = console.log(getBrowserName(navigator.userAgent));
     console.log(this_browser);
 
-    showNotification(expandNotification, "Active as " + "<b color: " + yb_getCustomValues("ui-title-color") + ">@" + yb_getSessionValues("username") + "</b>");
+    if (USER_AUTHORIZED == "true"){
+        showNotification(expandNotification, "Active as " + "<b color: " + yb_getCustomValues("ui-title-color") + ">@" + yb_getSessionValues("username") + "</b>");
+        CREATE_DESKTOP.addEventListener('click', yb_toggleCreateMenu);
+        // EXIT_CREATE.addEventListener('click', yb_toggleCreateMenu);
+
+        MESSAGES_DESKTOP.addEventListener("click", yb_handleMessageClick);
+        NOTIFICATIONS_DESKTOP.addEventListener("click", yb_handleNotificationsClick);
+        NOTIFICATIONS_MOBILE.addEventListener("click", yb_handleNotificationsClick);
+        MESSAGE_BUTTON_MOBILE.addEventListener("click", yb_handleMessageClick)
+
+        CREATE_POPOUT.addEventListener('click', yb_toggleCreateMenu);
+        yb_updateTimezone();
+
+    } 
     if (typeof navigator.serviceWorker !== 'undefined') {
         navigator.serviceWorker.register('/static/service-worker.js')
         .then(function(registration) {
@@ -1229,17 +1243,6 @@ $(document).ready(function() {
 
 
     SEARCH_BUTTON.addEventListener('mouseover', yb_searchMouseOver);
-    CREATE_DESKTOP.addEventListener('click', yb_toggleCreateMenu);
-    // EXIT_CREATE.addEventListener('click', yb_toggleCreateMenu);
-
-    MESSAGES_DESKTOP.addEventListener("click", yb_handleMessageClick);
-    NOTIFICATIONS_DESKTOP.addEventListener("click", yb_handleNotificationsClick);
-    NOTIFICATIONS_MOBILE.addEventListener("click", yb_handleNotificationsClick);
-    MESSAGE_BUTTON_MOBILE.addEventListener("click", yb_handleMessageClick)
-
-    CREATE_POPOUT.addEventListener('click', yb_toggleCreateMenu);
-    console.log(SEARCH_FIELD);
-
     SEARCH_POPOUT.addEventListener('click', function() {
         yb_openSpotlight();
     });
@@ -1255,9 +1258,6 @@ $(document).ready(function() {
             yb_navigateTo("content-container", "home");
         })
     }
-
-
-    yb_updateTimezone();
 
 
     //Display standalone check for browser/pwa specific actions

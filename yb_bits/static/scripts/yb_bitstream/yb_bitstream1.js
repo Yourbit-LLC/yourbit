@@ -305,6 +305,7 @@ function yb_getFeed(data={"update": false, "page": 1}) {
         'sort': sort_setting,
         'space': space,
         'page': data.page,
+        'timezone': Intl.DateTimeFormat().resolvedOptions().timeZone
     }
 
     if (yb_getSessionValues('location') === 'profile') {
