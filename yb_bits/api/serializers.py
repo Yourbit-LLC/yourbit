@@ -90,15 +90,17 @@ class BitSerializer(serializers.ModelSerializer):
     def get_is_liked(self, obj):
         request = self.context.get('request')
         if request and request.user:
-            this_profile = Profile.objects.get(username=request.user.active_profile)
-            return obj.likes.filter(profile=this_profile).exists()
+            if request.user.is_authenticated:
+                this_profile = Profile.objects.get(username=request.user.active_profile)
+                return obj.likes.filter(profile=this_profile).exists()
         return False
     
     def get_is_disliked(self, obj):
         request = self.context.get('request')
         if request and request.user:
-            this_profile = Profile.objects.get(username=request.user.active_profile)
-            return obj.dislikes.filter(profile=this_profile).exists()
+            if request.user.is_authenticated:
+                this_profile = Profile.objects.get(username=request.user.active_profile)
+                return obj.dislikes.filter(profile=this_profile).exists()
         return False
     
     def get_body(self, obj):
