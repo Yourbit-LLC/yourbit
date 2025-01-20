@@ -594,13 +594,17 @@ function yb_buildBit(bit, interactions=true){
 
     console.log("Flat mode on: " + CUSTOM_CONFIG["flat-mode-on"]);
     
-    if (CUSTOM_CONFIG["flat-mode-on"] == "True"){
-        new_bit.style.backgroundColor = "transparent";
-    } else {
-        if (yb_getSessionValues("bit-colors-on") == "True" && yb_getSessionValues("only-my-colors") == "False"){
-            new_bit.style.backgroundColor = primary_color;
-        } 
+    try {
+        if (CUSTOM_CONFIG["flat-mode-on"] == "True"){
+            new_bit.style.backgroundColor = "transparent";
+        } else {
+            if (yb_getSessionValues("bit-colors-on") == "True" && yb_getSessionValues("only-my-colors") == "False"){
+                new_bit.style.backgroundColor = primary_color;
+            } 
 
+        }
+    } catch {
+        new_bit.style.backgroundColor = "transparent";
     }
     
 
@@ -643,20 +647,22 @@ function yb_buildBit(bit, interactions=true){
         
 
     //Append interaction container
-        if (interactions){
-            new_bit.appendChild(yb_createInteractions(bit));
-            //Comment Label
-            let comment_label = yb_createElement("p", "comment-label", `comment-label-${id}`);
-            comment_label.innerHTML = "Comments";
-            comment_label.setAttribute("style", `display: none; color: ${title_color}; font-weight: bold;`)
-            new_bit.appendChild(comment_label);
+        if (USER_AUTHORIZED == "true") {
+            if (interactions){
+                new_bit.appendChild(yb_createInteractions(bit));
+                //Comment Label
+                let comment_label = yb_createElement("p", "comment-label", `comment-label-${id}`);
+                comment_label.innerHTML = "Comments";
+                comment_label.setAttribute("style", `display: none; color: ${title_color}; font-weight: bold;`)
+                new_bit.appendChild(comment_label);
 
-            let comment_container = yb_createElement("div", "yb-comment-container", `comment-container-${id}`);
-            new_bit.appendChild(comment_container);
-        
-            //Append comment field
-            new_bit.appendChild(yb_buildCommentField(bit)); 
+                let comment_container = yb_createElement("div", "yb-comment-container", `comment-container-${id}`);
+                new_bit.appendChild(comment_container);
+            
+                //Append comment field
+                new_bit.appendChild(yb_buildCommentField(bit)); 
 
+            }
         }
         
     }
