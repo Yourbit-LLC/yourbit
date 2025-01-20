@@ -317,8 +317,11 @@ function yb_createBody(bit) {
     let text_color = custom.text_color;
     const paragraph = yb_createElement("p", "yb-bodyText-bit yb-autoText font-medium", `bit-bodyText-${bit.id}`);
     paragraph.style.lineHeight = "1.5";
-    if (yb_getSessionValues("bit-colors-on") == "True" && yb_getSessionValues("only-my-colors") == "False"){
-        paragraph.style.color = text_color;
+
+    if (USER_AUTHORIZED == "true") {
+        if (yb_getSessionValues("bit-colors-on") == "True" && yb_getSessionValues("only-my-colors") == "False"){
+            paragraph.style.color = text_color;
+        }
     }
     paragraph.innerHTML = makeLinksClickable(bit.body);
 
@@ -353,20 +356,31 @@ function createTitle(bit) {
     const title = yb_createElement("div", `yb-title-bit yb-margin-T10 ${bit.type}`, `title-bit-${bit.id}`);
     let custom = bit.custom;
     let bit_title_color;
-    
-    if (CUSTOM_CONFIG["bit-colors-on"] == "True"){
-        bit_title_color = custom.title_color;
-        
-        if (bit.type == "video") {
-            title.innerHTML = `
-                <svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="${bit_title_color}"><path d="m380-300 280-180-280-180v360ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
-                <h2 class="yb-titleText-bit ${bit.type} ybv-preview-title" style="color: ${bit_title_color};">${makeLinksClickable(bit.title)}</h2>
-                <p class="bit-view-count" style="color: ${bit.custom.text_color};">${bit.watch_count} views</p>
-            `;
+    try {
+        if (CUSTOM_CONFIG["bit-colors-on"] == "True"){
+            bit_title_color = custom.title_color;
+            
+            if (bit.type == "video") {
+                title.innerHTML = `
+                    <svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="${bit_title_color}"><path d="m380-300 280-180-280-180v360ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+                    <h2 class="yb-titleText-bit ${bit.type} ybv-preview-title" style="color: ${bit_title_color};">${makeLinksClickable(bit.title)}</h2>
+                    <p class="bit-view-count" style="color: ${bit.custom.text_color};">${bit.watch_count} views</p>
+                `;
+            } else {
+                title.innerHTML = `<h2 class="yb-titleText-bit ${bit.type}" style="color: ${bit_title_color};">${makeLinksClickable(bit.title)}</h2>`;
+            }
         } else {
-            title.innerHTML = `<h2 class="yb-titleText-bit ${bit.type}" style="color: ${bit_title_color};">${makeLinksClickable(bit.title)}</h2>`;
+            if (bit.type == "video") {
+                title.innerHTML = `
+                    <svg class="yb-autoFill yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="m380-300 280-180-280-180v360ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+                    <h2 class="yb-autoText yb-titleText-bit ybv-preview-title ${bit.type}"">${makeLinksClickable(bit.title)}</h2>
+                    <p class="bit-view-count" style="color: ${bit.custom.text_color};">${bit.watch_count} views</p>
+                `;
+            } else {
+                title.innerHTML = `<h2 class="yb-autoText yb-titleText-bit ${bit.type}">${makeLinksClickable(bit.title)}</h2>`;
+            }
         }
-    } else {
+    } catch {
         if (bit.type == "video") {
             title.innerHTML = `
                 <svg class="yb-autoFill yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="m380-300 280-180-280-180v360ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
@@ -376,6 +390,7 @@ function createTitle(bit) {
         } else {
             title.innerHTML = `<h2 class="yb-autoText yb-titleText-bit ${bit.type}">${makeLinksClickable(bit.title)}</h2>`;
         }
+            
     }
     return title;
 }
