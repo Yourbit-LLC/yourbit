@@ -664,6 +664,7 @@ function yb_buildBit(bit, interactions=true){
 
     //Append interaction container
         if (USER_AUTHORIZED == "true") {
+            console.log(USER_AUTHORIZED)
             if (interactions){
                 new_bit.appendChild(yb_createInteractions(bit));
                 //Comment Label
