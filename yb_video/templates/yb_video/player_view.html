@@ -120,17 +120,31 @@
             </header>
             <div id="comment-container-{{bit.id}}" class="video-panel-content-container" style="position: relative;">
                 {% if bit.comments.count == 0 %}
-                    <div class="yb-center-transform all">
-                        <h3 class="align-center font-white">No Comments Yet</h3>
-                        <div class="yb-center-margin lr" style="width: 120px;">
-                            <button id="create-new-conversation" style="width: 120px;" class="yb-button-wide rounded font-white">+  Add Comment</button>
+                    {% if request.user.is_authenticated %}
+                        <div class="yb-center-transform all">
+                            <h3 class="align-center font-white">No Comments Yet</h3>
+                            <div class="yb-center-margin lr" style="width: 120px;">
+                                <button id="create-new-conversation" style="width: 120px;" class="yb-button-wide rounded font-white">+  Add Comment</button>
+                            </div>
+                        <div>
+                    {% else %}
+                        <div id="field-write-comment-{{bit.id}}" class="yb-container-commentField">
+                            <h3 class="yb-autoText yb-center-margin lr">Sign in to comment...</h3>
+                            <button data-field-override="player-comments" id="button-submit-comment-{{bit.id}}" class="yb-send-comment" name="send_comment" data-catid="{{bit.id}}">
+                                Log In
+                            </button>
+                            <br>
+                            <button data-field-override="player-comments" id="button-submit-comment-{{bit.id}}" class="yb-send-comment" name="send_comment" data-catid="{{bit.id}}">
+                                Sign Up
+                            </button>
                         </div>
-                    <div>
+            
+                    {% endif %}
                 {% else %}
                         {% include 'yb_bits/bit_comments.html' %}
                 {% endif %}
                     </div>
-            {% if request.user.is_authenticated %}
+            
             <div id="field-write-comment-{{bit.id}}" class="yb-container-commentField">
                 <input id="field-write-comment-{{bit.id}}" class="yb-field-commentField field-border yb-autoText" placeholder="Write Comment">
                 <button data-field-override="player-comments" id="button-submit-comment-{{bit.id}}" class="yb-send-comment" name="send_comment" data-catid="{{bit.id}}">
@@ -139,19 +153,7 @@
                     </svg>
                 </button>
             </div>
-            {% else %}
-            <div id="field-write-comment-{{bit.id}}" class="yb-container-commentField">
-                <h3 class="yb-autoText yb-center-margin lr">Sign in to comment...</h3>
-                <button data-field-override="player-comments" id="button-submit-comment-{{bit.id}}" class="yb-send-comment" name="send_comment" data-catid="{{bit.id}}">
-                    Log In
-                </button>
-                <br>
-                <button data-field-override="player-comments" id="button-submit-comment-{{bit.id}}" class="yb-send-comment" name="send_comment" data-catid="{{bit.id}}">
-                    Sign Up
-                </button>
-            </div>
 
-            {% endif %}
         </div>
         <div class="yb-video-list font-white yb-autoText" id="up-next-list">
             <h4>Coming Up Next...</h4>
