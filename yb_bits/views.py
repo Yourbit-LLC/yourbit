@@ -253,13 +253,14 @@ def bit_focus_view(request, pk, *args, **kwargs):
         # Update watch count
         this_bit.watch_count += 1
         this_bit.save()
-
-        #Update user interaction history
-        this_profile = Profile.objects.get(username=request.user.active_profile)
-        this_history = InteractionHistory.objects.get(profile=this_profile)
-        new_watch = VideoBitWatch.objects.create(profile=this_profile, bit=this_bit)
-        this_history.watched.add(new_watch)
-        this_history.save()
+        if request.user.is_authenticated:
+            #Update user interaction history
+            this_profile = Profile.objects.get(username=request.user.active_profile)
+            this_history = InteractionHistory.objects.get(profile=this_profile)
+            new_watch = VideoBitWatch.objects.create(profile=this_profile, bit=this_bit)
+            this_history.watched.add(new_watch)
+            this_history.save()
+        
 
     return render(request, "yb_bits/yb_bit_focus.html", context)
 
