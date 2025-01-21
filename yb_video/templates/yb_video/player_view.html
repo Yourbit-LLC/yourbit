@@ -130,7 +130,7 @@
                         {% include 'yb_bits/bit_comments.html' %}
                 {% endif %}
                     </div>
-
+            {% if request.user.is_authenticated %}
             <div id="field-write-comment-{{bit.id}}" class="yb-container-commentField">
                 <input id="field-write-comment-{{bit.id}}" class="yb-field-commentField field-border yb-autoText" placeholder="Write Comment">
                 <button data-field-override="player-comments" id="button-submit-comment-{{bit.id}}" class="yb-send-comment" name="send_comment" data-catid="{{bit.id}}">
@@ -139,6 +139,19 @@
                     </svg>
                 </button>
             </div>
+            {% else %}
+            <div id="field-write-comment-{{bit.id}}" class="yb-container-commentField">
+                <h3 class="yb-autoText yb-center-margin lr">Sign in to comment...</h3>
+                <button data-field-override="player-comments" id="button-submit-comment-{{bit.id}}" class="yb-send-comment" name="send_comment" data-catid="{{bit.id}}">
+                    Log In
+                </button>
+                <br>
+                <button data-field-override="player-comments" id="button-submit-comment-{{bit.id}}" class="yb-send-comment" name="send_comment" data-catid="{{bit.id}}">
+                    Sign Up
+                </button>
+            </div>
+
+            {% endif %}
         </div>
         <div class="yb-video-list font-white yb-autoText" id="up-next-list">
             <h4>Coming Up Next...</h4>
