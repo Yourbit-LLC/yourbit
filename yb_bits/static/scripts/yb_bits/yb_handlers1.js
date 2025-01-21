@@ -128,11 +128,11 @@ function yb_pressShowComments(e){
     yb_showComments(this_id);
 }
 
-function yb_toggleBitButton(button, this_id, this_bit) {
+function yb_toggleBitButton(button, this_element) {
     let csrf_token = getCSRF();
-    let this_button = this_bit.querySelector(`#${button}-${this_id}`);
-    let this_count = this_bit.querySelector(`#${button}-count-${this_id}`);
-    let this_icon = this_bit.querySelector(`#${button}-icon-${this_id}`);
+    let this_button = this_element
+    let this_count = this_element.parentElement.querySelector(`#${button}-count-${this_id}`);
+    let this_icon = this_element.querySelector(`#${button}-icon-${this_id}`);
     let this_count_int = parseInt(this_count.innerHTML);
     let this_data = {
         'bit_id': this_id,
@@ -202,12 +202,9 @@ function yb_toggleBitButton(button, this_id, this_bit) {
 
 // Function for handling the click event of the like button
 function yb_pressLike(e){
+    let this_element = e.currentTarget;
     let this_id = e.currentTarget.getAttribute("data-catid");
-    console.log(this_id)
-    let element_id = `bit-${this_id}`;
-    console.log(element_id)
-    let this_bit = document.getElementById(element_id);
-    yb_toggleBitButton("like", this_id, this_bit);
+    yb_toggleBitButton("like", this_element);
 }
 
 function yb_pressShare(event){
@@ -218,12 +215,9 @@ function yb_pressShare(event){
 
 // Function for handling the click event of the dislike button
 function yb_pressDislike(e){
+    let this_element = e.currentTarget;
     let this_id = e.currentTarget.getAttribute("data-catid");
-    console.log(this_id)
-    let element_id = `bit-${this_id}`;
-    console.log(element_id)
-    let this_bit = document.getElementById(element_id);
-    yb_toggleBitButton("dislike", this_id, this_bit);
+    yb_toggleBitButton("dislike", this_element);
 }
 
 // Function for handling the click event of the delete button on a bit's context menu
