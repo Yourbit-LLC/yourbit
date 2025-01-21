@@ -24,9 +24,9 @@ lang="en"
             <!--Root CSS Variables-->
         {% if request.user.is_authenticated %}
             {% include 'main/root_style_embed.html' %}
-            <input type="hidden" id="auth-status" data-user-authenticated="true">
+            <input type="hidden" id="auth-status" value="true">
         {% else %}
-            <input type="hidden" id="auth-status" data-user-authenticated="false">
+            <input type="hidden" id="auth-status" value="false">
         {% endif %}
         
         
