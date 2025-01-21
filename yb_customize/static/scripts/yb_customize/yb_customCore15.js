@@ -7,70 +7,72 @@
 
 
 // THe element that stores user customization values
-const CUSTOM_VALUES = document.getElementById("user-custom-info");
 
-/*
-    --Background Image Containers--
-    These are used to display the background image on the page
-    The source of the image is set dynamically based on the user's settings
 
-    The BG_IMAGE_A container is used to display the user image
-    The BG_IMAGE_B container is used to display other users images on their profiles
+    const CUSTOM_VALUES = document.getElementById("user-custom-info");
 
-    The BG_IMAGE_SOURCE_A and BG_IMAGE_SOURCE_B containers are used to set the source of the image dynamically
+    /*
+        --Background Image Containers--
+        These are used to display the background image on the page
+        The source of the image is set dynamically based on the user's settings
 
-*/
-const BG_IMAGE_A = document.getElementById("bg-image-a");
-const BG_IMAGE_SOURCE_A = document.getElementById("bg-image-source-a");
+        The BG_IMAGE_A container is used to display the user image
+        The BG_IMAGE_B container is used to display other users images on their profiles
 
-const BG_IMAGE_B = document.getElementById("bg-image-b");
-const BG_IMAGE_SOURCE_B = document.getElementById("bg-image-source-b");
+        The BG_IMAGE_SOURCE_A and BG_IMAGE_SOURCE_B containers are used to set the source of the image dynamically
 
-const CUSTOM_CONFIG = {
-    "wallpaper-on": CUSTOM_VALUES.getAttribute("data-wallpaper-on"),
-    "custom-ui-on": CUSTOM_VALUES.getAttribute("data-custom-ui-on"),
-    "flat-mode-on": CUSTOM_VALUES.getAttribute("data-flat-mode-on"),
-    "bit-colors-on": CUSTOM_VALUES.getAttribute("data-bit-colors-on"),
-    "only-my-colors": CUSTOM_VALUES.getAttribute("data-only-my-colors"),
-}
+    */
+    const BG_IMAGE_A = document.getElementById("bg-image-a");
+    const BG_IMAGE_SOURCE_A = document.getElementById("bg-image-source-a");
 
-const WALLPAPER_SETTINGS = {
-    "wallpaper": CUSTOM_VALUES.getAttribute("data-wallpaper"),  
-    "wallpaper-on": CUSTOM_VALUES.getAttribute("data-wallpaper-on"),
-    "wallpaper-blur": CUSTOM_VALUES.getAttribute("data-wallpaper-blur"),
-    "wallpaper-brightness": CUSTOM_VALUES.getAttribute("data-wallpaper-brightness"),
-    "wallpaper-hue": CUSTOM_VALUES.getAttribute("data-wallpaper-hue"),
-}
+    const BG_IMAGE_B = document.getElementById("bg-image-b");
+    const BG_IMAGE_SOURCE_B = document.getElementById("bg-image-source-b");
 
-/*
-    --Custom Index--
-    The suffix to the root variable names will match the key in each object
+    const CUSTOM_CONFIG = {
+        "wallpaper-on": CUSTOM_VALUES.getAttribute("data-wallpaper-on"),
+        "custom-ui-on": CUSTOM_VALUES.getAttribute("data-custom-ui-on"),
+        "flat-mode-on": CUSTOM_VALUES.getAttribute("data-flat-mode-on"),
+        "bit-colors-on": CUSTOM_VALUES.getAttribute("data-bit-colors-on"),
+        "only-my-colors": CUSTOM_VALUES.getAttribute("data-only-my-colors"),
+    }
 
-    When adding new custom values to the index ensure that the key matches the suffix
+    const WALLPAPER_SETTINGS = {
+        "wallpaper": CUSTOM_VALUES.getAttribute("data-wallpaper"),  
+        "wallpaper-on": CUSTOM_VALUES.getAttribute("data-wallpaper-on"),
+        "wallpaper-blur": CUSTOM_VALUES.getAttribute("data-wallpaper-blur"),
+        "wallpaper-brightness": CUSTOM_VALUES.getAttribute("data-wallpaper-brightness"),
+        "wallpaper-hue": CUSTOM_VALUES.getAttribute("data-wallpaper-hue"),
+    }
 
-    Example: --yb-bit-primary-color will match the key "primary-color" in the BIT_CUSTOM object
+    /*
+        --Custom Index--
+        The suffix to the root variable names will match the key in each object
 
-    This is used to dynamically change the CSS variables in the main stylesheet
+        When adding new custom values to the index ensure that the key matches the suffix
 
-*/
-const BIT_CUSTOM = {
-    "primary-color": CUSTOM_VALUES.getAttribute("data-bit-primary-color"),
-    "secondary-color": CUSTOM_VALUES.getAttribute("data-bit-secondary-color"),
-    "title-color": CUSTOM_VALUES.getAttribute("data-bit-title-color"),
-    "text-color": CUSTOM_VALUES.getAttribute("data-bit-text-color"),
-    "icon-color": CUSTOM_VALUES.getAttribute("data-bit-icon-color"),
-    "button-color": CUSTOM_VALUES.getAttribute("data-bit-button-color"),
-}
+        Example: --yb-bit-primary-color will match the key "primary-color" in the BIT_CUSTOM object
 
-const UI_CUSTOM = {
-    "panel-color": CUSTOM_VALUES.getAttribute("data-ui-panel-color"),
-    "accent-color": CUSTOM_VALUES.getAttribute("data-ui-accent-color"),
-    "text-color": CUSTOM_VALUES.getAttribute("data-ui-text-color"),
-    "icon-color": CUSTOM_VALUES.getAttribute("data-ui-icon-color"),
-    "title-color": CUSTOM_VALUES.getAttribute("data-ui-title-color"),
-    "button-color": CUSTOM_VALUES.getAttribute("data-ui-button-color"),
-    "button-text-color": CUSTOM_VALUES.getAttribute("data-ui-button-text-color"),
-}
+        This is used to dynamically change the CSS variables in the main stylesheet
+
+    */
+    const BIT_CUSTOM = {
+        "primary-color": CUSTOM_VALUES.getAttribute("data-bit-primary-color"),
+        "secondary-color": CUSTOM_VALUES.getAttribute("data-bit-secondary-color"),
+        "title-color": CUSTOM_VALUES.getAttribute("data-bit-title-color"),
+        "text-color": CUSTOM_VALUES.getAttribute("data-bit-text-color"),
+        "icon-color": CUSTOM_VALUES.getAttribute("data-bit-icon-color"),
+        "button-color": CUSTOM_VALUES.getAttribute("data-bit-button-color"),
+    }
+
+    const UI_CUSTOM = {
+        "panel-color": CUSTOM_VALUES.getAttribute("data-ui-panel-color"),
+        "accent-color": CUSTOM_VALUES.getAttribute("data-ui-accent-color"),
+        "text-color": CUSTOM_VALUES.getAttribute("data-ui-text-color"),
+        "icon-color": CUSTOM_VALUES.getAttribute("data-ui-icon-color"),
+        "title-color": CUSTOM_VALUES.getAttribute("data-ui-title-color"),
+        "button-color": CUSTOM_VALUES.getAttribute("data-ui-button-color"),
+        "button-text-color": CUSTOM_VALUES.getAttribute("data-ui-button-text-color"),
+    }
 
 /*
     --Stylesheet Index--
