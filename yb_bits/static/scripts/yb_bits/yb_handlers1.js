@@ -203,7 +203,6 @@ function yb_toggleBitButton(button, this_element) {
 // Function for handling the click event of the like button
 function yb_pressLike(e){
     let this_element = e.currentTarget;
-    let this_id = e.currentTarget.getAttribute("data-catid");
     yb_toggleBitButton("like", this_element);
 }
 
@@ -216,7 +215,6 @@ function yb_pressShare(event){
 // Function for handling the click event of the dislike button
 function yb_pressDislike(e){
     let this_element = e.currentTarget;
-    let this_id = e.currentTarget.getAttribute("data-catid");
     yb_toggleBitButton("dislike", this_element);
 }
 
