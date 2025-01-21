@@ -194,6 +194,8 @@ Profile Page
     top: 60px !important;
     width: 100vw !important;
     transition: 0.5s !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
 
 .profile-bio-container {
