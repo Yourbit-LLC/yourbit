@@ -1183,3 +1183,21 @@ p {
     margin: auto;
     justify-content: space-around;
   }
+
+  @media screen and (max-width: 768px) {
+    .nav-auth {
+        display: none !important;
+    }
+  }
+
+    
+  .mobile-nav-auth {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    position: absolute;
+    right: 8px;
+    top: 14px;
+    width: 200px;
+    margin: auto;
+    justify-content: space-around;
+  }

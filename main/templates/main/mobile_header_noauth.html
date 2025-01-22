@@ -1,20 +1,13 @@
 <div class="yb-panel yb-header" id="yb-mobile-header">
     <div class="yb-header-content yb-fillContainer yb-relative">
 
-        <!--Support Button-->
-        <div id="button-message-mobile-header" class="button-support" style="height: 100%; width: 50px">
-            {% comment %} <svg xmlns="http://www.w3.org/2000/svg" style="position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);" height="28" viewBox="0 96 960 960" width="28"><path style="fill:white;" d="M478 816q21 0 35.5-14.5T528 766q0-21-14.5-35.5T478 716q-21 0-35.5 14.5T428 766q0 21 14.5 35.5T478 816Zm-36-154h74q0-33 7.5-52t42.5-52q26-26 41-49.5t15-56.5q0-56-41-86t-97-30q-57 0-92.5 30T342 438l66 26q5-18 22.5-39t53.5-21q32 0 48 17.5t16 38.5q0 20-12 37.5T506 530q-44 39-54 59t-10 73Zm38 314q-83 0-156-31.5T197 859q-54-54-85.5-127T80 576q0-83 31.5-156T197 293q54-54 127-85.5T480 176q83 0 156 31.5T763 293q54 54 85.5 127T880 576q0 83-31.5 156T763 859q-54 54-127 85.5T480 976Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg> {% endcomment %}
-            <svg xmlns="http://www.w3.org/2000/svg" style="position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);" height="32" width="32"><path class='yb-autoFill yb-path' d="M4 20q-.825 0-1.412-.587Q2 18.825 2 18V6q0-.825.588-1.412Q3.175 4 4 4h16q.825 0 1.413.588Q22 5.175 22 6v12q0 .825-.587 1.413Q20.825 20 20 20Zm8-7L4 8v10h16V8Zm0-2 8-5H4ZM4 8V6v12Z"/></svg>
-        </div>
-
         <!--Header Logo-->
         <?xml version="1.0" encoding="UTF-8"?>
         <svg id="mobile-logo" class="yb-logo-masthead mobile" data-name="Layer 3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 493.65 276.27" style="width: 65px;
-            grid-column: 2;
+            
             position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);">
+            top: 30px;
+            left: 40px;">
         <defs>
             <style>
 
@@ -38,16 +31,14 @@
         <path class="cls-1" d="m377.15,176.83c2.07-5.24,3.87-9.85,5.71-14.45.38-.95,1.07-1.5,2.07-1.96,12.68-5.83,24.83-12.66,36.8-19.78,12.56-7.46,24.55-15.84,35.51-25.5,7.1-6.27,13.92-12.95,18.97-21.19,2.9-4.73,5.08-9.7,6.2-15.06,1.55-7.35-.7-13.78-5.76-19.21-1.06-1.13-2.42-1.98-3.56-2.88-8.17,12.52-21.51,14.03-30.31,10.94-10.67-3.75-18.32-13.59-17.2-27.68-2.91-.87-5.99-.94-8.99-1.34-10.55-1.4-21.2-1.47-31.82-1.62-7.81-.11-15.65.02-23.43.68-3.18.27-4.87-.59-6.53-2.96-1.45-2.08-3.26-3.91-5.18-6.17,5.71-.49,10.96-1.11,16.23-1.35,5.82-.27,11.66-.05,17.48-.29,7.05-.29,14.08.13,21.12.31,7.62.2,15.2,1.21,22.76,2.22,1.57.21,2.53-.04,3.55-1.34,6.92-8.84,16.17-11.83,26.82-9.31,11.24,2.66,18.98,12.77,18.81,23.71-.03,2.31.87,3.49,2.66,4.78,7.18,5.16,12.54,12.03,13.94,20.71.99,6.14,1.08,12.64-1.26,18.93-4.4,11.79-11.89,21.31-20.54,30.19-9.9,10.18-21.2,18.53-32.91,26.43-13.17,8.89-27.1,16.42-41.18,23.7-6.32,3.27-12.85,6.12-19.95,9.48Z"/>
         <path class="cls-1" d="m178.93,233.27c61.04-8.7,120.19-24.59,177.57-47.64-.03,2.36-1.3,3.98-2.29,5.61-4.57,7.53-9.81,14.56-15.64,21.2-2.34,2.66-4.35,5.65-7.16,7.81-6.95,5.35-13.81,10.84-21.39,15.32-14.98,8.86-31.07,14.43-48.34,16.68-16.17,2.11-32.16,1.2-47.94-2.79-11.81-2.98-22.92-7.78-33.44-13.94-.81-.47-1.56-.98-1.38-2.27Z"/>
         </svg>
-        {% comment %} <img id="mobile-logo" class="yb-logo-masthead mobile" src="{% static 'images/main/yourbit-logo2023-01.svg'%}"/> {% endcomment %}
-        <div id="button-notifications-mobile-header" class="button-notifications" style="position: absolute; right: 0px; top: 0px; height: 50px; width: 50px">
-            <div style="position:relative; top: 0px; left: 0px; height: 100%; width: 100%;">
-                <div class="yb-status-indicator notification-status yb-red mobile" id="notification-status">
-                    <!--
-                        Nothing goes in here, this div appears as a small red circle on the notifcation icon when new notifications exist
-                    -->
-                </div>
-                <svg class="yb-notification-bell mobile yb-center-transform all" xmlns="http://www.w3.org/2000/svg" height="28" viewBox="0 -960 960 960" width="28"><path class="yb-autoFill yb-center-margin all yb-path" d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160ZM480-80q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80Z"/></svg>
-            </div>
-        </div>
     </div>
+
+        <!--Authentication-->
+        <div class="mobile-nav-auth yb-flexRow" id="mobile-nav-auth">
+            
+            <button id="button-nav-signup" style="width: 85px; height: 30px;" onclick="window.location.href='/accounts/register/';" class="yb-button-flex font-black white rounded border-none">Create</button>
+            <button id="button-nav-login" style="width: 85px; height: 30px;" onclick="window.location.href='/accounts/authenticate/';" class="yb-button-flex font-white green rounded border-none">Login</button>
+        </div>
+    
+
 </div>
