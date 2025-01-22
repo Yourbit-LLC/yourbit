@@ -62,7 +62,7 @@ class BitFeedAPIView(generics.ListAPIView):
         # Get the authenticated user, either from the API key or session
         user = self.get_api_user()
         if not user:
-            return Bit.objects.filter(is_public=True)  # Return empty queryset if no user found
+            return Bit.objects.filter(is_public=True).order_by('-time')  # Return empty queryset if no user found
 
         user_profile = Profile.objects.get(username=user.active_profile)
         print(self.request)
@@ -91,6 +91,7 @@ class BitFeedAPIView(generics.ListAPIView):
                 queryset = Bit.objects.filter(profile=profile, type=active_space).order_by(sort_value).exclude(id__in=hidden_bits) if active_space != "global" else Bit.objects.filter(profile=profile).order_by(sort_value).exclude(id__in=hidden_bits)
             else:
                 queryset = Bit.objects.filter(profile=profile, is_public=True).order_by(sort_value).exclude(id__in=hidden_bits)
+            
         else:
             # Construct base query with filters
             base_query = Q()
@@ -161,8 +162,10 @@ class BitViewSet(viewsets.ModelViewSet):
     parser_classes = [JSONParser, MultiPartParser]
 
     def get_serializer(self, *args, **kwargs):
+        
         # Add context with user timezone and request in all serializer calls
         print(self.action)
+        
         if self.action == 'create':
             return CreateBitSerializer(*args, **kwargs)
         
@@ -229,6 +232,7 @@ class BitViewSet(viewsets.ModelViewSet):
 
         if bit_data.get("type") == "video":
             from yb_photo.models import VideoThumbnail
+
             upload_id = bit_data.get("upload_id")
             video_object = Video.objects.get(upload_id=upload_id)
             serializer.validated_data['video_upload'] = video_object
