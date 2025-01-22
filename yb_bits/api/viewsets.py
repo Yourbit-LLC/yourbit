@@ -62,7 +62,21 @@ class BitFeedAPIView(generics.ListAPIView):
         # Get the authenticated user, either from the API key or session
         user = self.get_api_user()
         if not user:
-            return Bit.objects.filter(is_public=True).order_by('-time')  # Return empty queryset if no user found
+                
+            # Profile-specific request
+            if 'profile' in self.request.query_params:
+                profile_username = self.request.query_params.get('profile')
+                profile = Profile.objects.get(username=profile_username)
+
+                # Check relationships with user
+                queryset = Bit.objects.filter(profile=profile, is_public=True).order_by("-time")
+            
+            else:
+                
+                queryset = Bit.objects.filter(is_public=True).order_by('-time') # Return empty queryset if no user found
+
+            return queryset
+        
 
         user_profile = Profile.objects.get(username=user.active_profile)
         print(self.request)
