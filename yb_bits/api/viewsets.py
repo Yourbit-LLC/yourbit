@@ -75,6 +75,15 @@ class BitFeedAPIView(generics.ListAPIView):
                 
                 queryset = Bit.objects.filter(is_public=True).order_by('-time') # Return empty queryset if no user found
 
+                        # Paginate
+            paginator = Paginator(queryset, 4)
+            page = self.request.query_params.get('page')
+            
+            try:
+                queryset = paginator.page(page)
+            except:
+                queryset = None
+
             return queryset
         
 
