@@ -80,23 +80,28 @@ function yb_handleSupportClick() {
 }
 
 $(document).ready(function () {
-    MENU_BUTTON.addEventListener('click', yb_toggleMainMenu);
-    SETTINGS_BUTTON.addEventListener("click", yb_toggleSettingsMenu);
-    SUPPORT_BUTTON.addEventListener("click", yb_handleSupportClick);
 
-    LOGOUT_BUTTON.addEventListener("click", yb_logout);
-    for (let i = 0; i < MENU_BUTTONS.length; i++){
-        console.log("added event listener to button")
-        MENU_BUTTONS[i].addEventListener('click', function(){
-            let link = MENU_BUTTONS[i].getAttribute("name");
-            yb_handleMenuGridLink(link);
+    try {
+        MENU_BUTTON.addEventListener('click', yb_toggleMainMenu);
+        SETTINGS_BUTTON.addEventListener("click", yb_toggleSettingsMenu);
+        SUPPORT_BUTTON.addEventListener("click", yb_handleSupportClick);
+
+        LOGOUT_BUTTON.addEventListener("click", yb_logout);
+        for (let i = 0; i < MENU_BUTTONS.length; i++){
+            console.log("added event listener to button")
+            MENU_BUTTONS[i].addEventListener('click', function(){
+                let link = MENU_BUTTONS[i].getAttribute("name");
+                yb_handleMenuGridLink(link);
+            });
+        }
+
+        MENU_PROFILE_BUTTON.addEventListener('click', function(){
+            let username = MENU_PROFILE_BUTTON.getAttribute("data-username");
+            //clear content-container
+            yb_toggleMainMenu();
+            yb_navigateToProfile(username);
         });
+    } catch {
+        console.log("User not logged in");
     }
-
-    MENU_PROFILE_BUTTON.addEventListener('click', function(){
-        let username = MENU_PROFILE_BUTTON.getAttribute("data-username");
-        //clear content-container
-        yb_toggleMainMenu();
-        yb_navigateToProfile(username);
-    });
 });
