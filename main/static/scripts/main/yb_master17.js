@@ -138,11 +138,14 @@ function yb_showMobileNavigation() {
         NAV_BAR.classList.remove("hideMobile");
         BOTTOM_GRADIENT.style.display = "block";
     }
-    if (CREATE_POPOUT.classList.contains("hide")){
-        CREATE_POPOUT.classList.remove("hide");
-    }
-    if (SEARCH_POPOUT.classList.contains("hide")){
-        SEARCH_POPOUT.classList.remove("hide");
+
+    if (USER_AUTHORIZED == "true "){
+        if (CREATE_POPOUT.classList.contains("hide")){
+            CREATE_POPOUT.classList.remove("hide");
+        }
+        if (SEARCH_POPOUT.classList.contains("hide")){
+            SEARCH_POPOUT.classList.remove("hide");
+        }
     }
     
 }
