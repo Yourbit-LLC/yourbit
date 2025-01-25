@@ -233,18 +233,19 @@ lang="en"
         <div class = "yb-fsContainer list-menu yb-panel" id="yb-slide-up-core">
             <div id="loading-slide-up" class = "yb-loadingCircle main"></div>
         </div>
+        {% if request.user.is_authenticated %}
+            <!--Create Bit Mobile Button-->
+            <div id="create-button-popout" class="yb-button-popout left yb-panel">
+                <svg class="yb-icon yb-center-margin all" xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32"><path class='yb-ui-icon yb-autoFill mobile-floating-actions-path' d="M218.87-135.869q-34.483 0-58.742-24.259t-24.259-58.742v-522.26q0-34.896 24.109-59.448 24.109-24.553 58.892-23.553h345.76l-83 83.001H218.87v522.26h522.26v-262.282l83.001-83v345.282q0 34.483-24.259 58.742t-58.742 24.259H218.87ZM480-480Zm-99.826 99.826v-158.5l350.413-350.174q12.674-12.674 27.587-18.391 14.913-5.718 30.565-5.718 16.313 0 31.396 5.718 15.083 5.717 27.698 18.174l41.015 40.934q12.913 12.674 18.63 27.913 5.718 15.239 5.718 31.003 0 15.789-5.823 31.108-5.822 15.32-18.525 27.998L538.674-380.174h-158.5Zm456.717-409.065L789-836.891l47.891 47.652Zm-378.5 330.848h47.652l228.848-228.848-23.238-24.326-24.175-23.326-229.087 228.848v47.652Zm253.262-253.174-24.175-23.326 24.175 23.326 23.238 24.326-23.238-24.326Z"/></svg>
+                
+            </div>
 
-        <!--Create Bit Mobile Button-->
-        <div id="create-button-popout" class="yb-button-popout left yb-panel">
-            <svg class="yb-icon yb-center-margin all" xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32"><path class='yb-ui-icon yb-autoFill mobile-floating-actions-path' d="M218.87-135.869q-34.483 0-58.742-24.259t-24.259-58.742v-522.26q0-34.896 24.109-59.448 24.109-24.553 58.892-23.553h345.76l-83 83.001H218.87v522.26h522.26v-262.282l83.001-83v345.282q0 34.483-24.259 58.742t-58.742 24.259H218.87ZM480-480Zm-99.826 99.826v-158.5l350.413-350.174q12.674-12.674 27.587-18.391 14.913-5.718 30.565-5.718 16.313 0 31.396 5.718 15.083 5.717 27.698 18.174l41.015 40.934q12.913 12.674 18.63 27.913 5.718 15.239 5.718 31.003 0 15.789-5.823 31.108-5.822 15.32-18.525 27.998L538.674-380.174h-158.5Zm456.717-409.065L789-836.891l47.891 47.652Zm-378.5 330.848h47.652l228.848-228.848-23.238-24.326-24.175-23.326-229.087 228.848v47.652Zm253.262-253.174-24.175-23.326 24.175 23.326 23.238 24.326-23.238-24.326Z"/></svg>
-            
-        </div>
-
-        <!--Search Mobile Button-->
-        <div id="search-button-popout" class="yb-button-popout right yb-panel" href="{% url 'search-results' %}">
-            <svg class ="yb-icon yb-center-margin all" xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32"><path class='yb-ui-icon yb-autoFill mobile-floating-actions-path' d="M764.522-134.913 523.848-375.587q-29.761 21.044-65.434 33.065-35.672 12.022-76.292 12.022-102.187 0-173.861-71.674Q136.587-473.848 136.587-576q0-102.152 71.674-173.826Q279.935-821.5 382.087-821.5q102.152 0 173.826 71.674 71.674 71.674 71.674 173.861 0 40.859-12.022 76.292-12.021 35.434-33.065 64.956l240.913 241.152-58.891 58.652ZM382.087-413.5q67.848 0 115.174-47.326Q544.587-508.152 544.587-576q0-67.848-47.326-115.174Q449.935-738.5 382.087-738.5q-67.848 0-115.174 47.326Q219.587-643.848 219.587-576q0 67.848 47.326 115.174Q314.239-413.5 382.087-413.5Z"/></svg>
-            
-        </div>
+            <!--Search Mobile Button-->
+            <div id="search-button-popout" class="yb-button-popout right yb-panel" href="{% url 'search-results' %}">
+                <svg class ="yb-icon yb-center-margin all" xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32"><path class='yb-ui-icon yb-autoFill mobile-floating-actions-path' d="M764.522-134.913 523.848-375.587q-29.761 21.044-65.434 33.065-35.672 12.022-76.292 12.022-102.187 0-173.861-71.674Q136.587-473.848 136.587-576q0-102.152 71.674-173.826Q279.935-821.5 382.087-821.5q102.152 0 173.826 71.674 71.674 71.674 71.674 173.861 0 40.859-12.022 76.292-12.021 35.434-33.065 64.956l240.913 241.152-58.891 58.652ZM382.087-413.5q67.848 0 115.174-47.326Q544.587-508.152 544.587-576q0-67.848-47.326-115.174Q449.935-738.5 382.087-738.5q-67.848 0-115.174 47.326Q219.587-643.848 219.587-576q0 67.848 47.326 115.174Q314.239-413.5 382.087-413.5Z"/></svg>
+                
+            </div>
+        {% endif %}
 
         <!--YB Card is a vertical rectangular element with rounded corners centered on screen-->
         <div class="yb-card yb-vScroll yb-panel" id="yb-card">
