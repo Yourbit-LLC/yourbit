@@ -54,7 +54,7 @@
 .yb-bit-shell.chatbit {
     
     /*Styling*/
-    grid-template-rows: 50px auto auto auto auto auto 48px;
+    grid-template-rows: 50px auto auto auto auto auto auto;
     grid-gap: 2px;
     
 
@@ -88,7 +88,7 @@
 .yb-bit-shell.photobit {
     
     text-align: center;
-    grid-template-rows: 50px auto auto auto 50px auto 48px;
+    grid-template-rows: 50px auto auto auto 50px auto auto;
     grid-gap:2px;
 
 }
