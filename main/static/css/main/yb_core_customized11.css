@@ -1017,10 +1017,14 @@ p {
     object-fit: cover; /* Ensures images maintain aspect ratio and cover the container */
   }
   
-.flat-bit-separator {
-    display: none;
-}
 
+  .flat-bit-separator {
+    display: var(--yb-separator-display);
+    border-color: rgb(100, 100, 100);
+    max-width: 780px;
+    margin-left: auto;
+    margin-right: auto;
+}
 .nav-auth {
     grid-column-start: 4;
     grid-column-end: 6;

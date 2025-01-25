@@ -93,7 +93,7 @@
 
 */
 const DEFAULT_STYLESHEET_INDEX = {
-    "yb-stylesheet-core": "/static/css/main/yb_core7.css",
+    "yb-stylesheet-core": "/static/css/main/yb_core8.css",
     "yb-stylesheet-modifier": "/static/css/main/yb_modifiers4.css",
     "yb-stylesheet-button": "/static/css/main/yb_buttons6.css",
     "yb-stylesheet-container": "/static/css/main/yb_containers9.css",
@@ -101,7 +101,7 @@ const DEFAULT_STYLESHEET_INDEX = {
 }
 
 const MODDED_STYLESHEET_INDEX = {
-    "yb-stylesheet-core": "/static/css/main/yb_core_customized10.css",
+    "yb-stylesheet-core": "/static/css/main/yb_core_customized11.css",
     "yb-stylesheet-modifier": "/static/css/main/yb_modifiers_customized5.css",
     "yb-stylesheet-button": "/static/css/main/yb_buttons_customized9.css",
     "yb-stylesheet-container": "/static/css/main/yb_containers_customized1.css",
