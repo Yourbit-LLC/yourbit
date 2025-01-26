@@ -279,7 +279,9 @@ function yb_toggle2WayContainer(type, scroll=false){
     yb_collapse2Way();
 
     //Check if main menu is open, if so, close it
+    console.log(USER_AUTHORIZED);
     if (USER_AUTHORIZED == "true") {
+        
         if (MAIN_MENU.classList.contains('open')){
             MAIN_MENU.classList.toggle('open');
             SIDE_CONTAINER_A.classList.toggle('open');
@@ -299,123 +301,153 @@ function yb_toggle2WayContainer(type, scroll=false){
                     SIDE_CONTAINER_A.classList.add('yb-lockScroll-y');
                 }
             }
-        }
+        
 
-        //Toggle loading screen on newly active container
-        tw_showLoading();
+            //Toggle loading screen on newly active container
+            tw_showLoading();
 
-        //Return the action of the container and the container element to be loaded
-        return ["switching", SIDE_CONTAINER_A];
-    } else {
-        let this_id;
-        let active_type;
+            //Return the action of the container and the container element to be loaded
+            return ["switching", SIDE_CONTAINER_A];
+        } else {
+            let this_id;
+            let active_type;
 
-        //Iterate through all 2 way containers (A and B)
-        for (let i = 0; i < SIDE_CONTAINERS.length + 1; i++) {
-            
-            //Check if current side container is open
-            if (SIDE_CONTAINERS[i].classList.contains("open")){
-
-                //Get the ID of the current container
-                this_id = SIDE_CONTAINERS[i].getAttribute("id");
+            //Iterate through all 2 way containers (A and B)
+            for (let i = 0; i < SIDE_CONTAINERS.length + 1; i++) {
                 
-                //Get the type of the current container
-                active_type = SIDE_CONTAINERS[i].getAttribute("data-state"); //this is the same as the template key in the two way index
+                //Check if current side container is open
+                if (SIDE_CONTAINERS[i].classList.contains("open")){
+
+                    //Get the ID of the current container
+                    this_id = SIDE_CONTAINERS[i].getAttribute("id");
+                    
+                    //Get the type of the current container
+                    active_type = SIDE_CONTAINERS[i].getAttribute("data-state"); //this is the same as the template key in the two way index
 
 
-                console.log(active_type)
-                console.log(type)
-
-                //Compare active_type to type, if its a match, close the container
-                if (active_type === type){
                     console.log(active_type)
-                    console.log("container is already open");
-                    try {
-                        yb_2WayPage(1);
-                    } catch {
-                        console.log("No secondary page to clear")
-                    }
-                    
-                    
-                    SIDE_CONTAINERS[i].classList.toggle("open");
+                    console.log(type)
 
-                    //Clear contents from container to avoid memory leaks
-                    yb_clear2WayContainer(SIDE_CONTAINERS[i]);
-
-                    //Check if the current core page is not fullscreen before showing UI
-                    if (yb_getSessionValues('fullscreen') == "false"){
-                        
-
-                        MOBILE_HEADER.classList.remove("hide");
-                        
-                        NAV_BAR.classList.remove("hideMobile");
-                        CREATE_POPOUT.classList.remove("hide");
-                        SEARCH_POPOUT.classList.remove("hide");
-                    
-                        
-                    } else {
-                        if (yb_getSessionValues("location") != "customize-main"){
-                            
-                            MOBILE_HEADER.classList.remove("hide");
-                        
-                        }
-
-                    }
-
-                    //When closing a container, clear the URL
-                    history.pushState(null, null, "/");
-
-                    //Return the action of the container and the container element to be closed
-                    return ["closing", SIDE_CONTAINERS[i]];
-                    
-                } else {
-                    if (this_id === 'yb-dynamic-2way-a'){
-                        
-                        console.log("container_a is open");
-                        SIDE_CONTAINER_A.classList.toggle("open");
+                    //Compare active_type to type, if its a match, close the container
+                    if (active_type === type){
+                        console.log(active_type)
+                        console.log("container is already open");
                         try {
                             yb_2WayPage(1);
                         } catch {
                             console.log("No secondary page to clear")
                         }
+                        
+                        
+                        SIDE_CONTAINERS[i].classList.toggle("open");
+
+                        //Clear contents from container to avoid memory leaks
+                        yb_clear2WayContainer(SIDE_CONTAINERS[i]);
+
+                        //Check if the current core page is not fullscreen before showing UI
+                        if (yb_getSessionValues('fullscreen') == "false"){
+                            
+
+                            MOBILE_HEADER.classList.remove("hide");
+                            
+                            NAV_BAR.classList.remove("hideMobile");
+                            CREATE_POPOUT.classList.remove("hide");
+                            SEARCH_POPOUT.classList.remove("hide");
+                        
+                            
+                        } else {
+                            if (yb_getSessionValues("location") != "customize-main"){
+                                
+                                MOBILE_HEADER.classList.remove("hide");
+                            
+                            }
+
+                        }
+
+                        //When closing a container, clear the URL
+                        history.pushState(null, null, "/");
+
+                        //Return the action of the container and the container element to be closed
+                        return ["closing", SIDE_CONTAINERS[i]];
+                        
+                    } else {
+                        if (this_id === 'yb-dynamic-2way-a'){
+                            
+                            console.log("container_a is open");
+                            SIDE_CONTAINER_A.classList.toggle("open");
+                            try {
+                                yb_2WayPage(1);
+                            } catch {
+                                console.log("No secondary page to clear")
+                            }
+                            yb_clear2WayContainer(SIDE_CONTAINER_A);
+                            
+                            SIDE_CONTAINER_B.classList.toggle("open");
+
+                            if (scroll) {
+                                if (SIDE_CONTAINER_B.classList.contains('yb-lockScroll-y')){
+                                    SIDE_CONTAINER_B.classList.remove('yb-lockScroll-y');
+                                    SIDE_CONTAINER_B.classList.add('vScroll');
+                                } else {
+                                    SIDE_CONTAINER_B.classList.add('vScroll');
+                                } 
+                            } else {
+                                if (SIDE_CONTAINER_B.classList.contains('vScroll')){
+                                    SIDE_CONTAINER_B.classList.remove('vScroll');
+                                    SIDE_CONTAINER_B.classList.add('yb-lockScroll-y');
+                                } else {
+                                    SIDE_CONTAINER_B.classList.add('yb-lockScroll-y');
+                                }
+                            }
+
+                            tw_showLoading();
+                            
+                            
+                            return ["switching", SIDE_CONTAINER_B];
+
+                        } else {
+
+                            console.log("container_b is open");
+
+                            SIDE_CONTAINER_B.classList.toggle("open");
+                            try {
+                                yb_2WayPage(1);
+                            } catch {
+                                console.log("No secondary page to clear")
+                            }
+                            yb_clear2WayContainer(SIDE_CONTAINER_B);
+                            
+                            SIDE_CONTAINER_A.classList.toggle("open");
+
+                            if (scroll) {
+                                if (SIDE_CONTAINER_A.classList.contains('yb-lockScroll-y')){
+                                    SIDE_CONTAINER_A.classList.remove('yb-lockScroll-y');
+                                    SIDE_CONTAINER_A.classList.add('vScroll');
+                                } else {
+                                    SIDE_CONTAINER_A.classList.add('vScroll');
+                                } 
+                            } else {
+                                if (SIDE_CONTAINER_A.classList.contains('vScroll')){
+                                    SIDE_CONTAINER_A.classList.remove('vScroll');
+                                    SIDE_CONTAINER_A.classList.add('yb-lockScroll-y');
+                                } else {
+                                    SIDE_CONTAINER_A.classList.add('yb-lockScroll-y');
+                                }
+                            }
+
+                            tw_showLoading
+                            return ["switching", SIDE_CONTAINER_A];
+                        } 
+                    }
+                } else {
+                    if (i === SIDE_CONTAINERS.length - 1){
                         yb_clear2WayContainer(SIDE_CONTAINER_A);
                         
-                        SIDE_CONTAINER_B.classList.toggle("open");
-
-                        if (scroll) {
-                            if (SIDE_CONTAINER_B.classList.contains('yb-lockScroll-y')){
-                                SIDE_CONTAINER_B.classList.remove('yb-lockScroll-y');
-                                SIDE_CONTAINER_B.classList.add('vScroll');
-                            } else {
-                                SIDE_CONTAINER_B.classList.add('vScroll');
-                            } 
-                        } else {
-                            if (SIDE_CONTAINER_B.classList.contains('vScroll')){
-                                SIDE_CONTAINER_B.classList.remove('vScroll');
-                                SIDE_CONTAINER_B.classList.add('yb-lockScroll-y');
-                            } else {
-                                SIDE_CONTAINER_B.classList.add('yb-lockScroll-y');
-                            }
-                        }
-
-                        tw_showLoading();
-                        
-                        
-                        return ["switching", SIDE_CONTAINER_B];
-
-                    } else {
-
-                        console.log("container_b is open");
-
-                        SIDE_CONTAINER_B.classList.toggle("open");
-                        try {
-                            yb_2WayPage(1);
-                        } catch {
-                            console.log("No secondary page to clear")
-                        }
-                        yb_clear2WayContainer(SIDE_CONTAINER_B);
-                        
-                        SIDE_CONTAINER_A.classList.toggle("open");
+                        MOBILE_HEADER.classList.add("hide");
+                        NAV_BAR.classList.add("hideMobile");
+                        SIDE_CONTAINER_A.classList.add("open");
+                        CREATE_POPOUT.classList.add("hide");
+                        SEARCH_POPOUT.classList.add("hide");
 
                         if (scroll) {
                             if (SIDE_CONTAINER_A.classList.contains('yb-lockScroll-y')){
@@ -432,41 +464,12 @@ function yb_toggle2WayContainer(type, scroll=false){
                                 SIDE_CONTAINER_A.classList.add('yb-lockScroll-y');
                             }
                         }
-
-                        tw_showLoading
-                        return ["switching", SIDE_CONTAINER_A];
-                    } 
-                }
-            } else {
-                if (i === SIDE_CONTAINERS.length - 1){
-                    yb_clear2WayContainer(SIDE_CONTAINER_A);
-                    
-                    MOBILE_HEADER.classList.add("hide");
-                    NAV_BAR.classList.add("hideMobile");
-                    SIDE_CONTAINER_A.classList.add("open");
-                    CREATE_POPOUT.classList.add("hide");
-                    SEARCH_POPOUT.classList.add("hide");
-
-                    if (scroll) {
-                        if (SIDE_CONTAINER_A.classList.contains('yb-lockScroll-y')){
-                            SIDE_CONTAINER_A.classList.remove('yb-lockScroll-y');
-                            SIDE_CONTAINER_A.classList.add('vScroll');
-                        } else {
-                            SIDE_CONTAINER_A.classList.add('vScroll');
-                        } 
-                    } else {
-                        if (SIDE_CONTAINER_A.classList.contains('vScroll')){
-                            SIDE_CONTAINER_A.classList.remove('vScroll');
-                            SIDE_CONTAINER_A.classList.add('yb-lockScroll-y');
-                        } else {
-                            SIDE_CONTAINER_A.classList.add('yb-lockScroll-y');
-                        }
+                        tw_showLoading();
+                        return ["opening", SIDE_CONTAINER_A];
                     }
-                    tw_showLoading();
-                    return ["opening", SIDE_CONTAINER_A];
                 }
+                
             }
-            
         }
     }
     
