@@ -1,5 +1,5 @@
 # **Yourbit**  
-_This file documentation is still a work in progress and will change over time_  
+_**Note:** This file documentation is still a work in progress and some explanations will be missing. The available information will change over time._  
 
 [![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL%203.0-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 [![Issues](https://img.shields.io/github/issues/Yourbit-LLC/yourbit)](https://github.com/Yourbit-LLC/yourbit/issues)
