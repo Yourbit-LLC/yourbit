@@ -57,7 +57,6 @@ python manage.py runserver
 
 ## 🎯 **Features**  
 ✅ **Customizable Feeds** – Sort by time, likes, or personalized algorithms  
-✅ **End-to-End Encrypted Messaging** – Secure direct messages  
 ✅ **Live Media Support** – Post photos, GIFs, videos, and livestream  
 ✅ **Custom Communities** – Join and create public or private groups  
 ✅ **Developer API** – Integrate Yourbit into apps and bots  
