@@ -12,7 +12,7 @@ Before contributing, ensure you have the following installed:
 - Python 3.10.5+
 
 The database is built for PostgreSQL, instructions for setting up your own PostgreSQL server can be found here:
-[Setting up a PostreSQL Sever](https://www.postgresql.org/docs/current/tutorial-install.html) 
+[Installing PostgreSQL](https://www.postgresql.org/docs/current/tutorial-install.html) 
 
 
 ### Setting Up the Development Environment
