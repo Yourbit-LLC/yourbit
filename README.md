@@ -10,12 +10,11 @@ _**Note:** This documentation is still a work in progress and some explanations 
 Yourbit is a **next-gen social media platform** focused on **privacy, decentralization, and user empowerment**.  
 It offers **real-time media sharing, interactive feeds, and customizable profiles**.
 
-🔹 **Privacy-first** – No invasive tracking
-🔹 **Decentralized architecture** – No single point of control  
-🔹 **Built-in media support** – Photo, video, and livestreaming  
-🔹 **Customizable feed** – Control what you see  
-🔹 **Open API** – Extend Yourbit with custom integrations  
-
+🔹 **Privacy-first** – No invasive tracking; private posts and direct messages are never used for data collection or monetization.  
+🔹 **Decentralized architecture** – No single point of control; users can fork their own mini-sites off of Yourbit or host their own version locally.  
+🔹 **Built-in media support** – Photo, video, and livestreaming; requires a Video Encoding and Storage API for long-form videos and livestreaming.  
+🔹 **Customizable feed** – Control what you see; primarily see posts from those most important to you—your friends and family.  
+🔹 **Open API** – Extend Yourbit with custom integrations.  
 ---
 
 ## 🌐 **Live Demo**  
