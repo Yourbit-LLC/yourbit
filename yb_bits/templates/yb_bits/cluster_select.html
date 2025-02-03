@@ -1,9 +1,18 @@
 {% load static %}
 
 <div class="yb-drawer-search" id="cluster-search-bar">
-    <input type="text" id="cluster-search-input" class="yb-input-singleLine yb-autoText yb-pText yb-panel rounded" style="width: 50%; position: absolute; left: 50%; top: 10px; transform: translateX(-50%);" placeholder="Search Clusters">
+    <input 
+        type="text" 
+        id="cluster-search-input" 
+        class="yb-input-singleLine yb-autoText yb-pText yb-panel rounded" 
+        style="width: 50%; position: absolute; left: 50%; top: 10px; transform: translateX(-50%);" 
+        placeholder="Search Clusters"
+    >
 </div>
 
 <div class="sticker-list-container yb-vScroll" id="sticker-list-container">
     {% include "yb_bits/yb_cluster_list.html" %}
 </div>
+
+
+
