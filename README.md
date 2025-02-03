@@ -1,5 +1,5 @@
 # **Yourbit**  
-_A Decentralized, Privacy-Focused Social Media Platform_  
+_An open source user-customizable social media platform_  
 
 [![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL%203.0-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/yourbit-org/yourbit-ci.yml?branch=main)](https://github.com/yourbit-org/yourbit/actions)
