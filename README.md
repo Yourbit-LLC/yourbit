@@ -28,7 +28,7 @@ that balances privacy and modularity to create a community built platform that p
 
 ### **1. Clone the Repository**  
 ```bash
-git clone https://github.com/yourbit-org/yourbit.git
+git clone https://github.com/Yourbit-LLC/yourbit.git
 cd yourbit
 ```
 
@@ -74,7 +74,7 @@ python manage.py runserver
 ---
 
 ## 📜 **License**  
-This project is licensed under the **AGPL-3.0**. See [LICENSE](LICENSE) for details.  
+This project is licensed under the **AGPL-3.0**. See [LICENSE](https://github.com/Yourbit-LLC/yourbit/blob/main/LICENSE.txt) for details.  
 
 ---
 

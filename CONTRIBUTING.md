@@ -10,6 +10,7 @@ Thank you for considering contributing to Yourbit! We appreciate your help in im
 Before contributing, ensure you have the following installed:
 
 - Python 3.10.5+
+- All packages contained in [requirements.txt](https://github.com/Yourbit-LLC/yourbit/blob/main/requirements.txt)
 
 The database is built for PostgreSQL, instructions for setting up your own PostgreSQL server can be found here:
 [Installing PostgreSQL](https://www.postgresql.org/docs/current/tutorial-install.html) 
