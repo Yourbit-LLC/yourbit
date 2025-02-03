@@ -14,7 +14,7 @@ that balances privacy and modularity to create a community built platform that p
 🔹 **Privacy-first** – No invasive tracking
 🔹 **Decentralized architecture** – No single point of control  
 🔹 **Built-in media support** – Photo, video, and livestreaming  
-🔹 **Customizable feed** – Control what you see  
+🔹 **Customizable feed** – Control what you see, primarily see posts from those most important to you-- your friends and family.  
 🔹 **Open API** – Extend Yourbit with custom integrations  
 
 ---
