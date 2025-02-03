@@ -35,7 +35,7 @@ cd yourbit
 ### **2. Install Dependencies**  
 ```bash
 pip install -r requirements.txt  # Backend (Django)
-npm install                      # Frontend (React/Vue)
+
 ```
 
 ### **3. Set Up Environment**  
@@ -52,10 +52,6 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-For the frontend, start the development server:
-```bash
-npm run dev
-```
 
 ---
 
