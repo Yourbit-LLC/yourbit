@@ -16,6 +16,7 @@ that balances privacy and modularity to create a community built platform that p
 🔹 **Built-in media support** – Photo, video, and livestreaming; requires a Video Encoding and Storage API for long-form videos and livestreaming.  
 🔹 **Customizable feed** – Control what you see; primarily see posts from those most important to you—your friends and family.  
 🔹 **Open API** – Extend Yourbit with custom integrations.  
+
 ---
 
 ## 🌐 **Live Demo**  
