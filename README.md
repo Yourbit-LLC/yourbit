@@ -20,7 +20,7 @@ It offers **real-time media sharing, interactive feeds, and customizable profile
 ---
 
 ## 🌐 **Live Demo**  
-🔗 [yourbit.social](https://yourbit.social) _(Coming Soon!)_
+🔗 [yourbit.me](https://yourbit.me) _
 
 ---
 
