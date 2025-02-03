@@ -2,7 +2,6 @@
 _An open source user-customizable social media platform_  
 
 [![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL%203.0-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
-[![Build Status](https://img.shields.io/github/actions/workflows/status/Yourbit-LLC/django.yml?branch=main)](https://github.com/Yourbit-LLC/yourbit/actions)
 [![Issues](https://img.shields.io/github/issues/Yourbit-LLC/yourbit)](https://github.com/Yourbit-LLC/yourbit/issues)
 
 ---
