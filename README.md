@@ -70,7 +70,7 @@ npm run dev
 
 ## 🔧 **Tech Stack**  
 - **Backend**: Python, Django, Django REST Framework  
-- **Frontend**: JavaScript, React/Vue  
+- **Frontend**: JavaScript
 - **Database**: PostgreSQL  
 - **Storage**: Linode Object Storage, Cloudflare CDN  
 - **Authentication**: JWT, CSRF protection  
