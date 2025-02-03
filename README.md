@@ -24,7 +24,7 @@ that balances privacy and modularity to create a community built platform that p
 
 ---
 
-## 📥 **Installation**  
+## 📥 **Installation**
 
 ### **1. Clone the Repository**  
 ```bash
