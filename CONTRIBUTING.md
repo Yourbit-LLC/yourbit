@@ -1,6 +1,6 @@
-# Contributing to [Project Name]
+# Contributing to Yourbit
 
-Thank you for considering contributing to [Project Name]! We appreciate your help in improving the project. Please follow these guidelines to ensure a smooth contribution process.
+Thank you for considering contributing to Yourbit! We appreciate your help in improving the project. Please follow these guidelines to ensure a smooth contribution process.
 
 ---
 
