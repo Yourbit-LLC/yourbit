@@ -10,6 +10,7 @@ Thank you for considering contributing to Yourbit! We appreciate your help in im
 Before contributing, ensure you have the following installed:
 
 - Python 3.10.5+
+- Befor installing dependencies, setup and activate a Python virtual environment ([How to setup a python virtual environment](https://www.freecodecamp.org/news/how-to-setup-virtual-environments-in-python/))
 - All packages contained in [requirements.txt](https://github.com/Yourbit-LLC/yourbit/blob/main/requirements.txt)
 
 The database is built for PostgreSQL, instructions for setting up your own PostgreSQL server can be found here:
