@@ -2,8 +2,8 @@
 _An open source user-customizable social media platform_  
 
 [![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL%203.0-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/yourbit-org/yourbit-ci.yml?branch=main)](https://github.com/yourbit-org/yourbit/actions)
-[![Issues](https://img.shields.io/github/issues/yourbit-org/yourbit)](https://github.com/yourbit-org/yourbit/issues)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/Yourbit-LLC/django.yml?branch=main)](https://github.com/Yourbit-LLC/yourbit/actions)
+[![Issues](https://img.shields.io/github/issues/Yourbit-LLC/yourbit)](https://github.com/Yourbit-LLC/yourbit/issues)
 
 ---
 
@@ -20,7 +20,7 @@ It offers **real-time media sharing, interactive feeds, and customizable profile
 ---
 
 ## 🌐 **Live Demo**  
-🔗 [yourbit.me](https://yourbit.me) _
+🔗 [yourbit.me](https://yourbit.me) 
 
 ---
 
