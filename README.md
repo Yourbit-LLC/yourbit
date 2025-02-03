@@ -44,6 +44,7 @@ Create a `.env` file in the root directory and configure your settings:
 DJANGO_SECRET_KEY=your-secret-key
 DEBUG=True
 ALLOWED_HOSTS=localhost,127.0.0.1
+
 ```
 
 ### **4. Apply Migrations & Start the Server**  

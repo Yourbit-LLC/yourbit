@@ -13,9 +13,6 @@ db.sqlite3
 #migrations
 migrations/
 
-#Environment Settings
-settings.py
-
 #cache
 __pycache__/
 
