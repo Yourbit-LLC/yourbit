@@ -26,12 +26,7 @@ Before you can host Yourbit locally for development, there are a few variables t
 - **Object Storage Credentials** _(Linode Object Storage, Amazon S3, etc.)_
 - **Email Service Credentials** _(Use with with smtp services like google workspace)_
 
-**Create an environment file**
-
-In root (top) directory of your project. Create a file with the name `.env`. 
-
-To set up your environment. Fill in the [example file](https://github.com/Yourbit-LLC/yourbit/blob/main/.env.example) named, `.env.example`, given in the root of this repository, or [view a table](https://github.com/Yourbit-LLC/yourbit/blob/main/ENVIRONMENT.md) of all of the environment variables to configure your settings.py file. **Do not configure the settings.py file directly.**
-
+**Clone this Repository**
 
 ```sh
 # Example for Django
@@ -39,6 +34,13 @@ git clone https://github.com/Yourbit-LLC/yourbit.git
 cd yourbit
 pip install -r requirements.txt
 ```
+
+
+**Create an environment file**
+
+In root (top) directory of your project. Create a file with the name `.env`. 
+
+To set up your environment. Fill in the [example file](https://github.com/Yourbit-LLC/yourbit/blob/main/.env.example) named, `.env.example`, given in the root of this repository, or [view a table](https://github.com/Yourbit-LLC/yourbit/blob/main/ENVIRONMENT.md) of all of the environment variables to configure your settings.py file. **Do not configure the settings.py file directly.**
 
 **Add database credentials to `.env` file**
 ```env
