@@ -27,6 +27,7 @@ Before you can host Yourbit locally for development, there are a few variables t
 - **Email Service Credentials** _(Use with with smtp services like google workspace)_
 
 **Create an environment file**
+
 In root (top) directory of your project. Create a file with the name `.env`. 
 
 To set up your environment. Fill in the example `.env.example` file given in the root of this repository, or view a list of all of the environment variables to configure your settings.py file. **Do not configure the settings.py file directly.**
