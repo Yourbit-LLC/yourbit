@@ -91,11 +91,11 @@ BUCKET_SECRET_KEY=your-bucket-secret-key
 
 **Add video service credentials to `.env` file**
 ```env
-# Mux Video Configuration
+# Video CDN Configuration
 VIDEO_CDN_TOKEN=your-mux-video-token
 VIDEO_CDN_SECRET=your-mux-video-secret
 
-# Mux Webhook and Signing Keys
+# Video Webhook and Signing Keys
 VIDEO_WEBHOOK_SECRET=your-mux-webhook-secret
 VIDEO_SIGNING_KEY=your-mux-signing-key
 VIDEO_PRIVATE_KEY=your-mux-private-key
