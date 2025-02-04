@@ -63,7 +63,7 @@ BUCKET_SECRET_KEY=your-bucket-secret-key
 
 Repeat the same process for any of your preferred or self hosted image, video, storage, and email credentials. We currently are planning on making our own video and image CDN, but are currently using third party. Refer to [this table](https://github.com/Yourbit-LLC/yourbit/blob/main/ENVIRONMENT.md) for a complete list of variable names.
 
-**Video service providers must be compatible with the HLS protocol.**
+_Video service providers must be compatible with the HLS protocol._
 
 **Migrate the database and runserver**
 ```sh
