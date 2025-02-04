@@ -26,7 +26,7 @@ that balances privacy and modularity to create a community built platform that p
 
 ## 📥 **Installation**
 
-> **Note:** A python virtual environment is required to host locally. Make sure that you have created and activated your virtual environment before installing any dependencies.
+> **Note:** A python virtual environment is required to host locally. Make sure that you have created and activated your virtual environment before installing any dependencies. Yourbit was developed using Python 3.10.5.
 
 ### **1. Clone the Repository**  
 ```bash
