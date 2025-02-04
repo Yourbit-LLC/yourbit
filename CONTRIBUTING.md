@@ -19,12 +19,12 @@ The database is built for PostgreSQL, instructions for setting up your own Postg
 
 ### Setting Up the Development Environment
 Before you can host Yourbit locally for development, there are a few variables that Yourbit requires to be configured for basic operation. These variables include:
-- **Django Secret Key** (Used for encryption and CSRF generation)
-- **Set Debug to True** (Debug should be true if using locally)
-- **Video Storage/Encoding API Credentials** (Such as [Mux](https://www.mux.com), the service used by Yourbit Official)
-- **Image CDN Credentials** (Such as [Cloudflare Images](https://developers.cloudflare.com/images/), used by Yourbit Official)
-- **Object Storage Credentials** (Linode Object Storage, Amazon S3, etc.)
-- **Email Service Credentials** (Use with with smtp services like google workspace)
+- **Django Secret Key** _(Used for encryption and CSRF generation)_
+- **Set Debug to True** _(Debug should be true if using locally)_
+- **Video Storage/Encoding API Credentials** _(Such as [Mux](https://www.mux.com), the service used by Yourbit Official)_
+- **Image CDN Credentials** _(Such as [Cloudflare Images](https://developers.cloudflare.com/images/), used by Yourbit Official)_
+- **Object Storage Credentials** _(Linode Object Storage, Amazon S3, etc.)_
+- **Email Service Credentials** _(Use with with smtp services like google workspace)_
 
 **Create an environment file**
 In root (top) directory of your project. Create a file with the name `.env`. 
