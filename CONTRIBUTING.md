@@ -38,7 +38,7 @@ pip install -r requirements.txt
 
 **Create an environment file**
 
-In root (top) directory of your project. Create a file with the name `.env`. 
+In the root (top) directory of your project. Create a file with the name `.env`. 
 
 To set up your environment. Fill in the [example file](https://github.com/Yourbit-LLC/yourbit/blob/main/.env.example) named, `.env.example`, given in the root of this repository, or [view a table](https://github.com/Yourbit-LLC/yourbit/blob/main/ENVIRONMENT.md) of all of the environment variables to configure your settings.py file. **Do not configure the settings.py file directly.**
 
