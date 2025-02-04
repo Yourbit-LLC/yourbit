@@ -3,9 +3,10 @@
 This document lists all the environment variables required for the project.
 
 Sections:
--How to Set Up
--Variables
--Guides
+
+- How to Set Up
+- Variables
+- Guides
 
 
 ## 🛠 **How to Set Up**
