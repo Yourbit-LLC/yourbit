@@ -26,8 +26,10 @@ Before you can host Yourbit locally for development, there are a few variables t
 - **Object Storage Credentials** _(Linode Object Storage, Amazon S3, etc.)_
 - **Email Service Credentials** _(Use with with smtp services like google workspace)_
 
+
 **Install and Setup**
-Follow the installation instructions given in `INSTALLATION.md` to clone the repository and configure the development environment.
+
+Follow the [installation instructions[(https://github.com/Yourbit-LLC/yourbit/blob/main/INSTALLATION.md) given in `INSTALLATION.md` to clone the repository and configure the development environment.
 
 
 **Migrate the database and runserver**
