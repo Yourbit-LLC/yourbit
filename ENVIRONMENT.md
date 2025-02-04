@@ -56,3 +56,99 @@ This document lists all the environment variables required for the project.
 3. Load environment variables using `python-dotenv` (Django) or system settings.
 
 **Note:** Ensure that the `.env` file is added to your `.gitignore` to avoid accidentally sharing sensitive information.
+
+---
+
+# Guides:
+
+
+**Create an environment file**
+
+In the root (top) directory of your project. Create a file with the name `.env`. 
+
+To set up your environment. Fill in the [example file](https://github.com/Yourbit-LLC/yourbit/blob/main/.env.example) named, `.env.example`, given in the root of this repository, or [view a table](https://github.com/Yourbit-LLC/yourbit/blob/main/ENVIRONMENT.md) of all of the environment variables to configure your settings.py file. 
+
+> **Note:** Do not configure the settings.py file directly.
+
+
+**Add database credentials to `.env` file**
+```env
+# Database Configuration
+DB_NAME=your-database-name
+DB_USER=your-db-user
+DB_PASSWORD=your-db-password
+DB_HOST=localhost
+DB_PORT=5432
+```
+
+
+**Add object storage bucket to `.env` file**
+```env
+# Bucket Storage Configuration
+BUCKET_NAME=your-bucket-name
+BUCKET_REGION=us-east
+BUCKET_ACCESS_KEY=your-bucket-access-key
+BUCKET_SECRET_KEY=your-bucket-secret-key
+```
+
+**Add video service credentials to `.env` file**
+```env
+# Mux Video Configuration
+VIDEO_CDN_TOKEN=your-mux-video-token
+VIDEO_CDN_SECRET=your-mux-video-secret
+
+# Mux Webhook and Signing Keys
+VIDEO_WEBHOOK_SECRET=your-mux-webhook-secret
+VIDEO_SIGNING_KEY=your-mux-signing-key
+VIDEO_PRIVATE_KEY=your-mux-private-key
+```
+
+_Video service providers must be compatible with the HLS protocol._
+
+**Add image service credentials to `.env` file**
+```env
+# Image CDN Images Configuration
+IMAGES_API_KEY=your-cloudflare-images-api-key
+
+# Image CDN Account Configuration
+IMAGES_ACCOUNT_HASH=your-cloudflare-account-hash
+IMAGE_BASE_URL=https://images.example.com
+```
+
+**Add email service credentials to `.env` file**
+```env
+# Email Server Configuration
+EMAIL_HOST=smtp.example.com
+EMAIL_HOST_USER=your-email@example.com
+EMAIL_HOST_PASSWORD=your-email-password
+EMAIL_PORT=587
+```
+
+**Add VAPID Credentials**
+```env
+# VAPID Keys for Push Notifications
+VAPID_PUBLIC_KEY=your-vapid-public-key
+VAPID_PRIVATE_KEY=your-vapid-private-key
+VAPID_ADMIN_EMAIL=admin@example.com
+```
+
+**Add bot prevention challenges**
+```env
+# Bot Prevention Configuration
+CHALLENGE_SITE_KEY=your-turnstile-site-key
+CHALLENGE_SECRET_KEY=your-turnstile-secret-key
+```
+
+**Generate and add a django-secret key**
+```env
+# Django Secret Key (Ensure this is secure!)
+DJANGO_SECRET_KEY=your-django-secret-key
+```
+
+**Configure allowed hosts and trusted origins**
+```env
+# Allowed Hosts and CSRF Configuration
+ALLOWED_HOSTS=localhost,127.0.0.1,example.com
+CSRF_TRUSTED_ORIGINS=https://your-domain.com
+```
+
