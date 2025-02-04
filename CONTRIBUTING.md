@@ -23,5 +23,29 @@ The database is built for PostgreSQL, instructions for setting up your own Postg
 git clone https://github.com/Yourbit-LLC/yourbit.git
 cd yourbit
 pip install -r requirements.txt
+```
+
+**Add database credentials to .env file**
+```env
+# Database Configuration
+DB_NAME=your-database-name
+DB_USER=your-db-user
+DB_PASSWORD=your-db-password
+DB_HOST=localhost
+DB_PORT=5432
+```
+
+**Add Object Storage Bucket to .env file**
+```env
+# Bucket Storage Configuration
+BUCKET_NAME=your-bucket-name
+BUCKET_REGION=us-east
+BUCKET_ACCESS_KEY=your-bucket-access-key
+BUCKET_SECRET_KEY=your-bucket-secret-key
+```
+
+**Migrate the database and runserver**
+```sh
 python manage.py migrate
 python manage.py runserver
+```
