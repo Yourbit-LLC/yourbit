@@ -26,6 +26,8 @@ that balances privacy and modularity to create a community built platform that p
 
 ## 📥 **Installation**
 
+> **Note:** A python virtual environment is required to host locally. Make sure that you have created and activated your virtual environment before installing any dependencies.
+
 ### **1. Clone the Repository**  
 ```bash
 git clone https://github.com/Yourbit-LLC/yourbit.git
