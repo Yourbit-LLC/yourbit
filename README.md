@@ -58,7 +58,7 @@ You should now be able to access the site at 127.0.0.1:8000 unless you specify a
 python manage.py createsuperuser
 ```
 
-Follow the prompts to set up your admin account. 
+Follow the prompts to set up your admin account. Once complete, you may login with your new account. With debug mode on, you can access the admin panel at `127.0.0.1:8000/admin`.
 
 > **Note:** When creating an account through the terminal, the date of birth must be formatted as YYYY-MM-DD. 
 
