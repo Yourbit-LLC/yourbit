@@ -41,13 +41,9 @@ pip install -r requirements.txt  # Backend (Django)
 ```
 
 ### **3. Set Up Environment**  
-Create a `.env` file in the root directory and configure your settings:
-```
-DJANGO_SECRET_KEY=your-secret-key
-DEBUG=True
-ALLOWED_HOSTS=localhost,127.0.0.1
 
-```
+Follow the [instructions](https://github.com/Yourbit-LLC/yourbit/blob/main/ENVIRONMENT.md) provided in `ENVIRONMENT.md` for setting up your environment variables as well as referencing a full list of variables.
+
 
 ### **4. Apply Migrations & Start the Server**  
 ```bash
