@@ -55,8 +55,6 @@ This document lists all the environment variables required for the project.
 
 In the root (top) directory of your project. Create a file with the name `.env`. 
 
-To set up your environment. Fill in the [example file](https://github.com/Yourbit-LLC/yourbit/blob/main/.env.example) named, `.env.example`, given in the root of this repository, or [view a table](https://github.com/Yourbit-LLC/yourbit/blob/main/ENVIRONMENT.md) of all of the environment variables to configure your settings.py file. 
-
 1. Copy `.env.example` to `.env`
 2. Fill in the values as needed (use the keys from this document).
 3. Load environment variables using `python-dotenv` (Django) or system settings.
