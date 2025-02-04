@@ -51,7 +51,9 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-You should now be able to access the site at `127.0.0.1:8000` unless you specify a different port than `8000`. Bot Challenges (Turnstile/reCAPTCHA) will not run without a secure tunnel and are disabled in local enviroments by default, Yourbits authentication system will bypass them automatically.
+You should now be able to access the site at `127.0.0.1:8000` unless you specify a different port than `8000`. 
+
+> **Note:** Bot Challenges (Turnstile/reCAPTCHA) will not run without a secure tunnel and are disabled in local enviroments by default, Yourbits authentication system will bypass them automatically.
 
 ### **5. Create Super User**
 ```bash
