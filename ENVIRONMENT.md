@@ -51,24 +51,24 @@ This document lists all the environment variables required for the project.
 ---
 
 ## 🛠 **How to Set Up**
-1. Copy `.env.example` to `.env`
-2. Fill in the values as needed (use the keys from this document).
-3. Load environment variables using `python-dotenv` (Django) or system settings.
-
-**Note:** Ensure that the `.env` file is added to your `.gitignore` to avoid accidentally sharing sensitive information.
-
----
-
-### Guides:
-
-
 **Create an environment file**
 
 In the root (top) directory of your project. Create a file with the name `.env`. 
 
 To set up your environment. Fill in the [example file](https://github.com/Yourbit-LLC/yourbit/blob/main/.env.example) named, `.env.example`, given in the root of this repository, or [view a table](https://github.com/Yourbit-LLC/yourbit/blob/main/ENVIRONMENT.md) of all of the environment variables to configure your settings.py file. 
 
-> **Note:** Do not configure the settings.py file directly.
+1. Copy `.env.example` to `.env`
+2. Fill in the values as needed (use the keys from this document).
+3. Load environment variables using `python-dotenv` (Django) or system settings.
+
+**Note:** Ensure that the `.env` file is added to your `.gitignore` to avoid accidentally sharing sensitive information.
+
+
+> **Note:** Never configure the settings.py file directly in production.
+
+---
+
+### Guides:
 
 
 **Add database credentials to `.env` file**
