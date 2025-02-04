@@ -27,9 +27,13 @@ Before you can host Yourbit locally for development, there are a few variables t
 - **Email Service Credentials** _(Use with with smtp services like google workspace)_
 
 
-**Install and Setup**
+**Install application and dependencies**
 
 Follow the [installation instructions](https://github.com/Yourbit-LLC/yourbit/blob/main/INSTALLATION.md) given in `INSTALLATION.md` to clone the repository and configure the development environment.
+
+**Configure the environment**
+
+Follow the instructions in the [environment file](https://github.com/Yourbit-LLC/yourbit/blob/main/ENVIRONMENT.md) in `ENVIRONMENT.md` to configure the settings and credentials for your environment.
 
 
 **Migrate the database and runserver**
