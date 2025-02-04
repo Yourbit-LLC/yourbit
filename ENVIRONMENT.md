@@ -2,6 +2,23 @@
 
 This document lists all the environment variables required for the project.
 
+
+## 🛠 **How to Set Up**
+**Create an environment file**
+
+In the root (top) directory of your project. Create a file with the name `.env`. 
+
+1. Copy `.env.example` to `.env`
+2. Fill in the values as needed (use the keys from this document).
+3. Load environment variables using `python-dotenv` (Django) or system settings.
+
+**Note:** Ensure that the `.env` file is added to your `.gitignore` to avoid accidentally sharing sensitive information.
+
+
+> **Note:** Never configure the settings.py file directly in production.
+
+---
+
 ## 🔑 **Required Variables**
 
 | Variable Name                  | Description | Example Value |
@@ -50,21 +67,6 @@ This document lists all the environment variables required for the project.
 
 ---
 
-## 🛠 **How to Set Up**
-**Create an environment file**
-
-In the root (top) directory of your project. Create a file with the name `.env`. 
-
-1. Copy `.env.example` to `.env`
-2. Fill in the values as needed (use the keys from this document).
-3. Load environment variables using `python-dotenv` (Django) or system settings.
-
-**Note:** Ensure that the `.env` file is added to your `.gitignore` to avoid accidentally sharing sensitive information.
-
-
-> **Note:** Never configure the settings.py file directly in production.
-
----
 
 ### Guides:
 
