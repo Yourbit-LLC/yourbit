@@ -18,6 +18,20 @@ The database is built for PostgreSQL, instructions for setting up your own Postg
 
 
 ### Setting Up the Development Environment
+Before you can host Yourbit locally for development, there are a few variables that Yourbit requires to be configured for basic operation. These variables include:
+- **Django Secret Key** (Used for encryption and CSRF generation)
+- **Set Debug to True** (Debug should be true if using locally)
+- **Video Storage/Encoding API Credentials** (Such as [Mux](https://www.mux.com), the service used by Yourbit Official)
+- **Image CDN Credentials** (Such as [Cloudflare Images](https://developers.cloudflare.com/images/), used by Yourbit Official)
+- **Object Storage Credentials** (Linode Object Storage, Amazon S3, etc.)
+- **Email Service Credentials** (Use with with smtp services like google workspace)
+
+**Create an environment file**
+In root (top) directory of your project. Create a file with the name `.env`. 
+
+To set up your environment. Fill in the example `.env.example` file given in the root of this repository, or view a list of all of the environment variables to configure your settings.py file. **Do not configure the settings.py file directly.**
+
+
 ```sh
 # Example for Django
 git clone https://github.com/Yourbit-LLC/yourbit.git
@@ -25,7 +39,7 @@ cd yourbit
 pip install -r requirements.txt
 ```
 
-**Add database credentials to .env file**
+**Add database credentials to `.env` file**
 ```env
 # Database Configuration
 DB_NAME=your-database-name
@@ -35,7 +49,7 @@ DB_HOST=localhost
 DB_PORT=5432
 ```
 
-**Add Object Storage Bucket to .env file**
+**Add Object Storage Bucket to `.env` file**
 ```env
 # Bucket Storage Configuration
 BUCKET_NAME=your-bucket-name
