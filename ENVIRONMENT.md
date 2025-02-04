@@ -68,7 +68,7 @@ In the root (top) directory of your project. Create a file with the name `.env`.
 ---
 
 
-### Guides:
+## 📖 **Guides:**
 
 
 **Add database credentials to `.env` file**
