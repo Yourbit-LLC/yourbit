@@ -29,7 +29,7 @@ Before you can host Yourbit locally for development, there are a few variables t
 
 **Install and Setup**
 
-Follow the [installation instructions]https://github.com/Yourbit-LLC/yourbit/blob/main/INSTALLATION.md) given in `INSTALLATION.md` to clone the repository and configure the development environment.
+Follow the [installation instructions](https://github.com/Yourbit-LLC/yourbit/blob/main/INSTALLATION.md) given in `INSTALLATION.md` to clone the repository and configure the development environment.
 
 
 **Migrate the database and runserver**
