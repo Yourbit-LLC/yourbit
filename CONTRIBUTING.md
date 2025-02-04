@@ -30,7 +30,7 @@ Before you can host Yourbit locally for development, there are a few variables t
 
 In root (top) directory of your project. Create a file with the name `.env`. 
 
-To set up your environment. Fill in the example `.env.example` file given in the root of this repository, or view a list of all of the environment variables to configure your settings.py file. **Do not configure the settings.py file directly.**
+To set up your environment. Fill in the example `.env.example` file given in the root of this repository, or [view a table](https://github.com/Yourbit-LLC/yourbit/blob/main/ENVIRONMENT.md) of all of the environment variables to configure your settings.py file. **Do not configure the settings.py file directly.**
 
 
 ```sh
