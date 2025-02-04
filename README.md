@@ -19,7 +19,7 @@ that balances privacy and modularity to create a community built platform that p
 
 ---
 
-## 🌐 **Live Demo**  
+## 🌐 **Official Build**  
 🔗 [yourbit.me](https://yourbit.me) 
 
 ---
