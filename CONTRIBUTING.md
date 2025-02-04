@@ -26,44 +26,6 @@ Before you can host Yourbit locally for development, there are a few variables t
 - **Object Storage Credentials** _(Linode Object Storage, Amazon S3, etc.)_
 - **Email Service Credentials** _(Use with with smtp services like google workspace)_
 
-**Clone this Repository**
-
-```sh
-# Example for Django
-git clone https://github.com/Yourbit-LLC/yourbit.git
-cd yourbit
-pip install -r requirements.txt
-```
-
-
-**Create an environment file**
-
-In the root (top) directory of your project. Create a file with the name `.env`. 
-
-To set up your environment. Fill in the [example file](https://github.com/Yourbit-LLC/yourbit/blob/main/.env.example) named, `.env.example`, given in the root of this repository, or [view a table](https://github.com/Yourbit-LLC/yourbit/blob/main/ENVIRONMENT.md) of all of the environment variables to configure your settings.py file. **Do not configure the settings.py file directly.**
-
-**Add database credentials to `.env` file**
-```env
-# Database Configuration
-DB_NAME=your-database-name
-DB_USER=your-db-user
-DB_PASSWORD=your-db-password
-DB_HOST=localhost
-DB_PORT=5432
-```
-
-**Add Object Storage Bucket to `.env` file**
-```env
-# Bucket Storage Configuration
-BUCKET_NAME=your-bucket-name
-BUCKET_REGION=us-east
-BUCKET_ACCESS_KEY=your-bucket-access-key
-BUCKET_SECRET_KEY=your-bucket-secret-key
-```
-
-Repeat the same process for any of your preferred or self hosted image, video, storage, and email credentials. We currently are planning on making our own video and image CDN, but are currently using third party. Refer to [this table](https://github.com/Yourbit-LLC/yourbit/blob/main/ENVIRONMENT.md) for a complete list of variable names.
-
-_Video service providers must be compatible with the HLS protocol._
 
 **Migrate the database and runserver**
 ```sh
