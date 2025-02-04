@@ -53,6 +53,15 @@ python manage.py runserver
 
 You should now be able to access the site at 127.0.0.1:8000 unless you specify a different port. Bot Challenges (Turnstile/reCAPTCHA) will not run without a secure tunnel and are disabled in local enviroments by default and Yourbits authentication system will bypass them automatically.
 
+### **5. Create Super User**
+```bash
+python manage.py createsuperuser
+```
+
+Follow the prompts to set up your admin account. 
+
+> **Note:** When creating an account through the terminal, the date of birth must be formatted as YYYY-MM-DD. 
+
 ---
 
 ## 🎯 **Features**  
