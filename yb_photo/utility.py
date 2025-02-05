@@ -1,5 +1,5 @@
 from django.shortcuts import render
-#Import bytesIO to create in-memory files
+# Import bytesIO to create in-memory files
 from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.utils import timezone
@@ -148,7 +148,6 @@ def process_image(request, source_image = None, cropped_image = None, is_private
     print("Processing Complete")
 
     return new_photo
-
 
 def get_image_url_from_cloudflare(image_id, variant="public"):
     print("Image URL " + variant)
