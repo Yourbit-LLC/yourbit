@@ -10,5 +10,5 @@ alternative API's for media handling, as well as configure API
 actions for community created features.
 
 > **Warning:** The action map is not a place for storing keys 
-use variables where keys are required in the url. Modify keys 
-using the environment variables.
+use variables in the URL schema when keys are required to be in the url. Modify keys 
+using the environment variables in `.env`.
