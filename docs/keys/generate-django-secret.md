@@ -1,1 +1,1 @@
-##Generate Django Secret
+## Generate Django Secret
