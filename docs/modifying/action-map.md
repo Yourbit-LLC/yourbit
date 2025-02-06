@@ -17,7 +17,6 @@ using the environment variables in `.env`.
 The following code snippet is an example taken from the `yb_extensions/action_map.py`
 
 ```python
-
     video_service = {
     
         # URL Schema for retrieving a video for playback
@@ -34,8 +33,6 @@ The following code snippet is an example taken from the `yb_extensions/action_ma
 
         # URL to modify an existing upload
         "modify": "" 
-
     }
-
-
 ```
+
