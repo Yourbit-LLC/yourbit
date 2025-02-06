@@ -1,4 +1,6 @@
 # Installation Instructions
+Installation instructions for the Yourbit development environment
+
 
 ## 1. Install Python 3.10.5
 
@@ -6,6 +8,7 @@ Follow this [link to install python](https://www.python.org/downloads/release/py
 
 To install on windows, download and run the windows installer provided on the page.
 
+> **Note:** If you are attempting to install python on Linux. You must download the source code from the link above and follow [these instructions here](https://github.com/Yourbit-LLC/yourbit/blob/main/docs/installation/install-python-source.md) to compile and install.
 
 ## 2. Create the virtual environment
 **Creating and Using a Python Virtual Environment**
