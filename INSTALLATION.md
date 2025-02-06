@@ -90,12 +90,8 @@ Remove-Item -Recurse -Force venv
 ---
 </details>
 
-## **3. Set Up Environment**  
 
-Follow the [instructions](https://github.com/Yourbit-LLC/yourbit/blob/main/ENVIRONMENT.md) provided in `ENVIRONMENT.md` for setting up your environment variables as well as referencing a full list of variables.
-
-
-## **4. Clone this Repository**
+## **3. Clone this Repository**
 
 ```sh
 # Example for Django
@@ -103,10 +99,17 @@ git clone https://github.com/Yourbit-LLC/yourbit.git
 cd yourbit
 ```
 
-## **5. Install the dependencies**
+## **4. Install the dependencies**
 ```sh
 pip install -r requirements.txt
 ```
+
+## **5. Set Up Environment**  
+
+Follow the [instructions](https://github.com/Yourbit-LLC/yourbit/blob/main/ENVIRONMENT.md) provided in `ENVIRONMENT.md` for setting up your environment variables as well as referencing a full list of variables.
+
+
+## **6. Migrate the database and run the server**
 
 ```bash
 python manage.py migrate
@@ -117,7 +120,7 @@ You should now be able to access the site at `127.0.0.1:8000` unless you specify
 
 > **Note:** Bot Challenges (Turnstile/reCAPTCHA) will not run without a secure tunnel and are disabled in local enviroments by default, Yourbits authentication system will bypass them automatically.
 
-## **6. Create Super User**
+## **7. Create Super User**
 ```bash
 python manage.py createsuperuser
 ```
