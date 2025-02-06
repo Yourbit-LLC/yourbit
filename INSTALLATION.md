@@ -2,7 +2,8 @@
 These instructions are provided for the purpose of setting up a host server or development environment for Yourbit
 
 
-## 1. Install Python 3.10.5
+## **1. Install Python 3.10.5**
+
 
 Follow this [link to download Python-3.10.5](https://www.python.org/downloads/release/python-3105/)
 
@@ -10,11 +11,15 @@ To install on windows, download and run the windows installer provided on the pa
 
 > **Note:** If you are attempting to install python on Linux. You must download the source code from the link above and follow [these instructions here](https://github.com/Yourbit-LLC/yourbit/blob/main/docs/installation/install-python-source.md) to compile and install.
 
-## 2. Create the virtual environment
+
+## **2. Create the virtual environment**
 
 A virtual environment allows you to create isolated Python environments for different projects, preventing dependency conflicts.
 
-**Creating a Virtual Environment**
+> **Note:** A python virtual environment is required to host locally. Make sure that you have created and activated your virtual environment before installing any dependencies. Yourbit was developed using Python 3.10.5.
+
+
+### **Creating a Virtual Environment**
 
 Run the following command in your project directory:
 
@@ -27,7 +32,7 @@ This creates a folder named `venv` containing the isolated environment.
 Using virtual environments keeps your system’s Python environment clean and avoids package conflicts between projects.
 
 
-**Additional Information:**
+### **Additional Information:**
 
 <details>
   
@@ -88,9 +93,12 @@ Remove-Item -Recurse -Force venv
 ---
 </details>
 
+## **3. Set Up Environment**  
+
+Follow the [instructions](https://github.com/Yourbit-LLC/yourbit/blob/main/ENVIRONMENT.md) provided in `ENVIRONMENT.md` for setting up your environment variables as well as referencing a full list of variables.
 
 
-## 3. Clone this Repository
+## **4. Clone this Repository**
 
 ```sh
 # Example for Django
@@ -98,11 +106,28 @@ git clone https://github.com/Yourbit-LLC/yourbit.git
 cd yourbit
 ```
 
-## 4. Install the dependencies
+## **5. Install the dependencies**
 ```sh
 pip install -r requirements.txt
 ```
 
+```bash
+python manage.py migrate
+python manage.py runserver
+```
+
+You should now be able to access the site at `127.0.0.1:8000` unless you specify a different port than `8000`. 
+
+> **Note:** Bot Challenges (Turnstile/reCAPTCHA) will not run without a secure tunnel and are disabled in local enviroments by default, Yourbits authentication system will bypass them automatically.
+
+## **6. Create Super User**
+```bash
+python manage.py createsuperuser
+```
+
+Follow the prompts to set up your admin account. Once complete, you may login with your new account. With debug mode on, you can access the admin panel at `127.0.0.1:8000/admin`.
+
+> **Note:** When creating an account through the terminal, the date of birth must be formatted as YYYY-MM-DD. 
 
 
 
