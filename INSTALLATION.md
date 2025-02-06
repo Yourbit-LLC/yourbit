@@ -11,7 +11,6 @@ To install on windows, download and run the windows installer provided on the pa
 > **Note:** If you are attempting to install python on Linux. You must download the source code from the link above and follow [these instructions here](https://github.com/Yourbit-LLC/yourbit/blob/main/docs/installation/install-python-source.md) to compile and install.
 
 ## 2. Create the virtual environment
-**Creating and Using a Python Virtual Environment**
 
 A virtual environment allows you to create isolated Python environments for different projects, preventing dependency conflicts.
 
