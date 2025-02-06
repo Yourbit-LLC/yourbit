@@ -30,6 +30,8 @@ that balances privacy and modularity to create a community built platform that p
 
 > **Note:** A python virtual environment is required to host locally. Make sure that you have created and activated your virtual environment before installing any dependencies. Instructions for setup are provided in the above documentation. Yourbit was developed using Python 3.10.5.
 
+> **CDN NOTICE:** Currently, Yourbit uses third party services for delivering media, such as Mux or CLoudflare Images. Until we can develop our own CDN for video and images, we are creating an Action Map that will allow developers to remap API endpoints to their specified service when redistributing Yourbit. This feature is still in progress, but you can find an example for that [here](https://github.com/Yourbit-LLC/yourbit/blob/main/docs/modifying/action-map.md).
+
 ---
 
 ## 🎯 **Features**  
