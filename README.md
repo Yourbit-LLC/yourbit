@@ -28,41 +28,7 @@ that balances privacy and modularity to create a community built platform that p
 
 > **Note:** A python virtual environment is required to host locally. Make sure that you have created and activated your virtual environment before installing any dependencies. Yourbit was developed using Python 3.10.5.
 
-### **1. Clone the Repository**  
-```bash
-git clone https://github.com/Yourbit-LLC/yourbit.git
-cd yourbit
-```
-
-### **2. Install Dependencies**  
-```bash
-pip install -r requirements.txt  # Backend (Django)
-
-```
-
-### **3. Set Up Environment**  
-
-Follow the [instructions](https://github.com/Yourbit-LLC/yourbit/blob/main/ENVIRONMENT.md) provided in `ENVIRONMENT.md` for setting up your environment variables as well as referencing a full list of variables.
-
-
-### **4. Apply Migrations & Start the Server**  
-```bash
-python manage.py migrate
-python manage.py runserver
-```
-
-You should now be able to access the site at `127.0.0.1:8000` unless you specify a different port than `8000`. 
-
-> **Note:** Bot Challenges (Turnstile/reCAPTCHA) will not run without a secure tunnel and are disabled in local enviroments by default, Yourbits authentication system will bypass them automatically.
-
-### **5. Create Super User**
-```bash
-python manage.py createsuperuser
-```
-
-Follow the prompts to set up your admin account. Once complete, you may login with your new account. With debug mode on, you can access the admin panel at `127.0.0.1:8000/admin`.
-
-> **Note:** When creating an account through the terminal, the date of birth must be formatted as YYYY-MM-DD. 
+[Instructions can be found here](https://github.com/Yourbit-LLC/yourbit/blob/main/INSTALLATION.md) to install for private hosting, local development, or contribution.
 
 ---
 
