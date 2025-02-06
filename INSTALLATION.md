@@ -16,9 +16,6 @@ To install on windows, download and run the windows installer provided on the pa
 
 A virtual environment allows you to create isolated Python environments for different projects, preventing dependency conflicts.
 
-> **Note:** A python virtual environment is required to host locally. Make sure that you have created and activated your virtual environment before installing any dependencies. Yourbit was developed using Python 3.10.5.
-
-
 ### **Creating a Virtual Environment**
 
 Run the following command in your project directory:
