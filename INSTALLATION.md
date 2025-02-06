@@ -1,10 +1,10 @@
 # Installation Instructions
-Installation instructions for the Yourbit development environment
+These instructions are provided for the purpose of setting up a host server or development environment for Yourbit
 
 
 ## 1. Install Python 3.10.5
 
-Follow this [link to install python](https://www.python.org/downloads/release/python-3105/)
+Follow this [link to download Python-3.10.5](https://www.python.org/downloads/release/python-3105/)
 
 To install on windows, download and run the windows installer provided on the page.
 
