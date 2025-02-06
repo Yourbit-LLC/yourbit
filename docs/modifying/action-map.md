@@ -14,26 +14,24 @@ use variables in the URL schema when keys are required to be in the url. Modify 
 using the environment variables in `.env`.
 
 # Example Use
-The following code snippet is an example taken from the `yb_extensions/action_map.py`
+The following code snippet is an example taken from the `yb_extensions/action_map.py`. A video service is required
+so this is prefilled with Yourbits default values.
+
+In the following example, `playback_id` refers to the playback ID of a video asset typically returned in a webhook
+from the video service on completion of an upload. 
 
 ```python
 
     video_service = {
     
         # URL Schema for retrieving a video for playback
-        "playback": "", 
-
-        # If necessary, a URL schema for retrieving video data
-        "retrieve": "",
+        "playback": "https://player.mux.com/{playback_id}", 
 
         # If available, a URL schema for retrieving previews, if not Yourbit will fall back to image service
-        "preview": "",
+        "preview": "https://image.mux.com/{playback_id}/thumbnail.png?width=214&height=121&time=1",
 
         # Video upload URL schema, this must be for a direct upload endpoint
         "upload": "",
-
-        # URL to modify an existing upload
-        "modify": "" 
 
     }
 

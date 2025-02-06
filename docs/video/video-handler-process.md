@@ -6,7 +6,8 @@ This file is intended to explain how Yourbit interacts with video API’s to ret
 - Yourbit will attach this upload URL to the bit being created, a webhook notification is expected from the video service. This requires a SIGNING_KEY and a PRIVATE_KEY. These can be added to environment variables
 
 # Delivering Videos
-
+- 
+- 
 
 # Handling Thumbnails
 
