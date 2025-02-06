@@ -21,7 +21,6 @@ In the following example, `playback_id` refers to the playback ID of a video ass
 from the video service on completion of an upload. 
 
 ```python
-
     video_service = {
     
         # URL Schema for retrieving a video for playback
@@ -33,7 +32,8 @@ from the video service on completion of an upload.
         # Video upload URL schema, this must be for a direct upload endpoint
         "upload": "",
 
+        # URL to modify an existing upload
+        "modify": "" 
     }
-
-
 ```
+
