@@ -41,3 +41,13 @@ Follow the instructions in the [environment file](https://github.com/Yourbit-LLC
 python manage.py migrate
 python manage.py runserver
 ```
+
+**Make Your Changes to Code**
+
+Documentation is currently in progress. Once the basics are available come back here to check it out. We are working on several features that allow you to layer your changes on the existing Yourbit build instead of having to modify source files directly.
+
+**Create a Pull Request**
+
+When you are ready to contribute your changes, create a pull request at the top of this repository and provide a detailed explanation of changes and how they impact the user experience on the official branch.
+
+Need some ideas? Check out our [Trello page here](https://trello.com/invite/b/6714107b044a509ca4f7d762/ATTI409441d3e68d2209af6555172d81f897F65DFD5C/yourbit-public) to see the tasks were currently working on, and what we have qeued up.
