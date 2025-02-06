@@ -1,12 +1,12 @@
-## 1. Install Python 3.10.5
+# 1. Install Python 3.10.5
 
 Follow this [link to install python](https://www.python.org/downloads/release/python-3105/)
 
 To install on windows, download and run the windows installer provided on the page.
 
 
-## 2. Create the virtual environment
-# Creating and Using a Python Virtual Environment
+# 2. Create the virtual environment
+## Creating and Using a Python Virtual Environment
 
 A virtual environment allows you to create isolated Python environments for different projects, preventing dependency conflicts.
 
@@ -72,7 +72,7 @@ Using virtual environments keeps your system’s Python environment clean and av
 
 
 
-## 3. Clone this Repository
+# 3. Clone this Repository
 
 ```sh
 # Example for Django
@@ -80,7 +80,7 @@ git clone https://github.com/Yourbit-LLC/yourbit.git
 cd yourbit
 ```
 
-## 4. Install the dependencies
+# 4. Install the dependencies
 ```sh
 pip install -r requirements.txt
 ```
