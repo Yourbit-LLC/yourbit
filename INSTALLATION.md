@@ -1,16 +1,18 @@
-# 1. Install Python 3.10.5
+# Installation Instructions
+
+## 1. Install Python 3.10.5
 
 Follow this [link to install python](https://www.python.org/downloads/release/python-3105/)
 
 To install on windows, download and run the windows installer provided on the page.
 
 
-# 2. Create the virtual environment
-## Creating and Using a Python Virtual Environment
+## 2. Create the virtual environment
+**Creating and Using a Python Virtual Environment**
 
 A virtual environment allows you to create isolated Python environments for different projects, preventing dependency conflicts.
 
-## Creating a Virtual Environment
+**Creating a Virtual Environment**
 
 Run the following command in your project directory:
 
@@ -20,7 +22,14 @@ python3.10 -m venv venv
 
 This creates a folder named `venv` containing the isolated environment.
 
-## Activating the Virtual Environment
+Using virtual environments keeps your system’s Python environment clean and avoids package conflicts between projects.
+
+
+**Additional Information:**
+
+<details>
+  
+<summary><strong>Activating the Virtual Environment</strong></summary>
 
 - On **Linux/macOS**:
 
@@ -35,8 +44,10 @@ This creates a folder named `venv` containing the isolated environment.
   ```
 
 Once activated, your terminal prompt should show `(venv)`, indicating you are using the virtual environment.
+</details>
 
-## Installing Packages
+<details>
+<summary><strong>Installing Packages</strong></summary>
 
 With the virtual environment activated, install packages using `pip`:
 
@@ -44,7 +55,10 @@ With the virtual environment activated, install packages using `pip`:
 pip install package_name
 ```
 
-## Deactivating the Virtual Environment
+</details>
+
+<details>
+<summary><strong>Deactivating the Virtual Environment</strong></summary>
 
 To exit the virtual environment, simply run:
 
@@ -52,7 +66,10 @@ To exit the virtual environment, simply run:
 deactivate
 ```
 
-## Removing a Virtual Environment
+</details>
+
+<details>
+<summary><strong>Removing a Virtual Environment</strong></summary>
 
 If you no longer need the virtual environment, you can delete it:
 
@@ -67,12 +84,11 @@ Remove-Item -Recurse -Force venv
 ```
 
 ---
-
-Using virtual environments keeps your system’s Python environment clean and avoids package conflicts between projects.
-
+</details>
 
 
-# 3. Clone this Repository
+
+## 3. Clone this Repository
 
 ```sh
 # Example for Django
@@ -80,7 +96,7 @@ git clone https://github.com/Yourbit-LLC/yourbit.git
 cd yourbit
 ```
 
-# 4. Install the dependencies
+## 4. Install the dependencies
 ```sh
 pip install -r requirements.txt
 ```
