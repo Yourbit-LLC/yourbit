@@ -33,7 +33,7 @@ Follow the [installation instructions](https://github.com/Yourbit-LLC/yourbit/bl
 
 ## ✏️ Make Your Changes the Code
 
-Documentation is currently in progress. Once the basics are available come back here to check it out. We are working on several features that allow you to layer your changes on the existing Yourbit build instead of having to modify source files directly.
+Documentation is currently in progress. Once the basics are available come back here to check it out. We are working on several features that allow you to layer your changes on the existing Yourbit build instead of needing to modify source files directly.
 
 ## ⬆️ Create a Pull Request
 
