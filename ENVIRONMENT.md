@@ -29,9 +29,6 @@ In the root (top) directory of your project. Create a file with the name `.env`.
 
 | Variable Name                  | Description | Example Value |
 |---------------------------------|-------------|---------------|
-| `BUCKET_ACCESS_KEY`             | Access key for the media storage bucket. | `your-access-key` |
-| `BUCKET_SECRET_KEY`             | Secret key for the media storage bucket. | `your-secret-key` |
-| `MEDIA_BUCKET_NAME`             | Name of the media storage bucket. | `your-bucket-name` |
 | `BUCKET_NAME`                   | Name of the Linode storage bucket. | `your-linode-bucket` |
 | `BUCKET_REGION`                 | Region of the Linode storage bucket. | `us-east` |
 | `BUCKET_ACCESS_KEY`             | Access key for the Linode storage bucket. | `your-linode-access-key` |
