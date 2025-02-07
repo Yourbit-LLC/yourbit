@@ -1,4 +1,4 @@
-# 🔑 Generating and Using VAPID Keys in Django
+# 🔑 Generating and Using VAPID Keys
 
 VAPID (Voluntary Application Server Identification for Web Push) keys are used for authenticating push notifications sent to browsers. This guide explains how to generate VAPID keys and configure them using a `.env` file.
 
