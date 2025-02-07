@@ -33,7 +33,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG_MODE')
 
 ALLOWED_HOSTS = env("ALLOWED_HOSTS", "").split(",")
 
@@ -126,7 +126,7 @@ ASGI_APPLICATION = "YourbitGold.asgi.application"
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': f'django.db.backends.{env('DB_ENGINE')}',
         'NAME': env('DB_NAME'),
         'USER': env('DB_USER'),
         'PASSWORD': env('DB_PASSWORD'),

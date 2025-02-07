@@ -61,9 +61,9 @@ image_service = {
 #
 # Services like Giphy 
 #
-# Stickers on yourbit are still under construction, so there are no features 
+# Stickers on Yourbit are still under construction, so there are no features 
 # implemented regarding that. You can place the search and retrieval URL's to 
-# your desired sticker service here. If the sticler service requires an API key,
+# your desired sticker service here. If the sticker service requires an API key,
 # place that in environment variables.
 
 sticker_service = {
