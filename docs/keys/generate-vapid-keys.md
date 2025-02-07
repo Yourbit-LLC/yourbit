@@ -39,45 +39,7 @@ VAPID_PRIVATE_KEY=abc123...(your private key)
 VAPID_ADMIN_EMAIL=admin@example.com
 ```
 
-## 🔧 Using VAPID Keys in Django
-
-### 1️⃣ Install `python-dotenv`
-
-If not already installed, add `python-dotenv` to your project:
-
-```sh
-pip install python-dotenv
-```
-
-### 2️⃣ Load the `.env` File in `settings.py`
-
-Modify `settings.py` to load the VAPID keys:
-
-```python
-import os
-from dotenv import load_dotenv
-
-load_dotenv()
-
-VAPID_PUBLIC_KEY = os.getenv("VAPID_PUBLIC_KEY")
-VAPID_PRIVATE_KEY = os.getenv("VAPID_PRIVATE_KEY")
-VAPID_ADMIN_EMAIL = os.getenv("VAPID_ADMIN_EMAIL", "admin@example.com")
-```
-
-### 3️⃣ Using VAPID Keys in Web Push Notifications
-
-When sending a web push notification, pass the keys like this:
-
-```python
-from pywebpush import webpush
-
-webpush(
-    subscription_info=subscription,
-    data="Hello, this is a push notification!",
-    vapid_private_key=VAPID_PRIVATE_KEY,
-    vapid_claims={"sub": "mailto:" + VAPID_ADMIN_EMAIL},
-)
-```
+Once this step is completed, Yourbit should be able to access your VAPID keys for serving web push notifications.
 
 ---
 
