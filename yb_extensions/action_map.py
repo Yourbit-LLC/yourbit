@@ -19,19 +19,19 @@
 video_service = {
     
     # URL Schema for retrieving a video for playback
-    "playback": "", 
-
-    # If necessary, a URL schema for retrieving video data
-    "retrieve": "",
+    "playback": "https://player.mux.com/{playback_id}", 
 
     # If available, a URL schema for retrieving previews, if not Yourbit will fall back to image service
-    "preview": "",
+    "preview": "https://image.mux.com/{playback_id}/thumbnail.png?width=214&height=121&time=1",
 
     # Video upload URL schema, this must be for a direct upload endpoint
     "upload": "",
 
     # URL to modify an existing upload
-    "modify": "" 
+    "modify": "",
+
+    # URL schema to delete an uploaded asset
+    "delete": "",
 
 }
 
@@ -48,19 +48,10 @@ video_service = {
 image_service = {
     
     # URL Schema for fetching full sized images
-    "retrieve": "",
-    
-    # URL Schema for fetching small thumbnails
-    "smallThumbnail": "",
-    
-    # URL Schema for fetching medium thumnails
-    "mediumThumnail": "", 
-    
-    # URL Schema for fetching large thumbnails
-    "largeThumbnail": "",
+    "retrieve": "https://imagedelivery.net/{IMAGE_ACCOUNT_HASH}/{image_id}/{variant}",
     
     # URL Schema for uploading a video 
-    "upload": "",
+    "upload": "https://api.cloudflare.com/client/v4/accounts/{CLOUDFLARE_STREAM_ACCOUNT_ID}/images/v1",
 
     # URL Schema for modifying an existing upload 
     "modify": "",
@@ -72,12 +63,13 @@ image_service = {
 #
 # Stickers on yourbit are still under construction, so there are no features 
 # implemented regarding that. You can place the search and retrieval URL's to 
-# your desired sticker service here.
+# your desired sticker service here. If the sticler service requires an API key,
+# place that in environment variables.
 
 sticker_service = {
     
     # URL Schema for Searching the collection
-    "search": "", 
+    "search": "https://api.giphy.com/v1/stickers/search?q={query}", 
     
     # URL Schema for Retrieving a single sticker
     "retrieve" : "" 
@@ -95,6 +87,6 @@ sticker_service = {
 bot_challenge_service = {
 
     # URL for verifying tokens sent by the client side bot challenge
-    "verify_url": "",
+    "verify_url": "https://challenges.cloudflare.com/turnstile/v0/siteverify",
 
 }
