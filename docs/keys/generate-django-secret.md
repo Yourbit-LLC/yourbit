@@ -56,4 +56,4 @@ This should output your secret key.
 
 ---
 
-By keeping your secret key out of version control and using environment variables, you ensure better security for your Django application. 🚀
+By keeping your secret key out of version control and using environment variables, you ensure better security for your Yourbit distribution. 🚀
