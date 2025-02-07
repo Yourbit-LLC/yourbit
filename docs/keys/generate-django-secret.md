@@ -32,20 +32,12 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "your-default-secret-key")
 ## 🌍 Storing the Secret Key Securely
 
 ### Using `.env` File (Recommended)
-Create a `.env` file in your project root and add:
+If you haven't already, create a `.env` file in your project root and add the key to your new or existing file:
 
 ```
 DJANGO_SECRET_KEY=9vCqY5mJHd8ZgLX1mTnPzF6QJ7WsKpYdf_0BXLz9YcWcJKa4Tt
 ```
 
-Then, use `python-dotenv` to load it in `settings.py`:
-
-```python
-from dotenv import load_dotenv
-
-load_dotenv()
-SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
-```
 
 ### Using System Environment Variables
 
