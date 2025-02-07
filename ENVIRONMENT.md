@@ -27,7 +27,7 @@ In the root (top) directory of your project. Create a file with the name `.env`.
 
 ## 🔑 **Variables List**
 
-| Variable Name                  | Description | Example Value |
+| Variable Name                   | Description | Example Value |
 |---------------------------------|-------------|---------------|
 | `BUCKET_NAME`                   | Name of the Linode storage bucket. | `your-linode-bucket` |
 | `BUCKET_REGION`                 | Region of the Linode storage bucket. | `us-east` |
@@ -64,7 +64,7 @@ In the root (top) directory of your project. Create a file with the name `.env`.
 | `VIDEO_PRIVATE_KEY`             | Mux private key for media handling. | `your-mux-private-key` |
 | `DJANGO_SECRET_KEY`             | Django secret key for cryptographic operations. | `your-django-secret-key` |
 | `ALLOWED_HOSTS`                 | Comma-separated list of allowed hosts. | `localhost,127.0.0.1,example.com` |
-| `CSRF_TRUSTED_ORIGINS`         | Comma-separated list of trusted origins for CSRF. | `https://your-domain.com` |
+| `CSRF_TRUSTED_ORIGINS`          | Comma-separated list of trusted origins for CSRF. | `https://your-domain.com` |
 
 ---
 
