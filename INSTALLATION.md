@@ -13,6 +13,8 @@ To install on windows, download and run the windows installer provided on the pa
 
 ## **2. Clone this Repository**
 
+Run the following commands inside of your terminal of choice.
+
 ```sh
 # Example for Django
 git clone https://github.com/Yourbit-LLC/yourbit.git
