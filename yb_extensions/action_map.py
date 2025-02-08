@@ -27,14 +27,17 @@ video_service = {
     # Video upload URL schema, this must be for a direct upload endpoint
     "upload_url": "https://api.mux.com/video/v1/uploads",
 
+    # URL to cancel an upload in progress, the endpoint should expect a PUT request
+    "cancel_upload_url": "https://api.mux.com/video/v1/uploads/{UPLOAD_ID}/cancel",
+
     # URL schema for video thumbnails
     "thumbnail_url": "https://image.mux.com/{playback_id}/thumbnail.png?width=214&height=121&time=1",
     
-    # URL to modify an existing upload
-    "modify_url": "",
+    # URL to modify an existing upload (if needed), the endpoint should expect a PATCH request
+    "modify_url": "https://api.mux.com/video/v1/assets/{ASSET_ID}",
 
-    # URL schema to delete an uploaded asset
-    "delete_url": "",
+    # URL schema to delete an uploaded asset, the endpoint should expect a DELETE request
+    "delete_url": "https://api.mux.com/video/v1/assets/{ASSET_ID}",
     
     # Webhook status is used to query the json sent with a webhook for the upload status
     # This should be the exact path to the status indicating "ready" on upload complete.
