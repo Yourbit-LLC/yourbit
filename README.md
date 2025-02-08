@@ -11,7 +11,7 @@ Yourbit is a **next-gen social media platform** focused on **privacy, decentrali
 It offers **real-time media sharing, interactive feeds, and customizable profiles**. Our goal is to develop a platform
 that balances privacy and modularity to create a community built platform that people can trust with their personal data.
 
-🔹 **Privacy-first** – Private posts and direct messages are never used for data collection or monetization.  
+🔹 **Privacy-first** – Private posts and direct messages are never used for data collection for monetization.  
 🔹 **Decentralized architecture** – Fork your own mini-sites off of Yourbit or host your own version locally.  
 🔹 **Built-in media support** – Photo, video, and livestreaming; requires a Video Encoding and Storage API for long-form videos and livestreaming.  
 🔹 **Customizable feed** – Primarily see posts from those most important to you — your friends and family.  

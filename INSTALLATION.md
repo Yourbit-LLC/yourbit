@@ -11,30 +11,33 @@ To install on windows, download and run the windows installer provided on the pa
 
 > **Note:** If you are attempting to install python on Linux. You must download the source code from the link above and follow [these instructions here](https://github.com/Yourbit-LLC/yourbit/blob/main/docs/installation/install-python-source.md) to compile and install.
 
+## **2. Clone this Repository**
 
-## **2. Create the virtual environment**
+Run the following commands inside of your terminal of choice.
+
+```sh
+# Example for Django
+git clone https://github.com/Yourbit-LLC/yourbit.git
+
+# Navigate into the project directory
+cd yourbit
+```
+
+## **3. Create the virtual environment**
 
 A virtual environment allows you to create isolated Python environments for different projects, preventing dependency conflicts.
 
 ### **Creating a Virtual Environment**
 
-Run the following command in your project directory:
+Currently, you should be in the `/yourbit` directory. Run the following command to create the environment.
 
 ```sh
 python3.10 -m venv venv
 ```
 
-This creates a folder named `venv` containing the isolated environment.
+This creates a folder named `venv` containing the isolated environment. The `/venv/` directory should be listed in the `.gitignore` as it should not be committed to the repository.
 
-Using virtual environments keeps your system’s Python environment clean and avoids package conflicts between projects.
-
-
-### **Additional Information:**
-
-<details>
-  
-<summary><strong>Activating the Virtual Environment</strong></summary>
-
+### Activate the Virtual Environment
 - On **Linux/macOS**:
 
   ```sh
@@ -48,7 +51,8 @@ Using virtual environments keeps your system’s Python environment clean and av
   ```
 
 Once activated, your terminal prompt should show `(venv)`, indicating you are using the virtual environment.
-</details>
+
+### **Future Reference:**
 
 <details>
 <summary><strong>Installing Packages</strong></summary>
@@ -89,15 +93,6 @@ Remove-Item -Recurse -Force venv
 
 ---
 </details>
-
-
-## **3. Clone this Repository**
-
-```sh
-# Example for Django
-git clone https://github.com/Yourbit-LLC/yourbit.git
-cd yourbit
-```
 
 ## **4. Install the dependencies**
 ```sh
