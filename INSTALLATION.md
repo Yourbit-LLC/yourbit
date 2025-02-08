@@ -1,6 +1,15 @@
 # Installation Instructions
 These instructions are provided for the purpose of setting up a host server or development environment for Yourbit
 
+**Breakdown:**
+1. [Install Python](#1-install-python-3105)
+2. [Clone the Repository](#2-clone-this-repository)
+3. [Create Virtual Environment](#3-create-the-virtual-environment)
+4. [Install the Dependencies](#4-install-the-dependencies)
+5. [Set Up Environment](#5-set-up-environment)
+6. [Migrate and Run](#6-migrate-the-database-and-run-the-server)
+7. [Create Super User](#7-create-super-user)
+
 
 ## **1. Install Python 3.10.5**
 
