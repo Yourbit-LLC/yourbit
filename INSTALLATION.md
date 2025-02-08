@@ -18,6 +18,8 @@ Run the following commands inside of your terminal of choice.
 ```sh
 # Example for Django
 git clone https://github.com/Yourbit-LLC/yourbit.git
+
+# Navigate into the project directory
 cd yourbit
 ```
 
@@ -27,13 +29,13 @@ A virtual environment allows you to create isolated Python environments for diff
 
 ### **Creating a Virtual Environment**
 
-Run the following command in your project directory (you should be here at the end of step 2):
+Currently, you should be in the `/yourbit` directory. Run the following command to create the environment.
 
 ```sh
 python3.10 -m venv venv
 ```
 
-This creates a folder named `venv` containing the isolated environment.
+This creates a folder named `venv` containing the isolated environment. The `/venv/` directory should be listed in the `.gitignore` as it should not be committed to the repository.
 
 Using virtual environments keeps your system’s Python environment clean and avoids package conflicts between projects.
 
