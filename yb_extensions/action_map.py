@@ -79,10 +79,7 @@ image_service = {
 sticker_service = {
     
     # URL Schema for Searching the collection
-    "search": "https://api.giphy.com/v1/stickers/search?q={query}", 
-    
-    # URL Schema for Retrieving a single sticker
-    "retrieve" : "" 
+    "search": "https://api.giphy.com/v1/stickers/search?q={query}",  
 }
 
 
