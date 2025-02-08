@@ -7,10 +7,11 @@ import datetime
 from YourbitGold.settings import env
 import os
 from django.views.decorators.csrf import csrf_exempt
-from yb_video.services import get_mux_url
+from yb_video.services import get_upload_url
 from yb_video.models import Video
 import json
-
+from yb_extensions.action_map import video_service
+from main.utility import safe_fstring
 
 # Create your views here.
 
@@ -51,7 +52,7 @@ def get_cloudflare_upload_url(request):
 
     if request.method == 'POST':
         headers = {
-            "Authorization": f"Bearer {env('CLOUDFLARE_STREAM_API_KEY')}",
+            "Authorization": f"Bearer {settings.CLOUDFLARE_STREAM_API_KEY}",
             "Tus-Resumable": "1.0.0",
             "Upload-Length": upload_length,
             "Upload-Metadata": upload_metadata,
@@ -155,12 +156,12 @@ def upload_chunk(request):
     return JsonResponse({"error": "Invalid request method"}, status=405)
 
 @csrf_exempt
-def mux_upload_endpoint(request):
+def video_upload_endpoint(request):
     # Get the direct upload URL from Mux
     if request.user.is_authenticated:
         from yb_photo.models import VideoThumbnail
         from yb_profile.models import Profile
-        upload_url = get_mux_url(request)
+        upload_url = get_upload_url()
 
         user_profile = Profile.objects.get(username = request.user.active_profile)
 
@@ -199,27 +200,31 @@ def update_video_status(request, video_id):
 
 @csrf_exempt
 def ready_upload(request):
-    print("Webhook request received...")
+    '''
+        The ready upload function is used to listen for webhooks from CDN services 
+        like Mux or Cloudflare Stream to mark a video as ready for playback and update
+        the playback URL in the database.
+    '''
 
+    #Load the json data from the request
     jsondata = request.body
     data = json.loads(jsondata)
-    print(data)
-    # Get the video ID from the request
-    if data["type"] == "video.asset.ready":
+    
+    # Get the video ID from the webhook request by the path indicated in the action map
+    if data[video_service["webhook_status"]] == "ready":
 
         print("Upload is ready for playback")
         playback_id = data["data"]["playback_ids"][0]["id"]
-        video_url = f"https://stream.mux.com/{playback_id}.m3u8"
+        video_url = safe_fstring(video_service["playback_url"], {"playback_id": playback_id})
 
-        thumbnail_url = f"https://image.mux.com/{playback_id}/thumbnail.png?width=960&height=540&time=1"
-
-        print(f"Playback ID: {playback_id}")
-        print(f"Video URL: {video_url}")
+        # Generate a thumbnail URL for the video
+        if video_service.get("thumbnail_url") != "":
+            thumbnail_url = safe_fstring(video_service["preview_url"], {"playback_id": playback_id})
 
         # Update the video status to 'ready' in the database
-        video = Video.objects.get(upload_id=data["data"]["upload_id"])
-        video.upload_status = "ready"
-        video.ext_id = playback_id
+        video = Video.objects.get(upload_id=data["data"]["upload_id"]) # get video from database
+        video.upload_status = "ready" # update the status
+        video.ext_id = playback_id 
         video.ext_url = video_url
         video.save()
 
