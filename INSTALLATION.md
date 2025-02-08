@@ -37,15 +37,7 @@ python3.10 -m venv venv
 
 This creates a folder named `venv` containing the isolated environment. The `/venv/` directory should be listed in the `.gitignore` as it should not be committed to the repository.
 
-Using virtual environments keeps your system’s Python environment clean and avoids package conflicts between projects.
-
-
-### **Additional Information:**
-
-<details>
-  
-<summary><strong>Activating the Virtual Environment</strong></summary>
-
+### Activate the Virtual Environment
 - On **Linux/macOS**:
 
   ```sh
@@ -59,7 +51,8 @@ Using virtual environments keeps your system’s Python environment clean and av
   ```
 
 Once activated, your terminal prompt should show `(venv)`, indicating you are using the virtual environment.
-</details>
+
+### **Future Reference:**
 
 <details>
 <summary><strong>Installing Packages</strong></summary>
