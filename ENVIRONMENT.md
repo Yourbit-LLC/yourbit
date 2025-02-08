@@ -57,11 +57,11 @@ In the root (top) directory of your project. Create a file with the name `.env`.
 | `IMAGE_BASE_URL`                | Base URL for serving images via Cloudflare. | `https://images.example.com` |
 | `CHALLENGE_SITE_KEY`            | Turnstile site key for Turnstile integration. | `your-turnstile-site-key` |
 | `CHALLENGE_SECRET_KEY`          | Turnstile secret key for Turnstile integration. | `your-turnstile-secret-key` |
-| `VIDEO_CDN_TOKEN`               | Mux video token for video streaming. | `your-mux-video-token` |
-| `VIDEO_CDN_SECRET`              | Mux video secret for video streaming. | `your-mux-video-secret` |
+| `VIDEO_CDN_TOKEN`               | Site token for video streaming. | `your-mux-video-token` |
+| `VIDEO_CDN_SECRET`              | Secret Key for video streaming. | `your-mux-video-secret` |
 | `VIDEO_WEBHOOK_SECRET`          | Webhook secret for Mux API integration. | `your-mux-webhook-secret` |
-| `VIDEO_SIGNING_KEY`             | Mux signing key for secure media handling. | `your-mux-signing-key` |
-| `VIDEO_PRIVATE_KEY`             | Mux private key for media handling. | `your-mux-private-key` |
+| `VIDEO_SIGNING_KEY`             | Video service signing key for secure media handling. | `your-mux-signing-key` |
+| `VIDEO_PRIVATE_KEY`             | Video service private key for media handling. | `your-mux-private-key` |
 | `DJANGO_SECRET_KEY`             | Django secret key for cryptographic operations. | `your-django-secret-key` |
 | `ALLOWED_HOSTS`                 | Comma-separated list of allowed hosts. | `localhost,127.0.0.1,example.com` |
 | `CSRF_TRUSTED_ORIGINS`          | Comma-separated list of trusted origins for CSRF. | `https://your-domain.com` |

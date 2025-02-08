@@ -6,11 +6,13 @@ from django.conf import settings
 from yb_accounts.models import Account as User
 from yb_profile.models import Profile
 from yb_video.models import Video
-
+import requests
+from requests.auth import HTTPBasicAuth
+from yb_extensions.action_map import video_service
 
 configuration = mux_python.Configuration()
-configuration.username = settings.MUX_TOKEN_ID
-configuration.password = settings.MUX_TOKEN_SECRET
+video_token_id = settings.VIDEO_CDN_TOKEN
+video_token_secret = settings.VIDEO_CDN_SECRET
 
 def get_mux_url(request):
     api_instance = mux_python.DirectUploadsApi(mux_python.ApiClient(configuration))
@@ -24,6 +26,29 @@ def get_mux_url(request):
         return api_response
     except ApiException as e:
         print("Exception when calling VideoUrlApi->create_video_url: %s\n" % e)
+
+def get_upload_url():
+    """
+        The function get_upload_url is used to request a direct upload URL
+        from a provided video service using the URL defined in the action map.
+    """
+    url = video_service["upload_url"]
+    headers = {"Content-Type": "application/json"}
+    data = {
+        "new_asset_settings": {
+            "playback_policy": ["public"],
+            "video_quality": "basic"
+        },
+        "cors_origin": "*"
+    }
+
+    try:
+        response = requests.post(url, json=data, headers=headers, auth=HTTPBasicAuth(video_token_id, video_token_secret))
+        response.raise_for_status()  # Raise an error for non-200 responses
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        print(f"Error creating Mux upload URL: {e}")
+        return None
 
 def get_mux_web_token(video_id):
     import jwt

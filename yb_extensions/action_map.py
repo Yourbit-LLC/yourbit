@@ -19,19 +19,19 @@
 video_service = {
     
     # URL Schema for retrieving a video for playback
-    "playback": "https://player.mux.com/{playback_id}", 
+    "playback_url": "https://player.mux.com/{playback_id}", 
 
     # If available, a URL schema for retrieving previews, if not Yourbit will fall back to image service
-    "preview": "https://image.mux.com/{playback_id}/thumbnail.png?width=214&height=121&time=1",
+    "preview_url": "https://image.mux.com/{playback_id}/thumbnail.png?width=214&height=121&time=1",
 
     # Video upload URL schema, this must be for a direct upload endpoint
-    "upload": "",
+    "upload_url": "https://api.mux.com/video/v1/uploads",
 
     # URL to modify an existing upload
-    "modify": "",
+    "modify_url": "",
 
     # URL schema to delete an uploaded asset
-    "delete": "",
+    "delete_url": "",
 
 }
 
