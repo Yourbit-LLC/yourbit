@@ -11,8 +11,15 @@ To install on windows, download and run the windows installer provided on the pa
 
 > **Note:** If you are attempting to install python on Linux. You must download the source code from the link above and follow [these instructions here](https://github.com/Yourbit-LLC/yourbit/blob/main/docs/installation/install-python-source.md) to compile and install.
 
+## **2. Clone this Repository**
 
-## **2. Create the virtual environment**
+```sh
+# Example for Django
+git clone https://github.com/Yourbit-LLC/yourbit.git
+cd yourbit
+```
+
+## **3. Create the virtual environment**
 
 A virtual environment allows you to create isolated Python environments for different projects, preventing dependency conflicts.
 
@@ -89,15 +96,6 @@ Remove-Item -Recurse -Force venv
 
 ---
 </details>
-
-
-## **3. Clone this Repository**
-
-```sh
-# Example for Django
-git clone https://github.com/Yourbit-LLC/yourbit.git
-cd yourbit
-```
 
 ## **4. Install the dependencies**
 ```sh
