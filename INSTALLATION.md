@@ -25,7 +25,7 @@ A virtual environment allows you to create isolated Python environments for diff
 
 ### **Creating a Virtual Environment**
 
-Run the following command in your project directory:
+Run the following command in your project directory (you should be here at the end of step 2):
 
 ```sh
 python3.10 -m venv venv
