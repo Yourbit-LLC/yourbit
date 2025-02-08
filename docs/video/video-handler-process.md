@@ -16,6 +16,7 @@ This file is intended to explain how Yourbit interacts with video API’s to ret
 
 ## Delivering Videos
   In Messages:
+
     - Video object is retrieved in the database by ID attached to message
     - The `playback_url` is retrieved from the video object and returned to the client
     - The client renders a video element with source set as the `playback_url`
