@@ -15,12 +15,12 @@ This file is intended to explain how Yourbit interacts with video API’s to ret
   - Playback links are created using the playback_url schema specified in the action map and saved to the video object
 
 ## Delivering Videos
-  In Messages
+  In Messages:
     - Video object is retrieved in the database by ID attached to message
     - The `playback_url` is retrieved from the video object and returned to the client
     - The client renders a video element with source set as the `playback_url`
 
-  In Bits
+  In Bits:
     - Video object is retrieved using the ID stored in the attached video field of the bit
     - The `playback_URL` is retirieved from the video object
     - A video player HTML template is rendered containing a `video` element with the video `playback_url` as the `src`
