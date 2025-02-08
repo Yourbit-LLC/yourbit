@@ -14,9 +14,8 @@ Sections:
 
 In the root (top) directory of your project. Create a file with the name `.env`. 
 
-1. Copy the contents `.env.example` to `.env` ([Link to File]())
-2. Fill in the values as needed (use the keys from this document).
-3. Load environment variables using `python-dotenv` (Django) or system settings.
+1. Copy the contents `.env.example` to `.env` ([Link to File](https://github.com/Yourbit-LLC/yourbit/blob/main/.env.example))
+2. Fill in the values as needed (use the keys listed below in this document).
 
 **Note:** Ensure that the `.env` file is added to your `.gitignore` to avoid accidentally sharing sensitive information.
 
