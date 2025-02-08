@@ -14,7 +14,7 @@ Sections:
 
 In the root (top) directory of your project. Create a file with the name `.env`. 
 
-1. Copy `.env.example` to `.env`
+1. Copy the contents `.env.example` to `.env` ([Link to File]())
 2. Fill in the values as needed (use the keys from this document).
 3. Load environment variables using `python-dotenv` (Django) or system settings.
 
