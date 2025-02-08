@@ -77,16 +77,14 @@ sticker_service = {
 
 
 # Bot Challenges:
-#  
+  
 # Services like reCAPTHCA, Turnstile, and HCAPTCHA
-# 
+
 # The bot challenge service requires a secret and a site key, add 
 # them as CHALLENGE_SECRET_KEY and CHALLENGE_SITE_KEY in the environment
 # variables 
 
 bot_challenge_service = {
-
     # URL for verifying tokens sent by the client side bot challenge
     "verify_url": "https://challenges.cloudflare.com/turnstile/v0/siteverify",
-
 }
