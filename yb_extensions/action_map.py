@@ -45,11 +45,10 @@ video_service = {
 
 }
 
-
 # Image Services
-# 
+
 # Services like Cloudflare Images
-# 
+ 
 # The image service must provide image thumbnail variants consistent with 
 # yourbits expected thumbnail variants. You may choose any size for thumnail 
 # variants, however, higher resolutions may impact performance. For guidelines 
@@ -68,16 +67,15 @@ image_service = {
 }
 
 # Sticker Service
-#
+
 # Services like Giphy 
-#
+
 # Stickers on Yourbit are still under construction, so there are no features 
 # implemented regarding that. You can place the search and retrieval URL's to 
 # your desired sticker service here. If the sticker service requires an API key,
 # place that in environment variables.
 
 sticker_service = {
-    
     # URL Schema for Searching the collection
     "search": "https://api.giphy.com/v1/stickers/search?q={query}",  
 }
