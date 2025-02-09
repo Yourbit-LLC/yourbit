@@ -68,5 +68,5 @@ Videos in messages are processed similarly to bits:
 
 ---
 
-This documentation covers how Yourbit processes videos from upload to playback, leveraging Cloudflare and Mux for efficient media handling. 🚀
+This documentation covers how Yourbit processes videos from upload to playback, the official build leverages Cloudflare and Mux for efficient media handling. 🚀
 
