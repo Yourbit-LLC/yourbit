@@ -1,4 +1,4 @@
-]# Installing Git on Windows
+# Installing Git on Windows
 
 ## Step 1: Check if Git is Already Installed
 
