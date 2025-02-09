@@ -123,6 +123,7 @@ In the root (top) directory of your project. Create a file with the name `.env`.
 > **Note:** Ensure that the `.env` file is added to your `.gitignore` to avoid accidentally sharing sensitive information.
 
 **Required Configuration**
+
 For basic operation there are a few environment variables that require configuration. Expand each section of the guide below for information on setting up the required environment variables. 
 
 > **Tip:** For a reference guide to all environment variables, [click here](https://github.com/Yourbit-LLC/yourbit/blob/main/ENVIRONMENT.md).
