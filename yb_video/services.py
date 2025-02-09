@@ -185,7 +185,7 @@ def send_video_to_cdn(request):
         # Return the upload URL to the client
         return {"url" : upload_url.data.url, "new_video": new_video}
 
-def generate_mux_thumbnails(choose = False, time = 0):
+def generate_video_thumbnails(choose = False, time = 0):
     selected_time = ""
     
     if choose == True:

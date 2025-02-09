@@ -264,9 +264,9 @@ class BitViewSet(viewsets.ModelViewSet):
             thumbnail_option = bit_data.get("thumbnail_option")
 
             if thumbnail_option == "choose":
-                from yb_video.services import generate_mux_thumbnails
+                from yb_video.services import generate_video_thumbnails
                 thumbnail_frame = bit_data.get("thumbnail_frame")
-                thumbnails = generate_mux_thumbnails(True, thumbnail_frame)
+                thumbnails = generate_video_thumbnails(True, thumbnail_frame)
                 thumbnail_object.tiny_thumbnail_ext = thumbnails["tiny_thumbnail"]
                 thumbnail_object.small_thumbnail_ext = thumbnails["small_thumbnail"]
                 thumbnail_object.medium_thumbnail_ext = thumbnails["medium_thumbnail"]
@@ -274,8 +274,8 @@ class BitViewSet(viewsets.ModelViewSet):
                 thumbnail_object.xlarge_thumbnail_ext = thumbnails['xlarge_thumbnail']
 
             elif thumbnail_option == "middle":
-                from yb_video.services import generate_mux_thumbnails
-                thumbnails = generate_mux_thumbnails(False)
+                from yb_video.services import generate_video_thumbnails
+                thumbnails = generate_video_thumbnails(False)
                 thumbnail_object.tiny_thumbnail_ext = thumbnails["tiny_thumbnail"]
                 thumbnail_object.small_thumbnail_ext = thumbnails["small_thumbnail"]
                 thumbnail_object.medium_thumbnail_ext = thumbnails["medium_thumbnail"]
