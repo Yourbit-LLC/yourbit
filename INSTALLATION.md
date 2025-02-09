@@ -113,7 +113,7 @@ pip install -r requirements.txt
 
 ## **5. Set Up Environment**  
 
-**Create an environment file**
+### Create an environment file
 
 In the root (top) directory of your project. Create a file with the name `.env`. 
 
@@ -122,7 +122,7 @@ In the root (top) directory of your project. Create a file with the name `.env`.
 
 > **Note:** Ensure that the `.env` file is added to your `.gitignore` to avoid accidentally sharing sensitive information.
 
-### Required Configuration
+**Required Configuration**
 For basic operation there are a few environment variables that require configuration. This inludes:
   - Django Secret
   - VAPID Keys (For web push notifications)
@@ -132,9 +132,10 @@ For basic operation there are a few environment variables that require configura
   - Video Host (ex: Cloudflare stream, Mux)
   - Email Host (ex: Google workspace)
     
-For a reference guide to all environment variables [click here](https://github.com/Yourbit-LLC/yourbit/blob/main/ENVIRONMENT.md).
+Expand each section of the guide for information on setting up the required environment variables. For a reference guide to all environment variables, [click here](https://github.com/Yourbit-LLC/yourbit/blob/main/ENVIRONMENT.md).
 
-### Setup Django Secret
+<detail>
+<summary><strong>Setup Django Secret</strong></summary>
 The most important variable in environment variables is the Django Secret Key. This can be generated using python by following [these instructions](https://github.com/Yourbit-LLC/yourbit/blob/main/docs/keys/generate-django-secret.md). 
 
 Once you have created your secret key add it to your `.env` file as seen below.
@@ -143,8 +144,10 @@ Once you have created your secret key add it to your `.env` file as seen below.
 # Django Secret Key (Ensure this is secure!)
 DJANGO_SECRET_KEY=your-django-secret-key
 ```
+</detail>
 
-### Setup VAPID Keys
+<detail>
+<summary><strong>Setup VAPID Keys</strong></summary>
 VAPID Keys are used for handling web push notifications. Instructions for how to set up your VAPID keys can be found [here](https://github.com/Yourbit-LLC/yourbit/blob/main/docs/keys/generate-vapid-keys.md). Once your VAPID keys have been created, add them to the environment variables.
 
 ```env
@@ -153,8 +156,10 @@ VAPID_PUBLIC_KEY=your-vapid-public-key
 VAPID_PRIVATE_KEY=your-vapid-private-key
 VAPID_ADMIN_EMAIL=admin@example.com
 ```
+</detail>
 
-### Setup Database
+<detail>
+<summary><strong>Setup Database</strong></summary>
 If running on a local environment, the best option for a database setup is using SQLite3 as the engine. This allows you to locally host your database file in the root directory of your project, without credentials or server setup. The database file will be generated when you perform migrations in Step 6.
 
 ```env
@@ -163,8 +168,10 @@ DB_ENGINE=sqlite3
 
 # All other fields can be commented out or left blank.
 ```
+</detail>
 
-### Setup Email Service
+<detail>
+<summary><strong>Setup Email Service</strong></summary>
 
 ```env
 # Email Server Configuration
@@ -173,8 +180,10 @@ EMAIL_HOST_USER=your-email@example.com
 EMAIL_HOST_PASSWORD=your-email-password
 EMAIL_PORT=587
 ```
+</detail>
 
-### Setup Object Storage
+<detail>
+<summary><strong>Setup Object Storage</strong></summary>
 Object storage is required for basic media functionality. However, if you are setting up image and video delivery with a third party provider, this step can be ignored. 
 
 ```env
@@ -184,13 +193,17 @@ BUCKET_REGION=us-east
 BUCKET_ACCESS_KEY=your-bucket-access-key
 BUCKET_SECRET_KEY=your-bucket-secret-key
 ```
+</detail>
 
-### Setup Image Host
+<detail>
+<summary><strong>Setup Image Host</strong></summary>
 
 ```env
 ```
+</detail>
 
-### Setup Video Host
+<detail>
+<summary><strong>Setup Video Host</strong></summary>
 
 ```env
 # Video CDN Configuration
@@ -202,6 +215,7 @@ VIDEO_WEBHOOK_SECRET=your-mux-webhook-secret
 VIDEO_SIGNING_KEY=your-mux-signing-key
 VIDEO_PRIVATE_KEY=your-mux-private-key
 ```
+</detail>
 
 ## **6. Migrate the database and run the server**
 
