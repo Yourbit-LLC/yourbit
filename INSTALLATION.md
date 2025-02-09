@@ -44,7 +44,7 @@ A virtual environment allows you to create isolated Python environments for diff
 
 ### **Creating a Virtual Environment**
 
-Currently, you should be in the `/yourbit` directory. Run the following command to create the environment.
+If you have been following this guide, you should be in the `/yourbit` directory. Run the following command to create the environment.
 
 ```sh
 python3 -m venv venv
