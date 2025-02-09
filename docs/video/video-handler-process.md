@@ -49,7 +49,7 @@ The `player_view.html` file defines the UI for video playback.
 ---
 
 ## **Handling Thumbnails**
-  - A thumbnail is automatically generated from the video using the `generate_mux_thumbnails()` function in `services.py`.
+  - A thumbnail is automatically generated from the video using the `generate_video_thumbnails()` function in `services.py`.
   - Thumbnails are stored in the `VideoThumbnail` model and linked to the `Video` object.
   - The first frame of the video can be extracted and converted into an image (`yb_getFirstFrame()` and `yb_frameToImage()` in `video_setup.js`).
   - Cloudflare and Mux can also provide thumbnail URLs, which are stored in the `ext_url` field.
