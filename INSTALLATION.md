@@ -181,6 +181,8 @@ DB_ENGINE=sqlite3
 <summary><strong>Setup Email Service</strong></summary>
 
 
+Email services are required in Yourbit for verification of email ownership, resetting passwords, and communicating with support. Yourbit SMTP is currently under development, once released you can use Yourbits internal, centralized email service connected with Yourbit support.
+
 ```env
 # Email Server Configuration
 EMAIL_HOST=smtp.example.com
