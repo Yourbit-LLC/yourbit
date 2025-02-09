@@ -118,7 +118,17 @@ def upload_video_to_cloudflare(request):
 
 @csrf_exempt
 def upload_chunk(request):
+    """
+        Chunk uploader for first party video service. This endpoint is used to upload
+        video chunks to the server and combine them into a single video file. This 
+        function is currently not working as intended and is necessary for the internal 
+        Yourbit Media CDN to be completed.
+    """
+
+    # Validate request method
     if request.method == "POST":
+
+        # Get the video chunk data from the request
         chunk = request.FILES.get("file")
         chunk_index = int(request.POST.get("chunkIndex"))
         total_chunks = int(request.POST.get("totalChunks"))
@@ -126,6 +136,8 @@ def upload_chunk(request):
 
         # Create a directory for the file chunks if it doesn't exist
         upload_path = os.path.join(UPLOAD_DIR, file_name)
+
+        # Create the directory if it doesn't exist
         if not os.path.exists(upload_path):
             os.makedirs(upload_path)
 
@@ -151,20 +163,32 @@ def upload_chunk(request):
             # After combining, send the video to Cloudflare (next step)
             return JsonResponse({"status": "complete", "file": final_file_path})
 
+        # Return partial status if not all chunks are uploaded
         return JsonResponse({"status": "partial", "message": f"Received chunk {chunk_index} of {total_chunks}"})
 
+    # If request is not 'POST', return error for invalid request method
     return JsonResponse({"error": "Invalid request method"}, status=405)
 
 @csrf_exempt
 def video_upload_endpoint(request):
-    # Get the direct upload URL from Mux
+    """
+        The video upload endpoint is triggered along side creating a bit or a message 
+        containing a video. This endpoint requests a direct upload URL from the 
+        specified video service provider.
+    """
+
     if request.user.is_authenticated:
+        # Import the required models
         from yb_photo.models import VideoThumbnail
         from yb_profile.models import Profile
+
+        # Get the direct upload URL from specified service provider
         upload_url = get_direct_upload_url()
 
+        # Get the user profile
         user_profile = Profile.objects.get(username = request.user.active_profile)
 
+        #Create a new video object in the database and set as preparing
         new_video = Video.objects.create(
             user=request.user,
             upload_status="preparing",
@@ -172,17 +196,20 @@ def video_upload_endpoint(request):
             upload_id=upload_url.data.id,
         )
 
+        # Create a new thumbnail object in the database
         new_thumbnail = VideoThumbnail.objects.create(
             storage_type="mx",
             profile=user_profile,
         )
 
+        # Save the thumbnail object and set it as the video thumbnail
         new_thumbnail.save()
-
         new_video.thumbnail = new_thumbnail
 
+        # Confirmation Test
         print(f"New video created with upload ID: {new_video.upload_id}")
 
+        # Save the video object
         new_video.save()
 
         # Return the upload URL to the client
@@ -239,4 +266,8 @@ def ready_upload(request):
 
 
 def video_setup_template(request):
+    """
+        This view is used to render the video setup template when creating a bit containing
+        a video.
+    """
     return render(request, 'video_setup.html')
