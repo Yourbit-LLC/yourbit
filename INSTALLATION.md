@@ -20,6 +20,8 @@ To install on windows, download and run the windows installer provided on the pa
 
 > **Note:** If you are attempting to install python on Linux. You must download the source code from the link above and follow [these instructions here](https://github.com/Yourbit-LLC/yourbit/blob/main/docs/installation/install-python-source.md) to compile and install.
 
+---
+
 ## **2. Clone this Repository**
 
 > **Note:** You must have git installed to continue with this step. Follow [this guide](https://github.com/Yourbit-LLC/yourbit/blob/main/docs/installation/install-git.md) to get started.
@@ -34,6 +36,7 @@ git clone https://github.com/Yourbit-LLC/yourbit.git
 cd yourbit
 ```
 
+---
 
 ## **3. Create the virtual environment**
 
@@ -106,10 +109,14 @@ Remove-Item -Recurse -Force venv
 ---
 </details>
 
+---
+
 ## **4. Install the dependencies**
 ```sh
 pip install -r requirements.txt
 ```
+
+---
 
 ## **5. Set Up Environment**  
 
@@ -222,6 +229,8 @@ VIDEO_PRIVATE_KEY=your-mux-private-key
 ```
 </details>
 
+---
+
 ## **6. Migrate the database and run the server**
 
 ```bash
@@ -232,6 +241,8 @@ python manage.py runserver
 You should now be able to access the site at `127.0.0.1:8000` unless you specify a different port than `8000`. 
 
 > **Note:** Bot Challenges (Turnstile/reCAPTCHA) will not run without a secure tunnel and are disabled in local enviroments by default, Yourbits authentication system will bypass them automatically.
+
+---
 
 ## **7. Create Super User**
 ```bash
