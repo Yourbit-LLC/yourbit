@@ -39,7 +39,7 @@ git clone https://github.com/Yourbit-LLC/yourbit.git
 cd yourbit
 ```
 
-<div align="right">[Back to Top](#installation-instructions)</div>
+<div align="right"><a href="https://github.com/Yourbit-LLC/yourbit/main/INSTALLATION.md#installation-instructions">Back to Top</a></div>
 
 ---
 
