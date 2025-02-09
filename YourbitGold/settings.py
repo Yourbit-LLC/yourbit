@@ -35,9 +35,9 @@ SECRET_KEY = env('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG_MODE')
 
-ALLOWED_HOSTS = env("ALLOWED_HOSTS", "").split(",")
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
 
-CSRF_TRUSTED_ORIGINS = env("CSRF_TRUSTED_ORIGINS", "").split(",")
+CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=[])
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 # Application definition
@@ -126,7 +126,7 @@ ASGI_APPLICATION = "YourbitGold.asgi.application"
 
 DATABASES = {
     'default': {
-        'ENGINE': f'django.db.backends.{env('DB_ENGINE')}',
+        'ENGINE': f'django.db.backends.{env("DB_ENGINE")}',
         'NAME': env('DB_NAME'),
         'USER': env('DB_USER'),
         'PASSWORD': env('DB_PASSWORD'),
@@ -245,7 +245,7 @@ WEBPUSH_SETTINGS = {
 CLOUDFLARE_STREAM_API_KEY = env('CLOUDFLARE_STREAM_API_KEY')
 CLOUDFLARE_STREAM_ACCOUNT_ID = env('CLOUDFLARE_STREAM_ACCOUNT_ID')
 CLOUDFLARE_IMAGES_API_KEY = env('IMAGES_API_KEY')
-CLOUDFLARE_ACCOUNT_HASH = env('CLOUDFLARE_ACCOUNT_HASH')
+CLOUDFLARE_ACCOUNT_HASH = env('IMAGES_ACCOUNT_HASH')
 IMAGE_BASE_URL = env('IMAGE_BASE_URL')
 
 #Challenge credentials

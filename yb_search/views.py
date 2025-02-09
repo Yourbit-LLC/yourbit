@@ -21,7 +21,7 @@ env = environ.Env()
 environ.Env.read_env()
 
 #External Search API Keys
-giphy_api_key = env('GIPHY_API_KEY')
+giphy_api_key = env('STICKER_API_KEY')
 
 def search(request):
     
