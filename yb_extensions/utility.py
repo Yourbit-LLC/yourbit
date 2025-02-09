@@ -6,41 +6,47 @@ import hashlib
 import hmac
 import base64
 import crypto  # For RSA signing
+from urllib.parse import urlparse
+from yb_extensions.action_map import video_service
 
-def load_action_map(config_path="config.json"):
-    """Loads the action map from a JSON file and applies environment variables."""
-    try:
-        with open(config_path, "r") as file:
-            action_map = json.load(file)
-    except FileNotFoundError:
-        action_map = {"video_services": {}}
 
-    # Inject environment variables where necessary
-    for service, config in action_map.get("video_services", {}).items():
-        if "signing_secret" in config:
-            env_secret = os.getenv(config["signing_secret"], "")
-            action_map["video_services"][service]["signing_secret"] = env_secret
-        if "key_id" in config:
-            env_key_id = os.getenv(config["key_id"], "")
-            action_map["video_services"][service]["key_id"] = env_key_id
+def extract_provider_from_url(url):
+    """Extracts the base domain from a URL and maps it to a provider."""
+    domain_to_provider = {
+        "mux.com": "mux",
+        "cloudflarestream.com": "cloudflare_stream",
+        "cloudfront.net": "aws_cloudfront",
+        "vimeo.com": "vimeo",
+        "azure.net": "azure"
+    }
 
-    return action_map
+    parsed_url = urlparse(url)
+    domain = parsed_url.netloc
 
-# Load configuration
-universal_action_map = load_action_map()
-def sign_url(provider, url, **kwargs):
+    for known_domain in domain_to_provider:
+        if known_domain in domain:
+            return domain_to_provider[known_domain]
+
+    return None  # Unknown provider
+
+def sign_url(url, **kwargs):
     """Signs the URL using JWT (HS256/RS256) or RSA (AWS CloudFront)."""
-    service_config = universal_action_map["video_services"].get(provider, {})
-    
+    provider = extract_provider_from_url(url)
+
+    if not provider:
+        return url  # No signing required if provider isn't mapped
+
+    service_config = video_service
+
     if not service_config.get("requires_signature", False):
         return url  # No signing required
 
     algorithm = service_config.get("signing_algorithm", "HS256")
-    secret = service_config.get("signing_secret", "")
-    key_id = service_config.get("key_id", "")
+    secret = os.getenv(service_config.get("signing_secret", ""), "")
+    key_id = os.getenv(service_config.get("key_id", ""), "")
 
     if algorithm in ["HS256", "RS256"]:
-        # JWT Signing (Mux, Cloudflare Stream, Vimeo, Azure)
+        # JWT Signing (Mux, Cloudflare, Vimeo, Azure)
         exp_time = int(time.time()) + 600  # Token valid for 10 minutes
         claims = {"exp": exp_time}
 
@@ -74,15 +80,14 @@ def sign_url(provider, url, **kwargs):
 
     return url  # No valid signing method found
 
-
-def get_action_url(action, provider=None, **kwargs):
+def get_action_url(action, **kwargs):
     """
-    Retrieves the API endpoint URL, signs it if required, and formats parameters.
-    - Supports dynamic parameters (e.g., {video_id}).
-    - Signs the URL if the service requires it.
-    - Returns None if the action is not available.
+        Retrieves the API endpoint URL, signs it if required, and formats parameters.
+            - Supports dynamic parameters (e.g., {video_id}).
+            - Signs the URL if the service requires it.
+            - Returns None if the action is not available.
     """
-    service_config = universal_action_map["video_services"].get(provider, {})
+    service_config = video_service
     url_template = service_config.get(action, "")
 
     # If action is missing or empty, return None
@@ -93,16 +98,6 @@ def get_action_url(action, provider=None, **kwargs):
     formatted_url = url_template.format(**kwargs)
 
     # Sign URL if needed
-    signed_url = sign_url(provider, formatted_url, **kwargs)
+    signed_url = sign_url(formatted_url, **kwargs)
 
     return signed_url
-
-
-# Example Usage:
-mux_signed_url = get_action_url("playback_url", provider="mux", playback_id="12345")
-cloudflare_signed_url = get_action_url("upload_url", provider="cloudflare_stream", ACCOUNT_ID="abcd")
-aws_signed_url = get_action_url("playback_url", provider="aws_cloudfront", video_id="example.mp4")
-
-print(mux_signed_url)
-print(cloudflare_signed_url)
-print(aws_signed_url)
