@@ -1,23 +1,26 @@
-#   **Action Map Introduction**
+#   Yourbit Action Map
 
 #   For more information on the action map, go to "docs/modifying/action_map.md"
 
-# Video Services
-# 
-# Services like Mux or Cloudflare Stream
-# 
-# The most basic requirements for third party video services include a 
-# view url, preview url, upload url, and modify url.
+"""
+  Video Services
 
-# If needed, the video service handlers can be modified in: 
-# "yb_video/utility.py"
-#
-# Modifying the above file will allow you to change the required parameters
-# for communicating with your specific video API, improper setup may result in
-# client side errors.
+    Services like Mux or Cloudflare Stream
+
+    The most basic requirements for third party video services include a 
+    view url, preview url, upload url, and modify url.
+
+    If needed, the video service handlers can be modified in: 
+    "yb_video/utility.py"
+
+    Modifying the above file will allow you to change the required parameters
+    for communicating with your specific video API, improper setup may result in
+    client side errors.
+
+"""
 
 video_service = {
-    
+
     # URL Schema for retrieving a video for playback
     "playback_url": "https://player.mux.com/{playback_id}", 
 
@@ -46,18 +49,21 @@ video_service = {
     # Define whether the video service requires a signature for uploads
     "requires_signature": True,
 
-    # Define the signing algorithm for the video service
+    # Define the signing algorithm for the video service, default is HS256
     "signing_algorithm": "HS256",
 }
 
-# Image Services
+"""
+  Image Services
 
-# Services like Cloudflare Images
- 
-# The image service must provide image thumbnail variants consistent with 
-# yourbits expected thumbnail variants. You may choose any size for thumnail 
-# variants, however, higher resolutions may impact performance. For guidelines 
-# on how Yourbit sizes thumnails, check out the documentation on Image Services.
+    Services like Cloudflare Images
+    
+    The image service must provide image thumbnail variants consistent with 
+    yourbits expected thumbnail variants. You may choose any size for thumnail 
+    variants, however, higher resolutions may impact performance. For guidelines 
+    on how Yourbit sizes thumnails, check out the documentation on Image Services.
+
+"""
 
 image_service = {
     
@@ -71,28 +77,33 @@ image_service = {
     "modify": "",
 }
 
-# Sticker Service
+"""
+  Sticker Service
 
-# Services like Giphy 
+    Services like Giphy 
 
-# Stickers on Yourbit are still under construction, so there are no features 
-# implemented regarding that. You can place the search and retrieval URL's to 
-# your desired sticker service here. If the sticker service requires an API key,
-# place that in environment variables.
+    Stickers on Yourbit are still under construction, so there are no features 
+    implemented regarding that. You can place the search and retrieval URL's to 
+    your desired sticker service here. If the sticker service requires an API key,
+    place that in environment variables.
+
+"""
 
 sticker_service = {
     # URL Schema for Searching the collection
     "search": "https://api.giphy.com/v1/stickers/search?q={query}",  
 }
 
-
-# Bot Challenges:
+"""
+  Bot Challenges:
   
-# Services like reCAPTHCA, Turnstile, and HCAPTCHA
+    Services like reCAPTHCA, Turnstile, and HCAPTCHA
 
-# The bot challenge service requires a secret and a site key, add 
-# them as CHALLENGE_SECRET_KEY and CHALLENGE_SITE_KEY in the environment
-# variables 
+    The bot challenge service requires a secret and a site key, add 
+    them as CHALLENGE_SECRET_KEY and CHALLENGE_SITE_KEY in the environment
+    variables 
+
+"""
 
 bot_challenge_service = {
     # URL for verifying tokens sent by the client side bot challenge
