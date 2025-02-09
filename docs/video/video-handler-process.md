@@ -4,7 +4,7 @@ This file explains how Yourbit interacts with video APIs to retrieve, present, a
 
 ## **Targeted Improvements:**
 
-We are working on an integrated CDN service for videos and media as a free and local alternative to fall back to when either making contributions and testing in a local environment or when using an external, potentialy paid, provider is not preferred. Once this is complete, you will still be able to choose alternative media handling services, using the action map, if desired.
+We are working on an integrated CDN service for videos and media as a free and local alternative to fall back to when either making contributions and testing in a local environment or when using an external, potentialy paid, provider is not preferred. Once this is complete, you will still be able to choose alternative media handling services using the action map, if desired.
 
 ## **Publishing Videos**
 When a video is submitted for upload, Yourbit will:
