@@ -189,6 +189,22 @@ DB_ENGINE=sqlite3
 
 # All other fields can be commented out or left blank.
 ```
+
+Below is a snippet from `YourbitGold/settings.py` on lines `127-136` showing how the database credentials will be called upon. This code is provided as future reference so you know what to look for in settings when making adjustments, as per requirements of your database.
+
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': f'django.db.backends.{env("DB_ENGINE")}',
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST'),  # If the PostgreSQL server is on the same machine
+        'PORT': env('DB_PORT'),  # Leave empty for the default PostgreSQL port (5432)
+    }
+}
+```
+
 </details>
 
 <details>
@@ -204,6 +220,20 @@ EMAIL_HOST_USER=your-email@example.com
 EMAIL_HOST_PASSWORD=your-email-password
 EMAIL_PORT=587
 ```
+
+Below is a snippet from `YourbitGold/settings.py` on lines `202-208` showing how the database credentials will be called upon. This code is provided as future reference so you know what to look for in settings when making adjustments, as per requirements of your smtp provider.
+
+```python
+#SMTP Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_PORT = env('EMAIL_PORT')
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+
+```
+
 </details>
 
 <details>
@@ -219,6 +249,20 @@ BUCKET_REGION=us-east
 BUCKET_ACCESS_KEY=your-bucket-access-key
 BUCKET_SECRET_KEY=your-bucket-secret-key
 ```
+
+
+Below is a snippet from `YourbitGold/settings.py` on lines `202-208` showing how the database credentials will be called upon. This code is provided as future reference so you know what to look for in settings when making adjustments, as per requirements of your storage provider.
+
+```python
+AWS_S3_ENDPOINT_URL = f'https://{env("BUCKET_REGION")}.linodeobjects.com'
+AWS_ACCESS_KEY_ID = env('BUCKET_ACCESS_KEY')
+AWS_SECRET_ACCESS_KEY = env('BUCKET_SECRET_KEY')
+AWS_S3_REGION_NAME = env('BUCKET_REGION')
+AWS_S3_USE_SSL = True
+AWS_STORAGE_BUCKET_NAME = env('BUCKET_NAME')
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_S3_ENDPOINT_URL}'
+```
+
 </details>
 
 <details>
