@@ -132,7 +132,7 @@ For basic operation there are a few environment variables that require configura
   - Video Host (ex: Cloudflare stream, Mux)
   - Email Host (ex: Google workspace)
     
-Expand each section of the guide for information on setting up the required environment variables. For a reference guide to all environment variables, [click here](https://github.com/Yourbit-LLC/yourbit/blob/main/ENVIRONMENT.md).
+Expand each section of the guide below for information on setting up the required environment variables. For a reference guide to all environment variables, [click here](https://github.com/Yourbit-LLC/yourbit/blob/main/ENVIRONMENT.md).
 
 <details>
 <summary><strong>Setup Django Secret</strong></summary>
