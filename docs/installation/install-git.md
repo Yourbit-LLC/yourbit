@@ -1,6 +1,6 @@
 # Installing Git on Windows
 
-## Step 1: Check if Git is Already Installed
+## 1: Check if Git is Already Installed
 
 Before installing Git, check if it is already installed on your system. Open **Command Prompt** or **PowerShell** and run:
 
@@ -13,7 +13,7 @@ git --version
 
 ---
 
-## Step 2: Download Git for Windows
+## 2: Download Git for Windows
 
 1. Go to the official Git website:  
    👉 [https://git-scm.com/download/win](https://git-scm.com/download/win)
@@ -22,7 +22,7 @@ git --version
 
 ---
 
-## Step 3: Run the Installer
+## 3: Run the Installer
 
 1. Follow the installation prompts. You can use the default options for most settings.
    - Choose **Git Bash** as your terminal (for easier Git usage).
@@ -32,7 +32,7 @@ git --version
 
 ---
 
-## Step 4: Verify the Installation
+## 4: Verify the Installation
 
 Once the installation is complete, verify that Git was installed correctly.
 
@@ -64,7 +64,7 @@ choco install git
 
 ---
 
-## Step 5: Configure Git (Optional)
+## 5: Configure Git (Optional)
 
 Once Git is installed, you may want to set up your user details.
 
@@ -77,7 +77,7 @@ git config --global user.email "your.email@example.com"
 
 ---
 
-## Step 6: Check the Configuration
+## 6: Check the Configuration
 
 You can verify your Git configuration with the following command:
 
