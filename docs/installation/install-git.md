@@ -1,7 +1,4 @@
-Here’s a markdown file with step-by-step instructions and code that you can copy and paste:
-
-```markdown
-# Installing Git on Windows
+]# Installing Git on Windows
 
 ## Step 1: Check if Git is Already Installed
 
@@ -95,6 +92,6 @@ It should display the `user.name` and `user.email` you've just set.
 ## Conclusion
 
 You’ve successfully installed and configured Git on your Windows system! Happy coding! 🚀
-```
+
 
 Feel free to copy and paste this markdown file! It covers everything from installation to verification and even optional configuration. Let me know if you need more details or help with something else!
