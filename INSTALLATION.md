@@ -24,6 +24,9 @@ To install on windows, download and run the windows installer provided on the pa
 
 ## **2. Clone this Repository**
 
+[Back to Top](#installation-instructions)
+
+
 > **Note:** You must have git installed to continue with this step. Follow [this guide](https://github.com/Yourbit-LLC/yourbit/blob/main/docs/installation/install-git.md) to get started.
 
 With git installed, run the following commands inside of your terminal of choice.
@@ -39,6 +42,9 @@ cd yourbit
 ---
 
 ## **3. Create the virtual environment**
+
+[Back to Top](#installation-instructions)
+
 
 A virtual environment allows you to create isolated Python environments for different projects, preventing dependency conflicts.
 
@@ -112,6 +118,10 @@ Remove-Item -Recurse -Force venv
 ---
 
 ## **4. Install the dependencies**
+
+[Back to Top](#installation-instructions)
+
+
 ```sh
 pip install -r requirements.txt
 ```
@@ -119,6 +129,9 @@ pip install -r requirements.txt
 ---
 
 ## **5. Set Up Environment**  
+
+[Back to Top](#installation-instructions)
+
 
 ### Create an environment file
 
@@ -235,6 +248,9 @@ VIDEO_PRIVATE_KEY=your-mux-private-key
 
 ## **6. Migrate the database and run the server**
 
+[Back to Top](#installation-instructions)
+
+
 ```bash
 python manage.py migrate
 python manage.py runserver
@@ -247,6 +263,10 @@ You should now be able to access the site at `127.0.0.1:8000` unless you specify
 ---
 
 ## **7. Create Super User**
+
+[Back to Top](#installation-instructions)
+
+
 ```bash
 python manage.py createsuperuser
 ```
