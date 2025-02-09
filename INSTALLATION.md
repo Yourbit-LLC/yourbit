@@ -39,7 +39,7 @@ git clone https://github.com/Yourbit-LLC/yourbit.git
 cd yourbit
 ```
 
-<div align="right"><a href="https://github.com/Yourbit-LLC/yourbit/main/INSTALLATION.md#installation-instructions">Back to Top</a></div>
+<div align="right"><a href="https://github.com/Yourbit-LLC/yourbit/blob/main/INSTALLATION.md">Back to Top</a></div>
 
 ---
 
@@ -116,7 +116,8 @@ Remove-Item -Recurse -Force venv
 </details>
 
 
-<div align="right">[Back to Top](#installation-instructions)</div>
+<div align="right"><a href="https://github.com/Yourbit-LLC/yourbit/blob/main/INSTALLATION.md">Back to Top</a></div>
+
 ---
 
 ## **4. Install the dependencies**
@@ -126,7 +127,7 @@ Remove-Item -Recurse -Force venv
 pip install -r requirements.txt
 ```
 
-<div align="right">[Back to Top](#installation-instructions)</div>
+<div align="right"><a href="https://github.com/Yourbit-LLC/yourbit/blob/main/INSTALLATION.md">Back to Top</a></div>
 
 ---
 
@@ -244,7 +245,7 @@ VIDEO_PRIVATE_KEY=your-mux-private-key
 ```
 </details>
 
-<div align="right">[Back to Top](#installation-instructions)</div>
+<div align="right"><a href="https://github.com/Yourbit-LLC/yourbit/blob/main/INSTALLATION.md">Back to Top</a></div>
 
 ---
 
@@ -261,7 +262,7 @@ You should now be able to access the site at `127.0.0.1:8000` unless you specify
 > **Note:** Bot Challenges (Turnstile/reCAPTCHA) will not run without a secure tunnel and are disabled in local enviroments by default, Yourbits authentication system will bypass them automatically.
 
 
-<div align="right">[Back to Top](#installation-instructions)</div>
+<div align="right"><a href="https://github.com/Yourbit-LLC/yourbit/blob/main/INSTALLATION.md">Back to Top</a></div>
 
 ---
 
@@ -276,7 +277,7 @@ Follow the prompts to set up your admin account. Once complete, you may login wi
 
 > **Note:** When creating an account through the terminal, the date of birth must be formatted as YYYY-MM-DD.
 
-<div align="right">[Back to Top](#installation-instructions)</div>
+<div align="right"><a href="https://github.com/Yourbit-LLC/yourbit/blob/main/INSTALLATION.md">Back to Top</a></div>
 
 
 
