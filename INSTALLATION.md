@@ -24,7 +24,7 @@ To install on windows, download and run the windows installer provided on the pa
 
 ## **2. Clone this Repository**
 
-[Back to Top](#installation-instructions)
+
 
 
 > **Note:** You must have git installed to continue with this step. Follow [this guide](https://github.com/Yourbit-LLC/yourbit/blob/main/docs/installation/install-git.md) to get started.
@@ -39,11 +39,11 @@ git clone https://github.com/Yourbit-LLC/yourbit.git
 cd yourbit
 ```
 
+<div align="right">[Back to Top](#installation-instructions)</div>
+
 ---
 
 ## **3. Create the virtual environment**
-
-[Back to Top](#installation-instructions)
 
 
 A virtual environment allows you to create isolated Python environments for different projects, preventing dependency conflicts.
@@ -115,22 +115,22 @@ Remove-Item -Recurse -Force venv
 ---
 </details>
 
+
+<div align="right">[Back to Top](#installation-instructions)</div>
 ---
 
 ## **4. Install the dependencies**
-
-[Back to Top](#installation-instructions)
 
 
 ```sh
 pip install -r requirements.txt
 ```
 
+<div align="right">[Back to Top](#installation-instructions)</div>
+
 ---
 
 ## **5. Set Up Environment**  
-
-[Back to Top](#installation-instructions)
 
 
 ### Create an environment file
@@ -244,11 +244,11 @@ VIDEO_PRIVATE_KEY=your-mux-private-key
 ```
 </details>
 
+<div align="right">[Back to Top](#installation-instructions)</div>
+
 ---
 
 ## **6. Migrate the database and run the server**
-
-[Back to Top](#installation-instructions)
 
 
 ```bash
@@ -260,11 +260,12 @@ You should now be able to access the site at `127.0.0.1:8000` unless you specify
 
 > **Note:** Bot Challenges (Turnstile/reCAPTCHA) will not run without a secure tunnel and are disabled in local enviroments by default, Yourbits authentication system will bypass them automatically.
 
+
+<div align="right">[Back to Top](#installation-instructions)</div>
+
 ---
 
 ## **7. Create Super User**
-
-[Back to Top](#installation-instructions)
 
 
 ```bash
@@ -273,7 +274,9 @@ python manage.py createsuperuser
 
 Follow the prompts to set up your admin account. Once complete, you may login with your new account. With debug mode on, you can access the admin panel at `127.0.0.1:8000/admin`.
 
-> **Note:** When creating an account through the terminal, the date of birth must be formatted as YYYY-MM-DD. 
+> **Note:** When creating an account through the terminal, the date of birth must be formatted as YYYY-MM-DD.
+
+<div align="right">[Back to Top](#installation-instructions)</div>
 
 
 
