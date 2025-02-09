@@ -123,16 +123,9 @@ In the root (top) directory of your project. Create a file with the name `.env`.
 > **Note:** Ensure that the `.env` file is added to your `.gitignore` to avoid accidentally sharing sensitive information.
 
 **Required Configuration**
-For basic operation there are a few environment variables that require configuration. This inludes:
-  - Django Secret
-  - VAPID Keys (For web push notifications)
-  - Database Setup (postgresql, sqlite, mysql)
-  - Object Storage (ex: Linode object storage, Amazon S3)
-  - Image Host (ex: Cloudflare images, Imgix)
-  - Video Host (ex: Cloudflare stream, Mux)
-  - Email Host (ex: Google workspace)
-    
-Expand each section of the guide below for information on setting up the required environment variables. For a reference guide to all environment variables, [click here](https://github.com/Yourbit-LLC/yourbit/blob/main/ENVIRONMENT.md).
+For basic operation there are a few environment variables that require configuration. Expand each section of the guide below for information on setting up the required environment variables. 
+
+> **Tip:** For a reference guide to all environment variables, [click here](https://github.com/Yourbit-LLC/yourbit/blob/main/ENVIRONMENT.md).
 
 <details>
 <summary><strong>Setup Django Secret</strong></summary>
