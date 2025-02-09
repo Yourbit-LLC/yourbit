@@ -8,7 +8,7 @@ We are working on an integrated CDN service for videos and media as a free and l
 
 ## **Publishing Videos**
 When a video is submitted for upload, Yourbit will:
-  - Request a direct upload link from the video service provider (`Mux` or `Cloudflare`).
+  - Request a direct upload link from the video service provider (Ex: `Mux` or `Cloudflare`).
   - Create a `Video` object in the database with `upload_status="preparing"`.
   - Assign the `upload ID` received from the direct upload request to the `Video` object.
   - If the video is part of a bit, the bit is created and set to `status="pending"`.
