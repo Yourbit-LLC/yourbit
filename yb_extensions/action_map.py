@@ -43,6 +43,11 @@ video_service = {
     # This should be the exact path to the status indicating "ready" on upload complete.
     "webhook_status": "status",
 
+    # Define whether the video service requires a signature for uploads
+    "requires_signature": True,
+
+    # Define the signing algorithm for the video service
+    "signing_algorithm": "HS256",
 }
 
 # Image Services

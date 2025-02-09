@@ -7,7 +7,7 @@ import datetime
 from YourbitGold.settings import env
 import os
 from django.views.decorators.csrf import csrf_exempt
-from yb_video.services import get_upload_url
+from yb_video.services import get_direct_upload_url
 from yb_video.models import Video
 import json
 from yb_extensions.action_map import video_service
@@ -161,7 +161,7 @@ def video_upload_endpoint(request):
     if request.user.is_authenticated:
         from yb_photo.models import VideoThumbnail
         from yb_profile.models import Profile
-        upload_url = get_upload_url()
+        upload_url = get_direct_upload_url()
 
         user_profile = Profile.objects.get(username = request.user.active_profile)
 

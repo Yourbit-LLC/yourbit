@@ -1,4 +1,5 @@
 import mux_python
+from mux_python import Configuration, VideoApi
 from mux_python.rest import ApiException
 from django.db import models
 from django.utils import timezone
@@ -9,10 +10,77 @@ from yb_video.models import Video
 import requests
 from requests.auth import HTTPBasicAuth
 from yb_extensions.action_map import video_service
+import jwt
+import datetime
+
+"""
+    The services.py file is used to define the functions 
+    that will be used to interact with video service API's
+    installed to Yourbit. Modify this file to adapt to your
+    service API when needed.
+
+"""
 
 configuration = mux_python.Configuration()
 video_token_id = settings.VIDEO_CDN_TOKEN
 video_token_secret = settings.VIDEO_CDN_SECRET
+
+# Initialize Mux API
+config = Configuration()
+config.access_token_id = settings.MUX_TOKEN_ID
+config.secret_key = settings.MUX_TOKEN_SECRET
+
+video_api = VideoApi(configuration=config)
+
+def generate_signed_url(asset_id, expiration=3600):
+    """
+    Generate a signed playback URL for a Mux video asset.
+
+    Args:
+        asset_id (str): The Mux asset ID.
+        expiration (int): Expiration time in seconds for the signed URL.
+
+    Returns:
+        str: A signed URL for the asset.
+    """
+    try:
+        # Playback URL base
+        base_url = f"https://stream.mux.com/{asset_id}.m3u8"
+
+        # Signing key
+        signing_key_id = settings.MUX_SIGNING_KEY
+        signing_secret = settings.MUX_PRIVATE_KEY
+
+        # Create the token
+        payload = {
+            "exp": datetime.datetime.utcnow() + datetime.timedelta(seconds=expiration),
+        }
+        token = jwt.encode(payload, signing_secret, algorithm="HS256", headers={"kid": signing_key_id})
+
+        # Generate signed URL
+        signed_url = f"{base_url}?token={token}"
+        return signed_url
+    except Exception as e:
+        raise ValueError(f"Failed to generate signed URL: {e}")
+
+
+def get_video_by_id(video_id):
+    return Video.objects.get(id=video_id)
+
+def get_video_by_profile(profile):
+    return Video.objects.filter(profile=profile)
+
+def get_video_by_profile_id(profile_id):
+    profile = Profile.objects.get(id=profile_id)
+    return Video.objects.filter(profile=profile)
+
+def save_video(request, video):
+    
+    new_video = Video(user=request.user, video=video)
+    new_video.save()
+    
+    return new_video
+
 
 def get_mux_url(request):
     api_instance = mux_python.DirectUploadsApi(mux_python.ApiClient(configuration))
@@ -27,7 +95,7 @@ def get_mux_url(request):
     except ApiException as e:
         print("Exception when calling VideoUrlApi->create_video_url: %s\n" % e)
 
-def get_upload_url():
+def get_direct_upload_url():
     """
         The function get_upload_url is used to request a direct upload URL
         from a provided video service using the URL defined in the action map.
@@ -50,7 +118,7 @@ def get_upload_url():
         print(f"Error creating Mux upload URL: {e}")
         return None
 
-def get_mux_web_token(video_id):
+def get_video_web_token(video_id):
     import jwt
     import base64
     import time
@@ -87,11 +155,11 @@ def get_mux_data(video_id):
         print("Exception when calling VideoApi->get_video: %s\n" % e)
 
 
-def send_video_to_mux(request):
+def send_video_to_cdn(request):
     # Get the direct upload URL from Mux
     if request.user.is_authenticated:
         from yb_photo.models import VideoThumbnail
-        upload_url = get_mux_url(request)
+        upload_url = get_direct_upload_url(request)
         user_profile = Profile.objects.get(username=request.user.active_profile)
         new_video = Video.objects.create(
             user=request.user,
