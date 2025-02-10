@@ -68,13 +68,29 @@ video_service = {
 image_service = {
     
     # URL Schema for fetching full sized images
-    "retrieve": "https://imagedelivery.net/{IMAGE_ACCOUNT_HASH}/{image_id}/{variant}",
+    "retrieve_url": "https://imagedelivery.net/{IMAGE_ACCOUNT_HASH}/{image_id}/{variant}",
     
     # URL Schema for uploading a video 
-    "upload": "https://api.cloudflare.com/client/v4/accounts/{CLOUDFLARE_STREAM_ACCOUNT_ID}/images/v1",
+    "upload_url": "https://api.cloudflare.com/client/v4/accounts/{CLOUDFLARE_STREAM_ACCOUNT_ID}/images/v1",
 
     # URL Schema for modifying an existing upload 
-    "modify": "",
+    "modify_url": "",
+
+    # URL to cancel an upload in progress, the endpoint should expect a PUT request
+    "cancel_upload_url": "",
+
+    # URL schema to delete an uploaded asset, the endpoint should expect a DELETE request
+    "delete_url": "",
+    
+    # Webhook status is used to query the json sent with a webhook for the upload status
+    # This should be the exact path to the status indicating "ready" on upload complete.
+    "webhook_status": "status",
+
+    # Define whether the video service requires a signature for uploads
+    "requires_signature": True,
+
+    # Define the signing algorithm for the video service, default is HS256
+    "signing_algorithm": "HS256",
 }
 
 """
@@ -109,3 +125,4 @@ bot_challenge_service = {
     # URL for verifying tokens sent by the client side bot challenge
     "verify_url": "https://challenges.cloudflare.com/turnstile/v0/siteverify",
 }
+

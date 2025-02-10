@@ -187,13 +187,13 @@ def video_upload_endpoint(request):
 
         # Get the user profile
         user_profile = Profile.objects.get(username = request.user.active_profile)
-
+        print(upload_url)
         #Create a new video object in the database and set as preparing
         new_video = Video.objects.create(
             user=request.user,
             upload_status="preparing",
             storage_type="mx",
-            upload_id=upload_url.data.id,
+            upload_id=upload_url["data"]["id"],
         )
 
         # Create a new thumbnail object in the database
@@ -213,7 +213,7 @@ def video_upload_endpoint(request):
         new_video.save()
 
         # Return the upload URL to the client
-        return JsonResponse({"upload_url": upload_url.data.url, "upload_id":new_video.upload_id})
+        return JsonResponse({"upload_url": upload_url["data"]["url"], "upload_id":new_video.upload_id})
     
     return JsonResponse({"error": "User is not authenticated"}, status=401)
 

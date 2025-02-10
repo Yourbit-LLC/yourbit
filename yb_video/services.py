@@ -1,5 +1,5 @@
 import mux_python
-from mux_python import Configuration, VideoApi
+from mux_python import Configuration
 from mux_python.rest import ApiException
 from django.db import models
 from django.utils import timezone
@@ -25,12 +25,6 @@ configuration = mux_python.Configuration()
 video_token_id = settings.VIDEO_CDN_TOKEN
 video_token_secret = settings.VIDEO_CDN_SECRET
 
-# Initialize Mux API
-config = Configuration()
-config.access_token_id = settings.MUX_TOKEN_ID
-config.secret_key = settings.MUX_TOKEN_SECRET
-
-video_api = VideoApi(configuration=config)
 
 def generate_signed_url(asset_id, expiration=3600):
     """
@@ -80,20 +74,6 @@ def save_video(request, video):
     new_video.save()
     
     return new_video
-
-
-def get_mux_url(request):
-    api_instance = mux_python.DirectUploadsApi(mux_python.ApiClient(configuration))
-   
-    create_asset_request = mux_python.CreateAssetRequest(playback_policy=[mux_python.PlaybackPolicy.PUBLIC], video_quality="basic")
-    create_upload_request = mux_python.CreateUploadRequest(timeout=3600, new_asset_settings=create_asset_request, cors_origin="*")
-    create_upload_response = api_instance.create_direct_upload(create_upload_request)
-    try:
-        api_response = create_upload_response
-        print(api_response)
-        return api_response
-    except ApiException as e:
-        print("Exception when calling VideoUrlApi->create_video_url: %s\n" % e)
 
 def get_direct_upload_url():
     """
@@ -145,22 +125,19 @@ def get_video_web_token(video_id):
     
     return encoded
 
-def get_mux_data(video_id):
-    api_instance = mux_python.AssetsApi(mux_python.ApiClient(configuration))
-    try:
-        api_response = api_instance.get_asset(video_id)
-        print(api_response)
-        return api_response
-    except ApiException as e:
-        print("Exception when calling VideoApi->get_video: %s\n" % e)
-
 
 def send_video_to_cdn(request):
-    # Get the direct upload URL from Mux
+
     if request.user.is_authenticated:
         from yb_photo.models import VideoThumbnail
+
+        # Get direct upload URL from service provider
         upload_url = get_direct_upload_url(request)
+
+        # Get profile object by users active profile
         user_profile = Profile.objects.get(username=request.user.active_profile)
+        
+        # Create a new video object with the upload URL
         new_video = Video.objects.create(
             user=request.user,
             upload_status="preparing",
@@ -168,18 +145,22 @@ def send_video_to_cdn(request):
             upload_id=upload_url.data.id,
         )
 
+        # Create a new thumbnail object for the video
         new_thumbnail = VideoThumbnail.objects.create(
             storage_type="mx",
             profile=user_profile,
             upload_id = upload_url.data.id
         )
 
+        # Save the new thumbnail object
         new_thumbnail.save()
 
+        # Set the newly generated thumbnail as the video thumbnail
         new_video.thumbnail = new_thumbnail
 
         print(f"New video created with upload ID: {new_video.upload_id}")
 
+        # Save the new video object
         new_video.save()
 
         # Return the upload URL to the client
@@ -199,4 +180,42 @@ def generate_video_thumbnails(choose = False, time = 0):
         "xlarge_thumbnail": f"https://image.mux.com/AHImOcQOggaGqe2FxQ6qGZhizlBzJmY5nJNLvyWCvqA/thumbnail.png?width=214&height=121{selected_time}"
     }
 
-    
+# Legacy Code
+
+# def get_mux_url(request):
+
+    # """
+    #     The function get_mux_url is used to request a direct upload URL using the
+    #     Mux-Python SDK. This function is used to request a direct upload URL from
+    #     Mux and is used to upload videos to the Mux CDN.
+        
+    # """
+#     api_instance = mux_python.DirectUploadsApi(mux_python.ApiClient(configuration))
+   
+#     create_asset_request = mux_python.CreateAssetRequest(playback_policy=[mux_python.PlaybackPolicy.PUBLIC], video_quality="basic")
+#     create_upload_request = mux_python.CreateUploadRequest(timeout=3600, new_asset_settings=create_asset_request, cors_origin="*")
+#     create_upload_response = api_instance.create_direct_upload(create_upload_request)
+#     try:
+#         api_response = create_upload_response
+#         print(api_response)
+#         return api_response
+#     except ApiException as e:
+#         print("Exception when calling VideoUrlApi->create_video_url: %s\n" % e)
+
+
+
+# def get_mux_data(video_id):
+#     """
+#         The function get_mux_data is used to request data about a video asset
+#         from the Mux API using the Mux-Python SDK. This function is used to 
+#         request data about a video asset from Mux and is used to retrieve 
+#         information about a video asset from the Mux CDN.
+        
+#     """
+#     api_instance = mux_python.AssetsApi(mux_python.ApiClient(configuration))
+#     try:
+#         api_response = api_instance.get_asset(video_id)
+#         print(api_response)
+#         return api_response
+#     except ApiException as e:
+#         print("Exception when calling VideoApi->get_video: %s\n" % e)
