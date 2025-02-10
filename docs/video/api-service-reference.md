@@ -22,7 +22,6 @@ The following services can be integrated into Yourbit **by modifying the action 
 | Service | Features | Potential Integration |
 |---------|----------|----------------------|
 | **Vimeo API** | High-quality streaming, privacy controls, monetization options | 🔹 Yes (API support) |
-| **YouTube API** | Wide reach, embeddable videos, analytics, live streaming | 🔹 Limited (Embedding only) |
 | **JW Player** | Customizable player, DRM protection, API-driven video management | 🔹 Yes (API support) |
 | **Brightcove** | Enterprise-grade streaming, AI-powered recommendations | 🔹 Yes (API support) |
 
