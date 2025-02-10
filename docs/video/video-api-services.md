@@ -9,7 +9,7 @@ The `services.py` module contains helper functions for:
 - Storing metadata such as asset IDs and thumbnails.
 - Managing authentication via API keys.
 
-## **Contents**
+### **Contents**
     
 1. [Authentication and API Keys](#authentication-and-api-keys)
 2. [Direct Upload Requests](#direct-upload-requests)
