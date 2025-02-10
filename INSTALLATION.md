@@ -302,6 +302,9 @@ For example, the Mux video service used by the official Yourbit server, will sen
 
 **Follow the instructions** to setup a secure tunnel and add the URL to your configuration [here](https://github.com/Yourbit-LLC/yourbit/blob/main/docs/installation/setup-webhooks.md).
 
+
+<div align="right"><a href="https://github.com/Yourbit-LLC/yourbit/blob/main/INSTALLATION.md#installation-instructions">Back to Top</a></div>
+
 ## **7. Migrate the database and run the server**
 
 
