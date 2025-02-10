@@ -95,14 +95,14 @@ Once the webhook is processed:
 ## **Generating Secure Playback URLs**
 Yourbit ensures secure video playback by signing URLs using JWT (JSON Web Token).
 
-### **Mux Signed URL Generation**
+### **Signed URL Generation**
 ```python
 def generate_signed_url(asset_id, expiration=3600):
     """
     Generate a signed playback URL for a Mux video asset.
     """
     try:
-        base_url = video_service.get("playback_url")
+        base_url = safe_fstring(video_service["playback_url"], playback_id=asset_id)
         signing_key_id = settings.VIDEO_SIGNING_KEY
         signing_secret = settings.VIDEO_PRIVATE_KEY
 
@@ -115,6 +115,18 @@ def generate_signed_url(asset_id, expiration=3600):
     except Exception as e:
         raise ValueError(f"Failed to generate signed URL: {e}")
 ```
+
+The `base_url` variable above uses the `safe_fstring()` function, which you can find in `main/utility.py` , to pass the current videos `playback_id` to the stored URL in the action map. 
+
+
+<details>
+    <summary><strong>Show Code Snippet</strong></summary>
+    
+    ```python
+        def safe_fstring(template, **kwargs):
+            return template.format(**{key: kwargs.get(key, f"<{key}>") for key in kwargs})
+    ```
+</details>
 
 ---
 
