@@ -1,5 +1,5 @@
 # 📡 **Yourbit Video Service API Documentation**
-This document explains how Yourbit integrates with external video services to handle uploads, generate playback links, and manage video metadata. The video service interacts with **Mux** to process video content.
+This document explains how Yourbit integrates with external video services to handle uploads, generate playback links, and manage video metadata. The video service interacts with your `video_service` integration to process video content.
 
 ## **Overview**
 The `services.py` module contains helper functions for:
