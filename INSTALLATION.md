@@ -293,7 +293,15 @@ VIDEO_PRIVATE_KEY=your-mux-private-key
 
 ---
 
-## **6. Migrate the database and run the server**
+## **6. Setup Secure Tunnel for Webhooks**
+
+For this step we will establish tunnel and configure webhooks. Webhooks are used to receive notifications of events from third-party servers. Many API integrations use webhooks to convey information about an ongoing process or to send regular updates. 
+
+For example, the Mux video service used by the official Yourbit server, will send webhooks for video upload progress as well as completion of upload. The upload complete webook conveys a status of `ready` and delivers the `playback_id` for Yourbit to store with the video upload object in the database.
+
+**Follow the instructions** to setup a secure tunnel and add the URL to your configuration [here](https://github.com/Yourbit-LLC/yourbit/blob/main/docs/installation/setup-webhooks.md).
+
+## **7. Migrate the database and run the server**
 
 
 ```bash
@@ -310,7 +318,7 @@ You should now be able to access the site at `127.0.0.1:8000` unless you specify
 
 ---
 
-## **7. Create Super User**
+## **8. Create Super User**
 
 
 ```bash
