@@ -1,3 +1,8 @@
+---
+layout: default
+title: Installation Guide
+---
+
 # Installation Instructions
 These instructions are provided for the purpose of setting up a host server or development environment for Yourbit. This document will guide you through the setup process from installation of python to starting up a local server to access your build of Yourbit. If you would like to add to this documentation, clone this repository, edit this file, and submit a pull request for review.
 
