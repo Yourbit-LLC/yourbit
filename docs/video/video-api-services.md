@@ -17,6 +17,8 @@ The `services.py` module contains helper functions for:
 4. [Generating Secure Playback URL's](#generating-secure-playback-urls)
 5. [The Role of the Action Map](#the-role-of-the-action-map)
 6. [Saving Video Data to the Database](#saving-video-data-to-the-database)
+7. [Thumbnail Generation](#thumbnail-generation)
+8. [Legacy Code](#legacy-code)
     
 
 ---
