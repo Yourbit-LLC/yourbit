@@ -120,12 +120,12 @@ The `base_url` variable above uses the `safe_fstring()` function, which you can 
 
 
 <details>
-    <summary><strong>Show Code Snippet</strong></summary>
-    
-    ```python
-        def safe_fstring(template, **kwargs):
-            return template.format(**{key: kwargs.get(key, f"<{key}>") for key in kwargs})
-    ```
+<summary><strong>Show Code Snippet</strong></summary>
+
+```python
+    def safe_fstring(template, **kwargs):
+        return template.format(**{key: kwargs.get(key, f"<{key}>") for key in kwargs})
+```
 </details>
 
 ---
