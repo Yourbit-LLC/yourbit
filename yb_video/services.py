@@ -12,6 +12,7 @@ from requests.auth import HTTPBasicAuth
 from yb_extensions.action_map import video_service
 import jwt
 import datetime
+from main.utility import safe_fstring
 
 """
     The services.py file is used to define the functions 
@@ -39,11 +40,11 @@ def generate_signed_url(asset_id, expiration=3600):
     """
     try:
         # Playback URL base
-        base_url = f"https://stream.mux.com/{asset_id}.m3u8"
+        base_url = safe_fstring(video_service["playback_url"], playback_id=asset_id)
 
         # Signing key
-        signing_key_id = settings.MUX_SIGNING_KEY
-        signing_secret = settings.MUX_PRIVATE_KEY
+        signing_key_id = settings.VIDEO_SIGNING_KEY
+        signing_secret = settings.VIDEO_PRIVATE_KEY
 
         # Create the token
         payload = {
@@ -105,8 +106,8 @@ def get_video_web_token(video_id):
 
     my_id = video_id              # Enter the id for which you would like to get counts here
     my_id_type = "playback_id"         # Enter the type of ID provided in my_id; one of video_id | asset_id | playback_id | live_stream_id
-    signing_key_id = settings.MUX_SIGNING_KEY # Enter your signing key id here
-    private_key_base64 = settings.MUX_PRIVATE_KEY # Enter your base64 encoded private key here
+    signing_key_id = settings.VIDEO_SIGNING_KEY # Enter your signing key id here
+    private_key_base64 = settings.VIDEO_PRIVATE_KEY # Enter your base64 encoded private key here
 
     private_key = base64.b64decode(private_key_base64)
 
