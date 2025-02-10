@@ -94,9 +94,10 @@ If the server logs show a received request, the setup is successful.
 ## 4. Security Considerations
 
 - **Use HTTPS**: Ensure your production webhook URLs use `https://` to encrypt data.
-- **Restrict Allowed Hosts**: In `settings.py`, add the ngrok or Cloudflare domain to `ALLOWED_HOSTS`:
-  ```python
-  ALLOWED_HOSTS = ['your-generated-url.ngrok.io', 'your-tunnel-id.trycloudflare.com']
+- **Restrict Allowed Hosts**: In `.env`, add the ngrok or Cloudflare domain to `ALLOWED_HOSTS`:
+  
+  ```env
+  ALLOWED_HOSTS=your-generated-url.ngrok.io,your-tunnel-id.trycloudflare.com
   ```
 - **Verify Webhook Signatures**: If the webhook sender supports signing requests, validate them to ensure authenticity.
 
