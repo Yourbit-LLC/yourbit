@@ -282,7 +282,7 @@ A Video CDN is required to be set up to store and deliver videos for users. Add 
 
 To get an understanding of how these configurations are used by Yourbit see the [API Service Handling Documentation]([https://github.com/Yourbit-LLC/yourbit/blob/main/docs/video/api-service-reference.md](https://github.com/Yourbit-LLC/yourbit/blob/main/docs/video/video-services-handling.md)).
 
-For a full list of known compatible API's, including self-hosted services, [click here.](https://github.com/Yourbit-LLC/yourbit/blob/main/docs/video/api-service-reference.md)
+> For a full list of known compatible API's, including self-hosted services, [click here.](https://github.com/Yourbit-LLC/yourbit/blob/main/docs/video/api-service-reference.md)
 
 
 ```env
