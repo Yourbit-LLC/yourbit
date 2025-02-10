@@ -7,8 +7,9 @@ These instructions are provided for the purpose of setting up a host server or d
 3. [Create Virtual Environment](#3-create-the-virtual-environment)
 4. [Install the Dependencies](#4-install-the-dependencies)
 5. [Set Up Environment](#5-set-up-environment)
-6. [Migrate and Run](#6-migrate-the-database-and-run-the-server)
-7. [Create Super User](#7-create-super-user)
+6. [Setup Secure Tunnel for Webhooks](#6-setup-secure-tunnel-for-webhooks)
+7. [Migrate and Run](#7-migrate-the-database-and-run-the-server)
+8. [Create Super User](#8-create-super-user)
 
 
 ## **1. Install Python 3.10.5**
