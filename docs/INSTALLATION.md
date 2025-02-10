@@ -280,7 +280,7 @@ AWS_S3_CUSTOM_DOMAIN = f'{AWS_S3_ENDPOINT_URL}'
 
 A Video CDN is required to be set up to store and deliver videos for users. Add your credentials here for the video service you are using, you must also configure URL's in the `yb_extensions/action_map.py` file. Below is an example snippet from the `.env` example file showing the configuration for video CDN credentials. 
 
-To get an understanding of how these configurations are used by Yourbit see the [API Service Handling Documentation]([https://github.com/Yourbit-LLC/yourbit/blob/main/docs/video/api-service-reference.md](https://github.com/Yourbit-LLC/yourbit/blob/main/docs/video/video-services-handling.md)).
+To get an understanding of how these configurations are used by Yourbit see the [API Service Handling Documentation](https://github.com/Yourbit-LLC/yourbit/blob/main/docs/video/video-services-handling.md).
 
 > For a full list of known compatible API's, including self-hosted services, [click here.](https://github.com/Yourbit-LLC/yourbit/blob/main/docs/video/api-service-reference.md)
 
