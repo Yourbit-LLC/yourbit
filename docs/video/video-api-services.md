@@ -102,9 +102,9 @@ def generate_signed_url(asset_id, expiration=3600):
     Generate a signed playback URL for a Mux video asset.
     """
     try:
-        base_url = f"https://stream.mux.com/{asset_id}.m3u8"
-        signing_key_id = settings.MUX_SIGNING_KEY
-        signing_secret = settings.MUX_PRIVATE_KEY
+        base_url = video_service.get("playback_url")
+        signing_key_id = settings.VIDEO_SIGNING_KEY
+        signing_secret = settings.VIDEO_PRIVATE_KEY
 
         payload = {
             "exp": datetime.datetime.utcnow() + datetime.timedelta(seconds=expiration),
