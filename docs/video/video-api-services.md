@@ -227,6 +227,6 @@ def get_mux_data(video_id):
 ---
 
 ## **Conclusion**
-Yourbit’s video service efficiently handles video uploads, processing, and playback through Mux. The **action map** allows dynamic configuration, and **secure authentication** ensures protected video access.
+Yourbit’s video service efficiently handles video uploads, processing, and playback through developer defined video services. The **action map** allows dynamic configuration, and **secure authentication** ensures protected video access.
 
 This modular approach allows Yourbit to support **multiple providers** with minimal code changes. 🚀
