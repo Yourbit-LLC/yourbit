@@ -9,6 +9,16 @@ The `services.py` module contains helper functions for:
 - Storing metadata such as asset IDs and thumbnails.
 - Managing authentication via API keys.
 
+## **Contents**
+    
+1. [Authentication and API Keys](#authentication-and-api-keys)
+2. [Direct Upload Requests](#direct-upload-requests)
+3. [Handling Webhook Notifications](#handling-webhook-notifications)
+4. [Generating Secure Playback URL's](#generating-secure-playback-urls)
+5. [The Role of the Action Map](#the-role-of-the-action-map)
+6. [Saving Video Data to the Database](#saving-the-video-data-to-the-database)
+    
+
 ---
 
 ## **Authentication and API Keys**
