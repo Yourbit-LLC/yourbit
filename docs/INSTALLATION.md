@@ -7,8 +7,9 @@ These instructions are provided for the purpose of setting up a host server or d
 3. [Create Virtual Environment](#3-create-the-virtual-environment)
 4. [Install the Dependencies](#4-install-the-dependencies)
 5. [Set Up Environment](#5-set-up-environment)
-6. [Migrate and Run](#6-migrate-the-database-and-run-the-server)
-7. [Create Super User](#7-create-super-user)
+6. [Setup Secure Tunnel for Webhooks](#6-setup-secure-tunnel-for-webhooks)
+7. [Migrate and Run](#7-migrate-the-database-and-run-the-server)
+8. [Create Super User](#8-create-super-user)
 
 
 ## **1. Install Python 3.10.5**
@@ -300,6 +301,9 @@ For this step we will establish tunnel and configure webhooks. Webhooks are used
 For example, the Mux video service used by the official Yourbit server, will send webhooks for video upload progress as well as completion of upload. The upload complete webook conveys a status of `ready` and delivers the `playback_id` for Yourbit to store with the video upload object in the database.
 
 **Follow the instructions** to setup a secure tunnel and add the URL to your configuration [here](https://github.com/Yourbit-LLC/yourbit/blob/main/docs/installation/setup-webhooks.md).
+
+
+<div align="right"><a href="https://github.com/Yourbit-LLC/yourbit/blob/main/INSTALLATION.md#installation-instructions">Back to Top</a></div>
 
 ## **7. Migrate the database and run the server**
 
