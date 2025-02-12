@@ -123,4 +123,4 @@ const ImageComponent = ({ imgproxyUrl }) => {
 After setting it up, test image transformation by visiting:
 
 ```sh
-http://localhost:8080/unsafe/500/500/plain/https://yourbit.com/media/example.jpg
+http://localhost:8080/unsafe/500/500/plain/https://yourbit.me/media/example.jpg
