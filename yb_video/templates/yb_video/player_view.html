@@ -56,11 +56,18 @@
 
             </div>
             {% if bit.storage_type == "yb" %}
-            <div id="video-container-{{bit.id}}" class="attached-video-container">
-                <video id="video-{{bit.id}}" class="attached-video" controls="true" playsinline="true" data-id="{{bit.id}}" src="{{bit.video_upload.video.url}}" style="max-width: 100%; max-height:100%; margin-left: auto; margin-right: auto; display: block;">
-
+                
+                <video 
+                    id="video-{{bit.id}}" 
+                    class="attached-video" 
+                    controls="true" 
+                    playsinline="true" 
+                    data-id="{{bit.id}}" 
+                    src="{{bit.video_upload.video.url}}" 
+                    style="max-width: 100%; max-height:100%; margin-left: auto; margin-right: auto; display: block;"
+                >
                 </video>
-            </div>
+            
             {% else %}
                 <mux-player
                     id="yb-video-player"

@@ -12,6 +12,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from yb_accounts.api.serializers import UserResultSerializer
 from main.views import initialize_session
 from django.views import View
+from django.conf import settings
 
 from django.db.models import Q
 
@@ -21,7 +22,7 @@ env = environ.Env()
 environ.Env.read_env()
 
 #External Search API Keys
-giphy_api_key = env('STICKER_API_KEY')
+giphy_api_key = settings.STICKER_API_KEY
 
 def search(request):
     

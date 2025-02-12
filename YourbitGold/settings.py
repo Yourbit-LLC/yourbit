@@ -265,3 +265,9 @@ CHANNEL_LAYERS = {
         # "CONFIG": {"hosts": [("127.0.0.1", 6379)]},
     },
 }
+
+
+# AI integrations are coming soon and will be optional
+AI_API_KEY = env('AI_API_KEY')
+
+STICKER_API_KEY = env('STICKER_API_KEY')
