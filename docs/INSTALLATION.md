@@ -40,7 +40,7 @@ git clone https://github.com/Yourbit-LLC/yourbit.git
 cd yourbit
 ```
 
-<div align="right"><a href="https://github.com/Yourbit-LLC/yourbit/blob/main/INSTALLATION.md#installation-instructions">Back to Top</a></div>
+<div align="right"><a href="https://github.com/Yourbit-LLC/yourbit/blob/main/docs/INSTALLATION.md#installation-instructions">Back to Top</a></div>
 
 ---
 
@@ -117,7 +117,7 @@ Remove-Item -Recurse -Force venv
 </details>
 
 
-<div align="right"><a href="https://github.com/Yourbit-LLC/yourbit/blob/main/INSTALLATION.md#installation-instructions">Back to Top</a></div>
+<div align="right"><a href="https://github.com/Yourbit-LLC/yourbit/blob/main/docs/INSTALLATION.md#installation-instructions">Back to Top</a></div>
 
 ---
 
@@ -128,7 +128,7 @@ Remove-Item -Recurse -Force venv
 pip install -r requirements.txt
 ```
 
-<div align="right"><a href="https://github.com/Yourbit-LLC/yourbit/blob/main/INSTALLATION.md#installation-instructions">Back to Top</a></div>
+<div align="right"><a href="https://github.com/Yourbit-LLC/yourbit/blob/main/docs/INSTALLATION.md#installation-instructions">Back to Top</a></div>
 
 ---
 
@@ -278,19 +278,27 @@ AWS_S3_CUSTOM_DOMAIN = f'{AWS_S3_ENDPOINT_URL}'
 <summary><strong>Setup Video Host</strong></summary>
 
 
+A Video CDN is required to be set up to store and deliver videos for users. Add your credentials here for the video service you are using, you must also configure URL's in the `yb_extensions/action_map.py` file. 
+
+> For a full list of known compatible API's, including self-hosted services, [click here.](https://github.com/Yourbit-LLC/yourbit/blob/main/docs/video/api-service-reference.md)
+
+Below is an example snippet from the `.env` example file showing the configuration for video CDN credentials. To get an understanding of how these configurations are used by Yourbit see the [API Service Handling Documentation](https://github.com/Yourbit-LLC/yourbit/blob/main/docs/video/video-services-handling.md).
+
+
+
 ```env
 # Video CDN Configuration
-VIDEO_CDN_TOKEN=your-mux-video-token
-VIDEO_CDN_SECRET=your-mux-video-secret
+VIDEO_CDN_TOKEN=your-video-video-token
+VIDEO_CDN_SECRET=your-video-video-secret
 
 # Video Webhook and Signing Keys
-VIDEO_WEBHOOK_SECRET=your-mux-webhook-secret
-VIDEO_SIGNING_KEY=your-mux-signing-key
-VIDEO_PRIVATE_KEY=your-mux-private-key
+VIDEO_WEBHOOK_SECRET=your-video-webhook-secret
+VIDEO_SIGNING_KEY=your-video-signing-key
+VIDEO_PRIVATE_KEY=your-video-private-key
 ```
 </details>
 
-<div align="right"><a href="https://github.com/Yourbit-LLC/yourbit/blob/main/INSTALLATION.md#installation-instructions">Back to Top</a></div>
+<div align="right"><a href="https://github.com/Yourbit-LLC/yourbit/blob/main/docs/INSTALLATION.md#installation-instructions">Back to Top</a></div>
 
 ---
 
@@ -303,7 +311,7 @@ For example, the Mux video service used by the official Yourbit server, will sen
 **Follow the instructions** to setup a secure tunnel and add the URL to your configuration [here](https://github.com/Yourbit-LLC/yourbit/blob/main/docs/installation/setup-webhooks.md).
 
 
-<div align="right"><a href="https://github.com/Yourbit-LLC/yourbit/blob/main/INSTALLATION.md#installation-instructions">Back to Top</a></div>
+<div align="right"><a href="https://github.com/Yourbit-LLC/yourbit/blob/main/docs/INSTALLATION.md#installation-instructions">Back to Top</a></div>
 
 ## **7. Migrate the database and run the server**
 
@@ -318,7 +326,7 @@ You should now be able to access the site at `127.0.0.1:8000` unless you specify
 > **Note:** Bot Challenges (Turnstile/reCAPTCHA) will not run without a secure tunnel and are disabled in local enviroments by default, Yourbits authentication system will bypass them automatically.
 
 
-<div align="right"><a href="https://github.com/Yourbit-LLC/yourbit/blob/main/INSTALLATION.md#installation-instructions">Back to Top</a></div>
+<div align="right"><a href="https://github.com/Yourbit-LLC/yourbit/blob/main/docs/INSTALLATION.md#installation-instructions">Back to Top</a></div>
 
 ---
 
@@ -333,7 +341,7 @@ Follow the prompts to set up your admin account. Once complete, you may login wi
 
 > **Note:** When creating an account through the terminal, the date of birth must be formatted as YYYY-MM-DD.
 
-<div align="right"><a href="https://github.com/Yourbit-LLC/yourbit/blob/main/INSTALLATION.md#installation-instructions">Back to Top</a></div>
+<div align="right"><a href="https://github.com/Yourbit-LLC/yourbit/blob/main/docs/INSTALLATION.md#installation-instructions">Back to Top</a></div>
 
 
 
