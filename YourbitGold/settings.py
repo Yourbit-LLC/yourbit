@@ -207,16 +207,12 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 
+# File storage configuration
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 FILE_UPLOAD_HANDLERS = [
     'django.core.files.uploadhandler.MemoryFileUploadHandler',
     'django.core.files.uploadhandler.TemporaryFileUploadHandler',
 ]
-
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-# settings.py
-
 
 # Celery Configuration Options
 CELERY_BROKER_URL = config('CELERY_BROKER_URL', default='redis://localhost:6379/0')
@@ -267,7 +263,8 @@ CHANNEL_LAYERS = {
 }
 
 
-# AI integrations are coming soon and will be optional
+# AI integrations are coming soon and will be optional for custom builds
 AI_API_KEY = env('AI_API_KEY')
 
+# Sticker integrations are coming soon and will be optional for custom builds
 STICKER_API_KEY = env('STICKER_API_KEY')
