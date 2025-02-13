@@ -6,7 +6,7 @@
         <div id="comment-container-{{bit.id}}" class="video-panel-content-container" style="position: relative;">
             {% if bit.comments.count == 0 %}
                 {% if request.user.is_authenticated %}
-                    <div class="yb-center-transform all">
+                    <div class="yb-center-transform all yb-fillWidth">
                         <h3 class="align-center font-white">No Comments Yet</h3>
                         <div class="yb-center-margin lr" style="width: 120px;">
                             <button id="create-new-conversation" style="width: 120px;" class="yb-button-wide rounded font-white">+  Add Comment</button>
