@@ -58,9 +58,9 @@ function yb_createBit(this_data, csrf_token) {
 // Function for updating comment stream
 function yb_updateComments(update, response, this_element) {
     
-    let this_bit = this_element;
+    let this_bit = document.getElementById(this_element);
     
-    let comment_container = this_bit.querySelector(`.yb-comment-container`);
+    let comment_container = this_bit.querySelector(`.yb-comment-list`);
     comment_container.innerHTML = "";
 
     console.log(update);
@@ -137,13 +137,13 @@ function yb_sendComment(bitId, commentBody, element_id) {
             let comment_container = comment_parent.querySelector(`comment-list`);
             if (yb_getSessionValues("location") == "bit-focus"){
             
-                yb_getComments(false, bitId);
+                yb_getComments(false, bitId, element_id);
 
             } else {
                 if (comment_container.classList.contains("open")) {
-                    yb_getComments(false, bitId);
+                    yb_getComments(false, bitId, element_id);
                 } else {
-                    yb_showComments(bitId);
+                    yb_showComments(bitId, element_id);
                 }
 
             }

@@ -673,7 +673,7 @@ function yb_buildBit(bit, interactions=true){
                 comment_label.setAttribute("style", `display: none; color: ${title_color}; font-weight: bold;`)
                 new_bit.appendChild(comment_label);
 
-                let comment_container = yb_createElement("div", "yb-comment-container", `comment-container-${id}`);
+                let comment_container = yb_createElement("div", "yb-comment-container yb-comment-list", `comment-container-${id}`);
                 new_bit.appendChild(comment_container);
             
                 //Append comment field
