@@ -135,7 +135,7 @@ function yb_sendComment(bitId, commentBody, element_id) {
             // Update UI with the new comment
             let comment_parent = document.getElementById(element_id);
             let comment_container = comment_parent.querySelector(`comment-list`);
-            if (yb_getSessionValues("location") == "player"){
+            if (yb_getSessionValues("location") == "bit-focus"){
             
                 yb_getComments(false, bitId);
 
