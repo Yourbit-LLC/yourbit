@@ -27,9 +27,9 @@ function yb_pressSendComment(e){
     // Checks if the comment field is not empty
     if (comment_field.value != "") {
         // Retrieves the CSRF token
-        let csrf_token = getCSRF();
+        
         // Sends the comment to the server
-        yb_sendComment(this_id, comment, csrf_token);
+        yb_sendComment(this_id, comment, element_id);
         // Clears the comment field
         comment_field.value = "";
 

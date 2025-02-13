@@ -56,9 +56,9 @@ function yb_createBit(this_data, csrf_token) {
 }
 
 // Function for updating comment stream
-function yb_updateComments(update, response, bitId) {
+function yb_updateComments(update, response, this_element) {
     console.log(bitId)
-    let this_bit = document.getElementById(`bit-${bitId}`);
+    let this_bit = this_element;
     
     let comment_container = this_bit.querySelector(`.yb-comment-container`);
     comment_container.innerHTML = "";
@@ -113,12 +113,14 @@ function yb_updateComments(update, response, bitId) {
         send comment ajax function 
 
 */
-function yb_sendComment(bitId, commentBody, csrf_token) {
+function yb_sendComment(bitId, commentBody, element_id) {
     let this_data = JSON.stringify({
         bit: bitId,
         body: commentBody
         // Add other fields if necessary
     });
+
+    let csrf_token = getCSRF();
 
     $.ajax({
         url: '/bits/api/comments/',  // Update with the actual API endpoint
@@ -131,7 +133,8 @@ function yb_sendComment(bitId, commentBody, csrf_token) {
         success: function(data) {
             console.log('Comment posted successfully:', data);
             // Update UI with the new comment
-            let comment_container = document.getElementById(`comment-container-${bitId}`);
+            let comment_parent = document.getElementById(element_id);
+            let comment_container = comment_parent.querySelector(`comment-list`);
             if (yb_getSessionValues("location") == "player"){
             
                 yb_getComments(false, bitId);
@@ -172,17 +175,18 @@ function yb_sendComment(bitId, commentBody, csrf_token) {
         get comments ajax function
 */
 
-function yb_getComments(update, bitId) {
+function yb_getComments(update, bitId, this_element) {
     
     console.log("getting comments...");
     console.log(bitId);
+    
     $.ajax({
         type: 'GET',
         url: `/bits/api/bits/${bitId}/comments/`,
         success: function(response) {
             //Update the feed
             console.log(response)
-            yb_updateComments(update, response, bitId);
+            yb_updateComments(update, response, this_element);
             
         },
         error: function(response) {
