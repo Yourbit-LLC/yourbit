@@ -57,7 +57,7 @@ function yb_createBit(this_data, csrf_token) {
 
 // Function for updating comment stream
 function yb_updateComments(update, response, this_element) {
-    console.log(bitId)
+    
     let this_bit = this_element;
     
     let comment_container = this_bit.querySelector(`.yb-comment-container`);
