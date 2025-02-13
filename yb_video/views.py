@@ -236,17 +236,19 @@ def ready_upload(request):
     #Load the json data from the request
     jsondata = request.body
     data = json.loads(jsondata)
+
+    print(data)
     
     # Get the video ID from the webhook request by the path indicated in the action map
-    if data[video_service["webhook_status"]] == "ready":
+    if data["data"][video_service["webhook_status"]] == "ready":
 
         print("Upload is ready for playback")
         playback_id = data["data"]["playback_ids"][0]["id"]
-        video_url = safe_fstring(video_service["playback_url"], {"playback_id": playback_id})
+        video_url = safe_fstring(video_service["playback_url"], playback_id = playback_id)
 
         # Generate a thumbnail URL for the video
         if video_service.get("thumbnail_url") != "":
-            thumbnail_url = safe_fstring(video_service["preview_url"], {"playback_id": playback_id})
+            thumbnail_url = safe_fstring(video_service["preview_url"], playback_id = playback_id)
 
         # Update the video status to 'ready' in the database
         video = Video.objects.get(upload_id=data["data"]["upload_id"]) # get video from database
