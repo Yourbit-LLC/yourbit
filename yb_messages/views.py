@@ -277,15 +277,7 @@ class ConversationView(View):
         
         messages = Message.objects.filter(conversation = this_conversation).order_by("time")
 
-        decrypted_messages = []
-
-        for msg in messages:
-            decrypted_messages.append({
-                "from_user": msg.from_user,
-                "time": msg.time,
-                "decrypted_body": msg.decrypted_body,  # Forces decryption
-            })
-                    
+ 
         active_profile = Profile.objects.get(username = request.user.active_profile)
 
         custom_conversation = CustomConversation.objects.get(conversation = this_conversation, profile = active_profile)
@@ -309,7 +301,7 @@ class ConversationView(View):
         members = this_conversation.members.all()
 
         context["conversation"] = this_conversation
-        context["messages"] = decrypted_messages
+        context["messages"] = messages
 
         if this_conversation.is_name == True:
             context["conversation_name"] = this_conversation.name

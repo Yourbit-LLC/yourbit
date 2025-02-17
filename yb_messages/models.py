@@ -3,6 +3,7 @@ from django.utils import timezone
 from yb_accounts.models import Account as User
 from django.contrib.postgres.fields import ArrayField as ArrayField
 from main.models import EncryptedTextField
+from main.models import get_cipher
 # Create your models here.
 
 class MessageCore(models.Model):
@@ -68,7 +69,10 @@ class Message(models.Model):
     @property
     def decrypted_body(self):
         """Automatically decrypts the body when accessed"""
-        return self.body  # This forces decryption
+
+        cipher = get_cipher()
+        decrypted_text = cipher.decrypt(self.body.encode()).decode()
+        return decrypted_text  # This forces decryption
 
 class ChatSticker(models.Model):
     user = models.ForeignKey(User, related_name='chat_stickers', on_delete=models.CASCADE, default=None)
