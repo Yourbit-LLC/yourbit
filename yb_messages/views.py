@@ -277,7 +277,9 @@ class ConversationView(View):
         
         messages = Message.objects.filter(conversation = this_conversation).order_by("time")
 
-        active_profile = Profile.objects.get(username = request.user.active_profile)
+        for msg in messages:
+            msg.decrypted_body = msg.body 
+            active_profile = Profile.objects.get(username = request.user.active_profile)
 
         custom_conversation = CustomConversation.objects.get(conversation = this_conversation, profile = active_profile)
         context["custom_conversation"] = custom_conversation
