@@ -283,7 +283,7 @@ class ConversationView(View):
             decrypted_messages.append({
                 "from_user": msg.from_user,
                 "time": msg.time,
-                "decrypted_body": msg.body,  # Forces decryption
+                "decrypted_body": msg.decrypted_body,  # Forces decryption
             })
                     
         active_profile = Profile.objects.get(username = request.user.active_profile)
