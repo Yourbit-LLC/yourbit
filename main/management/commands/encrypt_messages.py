@@ -7,7 +7,12 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         cipher = get_cipher()
-        messages_to_encrypt = Message.objects.filter(encrypted_body__isnull=True, body__isnull=False)
+        messages_to_encrypt = Message.objects.filter(
+            encrypted_body__isnull=True, 
+            body__isnull=False
+        ) | Message.objects.filter(
+            encrypted_body=""  # Catch empty strings
+        )
 
         if not messages_to_encrypt.exists():
             self.stdout.write(self.style.SUCCESS("No messages need encryption."))
