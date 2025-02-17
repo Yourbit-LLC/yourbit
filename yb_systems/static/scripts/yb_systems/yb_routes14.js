@@ -9,13 +9,20 @@
 */
 
 const LOADING_CORE = document.getElementById("yb-loading-main");
+
 /*
     Core UI Functions
 
 */
 
 
-//Register templates to be loaded into the content container
+/* 
+
+    Register templates to be loaded into the content container.
+    The content container is the main container on Yourbit. It
+    displays the bitstream, for example.
+
+*/
 const CORE_TEMPLATE_INDEX = {
     "home": {
         "template": "/bits/templates/bitstream/",
@@ -46,7 +53,13 @@ const CORE_TEMPLATE_INDEX = {
     
 };
 
-//Register templates to be loaded into the drawer
+/*  
+
+    Register templates to be loaded into the drawer. A drawer is
+    typically used as a menu of additional options, but can also
+    be used for browsing visual thumbnails.
+
+*/
 const DRAWER_CONTENT = {
     "browse-stickers": "/customize/stickers/browse/",
     "profile-connect": `/profile/templates/connect_menu/`,

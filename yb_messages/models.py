@@ -2,10 +2,15 @@ from django.db import models
 from django.utils import timezone
 from yb_accounts.models import Account as User
 from django.contrib.postgres.fields import ArrayField as ArrayField
-
+from main.models import EncryptedTextField
 # Create your models here.
 
 class MessageCore(models.Model):
+    """
+        MessageCore is the model that stores the settings for messages for a user. It
+        is also responsible for tracking conversations associated to the user in a manner
+        thats easier to query.
+    """
     profile = models.ForeignKey('yb_profile.Profile', related_name='message_core', on_delete=models.CASCADE, blank=True)
     #message settings
     # 1 = everyone, 2 = friends, 3 = no one
@@ -21,6 +26,10 @@ class MessageCore(models.Model):
     conversations = models.ManyToManyField("Conversation", blank=True, related_name = "user_conversations")
 
 class Conversation(models.Model):
+    """
+        Conversation is the model that stores the messages between two users. It also stores
+        the settings for the conversation between the two or more users.
+    """
     is_name = models.BooleanField(default = False)
     name = models.CharField(max_length=100, default = "Untitled Conversation")
     members = models.ManyToManyField('yb_profile.Profile', related_name='user_members', blank=True)
@@ -37,14 +46,20 @@ class Conversation(models.Model):
     
     stickers = models.ManyToManyField('ChatSticker', blank=True)
     messages = models.ManyToManyField('Message', related_name="messages", blank=True)
+
 #Conversations are parent to messages in the database model. 
 # Organizes messages between one set of users
 
 #Message is contained in a conversation
 class Message(models.Model):
+    """
+        Message is the model that stores the message between two users. It also stores
+        the status for the message between the two or more users.
+    """
     conversation = models.ForeignKey('Conversation', related_name='conversation', on_delete=models.CASCADE, default=None)
     from_user = models.ForeignKey('yb_profile.Profile', related_name="sender", on_delete=models.CASCADE, blank=True)
     body = models.CharField(max_length = 1500, blank=True)
+    encrypted_body = EncryptedTextField(blank=True)
     videos = models.ManyToManyField('yb_video.Video', blank=True)
     images = models.ManyToManyField('yb_photo.Photo', blank=True)
     time = models.DateTimeField(default=timezone.now)

@@ -267,3 +267,5 @@ AI_API_KEY = env('AI_API_KEY')
 
 # Sticker integrations are coming soon and will be optional for custom builds
 STICKER_API_KEY = env('STICKER_API_KEY')
+
+ENCRYPTION_KEY = env('ENCRYPTION_KEY')

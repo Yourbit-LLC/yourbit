@@ -1,6 +1,34 @@
 from django.db import models
 
 # Create your models here.
+from django.conf import settings
+from cryptography.fernet import Fernet
+
+# Create your models here.
+def get_cipher():
+    """Retrieve and validate the encryption key"""
+    key = getattr(settings, "ENCRYPTION_KEY", None)
+    
+    if not key:
+        raise ValueError("ENCRYPTION_KEY is not set in Django settings!")
+
+    return Fernet(key.encode())
+    
+
+class EncryptedTextField(models.TextField):
+    def from_db_value(self, value, expression, connection):
+        """Decrypt value from the database"""
+        if value is None:
+            return value
+        return get_cipher().decrypt(value.encode()).decode()
+
+    def get_prep_value(self, value):
+        """Encrypt before storing in the database"""
+        if value is None:
+            return value
+        return get_cipher().encrypt(value.encode()).decode()
+
+
 class UserSession(models.Model):
     user = models.ForeignKey('yb_accounts.Account', related_name='sessions', on_delete=models.CASCADE)
     session_key = models.CharField(max_length=100, blank=True)
