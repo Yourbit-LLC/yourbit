@@ -17,7 +17,7 @@ class Command(BaseCommand):
         self.stdout.write(f"Encrypting {total} messages...")
 
         for message in messages_to_encrypt:
-            message.message = cipher.encrypt(message.message_plaintext.encode()).decode()
+            message.encrypted_body = cipher.encrypt(message.body.encode()).decode()
             message.save()
 
         self.stdout.write(self.style.SUCCESS(f"Successfully encrypted {total} messages!"))
