@@ -58,7 +58,7 @@ class Message(models.Model):
     """
     conversation = models.ForeignKey('Conversation', related_name='conversation', on_delete=models.CASCADE, default=None)
     from_user = models.ForeignKey('yb_profile.Profile', related_name="sender", on_delete=models.CASCADE, blank=True)
-    encrypted_body = EncryptedTextField(blank=True, null=True)
+    body = EncryptedTextField(blank=True, null=True)
     videos = models.ManyToManyField('yb_video.Video', blank=True)
     images = models.ManyToManyField('yb_photo.Photo', blank=True)
     time = models.DateTimeField(default=timezone.now)
