@@ -65,6 +65,11 @@ class Message(models.Model):
     
     is_read = models.BooleanField(default=False)
 
+    @property
+    def decrypted_body(self):
+        """Automatically decrypts the body when accessed"""
+        return self.body  # This forces decryption
+
 class ChatSticker(models.Model):
     user = models.ForeignKey(User, related_name='chat_stickers', on_delete=models.CASCADE, default=None)
     sticker = models.CharField(max_length=150, default="")

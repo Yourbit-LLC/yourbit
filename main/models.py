@@ -18,16 +18,19 @@ def get_cipher():
 class EncryptedTextField(models.TextField):
     def from_db_value(self, value, expression, connection):
         """Decrypt value from the database"""
-        if value is None:
-            return value
-        return get_cipher().decrypt(value.encode()).decode()
+        if value is None or value == "":
+            return value  # Avoid decrypting None or empty strings
+        try:
+            return get_cipher().decrypt(value.encode()).decode()
+        except Exception as e:
+            print(f"Decryption failed: {e}")  # Log decryption errors
+            return value  # Return raw encrypted text instead of breaking
 
     def get_prep_value(self, value):
         """Encrypt before storing in the database"""
-        if value is None:
+        if value is None or value == "":
             return value
         return get_cipher().encrypt(value.encode()).decode()
-
 
 class UserSession(models.Model):
     user = models.ForeignKey('yb_accounts.Account', related_name='sessions', on_delete=models.CASCADE)
