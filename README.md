@@ -38,7 +38,8 @@ that balances privacy and modularity to create a community built platform that p
 ✅ **Customizable Feeds** – Sort by time, likes, or personalized algorithms  
 ✅ **Live Media Support** – Post photos, GIFs, videos, and livestream  
 ✅ **Custom Communities** – Join and create public or private groups  
-✅ **Developer API** – Integrate Yourbit into apps and bots  
+✅ **Developer API** – Still under construction. Integrate Yourbit into apps and bots  
+✅ **Encrypted Messages** - Database encryption on direct messages using python cryptography package.
 
 ---
 
