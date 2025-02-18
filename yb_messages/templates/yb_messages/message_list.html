@@ -17,7 +17,7 @@
                 {% endfor %}
 
             {% endif %}
-            {% if message.body != "" %}
+            {% if message.decrypted_body != "" %}
             
                 <div id="message-{{message.id}}" class='message-bubble message-bubble-right' style="background-color: {{custom_conversation.from_user_color}}">
                     <div class="message-body">{{ message.decrypted_body }}</div>
@@ -49,7 +49,7 @@
                 {% endfor %}
             {% endif %}
 
-            {% if message.body != "" %}
+            {% if message.decrypted_body != "" %}
                 <div id="message-{{message.id}}" class='message-bubble message-bubble-left' style="background-color: {{custom_conversation.to_user_color}}">
                     <div class="message-body">{{ message.decrypted_body }}</div>
                 </div>
