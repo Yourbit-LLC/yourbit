@@ -1,46 +1,46 @@
 {% for message in messages reversed %}
     {% if message.from_user == user_profile %}
 
-            {% if message.images%}
-                {% for image in message.images.all %}
-                    <div id="message-{{message.id}}" class='message-bubble message-bubble-right' style="background-color: transparent;" onclick="yb_fullScreenImage('{{image.ext_url}}')">
+        {% if message.images%}
+            {% for image in message.images.all %}
+                <div id="message-{{message.id}}" class='message-bubble message-bubble-right' style="background-color: transparent;" onclick="yb_fullScreenImage('{{image.ext_url}}')">
 
-                        <img src="{{ image.ext_url }}" class="message-photo"/>   
-                                
-                    </div>
-                {% endfor %}
-            {% elif message.videos %}
-                {% for video in message.videos.all %}
-                    <div id="message-{{message.id}}" class='message-bubble message-bubble-right' style="background-color: transparent;">
-                        <video src="{{ video.video.url }}" class="message-video" controls></video>
-                    </div>
-                {% endfor %}
-
-            {% endif %}
-            {% if message.decrypted_body != "" %}
-            
-                <div id="message-{{message.id}}" class='message-bubble message-bubble-right' style="background-color: {{custom_conversation.from_user_color}}">
-                    <div class="message-body">{{ message.decrypted_body }}</div>
+                    <img src="{{ image.ext_url }}" class="message-photo"/>   
+                            
                 </div>
-
-                <div class='message-timestamp' style="display:none;">
-                    <div class="message-time">{{ message.time }}</div>
-
+            {% endfor %}
+        {% elif message.videos %}
+            {% for video in message.videos.all %}
+                <div id="message-{{message.id}}" class='message-bubble message-bubble-right' style="background-color: transparent;">
+                    <video src="{{ video.video.url }}" class="message-video" controls></video>
                 </div>
-            {% endif %}
+            {% endfor %}
+
+        {% endif %}
+        {% if message.decrypted_body != "" %}
+        
+            <div id="message-{{message.id}}" class='message-bubble message-bubble-right' style="background-color: {{custom_conversation.from_user_color}}">
+                <div class="message-body">{{ message.decrypted_body }}</div>
+            </div>
+
+            <div class='message-timestamp' style="display:none;">
+                <div class="message-time">{{ message.time }}</div>
+
+            </div>
+        {% endif %}
 
 
 
 
     {% else %}
-            {% if message.images %}
-                {% for image in message.images.all %}
+        {% if message.images %}
+            {% for image in message.images.all %}
 
-                    <div id="message-{{message.id}}" class='message-bubble message-bubble-left' style="background-color: transparent;" onclick="yb_fullScreenImage('{{image.ext_url}}')">
-                        <img src="{{ image.ext_url }}" class="message-photo"/>
-                    </div>
-                {% endfor %}
-            {% elif message.videos %}
+                <div id="message-{{message.id}}" class='message-bubble message-bubble-left' style="background-color: transparent;" onclick="yb_fullScreenImage('{{image.ext_url}}')">
+                    <img src="{{ image.ext_url }}" class="message-photo"/>
+                </div>
+            {% endfor %}
+        {% elif message.videos %}
             {% for video in message.videos.all %}
                 <div id="message-{{message.id}}" class='message-bubble message-bubble-left' style="background-color: transparent;">
                     <video src="{{ video.video.url }}" class="message-video" style="width: 100px; height: 100px;" controls></video>
@@ -53,12 +53,9 @@
                 <div id="message-{{message.id}}" class='message-bubble message-bubble-left' style="background-color: {{custom_conversation.to_user_color}}">
                     <div class="message-body">{{ message.decrypted_body }}</div>
                 </div>
-            {% endif %}
-            
-            <p style="padding-left: 10px;" class="yb-pText font-small">{{message.from_user.display_name}}</p>
-            
+        {% endif %}
         
-
-
-    {% endif %}
+            <p style="padding-left: 10px;" class="yb-pText font-small">{{message.from_user.display_name}}</p>
+        
+        {% endif %}
 {% endfor %}

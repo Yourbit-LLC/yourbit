@@ -57,7 +57,7 @@ def message_inbox(request):
                 preview_text = "<i><b>You:</b> " + preview_message.body[:70] + '...</i>'
 
             else:
-                preview_text ="<i><b>"+ preview_message.from_user.user.first_name + ":</b> " + preview_message.body[:70] + '...</i>' 
+                preview_text ="<i><b>"+ preview_message.from_user.user.first_name + ":</b> " + preview_message.decrypted_body[:70] + '...</i>' 
             conversation_data.append({"id": conversation.id, "time":conversation.time_modified, "preview": preview_text})
 
             
