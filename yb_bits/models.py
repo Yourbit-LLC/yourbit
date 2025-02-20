@@ -117,7 +117,7 @@ class Bit(models.Model):
         return (
             f"{self.user}"
             f"({self.time: %Y-%m-%d %H:%M}): "
-            f"{self.body[:30]}..."
+            f"{self.public_body[:30]}..."
         )
     
     def is_liked(self, user):
