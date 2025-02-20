@@ -105,7 +105,17 @@ class BitSerializer(serializers.ModelSerializer):
     
     def get_body(self, obj):
         #Get with line breaks
-        return obj.body.replace('\n', '<br>')
+        if obj.is_public:
+            return obj.public_body.replace('\n', '<br>')
+        else:
+            return obj.decrypted_body.replace('\n', '<br>')
+        
+    def get_title(self, obj):
+        if obj.is_public:
+            return obj.public_title
+        else:
+            return obj.decrypted_title
+        
     
     def to_representation(self, instance):
         ret = super().to_representation(instance)
@@ -121,8 +131,48 @@ class BitSerializer(serializers.ModelSerializer):
 class CreateBitSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bit
-        fields = '__all__'
+        fields = ['title', 'body', 'is_public', 'profile', 'user', 'custom', 'time', 'type']
 
+    def create(self, validated_data):
+        """
+        Overriding the create method to store body/title in 
+        protected or public fields based on `is_public`
+        """
+        is_public = validated_data.get("is_public", False)  # Default to private if not provided
+        title = validated_data.pop("title", "")
+        body = validated_data.pop("body", "")
+
+        if is_public:
+            validated_data["public_title"] = title
+            validated_data["public_body"] = body
+            validated_data["protected_title"] = None  # Ensure protected fields are empty
+            validated_data["protected_body"] = None
+        else:
+            validated_data["protected_title"] = title
+            validated_data["protected_body"] = body
+            validated_data["public_title"] = ""  # Ensure public fields are empty
+            validated_data["public_body"] = ""
+
+        return Bit.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        is_public = validated_data.get("is_public", instance.is_public)  # Keep existing setting if not provided
+        title = validated_data.pop("title", instance.public_title if is_public else instance.protected_title)
+        body = validated_data.pop("body", instance.public_body if is_public else instance.protected_body)
+
+        if is_public:
+            instance.public_title = title
+            instance.public_body = body
+            instance.protected_title = None
+            instance.protected_body = None
+        else:
+            instance.protected_title = title
+            instance.protected_body = body
+            instance.public_title = ""
+            instance.public_body = ""
+
+        instance.save()
+        return instance
 
 class BitStickerSerializer(serializers.ModelSerializer):
 

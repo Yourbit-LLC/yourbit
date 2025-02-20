@@ -4,6 +4,8 @@ from yb_accounts.models import Account as User
 from django.utils import timezone
 from yb_customize.models import CustomBit
 from django.contrib.postgres.fields import ArrayField
+from main.models import EncryptedTextField
+from main.models import get_cipher
 # from .tasks import auto_post, auto_delete
 
 
@@ -35,9 +37,18 @@ class Bit(models.Model):
     )
 
     display_name = models.CharField(max_length=100, blank=True, null=True) #used for display name, user may set real name or username
-    title = models.CharField(max_length=140, blank=True)
+    
+    # Encrypted Protected title for private bits
+    protected_title = EncryptedTextField(blank=True, null=True)
 
-    body = models.CharField(max_length=5000, blank=True)
+    # Unencrypted searchable public title
+    public_title = models.CharField(max_length=140, blank=True)
+
+    # Encrypted Protected body for private bits
+    protected_body = EncryptedTextField(blank=True, null=True)
+
+    # Unencrypted searchable public body
+    public_body = models.CharField(max_length=5000, blank=True)
 
     time = models.DateTimeField(default=timezone.localtime)
     status = models.CharField(max_length=100, default="pending")
