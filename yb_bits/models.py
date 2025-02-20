@@ -37,12 +37,19 @@ class Bit(models.Model):
     )
 
     display_name = models.CharField(max_length=100, blank=True, null=True) #used for display name, user may set real name or username
-    
+
     # Encrypted Protected title for private bits
     protected_title = EncryptedTextField(blank=True, null=True)
+
+    # Public title is created for public bits, so the system can bypass 
+    # encryption when not necessary to conserve resources
     public_title = models.CharField(max_length=140, blank=True)
 
+    # Encrypted Protected body for private bits
     protected_body = EncryptedTextField(blank=True, null=True)
+
+    # Public body is created for public bits, so the system can bypass 
+    # encryption when not necessary to conserve resources
     public_body = models.CharField(max_length=5000, blank=True)
 
     time = models.DateTimeField(default=timezone.localtime)
@@ -126,7 +133,7 @@ class Bit(models.Model):
     
     @property
     def decrypted_body(self):
-        """Automatically decrypts the body when accessed"""
+        """Automatically decrypts the protected body when accessed"""
 
         cipher = get_cipher()
         decrypted_text = cipher.decrypt(self.protected_body.encode()).decode()
@@ -134,7 +141,7 @@ class Bit(models.Model):
     
     @property
     def decrypted_title(self):
-        """Automatically decrypts the title when accessed"""
+        """Automatically decrypts the protected title when accessed"""
         
         cipher = get_cipher()
         decrypted_text = cipher.decrypt(self.protected_title.encode()).decode()
