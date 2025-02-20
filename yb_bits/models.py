@@ -40,14 +40,9 @@ class Bit(models.Model):
     
     # Encrypted Protected title for private bits
     protected_title = EncryptedTextField(blank=True, null=True)
-
-    # Unencrypted searchable public title
     public_title = models.CharField(max_length=140, blank=True)
 
-    # Encrypted Protected body for private bits
     protected_body = EncryptedTextField(blank=True, null=True)
-
-    # Unencrypted searchable public body
     public_body = models.CharField(max_length=5000, blank=True)
 
     time = models.DateTimeField(default=timezone.localtime)
@@ -129,6 +124,21 @@ class Bit(models.Model):
     def get_comments(self):
         return self.comments.all()
     
+    @property
+    def decrypted_body(self):
+        """Automatically decrypts the body when accessed"""
+
+        cipher = get_cipher()
+        decrypted_text = cipher.decrypt(self.protected_body.encode()).decode()
+        return decrypted_text  # This forces decryption
+    
+    @property
+    def decrypted_title(self):
+        """Automatically decrypts the title when accessed"""
+        
+        cipher = get_cipher()
+        decrypted_text = cipher.decrypt(self.protected_title.encode()).decode()
+        return decrypted_text  # This forces decryption
 
     # def save(self, *args, **kwargs):
     #     super(Bit, self).save(*args, **kwargs)
