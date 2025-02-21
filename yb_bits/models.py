@@ -6,6 +6,7 @@ from yb_customize.models import CustomBit
 from django.contrib.postgres.fields import ArrayField
 from main.models import EncryptedTextField
 from main.models import get_cipher
+from cryptography.fernet import InvalidToken
 # from .tasks import auto_post, auto_delete
 
 
@@ -136,16 +137,27 @@ class Bit(models.Model):
         """Automatically decrypts the protected body when accessed"""
 
         cipher = get_cipher()
-        decrypted_text = cipher.decrypt(self.protected_body.encode()).decode()
-        return decrypted_text  # This forces decryption
+        try:
+            decrypted_text = cipher.decrypt(self.protected_body.encode()).decode()
+            return decrypted_text
+        except InvalidToken:
+            print(f"❌ Decryption failed for Bit ID: {self.id}")
+            print(f"🔒 Encrypted Value: {self.protected_body}")  # Print to check corruption
+            return "[Error: Unable to decrypt content]"
+        
     
     @property
     def decrypted_title(self):
         """Automatically decrypts the protected title when accessed"""
         
         cipher = get_cipher()
-        decrypted_text = cipher.decrypt(self.protected_title.encode()).decode()
-        return decrypted_text  # This forces decryption
+        try:
+            decrypted_text = cipher.decrypt(self.protected_title.encode()).decode()
+            return decrypted_text
+        except InvalidToken:
+            print(f"❌ Decryption failed for Bit ID: {self.id}")
+            print(f"🔒 Encrypted Value: {self.protected_title}")  # Print to check corruption
+            return "[Error: Unable to decrypt content]"
 
     # def save(self, *args, **kwargs):
     #     super(Bit, self).save(*args, **kwargs)
