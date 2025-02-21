@@ -138,8 +138,11 @@ class Bit(models.Model):
 
         cipher = get_cipher()
         try:
-            decrypted_text = cipher.decrypt(self.protected_body.encode()).decode()
-            return decrypted_text
+            if self.protected_body == "":
+                return self.public_body
+            else:
+                decrypted_text = cipher.decrypt(self.protected_body.encode()).decode()
+                return decrypted_text
         except InvalidToken:
             print(f"❌ Decryption failed for Bit ID: {self.id}")
             print(f"🔒 Encrypted Value: {self.protected_body}")  # Print to check corruption
@@ -152,8 +155,11 @@ class Bit(models.Model):
         
         cipher = get_cipher()
         try:
-            decrypted_text = cipher.decrypt(self.protected_title.encode()).decode()
-            return decrypted_text
+            if self.protected_title == "":
+                return self.public_title
+            else:
+                decrypted_text = cipher.decrypt(self.protected_title.encode()).decode()
+                return decrypted_text
         except InvalidToken:
             print(f"❌ Decryption failed for Bit ID: {self.id}")
             print(f"🔒 Encrypted Value: {self.protected_title}")  # Print to check corruption
