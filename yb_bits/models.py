@@ -139,7 +139,7 @@ class Bit(models.Model):
         cipher = get_cipher()
         try:
             if self.protected_body == "":
-                return self.public_body
+                return ""
             else:
                 decrypted_text = cipher.decrypt(self.protected_body.encode()).decode()
                 return decrypted_text
@@ -156,7 +156,7 @@ class Bit(models.Model):
         cipher = get_cipher()
         try:
             if self.protected_title == "":
-                return self.public_title
+                return ""
             else:
                 decrypted_text = cipher.decrypt(self.protected_title.encode()).decode()
                 return decrypted_text
