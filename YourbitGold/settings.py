@@ -173,6 +173,8 @@ AWS_S3_REGION_NAME = env('BUCKET_REGION')
 AWS_S3_USE_SSL = True
 AWS_STORAGE_BUCKET_NAME = env('BUCKET_NAME')
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_S3_ENDPOINT_URL}'
+AWS_S3_ADDRESSING_STYLE = "path"  # Linode uses path-style URLs
+
 
 
 # Static files (CSS, JavaScript, Images)
@@ -183,7 +185,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')  # where static files are collect
 # Enable WhiteNoise compression and file versioning (recommended in production)
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-MEDIA_URL = '/media/'
+MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/"
 
 #STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
