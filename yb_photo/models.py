@@ -1,6 +1,11 @@
 from django.db import models
 from django.utils import timezone
-
+from django.conf import settings
+import boto3
+import time
+import hmac
+import hashlib
+import base64
 
 # Create your models here.
 
@@ -33,6 +38,37 @@ class Photo(models.Model):
     uploaded = models.DateTimeField(default=timezone.now)
     modified = models.DateTimeField(default=timezone.now)
     is_private = models.BooleanField(default=False)
+
+    def get_presigned_yb_url(self, field_name="image", expiration=3600):
+        """
+        Generates a pre-signed URL for the given field.
+        - field_name: the name of the model field (e.g., 'image', 'tiny_thumbnail')
+        - expiration: time in seconds for the link to be valid (default: 1 hour)
+        """
+        s3_client = boto3.client(
+            "s3",
+            aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
+            aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
+            endpoint_url=settings.AWS_S3_ENDPOINT_URL
+        )
+
+        field = getattr(self, field_name)
+        if not field:
+            return None  # Return None if there's no file uploaded
+
+        file_path = field.name  # The relative path in the bucket
+
+        try:
+            presigned_url = s3_client.generate_presigned_url(
+                "get_object",
+                Params={"Bucket": settings.AWS_STORAGE_BUCKET_NAME, "Key": file_path},
+                ExpiresIn=expiration
+            )
+            return presigned_url
+        except Exception as e:
+            print(f"Error generating presigned URL: {e}")
+            return None
+
 
 class PhotoSticker(models.Model):
     #Model for sticker placement on a photo

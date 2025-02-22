@@ -15,4 +15,5 @@ urlpatterns = [
     path("reset-images-to-yb/", reset_images_to_yb, name="reset_images_to_yb"),
     path("camera-test/", camera_test, name="camera_test"),
     path("dev/generate-wallpaper-urls/", generate_wallpaper_urls, name="generate_wallpaper_urls"),
+    path("ai/generate-wallpaper/", generate_ai_wallpaper, name="generate_wallpaper"),
 ]

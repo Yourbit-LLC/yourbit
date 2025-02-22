@@ -79,3 +79,73 @@ def upload_image(request, *args, **kwargs):
 
 def test_upload(request):
     return render(request, "image_upload_test.html")
+
+
+def generate_ai_wallpaper(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            prompt = data.get("prompt", "abstract digital wallpaper")
+            
+            # Cloudflare AI Workers API Endpoint
+            api_url = f"https://api.cloudflare.com/client/v4/accounts/{settings.CLOUDFLARE_STREAM_ACCOUNT_ID}/ai/run/@cf/stabilityai/stable-diffusion-xl-base-1.0"
+            
+            headers = {
+                "Authorization": f"Bearer {settings.AI_API_KEY}",
+                "Content-Type": "application/json"
+            }
+
+            payload = {
+                "prompt": prompt,
+                "width": 1280,
+                "height": 720
+            }
+
+            response = requests.post(api_url, headers=headers, json=payload)
+            response_data = response.json()
+
+            if response.status_code == 200 and "result" in response_data:
+                image_url = response_data["result"]["url"]
+                return JsonResponse({"image_url": image_url}, status=200)
+            else:
+                return JsonResponse({"error": "Failed to generate image"}, status=500)
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=500)
+
+    return JsonResponse({"error": "Invalid request"}, status=400)
+
+def change_image_options_menu(request, id, *args, **kwargs):
+    option_set = [] 
+
+    upload_image_button = {
+        "label":"Upload Wallpaper",
+        "name": "upload",
+        "type": "change-image-option",
+        "action":"new_image_handler()",
+    }
+    option_set.append(upload_image_button)
+
+    generate_image_button = {
+        "label":"Generate Wallpaper",
+        "name": "generate",
+        "type": "image-option",
+        "action":"yb_generateWallpaper()",
+    }
+
+    option_set.append(generate_image_button)
+
+    select_existing_button = {
+        "label":"Select Existing Wallpaper",
+        "name": "select",
+        "type": "image-option",
+        "action":"yb_selectWallpaper()",
+    }
+
+    option_set.append(select_existing_button)
+
+    context = {
+        "menu_name": "Wallpaper Options",
+        "option_set":option_set,
+    }
+        
+    return render(request, "main/options_menu.html", context)

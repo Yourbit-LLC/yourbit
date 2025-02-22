@@ -68,7 +68,8 @@ const DRAWER_CONTENT = {
     "profile-button-edit": "/customize/templates/profile/edit/button/",
     "bit-options": "/bits/templates/options/",
     "list-clusters": "/bits/templates/select-clusters/",
-    "share-bit": "/bits/templates/share-menu/"
+    "share-bit": "/bits/templates/share-menu/",
+    "new-image": "/photo/templates/menus/new-image/",
 }
 
 /*
@@ -306,8 +307,6 @@ var current_page = "home";
 var current_data = null;
 var current_container = "content-container";
 
-
-
 function yb_sendTaskData(data, url) {
     let csrf_token = getCSRF();
     $.ajax({
@@ -325,7 +324,6 @@ function yb_sendTaskData(data, url) {
         }
     });
 }
-
 
 function yb_syncTask(template, page_data=null) {
     let location = yb_getSessionValues("location");

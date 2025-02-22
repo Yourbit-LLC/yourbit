@@ -21,36 +21,38 @@ logger = logging.getLogger(__name__)
 
 CLOUDFLARE_IMAGE_ACCOUNT_ID = settings.CLOUDFLARE_STREAM_ACCOUNT_ID
 
-def generate_cloudflare_presigned_url(image_id, expiration=3600):
+def generate_cloudflare_presigned_url(image_id, variant, expiration=3600):
     """
-    Generate a presigned URL for an image in Cloudflare Images.
-
-    Args:
-        image_id (str): The ID of the image in Cloudflare Images.
-        expiration (int): Time in seconds for the presigned URL to remain valid.
-
-    Returns:
-        str: A presigned URL for the image.
+        Generates a Cloudflare Image URL, with optional signed access.
+        
+        :param image_id: The ID of the stored image in Cloudflare.
+        :param variant: The variant of the image (e.g., 'thumbnail', 'public', 'full').
+        :param expiration: Expiration time in seconds (only applies if signing is enabled).
+        :return: A direct URL to the Cloudflare image.
     """
-    url = f"https://api.cloudflare.com/client/v4/accounts/{settings.CLOUDFLARE_ACCOUNT_ID}/images/v1/delivery_tokens"
-    headers = {
-        "Authorization": f"Bearer {settings.CLOUDFLARE_API_TOKEN}",
-        "Content-Type": "application/json",
-    }
-    payload = {
-        "expiry": expiration,
-        "requiresSignedURLs": True,
-    }
 
-    try:
-        response = requests.post(url, json=payload, headers=headers)
-        response.raise_for_status()  # Raise an error for non-2xx responses
+    # Base delivery URL for Cloudflare Images
+    base_url = f"https://imagedelivery.net/{settings.CLOUDFLARE_ACCOUNT_HASH}/{image_id}/{variant}"
 
-        delivery_token = response.json()["result"]["token"]
-        signed_url = f"{settings.IMAGE_BASE_URL}/{settings.CLOUDFLARE_ACCOUNT_HASH}/{image_id}/public?token={delivery_token}"
-        return signed_url
-    except requests.RequestException as e:
-        raise ValueError(f"Could not generate Cloudflare presigned URL: {e}")
+    # If signing is disabled, return the direct URL
+    if not getattr(settings, "CLOUDFLARE_SIGNING_SECRET", None):
+        return base_url
+
+    # Generate a signed URL if signing is enabled
+    expiry_timestamp = int(time.time()) + expiration
+    signing_secret = settings.CLOUDFLARE_SIGNING_SECRET
+
+    # Create the token signature
+    signature_string = f"{image_id}/{variant}{expiry_timestamp}"
+    signature = hmac.new(
+        signing_secret.encode(), signature_string.encode(), hashlib.sha256
+    ).digest()
+
+    # Encode the signature in URL-safe base64
+    encoded_signature = base64.urlsafe_b64encode(signature).decode()
+
+    # Append the signature and expiration as query parameters
+    return f"{base_url}?exp={expiry_timestamp}&sig={encoded_signature}"
 
 
 def rename_image(user, filename, file_type):
@@ -152,7 +154,8 @@ def process_image(request, source_image = None, cropped_image = None, is_private
 def get_image_url_from_cloudflare(image_id, variant="public"):
     print("Image URL " + variant)
     return f"https://imagedelivery.net/{settings.CLOUDFLARE_ACCOUNT_HASH}/{image_id}/{variant}"
-    
+
+
 
 def generate_image_urls(image_id):
     print("Generating image urls")
