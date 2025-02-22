@@ -76,7 +76,7 @@ class Message(models.Model):
             decrypted_text = cipher.decrypt(self.body.encode()).decode()
             return decrypted_text  # This forces decryption
         except InvalidToken:
-            return ""  # Return empty string if decryption fails
+            return "..."  # Return empty string if decryption fails
 
 class ChatSticker(models.Model):
     user = models.ForeignKey(User, related_name='chat_stickers', on_delete=models.CASCADE, default=None)
