@@ -725,7 +725,6 @@ function yb_goBack(page=false) {
 
 window.addEventListener('popstate', function(event) {
     console.log(event.state);
-    yb_navigateTo(event.state.container, event.state.template, event.state.data);
-        
+    yb_navigateTo(event.state.container, event.state.template, event.state.data);      
 
 });

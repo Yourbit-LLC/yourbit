@@ -15,10 +15,10 @@ from yb_photo.utility import generate_cloudflare_presigned_url
 class PhotoSerializer(serializers.ModelSerializer):
         
     image_url = serializers.SerializerMethodField()
-    tiny_thumbnail_url = serializers.SerializerMethodField()
-    small_thumbnail_url = serializers.SerializerMethodField()
-    medium_thumbnail_url = serializers.SerializerMethodField()
-    large_thumbnail_url = serializers.SerializerMethodField()
+    tiny_thumbnail= serializers.SerializerMethodField()
+    small_thumbnail = serializers.SerializerMethodField()
+    medium_thumbnail = serializers.SerializerMethodField()
+    large_thumbnail = serializers.SerializerMethodField()
     
     class Meta:
         model = Photo
