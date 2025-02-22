@@ -723,8 +723,6 @@
     grid-template-rows: 4fr 1fr 1fr;
     height: 43%;
     text-align: center;
-    
-    
 }
 
 #profile-icon-menu:hover {
@@ -743,8 +741,7 @@
 }
 
 .yb-menu-grid {
-    position: relative;
-    
+    position: relative;  
     max-width: 275px;
     margin: auto;
 }
@@ -763,7 +760,6 @@
     /* -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
      */
-
 }
 
 
