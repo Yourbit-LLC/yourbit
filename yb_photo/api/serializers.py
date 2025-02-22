@@ -73,19 +73,19 @@ class PhotoSerializer(serializers.ModelSerializer):
                 else None
             )
 
-    def get_image_url(self, obj):
+    def get_image(self, obj):
         return self.get_signed_url(obj, "image")
 
-    def get_tiny_thumbnail_url(self, obj):
+    def get_tiny_thumbnail(self, obj):
         return self.get_signed_url(obj, "tiny_thumbnail", "tiny")
 
-    def get_small_thumbnail_url(self, obj):
+    def get_small_thumbnail(self, obj):
         return self.get_signed_url(obj, "small_thumbnail", "small")
 
-    def get_medium_thumbnail_url(self, obj):
+    def get_medium_thumbnail(self, obj):
         return self.get_signed_url(obj, "medium_thumbnail", "medium")
 
-    def get_large_thumbnail_url(self, obj):
+    def get_large_thumbnail(self, obj):
         return self.get_signed_url(obj, "large_thumbnail", "large")
 
         
