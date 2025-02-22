@@ -696,7 +696,7 @@
         right: 0px;
         bottom: 0px;
         width: 100vw;
-        height: 100vh;
+        height: 100dvh;
         transform: translateY(100vh);
         transition: 0.25s;
         overflow-y: scroll;
