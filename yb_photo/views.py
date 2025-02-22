@@ -131,7 +131,6 @@ def change_image_options_menu(request, id, *args, **kwargs):
         "type": "image-option",
         "action":"yb_generateWallpaper()",
     }
-
     option_set.append(generate_image_button)
 
     select_existing_button = {
@@ -140,7 +139,6 @@ def change_image_options_menu(request, id, *args, **kwargs):
         "type": "image-option",
         "action":"yb_selectWallpaper()",
     }
-
     option_set.append(select_existing_button)
 
     context = {

@@ -552,6 +552,8 @@ function yb_launch2WayContainer(page, data=null) {
         yb_filterScroll();
         history.pushState({}, "", this_page.url);
     }
+
+    return "launched";
 }
 
 //Legacy function for closing a 2 way container **MARKED FOR REMOVAL**

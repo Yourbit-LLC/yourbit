@@ -636,10 +636,23 @@ function yb_navigateTo(container, template, data=null, reloadable=true) {
         } else {
             
             if (data === null){
-                yb_launch2WayContainer(template);
+                let this_container = yb_launch2WayContainer(template);
                 active_cotainer = "2way";
+                if (this_container == "launched") {
+                    if (!window.matchMedia('(display-mode: standalone)').matches) {
+                        let header = document.getElementById("div-heaader");
+                        header.style.paddingTop = "70px";
+                    }
+                }
             } else {
-                yb_launch2WayContainer(template, data);
+                let this_container = yb_launch2WayContainer(template, data);
+
+                if (this_container == "launched") {
+                    if (!window.matchMedia('(display-mode: standalone)').matches) {
+                        let header = document.getElementById("div-heaader");
+                        header.style.paddingTop = "70px";
+                    }
+                }
             }
         }
     } else if (container.includes("content-container")) {
