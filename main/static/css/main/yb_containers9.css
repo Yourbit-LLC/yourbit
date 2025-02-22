@@ -694,7 +694,7 @@
 @media screen and (max-width: 768px) {
     .yb-2Way-container {
         right: 0px;
-        bottom: 0px;
+        top: 0px;
         width: 100vw;
         height: 100dvh;
         transform: translateY(100vh);
