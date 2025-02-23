@@ -198,8 +198,9 @@ function yb_checkMessages(){
                         
                     }
                     let display_message = yb_buildMessage(this_blueprint);
-                    
-                    message_container.insertBefore(display_message[0], message_container.firstChild);
+                    for (let i = 0; i < display_message.length; i++){
+                        message_container.insertBefore(display_message[i], message_container.firstChild);
+                    }
 
                     if (i = data.messages.length) {
                         conversation_data.setAttribute("data-last-message", message.id)
