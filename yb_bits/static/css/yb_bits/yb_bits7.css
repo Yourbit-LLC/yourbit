@@ -306,7 +306,7 @@
     font-weight: bold;
     cursor: pointer;
     z-index: 5;
-    color: skyblue;
+    color: mediumpurple;
     transform: translateX(-50%);
     
     border-radius: 25px;
@@ -314,7 +314,7 @@
 
 @media (prefers-color-scheme: dark) {
     .yb-showMore-bit {
-        background-color: gray;
+        background-color: #434343;
     }
 }
 
