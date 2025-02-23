@@ -305,7 +305,7 @@ class BitViewSet(viewsets.ModelViewSet):
 
         headers = self.get_success_headers(serializer.data)
 
-        new_bit = Bit.objects.get(id=serializer.data['id'])
+        new_bit = Bit.objects.get(id=serializer.data.get('id'))
         rendered_bit = BitSerializer(new_bit, context={'user_tz': user_profile.current_timezone, 'request': request})
 
         if bit_data.get("is_scheduled") == "true":
