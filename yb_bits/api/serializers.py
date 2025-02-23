@@ -132,7 +132,7 @@ class BitSerializer(serializers.ModelSerializer):
 class CreateBitSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bit
-        fields = ['title', 'body', 'is_public', 'profile', 'user', 'custom', 'time', 'type']
+        fields = ['is_public', 'profile', 'user', 'custom', 'time', 'type']
 
     def create(self, validated_data):
         """
