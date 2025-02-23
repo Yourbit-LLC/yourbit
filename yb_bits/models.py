@@ -164,7 +164,7 @@ class Bit(models.Model):
             print(f"❌ Decryption failed for Bit ID: {self.id}")
             print(f"🔒 Encrypted Value: {self.protected_title}")  # Print to check corruption
             return ""
-
+        
     # def save(self, *args, **kwargs):
     #     super(Bit, self).save(*args, **kwargs)
     #     if self.is_scheduled:

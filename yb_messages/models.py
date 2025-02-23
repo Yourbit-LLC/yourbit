@@ -76,7 +76,16 @@ class Message(models.Model):
             decrypted_text = cipher.decrypt(self.body.encode()).decode()
             return decrypted_text  # This forces decryption
         except InvalidToken:
-            return "..."  # Return empty string if decryption fails
+            return self.body  # Return empty string if decryption fails
+        
+    def save(self, *args, **kwargs):
+        cipher = get_cipher()
+
+        if self.body and not self.body.startswith("gAAAAA"):  # Only encrypt plaintext
+            print(f"🔒 Encrypting bit before saving: {self.body[:20]}...")
+            self.body = cipher.encrypt(self.body.encode()).decode()
+
+        super().save(*args, **kwargs)
 
 class ChatSticker(models.Model):
     user = models.ForeignKey(User, related_name='chat_stickers', on_delete=models.CASCADE, default=None)
