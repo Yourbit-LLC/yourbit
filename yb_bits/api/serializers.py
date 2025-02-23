@@ -140,8 +140,8 @@ class CreateBitSerializer(serializers.ModelSerializer):
         protected or public fields based on `is_public`
         """
         is_public = validated_data.get("is_public", False)  # Default to private if not provided
-        title = validated_data.pop("title", "")
-        body = validated_data.pop("body", "")
+        title = validated_data.get("title", "")
+        body = validated_data.get("body", "")
 
         if is_public:
             validated_data["public_title"] = title
