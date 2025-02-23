@@ -1,0 +1,4 @@
+#avatar-hue-slider {
+    width: 100%;
+    background: linear-gradient(to right, hsl(0, 100%, 50%) 0%, hsl(360, 100%, 50%) 100%);
+}

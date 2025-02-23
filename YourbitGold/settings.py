@@ -180,7 +180,7 @@ AWS_S3_ADDRESSING_STYLE = "path"  # Linode uses path-style URLs
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')  # where static files are collected
+STATIC_ROOT = '/var/www/static/' # where static files are collected
 
 # Enable WhiteNoise compression and file versioning (recommended in production)
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"

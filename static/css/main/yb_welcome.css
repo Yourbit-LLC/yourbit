@@ -1,0 +1,93 @@
+       
+        .yb-section-container {
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+            padding: 2px 2px 2px 2px;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            overflow: hidden;
+            transition: 0.5s;
+            
+        }
+        
+        .section-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+        
+        .section-content {
+            z-index: 2;
+            /* Your content styles here */
+        }
+        #video-terrain-scan {
+            filter: blur(2px) brightness(150%);
+            -webkit-filter: blur(2px) brightness(150%);
+        }
+        
+        .yb-container-floatingAction.center {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            position: fixed;
+            bottom: 35px;
+            left: 50%;
+            transform: translate(-50%);
+            height: 40px;
+            width: 70vw;
+            max-width: 300px;
+            column-gap: 10px;
+            border-radius: 30px;
+            padding: 6px;
+            background-color: black;
+            z-index: 3;
+            
+        }
+        
+        #welcome-header {
+            position: fixed;
+            display: grid;
+            grid-template-columns: 1fr 50px;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 50px;
+            background-color: black;
+            z-index: 3;
+        }
+
+        #hamburger-button {
+            position: relative;
+            grid-column: 2;
+            top: 5px;
+            right: 50px;
+            width: 30px;
+            height: 30px;
+            background-color: black;
+            z-index: 4;
+            
+
+        }
+
+        #logo {
+            position: relative;
+            grid-column: 1;
+            
+            
+            
+            height: 30px;
+            background-color: black;
+            z-index: 4;
+            /* top right bottom margin auto left margin 5px */
+            margin: auto auto auto 5px;
+        }

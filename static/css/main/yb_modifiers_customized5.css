@@ -1,0 +1,725 @@
+/* Modifiers */
+
+/* Position Modifiers */
+.yb-center-margin.lr {
+    /*Positioning*/
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.yb-half-opacity {
+    opacity: 0.5;
+}
+
+.yb-center-margin.tb {
+    /*Positioning*/
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.yb-hblock-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.yb-hblock-e3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+
+.yb-hblock-41 {
+    display: grid;
+    grid-template-columns: 3.45fr 1fr;
+    grid-gap: 15px;
+}
+
+.yb-hblock-auto {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
+}
+
+.yb-field-background {
+    background-color: var(--yb-button-color);
+}
+
+
+@media screen and (max-width: 768px) {
+    .yb-hblock-2.responsive {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    .yb-hblock-41.responsive {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    
+    .yb-hblock-auto.responsive {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+}
+
+@media (prefers-color-scheme: light) {
+
+    .yb-autoText-reversed {
+        /*Style*/
+        color: white;
+    }
+
+}
+
+@media (prefers-color-scheme: dark){
+
+    .yb-autoText-reversed {
+        /*Style*/
+        color: black;
+    }
+
+
+}
+
+.yb-center-margin.all {
+    /*Positioning*/
+    margin: auto;
+}
+
+.yb-margin-L5 {
+    margin-left: 5px;
+}
+
+.yb-margin-L10 {
+    margin-left: 10px;
+}
+
+.yb-margin-R5 {
+    margin-right: 5px;
+}
+
+.yb-margin-R10 {
+    margin-right: 10px;
+}
+
+.yb-margin-T10 {
+    margin-top: 10px;
+}
+
+.yb-margin-T20 {
+    margin-top: 20px;
+}
+
+.yb-margin-T30 {
+    margin-top: 30px;
+}
+
+.yb-margin-B20 {
+    margin-bottom: 10px;
+}
+
+.yb-margin-B30 {
+    margin-bottom: 30px;
+}
+
+.yb-center-transform.lr {
+    /*Positioning*/
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.yb-center-transform.tb {
+    /*Positioning*/
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.yb-center-transform.all {
+    /*Positioning*/
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.yb-centerItems {
+    align-items: center;
+}
+
+.yb-flexColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+.yb-flexRow {
+    display: flex;
+    flex-direction: row;
+}
+
+.yb-gap5 {
+    grid-gap: 5px;
+}
+.yb-gap10 {
+    grid-gap: 10px;
+}
+
+.yb-buttonIconGrid.R {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    transition: 0.5s;
+}
+
+.yb-buttonIconGrid:hover {
+    filter: brightness(130%);
+    -webkit-filter: brightness(130%);
+    cursor: pointer;
+    transition: 0.5s
+}
+
+.yb-tform-cntrOrigin {
+    transform-origin: center;
+}
+
+.yb-gridH13 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.deci-rect {
+    width: 10%;
+}
+
+.quarter-rect {
+    width: 25%
+}
+
+.third-rect {
+    width: 33%;
+}
+
+.half-rect {
+    width: 50%;
+}
+
+
+.pointer-object {
+    cursor: pointer;
+}
+
+.yb-widthConstraint-600 {
+    max-width: 600px;
+}
+
+.yb-padding-L5 {
+    padding-left: 5px;
+}
+
+.yb-paddingCorrect-R5 {
+    transform: translateX(-2.5px);
+}
+
+.yb-padding-LR5 {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.yb-padding-ALL5 {
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.yb-relative {
+    position: relative;
+}
+
+/* Color Modifiers */
+.white {
+    /*Style*/
+    background-color: rgba(255, 255, 255);
+}
+
+.black {
+    /*Style*/
+    background-color: rgba(0, 0, 0);
+}
+
+.yb-red {
+    background-color: red;
+}
+
+.green {
+    /*Style*/
+    background-color: rgb(0, 170, 0);
+}
+
+.cosmicPurple {
+    /*Style*/
+    background-color: rgb(102, 51, 153);
+}
+
+.bg-blue {
+    /*Style*/
+    background-color: rgb(0, 0, 165);
+}
+
+.yb-gray {
+    /*Style*/
+    background-color: #4b4b4b;
+}
+
+
+
+@media screen and (prefers-color-scheme: light) {
+    .yb-bg-autoGray {
+        background-color: gray;
+    }
+
+    .yb-font-autoGray {
+        color: rgb(96, 96, 96);
+    }
+
+    .yb-fill-autoGray {
+        fill: rgb(110, 110, 110);
+    }
+
+    .yb-bg-autoFlat {
+        background-color: white;
+    }
+    
+}
+
+@media screen and (prefers-color-scheme: dark) {
+    .yb-bg-autoGray {
+        background-color: rgb(25, 25, 25);
+    }
+
+    .yb-bg-autoFlat {
+        background-color: black;
+    }
+
+    .yb-font-autoGray {
+        color: rgb(70, 70, 70);
+    }
+
+    .yb-fill-autoGray {
+        fill: rgb(70, 70, 70);
+    }
+}
+
+.yb-gray-light {
+    /*Style*/
+    background-color: #6b6b6b;
+}
+
+.bg-gray-dark {
+    background-color: rgb(35, 35, 35);
+}
+
+.yb-bg-transparent {
+    background-color: transparent;
+}
+
+    .yb-autoFill {
+        fill: var(--yb-icon-color);
+
+    }
+
+@media (prefers-color-scheme: light) {
+    .yb-autoFill {
+        fill: black;
+    }
+
+    
+} 
+
+    
+.yb-fill-white {
+    /*Style*/
+    fill: white;
+}
+
+.yb-fill-black {
+    /*Style*/
+    fill: black;
+}
+
+.yb-fill-green {
+    /*Style*/
+    fill: rgb(0, 170, 0);
+}
+
+.yb-fill-cosmicPurple {
+    /*Style*/
+    fill: rgb(102, 51, 153);
+}
+
+.yb-fill-gray {
+    /*Style*/
+    fill: #4b4b4b;
+}
+
+
+/* Shape Modifiers */
+
+.rounded {
+    /*Style*/
+    border-radius: 40px;
+}
+
+.squared {
+    /*Style*/
+    border-radius: 5px;
+}
+
+.circle {
+    /*Style*/
+    border-radius: 50%;
+}
+
+/* Border Modifiers */
+
+.border-solid {
+    /*Style*/
+    border-style: solid;
+}
+
+
+.yb-panel {
+    background-color: var(--yb-panel-color);
+    backdrop-filter: blur(80px);
+    -webkit-backdrop-filter: blur(80px);
+}
+
+
+
+
+
+.border-dashed {
+    /*Style*/
+    border-style: dashed;
+}
+
+.border-dotted {
+    /*Style*/
+    border-style: dotted;
+}
+
+.border-double {
+    /*Style*/
+    border-style: double;
+}
+
+.border-groove {
+    /*Style*/
+    border-style: groove;
+}
+
+.border-ridge {
+    /*Style*/
+    border-style: ridge;
+}
+
+.border-inset {
+    /*Style*/
+    border-style: inset;
+}
+
+.border-outset {
+    /*Style*/
+    border-style: outset;
+}
+
+.border-none {
+    /*Style*/
+    border-style: none;
+}
+
+.plainBorder {
+    /*Style*/
+    border-color: white;
+}
+
+@media screen and (prefers-color-scheme: light) {
+    .plainBorder {
+        /*Style*/
+        border-color: rgba(0, 0, 0);
+    }
+}
+    
+
+.rainbowBorder {
+    /*Style*/
+    border-image: linear-gradient(
+        to right,
+        red,
+        orange, 
+        yellow, 
+        green, 
+        blue, 
+        indigo, 
+        violet
+    ) 1;
+}
+
+.narrowBorder {
+    /*Style*/
+    border-width: 3px;
+}
+
+.mediumBorder {
+    /*Style*/
+    border-width: 5px;
+}
+
+.wideBorder {
+    /*Style*/
+    border-width: 7px;
+}
+
+.tiny {
+    /*Sizing*/
+    height: 24px;
+    width: 24px;
+}
+
+.small {
+    /*Sizing*/
+    height: 32px;
+    width: 32px;
+}
+
+.medium {
+    /*Sizing*/
+    height: 40px;
+    width: 40px;
+}
+
+.large {
+    /*Sizing*/
+    height: 48px;
+    width: 48px;
+}
+
+.xlarge {
+    /*Sizing*/
+    height: 64px;
+    width: 64px;
+}
+
+.xlarger {
+    /*Sizing*/
+    height: 72px;
+    width: 72px;
+}
+
+.xxlarge {
+    /*Sizing*/
+    height: 128px;
+    width: 128px;
+}
+
+.yb-fillContainer {
+    /*sizing*/
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+}
+
+.yb-fillWidth {
+    width: 100%;
+}
+
+.yb-fieldHeight {
+    height: 30px;
+}
+
+.yb-grayFill {
+    fill: rgb(91, 91, 91);
+    mix-blend-mode: difference;
+}
+
+.blend {
+    mix-blend-mode: difference;
+}
+/* Text Modifiers */
+
+.yb-pHead {
+    color: var(--yb-title-color) !important;
+}
+
+.yb-pText {
+    color: var(--yb-text-color) !important;
+}
+
+.yb-bText {
+    color: var(--yb-button-text-color) !important;
+}
+
+.yb-bFill {
+    fill: var(--yb-button-text-color) !important;
+}
+
+/* media query for light mode text */
+.font-white {
+    /*Style*/
+    color: white;
+}
+
+.font-black {
+    /*Style*/
+    color: black;
+}
+
+.font-green {
+    /*Style*/
+    color: rgb(0, 170, 0);
+}
+
+.font-cosmicPurple {
+    /*Style*/
+    color: rgb(102, 51, 153);
+}
+
+.font-gray {
+    /*Style*/
+    color: #4b4b4b;
+}
+
+.font-gray-dark {
+    /*Style*/
+    color: rgb(35, 35, 35);
+}
+
+
+.font-small {
+    /*Sizing*/
+    font-size: 12px;
+}
+
+.font-medium {
+    /*Sizing*/
+    font-size: 14px;
+}
+
+.font-large {
+    /*Sizing*/
+    font-size: 18px;
+}
+
+.font-xlarge {
+    /*Sizing*/
+    font-size: 24px;
+}
+
+.font-lightBold {
+    /*Style*/
+    font-weight: 600;
+}
+
+.align-left {
+    /*Style*/
+    text-align: left;
+}
+
+.align-center {
+    /*Style*/
+    text-align: center;
+}
+
+.align-right {
+    /*Style*/
+    text-align: right;
+}
+
+.font-heavy {
+    font-weight: 650;
+}
+
+
+
+/* Shadow Modifiers */
+.yb-shadow {
+    /*Style*/
+    -webkit-filter: drop-shadow(2px 2px 5px black);
+    filter: drop-shadow(2px 2px 5px black);
+}
+
+.yb-shadow-large {
+    /*Style*/
+    -webkit-filter: drop-shadow(4px 4px 10px black);
+    filter: drop-shadow(4px 4px 10px black);
+}
+
+.yb-shadow-small {
+    /*Style*/
+    -webkit-filter: drop-shadow(1px 1px 2px black);
+    filter: drop-shadow(1px 1px 2px black);
+}
+
+/* Animation Modifiers */
+.yb-rotate {
+    /*Style*/
+    animation: yb-rotate 1s linear infinite;
+}
+
+.hideUp {
+    transform: translateY(-100%);
+    transition: 0.5s;
+}
+
+.yb-fieldGrid {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+
+}
+
+.yb-grid-H12 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+
+.yb-vScroll {
+    overflow-y: scroll;
+    scrollbar-width: none; /* Create a thin scrollbar on Firefox */
+    scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color); 
+}
+
+
+/* Customize the scrollbar track */
+.yb-vScroll::-webkit-scrollbar {
+    width: 0px; /* Adjust the width as needed */
+    height: 0%;
+    margin-left: 2px;
+}
+
+/* Customize the scrollbar track color */
+.yb-vScroll::-webkit-scrollbar-track {
+    background-color: var(--scrollbar-track-color);
+}
+
+/* Customize the scrollbar thumb (handle) */
+.yb-vScroll::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb-color);
+    
+}
+
+.yb-lockScroll-y {
+    overflow-y: hidden;
+}
+
+.yb-spacer {
+    height: 150px;
+}

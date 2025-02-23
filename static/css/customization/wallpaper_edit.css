@@ -1,0 +1,48 @@
+
+.wp-desktop-preview-image {
+    aspect-ratio: 16 / 9; 
+    border: 2px solid gray;
+    border-radius: 10px; 
+    box-shadow: 1px 1px 5px black;
+    overflow: hidden;
+}
+.wp-mobile-preview-image {
+    aspect-ratio: 9 / 19.5;
+    border: 2px solid gray;
+    border-radius: 10px; 
+    box-shadow: 1px 1px 5px black;
+    overflow:hidden;
+}
+
+@media screen and (min-width: 768px){
+    .wp-desktop-preview-image {
+        
+        height: 320px; 
+
+    }
+
+    .wp-mobile-preview-image {
+        
+        height: 320px; 
+
+    }
+}
+
+@media screen and (max-width: 768px){
+    .wp-desktop-preview-image {
+        
+        height: 150px;
+
+    }
+    .wp-mobile-preview-image {
+        
+        height: 150px;
+
+    }
+    
+}
+
+.wallpaper-preview {
+    -webkit-filter: blur(var(--yb-wallpaper-blur)) brightness(var(--yb-wallpaper-brightness));
+    filter: blur(var(--yb-wallpaper-blur)) brightness(var(--yb-wallpaper-brightness));
+}
