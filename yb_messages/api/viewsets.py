@@ -143,7 +143,7 @@ class MessageViewSet(viewsets.ModelViewSet):
             serializer.save(from_user=from_user, body=body, conversation=conversation, images=[attached_image])
 
         elif self.request.data.get("is_videos"):
-            from yb_video.utility import save_video
+            from yb_video.services import save_video
             video = save_video(self.request, self.request.FILES["video"])
             video.save()
             serializer.save(from_user=from_user, body=body, conversation=conversation, videos=[video])
