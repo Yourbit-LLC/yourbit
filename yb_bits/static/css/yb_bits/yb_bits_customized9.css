@@ -621,11 +621,17 @@
 
 .yb-delete-comment:hover{
     cursor: pointer;
-    animation: yb-bounce-adaptY50 0.5s ease-in-out 1;
+    animation: yb-bounce-once 0.5s ease-in-out 1;
     background-color: white;
     color: red;
     transition: 0.8s;
 }
+
+.yb-showMore-bit:hover {
+    
+    animation: yb-bounceDown 0.25s ease-in-out 1;
+}
+
 
 .attached-photo-container {
     border-radius: 10px;
