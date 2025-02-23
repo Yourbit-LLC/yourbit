@@ -297,6 +297,8 @@ class BitViewSet(viewsets.ModelViewSet):
         new_bit = serializer.save(
             display_name = user_profile.display_name, 
             user=self.request.user, 
+            body = bit_data.get("body"),
+            title = bit_data.get("title"),
             profile=user_profile, 
             custom=custom_bit,
             is_public=is_public
