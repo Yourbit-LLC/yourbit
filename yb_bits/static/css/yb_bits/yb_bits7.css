@@ -324,6 +324,11 @@
     }
 }
 
+.yb-showMore-bit:hover {
+    
+    animation: yb-bounceDown 0.25s ease-in-out 1;
+}
+
 .yb-container-bitFeedback {
     display: flex;
     flex-direction: row;
