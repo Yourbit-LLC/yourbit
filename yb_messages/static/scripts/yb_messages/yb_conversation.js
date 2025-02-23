@@ -81,7 +81,7 @@ function yb_sendMessage(data, photo = false, video = false) {
                 "id": this_message.id,
                 "sender":this_message.from_user,
                 "time": this_message.time,
-                "body": this_message.body,
+                "body": this_message.decrypted_body,
                 "is_sender":is_sender,
                 
             }

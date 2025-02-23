@@ -1,4 +1,3 @@
-
 from rest_framework import viewsets, permissions, generics, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
@@ -156,5 +155,3 @@ class MessageViewSet(viewsets.ModelViewSet):
         conversation.messages.add(new_message)
         conversation.save()
         
-
-

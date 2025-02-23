@@ -4,6 +4,7 @@ from yb_accounts.models import Account as User
 from yb_accounts.api.serializers import UserResultSerializer
 import pytz
 
+
 class MessageCoreSerializer(serializers.ModelSerializer):
     
     class Meta:
@@ -34,6 +35,11 @@ class MessageSerializer(serializers.ModelSerializer):
     user = UserResultSerializer(read_only=True)
     images = PhotoSerializer(many=True, read_only=True)
     videos = VideoSerializer(many=True, read_only=True)
+    body = serializers.SerializerMethodField()
+
     class Meta:
         model = Message
         fields = '__all__'
+
+    def get_body(self, obj):
+        return obj.decrypted_body
