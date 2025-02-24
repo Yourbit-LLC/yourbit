@@ -39,6 +39,7 @@ from main.views import generate_bs_filter_chain, update_bs_filter_chain
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from yb_api.permissions import HasUserAPIKey
 from yb_api.models import UserAPIKey  # Adjust import paths as needed
+from main.models import get_cipher
 
 class BitFeedAPIView(generics.ListAPIView):
     serializer_class = BitSerializer
@@ -289,20 +290,33 @@ class BitViewSet(viewsets.ModelViewSet):
         scope = bit_data.get('scope')
         if scope == 'public':
             is_public = True
+            #Add additional parameters
+            new_bit = serializer.save(
+                display_name = user_profile.display_name, 
+                user=self.request.user, 
+                profile=user_profile, 
+                custom=custom_bit,
+                is_public=is_public,
+                public_title = bit_data.get("title"),
+                public_body = bit_data.get("body"),
+            )
 
         else:
             is_public = False
+            cipher = get_cipher()
+            #Add additional parameters
+            new_bit = serializer.save(
+                display_name = user_profile.display_name, 
+                user=self.request.user, 
+                profile=user_profile, 
+                custom=custom_bit,
+                is_public=is_public,
+                protected_title = cipher.encrypt(bit_data.get("title").encode()).decode(),
+                protected_body = cipher.encrypt(bit_data.get("body").encode()).decode(),
+            )
 
-        #Add additional parameters
-        new_bit = serializer.save(
-            display_name = user_profile.display_name, 
-            user=self.request.user, 
-            body = bit_data.get("body"),
-            title = bit_data.get("title"),
-            profile=user_profile, 
-            custom=custom_bit,
-            is_public=is_public
-        )
+
+
 
 
         headers = self.get_success_headers(serializer.data)
