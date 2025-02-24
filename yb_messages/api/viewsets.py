@@ -153,5 +153,6 @@ class MessageViewSet(viewsets.ModelViewSet):
 
         new_message = Message.objects.get(id=serializer.data['id'])
         conversation.messages.add(new_message)
+        conversation.time_modified = timezone.now()
         conversation.save()
         
