@@ -41,7 +41,7 @@ class Account(AbstractBaseUser):
     #General Information
     email = models.EmailField(verbose_name="email", max_length=150, unique=True)
     username = models.CharField(max_length=30, unique=True)
-    display_username = models.CharField(max_length=30, default=None)
+    display_username = models.CharField(max_length=30, blank=True, null=True, default="")
     first_name = models.CharField(max_length=150, default = None)
     last_name = models.CharField(max_length=150, default = None)
     phone_number = models.CharField(max_length=15, null=True, blank=True, default = None)
