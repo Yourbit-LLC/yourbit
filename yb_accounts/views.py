@@ -107,7 +107,8 @@ def registration_view(request):
             print("form valid")
 
             #Check if username exists in profile objects
-            username = form.cleaned_data.get('username')
+            username = str(form.cleaned_data.get('username'))
+            username = username.lower()
             try:
                 profile = Profile.objects.get(username=username)
                 return JsonResponse({'status': 'failed', 'errors': {'username': 'Profile with this Username already exists.'}}, status=400)
@@ -336,7 +337,8 @@ def login_view(request):
     if request.POST:
         
         if login_form.is_valid():
-            username = request.POST['username']
+            username = str(request.POST['username'])
+            username = username.lower()
             password = request.POST['password']
             user = authenticate(username=str(username), password=password)
 
