@@ -108,6 +108,8 @@ $(document).ready(function() {
                         yb_changeUIState("default");
                     }
 
+                    document.documentElement.style.setProperty('--yb-separator-display', 'none');
+
                     if (CUSTOM_CONFIG["wallpaper-on"] == "True") {
                         let only_my_colors = yb_getSessionValues("only-my-colors");
                         if (only_my_colors == "True") {
