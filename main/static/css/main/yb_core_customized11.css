@@ -206,17 +206,12 @@ p {
     }
 }
 
-@media (prefers-color-scheme: dark){
-    .yb-header {
-        border-bottom: 1px solid #e6e6e6;
-    }
+
+.yb-header {
+    border-bottom: 1px solid #e6e6e6;
 }
 
-@media (prefers-color-scheme: light){
-    .yb-header {
-        border-bottom: 1px solid black;
-    }
-}
+
 
 
 /* Mobile Navigation Bar on Bottom */
@@ -391,20 +386,13 @@ p {
     -webkit-filter: brightness(80%) (80%);
     transition: 0.5s;
 }
-@media (prefers-color-scheme: dark) {
-    .space-button-icon.active {
-        filter: brightness(200%);
-        -webkit-filter: brightness(200%);
-        transition: 0.5s;
-    }
+
+.space-button-icon.active {
+    filter: brightness(200%);
+    -webkit-filter: brightness(200%);
+    transition: 0.5s;
 }
-@media (prefers-color-scheme: light){
-    .space-button-icon.active {
-        filter: brightness(0%);
-        -webkit-filter: brightness(0%);
-        transition: 0.5s;
-    }
-}
+
 
 .yb-search-form.desktop {
     /* Positioning */
@@ -464,18 +452,12 @@ p {
     
 }
 
-@media (prefers-color-scheme: light) {
-    .yb-search-button.desktop {
-        border-left: 2px solid white;
-    }
+
+.yb-search-button.desktop {
+    border-left: 2px solid black;
 }
 
-@media (prefers-color-scheme: dark) {
-    .yb-search-button.desktop {
-        border-left: 2px solid black;
-    }
 
-}
 
 .yb-nav-actions {
     display: flex;
@@ -871,17 +853,11 @@ p {
     }
 }
 
-@media (prefers-color-scheme: dark) {
-    .yb-container-focus {
-        background-color: rgba(0, 0, 0, 0.5);
-    }
+
+.yb-container-focus {
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
-@media (prefers-color-scheme: light) {
-    .yb-container-focus {
-        background-color: rgba(255, 255, 255, 0.5);
-    }
-}
 
 
 .profile-image-overlay {
@@ -895,44 +871,24 @@ p {
     opacity: 0.5;
 }
 
-@media only screen and (prefers-color-scheme: dark){
-    .yb-input-singleLine::placeholder {
-        color: rgb(25,25,25);
-        font-family: Arial, Helvetica, sans-serif;
-    }
 
-    
-    .yb-form-field::placeholder {
-        color: rgb(25,25,25);
-        font-family: Arial, Helvetica, sans-serif;
-    }
-    
-
-    textarea::placeholder {
-        color: rgb(25,25,25);
-        font-family: Arial, Helvetica, sans-serif;
-    }
+.yb-input-singleLine::placeholder {
+    color: rgb(25,25,25);
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 
-@media only screen and (prefers-color-scheme: light){
-    input::placeholder {
-        color: rgb(75,75,75);
-        font-family: Arial, Helvetica, sans-serif;
-    }
-
-    
-    .yb-form-field::placeholder {
-        color: rgb(75,75,75);
-        font-family: Arial, Helvetica, sans-serif;
-    }
-    
-
-    textarea::placeholder {
-        color: rgb(75,75,75);
-        font-family: Arial, Helvetica, sans-serif;
-    }
+.yb-form-field::placeholder {
+    color: rgb(25,25,25);
+    font-family: Arial, Helvetica, sans-serif;
 }
+
+
+textarea::placeholder {
+    color: rgb(25,25,25);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 
 .yb-load-point {
     visibility: hidden;
@@ -969,25 +925,14 @@ p {
 
 }
 
-@media (prefers-color-scheme: dark) {
-    .yb-background-image {
-        background-color: black;
-    }
-
-    .yb-background-overlay {
-        background-color: rgba(0, 0, 0, 0.2);
-    }
+.yb-background-image {
+    background-color: black;
 }
 
-@media (prefers-color-scheme: light) {
-    .yb-background-image {
-        background-color: white;
-    }
-
-    .yb-background-overlay {
-        background-color: rgba(255, 255, 255, 0.2);
-    }
+.yb-background-overlay {
+    background-color: rgba(0, 0, 0, 0.2);
 }
+
 
 .sticker-list-container {
     position: relative;
