@@ -165,10 +165,7 @@ def get_wallpaper(request, profile_class, type):
         custom_core = CustomCore.objects.get(profile=this_profile)
     else:
         return HttpResponse("Invalid request type")
-
     
-    
-
     wallpaper = Wallpaper.objects.get(id=custom_core.wallpaper.id)
     if type == 'mobile':
         wallpaper = wallpaper.background_image
@@ -199,6 +196,13 @@ def toggle_only_my_colors(request):
     profile_object = Profile.objects.get(username=request.user.active_profile)
     custom_core = CustomCore.objects.get(profile=profile_object)
     custom_core.only_my_colors = not custom_core.only_my_colors
+
+    if custom_core.ui_colors_on == False:
+        custom_core.ui_colors_on = True
+
+    if custom_core.bit_colors_on == False:
+        custom_core.bit_colors_on = True
+
     custom_core.save()
 
     return JsonResponse({"success": "success"})
@@ -207,6 +211,10 @@ def toggle_custom_ui(request):
     profile_object = Profile.objects.get(username=request.user.active_profile)
     custom_core = CustomCore.objects.get(profile=profile_object)
     custom_core.ui_colors_on = not custom_core.ui_colors_on
+
+    if custom_core.flat_mode_on == True:
+        custom_core.flat_mode_on = False
+
     custom_core.save()
 
     return JsonResponse({"success": "success"})   
@@ -216,6 +224,9 @@ def toggle_custom_bits(request):
     custom_core = CustomCore.objects.get(profile=profile_object)
     custom_core.bit_colors_on = not custom_core.bit_colors_on
     custom_core.save()
+
+    if custom_core.flat_mode_on == True:
+        custom_core.flat_mode_on = False
 
     return JsonResponse({"success": "success"})
 
