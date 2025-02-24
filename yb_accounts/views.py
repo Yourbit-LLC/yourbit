@@ -337,10 +337,9 @@ def login_view(request):
     if request.POST:
         
         if login_form.is_valid():
-            username = str(request.POST['username'])
-            username = username.lower()
+            username = request.POST['username']
             password = request.POST['password']
-            user = authenticate(username=str(username), password=password)
+            user = authenticate(username=str(username).lower(), password=password)
 
             if user:
                 login(request, user)
