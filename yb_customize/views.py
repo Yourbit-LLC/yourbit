@@ -79,6 +79,10 @@ def toggle_flat_mode(request):
     profile_object = Profile.objects.get(username=request.user.active_profile)
     custom_core = CustomCore.objects.get(profile=profile_object)
     custom_core.flat_mode_on = not custom_core.flat_mode_on
+    if custom_core.ui_colors_on == True:
+        custom_core.ui_colors_on = False
+    if custom_core.bit_colors_on == True:
+        custom_core.bit_colors_on = False
     custom_core.save()
 
     return JsonResponse({"success": "success"})
