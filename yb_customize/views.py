@@ -234,6 +234,10 @@ def toggle_wallpaper(request):
     profile_object = Profile.objects.get(username=request.user.active_profile)
     custom_core = CustomCore.objects.get(profile=profile_object)
     custom_core.wallpaper_on = not custom_core.wallpaper_on
+
+    if custom_core.flat_mode_on == True:
+        custom_core.flat_mode_on = False
+
     custom_core.save()
 
     return JsonResponse({"success": "success"})
