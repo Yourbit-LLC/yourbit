@@ -18,6 +18,9 @@ lang="en"
         <meta name="description" content="Yourbit is an open source social media platform that allows users to customize their profile.">
         <meta name="keywords" content="Yourbit, Bitstream, Social Media, Content Creation, Social Network, Bits, Video, Photo">
         <meta name="author" content="Austin Chaney">
+
+        {% include 'main/root_style_embed.html' %}
+
         <meta name = "theme-color" content = "{{user_custom_ui.primary_color}}">
         <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/main/favicon.ico'%}">
         <script
@@ -32,8 +35,6 @@ lang="en"
         {% else %}
             <input type="hidden" id="auth-status" value="false">
         {% endif %}
-        
-        {% include 'main/root_style_embed.html' %}
         
         <!--End Root CSS Variables-->
 
