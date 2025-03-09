@@ -1,6 +1,6 @@
 {
-    "name": "Yourbit Dev",
-    "short_name": "YB Dev",
+    "name": "Yourbit",
+    "short_name": "Yourbit",
     "start_url": "https://yourbit.me",
     "display": "standalone",
     "background_color": "#000000",
