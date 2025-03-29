@@ -70,4 +70,3 @@ def decrypt_post_for_friend(encrypted_post, decrypted_friend_key, post_id):
     post_key = derive_post_key(decrypted_friend_key, post_id)
     return decrypt_bit(encrypted_post, post_key).decode()
 
-
