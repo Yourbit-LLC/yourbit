@@ -6,7 +6,7 @@
         <div id="comment-container-{{bit.id}}" class="video-panel-content-container" style="position: relative;">
             {% if request.user.is_authenticated %}
                 {% if bit.comments.count == 0 %}
-                    <div class="yb-fillWidth yb-comment-list" id="comment-list-container">
+                    <div class="yb-fillWidth yb-comment-list" style="justify-content: space-around;" id="comment-list-container">
                         <h3 class="align-center font-white">No Comments Yet</h3>
                         <div class="yb-center-margin lr" style="width: 100%;">
                             <p class="yb-autoText align-center">Be the first to comment!</p>
