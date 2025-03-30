@@ -74,17 +74,37 @@ function yb_bitMenu(e){
 
     }
 
-    let this_container = yb_createElement("div", "bit-options-container", `bit-options-container-${this_id}`);
+    let this_container = yb_createElement(
+        "div", 
+        "bit-options-container", 
+        `bit-options-container-${this_id}`
+    );
 
     for (let option in these_options) {
         
         let new_option = yb_createElement(
             "div", 
-            "bit-option yb-menu-listButton yb-button-threeQuarter border-none squared yb-margin-T10 yb-widthConstraint-600 yb-autoText bg-gray font-heavy pointer-object", 
+            `
+                bit-option 
+                yb-menu-listButton 
+                yb-button-threeQuarter 
+                border-none 
+                squared 
+                yb-margin-T10 
+                yb-widthConstraint-600 
+                yb-autoText 
+                bg-gray 
+                font-heavy 
+                pointer-object
+            `, 
             `bit-option-${option}-${option.substring(0, 3)}`
         );
         
-        let new_option_text = yb_createElement("p", "notification-response-text yb-center-margin all", `bit-option-text-${this_id}-${option.substring(0, 3)}`);
+        let new_option_text = yb_createElement(
+            "p", 
+            "notification-response-text yb-center-margin all", 
+            `bit-option-text-${this_id}-${option.substring(0, 3)}`
+        );
         new_option_text.innerHTML = option;
 
         new_option.appendChild(new_option_text);
@@ -110,7 +130,11 @@ function yb_bitMenu(e){
 
 function createHeader(bit) {
 
-    const header = yb_createElement("div", `yb-header-bit ${bit.type}`, `header-bit-${bit.id}`);
+    const header = yb_createElement(
+        "div", 
+        `yb-header-bit ${bit.type}`, 
+        `header-bit-${bit.id}`
+    );
     const profileImageContainer = yb_createElement("div", "element-accent profile-image-thumbnail small yb-center-margin all", `profile-image-${bit.id}`);
     //Create a variable that sets to the bit.custom.accent_color, if undefined, set to white
     let border_color = bit.custom.accent_color ? bit.custom.accent_color : "white";
