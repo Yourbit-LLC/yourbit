@@ -3,9 +3,9 @@
         display: grid;
         position:relative;
         margin: auto;
-        max-width: 1250px;
+        
         height: calc(100vh - 115px);
-        grid-template-columns: 4fr 2fr;
+        grid-template-columns: 5fr 1fr;
         grid-template-rows: auto 1fr;
         padding-left: 20px;
         padding-right: 20px;
@@ -103,7 +103,7 @@
         display: grid;
         grid-template-columns: 1fr 2fr;
         grid-gap: 5px;
-        grid-template-rows: 50px 60px;
+        grid-template-rows: 50px 60px auto;
 
     }
 
@@ -155,9 +155,6 @@
 
     }
 
-    #video-about-header {
-        width: 90%;
-    }
 
 }
 
