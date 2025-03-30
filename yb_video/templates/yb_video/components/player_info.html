@@ -1,6 +1,6 @@
 
 <section class="yb-player-info yb-autoText">
-    <h3 class="bit-title-color" style="padding-left: 10px; grid-row: 1; margin-top: auto; margin-bottom: auto;">{{bit.title}}</h3>
+    <h3 class="bit-title-color" style="padding-left: 10px; grid-row: 1; margin-top: auto; margin-bottom: auto;">{% if bit.is_public %}{{bit.title}}{% else %}{{bit.decrypted_title}}{% endif %}</h3>
 
     <div class="video-user-info bit-bg-dark-1">
         <img class="video-pfp" style="object-fit:fill; border: 2px solid {{bit.custom.accent_color}}; border-radius: 50%; width: 100%;" src="{% if storage_type == "yb"%}{{bit.profile.custom.profile_image.small_thumbnail.url}}{% else %}{{bit.profile.custom.profile_image.small_thumbnail_ext}}{%endif%}">
@@ -30,7 +30,11 @@
         </p>
         <svg style="grid-row-start: 1; grid-row-end: 3; grid-column: 2; margin-left: auto; margin-right: 0px;" class="yb-autoText yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="28px" fill="#e8eaed"><path d="M577.43-482 269.22-790.22q-13.83-13.82-14.11-34.28-.28-20.46 13.54-34.72 14.83-14.82 35.57-14.82 20.74 0 35 14.82L662-537.57q11.83 11.83 17.24 26.22 5.41 14.39 5.41 29.35t-5.41 29.35q-5.41 14.39-17.24 26.22L338.78-103.22Q323.96-88.39 304-88.89t-34.78-15.33q-13.83-14.82-14.33-34.78t14.33-34.78L577.43-482Z"/></svg>
         <div id="yb-player-description" style="display: none; padding-left: 30px; font-size: 14px; line-height: 1.5; margin-top: 15px; grid-row: 3;" class="yb-video-description yb-autoText">
-            {{bit.body}}
+            {% if bit.is_public %}
+                {{bit.body}}
+            {% else %}
+                {{bit.decrypted_body}}
+            {% endif %}
         </div>
     </div>
 </section>
