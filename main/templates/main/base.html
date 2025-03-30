@@ -21,7 +21,11 @@ lang="en"
 
         {% include 'main/root_style_embed.html' %}
 
-        <meta name = "theme-color" content = "{{user_custom_ui.primary_color}}">
+        {% if custom_core.ui_colors_on%}
+            <meta name = "theme-color" content = "{{user_custom_ui.primary_color}}">
+        {% else %}
+            <meta name = "theme-color" content = "var(--yb--default-primary-color)">
+        {% endif %}
         <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/main/favicon.ico'%}">
         <script
             defer

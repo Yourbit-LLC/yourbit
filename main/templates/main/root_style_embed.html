@@ -1,6 +1,12 @@
 <style>
     :root {
 
+        @media (prefers-color-scheme: dark) {
+            --yb-default-primary-color: rgb(0, 0, 0);
+        }
+        @media (prefers-color-scheme: light) {
+            --yb-default-primary-color: rgb(255, 255, 255);
+        }
         {% if request.user.is_authenticated %}
             --yb-panel-color: {{user_custom_ui.primary_color}};
             --yb-bit-primary-color: {{custom_bit.primary_color}};
