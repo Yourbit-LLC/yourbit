@@ -74,6 +74,7 @@
                     style="height: 100%;"
                     playback-id="{{bit.video_upload.ext_id}}"
                     metadata-video-title="{{bit.title}}"
+                    theme="minimal"
                     metadata-viewer-user-id="{{bit.username}}"
                     metadata-viewer-user-name="{{bit.profile.display_name}}"
                     accent-color="{{bit.custom.primary_color}}"
@@ -134,7 +135,7 @@
         }
 
         // Function to update the countdown every second
-        function updateCountdown() {
+        function updateVideoCountdown() {
             const countdownElement = document.getElementById('countdown');
     
             // Update the text content to show the current countdown time
@@ -149,9 +150,13 @@
             }
         }
 
-        function startCountdown() {
+        function startVideoCountdown() {
             video.style.setProperty('--controls-backdrop-color', video.getAttribute('primary-color'));
             timerInterval = setInterval(updateCountdown, 1000, countdownTime);
+
+        }
+
+        function cancelCountdown() {
 
         }
 
@@ -165,7 +170,7 @@
                 // Action to take when the video ends
                 if (VIDEO_QUEUE.length > 0) {
                     countdown_container.style.display = "block";
-                    startCountdown();
+                    startVideoCountdown();
                 } else {
                     console.log("No more videos in queue")
                 }
