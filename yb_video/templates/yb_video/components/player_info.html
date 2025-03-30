@@ -1,6 +1,6 @@
 
 <section class="yb-player-info yb-autoText">
-    <h3 class="bit-title-color" style="padding-left: 10px; grid-row: 1; margin-top: auto; margin-bottom: auto;">{% if bit.is_public %}{{bit.title}}{% else %}{{bit.decrypted_title}}{% endif %}</h3>
+    <h2 class="bit-title-color" style="padding-left: 10px; grid-row: 1; margin-top: auto; margin-bottom: auto;">{% if bit.is_public %}{{bit.title}}{% else %}{{bit.decrypted_title}}{% endif %}</h2>
 
     <div class="video-user-info bit-bg-dark-1">
         <img class="video-pfp" style="object-fit:fill; border: 2px solid {{bit.custom.accent_color}}; border-radius: 50%; width: 100%;" src="{% if storage_type == "yb"%}{{bit.profile.custom.profile_image.small_thumbnail.url}}{% else %}{{bit.profile.custom.profile_image.small_thumbnail_ext}}{%endif%}">
