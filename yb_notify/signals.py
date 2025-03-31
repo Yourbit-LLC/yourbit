@@ -146,7 +146,7 @@ def create_message_notification(sender, instance, created, **kwargs):
                 notification = Notification(
                     to_user = member,
                     from_user = instance.from_user,
-                    body = instance.body[:100],
+                    body = instance.decrypted_body[:100],
                     type = 6,
                     link = "/messages/" + str(conversation.id),
                     conversation = conversation,
