@@ -555,9 +555,13 @@ function yb_revertUIColor() {
         
         changeColor('--yb-' + custom_ui_index[i], this_data);
     }
+    //Check if user has flat mode toggled on
+    if (CUSTOM_CONFIG["flat-mode-on"] == "False") {
+        let this_wallpaper = CUSTOM_VALUES.getAttribute("data-wallpaper");
+        yb_changeWallpaper(this_wallpaper, false);
+ 
+    } 
 
-    let this_wallpaper = CUSTOM_VALUES.getAttribute("data-wallpaper");
-    yb_changeWallpaper(this_wallpaper, false);
 
 
 }

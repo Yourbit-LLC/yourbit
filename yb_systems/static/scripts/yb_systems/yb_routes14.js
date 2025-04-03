@@ -625,7 +625,7 @@ function yb_reload(container) {
 
 }
 
-function yb_navigateTo(container, template, data=null, reloadable=true) {
+function  yb_navigateTo(container, template, data=null, reloadable=true) {
     if (container.includes("2way")) {
         yb_setLast(container, template, data);
         history.pushState({container:container, template:template, data:data}, template, TWO_WAY_INDEX[template].url);
