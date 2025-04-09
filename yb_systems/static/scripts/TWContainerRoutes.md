@@ -1,4 +1,4 @@
-The following table contains the URL's to the templates for pages used in the Two Way Container (Side container on desktop, bottom on mobile). In this instance, the relative URL is the URL inserted into the browser address bar to access the full page, including the base HTML. The template URL's reference the HTML files for loading into an existing session, typically used by javascript.
+The following table contains the URL's pointing to the templates for pages used in the Two Way Container (Side container on desktop, bottom on mobile). In this instance, the relative URL is the URL inserted into the browser address bar to access the full page, including the base HTML. The template URL's reference the HTML files for loading into an existing session, typically used by javascript.
 
 
 | Page Name                 | Template                                             | Relative URL                        |
