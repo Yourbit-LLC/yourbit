@@ -2,7 +2,24 @@
     .yb-player-grid {
         display: grid;
         position:relative;
-        margin: auto;
+        margin-left: 6%;
+        margin-right: 6%;
+        
+        height: calc(100vh - 115px);
+        grid-template-columns: 5fr 1fr;
+        grid-template-rows: auto 1fr;
+        padding-left: 20px;
+        padding-right: 20px;
+
+    }
+}
+
+@media screen and (min-width: 2048px) {
+    .yb-player-grid {
+        display: grid;
+        position:relative;
+        margin-left: 5%;
+        margin-right: 5%;
         
         height: calc(100vh - 115px);
         grid-template-columns: 5fr 1fr;

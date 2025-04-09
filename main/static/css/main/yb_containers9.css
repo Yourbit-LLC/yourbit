@@ -571,6 +571,21 @@
         scrollbar-width: none;
         scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
     }
+
+    .yb-grid-item {
+        width: 85px;
+        height: 85px;
+        display: grid;
+        grid-template-rows: 1fr 3fr;
+        position: relative;
+        transition: 0.5s;
+    }
+
+    .yb-menu-grid {
+        position: relative;
+        max-width: 375px;
+        margin: auto;
+    }
 } 
 @media screen and (min-width: 768px) {
     .yb-2Way-container {
