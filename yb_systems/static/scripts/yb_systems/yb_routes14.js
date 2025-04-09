@@ -34,16 +34,16 @@ const CORE_TEMPLATE_INDEX = {
             "url": "/customize/"
         },
     "profile": {
-        "template": `/profile/templates/profile/`,
-        "url": "/profile/"
+        "template": `/profile/templates/profile/{{data}}/`,
+        "url": "/profile/{{data}}/"
     },
     "support-center": {
         "template": "/support/templates/support-center/",
         "url": "/support/"
     },
     "bit-focus": {
-        "template": "/bits/templates/bit/focus/",
-        "url": "/bits/focus/"
+        "template": "/bits/templates/bit/view/{{data}}/",
+        "url": "/bits/focus/{{data}}/"
     },
     "search": {
         "template":"/search/templates/search/",
@@ -66,9 +66,9 @@ const DRAWER_CONTENT = {
     "profile-text-edit": "/customize/templates/profile/edit/font/text/",
     "profile-title-edit": "/customize/templates/profile/edit/title/",
     "profile-button-edit": "/customize/templates/profile/edit/button/",
-    "bit-options": "/bits/templates/options/",
+    "bit-options": "/bits/templates/options/{{data}}/",
     "list-clusters": "/bits/templates/select-clusters/",
-    "share-bit": "/bits/templates/share-menu/",
+    "share-bit": "/bits/templates/share-menu/{{data}}/",
     "new-image": "/photo/templates/menus/new-image/",
 }
 
@@ -83,199 +83,149 @@ const DRAWER_CONTENT = {
     The template key is used to load the template into the container
     The url key is used to set the url in the browser
 */
-
 const TWO_WAY_INDEX = {
-    "create": 
-        {
-            "template" : "/core/create-menu/",
-            "url" : "/create/"
-        },
-    "create-cluster":
-        {
-            "template" : "/core/templates/create/cluster/",
-            "url" : "/create/cluster/"
-        },
-    "create-bit":
-        {
-            "template" : "/core/templates/create/bit/",
-            "url" : "/create/bit/"
-        },
-    "create-orbit":
-        {
-            "template" : "/core/templates/create/orbit/",
-            "url" : "/create/orbit/"
-        },
-    "messages" : 
-        {
-            "template" : "/messages/inbox/",
-            "url" : "/messages/"
-        },
-    "notifications": 
-        {
-            "template" : "/notify/template/list/",
-            "url" : "/notify/"
-        },
-    "conversation": 
-        {
-            "template" : "/messages/templates/conversation/",
-            "url" : "/messages/conversation/"
-        },
-    "people":
-        {
-            "template" : "/profile/templates/people/",
-            "url" : "/profile/people/"
-        },
-    "orbits": 
-        {
-            "template" : "/profile/templates/orbits/",
-            "url" : "/profile/orbits/"
-        },
-    "settings": 
-        {
-            "template" : "/settings/root/",
-            "url" : "/settings/"
-        },
-    "stuff": 
-        {
-            "template" : "/profile/templates/stuff/",
-            "url" : "/profile/stuff/"
-        },
-    "history": 
-        {
-            "template" : "/profile/templates/history/",
-            "url" : "/profile/history/"
-        },
-    
-    "cluster": 
-        {
-            "template" : "/bits/templates/cluster/",
-            "url" : "/bits/cluster/"
-        },
-
-    "support-center":
-        {
-            "template" : "/support/templates/support-center/",
-            "url" : "/support/"
-        },
-    "bug-report":
-        {
-            "template" : "/support/templates/report-bug/",
-            "url" : "/support/bug-report/"
-        },
-    "feature-request":
-        {
-            "template" : "/support/templates/request-feature/",
-            "url" : "/support/feature-request/"
-        },
-    "cropper-bit":
-        {   
-            "template" : "/photo/templates/cropper/bit/",
-            "url" : ""
-        },
-
-    "cropper-profile":
-        {
-            "template" : "/photo/templates/cropper/profile/",
-            "url" : ""
-        },
-
-    "cropper-desktop-background":
-        {
-            "template" : "/photo/templates/cropper/desktop-wallpaper/",
-            "url" : ""
-        },
-
-    "cropper-mobile-background":
-        {
-            "template" : "/photo/templates/cropper/mobile-wallpaper/",
-            "url" : ""
-        },
-
-    "profile-image-upload":
-        {
-            "template" : "/customize/templates/profile-image/",
-            "url" : ""
-        },
-
-    "background-image-upload":
-        {
-            "template" : "/customize/templates/wallpaper/",
-            "url" : ""
-        },
-    
-    "edit-bit":
-        {
-            "template" : "/bits/templates/edit-bit/",
-            "url" : "/bits/edit/"
-        },
-
-    "create-theme":
-        {
-            "template" : "/customize/templates/create-theme/",
-            "url" : ""
-        },
-    "change-password":
-        {
-            "template" : "/settings/templates/change-password/",
-            "url" : ""
-        },
-
-    "cluster-settings":
-        {
-            "template" : "/settings/templates/cluster/",
-            "url" : ""
-        },
-    "bit-publish-options":
-        {
-            "template" : "/bits/templates/builder/options/",
-            "url" : ""
-        },
-    "schedule-bit":
-        {
-            "template" : "/bits/templates/builder/scheduling/",
-            "url" : ""
-        },
-
-    "monetize-bit":
-        {
-            "template" : "/bits/templates/builder/monetization/",
-            "url" : ""
-        },
-
-    "bb-customize-bit":
-        {
-            "template" : "/bits/templates/builder/customize/",
-            "url" : ""
-        },
-    "bit-builder-thumbnail":
-        {
-            "template" : "/bits/templates/builder/thumbnail/",
-            "url" : ""
-        },
-
-    "conversation-settings":
-    {
-        "template" : "/messages/templates/conversation-settings/",
-        "url" : ""
+    "background-image-upload": {
+        "template": "/customize/templates/wallpaper/",
+        "url": ""
     },
-
-    "orbit-setup": {
-        "template" : "/profile/templates/orbit-setup/",
-        "url" : ""
+    "bb-customize-bit": {
+        "template": "/bits/templates/builder/customize/",
+        "url": ""
     },
-
-    "video-setup": {
-        "template": "/video/templates/video-setup/",
-        "url" : ""
+    "bit-builder-thumbnail": {
+        "template": "/bits/templates/builder/thumbnail/",
+        "url": ""
+    },
+    "bit-publish-options": {
+        "template": "/bits/templates/builder/options/",
+        "url": ""
+    },
+    "bug-report": {
+        "template": "/support/templates/report-bug/",
+        "url": "/support/bug-report/"
+    },
+    "change-password": {
+        "template": "/settings/templates/change-password/",
+        "url": ""
+    },
+    "cluster": {
+        "template": "/bits/templates/cluster/{{data}}/",
+        "url": "/bits/cluster/{{data}}/"
+    },
+    "cluster-settings": {
+        "template": "/settings/templates/cluster/{{data}}/",
+        "url": ""
+    },
+    "conversation": {
+        "template": "/messages/templates/conversation/{{data}}/",
+        "url": "/messages/conversation/{{data}}/"
+    },
+    "conversation-settings": {
+        "template": "/messages/templates/conversation-settings/{{data}}/",
+        "url": ""
+    },
+    "create": {
+        "template": "/core/create-menu/",
+        "url": "/create/"
+    },
+    "create-bit": {
+        "template": "/core/templates/create/bit/",
+        "url": "/create/bit/"
+    },
+    "create-cluster": {
+        "template": "/core/templates/create/cluster/",
+        "url": "/create/cluster/"
+    },
+    "create-orbit": {
+        "template": "/core/templates/create/orbit/",
+        "url": "/create/orbit/"
+    },
+    "create-theme": {
+        "template": "/customize/templates/create-theme/",
+        "url": ""
+    },
+    "cropper-bit": {
+        "template": "/photo/templates/cropper/bit/",
+        "url": ""
+    },
+    "cropper-desktop-background": {
+        "template": "/photo/templates/cropper/desktop-wallpaper/",
+        "url": ""
+    },
+    "cropper-mobile-background": {
+        "template": "/photo/templates/cropper/mobile-wallpaper/",
+        "url": ""
+    },
+    "cropper-profile": {
+        "template": "/photo/templates/cropper/profile/",
+        "url": ""
+    },
+    "edit-bit": {
+        "template": "/bits/templates/edit-bit/{{data}}/",
+        "url": "/bits/edit/{{data}}/"
+    },
+    "feature-request": {
+        "template": "/support/templates/request-feature/",
+        "url": "/support/feature-request/"
+    },
+    "history": {
+        "template": "/profile/templates/history/",
+        "url": "/profile/history/"
     },
     "manage-keys": {
         "template": "/accounts/templates/manage-keys/",
-        "url" : ""
+        "url": ""
     },
-
-    
-          
+    "messages": {
+        "template": "/messages/inbox/",
+        "url": "/messages/"
+    },
+    "monetize-bit": {
+        "template": "/bits/templates/builder/monetization/",
+        "url": ""
+    },
+    "notifications": {
+        "template": "/notify/template/list/",
+        "url": "/notify/"
+    },
+    "orbit-setup": {
+        "template": "/profile/templates/orbit-setup/",
+        "url": ""
+    },
+    "orbits": {
+        "template": "/profile/templates/orbits/",
+        "url": "/profile/orbits/"
+    },
+    "people": {
+        "template": "/profile/templates/people/",
+        "url": "/profile/people/"
+    },
+    "profile-image-upload": {
+        "template": "/customize/templates/profile-image/",
+        "url": ""
+    },
+    "schedule-bit": {
+        "template": "/bits/templates/builder/scheduling/",
+        "url": ""
+    },
+    "settings": {
+        "template": "/settings/root/",
+        "url": "/settings/"
+    },
+    "stuff": {
+        "template": "/profile/templates/stuff/",
+        "url": "/profile/stuff/"
+    },
+    "support-center": {
+        "template": "/support/templates/support-center/",
+        "url": "/support/"
+    },
+    "video-setup": {
+        "template": "/video/templates/video-setup/",
+        "url": ""
+    }
 };
+
 
 /*
     Below is a directory of templates to be loaded into list containers
@@ -365,7 +315,12 @@ function yb_goToPage(page, data=null) {
         CONTENT_CONTAINER_B.classList.add("show")
         CONTENT_CONTAINER_A.classList.remove("show")
         if (data != null) {
-            $(CONTENT_CONTAINER_B).load(CORE_TEMPLATE_INDEX[page].template + data.toString() + "/");
+            try {
+                $(CONTENT_CONTAINER_B).load(CORE_TEMPLATE_INDEX[page].template.replace("{{data}}", data.toString()));
+            } catch (error) {
+                console.log(error);
+                $(CONTENT_CONTAINER_B).load(CORE_TEMPLATE_INDEX[page].template + data.toString() + "/");
+            }
         } else {
             $(CONTENT_CONTAINER_B).load(CORE_TEMPLATE_INDEX[page].template);
         }

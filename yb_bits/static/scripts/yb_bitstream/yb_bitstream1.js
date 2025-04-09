@@ -95,6 +95,16 @@ function yb_renderBit(data) {
     
 }
 
+function yb_jumpToBit (bit_id) {
+    //Jump to a specific bit in the bitstream
+    let bit = document.getElementById(`bit-${bit_id}`);
+    if (bit) {
+        bit.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        console.log("Bit not found: " + bit_id);
+    }
+}
+
 function yb_showSwipeUp() {
     let swipe_up = document.getElementById("swipe-up-element");
     let load_indicator = document.getElementById("load-indicator-container-profile");

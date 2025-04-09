@@ -239,7 +239,7 @@ class CreateCluster(View):
 
         return JsonResponse({"status": "success", "cluster": serialized_cluster.data})
     
-def bit_focus_view(request, pk, *args, **kwargs):
+def view_bit_template(request, pk, *args, **kwargs):
     this_bit = Bit.objects.get(pk=pk)
     these_comments = BitComment.objects.filter(bit=this_bit)
 
