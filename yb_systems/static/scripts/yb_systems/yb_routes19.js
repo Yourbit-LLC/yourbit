@@ -43,7 +43,7 @@ const CORE_TEMPLATE_INDEX = {
     },
     "bit-focus": {
         "template": "/bits/templates/bit/view/{{data}}/",
-        "url": "/bits/focus/{{data}}/"
+        "url": "/bits/view/{{data}}/"
     },
     "search": {
         "template":"/search/templates/search/",
