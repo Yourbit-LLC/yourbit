@@ -52,7 +52,7 @@ function yb_openDrawer(template, id=null, reloadable=true) {
         DRAWER_INNER.innerHTML = "";
         console.log(DRAWER_CONTENT[template]);
         if (id) {
-            $(DRAWER_INNER).load(DRAWER_CONTENT[template] + id.toString() + "/");
+            $(DRAWER_INNER).load(DRAWER_CONTENT[template].replace("{{data}}", data.toString()));
         } else {
             
             $(DRAWER_INNER).load(DRAWER_CONTENT[template]);
