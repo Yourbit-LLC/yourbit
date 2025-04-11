@@ -586,9 +586,9 @@ function  yb_navigateTo(container, template, data=null, reloadable=true) {
 
         //Check if the data is null, if it is then we need to set the url to the template url
         if (data != null) {
-            history.pushState({container:container, template:template, data:data}, template, TWO_WAY_INDEX[template].url.replace("{{data}}", data.toString()));
+            history.pushState({container:container, template:template, data:data}, template, TWO_WAY_INDEX[template]["url"].replace("{{data}}", data.toString()));
         } else {
-            history.pushState({container:container, template:template, data:data}, template, TWO_WAY_INDEX[template].url);
+            history.pushState({container:container, template:template, data:data}, template, TWO_WAY_INDEX[template]["url"]);
         }
         
         //Check if page, only time navigateTo should be used for pages is when going back
@@ -623,9 +623,9 @@ function  yb_navigateTo(container, template, data=null, reloadable=true) {
         yb_setLast(container, template, data);
         active_cotainer = "content-container";
         if (data != null) {
-            history.pushState({container:container, template:template, data:data}, template, TWO_WAY_INDEX[template].url.replace("{{data}}", data.toString()));
+            history.pushState({container:container, template:template, data:data}, template, TWO_WAY_INDEX[template]["url"].replace("{{data}}", data.toString()));
         } else {
-            history.pushState({container:container, template:template, data:data}, template, TWO_WAY_INDEX[template].url);
+            history.pushState({container:container, template:template, data:data}, template, TWO_WAY_INDEX[template]["url"]);
         }
         
    
