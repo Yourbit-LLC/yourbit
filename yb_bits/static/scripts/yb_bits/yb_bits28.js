@@ -259,6 +259,7 @@ function yb_addMedia(type, bit) {
                 }
                 yb_navigateTo("content-container", "bit-focus", bit.id);
             })
+            
             let play_button = yb_createElement("div", "yb-play-icon circle yb-center-transform all", `play-icon-${bit.id}`)
             play_button.style.width = "120px";
             play_button.style.height = "120px";

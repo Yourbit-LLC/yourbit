@@ -583,7 +583,13 @@ function yb_reload(container) {
 function  yb_navigateTo(container, template, data=null, reloadable=true) {
     if (container.includes("2way")) {
         yb_setLast(container, template, data);
-        history.pushState({container:container, template:template, data:data}, template, TWO_WAY_INDEX[template].url);
+
+        //Check if the data is null, if it is then we need to set the url to the template url
+        if (data != null) {
+            history.pushState({container:container, template:template, data:data}, template, TWO_WAY_INDEX[template].url.replace("{{data}}", data.toString()));
+        } else {
+            history.pushState({container:container, template:template, data:data}, template, TWO_WAY_INDEX[template].url);
+        }
         
         //Check if page, only time navigateTo should be used for pages is when going back
         if (container.includes("page")){
