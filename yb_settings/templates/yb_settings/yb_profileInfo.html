@@ -46,6 +46,9 @@
         
         <section class = "setting-sub-container" id="about-tab">
             <h3 class="yb-autoText yb-pHead">About Me</h3>
+            <br>
+            <p class="yb-font-autoGray font-medium"><b>General</b></p>
+            <br>
             <div id="display-motto" class="yb-field-split squared yb-bg-autoGray yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Motto: </p>
                 <input name="motto" id='field-motto' value="{% if active_profile.motto %}{{active_profile.motto}}{% else %}Add Motto{% endif %}" class="yb-input-transparent right {% if active_profile.motto %} yb-pText yb-autoText {% else %} font-gray {% endif %} profile-field yb-form-field" style="padding-top: 10px;">
@@ -55,8 +58,6 @@
             <div id="bio-container">
                 <textarea id="bio-field" name="bio" class="yb-bg-autoGray yb-text-area border-none yb-form-textArea squared {% if active_profile.bio %} yb-pText yb-autoText {% else %} font-gray {% endif %} profile-field yb-form-textArea" style="width: 98%; height: 100px;">{% if active_profile.bio %}{{active_profile.bio}}{% else %} Add bio {% endif %}</textarea>
             </div>
-
-            
 
             <div id="field-birthday-visibility" class="yb-field-container">
                 <div id="display-birthday" class="yb-field-split top yb-bg-autoGray yb-pText">
@@ -77,7 +78,7 @@
 
             <br>
 
-            <h3 class="yb-autoText yb-pHead">Cultural Background</h3>
+            <p class="yb-font-autoGray font-medium"><b>Cultural Background</b></p>
             <br>
             
             <div id="display-hometown" class="yb-field-split top yb-bg-autoGray yb-pText">
@@ -248,6 +249,9 @@
 
             
         </section>
+
+        <br>
+        <hr>
 
         <section class="setting-sub-container" id="work-tab">
             <h3 class="yb-autoText yb-pHead">Work</h3>
