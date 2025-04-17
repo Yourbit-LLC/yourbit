@@ -255,7 +255,7 @@
         <section class="setting-sub-container" id="work-tab">
             <h3 class="yb-autoText yb-pHead">Work</h3>
             <br>
-
+            <p class="yb-font-autoGray font-medium"><b>Current Job</b></p>
             <div id="display-current-job" class="yb-field-split top yb-bg-autoGray yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Current Job: </p>
                 <input name="current_job" id='field-current-job' value="{{profile_info.current_job}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
@@ -270,11 +270,13 @@
                 <input name="year_started" id='field-company' value="{{profile_info.year_started}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
             </div>
 
-            <div id="display-previous-job" class="yb-field-split middle yb-bg-autoGray yb-pText">
+            <p class="yb-font-autoGray font-medium"><b>First Job</b></p>
+
+            <div id="display-previous-job" class="yb-field-split top yb-bg-autoGray yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">First Job: </p>
                 <input name="first_company" id='field-company' value="{{profile_info.first_job}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
             </div>
-            <div id="display-first-job" class="yb-field-split bottom yb-bg-autoGray yb-pText">
+            <div id="display-first-job" class="yb-field-split middle yb-bg-autoGray yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Role: </p>
                 <input name="first_role" id='field-first-job' value="{{profile_info.first_role}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
             </div>
