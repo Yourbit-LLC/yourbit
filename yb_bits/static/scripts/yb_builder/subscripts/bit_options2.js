@@ -28,9 +28,9 @@ $(document).ready(function() {
             bit_options_fields[key].addEventListener("change", function() {
                 console.log(key + ' changed')
                 if (this.checked) {
-                    builderFields[key].checked = true;
+                    builderFields.config[key].checked = true;
                 } else {
-                    builderFields[key].value = false;
+                    builderFields.config[key].value = false;
                 }
             });
         }
