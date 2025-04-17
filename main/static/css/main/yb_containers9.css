@@ -644,6 +644,63 @@
     }
 }
 
+@media screen and (min-width: 2048px) {
+    .yb-2Way-container {
+        right: 15px;
+        border-radius: 10px;
+        width: 450px;
+        height: calc(100vh - 90px);
+        top: calc(50% + 30px);
+        transform: translate(150%, -50%);
+        transition: 0.35s;
+        overflow-x: hidden;
+        scrollbar-width: none; /* Create a thin scrollbar on Firefox */
+        scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color); /* Set thumb and track colors on Firefox */
+    }
+
+
+    /* Customize the scrollbar track */
+    .yb-2Way-container::-webkit-scrollbar {
+        width: 0px; /* Adjust the width as needed */
+        height: 90%;
+        margin-left: 2px;
+    }
+    
+    /* Customize the scrollbar track color */
+    .yb-2Way-container::-webkit-scrollbar-track {
+        background-color: var(--scrollbar-track-color);
+    }
+    
+    /* Customize the scrollbar thumb (handle) */
+    .yb-2Way-container::-webkit-scrollbar-thumb {
+        background-color: var(--scrollbar-thumb-color);
+        
+    }
+
+
+    .yb-2Way-container.open {
+        transform: translate(0, -50%);
+        transition: 0.25s;
+        
+    }
+
+    .yb-2Way-container.expanded {
+        width: 90%;
+        max-width: 950px;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        transition: 0.35s;
+    }
+
+    .yb-2Way-container.expanded2 {
+        width: 90%;
+        max-width: 950px;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        transition: 0.35s;
+    }
+}
+
 .yb-2Way-content.inactive {
     transform: translateX(-100%);
     transition: 0.3s;
