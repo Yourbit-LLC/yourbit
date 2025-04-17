@@ -91,14 +91,14 @@
                 <input name="country_of_origin" id='field-homeCountry' value="{{profile_info.country_of_origin}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
             </div>
 
-            <div id="display-motto" class="yb-field-split middle yb-bg-autoGray yb-pText">
+            <div id="display-religion" class="yb-field-split middle yb-bg-autoGray yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Religion: </p>
-                <input name="motto" id='field-motto' value="{% if active_profile.motto %}{{active_profile.religion}}{% else %}Add Motto{% endif %}" class="yb-input-transparent right {% if active_profile.motto %} yb-pText yb-autoText {% else %} font-gray {% endif %} profile-field yb-form-field" style="padding-top: 10px;">
+                <input name="religion" id='field-religion' value="{% if active_profile.motto %}{{active_profile.religion}}{% else %}Add Motto{% endif %}" class="yb-input-transparent right {% if active_profile.motto %} yb-pText yb-autoText {% else %} font-gray {% endif %} profile-field yb-form-field" style="padding-top: 10px;">
             </div>
 
             <div id="display-motto" class="yb-field-split bottom yb-bg-autoGray yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Place of Worship: </p>
-                <input name="motto" id='field-motto' value="{% if active_profile.motto %}{{active_profile.place_of_worship}}{% else %}Add Motto{% endif %}" class="yb-input-transparent right {% if active_profile.motto %} yb-pText yb-autoText {% else %} font-gray {% endif %} profile-field yb-form-field" style="padding-top: 10px;">
+                <input name="place_of_worship" id='field-placeOfWorship' value="{% if active_profile.motto %}{{active_profile.place_of_worship}}{% else %}Add Motto{% endif %}" class="yb-input-transparent right {% if active_profile.motto %} yb-pText yb-autoText {% else %} font-gray {% endif %} profile-field yb-form-field" style="padding-top: 10px;">
             </div>
 
 
@@ -225,7 +225,11 @@
             </div>
 
             <p class="yb-font-autoGray font-medium"><b>College</b></p>
-            <div id="display-college" class="yb-field-split top yb-bg-autoGray yb-pText">
+            <div id="display-field-of-study" class="yb-field-split top yb-bg-autoGray yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Field of Study: </p>
+                <input name="field_of_study" id='field-fieldOfStudy' value="{{profile_info.field_of_study}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+            </div>
+            <div id="display-college" class="yb-field-split middle yb-bg-autoGray yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">College: </p>
                 <input name="college" id='field-college' value="{{profile_info.college}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
             </div>
