@@ -132,14 +132,42 @@
         };
     
         const sections = document.querySelectorAll('.setting-sub-container');
-        const tabs = document.querySelectorAll('.yb-form-tab');
+        const form_tabs = document.querySelectorAll('.yb-form-tab');
+
+        for (var i = 0; i < form_tabs.length; i++) {
+            form_tabs[i].addEventListener('click', function () {
+                //Get name of tab
+                var tab_name = this.getAttribute('name');
+                
+                console.log("tab_name: ", tab_name);
+    
+                for (var i = 0; i < form_tabs.length; i++) {
+                    form_tabs[i].classList.remove('active');
+                }
+    
+                this.classList.add('active');
+    
+                var tab_content = document.getElementById(tab_name);
+                var parent = tab_content.parentElement; // Adjust this if your element is nested deeper
+                var rect = tab_content.getBoundingClientRect();
+                var parentRect = parent.getBoundingClientRect();
+                
+                // Calculate the offset to scroll
+                var offsetTop = rect.top - parentRect.top + parent.scrollTop;
+                
+                parent.scrollTo({
+                    top: offsetTop,
+                    behavior: "smooth"
+                });
+            });
+        }
         
         try {
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     // Remove active class from all tabs
-                    tabs.forEach(tab => tab.classList.remove('active'));
+                    form_tabs.forEach(tab => tab.classList.remove('active'));
     
                     // Add active class to the corresponding tab
                     const activeTab = document.querySelector(`.message-filter[name="${entry.target.id}"]`);
