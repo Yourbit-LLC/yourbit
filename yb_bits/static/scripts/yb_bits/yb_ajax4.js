@@ -102,6 +102,42 @@ function yb_updateComments(update, response, this_element) {
 }
 
 
+/*
+        Ajax function for receiving a list of comments
+
+        Example:
+        yb_getComments(true, bitId);
+
+        Used in:
+        -yb_bits/yb_handlers.js
+
+        Tags:
+        get comments ajax function
+*/
+
+function yb_getComments(update, bitId, this_element) {
+    
+    console.log("getting comments...");
+    console.log(bitId);
+    
+    $.ajax({
+        type: 'GET',
+        url: `/bits/api/bits/${bitId}/comments/`,
+        success: function(response) {
+            //Update the feed
+            console.log(response)
+            yb_updateComments(update, response, this_element);
+            
+        },
+        error: function(response) {
+            //Error
+            console.log(response);
+        }
+    });
+}
+
+
+
 /* 
         Ajax function for sending a comment
 
@@ -168,40 +204,6 @@ function yb_sendComment(bitId, commentBody, element_id) {
     });
 }
 
-
-/*
-        Ajax function for receiving a list of comments
-
-        Example:
-        yb_getComments(true, bitId);
-
-        Used in:
-        -yb_bits/yb_handlers.js
-
-        Tags:
-        get comments ajax function
-*/
-
-function yb_getComments(update, bitId, this_element) {
-    
-    console.log("getting comments...");
-    console.log(bitId);
-    
-    $.ajax({
-        type: 'GET',
-        url: `/bits/api/bits/${bitId}/comments/`,
-        success: function(response) {
-            //Update the feed
-            console.log(response)
-            yb_updateComments(update, response, this_element);
-            
-        },
-        error: function(response) {
-            //Error
-            console.log(response);
-        }
-    });
-}
 
 
 /* 

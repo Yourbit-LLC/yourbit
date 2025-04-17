@@ -107,8 +107,10 @@ function yb_showComments(this_id) {
     // Makes the comment button and icon active
     yb_makeActive(comment_button, comment_icon);
 
+    let this_element = `bit-${this_id}`;
+
     // Retrieves and displays the comments for the bit
-    yb_getComments(false, this_id);
+    yb_getComments(false, this_id, this_element);
 
     comment_container.classList.add("open");
 
