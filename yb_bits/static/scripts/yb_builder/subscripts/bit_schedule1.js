@@ -48,7 +48,7 @@ $(document).ready(function() {
     try {
         for (var key in bit_schedule_fields) {
             bit_schedule_fields[key].addEventListener("change", function() {
-            bitBuilder.field[key].value = this.value;
+            builderFields[key].value = this.value;
             console.log(key + ' changed')
             });
         }
