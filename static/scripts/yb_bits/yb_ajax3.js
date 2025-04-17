@@ -57,11 +57,18 @@ function yb_createBit(this_data, csrf_token) {
 
 // Function for updating comment stream
 function yb_updateComments(update, response, this_element) {
+    let this_bit = null;
+    let comment_container = null;
     
-    let this_bit = document.getElementById(this_element);
-    
-    let comment_container = this_bit.querySelector(`.yb-comment-list`);
-    comment_container.innerHTML = "";
+    try {
+        this_bit = document.getElementById(this_element);
+        comment_container = this_bit.querySelector(`.yb-comment-list`);
+        comment_container.innerHTML = "";
+    } catch (error) {
+        this_bit = document.getElementById(`bit-${this_element}`)
+        comment_container = this_bit.querySelector(`.yb-comment-list`);
+        comment_container.innerHTML = "";
+    }
 
     console.log(update);
     
