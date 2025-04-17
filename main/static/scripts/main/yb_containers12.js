@@ -127,7 +127,7 @@ function yb_2WayPage(index, page="", data=null) {
         if (page != ""){
             history.pushState({container:"2way-page", template:page, data:data}, page, TWO_WAY_INDEX[page].url);
             if (data) {
-                $(secondary).load(TWO_WAY_INDEX[page].template + data.toString() + "/");
+                $(secondary).load(TWO_WAY_INDEX[page].template.replace("{{data}}", data.toString()));
             } else {
                 $(secondary).load(TWO_WAY_INDEX[page].template);
             }
@@ -140,7 +140,7 @@ function yb_2WayPage(index, page="", data=null) {
         secondary.classList.remove("active");
 
         if (data) {
-            $(tetriary).load(TWO_WAY_INDEX[page].template + data.toString() + "/");
+            $(tetriary).load(TWO_WAY_INDEX[page].replace("{{data}}", data.toString()));
         } else {
             $(tetriary).load(TWO_WAY_INDEX[page].template);
         }
