@@ -186,12 +186,12 @@ class SettingsProfile(View):
 
         profile_info.current_job = request.POST['current_job']
         profile_info.current_role = request.POST['current_role']
-        profile_info.year_started = request.POST['year_started']
+        profile_info.year_started = request.POST['year_started'] or profile_info.year_started
 
         
         profile_info.first_job = request.POST['first_job']
         profile_info.first_role = request.POST['first_role']
-        profile_info.first_year_started = request.POST['first_year_started']
+        profile_info.first_year_started = request.POST['first_year_started'] or profile_info.first_year_started
 
         profile_info.save()
 
