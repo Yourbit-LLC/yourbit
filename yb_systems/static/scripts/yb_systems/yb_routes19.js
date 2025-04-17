@@ -212,6 +212,11 @@ const TWO_WAY_INDEX = {
         "template": "/settings/root/",
         "url": "/settings/"
     },
+
+    "profile-settings": {
+        "template": "/settings/templates/profile/",
+        "url": "/settings/profile/"
+    },
     "stuff": {
         "template": "/profile/templates/stuff/",
         "url": "/profile/stuff/"
