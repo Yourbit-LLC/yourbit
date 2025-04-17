@@ -37,26 +37,31 @@
 <div id="connection-list" class="yb-fillWidth yb-vScroll yb-margin-T10" style="height: calc(100% - 70px); border-radius: 15px;">
     <form id="create-cluster-form" class="yb-fillWidth align-center" style="font-weight: 600;" method="POST" action="/core/create/cluster/">
         {% csrf_token %}
+        <div id = "field-container-cluster-name" class="yb-field-container">
+            <div id="display-first-name" class="yb-field-split top squared yb-bg-autoGray yb-autoText yb-pText yb-margin-T10">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Cluster Name: </p>
+                <input name="name" id='cc-field-name' value="{{user.first_name}}" class="yb-input-transparent yb-form-field right yb-autoText yb-pText account-field" style="grid-column: 2;">
+            </div>
+            
+        
+        </div>
         <br>
-        <label for="name" class="yb-autoText yb-pHead font-medium align-center">What are you naming this Cluster?</label>
+        <div id="yb-field-container-clusterType" class="yb-field-containter">
+            <div id = "field-container-clusterType" class="yb-field-container">
+                <div id="cluster-type" class="yb-field-split middle yb-bg-autoGray yb-pText" style="position: relative;">
+                    <p class="field-cover-label align-left yb-pText" style="grid-column: 1;">Specify Bit Type: </p>
+                    <select type="text" class="yb-input-transparent right yb-autoText yb-pText privacy-field" name="type" id="cc-field-type" style="grid-column: 2;">
+                        <option value="any">Any</option>
+                        <option value="chat">ChatBits</option>
+                        <option value="photo">PhotoBits</option>
+                        <option value="video">VideoBits</option>
+                    </select>
+                
+                </div>
+        </div>
         <br>
         <br>
-        <input id="cc-name-field" name="name" class="yb-input-singleLine yb-font-autoGray yb-bText plainBorder narrowBorder rounded yb-field-background" placeholder="Untitled Cluster" style="height: 30px !important; width: 90%;">
-        <br>
-        <br>
-        <br>
-        <label for = "type" id="cc-type-label" class="yb-autoText yb-pHead font-medium align-center">What type of content will be saved?</label>
-        <br>
-        <br>
-        <select id="cc-type-field" name="type" class="yb-input-singleLine yb-font-autoGray yb-bText plainBorder narrowBorder rounded yb-field-background" style="height: 30px !important; width: 90%;">
-            <option value="any">Any</option>
-            <option value="chat">ChatBits</option>
-            <option value="photo">PhotoBits</option>
-            <option value="video">VideoBits</option>
-        </select>
-        <br>
-        <br>
-        <button type="submit" class="yb-button-flex green font-white yb-center-margin lr">Create</button>
+        <button type="submit" class="yb-button-flex green rounded font-white yb-center-margin lr">Create</button>
 
     </form>
 
