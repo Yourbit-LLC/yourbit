@@ -48,7 +48,7 @@
             <h3 class="yb-autoText yb-pHead">About Me</h3>
             <br>
             <p class="yb-font-autoGray font-medium"><b>General</b></p>
-            <br>
+
             <div id="display-motto" class="yb-field-split squared yb-bg-autoGray yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Motto: </p>
                 <input name="motto" id='field-motto' value="{% if active_profile.motto %}{{active_profile.motto}}{% else %}Add Motto{% endif %}" class="yb-input-transparent right {% if active_profile.motto %} yb-pText yb-autoText {% else %} font-gray {% endif %} profile-field yb-form-field" style="padding-top: 10px;">
@@ -79,7 +79,6 @@
             <br>
 
             <p class="yb-font-autoGray font-medium"><b>Cultural Background</b></p>
-            <br>
             
             <div id="display-hometown" class="yb-field-split top yb-bg-autoGray yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Where's your hometown?: </p>
