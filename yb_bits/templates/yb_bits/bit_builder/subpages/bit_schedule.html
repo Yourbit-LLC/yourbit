@@ -21,7 +21,7 @@
         <!--Cluster Type-->
         <div id="field-container-bit-deploy" class="yb-field-container">
             <div id="display-bit-deploy" class="yb-field-split top yb-bg-autoGray yb-autoText yb-pText">
-                <p class="field-cover-label align-left" style="grid-column: 1;">When would you like to post? </p>
+                <p class="field-cover-label align-left" style="grid-column: 1;">When does this go live?</p>
                 <select name="isScheduled" id='sb-field-isScheduled' value="now" class="yb-input-transparent right yb-autoText yb-pText yb-form-field" style="grid-column: 2;">
                     <option class="yb-input-option" value="true" {% if cluster.type == 'all' %}selected{% endif %}>Post Now</option>
                     <option class="yb-input-option" value="false" {% if cluster.type == 'chat' %}selected{% endif %}>Post Later</option>
@@ -49,7 +49,7 @@
         <!--Cluster Type-->
         <div id="field-container-bit-deploy" class="yb-field-container">
             <div id="display-bit-deploy" class="yb-field-split top yb-bg-autoGray yb-autoText yb-pText">
-                <p class="field-cover-label align-left" style="grid-column: 1;">When should this bit delete? </p>
+                <p class="field-cover-label align-left" style="grid-column: 1;">Autodelete this bit?</p>
                 <select name="type" id='sb-field-deletePreference' value="never" class="yb-input-transparent right yb-autoText yb-pText yb-form-field" style="grid-column: 2;">
                     <option class="yb-input-option" value="never">Never</option>
                     <option class="yb-input-option" value="day">1 day from now</option>
