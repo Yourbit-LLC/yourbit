@@ -16,9 +16,9 @@
 */
 
 var bit_options_fields = {
-    "isComments": document.getElementById("ob-field-isComments"),
-    "isShareable": document.getElementById("ob-field-isShareable"),
-    "isFeedback": document.getElementById("ob-field-isFeedback"),
+    "is_comments": document.getElementById("ob-field-isComments"),
+    "is_shareable": document.getElementById("ob-field-isShareable"),
+    "is_feedback": document.getElementById("ob-field-isFeedback"),
 }
 
 

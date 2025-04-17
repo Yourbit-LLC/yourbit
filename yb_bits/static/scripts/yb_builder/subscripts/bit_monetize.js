@@ -1,6 +1,6 @@
 var bit_monetize_fields = {
-    "isDonations": document.getElementById("mb-field-isDonations"),
-    "hasAds": document.getElementById("mb-field-hasAds"),
+    "is_donations": document.getElementById("mb-field-isDonations"),
+    "has_ads": document.getElementById("mb-field-hasAds"),
     
 }
 

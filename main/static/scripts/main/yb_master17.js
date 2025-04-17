@@ -449,7 +449,14 @@ function yb_startTimer() {
 }
 
 // Start the timer by requesting the first animation frame
+function yb_combineDateTime(date, time) {
 
+    const combinedDateTime = `${date}T${time}`; // "2025-04-17T13:45"
+
+    console.log(combinedDateTime);
+    return combinedDateTime;
+
+}
 
 
 //Remove a snapcard

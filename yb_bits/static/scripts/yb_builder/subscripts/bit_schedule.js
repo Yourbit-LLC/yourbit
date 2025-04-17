@@ -36,12 +36,12 @@
 
 
 var bit_schedule_fields = {
-    "isScheduled": document.getElementById("sb-field-isScheduled"),
-    "scheduledDate": document.getElementById("sb-field-scheduleDate"),
-    "scheduledTime": document.getElementById("sb-field-scheduleTime"),
-    "hasExpiration": document.getElementById("sb-field-deletePreference"),
-    "expirationDate": document.getElementById("sb-field-expirationDate"),
-    "expirationTime": document.getElementById("sb-field-expirationTime"),
+    "is_scheduled": document.getElementById("sb-field-isScheduled"),
+    "scheduled_date": document.getElementById("sb-field-scheduleDate"),
+    "scheduled_time": document.getElementById("sb-field-scheduleTime"),
+    "evaporate": document.getElementById("sb-field-deletePreference"),
+    "evaporation_date": document.getElementById("sb-field-expirationDate"),
+    "evaporation_time": document.getElementById("sb-field-expirationTime"),
 }
 
 $(document).ready(function() {
