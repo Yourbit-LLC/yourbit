@@ -22,7 +22,14 @@ function yb_getCustomBitOverrides() {
     }
 }
 
+/*
+    Builder Fields Index
+    
+    The object below is an index of all master fields in the bit builder form. When new fields are added 
+    to the bit builder, they must be registered here with a name matching the fieldName suffix in the field ID. 
+    The field name should be the same as the field name in the bit builder fields object. 
 
+*/
 var builderFields = {
     "data":
     {
@@ -40,37 +47,39 @@ var builderFields = {
         "thumbnail_option": document.getElementById("bb-field-thumbnailOption"),
         "upload_id": document.getElementById("bb-field-uploadId"),      
     },
+
     "config": 
     {  
-        "is_scheduled": document.getElementById("bb-field-isScheduled"),
-        "scheduled_date": document.getElementById("bb-field-scheduledDate"),
-        "scheduled_time": document.getElementById("bb-field-scheduledTime"),
-        "has_expiration": document.getElementById("bb-field-hasExpiration"),
-        "expiration_date": document.getElementById("bb-field-deleteDate"),
-        "expiration_time": document.getElementById("bb-field-deleteTime"),
-        "is_donations": document.getElementById("bb-field-isDonations"),
-        "has_ads": document.getElementById("bb-field-hasAds"),
-        "require_subscription": document.getElementById("bb-field-requireSubscription"),
-        "is_comments": document.getElementById("bb-field-isComments"),
-        "is_shoutouts": document.getElementById("bb-field-isShoutouts"),
-        "is_shareable": document.getElementById("bb-field-isShareable"),
-        "is_feedback": document.getElementById("bb-field-isFeedback"),
-        "is_tags": document.getElementById("bb-field-isTags"),
-        "is_poll": document.getElementById("bb-field-isPoll"),
-        "is_quiz": document.getElementById("bb-field-isQuiz"),
-        "is_survey": document.getElementById("bb-field-isSurvey"),
-        "is_customized": document.getElementById("bb-field-customOverride"),
+        "isScheduled": document.getElementById("bb-field-isScheduled"),
+        "scheduledDate": document.getElementById("bb-field-scheduledDate"),
+        "scheduledTime": document.getElementById("bb-field-scheduledTime"),
+        "hasExpiration": document.getElementById("bb-field-hasExpiration"),
+        "expirationDate": document.getElementById("bb-field-deleteDate"),
+        "expirationTime": document.getElementById("bb-field-deleteTime"),
+        "isDonations": document.getElementById("bb-field-isDonations"),
+        "hasAds": document.getElementById("bb-field-hasAds"),
+        "requireSubscription": document.getElementById("bb-field-requireSubscription"),
+        "isComments": document.getElementById("bb-field-isComments"),
+        "isShoutouts": document.getElementById("bb-field-isShoutouts"),
+        "isShareable": document.getElementById("bb-field-isShareable"),
+        "isFeedback": document.getElementById("bb-field-isFeedback"),
+        "isTags": document.getElementById("bb-field-isTags"),
+        "isPoll": document.getElementById("bb-field-isPoll"),
+        "isQuiz": document.getElementById("bb-field-isQuiz"),
+        "isSurvey": document.getElementById("bb-field-isSurvey"),
+        "isCustomized": document.getElementById("bb-field-customOverride"),
+        "buildMode": document.getElementById("bb-field-buildMode"),
     },
     
     "custom_overrides": 
     {
-        "primary_color": document.getElementById("bb-field-primaryColor"),
-        "accent_color": document.getElementById("bb-field-accentColor"),
-        "title_color": document.getElementById("bb-field-titleColor"),
-        "text_color": document.getElementById("bb-field-textColor"),
+        "primaryColor": document.getElementById("bb-field-primaryColor"),
+        "accentColor": document.getElementById("bb-field-accentColor"),
+        "titleColor": document.getElementById("bb-field-titleColor"),
+        "textColor": document.getElementById("bb-field-textColor"),
         // "paragraph_align": document.getElementById("bb-field-paragraphAlign").value,
-        "button_color": document.getElementById("bb-field-buttonColor"),
-        "button_text_color": document.getElementById("bb-field-buttonTextColor"),
+        "buttonColor": document.getElementById("bb-field-buttonColor"),
+        "buttonTextCcolor": document.getElementById("bb-field-buttonTextColor"),
     },
 
 }
@@ -102,6 +111,39 @@ var bitBuilder = {
 
 console.log(bitBuilder);
 
+//Function to load form with data from existing bit, used for editing and sharing
+function yb_loadBuilderFieldsFromJSON(jsonData) {
+    Object.keys(builderFields).forEach(section => {
+        const sectionFields = builderFields[section];
+        const sectionData = jsonData[section];
+
+        if (!sectionData) return;
+
+        Object.keys(sectionFields).forEach(field => {
+            const element = sectionFields[field];
+            const value = sectionData[field];
+
+            if (element && value !== undefined) {
+                if (element.type === "file") {
+                    // Handle preview instead
+                    const previewId = field + "Preview";
+                    const hiddenId = field + "-existing";
+                    const preview = document.getElementById(previewId);
+                    const hiddenInput = document.getElementById(hiddenId);
+                    if (preview && hiddenInput) {
+                        preview.src = value;
+                        preview.style.display = "block";
+                        hiddenInput.value = value;
+                    }
+                } else if (element.type === "checkbox") {
+                    element.checked = Boolean(value);
+                } else {
+                    element.value = value;
+                }
+            }
+        });
+    });
+}
 
 //Function for retrieving values of bit configuration fields
 function yb_getBitConfig(){

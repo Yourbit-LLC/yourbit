@@ -17,7 +17,37 @@ def bit_builder_view(request):
 def edit_bit_view(request, id):
     this_bit = Bit.objects.get(pk=id)
     bit_form = BitForm(instance=this_bit)
-    return render(request, "yb_bits/bit_bulder/yb_bitBuilder.html", {"bit":this_bit, "build_mode":"edit"})
+    return render(request, "yb_bits/bit_bulder/yb_bitBuilder.html", {"bit_form":bit_form, "bit":this_bit, "build_mode":"edit"})
+
+def share_bit_view(request, id):
+    this_bit = Bit.objects.get(pk=id)
+    bit_form = BitForm(instance=this_bit)
+    return render(request, "yb_bits/bit_bulder/yb_bitBuilder.html", {"bit_form":bit_form, "bit":this_bit, "build_mode":"share"})
+
+class BitBuildOptions(View):
+
+    def get(self, request):
+        return render(request, "yb_bits/bit_builder/subpages/bit_options.html")
+    
+
+class BitBuildScheduling(View):
+    def get(self, request):
+        return render(request, "yb_bits/bit_builder/subpages/bit_schedule.html")
+        
+class BitBuildMonetize(View):
+        
+    def get(self, request):
+        return render(request, "yb_bits/bit_builder/subpages/bit_monetization.html")
+    
+class BitBuildCustomize(View):
+
+    def get(self, request):
+        return render(request, "yb_bits/bit_builder/subpages/bit_customize.html")
+    
+class BitThumbnailSetup(View):
+
+    def get(self, request):
+        return render(request, "yb_bits/bit_builder/bit_thumbnail.html")
 
 def bitstream_view(request):
     return render(request, "yb_bits/yb_bitStream.html")
@@ -99,11 +129,6 @@ def set_user_bitstreams(request, *args, **kwargs):
 
     return HttpResponse("Bitstreams set for all users: " + str(fails) + " fails")
 
-def bit_builder_share_view(request, id, *args, **kwargs):
-    bit_form = BitForm()
-    this_bit = Bit.objects.get(pk=id)
-    print("bit_builder_view")
-    return render(request, "yb_bits/bit_builder/yb_bitBuilder.html", {"bit_form":bit_form, "build_mode":"share"})
 
 def view_bit_landing(request, id, *args, **kwargs):
     this_bit = Bit.objects.get(pk=id)
@@ -464,32 +489,6 @@ def remove_from_cluster(request, *args, **kwargs):
 
         return JsonResponse({"status":"success", "cluster_name":this_cluster.name})
     
-class BitBuildOptions(View):
-
-    def get(self, request):
-        return render(request, "yb_bits/bit_builder/bit_options.html")
-    
-class BitBuildScheduling(View):
-    
-    def get(self, request):
-        return render(request, "yb_bits/bit_builder/bit_schedule.html")
-        
-class BitBuildMonetize(View):
-        
-    def get(self, request):
-        return render(request, "yb_bits/bit_builder/bit_monetization.html")
-    
-class BitBuildCustomize(View):
-
-    def get(self, request):
-        return render(request, "yb_bits/bit_builder/bit_customize.html")
-    
-class BitThumbnailSetup(View):
-
-    def get(self, request):
-        return render(request, "yb_bits/bit_builder/bit_thumbnail.html")
-    
-
 def view_full_image(request, id):
     this_bit = Bit.objects.get(pk=id)
     context = {
