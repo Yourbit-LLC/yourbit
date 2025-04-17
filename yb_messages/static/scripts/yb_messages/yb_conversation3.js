@@ -1,6 +1,8 @@
 
 try {
     var conversation_data = document.getElementById("conversation-data");
+    var to_user_color = conversation_data.getAttribute("data-to-user-color");
+    var from_user_color = conversation_data.getAttribute("data-from-user-color");
     var this_id = conversation_data.getAttribute("data-id")
     var add_attachment_button = document.getElementById("add-attachment");
     var attachment_menu = document.getElementById("attachment-container");
@@ -26,6 +28,8 @@ try {
 
 } catch(err) {
     conversation_data = document.getElementById("conversation-data");
+    to_user_color = conversation_data.getAttribute("data-to-user-color");
+    from_user_color = conversation_data.getAttribute("data-from-user-color");
     video_input = document.getElementById("video-attachment-input");
     photo_input = document.getElementById("photo-attachment-input");
     this_id = conversation_data.getAttribute("data-id");
@@ -54,6 +58,8 @@ function yb_sendMessage(data, photo = false, video = false) {
     console.log(data)
     console.log("is photos: " + photo);
     console.log("is videos: " + video);
+
+    
     //Send a message
     $.ajax({
         type: 'POST',
