@@ -45,18 +45,20 @@ var bit_schedule_fields = {
 }
 
 $(document).ready(function() {
-    try {
+
         for (var key in bit_schedule_fields) {
-            bit_schedule_fields[key].addEventListener("change", function() {
-            builderFields.config[key].value = this.value;
-            console.log(key + ' changed')
-            });
+            try {
+                bit_schedule_fields[key].addEventListener("change", function() {
+                builderFields.config[key].value = this.value;
+                console.log(key + ' changed')
+                });
+                    
+            } catch (error) {
+                console.error("Error initializing bit schedule fields: ", error);
+            }
+    
         }
 
-        console.log("Bit Schedule Loaded Successfully")
+        console.log("Bit Schedule Loaded")
 
-    } catch (error) {
-        console.error("Error initializing bit schedule fields: ", error);
-    }
-    
 });
