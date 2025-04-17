@@ -29,6 +29,8 @@
 </div>
 
 
+<div id="profile-info-form" class="yb-fillWidth yb-form-container yb-vScroll yb-autoText yb-margin-T10 align-center" method="POST" action="{% url 'view_settings_profile' %}" style="height: calc(100% - 300px); border-radius: 15px; padding-bottom: 20px;">
+
 <!-- ──────────────────────────────── ABOUT ME ──────────────────────────────── -->
 <section class="setting-sub-container yb-autoText" id="about-tab">
     <h3 class="yb-autoText yb-pHead yb-center-margin lr">About Me</h3>
@@ -116,6 +118,7 @@
     <div class="yb-field-split middle yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Role:</p><p class="right yb-pText">{{ profile_info.first_role }}</p></div>
     <div class="yb-field-split bottom yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Year Started:</p><p class="right yb-pText">{{ profile_info.first_year_started }}</p></div>
 </section>
+</div>
 <script type="text/javascript">
     $(document).ready(function(){
         tw_hideLoading();
