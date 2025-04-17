@@ -3,7 +3,7 @@ from django.views import View
 from django.http import HttpResponse, JsonResponse, FileResponse
 from rest_framework.response import Response
 from PIL import Image
-from main.views import initialize_session
+from main.utility import initialize_session
 from yb_customize.models import *
 from django.utils import timezone, dateformat
 import requests

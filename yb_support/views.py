@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import Issue, BugReport, UserReport, FeatureRequest
 from django.views import View
 from django.http import HttpResponse
-from main.views import initialize_session
+from main.utility import initialize_session
 
 
 # Create your views here.

@@ -3,7 +3,7 @@ from yb_profile.models import *
 from django.views import View
 from django.http import JsonResponse
 from yb_accounts.models import Account as User
-from main.views import initialize_session
+from main.utility import initialize_session
 from yb_customize.models import CustomUI, CustomCore, CustomBit, CustomSplash
 from yb_bits.models import Cluster
 from django.conf import settings

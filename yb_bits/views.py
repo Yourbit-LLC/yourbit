@@ -83,7 +83,7 @@ def generate_test_bits(request, amount, *args, **kwargs):
 
 
 def view_bit(request, id, *args, **kwargs):
-    from main.views import initialize_session
+    from main.utility import initialize_session
                     
     if request.user.is_authenticated:
         init_params = initialize_session(request)

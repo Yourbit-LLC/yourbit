@@ -4,7 +4,7 @@ from django.db.models import Q
 from operator import attrgetter
 from itertools import chain
 from django.views import View
-from main.views import initialize_session
+from main.utility import initialize_session
 from rest_framework.decorators import api_view
 from django.http import JsonResponse
 from django.core.paginator import Paginator

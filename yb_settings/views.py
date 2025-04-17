@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from main.views import initialize_session
+from main.utility import initialize_session
 from django.views import View
 from yb_settings.models import *
 from yb_profile.models import Profile, ProfileInfo
