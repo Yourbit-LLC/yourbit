@@ -20,7 +20,7 @@
     <div class="setting-sub-container yb-autoText yb-pText">
         <!--Cluster Type-->
         <div id="field-container-bit-deploy" class="yb-field-container">
-            <div id="display-bit-deploy" class="yb-field-split squared yb-bg-autoGray yb-autoText yb-pText">
+            <div id="display-bit-deploy" class="yb-field-split top yb-bg-autoGray yb-autoText yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">When would you like to post? </p>
                 <select name="isScheduled" id='sb-field-isScheduled' value="now" class="yb-input-transparent right yb-autoText yb-pText yb-form-field" style="grid-column: 2;">
                     <option class="yb-input-option" value="true" {% if cluster.type == 'all' %}selected{% endif %}>Post Now</option>
@@ -29,7 +29,7 @@
         </div>
 
         <div id="field-container-post-date" class="yb-field-container">
-            <div id="display-post-date" class="yb-field-split squared yb-bg-autoGray yb-autoText yb-pText">
+            <div id="display-post-date" class="yb-field-split middle yb-bg-autoGray yb-autoText yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Specify Date </p>
                 <input type="date" name="name" id='sb-field-postDate' value="{{cluster.name}}" class="yb-input-transparent right yb-autoText yb-pText yb-form-field" style="grid-column: 2;">
             </div>
@@ -37,7 +37,7 @@
         </div>
 
         <div id="field-container-post-date" class="yb-field-container">
-            <div id="display-post-date" class="yb-field-split squared yb-bg-autoGray yb-autoText yb-pText">
+            <div id="display-post-date" class="yb-field-split bottom yb-bg-autoGray yb-autoText yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Specify Time </p>
                 <input type="time" name="name" id='sb-field-postTime'  class="yb-input-transparent right yb-autoText yb-pText yb-form-field" style="grid-column: 2;">
             </div>
@@ -48,18 +48,19 @@
     <div class="setting-sub-container yb-autoText yb-pText">
         <!--Cluster Type-->
         <div id="field-container-bit-deploy" class="yb-field-container">
-            <div id="display-bit-deploy" class="yb-field-split squared yb-bg-autoGray yb-autoText yb-pText">
+            <div id="display-bit-deploy" class="yb-field-split top yb-bg-autoGray yb-autoText yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">When should this bit delete? </p>
-                <select name="type" id='sb-field-deletePreference' value="now" class="yb-input-transparent right yb-autoText yb-pText yb-form-field" style="grid-column: 2;">
-                    <option class="yb-input-option" value="day" {% if cluster.type == 'all' %}selected{% endif %}>1 day from now</option>
-                    <option class="yb-input-option" value="week" {% if cluster.type == 'chat' %}selected{% endif %}>1 week from now</option>
-                    <option class="yb-input-option" value="month" {% if cluster.type == 'chat' %}selected{% endif %}>1 month from now</option>
-                    <option class="yb-input-option" value="custom" {% if cluster.type == 'chat' %}selected{% endif %}>Set custom date</option>
+                <select name="type" id='sb-field-deletePreference' value="never" class="yb-input-transparent right yb-autoText yb-pText yb-form-field" style="grid-column: 2;">
+                    <option class="yb-input-option" value="never">Never</option>
+                    <option class="yb-input-option" value="day">1 day from now</option>
+                    <option class="yb-input-option" value="week">1 week from now</option>
+                    <option class="yb-input-option" value="month">1 month from now</option>
+                    <option class="yb-input-option" value="custom">Set custom date</option>
                 </select>
         </div>
 
         <div id="field-container-post-date" class="yb-field-container">
-            <div id="display-post-date" class="yb-field-split squared yb-bg-autoGray yb-autoText yb-pText">
+            <div id="display-post-date" class="yb-field-split middle yb-bg-autoGray yb-autoText yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Specify Date </p>
                 <input type="date" name="name" id='sb-field-expirationDate' value="{{cluster.name}}" class="yb-input-transparent right yb-autoText yb-pText yb-form-field" style="grid-column: 2;">
             </div>
@@ -67,7 +68,7 @@
         </div>
 
         <div id="field-container-post-date" class="yb-field-container">
-            <div id="display-post-date" class="yb-field-split squared yb-bg-autoGray yb-autoText yb-pText">
+            <div id="display-post-date" class="yb-field-split bottom yb-bg-autoGray yb-autoText yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Specify Time </p>
                 <input type="time" name="name" id='sb-field-expirationTime'  class="yb-input-transparent right yb-autoText yb-pText yb-form-field" style="grid-column: 2;">
             </div>
