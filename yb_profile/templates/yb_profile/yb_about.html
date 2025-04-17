@@ -14,16 +14,13 @@
         <div class="profile-image-overlay" style="background-color: {{current_profile.custom.image_overlay_color}}; opacity: {{current_profile.custom.image_overlay_strength}};"></div>
         <img src="{% if current_profile.custom.profile_image.storage_type == "yb" %}{{current_profile.custom.profile_image.medium_thumbnail.url}}{%else%}{{current_profile.custom.profile_image.medium_thumbnail_ext}}{% endif %}" id="profile-image-splash" style="width: 100%; border-color:{{profile.custom.accent_color}};"/>
     </div>
-    <h3 class="align-center yb-pHead" style="color:gray;">PROFILE INFO</h3>
-    {% if current_profile == request.user.profile%}
-        <p class="yb-autoText yb-pText align-center font-small" style="font-weight:550;padding:0 5px;">Your public profile information as others see it.</p>
-    {% else %}
-        <p class="yb-autoText yb-pText align-center font-small" style="font-weight:550;padding:0 5px;">Here's some information about {{current_profile.user.first_name}}.</p>
+    <h3 class="align-center yb-pHead" style="color:gray;">{{current_profile.display_name}}</h3>
     
-    {% endif %}
+    <p class="yb-center-margin lr font-medium yb-font-autoGray"><i>"{{ current_profile.motto }}"</i></p>
+    <p class="yb-pText" style="white-space:pre-wrap;">{{ current_profile.bio }}</p>
 
 
-    </div>
+</div>
 <br>
 <!-- ───────────────────────────────────────────── Tabs (static labels) ───────────────────────────────────────────── -->
 <div id="pfis-filter" style="height: 40px; scrollbar-width: none; display:grid; grid-template-columns: 4fr 1fr; column-gap: 20px; overflow-x: auto;" class="yb-hScroll yb-fillWidth yb-relative">
@@ -45,24 +42,9 @@
 <section class="setting-sub-container yb-autoText" id="about-tab">
     <h3 class="yb-autoText yb-pHead yb-center-margin lr">About Me</h3>
     <br>
-    <p class="yb-font-autoGray font-medium yb-center-margin lr"><strong>General</strong></p>
-    <div class="yb-field-split squared yb-bg-autoGray yb-pText">
-        <p class="field-cover-label align-left">Motto:</p>
-        <p class="right yb-pText">{{ current_profile.motto }}</p>
-    </div>
-    <br>
-    <div class="yb-bg-autoGray yb-pText squared" style="padding:10px;">
-        <p class="field-cover-label align-left" style="margin-bottom:4px;">Bio:</p>
-        <p class="yb-pText" style="white-space:pre-wrap;">{{ current_profile.bio }}</p>
-    </div>
-    <br>
     <div class="yb-field-split top yb-bg-autoGray yb-pText">
         <p class="field-cover-label align-left">Birthday:</p>
         <p class="right yb-pText">{{ profile_info.birthday }}</p>
-    </div>
-    <div class="yb-field-split bottom yb-bg-autoGray yb-pText">
-        <p class="field-cover-label align-left">Visible to:</p>
-        <p class="right yb-pText">{{ profile_info.birthday_visibility }}</p>
     </div>
     <br>
     <p class="yb-font-autoGray font-medium yb-center-margin lr"><strong>Cultural Background</strong></p>
