@@ -42,10 +42,9 @@
 <!-- ──────────────────────────────── ABOUT ME ──────────────────────────────── -->
 <section class="setting-sub-container yb-autoText" id="about-tab">
     <h3 class="yb-autoText yb-pHead yb-center-margin lr">About Me</h3>
-    <br>
     <div class="yb-field-split top yb-bg-autoGray yb-pText">
         <p class="field-cover-label align-left">Birthday:</p>
-        <p class="right yb-pText">{{ profile_info.birthday }}</p>
+        <p class="right yb-pText">{{ request.user.dob }}</p>
     </div>
     <br>
     <p class="yb-font-autoGray font-medium yb-center-margin lr"><strong>Cultural Background</strong></p>
