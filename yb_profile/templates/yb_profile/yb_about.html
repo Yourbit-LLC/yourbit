@@ -16,21 +16,24 @@
 </div>
 <br>
 <!-- ───────────────────────────────────────────── Tabs (static labels) ───────────────────────────────────────────── -->
-<div style="position:relative;width:100%">
-    <div id="pfis-filter" class="yb-fillWidth" style="display:flex;gap:5px;justify-content:center;flex-wrap:wrap;">
-        <span class="font-small yb-button-wide active rounded">About Me</span>
-        <span class="font-small yb-button-wide rounded">Contact</span>
-        <span class="font-small yb-button-wide rounded">Location</span>
-        <span class="font-small yb-button-wide rounded">Education</span>
-        <span class="font-small yb-button-wide rounded">Work</span>
+<div id="pfis-filter" style="height: 40px; scrollbar-width: none; display:grid; grid-template-columns: 4fr 1fr; column-gap: 20px; overflow-x: auto;" class="yb-hScroll yb-fillWidth yb-relative">
+
+    <div id="pfis-filter-container" class="yb-flexRow tab-filter yb-fillWidth yb-gap5 yb-margin-L5">
+        <button class="message-filter yb-button-wide active medium-wide rounded yb-autoText font-small yb-center-margin tb yb-form-tab" name="about-tab">About Me</button>
+        <button class="message-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb yb-form-tab" name="contact-tab">Contact</button>
+        <button class="message-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb yb-form-tab" name="location-tab">Location</button>
+        <button class="message-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb yb-form-tab" name="education-tab">Education</button>
+        <button class="message-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb yb-form-tab" name="work-tab">Work</button>
+
     </div>
 </div>
 
+
 <!-- ──────────────────────────────── ABOUT ME ──────────────────────────────── -->
 <section class="setting-sub-container yb-autoText" id="about-tab">
-    <h3 class="yb-autoText yb-pHead">About Me</h3>
+    <h3 class="yb-autoText yb-pHead yb-center-margin lr">About Me</h3>
     <br>
-    <p class="yb-font-autoGray font-medium"><strong>General</strong></p>
+    <p class="yb-font-autoGray font-medium yb-center-margin lr"><strong>General</strong></p>
     <div class="yb-field-split squared yb-bg-autoGray yb-pText">
         <p class="field-cover-label align-left">Motto:</p>
         <p class="right yb-pText">{{ active_profile.motto }}</p>
@@ -50,7 +53,7 @@
         <p class="right yb-pText">{{ profile_info.birthday_visibility }}</p>
     </div>
     <br>
-    <p class="yb-font-autoGray font-medium"><strong>Cultural Background</strong></p>
+    <p class="yb-font-autoGray font-medium yb-center-margin lr"><strong>Cultural Background</strong></p>
     <div class="yb-field-split top yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Hometown:</p><p class="right yb-pText">{{ profile_info.hometown }}</p></div>
     <div class="yb-field-split middle yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Country of Origin:</p><p class="right yb-pText">{{ profile_info.country_of_origin }}</p></div>
     <div class="yb-field-split middle yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Religion:</p><p class="right yb-pText">{{ active_profile.religion }}</p></div>
@@ -59,9 +62,9 @@
 <br><hr>
 <!-- ──────────────────────────────── CONTACT ──────────────────────────────── -->
 <section class="setting-sub-container yb-autoText" id="contact-tab">
-    <h3 class="yb-autoText yb-pHead">Contact Info</h3>
+    <h3 class="yb-autoText yb-pHead yb-center-margin lr">Contact Info</h3>
     <br>
-    <p class="yb-font-autoGray font-medium"><strong>General</strong></p>
+    <p class="yb-font-autoGray font-medium yb-center-margin lr"><strong>General</strong></p>
     <div class="yb-field-split top yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Email:</p><p class="right yb-pText">{{ profile_info.email }}</p></div>
     <div class="yb-field-split middle yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Phone:</p><p class="right yb-pText">{{ profile_info.phone_number }}</p></div>
     <div class="yb-field-split bottom yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Website:</p><p class="right yb-pText">{{ profile_info.website }}</p></div>
@@ -75,9 +78,9 @@
 <br><hr>
 <!-- ──────────────────────────────── LOCATION ──────────────────────────────── -->
 <section class="setting-sub-container yb-autoText" id="location-tab">
-    <h3 class="yb-autoText yb-pHead">My Address</h3>
+    <h3 class="yb-autoText yb-pHead yb-center-margin lr">My Address</h3>
     <br>
-    <p class="yb-font-autoGray font-medium"><strong>Address</strong></p>
+    <p class="yb-font-autoGray font-medium yb-center-margin lr"><strong>Address</strong></p>
     <div class="yb-field-split top yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Street Address:</p><p class="right yb-pText">{{ profile_info.address }}</p></div>
     <div class="yb-field-split middle yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">City:</p><p class="right yb-pText">{{ profile_info.city }}</p></div>
     <div class="yb-field-split middle yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">State:</p><p class="right yb-pText">{{ profile_info.state }}</p></div>
@@ -87,7 +90,7 @@
 <br><hr>
 <!-- ──────────────────────────────── EDUCATION ──────────────────────────────── -->
 <section class="setting-sub-container yb-autoText" id="education-tab">
-    <h3 class="yb-autoText yb-pHead">Education</h3>
+    <h3 class="yb-autoText yb-pHead yb-center-margin lr">Education</h3>
     <br>
     <p class="yb-font-autoGray font-medium"><strong>High School</strong></p>
     <div class="yb-field-split top yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">School:</p><p class="right yb-pText">{{ profile_info.high_school }}</p></div>
@@ -102,13 +105,13 @@
 <br><hr>
 <!-- ──────────────────────────────── WORK ──────────────────────────────── -->
 <section class="setting-sub-container yb-autoText" id="work-tab">
-    <h3 class="yb-autoText yb-pHead">Work</h3>
+    <h3 class="yb-autoText yb-pHead yb-center-margin lr">Work</h3>
     <br>
-    <p class="yb-font-autoGray font-medium"><strong>Current Job</strong></p>
+    <p class="yb-font-autoGray font-medium yb-center-margin lr"><strong>Current Job</strong></p>
     <div class="yb-field-split top yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Company:</p><p class="right yb-pText">{{ profile_info.current_job }}</p></div>
     <div class="yb-field-split middle yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Role:</p><p class="right yb-pText">{{ profile_info.current_role }}</p></div>
     <div class="yb-field-split bottom yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Year Started:</p><p class="right yb-pText">{{ profile_info.year_started }}</p></div>
-    <p class="yb-font-autoGray font-medium"><strong>First Job</strong></p>
+    <p class="yb-font-autoGray font-medium yb-center-margin lr"><strong>First Job</strong></p>
     <div class="yb-field-split top yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Company:</p><p class="right yb-pText">{{ profile_info.first_company }}</p></div>
     <div class="yb-field-split middle yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Role:</p><p class="right yb-pText">{{ profile_info.first_role }}</p></div>
     <div class="yb-field-split bottom yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Year Started:</p><p class="right yb-pText">{{ profile_info.first_year_started }}</p></div>
@@ -116,5 +119,40 @@
 <script type="text/javascript">
     $(document).ready(function(){
         tw_hideLoading();
+
+        const form_container = document.querySelector('.yb-form-container');
+
+        const observerOptions = {
+            root: form_container, // Use the viewport as the container
+            rootMargin: '0px 0px -70% 0px',
+            threshold: 0 // 50% of the section must be visible
+        };
+    
+        const sections = document.querySelectorAll('.setting-sub-container');
+        const tabs = document.querySelectorAll('.yb-form-tab');
+        
+        try {
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Remove active class from all tabs
+                    tabs.forEach(tab => tab.classList.remove('active'));
+    
+                    // Add active class to the corresponding tab
+                    const activeTab = document.querySelector(`.message-filter[name="${entry.target.id}"]`);
+                    if (activeTab) {
+                        activeTab.classList.add('active');
+                    }
+                }
+            });
+        }, observerOptions);
+    
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+        } catch(e) {
+            console.log(e);
+        }
+    
     });
 </script>
