@@ -91,15 +91,17 @@ function yb_buildMessage(this_message, photos = [], videos = []){
     let time = this_message.time
     let body = this_message.body
     let is_sender = this_message.is_sender
+    let conversation_data = document.getElementById("conversation-data");
+    let from_user_color = conversation_data.getAttribute("data-from-user-color");
+    let to_user_color = conversation_data.getAttribute("data-to-user-color");
 
     console.log(is_sender)
     let message_contents = [];
 
     if (is_sender === true){
-        let conversation_data = document.getElementById("conversation-data");
+    
         let user_color = conversation_data.getAttribute("data-primary-color");
-        let from_user_color = conversation_data.getAttribute("data-from-user-color");
-        let to_user_color = conversation_data.getAttribute("data-to-user-color");
+
 
         if (photos.length > 0){
             for (let i=0; i<photos.length; i++){
