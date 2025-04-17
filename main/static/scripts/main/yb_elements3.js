@@ -127,7 +127,7 @@ function yb_buildMessage(this_message, photos = [], videos = []){
 
 
         new_element = yb_createElement("div", "message-bubble message-bubble-right", `message-${id}`);
-        new_element.style.backgroundColor = to_user_color;
+        new_element.style.backgroundColor = from_user_color;
         new_element.setAttribute("data-id", id);
         new_body = yb_createElement("div", "message-body", `message-body-${id}`);
         new_body.innerHTML = body;
@@ -171,7 +171,7 @@ function yb_buildMessage(this_message, photos = [], videos = []){
 
         new_element = yb_createElement("div", "message-bubble message-bubble-left", `message-${id}`);
         new_element.setAttribute("data-id", id)
-        new_element.style.backgroundColor = from_user_color;
+        new_element.style.backgroundColor = to_user_color;
         new_body = yb_createElement("div", "message-body", `message-body-${id}`);
         new_body.innerHTML = body;
         new_element.appendChild(new_body);
