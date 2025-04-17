@@ -15,7 +15,7 @@ try {
     var text_areas = form.querySelectorAll('.yb-form-textArea');
     var change_state = false    
     var save_button = form.getElementsByClassName('yb-form-save');
-    var form_tabs = form.querySelectorAll('.yb-form-tab');
+    var form_tabs = form.parentElement.querySelectorAll('.yb-form-tab');
     var validated_fields = [
         "email",
         "username",
