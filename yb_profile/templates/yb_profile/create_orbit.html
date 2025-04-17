@@ -16,28 +16,37 @@
 <div id="connection-list" class="yb-fillWidth yb-vScroll yb-margin-T10" style="height: calc(100% - 70px); border-radius: 15px;">
     <form id="create-orbit-form" class="yb-fillWidth align-center" action="/profile/create/orbit/" style="font-weight: 600;" method="POST">
         {% csrf_token %}
+        <div id = "field-container-orbit-name" class="yb-field-container">
+            <div id="co-field-container-name" class="yb-field-split top squared yb-bg-autoGray yb-autoText yb-pText yb-margin-T10">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Orbit Name: </p>
+                <input name="name" id='co-field-name' value="{{user.first_name}}" class="yb-input-transparent yb-form-field right yb-autoText yb-pText account-field" style="grid-column: 2;">
+            </div>
+            
+        
+        </div>
+        <div id = "field-container-orbit-username" class="yb-field-container">
+            <div id="co-field-container-name" class="yb-field-split middle squared yb-bg-autoGray yb-autoText yb-pText yb-margin-T10">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Orbit Name: </p>
+                <input name="username" id='co-field-username' value="{{user.first_name}}" class="yb-input-transparent yb-form-field right yb-autoText yb-pText account-field" style="grid-column: 2;">
+            </div>
+            
+        
+        </div>
+        <div id="yb-field-container-contentType" class="yb-field-containter">
+            <div id = "field-container-contentType" class="yb-field-container">
+                <div id="cluster-type" class="yb-field-split bottom yb-autoText yb-bg-autoGray yb-pText" style="position: relative;">
+                    <p class="field-cover-label align-left yb-pText" style="grid-column: 1;">Primary Content Type: </p>
+                    <select type="text" class="yb-input-transparent right yb-autoText yb-pText privacy-field" name="type" id="co-field-type" style="grid-column: 2;">
+                        <option value="any">Any</option>
+                        <option value="chat">ChatBits</option>
+                        <option value="photo">PhotoBits</option>
+                        <option value="video">VideoBits</option>
+                    </select>
+                
+                </div>
+        </div>
         <br>
-        <label for="name" class="yb-autoText yb-pHead font-medium align-center">What are you naming your Orbit?</label>
         <br>
-        <br>
-        <input id="co-name-field" name="name" class="yb-input-singleLine yb-bText yb-font-autoGray plainBorder narrowBorder rounded yb-field-background" placeholder="Untitled Orbit" style="height: 30px !important; width: 90%;">
-        <br>
-        <br>
-        <label for="name" class="yb-autoText yb-pHead font-medium align-center">Create a unique username to idenfify your orbit...</label>
-        <br>
-        <br>
-        <input id="co-username-field" name="username" class="yb-input-singleLine yb-font-autoGray yb-bText plainBorder narrowBorder rounded yb-field-background" placeholder="untitledorbit" style="height: 30px !important; width: 90%;">
-        <br>
-        <br>
-        <label for = "type" id="co-type-label" class="yb-autoText font-medium align-center yb-pHead">What type of content will primarily be hosted?</label>
-        <br>
-        <br>
-        <select id="co-type-field" name="type" class="yb-input-singleLine yb-font-autoGray yb-bText plainBorder narrowBorder squared yb-field-background" style="height: 30px !important; width: 90%;">
-            <option value="any">Any</option>
-            <option value="chat">ChatBits</option>
-            <option value="photo">PhotoBits</option>
-            <option value="video">VideoBits</option>
-        </select>
         <br>
         <p class="yb-font-autoGray font-small" style="margin-left: 10px; margin-right: 10px;">Identifying a primary content type helps to classify your orbit for searches containing user media preferences.</p> 
         <br>
