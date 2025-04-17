@@ -228,11 +228,28 @@ function yb_addMedia(type, bit) {
     }
 
     if (type === 'video'){
-        VIDEO_QUEUE.push(bit.id);
+
+        //Push video information to the video  qeueue
+        VIDEO_QUEUE.push(
+            {
+                "id": bit.id, //used to look up video on server for interaction 
+                "title": bit.title, //used to ready up next playlist on players
+                "thumbnail": bit.video_upload.thumbnail.ext_url, //Used to ready up next playlist on players
+                "video": bit.video_upload.asset_id, //Used for autoplay when changing out video source
+                "storage_type": bit.video_upload.storage_type //used for defining the player type
+            }
+        );
+
         let bit_video = bit.video_upload;
-        let attached_video_container = yb_createElement("div", "attached-video-container", `video-container-${bit.id}`);
+        let attached_video_container = yb_createElement(
+            "div", 
+            "attached-video-container", 
+            `video-container-${bit.id}`
+        );
+        
         let video_player;
         console.log(bit_video)
+
         if (bit_video.storage_type == "yb"){
             video_player = yb_createElement("video", "attached-video", `video-${bit.id}`);
             video_player.setAttribute("controls", "true");
@@ -259,7 +276,7 @@ function yb_addMedia(type, bit) {
                 }
                 yb_navigateTo("content-container", "bit-focus", bit.id);
             })
-            
+
             let play_button = yb_createElement("div", "yb-play-icon circle yb-center-transform all", `play-icon-${bit.id}`)
             play_button.style.width = "120px";
             play_button.style.height = "120px";

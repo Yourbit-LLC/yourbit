@@ -791,6 +791,7 @@ function yb_getTextBitColor() {
 
     }
 }
+
 function yb_getIconBitColor() {
     //Check if UI customization is on
     if (CUSTOM_CONFIG["bit-colors-on"] == "True") {

@@ -70,6 +70,7 @@ INSTALLED_APPS = [
     'yb_systems.apps.YbSystemsConfig',
     'yb_video.apps.YbVideoConfig',
     'yb_photo.apps.YbPhotoConfig',
+    'yb_ploppables.apps.YbPloppablesConfig',
 
     #Third Party Apps
     'channels',

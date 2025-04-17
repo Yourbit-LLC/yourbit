@@ -95,6 +95,14 @@
 
 
     <script>
+
+        /* 
+            Variables are defined under try/catch statements as a failsafe for when garbage 
+            collection fails to run properly when leaving a subpage. In some cases, when initializing 
+            a variable, the browser would say the variable was already defined. This is a workaround 
+            for that.
+        */
+
         try {
             var video = document.getElementById("yb-video-player");
             var comment_container = document.getElementById("player-comments");
@@ -134,11 +142,15 @@
 
         function startVideoCountdown() {
             video.style.setProperty('--controls-backdrop-color', video.getAttribute('primary-color'));
-            timerInterval = setInterval(updateCountdown, 1000, countdownTime);
+            timerInterval = setInterval(updateVideoCountdown, 1000, countdownTime);
 
         }
 
         function cancelCountdown() {
+            clearInterval(timerInterval); // Stop the countdown when it reaches 0
+            countdown_container.style.display = "none";
+            countdownTime = 5;
+            video.style.setProperty('--controls-backdrop-color', "transparent");
 
         }
 
