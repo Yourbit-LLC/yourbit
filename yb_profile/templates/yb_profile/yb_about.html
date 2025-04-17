@@ -12,10 +12,10 @@
 <div class="yb-flexColumn" id="settings-info">
     <svg class="yb-autoFill yb-center-margin lr" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48" fill="#e8eaed"><path d="M222-255q63-44 125-67.5T480-346q71 0 133.5 23.5T739-255q44-54 62.5-109T820-480q0-145-97.5-242.5T480-820q-145 0-242.5 97.5T140-480q0 61 19 116t63 109Zm257.81-195q-57.81 0-97.31-39.69-39.5-39.68-39.5-97.5 0-57.81 39.69-97.31 39.68-39.5 97.5-39.5 57.81 0 97.31 39.69 39.5 39.68 39.5 97.5 0 57.81-39.69 97.31-39.68 39.5-97.5 39.5Zm.66 370Q398-80 325-111.5t-127.5-86q-54.5-54.5-86-127.27Q80-397.53 80-480.27 80-563 111.5-635.5q31.5-72.5 86-127t127.27-86q72.76-31.5 155.5-31.5 82.73 0 155.23 31.5 72.5 31.5 127 86t86 127.03q31.5 72.53 31.5 155T848.5-325q-31.5 73-86 127.5t-127.03 86Q562.94-80 480.47-80Zm-.47-60q55 0 107.5-16T691-212q-51-36-104-55t-107-19q-54 0-107 19t-104 55q51 40 103.5 56T480-140Z"/></svg>
     <h3 class="align-center yb-pHead" style="color:gray;">PROFILE INFO</h3>
-    {% if active_profile == request.user.profile%}
+    {% if  current_profile == request.user.profile%}
         <p class="yb-autoText yb-pText align-center font-small" style="font-weight:550;padding:0 5px;">Your public profile information as others see it.</p>
     {% else %}
-        <p class="yb-autoText yb-pText align-center font-small" style="font-weight:550;padding:0 5px;">Here's some information about {{active_profile.user.first_name}}.</p>
+        <p class="yb-autoText yb-pText align-center font-small" style="font-weight:550;padding:0 5px;">Here's some information about {{ current_profile.user.first_name}}.</p>
     
     {% endif %}
 
@@ -45,12 +45,12 @@
     <p class="yb-font-autoGray font-medium yb-center-margin lr"><strong>General</strong></p>
     <div class="yb-field-split squared yb-bg-autoGray yb-pText">
         <p class="field-cover-label align-left">Motto:</p>
-        <p class="right yb-pText">{{ active_profile.motto }}</p>
+        <p class="right yb-pText">{{  current_profile.motto }}</p>
     </div>
     <br>
     <div class="yb-bg-autoGray yb-pText squared" style="padding:10px;">
         <p class="field-cover-label align-left" style="margin-bottom:4px;">Bio:</p>
-        <p class="yb-pText" style="white-space:pre-wrap;">{{ active_profile.bio }}</p>
+        <p class="yb-pText" style="white-space:pre-wrap;">{{  current_profile.bio }}</p>
     </div>
     <br>
     <div class="yb-field-split top yb-bg-autoGray yb-pText">
@@ -65,8 +65,8 @@
     <p class="yb-font-autoGray font-medium yb-center-margin lr"><strong>Cultural Background</strong></p>
     <div class="yb-field-split top yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Hometown:</p><p class="right yb-pText">{{ profile_info.hometown }}</p></div>
     <div class="yb-field-split middle yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Country of Origin:</p><p class="right yb-pText">{{ profile_info.country_of_origin }}</p></div>
-    <div class="yb-field-split middle yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Religion:</p><p class="right yb-pText">{{ active_profile.religion }}</p></div>
-    <div class="yb-field-split bottom yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Place of Worship:</p><p class="right yb-pText">{{ active_profile.place_of_worship }}</p></div>
+    <div class="yb-field-split middle yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Religion:</p><p class="right yb-pText">{{  current_profile.religion }}</p></div>
+    <div class="yb-field-split bottom yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Place of Worship:</p><p class="right yb-pText">{{  current_profile.place_of_worship }}</p></div>
 </section>
 <br><hr>
 <!-- ──────────────────────────────── CONTACT ──────────────────────────────── -->
