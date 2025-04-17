@@ -10,7 +10,10 @@
 </div>
 
 <div class="yb-flexColumn" id="settings-info">
-    <img src="{% if current_profile.custom.profile_image.storage_type == "yb" %}{{current_profile.custom.profile_image.medium_thumbnail.url}}{%else%}{{current_profile.custom.profile_image.medium_thumbnail_ext}}{% endif %}" class="yb-center-margin lr" id="profile-image-splash" style="width: 70%; border-color:{{profile.custom.accent_color}};"/>
+    <div id="profile-image-container" class="profile-image-container yb-center-margin lr plainBorder border-solid narrowBorder circle" style="overflow: hidden; width: 70%; border: {{current_profile.custom.image_border_style}}; border-color: {{current_profile.custom.image_border_color}};">
+        <div class="profile-image-overlay" style="background-color: {{current_profile.custom.image_overlay_color}}; opacity: {{current_profile.custom.image_overlay_strength}};"></div>
+        <img src="{% if current_profile.custom.profile_image.storage_type == "yb" %}{{current_profile.custom.profile_image.medium_thumbnail.url}}{%else%}{{current_profile.custom.profile_image.medium_thumbnail_ext}}{% endif %}" id="profile-image-splash" style="width: 100%; border-color:{{profile.custom.accent_color}};"/>
+    </div>
     <h3 class="align-center yb-pHead" style="color:gray;">PROFILE INFO</h3>
     {% if current_profile == request.user.profile%}
         <p class="yb-autoText yb-pText align-center font-small" style="font-weight:550;padding:0 5px;">Your public profile information as others see it.</p>
