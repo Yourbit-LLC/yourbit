@@ -75,6 +75,34 @@
                 </select>
             </div>
 
+            <br>
+
+            <h3 class="yb-autoText yb-pHead">Cultural Background</h3>
+            <br>
+            
+            <div id="display-hometown" class="yb-field-split top yb-bg-autoGray yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Where's your hometown?: </p>
+                <input name="hometown" id='field-homeCity' value="{{profile_info.hometown}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+            </div>
+
+                        
+            <div id="display-homeCountry" class="yb-field-split middle yb-bg-autoGray yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Country of Origin: </p>
+                <input name="country_of_origin" id='field-homeCountry' value="{{profile_info.country_of_origin}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+            </div>
+
+            <div id="display-motto" class="yb-field-split middle yb-bg-autoGray yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Religion: </p>
+                <input name="motto" id='field-motto' value="{% if active_profile.motto %}{{active_profile.religion}}{% else %}Add Motto{% endif %}" class="yb-input-transparent right {% if active_profile.motto %} yb-pText yb-autoText {% else %} font-gray {% endif %} profile-field yb-form-field" style="padding-top: 10px;">
+            </div>
+
+            <div id="display-motto" class="yb-field-split bottom yb-bg-autoGray yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Place of Worship: </p>
+                <input name="motto" id='field-motto' value="{% if active_profile.motto %}{{active_profile.place_of_worship}}{% else %}Add Motto{% endif %}" class="yb-input-transparent right {% if active_profile.motto %} yb-pText yb-autoText {% else %} font-gray {% endif %} profile-field yb-form-field" style="padding-top: 10px;">
+            </div>
+
+
+
         </section>
             
         <br>
@@ -86,34 +114,44 @@
             <p class="yb-font-autoGray font-medium"><b>General</b></p>
             <div id="display-contact-email" class="yb-field-split top yb-bg-autoGray yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Display Email: </p>
-                <input name="email" id='field-email' value="{{profile_info.email}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+                <input name="email" id='pi-field-email' value="{{profile_info.email}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
             </div>
 
             <div id="display-phone" class="yb-field-split middle yb-bg-autoGray yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Display Phone: </p>
-                <input name="phone_number" id='field-display-phone' value="{{profile_info.phone_number}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+                <input name="phone_number" id='pi-field-display-phone' value="{{profile_info.phone_number}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
             </div>
 
             <div id="display-website" class="yb-field-split bottom yb-bg-autoGray yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Website: </p>
-                <input name="website" id='field-website' value="{{profile_info.website}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+                <input name="website" id='pi-field-website' value="{{profile_info.website}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
             </div>
 
             
             <p class="yb-font-autoGray font-medium"><b>Social Media</b></p>
-            <div id="display-website" class="yb-field-split top yb-bg-autoGray yb-pText">
+            <div id="display-twitter-handle" class="yb-field-split top yb-bg-autoGray yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Twitter: </p>
-                <input name="website" id='field-website' value="{{profile_info.website}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+                <input name="twitter_handle" id='pi-field-twitter' value="{{profile_info.twitter_handle}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
             </div>
 
-            <div id="display-website" class="yb-field-split middle yb-bg-autoGray yb-pText">
+            <div id="display-facebook-handle" class="yb-field-split middle yb-bg-autoGray yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Facebook: </p>
-                <input name="website" id='field-website' value="{{profile_info.website}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+                <input name="facebook_handle" id='pi-field-facebook' value="{{profile_info.facebook_handle}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
             </div>
 
-            <div id="display-website" class="yb-field-split bottom yb-bg-autoGray yb-pText">
+            <div id="display-youtube-handle" class="yb-field-split bottom yb-bg-autoGray yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Youtube: </p>
-                <input name="website" id='field-website' value="{{profile_info.website}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+                <input name="youtube_handle" id='pi-field-youtube' value="{{profile_info.youtube_handle}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+            </div>
+
+            <div id="display-instagram-handle" class="yb-field-split bottom yb-bg-autoGray yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Instagram: </p>
+                <input name="instagram_handle" id='pi-field-instagram' value="{{profile_info.instagram_handle}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+            </div>
+
+            <div id="display-snapchat-handle" class="yb-field-split bottom yb-bg-autoGray yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Snapchat: </p>
+                <input name="snapchat_handle" id='pi-field-snapchat' value="{{profile_info.snapchat_handle}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
             </div>
         </section>
 
@@ -121,7 +159,7 @@
         <hr>
 
         <section class = "setting-sub-container" id="location-tab">
-            <h3 class="yb-autoText yb-pHed">My Address</h3>
+            <h3 class="yb-autoText yb-pHead">My Address</h3>
             <br>
             <p class="yb-font-autoGray font-medium"><b>Address 1</b></p>
             <div id="field-address-visibility" class="yb-field-container">
@@ -166,6 +204,9 @@
                     <path class="yb-path" d="M434.5-434.5H191.869v-91H434.5v-242.631h91V-525.5h242.631v91H525.5v242.631h-91V-434.5Z"/>
                 </svg>
             </button>
+
+            <br>
+
         
         </section>
         <hr>
@@ -206,6 +247,39 @@
             </div>
 
             
+        </section>
+
+        <section class="setting-sub-container" id="work-tab">
+            <h3 class="yb-autoText yb-pHead">Work</h3>
+            <br>
+
+            <div id="display-current-job" class="yb-field-split top yb-bg-autoGray yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Current Job: </p>
+                <input name="current_job" id='field-current-job' value="{{profile_info.current_job}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+            </div>
+            <div id="display-current-job" class="yb-field-split middle yb-bg-autoGray yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Role: </p>
+                <input name="current_role" id='field-company' value="{{profile_info.current_role}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+            </div>
+            <!-- year started -->
+            <div id="display-current-job" class="yb-field-split bottom yb-bg-autoGray yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Year Started: </p>
+                <input name="year_started" id='field-company' value="{{profile_info.year_started}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+            </div>
+
+            <div id="display-previous-job" class="yb-field-split middle yb-bg-autoGray yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">First Job: </p>
+                <input name="first_company" id='field-company' value="{{profile_info.first_job}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+            </div>
+            <div id="display-first-job" class="yb-field-split bottom yb-bg-autoGray yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Role: </p>
+                <input name="first_role" id='field-first-job' value="{{profile_info.first_role}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+            </div>
+
+            <div id="display-current-job" class="yb-field-split bottom yb-bg-autoGray yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Year Started: </p>
+                <input name="first_year_started" id='field-company' value="{{profile_info.year_started}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+            </div>
         </section>
 
 

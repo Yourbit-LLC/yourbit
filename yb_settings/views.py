@@ -173,22 +173,20 @@ class SettingsProfile(View):
         profile_info.country = request.POST['country']
 
         profile_info.high_school = request.POST['high_school']
-        # profile_info.year_graduated_hs = request.POST['year_graduated_hs']
-        # profile_info.college = request.POST['college']
-        # profile_info.year_graduated_u = request.POST['year_graduated_u']
-        # profile_info.field_of_study = request.POST['field_of_study']
+        profile_info.year_graduated_hs = request.POST.get('year_graduated_hs') or profile_info.year_graduated_hs
+        profile_info.college = request.POST['college']
+        profile_info.year_graduated_u = request.POST['year_graduated_u'] or profile_info.year_graduated_u
+        profile_info.field_of_study = request.POST['field_of_study']
 
-        # profile_info.hometown = request.POST['hometown']
-        # profile_info.country_of_origin = request.POST['country_of_origin']
+        profile_info.hometown = request.POST['hometown']
+        profile_info.country_of_origin = request.POST['country_of_origin']
 
-        # profile_info.religion = request.POST['religion']
-        # profile_info.place_of_worship = request.POST['place_of_worship']
+        profile_info.religion = request.POST['religion']
+        profile_info.place_of_worship = request.POST['place_of_worship']
 
-        # profile_info.occupation = request.POST['occupation']
-        # profile_info.company = request.POST['company']
-        # profile_info.year_started = request.POST['year_started']
-
-        # profile_info.relationship_status = request.POST['relationship_status']
+        profile_info.occupation = request.POST['occupation']
+        profile_info.company = request.POST['company']
+        profile_info.year_started = request.POST['year_started']
 
         profile_info.save()
 

@@ -136,6 +136,13 @@ class ProfileInfo(models.Model):
     phone_number = models.CharField(max_length=150)
     address = models.CharField(max_length=150)
     website = models.CharField(max_length=150)
+    twitter_handle = models.CharField(max_length=150)
+    facebook_handle = models.CharField(max_length=150)
+    instagram_handle = models.CharField(max_length=150)
+    linkedin_handle = models.CharField(max_length=150)
+    tiktok_handle = models.CharField(max_length=150)
+    youtube_handle = models.CharField(max_length=150)
+    snapchat_handle = models.CharField(max_length=150)
 
     #Location
     city = models.CharField(max_length = 150)
@@ -164,9 +171,14 @@ class ProfileInfo(models.Model):
     place_of_worship = models.CharField(max_length = 150)
 
     #Workplace
-    occupation = models.CharField(max_length=150)
-    company = models.CharField(max_length=150)
+    current_job = models.CharField(max_length=150)
+    current_role = models.CharField(max_length=150)
     year_started = models.IntegerField(default = 0)
+
+    first_job = models.CharField(max_length=150)
+    first_role = models.CharField(max_length=150)
+    first_year_started = models.IntegerField(default = 0)
+
 
     #Relationships
     relationship_status = models.CharField(max_length = 100, default = 'Single')
