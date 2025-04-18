@@ -309,11 +309,9 @@ function yb_extractGhost(key) {
 }
 
 function yb_trapGhost(key, data) {
-    if (trapped_ghosts[key] != null) {
-        trapped_ghosts[key] = data;
-    } else {
-        trapped_ghosts[key] = data;
-    }
+    
+    trapped_ghosts[key] = data;
+   
     return trapped_ghosts[key];
 }
 

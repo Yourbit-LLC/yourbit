@@ -531,7 +531,7 @@ function yb_focusOff(this_id, group_class) {
 function yb_launch2WayContainer(page, data=null) {
     
     let this_page = TWO_WAY_INDEX[page];
-    console.log("settings shown")
+    
     let container = yb_toggle2WayContainer(page, true);
     if (container[0] === "closing"){
         history.pushState(null, null, "/");
