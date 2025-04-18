@@ -2,8 +2,8 @@
 <div id="yb-container-options-{{menu_name}}" class="yb-options-container profile-connect-container">
 
     {% for option in option_set %}
-        <div id="yb-option-{{option.type}}" class="yb-listItem-option align-center yb-button-threeQuarter border-none squared yb-margin-T10 yb-bText yb-widthConstraint-600 yb-autoText bg-gray-dark font-heavy pointer-object" data-catid="{{option.object_id}}" name="{{option.name}}" onclick="{{option.action}}">{{option.label}}</div>
+        <div id="yb-option-{{option.type}}" class="yb-listItem-option align-center yb-button-threeQuarter border-none squared yb-margin-T10 yb-bText yb-widthConstraint-600 yb-font-auto bg-gray-dark font-heavy pointer-object" data-catid="{{option.object_id}}" name="{{option.name}}" onclick="{{option.action}}">{{option.label}}</div>
     {% endfor %}
 
-    <div id="yb-option-cancel" class="yb-listItem-option yb-button-threeQuarter border-none squared yb-margin-T10 yb-widthConstraint-600 yb-autoText yb-bText align-center bg-gray-dark font-heavy pointer-object" data-catid="null" name="Cancel" onclick="yb_closeDrawer();">Cancel</div>
+    <div id="yb-option-cancel" class="yb-listItem-option yb-button-threeQuarter border-none squared yb-margin-T10 yb-widthConstraint-600 yb-font-auto yb-bText align-center bg-gray-dark font-heavy pointer-object" data-catid="null" name="Cancel" onclick="yb_closeDrawer();">Cancel</div>
 </div>

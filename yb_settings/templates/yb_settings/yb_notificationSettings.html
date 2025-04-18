@@ -2,26 +2,26 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'css/yb_settings/yourbit_settings.css' %}"/>
 <div id='div-header' class="div-header">
-    <div class="cb-panel-back" onclick="yb_toggleSettingsMenu()"><svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
-    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb"></h3>
-    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('settings-notifications');"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
+    <div class="cb-panel-back" onclick="yb_toggleSettingsMenu()"><svg class="yb-margin-center tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
+    <h3 class="yb-fillWidth yb-margin-L10 yb-font-auto yb-margin-center tb"></h3>
+    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('settings-notifications');"><svg class="yb-transform-center all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
 </div>
 
 <div class="yb-flexColumn" id="settings-info">
     
-    <svg class="yb-autoFill yb-center-margin lr" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e8eaed"><path d="M480-80q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM160-200v-60h80v-304q0-84 49.5-150.5T420-798v-22q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v22q18 4 34 10.5t31 15.5l-46 46q-18-9-38-13.5t-41-4.5q-75 0-127.5 52.5T300-564v304h360v-152l60-60v212h80v60H160Zm320-240Zm0 0v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T822-660L603-440H480Zm300-263-37-37 37 37ZM540-500h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z"/></svg>
+    <svg class="yb-autoFill yb-margin-center lr" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e8eaed"><path d="M480-80q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM160-200v-60h80v-304q0-84 49.5-150.5T420-798v-22q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v22q18 4 34 10.5t31 15.5l-46 46q-18-9-38-13.5t-41-4.5q-75 0-127.5 52.5T300-564v304h360v-152l60-60v212h80v60H160Zm320-240Zm0 0v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T822-660L603-440H480Zm300-263-37-37 37 37ZM540-500h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z"/></svg>
     <h3 class="align-center yb-pHead" style="color:gray;">NOTIFICATIONS</h3>
-    <p style="font-size: small; font-weight: 550; padding-left: 5px; padding-right: 5px; font-family: 'Roboto', sans-serif; text-align: center;" class="yb-autoText yb-pText">Settings for push notifications</p>    
+    <p style="font-size: small; font-weight: 550; padding-left: 5px; padding-right: 5px; font-family: 'Roboto', sans-serif; text-align: center;" class="yb-font-auto yb-pText">Settings for push notifications</p>    
 
 </div>
 
 
 <div id="inbox-header" style="height: 40px; scrollbar-width: none; display:grid; grid-template-columns: 4fr 1fr; column-gap: 20px; overflow-x: hidden;" class="yb-hScroll yb-fillWidth yb-relative">
     <div id="filter-container" class="yb-flexRow yb-fillWidth yb-gap5 yb-margin-L5">
-        <button class="message-filter yb-button-wide active medium-wide rounded yb-autoText font-small yb-center-margin tb" name="app">App</button>
-        <button class="message-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb" name="bits">Bits</button>
-        <button class="message-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb" name="location">Messages</button>
-        <button class="message-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb" name="education">Connections</button>
+        <button class="message-filter yb-button-wide active medium-wide rounded yb-font-auto font-small yb-margin-center tb" name="app">App</button>
+        <button class="message-filter yb-button-wide medium-wide rounded yb-font-auto font-small yb-margin-center tb" name="bits">Bits</button>
+        <button class="message-filter yb-button-wide medium-wide rounded yb-font-auto font-small yb-margin-center tb" name="location">Messages</button>
+        <button class="message-filter yb-button-wide medium-wide rounded yb-font-auto font-small yb-margin-center tb" name="education">Connections</button>
 
     </div>
 </div>
@@ -33,12 +33,12 @@
         
 
         <div class="setting-sub-container">
-            <h3 class="yb-autoText yb-pHead">App Notifications</h3>
+            <h3 class="yb-font-auto yb-pHead">App Notifications</h3>
             <br>
             <p class="yb-font-autoGray font-medium"><b>General</b></p>
 
             <div id="ntfy-enableNotify-container" class="yb-field-split yb-bg-autoGray yb-pText" style="position: relative;">
-                <p class="field-cover-label yb-pText yb-autoText align-left" style="grid-column: 1;">Enable Notifications </p>        
+                <p class="field-cover-label yb-pText yb-font-auto align-left" style="grid-column: 1;">Enable Notifications </p>        
                 <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="yb-exclude-shared" >
                         <input type="checkbox" class="checkbox notification-check" name="default_public" id="nts-notifications-enabled" {% if notifications_enabled %} checked {% endif %}>
@@ -53,7 +53,7 @@
             <p class="yb-font-autoGray font-medium"><b>Promotional Notifications</b></p>
 
             <div id="ntfy-appUpdates-container" class="yb-field-split top yb-bg-autoGray yb-pText" style="position: relative;">
-                <p class="field-cover-label yb-pText yb-autoText align-left" style="grid-column: 1; font-size: auto;">App Updates </p>        
+                <p class="field-cover-label yb-pText yb-font-auto align-left" style="grid-column: 1; font-size: auto;">App Updates </p>        
                 <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="yb-exclude-shared" >
                         <input type="checkbox" class="checkbox notification-check" name="app_notifications" id="nts-app-notifications" {% if notification_settings.app_notifications %} checked {% endif %}>
@@ -63,7 +63,7 @@
             </div>
 
             <div id="ntfy-storeUpdates-container" class="yb-field-split bottom yb-bg-autoGray yb-pText" style="position: relative;">
-                <p class="field-cover-label yb-pText yb-autoText align-left" style="grid-column: 1; font-size: auto;">Store Updates </p>        
+                <p class="field-cover-label yb-pText yb-font-auto align-left" style="grid-column: 1; font-size: auto;">Store Updates </p>        
                 <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="yb-exclude-shared" >
                         <input type="checkbox" class="checkbox notification-check" name="store_notifications" id="nts-store-notifications" {% if notification_settings.store_notifications %} checked {% endif %}>
@@ -74,12 +74,12 @@
         </div>
         <hr>
         <div class="setting-sub-container">
-            <h3 class="yb-autoText yb-pHead">Bit Notifications</h3>
+            <h3 class="yb-font-auto yb-pHead">Bit Notifications</h3>
 
             <br>
             <p class="yb-font-autoGray font-medium"><b>General</b></p>
             <div id="ntfy-check-enableBit" class="yb-field-split top yb-bg-autoGray yb-pText" style="position: relative;">
-                <p class="field-cover-label yb-pText yb-autoText align-left" style="grid-column: 1; font-size: auto;">Bits </p>        
+                <p class="field-cover-label yb-pText yb-font-auto align-left" style="grid-column: 1; font-size: auto;">Bits </p>        
                 <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="yb-exclude-shared" >
                         <input type="checkbox" class="checkbox notification-check" name="bit_notifications" id="nts-bit-notifications" {% if notification_settings.bit_notifications %} checked {% endif %}>
@@ -89,7 +89,7 @@
             </div>
 
             <div id="ntfy-batchBit" class="bit-subsetting yb-field-split middle yb-bg-autoGray yb-pText" style="position: relative; {% if not bit_notifications %} opacity: 0.5 {% endif %};">
-                <p class="field-cover-label yb-pText yb-autoText align-left" style="grid-column: 1; font-size: auto;">Batch Notifications </p>        
+                <p class="field-cover-label yb-pText yb-font-auto align-left" style="grid-column: 1; font-size: auto;">Batch Notifications </p>        
                 <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="yb-exclude-shared" >
                         <input type="checkbox" class="checkbox notification-check" name="batched_notifications" id="nts-batch-bit-notifications" {% if notifications_settings.batched_bit_notifications %} checked {% endif %}>
@@ -99,7 +99,7 @@
             </div>
 
             <div id="ntfy-batchBitInterval" class="bit-subsetting yb-field-split bottom yb-bg-autoGray yb-pText" style="position: relative; {%  if not bits_batched_notifications  %} opacity: 0.5 {% endif %};">
-                <p class="field-cover-label yb-pText yb-autoText align-left bit-subsetting" style="grid-column: 1; font-size: auto;">Batch Interval </p>        
+                <p class="field-cover-label yb-pText yb-font-auto align-left bit-subsetting" style="grid-column: 1; font-size: auto;">Batch Interval </p>        
                 
                 <input type="number" class="yb-input-transparent right align-right yb-font-autoGray bit-subsetting" id="nts-batch-interval" style="grid-column: 2; width: 50px; font-weight: 600; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);" name="batched_bit_interval" value="{{notification_settings.batched_bit_interval}}">
 
@@ -109,7 +109,7 @@
             <p class="yb-font-autoGray font-medium"><b>Likes</b></p>
 
             <div id="ntfy-enableLikes" class="yb-field-split top yb-bg-autoGray yb-pText" style="position: relative;">
-                <p class="field-cover-label yb-pText yb-autoText align-left" style="grid-column: 1;">Likes </p>        
+                <p class="field-cover-label yb-pText yb-font-auto align-left" style="grid-column: 1;">Likes </p>        
                 <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="yb-exclude-shared" >
                         <input type="checkbox" class="checkbox notification-check bit-subsetting" name="bit_likes" id="nts-bit-likes" {% if notification_settings.bit_likes %} checked {% endif %}>
@@ -120,9 +120,9 @@
 
 
             <div id="ntfy-likesFrom" class="yb-field-container">
-                <div id="ntfy-likesFrom" class="yb-field-split bottom yb-bg-autoGray yb-autoText yb-pText" style="{% if bit_notifications == "False"  %} opacity: 0.5 {% endif %};">
+                <div id="ntfy-likesFrom" class="yb-field-split bottom yb-bg-autoGray yb-font-auto yb-pText" style="{% if bit_notifications == "False"  %} opacity: 0.5 {% endif %};">
                     <p class="field-cover-label align-left" style="grid-column: 1;">Likes from...</p>
-                    <select name="bit_likes_from" id='field-cluster-type' value="now" class="yb-input-transparent right yb-autoText yb-pText yb-form-field" style="grid-column: 2;">
+                    <select name="bit_likes_from" id='field-cluster-type' value="now" class="yb-input-transparent right yb-font-auto yb-pText yb-form-field" style="grid-column: 2;">
                         <option class="yb-input-option" value="week">Friends</option>
                         <option class="yb-input-option" value="month">Friends/Followers</option>
                         <option class="yb-input-option" value="custom">Everyone</option>
@@ -133,8 +133,8 @@
             <p class="yb-font-autoGray font-medium"><b>Comments</b></p>
 
             
-            <div id="ntfy-enableComments" class="yb-field-split top yb-bg-autoGray yb-autoText yb-pText" style="position: relative; {% if not bit_notifications %} opacity: 0.5 {% endif %};">
-                <p class="field-cover-label align-left yb-pText yb-autoText" style="grid-column: 1;">Comments </p>        
+            <div id="ntfy-enableComments" class="yb-field-split top yb-bg-autoGray yb-font-auto yb-pText" style="position: relative; {% if not bit_notifications %} opacity: 0.5 {% endif %};">
+                <p class="field-cover-label align-left yb-pText yb-font-auto" style="grid-column: 1;">Comments </p>        
                 <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="yb-exclude-shared" >
                         <input type="checkbox" class="checkbox notification-check bit-subsetting" name="bit_comments" id="yb-check-default-public" {% if notification_settings.bit_comments %} checked {% endif %}>
@@ -144,9 +144,9 @@
             </div>
 
             
-            <div id="ntfy-commentsFrom" class="yb-field-split bottom yb-bg-autoGray yb-autoText yb-pText" style="position: relative; {% if bit_notifications == "False" %} opacity: 0.5 {% endif %};">
+            <div id="ntfy-commentsFrom" class="yb-field-split bottom yb-bg-autoGray yb-font-auto yb-pText" style="position: relative; {% if bit_notifications == "False" %} opacity: 0.5 {% endif %};">
                     <p class="field-cover-label align-left" style="grid-column: 1;">Comments from...</p>
-                    <select name="bit_comments_from" id='field-cluster-type' value="fr" class="yb-input-transparent right yb-autoText yb-pText yb-form-field" style="grid-column: 2;">
+                    <select name="bit_comments_from" id='field-cluster-type' value="fr" class="yb-input-transparent right yb-font-auto yb-pText yb-form-field" style="grid-column: 2;">
                         <option class="yb-input-option" value="fr">Friends</option>
                         <option class="yb-input-option" value="ff">Friends/Followers</option>
                         <option class="yb-input-option" value="e">Everyone</option>
@@ -158,8 +158,8 @@
             <p class="yb-font-autoGray font-medium"><b>Sharing</b></p>
 
             
-            <div id="ntfy-enableShares" class="yb-field-split top yb-bg-autoGray yb-autoText yb-pText" style="position: relative; {% if not bit_notifications %} opacity: 0.5 {% endif %};">
-                <p class="field-cover-label align-left yb-pText yb-autoText" style="grid-column: 1;">Shares </p>        
+            <div id="ntfy-enableShares" class="yb-field-split top yb-bg-autoGray yb-font-auto yb-pText" style="position: relative; {% if not bit_notifications %} opacity: 0.5 {% endif %};">
+                <p class="field-cover-label align-left yb-pText yb-font-auto" style="grid-column: 1;">Shares </p>        
                 <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="yb-exclude-shared" >
                         <input type="checkbox" class="checkbox notification-check bit-subsetting" name="bit_shares" id="yb-check-default-public" {% if notification_settings.bit_comments %} checked {% endif %}>
@@ -169,9 +169,9 @@
             </div>
 
             
-            <div id="ntfy-sharesFrom" class="yb-field-split bottom yb-bg-autoGray yb-autoText yb-pText" style="position: relative; {% if bit_notifications == "False" %} opacity: 0.5 {% endif %};">
+            <div id="ntfy-sharesFrom" class="yb-field-split bottom yb-bg-autoGray yb-font-auto yb-pText" style="position: relative; {% if bit_notifications == "False" %} opacity: 0.5 {% endif %};">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Shares by...</p>
-                <select name="bit_shares_from" id='field-cluster-type' value="fr" class="yb-input-transparent right yb-autoText yb-pText yb-form-field" style="grid-column: 2;">
+                <select name="bit_shares_from" id='field-cluster-type' value="fr" class="yb-input-transparent right yb-font-auto yb-pText yb-form-field" style="grid-column: 2;">
                     <option class="yb-input-option" value="fr">Friends</option>
                     <option class="yb-input-option" value="ff">Friends/Followers</option>
                     <option class="yb-input-option" value="e">Everyone</option>
@@ -181,7 +181,7 @@
 
             
             <div id="ntfy-enableDonations" class="bit-subsetting yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; {% if not bit_notifications %} opacity: 0.5 {% endif %};">
-                <p class="field-cover-label align-left yb-pText yb-autoText" style="grid-column: 1;">Donations </p>        
+                <p class="field-cover-label align-left yb-pText yb-font-auto" style="grid-column: 1;">Donations </p>        
                 <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="yb-exclude-shared" >
                         <input type="checkbox" class="checkbox notification-check bit-subsetting-input" name="donation_notifications" id="nts-bit-donations" {% if notification_settings.bit_donations %}  checked {% endif %}>
@@ -192,7 +192,7 @@
 
             <br> 
             <div id="ntfy-enableOrbits" class="bit-subsetting yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; {% if not bit_notifications %} opacity: 0.5 {% endif %};">
-                <p class="field-cover-label align-left yb-pText yb-autoText" style="grid-column: 1;">New from Orbits </p>        
+                <p class="field-cover-label align-left yb-pText yb-font-auto" style="grid-column: 1;">New from Orbits </p>        
                 <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="yb-exclude-shared" >
                         <input type="checkbox" class="checkbox notification-check" name="new_from_orbits" id="nts-new-from-orbits" {% if notification_settings.bits_from_communities %} checked {% endif %}>
@@ -209,7 +209,7 @@
             <h4 class="yb-pHead yb-font-autoGray">Message Notifications</h4>
 
             <div>
-                <p class="yb-select-label yb-pText yb-autoText">Notify about messages From:</p>
+                <p class="yb-select-label yb-pText yb-font-auto">Notify about messages From:</p>
                 <div id="yb-field-container-align-text" class="yb-field-container">
                     <select type="text" class='notify-field yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoGray yb-margin-T10' name="messages_from" id="yb-align-text" placeholder="Paragraph Align" style="width: 95%; margin-left: auto; margin-right: auto;">
                         <option value="e">Everyone</option>
@@ -224,7 +224,7 @@
             <h4 class="yb-pHead yb-font-autoGray">Connection Notifications</h4>
 
             <div id="ntfy-friendRequest" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr;">
-                <p class="field-cover-label align-left yb-pText yb-autoText" style="grid-column: 1; font-size: auto;">Friend Requests </p>        
+                <p class="field-cover-label align-left yb-pText yb-font-auto" style="grid-column: 1; font-size: auto;">Friend Requests </p>        
                 <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="yb-exclude-shared" >
                         <input type="checkbox" class="checkbox notification-check" name="friend_request_notifications" id="yb-check-default-public" {% if notification_settings.friend_request_notifications %} checked {% endif %}>
@@ -234,7 +234,7 @@
             </div>
 
             <div id="ntfy-followers" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr;">
-                <p class="field-cover-label align-left yb-pText yb-autoText" style="grid-column: 1; font-size: auto;">Follows </p>        
+                <p class="field-cover-label align-left yb-pText yb-font-auto" style="grid-column: 1; font-size: auto;">Follows </p>        
                 <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="yb-exclude-shared" >
                         <input type="checkbox" class="checkbox notification-check" name="follow_notifications" id="yb-check-default-public" {% if notification_settings.follow_notifications %} checked {% endif %}>

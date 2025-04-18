@@ -2,28 +2,28 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/yb_settings/yourbit_settings.css' %}"/>
 <div id='div-header' class="div-header">
-    <div class="cb-panel-back" onclick="yb_backWarning('page', 1)"><svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
-    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb"></h3>
-    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('cluster-settings');"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
+    <div class="cb-panel-back" onclick="yb_backWarning('page', 1)"><svg class="yb-margin-center tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
+    <h3 class="yb-fillWidth yb-margin-L10 yb-font-auto yb-margin-center tb"></h3>
+    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('cluster-settings');"><svg class="yb-transform-center all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
 </div>
 
 <div class="yb-flexColumn" id="settings-info">
-    <svg class="yb-autoFill yb-center-margin lr" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="m405.38-120-14.46-115.69q-19.15-5.77-41.42-18.16-22.27-12.38-37.88-26.53L204.92-235l-74.61-130 92.23-69.54q-1.77-10.84-2.92-22.34-1.16-11.5-1.16-22.35 0-10.08 1.16-21.19 1.15-11.12 2.92-25.04L130.31-595l74.61-128.46 105.93 44.61q17.92-14.92 38.77-26.92 20.84-12 40.53-18.54L405.38-840h149.24l14.46 116.46q23 8.08 40.65 18.54 17.65 10.46 36.35 26.15l109-44.61L829.69-595l-95.31 71.85q3.31 12.38 3.7 22.73.38 10.34.38 20.42 0 9.31-.77 19.65-.77 10.35-3.54 25.04L827.92-365l-74.61 130-107.23-46.15q-18.7 15.69-37.62 26.92-18.92 11.23-39.38 17.77L554.62-120H405.38ZM440-160h78.23L533-268.31q30.23-8 54.42-21.96 24.2-13.96 49.27-38.27L736.46-286l39.77-68-87.54-65.77q5-17.08 6.62-31.42 1.61-14.35 1.61-28.81 0-15.23-1.61-28.81-1.62-13.57-6.62-29.88L777.77-606 738-674l-102.08 42.77q-18.15-19.92-47.73-37.35-29.57-17.42-55.96-23.11L520-800h-79.77l-12.46 107.54q-30.23 6.46-55.58 20.81-25.34 14.34-50.42 39.42L222-674l-39.77 68L269-541.23q-5 13.46-7 29.23t-2 32.77q0 15.23 2 30.23t6.23 29.23l-86 65.77L222-286l99-42q23.54 23.77 48.88 38.12 25.35 14.34 57.12 22.34L440-160Zm38.92-220q41.85 0 70.93-29.08 29.07-29.07 29.07-70.92t-29.07-70.92Q520.77-580 478.92-580q-42.07 0-71.04 29.08-28.96 29.07-28.96 70.92t28.96 70.92Q436.85-380 478.92-380ZM480-480Z"/></svg>
+    <svg class="yb-autoFill yb-margin-center lr" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="m405.38-120-14.46-115.69q-19.15-5.77-41.42-18.16-22.27-12.38-37.88-26.53L204.92-235l-74.61-130 92.23-69.54q-1.77-10.84-2.92-22.34-1.16-11.5-1.16-22.35 0-10.08 1.16-21.19 1.15-11.12 2.92-25.04L130.31-595l74.61-128.46 105.93 44.61q17.92-14.92 38.77-26.92 20.84-12 40.53-18.54L405.38-840h149.24l14.46 116.46q23 8.08 40.65 18.54 17.65 10.46 36.35 26.15l109-44.61L829.69-595l-95.31 71.85q3.31 12.38 3.7 22.73.38 10.34.38 20.42 0 9.31-.77 19.65-.77 10.35-3.54 25.04L827.92-365l-74.61 130-107.23-46.15q-18.7 15.69-37.62 26.92-18.92 11.23-39.38 17.77L554.62-120H405.38ZM440-160h78.23L533-268.31q30.23-8 54.42-21.96 24.2-13.96 49.27-38.27L736.46-286l39.77-68-87.54-65.77q5-17.08 6.62-31.42 1.61-14.35 1.61-28.81 0-15.23-1.61-28.81-1.62-13.57-6.62-29.88L777.77-606 738-674l-102.08 42.77q-18.15-19.92-47.73-37.35-29.57-17.42-55.96-23.11L520-800h-79.77l-12.46 107.54q-30.23 6.46-55.58 20.81-25.34 14.34-50.42 39.42L222-674l-39.77 68L269-541.23q-5 13.46-7 29.23t-2 32.77q0 15.23 2 30.23t6.23 29.23l-86 65.77L222-286l99-42q23.54 23.77 48.88 38.12 25.35 14.34 57.12 22.34L440-160Zm38.92-220q41.85 0 70.93-29.08 29.07-29.07 29.07-70.92t-29.07-70.92Q520.77-580 478.92-580q-42.07 0-71.04 29.08-28.96 29.07-28.96 70.92t28.96 70.92Q436.85-380 478.92-380ZM480-480Z"/></svg>
     <h3 class="align-center yb-pHead" style="color:gray;">Cluster Settings</h3>
-    <p style="font-size: small; font-weight: 550; padding-left: 5px; padding-right: 5px; font-family: 'Roboto', sans-serif; text-align: center;" class="yb-autoText yb-pText">Adjust sharing and visibility settings for this cluster</p>
+    <p style="font-size: small; font-weight: 550; padding-left: 5px; padding-right: 5px; font-family: 'Roboto', sans-serif; text-align: center;" class="yb-font-auto yb-pText">Adjust sharing and visibility settings for this cluster</p>
 
 </div>
 
 <input type="hidden" id="yb-form-config" data-form-id="cluster-settings-form" data-message="Cluster Settings Saved" data-saves="true" data-change-state="false">
 
-<form id="cluster-settings-form" method="POST" action="/settings/templates/cluster/{{cluster.id}}/" class="yb-fillWidth yb-vScroll yb-autoText yb-margin-T10 align-center" style="height: calc(100% - 150px); border-radius: 15px;">
+<form id="cluster-settings-form" method="POST" action="/settings/templates/cluster/{{cluster.id}}/" class="yb-fillWidth yb-vScroll yb-font-auto yb-margin-T10 align-center" style="height: calc(100% - 150px); border-radius: 15px;">
     {% csrf_token %}
     <h4 class="yb-pHead">General</h4>
-    <div class="setting-sub-container yb-autoText yb-pText">
+    <div class="setting-sub-container yb-font-auto yb-pText">
         <div id="field-container-cluster-name" class="yb-field-container">
-            <div id="display-cluster-name" class="yb-field-split squared yb-bg-autoGray yb-autoText yb-pText">
+            <div id="display-cluster-name" class="yb-field-split squared yb-bg-autoGray yb-font-auto yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Cluster Name </p>
-                <input name="name" id='field-cluster-name' value="{{cluster.name}}" class="yb-input-transparent right yb-autoText yb-pText yb-form-field" style="grid-column: 2;">
+                <input name="name" id='field-cluster-name' value="{{cluster.name}}" class="yb-input-transparent right yb-font-auto yb-pText yb-form-field" style="grid-column: 2;">
             </div>
             <p class="yb-field-error under"></p>
         </div>
@@ -31,9 +31,9 @@
         
         <!--Cluster Type-->
         <div id="field-container-cluster-type" class="yb-field-container">
-            <div id="display-cluster-type" class="yb-field-split squared yb-bg-autoGray yb-autoText yb-pText">
+            <div id="display-cluster-type" class="yb-field-split squared yb-bg-autoGray yb-font-auto yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Cluster Type </p>
-                <select name="type" id='field-cluster-type' value="{{cluster.type}}" class="yb-input-transparent right yb-autoText yb-pText yb-form-field" style="grid-column: 2;">
+                <select name="type" id='field-cluster-type' value="{{cluster.type}}" class="yb-input-transparent right yb-font-auto yb-pText yb-form-field" style="grid-column: 2;">
                     <option class="yb-input-option" value="all" {% if cluster.type == 'all' %}selected{% endif %}>Anything</option>
                     <option class="yb-input-option" value="chats" {% if cluster.type == 'chat' %}selected{% endif %}>ChatBits</option>
                     <option class="yb-input-option" value="video" {% if cluster.type == 'video' %}selected{% endif %}>VideoBits</option>
@@ -42,17 +42,17 @@
         </div>
 
         <div id="field-container-cluster-description" class="yb-field-container" style="height: auto;">
-            <div id="display-cluster-description" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-autoText yb-pText yb-margin-T10 yb-flexRow">
+            <div id="display-cluster-description" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-auto yb-pText yb-margin-T10 yb-flexRow">
                 <p class="field-cover-label align-left" style="grid-row: 1;">Cluster Description </p>
-                <textarea name="description" id='field-cluster-description' class="yb-text-area yb-form-textArea yb-autoText bg-gray-dark squared yb-pText" style="grid-row: 2;">{% if cluster.description == "" %}Add a Description... {%else%}{{cluster.description}}{%endif%}</textarea>
+                <textarea name="description" id='field-cluster-description' class="yb-text-area yb-form-textArea yb-font-auto bg-gray-dark squared yb-pText" style="grid-row: 2;">{% if cluster.description == "" %}Add a Description... {%else%}{{cluster.description}}{%endif%}</textarea>
             </div>
             <p class="yb-field-error under"></p>
         </div>
 
         <h4 class="yb-pHead">Sharing</h4>
         <div id="field-container-cluster-visibility" class="yb-field-container">
-            <div id="display-cluster-visibility" class="yb-field-split squared yb-bg-autoGray yb-autoText yb-pText" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">Cluster Visibility </p>
-                <select name="visibility" id='field-cluster-visibility' value="{{cluster.visibility}}" class="yb-input-transparent right yb-autoText yb-pText yb-form-field" style="grid-column: 2;">
+            <div id="display-cluster-visibility" class="yb-field-split squared yb-bg-autoGray yb-font-auto yb-pText" style="display:grid; grid-template-columns: 1fr 1fr;"><p class="field-cover-label align-left" style="grid-column: 1;">Cluster Visibility </p>
+                <select name="visibility" id='field-cluster-visibility' value="{{cluster.visibility}}" class="yb-input-transparent right yb-font-auto yb-pText yb-form-field" style="grid-column: 2;">
                     <option class="yb-input-option" value="e" {% if cluster.visibility == 'e' %}selected{% endif %}>Everyone</option>
                     <option class="yb-input-option" value="fr" {% if cluster.visibility == 'fr' %}selected{% endif %}>Friends Only</option>
                     <option class="yb-input-option" value="no" {% if cluster.visibility == 'no' %}selected{% endif %}>Nobody</option>
@@ -60,7 +60,7 @@
         </div>
 
         <div id="cs-others-can-edit" class="yb-field-split squared yb-bg-autoGray yb-font-gray">
-            <p class="field-cover-label yb-pText yb-autoText align-left" style="grid-column: 1; font-size: auto;">Others can edit </p>        
+            <p class="field-cover-label yb-pText yb-font-auto align-left" style="grid-column: 1; font-size: auto;">Others can edit </p>        
             <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                 <label class="yb-switch-round" id="yb-exclude-shared" >
                     <input type="checkbox" class="checkbox notification-check" name="others_can_edit" id="nts-app-notifications" {% if cluster.visibility %} checked {% endif %}>

@@ -2,22 +2,22 @@
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/yourbit_settings.css' %}"/>
     <div id='div-header' class="div-header">
-        <div class="cb-panel-back" onclick="yb_toggleSettingsMenu()"><svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
-        <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb"></h3>
-        <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('settings-feed');"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
+        <div class="cb-panel-back" onclick="yb_toggleSettingsMenu()"><svg class="yb-margin-center tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
+        <h3 class="yb-fillWidth yb-margin-L10 yb-font-auto yb-margin-center tb"></h3>
+        <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('settings-feed');"><svg class="yb-transform-center all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
     </div>
     
     <div class="yb-flexColumn" id="settings-info">
         
-        <svg class="yb-autoFill yb-center-margin lr" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e8eaed"><path d="M180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h462l198 198v462q0 24-18 42t-42 18H180Zm0-60h600v-428.57H609V-780H180v600Zm99-111h402v-60H279v60Zm0-318h201v-60H279v60Zm0 159h402v-60H279v60Zm-99-330v171.43V-780v600-600Z"/></svg>
+        <svg class="yb-autoFill yb-margin-center lr" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e8eaed"><path d="M180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h462l198 198v462q0 24-18 42t-42 18H180Zm0-60h600v-428.57H609V-780H180v600Zm99-111h402v-60H279v60Zm0-318h201v-60H279v60Zm0 159h402v-60H279v60Zm-99-330v171.43V-780v600-600Z"/></svg>
         <h3 class="align-center" style="color:gray;">FEED</h3>
-        <p style="font-size: small; font-weight: 550; padding-left: 5px; padding-right: 5px; font-family: 'Roboto', sans-serif; text-align: center;" class="yb-autoText">Manage account, content, and privacy settings here.</p>    
+        <p style="font-size: small; font-weight: 550; padding-left: 5px; padding-right: 5px; font-family: 'Roboto', sans-serif; text-align: center;" class="yb-font-auto">Manage account, content, and privacy settings here.</p>    
     
     </div>
     
     
     
-    <form class="yb-fillWidth yb-vScroll yb-autoText yb-margin-T10 align-center" ID="feed-settings-form" method="POST" action="{% url 'settings_feed' %}" style="height: calc(100% - 300px); border-radius: 15px; padding-bottom: 150px;">
+    <form class="yb-fillWidth yb-vScroll yb-font-auto yb-margin-T10 align-center" ID="feed-settings-form" method="POST" action="{% url 'settings_feed' %}" style="height: calc(100% - 300px); border-radius: 15px; padding-bottom: 150px;">
     <!--Scope-->
         {% csrf_token %}
         <!--Default: Public/Followers+Friends/FriendsOnly-->

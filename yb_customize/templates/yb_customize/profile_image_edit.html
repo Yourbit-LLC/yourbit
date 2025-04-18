@@ -1,13 +1,13 @@
 {% load static %}
 <div id='div-header' style='position: relative; display: grid; grid-template-columns: 40px 5fr 40px; margin-left: auto; margin-right: auto; width: 100%; height: 40px; margin-bottom: 20px;' >
     <div class="cb-panel-back"></div>
-    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb"></h3>
-    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('profile-image-upload');"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
+    <h3 class="yb-fillWidth yb-margin-L10 yb-font-auto yb-margin-center tb"></h3>
+    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('profile-image-upload');"><svg class="yb-transform-center all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
 </div>
 
-<div class="yb-fillWidth yb-vScroll yb-autoText yb-margin-T10 align-center" ID="feed-settings-form" method="POST" action="{% url 'settings_feed' %}" style="height: calc(100% - 70px); border-radius: 15px; padding-bottom: 150px;">
+<div class="yb-fillWidth yb-vScroll yb-font-auto yb-margin-T10 align-center" ID="feed-settings-form" method="POST" action="{% url 'settings_feed' %}" style="height: calc(100% - 70px); border-radius: 15px; padding-bottom: 150px;">
     <div class="yb-fillWidth align-center" style="position: relative;" >
-        <div class="large-profile-image preview yb-center-margin lr" id="profile-image-preview" style="position: relative; height: 256px; width: 256px; border: {{custom_core.image_border_style}}; border-color:{{custom_core.image_border_color}}; overflow: hidden;">
+        <div class="large-profile-image preview yb-margin-center lr" id="profile-image-preview" style="position: relative; height: 256px; width: 256px; border: {{custom_core.image_border_style}}; border-color:{{custom_core.image_border_color}}; overflow: hidden;">
             <div id="image-co-color-preview" class="profile-image-overlay" style="background-color: {{custom_core.image_overlay_color}}; opacity: {{custom_core.image_overlay_strength}};"></div>
             <img src="{{profile_thumbnail_medium}}" class="profile-icon" id="profile-image-preview" style="width: 100%;" />
         </div>
@@ -27,13 +27,13 @@
         <hr>
         <form id="edit-options" class="align-center">
             <br>
-            <h3 class="yb-autoText">Edit Image</h3>
+            <h3 class="yb-font-auto">Edit Image</h3>
             <br>
             <div>
                 <div id="enable-color-overlay" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; grid-template-rows: 40px 30px auto 30px; width: 95%; margin: auto; grid-gap: 10px;">
-                    <h3 class="align-center squared yb-autoText-reversed" style="grid-row: 1; grid-column-start: 1; grid-column-end: 3; width: 33%; margin: 5px auto; line-height: 2; height: 30px; background-color: rgba(0,0,0,0.5);">Color</h3>
+                    <h3 class="align-center squared yb-font-auto-reversed" style="grid-row: 1; grid-column-start: 1; grid-column-end: 3; width: 33%; margin: 5px auto; line-height: 2; height: 30px; background-color: rgba(0,0,0,0.5);">Color</h3>
                     <p class="field-cover-label yb-pText align-left" style="grid-column: 1; grid-row: 2;">Color Overlay </p>  
-                    <div class = "color-circle yb-center-margin tb" id="image-co-color-circle" name="image-co" style="position: relative; margin-right: 10px; background-color: {{custom_core.image_overlay_color}}; grid-column: 2; grid-row: 2; height: 25px; width: 25px;"></div>  
+                    <div class = "color-circle yb-margin-center tb" id="image-co-color-circle" name="image-co" style="position: relative; margin-right: 10px; background-color: {{custom_core.image_overlay_color}}; grid-column: 2; grid-row: 2; height: 25px; width: 25px;"></div>  
                     <input class="coloris color-input" type="text" name="image-co" style="display: none;" id="image-co-color-picker" value="{{custom_core.image_overlay_color}}">  
                     <hr style="grid-row: 3; grid-column-start: 1; grid-column-end: 3; width: 100%;">
                     <p class="field-cover-label yb-pText align-left" style="grid-column: 1; grid-row: 4;">Strength </p>  
@@ -44,7 +44,7 @@
             
             <br>
             <div id="enable-transparency-container" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; grid-template-rows: 40px 40px; width: 95%; margin: auto; grid-gap: 10px;">
-                <h3 class="align-center squared yb-autoText-reversed" style="grid-row: 1; grid-column-start: 1; grid-column-end: 3; width: 50%; margin: 5px auto; line-height: 2; height: 30px; background-color: rgba(0,0,0,0.5);">Transparency</h3>
+                <h3 class="align-center squared yb-font-auto-reversed" style="grid-row: 1; grid-column-start: 1; grid-column-end: 3; width: 50%; margin: 5px auto; line-height: 2; height: 30px; background-color: rgba(0,0,0,0.5);">Transparency</h3>
                 <p class="field-cover-label yb-pText align-left" style="grid-column: 1;">Enable Transparency <br><small><i>*Requires transparent image</i></small></p>        
                 <div style="position: absolute; top: calc(50% + 10px); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="yb-exclude-shared" >
@@ -55,7 +55,7 @@
             </div>
             <br>
             <div id="enable-border-container" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; grid-template-rows: 40px 30px auto 30px; width: 95%; margin: auto; grid-gap: 10px;">
-                <h3 class="align-center squared yb-autoText-reversed" style="grid-row: 1; grid-column-start: 1; grid-column-end: 3; width: 33%; margin: 5px auto; line-height: 2; height: 30px; background-color: rgba(0,0,0,0.5);">Border</h3>
+                <h3 class="align-center squared yb-font-auto-reversed" style="grid-row: 1; grid-column-start: 1; grid-column-end: 3; width: 33%; margin: 5px auto; line-height: 2; height: 30px; background-color: rgba(0,0,0,0.5);">Border</h3>
                     <p class="field-cover-label yb-pText align-left" style="grid-column: 1; grid-row: 2;">Enable Border </p>        
                     <div style="position: absolute; top: 20%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left; grid-column: 2; grid-row: 2;">
                         <label class="yb-switch-round" id="yb-exclude-shared" >
@@ -68,7 +68,7 @@
                     <hr style="grid-row: 3; grid-column-start: 1; grid-column-end: 3; width: 100%;">
                 
                     <p class="field-cover-label yb-pText align-left" style="grid-column: 1; grid-row: 4; ">Border Color </p>    
-                    <div class = "color-circle yb-center-margin tb" id="image-bco-color-circle" name="image-bco" style="position: relative; margin-right: 10px; background-color: {{custom_core.image_border_color}}; grid-column: 2; grid-row: 4; height: 25px; width: 25px;"></div>  
+                    <div class = "color-circle yb-margin-center tb" id="image-bco-color-circle" name="image-bco" style="position: relative; margin-right: 10px; background-color: {{custom_core.image_border_color}}; grid-column: 2; grid-row: 4; height: 25px; width: 25px;"></div>  
                     <input class="coloris color-input" type="text" name="image-bco" style="display: none;" id="image-bco-color-picker" value="{{custom_core.image_border_color}}">  
                     
                         

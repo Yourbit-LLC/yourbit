@@ -1,18 +1,18 @@
 {%load static %}
 <link rel="stylesheet" href="{% static 'css/customization/yb_customization.css' %}">
 <div id='div-header' class="div-header">
-    <div class="cb-panel-back" onclick="customize_url('')"><svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
-    <h3 class="yb-fillWidth yb-margin-L10 yb-pText yb-autoText yb-center-margin tb align-left" onclick="customize_url('')">Back</h3>
+    <div class="cb-panel-back" onclick="customize_url('')"><svg class="yb-margin-center tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
+    <h3 class="yb-fillWidth yb-margin-L10 yb-pText yb-font-auto yb-margin-center tb align-left" onclick="customize_url('')">Back</h3>
     <div></div>
 </div>
 
-<h3 class="yb-autoText yb-pText align-center">Customize UI</h3>
+<h3 class="yb-font-auto yb-pText align-center">Customize UI</h3>
 <br>
 <div class="yb-fillWidth align-center">
     {% if custom_core.ui_colors_on == True %}
-        <button class="yb-button-flex rg-toggle-button green font-white rounded yb-center-margin lr active" style="width: 150px;" id="custom-ui-toggle">Custom UI: <b>ON</b></button>
+        <button class="yb-button-flex rg-toggle-button green font-white rounded yb-margin-center lr active" style="width: 150px;" id="custom-ui-toggle">Custom UI: <b>ON</b></button>
     {% else %}
-        <button class="yb-button-flex rg-toggle-button yb-red font-white rounded yb-center-margin lr" style="width: 150px;" id="custom-ui-toggle">Custom UI: <b>OFF</b></button>
+        <button class="yb-button-flex rg-toggle-button yb-red font-white rounded yb-margin-center lr" style="width: 150px;" id="custom-ui-toggle">Custom UI: <b>OFF</b></button>
     {% endif %}
 </div>
 <br>
@@ -20,18 +20,18 @@
     
     <div style="grid-column: 1;">
         <div id='div-header' style='position: relative; display: grid; grid-template-columns: 5fr 1fr; margin-left: auto; margin-right: auto; width: 100%; height: 40px;' >
-            <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb yb-pHead align-left">Main Menu</h3>
+            <h3 class="yb-fillWidth yb-margin-L10 yb-font-auto yb-margin-center tb yb-pHead align-left">Main Menu</h3>
             
         </div>
         
         <!--Profile menu profile container-->
         <div class="yb-menu-profile" style="height: 300px;">
-            <div style="overflow: hidden;" class="profile-image-thumbnail xxlarge border-solid plainBorder narrowBorder circle yb-center-margin all" id = "profile-icon-menu" data-username="{{user.username}}">
+            <div style="overflow: hidden;" class="profile-image-thumbnail xxlarge border-solid plainBorder narrowBorder circle yb-margin-center all" id = "profile-icon-menu" data-username="{{user.username}}">
                 <img src="{{profile_thumbnail_medium}}" class="yb-element-accent profile-icon" style="width: 100%;" id="profile-pic-menu">
             </div>
             <div>
-                <h3 id="yb-menu-name" class="yb-autoText align-center yb-pHead">{{user.first_name}} {{user.last_name}}</h3>
-                <p id="yb-menu-username" class="yb-autoText font-medium align-center yb-pText"><small>@</small>{{user.username}}</p>
+                <h3 id="yb-menu-name" class="yb-font-auto align-center yb-pHead">{{user.first_name}} {{user.last_name}}</h3>
+                <p id="yb-menu-username" class="yb-font-auto font-medium align-center yb-pText"><small>@</small>{{user.username}}</p>
             </div>
             {% comment %} <div class='yb-container-widgetBar yb-flexRow yb-fillWidth'>
                 <div class = 'yb-container-menuWidget yb-flexRow' id = "rewards-balance">
@@ -57,37 +57,37 @@
     <div style="grid-column: 2; position: relative;" class="yb-flexColumn"> 
         <div class = "yb-flexGrid" style="margin-top: 70px; margin-bottom: 10px; margin-left: auto; margin-right: auto; position: relative; width: 200px;">
             <div class="yb-grid-item yb-item-mainMenu" id="main-menu-home" name="bitstream">
-                <svg xmlns="http://www.w3.org/2000/svg" class="yb-svg-gridItem yb-center-margin all" height="24" width="24"><path class='yb-icon-gridItem yb-path' d="M4 21V9l8-6 8 6v12h-6v-7h-4v7Zm2-2h2v-7h8v7h2v-9l-6-4.5L6 10Zm6-6.75Z"/></svg>
-                <p class="yb-label-gridItem yb-autoText font-small align-center yb-center-margin all yb-pText">Home</p>
+                <svg xmlns="http://www.w3.org/2000/svg" class="yb-svg-gridItem yb-margin-center all" height="24" width="24"><path class='yb-icon-gridItem yb-path' d="M4 21V9l8-6 8 6v12h-6v-7h-4v7Zm2-2h2v-7h8v7h2v-9l-6-4.5L6 10Zm6-6.75Z"/></svg>
+                <p class="yb-label-gridItem yb-font-auto font-small align-center yb-margin-center all yb-pText">Home</p>
             </div>
 
             <div class="yb-grid-item yb-item-mainMenu" name="messages" id="main-menu-messages">
-                <svg class='yb-svg-gridItem yb-center-margin all' xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path class='yb-icon-gridItem yb-path' d="M4 20q-.825 0-1.412-.587Q2 18.825 2 18V6q0-.825.588-1.412Q3.175 4 4 4h16q.825 0 1.413.588Q22 5.175 22 6v12q0 .825-.587 1.413Q20.825 20 20 20Zm8-7L4 8v10h16V8Zm0-2 8-5H4ZM4 8V6v12Z"/></svg>
-                <p class="yb-label-gridItem yb-autoText font-small align-center yb-center-margin all yb-pText">Messages</p>
+                <svg class='yb-svg-gridItem yb-margin-center all' xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path class='yb-icon-gridItem yb-path' d="M4 20q-.825 0-1.412-.587Q2 18.825 2 18V6q0-.825.588-1.412Q3.175 4 4 4h16q.825 0 1.413.588Q22 5.175 22 6v12q0 .825-.587 1.413Q20.825 20 20 20Zm8-7L4 8v10h16V8Zm0-2 8-5H4ZM4 8V6v12Z"/></svg>
+                <p class="yb-label-gridItem yb-font-auto font-small align-center yb-margin-center all yb-pText">Messages</p>
             </div>
 
             <div class="yb-grid-item yb-item-mainMenu" name="stuff" id="main-menu-stuff">
-                <svg class='yb-svg-gridItem yb-center-margin all' xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path class='yb-icon-gridItem yb-path' d="M4 20q-.825 0-1.412-.587Q2 18.825 2 18V6q0-.825.588-1.412Q3.175 4 4 4h6l2 2h8q.825 0 1.413.588Q22 7.175 22 8H11.175l-2-2H4v12l2.4-8h17.1l-2.575 8.575q-.2.65-.737 1.038Q19.65 20 19 20Zm2.1-2H19l1.8-6H7.9Zm0 0 1.8-6-1.8 6ZM4 8V6v2Z"/></svg>
-                <p class="yb-label-gridItem yb-autoText font-small align-center yb-center-margin all yb-pText">Library</p>
+                <svg class='yb-svg-gridItem yb-margin-center all' xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path class='yb-icon-gridItem yb-path' d="M4 20q-.825 0-1.412-.587Q2 18.825 2 18V6q0-.825.588-1.412Q3.175 4 4 4h6l2 2h8q.825 0 1.413.588Q22 7.175 22 8H11.175l-2-2H4v12l2.4-8h17.1l-2.575 8.575q-.2.65-.737 1.038Q19.65 20 19 20Zm2.1-2H19l1.8-6H7.9Zm0 0 1.8-6-1.8 6ZM4 8V6v2Z"/></svg>
+                <p class="yb-label-gridItem yb-font-auto font-small align-center yb-margin-center all yb-pText">Library</p>
             </div>
 
             <div class="yb-grid-item yb-item-mainMenu" name="history">
-                <svg class='yb-svg-gridItem yb-center-margin all' xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path class='yb-icon-gridItem yb-path' d="M12 21q-3.45 0-6.012-2.288Q3.425 16.425 3.05 13H5.1q.35 2.6 2.312 4.3Q9.375 19 12 19q2.925 0 4.962-2.038Q19 14.925 19 12t-2.038-4.963Q14.925 5 12 5q-1.725 0-3.225.8T6.25 8H9v2H3V4h2v2.35q1.275-1.6 3.113-2.475Q9.95 3 12 3q1.875 0 3.513.712 1.637.713 2.85 1.925 1.212 1.213 1.925 2.85Q21 10.125 21 12t-.712 3.512q-.713 1.638-1.925 2.85-1.213 1.213-2.85 1.926Q13.875 21 12 21Zm2.8-4.8L11 12.4V7h2v4.6l3.2 3.2Z"/></svg>
-                <p class="yb-label-gridItem yb-autoText font-small align-center yb-center-margin all yb-pText">History</p>
+                <svg class='yb-svg-gridItem yb-margin-center all' xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path class='yb-icon-gridItem yb-path' d="M12 21q-3.45 0-6.012-2.288Q3.425 16.425 3.05 13H5.1q.35 2.6 2.312 4.3Q9.375 19 12 19q2.925 0 4.962-2.038Q19 14.925 19 12t-2.038-4.963Q14.925 5 12 5q-1.725 0-3.225.8T6.25 8H9v2H3V4h2v2.35q1.275-1.6 3.113-2.475Q9.95 3 12 3q1.875 0 3.513.712 1.637.713 2.85 1.925 1.212 1.213 1.925 2.85Q21 10.125 21 12t-.712 3.512q-.713 1.638-1.925 2.85-1.213 1.213-2.85 1.926Q13.875 21 12 21Zm2.8-4.8L11 12.4V7h2v4.6l3.2 3.2Z"/></svg>
+                <p class="yb-label-gridItem yb-font-auto font-small align-center yb-margin-center all yb-pText">History</p>
             </div>
 
             <div class="yb-grid-item yb-item-mainMenu" name="people">
-                <svg class='yb-svg-gridItem yb-center-margin all' xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path class='yb-icon-gridItem yb-path' d="M1 20v-2.8q0-.85.438-1.563.437-.712 1.162-1.087 1.55-.775 3.15-1.163Q7.35 13 9 13t3.25.387q1.6.388 3.15 1.163.725.375 1.162 1.087Q17 16.35 17 17.2V20Zm18 0v-3q0-1.1-.612-2.113-.613-1.012-1.738-1.737 1.275.15 2.4.512 1.125.363 2.1.888.9.5 1.375 1.112Q23 16.275 23 17v3ZM9 12q-1.65 0-2.825-1.175Q5 9.65 5 8q0-1.65 1.175-2.825Q7.35 4 9 4q1.65 0 2.825 1.175Q13 6.35 13 8q0 1.65-1.175 2.825Q10.65 12 9 12Zm10-4q0 1.65-1.175 2.825Q16.65 12 15 12q-.275 0-.7-.062-.425-.063-.7-.138.675-.8 1.037-1.775Q15 9.05 15 8q0-1.05-.363-2.025Q14.275 5 13.6 4.2q.35-.125.7-.163Q14.65 4 15 4q1.65 0 2.825 1.175Q19 6.35 19 8ZM3 18h12v-.8q0-.275-.137-.5-.138-.225-.363-.35-1.35-.675-2.725-1.013Q10.4 15 9 15t-2.775.337Q4.85 15.675 3.5 16.35q-.225.125-.362.35-.138.225-.138.5Zm6-8q.825 0 1.413-.588Q11 8.825 11 8t-.587-1.412Q9.825 6 9 6q-.825 0-1.412.588Q7 7.175 7 8t.588 1.412Q8.175 10 9 10Zm0 8ZM9 8Z"/></svg>
-                <p class="yb-label-gridItem yb-autoText font-small align-center yb-center-margin all yb-pText">People</p>
+                <svg class='yb-svg-gridItem yb-margin-center all' xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path class='yb-icon-gridItem yb-path' d="M1 20v-2.8q0-.85.438-1.563.437-.712 1.162-1.087 1.55-.775 3.15-1.163Q7.35 13 9 13t3.25.387q1.6.388 3.15 1.163.725.375 1.162 1.087Q17 16.35 17 17.2V20Zm18 0v-3q0-1.1-.612-2.113-.613-1.012-1.738-1.737 1.275.15 2.4.512 1.125.363 2.1.888.9.5 1.375 1.112Q23 16.275 23 17v3ZM9 12q-1.65 0-2.825-1.175Q5 9.65 5 8q0-1.65 1.175-2.825Q7.35 4 9 4q1.65 0 2.825 1.175Q13 6.35 13 8q0 1.65-1.175 2.825Q10.65 12 9 12Zm10-4q0 1.65-1.175 2.825Q16.65 12 15 12q-.275 0-.7-.062-.425-.063-.7-.138.675-.8 1.037-1.775Q15 9.05 15 8q0-1.05-.363-2.025Q14.275 5 13.6 4.2q.35-.125.7-.163Q14.65 4 15 4q1.65 0 2.825 1.175Q19 6.35 19 8ZM3 18h12v-.8q0-.275-.137-.5-.138-.225-.363-.35-1.35-.675-2.725-1.013Q10.4 15 9 15t-2.775.337Q4.85 15.675 3.5 16.35q-.225.125-.362.35-.138.225-.138.5Zm6-8q.825 0 1.413-.588Q11 8.825 11 8t-.587-1.412Q9.825 6 9 6q-.825 0-1.412.588Q7 7.175 7 8t.588 1.412Q8.175 10 9 10Zm0 8ZM9 8Z"/></svg>
+                <p class="yb-label-gridItem yb-font-auto font-small align-center yb-margin-center all yb-pText">People</p>
             </div>
 
             <div class="yb-grid-item yb-item-mainMenu" name="orbits">
-                <svg class='yb-svg-gridItem yb-center-margin all' xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path class='yb-icon-gridItem yb-path' d="M1 20v-4q0-.85.588-1.425Q2.175 14 3 14h3.275q.5 0 .95.25.45.25.725.675.725.975 1.788 1.525Q10.8 17 12 17q1.225 0 2.288-.55 1.062-.55 1.762-1.525.325-.425.762-.675.438-.25.913-.25H21q.85 0 1.425.575Q23 15.15 23 16v4h-7v-2.275q-.875.625-1.887.95Q13.1 19 12 19q-1.075 0-2.1-.337-1.025-.338-1.9-.963V20Zm11-4q-.95 0-1.8-.438-.85-.437-1.425-1.212-.425-.625-1.062-.987Q7.075 13 6.325 13q.55-.925 2.325-1.463Q10.425 11 12 11q1.575 0 3.35.537 1.775.538 2.325 1.463-.725 0-1.375.363-.65.362-1.075.987-.55.8-1.4 1.225Q12.975 16 12 16Zm-8-3q-1.25 0-2.125-.875T1 10q0-1.275.875-2.138Q2.75 7 4 7q1.275 0 2.138.862Q7 8.725 7 10q0 1.25-.862 2.125Q5.275 13 4 13Zm16 0q-1.25 0-2.125-.875T17 10q0-1.275.875-2.138Q18.75 7 20 7q1.275 0 2.138.862Q23 8.725 23 10q0 1.25-.862 2.125Q21.275 13 20 13Zm-8-3q-1.25 0-2.125-.875T9 7q0-1.275.875-2.138Q10.75 4 12 4q1.275 0 2.137.862Q15 5.725 15 7q0 1.25-.863 2.125Q13.275 10 12 10Z"/></svg>
-                <p class="yb-label-gridItem yb-autoText font-small align-center yb-center-margin all yb-pText">Orbits</p>
+                <svg class='yb-svg-gridItem yb-margin-center all' xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path class='yb-icon-gridItem yb-path' d="M1 20v-4q0-.85.588-1.425Q2.175 14 3 14h3.275q.5 0 .95.25.45.25.725.675.725.975 1.788 1.525Q10.8 17 12 17q1.225 0 2.288-.55 1.062-.55 1.762-1.525.325-.425.762-.675.438-.25.913-.25H21q.85 0 1.425.575Q23 15.15 23 16v4h-7v-2.275q-.875.625-1.887.95Q13.1 19 12 19q-1.075 0-2.1-.337-1.025-.338-1.9-.963V20Zm11-4q-.95 0-1.8-.438-.85-.437-1.425-1.212-.425-.625-1.062-.987Q7.075 13 6.325 13q.55-.925 2.325-1.463Q10.425 11 12 11q1.575 0 3.35.537 1.775.538 2.325 1.463-.725 0-1.375.363-.65.362-1.075.987-.55.8-1.4 1.225Q12.975 16 12 16Zm-8-3q-1.25 0-2.125-.875T1 10q0-1.275.875-2.138Q2.75 7 4 7q1.275 0 2.138.862Q7 8.725 7 10q0 1.25-.862 2.125Q5.275 13 4 13Zm16 0q-1.25 0-2.125-.875T17 10q0-1.275.875-2.138Q18.75 7 20 7q1.275 0 2.138.862Q23 8.725 23 10q0 1.25-.862 2.125Q21.275 13 20 13Zm-8-3q-1.25 0-2.125-.875T9 7q0-1.275.875-2.138Q10.75 4 12 4q1.275 0 2.137.862Q15 5.725 15 7q0 1.25-.863 2.125Q13.275 10 12 10Z"/></svg>
+                <p class="yb-label-gridItem yb-font-auto font-small align-center yb-margin-center all yb-pText">Orbits</p>
             </div>
         </div>
-        <div class="yb-hblock-2 yb-center-margin all" style="width: 100%; grid-gap: 10px;">
-            <button style="font-size: 15px; font-weight: 500;" class="yb-button-wide rounded white yb-autoText preview-ui-button">Text</button>
+        <div class="yb-hblock-2 yb-margin-center all" style="width: 100%; grid-gap: 10px;">
+            <button style="font-size: 15px; font-weight: 500;" class="yb-button-wide rounded white yb-font-auto preview-ui-button">Text</button>
             <button class="yb-button-wide rounded white font-black preview-ui-button">        
                 <svg xmlns="http://www.w3.org/2000/svg" height="32" width="32">
                     <path class="preview-button-icon yb-autoFill" d="M10 18q-1.646 0-3.104-.625-1.458-.625-2.552-1.719t-1.719-2.552Q2 11.646 2 10q0-1.667.635-3.115.636-1.447 1.75-2.541Q5.5 3.25 6.99 2.625 8.479 2 10.167 2q1.625 0 3.052.562 1.427.563 2.489 1.542 1.063.979 1.677 2.292Q18 7.708 18 9.208q0 2-1.396 3.396T13.208 14h-1.416q-.167 0-.292.104-.125.104-.125.271 0 .313.313.521Q12 15.104 12 16q0 .771-.562 1.385Q10.875 18 10 18Zm0-8Zm-4.5.75q.521 0 .885-.365.365-.364.365-.885t-.365-.885Q6.021 8.25 5.5 8.25t-.885.365q-.365.364-.365.885t.365.885q.364.365.885.365Zm2.5-3q.521 0 .885-.365.365-.364.365-.885t-.365-.885Q8.521 5.25 8 5.25t-.885.365q-.365.364-.365.885t.365.885q.364.365.885.365Zm4 0q.521 0 .885-.365.365-.364.365-.885t-.365-.885Q12.521 5.25 12 5.25t-.885.365q-.365.364-.365.885t.365.885q.364.365.885.365Zm2.5 3q.521 0 .885-.365.365-.364.365-.885t-.365-.885q-.364-.365-.885-.365t-.885.365q-.365.364-.365.885t.365.885q.364.365.885.365ZM10 16.5q.229 0 .365-.177.135-.177.135-.323 0-.333-.312-.583-.313-.25-.313-1.042t.552-1.333q.552-.542 1.344-.542h1.437q1.375 0 2.334-.958.958-.959.958-2.334 0-2.396-1.844-4.052Q12.812 3.5 10.167 3.5q-2.792 0-4.729 1.896Q3.5 7.292 3.5 10t1.896 4.604Q7.292 16.5 10 16.5Z"/>
@@ -100,9 +100,9 @@
 
 <br>
 <div class="yb-fillWidth align-center">
-    <button style="width: 75px;" class="yb-button-flex align-center bg-gray-dark font-gray rounded yb-center-margin yb-btn-undo ui-set-button" id="undo-bit">Undo</button>
-    <button style="width: 75px;" class="yb-button-flex align-center bg-gray-dark font-gray rounded yb-center-margin yb-btn-reset ui-set-button" id="reset-bit">Reset</button>
-    <button style="width: 75px;" class="yb-button-flex align-center bg-gray-dark font-gray rounded yb-center-margin yb-btn-save ui-set-button" id="save-ui">Save</button>
+    <button style="width: 75px;" class="yb-button-flex align-center bg-gray-dark font-gray rounded yb-margin-center yb-btn-undo ui-set-button" id="undo-bit">Undo</button>
+    <button style="width: 75px;" class="yb-button-flex align-center bg-gray-dark font-gray rounded yb-margin-center yb-btn-reset ui-set-button" id="reset-bit">Reset</button>
+    <button style="width: 75px;" class="yb-button-flex align-center bg-gray-dark font-gray rounded yb-margin-center yb-btn-save ui-set-button" id="save-ui">Save</button>
 </div>
 
 <br>
@@ -110,19 +110,19 @@
     <h3>Color Options</h3>
     
     {% comment %} <div id="panel-icon-preview" style="height: 90px; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;">
-        <svg class="yb-center-margin all space-button-icon active"xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+        <svg class="yb-margin-center all space-button-icon active"xmlns="http://www.w3.org/2000/svg" height="24" width="24">
             <path class='yb-ui-icon space-button-icon preview-icon' d="M5.35 17.9q-2.45 0-4.175-1.725-1.725-1.725-1.725-4.2 0-2.45 1.713-4.188Q2.875 6.05 5.35 6.05q1 0 1.937.325Q8.225 6.7 8.95 7.4l1.525 1.475L8.5 10.65 7.15 9.4q-.375-.35-.838-.525Q5.85 8.7 5.35 8.7q-1.35 0-2.3.962-.95.963-.95 2.338 0 1.35.95 2.3.95.95 2.3.95.5 0 .962-.175.463-.175.838-.525l7.9-7.15q.725-.7 1.663-1.025.937-.325 1.937-.325 2.45 0 4.175 1.725Q24.55 9.5 24.55 11.95q0 2.475-1.713 4.212Q21.125 17.9 18.65 17.9q-1 0-1.937-.325-.938-.325-1.663-1.025l-1.525-1.425 2-1.8 1.325 1.225q.375.35.838.525.462.175.962.175 1.35 0 2.3-.963.95-.962.95-2.337 0-1.35-.95-2.3-.95-.95-2.3-.95-.5 0-.962.175-.463.175-.838.525l-7.9 7.15q-.725.7-1.663 1.025-.937.325-1.937.325Z"/>
         </svg>
 
-        <svg class="yb-center-margin all space-button-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+        <svg class="yb-margin-center all space-button-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
             <path class='yb-ui-icon space-button-icon preview-icon' d="M3 18v-2h12v2Zm0-5v-2h18v2Zm0-5V6h18v2Z"/>
         </svg>
         
-        <svg class="yb-center-margin all space-button-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+        <svg class="yb-margin-center all space-button-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
             <path class='yb-ui-icon space-button-icon preview-icon' d="m9.15 17.15 8-5.15-8-5.15ZM12 22.8q-2.25 0-4.213-.85-1.962-.85-3.424-2.312Q2.9 18.175 2.05 16.212 1.2 14.25 1.2 12t.85-4.225Q2.9 5.8 4.363 4.338q1.462-1.463 3.424-2.301Q9.75 1.2 12 1.2t4.225.837q1.975.838 3.438 2.301 1.462 1.462 2.299 3.437Q22.8 9.75 22.8 12q0 2.25-.838 4.212-.837 1.963-2.299 3.426Q18.2 21.1 16.225 21.95q-1.975.85-4.225.85Zm0-2.65q3.425 0 5.788-2.363Q20.15 15.425 20.15 12t-2.362-5.788Q15.425 3.85 12 3.85q-3.425 0-5.787 2.362Q3.85 8.575 3.85 12q0 3.425 2.363 5.787Q8.575 20.15 12 20.15ZM12 12Z"/>
         </svg>
 
-        <svg class="yb-center-margin all space-button-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px">
+        <svg class="yb-margin-center all space-button-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px">
             <path class='yb-ui-icon space-button-icon preview-icon' d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-4.86 8.86l-3 3.87L9 13.14 6 17h12l-3.86-5.14z"/>
         </svg>
     </div> {% endcomment %}
@@ -133,27 +133,27 @@
             <div class = "color-circle" id="ui-panel-color-circle" name="ui-panel" style="background-color: {{primary_color}}"></div>
             <input class="coloris color-input" type="text" name="ui-panel" style="display: none;" id="ui-panel-color-picker" value="{{custom_ui.primary_color}}">
                 
-            <p class="yb-autoText">Panel Color</p>
+            <p class="yb-font-auto">Panel Color</p>
         </div>
         <div>
             <div class = "color-circle" id="ui=icon-color-circle" name="ui-icon" style="background-color: {{icon_color}}"></div>
             <input class="color-input" type="text" name="ui-icon" id="ui-icon-color-picker" value="{{icon_color}}" style="display: none;" data-coloris>
                 
-            <p class="yb-autoText">Icon Color</p>
+            <p class="yb-font-auto">Icon Color</p>
 
         </div>
         <div>
             <div class = "color-circle" id="ui-title-color-circle" name="ui-title" style="background-color: {{title_color}}"></div>
             <input class="color-input" type="text" name="ui-title" id="ui-title-color-picker" style="display: none;" value="{{title_color}}" data-coloris>
                 
-            <p class="yb-autoText">Header Color</p>
+            <p class="yb-font-auto">Header Color</p>
             
         </div>
         <div>
             <div class = "color-circle" id="ui-text-color-circls" name="ui-text" style="background-color: {{text_color}}"></div>
             <input class="color-input" type="text" name="ui-text" id="ui-text-color-picker" style="display: none;" value="{{text_color}}" data-coloris>
                 
-            <p class="yb-autoText">Text Color</p>
+            <p class="yb-font-auto">Text Color</p>
             
         </div>
     </div>
@@ -165,13 +165,13 @@
             <div class = "color-circle" id="ui-button-background-color-circle" name="ui-button-background" style="background-color: {{button_color}}"></div>
             <input class="color-input" type="text" name="ui-button-background" id="ui-button-background-color-picker" style="display: none;" value="{{button_color}}" data-coloris>
                 
-            <p class="yb-autoText">Background Color</p>
+            <p class="yb-font-auto">Background Color</p>
         </div>
         <div>
             <div class = "color-circle" id="ui-button-foreground-color-circle" name="ui-button-foreground" style="background-color: {{button_text_color}}"></div>
             <input class="color-input" type="text" name="ui-button-foreground" id="ui-button-foreground-color-picker" style="display: none;" value="{{button_text_color}}" data-coloris>
                 
-            <p class="yb-autoText">Foreground Color</p>
+            <p class="yb-font-auto">Foreground Color</p>
 
         </div>
 

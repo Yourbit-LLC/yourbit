@@ -2,15 +2,15 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/yb_settings/yourbit_settings.css' %}"/>
 <link rel="stylesheet" type="text/css" href="{% static 'css/customization/yb_customization.css' %}"/>
 <div id='div-header' class="div-header">
-    <div class="cb-panel-back" onclick="yb_2WayPage(1);"><svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
-    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb" onclick="yb_2WayPage(1);"></h3>
-    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('conversation');"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
+    <div class="cb-panel-back" onclick="yb_2WayPage(1);"><svg class="yb-margin-center tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
+    <h3 class="yb-fillWidth yb-margin-L10 yb-font-auto yb-margin-center tb" onclick="yb_2WayPage(1);"></h3>
+    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('conversation');"><svg class="yb-transform-center all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
 </div>
 
 <div class="yb-flexColumn" id="messages-info">
-    <svg class="yb-autoFill yb-center-margin lr" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e8eaed"><path d="M157.69-180q-23.53 0-40.61-17.08T100-237.69v-484.62q0-23.53 17.08-40.61T157.69-780h644.62q23.53 0 40.61 17.08T860-722.31v484.62q0 23.53-17.08 40.61T802.31-180H157.69ZM480-473.92 145.39-695.39v457.7q0 5.38 3.46 8.84t8.84 3.46h644.62q5.38 0 8.84-3.46t3.46-8.84v-457.7L480-473.92Zm0-47.7 325.61-212.99H155.39L480-521.62ZM145.39-695.39v-39.22V-237.69q0 5.38 3.46 8.84t8.84 3.46h-12.3v-470Z"/></svg>
+    <svg class="yb-autoFill yb-margin-center lr" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e8eaed"><path d="M157.69-180q-23.53 0-40.61-17.08T100-237.69v-484.62q0-23.53 17.08-40.61T157.69-780h644.62q23.53 0 40.61 17.08T860-722.31v484.62q0 23.53-17.08 40.61T802.31-180H157.69ZM480-473.92 145.39-695.39v457.7q0 5.38 3.46 8.84t8.84 3.46h644.62q5.38 0 8.84-3.46t3.46-8.84v-457.7L480-473.92Zm0-47.7 325.61-212.99H155.39L480-521.62ZM145.39-695.39v-39.22V-237.69q0 5.38 3.46 8.84t8.84 3.46h-12.3v-470Z"/></svg>
     <b class="align-center yb-pHead" style="font-size: 18px; letter-spacing: 2px;">CONVERSATION SETTINGS</b>
-    <p style="font-size: small; font-weight: 550; padding-left: 5px; padding-right: 5px; font-family: 'Roboto', sans-serif; text-align: center;" class="yb-autoText yb-pText">Edit conversation settings</p>
+    <p style="font-size: small; font-weight: 550; padding-left: 5px; padding-right: 5px; font-family: 'Roboto', sans-serif; text-align: center;" class="yb-font-auto yb-pText">Edit conversation settings</p>
 </div>
 
 <input type="hidden" id="yb-form-config" data-form-id="conversation-settings-form" data-message="Conversation Settings Saved" data-change-state="false" data-saves="true">
@@ -20,23 +20,23 @@
     <section class = "setting-sub-container" id="about-tab">
         <h4 class="yb-pHead">General</h4>
 
-        <div id="display-conversation-name" class="yb-field-split squared yb-bg-autoGray yb-autoText yb-pText">
+        <div id="display-conversation-name" class="yb-field-split squared yb-bg-autoGray yb-font-auto yb-pText">
             <p class="field-cover-label align-left" style="grid-column: 1;">Conversation Name: </p>
-            <input name="name" id='field-conversation-name' value="{{conversation.name}}" class="yb-input-transparent right yb-autoText yb-pText profile-field yb-form-field" style="grid-column: 2;">
+            <input name="name" id='field-conversation-name' value="{{conversation.name}}" class="yb-input-transparent right yb-font-auto yb-pText profile-field yb-form-field" style="grid-column: 2;">
         </div>
         <br>
         <h4 class="yb-pHead">Access</h4>
 
-        <div id="display-allow-joining" class="yb-field-split top yb-bg-autoGray yb-autoText yb-pText">
+        <div id="display-allow-joining" class="yb-field-split top yb-bg-autoGray yb-font-auto yb-pText">
             <p class="field-cover-label align-left" style="grid-column: 1;">Allow Joining</p>
-            <select name="type" id='field-cluster-type' value="now" class="yb-input-transparent right yb-autoText yb-pText yb-form-field" style="grid-column: 2;">
+            <select name="type" id='field-cluster-type' value="now" class="yb-input-transparent right yb-font-auto yb-pText yb-form-field" style="grid-column: 2;">
                 <option class="yb-input-option" value="day" selected>Nobody</option>
                 <option class="yb-input-option" value="week">Invite Only</option>
                 <option class="yb-input-option" value="month">Friends</option>
             </select>
         </div>
         <div id="convo-members-invite" class="yb-field-split bottom yb-bg-autoGray yb-pText" style="position: relative;">
-            <p class="field-cover-label yb-pText yb-autoText align-left" style="grid-column: 1; font-size: auto;">Members can Invite</p>        
+            <p class="field-cover-label yb-pText yb-font-auto align-left" style="grid-column: 1; font-size: auto;">Members can Invite</p>        
             <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                 <label class="yb-switch-round" id="yb-exclude-shared" >
                     <input type="checkbox" class="checkbox notification-check" name="app_notifications" id="nts-app-notifications" {% if conversation.members_can_invite %} checked {% endif %}>
@@ -48,19 +48,19 @@
         <h4 class="yb-pHead">Customize</h4>
 
         <div id="font-style-section" class="yb-field-split top yb-bg-autoGray yb-pText" style="position: relative;">
-            <p class="field-cover-label yb-autoText yb-pText align-left" style="grid-column: 1;">
+            <p class="field-cover-label yb-font-auto yb-pText align-left" style="grid-column: 1;">
                 To User Color
             </p>
-            <div class = "color-circle yb-center-margin tb" id="to-user-color-circle" name="to-user-color" style="position: relative; margin-right: 10px; background-color: {{custom_conversation.to_user_color}}; grid-column: 2; height: 25px; width: 25px;"></div>  
+            <div class = "color-circle yb-margin-center tb" id="to-user-color-circle" name="to-user-color" style="position: relative; margin-right: 10px; background-color: {{custom_conversation.to_user_color}}; grid-column: 2; height: 25px; width: 25px;"></div>  
             <input class="coloris color-input" type="text" name="to-user-color" style="display: none;" id="to-user-color-picker" value="{{custom_conversation.to_user_color}}">  
         </div>
 
         
         <div id="font-style-section" class="yb-field-split bottom yb-bg-autoGray yb-pText" style="position: relative;">
-            <p class="field-cover-label yb-autoText yb-pText align-left" style="grid-column: 1;">
+            <p class="field-cover-label yb-font-auto yb-pText align-left" style="grid-column: 1;">
                 From User Color
             </p>
-            <div class = "color-circle yb-center-margin tb" id="from-user-color-circle" name="from-user-color" style="position: relative; margin-right: 10px; background-color: {{custom_conversation.from_user_color}}; grid-column: 2;  height: 25px; width: 25px;"></div>  
+            <div class = "color-circle yb-margin-center tb" id="from-user-color-circle" name="from-user-color" style="position: relative; margin-right: 10px; background-color: {{custom_conversation.from_user_color}}; grid-column: 2;  height: 25px; width: 25px;"></div>  
             <input class="coloris color-input" type="text" name="from-user-color" style="display: none;" id="from-user-color-picker" value="{{custom_conversation.from_user_color}}">  
         </div>
 

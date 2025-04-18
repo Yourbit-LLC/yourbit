@@ -1,14 +1,14 @@
 {% load static %}
 
 <div id='div-header' class="div-header">
-    <div class="cb-panel-back" onclick="yb_toggleMainMenu()"><svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
-    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb"></h3>
-    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('people');"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
+    <div class="cb-panel-back" onclick="yb_toggleMainMenu()"><svg class="yb-margin-center tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
+    <h3 class="yb-fillWidth yb-margin-L10 yb-font-auto yb-margin-center tb"></h3>
+    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('people');"><svg class="yb-transform-center all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
 </div>
 
 {% if current_platform == "mobile" %}
     <div class="yb-flexColumn" id="messages-info">
-        <svg class="yb-autoFill yb-center-margin lr" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e8eaed"><path d="M70.31-187.69v-75.93q0-31.53 16.27-55.8 16.27-24.27 45.55-37.15 64.95-28.51 118.64-42.51 53.69-14 119.73-14t119.23 14q53.19 14 118.52 42.51 28.9 12.88 45.48 37.15 16.58 24.27 16.58 55.8v75.93h-600Zm665.38 0v-74.77q0-53.39-24.86-89.07-24.87-35.69-64.98-58.39 53.23 7.61 101.15 20.81 47.92 13.19 80.17 29.74 28.37 15.91 45.44 40.89 17.08 24.99 17.08 56.02v74.77h-154ZM370.5-492.92q-57.94 0-95.41-37.47-37.47-37.48-37.47-95.42 0-57.94 37.47-95.22t95.41-37.28q57.94 0 95.22 37.28T503-625.81q0 57.94-37.28 95.42-37.28 37.47-95.22 37.47Zm315.96-132.89q0 57.94-37.28 95.42-37.28 37.47-95.36 37.47-6.82 0-14.55-.93-7.73-.92-14.5-3.38 21.43-23.37 32.52-56.12 11.09-32.75 11.09-72.31 0-39.57-11.53-70.61-11.54-31.04-32.08-58.11 6.38-1.46 14.5-2.7 8.11-1.23 14.5-1.23 58.13 0 95.41 37.28 37.28 37.28 37.28 95.22ZM115.69-233.08h509.23v-30.54q0-16-9.11-30.03-9.12-14.04-26.19-22.35-62.77-29.31-110.62-40.5-47.84-11.19-108.5-11.19-60.65 0-108.81 11.19-48.15 11.19-110.92 40.5-17.08 8.31-26.08 22.35-9 14.03-9 30.03v30.54Zm254.62-305.23q37.46 0 62.38-24.92 24.93-24.92 24.93-62.38 0-37.47-24.93-62.39-24.92-24.92-62.38-24.92T307.92-688Q283-663.08 283-625.61q0 37.46 24.92 62.38 24.93 24.92 62.39 24.92Zm0 305.23Zm0-392.53Z"/></svg>
+        <svg class="yb-autoFill yb-margin-center lr" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e8eaed"><path d="M70.31-187.69v-75.93q0-31.53 16.27-55.8 16.27-24.27 45.55-37.15 64.95-28.51 118.64-42.51 53.69-14 119.73-14t119.23 14q53.19 14 118.52 42.51 28.9 12.88 45.48 37.15 16.58 24.27 16.58 55.8v75.93h-600Zm665.38 0v-74.77q0-53.39-24.86-89.07-24.87-35.69-64.98-58.39 53.23 7.61 101.15 20.81 47.92 13.19 80.17 29.74 28.37 15.91 45.44 40.89 17.08 24.99 17.08 56.02v74.77h-154ZM370.5-492.92q-57.94 0-95.41-37.47-37.47-37.48-37.47-95.42 0-57.94 37.47-95.22t95.41-37.28q57.94 0 95.22 37.28T503-625.81q0 57.94-37.28 95.42-37.28 37.47-95.22 37.47Zm315.96-132.89q0 57.94-37.28 95.42-37.28 37.47-95.36 37.47-6.82 0-14.55-.93-7.73-.92-14.5-3.38 21.43-23.37 32.52-56.12 11.09-32.75 11.09-72.31 0-39.57-11.53-70.61-11.54-31.04-32.08-58.11 6.38-1.46 14.5-2.7 8.11-1.23 14.5-1.23 58.13 0 95.41 37.28 37.28 37.28 37.28 95.22ZM115.69-233.08h509.23v-30.54q0-16-9.11-30.03-9.12-14.04-26.19-22.35-62.77-29.31-110.62-40.5-47.84-11.19-108.5-11.19-60.65 0-108.81 11.19-48.15 11.19-110.92 40.5-17.08 8.31-26.08 22.35-9 14.03-9 30.03v30.54Zm254.62-305.23q37.46 0 62.38-24.92 24.93-24.92 24.93-62.38 0-37.47-24.93-62.39-24.92-24.92-62.38-24.92T307.92-688Q283-663.08 283-625.61q0 37.46 24.92 62.38 24.93 24.92 62.39 24.92Zm0 305.23Zm0-392.53Z"/></svg>
         <b class="align-center yb-pHead" style="color:gray; font-size: 18px; letter-spacing: 2px;">SEARCH</b>
         <input type="text">
     </div>
@@ -16,24 +16,24 @@
 
 <hr>
 <div style="position: relative; width: 100%">
-    <div class="less-hScroll yb-center-transform tb" onclick="yb_lessHScroll('people-filter')" style="display:none;">
-        <svg class="yb-center-transform all" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"></path></svg>
+    <div class="less-hScroll yb-transform-center tb" onclick="yb_lessHScroll('people-filter')" style="display:none;">
+        <svg class="yb-transform-center all" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"></path></svg>
     </div>
     <div id="search-filter" style="height: 40px; display:grid; grid-template-columns: 4fr 1fr; column-gap: 20px; scrollbar-width: none; overflow-x: hidden;" class="yb-hScroll yb-fillWidth yb-relative">
         
         <div id="filter-container" class="yb-flexRow yb-fillWidth yb-gap5 yb-margin-L5">
             
-            <button class="search-filter yb-button-wide active medium-wide rounded yb-autoText font-small yb-center-margin tb" name="pr-or-bt-vd">All</button>
-            <button class="search-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb" name="pr">People</button>
-            <button class="search-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb" name="or">Orbits</button>
-            <button class="search-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb" name="bt">Bits</button>
-            <button class="search-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb" name="vd">Videos</button>
+            <button class="search-filter yb-button-wide active medium-wide rounded yb-font-auto font-small yb-margin-center tb" name="pr-or-bt-vd">All</button>
+            <button class="search-filter yb-button-wide medium-wide rounded yb-font-auto font-small yb-margin-center tb" name="pr">People</button>
+            <button class="search-filter yb-button-wide medium-wide rounded yb-font-auto font-small yb-margin-center tb" name="or">Orbits</button>
+            <button class="search-filter yb-button-wide medium-wide rounded yb-font-auto font-small yb-margin-center tb" name="bt">Bits</button>
+            <button class="search-filter yb-button-wide medium-wide rounded yb-font-auto font-small yb-margin-center tb" name="vd">Videos</button>
 
         </div>
 
     </div>
-    {% comment %} <div class="more-hScroll yb-center-transform tb" onclick="yb_moreHScroll('people-filter')">
-        <svg class="yb-center-transform all" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
+    {% comment %} <div class="more-hScroll yb-transform-center tb" onclick="yb_moreHScroll('people-filter')">
+        <svg class="yb-transform-center all" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
     </div> {% endcomment %}
 </div>
 <hr>

@@ -1,9 +1,9 @@
 {% load static %}
 
 <div id='div-header' class="div-header">
-    <div class="cb-panel-back" onclick="yb_2WayPage(1)"><svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
-    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb"></h3>
-    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('create-cluster')"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
+    <div class="cb-panel-back" onclick="yb_2WayPage(1)"><svg class="yb-margin-center tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
+    <h3 class="yb-fillWidth yb-margin-L10 yb-font-auto yb-margin-center tb"></h3>
+    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('create-cluster')"><svg class="yb-transform-center all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
 </div>
 
 
@@ -12,7 +12,7 @@
 
 
 <div class="yb-flexColumn" id="messages-info">
-    <svg class="yb-autoFill yb-center-margin lr" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" height= "48px"; width= "48px";
+    <svg class="yb-autoFill yb-margin-center lr" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" height= "48px"; width= "48px";
 	 viewBox="0 0 55 55" style="enable-background:new 0 0 55 55;" xml:space="preserve" fill="var(--yb-title-color)">
 <path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
 	s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
@@ -29,7 +29,7 @@
 </svg>
 <br>
     <b class="align-center yb-pHead" style="font-size: 18px; letter-spacing: 2px;">Create Cluster</b>
-    <p style="font-size: small; font-weight: 550; padding-left: 5px; padding-right: 5px; font-family: 'Roboto', sans-serif; text-align: center;" class="yb-autoText yb-pText">A cluster is a collection of bits you've saved on Yourbit</p>
+    <p style="font-size: small; font-weight: 550; padding-left: 5px; padding-right: 5px; font-family: 'Roboto', sans-serif; text-align: center;" class="yb-font-auto yb-pText">A cluster is a collection of bits you've saved on Yourbit</p>
 
 </div>
 
@@ -38,18 +38,18 @@
     <form id="create-cluster-form" class="yb-fillWidth align-center" style="font-weight: 600;" method="POST" action="/core/create/cluster/">
         {% csrf_token %}
         <div id = "field-container-cluster-name" class="yb-field-container">
-            <div id="display-first-name" class="yb-field-split top squared yb-bg-autoGray yb-autoText yb-pText yb-margin-T10">
+            <div id="display-first-name" class="yb-field-split top squared yb-bg-autoGray yb-font-auto yb-pText yb-margin-T10">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Cluster Name: </p>
-                <input name="name" id='cc-field-name' value="{{user.first_name}}" class="yb-input-transparent yb-form-field right yb-autoText yb-pText account-field" style="grid-column: 2;">
+                <input name="name" id='cc-field-name' value="{{user.first_name}}" class="yb-input-transparent yb-form-field right yb-font-auto yb-pText account-field" style="grid-column: 2;">
             </div>
             
         
         </div>
         <div id="yb-field-container-clusterType" class="yb-field-containter">
             <div id = "field-container-clusterType" class="yb-field-container">
-                <div id="cluster-type" class="yb-field-split bottom yb-autoText yb-bg-autoGray yb-pText" style="position: relative;">
+                <div id="cluster-type" class="yb-field-split bottom yb-font-auto yb-bg-autoGray yb-pText" style="position: relative;">
                     <p class="field-cover-label align-left yb-pText" style="grid-column: 1;">Specify Bit Type: </p>
-                    <select type="text" class="yb-input-transparent right yb-autoText yb-pText privacy-field" name="type" id="cc-field-type" style="grid-column: 2;">
+                    <select type="text" class="yb-input-transparent right yb-font-auto yb-pText privacy-field" name="type" id="cc-field-type" style="grid-column: 2;">
                         <option value="any">Any</option>
                         <option value="chat">ChatBits</option>
                         <option value="photo">PhotoBits</option>
@@ -60,7 +60,7 @@
         </div>
         <br>
         <br>
-        <button type="submit" style="width: 100px;" class="yb-button-flex green rounded font-white yb-center-margin lr">Create</button>
+        <button type="submit" style="width: 100px;" class="yb-button-flex green rounded font-white yb-margin-center lr">Create</button>
 
     </form>
 

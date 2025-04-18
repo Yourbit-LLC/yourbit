@@ -359,7 +359,7 @@ function yb_renderConnectOptions(){
         let this_function = these_options[option];
         let new_option = yb_createElement(
             "div", 
-            "profile-connect-option yb-button-threeQuarter border-none squared yb-margin-T10 yb-widthConstraint-600 yb-autoText bg-gray-dark font-heavy pointer-object", 
+            "profile-connect-option yb-button-threeQuarter border-none squared yb-margin-T10 yb-widthConstraint-600 yb-font-auto bg-gray-dark font-heavy pointer-object", 
             `profile-connect-option-${option}`
         );
         new_option.innerHTML = option;

@@ -1,13 +1,13 @@
 /* Modifiers */
 
 /* Position Modifiers */
-.yb-center-margin.lr {
+.yb-margin-center.lr {
     /*Positioning*/
     margin-left: auto;
     margin-right: auto;
 }
 
-.yb-center-margin.tb {
+.yb-margin-center.tb {
     /*Positioning*/
     margin-top: auto;
     margin-bottom: auto;
@@ -64,7 +64,7 @@
 
 }
 
-.yb-center-margin.all {
+.yb-margin-center.all {
     /*Positioning*/
     margin: auto;
 }
@@ -105,20 +105,20 @@
     margin-bottom: 30px;
 }
 
-.yb-center-transform.lr {
+.yb-transform-center.lr {
     /*Positioning*/
     left: 50%;
     transform: translateX(-50%);
 }
 
-.yb-center-transform.tb {
+.yb-transform-center.tb {
     /*Positioning*/
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
 }
 
-.yb-center-transform.all {
+.yb-transform-center.all {
     /*Positioning*/
     position: absolute;
     left: 50%;
@@ -259,7 +259,7 @@
 
 @media screen and (prefers-color-scheme: light) {
     .yb-bg-autoGray {
-        background-color: gray;
+        background-color: rgb(200, 200, 200);
     }
 
     .yb-bg-autoFlat {
@@ -284,7 +284,7 @@
 
 @media screen and (prefers-color-scheme: dark) {
     .yb-bg-autoGray {
-        background-color: rgb(25, 25, 25);
+        background-color: rgb(12, 12, 12);
     }
 
     .yb-bg-autoFlat {
@@ -550,12 +550,12 @@
 }
 /* Text Modifiers */
 @media (prefers-color-scheme: light) {
-    .yb-autoText {
+    .yb-font-auto {
         /*Style*/
         color: black;
     }
 
-    .yb-autoText-reversed {
+    .yb-font-auto-reversed {
         /*Style*/
         color: white;
     }
@@ -563,12 +563,12 @@
 }
 
 @media (prefers-color-scheme: dark){
-    .yb-autoText {
+    .yb-font-auto {
         /*Style*/
         color: white;
     }
 
-    .yb-autoText-reversed {
+    .yb-font-auto-reversed {
         /*Style*/
         color: white;
     }

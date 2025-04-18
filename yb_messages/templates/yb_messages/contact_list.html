@@ -3,9 +3,9 @@
     {% for contact in results %}
         <div id="user-{{contact.username}}" class="
             yb-listItem user
-            yb-autoText
+            yb-font-auto
         "> 
-            <div class="full-result-image-container yb-center-margin all">
+            <div class="full-result-image-container yb-margin-center all">
                 <img class="full-result-image" style="width:100%; position: relative;" src="{{contact.custom.profile_image.medium_thumbnail_ext}}">
             </div>
 
@@ -17,8 +17,8 @@
             </div>
 
             <div id="user-action" class="yb-fillWidth">
-                <button id="add-contact-button-{{contact.id}}" type="button" onclick="yb_conversationAddContact(event);" class="yb-button small border-none circle yb-center-transform tb" style="height: 35px; width: 35px; transition: 0.5s; background-color: black;" data-catid="{{contact.id}}" data-username="{{contact.username}}">
-                    <svg id = "add-contact-icon-{{contact.id}}" style="transition: 0.25s; fill:white;" class="yb-center-transform all" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20">
+                <button id="add-contact-button-{{contact.id}}" type="button" onclick="yb_conversationAddContact(event);" class="yb-button small border-none circle yb-transform-center tb" style="height: 35px; width: 35px; transition: 0.5s; background-color: black;" data-catid="{{contact.id}}" data-username="{{contact.username}}">
+                    <svg id = "add-contact-icon-{{contact.id}}" style="transition: 0.25s; fill:white;" class="yb-transform-center all" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20">
                         <path class="yb-path" d="M434.5-434.5H191.869v-91H434.5v-242.631h91V-525.5h242.631v91H525.5v242.631h-91V-434.5Z"/>
                     </svg>
                 </button>
@@ -31,9 +31,9 @@
 
 <div class="yb-fillWidth">
     <div class="yb-fillWidth">
-        <div class="yb-autoText">
+        <div class="yb-font-auto">
             <br>
-            <p class="align-center yb-margin-T10 yb-pHead yb-autoText">No contacts yet</p>
+            <p class="align-center yb-margin-T10 yb-pHead yb-font-auto">No contacts yet</p>
             <br>
             <button id="find-connections-messages" class="yb-button-flex bg-gray-dark squared font-gray yb-button-halfWidth">+  Find People</button>
             <script>

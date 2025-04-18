@@ -9,7 +9,7 @@
         {%else%} 
         unseen 
         {% endif %} {% endcomment %}
-        yb-autoText
+        yb-font-auto
     "> 
         
                         
@@ -25,10 +25,10 @@
             
         
         <div id="message-contents font-medium">
-            <b class="yb-autoText yb-listItem-head" style="font-size: 13px; font-weight: 600;">
+            <b class="yb-font-auto yb-listItem-head" style="font-size: 13px; font-weight: 600;">
                     {{conversation.name}}
             </b>
-            <p class="yb-autoText yb-listItem-body">
+            <p class="yb-font-auto yb-listItem-body">
                 {% if conversation.preview != ""%}
                     {{conversation.preview | safe}}
                 {% else %}
@@ -47,7 +47,7 @@
 {% endfor %}
 {% else %}
 <div class="yb-fillWidth">
-    <div class="yb-autoText">
+    <div class="yb-font-auto">
         <br>
         <p class="align-center yb-margin-T10">No conversations yet</p>
         <br>

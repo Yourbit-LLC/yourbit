@@ -1,7 +1,7 @@
 {% load static %}
 <div id='div-header' style='position: relative; display: grid; grid-template-columns: 5fr 1fr; margin-left: auto; margin-right: auto; width: 100%; height: 40px; margin-bottom: 5px;' >
-    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb"></h3>
-    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('messages-new');"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
+    <h3 class="yb-fillWidth yb-margin-L10 yb-font-auto yb-margin-center tb"></h3>
+    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('messages-new');"><svg class="yb-transform-center all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
 </div>
 
 <div style="display:grid; grid-template-columns: 24px 1fr;">
@@ -11,21 +11,21 @@
 <div id="yb-tagContainer" style="display: flex; flex-wrap: wrap; gap: 8px; max-width: 100%;"></div>
 <input type="hidden" id="selected-contact-filter" value="all"/>
 <div id="create-convo-header" style="height: 40px;" class="yb-fillWidth yb-relative">
-    <div id="contact-filter-container" style="width: 97%;" class="yb-center-margin all yb-relative yb-flexRow">
+    <div id="contact-filter-container" style="width: 97%;" class="yb-margin-center all yb-relative yb-flexRow">
         <input type="hidden" id="selected-contacts" value=""/>
 
-        <input type="text" id="contact-search-input" class="yb-autoText yb-bg-transparent narrowBorder" style="height: 25px; width: 100%; position: relative; border: none; outline: none;" placeholder="Search contacts"/>
-        <button id="new-message-next" class="yb-button-plain yb-autoText squared font-medium yb-center-transform tb" style="height: 35px; width:55px; position: absolute; right: 0px;">Done</button>
+        <input type="text" id="contact-search-input" class="yb-font-auto yb-bg-transparent narrowBorder" style="height: 25px; width: 100%; position: relative; border: none; outline: none;" placeholder="Search contacts"/>
+        <button id="new-message-next" class="yb-button-plain yb-font-auto squared font-medium yb-transform-center tb" style="height: 35px; width:55px; position: absolute; right: 0px;">Done</button>
     </div>
     <hr>
 </div>
 <div id="filter-container" class="yb-flexRow yb-fillWidth yb-gap5 yb-margin-L5 yb-margin-T10">
     <input type="hidden" id="contact-filter" value="everyone"/>
-    <button id="contact-filter-all" class="yb-button-wide contact-filter active medium-wide rounded yb-autoText font-small yb-center-margin tb" name="all">Everyone</button>
-    <button id="contact-filter-friends" class="yb-button-wide contact-filter medium-wide rounded yb-autoText font-small yb-center-margin tb" name="friends">Friends</button>
-    <button id="contact-filter-followers" class="yb-button-wide contact-filter medium-wide rounded yb-autoText font-small yb-center-margin tb" name="followers">Followers</button>
-    <button id="contact-filter-following" class="yb-button-wide contact-filter medium-wide rounded yb-autoText font-small yb-center-margin tb" name="following">Following</button>
-    <button id="contact-filter-orbits" class="yb-button-wide contact-filter medium-wide rounded yb-autoText font-small yb-center-margin tb" name="orbits">Orbits</button>
+    <button id="contact-filter-all" class="yb-button-wide contact-filter active medium-wide rounded yb-font-auto font-small yb-margin-center tb" name="all">Everyone</button>
+    <button id="contact-filter-friends" class="yb-button-wide contact-filter medium-wide rounded yb-font-auto font-small yb-margin-center tb" name="friends">Friends</button>
+    <button id="contact-filter-followers" class="yb-button-wide contact-filter medium-wide rounded yb-font-auto font-small yb-margin-center tb" name="followers">Followers</button>
+    <button id="contact-filter-following" class="yb-button-wide contact-filter medium-wide rounded yb-font-auto font-small yb-margin-center tb" name="following">Following</button>
+    <button id="contact-filter-orbits" class="yb-button-wide contact-filter medium-wide rounded yb-font-auto font-small yb-margin-center tb" name="orbits">Orbits</button>
 </div>
 
 <div id="contact-list" class="yb-fillWidth yb-vScroll yb-margin-T10" style="height: calc(100% - 260px); border-radius: 15px;">

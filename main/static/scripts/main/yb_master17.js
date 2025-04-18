@@ -871,8 +871,8 @@ function yb_fullScreenImage(source){
     let photo_header = yb_createElement('div', 'div-header', 'div-header');
     photo_header.setAttribute("style", "position: absolute; display:grid; grid-template-columns: 1fr 1fr; top: 0px; left: 0px; width: 100%; height: 50px; background-color: rgba(0, 0, 0, 0.5);");
     photo_header.innerHTML = `
-        <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb"></h3>
-        <div class='yb-button-close' id='cb-panel-close' onclick="yb_closeImage('temp-photo-viewer');"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path class='yb-fill-white' d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
+        <h3 class="yb-fillWidth yb-margin-L10 yb-font-auto yb-margin-center tb"></h3>
+        <div class='yb-button-close' id='cb-panel-close' onclick="yb_closeImage('temp-photo-viewer');"><svg class="yb-transform-center all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path class='yb-fill-white' d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
     `
 
     

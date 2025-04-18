@@ -37,8 +37,8 @@
     {% endif %}
     <div class="grid-overlay" style="mix-blend-mode: difference;"></div>
     
-    <div id="profile-splash-label" class = "yb-splash-label profile yb-center-transform all align-center">
-        <div id="profile-image-container" class="profile-image-container editable yb-blink-soft infinite yb-center-margin all plainBorder border-solid narrowBorder circle" style="overflow: hidden; margin-bottom: 10px; border: {{custom_core.image_border_style}}; border-color: {{custom_core.image_border_color}}; z-index: 50;" onclick="yb_navigateTo('2way', 'profile-image-upload', null, false);">
+    <div id="profile-splash-label" class = "yb-splash-label profile yb-transform-center all align-center">
+        <div id="profile-image-container" class="profile-image-container editable yb-blink-soft infinite yb-margin-center all plainBorder border-solid narrowBorder circle" style="overflow: hidden; margin-bottom: 10px; border: {{custom_core.image_border_style}}; border-color: {{custom_core.image_border_color}}; z-index: 50;" onclick="yb_navigateTo('2way', 'profile-image-upload', null, false);">
             <div class="profile-image-overlay" style="background-color: {{custom_core.image_overlay_color}}; opacity: {{custom_core.image_overlay_strength}};"></div>
             <img src="{% if current_profile.custom.profile_image.storage_type == "yb" %}{{custom_core.profile_image.medium_thumbnail.url}}{%else%}{{custom_core.profile_image.medium_thumbnail_ext}}{% endif %}"  id="profile-image-splash" style="width: 100%; border-color:{{profile.custom.accent_color}};"/>
         </div>
@@ -51,7 +51,7 @@
         </div>
 
 
-        <div id="profile-interaction-container" class="profile-interaction-container editable profile-CME profile-interaction-container preview yb-center-margin lr" style="border: 2px solid gray; width: fit-content;" onclick="yb_navigateTo('drawer', 'profile-button-edit', null, false); yb_focusOn('profile-interaction-container', 'editable');">
+        <div id="profile-interaction-container" class="profile-interaction-container editable profile-CME profile-interaction-container preview yb-margin-center lr" style="border: 2px solid gray; width: fit-content;" onclick="yb_navigateTo('drawer', 'profile-button-edit', null, false); yb_focusOn('profile-interaction-container', 'editable');">
             <button style="color: {{custom_splash.button_text_color}}; background-color: {{custom_splash.button_color}};" id="profile-button-connect" class="button-profile-interaction yb-button-flex {% if custom_splash.button_shape == 0 %}rounded{% else %} squared {% endif %} {% if button_format == 0%} bt-format-text {% elif button_format == 1 %} bt-format-icon {%else%} bt-format-hybrid{% endif %}">
                 <span>Connect</span>
 
@@ -86,8 +86,8 @@
 
 </div>
 
-<div style="position: absolute; bottom: 110px; height: 45px; width: 45px; background-color: black;" class="squared yb-center-transform lr">
-    <div class = "color-circle yb-center-transform all" id="splash-panel-color-circle" name="splash-panel-color" style="position: absolute; background-color: {{custom_splash.panel_color}}; height: 25px; width: 25px; margin-top: 0px;"></div>  
+<div style="position: absolute; bottom: 110px; height: 45px; width: 45px; background-color: black;" class="squared yb-transform-center lr">
+    <div class = "color-circle yb-transform-center all" id="splash-panel-color-circle" name="splash-panel-color" style="position: absolute; background-color: {{custom_splash.panel_color}}; height: 25px; width: 25px; margin-top: 0px;"></div>  
     <input class="coloris color-input" type="text" name="splash-panel-color" style="display: none;" id="splash-panel-color-picker" value="{{custom_splash.panel_color}}">  
 </div>
 

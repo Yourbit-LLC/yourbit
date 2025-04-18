@@ -1,22 +1,22 @@
 {% load static %}
 <div id='div-header' class="div-header">
     <div class="cb-panel-back"></div>
-    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb"></h3>
-    <div class='yb-button-close' id='cb-panel-close' onclick="yb_closeCard()"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
+    <h3 class="yb-fillWidth yb-margin-L10 yb-font-auto yb-margin-center tb"></h3>
+    <div class='yb-button-close' id='cb-panel-close' onclick="yb_closeCard()"><svg class="yb-transform-center all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
 </div>
 <h3>Friend Request</h3>
 <br>
 <div id="profile-info-request" class="yb-fillWidth profile-info-card yb-flexColumn">
-    <div id = "request-profile-image" class="profile-image-container yb-center-margin all plainBorder narrowBorder circle" style="width: 25%;">
+    <div id = "request-profile-image" class="profile-image-container yb-margin-center all plainBorder narrowBorder circle" style="width: 25%;">
         <img src="{{friend_request.from_user.custom.profile_image.medium_thumbnail.url}}" style="width:100%;" class="circle" id="profile-image-request"/>
     </div>
     <br>
     <div id="request-name-container" class="request-name-container align-center">
-        <h2 style="margin-top: 0px; margin-bottom:0px;" class="yb-autoText">{{friend_request.from_user.display_name}}</h2>
-        <p class="yb-autoText">@{{friend_request.from_user.username}}</p>
+        <h2 style="margin-top: 0px; margin-bottom:0px;" class="yb-font-auto">{{friend_request.from_user.display_name}}</h2>
+        <p class="yb-font-auto">@{{friend_request.from_user.username}}</p>
     </div>
     <br>
-    <div id="request-message-container" class="request-message align-center yb-autoText font-small">
+    <div id="request-message-container" class="request-message align-center yb-font-auto font-small">
         <hr>
         <h2 class="yb-font-autoGray">About {{friend_request.from_user.user.first_name}}</h2>
         <h4 style="padding-left: 10px; padding-right: 10px;">{{friend_request.from_user.motto}}</h4>
@@ -26,7 +26,7 @@
 
     <div id="request-response-container">
         <hr>
-        <button class="yb-menu-listButton yb-button-threeQuarter border-none squared yb-margin-T10 yb-widthConstraint-600 yb-autoText bg-gray font-heavy pointer-object" onclick="yb_acceptOption({{friend_request.id}})">Accept</button>
-        <button class="yb-menu-listButton yb-button-threeQuarter border-none squared yb-margin-T10 yb-widthConstraint-600 yb-autoText bg-gray font-heavy pointer-object">Decline</button>
+        <button class="yb-menu-listButton yb-button-threeQuarter border-none squared yb-margin-T10 yb-widthConstraint-600 yb-font-auto bg-gray font-heavy pointer-object" onclick="yb_acceptOption({{friend_request.id}})">Accept</button>
+        <button class="yb-menu-listButton yb-button-threeQuarter border-none squared yb-margin-T10 yb-widthConstraint-600 yb-font-auto bg-gray font-heavy pointer-object">Decline</button>
     </div>
 </div>

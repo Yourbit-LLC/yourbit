@@ -53,10 +53,10 @@ function yb_buildNotifyItem(result, action=null){
     let notification_contents = yb_createElement("div", "notification-contents font-medium", `notification-contents-${id}`);
     notification_contents.innerHTML = `
     
-        <b class="font-small yb-autoText blend">
+        <b class="font-small yb-font-auto blend">
             ${result.title}
         </b>
-        <p class="yb-autoText blend">
+        <p class="yb-font-auto blend">
             ${result.body}
         </p>
         <div class="font-gray blend" id="notification-time">
@@ -265,11 +265,11 @@ function yb_notificationMenu(type, this_id, rid=null) {
         
         let new_option = yb_createElement(
             "div", 
-            "notification-response-option yb-menu-listButton yb-button-threeQuarter border-none squared yb-margin-T10 yb-widthConstraint-600 yb-autoText bg-gray font-heavy pointer-object", 
+            "notification-response-option yb-menu-listButton yb-button-threeQuarter border-none squared yb-margin-T10 yb-widthConstraint-600 yb-font-auto bg-gray font-heavy pointer-object", 
             `notification-response-option-${option}`
         );
         
-        let new_option_text = yb_createElement("p", "notification-response-text yb-center-margin all", `notification-response-text-${this_id}-${option.substring(0, 3)}`);
+        let new_option_text = yb_createElement("p", "notification-response-text yb-margin-center all", `notification-response-text-${this_id}-${option.substring(0, 3)}`);
         new_option_text.innerHTML = option;
 
         new_option.appendChild(new_option_text);

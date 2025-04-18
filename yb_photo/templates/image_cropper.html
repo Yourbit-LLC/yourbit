@@ -1,23 +1,23 @@
 {% load static %}
 
 <div id='div-header' style='position: relative; display: grid; grid-template-columns: 40px 5fr 40px; margin-left: auto; margin-right: auto; width: 100%; height: 40px; margin-bottom: 20px;' >
-    <div class="cb-panel-back"><svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
+    <div class="cb-panel-back"><svg class="yb-margin-center tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
     
 </div>
 <hr>
 <div class="yb-hBlock-2">
-    <svg class="yb-center-margin lr" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M680-40v-160H280q-33 0-56.5-23.5T200-280v-400H40v-80h160v-160h80v640h640v80H760v160h-80Zm0-320v-320H360v-80h320q33 0 56.5 23.5T760-680v320h-80Z"/></svg>
-    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb">Crop Feed Preview</h3>
+    <svg class="yb-margin-center lr" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M680-40v-160H280q-33 0-56.5-23.5T200-280v-400H40v-80h160v-160h80v640h640v80H760v160h-80Zm0-320v-320H360v-80h320q33 0 56.5 23.5T760-680v320h-80Z"/></svg>
+    <h3 class="yb-fillWidth yb-margin-L10 yb-font-auto yb-margin-center tb">Crop Feed Preview</h3>
     <input type="hidden" id="image-edit-data" value="{{type}}" data-wpid = "{{wpid}}">
 </div>
 <!--Profile image cropper-->
-<div class="yb-cropper-container profile-image yb-center-transform tb yb-fillWidth" style="transition: 0.5s;" id="square-crop-container">
+<div class="yb-cropper-container profile-image yb-transform-center tb yb-fillWidth" style="transition: 0.5s;" id="square-crop-container">
     <div class = "yb-cropper-preview-container" style = "max-height: 75vh;">
         <img id="crop-image-preview" style="object-fit: contain; max-width:100%; height: 100%; max-height: calc(100%-140px);"/>
         <input type="hidden" id="cropper-output" value="">
     </div>
     <div id="crop-full-view" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr;">
-        <p class="field-cover-label yb-pText yb-autoText align-left" style="grid-column: 1;">Crop Fullscreen View</p>        
+        <p class="field-cover-label yb-pText yb-font-auto align-left" style="grid-column: 1;">Crop Fullscreen View</p>        
         <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
             <label class="yb-switch-round" id="yb-crop-full" >
                 <input type="checkbox" class="checkbox notification-check" name="cropFull" id="nts-notifications-enabled">

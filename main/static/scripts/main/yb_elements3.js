@@ -11,7 +11,7 @@ function yb_buildListItem(result, action=null){
     let name = result.display_name;
     let handle = result.username;
     let element_id = `${type}-${id}`;
-    let new_item = yb_createElement("div", "yb-listItem yb-autoText", `result-${element_id}`);
+    let new_item = yb_createElement("div", "yb-listItem yb-font-auto", `result-${element_id}`);
     new_item.setAttribute("data-catid", `${id}`);
     new_item.setAttribute("data-username", `${handle}`);
     let image; 
@@ -77,7 +77,7 @@ function yb_buildContactItem(result, type){
 function yb_buildFieldTag(label, id) {
     let new_tag = yb_createElement("div", "field-tag rounded yb-field-background yb-bText", `tag-${id}`);
     new_tag.innerHTML = `
-        <p class="field-tag-label yb-autoText yb-margin-L5" style="overflow: hidden;">${label}</p>
+        <p class="field-tag-label yb-font-auto yb-margin-L5" style="overflow: hidden;">${label}</p>
         <button class="field-tag-delete yb-bText" style=" border-width: 0px; background-color: transparent; font-size: 24px;" data-catid="${id}">&times</button>
     `;
 

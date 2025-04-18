@@ -1,38 +1,38 @@
 {% load static %}
 <div class="yb-fillContainer yb-vScroll">
     <div id='div-header' class="div-header" style="padding-top: 70px;">
-        <div class="cb-panel-back" onclick="yb_startBitStream()"><svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
-        <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-pHead yb-center-margin tb" onclick="yb_startBitStream()">Bitstream</h3>
+        <div class="cb-panel-back" onclick="yb_startBitStream()"><svg class="yb-margin-center tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
+        <h3 class="yb-fillWidth yb-margin-L10 yb-font-auto yb-pHead yb-margin-center tb" onclick="yb_startBitStream()">Bitstream</h3>
     </div>
-    <div class="yb-center-margin lr" style="position: relative; display: block; width: 100px; height: 100px;">
+    <div class="yb-margin-center lr" style="position: relative; display: block; width: 100px; height: 100px;">
         <svg class="yb-fill-autoGray" xmlns="http://www.w3.org/2000/svg" height="100px" viewBox="0 -960 960 960" width="100px"><path d="M484-247q16 0 27-11t11-27q0-16-11-27t-27-11q-16 0-27 11t-11 27q0 16 11 27t27 11Zm-35-146h59q0-26 6.5-47.5T555-490q31-26 44-51t13-55q0-53-34.5-85T486-713q-49 0-86.5 24.5T345-621l53 20q11-28 33-43.5t52-15.5q34 0 55 18.5t21 47.5q0 22-13 41.5T508-512q-30 26-44.5 51.5T449-393Zm31 313q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83 31.5-156t86-127Q252-817 325-848.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 82-31.5 155T763-197.5q-54 54.5-127 86T480-80Zm0-60q142 0 241-99.5T820-480q0-142-99-241t-241-99q-141 0-240.5 99T140-480q0 141 99.5 240.5T480-140Zm0-340Z"/></svg>
     </div>
     <h1 class="yb-font-autoGray align-center">Yourbit Support</h1>
 
     <section id="support-options" class="yb-qGrid" style="margin-bottom: 20px;">
         <div id="supt-bug-report" class="yb-button-split13 shadow" onclick="yb_navigateTo('2way', 'bug-report')">
-            <svg class="yb-center-margin all yb-autoFill" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M480-186.67q70 0 119.67-49.33 49.66-49.33 49.66-119.33V-520q0-70-49.66-119.33Q550-688.67 480-688.67t-119.67 49.34Q310.67-590 310.67-520v164.67q0 70 49.66 119.33Q410-186.67 480-186.67ZM400-320h160v-66.67H400V-320Zm0-168.67h160v-66.66H400v66.66Zm80 51.34h.33-.33.33-.33.33-.33.33-.33ZM480-120q-65 0-120.83-31.33-55.84-31.34-84.5-88.67H160v-66.67h89.33q-5.66-24-5.83-48.33-.17-24.33-.17-49H160v-66.67h83.33q0-26 .5-51.66.5-25.67 6.84-51H160V-640h117.33q14-26.33 35.17-47t47.5-35l-72.67-72.67L332.67-840 424-748.67q28-9.66 56.67-9.66 28.66 0 56.66 9.66l92-91.33 45.34 45.33L602-722q26.33 14.33 46.83 35.17Q669.33-666 684.67-640H800v66.67h-90.67q7 25.33 6.84 51-.17 25.66-.17 51.66h84V-404h-84q0 24.67.17 49 .16 24.33-5.5 48.33H800V-240H686q-28 58-84.17 89-56.16 31-121.83 31Z"/></svg>
-            <p class="yb-autoText yb-pHead yb-center-margin tb">Bug Report</p>
+            <svg class="yb-margin-center all yb-autoFill" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M480-186.67q70 0 119.67-49.33 49.66-49.33 49.66-119.33V-520q0-70-49.66-119.33Q550-688.67 480-688.67t-119.67 49.34Q310.67-590 310.67-520v164.67q0 70 49.66 119.33Q410-186.67 480-186.67ZM400-320h160v-66.67H400V-320Zm0-168.67h160v-66.66H400v66.66Zm80 51.34h.33-.33.33-.33.33-.33.33-.33ZM480-120q-65 0-120.83-31.33-55.84-31.34-84.5-88.67H160v-66.67h89.33q-5.66-24-5.83-48.33-.17-24.33-.17-49H160v-66.67h83.33q0-26 .5-51.66.5-25.67 6.84-51H160V-640h117.33q14-26.33 35.17-47t47.5-35l-72.67-72.67L332.67-840 424-748.67q28-9.66 56.67-9.66 28.66 0 56.66 9.66l92-91.33 45.34 45.33L602-722q26.33 14.33 46.83 35.17Q669.33-666 684.67-640H800v66.67h-90.67q7 25.33 6.84 51-.17 25.66-.17 51.66h84V-404h-84q0 24.67.17 49 .16 24.33-5.5 48.33H800V-240H686q-28 58-84.17 89-56.16 31-121.83 31Z"/></svg>
+            <p class="yb-font-auto yb-pHead yb-margin-center tb">Bug Report</p>
         </div>
         <div id="supt-feature-request" class="yb-button-split13 shadow" onclick="yb_navigateTo('2way', 'feature-request')">
-            <svg class="yb-center-margin all yb-autoFill" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M480-80q-26.67 0-47.33-12.83Q412-105.67 404-128h-9.33q-27 0-46.84-19.83Q328-167.67 328-194.67v-142.66Q264.33-379 227.17-445 190-511 190-590q0-121 84.5-205.5T480-880q121 0 205.5 84.5T770-590q0 79.67-37.17 145.33Q695.67-379 632-337.33v142.66q0 27-19.83 46.84Q592.33-128 565.33-128H556q-8 22.33-28.67 35.17Q506.67-80 480-80Zm-85.33-114.67h170.66V-236H394.67v41.33Zm0-81.33h170.66v-39.33H394.67V-276ZM386-382h68.67v-127.33L364-600l34.67-34.67L480-553.33l81.33-81.34L596-600l-90.67 90.67V-382H574q58-27.33 93.67-83.5 35.66-56.17 35.66-124.5 0-94-64.66-158.67Q574-813.33 480-813.33q-94 0-158.67 64.66Q256.67-684 256.67-590q0 68.33 35.66 124.5Q328-409.33 386-382Zm94-171.33Zm0-44.67Z"/></svg>
-            <p class="yb-autoText yb-pHead yb-center-margin tb">Share Idea</p>
+            <svg class="yb-margin-center all yb-autoFill" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M480-80q-26.67 0-47.33-12.83Q412-105.67 404-128h-9.33q-27 0-46.84-19.83Q328-167.67 328-194.67v-142.66Q264.33-379 227.17-445 190-511 190-590q0-121 84.5-205.5T480-880q121 0 205.5 84.5T770-590q0 79.67-37.17 145.33Q695.67-379 632-337.33v142.66q0 27-19.83 46.84Q592.33-128 565.33-128H556q-8 22.33-28.67 35.17Q506.67-80 480-80Zm-85.33-114.67h170.66V-236H394.67v41.33Zm0-81.33h170.66v-39.33H394.67V-276ZM386-382h68.67v-127.33L364-600l34.67-34.67L480-553.33l81.33-81.34L596-600l-90.67 90.67V-382H574q58-27.33 93.67-83.5 35.66-56.17 35.66-124.5 0-94-64.66-158.67Q574-813.33 480-813.33q-94 0-158.67 64.66Q256.67-684 256.67-590q0 68.33 35.66 124.5Q328-409.33 386-382Zm94-171.33Zm0-44.67Z"/></svg>
+            <p class="yb-font-auto yb-pHead yb-margin-center tb">Share Idea</p>
         </div>
         <div id="supt-report-user" class="yb-button-split13 shadow" onclick="yb_navigateTo('2way', 'user-report')">
-            <svg class="yb-center-margin all yb-autoFill" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M799.88-526.67q-14.21 0-23.71-9.61-9.5-9.62-9.5-23.84 0-14.21 9.61-23.71 9.62-9.5 23.84-9.5 14.21 0 23.71 9.61 9.5 9.62 9.5 23.84 0 14.21-9.61 23.71-9.62 9.5-23.84 9.5Zm-33.21-120v-186.66h66.66v186.66h-66.66ZM360-480.67q-66 0-109.67-43.66Q206.67-568 206.67-634t43.66-109.67Q294-787.33 360-787.33t109.67 43.66Q513.33-700 513.33-634t-43.66 109.67Q426-480.67 360-480.67ZM40-160v-100q0-34.67 17.5-63.17T106.67-366q70.66-32.33 130.89-46.5 60.22-14.17 122.33-14.17T482-412.5q60 14.17 130.67 46.5 31.66 15 49.5 43.17Q680-294.67 680-260v100H40Zm66.67-66.67h506.66V-260q0-14.33-7.83-27t-20.83-19q-65.34-31-116.34-42.5T360-360q-57.33 0-108.67 11.5Q200-337 134.67-306q-13 6.33-20.5 19t-7.5 27v33.33ZM360-547.33q37 0 61.83-24.84Q446.67-597 446.67-634t-24.84-61.83Q397-720.67 360-720.67t-61.83 24.84Q273.33-671 273.33-634t24.84 61.83Q323-547.33 360-547.33Zm0-86.67Zm0 407.33Z"/></svg>
-            <p class="yb-autoText yb-pHead yb-center-margin tb">Report User</p>
+            <svg class="yb-margin-center all yb-autoFill" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M799.88-526.67q-14.21 0-23.71-9.61-9.5-9.62-9.5-23.84 0-14.21 9.61-23.71 9.62-9.5 23.84-9.5 14.21 0 23.71 9.61 9.5 9.62 9.5 23.84 0 14.21-9.61 23.71-9.62 9.5-23.84 9.5Zm-33.21-120v-186.66h66.66v186.66h-66.66ZM360-480.67q-66 0-109.67-43.66Q206.67-568 206.67-634t43.66-109.67Q294-787.33 360-787.33t109.67 43.66Q513.33-700 513.33-634t-43.66 109.67Q426-480.67 360-480.67ZM40-160v-100q0-34.67 17.5-63.17T106.67-366q70.66-32.33 130.89-46.5 60.22-14.17 122.33-14.17T482-412.5q60 14.17 130.67 46.5 31.66 15 49.5 43.17Q680-294.67 680-260v100H40Zm66.67-66.67h506.66V-260q0-14.33-7.83-27t-20.83-19q-65.34-31-116.34-42.5T360-360q-57.33 0-108.67 11.5Q200-337 134.67-306q-13 6.33-20.5 19t-7.5 27v33.33ZM360-547.33q37 0 61.83-24.84Q446.67-597 446.67-634t-24.84-61.83Q397-720.67 360-720.67t-61.83 24.84Q273.33-671 273.33-634t24.84 61.83Q323-547.33 360-547.33Zm0-86.67Zm0 407.33Z"/></svg>
+            <p class="yb-font-auto yb-pHead yb-margin-center tb">Report User</p>
         </div>
         <div id="supt-send-message" class="yb-button-split13 shadow" onclick="yb_navigateTo('2way', 'email-support')">
-            <svg class="yb-center-margin all yb-autoFill" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M146.67-160q-27 0-46.84-19.83Q80-199.67 80-226.67v-506.66q0-27 19.83-46.84Q119.67-800 146.67-800h666.66q27 0 46.84 19.83Q880-760.33 880-733.33v506.66q0 27-19.83 46.84Q840.33-160 813.33-160H146.67ZM480-454.67 146.67-670v443.33h666.66V-670L480-454.67Zm0-66.66 330.67-212H150l330 212ZM146.67-670v-63.33V-226.67-670Z"/></svg>
-            <p class="yb-autoText yb-pHead yb-center-margin tb">Email Us</p>
+            <svg class="yb-margin-center all yb-autoFill" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M146.67-160q-27 0-46.84-19.83Q80-199.67 80-226.67v-506.66q0-27 19.83-46.84Q119.67-800 146.67-800h666.66q27 0 46.84 19.83Q880-760.33 880-733.33v506.66q0 27-19.83 46.84Q840.33-160 813.33-160H146.67ZM480-454.67 146.67-670v443.33h666.66V-670L480-454.67Zm0-66.66 330.67-212H150l330 212ZM146.67-670v-63.33V-226.67-670Z"/></svg>
+            <p class="yb-font-auto yb-pHead yb-margin-center tb">Email Us</p>
         </div>
         
     </section>
 
     <section>
-        <div class="yb-expandable-container yb-center-margin lr">
-            <p class="yb-autoText yb-pText yb-center-margin tb">Known Issues</p>
-            <svg class="yb-center-margin all yb-autoFill" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M480-344 240-584l47.33-47.33L480-438.67l192.67-192.66L720-584 480-344Z"/></svg>
+        <div class="yb-expandable-container yb-margin-center lr">
+            <p class="yb-font-auto yb-pText yb-margin-center tb">Known Issues</p>
+            <svg class="yb-margin-center all yb-autoFill" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M480-344 240-584l47.33-47.33L480-438.67l192.67-192.66L720-584 480-344Z"/></svg>
             
             <div class="yb-expandable-content yb-flexRow yb-fillWidth yb-hScroll yb-gap10" style="display: none;">
                 {% for issue in known_issues %}
@@ -48,9 +48,9 @@
                 {% endfor %}
             </div>
         </div>
-        <div class="yb-expandable-container yb-center-margin lr">
-            <p class="yb-autoText yb-pText yb-center-margin tb">Frequently Asked</p>
-            <svg class="yb-center-margin all yb-autoFill" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M480-344 240-584l47.33-47.33L480-438.67l192.67-192.66L720-584 480-344Z"/></svg>
+        <div class="yb-expandable-container yb-margin-center lr">
+            <p class="yb-font-auto yb-pText yb-margin-center tb">Frequently Asked</p>
+            <svg class="yb-margin-center all yb-autoFill" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M480-344 240-584l47.33-47.33L480-438.67l192.67-192.66L720-584 480-344Z"/></svg>
 
             <div class="yb-expandable-content" style="display: none;">
                 <h1>I am Test Content</h1>

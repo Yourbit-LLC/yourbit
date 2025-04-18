@@ -92,7 +92,7 @@ function yb_bitMenu(e){
                 squared 
                 yb-margin-T10 
                 yb-widthConstraint-600 
-                yb-autoText 
+                yb-font-auto 
                 bg-gray 
                 font-heavy 
                 pointer-object
@@ -102,7 +102,7 @@ function yb_bitMenu(e){
         
         let new_option_text = yb_createElement(
             "p", 
-            "notification-response-text yb-center-margin all", 
+            "notification-response-text yb-margin-center all", 
             `bit-option-text-${this_id}-${option.substring(0, 3)}`
         );
         new_option_text.innerHTML = option;
@@ -135,7 +135,7 @@ function createHeader(bit) {
         `yb-header-bit ${bit.type}`, 
         `header-bit-${bit.id}`
     );
-    const profileImageContainer = yb_createElement("div", "element-accent profile-image-thumbnail small yb-center-margin all", `profile-image-${bit.id}`);
+    const profileImageContainer = yb_createElement("div", "element-accent profile-image-thumbnail small yb-margin-center all", `profile-image-${bit.id}`);
     //Create a variable that sets to the bit.custom.accent_color, if undefined, set to white
     let border_color = bit.custom.accent_color ? bit.custom.accent_color : "white";
     profileImageContainer.style.border = `2px solid ${border_color}`;
@@ -277,13 +277,13 @@ function yb_addMedia(type, bit) {
                 yb_navigateTo("content-container", "bit-focus", bit.id);
             })
 
-            let play_button = yb_createElement("div", "yb-play-icon circle yb-center-transform all", `play-icon-${bit.id}`)
+            let play_button = yb_createElement("div", "yb-play-icon circle yb-transform-center all", `play-icon-${bit.id}`)
             play_button.style.width = "120px";
             play_button.style.height = "120px";
             play_button.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
             play_button.style.zIndex = "2";
             play_button.innerHTML = `
-                <svg class="yb-center-transform all" xmlns="http://www.w3.org/2000/svg" height="96px" viewBox="0 -960 960 960" width="96px" fill="#e8eaed"><path d="M305.87-250.09v-465.82q0-18.53 11.87-29.35 11.86-10.83 27.5-10.83 5.24 0 10.72 1.28 5.47 1.29 11.1 4.38l366.51 234.52q8.97 6.13 13.75 14.39 4.77 8.26 4.77 18.52t-4.77 18.52q-4.78 8.26-13.75 14.39L367.06-215.57q-5.63 3.09-11.12 4.09-5.49 1-10.74 1-15.68 0-27.5-10.41-11.83-10.42-11.83-29.2Z"/></svg>
+                <svg class="yb-transform-center all" xmlns="http://www.w3.org/2000/svg" height="96px" viewBox="0 -960 960 960" width="96px" fill="#e8eaed"><path d="M305.87-250.09v-465.82q0-18.53 11.87-29.35 11.86-10.83 27.5-10.83 5.24 0 10.72 1.28 5.47 1.29 11.1 4.38l366.51 234.52q8.97 6.13 13.75 14.39 4.77 8.26 4.77 18.52t-4.77 18.52q-4.78 8.26-13.75 14.39L367.06-215.57q-5.63 3.09-11.12 4.09-5.49 1-10.74 1-15.68 0-27.5-10.41-11.83-10.42-11.83-29.2Z"/></svg>
             `
             play_button.addEventListener("click", function() {
                 yb_navigateTo("content-container", "bit-focus", bit.id);
@@ -338,7 +338,7 @@ function makeLinksClickable(text) {
         }
         return `
             <a class="yb-link-ext" href="${href}" target="_blank">
-                <svg class="yb-center-margin all" xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="16px">
+                <svg class="yb-margin-center all" xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="16px">
                     <path d="M480.28-96Q401-96 331-126t-122.5-82.5Q156-261 126-330.96t-30-149.5Q96-560 126-629.5q30-69.5 82.5-122T330.96-834q69.96-30 149.5-30t149.04 30q69.5 30 122 82.5T834-629.28q30 69.73 30 149Q864-401 834-331t-82.5 122.5Q699-156 629.28-126q-69.73 30-149 30ZM432-172v-68q-20 0-34-14.1T384-288v-48L175-545q-4 19-5.5 35t-1.5 30q0 115 74.5 203T432-172Zm288-109q18-21 31.5-44t22.36-48.55q8.86-25.56 13.5-52.5Q792-453 792-480q0-94.61-52-172.8Q688-731 600-768v24q0 29.7-21.15 50.85Q557.7-672 528-672h-96v48q0 20.4-13.8 34.2Q404.4-576 384-576h-48v96h240q20.4 0 34.2 13.8Q624-452.4 624-432v96h41q23 0 39 16t16 39Z"/>
                 </svg>
                 <p style="margin: 0;">${domainName}</p>
@@ -357,7 +357,7 @@ function yb_createBody(bit) {
     var body = yb_createElement("div", "yb-body-bit", `body-bit-${bit.id}`);
     let custom = bit.custom;
     let text_color = custom.text_color;
-    const paragraph = yb_createElement("p", "yb-bodyText-bit yb-autoText font-medium", `bit-bodyText-${bit.id}`);
+    const paragraph = yb_createElement("p", "yb-bodyText-bit yb-font-auto font-medium", `bit-bodyText-${bit.id}`);
     paragraph.style.lineHeight = "1.5";
 
     if (USER_AUTHORIZED == "true") {
@@ -370,7 +370,7 @@ function yb_createBody(bit) {
     if (bit.type === "chat" && bit.body.length > 500){
         console.log("Chat bit with long body")
         let show_more_backdrop = yb_createElement("div", "yb-showMore-backdrop", `show-more-backdrop-${bit.id}`);
-        let show_more = yb_createElement("p", "yb-showMore-bit yb-autoText", `show-more-${bit.id}`);
+        let show_more = yb_createElement("p", "yb-showMore-bit yb-font-auto", `show-more-${bit.id}`);
         show_more.innerHTML = "Show More";
         show_more.style.cursor = "pointer";
         show_more.setAttribute("data-catid", bit.id);
@@ -404,7 +404,7 @@ function createTitle(bit) {
             
             if (bit.type == "video") {
                 title.innerHTML = `
-                    <svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="${bit_title_color}"><path d="m380-300 280-180-280-180v360ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+                    <svg class="yb-margin-center tb" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="${bit_title_color}"><path d="m380-300 280-180-280-180v360ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
                     <h2 class="yb-titleText-bit ${bit.type} ybv-preview-title" style="color: ${bit_title_color};">${makeLinksClickable(bit.title)}</h2>
                     <p class="bit-view-count" style="color: ${bit.custom.text_color};">${bit.watch_count} views</p>
                 `;
@@ -414,23 +414,23 @@ function createTitle(bit) {
         } else {
             if (bit.type == "video") {
                 title.innerHTML = `
-                    <svg class="yb-autoFill yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="m380-300 280-180-280-180v360ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
-                    <h2 class="yb-autoText yb-titleText-bit ybv-preview-title ${bit.type}"">${makeLinksClickable(bit.title)}</h2>
+                    <svg class="yb-autoFill yb-margin-center tb" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="m380-300 280-180-280-180v360ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+                    <h2 class="yb-font-auto yb-titleText-bit ybv-preview-title ${bit.type}"">${makeLinksClickable(bit.title)}</h2>
                     <p class="bit-view-count" style="color: ${bit.custom.text_color};">${bit.watch_count} views</p>
                 `;
             } else {
-                title.innerHTML = `<h2 class="yb-autoText yb-titleText-bit ${bit.type}">${makeLinksClickable(bit.title)}</h2>`;
+                title.innerHTML = `<h2 class="yb-font-auto yb-titleText-bit ${bit.type}">${makeLinksClickable(bit.title)}</h2>`;
             }
         }
     } catch {
         if (bit.type == "video") {
             title.innerHTML = `
-                <svg class="yb-autoFill yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="m380-300 280-180-280-180v360ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
-                <h2 class="yb-autoText yb-titleText-bit ybv-preview-title ${bit.type}"">${makeLinksClickable(bit.title)}</h2>
+                <svg class="yb-autoFill yb-margin-center tb" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="m380-300 280-180-280-180v360ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+                <h2 class="yb-font-auto yb-titleText-bit ybv-preview-title ${bit.type}"">${makeLinksClickable(bit.title)}</h2>
                 <p class="bit-view-count" style="color: ${bit.custom.text_color};">${bit.watch_count} views</p>
             `;
         } else {
-            title.innerHTML = `<h2 class="yb-autoText yb-titleText-bit ${bit.type}">${makeLinksClickable(bit.title)}</h2>`;
+            title.innerHTML = `<h2 class="yb-font-auto yb-titleText-bit ${bit.type}">${makeLinksClickable(bit.title)}</h2>`;
         }
             
     }
@@ -576,7 +576,7 @@ function yb_buildCommentField(bit) {
     let comment_field_container = yb_createElement("div", "yb-container-commentField", `field-write-comment-${bit.id}`);
     
     //Comment Field
-    let comment_field = yb_createElement("input", "yb-field-commentField field-border yb-autoText", `field-write-comment-${bit.id}`);
+    let comment_field = yb_createElement("input", "yb-field-commentField field-border yb-font-auto", `field-write-comment-${bit.id}`);
     comment_field.setAttribute("placeholder", "Write Comment");
     comment_field_container.appendChild(comment_field);
 
@@ -775,7 +775,7 @@ function yb_buildComment(comment){
             `delete-comment-${comment_id}`, 
         );
         
-        comment_delete_button.innerHTML = `<svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>`;
+        comment_delete_button.innerHTML = `<svg class="yb-transform-center all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>`;
         comment_delete_button.setAttribute("data-catid", comment_id);
         comment_delete_button.setAttribute("data-bitid", comment.bit);
         comment_bubble.appendChild(comment_delete_button);

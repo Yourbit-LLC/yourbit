@@ -1,19 +1,19 @@
 {% load static %}
 
 <div id='div-header' class="div-header">
-    <div class="cb-panel-back" onclick="yb_startBitStream() yb_minimizeVideo()"><svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
-    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb" onclick="yb_startBitStream()">Bitstream</h3>
+    <div class="cb-panel-back" onclick="yb_startBitStream() yb_minimizeVideo()"><svg class="yb-margin-center tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
+    <h3 class="yb-fillWidth yb-margin-L10 yb-font-auto yb-margin-center tb" onclick="yb_startBitStream()">Bitstream</h3>
 </div>
 <div>
-    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb">{{bit.title}}</h3>
+    <h3 class="yb-fillWidth yb-margin-L10 yb-font-auto yb-margin-center tb">{{bit.title}}</h3>
 </div>
 {% include "yb_bits/video_player.html" %}
 
 {% include "yb_bits/bit_interactions.html" %}
 
 <div class="yb-filter-container yb-fillWidth yb-margin-T10 yb-hblock-2">
-    <button class="yb-filter-button yb-button-wide tiny-wide yb-autoText yb-center-margin lr rounded active" data-filter-class="0">Comments</button>
-    <button class="yb-filter-button yb-button-wide tiny-wide yb-autoText yb-center-margin lr rounded" data-filter-class="1">More</button>
+    <button class="yb-filter-button yb-button-wide tiny-wide yb-font-auto yb-margin-center lr rounded active" data-filter-class="0">Comments</button>
+    <button class="yb-filter-button yb-button-wide tiny-wide yb-font-auto yb-margin-center lr rounded" data-filter-class="1">More</button>
 </div>
 
 <div class="yb-fillWidth yb-vScroll">

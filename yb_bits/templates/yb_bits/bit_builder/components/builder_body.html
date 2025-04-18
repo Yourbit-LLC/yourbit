@@ -1,6 +1,6 @@
 <!-- Description Field -->
 
-<textarea id="bb-field-body" class="yb-builderBit yb-text-area yb-tform-cntrOrigin bb-field bg-gray-dark yb-autoText squared font-medium align-left border-solid narrowBorder" 
+<textarea id="bb-field-body" class="yb-builderBit yb-text-area yb-tform-cntrOrigin bb-field bg-gray-dark yb-font-auto squared font-medium align-left border-solid narrowBorder" 
 style="position: relative; height: 100px; width: 95%; {% if build_mode == 'edit' and bit.body != '' %}transform: scale(1,1);{%else%}transform: scale(0); display:none;{%endif%} left:50%; transform:translateX(-50%);"
 placeholder="{% if build_mode == 'edit' and bit.body != ''%}{{bit.body}}{%else%}Description{%endif%}"
 ></textarea>
@@ -13,8 +13,8 @@ placeholder="{% if build_mode == 'edit' and bit.body != ''%}{{bit.body}}{%else%}
             transform: translateX(-50%) scale(0); display:none;
         {%endif%}
     {%endif%}" 
-    class = "yb-button-flex squared transparent font-white font-small yb-center-transform lr bb-button">
+    class = "yb-button-flex squared transparent font-white font-small yb-transform-center lr bb-button">
     Add Description
 </button>
 
-<p id="description-bit-preview" class="yb-description-bit yb-autoText yb-padding-L5 align-left yb-margin-B20" style="display: none;"></p>
+<p id="description-bit-preview" class="yb-description-bit yb-font-auto yb-padding-L5 align-left yb-margin-B20" style="display: none;"></p>

@@ -5,24 +5,24 @@
 
 
 <div id='div-header' class="div-header">
-    <div class="cb-panel-back" onclick="customize_url('')"><svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
-    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb align-left yb-pText" onclick="customize_url('')">Back</h3>
+    <div class="cb-panel-back" onclick="customize_url('')"><svg class="yb-margin-center tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
+    <h3 class="yb-fillWidth yb-margin-L10 yb-font-auto yb-margin-center tb align-left yb-pText" onclick="customize_url('')">Back</h3>
     <div></div>
 </div>
 <div class="yb-vScroll" style="padding-bottom: 150px;">
-<h2 class="yb-autoText align-center yb-pHead">Customize Bit</h2>
+<h2 class="yb-font-auto align-center yb-pHead">Customize Bit</h2>
 <div class="yb-fillWidth align-center">
     {% if user_profile.custom.bit_colors_on %}
-    <button class="yb-button-flex rg-toggle-button green active font-white rounded yb-center-margin lr" style="width: 150px;" id="custom-bit-toggle">Custom Bits: <b>ON</b></button>
+    <button class="yb-button-flex rg-toggle-button green active font-white rounded yb-margin-center lr" style="width: 150px;" id="custom-bit-toggle">Custom Bits: <b>ON</b></button>
     {% else %}
-    <button class="yb-button-flex rg-toggle-button yb-red font-white rounded yb-center-margin lr" style="width: 150px;" id="custom-bit-toggle">Custom Bits: <b>OFF</b></button>
+    <button class="yb-button-flex rg-toggle-button yb-red font-white rounded yb-margin-center lr" style="width: 150px;" id="custom-bit-toggle">Custom Bits: <b>OFF</b></button>
     {% endif %}
 </div>
 <br>
 <div id="bit-preview" class="yb-element-background yb-bit-shell chatbit preview" data-type="video" data-id="preview" data-userid="undefined" data-username="{{bit.username}}" data-button-color="undefined" data-icon-color="undefined" data-secondary-color="{{bit.custom.secondary_color}}" data-primary-color="{{bit.custom.primary_color}}" style="background-color:{{custom_bit.primary_color}};">
    
     <div id="header-bit-preview" class="yb-header-bit">
-        <div id="profile-image-preview" class="element-accent profile-image-thumbnail tiny yb-center-margin all" style="border-color: rgb(255, 255, 255);">
+        <div id="profile-image-preview" class="element-accent profile-image-thumbnail tiny yb-margin-center all" style="border-color: rgb(255, 255, 255);">
             <img style="object-fit:fill; border-radius: 50%; width: 100%;" src="{{profile_thumbnail_small}}">
         </div>
         <p id="bit-info-preview" class="yb-userInfo-bit">
@@ -45,13 +45,13 @@
         </div>
     </div>
     <div id="title-bit-preview" class="yb-title-bit yb-margin-T10">
-        <h2 class="yb-autoText align-center" id="bit-titleText-preview" style="color:{{custom_bit.title_color}};">
+        <h2 class="yb-font-auto align-center" id="bit-titleText-preview" style="color:{{custom_bit.title_color}};">
             Title Preview
         </h2>
     </div>
     
     <div id="body-bit-preview" class="yb-body-bit">
-        <p id="bit-bodyText-preview" class="yb-bodyText-bit yb-autoText font-medium align-left" style="color:{{custom_bit.text_color}};">
+        <p id="bit-bodyText-preview" class="yb-bodyText-bit yb-font-auto font-medium align-left" style="color:{{custom_bit.text_color}};">
             This is a bit body preview.
         </p>
     </div>
@@ -106,7 +106,7 @@
 
     </div>
     <div id="field-write-comment-preview" class="yb-container-commentField">
-        <input id="field-write-comment-preview" class="yb-field-commentField field-border yb-autoText" placeholder="Write Comment">
+        <input id="field-write-comment-preview" class="yb-field-commentField field-border yb-font-auto" placeholder="Write Comment">
         <button id="button-submit-comment-preview" class="yb-send-comment" name="send_comment" data-catid="preview">
             <svg style="display: block; top: 50%; left: 50%; transform: translate(-50%, -50%); position: absolute;" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
                 <path style="fill: white;" d="M6 19.05 7.975 18.25Q7.725 17.525 7.513 16.775Q7.3 16.025 7.175 15.275L6 16.075Q6 16.075 6 16.075Q6 16.075 6 16.075ZM10 18H14Q14.45 17 14.725 15.562Q15 14.125 15 12.625Q15 10.15 14.175 7.937Q13.35 5.725 12 4.525Q10.65 5.725 9.825 7.937Q9 10.15 9 12.625Q9 14.125 9.275 15.562Q9.55 17 10 18ZM12 13Q11.175 13 10.588 12.412Q10 11.825 10 11Q10 10.175 10.588 9.587Q11.175 9 12 9Q12.825 9 13.413 9.587Q14 10.175 14 11Q14 11.825 13.413 12.412Q12.825 13 12 13ZM18 19.05V16.075Q18 16.075 18 16.075Q18 16.075 18 16.075L16.825 15.275Q16.7 16.025 16.488 16.775Q16.275 17.525 16.025 18.25ZM12 1.975Q14.475 3.775 15.738 6.55Q17 9.325 17 13Q17 13 17 13Q17 13 17 13L19.1 14.4Q19.525 14.675 19.763 15.125Q20 15.575 20 16.075V22L15.025 20H8.975L4 22V16.075Q4 15.575 4.238 15.125Q4.475 14.675 4.9 14.4L7 13Q7 13 7 13Q7 13 7 13Q7 9.325 8.262 6.55Q9.525 3.775 12 1.975Z"></path>
@@ -116,9 +116,9 @@
 </div>
 <br>
 <div class="yb-fillWidth align-center">
-    <button style="width: 75px;" class="yb-button-flex align-center bg-gray-dark font-gray rounded yb-center-margin yb-btn-undo be-set-button" id="undo-bit">Undo</button>
-    <button style="width: 75px;" class="yb-button-flex align-center bg-gray-dark font-gray rounded yb-center-margin yb-btn-reset be-set-button" id="reset-bit">Reset</button>
-    <button style="width: 75px;" class="yb-button-flex align-center bg-gray-dark font-gray rounded yb-center-margin yb-btn-save be-set-button" id="save-bit">Save</button>
+    <button style="width: 75px;" class="yb-button-flex align-center bg-gray-dark font-gray rounded yb-margin-center yb-btn-undo be-set-button" id="undo-bit">Undo</button>
+    <button style="width: 75px;" class="yb-button-flex align-center bg-gray-dark font-gray rounded yb-margin-center yb-btn-reset be-set-button" id="reset-bit">Reset</button>
+    <button style="width: 75px;" class="yb-button-flex align-center bg-gray-dark font-gray rounded yb-margin-center yb-btn-save be-set-button" id="save-bit">Save</button>
 </div>
 <br>
 <div class="yb-panel-wide">
@@ -131,20 +131,20 @@
             <div class = "color-circle" id="bit-shell-color-circle" name="bit-shell" style="background-color: {{custom_bit.primary_color}}"></div>
             <input type="text" name="bit-shell" class="color-input" id="bit-shell-color-picker" style="display: none;" value="{{custom_bit.primary_color}}" data-coloris>
             
-            <p class="yb-autoText">Shell Color</p>
+            <p class="yb-font-auto">Shell Color</p>
         </div>  
         <div >
             <div class = "color-circle" id="bit-button-color-circle" name="bit-button" style="background-color: {{custom_bit.button_color}}"></div>
             <input class="color-input" type="text" id="bit-button-color-picker" name="bit-button" style="display:none;" value="{{custom_bit.button_color}}" data-coloris>
             
-            <p class="yb-autoText">Button Color</p>
+            <p class="yb-font-auto">Button Color</p>
         </div>
         <div >
             <div class = "color-circle" id="bit-feedback-icon-color-circle" name="bit-feedback-icon" style="background-color: {{custom_bit.icon_color}}"></div>
             
             <input class="color-input" type="text" name="bit-feedback-icon" id="bit-feedback-icon-color-picker" style="display:none;" value="{{custom_bit.icon_color}}" data-coloris>
             
-            <p class="yb-autoText">Icon Color</p>
+            <p class="yb-font-auto">Icon Color</p>
         </div>
     </div>
     <br>
@@ -153,7 +153,7 @@
             <div class = "color-circle" id="bit-title-color-circle" name="bit-title" style="background-color: {{custom_bit.title_color}}"></div>
             <input class="color-input" type="text" name="bit-title" id="bit-title-color-picker" style="display:none;" value="{{custom_bit.title_color}}" data-coloris>
             
-            <p class="yb-autoText">Title Color</p>
+            <p class="yb-font-auto">Title Color</p>
         </div>
         <div >
 
@@ -161,14 +161,14 @@
             
             <input class="color-input" type="text" name="bit-text" id="bit-text-color-picker" style="display:none;" value="{{custom_bit.text_color}}" data-coloris>
             
-            <p class="yb-autoText">Text Color</p>
+            <p class="yb-font-auto">Text Color</p>
         </div>
         <div >
             
             <div class = "color-circle" id="bit-accent-color-circle" name="bit-accent" style="background-color: {{custom_bit.accent_color}}"></div>
             <input class="color-input" type="text" name="bit-accent" id="bit-accent-color-picker" style="display:none;" value="{{custom_bit.accent_color}}" data-coloris>
             
-            <p class="yb-autoText">Image Border</p>
+            <p class="yb-font-auto">Image Border</p>
         </div>
     </div>
     <br>
@@ -177,14 +177,14 @@
            
                 <input class="color-input" type="color" name="bit-name" id="bit-name-color-picker" value="#ff0000" >
             
-            <p class="yb-autoText">Name Color</p>
+            <p class="yb-font-auto">Name Color</p>
         </div>
 
         <div>
             
                 <input class="color-input" type="color" name="bit-username" id="bit-username-color-picker" value="#ff0000" >
             
-            <p class="yb-autoText">Username Color</p>
+            <p class="yb-font-auto">Username Color</p>
         </div>
     </div> {% endcomment %}
 

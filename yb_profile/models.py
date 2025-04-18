@@ -132,51 +132,51 @@ class ProfileInfo(models.Model):
     profile = models.OneToOneField(Profile, related_name='profile_info', blank=True, on_delete=models.CASCADE)
 
     #Contact Info
-    email = models.EmailField(max_length=150, blank=True)
-    phone_number = models.CharField(max_length=150, blank=True)
-    address = models.CharField(max_length=150, blank=True)
-    website = models.CharField(max_length=150, blank=True)
-    twitter_handle = models.CharField(max_length=150, blank=True)
-    facebook_handle = models.CharField(max_length=150, blank=True)
-    instagram_handle = models.CharField(max_length=150, blank=True)
-    linkedin_handle = models.CharField(max_length=150, blank=True)
-    tiktok_handle = models.CharField(max_length=150, blank=True)
-    youtube_handle = models.CharField(max_length=150, blank=True)
-    snapchat_handle = models.CharField(max_length=150, blank=True)
+    email = models.EmailField(max_length=150, default="Not Specified")
+    phone_number = models.CharField(max_length=150, default="Not Specified")
+    address = models.CharField(max_length=150, default="Not Specified")
+    website = models.CharField(max_length=150, default="Not Specified")
+    twitter_handle = models.CharField(max_length=150, default="Not Specified")
+    facebook_handle = models.CharField(max_length=150, default="Not Specified")
+    instagram_handle = models.CharField(max_length=150, default="Not Specified")
+    linkedin_handle = models.CharField(max_length=150, default="Not Specified")
+    tiktok_handle = models.CharField(max_length=150, default="Not Specified")
+    youtube_handle = models.CharField(max_length=150, default="Not Specified")
+    snapchat_handle = models.CharField(max_length=150, default="Not Specified")
 
     #Location
-    city = models.CharField(max_length = 150, blank=True)
-    state = models.CharField(max_length = 150, blank=True) 
-    country = models.CharField(max_length = 150, blank=True)
+    city = models.CharField(max_length = 150, default="Not Specified")
+    state = models.CharField(max_length = 150, default="Not Specified") 
+    country = models.CharField(max_length = 150, default="Not Specified")
 
     #Shared industry sector field
     industry = models.CharField(max_length=150, blank=  True)
 
     #Education
     currently_attending_hs = models.BooleanField(default=False)
-    high_school = models.CharField(max_length = 150, blank=True)
+    high_school = models.CharField(max_length = 150, default="Not Specified")
     year_graduated_hs = models.IntegerField(default = 0)
     currently_attending_u = models.BooleanField(default=False)
-    college = models.CharField(max_length = 150, blank=True)
+    college = models.CharField(max_length = 150, default="Not Specified")
     year_graduated_u = models.IntegerField(default = 0)
-    field_of_study = models.CharField(max_length = 150, blank=True)
+    field_of_study = models.CharField(max_length = 150, default="Not Specified")
 
     #Location
-    hometown = models.CharField(max_length = 150, blank=True)
-    country = models.CharField(max_length = 150, blank=True)
-    country_of_origin = models.CharField(max_length = 150, blank=True)
+    hometown = models.CharField(max_length = 150, default="Not Specified")
+    country = models.CharField(max_length = 150, default="Not Specified")
+    country_of_origin = models.CharField(max_length = 150, default="Not Specified")
 
     #Religion
-    religion = models.CharField(max_length=150, blank=True)
-    place_of_worship = models.CharField(max_length = 150, blank=True)
+    religion = models.CharField(max_length=150, default="Not Specified")
+    place_of_worship = models.CharField(max_length = 150, default="Not Specified")
 
     #Workplace
-    current_job = models.CharField(max_length=150, blank=True)
-    current_role = models.CharField(max_length=150, blank=True)
+    current_job = models.CharField(max_length=150, default="Not Specified")
+    current_role = models.CharField(max_length=150, default="Not Specified")
     year_started = models.IntegerField(default = 0)
 
-    first_job = models.CharField(max_length=150, blank=True)
-    first_role = models.CharField(max_length=150, blank=True)
+    first_job = models.CharField(max_length=150, default="Not Specified")
+    first_role = models.CharField(max_length=150, default="Not Specified")
     first_year_started = models.IntegerField(default = 0)
 
 

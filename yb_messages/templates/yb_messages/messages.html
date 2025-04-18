@@ -1,39 +1,39 @@
 {% load static %}
 <div id='div-header' class="div-header">
-    <div class="cb-panel-back" onclick="yb_toggleMainMenu()"><svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
-    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb" onclick="yb_toggleMainMenu()"></h3>
-    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('messages');"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
+    <div class="cb-panel-back" onclick="yb_toggleMainMenu()"><svg class="yb-margin-center tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
+    <h3 class="yb-fillWidth yb-margin-L10 yb-font-auto yb-margin-center tb" onclick="yb_toggleMainMenu()"></h3>
+    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('messages');"><svg class="yb-transform-center all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
 </div>
 
 <div class="yb-flexColumn" id="messages-info">
-    <svg class="yb-autoFill yb-center-margin lr" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e8eaed"><path d="M157.69-180q-23.53 0-40.61-17.08T100-237.69v-484.62q0-23.53 17.08-40.61T157.69-780h644.62q23.53 0 40.61 17.08T860-722.31v484.62q0 23.53-17.08 40.61T802.31-180H157.69ZM480-473.92 145.39-695.39v457.7q0 5.38 3.46 8.84t8.84 3.46h644.62q5.38 0 8.84-3.46t3.46-8.84v-457.7L480-473.92Zm0-47.7 325.61-212.99H155.39L480-521.62ZM145.39-695.39v-39.22V-237.69q0 5.38 3.46 8.84t8.84 3.46h-12.3v-470Z"/></svg>
+    <svg class="yb-autoFill yb-margin-center lr" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e8eaed"><path d="M157.69-180q-23.53 0-40.61-17.08T100-237.69v-484.62q0-23.53 17.08-40.61T157.69-780h644.62q23.53 0 40.61 17.08T860-722.31v484.62q0 23.53-17.08 40.61T802.31-180H157.69ZM480-473.92 145.39-695.39v457.7q0 5.38 3.46 8.84t8.84 3.46h644.62q5.38 0 8.84-3.46t3.46-8.84v-457.7L480-473.92Zm0-47.7 325.61-212.99H155.39L480-521.62ZM145.39-695.39v-39.22V-237.69q0 5.38 3.46 8.84t8.84 3.46h-12.3v-470Z"/></svg>
     <b class="align-center yb-pHead" style="font-size: 18px; letter-spacing: 2px;">MESSAGES</b>
-    <p style="font-size: small; font-weight: 550; padding-left: 5px; padding-right: 5px; font-family: 'Roboto', sans-serif; text-align: center;" class="yb-autoText yb-pText">Message friends, followers, and orbits</p>
+    <p style="font-size: small; font-weight: 550; padding-left: 5px; padding-right: 5px; font-family: 'Roboto', sans-serif; text-align: center;" class="yb-font-auto yb-pText">Message friends, followers, and orbits</p>
 </div>
 
 <div id="button-container" class="yb-flexRow yb-gap10 yb-fillWidth;" style="height: 35px; padding: 5px 5px 5px 5px;">
-    <button class="yb-button-wide yb-center-margin lr rounded border-none" style="width: 50%; height: 30px;"><svg class="yb-center-transform all tiny pointer-object" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path class="yb-grayFill" d="M764.522-134.913 523.848-375.587q-29.761 21.044-65.434 33.065-35.672 12.022-76.292 12.022-102.187 0-173.861-71.674Q136.587-473.848 136.587-576q0-102.152 71.674-173.826Q279.935-821.5 382.087-821.5q102.152 0 173.826 71.674 71.674 71.674 71.674 173.861 0 40.859-12.022 76.292-12.021 35.434-33.065 64.956l240.913 241.152-58.891 58.652ZM382.087-413.5q67.848 0 115.174-47.326Q544.587-508.152 544.587-576q0-67.848-47.326-115.174Q449.935-738.5 382.087-738.5q-67.848 0-115.174 47.326Q219.587-643.848 219.587-576q0 67.848 47.326 115.174Q314.239-413.5 382.087-413.5Z"/></svg></button>
-    <button id="new-message-main" class="yb-button-wide yb-center-margin lr rounded border-none" style="width: 50%; height: 30px;"><svg class="yb-center-transform all tiny pointer-object" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path class="yb-grayFill" d="M218.87-135.869q-34.483 0-58.742-24.259t-24.259-58.742v-522.26q0-34.896 24.109-59.448 24.109-24.553 58.892-23.553h345.76l-83 83.001H218.87v522.26h522.26v-262.282l83.001-83v345.282q0 34.483-24.259 58.742t-58.742 24.259H218.87ZM480-480Zm-99.826 99.826v-158.5l350.413-350.174q12.674-12.674 27.587-18.391 14.913-5.718 30.565-5.718 16.313 0 31.396 5.718 15.083 5.717 27.698 18.174l41.015 40.934q12.913 12.674 18.63 27.913 5.718 15.239 5.718 31.003 0 15.789-5.823 31.108-5.822 15.32-18.525 27.998L538.674-380.174h-158.5Zm456.717-409.065L789-836.891l47.891 47.652Zm-378.5 330.848h47.652l228.848-228.848-23.238-24.326-24.175-23.326-229.087 228.848v47.652Zm253.262-253.174-24.175-23.326 24.175 23.326 23.238 24.326-23.238-24.326Z"/></svg></button>
+    <button class="yb-button-wide yb-margin-center lr rounded border-none" style="width: 50%; height: 30px;"><svg class="yb-transform-center all tiny pointer-object" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path class="yb-grayFill" d="M764.522-134.913 523.848-375.587q-29.761 21.044-65.434 33.065-35.672 12.022-76.292 12.022-102.187 0-173.861-71.674Q136.587-473.848 136.587-576q0-102.152 71.674-173.826Q279.935-821.5 382.087-821.5q102.152 0 173.826 71.674 71.674 71.674 71.674 173.861 0 40.859-12.022 76.292-12.021 35.434-33.065 64.956l240.913 241.152-58.891 58.652ZM382.087-413.5q67.848 0 115.174-47.326Q544.587-508.152 544.587-576q0-67.848-47.326-115.174Q449.935-738.5 382.087-738.5q-67.848 0-115.174 47.326Q219.587-643.848 219.587-576q0 67.848 47.326 115.174Q314.239-413.5 382.087-413.5Z"/></svg></button>
+    <button id="new-message-main" class="yb-button-wide yb-margin-center lr rounded border-none" style="width: 50%; height: 30px;"><svg class="yb-transform-center all tiny pointer-object" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path class="yb-grayFill" d="M218.87-135.869q-34.483 0-58.742-24.259t-24.259-58.742v-522.26q0-34.896 24.109-59.448 24.109-24.553 58.892-23.553h345.76l-83 83.001H218.87v522.26h522.26v-262.282l83.001-83v345.282q0 34.483-24.259 58.742t-58.742 24.259H218.87ZM480-480Zm-99.826 99.826v-158.5l350.413-350.174q12.674-12.674 27.587-18.391 14.913-5.718 30.565-5.718 16.313 0 31.396 5.718 15.083 5.717 27.698 18.174l41.015 40.934q12.913 12.674 18.63 27.913 5.718 15.239 5.718 31.003 0 15.789-5.823 31.108-5.822 15.32-18.525 27.998L538.674-380.174h-158.5Zm456.717-409.065L789-836.891l47.891 47.652Zm-378.5 330.848h47.652l228.848-228.848-23.238-24.326-24.175-23.326-229.087 228.848v47.652Zm253.262-253.174-24.175-23.326 24.175 23.326 23.238 24.326-23.238-24.326Z"/></svg></button>
 </div>
 
 <hr>
 <div style="position: relative; width: 100%">
-    <div class="less-hScroll yb-center-transform tb" onclick="yb_lessHScroll('inbox-filter')" style="display:none;">
-        <svg class="yb-center-transform all yb-autoFill" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"></path></svg>
+    <div class="less-hScroll yb-transform-center tb" onclick="yb_lessHScroll('inbox-filter')" style="display:none;">
+        <svg class="yb-transform-center all yb-autoFill" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"></path></svg>
     </div>
     <div id="inbox-filter" style="height: 40px; scrollbar-width: none; display:grid; grid-template-columns: 4fr 1fr; column-gap: 20px; overflow-x: hidden;" class="yb-hScroll yb-fillWidth yb-relative">
             <div id="filter-container" class="yb-flexRow yb-fillWidth yb-gap5 yb-margin-L5">
                 {% comment %} <span class="yb-fillContainer yb-panel align-center yb-font-autoGray" style="line-height: 2; z-index: 10; position: absolute;"><p><b>Work in Progress...</b> Filter Bar</p></span> {% endcomment %}
-                <button class="message-filter yb-button-wide active medium-wide rounded yb-autoText font-small yb-center-margin tb" name="all">Everyone</button>
-                <button class="message-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb" name="friends">Friends</button>
-                <button class="message-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb" name="followers">Followers</button>
-                <button class="message-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb" name="orbits">Orbits</button>
-                <button class="message-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb" name="public">Public</button>
+                <button class="message-filter yb-button-wide active medium-wide rounded yb-font-auto font-small yb-margin-center tb" name="all">Everyone</button>
+                <button class="message-filter yb-button-wide medium-wide rounded yb-font-auto font-small yb-margin-center tb" name="friends">Friends</button>
+                <button class="message-filter yb-button-wide medium-wide rounded yb-font-auto font-small yb-margin-center tb" name="followers">Followers</button>
+                <button class="message-filter yb-button-wide medium-wide rounded yb-font-auto font-small yb-margin-center tb" name="orbits">Orbits</button>
+                <button class="message-filter yb-button-wide medium-wide rounded yb-font-auto font-small yb-margin-center tb" name="public">Public</button>
 
             </div>
     </div>
-    <div class="more-hScroll yb-center-transform tb" onclick="yb_moreHScroll('inbox-filter')">
-        <svg class="yb-center-transform all yb-autoFill" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
+    <div class="more-hScroll yb-transform-center tb" onclick="yb_moreHScroll('inbox-filter')">
+        <svg class="yb-transform-center all yb-autoFill" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
     </div>
 </div>
 <hr>

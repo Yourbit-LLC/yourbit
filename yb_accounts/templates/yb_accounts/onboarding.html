@@ -4,7 +4,7 @@
     {% load static %}
     <head>
         <!--Link CSS documents for styling-->
-        <link rel="stylesheet" type="text/css" href="{% static 'css/main/yb_modifiers4.css' %}"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/main/yb_modifiers5.css' %}"/>
         <link rel="stylesheet" type="text/css" href="{% static 'css/main/yb_inputs.css' %}"/>
         <link rel="stylesheet" type="text/css" href="{% static 'css/main/yb_buttons6.css' %}"/>
         <link rel="stylesheet" type="text/css" href="{% static 'css/main/yb_animations.css' %}"/>
@@ -127,12 +127,12 @@
             <!--Introduction-->
             <div id="onboarding-1" class="align-center yb-fillContainer">
                 <div class="yb-relative yb-fillWidth" style="height: 40vh;" id="onboarding-header">
-                    <img id="onboarding-logo" class="yb-center-transform all" style="position: absolute; height:15vh;" src="{% static 'images/main/yourbit-logo2023-01.svg' %}">
+                    <img id="onboarding-logo" class="yb-transform-center all" style="position: absolute; height:15vh;" src="{% static 'images/main/yourbit-logo2023-01.svg' %}">
                 </div>
-                <h1 class="yb-autoText yb-margin-T30" id="intro-text" style="opacity: 0;">Welcome to Yourbit, {{ user.first_name }}!</h1>
+                <h1 class="yb-font-auto yb-margin-T30" id="intro-text" style="opacity: 0;">Welcome to Yourbit, {{ user.first_name }}!</h1>
                 <div class="yb-fillWidth" id="action-container">
-                    <p class="yb-autoText yb-margin-T30">Let's get your profile setup with some basics.</p>
-                    <button type="button" id="onboarding-1-next" class="yb-button-flex green yb-autoText rounded" style="width: 120px;" id="onboarding-start">Let's Go!</button>
+                    <p class="yb-font-auto yb-margin-T30">Let's get your profile setup with some basics.</p>
+                    <button type="button" id="onboarding-1-next" class="yb-button-flex green yb-font-auto rounded" style="width: 120px;" id="onboarding-start">Let's Go!</button>
                 </div>
 
             </div>
@@ -143,11 +143,11 @@
                 <form id="bio-form" class="align-center" method="POST" action="/profile/info/onboarding/">
                     {% csrf_token %}
                                                          
-                    <h3 id="onboarding-heading-1" class="yb-autoText">Let's start with the profile info...</h3>
+                    <h3 id="onboarding-heading-1" class="yb-font-auto">Let's start with the profile info...</h3>
 
                     <div class="yb-input-container">
                         <br>
-                        <label class="yb-autoText" for="gender">What's your gender?</label>
+                        <label class="yb-font-auto" for="gender">What's your gender?</label>
                         <br>
                         <select class="yb-input-singleLine yb-font-autoGray yb-bg-autoGray yb-bText plainBorder narrowBorder squared yb-field-background" style="height: 40px !important; width: 90%; max-width: 150px;" name="gender" id="gender">
                             <option value="male">Male</option>
@@ -159,28 +159,28 @@
 
                     <div class="yb-input-container">
                         <br>
-                        <label class="yb-autoText" for="motto">Motto</label>
+                        <label class="yb-font-auto" for="motto">Motto</label>
                         <br>
                         <input class="yb-input-singleLine yb-font-autoGray yb-bg-autoGray yb-bText plainBorder narrowBorder squared yb-field-background" style="height: 32px !important; width: 90%; max-width: 700px;" type="text" name="motto" id="motto" placeholder="Motto">
                     </div>
 
                     <div id="bio-container">
                         <br>
-                        <label class="yb-autoText" for="bio">Bio</label>
+                        <label class="yb-font-auto" for="bio">Bio</label>
                         <br>
-                        <textarea id="bio-field" name="bio" class="yb-bg-autoGray squared {% if active_profile.bio %} yb-pText yb-autoText {% else %} font-gray {% endif %} profile-field" style="width: 98%; height: 100px; max-width: 700px;">{% if active_profile.bio %}{{active_profile.bio}}{% else %} Add bio {% endif %}</textarea>
+                        <textarea id="bio-field" name="bio" class="yb-bg-autoGray squared {% if active_profile.bio %} yb-pText yb-font-auto {% else %} font-gray {% endif %} profile-field" style="width: 98%; height: 100px; max-width: 700px;">{% if active_profile.bio %}{{active_profile.bio}}{% else %} Add bio {% endif %}</textarea>
                     </div>
 
                     {% comment %} <div id="tag-container">
                         <br>
-                        <label class="yb-autoText" for="tags">Profile Tags</label>
+                        <label class="yb-font-auto" for="tags">Profile Tags</label>
                         <br>
-                        <textarea id="tags-field" name="tags" class="yb-bg-autoGray squared {% if request.user.profile.bio %} yb-pText yb-autoText {% else %} font-gray {% endif %} profile-field" style="width: 98%; height: 100px; max-width: 700px;">{% if request.user.profile.bio %}{{request.user.profile.bio}}{% else %} Add bio {% endif %}</textarea>
+                        <textarea id="tags-field" name="tags" class="yb-bg-autoGray squared {% if request.user.profile.bio %} yb-pText yb-font-auto {% else %} font-gray {% endif %} profile-field" style="width: 98%; height: 100px; max-width: 700px;">{% if request.user.profile.bio %}{{request.user.profile.bio}}{% else %} Add bio {% endif %}</textarea>
                     </div> {% endcomment %}
                     <br>
-                    <div id="profile-info-buttons" class="yb-flexRow yb-center-margin all yb-gap10" style="width: 250px;">
-                        <button type="button" id="onboarding-2-back" class="yb-button-wide bg-autoGray rounded yb-autoText yb-relative" style="width: 120px;">Back</button>
-                        <button type="button" id="onboarding-2-next" class="yb-button-wide bg-autoGray rounded yb-autoText yb-relative" style="width: 120px;" hidden>Next</button>
+                    <div id="profile-info-buttons" class="yb-flexRow yb-margin-center all yb-gap10" style="width: 250px;">
+                        <button type="button" id="onboarding-2-back" class="yb-button-wide bg-autoGray rounded yb-font-auto yb-relative" style="width: 120px;">Back</button>
+                        <button type="button" id="onboarding-2-next" class="yb-button-wide bg-autoGray rounded yb-font-auto yb-relative" style="width: 120px;" hidden>Next</button>
                     </div>
                 </form>
             </div>
@@ -189,10 +189,10 @@
             <div id="onboarding-3" style="padding-bottom: 50px;" hidden>
                 <form class="align-center yb-flexColumn yb-gap10 align-center" method="POST">
                     {% csrf_token %}
-                    <h3 class="yb-autoText">Now, let's setup some privacy settings...</h3>
+                    <h3 class="yb-font-auto">Now, let's setup some privacy settings...</h3>
                     <div class="yb-input-container">
                         
-                        <label class="yb-autoText" for="display_real_name">Who can see your real name?</label>
+                        <label class="yb-font-auto" for="display_real_name">Who can see your real name?</label>
                         <br>
                         <select class="yb-input-singleLine yb-font-autoGray yb-bg-autoGray yb-bText plainBorder narrowBorder squared yb-field-background" style="height: 32px !important; width: 90%; max-width: 700px;" name="real_name_visibility" id="display_real_name" name="real_name_visibility">
                             <option value="e">Everyone</option>
@@ -203,12 +203,12 @@
                     </div>
                     <br>
                     <div class="yb-input-container" style="display: none;">
-                        <label class="yb-autoText" for="display_name">What would you like us to refer to you as instead?</label>
+                        <label class="yb-font-auto" for="display_name">What would you like us to refer to you as instead?</label>
                         <input class="yb-input-singleLine yb-font-autoGray yb-bg-autoGray yb-bText plainBorder narrowBorder squared yb-field-background" style="height: 32px !important; width: 90%; max-width: 700px;" type="text" name="display_name" id="display_name" placeholder="Display Name">
                     </div>
                     <br>
                     <div class="yb-input-container align-center">
-                        <label class="yb-autoText" for="comment-privacy">Who can see your comments?</label>
+                        <label class="yb-font-auto" for="comment-privacy">Who can see your comments?</label>
                         <br>
                         <select class="yb-input-singleLine yb-font-autoGray yb-bg-autoGray yb-bText plainBorder narrowBorder squared yb-field-background" style="height: 32px !important; width: 90%; max-width: 700px;" name="comment_vsibility" id="comment-privacy">
                             <option value="e">Everyone</option>
@@ -218,7 +218,7 @@
                     </div>
                     <br>
                     <div class="yb-input-container align-center">
-                        <label class="yb-autoText" for="message-permissions">Who can message you?</label>
+                        <label class="yb-font-auto" for="message-permissions">Who can message you?</label>
                         <br>
                         <select class="yb-input-singleLine yb-font-autoGray yb-bg-autoGray yb-bText plainBorder narrowBorder squared yb-field-background" style="height: 32px !important; width: 90%; max-width: 700px;" name="message_availability" id="message-permissions">
                             <option value="e">Everyone</option>
@@ -229,7 +229,7 @@
                     <br>
                     <!--Allow Followers-->
                     <div class="yb-input-container align-center">
-                        <label class="yb-autoText" for="allow-followers">
+                        <label class="yb-font-auto" for="allow-followers">
                             Do you want to allow followers? 
                             <br>
                             <small><i>Followers do not require 2 way confirmation, and can only see public posts.</i></small>
@@ -243,7 +243,7 @@
                     <br>
                     <!--Default Posting Public or Private-->
                     <div class="yb-input-container align-center">
-                        <label class="yb-autoText" for="default-posting">
+                        <label class="yb-font-auto" for="default-posting">
                             By default, do you want your posts to be public or private?
                             <br>
                             <small><i>Private posts can only be seen by you and your friends.</i></small>
@@ -257,7 +257,7 @@
                     <br>
                     <!--Search Visibility-->
                     <div class="yb-input-container" class="yb-input-container align-center">
-                        <label class="yb-autoText" for="search-visibility"><small><i>Last one for this section...</small></i><br>Do you want to be visible in search, or found by link only?</label>
+                        <label class="yb-font-auto" for="search-visibility"><small><i>Last one for this section...</small></i><br>Do you want to be visible in search, or found by link only?</label>
                         <br>
                         <select class="yb-input-singleLine yb-font-autoGray yb-bg-autoGray yb-bText plainBorder narrowBorder squared yb-field-background" style="height: 32px !important; width: 90%; max-width: 700px;" name="searchable" id="search-visibility">
                             <option value="True">Visible</option>
@@ -265,9 +265,9 @@
                         </select>
                     </div>
 
-                    <div id="privacy-buttons" class="yb-flexRow yb-center-margin all yb-gap10">
-                        <button type="button" id="onboarding-3-back" class="yb-button-wide bg-autoGray rounded yb-autoText yb-relative" style="width: 120px;">Back</button>
-                        <button type="submit" id="onboarding-3-next" class="yb-button-wide bg-autoGray rounded yb-autoText yb-relative" style="width: 120px;" hidden>Looks Good!</button>
+                    <div id="privacy-buttons" class="yb-flexRow yb-margin-center all yb-gap10">
+                        <button type="button" id="onboarding-3-back" class="yb-button-wide bg-autoGray rounded yb-font-auto yb-relative" style="width: 120px;">Back</button>
+                        <button type="submit" id="onboarding-3-next" class="yb-button-wide bg-autoGray rounded yb-font-auto yb-relative" style="width: 120px;" hidden>Looks Good!</button>
                     </div>
 
                 </form>

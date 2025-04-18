@@ -1,7 +1,7 @@
 {% load static %}
 <div class="yb-drawer-search" id="sticker-search-bar">
-    <h3 class="yb-autoText yb-pText align-center">Edit Buttons</h3>
-    <div class='yb-close-drawer' id='yb-drawer-close' onclick="yb_closeDrawer(); yb_focusOff('profile-interaction-container', 'editable');"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
+    <h3 class="yb-font-auto yb-pText align-center">Edit Buttons</h3>
+    <div class='yb-close-drawer' id='yb-drawer-close' onclick="yb_closeDrawer(); yb_focusOff('profile-interaction-container', 'editable');"><svg class="yb-transform-center all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
 </div>
 <hr style="border-color: gray;">
 
@@ -10,7 +10,7 @@
         <div>
             <div id="font-style-section" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; grid-template-rows: 45px 35px auto auto; width: 95%; margin: auto; grid-gap: 10px;">
                 <h3 class="align-center squared font-white yb-dr-section-label">Adjust Background</h3>
-                <p class="field-cover-label yb-autoText yb-pText align-left" style="grid-column: 1; grid-row: 2;">
+                <p class="field-cover-label yb-font-auto yb-pText align-left" style="grid-column: 1; grid-row: 2;">
                     Button Color 
                     
                     <small style="color: skyblue; margin-left: 20px;"> 
@@ -19,11 +19,11 @@
                         Button
                     </small> 
                 </p>  
-                <div class = "color-circle yb-center-margin tb" id="button-color-circle" name="button" style="position: relative; margin-right: 10px; background-color: {{button_color}}; grid-column: 2; grid-row: 2; height: 25px; width: 25px;"></div>  
+                <div class = "color-circle yb-margin-center tb" id="button-color-circle" name="button" style="position: relative; margin-right: 10px; background-color: {{button_color}}; grid-column: 2; grid-row: 2; height: 25px; width: 25px;"></div>  
                 <input class="coloris color-input" type="text" name="button-color" style="display: none;" id="button-color-picker" value="{{button_color}}">  
                 <hr style="grid-row: 3; grid-column-start: 1; grid-column-end: 3; width: 100%; border-color: gray;">
-                <p class="field-cover-label yb-autoText yb-pText align-left" style="grid-column: 1; grid-row: 4;">Button Shape </p>  
-                <div id="shape-options" style="display: grid; right: 0px; grid-column: 2; grid-row: 4; grid-template-columns: 1fr 1fr;" class="yb-autoText align-center">
+                <p class="field-cover-label yb-font-auto yb-pText align-left" style="grid-column: 1; grid-row: 4;">Button Shape </p>  
+                <div id="shape-options" style="display: grid; right: 0px; grid-column: 2; grid-row: 4; grid-template-columns: 1fr 1fr;" class="yb-font-auto align-center">
                     <div>
                         <label for="rounded-button">
                             <input class="button-shape-radio" type="radio" id="rounded-button" name="button-shape" value="0" {% if button_shape == 0 %} checked {% endif %}>
@@ -49,7 +49,7 @@
                 <h3 class="align-center squared font-white yb-dr-section-label">Adjust Font</h3>
                 
                                 
-                <p class="field-cover-label yb-autoText yb-pText align-left" style="grid-column: 1; grid-row: 2;">Label</p>
+                <p class="field-cover-label yb-font-auto yb-pText align-left" style="grid-column: 1; grid-row: 2;">Label</p>
                 <div id="yb-field-container-align-text" class="yb-field-container" style="grid-column: 2; grid-row: 2;">
                     <select type="text" class='notify-field yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoGray' name="yb-align-text" id="yb-align-text" style="width: 95%; margin-left: auto; margin-right: auto;">
                         <option value="0">Text</option>
@@ -58,7 +58,7 @@
                 </div>
 
                 <hr style="grid-row: 3; grid-column-start: 1; grid-column-end: 3; width: 100%; border-color: gray;">
-                <p class="field-cover-label yb-autoText yb-pText align-left" style="grid-column: 1; grid-row: 4;">
+                <p class="field-cover-label yb-font-auto yb-pText align-left" style="grid-column: 1; grid-row: 4;">
                     Font Color 
                     <small style="color: skyblue; margin-left: 20px;"> 
                         <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" style="position: relative; top: 30%; margin-right: 3px;" height="20px" fill="cyan"><path d="M446.67-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h166.67v66.67H280q-55.56 0-94.44 38.84-38.89 38.84-38.89 94.33 0 55.49 38.89 94.49 38.88 39 94.44 39h166.67V-280ZM323.33-446.67v-66.66h313.34v66.66H323.33Zm190 166.67v-66.67H680q55.56 0 94.44-38.84 38.89-38.84 38.89-94.33 0-55.49-38.89-94.49-38.88-39-94.44-39H513.33V-680H680q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H513.33Z"/></svg>
@@ -66,10 +66,10 @@
                         Button Text
                     </small> 
                 </p>  
-                <div class = "color-circle yb-center-margin tb" id="button-text-color-circle" name="button-text-color" style="position: relative; margin-right: 10px; background-color: {{button_text_color}}; grid-column: 2; grid-row: 4; height: 25px; width: 25px;"></div>  
+                <div class = "color-circle yb-margin-center tb" id="button-text-color-circle" name="button-text-color" style="position: relative; margin-right: 10px; background-color: {{button_text_color}}; grid-column: 2; grid-row: 4; height: 25px; width: 25px;"></div>  
                 <input class="coloris color-input" type="text" name="button-text-color" style="display: none;" id="button-text-color-picker" value="{{button_text_color}}">  
                 <hr style="grid-row: 5; grid-column-start: 1; grid-column-end: 3; width: 100%; border-color: gray;">
-                <p class="field-cover-label yb-autoText yb-pText align-left" style="grid-column: 1; grid-row: 6;">
+                <p class="field-cover-label yb-font-auto yb-pText align-left" style="grid-column: 1; grid-row: 6;">
                     Font Size
                                         
                     <small style="color: skyblue; margin-left: 20px;"> 

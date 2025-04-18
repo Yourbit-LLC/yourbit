@@ -3,7 +3,7 @@
         <div id="comment-shell-{{comment.id}}" class="yb-comment-shell">
             <div id="{{comment.id}}" class="yb-comment-item right font-medium yb-gray bit-background-color bit-text-color" data-catid="{{comment.id}}">
                 <div id="delete-comment-{{comment.id}}" class="yb-delete-comment pointer-object circle border-none" data-catid="{{comment.id}}" data-bitid="{{comment.bit.id}}">
-                    <svg style="fill: black;" class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20">
+                    <svg style="fill: black;" class="yb-transform-center all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20">
                         <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"></path>
                     </svg>
                 </div>
@@ -15,7 +15,7 @@
             </div>
         </div>
     {% else %}
-    <div id="comment-{{comment.id}}" class="yb-comment-item left font-medium yb-bg-autoGray yb-autoText" data-cat-id="{{comment.id}}">
+    <div id="comment-{{comment.id}}" class="yb-comment-item left font-medium yb-bg-autoGray yb-font-auto" data-cat-id="{{comment.id}}">
         <p id="comment-name-{{comment.id}}" class="comment-name">{{comment.profile.display_name}}</p>
         <p id="comment-body-{{comment.id}}" class="comment-body">{{comment.body}}</p>
         <p id="comment-time-{{comment.id}}" class="comment-time">
