@@ -37,8 +37,6 @@ const CARD_CONTAINER = document.getElementById("yb-card");
 
 const PHOTO_VIEWER = document.getElementById("photo-viewer");
 
-
-
 function yb_openDrawer(template, id=null, reloadable=true) {
     if (!DRAWER.classList.contains("open")) {
         DRAWER.classList.add("open");
@@ -543,12 +541,21 @@ function yb_launch2WayContainer(page, data=null) {
         let container_content = container[1].querySelector(".yb-2Way-content");
         container[1].setAttribute("data-state", page);
         $(container_content).html("");
-        if (data) {
-            $(container_content).load(this_page.template + data.toString() + "/");
+
+        let page_ghost = yb_extractGhost(page);
+
+        if (page_ghost != null){
+            yb_releaseGhost(page_ghost, container_content);
         } else {
-            $(container_content).load(this_page.template)
+
+            if (data) {
+                $(container_content).load(this_page.template + data.toString() + "/");
+                yb_createGhost(page, container_content);
+            } else {
+                $(container_content).load(this_page.template)
+                yb_createGhost(page, container_content);
+            }
         }
-        
         yb_filterScroll();
         history.pushState({}, "", this_page.url);
     }

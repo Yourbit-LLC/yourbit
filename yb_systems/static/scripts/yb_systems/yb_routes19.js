@@ -252,6 +252,185 @@ const LIST_TEMPLATE_INDEX = {
 
 }
 
+
+
+/*
+    YB Ghosts
+
+    Ghosts are used to preload pages and json data to prepare for user access. 
+    
+    Below are the 2 ghost tracking objects.
+    
+    -Active Ghosts
+        The first is the active ghost containers. Ghost containers are objects with preloaded HTML. Each object key 
+        should match the page title registered in the route index. The value of the ghost container should be the full
+        page html.The navigateTo function, will check the ghost container keys for a match and load the content if it exists.
+
+        example key: "settings-profile"
+
+    -Ghost Data
+        The second is the ghost data object. This object is used to preload json data for the page. 
+        The keys should match the page title registered in the route index and the ID of the content on the page. 
+        The navigate to function will check the ghost data keys for a match and load the content if it exists.
+
+        A ghost data title is made up of the page title and the ID of the content on the page separated by a "-".
+
+        example key: "conversation-324"
+
+*/
+
+var trapped_ghosts = {};
+
+var ghost_data = {};
+
+
+function yb_getGhostData(key) {
+    if (ghost_data[key] != null) {
+        return ghost_data[key];
+    } else {
+        return null;
+    }
+}
+
+function yb_setGhostData(key, data) {
+    if (ghost_data[key] != null) {
+        ghost_data[key] = data;
+    } else {
+        ghost_data[key] = data;
+    }
+}
+
+function yb_extractGhost(key) {
+    if (trapped_ghosts[key] != null) {
+        return trapped_ghosts[key];
+    } else {
+        return null;
+    }
+}
+
+function yb_trapGhost(key, data) {
+    if (trapped_ghosts[key] != null) {
+        trapped_ghosts[key] = data;
+    } else {
+        trapped_ghosts[key] = data;
+    }
+    return trapped_ghosts[key];
+}
+
+function yb_catchGhost(page, key) {
+    //fetch page and store in active ghosts using the provided key as the ghost object key
+    fetch(page, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'text/html'
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.text();
+    })
+
+    .then(data => {
+        //Store the page in the active ghosts object using the provided key as the ghost object key
+        yb_trapGhost(key, data);
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+    });
+}
+
+function yb_releaseGhost(htmlText, target) {
+    try {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlText, 'text/html');
+
+        // Remove old content and insert new HTML
+        target.innerHTML = '';
+        Array.from(doc.body.childNodes).forEach(node => {
+            target.appendChild(node.cloneNode(true));
+        });
+
+        // Execute <script> tags in order
+        const scripts = doc.querySelectorAll('script');
+        for (const script of scripts) {
+            const newScript = document.createElement('script');
+            if (script.src) {
+                newScript.src = script.src;
+                newScript.async = false;
+            } else {
+                newScript.textContent = script.textContent;
+            }
+            document.head.appendChild(newScript);
+        }
+
+    } catch (err) {
+        console.error('Error injecting HTML:', err);
+    }
+}
+
+
+function yb_createGhost(key, data=null, container_type, from_url=false) {
+    let page = null;
+    if (from_url) {
+        if (container_type == "2way") {
+        
+            //Match key with page from 2Way index
+            if (data != null) {
+                page = TWO_WAY_INDEX[key].template.replace("{{data}}", data.toString())
+            } else {
+                page = TWO_WAY_INDEX[key].template
+            }
+        } else if (container_type == "content-container") {
+            //Match key with page from core index
+            if (data != null) {
+                page = CORE_TEMPLATE_INDEX[key].template.replace("{{data}}", data.toString())
+            } else {
+                page = CORE_TEMPLATE_INDEX[key].template
+            }
+        }
+        else if (container_type == "drawer") {
+            //Match key with page from drawer index
+            if (data != null) {
+                page = DRAWER_CONTENT[key].replace("{{data}}", data.toString())
+            } else {
+                page = DRAWER_CONTENT[key]
+            }
+        } else if (container_type == "list") {
+            //Match key with page from list index
+            if (data != null) {
+                page = LIST_TEMPLATE_INDEX[key].replace("{{data}}", data.toString())
+            } else {
+                page = LIST_TEMPLATE_INDEX[key]
+            }
+        } else if (container_type == "card") {
+            //Match key with page from card index
+            if (data != null) {
+                page = CARD_CONTENT[key].replace("{{data}}", data.toString())
+            } else {
+                page = CARD_CONTENT[key]
+            }
+        }
+
+        yb_catchGhost(page, key);
+
+    } else {
+
+        yb_setActiveGhost(key, data);
+        
+    }
+}
+
+function yb_updateGhostContent(key, data) {
+    let ghost = yb_getActiveGhost(key);
+    if (ghost != null) {
+        yb_fetchGhost();
+    } else {
+        console.log("Ghost not found: " + key);
+    }
+}
+
 //Internal back tracking variables
 var last_page = "home";
 var last_data = null;
