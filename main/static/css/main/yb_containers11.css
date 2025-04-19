@@ -584,7 +584,7 @@
         width: 85px;
         height: 85px;
         display: grid;
-        grid-template-rows: 1fr 3fr;
+        grid-template-rows: 3fr 1fr;
         position: relative;
         transition: 0.5s;
     }
@@ -593,6 +593,11 @@
         position: relative;
         max-width: 475px;
         margin: auto;
+    }
+
+    .yb-menu-grid svg {
+        height: 36px !important;
+        width: 36px !important;
     }
 } 
 @media screen and (min-width: 768px) {
