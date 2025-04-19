@@ -159,7 +159,7 @@
         margin-bottom: auto;
         grid-column-start: 1;
         grid-column-end: 3;
-        text-align: center;
+        text-align: left;
     }
     .yb-player-user-name {
         font-size: 12px;
