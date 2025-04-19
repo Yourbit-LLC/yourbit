@@ -381,7 +381,7 @@
         width: 100%;
         margin-left: auto;
         margin-right: auto;
-        height: calc(100vh - 550px);
+        height: calc(100vh - 520px);
     }
 
     .mobile-video-comment-divider {

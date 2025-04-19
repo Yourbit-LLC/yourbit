@@ -9,13 +9,13 @@
                 </div>
                 <p id="comment-name-{{comment.id}}" class="comment-name">{{comment.profile.display_name}}</p>
                 <p id="comment-body-{{comment.id}}" class="comment-body">{{comment.body}}</p>
-                <p id="comment-time-{{comment.id}}" class="comment-time">
-                    <small class="font-small" style="color:gray;">{{comment.time}}</small>
+                <p id="comment-time-{{comment.id}}" style="font-size:10px;" class="comment-time">
+                    <small style="color:gray;">{{comment.time}}</small>
                 </p>
             </div>
         </div>
     {% else %}
-    <div id="comment-{{comment.id}}" style="font-size:12px;" class="yb-comment-item left yb-bg-autoGray yb-font-auto" data-cat-id="{{comment.id}}">
+    <div id="comment-{{comment.id}}" style="font-size:10px;" class="yb-comment-item left yb-bg-autoGray yb-font-auto" data-cat-id="{{comment.id}}">
         <p id="comment-name-{{comment.id}}" class="comment-name">{{comment.profile.display_name}}</p>
         <p id="comment-body-{{comment.id}}" class="comment-body">{{comment.body}}</p>
         <p id="comment-time-{{comment.id}}" class="comment-time">
