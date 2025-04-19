@@ -30,20 +30,6 @@
     }
 }
 
-@media screen and (max-width: 768px) {
-    .yb-player-grid {
-        display: flex;
-        flex-direction: column;
-        margin: auto;
-        width: 97vw;
-        max-width: 1250px;
-        padding-left: 5px;
-        padding-right: 5px;
-
-    }
-    
-}
-
 .yb-player {
     position: relative;
     width: 98%;
@@ -95,20 +81,6 @@
     height: 40px;
 }
 
-#video-about-header {
-    display: grid;
-    grid-template-rows: 30px 20px auto;
-    border-radius: 10px;
-    width: 100%;
-    padding-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    grid-template-columns: auto 60px;
-    grid-column-start: 1;
-    grid-column-end: 3;
-    padding-bottom: 10px;
-}
-
 #video-about-header:hover {
     filter: brightness(200%);
     -webkit-filter: brightness(200%);
@@ -126,6 +98,10 @@
 
 
     }
+    
+    .yb-player-title {
+        font-size: 18px;
+    }
 
     .yb-player-actions {
         grid-column: 2;
@@ -137,10 +113,62 @@
     .video-user-info {
         grid-column: 1;
     }
+
+    
+    #video-about-header {
+        display: grid;
+        grid-template-rows: 30px 20px auto;
+        border-radius: 10px;
+        width: 100%;
+        padding-top: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        grid-template-columns: auto 60px;
+        grid-column-start: 1;
+        grid-column-end: 3;
+        padding-bottom: 10px;
+    }
+
+    
+    .about-video-label {
+        padding-left: 5px;
+        margin-bottom: 5px;
+
+    }
+
 }
 
 
 @media screen and (max-width: 768px){
+
+    .yb-player-grid {
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        width: 100vw;
+    }
+
+    .yb-player-title {
+        font-size: 16px;
+    }
+    .yb-player-user-name {
+        font-size: 12px;
+    }
+
+    .about-video-label {
+        padding-left: 5px;
+        margin-bottom: 5px;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .video-air-date {
+        grid-row: 2;
+        font-size: 10px;
+        /* font-weight: 300; */
+        padding-left: 32px;
+    }
+
     .yb-player-info {
         display: grid;
         grid-gap: 5px;
@@ -157,8 +185,13 @@
 
     .yb-player-actions {
         grid-row: 3;
+        grid-column-start: 1;
+        grid-column-end: 3;
         margin-left: auto;
         margin-right: auto;
+        height: 24px;
+        padding: 10px;
+        width: 91%;
         
     }
     .video-user-info {
@@ -170,8 +203,25 @@
         margin-left: auto;
         /* grid-row: 1; */
         margin-right: auto;
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row: 2;
 
     }
+
+    
+#video-about-header {
+    display: grid;
+    grid-template-rows: 30px 20px auto;
+    border-radius: 10px;
+    width: 91%;
+    margin-left: auto;
+    margin-right: auto;
+    grid-template-columns: auto 60px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    padding: 10px;
+}
 
 
 }

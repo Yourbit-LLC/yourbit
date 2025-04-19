@@ -1,36 +1,6 @@
 {% load static %}
 <style>
     {% if custom_core.bit_colors_on == False %}
-        @media (prefers-color-scheme: dark) {
-            .yb-player-actions {
-                background-color: rgb(25, 25, 25);
-            }
-
-            
-            .video-user-info {
-                background-color: rgb(50, 50, 50);
-            }
-
-            #video-about-header {
-                background-color: rgb(25, 25, 25);
-            }
-        }
-        @media (prefers-color-scheme: light) {
-
-            .yb-player-actions {
-                background-color: rgb(200, 200, 200);
-            }
-
-            .video-user-info {
-                background-color: rgb(255, 255, 255);
-            }
-
-            #video-about-header {
-                background-color: rgb(200, 200, 200);
-            }
-        
-        }
-
         
         mux-player {
             --center-seek-backward-button: block;
@@ -40,7 +10,7 @@
         }
     {% endif %}
 </style>
-<link rel="stylesheet" href="{% static 'css/yb_video/player11.css' %}">
+<link rel="stylesheet" href="{% static 'css/yb_video/player12.css' %}">
 <meta property="og:title" content="{{bit.title}}" />
 <meta property="og:type" content="video.movie" />
 <meta property="og:url" content="https://yourbit.me/bits/view/{{bit.id}}/" />
