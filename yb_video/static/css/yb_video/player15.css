@@ -222,7 +222,7 @@
     
     #video-about-header {
         display: grid;
-        grid-template-rows: 26px 10px auto;
+        grid-template-rows: 24px 10px auto;
         border-radius: 10px;
         width: 91%;
         margin-left: auto;
