@@ -182,7 +182,7 @@
     .yb-player-info {
         display: grid;
         grid-gap: 5px;
-        grid-template-rows: 30px 60px 44px 55px;
+        grid-template-rows: 30px 60px 44px 60px;
         margin-bottom: 10px;
 
     }
@@ -222,7 +222,7 @@
     
     #video-about-header {
         display: grid;
-        grid-template-rows: 18px 10px auto;
+        grid-template-rows: 26px 10px auto;
         border-radius: 10px;
         width: 91%;
         margin-left: auto;
