@@ -595,7 +595,7 @@
         margin: auto;
     }
 
-    .yb-menu-grid svg {
+    .yb-svg-gridItem {
         height: 36px !important;
         width: 36px !important;
     }
