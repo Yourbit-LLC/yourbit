@@ -970,6 +970,16 @@ textarea::placeholder {
     margin-left: auto;
     margin-right: auto;
 }
+
+@media screen and (min-width: 2048px) {
+    .flat-bit-separator {
+        display: var(--yb-separator-display);
+        border-color: rgb(100, 100, 100);
+        max-width: 1100px;
+        margin-left: auto;
+        margin-right: auto;
+}
+}
 .nav-auth {
     grid-column-start: 4;
     grid-column-end: 6;
