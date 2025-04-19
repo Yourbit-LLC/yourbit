@@ -415,7 +415,7 @@ function yb_createGhost(key, data=null, container_type, from_url=false) {
 
     } else {
 
-        yb_setActiveGhost(key, data);
+        yb_trapGhost(key, data);
         
     }
 }
