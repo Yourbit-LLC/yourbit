@@ -477,6 +477,14 @@
             -webkit-backdrop-filter: brightness(0.7) blur(80px) !important;
         }
     }
+
+    
+    .yb-menu-grid {
+        position: relative;  
+        max-width: 275px;
+        margin: auto;
+    }
+
 }
 
 
@@ -583,7 +591,7 @@
 
     .yb-menu-grid {
         position: relative;
-        max-width: 375px;
+        max-width: 475px;
         margin: auto;
     }
 } 
@@ -642,6 +650,14 @@
         left: 50%;
         transition: 0.35s;
     }
+
+    
+    .yb-menu-grid {
+        position: relative;  
+        max-width: 275px;
+        margin: auto;
+    }
+
 }
 
 @media screen and (min-width: 2048px) {
