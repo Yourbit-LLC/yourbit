@@ -391,13 +391,11 @@
 @media (prefers-color-scheme:dark) {
     .yb-button-threeQuarter {
         color: white;
-        background-color: #4b4b4b;
     }
 }
 
 @media (prefers-color-scheme:light) {
     .yb-button-threeQuarter {
-        background-color: rgb(200, 200, 200);
         color: black;
     }
 }
