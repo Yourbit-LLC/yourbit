@@ -131,17 +131,17 @@
         
         //Iterate through bits in video json to use in rendering the up next qeueue
         console.log("Video JSON: ", video_json);
-        for (const key in video_json) {
+        for (var key in video_json) {
             console.log("Clearing video preview element");
             var bit = video_json[key];
-            var this_video = bit.video_upload;
+            var this_video = bit["video_upload"];
             var videoElement = yb_createElement("div", "yb-container-video-listItem", "yb-video-list-item-" + key);
             videoElement.setAttribute("data-id", this_video.id);
             
-            if (video.thumbnail["storage_type"] == "yb") {
-                var thumbnail = this_video.thumbnail["image"];
+            if (video["thumbnail"]["storage_type"] == "yb") {
+                var thumbnail = this_video["thumbnail"]["image"];
             } else {
-                var thumbnail = this_video.thumbnail["ext_url"];
+                var thumbnail = this_video["thumbnail"]["ext_url"];
             }
 
             videoElement.innerHTML = `
