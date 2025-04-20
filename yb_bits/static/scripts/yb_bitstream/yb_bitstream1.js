@@ -4,6 +4,8 @@ var bitstream_data = new Map(); //Stores captured information on current bitstre
 var loaded_bits = []; //Stores IDs of bits that have been loaded
 var unloaded_bits = []; //Stores IDs of bits that have been unloaded
 const SPACES = ["global", "chat", "video", "photo"]
+var bitstream_json = {}; //Stores the JSON data for the current bitstream
+var video_json = {}; //Stores the JSON data for the current video stream
 var bit_elements;
 
 const bitObserver = new IntersectionObserver((entries, observer) => {
@@ -245,8 +247,16 @@ function yb_requestFeed(data=null) {
         url: '/bits/api/bitstream/',
         data: data,
         success: function(response) {
-            //Update the feed
+            //Store feed data in bitstream_json
+            for (let i = 0; i < response.length; i++) {
+                let bit = response[i];
+                bitstream_json[bit.id] = bit;
+                if (response[i].type == "video") {
+                    video_json[bit.id] = bit;
+                }
+            }
             
+            //Update the feed
             console.log("Starting location: " + start_location)
 
             console.log("Current location: " + yb_getSessionValues('location'))
