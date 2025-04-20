@@ -133,9 +133,9 @@
         console.log("Video JSON: ", video_json);
         for (const key in video_json) {
             console.log("Clearing video preview element");
-            var bit = video_json[i];
+            var bit = video_json[key];
             var this_video = bit.video_upload;
-            var videoElement = yb_createElement("div", "yb-container-video-listItem", "yb-video-list-item-" + i);
+            var videoElement = yb_createElement("div", "yb-container-video-listItem", "yb-video-list-item-" + key);
             videoElement.setAttribute("data-id", this_video.id);
             
             if (video.thumbnail.storage_type == "yb") {
