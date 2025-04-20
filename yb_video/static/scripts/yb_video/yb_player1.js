@@ -62,8 +62,8 @@
         send_comment.addEventListener("click", yb_pressSendComment);
         
         //Iterate through bits in video json to use in rendering the up next qeueue
-        for (var i = 0; i < VIDEO_QUEUE.length; i++) {
-            var bit = VIDEO_QUEUE[i];
+        for (var i = 0; i < video_json.length; i++) {
+            var bit = video_json[i];
             var this_video = bit.video_upload;
             var videoElement = yb_createElement("div", "yb-container-video-listItem", "yb-video-list-item-" + i);
             videoElement.setAttribute("data-id", this_video.id);
