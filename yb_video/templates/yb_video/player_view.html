@@ -137,12 +137,9 @@
             var this_video = bit["video_upload"];
             var videoElement = yb_createElement("div", "yb-container-video-listItem", "yb-video-list-item-" + key);
             videoElement.setAttribute("data-id", this_video.id);
-            
-            if (video["thumbnail"]["storage_type"] == "yb") {
-                var thumbnail = this_video["thumbnail"]["image"];
-            } else {
-                var thumbnail = this_video["thumbnail"]["ext_url"];
-            }
+
+            var thumbnail = this_video["thumbnail"]["ext_url"];
+
 
             videoElement.innerHTML = `
                 <div class="yb-container-thumbnail-listItem">
