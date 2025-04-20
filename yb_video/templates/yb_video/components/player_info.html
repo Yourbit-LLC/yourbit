@@ -2,7 +2,7 @@
 <section class="yb-player-info yb-font-auto">
 
     <!--Video Title-->
-    <h2 class="yb-player-title bit-title-color">{% if bit.is_public %}{{bit.title}}{% else %}{{bit.decrypted_title}}{% endif %}</h2>
+    <h2 class="yb-player-title bit-title-color">{% if bit.is_public %}{{bit.public_title}}{% else %}{{bit.decrypted_title}}{% endif %}</h2>
 
     <!--Video User Info-->
     <div class="video-user-info yb-bg-autoGray">
