@@ -137,12 +137,13 @@
             var this_video = bit["video_upload"];
             var videoElement = yb_createElement("div", "yb-container-video-listItem", "yb-video-list-item-" + key);
             videoElement.setAttribute("data-id", this_video.id);
+            videoElement.setAttribute("style", "height: 90px !important;");
 
             var thumbnail = this_video["thumbnail"]["ext_url"];
 
 
             videoElement.innerHTML = `
-                <div class="yb-container-thumbnail-listItem" style = "height: 90px !important;">
+                <div class="yb-container-thumbnail-listItem">
                     <img style="width:100%;" src='${thumbnail}' alt='Thumbnail'>
                 </div>
                 <div class="yb-container-videoInfo-listItem yb-flexColumn">
