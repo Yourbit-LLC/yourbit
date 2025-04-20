@@ -131,8 +131,8 @@
         
         //Iterate through bits in video json to use in rendering the up next qeueue
         console.log("Video JSON: ", video_json);
-        for (let i = 0; i < video_json.length; i++) {
-            console.log("Crearing video preview element");
+        for (const key in video_json) {
+            console.log("Clearing video preview element");
             var bit = video_json[i];
             var this_video = bit.video_upload;
             var videoElement = yb_createElement("div", "yb-container-video-listItem", "yb-video-list-item-" + i);
