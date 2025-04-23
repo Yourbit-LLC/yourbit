@@ -1,7 +1,7 @@
 {% if conversations == True %}
         
 {% for conversation in results %}
-<div id="conversation-container-{{conversation.id}}" class="conversation-container yb-fillWidth" data-catid="{{conversation.id}}">
+<div id="conversation-container-{{conversation.id}}" class="conversation-container yb-fillWidth yb-bg-autoGray" data-catid="{{conversation.id}}">
     <div id="conversation-{{conversation.id}}" class="
         yb-listItem conversation 
         {% comment %} {% if conversation.has_seen %} 
