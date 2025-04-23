@@ -2,7 +2,7 @@
 
 {% if is_clusters %}
 {% for cluster in clusters %}
-    <div id="cluster-{{cluster.id}}" class="yb-listItem yb-font-auto cluster-item" data-catid="{{cluster.id}}" data-username="{{cluster.name}}">
+    <div id="cluster-{{cluster.id}}" class="yb-listItem yb-font-auto cluster-item yb-bg-autoGray" data-catid="{{cluster.id}}" data-username="{{cluster.name}}">
 
         <div class="full-result-image-container" style="position: relative;" onclick="yb_navigateTo('2way', 'cluster', '{{cluster.id}}');">
             {% if cluster.type == "any" %}
