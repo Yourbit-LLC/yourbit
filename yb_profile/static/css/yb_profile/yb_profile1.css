@@ -395,20 +395,6 @@ Profile Page
     display: none !important;
 }
 
-.grid-overlay {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    top: 0px;
-    left: 0px;
-    pointer-events: none;
-    background-image: linear-gradient(to right, rgba(100, 100, 100, 0.3) 2px, transparent 1px), linear-gradient(to bottom, rgba(100, 100, 100, 0.3) 2px, transparent 1px);
-    background-size: 10vw 10vw;
-    z-index: 0;
-    animation: yb-flash-soft 5s infinite;
-}
-
-
 
 #bit-preview {
     animation: yb-pulse-small 2s infinite;
