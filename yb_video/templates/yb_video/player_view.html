@@ -15,7 +15,7 @@
 <meta property="og:type" content="video.movie" />
 <meta property="og:url" content="https://yourbit.me/bits/view/{{bit.id}}/" />
 <meta property="og:image" content="{{bit.video_upload.thumbnail.medium_thumbnail_ext}}" />
-<meta property="og:video" content="{{bit.video_upload.ext_url}}" />
+<meta property="og:video" content="{{bit.video_upload.ext_url}}"/>
 
 <div class="yb-player-grid">
     <div class="yb-flexColumn player-scroll-section yb-vScroll">
@@ -184,8 +184,9 @@
            
 
         about_section.addEventListener("click", function(){
-            console.log("clicked")
-            let about_state = about_section.getAttribute("data-state")
+            console.log("clicked");
+            let about_state = about_section.getAttribute("data-state");
+            
             if (about_state == "closed") {
                 about_section.setAttribute("data-state", "open");
                 description.style.display = "block";

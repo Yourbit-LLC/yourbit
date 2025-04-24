@@ -514,7 +514,8 @@ function customize_ui_url(data=null){
     history.pushState({}, "", `/customize/ui/`);
 }
 
-
+//Below were legacy function names before the creation of yb_navigateTo() which 
+// were adapted to the new functionality to account for refactoring changes
 function yb_goHome() {
     yb_toggleMainMenu();
     yb_navigateTo("content-container", "home");
@@ -544,6 +545,9 @@ function yb_showMessagePage() {
     yb_navigateTo("2way", "messages");
 }
 
+
+//Function to load a content, contact, or message list into a container.
+// Uses list template index to reference registered pages available for navigation
 function yb_loadList(container, template, filter=null){
     let url = LIST_TEMPLATE_INDEX[template];
 
@@ -554,6 +558,7 @@ function yb_loadList(container, template, filter=null){
     }
 }
 
+//Function to set the last location that the user visited for the universal back function
 function yb_setLast(container, page, data) {
     last_container = current_container;
     last_page = current_page;
@@ -568,6 +573,7 @@ function yb_setLast(container, page, data) {
     }
 }
 
+//Function to reload containers as needed to refresh data or catch failures
 function yb_reload(container) {
     if (container === "2way") {
         let active_container = yb_getActive2Way();
@@ -585,6 +591,7 @@ function yb_reload(container) {
 
 }
 
+//Universal navigate to function for accessing pages in the template Indexes
 function  yb_navigateTo(container, template, data=null, reloadable=true) {
     if (container.includes("2way")) {
         yb_setLast(container, template, data);
@@ -676,16 +683,48 @@ function  yb_navigateTo(container, template, data=null, reloadable=true) {
     }
 
     yb_setSessionValues("location", template);
-
-
 }
 
+//Function for getting the next video in a playlist or bitstream
 function yb_getNextVideo() {
+    //Video ID is retrieved in the list of videos queued to play
     let video_id = VIDEO_QUEUE.shift();
-    yb_navigateTo("content-container", "bit-focus", video_id);
     
+    //Video object is the json data for this video bit retrieved from local video_json
+    let video_object = video_json[video_id];
+
+    //Retrieve data elements of the video player for exchanging out new data
+    let video_player = document.getElementById("yb-player");
+    let video_title = document.getElementById("yb-player-title");
+    let video_desc = document.getElementById("yb-player-description");
+    let user_name = document.getElementById("yb-player-display-name");
+    let username = document.getElementById("yb-player-username");
+    let pfp = document.getElementById("yb-player-pfp");
+    let air_date = document.querySelector("#time-posted-");
+
+    //Replace the inner HTML of the player elements with new video data
+    user_name.innerHTML = video_object.profile.display_name;
+    username.innerHTML = video_object.profile.username;
+    video_title.innerHTML = video_object.title;
+    video_desc.innerHTML = video_object.description;
+    air_date.innerHTML = video_object.time; 
+    pfp.src = video_object.custom.profile_image.small_thumbnail_ext;
+
+    //Change attributes of video player for newly loaded content
+    video_player.setAttribute("playback-id", video_object.video_upload.ext_id);
+    video_player.setAttribute("data-id", video_id.id);
+    video_player.setAttribute("data-username", video_id.profile.username);
+    video_player.setAttribute("data-title", video_id.title);
+
+
+    //Update comments section for newly loaded content
+    yb_getComments(false, video_id, "player-comments")
+
+    //Play the current video
+    video_player.play();
 }
 
+//Universal function for back navigation
 function yb_goBack(page=false) {
     if (page) {
         yb_navigateTo("2way-page", last_page, last_data);
