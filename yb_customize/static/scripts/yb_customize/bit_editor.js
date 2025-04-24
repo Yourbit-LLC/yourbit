@@ -11,7 +11,6 @@ try {
     var color_inputs = document.querySelectorAll('.color-input');
     var customization_toggle = document.getElementById('custom-bit-toggle');
     var set_buttons = document.querySelectorAll('.be-set-button');
-    var save_button = document.getElementById('save-bit');
     var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
 } catch (e) {
@@ -28,7 +27,6 @@ try {
     color_inputs = document.querySelectorAll('.color-input');
     customization_toggle = document.getElementById('custom-bit-toggle');
     set_buttons = document.querySelectorAll('.be-set-button');
-    save_button = document.getElementById('save-bit');
     isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 }
 
@@ -171,6 +169,5 @@ $(document).ready(function () {
         customization_toggle.classList.remove("yb-bounceDown-1");
     }, 1000);
 
-    save_button.addEventListener('click', saveBitEdits);
 
 });
