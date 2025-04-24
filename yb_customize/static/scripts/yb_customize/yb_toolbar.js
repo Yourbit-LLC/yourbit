@@ -1,3 +1,20 @@
+try {
+    var yb_toolbar = document.getElementById("yb-toolbar");
+    var save_button = document.getElementsByClassName("yb-save-button");
+    var undo_button = document.getElementsByClassName("yb-undo-button")[0];
+    var redo_button = document.getElementsByClassName("yb-redo-button")[0];
+    var reset_button = document.getElementsByClassName("yb-reset-button")[0];
+    var toolbar_config = document.getElementById("yb-toolbar-config");
+} catch (e) {
+    console.log(e);
+    yb_toolbar = document.getElementById("yb-toolbar");
+    save_button = document.getElementsByClassName("yb-save-button");
+    undo_button = document.getElementsByClassName("yb-undo-button")[0];
+    redo_button = document.getElementsByClassName("yb-redo-button")[0];
+    reset_button = document.getElementsByClassName("yb-reset-button")[0];
+    toolbar_config = document.getElementById("yb-toolbar-config");
+}
+
 var edit_history = [
 
 ];
@@ -71,6 +88,49 @@ function yb_reset() {
         initial_settings[i].value = value;
     }
 
+}
+
+function yb_addHistory(field, value) {
+    // Check if the field already has an edit history
+    if (!edit_history[field]) {
+        edit_history[field] = [];
+    }
+
+    // Add the new value to the edit history
+    edit_history[field].push(value);
+
+    // Update the initial settings with the new value
+    for (let i = 0; i < initial_settings.length; i++) {
+        if (initial_settings[i].field === field) {
+            initial_settings[i].value = value;
+            break;
+        }
+    }
+
+    // Update the undo button state
+    if (!undo_button.classList.contains("ready")) {
+        undo_button.classList.add("ready");
+    }
+}
+function yb_removeHistory(field) {
+    // Check if the field has an edit history
+    if (edit_history[field]) {
+        // Remove the last value from the edit history
+        edit_history[field].pop();
+
+        // Update the initial settings with the previous value
+        for (let i = 0; i < initial_settings.length; i++) {
+            if (initial_settings[i].field === field) {
+                initial_settings[i].value = edit_history[field][edit_history[field].length - 1];
+                break;
+            }
+        }
+    }
+
+    // Update the redo button state
+    if (!redo_button.classList.contains("ready")) {
+        redo_button.classList.add("ready");
+    }
 }
 
 function yb_readySaveButton() {
