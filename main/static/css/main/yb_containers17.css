@@ -508,18 +508,6 @@
     color: white;
 }
 
-@media (prefers-color-scheme: dark) {
-    .yb-panel-wide {
-        background-color: #333;
-    }
-}
-
-@media (prefers-color-scheme: light) {
-    .yb-panel-wide {
-        background-color: white;
-    }
-}
-
 .yb-panel-wide.panel-gray {
     background-color: #4b4b4b;
 }
