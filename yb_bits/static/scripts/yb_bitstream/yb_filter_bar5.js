@@ -49,6 +49,7 @@ function yb_filterPanelHandler() {
         yb_getFeed();
     } else{
         let this_panel = document.getElementById(`yb-${filter_panel_type}-panel`);
+
         if (this.classList.contains("active")) {
             yb_closeFilterPanel();
         } else {
@@ -57,14 +58,15 @@ function yb_filterPanelHandler() {
                     feed_filter_btns[i].classList.remove("active");
                 }
             }
-        }
-        this.classList.add("active");
-        for (var i = 0; i < filter_panels.length; i++) {
-            if (filter_panels[i].classList.contains("active")) {
-                filter_panels[i].classList.remove("active");
+
+            this.classList.add("active");
+            for (var i = 0; i < filter_panels.length; i++) {
+                if (filter_panels[i].classList.contains("active")) {
+                    filter_panels[i].classList.remove("active");
+                }
             }
+            this_panel.classList.add("active");
         }
-        this_panel.classList.add("active");
         
     }
 }
