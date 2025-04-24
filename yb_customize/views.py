@@ -24,7 +24,7 @@ class CustomizeProfile(View):
         context = {
             'custom_splash': custom_splash,
         }
-        return render(request, "yb_customize/editable_profile_splash.html", context)
+        return render(request, "yb_customize/profile_editor/editable_profile_splash.html", context)
     
     def post(self, request):
         profile_object = Profile.objects.get(username = request.user.active_profile)
@@ -98,7 +98,7 @@ def complete_tutorial(request, type):
 
 class CustomizeMenu(View):
     def get(self, request):
-        return render(request, "yb_customize/customize_main.html")
+        return render(request, "yb_customize/main_page/customize_main.html")
     
     def post(self, request):
         pass
@@ -109,7 +109,7 @@ class ProfileImageUpload(View):
         custom_core = CustomCore.objects.get(profile = profile_object)
         theme = custom_core.theme
         custom_ui = CustomUI.objects.get(theme = theme)
-        return render(request, "yb_customize/profile_image_edit.html", context = {"custom_ui": custom_ui})
+        return render(request, "yb_customize/profile_images/profile_image_edit.html", context = {"custom_ui": custom_ui})
     
     def post(self, request):
         pass
@@ -139,7 +139,7 @@ def update_profile_image(request):
 
 class CreateTheme(View):
     def get(self, request):
-        return render(request, "yb_customize/create_theme.html")
+        return render(request, "yb_customize/themes/create_theme.html")
     
     def post(self, request):
         new_theme = Theme(
@@ -454,7 +454,7 @@ class WallpaperUpload(View):
     def get(self, request):
 
         
-        return render(request, "yb_customize/wallpaper_edit.html")
+        return render(request, "yb_customize/wallpapers/wallpaper_edit.html")
     
     def post(self, request):
         pass
@@ -515,7 +515,7 @@ class StickerList(View):
         }
 
 
-        return render(request, "yb_customize/sticker_list.html", context)
+        return render(request, "yb_customize/profile_editor/drawers/sticker_list.html", context)
     
     def post(self, request):
         pass
@@ -530,7 +530,7 @@ class StickerBrowse(View):
             'is_stickers': sticker_response[1],
         }
 
-        return render(request, "yb_customize/sticker_browser.html", context)
+        return render(request, "yb_customize/profile_editor/drawers/sticker_browser.html", context)
     
     def post(self, request):
         pass
@@ -614,7 +614,7 @@ class SplashFontEdit(View):
             'title_color': custom_splash.name_font_color,
             'title_size': custom_splash.name_font_size,
         }
-        return render(request, f"yb_customize/{template}.html", context)
+        return render(request, f"yb_customize/profile_editor/drawers/{template}.html", context)
     
     def post(self, request, option):
         profile_object = Profile.objects.get(username=request.user.active_profile)
@@ -644,7 +644,7 @@ class SplashButtonEdit(View):
             'button_border_style': custom_splash.button_border_style,
             'button_border_color': custom_splash.button_border_color,
         }
-        return render(request, "yb_customize/profile_button_edit.html", context)
+        return render(request, "yb_customize/profile_editor/drawers/profile_button_edit.html", context)
     
     def post(self, request):
         profile_object = Profile.objects.get(username=request.user.active_profile)

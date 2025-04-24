@@ -27,12 +27,12 @@
     </div>
 
     <div class="yb-customize-toolbar squared">
-        {% include "yb_customize/customization_toolbar.html" %}
+        {% include "yb_customize/global_components/customization_toolbar.html" %}
     </div>
     
     {% if not custom_core.splash_tutorial_complete %}
 
-        {% include "yb_customize/custom_profile_tutorial.html" %}
+        {% include "yb_customize/profile_editor/custom_profile_tutorial.html" %}
 
     {% endif %}
     <div class="grid-overlay" style="mix-blend-mode: difference;"></div>
