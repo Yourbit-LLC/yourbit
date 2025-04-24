@@ -6,17 +6,7 @@ try {
     var feed_refresh = document.getElementById("ff-button-refresh");
     var customization = document.getElementById("ff-button-customize");
     var filter_panel = document.getElementById("yb-panel-filter");
-    var filter_panel_index = {
-        "sort": {
-            "template": "/bits/templates/filter/sort/",
-        },
-        "filter": {
-            "template": "/bits/templates/filter/filter/",
-        },
-        "customize": {
-            "template": "/bits/templates/filter/customize/",
-        },
-    }
+    var filter_panels= document.querySelectorAll(".yb-filter-panel");
 }
 
 catch {
@@ -27,17 +17,7 @@ catch {
     customization = document.getElementById("ff-button-customize");
     feed_refresh = document.getElementById("ff-button-refresh");
     filter_panel = document.getElementById("yb-panel-filter");
-    filter_panel_index = {
-        "sort": {
-            "template": "/bitstream/sort-panel/",
-        },
-        "filter": {
-            "template": "/bitstream/filter-panel/",
-        },
-        "customize": {
-            "template": "/bitstream/customize-panel/",
-        },
-    }
+    filter_panels= document.querySelectorAll(".yb-filter-panel");
 }
 
 
@@ -48,7 +28,11 @@ function yb_getFilterPanel(template) {
 }
 
 function yb_closeFilterPanel() {
-    filter_panel.innerHTML = "";
+    for (var i = 0; i < filter_panels.length; i++) {
+        if (filter_panels[i].classList.contains("active")) {
+            filter_panels[i].classList.remove("active");
+        }
+    }
     for (var i = 0; i < feed_filter_btns.length; i++) {
         if (feed_filter_btns[i].classList.contains("active")) {
             feed_filter_btns[i].classList.remove("active");
@@ -57,11 +41,12 @@ function yb_closeFilterPanel() {
 }
 
 function yb_filterPanelHandler() {
+
     var filter_panel_type = this.getAttribute("data-type");
     if (filter_panel_type == "refresh") {
         yb_getFeed();
     } else{
-        var template = filter_panel_index[filter_panel_type]["template"];
+        let this_panel = document.getElementById(`yb-${filter_panel_type}-panel`);
         if (this.classList.contains("active")) {
             yb_closeFilterPanel();
         } else {
@@ -70,11 +55,18 @@ function yb_filterPanelHandler() {
                     feed_filter_btns[i].classList.remove("active");
                 }
             }
-            this.classList.add("active");
-            yb_getFilterPanel(template);
         }
+        this.classList.add("active");
+        for (var i = 0; i < filter_panels.length; i++) {
+            if (filter_panels[i].classList.contains("active")) {
+                filter_panels[i].classList.remove("active");
+            }
+        }
+        this_panel.classList.add("active");
+        
     }
 }
+
 
 feed_filter_btns.forEach(btn => {
     btn.addEventListener("click", yb_filterPanelHandler);

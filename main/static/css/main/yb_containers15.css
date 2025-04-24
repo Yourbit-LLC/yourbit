@@ -566,6 +566,23 @@
     text-align: right;
 }
 
+.yb-filter-panel {
+    display: none; 
+    grid-gap: 10px; 
+    font-size:12px; 
+    margin-top: 10px; 
+    margin-bottom: 10px;
+    height: 0px;
+    transition: 0.5s;
+    
+}
+
+.yb-filter-panel.active {
+    display: grid;
+    height: auto;
+    transition: 0.5s;
+}
+
 @media screen and (min-width: 2048px) {
     .yb-2Way-container {
         right: 15px;
