@@ -107,6 +107,18 @@ const year = currentDate.getFullYear();
 // Format the date as "MonthName day, year"
 const formattedDate = `${month} ${day}, ${year}`;
 
+
+function throttle(callback, delay) {
+    let lastTime = 0;
+    return function (...args) {
+      const now = new Date().getTime();
+      if (now - lastTime >= delay) {
+        callback(...args);
+        lastTime = now;
+      }
+    };
+  }
+
 function yb_hideMobileHeader() {
     if (MOBILE_HEADER.classList.contains("hide") === false){
         MOBILE_HEADER.classList.add("hide");

@@ -27,6 +27,7 @@ function yb_getFilterPanel(template) {
 
 }
 
+//Function to handle closing filter panels
 function yb_closeFilterPanel() {
     for (var i = 0; i < filter_panels.length; i++) {
         if (filter_panels[i].classList.contains("active")) {
@@ -40,6 +41,7 @@ function yb_closeFilterPanel() {
     }
 }
 
+//Function to handle the filter panel button clicks
 function yb_filterPanelHandler() {
 
     var filter_panel_type = this.getAttribute("data-type");
@@ -81,19 +83,6 @@ feed_refresh.addEventListener("click", function() {
     yb_getBitContainer().innerHTML = "";
     yb_getFeed(data);
 });
-
-
-
-function throttle(callback, delay) {
-    let lastTime = 0;
-    return function (...args) {
-      const now = new Date().getTime();
-      if (now - lastTime >= delay) {
-        callback(...args);
-        lastTime = now;
-      }
-    };
-  }
   
  
 $(document).ready(function() {

@@ -116,18 +116,6 @@ function yb_showSwipeUp() {
     swipe_up.classList.add("show");
 }
 
-// Utility to throttle function execution
-function throttle(func, limit) {
-    let lastCall = 0;
-    return function (...args) {
-        const now = (new Date()).getTime();
-        if (now - lastCall >= limit) {
-            lastCall = now;
-            return func(...args);
-        }
-    };
-}
-
 // function onScrollToBottom() {
     // console.log("User has scrolled to the bottom of the container! More now please...");
     // // Your logic here that needs to be executed when the bottom is reached
