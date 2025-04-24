@@ -4,6 +4,7 @@ try {
     var form_id = form_config.getAttribute('data-form-id');
     var form = document.getElementById(form_id);
     var message = form_config.getAttribute('data-message');
+    var has_master = form_config.getAttribute('data-has-master');
 
     //Fields in form
     var live_fields = form.querySelectorAll('.yb-live-field');
@@ -28,6 +29,7 @@ try {
     form_id = form_config.getAttribute('data-form-id');
     form = document.getElementById(form_id);
     message = form_config.getAttribute('data-message');
+    has_master = form_config.getAttribute('data-has-master');
 
     live_fields = form.querySelectorAll('.yb-live-field');
     form_fields = form.querySelectorAll('.yb-form-field');
@@ -76,7 +78,6 @@ function yb_submitForm(form_id, success_message="Form Submitted Successfully") {
                     console.log(data)
                     console.log(data.response)
                     response_container.getElementsByClassName("response-text")[0].innerHTML = data.response;
-                    save_button[0].style.display = "none";
                     response_container.style.display = "block";
                 }
             } else {
@@ -201,6 +202,7 @@ $(document).ready(function () {
             else{
                 save_button[0].style.backgroundColor = "green";
                 save_button[0].style.color = "white";
+                save_button[0].style.disabled = false;
 
             }
             
@@ -240,6 +242,8 @@ $(document).ready(function () {
         change_state = false;
         save_button[0].style.backgroundColor = "gray";
         save_button[0].style.color = "black";
+        save_button[0].style.disabled = true;
+        
     });
 
     //On focus of text area select all text inside
@@ -266,6 +270,7 @@ $(document).ready(function () {
             change_state = true;
             save_button[0].style.backgroundColor = "green";
             save_button[0].style.color = "white";
+            save_button[0].style.disabled = false;
         });
     }
 
@@ -284,6 +289,7 @@ $(document).ready(function () {
             change_state = true;
             save_button[0].style.backgroundColor = "green";
             save_button[0].style.color = "white";
+            save_button[0].style.disabled = false;
         });
     }
 

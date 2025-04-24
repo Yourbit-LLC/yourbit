@@ -20,7 +20,8 @@
     </div> {% endcomment %}
     <hr style="border-color: rgb(25, 25, 25);">
     <h4 class="yb-font-autoGray align-left">Panels</h4>
-    <div style="display:grid; grid-template-columns: 1fr 1fr 1fr 1fr; text-align: center; font-size: 12px;">
+    <form id="ui-editor-form" method="POST" action="{% url 'customize_ui' %}" style="display:grid; grid-template-columns: 1fr 1fr 1fr 1fr; text-align: center; font-size: 12px;">
+        {% csrf_token %}
         <div>
             <div class = "color-circle" id="ui-panel-color-circle" name="ui-panel" style="background-color: {{primary_color}}"></div>
             <input class="coloris color-input" type="text" name="ui-panel" style="display: none;" id="ui-panel-color-picker" value="{{custom_ui.primary_color}}">
@@ -68,4 +69,4 @@
         </div>
 
     </div>
-</div>
+</form>

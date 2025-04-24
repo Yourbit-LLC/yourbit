@@ -5,6 +5,9 @@
     {% include "yb_customize/global_components/customization_toolbar.html" %}
 </div>
 
+<input type="hidden" id="yb-form-config" data-form-id="ui-editor-form" data-message="UI Customizations Saved" data-change-state="false" data-saves="true">
+
+
 <form class="master-form" id="ui-master-form">
     <input name="primary_color" type="hidden" id="master-primary-color" value="{{custom_ui.primary_color}}">
     <input name="icon_color" type="hidden" id="master-icon-color" value="{{custom_ui.icon_color}}">
@@ -36,8 +39,9 @@
     <br>
 </div>
 
-
+<script class="page-script" type="text/javascript" src="{% static 'scripts/yb_customize/yb_toolbar.js' %}"></script>
 <script src="{% static 'scripts/yb_customize/ui_editor.js' %}"></script>
+<script src="{% static 'scripts/main/yb_forms4.js' %}"></script>
 <script>
     $(document).ready(function() {
         $(MAIN_LOADING_SCREEN).fadeOut(500).animate({opacity: 0}, 500);
