@@ -258,14 +258,14 @@ class CustomizeUI(View):
             'text_color': custom_ui.text_color,
             'title_color': custom_ui.title_color,
         }
-        return render(request, "yb_customize/customize_ui.html", context)
+        return render(request, "yb_customize/ui_editor/customize_ui.html", context)
     
     def post(self, request):
         pass
 
 class CustomizeBit(View):
     def get(self, request):
-        return render(request, "yb_customize/customize_bit.html")
+        return render(request, "yb_customize/bit_editor/bit_editor_base.html")
     
     def post(self, request):
         pass
