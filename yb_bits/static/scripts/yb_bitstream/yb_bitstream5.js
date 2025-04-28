@@ -86,7 +86,9 @@ function yb_getBitContainers(type=null) {
             return global_space_container, video_space_container;
         } else if (type == "photo") {
             return global_space_container, photo_space_container;
-        } 
+        } else {
+            return "Error finding matching space to '" + type + "'";
+        }
     }
 }
 
