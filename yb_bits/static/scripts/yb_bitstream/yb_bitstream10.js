@@ -159,6 +159,10 @@ function yb_updateFeed(update, data) {
     //Update the feed
     console.log("updating display...")
     console.log(update)
+    const global_space_container = document.getElementById("global-bit-container"); //The container that contains the global space
+    const chat_space_container = document.getElementById("chat-bit-container"); //The container that contains the chat space
+    const video_space_container = document.getElementById("video-bit-container"); //The container that contains the video space
+    const photo_space_container = document.getElementById("photo-bit-container"); //The container that contains the photo space
 
     let current_bit_container;
     
