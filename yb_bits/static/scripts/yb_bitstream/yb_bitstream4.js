@@ -173,7 +173,11 @@ function yb_updateFeed(update, data) {
 
             //Create a load point to end the section
             let load_point = yb_createLoadPoint("bitstream");
-            yb_getBitContainer().appendChild(load_point);
+            let these_containers = yb_getBitContainers()
+            
+            for (let i = 0; i < these_containers.length; i++) {
+                these_containers[i].appendChild(load_point);
+            }
             
 
             if (data.page === 2) {
@@ -202,7 +206,11 @@ function yb_updateFeed(update, data) {
         //Update the feed
         if (data.length > 0) {
             console.log("appending html...")
-            $(yb_getBitContainer()).html('');
+            $(global_space_container).html("");
+            $(chat_space_container).html("");
+            $(video_space_container).html("");
+            $(photo_space_container).html("");
+
 
             if (yb_getSessionValues('location') === 'profile'){
                 console.log("profile data")
