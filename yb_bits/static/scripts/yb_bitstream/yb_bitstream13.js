@@ -300,7 +300,7 @@ function yb_requestFeed(data=null) {
                 }
             
             if (yb_getSessionValues('location') != 'profile'){
-                yb_getBitContainer().classList.add('open');
+                document.querySelector('.bit-container.active').classList.add('open');
             }
             
             console.log(response)
