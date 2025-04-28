@@ -105,19 +105,20 @@ function yb_renderBit(data) {
     these_containers[0].appendChild(this_bit.built_bit);
     these_containers[0].appendChild(bit_separator)
 
-    let this_node = document.getElementById(this_bit.built_bit.id);
+
     //Observe the global bit
-    bitObserver.observe(this_node);
+    bitObserver.observe(this_bit.built_bit);
 
     try {
         //Append space specific bit to bitstream container
         bit_separator = yb_createElement("hr", "flat-bit-separator", `bit-separator-${data.type}-${data.id}`);
-        
+        //create a copy of the bit to append to the space specific container
+        this_node = this_bit.built_bit.cloneNode(true);
+
         //Append space specific bit to the space specific bitstream container
-        this_bit.built_bit.id = `bit-${data.type}-${data.id}`;
+        this_node.id = `bit-${data.type}-${data.id}`;
         these_containers[1].appendChild(this_bit.built_bit);
         these_containers[1].appendChild(bit_separator);
-        this_node = document.getElementById(this_bit.built_bit.id);
 
         //Observe the space specific bit
         bitObserver.observe(this_node);
