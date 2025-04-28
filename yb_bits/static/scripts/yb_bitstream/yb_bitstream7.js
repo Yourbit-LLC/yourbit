@@ -163,7 +163,7 @@ function yb_updateFeed(update, data) {
     if (yb_getSessionValues('space') != data.space){
         current_bit_container = document.getElementById(data.space + "-bit-subcontainer");
     } else {
-        yb_getBitContainer();
+        yb_getBitContainers();
     }
 
     if (update === true) {
@@ -180,7 +180,7 @@ function yb_updateFeed(update, data) {
 
             //Create a load point to end the section
             let load_point = yb_createLoadPoint("bitstream");
-            let these_containers = yb_getBitContainers()
+            let these_containers = yb_getBitContainers(data[i].type)
             
             for (let i = 0; i < these_containers.length; i++) {
                 these_containers[i].appendChild(load_point);
