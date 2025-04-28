@@ -383,17 +383,8 @@ function yb_getFeed(data={"update": false, "page": 1}) {
 */
 
 function yb_getFromBitstream(id) {
-    let global_bit = document.getElementById(`bit-g-${id}`);
-    let space_bit = null;
-
-    if (global_bit.getAttribute("data-type") == "video") {
-        space_bit = document.getElementById(`bit-v-${id}`);
-    } else if (global_bit.getAttribute("data-type") == "photo") {
-        space_bit = document.getElementById(`bit-p-${id}`);
-    }
-    else if (global_bit.getAttribute("data-type") == "chat") {
-        space_bit = document.getElementById(`bit-c-${id}`);
-    }
+    let global_bit = document.getElementById(`bit-global-${id}`);
+    let space_bit = document.getElementById(`bit-${global_bit.type}-${id}`);
 
     return space_bit, global_bit;
 }
