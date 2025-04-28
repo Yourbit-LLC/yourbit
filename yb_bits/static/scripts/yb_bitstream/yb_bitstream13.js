@@ -101,8 +101,8 @@ function yb_renderBit(data) {
     console.log(these_containers);
 
     //Append global bit to the global bitstream container
-    let this_node = these_containers[0].appendChild(this_bit.built_bit);
-    this_node.id = `bit-global-${data.id}`;
+    this_bit.built_bit.id = `bit-global-${data.id}`;
+    these_containers[0].appendChild(this_bit.built_bit);
     these_containers[0].appendChild(bit_separator)
 
     //Observe the global bit
@@ -113,8 +113,8 @@ function yb_renderBit(data) {
         bit_separator = yb_createElement("hr", "flat-bit-separator", `bit-separator-${data.type}-${data.id}`);
         
         //Append space specific bit to the space specific bitstream container
-        this_node = these_containers[1].appendChild(this_bit.built_bit);
-        this_node.id = `bit-${data.type}-${data.id}`;
+        this_bit.built_bit.id = `bit-${data.type}-${data.id}`;
+        these_containers[1].appendChild(this_bit.built_bit);
         these_containers[1].appendChild(bit_separator);
 
         //Observe the space specific bit
