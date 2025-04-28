@@ -77,15 +77,15 @@ function yb_createLoadPoint(type) {
 
 function yb_getBitContainers(type=null) {
     if (yb_getSessionValues('location') === 'profile') {
-        return document.getElementById("profile-bit-container");
+        return [document.getElementById("profile-bit-container")];
     } else {
         //Always return global space container, plus bit type container
         if (type == "chat") {
-            return global_space_container, chat_space_container;
+            return [global_space_container, chat_space_container];
         } else if (type == "video") {
-            return global_space_container, video_space_container;
+            return [global_space_container, video_space_container];
         } else if (type == "photo") {
-            return global_space_container, photo_space_container;
+            return [global_space_container, photo_space_container];
         } else {
             console.log("Error finding matching space to '" + type + "'");
         }
@@ -106,16 +106,21 @@ function yb_renderBit(data) {
     //Observe the global bit
     bitObserver.observe(this_node);
 
-    //Append space specific bit to bitstream container
-    bit_separator = yb_createElement("hr", "flat-bit-separator", `bit-separator-${data.type}-${data.id}`);
-    
-    //Append space specific bit to the space specific bitstream container
-    this_node = these_containers[1].appendChild(this_bit.built_bit);
-    this_node.id = `bit-${data.type}-${data.id}`;
-    these_containers[1].appendChild(bit_separator);
+    try {
+        //Append space specific bit to bitstream container
+        bit_separator = yb_createElement("hr", "flat-bit-separator", `bit-separator-${data.type}-${data.id}`);
+        
+        //Append space specific bit to the space specific bitstream container
+        this_node = these_containers[1].appendChild(this_bit.built_bit);
+        this_node.id = `bit-${data.type}-${data.id}`;
+        these_containers[1].appendChild(bit_separator);
 
-    //Observe the space specific bit
-    bitObserver.observe(this_node);
+        //Observe the space specific bit
+        bitObserver.observe(this_node);
+    } catch (error) {
+        console.log("No second container returned.");
+    }
+
 }
 
 function yb_jumpToBit (bit_id) {
