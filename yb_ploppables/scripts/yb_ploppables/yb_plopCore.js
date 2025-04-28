@@ -1,0 +1,1 @@
+var plopped_objects = [];

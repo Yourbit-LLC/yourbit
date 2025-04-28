@@ -5,19 +5,19 @@
 <!--Create Menu Header-->
 <div class="yb-fillWidth" id="create-menu-content">
     <div id='div-header' style='position: relative; display: grid; grid-template-columns: 5fr 1fr; margin-left: auto; margin-right: auto; width: 100%; height: 40px; margin-bottom: 20px;' >
-        <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb"></h3>
-        <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('create')"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
+        <h3 class="yb-fillWidth yb-margin-L10 yb-font-auto yb-margin-center tb"></h3>
+        <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('create')"><svg class="yb-transform-center all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
     </div>
 
         <div id='create-options' style='text-align: center;'>
             <br>
-            <svg class="yb-center-margin lr yb-autoFill" xmlns="http://www.w3.org/2000/svg" height="64" viewBox="0 -960 960 960" width="64"><path d="m347.456-528.218 83.848-84.847-50.978-51.739-44.956 44.717-57.196-57.196 44.196-44.956-42.609-42.37-84.609 84.848 152.304 151.543ZM680-194.913l84.609-84.609-42.848-42.848-44.957 43.957-57.195-57.196 44.195-44.956-51.978-51.217-84.087 84.086L680-194.913Zm22.565-564.37 57 57.24-57-57.24ZM292.391-111.869H111.869V-292.87l173.566-173.565L71.869-680l207.892-207.891 214.565 214.565 149.087-149.848q12.478-12.478 27.957-18.717 15.478-6.24 31.956-6.24t31.957 6.12q15.478 6.12 27.956 18.598l59.935 60.696q12.478 12.478 18.717 28.076 6.24 15.598 6.24 32.076t-6.24 31.576q-6.239 15.098-18.717 27.576L674.087-493.804l214.044 214.043L680.239-71.869 465.957-285.913 292.391-111.869Zm-93.108-87.414h56.239l381.717-380.956-57-57.239L199.283-256v56.717Zm409.956-409.195-29-29 57 57.239-28-28.239Z"/></svg>
-            {% comment %} <div id="create-lottie" class="yb-center-margin lr xlarger" data-path="{% static 'lotties/idea.json' %}">
+            <svg class="yb-margin-center lr yb-autoFill" xmlns="http://www.w3.org/2000/svg" height="64" viewBox="0 -960 960 960" width="64"><path d="m347.456-528.218 83.848-84.847-50.978-51.739-44.956 44.717-57.196-57.196 44.196-44.956-42.609-42.37-84.609 84.848 152.304 151.543ZM680-194.913l84.609-84.609-42.848-42.848-44.957 43.957-57.195-57.196 44.195-44.956-51.978-51.217-84.087 84.086L680-194.913Zm22.565-564.37 57 57.24-57-57.24ZM292.391-111.869H111.869V-292.87l173.566-173.565L71.869-680l207.892-207.891 214.565 214.565 149.087-149.848q12.478-12.478 27.957-18.717 15.478-6.24 31.956-6.24t31.957 6.12q15.478 6.12 27.956 18.598l59.935 60.696q12.478 12.478 18.717 28.076 6.24 15.598 6.24 32.076t-6.24 31.576q-6.239 15.098-18.717 27.576L674.087-493.804l214.044 214.043L680.239-71.869 465.957-285.913 292.391-111.869Zm-93.108-87.414h56.239l381.717-380.956-57-57.239L199.283-256v56.717Zm409.956-409.195-29-29 57 57.239-28-28.239Z"/></svg>
+            {% comment %} <div id="create-lottie" class="yb-margin-center lr xlarger" data-path="{% static 'lotties/idea.json' %}">
             </div> {% endcomment %}
 
-            <p style="margin-bottom: 0px;" class="yb-autoText yb-pText font-medium font-light">create...</p>
+            <p style="margin-bottom: 0px;" class="yb-font-auto yb-pText font-medium font-light">create...</p>
             <br>
-            <button type='button' id = "button-chatbit" class='create-option yb-button-threeQuarter border-none rounded yb-widthConstraint-600 yb-autoText font-heavy pointer-object' name='bit'>New Bit</button>
+            <button type='button' id = "button-chatbit" class='create-option yb-button-threeQuarter border-none rounded yb-widthConstraint-600 yb-font-auto yb-bg-autoGray font-heavy pointer-object' name='bit'>New Bit</button>
             
 
             <!--Create Cluster Button-->
@@ -30,8 +30,8 @@
                     border-none 
                     rounded 
                     yb-widthConstraint-600 
-                    yb-autoText 
-                    
+                    yb-font-auto 
+                    yb-bg-autoGray
                     font-heavy
                     pointer-object' 
                 name='cluster'
@@ -49,8 +49,8 @@
                     border-none 
                     rounded 
                     yb-widthConstraint-600 
-                    yb-autoText 
-                    
+                    yb-font-auto 
+                    yb-bg-autoGray
                     font-heavy
                     pointer-object' 
                 name='orbit'
@@ -63,24 +63,24 @@
                 yb-button-threeQuarter 
                 border-none 
                 rounded 
-                
+                yb-bg-autoGray
                 yb-widthConstraint-600 
-                yb-autoText 
+                yb-font-auto 
                 font-heavy 
                 pointer-object' name='message'>New Message</button>
             </div>
 
             <br>
                 <p class="font-gray font-medium align-center"><b>Quick Bit</b></p>
-                <input type="text" id="quick-bit-input" class="yb-button-threeQuarter bg-transparent yb-autoText border-solid rounded" style="height: 35px; padding-left: 10px; width: 70%; border-width: 0.15em; border-color: gray;" placeholder="What would you like to say?">
-                <p id="quick-submit" class="yb-center-margin lr yb-autoText align-center font-small yb-margin-T10">Press enter to submit...</p>
+                <input type="text" id="quick-bit-input" class="yb-quick-input yb-font-auto border-solid rounded" placeholder="What would you like to say?">
+                <p id="quick-submit" class="yb-margin-center lr yb-font-auto align-center font-small yb-margin-T10">Press enter to submit...</p>
         <div id='create-container' style='position:relative; width:100%; display:none; margin-left: auto; margin-right: auto;'>
         </div>
 
     <div class="yb-logo-footer small" id="create-menu-footer" style="position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%);">
         <img src="{% static 'images/main/yourbit-logo2023-01.svg' %}" style="width: 100%; position: relative;" alt="YB Logo" class="yb-logo-small">
     </div>
-    <script class="page-script" src="{% static 'scripts/yb_bits/yb_ajax3.js' %}"></script>
+    <script class="page-script" src="{% static 'scripts/yb_bits/yb_ajax4.js' %}"></script>
 <script class="page-script" src="{% static 'scripts/create/yb_create.js' %}"></script>
 <script>
     $(document).ready(function(){

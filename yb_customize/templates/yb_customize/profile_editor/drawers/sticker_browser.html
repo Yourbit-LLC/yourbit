@@ -1,0 +1,11 @@
+{% load static %}
+
+<div class="yb-drawer-search" id="sticker-search-bar">
+    <input type="text" id="sticker-search-input" class="yb-input-singleLine yb-font-auto yb-pText yb-panel rounded" style="width: 50%; position: absolute; left: 50%; top: 10px; transform: translateX(-50%);" placeholder="Search for stickers">
+</div>
+
+<div class="sticker-list-container" id="sticker-list-container">
+    {% include "yb_customize/profile_editor/drawers/sticker_list.html" %}
+</div>
+
+<script src="{% static 'scripts/yb_customize/yb-sticker-browse.js' %}"></script>

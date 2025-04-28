@@ -23,6 +23,13 @@ class BitStream(models.Model):
     unseen_bits = models.ManyToManyField('Bit', related_name='bit_stream', blank=True)
     seen_bits = models.ManyToManyField('Bit', related_name='seen_bits', blank=True)
 
+class BitManager(models.Manager):
+    def expired(self):
+        return self.filter(expires_at__lte=timezone.now())
+
+    def delete_expired(self):
+        return self.expired().delete()
+
 class Bit(models.Model):
 
     #Model for a Bit: A post on Yourbit
@@ -56,9 +63,9 @@ class Bit(models.Model):
     time = models.DateTimeField(default=timezone.localtime)
     status = models.CharField(max_length=100, default="pending")
     evaporate = models.BooleanField(default=False)
-    evapoation_date = models.DateTimeField(default=timezone.localtime)
+    evapoation_time = models.DateTimeField(default=timezone.localtime)
     is_scheduled = models.BooleanField(default=False)
-    scheduled_publish_time = models.DateTimeField(default=None, blank=True, null=True)
+    scheduled_time = models.DateTimeField(default=None, blank=True, null=True)
 
     type = models.CharField(max_length=20, default="chat")
 
@@ -82,6 +89,8 @@ class Bit(models.Model):
     is_comments = models.BooleanField(default=True)
     is_shareable = models.BooleanField(default=False)
     is_feedback = models.BooleanField(default=True)
+    is_quiz = models.BooleanField(default=False)
+    is_survey = models.BooleanField(default=False)
 
     #Links and widgets
     contains_video_link = models.BooleanField(default=False)
@@ -378,3 +387,46 @@ class InteractionHistory(models.Model):
     unseen_bits = models.ManyToManyField(Bit, related_name="unseen_bits", blank=True)
     watched = models.ManyToManyField(VideoBitWatch, related_name = "watched_bits", blank=True)
     seen_bits = models.ManyToManyField(Bit, related_name = "bits_seen", blank=True)
+
+
+class ResponseForm(models.Model):
+    """Universal model for quizzes, surveys, feedback forms, etc."""
+    FORM_TYPES = [
+        ('QUIZ', 'Quiz'),
+        ('SURVEY', 'Survey'),
+        ('CUSTOM', 'Custom'),
+    ]
+    bit = models.ForeignKey(Bit, related_name="forms", on_delete=models.CASCADE)
+    title = models.CharField(max_length=255)
+    form_type = models.CharField(max_length=10, choices=FORM_TYPES, default='CUSTOM')
+    created_at = models.DateTimeField(default=timezone.now)
+
+
+class Question(models.Model):
+    QUESTION_TYPES = [
+        ('MC', 'Multiple Choice'),
+        ('SA', 'Short Answer'),
+    ]
+    form = models.ForeignKey(ResponseForm, related_name="questions", on_delete=models.CASCADE)
+    text = models.TextField()
+    question_type = models.CharField(max_length=2, choices=QUESTION_TYPES)
+    options = ArrayField(models.CharField(max_length=500), blank=True, default=list)  # For MC
+    correct_option = models.IntegerField(null=True, blank=True)  # Only used for quizzes
+    order = models.PositiveIntegerField(default=0)
+    created_at = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        ordering = ['order']
+
+
+class Response(models.Model):
+    question = models.ForeignKey(Question, related_name="responses", on_delete=models.CASCADE)
+    user_id = models.CharField(max_length=255)  # Or link to your User model
+    answer_text = models.TextField(blank=True, null=True)  # For short answer
+    selected_option = models.IntegerField(blank=True, null=True)  # Index of selected MC option
+    answered_at = models.DateTimeField(default=timezone.now)
+
+    def is_correct(self):
+        if self.question.question_type == 'MC' and self.question.correct_option is not None:
+            return self.selected_option == self.question.correct_option
+        return None

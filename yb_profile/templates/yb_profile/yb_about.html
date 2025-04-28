@@ -1,57 +1,181 @@
 {% load static %}
-<div id='div-header' class="div-header">
-    
+<link rel="stylesheet" type="text/css" href="{% static 'css/yb_settings/yourbit_settings.css' %}"/>
+<!-- -------------------------------------------------------------
+     PROFILE INFO – READ‑ONLY DISPLAY PAGE (no form fields)
+     ------------------------------------------------------------- -->
+<div id="div-header" class="div-header">
     <div class="cb-panel-back"></div>
-    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb"></h3>
-    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('about');"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
+    <h3 class="yb-fillWidth yb-margin-L10 yb-font-auto yb-margin-center tb"></h3>
+    <div class="yb-button-close" id="cb-panel-close" onclick="yb_toggle2WayContainer('about');"><svg class="yb-transform-center all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
+</div>
+
+<div class="yb-flexColumn" id="settings-info">
+    <div id="profile-image-container" class="profile-image-container yb-margin-center lr plainBorder border-solid narrowBorder circle" style="overflow: hidden; width: 128px; height:128px; border: {{current_profile.custom.image_border_style}}; border-color: {{current_profile.custom.image_border_color}};">
+        <div class="profile-image-overlay" style="background-color: {{current_profile.custom.image_overlay_color}}; opacity: {{current_profile.custom.image_overlay_strength}};"></div>
+        <img src="{% if current_profile.custom.profile_image.storage_type == "yb" %}{{current_profile.custom.profile_image.medium_thumbnail.url}}{%else%}{{current_profile.custom.profile_image.medium_thumbnail_ext}}{% endif %}" id="profile-image-splash" style="width: 100%; border-color:{{profile.custom.accent_color}};"/>
+    </div>
+    <br>
+    <h3 class="align-center yb-pHead" style="color:gray;">{{current_profile.display_name}}</h3>
+    
+    <p class="yb-margin-center lr font-large yb-font-autoGray"><i>"{{ current_profile.motto }}"</i></p>
+    <p class="yb-margin-center lr yb-pText yb-font-autoGray font-medium" style="white-space:pre-wrap;">{{ current_profile.bio }}</p>
+
+
 </div>
 <br>
-<h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-pHead yb-center-margin tb">About {{current_profile.user.first_name}}</h3>
-<hr style="border-color: var(--yb-button-color);">
-<div id="inbox-header" style="height: 40px; display:grid; grid-template-columns: 4fr 1fr; column-gap: 20px; scrollbar-width: none; overflow-x: scroll;" class="yb-hScroll yb-fillWidth yb-relative">
-    <div id="filter-container" class="yb-flexRow yb-fillWidth yb-gap5 yb-margin-L5">
-        <span class="yb-fillContainer yb-panel" style="z-index: 10; position: absolute; display: none;">Work in Progress...</span>
-        <button class="yb-button-wide active medium-wide rounded yb-autoText font-small yb-center-margin tb yb-bText">Bio</button>
-        <button class="yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb yb-bText">Contact</button>
-        <button class="yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb yb-bText">Education</button>
-        <button class="yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb yb-bText">Work</button>
+<!-- ───────────────────────────────────────────── Tabs (static labels) ───────────────────────────────────────────── -->
+<div id="pfis-filter" style="height: 40px; scrollbar-width: none; display:grid; grid-template-columns: 4fr 1fr; column-gap: 20px; overflow-x: auto;" class="yb-hScroll yb-fillWidth yb-relative">
+
+    <div id="pfis-filter-container" class="yb-flexRow tab-filter yb-fillWidth yb-gap5 yb-margin-L5">
+        <button class="message-filter yb-button-wide active medium-wide rounded yb-font-auto font-small yb-margin-center tb yb-form-tab" name="about-tab">About Me</button>
+        <button class="message-filter yb-button-wide medium-wide rounded yb-font-auto font-small yb-margin-center tb yb-form-tab" name="contact-tab">Contact</button>
+        <button class="message-filter yb-button-wide medium-wide rounded yb-font-auto font-small yb-margin-center tb yb-form-tab" name="location-tab">Location</button>
+        <button class="message-filter yb-button-wide medium-wide rounded yb-font-auto font-small yb-margin-center tb yb-form-tab" name="education-tab">Education</button>
+        <button class="message-filter yb-button-wide medium-wide rounded yb-font-auto font-small yb-margin-center tb yb-form-tab" name="work-tab">Work</button>
 
     </div>
 </div>
-<hr style="border-color: var(--yb-button-color);">
-<div id="connection-list" class="yb-fillWidth yb-vScroll yb-margin-T10" style="height: calc(100% - 260px); border-radius: 15px; padding: 5px;">
-    <div class="yb-panel squared" style="width: 93%; background-color: rgba(0, 0, 0, 0.5); padding: 5px; margin-bottom: 10px;">
-        <div>
-        <h4 class="font-gray yb-pHead" style="margin:0;">Motto</h4>
-        <p class="yb-autoText font-medium yb-pText">
-            {% if current_profile.motto %}
-                {{ current_profile.motto }}
-            {% else %}
-                No motto set.
-            {% endif %}
-        </p>
+
+
+<div id="profile-info-form" class="yb-fillWidth yb-form-container yb-vScroll yb-font-auto yb-margin-T10 align-center" style="height: calc(100% - 400px); border-radius: 15px; padding-bottom: 20px;">
+
+<!-- ──────────────────────────────── ABOUT ME ──────────────────────────────── -->
+<section class="setting-sub-container yb-font-auto" id="about-tab">
+    <h3 class="yb-font-auto yb-pHead">About Me</h3>
+    <div class="yb-field-split squared yb-bg-autoGray yb-pText">
+        <p class="field-cover-label align-left">Birthday:</p>
+        <p class="right yb-pText">{{ request.user.dob }}</p>
     </div>
-    </div>
-    <div class = "yb-panel squared" style="width: 93%; background-color: rgba(0, 0, 0, 0.5); padding: 5px; margin-bottom: 10px;">
-        <h4 class="font-gray yb-pHead" style="margin:0;">Bio</h4>
-        <p class="yb-autoText yb-pText font-medium">
-            {% if current_profile.bio %}
-                {{ current_profile.bio }}
-            {% else %}
-                No bio set.
-            {% endif %}
-        </p>
-    </div>
+    <br>
+    <p class="yb-font-autoGray font-medium yb-margin-center lr"><strong>Cultural Background</strong></p>
+    <div class="yb-field-split top yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Hometown:</p><p class="right yb-pText">{{ profile_info.hometown }}</p></div>
+    <div class="yb-field-split middle yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Country of Origin:</p><p class="right yb-pText">{{ profile_info.country_of_origin }}</p></div>
+    <div class="yb-field-split middle yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Religion:</p><p class="right yb-pText">{{ current_profile.religion }}</p></div>
+    <div class="yb-field-split bottom yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Place of Worship:</p><p class="right yb-pText">{{ current_profile.place_of_worship }}</p></div>
+</section>
+<br><hr>
+<!-- ──────────────────────────────── CONTACT ──────────────────────────────── -->
+<section class="setting-sub-container yb-font-auto" id="contact-tab">
+    <h3 class="yb-font-auto yb-pHead">Contact Info</h3>
+    <br>
+    <p class="yb-font-autoGray font-medium yb-margin-center lr"><strong>General</strong></p>
+    <div class="yb-field-split top yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Email:</p><p class="right yb-pText">{{ profile_info.email }}</p></div>
+    <div class="yb-field-split middle yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Phone:</p><p class="right yb-pText">{{ profile_info.phone_number }}</p></div>
+    <div class="yb-field-split bottom yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Website:</p><p class="right yb-pText">{{ profile_info.website }}</p></div>
+    <p class="yb-font-autoGray font-medium"><strong>Social Media</strong></p>
+    <div class="yb-field-split top yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Twitter:</p><p class="right yb-pText">{{ profile_info.twitter_handle }}</p></div>
+    <div class="yb-field-split middle yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Facebook:</p><p class="right yb-pText">{{ profile_info.facebook_handle }}</p></div>
+    <div class="yb-field-split middle yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Youtube:</p><p class="right yb-pText">{{ profile_info.youtube_handle }}</p></div>
+    <div class="yb-field-split middle yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Instagram:</p><p class="right yb-pText">{{ profile_info.instagram_handle }}</p></div>
+    <div class="yb-field-split bottom yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Snapchat:</p><p class="right yb-pText">{{ profile_info.snapchat_handle }}</p></div>
+</section>
+<br><hr>
+<!-- ──────────────────────────────── LOCATION ──────────────────────────────── -->
+<section class="setting-sub-container yb-font-auto" id="location-tab">
+    <h3 class="yb-font-auto yb-pHead">My Address</h3>
+    <br>
+    <p class="yb-font-autoGray font-medium yb-margin-center lr"><strong>Address</strong></p>
+    <div class="yb-field-split top yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Street Address:</p><p class="right yb-pText">{{ profile_info.address }}</p></div>
+    <div class="yb-field-split middle yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">City:</p><p class="right yb-pText">{{ profile_info.city }}</p></div>
+    <div class="yb-field-split middle yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">State:</p><p class="right yb-pText">{{ profile_info.state }}</p></div>
+    <div class="yb-field-split middle yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Country:</p><p class="right yb-pText">{{ profile_info.country }}</p></div>
+    <div class="yb-field-split bottom yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Zip Code:</p><p class="right yb-pText">{{ profile_info.zip_code }}</p></div>
+</section>
+<br><hr>
+<!-- ──────────────────────────────── EDUCATION ──────────────────────────────── -->
+<section class="setting-sub-container yb-font-auto" id="education-tab">
+    <h3 class="yb-font-auto yb-pHead">Education</h3>
+    <br>
+    <p class="yb-font-autoGray font-medium"><strong>High School</strong></p>
+    <div class="yb-field-split top yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">School:</p><p class="right yb-pText">{{ profile_info.high_school }}</p></div>
+    <div class="yb-field-split bottom yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Graduation Year:</p><p class="right yb-pText">{{ profile_info.year_graduated_hs }}</p></div>
+    <p class="yb-font-autoGray font-medium"><strong>College</strong></p>
+    <div class="yb-field-split top yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">College:</p><p class="right yb-pText">{{ profile_info.college }}</p></div>
+    <div class="yb-field-split bottom yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Graduation Year:</p><p class="right yb-pText">{{ profile_info.year_graduated_u }}</p></div>
+    <p class="yb-font-autoGray font-medium"><strong>Graduate School</strong></p>
+    <div class="yb-field-split top yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Graduate School:</p><p class="right yb-pText">{{ profile_info.graduate_school }}</p></div>
+    <div class="yb-field-split bottom yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Graduation Year:</p><p class="right yb-pText">{{ profile_info.year_graduated_gs }}</p></div>
+</section>
+<br><hr>
+<!-- ──────────────────────────────── WORK ──────────────────────────────── -->
+<section class="setting-sub-container yb-font-auto" id="work-tab">
+    <h3 class="yb-font-auto yb-pHead yb-margin-center lr">Work</h3>
+    <br>
+    <p class="yb-font-autoGray font-medium yb-margin-center lr"><strong>Current Job</strong></p>
+    <div class="yb-field-split top yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Company:</p><p class="right yb-pText">{{ profile_info.current_job }}</p></div>
+    <div class="yb-field-split middle yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Role:</p><p class="right yb-pText">{{ profile_info.current_role }}</p></div>
+    <div class="yb-field-split bottom yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Year Started:</p><p class="right yb-pText">{{ profile_info.year_started }}</p></div>
+    <p class="yb-font-autoGray font-medium yb-margin-center lr"><strong>First Job</strong></p>
+    <div class="yb-field-split top yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Company:</p><p class="right yb-pText">{{ profile_info.first_company }}</p></div>
+    <div class="yb-field-split middle yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Role:</p><p class="right yb-pText">{{ profile_info.first_role }}</p></div>
+    <div class="yb-field-split bottom yb-bg-autoGray yb-pText"><p class="field-cover-label align-left">Year Started:</p><p class="right yb-pText">{{ profile_info.first_year_started }}</p></div>
+</section>
 </div>
-
-
-<div class="yb-logo-footer small" id="about-menu-footer" style="position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%);">
-    <img src="{% static 'images/main/yourbit-logo2023-01.svg' %}" style="width: 100%; position: relative;" alt="YB Logo" class="yb-logo-small">
-</div>
-
-
-<script>
+<script type="text/javascript">
     $(document).ready(function(){
         tw_hideLoading();
+
+        const form_container = document.querySelector('.yb-form-container');
+
+        const observerOptions = {
+            root: form_container, // Use the viewport as the container
+            rootMargin: '0px 0px -70% 0px',
+            threshold: 0 // 50% of the section must be visible
+        };
+    
+        const sections = document.querySelectorAll('.setting-sub-container');
+        const form_tabs = document.querySelectorAll('.yb-form-tab');
+
+        for (var i = 0; i < form_tabs.length; i++) {
+            form_tabs[i].addEventListener('click', function () {
+                //Get name of tab
+                var tab_name = this.getAttribute('name');
+                
+                console.log("tab_name: ", tab_name);
+    
+                for (var i = 0; i < form_tabs.length; i++) {
+                    form_tabs[i].classList.remove('active');
+                }
+    
+                this.classList.add('active');
+    
+                var tab_content = document.getElementById(tab_name);
+                var parent = tab_content.parentElement; // Adjust this if your element is nested deeper
+                var rect = tab_content.getBoundingClientRect();
+                var parentRect = parent.getBoundingClientRect();
+                
+                // Calculate the offset to scroll
+                var offsetTop = rect.top - parentRect.top + parent.scrollTop;
+                
+                parent.scrollTo({
+                    top: offsetTop,
+                    behavior: "smooth"
+                });
+            });
+        }
+        
+        try {
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Remove active class from all tabs
+                    form_tabs.forEach(tab => tab.classList.remove('active'));
+    
+                    // Add active class to the corresponding tab
+                    const activeTab = document.querySelector(`.message-filter[name="${entry.target.id}"]`);
+                    if (activeTab) {
+                        activeTab.classList.add('active');
+                    }
+                }
+            });
+        }, observerOptions);
+    
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+        } catch(e) {
+            console.log(e);
+        }
+    
     });
 </script>

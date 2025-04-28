@@ -35,7 +35,7 @@ from yb_video.models import Video
 from yb_photo.models import Photo
 
 from django.core.paginator import Paginator
-from main.views import generate_bs_filter_chain, update_bs_filter_chain
+from main.utility import generate_bs_filter_chain, update_bs_filter_chain
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from yb_api.permissions import HasUserAPIKey
 from yb_api.models import UserAPIKey  # Adjust import paths as needed

@@ -273,9 +273,6 @@ $(document).ready(function () {
     header_color_input.addEventListener('input', change_title_color);
     text_color_input.addEventListener('input', change_text_color);
     custom_ui_toggle.addEventListener('click', toggleUICustomizations);
-
-    save_button.addEventListener('click', saveUIEdits);
-
     
 
     //COlor Circles

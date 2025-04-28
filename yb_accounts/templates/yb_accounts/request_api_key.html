@@ -1,15 +1,15 @@
 {% load static %}
 
 <div id='div-header' class="div-header">
-    <div class="cb-panel-back" onclick="yb_2WayPage(1);"><svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
-    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb"></h3>
-    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('settings-account');"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
+    <div class="cb-panel-back" onclick="yb_2WayPage(1);"><svg class="yb-margin-center tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
+    <h3 class="yb-fillWidth yb-margin-L10 yb-font-auto yb-margin-center tb"></h3>
+    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('settings-account');"><svg class="yb-transform-center all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
 </div>
 
 <div class="yb-flexColumn" id="settings-info">
-    <svg class="yb-autoFill yb-center-margin lr" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e8eaed"><path d="M280-412q-28 0-48-20t-20-48q0-28 20-48t48-20q28 0 48 20t20 48q0 28-20 48t-48 20Zm0 172q-100 0-170-70T40-480q0-100 70-170t170-70q72 0 126 34t85 103h356l113 113-167 153-88-64-88 64-75-60h-51q-25 60-78.5 98.5T280-240Zm0-60q58 0 107-38.5t63-98.5h114l54 45 88-63 82 62 85-79-51-51H450q-12-56-60-96.5T280-660q-75 0-127.5 52.5T100-480q0 75 52.5 127.5T280-300Z"/></svg>
+    <svg class="yb-autoFill yb-margin-center lr" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e8eaed"><path d="M280-412q-28 0-48-20t-20-48q0-28 20-48t48-20q28 0 48 20t20 48q0 28-20 48t-48 20Zm0 172q-100 0-170-70T40-480q0-100 70-170t170-70q72 0 126 34t85 103h356l113 113-167 153-88-64-88 64-75-60h-51q-25 60-78.5 98.5T280-240Zm0-60q58 0 107-38.5t63-98.5h114l54 45 88-63 82 62 85-79-51-51H450q-12-56-60-96.5T280-660q-75 0-127.5 52.5T100-480q0 75 52.5 127.5T280-300Z"/></svg>
     <h3 class="align-center yb-pHead">API KEYS</h3>
-    <p style="font-size: small; font-weight: 550; padding-left: 5px; padding-right: 5px; font-family: 'Roboto', sans-serif; text-align: center;" class="yb-autoText yb-pText">Request an API key for access to Yourbit data in third-party apps.</p>    
+    <p style="font-size: small; font-weight: 550; padding-left: 5px; padding-right: 5px; font-family: 'Roboto', sans-serif; text-align: center;" class="yb-font-auto yb-pText">Request an API key for access to Yourbit data in third-party apps.</p>    
 
 </div>
 
@@ -20,21 +20,21 @@
     <section class = "setting-sub-container" id="about-tab">
         <h4 class="yb-font-autoGray yb-pHead">Request API Key</h4>
         <div id="field-container-name" class="yb-field-container">
-            <div id="field-container-name-inner" class="yb-field-split squared yb-bg-autoGray yb-autoText yb-pText">
+            <div id="field-container-name-inner" class="yb-field-split squared yb-bg-autoGray yb-font-auto yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Name</p>
-                <input name="name" id='field-name' placeholder="type here..." class="yb-input-transparent right yb-autoText yb-pText yb-form-field" style="grid-column: 2;">
+                <input name="name" id='field-name' placeholder="type here..." class="yb-input-transparent right yb-font-auto yb-pText yb-form-field" style="grid-column: 2;">
             </div>
             <p class="yb-field-error under"></p>
         </div>
         <br>
-        <button type="button" class="yb-form-save yb-button-flex rounded green font-white yb-center-margin lr">Request</button>
+        <button type="button" class="yb-form-save yb-button-flex rounded green font-white yb-margin-center lr">Request</button>
     </section>
-    <div id="response-container" style="display: none; background-color: black; padding: 5px; width: 95%;" class="response-container squared font-white yb-margin-T10 yb-center-margin lr">
+    <div id="response-container" style="display: none; background-color: black; padding: 5px; width: 95%;" class="response-container squared font-white yb-margin-T10 yb-margin-center lr">
         <p>Your key is ready below.</p>
         <p style="font-size: 14px; font-weight: 550; width:100%; background-color: rgb(35,35,35); padding-top: 10px; padding-bottom:10px;" id="api-key-field" class="response-text squared"></p>
-        <button onclick="copyToClipboard('api-key-field')" style="width: 100px;" class="yb-button-flex bg-blue rounded green font-white yb-center-margin lr">Copy</button>
+        <button onclick="copyToClipboard('api-key-field')" style="width: 100px;" class="yb-button-flex bg-blue rounded green font-white yb-margin-center lr">Copy</button>
         <br>
-        <p class="yb-autoText font-small">
+        <p class="yb-font-auto font-small">
             You will only be shown this key one time. Keep it somewhere safe. If you lose it you will need to generate a new one. 
             <br>
             <br>
@@ -44,4 +44,4 @@
     </div>
 </form>
 
-<script class="page-script" src="{% static 'scripts/main/yb_forms3.js' %}"></script>
+<script class="page-script" src="{% static 'scripts/main/yb_forms4.js' %}"></script>

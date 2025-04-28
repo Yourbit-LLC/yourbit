@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from main.views import initialize_session
+from main.utility import initialize_session
 from django.views import View
 from yb_settings.models import *
 from yb_profile.models import Profile, ProfileInfo
@@ -124,7 +124,35 @@ class SettingsElement(View):
         
 class SettingsProfile(View):
     def get(self, request):
-        return render(request, "yb_settings/yb_profileInfo.html")
+        if request.user.is_authenticated:
+            init_params = initialize_session(request)
+            return render(
+                request, 
+                "main/index.html",
+                {
+                    'first_login': request.user.first_login,
+                    'location': init_params['last_location'],
+                    'space': init_params['current_space'],
+                    'filter': init_params['filter_chain'],
+                    'sort': init_params['sort_by'],   
+                    'start_function': 'yb_navigateTo("2way", "settings-profile"); yb_startBitStream();',    
+                },
+
+            )
+        else:
+            from yb_accounts.forms import RegistrationForm, LoginForm
+            registration_form = RegistrationForm()
+            login_form = LoginForm()
+            return render(
+                request,
+                "registration/login.html",
+                {
+                    'state': 'home',
+                    'registration_form': registration_form,
+                    'login_form': login_form,
+                }
+            )
+        
     def post(self, request):
         profile = Profile.objects.get(username = request.user.active_profile)
         profile_info = ProfileInfo.objects.get(profile=profile)
@@ -145,26 +173,33 @@ class SettingsProfile(View):
         profile_info.country = request.POST['country']
 
         profile_info.high_school = request.POST['high_school']
-        # profile_info.year_graduated_hs = request.POST['year_graduated_hs']
-        # profile_info.college = request.POST['college']
-        # profile_info.year_graduated_u = request.POST['year_graduated_u']
-        # profile_info.field_of_study = request.POST['field_of_study']
+        profile_info.year_graduated_hs = request.POST.get('year_graduated_hs') or profile_info.year_graduated_hs
+        profile_info.college = request.POST['college']
+        profile_info.year_graduated_u = request.POST['year_graduated_u'] or profile_info.year_graduated_u
+        profile_info.field_of_study = request.POST['field_of_study']
 
-        # profile_info.hometown = request.POST['hometown']
-        # profile_info.country_of_origin = request.POST['country_of_origin']
+        profile_info.hometown = request.POST['hometown']
+        profile_info.country_of_origin = request.POST['country_of_origin']
 
-        # profile_info.religion = request.POST['religion']
-        # profile_info.place_of_worship = request.POST['place_of_worship']
+        profile_info.religion = request.POST['religion']
+        profile_info.place_of_worship = request.POST['place_of_worship']
 
-        # profile_info.occupation = request.POST['occupation']
-        # profile_info.company = request.POST['company']
-        # profile_info.year_started = request.POST['year_started']
+        profile_info.current_job = request.POST['current_job']
+        profile_info.current_role = request.POST['current_role']
+        profile_info.year_started = request.POST['year_started'] or profile_info.year_started
 
-        # profile_info.relationship_status = request.POST['relationship_status']
+        
+        profile_info.first_job = request.POST['first_job']
+        profile_info.first_role = request.POST['first_role']
+        profile_info.first_year_started = request.POST['first_year_started'] or profile_info.first_year_started
 
         profile_info.save()
 
         return JsonResponse({"status":"success", "message":"Profile updated"})
+    
+def profile_settings_template(request):
+    return render(request, "yb_settings/yb_profileInfo.html")
+
 
 def set_all_false(request):
     if request.user.is_admin:

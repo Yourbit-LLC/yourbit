@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from yb_accounts.models import Account as User
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from main.views import initialize_session
+from main.utility import initialize_session
 import webpush
 
 # Create your views here.

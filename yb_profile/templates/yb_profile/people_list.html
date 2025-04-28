@@ -1,6 +1,6 @@
 {% if connections %}
 {% for connection in connections %}
-    <div id="result-people-{{connection.id}}" class="yb-listItem yb-autoText people-item" data-catid="{{connection.id}}" data-username="{{connection.username}}">
+    <div id="result-people-{{connection.id}}" class="yb-listItem yb-font-auto yb-bg-autoGray  people-item" data-catid="{{connection.id}}" data-username="{{connection.username}}">
 
         <div class="full-result-image-container people-sub-item" data-username="{{connection.username}}">
                 <img class="full-result-image" style="width:100%; position: relative;" src="{{connection.custom.profile_image.small_thumbnail_ext}}">
@@ -35,8 +35,8 @@
 
     </script>
 {% else %}
-    <div class="yb-fillWidth yb-center-margin yb-margin-T30 yb-margin-B10">
-        <h3 class="yb-autoText align-center yb-margin-T10">No connections found</h3>
+    <div class="yb-fillWidth yb-margin-center yb-margin-T30 yb-margin-B10">
+        <h3 class="yb-font-auto align-center yb-margin-T10">No connections found</h3>
     </div>
     <br>
     <button id="find-connections-people" class="yb-button-flex bg-gray-dark font-gray yb-button-halfWidth">+  Find People</button>

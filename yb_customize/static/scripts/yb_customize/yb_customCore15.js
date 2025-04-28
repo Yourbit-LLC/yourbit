@@ -93,16 +93,16 @@
 
 */
 const DEFAULT_STYLESHEET_INDEX = {
-    "yb-stylesheet-core": "/static/css/main/yb_core8.css",
-    "yb-stylesheet-modifier": "/static/css/main/yb_modifiers4.css",
-    "yb-stylesheet-button": "/static/css/main/yb_buttons6.css",
-    "yb-stylesheet-container": "/static/css/main/yb_containers9.css",
+    "yb-stylesheet-core": "/static/css/main/yb_core9.css",
+    "yb-stylesheet-modifier": "/static/css/main/yb_modifiers5.css",
+    "yb-stylesheet-button": "/static/css/main/yb_buttons7.css",
+    "yb-stylesheet-container": "/static/css/main/yb_containers18.css",
     "yb-stylesheet-bit": "/static/css/yb_bits/yb_bits7.css",
 }
 
 const MODDED_STYLESHEET_INDEX = {
     "yb-stylesheet-core": "/static/css/main/yb_core_customized11.css",
-    "yb-stylesheet-modifier": "/static/css/main/yb_modifiers_customized5.css",
+    "yb-stylesheet-modifier": "/static/css/main/yb_modifiers_customized6.css",
     "yb-stylesheet-button": "/static/css/main/yb_buttons_customized9.css",
     "yb-stylesheet-container": "/static/css/main/yb_containers_customized1.css",
     "yb-stylesheet-bit": "/static/css/yb_bits/yb_bits_customized8.css",
@@ -555,10 +555,281 @@ function yb_revertUIColor() {
         
         changeColor('--yb-' + custom_ui_index[i], this_data);
     }
+    //Check if user has flat mode toggled on
+    if (CUSTOM_CONFIG["flat-mode-on"] == "False") {
+        let this_wallpaper = CUSTOM_VALUES.getAttribute("data-wallpaper");
+        yb_changeWallpaper(this_wallpaper, false);
+ 
+    } 
 
-    let this_wallpaper = CUSTOM_VALUES.getAttribute("data-wallpaper");
-    yb_changeWallpaper(this_wallpaper, false);
 
 
 }
 
+/*
+
+    //Add new functions for getting various colors on site when rendering new elements 
+    
+        yb_getPrimaryUIColor()
+        yb_getSecondaryUIColor()
+        yb_getTitleUIColor()
+        yb_getTextUIColor()
+        yb_getIconUIColor()
+        yb_getButtonUIColor()
+        yb_getButtonTextUIColor()
+
+        yb_getPrimaryBitColor()
+        yb_getSecondaryBitColor()
+        yb_getTitleBitColor()
+        yb_getTextBitColor()
+        yb_getIconBitColor()
+        yb_getButtonBitColor()
+        yb_getButtonTextBitColor()
+        
+    * These new functions should first check if custom UI modes are on. 
+    * If they are then use the custom UI colors, if not use the default colors
+    * When using default colors, check if user has flat mode on or off 
+    * Check if theme is light or dark mode
+    * Return the appropriate color
+    
+    This new approach makes it easier to update UI colors and render new elements asynchronously
+    while handling Yourbits wide variety of themes and color modes
+*/
+
+function yb_getPrimaryUIColor() {
+    //Check if UI customization is on
+    if (CUSTOM_CONFIG["custom-ui-on"] == "True") {
+        //Return panel color
+        return UI_CUSTOM["panel-color"];
+    } else {
+        //Check for light dark mode preference in browser
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            
+            return "black";
+        } else {
+            return "white";
+        }
+        
+    }
+}
+
+function yb_getSecondaryUIColor() {
+    //Check if UI customization is on
+    if (CUSTOM_CONFIG["custom-ui-on"] == "True") {
+        //Return panel color
+        return UI_CUSTOM["accent-color"];
+    } else {
+        //Check for light dark mode preference in browser
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            return "#333333";
+        } else {
+            return "#969696";
+        }
+        
+    }
+}
+
+function yb_getTitleUIColor() {
+    //Check if UI customization is on
+    if (CUSTOM_CONFIG["custom-ui-on"] == "True") {
+        //Return panel color
+        return UI_CUSTOM["title-color"];
+    } else {
+        //Check for light dark mode preference in browser
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            return "white";
+        } else {
+            return "black";
+        }
+        
+    }
+}
+
+function yb_getTextUIColor() {
+    //Check if UI customization is on
+    if (CUSTOM_CONFIG["custom-ui-on"] == "True") {
+        //Return panel color
+        return UI_CUSTOM["text-color"];
+    } else {
+        //Check for light dark mode preference in browser
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            return "white";
+        } else {
+            return "black";
+        }
+        
+    }
+}
+
+function yb_getIconUIColor() {
+    //Check if UI customization is on
+    if (CUSTOM_CONFIG["custom-ui-on"] == "True") {
+        //Return panel color
+        return UI_CUSTOM["icon-color"];
+    } else {
+        //Check for light dark mode preference in browser
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            return "white";
+        } else {
+            return "black";
+        }
+        
+    }
+}
+
+function yb_getButtonUIColor() {
+    //Check if UI customization is on
+    if (CUSTOM_CONFIG["custom-ui-on"] == "True") {
+        //Return panel color
+        return UI_CUSTOM["button-color"];
+    } else {
+        //Check for light dark mode preference in browser
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            return "#333333";
+        } else {
+            return "#969696";
+        }
+        
+    }
+}
+
+function yb_getButtonTextUIColor() {
+    //Check if UI customization is on
+    if (CUSTOM_CONFIG["custom-ui-on"] == "True") {
+        //Return panel color
+        return UI_CUSTOM["button-text-color"];
+    } else {
+        //Check for light dark mode preference in browser
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            return "white";
+        } else {
+            return "black";
+        }
+        
+    }
+}
+
+function yb_getPrimaryBitColor() {
+    //Check if UI customization is on
+    if (CUSTOM_CONFIG["bit-colors-on"] == "True") {
+        //Return panel color
+        return BIT_CUSTOM["primary-color"];
+    } else {
+        //Check if flat mode is on
+        if (CUSTOM_CONFIG["flat-mode-on"] == "True") {
+            return "transparent";
+        } else {
+            //Check for light dark mode preference in browser
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                return "#333333";
+            } else {
+                return "#969696";
+            }
+        }
+
+    }
+}
+
+function yb_getSecondaryBitColor() {
+    //Check if UI customization is on
+    if (CUSTOM_CONFIG["bit-colors-on"] == "True") {
+        //Return panel color
+        return BIT_CUSTOM["secondary-color"];
+    } else {
+        //Check if flat mode is on
+        if (CUSTOM_CONFIG["flat-mode-on"] == "True") {
+            return "transparent";
+        } else {
+            //Check for light dark mode preference in browser
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                return "#333333";
+            } else {
+                return "#969696";
+            }
+        }
+
+    }
+}
+
+function yb_getTitleBitColor() {
+    //Check if UI customization is on
+    if (CUSTOM_CONFIG["bit-colors-on"] == "True") {
+        //Return panel color
+        return BIT_CUSTOM["title-color"];
+    } else {
+        //Check if flat mode is on
+        if (CUSTOM_CONFIG["flat-mode-on"] == "True") {
+            return "transparent";
+        } else {
+            //Check for light dark mode preference in browser
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                return "#333333";
+            } else {
+                return "#969696";
+            }
+        }
+
+    }
+}
+function yb_getTextBitColor() {
+    //Check if UI customization is on
+    if (CUSTOM_CONFIG["bit-colors-on"] == "True") {
+        //Return panel color
+        return BIT_CUSTOM["text-color"];
+    } else {
+        //Check if flat mode is on
+        if (CUSTOM_CONFIG["flat-mode-on"] == "True") {
+            return "transparent";
+        } else {
+            //Check for light dark mode preference in browser
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                return "#333333";
+            } else {
+                return "#969696";
+            }
+        }
+
+    }
+}
+
+function yb_getIconBitColor() {
+    //Check if UI customization is on
+    if (CUSTOM_CONFIG["bit-colors-on"] == "True") {
+        //Return panel color
+        return BIT_CUSTOM["icon-color"];
+    } else {
+        //Check if flat mode is on
+        if (CUSTOM_CONFIG["flat-mode-on"] == "True") {
+            return "transparent";
+        } else {
+            //Check for light dark mode preference in browser
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                return "#333333";
+            } else {
+                return "#969696";
+            }
+        }
+
+    }
+}
+
+function yb_getButtonBitColor() {
+    //Check if UI customization is on
+    if (CUSTOM_CONFIG["bit-colors-on"] == "True") {
+        //Return panel color
+        return BIT_CUSTOM["button-color"];
+    } else {
+        //Check if flat mode is on
+        if (CUSTOM_CONFIG["flat-mode-on"] == "True") {
+            return "transparent";
+        } else {
+            //Check for light dark mode preference in browser
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                return "#333333";
+            } else {
+                return "#969696";
+            }
+        }
+
+    }
+}

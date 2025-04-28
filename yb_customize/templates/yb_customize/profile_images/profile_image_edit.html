@@ -1,0 +1,91 @@
+{% load static %}
+<div id='div-header' style='position: relative; display: grid; grid-template-columns: 40px 5fr 40px; margin-left: auto; margin-right: auto; width: 100%; height: 40px; margin-bottom: 20px;' >
+    <div class="cb-panel-back"></div>
+    <h3 class="yb-fillWidth yb-margin-L10 yb-font-auto yb-margin-center tb"></h3>
+    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('profile-image-upload');"><svg class="yb-transform-center all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
+</div>
+
+<div class="yb-fillWidth yb-vScroll yb-font-auto yb-margin-T10 align-center" ID="feed-settings-form" method="POST" action="{% url 'settings_feed' %}" style="height: calc(100% - 70px); border-radius: 15px; padding-bottom: 150px;">
+    <div class="yb-fillWidth align-center" style="position: relative;" >
+        <div class="large-profile-image preview yb-margin-center lr" id="profile-image-preview" style="position: relative; height: 256px; width: 256px; border: {{custom_core.image_border_style}}; border-color:{{custom_core.image_border_color}}; overflow: hidden;">
+            <div id="image-co-color-preview" class="profile-image-overlay" style="background-color: {{custom_core.image_overlay_color}}; opacity: {{custom_core.image_overlay_strength}};"></div>
+            <img src="{{profile_thumbnail_medium}}" class="profile-icon" id="profile-image-preview" style="width: 100%;" />
+        </div>
+        <input type = "file" id="profile-image-upload" accept=".jpg,.jpeg,.png, .gif" style="display: none;"/>
+        <br>
+        <br>
+        <small style="color: skyblue; margin-left: 20px; height: 20px;" class="align-center"> 
+            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" style="position: relative; top: 4px; left: 0px;" height="20px" fill="cyan"><path d="M446.67-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h166.67v66.67H280q-55.56 0-94.44 38.84-38.89 38.84-38.89 94.33 0 55.49 38.89 94.49 38.88 39 94.44 39h166.67V-280ZM323.33-446.67v-66.66h313.34v66.66H323.33Zm190 166.67v-66.67H680q55.56 0 94.44-38.84 38.89-38.84 38.89-94.33 0-55.49-38.89-94.49-38.88-39-94.44-39H513.33V-680H680q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H513.33Z"/></svg>
+            {% comment %} <svg xmlns="http://www.w3.org/2000/svg" style="position: relative; top: 30%; margin-right: 3px;" height="20px" viewBox="0 -960 960 960" width="20px" fill="#e8eaed"><path d="M756.67-294.67 704-348q47.33-10.33 78.33-46.17 31-35.83 31-83.83 0-55.33-39-94.33t-94.33-39H523.33V-678H680q83 0 141.5 58.5T880-478q0 60.33-33.83 109.67-33.84 49.33-89.5 73.66Zm-149.34-150-66.66-66.66h96v66.66h-29.34ZM806.67-56l-746-746L108-849.33l746 746L806.67-56Zm-360-224H280q-83 0-141.5-58.5T80-480q0-71 43.67-125.67 43.66-54.66 111.66-69.66l62 62H280q-55.33 0-94.33 39t-39 94.33q0 55.33 39 94.33t94.33 39h166.67V-280ZM323.33-446.67v-66.66h74.34L464-446.67H323.33Z"/></svg> {% endcomment %}
+            PFP
+        </small> 
+        <br>
+        <br>
+        <button id="new-image-button" class="yb-button-wide rounded font-white" style="padding: 10px 10px 10px 10px; height: 40px !important; background-color: #3399ff">Change Image</button>
+        <br>
+        <br>
+        <hr>
+        <form id="edit-options" class="align-center">
+            <br>
+            <h3 class="yb-font-auto">Edit Image</h3>
+            <br>
+            <div>
+                <div id="enable-color-overlay" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; grid-template-rows: 40px 30px auto 30px; width: 95%; margin: auto; grid-gap: 10px;">
+                    <h3 class="align-center squared yb-font-auto-reversed" style="grid-row: 1; grid-column-start: 1; grid-column-end: 3; width: 33%; margin: 5px auto; line-height: 2; height: 30px; background-color: rgba(0,0,0,0.5);">Color</h3>
+                    <p class="field-cover-label yb-pText align-left" style="grid-column: 1; grid-row: 2;">Color Overlay </p>  
+                    <div class = "color-circle yb-margin-center tb" id="image-co-color-circle" name="image-co" style="position: relative; margin-right: 10px; background-color: {{custom_core.image_overlay_color}}; grid-column: 2; grid-row: 2; height: 25px; width: 25px;"></div>  
+                    <input class="coloris color-input" type="text" name="image-co" style="display: none;" id="image-co-color-picker" value="{{custom_core.image_overlay_color}}">  
+                    <hr style="grid-row: 3; grid-column-start: 1; grid-column-end: 3; width: 100%;">
+                    <p class="field-cover-label yb-pText align-left" style="grid-column: 1; grid-row: 4;">Strength </p>  
+                    <input type="range" id="image-co-strength-slider" style="position: absolute; top: 50%; grid-column: 2; grid-row: 4; transform: translateY(-100%); right: 5px; text-align: left;" class="co-strength" min="0" max="1" step="0.1" value="{{custom_core.image_overlay_strength}}">      
+                    
+                </div>
+            </div>
+            
+            <br>
+            <div id="enable-transparency-container" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; grid-template-rows: 40px 40px; width: 95%; margin: auto; grid-gap: 10px;">
+                <h3 class="align-center squared yb-font-auto-reversed" style="grid-row: 1; grid-column-start: 1; grid-column-end: 3; width: 50%; margin: 5px auto; line-height: 2; height: 30px; background-color: rgba(0,0,0,0.5);">Transparency</h3>
+                <p class="field-cover-label yb-pText align-left" style="grid-column: 1;">Enable Transparency <br><small><i>*Requires transparent image</i></small></p>        
+                <div style="position: absolute; top: calc(50% + 10px); right: 5px; width: 45px; text-align: left;">
+                    <label class="yb-switch-round" id="yb-exclude-shared" >
+                        <input type="checkbox" class="checkbox image-check" name="transparency" id="yb-check-transparency">
+                        <span class="slider round"></span>
+                    </label>
+                </div>       
+            </div>
+            <br>
+            <div id="enable-border-container" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; grid-template-rows: 40px 30px auto 30px; width: 95%; margin: auto; grid-gap: 10px;">
+                <h3 class="align-center squared yb-font-auto-reversed" style="grid-row: 1; grid-column-start: 1; grid-column-end: 3; width: 33%; margin: 5px auto; line-height: 2; height: 30px; background-color: rgba(0,0,0,0.5);">Border</h3>
+                    <p class="field-cover-label yb-pText align-left" style="grid-column: 1; grid-row: 2;">Enable Border </p>        
+                    <div style="position: absolute; top: 20%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left; grid-column: 2; grid-row: 2;">
+                        <label class="yb-switch-round" id="yb-exclude-shared" >
+                            
+                            <input type="checkbox" class="checkbox image-check" name="enable_border" id="yb-check-border" {% if custom_core.image_border_style == 'solid' %}checked{%endif%}>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>      
+                
+                    <hr style="grid-row: 3; grid-column-start: 1; grid-column-end: 3; width: 100%;">
+                
+                    <p class="field-cover-label yb-pText align-left" style="grid-column: 1; grid-row: 4; ">Border Color </p>    
+                    <div class = "color-circle yb-margin-center tb" id="image-bco-color-circle" name="image-bco" style="position: relative; margin-right: 10px; background-color: {{custom_core.image_border_color}}; grid-column: 2; grid-row: 4; height: 25px; width: 25px;"></div>  
+                    <input class="coloris color-input" type="text" name="image-bco" style="display: none;" id="image-bco-color-picker" value="{{custom_core.image_border_color}}">  
+                    
+                        
+                
+            </div>
+
+            <br>
+            <button id="avatar-save-button" type="button" class="yb-button-wide green rounded" style="padding: 10px 10px 10px 10px; height: 40px !important; width: 75px;">Save</button>
+        </form>
+        <hr>
+    </div>
+</div>
+<script src="{% static 'scripts/yb_customize/yb_editImage7.js' %}"></script>
+
+
+<script>
+    $(document).ready(function(){
+        tw_hideLoading();
+    });
+</script>

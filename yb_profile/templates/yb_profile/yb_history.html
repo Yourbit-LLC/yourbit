@@ -1,26 +1,26 @@
 {% load static %}
 <div id='div-header' class="div-header">
-    <div class="cb-panel-back" onclick="yb_toggleMainMenu()"><svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
-    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb"></h3>
-    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('history');"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
+    <div class="cb-panel-back" onclick="yb_toggleMainMenu()"><svg class="yb-margin-center tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
+    <h3 class="yb-fillWidth yb-margin-L10 yb-font-auto yb-margin-center tb"></h3>
+    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('history');"><svg class="yb-transform-center all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
 </div>
 
 
 <div class="yb-flexColumn" id="messages-info">
-    <svg class="yb-autoFill yb-center-margin lr" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e8eaed"><path d="M477-140q-137.85 0-235.5-95.69T140-469.85h45.39Q190-351 273.69-268.19q83.7 82.8 203.31 82.8 124.31 0 210.58-87.07 86.27-87.08 86.27-211.39 0-122.07-86.89-206.42-86.88-84.34-209.96-84.34-64.54 0-121.73 28.3-57.19 28.31-100.42 75.85h100.77v45.38H175.46V-805h45.39v103.69q49.31-55.23 115.8-86.96Q403.15-820 477-820q70.77 0 132.92 26.46 62.16 26.46 108.77 72.46 46.62 46 73.58 107.54 26.96 61.54 26.96 131.92 0 70.77-26.96 133.12-26.96 62.35-73.58 108.46-46.61 46.12-108.77 73.08Q547.77-140 477-140Zm131.85-182.77L458.31-471.69v-210.54h45.38v191.69l137.77 135.16-32.61 32.61Z"/></svg>
+    <svg class="yb-autoFill yb-margin-center lr" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e8eaed"><path d="M477-140q-137.85 0-235.5-95.69T140-469.85h45.39Q190-351 273.69-268.19q83.7 82.8 203.31 82.8 124.31 0 210.58-87.07 86.27-87.08 86.27-211.39 0-122.07-86.89-206.42-86.88-84.34-209.96-84.34-64.54 0-121.73 28.3-57.19 28.31-100.42 75.85h100.77v45.38H175.46V-805h45.39v103.69q49.31-55.23 115.8-86.96Q403.15-820 477-820q70.77 0 132.92 26.46 62.16 26.46 108.77 72.46 46.62 46 73.58 107.54 26.96 61.54 26.96 131.92 0 70.77-26.96 133.12-26.96 62.35-73.58 108.46-46.61 46.12-108.77 73.08Q547.77-140 477-140Zm131.85-182.77L458.31-471.69v-210.54h45.38v191.69l137.77 135.16-32.61 32.61Z"/></svg>
     <b class="align-center yb-pHead" style="font-size: 18px; letter-spacing: 2px;">HISTORY</b>
-    <p style="font-size: small; font-weight: 550; padding-left: 5px; padding-right: 5px; font-family: 'Roboto', sans-serif; text-align: center;" class="yb-autoText yb-pText">All of the bits you've interacted with</p>
+    <p style="font-size: small; font-weight: 550; padding-left: 5px; padding-right: 5px; font-family: 'Roboto', sans-serif; text-align: center;" class="yb-font-auto yb-pText">All of the bits you've interacted with</p>
 </div>
 
 <hr>
 <div id="inbox-header" style="height: 40px; scrollbar-width: none; display:grid; grid-template-columns: 4fr 1fr; column-gap: 20px; overflow-x: hidden;" class="yb-hScroll yb-fillWidth yb-relative">
     <div id="filter-container" class="yb-flexRow yb-fillWidth yb-gap5 yb-margin-L5">
         {% comment %} <span class="yb-fillContainer yb-panel align-center yb-font-autoGray" style="line-height: 2; z-index: 10; position: absolute;"><p><b>Work in Progress...</b> Filter Bar</p></span> {% endcomment %}
-        {% comment %} <button class="history-filter yb-button-wide active medium-wide rounded yb-autoText font-small yb-center-margin tb" name="recents">Recents</button> {% endcomment %}
-        <button class="history-filter yb-button-wide medium-wide active rounded yb-autoText font-small yb-center-margin tb" name="liked">Liked</button>
-        <button class="history-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb" name="disliked">Disliked</button>
-        <button class="history-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb" name="watched">Watched</button>
-        <button class="history-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb" name="comments">Comments</button>
+        {% comment %} <button class="history-filter yb-button-wide active medium-wide rounded yb-font-auto font-small yb-margin-center tb" name="recents">Recents</button> {% endcomment %}
+        <button class="history-filter yb-button-wide medium-wide active rounded yb-font-auto font-small yb-margin-center tb" name="liked">Liked</button>
+        <button class="history-filter yb-button-wide medium-wide rounded yb-font-auto font-small yb-margin-center tb" name="disliked">Disliked</button>
+        <button class="history-filter yb-button-wide medium-wide rounded yb-font-auto font-small yb-margin-center tb" name="watched">Watched</button>
+        <button class="history-filter yb-button-wide medium-wide rounded yb-font-auto font-small yb-margin-center tb" name="comments">Comments</button>
 
     </div>
 </div>

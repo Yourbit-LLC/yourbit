@@ -2,33 +2,33 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'css/yb_settings/yourbit_settings.css' %}"/>
 <div id='div-header' class="div-header">
-    <div class="cb-panel-back" onclick="yb_toggleSettingsMenu()"><svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
-    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb"></h3>
-    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('settings-feed');"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
+    <div class="cb-panel-back" onclick="yb_toggleSettingsMenu()"><svg class="yb-margin-center tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
+    <h3 class="yb-fillWidth yb-margin-L10 yb-font-auto yb-margin-center tb"></h3>
+    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('settings-feed');"><svg class="yb-transform-center all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
 </div>
 
 <div class="yb-flexColumn" id="settings-info">
-    <svg class="yb-autoFill yb-center-margin lr" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e8eaed"><path d="M480-80q-140-35-230-162.5T160-522v-238l320-120 320 120v238q0 152-90 279.5T480-80Zm0-62q106-35 175.5-128.5T737-480H480v-335l-260 97v196q0 12 .5 20.5T223-480h257v338Z"/></svg>
+    <svg class="yb-autoFill yb-margin-center lr" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e8eaed"><path d="M480-80q-140-35-230-162.5T160-522v-238l320-120 320 120v238q0 152-90 279.5T480-80Zm0-62q106-35 175.5-128.5T737-480H480v-335l-260 97v196q0 12 .5 20.5T223-480h257v338Z"/></svg>
     
     <h3 class="align-center yb-pHead">PRIVACY</h3>
-    <p style="font-size: small; font-weight: 550; padding-left: 5px; padding-right: 5px; font-family: 'Roboto', sans-serif; text-align: center;" class="yb-autoText yb-pText">Manage account, content, and privacy settings here.</p>    
+    <p style="font-size: small; font-weight: 550; padding-left: 5px; padding-right: 5px; font-family: 'Roboto', sans-serif; text-align: center;" class="yb-font-auto yb-pText">Manage account, content, and privacy settings here.</p>    
 
 </div>
 
 
 <div id="inbox-header" style="height: 40px; scrollbar-width: none; display:grid; grid-template-columns: 4fr 1fr; column-gap: 20px; overflow-x: hidden;" class="yb-hScroll yb-fillWidth yb-relative">
     <div id="filter-container" class="yb-flexRow yb-fillWidth yb-gap5 yb-margin-L5">
-        <button class="message-filter yb-button-wide active medium-wide rounded yb-autoText font-small yb-center-margin tb" name="publicity">Publicity</button>
-        <button class="message-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb" name="profile">Info</button>
-        <button class="message-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb" name="contact">Contact</button>
-        <button class="message-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb" name="messages">Messages</button>
+        <button class="message-filter yb-button-wide active medium-wide rounded yb-font-auto font-small yb-margin-center tb" name="publicity">Publicity</button>
+        <button class="message-filter yb-button-wide medium-wide rounded yb-font-auto font-small yb-margin-center tb" name="profile">Info</button>
+        <button class="message-filter yb-button-wide medium-wide rounded yb-font-auto font-small yb-margin-center tb" name="contact">Contact</button>
+        <button class="message-filter yb-button-wide medium-wide rounded yb-font-auto font-small yb-margin-center tb" name="messages">Messages</button>
 
     </div>
 </div>
 
 
 
-<form id="privacy-form" method="POST" action="{% url 'settings_privacy' %}" class="yb-fillWidth yb-vScroll yb-autoText yb-margin-T10 align-center" style="height: calc(100% - 170px); border-radius: 15px; padding-bottom: 150px;">
+<form id="privacy-form" method="POST" action="{% url 'settings_privacy' %}" class="yb-fillWidth yb-vScroll yb-font-auto yb-margin-T10 align-center" style="height: calc(100% - 170px); border-radius: 15px; padding-bottom: 150px;">
     <!--All settings should include an explanation with a question
             mark symbol used for activation located right of the label
         
@@ -44,7 +44,7 @@
         <div class="setting-sub-container">
             <h3 class="yb-pHead">Publicity</h3>
             <div id="prv-enableFollowers-container" class="yb-field-split top yb-bg-autoGray yb-pText" style="position: relative;">
-                <p class="field-cover-label yb-pText yb-autoText align-left" style="grid-column: 1;">Enable Followers </p>        
+                <p class="field-cover-label yb-pText yb-font-auto align-left" style="grid-column: 1;">Enable Followers </p>        
                 <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="yb-exclude-shared" >
                         <input type="checkbox" class="checkbox notification-check bit-subsetting" name="bit_likes" id="prv-enable-followers" {% if enable_followers %}checked{%endif%}>
@@ -55,7 +55,7 @@
 
             <!--Search by real name switch-->
             <div "prv-search-real-name" class="yb-field-split middle yb-bg-autoGray yb-pText" style="position: relative;">
-                <p class="field-cover-label yb-pText yb-autoText align-left" style="grid-column: 1;">Search by Real Name </p>        
+                <p class="field-cover-label yb-pText yb-font-auto align-left" style="grid-column: 1;">Search by Real Name </p>        
                 <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="yb-real-search" >
                         <input type="checkbox" class="checkbox notification-check bit-subsetting" name="searchable" id="prv-search-real-name" {% if searchable %}checked{% endif %}>
@@ -66,7 +66,7 @@
 
             <!--Default post public-->
             <div id="prv-default-post" class="yb-field-split middle yb-bg-autoGray yb-pText" style="position: relative;">
-                <p class="field-cover-label yb-pText yb-autoText align-left" style="grid-column: 1;">Post bits to public</p>        
+                <p class="field-cover-label yb-pText yb-font-auto align-left" style="grid-column: 1;">Post bits to public</p>        
                 <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="prv-default-post" >
                         <input type="checkbox" class="checkbox notification-check bit-subsetting" name="default_post_public" id="prv-default-post" {% if default_post_public %}checked{% endif %}>
@@ -77,7 +77,7 @@
 
             <!-- Allow sharing -->
             <div id="prv-allow-sharing" class="yb-field-split middle yb-bg-autoGray yb-pText" style="position: relative;">
-                <p class="field-cover-label yb-pText yb-autoText align-left" style="grid-column: 1;">Allow bit Sharing </p>        
+                <p class="field-cover-label yb-pText yb-font-auto align-left" style="grid-column: 1;">Allow bit Sharing </p>        
                 <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="prv-allow-sharing" >
                         <input type="checkbox" class="checkbox notification-check bit-subsetting" name="allow_sharing" id="prv-allow-sharing" {% if allow_sharing %}checked{% endif %}>
@@ -89,7 +89,7 @@
 
             <!-- Suggest me -->
             <div id="prv-suggest-me" class="yb-field-split bottom yb-bg-autoGray yb-pText" style="position: relative;">
-                <p class="field-cover-label yb-pText yb-autoText align-left" style="grid-column: 1;">Suggest me </p>        
+                <p class="field-cover-label yb-pText yb-font-auto align-left" style="grid-column: 1;">Suggest me </p>        
                 <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                     <label class="yb-switch-round" id="prv-suggest-me" >
                         <input type="checkbox" class="checkbox notification-check bit-subsetting" name="suggest_me" id="prv-suggest-me" {% if suggest_me %}checked{% endif %}>
@@ -117,15 +117,15 @@
                 </div>
                 <div id = "field-container-display-name" class="yb-field-container" style="{% if real_name_visibility == True%} opacity: 0.5; {% endif %}">
                     <div id="display-name" class="yb-field-split middle yb-bg-autoGray yb-pText" style="position: relative;">
-                        <p class="field-cover-label align-left yb-pText" style="grid-column: 1;">Display Name: </p><input name="display_name" id='field-last-name' value="{{active_profile.display_name}}" class="yb-input-transparent right yb-autoText account-field" style="grid-column: 2;"></div>
-                    <input id='field-last-name' value="{{user.display_name}}" class="yb-input-singleLine yb-panel squared yb-autoText yb-margin-T10 yb-pText" style="display:none;">
+                        <p class="field-cover-label align-left yb-pText" style="grid-column: 1;">Display Name: </p><input name="display_name" id='field-last-name' value="{{active_profile.display_name}}" class="yb-input-transparent right yb-font-auto account-field" style="grid-column: 2;"></div>
+                    <input id='field-last-name' value="{{user.display_name}}" class="yb-input-singleLine yb-panel squared yb-font-auto yb-margin-T10 yb-pText" style="display:none;">
                 </div>
 
                 <div id="yb-field-container-birthday" class="yb-field-containter">
                     <div id = "field-container-bday" class="yb-field-container">
                         <div id="display-bday" class="yb-field-split middle yb-bg-autoGray yb-pText" style="position: relative;">
                             <p class="field-cover-label align-left yb-pText" style="grid-column: 1;">Show Birthday To: </p>
-                            <select type="text" class="yb-input-transparent right yb-autoText yb-pText privacy-field" name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align" style="grid-column: 2;" value="{{birthday_visibility}}">
+                            <select type="text" class="yb-input-transparent right yb-font-auto yb-pText privacy-field" name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align" style="grid-column: 2;" value="{{birthday_visibility}}">
                                 <option class="yb-input-option" value="e" {% if birthday_visibility == 'e' %}selected{% endif %}>Everyone</option>
                                 <option class="yb-input-option" value="fr" {% if birthday_visibility == 'fr' %}selected{% endif %}>Friends Only</option>
                                 <option class="yb-input-option" value="no" {% if birthay_visibility == 'no' %}selected{% endif %}>Nobody</option>
@@ -138,7 +138,7 @@
                     <div id = "field-container-phone" class="yb-field-container">
                         <div id="display-phone" class="yb-field-split middle yb-bg-autoGray yb-pText" style="position: relative;">
                             <p class="field-cover-label align-left yb-pText" style="grid-column: 1;">Show Phone To: </p>
-                            <select type="text" class="yb-input-transparent right yb-autoText yb-pText privacy-field" name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align" style="grid-column: 2;" value="{{birthday_visibility}}">
+                            <select type="text" class="yb-input-transparent right yb-font-auto yb-pText privacy-field" name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align" style="grid-column: 2;" value="{{birthday_visibility}}">
                                 <option class="yb-input-option" value="e" {% if phone_number_visibility == 'e' %}selected{% endif %}>Everyone</option>
                                 <option class="yb-input-option" value="fr" {% if phone_number_visibility == 'fr' %}selected{% endif %}>Friends Only</option>
                                 <option class="yb-input-option" value="no" {% if phone_number_visibility == 'no' %}selected{% endif %}>Nobody</option>
@@ -154,7 +154,7 @@
             <div id = "field-container-email" class="yb-field-container">
                 <div id="display-email" class="yb-field-split middle yb-bg-autoGray yb-pText" style="position: relative;">
                     <p class="field-cover-label align-left yb-pText" style="grid-column: 1;">Show Email To: </p>
-                    <select type="text" class="yb-input-transparent right yb-autoText yb-pText privacy-field" name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align" style="grid-column: 2;" value="{{birthday_visibility}}">
+                    <select type="text" class="yb-input-transparent right yb-font-auto yb-pText privacy-field" name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align" style="grid-column: 2;" value="{{birthday_visibility}}">
                         <option class="yb-input-option" value="e" {% if email_visibility == 'e' %}selected{% endif %}>Everyone</option>
                         <option class="yb-input-option" value="fr" {% if email_visibility == 'fr' %}selected{% endif %}>Friends Only</option>
                         <option class="yb-input-option" value="no" {% if email_visibility == 'no' %}selected{% endif %}>Nobody</option>
@@ -168,7 +168,7 @@
                 <div id = "field-container-friend-count" class="yb-field-container">
                     <div id="display-friend-count" class="yb-field-split bottom yb-bg-autoGray yb-pText" style="position: relative;">
                         <p class="field-cover-label align-left yb-pText" style="grid-column: 1;">Show Friend Count To: </p>
-                        <select type="text" class="yb-input-transparent right yb-autoText privacy-field yb-pText" name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align" style="grid-column: 2;" value="{{birthday_visibility}}">
+                        <select type="text" class="yb-input-transparent right yb-font-auto privacy-field yb-pText" name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align" style="grid-column: 2;" value="{{birthday_visibility}}">
                             <option class="yb-input-option" value="e" {% if friend_count_visibility == 'e' %}selected{% endif %}>Everyone</option>
                             <option class="yb-input-option" value="fr" {% if friend_count_visibility == 'fr' %}selected{% endif %}>Friends Only</option>
                             <option class="yb-input-option" value="no" {% if friend_count_visibility == 'no' %}selected{% endif %}>Nobody</option>
@@ -200,7 +200,7 @@
                 <div id="yb-field-container-display-mailing" class="yb-field-container">
                     <div id="display-real-name" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr; width: 95%;">
                         <p class="field-cover-label align-left yb-pText" style="grid-column: 1;">Show Address To: </p>
-                        <select type="text" class="yb-input-transparent yb-input-select right yb-autoText privacy-field yb-pText" name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align" style="grid-column: 2;">
+                        <select type="text" class="yb-input-transparent yb-input-select right yb-font-auto privacy-field yb-pText" name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align" style="grid-column: 2;">
                             <option class="yb-input-option" value="e">Everyone</option>
                             <option class="yb-input-option" value="fr">Friends Only</option>
                             <option class="yb-input-option" value="no">Nobody</option>
@@ -219,7 +219,7 @@
                 <div id = "field-container-message-scope" class="yb-field-container">
                     <div id="display-message-scope" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoText yb-margin-T10" style="display:grid; grid-template-columns: 1fr 1fr;">
                         <p class="field-cover-label align-left yb-pText" style="grid-column: 1;">Allow Messages From: </p>
-                        <select type="text" class="yb-input-transparent right yb-autoText yb-pText privacy-field" name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align" style="grid-column: 2;">
+                        <select type="text" class="yb-input-transparent right yb-font-auto yb-pText privacy-field" name="yb-align-text" id="yb-align-text" placeholder="Paragraph Align" style="grid-column: 2;">
                             <option class="yb-input-option" value="e">Everyone</option>
                             <option class="yb-input-option" value="fr">Friends Only</option>
                             <option class="yb-input-option" value="no">Nobody</option>

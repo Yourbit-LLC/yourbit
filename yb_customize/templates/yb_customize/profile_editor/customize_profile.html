@@ -1,0 +1,137 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static "css/yb_profile/yb_profile1.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "css/yb_bits/yb_bits.css" %}">
+
+<div id='div-header' class="div-header">
+    <div class="cb-panel-back" onclick="customize_url('')"><svg class="yb-margin-center tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
+    <h3 class="yb-fillWidth yb-margin-L10 yb-font-auto yb-pText yb-margin-center tb align-left yb-pText" onclick="customize_url('')">Back</h3>
+    <div></div>
+</div>
+<div id="profile-page-splash" class="yb-fsContainer profile" style="height: 120px; pointer-events: none;">
+    <div class="grid-overlay">
+    
+    </div>
+    <div id="profile-splash-label" class="space-splash-label profile" style="width: 100%; height: 80px; top: 100px; display: grid; text-align: left; grid-template-columns: 60px auto 120px;">
+        <img src="{{user_image_small.url}}" class="large-profile-image preview profile-icon" id="profile-image-splash" style="height: 50px; width: 50px; border-color: rgb(38, 62, 15); display: inline-block; margin-left: 5px; grid-column: 1 / auto;">
+        <div class="profile-name-splash preview" id="profile-name-splash" style="grid-column: 2 / auto; height: 50px;">
+            <h2 id="profile-name-header" style="color: rgb(56, 87, 26); font-size: 15px; margin-left: 10px; margin-top: 10px;" class="profile-name-header">{{request.user.first_name}} {{request.user.last_name}}</h2>
+            <b id="profile-handle-label" style="color: rgb(177, 221, 139); font-size: 12px; margin-left: 10px;" class="profile-handle-label">
+                <small>@{{request.user.username}}</small>
+            </b>
+        </div>
+
+
+        <div id="profile-interaction-container preview" class="profile-interaction-container preview" style="grid-column: 3 / auto; grid-template-columns: 40px 40px 40px; margin-top: 0px; text-align: center; margin-bottom: 0px; height: 80px;">
+            <button style="color: rgb(56, 87, 26); background-color: rgb(150, 211, 95); height: 35px; width: 35px; pointer-events: auto;" id="profile-button-connect" class="button-profile-interaction" data-id="9">
+                <svg class="profile-interact-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                    <path style="fill:{{custom.bit_background}};" d="M5 19h1.4l8.625-8.625-1.4-1.4L5 17.6ZM19.3 8.925l-4.25-4.2 1.4-1.4q.575-.575 1.413-.575.837 0 1.412.575l1.4 1.4q.575.575.6 1.388.025.812-.55 1.387ZM17.85 10.4 7.25 21H3v-4.25l10.6-10.6Zm-3.525-.725-.7-.7 1.4 1.4Z"></path>
+                </svg>
+            </button>
+    
+            <button style="color: rgb(56, 87, 26); background-color: rgb(150, 211, 95); height: 35px; width: 35px; pointer-events: auto;" id="profile-button-message" class="button-profile-interaction" data-id="9">
+                <svg class="profile-interact-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                    <path style="fill:{{profile.bit_background}};" d="M4 20q-.825 0-1.412-.587Q2 18.825 2 18V6q0-.825.588-1.412Q3.175 4 4 4h16q.825 0 1.413.588Q22 5.175 22 6v12q0 .825-.587 1.413Q20.825 20 20 20Zm8-7L4 8v10h16V8Zm0-2 8-5H4ZM4 8V6v12Z"></path>
+                </svg>
+            </button>
+    
+            <button style="color: rgb(56, 87, 26); background-color: rgb(150, 211, 95); height: 35px; width: 35px; pointer-events: auto;" id="profile-button-about" class="button-profile-interaction">
+                <svg class="profile-interact-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                    <path style="fill:{{profile.bit_background}};" d="M1 20v-4q0-.85.588-1.425Q2.175 14 3 14h3.275q.5 0 .95.25.45.25.725.675.725.975 1.788 1.525Q10.8 17 12 17q1.225 0 2.288-.55 1.062-.55 1.762-1.525.325-.425.762-.675.438-.25.913-.25H21q.85 0 1.425.575Q23 15.15 23 16v4h-7v-2.275q-.875.625-1.887.95Q13.1 19 12 19q-1.075 0-2.1-.337-1.025-.338-1.9-.963V20Zm11-4q-.95 0-1.8-.438-.85-.437-1.425-1.212-.425-.625-1.062-.987Q7.075 13 6.325 13q.55-.925 2.325-1.463Q10.425 11 12 11q1.575 0 3.35.537 1.775.538 2.325 1.463-.725 0-1.375.363-.65.362-1.075.987-.55.8-1.4 1.225Q12.975 16 12 16Zm-8-3q-1.25 0-2.125-.875T1 10q0-1.275.875-2.138Q2.75 7 4 7q1.275 0 2.138.862Q7 8.725 7 10q0 1.25-.862 2.125Q5.275 13 4 13Zm16 0q-1.25 0-2.125-.875T17 10q0-1.275.875-2.138Q18.75 7 20 7q1.275 0 2.138.862Q23 8.725 23 10q0 1.25-.862 2.125Q21.275 13 20 13Zm-8-3q-1.25 0-2.125-.875T9 7q0-1.275.875-2.138Q10.75 4 12 4q1.275 0 2.137.862Q15 5.725 15 7q0 1.25-.863 2.125Q13.275 10 12 10Z"></path>
+                </svg>
+            </button>
+        </div>
+        
+    </div>
+
+</div>
+
+<div id="bit-container" class="yb-sub-container-bit">
+    <div id="bit-preview" class="yb-element-background yb-bit-shell chatbit primary-color-preview" data-type="chat" data-id="66" data-userid="1" data-username="achaney55" data-button-color="#669d34" data-icon-color="#ffffff" data-secondary-color="#3a87fe" data-primary-color="#0056d6" style="background-color: #0056d6;">
+        <div id="title-bit-66" class="bit-title" style="display:none;">Preview Title</div>
+        <button id="options-bit-66" class="yb-bit-options" name="options" data-id="66">
+            <svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                <path d="M6 14q-.825 0-1.412-.588Q4 12.825 4 12t.588-1.413Q5.175 10 6 10t1.412.587Q8 11.175 8 12q0 .825-.588 1.412Q6.825 14 6 14Zm6 0q-.825 0-1.412-.588Q10 12.825 10 12t.588-1.413Q11.175 10 12 10t1.413.587Q14 11.175 14 12q0 .825-.587 1.412Q12.825 14 12 14Zm6 0q-.825 0-1.413-.588Q16 12.825 16 12t.587-1.413Q17.175 10 18 10q.825 0 1.413.587Q20 11.175 20 12q0 .825-.587 1.412Q18.825 14 18 14Z"></path>
+            </svg>
+        </button>
+        <div id="header-bit-66" class="yb-header-bit">
+            <div id="profile-image-66" class="element-accent container-image-tiny" data-username="achaney55" style="border-color: #3a87fe;">
+                <img class="image-thumbnail-small" style="object-fit: fill; border-radius: 50%;" src="">
+            </div>
+            <div class="yb-userInfo-bit">
+                <strong id="chat-user-name" class="bit-name" style="color: #cbf0ff;">{{request.user.first_name}} {{request.user.last_name}}</strong>
+                <small class="bit-username" style="color: #3a87fe;">{{request.user.username}}</small>
+            </div>
+            <div class="yb-timeLabel-bit">
+                <p class="bit-time-label">
+                    October 09, 2023 <br>
+                    <small> @01:43 PM</small>
+                </p>
+            </div>
+        </div>
+        
+        <div id="description-bit-preview" class="yb-body-bit bit-description divider-preview">
+                <p style="color: #3a87fe; text-align:center">Preview Text</p>
+        
+        </div>
+        <p id="comment-label-66" class="comment-label" style="display: none; color: #cbf0ff; font-weight: bold;">Comments</p>
+        <div id="comment-container-66" class="comment-container" style="display: none;"></div>
+        
+        <div id="bit-feedback-chat" class="yb-container-bitFeedback">
+            <button id="like-66" class="yb-button-feedback" name="like" data-catid="66">
+                <svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                    <path class="yb-autoFill" id="like-icon-66" d="M15.5 11Q16.15 11 16.575 10.575Q17 10.15 17 9.5Q17 8.85 16.575 8.425Q16.15 8 15.5 8Q14.85 8 14.425 8.425Q14 8.85 14 9.5Q14 10.15 14.425 10.575Q14.85 11 15.5 11ZM8.5 11Q9.15 11 9.575 10.575Q10 10.15 10 9.5Q10 8.85 9.575 8.425Q9.15 8 8.5 8Q7.85 8 7.425 8.425Q7 8.85 7 9.5Q7 10.15 7.425 10.575Q7.85 11 8.5 11ZM12 17.5Q13.775 17.5 15.137 16.525Q16.5 15.55 17.1 14H15.45Q14.925 14.9 14.025 15.45Q13.125 16 12 16Q10.875 16 9.975 15.45Q9.075 14.9 8.55 14H6.9Q7.5 15.55 8.863 16.525Q10.225 17.5 12 17.5ZM12 22Q9.925 22 8.1 21.212Q6.275 20.425 4.925 19.075Q3.575 17.725 2.788 15.9Q2 14.075 2 12Q2 9.925 2.788 8.1Q3.575 6.275 4.925 4.925Q6.275 3.575 8.1 2.787Q9.925 2 12 2Q14.075 2 15.9 2.787Q17.725 3.575 19.075 4.925Q20.425 6.275 21.212 8.1Q22 9.925 22 12Q22 14.075 21.212 15.9Q20.425 17.725 19.075 19.075Q17.725 20.425 15.9 21.212Q14.075 22 12 22ZM12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12ZM12 20Q15.325 20 17.663 17.663Q20 15.325 20 12Q20 8.675 17.663 6.337Q15.325 4 12 4Q8.675 4 6.338 6.337Q4 8.675 4 12Q4 15.325 6.338 17.663Q8.675 20 12 20Z"></path>
+                </svg>
+            </button>
+            <p id="like-count-66" class="yb-margin-center all yb-font-auto">0</p>
+            <button id="dislike-66" class="yb-button-feedback" name="dislike" data-catid="66">
+                <svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                    <path class="yb-autoFill" id="dislike-icon-66" d="M620-520q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm-280 0q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-400Zm0 320q133 0 226.5-93.5T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160ZM325-280q7 0 14.5-4t11.5-10q22-30 55-48t74-18q41 0 74 18t55 48q4 6 11 10t14 4q18 0 26.5-16t-3.5-34q-26-39-73-64.5T480-420q-57 0-104 25.5T302-328q-11 17-2.5 32.5T325-280Z"></path>
+                </svg>
+            </button>
+            <p id="dislike-count-66" class="yb-margin-center all yb-font-auto">0</p>
+            
+            <button id="show-comment-66" class="yb-button-feedback" name="show-comment" data-catid="66" data-state="show">
+                <svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                    <path class="yb-autoFill" id="comment-icon-66" d="M6 14H18V12H6ZM6 11H18V9H6ZM6 8H18V6H6ZM22 22 18 18H4Q3.175 18 2.588 17.413Q2 16.825 2 16V4Q2 3.175 2.588 2.587Q3.175 2 4 2H20Q20.825 2 21.413 2.587Q22 3.175 22 4ZM4 4V16Q4 16 4 16Q4 16 4 16H18.825L20 17.175V4Q20 4 20 4Q20 4 20 4H4Q4 4 4 4Q4 4 4 4ZM4 4V17.175V16Q4 16 4 16Q4 16 4 16V4Q4 4 4 4Q4 4 4 4Q4 4 4 4Q4 4 4 4Z"></path>
+                </svg>
+            </button>
+            <p id="comment-count-66" class="yb-margin-center all yb-font-auto">0</p>
+            <button id="share-66" class="yb-button-feedback" name="share">
+                <svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                    <path class="yb-autoFill" d="M6 23Q5.175 23 4.588 22.413Q4 21.825 4 21V10Q4 9.175 4.588 8.587Q5.175 8 6 8H9V10H6Q6 10 6 10Q6 10 6 10V21Q6 21 6 21Q6 21 6 21H18Q18 21 18 21Q18 21 18 21V10Q18 10 18 10Q18 10 18 10H15V8H18Q18.825 8 19.413 8.587Q20 9.175 20 10V21Q20 21.825 19.413 22.413Q18.825 23 18 23ZM11 16V4.825L9.4 6.425L8 5L12 1L16 5L14.6 6.425L13 4.825V16Z"></path>
+                </svg>
+            </button>
+            <p id="share-count-66" class="yb-margin-center all yb-font-auto">0</p>
+            <button id="donate-bit-66" class="yb-button-feedback" name="donate">
+                <svg id="feedback-icon-source" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                    <path class="yb-autoFill" d="M11.025 21V18.85Q9.7 18.55 8.738 17.7Q7.775 16.85 7.325 15.3L9.175 14.55Q9.55 15.75 10.288 16.375Q11.025 17 12.225 17Q13.25 17 13.963 16.538Q14.675 16.075 14.675 15.1Q14.675 14.225 14.125 13.712Q13.575 13.2 11.575 12.55Q9.425 11.875 8.625 10.938Q7.825 10 7.825 8.65Q7.825 7.025 8.875 6.125Q9.925 5.225 11.025 5.1V3H13.025V5.1Q14.275 5.3 15.088 6.012Q15.9 6.725 16.275 7.75L14.425 8.55Q14.125 7.75 13.575 7.35Q13.025 6.95 12.075 6.95Q10.975 6.95 10.4 7.438Q9.825 7.925 9.825 8.65Q9.825 9.475 10.575 9.95Q11.325 10.425 13.175 10.95Q14.9 11.45 15.788 12.537Q16.675 13.625 16.675 15.05Q16.675 16.825 15.625 17.75Q14.575 18.675 13.025 18.9V21Z"></path>
+                </svg>
+            </button>
+        </div>
+        <div id="field-write-comment-66" class="comment-field-container">
+            <input id="field-write-comment-66" class="write-comment-field-text" placeholder="Write Comment" style="color: white; border: 2px solid #3a87fe">
+            <button id="button-submit-comment-66" class="send-comment" name="send_comment" data-catid="66" style="background-color: rgba(255, 255, 255, 0.5)">
+                <svg style="display: block; top: 50%; left: 50%; transform: translate(-50%, -50%); position: absolute;" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                    <path class="yb-autoFill" d="M6 19.05 7.975 18.25Q7.725 17.525 7.513 16.775Q7.3 16.025 7.175 15.275L6 16.075Q6 16.075 6 16.075Q6 16.075 6 16.075ZM10 18H14Q14.45 17 14.725 15.562Q15 14.125 15 12.625Q15 10.15 14.175 7.937Q13.35 5.725 12 4.525Q10.65 5.725 9.825 7.937Q9 10.15 9 12.625Q9 14.125 9.275 15.562Q9.55 17 10 18ZM12 13Q11.175 13 10.588 12.412Q10 11.825 10 11Q10 10.175 10.588 9.587Q11.175 9 12 9Q12.825 9 13.413 9.587Q14 10.175 14 11Q14 11.825 13.413 12.412Q12.825 13 12 13ZM18 19.05V16.075Q18 16.075 18 16.075Q18 16.075 18 16.075L16.825 15.275Q16.7 16.025 16.488 16.775Q16.275 17.525 16.025 18.25ZM12 1.975Q14.475 3.775 15.738 6.55Q17 9.325 17 13Q17 13 17 13Q17 13 17 13L19.1 14.4Q19.525 14.675 19.763 15.125Q20 15.575 20 16.075V22L15.025 20H8.975L4 22V16.075Q4 15.575 4.238 15.125Q4.475 14.675 4.9 14.4L7 13Q7 13 7 13Q7 13 7 13Q7 9.325 8.262 6.55Q9.525 3.775 12 1.975Z"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div class = "yb-fsContainer still yb-panel" id="yb-under-construction" style="transition: 0.5s; display:block; background-color: rgba(250, 145, 59, 0.8) color: black;">
+        <div class="yb-fsContent yb-transform-center all align-center font-black">
+            <div class="yb-fsHeader">
+                <h1 class="yb-fsTitle">Under Construction</h1>
+            </div>
+            <div class="yb-fsBody">
+                <p class="yb-fsText">This feature is currently under construction. Please check back later.</p>
+            </div>
+        </div>
+    </div>
+
+    
+    
+    <div id="mobile-spacer" class="ui-spacer"></div>
+</div>
+<script class="page-script" id="page-script" type="text/javascript" src="{% static 'scripts/yb_customCore15.js' %}"></script>
+<script class="page-script" id="page-script" type="text/javascript" src="{% static 'scripts/yb-customize-profiles2.js' %}"></script>

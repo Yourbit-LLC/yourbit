@@ -8,36 +8,6 @@
 </head>
 <style>
     {% if custom_core.bit_colors_on == False %}
-        @media (prefers-color-scheme: dark) {
-            .yb-player-actions {
-                background-color: rgb(25, 25, 25);
-            }
-
-            
-            .video-user-info {
-                background-color: rgb(50, 50, 50);
-            }
-
-            #video-about-header {
-                background-color: rgb(25, 25, 25);
-            }
-        }
-        @media (prefers-color-scheme: light) {
-
-            .yb-player-actions {
-                background-color: rgb(200, 200, 200);
-            }
-
-            .video-user-info {
-                background-color: rgb(255, 255, 255);
-            }
-
-            #video-about-header {
-                background-color: rgb(200, 200, 200);
-            }
-        
-        }
-
         
         mux-player {
             --center-seek-backward-button: block;
@@ -47,12 +17,12 @@
         }
     {% endif %}
 </style>
-<link rel="stylesheet" href="{% static 'css/yb_video/player11.css' %}">
+<link rel="stylesheet" href="{% static 'css/yb_video/player18.css' %}">
 <meta property="og:title" content="{{bit.title}}" />
 <meta property="og:type" content="video.movie" />
 <meta property="og:url" content="https://yourbit.me/bits/view/{{bit.id}}/" />
 <meta property="og:image" content="{{bit.video_upload.thumbnail.medium_thumbnail_ext}}" />
-<meta property="og:video" content="{{bit.video_upload.ext_url}}" />
+<meta property="og:video" content="{{bit.video_upload.ext_url}}"/>
 
 <div class="yb-player-grid">
     <div class="yb-flexColumn player-scroll-section yb-vScroll">
@@ -86,6 +56,7 @@
                     accent-color="{{bit.custom.primary_color}}"
                     primary-color="{{bit.custom.icon_color}}"
                     secondary-color="{{bit.custom.button_color}}"
+                    allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
                 ></mux-player>
             {% endif %}
         </div>
@@ -100,104 +71,159 @@
     </section>
 
 
-
+{% comment %} 
+    <script href="{% static 'scripts/yb_video/yb_player1.js'%}"></script> {% endcomment %}
     <script>
-        try {
-            var video = document.getElementById("yb-video-player");
-            var comment_container = document.getElementById("player-comments");
-            var videoContainer = document.getElementById("yb-player");
-            var about_section = document.getElementById("video-about-header");
-            var description = document.getElementById("yb-player-description");
-            var send_comment = comment_container.querySelector(".yb-send-comment");
-            var countdown_container = document.getElementById("countdown-container");
-            var timerInterval;
-            var countdownTime = 5;
-        } catch {
-            video = document.getElementById("yb-video-player");
-            comment_container = document.getElementById("player-comments");
-            countdown_container = document.getElementById("countdown-container");
-            videoContainer = document.getElementById("yb-player");
-            about_section = document.getElementById("video-about-header");
-            description = document.getElementById("yb-player-description");
-            send_comment = comment_container.querySelector(".yb-send-comment");
-            countdownTime = 5;
-        }
+        
+        /* 
+            Variables are defined under try/catch statements as a failsafe for when garbage 
+            collection fails to run properly when leaving a subpage. In some cases, when initializing 
+            a variable, the browser would say the variable was already defined. This is a workaround 
+            for that.
+        */
 
-        // Function to update the countdown every second
-        function updateVideoCountdown() {
-            const countdownElement = document.getElementById('countdown');
-    
-            // Update the text content to show the current countdown time
-            countdownElement.innerText = countdownTime;
-    
-            // Check if the countdown is over
-            if (countdownTime > 0) {
-                countdownTime--; // Decrease the countdown by 1
+    try {
+        var video = document.getElementById("yb-video-player");
+        var comment_container = document.getElementById("player-comments");
+        var videoContainer = document.getElementById("yb-player");
+        var about_section = document.getElementById("video-about-header");
+        var description = document.getElementById("yb-player-description");
+        var send_comment = comment_container.querySelector(".yb-send-comment");
+        var countdown_container = document.getElementById("countdown-container");
+        var timerInterval;
+        var countdownTime = 5;
+    } catch {
+        video = document.getElementById("yb-video-player");
+        comment_container = document.getElementById("player-comments");
+        countdown_container = document.getElementById("countdown-container");
+        videoContainer = document.getElementById("yb-player");
+        about_section = document.getElementById("video-about-header");
+        description = document.getElementById("yb-player-description");
+        send_comment = comment_container.querySelector(".yb-send-comment");
+        countdownTime = 5;
+    }
+
+    // Function to update the countdown every second
+    function updateVideoCountdown() {
+        const countdownElement = document.getElementById('countdown');
+
+        // Update the text content to show the current countdown time
+        countdownElement.innerText = countdownTime;
+
+        // Check if the countdown is over
+        if (countdownTime > 0) {
+            countdownTime--; // Decrease the countdown by 1
+        } else {
+            clearInterval(timerInterval); // Stop the countdown when it reaches 0
+            yb_getNextVideo();
+        }
+    }
+
+    function startVideoCountdown() {
+        video.style.setProperty('--controls-backdrop-color', video.getAttribute('primary-color'));
+        timerInterval = setInterval(updateVideoCountdown, 1000, countdownTime);
+
+    }
+
+    function cancelCountdown() {
+        clearInterval(timerInterval);
+        countdown_container.style.display = "none";
+        countdownTime = 5;
+        video.style.setProperty('--controls-backdrop-color', "transparent");
+
+    }
+
+    $(document).ready(function(){
+
+        send_comment.addEventListener("click", yb_pressSendComment);
+        
+        //Iterate through bits in video json to use in rendering the up next qeueue
+        console.log("Video JSON: ", video_json);
+        for (var key in video_json) {
+            console.log("Clearing video preview element");
+            var bit = video_json[key];
+            var this_video = bit["video_upload"];
+            var videoElement = yb_createElement("div", "yb-container-video-listItem", "yb-video-list-item-" + key);
+            videoElement.setAttribute("data-id", this_video.id);
+            videoElement.setAttribute("style", "height: 90px !important;");
+
+            var thumbnail = this_video["thumbnail"]["ext_url"];
+
+
+            videoElement.innerHTML = `
+                <div class="yb-container-thumbnail-listItem">
+                    <img style="width:100%;" src='${thumbnail}' alt='Thumbnail'>
+                </div>
+                <div class="yb-container-videoInfo-listItem yb-flexColumn">
+                    <h4 class="yb-font-auto" style="margin: 0px; padding: 0px;">${bit.title}</h4>
+                    <div class="yb-flexRow" style="grid-gap: 10px;">
+                        <p class="yb-font-autoGray"><small>${bit.profile.username} </small> - </p>
+                        <p class="yb-font-autoGray"><small> ${bit.watch_count} Views</small></p>
+                    </div>
+                </div>
+            `;
+
+            /* videoElement.addEventListener("click", function() {
+                cancelCountdown();
+                yb_getNextVideo(this.videoId);
+            }); */
+            document.getElementById("yb-up-next").appendChild(videoElement);
+        }
+    });
+
+    $(video).ready(function() {
+        video.play();
+
+        video.addEventListener('ended', function() {
+            // Action to take when the video ends
+            if (VIDEO_QUEUE.length > 0) {
+                countdown_container.style.display = "block";
+                startVideoCountdown();
             } else {
-                clearInterval(timerInterval); // Stop the countdown when it reaches 0
-                yb_getNextVideo();
+                console.log("No more videos in queue")
             }
-        }
-
-        function startVideoCountdown() {
-            video.style.setProperty('--controls-backdrop-color', video.getAttribute('primary-color'));
-            timerInterval = setInterval(updateCountdown, 1000, countdownTime);
-
-        }
-
-        function cancelCountdown() {
-
-        }
-
-        $(document).ready(function(){
-            send_comment.addEventListener("click", yb_pressSendComment);
         });
-        $(video).ready(function() {
-            video.play();
 
-            video.addEventListener('ended', function() {
-                // Action to take when the video ends
-                if (VIDEO_QUEUE.length > 0) {
-                    countdown_container.style.display = "block";
-                    startVideoCountdown();
-                } else {
-                    console.log("No more videos in queue")
-                }
-            });
+        video.addEventListener('play', function() {
+            // Action to take when the video is played
+            cancelCountdown();
+        });
 
-            about_section.addEventListener("click", function(){
-                console.log("clicked")
-                let about_state = about_section.getAttribute("data-state")
-                if (about_state == "closed") {
-                    about_section.setAttribute("data-state", "open");
-                    description.style.display = "block";
+           
 
-                    var parent = about_section.parentElement; // Adjust this if your element is nested deeper
-                    var rect = about_section.getBoundingClientRect();
-                    var parentRect = parent.getBoundingClientRect();
-                    
-                    // Calculate the offset to scroll
-                    var offsetTop = rect.top - parentRect.top + parent.scrollTop;
-                    
-                    parent.scrollTo({
-                        top: offsetTop,
-                        behavior: "smooth"
-                    });
-                } else {
-                    console.log("About state open")
-                    about_section.setAttribute("data-state", "closed");
-                    description.style.display = "none";
-
-                }
-            })
-
-
+        about_section.addEventListener("click", function(){
+            console.log("clicked");
+            let about_state = about_section.getAttribute("data-state");
             
-            console.log('The video is now playing!');
-    
+            if (about_state == "closed") {
+                about_section.setAttribute("data-state", "open");
+                description.style.display = "block";
 
+                var parent = about_section.parentElement; // Adjust this if your element is nested deeper
+                var rect = about_section.getBoundingClientRect();
+                var parentRect = parent.getBoundingClientRect();
+                
+                // Calculate the offset to scroll
+                var offsetTop = rect.top - parentRect.top + parent.scrollTop;
+                
+                parent.scrollTo({
+                    top: offsetTop,
+                    behavior: "smooth"
+                });
+            } else {
+                console.log("About state open")
+                about_section.setAttribute("data-state", "closed");
+                description.style.display = "none";
 
+            }
         })
-    </script>
 
+
+        
+        console.log('The video is now playing!');
+
+
+
+    })
+</script>
 </div>

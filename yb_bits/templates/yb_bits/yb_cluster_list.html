@@ -2,24 +2,24 @@
 
 {% if is_clusters %}
 {% for cluster in clusters %}
-    <div id="cluster-{{cluster.id}}" class="yb-listItem yb-autoText cluster-item" data-catid="{{cluster.id}}" data-username="{{cluster.name}}">
+    <div id="cluster-{{cluster.id}}" class="yb-listItem yb-font-auto cluster-item yb-bg-autoGray" data-catid="{{cluster.id}}" data-username="{{cluster.name}}">
 
         <div class="full-result-image-container" style="position: relative;" onclick="yb_navigateTo('2way', 'cluster', '{{cluster.id}}');">
             {% if cluster.type == "any" %}
-            <svg class="yb-autoFill yb-center-margin all" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="40" width="40">
+            <svg class="yb-autoFill yb-margin-center all" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="40" width="40">
                 <path d="M5.35 17.9q-2.45 0-4.175-1.725-1.725-1.725-1.725-4.2 0-2.45 1.713-4.188Q2.875 6.05 5.35 6.05q1 0 1.937.325Q8.225 6.7 8.95 7.4l1.525 1.475L8.5 10.65 7.15 9.4q-.375-.35-.838-.525Q5.85 8.7 5.35 8.7q-1.35 0-2.3.962-.95.963-.95 2.338 0 1.35.95 2.3.95.95 2.3.95.5 0 .962-.175.463-.175.838-.525l7.9-7.15q.725-.7 1.663-1.025.937-.325 1.937-.325 2.45 0 4.175 1.725Q24.55 9.5 24.55 11.95q0 2.475-1.713 4.212Q21.125 17.9 18.65 17.9q-1 0-1.937-.325-.938-.325-1.663-1.025l-1.525-1.425 2-1.8 1.325 1.225q.375.35.838.525.462.175.962.175 1.35 0 2.3-.963.95-.962.95-2.337 0-1.35-.95-2.3-.95-.95-2.3-.95-.5 0-.962.175-.463.175-.838.525l-7.9 7.15q-.725.7-1.663 1.025-.937.325-1.937.325Z"/>
             </svg>
         {% elif cluster.type == "chat" %}
-            <svg class="yb-autoFill yb-center-margin all" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="40" width="40">
+            <svg class="yb-autoFill yb-margin-center all" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="40" width="40">
                 <path d="M3 18v-2h12v2Zm0-5v-2h18v2Zm0-5V6h18v2Z"/>
             </svg>
         {% elif cluster.type == "video" %}
-            <svg class="yb-autoFill yb-center-margin all" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="40" width="40">
+            <svg class="yb-autoFill yb-margin-center all" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="40" width="40">
                 <path d="m9.15 17.15 8-5.15-8-5.15ZM12 22.8q-2.25 0-4.213-.85-1.962-.85-3.424-2.312Q2.9 18.175 2.05 16.212 1.2 14.25 1.2 12t.85-4.225Q2.9 5.8 4.363 4.338q1.462-1.463 3.424-2.301Q9.75 1.2 12 1.2t4.225.837q1.975.838 3.438 2.301 1.462 1.462 2.299 3.437Q22.8 9.75 22.8 12q0 2.25-.838 4.212-.837 1.963-2.299 3.426Q18.2 21.1 16.225 21.95q-1.975.85-4.225.85Zm0-2.65q3.425 0 5.788-2.363Q20.15 15.425 20.15 12t-2.362-5.788Q15.425 3.85 12 3.85q-3.425 0-5.787 2.362Q3.85 8.575 3.85 12q0 3.425 2.363 5.787Q8.575 20.15 12 20.15ZM12 12Z"/>
             </svg>
     
         {% elif cluster.type == "photo" %}
-            <svg class="yb-autoFill yb-center-margin all" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40">
+            <svg class="yb-autoFill yb-margin-center all" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40">
                 <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-4.86 8.86l-3 3.87L9 13.14 6 17h12l-3.86-5.14z"/>
             </svg>
     
@@ -40,8 +40,8 @@
 {% endfor %}
 
 {% else %}
-    <div class="yb-fillWidth yb-center-margin yb-margin-T30 yb-margin-B10">
-        <h3 class="yb-autoText align-center yb-margin-T10">No Clusters found</h3>
+    <div class="yb-fillWidth yb-margin-center yb-margin-T30 yb-margin-B10">
+        <h3 class="yb-font-auto align-center yb-margin-T10">No Clusters found</h3>
     </div>
     <br>
     <button id="create-cluster-list" class="yb-button-flex bg-gray-dark font-gray yb-button-halfWidth">+  Create Cluster</button>

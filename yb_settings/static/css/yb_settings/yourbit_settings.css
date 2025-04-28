@@ -29,7 +29,6 @@
         margin-left: auto;
         margin-right: auto;
         width: 90%;
-        background-color: rgb(25, 25, 25);
         color: rgb(177, 177, 177);
         padding: 10px;
         border-radius: 20px;
@@ -48,22 +47,6 @@
         cursor: pointer;
     }
 
-
-    @media (prefers-color-scheme: light) {
-        .settingsBox{
-            background-color: gray;
-        }
-
-
-
-    }
-
-    @media (prefers-color-scheme: dark) {
-        .settingsBox{
-            background-color: #2D2D2D;
-        }
-
-    }
 
     #void-subscription {
         grid-row: 1;

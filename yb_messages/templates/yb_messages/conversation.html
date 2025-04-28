@@ -6,10 +6,10 @@
     <input id='csrf-token' type='hidden' value={{csrf_token}}>
     <div id='message-header' class="yb-autoFill" style='text-align:center; color: white;'>
         <svg id="back-to-convos" xmlns="http://www.w3.org/2000/svg" style="position: absolute; left: 15px; top: 50%; transform: translate(0, -50%);" height="24" width="24"><path class="yb-autoFill"  d="M10 22 0 12 10 2l1.775 1.775L3.55 12l8.225 8.225Z"/></svg>
-        <h3 class="yb-autoText" id="receiver-name" style="margin-top:15px; margin-bottom: 2px;">{{conversation_name}}</h3>
-        <p class="yb-autoText" style='margin-top:0px;'><small>offline</small></p>
+        <h3 class="yb-font-auto" id="receiver-name" style="margin-top:15px; margin-bottom: 2px;">{{conversation_name}}</h3>
+        <p class="yb-font-auto" style='margin-top:0px;'><small>offline</small></p>
         <svg onclick="yb_2WayPage(2, 'conversation-settings', '{{conversation.id}}')" id="options-button" xmlns="http://www.w3.org/2000/svg" style = "position: absolute; right: 15px; top: 50%; transform: translate(0, -50%);" height="24" width="24"><path class="yb-autoFill" d="M12 20q-.825 0-1.412-.587Q10 18.825 10 18q0-.825.588-1.413Q11.175 16 12 16t1.413.587Q14 17.175 14 18q0 .825-.587 1.413Q12.825 20 12 20Zm0-6q-.825 0-1.412-.588Q10 12.825 10 12t.588-1.413Q11.175 10 12 10t1.413.587Q14 11.175 14 12q0 .825-.587 1.412Q12.825 14 12 14Zm0-6q-.825 0-1.412-.588Q10 6.825 10 6t.588-1.412Q11.175 4 12 4t1.413.588Q14 5.175 14 6t-.587 1.412Q12.825 8 12 8Z"/></svg>
-        <div id="conversation-data" data-id="{{conversation.id}}" data-last-message = "{{last_message}}" data-primary-color = "{{active_profile.custom.primary_color}}" data-receiver-username="{{conversation.receiver.user.username}}" data-receiver="{{conversation.receiver.id}}" data-sender-id = "{{request.user.id}}"></div>
+        <div id="conversation-data" data-id="{{conversation.id}}" data-to-user-color="{{custom_conversation.to_user_color}}" data-from-user-color="{{custom_conversation.from_user_color}}" data-last-message = "{{last_message}}"  data-primary-color = "{{active_profile.custom.primary_color}}" data-receiver-username="{{conversation.receiver.user.username}}" data-receiver="{{conversation.receiver.id}}" data-sender-id = "{{request.user.id}}"></div>
     </div>
 
     <div id='message-container'>
@@ -23,7 +23,7 @@
         <div style="grid-column: 1; grid-row: 2; margin-bottom: 5px;">
         
             <button id="add-attachment" class="yb-button-round">                    
-                <svg id ="attachment-icon" class="yb-font-white yb-center-transform all" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                <svg id ="attachment-icon" class="yb-font-white yb-transform-center all" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
                     <path d="M434.5-434.5H191.869v-91H434.5v-242.631h91V-525.5h242.631v91H525.5v242.631h-91V-434.5Z"/>
                 </svg>
             </button>
@@ -31,7 +31,7 @@
         </div>
 
         <div style="grid-column: 2; grid-row: 2; margin-bottom: 5px;">
-            <textarea id="message-field" class="yb-autoText yb-pText"rows="1" placeholder="Type your message..."></textarea>
+            <textarea id="message-field" class="yb-font-auto yb-pText"rows="1" placeholder="Type your message..."></textarea>
         </div>
 
         <div style="grid-column: 3; grid-row: 2; margin-bottom: 5px;">
@@ -42,7 +42,7 @@
 
     <div id="attachments-menu" class="yb-popup-menu">
         <div class="yb-popup-menu-item" id="photo-attachment">
-            <svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px">
+            <svg class="yb-margin-center tb" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px">
                 <path class='yb-ui-icon space-button-icon' d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-4.86 8.86l-3 3.87L9 13.14 6 17h12l-3.86-5.14z"/>
             </svg>
             <input type="file" id="photo-attachment-input" style="display:none;"/>
@@ -51,14 +51,14 @@
 
         <div class="yb-popup-menu-item" id="video-attachment">
             
-            <svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+            <svg class="yb-margin-center tb" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
                 <path class='yb-ui-icon space-button-icon' d="m9.15 17.15 8-5.15-8-5.15ZM12 22.8q-2.25 0-4.213-.85-1.962-.85-3.424-2.312Q2.9 18.175 2.05 16.212 1.2 14.25 1.2 12t.85-4.225Q2.9 5.8 4.363 4.338q1.462-1.463 3.424-2.301Q9.75 1.2 12 1.2t4.225.837q1.975.838 3.438 2.301 1.462 1.462 2.299 3.437Q22.8 9.75 22.8 12q0 2.25-.838 4.212-.837 1.963-2.299 3.426Q18.2 21.1 16.225 21.95q-1.975.85-4.225.85Zm0-2.65q3.425 0 5.788-2.363Q20.15 15.425 20.15 12t-2.362-5.788Q15.425 3.85 12 3.85q-3.425 0-5.787 2.362Q3.85 8.575 3.85 12q0 3.425 2.363 5.787Q8.575 20.15 12 20.15ZM12 12Z"/>
             </svg>
             <input type="file" id="video-attachment-input" style="display:none;"/>
             <p>Video</p>
         </div>
         {% comment %} <div class="yb-popup-menu-item" id="file-attachment">
-            <svg class="yb-center-transform all" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+            <svg class="yb-transform-center all" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
                 <path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/>
             </svg>
             <p>File</p>
@@ -66,7 +66,7 @@
     </div>
 
 
-<script class="page-script" type='text/javascript' type="text/css" src="{% static 'scripts/yb_messages/yb_conversation2.js' %}"></script>
+<script class="page-script" type='text/javascript' type="text/css" src="{% static 'scripts/yb_messages/yb_conversation3.js' %}"></script>
 <script>
     $(document).ready(function(){
         tw_hideLoading();

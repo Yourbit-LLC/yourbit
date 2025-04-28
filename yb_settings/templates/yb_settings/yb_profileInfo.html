@@ -2,72 +2,73 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/yb_settings/yourbit_settings.css' %}"/>
 <div id='div-header' class="div-header">
-    <div class="cb-panel-back" onclick="yb_backWarning('2way', 'settings');"><svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
-    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb"></h3>
-    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('settings-profile');"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
+    <div class="cb-panel-back" onclick="yb_backWarning('2way', 'settings');"><svg class="yb-margin-center tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
+    <h3 class="yb-fillWidth yb-margin-L10 yb-font-auto yb-margin-center tb"></h3>
+    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('settings-profile');"><svg class="yb-transform-center all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
 </div>
 
 <div class="yb-flexColumn" id="settings-info">
-    <svg class="yb-autoFill yb-center-margin lr" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e8eaed"><path d="M222-255q63-44 125-67.5T480-346q71 0 133.5 23.5T739-255q44-54 62.5-109T820-480q0-145-97.5-242.5T480-820q-145 0-242.5 97.5T140-480q0 61 19 116t63 109Zm257.81-195q-57.81 0-97.31-39.69-39.5-39.68-39.5-97.5 0-57.81 39.69-97.31 39.68-39.5 97.5-39.5 57.81 0 97.31 39.69 39.5 39.68 39.5 97.5 0 57.81-39.69 97.31-39.68 39.5-97.5 39.5Zm.66 370Q398-80 325-111.5t-127.5-86q-54.5-54.5-86-127.27Q80-397.53 80-480.27 80-563 111.5-635.5q31.5-72.5 86-127t127.27-86q72.76-31.5 155.5-31.5 82.73 0 155.23 31.5 72.5 31.5 127 86t86 127.03q31.5 72.53 31.5 155T848.5-325q-31.5 73-86 127.5t-127.03 86Q562.94-80 480.47-80Zm-.47-60q55 0 107.5-16T691-212q-51-36-104-55t-107-19q-54 0-107 19t-104 55q51 40 103.5 56T480-140Zm0-370q34 0 55.5-21.5T557-587q0-34-21.5-55.5T480-664q-34 0-55.5 21.5T403-587q0 34 21.5 55.5T480-510Zm0-77Zm0 374Z"/></svg>
+    <svg class="yb-autoFill yb-margin-center lr" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e8eaed"><path d="M222-255q63-44 125-67.5T480-346q71 0 133.5 23.5T739-255q44-54 62.5-109T820-480q0-145-97.5-242.5T480-820q-145 0-242.5 97.5T140-480q0 61 19 116t63 109Zm257.81-195q-57.81 0-97.31-39.69-39.5-39.68-39.5-97.5 0-57.81 39.69-97.31 39.68-39.5 97.5-39.5 57.81 0 97.31 39.69 39.5 39.68 39.5 97.5 0 57.81-39.69 97.31-39.68 39.5-97.5 39.5Zm.66 370Q398-80 325-111.5t-127.5-86q-54.5-54.5-86-127.27Q80-397.53 80-480.27 80-563 111.5-635.5q31.5-72.5 86-127t127.27-86q72.76-31.5 155.5-31.5 82.73 0 155.23 31.5 72.5 31.5 127 86t86 127.03q31.5 72.53 31.5 155T848.5-325q-31.5 73-86 127.5t-127.03 86Q562.94-80 480.47-80Zm-.47-60q55 0 107.5-16T691-212q-51-36-104-55t-107-19q-54 0-107 19t-104 55q51 40 103.5 56T480-140Zm0-370q34 0 55.5-21.5T557-587q0-34-21.5-55.5T480-664q-34 0-55.5 21.5T403-587q0 34 21.5 55.5T480-510Zm0-77Zm0 374Z"/></svg>
     <h3 class="align-center yb-pHead" style="color:gray;">PROFILE INFO</h3>
-    <p style="font-size: small; font-weight: 550; padding-left: 5px; padding-right: 5px; font-family: 'Roboto', sans-serif; text-align: center;" class="yb-autoText yb-pText">Manage account, content, and privacy settings here.</p>
+    <p style="font-size: small; font-weight: 550; padding-left: 5px; padding-right: 5px; font-family: 'Roboto', sans-serif; text-align: center;" class="yb-font-auto yb-pText">Manage account, content, and privacy settings here.</p>
 </div>
 <p class="yb-font-autoGray align-center font-small" style="font-weight: 550;">Manage info visibility in privacy settings:</p>
 <button class="yb-button-flex bg-autoGray font-gray yb-button-halfWidth squared" style="">Privacy Settings</button>
 <br>
 
 <div style="position: relative; width: 100%">
-    <div class="less-hScroll yb-center-transform tb" onclick="yb_lessHScroll('pfis-filter')" style="display:none;">
-        <svg class="yb-center-transform all" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"></path></svg>
+    <div class="less-hScroll yb-transform-center tb" onclick="yb_lessHScroll('pfis-filter')" style="display:none;">
+        <svg class="yb-transform-center all" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"></path></svg>
     </div>
     <div id="pfis-filter" style="height: 40px; scrollbar-width: none; display:grid; grid-template-columns: 4fr 1fr; column-gap: 20px; overflow-x: auto;" class="yb-hScroll yb-fillWidth yb-relative">
 
         <div id="pfis-filter-container" class="yb-flexRow tab-filter yb-fillWidth yb-gap5 yb-margin-L5">
-            <button class="message-filter yb-button-wide active medium-wide rounded yb-autoText font-small yb-center-margin tb yb-form-tab" name="about-tab">About Me</button>
-            <button class="message-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb yb-form-tab" name="contact-tab">Contact</button>
-            <button class="message-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb yb-form-tab" name="location-tab">Location</button>
-            <button class="message-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb yb-form-tab" name="education-tab">Education</button>
-            <button class="message-filter yb-button-wide medium-wide rounded yb-autoText font-small yb-center-margin tb yb-form-tab" name="work-tab">Work</button>
+            <button class="message-filter yb-button-wide active medium-wide rounded yb-font-auto font-small yb-margin-center tb yb-form-tab" name="about-tab">About Me</button>
+            <button class="message-filter yb-button-wide medium-wide rounded yb-font-auto font-small yb-margin-center tb yb-form-tab" name="contact-tab">Contact</button>
+            <button class="message-filter yb-button-wide medium-wide rounded yb-font-auto font-small yb-margin-center tb yb-form-tab" name="location-tab">Location</button>
+            <button class="message-filter yb-button-wide medium-wide rounded yb-font-auto font-small yb-margin-center tb yb-form-tab" name="education-tab">Education</button>
+            <button class="message-filter yb-button-wide medium-wide rounded yb-font-auto font-small yb-margin-center tb yb-form-tab" name="work-tab">Work</button>
 
         </div>
     </div>
     
-    <div class="more-hScroll yb-center-transform tb" onclick="yb_moreHScroll('pfis-filter')">
-        <svg class="yb-center-transform all" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
+    <div class="more-hScroll yb-transform-center tb" onclick="yb_moreHScroll('pfis-filter')">
+        <svg class="yb-transform-center all" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
     </div>
 </div>
 
 
 <input type="hidden" id="yb-form-config" data-form-id="profile-info-form" data-message="Profile Info Saved" data-saves="true" data-change-state="false">
 
-<form id="profile-info-form" class="yb-fillWidth yb-form-container yb-vScroll yb-autoText yb-margin-T10 align-center" method="POST" action="{% url 'settings_profile' %}" style="height: calc(100% - 300px); border-radius: 15px; padding-bottom: 20px;">
+<form id="profile-info-form" class="yb-fillWidth yb-form-container yb-vScroll yb-font-auto yb-margin-T10 align-center" method="POST" action="{% url 'view_settings_profile' %}" style="height: calc(100% - 300px); border-radius: 15px; padding-bottom: 20px;">
 
     {% csrf_token %}
         
         <section class = "setting-sub-container" id="about-tab">
-            <h3 class="yb-autoText yb-pHead">About Me</h3>
+            <h3 class="yb-font-auto yb-pHead">About Me</h3>
+            <br>
+            <p class="yb-font-autoGray font-medium"><b>General</b></p>
+
             <div id="display-motto" class="yb-field-split squared yb-bg-autoGray yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Motto: </p>
-                <input name="motto" id='field-motto' value="{% if active_profile.motto %}{{active_profile.motto}}{% else %}Add Motto{% endif %}" class="yb-input-transparent right {% if active_profile.motto %} yb-pText yb-autoText {% else %} font-gray {% endif %} profile-field yb-form-field" style="padding-top: 10px;">
+                <input name="motto" id='field-motto' value="{% if active_profile.motto %}{{active_profile.motto}}{% else %}Add Motto{% endif %}" class="yb-input-transparent right {% if active_profile.motto %} yb-pText yb-font-auto {% else %} font-gray {% endif %} profile-field yb-form-field" style="padding-top: 10px;">
             </div>
             <br>
 
             <div id="bio-container">
-                <textarea id="bio-field" name="bio" class="yb-bg-autoGray yb-text-area border-none yb-form-textArea squared {% if active_profile.bio %} yb-pText yb-autoText {% else %} font-gray {% endif %} profile-field yb-form-textArea" style="width: 98%; height: 100px;">{% if active_profile.bio %}{{active_profile.bio}}{% else %} Add bio {% endif %}</textarea>
+                <textarea id="bio-field" name="bio" class="yb-bg-autoGray yb-text-area border-none yb-form-textArea squared {% if active_profile.bio %} yb-pText yb-font-auto {% else %} font-gray {% endif %} profile-field yb-form-textArea" style="width: 98%; height: 100px;">{% if active_profile.bio %}{{active_profile.bio}}{% else %} Add bio {% endif %}</textarea>
             </div>
-
-            
 
             <div id="field-birthday-visibility" class="yb-field-container">
                 <div id="display-birthday" class="yb-field-split top yb-bg-autoGray yb-pText">
                     <p class="field-cover-label align-left" style="grid-column: 1;">Birthday: </p>
-                    <input name="phone_number" type="date" id='field-display-birthday' value="{{profile_info.birthday}}" class="yb-input-transparent right yb-autoText yb-autoFill yb-pText profile-field yb-form-field" style="grid-column: 2;">
+                    <input name="phone_number" type="date" id='field-display-birthday' value="{{profile_info.birthday}}" class="yb-input-transparent right yb-font-auto yb-autoFill yb-pText profile-field yb-form-field" style="grid-column: 2;">
                 </div>
             </div>
 
-            <div id="display-birthday-visibilty" class="yb-field-split bottom yb-bg-autoGray yb-autoText yb-pText">
+            <div id="display-birthday-visibilty" class="yb-field-split bottom yb-bg-autoGray yb-font-auto yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Who can see this?</p>
-                <select name="type" id='field-cluster-type' value="now" class="yb-input-transparent right yb-autoText yb-pText yb-form-field" style="grid-column: 2;">
+                <select name="type" id='field-cluster-type' value="now" class="yb-input-transparent right yb-font-auto yb-pText yb-form-field" style="grid-column: 2;">
                     <option class="yb-input-option" value="day" selected>Nobody</option>
                     <option class="yb-input-option" value="week">Friends</option>
                     <option class="yb-input-option" value="month">Friends/Followers</option>
@@ -75,45 +76,82 @@
                 </select>
             </div>
 
+            <br>
+
+            <p class="yb-font-autoGray font-medium"><b>Cultural Background</b></p>
+            
+            <div id="display-hometown" class="yb-field-split top yb-bg-autoGray yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Where's your hometown?: </p>
+                <input name="hometown" id='field-homeCity' value="{{profile_info.hometown}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+            </div>
+
+                        
+            <div id="display-homeCountry" class="yb-field-split middle yb-bg-autoGray yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Country of Origin: </p>
+                <input name="country_of_origin" id='field-homeCountry' value="{{profile_info.country_of_origin}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+            </div>
+
+            <div id="display-religion" class="yb-field-split middle yb-bg-autoGray yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Religion: </p>
+                <input name="religion" id='field-religion' value="{% if active_profile.motto %}{{active_profile.religion}}{% else %}Add Motto{% endif %}" class="yb-input-transparent right {% if active_profile.motto %} yb-pText yb-font-auto {% else %} font-gray {% endif %} profile-field yb-form-field" style="padding-top: 10px;">
+            </div>
+
+            <div id="display-motto" class="yb-field-split bottom yb-bg-autoGray yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Place of Worship: </p>
+                <input name="place_of_worship" id='field-placeOfWorship' value="{% if active_profile.motto %}{{active_profile.place_of_worship}}{% else %}Add Motto{% endif %}" class="yb-input-transparent right {% if active_profile.motto %} yb-pText yb-font-auto {% else %} font-gray {% endif %} profile-field yb-form-field" style="padding-top: 10px;">
+            </div>
+
+
+
         </section>
             
         <br>
         <hr>
         
         <section class = "setting-sub-container" id="contact-tab">
-            <h3 class="yb-autoText yb-pHead">Contact Info</h3>            
+            <h3 class="yb-font-auto yb-pHead">Contact Info</h3>            
             <br>
             <p class="yb-font-autoGray font-medium"><b>General</b></p>
             <div id="display-contact-email" class="yb-field-split top yb-bg-autoGray yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Display Email: </p>
-                <input name="email" id='field-email' value="{{profile_info.email}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+                <input name="email" id='pi-field-email' value="{{profile_info.email}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
             </div>
 
             <div id="display-phone" class="yb-field-split middle yb-bg-autoGray yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Display Phone: </p>
-                <input name="phone_number" id='field-display-phone' value="{{profile_info.phone_number}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+                <input name="phone_number" id='pi-field-display-phone' value="{{profile_info.phone_number}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
             </div>
 
             <div id="display-website" class="yb-field-split bottom yb-bg-autoGray yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Website: </p>
-                <input name="website" id='field-website' value="{{profile_info.website}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+                <input name="website" id='pi-field-website' value="{{profile_info.website}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
             </div>
 
             
             <p class="yb-font-autoGray font-medium"><b>Social Media</b></p>
-            <div id="display-website" class="yb-field-split top yb-bg-autoGray yb-pText">
+            <div id="display-twitter-handle" class="yb-field-split top yb-bg-autoGray yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Twitter: </p>
-                <input name="website" id='field-website' value="{{profile_info.website}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+                <input name="twitter_handle" id='pi-field-twitter' value="{{profile_info.twitter_handle}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
             </div>
 
-            <div id="display-website" class="yb-field-split middle yb-bg-autoGray yb-pText">
+            <div id="display-facebook-handle" class="yb-field-split middle yb-bg-autoGray yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Facebook: </p>
-                <input name="website" id='field-website' value="{{profile_info.website}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+                <input name="facebook_handle" id='pi-field-facebook' value="{{profile_info.facebook_handle}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
             </div>
 
-            <div id="display-website" class="yb-field-split bottom yb-bg-autoGray yb-pText">
+            <div id="display-youtube-handle" class="yb-field-split bottom yb-bg-autoGray yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Youtube: </p>
-                <input name="website" id='field-website' value="{{profile_info.website}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+                <input name="youtube_handle" id='pi-field-youtube' value="{{profile_info.youtube_handle}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+            </div>
+
+            <div id="display-instagram-handle" class="yb-field-split bottom yb-bg-autoGray yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Instagram: </p>
+                <input name="instagram_handle" id='pi-field-instagram' value="{{profile_info.instagram_handle}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+            </div>
+
+            <div id="display-snapchat-handle" class="yb-field-split bottom yb-bg-autoGray yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Snapchat: </p>
+                <input name="snapchat_handle" id='pi-field-snapchat' value="{{profile_info.snapchat_handle}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
             </div>
         </section>
 
@@ -121,13 +159,13 @@
         <hr>
 
         <section class = "setting-sub-container" id="location-tab">
-            <h3 class="yb-autoText yb-pHed">My Address</h3>
+            <h3 class="yb-font-auto yb-pHead">My Address</h3>
             <br>
             <p class="yb-font-autoGray font-medium"><b>Address 1</b></p>
             <div id="field-address-visibility" class="yb-field-container">
-                <div id="display-address-visibilty" class="yb-field-split top yb-bg-autoGray yb-autoText yb-pText">
+                <div id="display-address-visibilty" class="yb-field-split top yb-bg-autoGray yb-font-auto yb-pText">
                     <p class="field-cover-label align-left" style="grid-column: 1;">Who can see this?</p>
-                    <select name="type" id='field-cluster-type' value="now" class="yb-input-transparent right yb-autoText yb-pText yb-form-field" style="grid-column: 2;">
+                    <select name="type" id='field-cluster-type' value="now" class="yb-input-transparent right yb-font-auto yb-pText yb-form-field" style="grid-column: 2;">
                         <option class="yb-input-option" value="day" selected>Nobody</option>
                         <option class="yb-input-option" value="week">Friends</option>
                         <option class="yb-input-option" value="month">Friends/Followers</option>
@@ -162,15 +200,18 @@
             </div>
 
             <button class="yb-button-wide rounded bg-autoGray font-gray yb-button-halfWidth" style="margin-top: 20px; width: 40px;">
-                <svg class="yb-autoFill yb-center-transform all" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                <svg class="yb-autoFill yb-transform-center all" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
                     <path class="yb-path" d="M434.5-434.5H191.869v-91H434.5v-242.631h91V-525.5h242.631v91H525.5v242.631h-91V-434.5Z"/>
                 </svg>
             </button>
+
+            <br>
+
         
         </section>
         <hr>
         <section class="setting-sub-container" id="education-tab">
-            <h3 class="yb-autoText yb-pHead">Education</h3>
+            <h3 class="yb-font-auto yb-pHead">Education</h3>
             <br>
             <p class="yb-font-autoGray font-medium"><b>High School</b></p>
             <div id="display-high-school" class="yb-field-split top yb-bg-autoGray yb-pText">
@@ -184,7 +225,11 @@
             </div>
 
             <p class="yb-font-autoGray font-medium"><b>College</b></p>
-            <div id="display-college" class="yb-field-split top yb-bg-autoGray yb-pText">
+            <div id="display-field-of-study" class="yb-field-split top yb-bg-autoGray yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Field of Study: </p>
+                <input name="field_of_study" id='field-fieldOfStudy' value="{{profile_info.field_of_study}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+            </div>
+            <div id="display-college" class="yb-field-split middle yb-bg-autoGray yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">College: </p>
                 <input name="college" id='field-college' value="{{profile_info.college}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
             </div>
@@ -208,13 +253,51 @@
             
         </section>
 
+        <br>
+        <hr>
+
+        <section class="setting-sub-container" id="work-tab">
+            <h3 class="yb-font-auto yb-pHead">Work</h3>
+            <br>
+            <p class="yb-font-autoGray font-medium"><b>Current Job</b></p>
+            <div id="display-current-job" class="yb-field-split top yb-bg-autoGray yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Current Job: </p>
+                <input name="current_job" id='field-current-job' value="{{profile_info.current_job}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+            </div>
+            <div id="display-current-job" class="yb-field-split middle yb-bg-autoGray yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Role: </p>
+                <input name="current_role" id='field-company' value="{{profile_info.current_role}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+            </div>
+            <!-- year started -->
+            <div id="display-current-job" class="yb-field-split bottom yb-bg-autoGray yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Year Started: </p>
+                <input name="year_started" id='field-company' value="{{profile_info.year_started}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+            </div>
+
+            <p class="yb-font-autoGray font-medium"><b>First Job</b></p>
+
+            <div id="display-previous-job" class="yb-field-split top yb-bg-autoGray yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">First Job: </p>
+                <input name="first_job" id='field-firstJob' value="{{profile_info.first_job}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+            </div>
+            <div id="display-first-job" class="yb-field-split middle yb-bg-autoGray yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Role: </p>
+                <input name="first_role" id='field-first-job' value="{{profile_info.first_role}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+            </div>
+
+            <div id="display-current-job" class="yb-field-split bottom yb-bg-autoGray yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Year Started: </p>
+                <input name="first_year_started" id='field-company' value="{{profile_info.year_started}}" class="yb-input-transparent right yb-pText profile-field yb-form-field" style="grid-column: 2;">
+            </div>
+        </section>
+
 
         <hr>
         <button class="yb-button-wide squared bg-autoGray font-gray yb-button-halfWidth yb-form-save" style="margin-top: 20px;">Save</button>
 
       
 </form>
-<script class = "page-script" type="text/javascript" src="{% static 'scripts/main/yb_forms3.js' %}"></script>
+<script class = "page-script" type="text/javascript" src="{% static 'scripts/main/yb_forms4.js' %}"></script>
 
 <div id="mobile-spacer">
 </div>

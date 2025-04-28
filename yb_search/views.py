@@ -10,7 +10,7 @@ from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
 import requests
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from yb_accounts.api.serializers import UserResultSerializer
-from main.views import initialize_session
+from main.utility import initialize_session
 from django.views import View
 from django.conf import settings
 

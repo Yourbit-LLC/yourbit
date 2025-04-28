@@ -4,7 +4,7 @@
     {% comment %} <span class="yb-fillContainer yb-panel align-center yb-font-autoGray" style="line-height: 2; z-index: 10; position: absolute;"><p><b>Feature in Progress...</b> Filter Bar</p></span>
      {% endcomment %}
     <div class="yb-flexRow yb-fillWidth" style="grid-gap: 5px;">
-        <button class='ff-button small-wide rounded yb-autoText font-small yb-center-margin tb filter-tab' id="ff-button-sort" data-type = "sort" data-state="contracted" name = 'sort-filter'>
+        <button class='ff-button small-wide rounded yb-font-auto font-small yb-margin-center tb filter-tab' id="ff-button-sort" data-type = "sort" data-state="contracted" name = 'sort-filter'>
             <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
                 <path class="yb-fill-autoGray yb-bFill" d="M3 18v-2h6v2Zm0-5v-2h12v2Zm0-5V6h18v2Z"/>
             </svg>
@@ -18,27 +18,30 @@
             -->
         </button>
 
-        <button class='ff-button small-wide rounded yb-autoText font-small yb-center-margin tb filter-tab' id="ff-button-filter" data-state="contracted" data-type = "filter" name = 'advanced-filter'>
+        <button class='ff-button small-wide rounded yb-font-auto font-small yb-margin-center tb filter-tab' id="ff-button-filter" data-state="contracted" data-type = "filter" name = 'advanced-filter'>
             <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20">
                 <path class="yb-fill-autoGray yb-bFill" d="M9.5 16q-.208 0-.354-.146T9 15.5v-4.729L4.104 4.812q-.187-.25-.052-.531Q4.188 4 4.5 4h11q.312 0 .448.281.135.281-.052.531L11 10.771V15.5q0 .208-.146.354T10.5 16Zm.5-6.375L13.375 5.5H6.604Zm0 0Z"/>
             </svg>
-            
             <!-- <div class='dropdown-menu' id="advanced-filter-dropdown"></div> -->
         </button>
-        <button class='ff-button small-wide rounded yb-autoText font-small yb-center-margin tb filter-tab' id="ff-button-refresh" data-state="contracted" data-type = "refresh" name='refresh'>
+
+        <button class='ff-button small-wide rounded yb-font-auto font-small yb-margin-center tb filter-tab' id="ff-button-refresh" data-state="contracted" data-type = "refresh" name='refresh'>
             <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path class="yb-fill-autoGray yb-bFill" d="M480-160q-134 0-227-93t-93-227q0-134 93-227t227-93q69 0 132 28.5T720-690v-110h80v280H520v-80h168q-32-56-87.5-88T480-720q-100 0-170 70t-70 170q0 100 70 170t170 70q77 0 139-44t87-116h84q-28 106-114 173t-196 67Z"/></svg>
             <!-- <div class='dropdown-menu' id='search-dropdown'></div>  -->
         </button>
-        <button class='ff-button small-wide rounded yb-autoText font-small yb-center-margin tb filter-tab' id="ff-button-customize" data-type = "customize" data-state="contracted" name='customize'>
+
+        <button class='ff-button small-wide rounded yb-font-auto font-small yb-margin-center tb filter-tab' id="ff-button-customize" data-type = "customize" data-state="contracted" name='customize'>
             <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20">
                 <path class="yb-fill-autoGray yb-bFill" d="M10 18q-1.646 0-3.104-.625-1.458-.625-2.552-1.719t-1.719-2.552Q2 11.646 2 10q0-1.667.635-3.115.636-1.447 1.75-2.541Q5.5 3.25 6.99 2.625 8.479 2 10.167 2q1.625 0 3.052.562 1.427.563 2.489 1.542 1.063.979 1.677 2.292Q18 7.708 18 9.208q0 2-1.396 3.396T13.208 14h-1.416q-.167 0-.292.104-.125.104-.125.271 0 .313.313.521Q12 15.104 12 16q0 .771-.562 1.385Q10.875 18 10 18Zm0-8Zm-4.5.75q.521 0 .885-.365.365-.364.365-.885t-.365-.885Q6.021 8.25 5.5 8.25t-.885.365q-.365.364-.365.885t.365.885q.364.365.885.365Zm2.5-3q.521 0 .885-.365.365-.364.365-.885t-.365-.885Q8.521 5.25 8 5.25t-.885.365q-.365.364-.365.885t.365.885q.364.365.885.365Zm4 0q.521 0 .885-.365.365-.364.365-.885t-.365-.885Q12.521 5.25 12 5.25t-.885.365q-.365.364-.365.885t.365.885q.364.365.885.365Zm2.5 3q.521 0 .885-.365.365-.364.365-.885t-.365-.885q-.364-.365-.885-.365t-.885.365q-.365.364-.365.885t.365.885q.364.365.885.365ZM10 16.5q.229 0 .365-.177.135-.177.135-.323 0-.333-.312-.583-.313-.25-.313-1.042t.552-1.333q.552-.542 1.344-.542h1.437q1.375 0 2.334-.958.958-.959.958-2.334 0-2.396-1.844-4.052Q12.812 3.5 10.167 3.5q-2.792 0-4.729 1.896Q3.5 7.292 3.5 10t1.896 4.604Q7.292 16.5 10 16.5Z"/>
             </svg>
-            <!--<div class='dropdown-menu' id='customize-dropdown'></div>-->
-            
+            <!--<div class='dropdown-menu' id='customize-dropdown'></div>-->    
         </button>
     </div>
     <div class="yb-panel-filter" id="yb-panel-filter" style="grid-row:2;">
+        {% include 'yb_bits/filter_bar/filter_panels/yb_custom_panel.html' %}
+        {% include 'yb_bits/filter_bar/filter_panels/yb_filter_panel.html' %}
+        {% include 'yb_bits/filter_bar/filter_panels/yb_sort_panel.html' %}
     </div>
 </div>
 
-<script src="{% static 'scripts/yb_bitstream/yb_filter_bar3.js' %}"></script>
+<script src="{% static 'scripts/yb_bitstream/yb_filter_bar5.js' %}"></script>

@@ -1,0 +1,144 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/yb_profile/yb_profile1.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'css/customization/yb_customization1.css' %}"/>
+<style>
+
+</style>
+
+<input type="hidden" id="yb-toolbar-config" data-form-name="splash-master-form">
+
+<div id="profile-page-splash" style="background-color: {{custom_splash.primary_color}};" class="yb-fsContainer profile">
+    
+    <form class="master-form" id="splash-master-form">
+        <input name="name_font_color" type="hidden" id="master-name-font-color" value="{{custom_splash.name_font_color}}">
+        <input name="username_font_color" type="hidden" id="master-username-font-color" value="{{custom_splash.username_font_color}}">
+        <input name="name_font_size" type="hidden" id="master-name-font-size" value="{{custom_splash.name_font_size}}">
+        <input name="username_font_size" type="hidden" id="master-username-font-size" value="{{custom_splash.username_font_size}}">
+        <input name="button_color" type="hidden" id="master-button-color" value="{{custom_splash.button_color}}">
+        <input name="button_text_color" type="hidden" id="master-button-text-color" value="{{custom_splash.button_text_color}}">
+        <input name="button_shape" type="hidden" id="master-button-shape" value="{{custom_splash.button_shape}}">
+
+        <!--The button format category defines if the button has an icon or text-->
+        <input name="button_format" type="hidden" id="master-button-format" value="{{custom_splash.button_format}}"> 
+        <input name="splash_color" type="hidden" id="master-splash-panel-color" value="{{custom_splash.panel_color}}">
+    </form>
+
+    
+    <div class="yb-drawer-focus-layer" id="drawer-focus-container">
+
+    </div>
+
+    <div class="yb-customize-toolbar squared">
+        {% include "yb_customize/global_components/customization_toolbar.html" %}
+    </div>
+    
+    {% if not custom_core.splash_tutorial_complete %}
+
+        {% include "yb_customize/profile_editor/custom_profile_tutorial.html" %}
+
+    {% endif %}
+    <div class="grid-overlay" style="mix-blend-mode: difference;"></div>
+    
+    <div id="profile-splash-label" class = "yb-splash-label profile yb-transform-center all align-center">
+        <div id="profile-image-container" class="profile-image-container editable yb-blink-soft infinite yb-margin-center all plainBorder border-solid narrowBorder circle" style="overflow: hidden; margin-bottom: 10px; border: {{custom_core.image_border_style}}; border-color: {{custom_core.image_border_color}}; z-index: 50;" onclick="yb_navigateTo('2way', 'profile-image-upload', null, false);">
+            <div class="profile-image-overlay" style="background-color: {{custom_core.image_overlay_color}}; opacity: {{custom_core.image_overlay_strength}};"></div>
+            <img src="{% if current_profile.custom.profile_image.storage_type == "yb" %}{{custom_core.profile_image.medium_thumbnail.url}}{%else%}{{custom_core.profile_image.medium_thumbnail_ext}}{% endif %}"  id="profile-image-splash" style="width: 100%; border-color:{{profile.custom.accent_color}};"/>
+        </div>
+
+        <div class="profile-name-splash preview editable" id="profile-name-splash" style="border: 2px solid gray; width: fit-content; margin: auto; padding: 15px;" onclick="yb_navigateTo('drawer', 'profile-text-edit', null, false); yb_focusOn('profile-name-splash', 'editable');">
+            <h2 id="profile-name-header" style="color:{{custom_splash.name_font_color}}; margin-top: 0px; margin-bottom: 10px;" class="profile-name-header yb-name-size{{custom_splash.name_font_size}}">{{user_profile.display_name}}</h2>
+            <b id="profile-handle-label" style="color:{{custom_splash.username_font_color}};" class="profile-handle-label yb-name-size{{custom_splash.username_font_size}}">
+                <small>@{{user_profile.username}}</small>
+            </b>
+        </div>
+
+
+        <div id="profile-interaction-container" class="profile-interaction-container editable profile-CME profile-interaction-container preview yb-margin-center lr" style="border: 2px solid gray; width: fit-content;" onclick="yb_navigateTo('drawer', 'profile-button-edit', null, false); yb_focusOn('profile-interaction-container', 'editable');">
+            <button style="color: {{custom_splash.button_text_color}}; background-color: {{custom_splash.button_color}};" id="profile-button-connect" class="button-profile-interaction yb-button-flex {% if custom_splash.button_shape == 0 %}rounded{% else %} squared {% endif %} {% if button_format == 0%} bt-format-text {% elif button_format == 1 %} bt-format-icon {%else%} bt-format-hybrid{% endif %}">
+                <span>Connect</span>
+
+            </button>
+    
+            <button style="color: {{custom_splash.button_text_color}}; background-color: {{custom_splash.button_color}};" id="profile-button-message" class="button-profile-interaction yb-button-flex {% if custom_splash.button_shape == 0 %}rounded{% else %} squared {% endif %}">
+
+                <span>Messages</span>
+
+            </button>
+    
+            <button style="color: {{custom_splash.button_text_color}}; background-color: {{custom_splash.button_color}};" id="profile-button-about" class="button-profile-interaction yb-button-flex {% if custom_splash.button_shape == 0 %}rounded{% else %} squared {% endif %} {% if button_format == 0%} bt-format-text {% elif button_format == 1 %} bt-format-icon {%else%} bt-format-hybrid{% endif %}">
+                <span>About</span>
+            </button>
+        {% comment %} </div>
+        <div id="profile-bio-container" class="splash-bio-container preview" style="border: 2px solid gray;">
+            <h3 id="profile-motto" style="color: {{user.profile.custom.profile_splash.title_color}};" class="profile-motto">
+                {{user.profile.motto}}
+            </h3>
+            <p id="profile-bio" style="color:{{user.profile.custom.profile_splash.text_color}};" class="splash-bio">
+                {{user.profile.user_bio}}
+            </p>
+        </div> {% endcomment %}
+    </div>
+
+    
+    <div id="swipe-up-element" class="swipe-up-element bobbing-object">
+        <svg id="swipe-up-icon" class='swipe-up-icon' xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path style="fill:{{active_profile.custom.profile_splash.text_color}}" d="M14.15 30.75 12 28.6l12-12 12 11.95-2.15 2.15L24 20.85Z"/></svg>
+        <p style = "color: {{active_profile.custom.profile_splash.text_color}};" class = "swipe-up-text" id="swipe-up-text">Slide up to Edit Profile</p>
+
+    </div>
+
+</div>
+
+<div style="position: absolute; bottom: 110px; height: 45px; width: 45px; background-color: black;" class="squared yb-transform-center lr">
+    <div class = "color-circle yb-transform-center all" id="splash-panel-color-circle" name="splash-panel-color" style="position: absolute; background-color: {{custom_splash.panel_color}}; height: 25px; width: 25px; margin-top: 0px;"></div>  
+    <input class="coloris color-input" type="text" name="splash-panel-color" style="display: none;" id="splash-panel-color-picker" value="{{custom_splash.panel_color}}">  
+</div>
+
+<div id="additional-options" class="yb-gap5" style="z-index: 999;">
+    <div id="change-avatar" class="yb-flexRow yb-gap5" style="display: none;">
+
+        <div class="yb-circle-button mini">
+            <svg class="mini-button-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                <path d="M222-255q63-44 125-67.5T480-346q71 0 133.5 23.5T739-255q44-54 62.5-109T820-480q0-145-97.5-242.5T480-820q-145 0-242.5 97.5T140-480q0 61 19 116t63 109Zm257.81-195q-57.81 0-97.31-39.69-39.5-39.68-39.5-97.5 0-57.81 39.69-97.31 39.68-39.5 97.5-39.5 57.81 0 97.31 39.69 39.5 39.68 39.5 97.5 0 57.81-39.69 97.31-39.68 39.5-97.5 39.5Zm.66 370Q398-80 325-111.5t-127.5-86q-54.5-54.5-86-127.27Q80-397.53 80-480.27 80-563 111.5-635.5q31.5-72.5 86-127t127.27-86q72.76-31.5 155.5-31.5 82.73 0 155.23 31.5 72.5 31.5 127 86t86 127.03q31.5 72.53 31.5 155T848.5-325q-31.5 73-86 127.5t-127.03 86Q562.94-80 480.47-80Zm-.47-60q55 0 107.5-16T691-212q-51-36-104-55t-107-19q-54 0-107 19t-104 55q51 40 103.5 56T480-140Zm0-370q34 0 55.5-21.5T557-587q0-34-21.5-55.5T480-664q-34 0-55.5 21.5T403-587q0 34 21.5 55.5T480-510Zm0-77Zm0 374Z"/>
+            </svg>
+        </div>
+
+        <p class="font-gray font-medium yb-editBarLabel">Image</p>
+    
+    </div>
+
+    <div class="yb-flexRow yb-gap5" id="change-wallpaper">
+
+        <div class="yb-circle-button mini">
+            <svg class="mini-button-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                <path d="M200-120q-33 0-56.5-23.5T120-200v-240h80v240h240v80H200Zm320 0v-80h240v-240h80v240q0 33-23.5 56.5T760-120H520ZM240-280l120-160 90 120 120-160 150 200H240ZM120-520v-240q0-33 23.5-56.5T200-840h240v80H200v240h-80Zm640 0v-240H520v-80h240q33 0 56.5 23.5T840-760v240h-80Zm-140-40q-26 0-43-17t-17-43q0-26 17-43t43-17q26 0 43 17t17 43q0 26-17 43t-43 17Z"/>
+            </svg>
+        </div>
+
+        <p class="font-gray font-medium yb-editBarLabel"> Wallpaper</p>
+    
+    </div>
+
+    
+    <div class="yb-flexRow yb-gap5 toolbar-button" id="add-stickers" style="display:none;">
+
+        <div class="yb-circle-button mini">
+            <svg class="mini-button-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                <path d="M480-40q-149 0-254.5-42.5T120-200q0-32 20-57.5t56-45.5l65 58q-24 8-42.5 20.5T200-200q0 26 81 53t199 27q118 0 199-27t81-53q0-12-18.5-24.5T699-245l65-58q36 20 56 45.5t20 57.5q0 75-105.5 117.5T480-40Zm0-160q-22 0-42.5-7.5T400-230L148-453q-13-11-20.5-27t-7.5-33v-80q0-17 6.5-33t19.5-27l252-235q17-16 38-24t44-8q23 0 44 8t38 24l252 235q13 11 19.5 27t6.5 33v80q0 17-7.5 33T812-453L560-230q-17 15-37.5 22.5T480-200Zm-4-188q14 0 26.5-4.5T526-407l222-197-240-226q-7-5-14-7.5t-15-2.5q-8 0-15 2.5t-12 7.5L208-600l218 193q11 10 23.5 14.5T476-388ZM360-550q21 0 35.5-14.5T410-600q0-21-14.5-35.5T360-650q-21 0-35.5 14.5T310-600q0 21 14.5 35.5T360-550Zm50 54q43 21 90.5 13.5T584-522q34-29 44.5-73T618-678L410-496Zm70-174q21 0 35.5-14.5T530-720q0-21-14.5-35.5T480-770q-21 0-35.5 14.5T430-720q0 21 14.5 35.5T480-670Zm-2 56Z"/>
+            </svg>
+        </div>
+
+        <p class="font-gray font-medium yb-editBarLabel">Stickers</p>
+    
+    </div>
+
+</div>
+
+{% comment %} <script class="page-script" id="page-script" type="text/javascript" src="{% static 'scripts/yb_customize/customCore.js' %}"></script> {% endcomment %}
+<script class="page-script" type="text/javascript" src="{% static 'scripts/yb_customize/yb_toolbar.js' %}"></script>
+<script class="page-script" id="page-script" type="text/javascript" src="{% static 'scripts/yb_customize/yb-customize-profiles.js' %}"></script>
+<script>
+    $(document).ready(function() {
+        $(MAIN_LOADING_SCREEN).fadeOut(500).animate({opacity: 0}, 500);
+        yb_hideMobileUI();
+    })
+</script>

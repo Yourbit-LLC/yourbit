@@ -1,0 +1,80 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/yb_settings/yourbit_settings.css' %}"/>
+<div id='div-header' class="div-header">
+    <div class="cb-panel-back" onclick="yb_2WayPage(2);"><svg class="yb-margin-center tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
+    <h3 class="yb-fillWidth yb-margin-L10 yb-font-auto yb-margin-center tb"></h3>
+    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('cluster-settings');"><svg class="yb-transform-center all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
+</div>
+
+<div class="yb-flexColumn" id="settings-info">
+
+    <svg class="yb-autoFill yb-margin-center lr" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M216-96q-29.7 0-50.85-21.15Q144-138.3 144-168v-528q0-29 21.5-50.5T216-768h72v-96h72v96h240v-96h72v96h72q29 0 50.5 21.5T816-696v216h-72v-48H216v360h288v72H216Zm0-504h528v-96H216v96Zm0 0v-96 96ZM576-96v-113l210-209q7.26-7.41 16.13-10.71Q811-432 819.76-432q9.55 0 18.31 3.5Q846.83-425 854-418l44 45q6.59 7.26 10.29 16.13Q912-348 912-339.24t-3.29 17.92q-3.3 9.15-10.71 16.32L689-96H576Zm288-243-45-45 45 45ZM624-144h45l115-115-22-23-22-22-116 115v45Zm138-138-22-22 44 45-22-23Z"/></svg>
+    <h3 class="align-center yb-pHead" style="color:gray;">Scheduling</h3>
+    <p style="font-size: small; font-weight: 550; padding-left: 5px; padding-right: 5px; font-family: 'Roboto', sans-serif; text-align: center;" class="yb-font-auto yb-pText">Specify when you want this bit to publish</p>
+
+</div>
+
+<form id="bit-schedule-settings-form" method="POST" action="/settings/templates/cluster/{{cluster.id}}/" class="yb-fillWidth yb-vScroll yb-font-auto yb-margin-T10 align-center" style="height: calc(100% - 150px); border-radius: 15px;">
+    {% csrf_token %}
+    <h4 class="yb-pHead">Publication</h4>
+    <div class="setting-sub-container yb-font-auto yb-pText">
+        <!--Cluster Type-->
+        <div id="field-container-bit-deploy" class="yb-field-container">
+            <div id="display-bit-deploy" class="yb-field-split top yb-bg-autoGray yb-font-auto yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">When does this go live?</p>
+                <select name="isScheduled" id='sb-field-isScheduled' value="now" class="yb-input-transparent right yb-font-auto yb-pText yb-form-field" style="grid-column: 2;">
+                    <option class="yb-input-option" value="true" {% if cluster.type == 'all' %}selected{% endif %}>Post Now</option>
+                    <option class="yb-input-option" value="false" {% if cluster.type == 'chat' %}selected{% endif %}>Post Later</option>
+                </select>
+        </div>
+
+        <div id="field-container-post-date" class="yb-field-container">
+            <div id="display-post-date" class="yb-field-split middle yb-bg-autoGray yb-font-auto yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Specify Date </p>
+                <input type="date" name="name" id='sb-field-scheduleDate' value="{{cluster.name}}" class="yb-input-transparent right yb-font-auto yb-pText yb-form-field" style="grid-column: 2;">
+            </div>
+            <p class="yb-field-error under"></p>
+        </div>
+
+        <div id="field-container-post-date" class="yb-field-container">
+            <div id="display-post-date" class="yb-field-split bottom yb-bg-autoGray yb-font-auto yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Specify Time </p>
+                <input type="time" name="name" id='sb-field-scheduleTime'  class="yb-input-transparent right yb-font-auto yb-pText yb-form-field" style="grid-column: 2;">
+            </div>
+            <p class="yb-field-error under"></p>
+        </div>
+    </div>
+    <h4 class="yb-pHead">Evaporation</h4>
+    <div class="setting-sub-container yb-font-auto yb-pText">
+        <!--Cluster Type-->
+        <div id="field-container-bit-deploy" class="yb-field-container">
+            <div id="display-bit-deploy" class="yb-field-split top yb-bg-autoGray yb-font-auto yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Autodelete this bit?</p>
+                <select name="type" id='sb-field-deletePreference' value="never" class="yb-input-transparent right yb-font-auto yb-pText yb-form-field" style="grid-column: 2;">
+                    <option class="yb-input-option" value="never">Never</option>
+                    <option class="yb-input-option" value="day">1 day from now</option>
+                    <option class="yb-input-option" value="week">1 week from now</option>
+                    <option class="yb-input-option" value="month">1 month from now</option>
+                    <option class="yb-input-option" value="custom">Set custom date</option>
+                </select>
+        </div>
+
+        <div id="field-container-post-date" class="yb-field-container">
+            <div id="display-post-date" class="yb-field-split middle yb-bg-autoGray yb-font-auto yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Specify Date </p>
+                <input type="date" name="name" id='sb-field-expirationDate' value="{{cluster.name}}" class="yb-input-transparent right yb-font-auto yb-pText yb-form-field" style="grid-column: 2;">
+            </div>
+            <p class="yb-field-error under"></p>
+        </div>
+
+        <div id="field-container-post-date" class="yb-field-container">
+            <div id="display-post-date" class="yb-field-split bottom yb-bg-autoGray yb-font-auto yb-pText">
+                <p class="field-cover-label align-left" style="grid-column: 1;">Specify Time </p>
+                <input type="time" name="name" id='sb-field-expirationTime'  class="yb-input-transparent right yb-font-auto yb-pText yb-form-field" style="grid-column: 2;">
+            </div>
+            <p class="yb-field-error under"></p>
+        </div>
+    </div>
+</form>
+
+<script src="{% static 'scripts/yb_builder/subscripts/bit_schedule3.js' %}"></script>

@@ -70,6 +70,7 @@ INSTALLED_APPS = [
     'yb_systems.apps.YbSystemsConfig',
     'yb_video.apps.YbVideoConfig',
     'yb_photo.apps.YbPhotoConfig',
+    'yb_ploppables.apps.YbPloppablesConfig',
 
     #Third Party Apps
     'channels',
@@ -79,6 +80,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'webpush',
     'celery',
+    'django_celery_beat',
     "rest_framework_api_key",
     
     
@@ -216,8 +218,8 @@ FILE_UPLOAD_HANDLERS = [
 ]
 
 # Celery Configuration Options
-CELERY_BROKER_URL = config('CELERY_BROKER_URL', default='redis://localhost:6379/0')
-CELERY_RESULT_BACKEND = config('CELERY_RESULT_BACKEND', default='redis://localhost:6379/0')
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'

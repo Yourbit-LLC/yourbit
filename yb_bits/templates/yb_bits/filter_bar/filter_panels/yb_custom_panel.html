@@ -1,36 +1,36 @@
 {% load static %}
-<div class="yb-fillWidth" style="display: grid; grid-template-columns: 1fr 1fr 1fr; grid-gap: 10px; font-size:12px; margin-top: 10px; margin-bottom: 10px;">
+<div class="yb-fillWidth yb-filter-panel" id="yb-customize-panel" style="grid-template-columns: 1fr 1fr 1fr;">
     <div data-action="flat-mode" class="yb-flexColumn yb-filter-icon {% if custom_core.flat_mode_on %} active {% endif %}">
-        <svg class="yb-autoFill yb-pFill yb-center-margin all" xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 -960 960 960" width="36px" style="pointer-events: none;">
+        <svg class="yb-autoFill yb-pFill yb-margin-center all" xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 -960 960 960" width="36px" style="pointer-events: none;">
             <path d="M151.18-113.3q-16 0-26.94-10.94-10.94-10.94-10.94-26.94V-275.3q0-16 10.94-26.94 10.94-10.94 26.94-10.94h657.64q16 0 27.02 10.94t11.02 26.94v124.12q0 16-11.02 26.94-11.02 10.94-27.02 10.94H151.18Zm0-266.55q-16 0-26.94-10.94-10.94-10.93-10.94-26.93v-124.65q0-16 10.94-27.02t26.94-11.02h657.64q16 0 27.02 11.02t11.02 27.02v124.65q0 16-11.02 26.93-11.02 10.94-27.02 10.94H151.18Zm0-267.22q-16 0-26.94-10.94-10.94-10.94-10.94-26.94v-123.87q0-16 10.94-27.02t26.94-11.02h657.64q16 0 27.02 11.02t11.02 27.02v123.87q0 16-11.02 26.94-11.02 10.94-27.02 10.94H151.18Z"/>
         </svg>
-        <p class="yb-autoText yb-pText align-center">
+        <p class="yb-font-auto yb-pText align-center">
             Flat Mode
         </p>
     </div>
 
     <div data-action="custom-ui" class="yb-flexColumn yb-filter-icon {% if not custom_core.flat_mode_on %}{% if custom_core.ui_colors_on %}active{% endif %}{% else %} yb-half-opacity {% endif %}" >
-        <object type="image/svg+xml" style="pointer-events: none;" data="{% static 'icons/ui_icon.svg' %}" class="yb-center-margin all yb-autoFill yb-pFill" ></object>
-        <p class="yb-autoText yb-pText align-center">
+        <object type="image/svg+xml" style="pointer-events: none;" data="{% static 'icons/ui_icon.svg' %}" class="yb-margin-center all yb-autoFill yb-pFill" ></object>
+        <p class="yb-font-auto yb-pText align-center">
             Custom UI
         </p>
     </div>
 
     <div data-action="wallpaper" class="yb-flexColumn yb-filter-icon {% if not custom_core.flat_mode_on %}{% if custom_core.wallpaper_on %}active{% endif %}{% else %} yb-half-opacity {% endif %}">
-        <svg xmlns="http://www.w3.org/2000/svg" style="pointer-events: none;" height="36px" viewBox="0 -960 960 960" width="36px" class="yb-autoFill yb-center-margin all"><path d="M180-120q-24 0-42-18t-18-42v-270h60v270h270v60H180Zm330 0v-60h270v-270h60v270q0 24-18 42t-42 18H510ZM237-268l118-152 93 127 132-171 147 196H237ZM120-510v-270q0-24 18-42t42-18h270v60H180v270h-60Zm660 0v-270H510v-60h270q24 0 42 18t18 42v270h-60Zm-156-60q-23.4 0-38.7-15.3Q570-600.6 570-624q0-23.4 15.3-38.7Q600.6-678 624-678q23.4 0 38.7 15.3Q678-647.4 678-624q0 23.4-15.3 38.7Q647.4-570 624-570Z"/></svg>
-        <p class="yb-autoText yb-pText align-center">
+        <svg xmlns="http://www.w3.org/2000/svg" style="pointer-events: none;" height="36px" viewBox="0 -960 960 960" width="36px" class="yb-autoFill yb-margin-center all"><path d="M180-120q-24 0-42-18t-18-42v-270h60v270h270v60H180Zm330 0v-60h270v-270h60v270q0 24-18 42t-42 18H510ZM237-268l118-152 93 127 132-171 147 196H237ZM120-510v-270q0-24 18-42t42-18h270v60H180v270h-60Zm660 0v-270H510v-60h270q24 0 42 18t18 42v270h-60Zm-156-60q-23.4 0-38.7-15.3Q570-600.6 570-624q0-23.4 15.3-38.7Q600.6-678 624-678q23.4 0 38.7 15.3Q678-647.4 678-624q0 23.4-15.3 38.7Q647.4-570 624-570Z"/></svg>
+        <p class="yb-font-auto yb-pText align-center">
             Wallpaper
         </p>
     </div>
 
     <div data-action="custom-bit" class="yb-flexColumn yb-filter-icon {% if not custom_core.flat_mode_on %}{% if custom_core.bit_colors_on %}active{% endif %}{% else %} yb-half-opacity {% endif %}">
-        <object type="image/svg+xml" style="pointer-events: none;" data="{% static 'icons/bit-icon-custom.svg' %}" class="yb-center-margin all yb-autoFill yb-pFill"></object>
-        <p class="yb-autoText yb-pText align-center">Custom Bits</p>
+        <object type="image/svg+xml" style="pointer-events: none;" data="{% static 'icons/bit-icon-custom.svg' %}" class="yb-margin-center all yb-autoFill yb-pFill"></object>
+        <p class="yb-font-auto yb-pText align-center">Custom Bits</p>
     </div>
     
     <div id="only-my-colors-button" data-action="only-my-colors" class="yb-flexColumn yb-filter-icon {% if not custom_core.flat_mode_on %}{% if custom_core.bit_colors_on %}{% if custom_core.only_my_colors %}active{% endif %}{% else %}yb-half-opacity{% endif %}{% else %} yb-half-opacity {% endif %}">
-        <object type="image/svg+xml" style="pointer-events: none;" data="{% static 'icons/bit-icon-my-colors.svg' %}" class="yb-center-margin all yb-autoFill yb-pFill"></object>
-        <p class="yb-autoText yb-pText align-center">
+        <object type="image/svg+xml" style="pointer-events: none;" data="{% static 'icons/bit-icon-my-colors.svg' %}" class="yb-margin-center all yb-autoFill yb-pFill"></object>
+        <p class="yb-font-auto yb-pText align-center">
             Only My Colors
         </p>
     </div>

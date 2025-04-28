@@ -1,0 +1,70 @@
+{% load static %}
+<div class="yb-drawer-search" id="sticker-search-bar">
+    <h3 class="yb-font-auto yb-pText align-center">Edit Font</h3>
+    <div class='yb-close-drawer' id='yb-drawer-close' onclick="yb_closeDrawer(); yb_focusOff('profile-name-splash', 'editable');"><svg class="yb-transform-center all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
+</div>
+<hr style="border-color: gray;">
+<div id="yb-container-text-edit" class="sticker-list-container" style="top: 0px !important; height: 29.5vh;">
+    <div class="yb-vScroll" style="position: relative; top: 0px; height: 100%; padding-bottom: 100px;">
+        <div>
+            <div id="font-style-section" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; grid-template-rows: 45px 35px auto 35px; width: 95%; margin: auto; grid-gap: 5px;">
+                <h3 class="align-center squared yb-font-auto-reversed yb-dr-section-label">Name Font</h3>
+                <p class="field-cover-label yb-font-auto yb-pText align-left" style="grid-column: 1; grid-row: 2;">Font Color 
+                    <small style="color: skyblue; margin-left: 20px;"> 
+                    <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" style="position: relative; top: 30%; margin-right: 3px;" height="20px" fill="cyan"><path d="M446.67-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h166.67v66.67H280q-55.56 0-94.44 38.84-38.89 38.84-38.89 94.33 0 55.49 38.89 94.49 38.88 39 94.44 39h166.67V-280ZM323.33-446.67v-66.66h313.34v66.66H323.33Zm190 166.67v-66.67H680q55.56 0 94.44-38.84 38.89-38.84 38.89-94.33 0-55.49-38.89-94.49-38.88-39-94.44-39H513.33V-680H680q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H513.33Z"/></svg>
+                        {% comment %} <svg xmlns="http://www.w3.org/2000/svg" style="position: relative; top: 30%; margin-right: 3px;" height="20px" viewBox="0 -960 960 960" width="20px" fill="#e8eaed"><path d="M756.67-294.67 704-348q47.33-10.33 78.33-46.17 31-35.83 31-83.83 0-55.33-39-94.33t-94.33-39H523.33V-678H680q83 0 141.5 58.5T880-478q0 60.33-33.83 109.67-33.84 49.33-89.5 73.66Zm-149.34-150-66.66-66.66h96v66.66h-29.34ZM806.67-56l-746-746L108-849.33l746 746L806.67-56Zm-360-224H280q-83 0-141.5-58.5T80-480q0-71 43.67-125.67 43.66-54.66 111.66-69.66l62 62H280q-55.33 0-94.33 39t-39 94.33q0 55.33 39 94.33t94.33 39h166.67V-280ZM323.33-446.67v-66.66h74.34L464-446.67H323.33Z"/></svg> {% endcomment %}
+                        Header
+                    </small> 
+                </p>  
+                <div class = "color-circle yb-margin-center tb" id="name-font-color-circle" name="image-co" style="position: relative; margin-right: 10px; background-color: {{title_color}}; grid-column: 2; grid-row: 2; height: 25px; width: 25px;"></div>  
+                
+                <input class="coloris color-input font-color-input" type="text" name="name-font-color" style="display: none;" id="name-font-color-picker" value="{{title_color}}">  
+                <hr style="grid-row: 3; grid-column-start: 1; grid-column-end: 3; width: 100%; border-color: gray;">
+                <p class="field-cover-label yb-font-auto yb-pText align-left" style="grid-column: 1; grid-row: 4;">
+                    Font Size 
+                                        
+                    <small style="color: skyblue; margin-left: 20px;"> 
+                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" style="position: relative; top: 30%; margin-right: 3px;" height="20px" fill="cyan"><path d="M446.67-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h166.67v66.67H280q-55.56 0-94.44 38.84-38.89 38.84-38.89 94.33 0 55.49 38.89 94.49 38.88 39 94.44 39h166.67V-280ZM323.33-446.67v-66.66h313.34v66.66H323.33Zm190 166.67v-66.67H680q55.56 0 94.44-38.84 38.89-38.84 38.89-94.33 0-55.49-38.89-94.49-38.88-39-94.44-39H513.33V-680H680q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H513.33Z"/></svg>
+                        {% comment %} <svg xmlns="http://www.w3.org/2000/svg" style="position: relative; top: 30%; margin-right: 3px;" height="20px" viewBox="0 -960 960 960" width="20px" fill="#e8eaed"><path d="M756.67-294.67 704-348q47.33-10.33 78.33-46.17 31-35.83 31-83.83 0-55.33-39-94.33t-94.33-39H523.33V-678H680q83 0 141.5 58.5T880-478q0 60.33-33.83 109.67-33.84 49.33-89.5 73.66Zm-149.34-150-66.66-66.66h96v66.66h-29.34ZM806.67-56l-746-746L108-849.33l746 746L806.67-56Zm-360-224H280q-83 0-141.5-58.5T80-480q0-71 43.67-125.67 43.66-54.66 111.66-69.66l62 62H280q-55.33 0-94.33 39t-39 94.33q0 55.33 39 94.33t94.33 39h166.67V-280ZM323.33-446.67v-66.66h74.34L464-446.67H323.33Z"/></svg> {% endcomment %}
+                        Header
+                    </small> 
+                </p>  
+                <input type="range" id="title-font-size-slider" style="position: absolute; top: 50%; grid-column: 2; grid-row: 4; transform: translateY(-50%); right: 5px; text-align: left;" class="yb-ranger" min="1" max="5" step="1" value="{{title_size}}">      
+
+                
+            </div>
+        </div>
+            
+        <br>
+
+        <div style="padding-bottom: 50px;">
+            <div id="font-style-section" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; grid-template-rows: 45px 35px auto 35px;; width: 95%; margin: auto; grid-gap: 5px;">
+                <h3 class="align-center squared yb-font-auto-reversed yb-dr-section-label">Username Font</h3>
+                <p class="field-cover-label yb-font-auto yb-pText align-left" style="grid-column: 1; grid-row: 2;">
+                    Font Color
+                    <small style="color: skyblue; margin-left: 20px;"> 
+                    <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" style="position: relative; top: 30%; margin-right: 3px;" height="20px" fill="cyan"><path d="M446.67-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h166.67v66.67H280q-55.56 0-94.44 38.84-38.89 38.84-38.89 94.33 0 55.49 38.89 94.49 38.88 39 94.44 39h166.67V-280ZM323.33-446.67v-66.66h313.34v66.66H323.33Zm190 166.67v-66.67H680q55.56 0 94.44-38.84 38.89-38.84 38.89-94.33 0-55.49-38.89-94.49-38.88-39-94.44-39H513.33V-680H680q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H513.33Z"/></svg>
+                        {% comment %} <svg xmlns="http://www.w3.org/2000/svg" style="position: relative; top: 30%; margin-right: 3px;" height="20px" viewBox="0 -960 960 960" width="20px" fill="#e8eaed"><path d="M756.67-294.67 704-348q47.33-10.33 78.33-46.17 31-35.83 31-83.83 0-55.33-39-94.33t-94.33-39H523.33V-678H680q83 0 141.5 58.5T880-478q0 60.33-33.83 109.67-33.84 49.33-89.5 73.66Zm-149.34-150-66.66-66.66h96v66.66h-29.34ZM806.67-56l-746-746L108-849.33l746 746L806.67-56Zm-360-224H280q-83 0-141.5-58.5T80-480q0-71 43.67-125.67 43.66-54.66 111.66-69.66l62 62H280q-55.33 0-94.33 39t-39 94.33q0 55.33 39 94.33t94.33 39h166.67V-280ZM323.33-446.67v-66.66h74.34L464-446.67H323.33Z"/></svg> {% endcomment %}
+                        Text
+                    </small> 
+                </p>  
+                <div class = "color-circle yb-margin-center tb" id="username-font-color-circle" name="username-font-color" style="position: relative; margin-right: 10px; background-color: {{text_color}}; grid-column: 2; grid-row: 2; height: 25px; width: 25px;"></div>  
+                <input class="coloris color-input font-color-input" type="text" name="username-font-color" style="display: none;" id="username-font-color-picker" value="{{text_color}}">  
+                <hr style="grid-row: 3; grid-column-start: 1; grid-column-end: 3; width: 100%; border-color: gray;">
+                <p class="field-cover-label yb-font-auto yb-pText align-left" style="grid-column: 1; grid-row: 4;">
+                    Font Size 
+                    <small style="color: skyblue; margin-left: 20px;"> 
+                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" style="position: relative; top: 30%; margin-right: 3px;" height="20px" fill="cyan"><path d="M446.67-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h166.67v66.67H280q-55.56 0-94.44 38.84-38.89 38.84-38.89 94.33 0 55.49 38.89 94.49 38.88 39 94.44 39h166.67V-280ZM323.33-446.67v-66.66h313.34v66.66H323.33Zm190 166.67v-66.67H680q55.56 0 94.44-38.84 38.89-38.84 38.89-94.33 0-55.49-38.89-94.49-38.88-39-94.44-39H513.33V-680H680q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H513.33Z"/></svg>
+                        {% comment %} <svg xmlns="http://www.w3.org/2000/svg" style="position: relative; top: 30%; margin-right: 3px;" height="20px" viewBox="0 -960 960 960" width="20px" fill="#e8eaed"><path d="M756.67-294.67 704-348q47.33-10.33 78.33-46.17 31-35.83 31-83.83 0-55.33-39-94.33t-94.33-39H523.33V-678H680q83 0 141.5 58.5T880-478q0 60.33-33.83 109.67-33.84 49.33-89.5 73.66Zm-149.34-150-66.66-66.66h96v66.66h-29.34ZM806.67-56l-746-746L108-849.33l746 746L806.67-56Zm-360-224H280q-83 0-141.5-58.5T80-480q0-71 43.67-125.67 43.66-54.66 111.66-69.66l62 62H280q-55.33 0-94.33 39t-39 94.33q0 55.33 39 94.33t94.33 39h166.67V-280ZM323.33-446.67v-66.66h74.34L464-446.67H323.33Z"/></svg> {% endcomment %}
+                        Text
+                    </small> 
+                </p>  
+                <input type="range" id="text-font-size-slider" style="position: absolute; top: 50%; grid-column: 2; grid-row: 4; transform: translateY(-50%); right: 5px; text-align: left;" class="yb-ranger" min="1" max="5" step="1" value="{{text_size}}">      
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'scripts/yb_customize/splash_text_edit.js' %}"></script>

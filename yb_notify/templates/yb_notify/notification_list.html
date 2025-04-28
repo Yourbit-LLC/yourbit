@@ -1,5 +1,5 @@
 {% if results.count == 0 %}
-<div class="yb-fillWidth yb-margin-T30 align-center yb-autoText">
+<div class="yb-fillWidth yb-margin-T30 align-center yb-font-auto">
     <p class="font-gray"><b>No notifications</b></p>
 </div>
 {% else %}
@@ -31,13 +31,13 @@
 <div id="notification-{{notification.id}}" data-username="{{notification.from_user.username}}" 
     
         class="
-        yb-listItem notification 
+        yb-listItem notification yb-bg-autoGray
         {% if notification.has_seen %} 
         seen 
         {%else%} 
         unseen 
         {% endif %}
-        yb-autoText
+        yb-font-auto
         
         
     ">      
@@ -65,7 +65,7 @@
 
         {% elif notification.type == 6%}
             <!--'Mail' SVG for type 6 (New Message)-->
-            <svg class="yb-autoFill yb-center-margin lr" class="yb-autoFill yb-bFill" xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32">
+            <svg class="yb-autoFill yb-margin-center lr" class="yb-autoFill yb-bFill" xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32">
                 <path d="M157.69-180q-23.53 0-40.61-17.08T100-237.69v-484.62q0-23.53 17.08-40.61T157.69-780h644.62q23.53 0 40.61 17.08T860-722.31v484.62q0 23.53-17.08 40.61T802.31-180H157.69ZM480-473.92 145.39-695.39v457.7q0 5.38 3.46 8.84t8.84 3.46h644.62q5.38 0 8.84-3.46t3.46-8.84v-457.7L480-473.92Zm0-47.7 325.61-212.99H155.39L480-521.62ZM145.39-695.39v-39.22V-237.69q0 5.38 3.46 8.84t8.84 3.46h-12.3v-470Z"/>
             </svg>
 
@@ -91,10 +91,10 @@
         
     {% endif %}"
     >
-        <b class="font-small yb-autoText yb-listItem-head">
+        <b class="font-small yb-font-auto yb-listItem-head">
             {{notification.title}}
         </b>
-        <p class="yb-autoText yb-listItem-body">
+        <p class="yb-font-auto yb-listItem-body">
             {{notification.body}}
         </p>
 

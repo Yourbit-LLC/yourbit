@@ -10,23 +10,23 @@
 <link 
     rel="stylesheet" 
     id="yb-stylesheet-container"
-    href="{% static 'css/main/yb_containers9.css' %}"/>
+    href="{% static 'css/main/yb_containers18.css' %}"/>
 
 <link 
 rel="stylesheet" 
 id="yb-stylesheet-core"
-href="{% static 'css/main/yb_core8.css' %}"/>
+href="{% static 'css/main/yb_core9.css' %}"/>
 
 
 <link 
 rel="stylesheet" 
 id="yb-stylesheet-modifier"
-href="{% static 'css/main/yb_modifiers4.css' %}"/>
+href="{% static 'css/main/yb_modifiers5.css' %}"/>
 
 <link 
 rel="stylesheet" 
 id="yb-stylesheet-button"
-href="{% static 'css/main/yb_buttons6.css' %}"/>
+href="{% static 'css/main/yb_buttons7.css' %}"/>
 
 
 {% block content %}
@@ -49,8 +49,8 @@ href="{% static 'css/main/yb_buttons6.css' %}"/>
 
 <div id="profile-page-splash" style="transform: translateY(-100vh); background-color:{{custom_splash.primary_color}};" class="yb-fsContainer">
 
-    <div id="profile-splash-label" class = "yb-splash-label profile yb-center-transform all align-center">
-        <div id="profile-image-container" class="profile-image-container yb-center-margin all plainBorder border-solid narrowBorder circle" style="overflow: hidden; border: {{custom_core.image_border_style}}; border-color: {{custom_core.image_border_color}};">
+    <div id="profile-splash-label" class = "yb-splash-label profile yb-transform-center all align-center">
+        <div id="profile-image-container" class="profile-image-container yb-margin-center all plainBorder border-solid narrowBorder circle" style="overflow: hidden; border: {{custom_core.image_border_style}}; border-color: {{custom_core.image_border_color}};">
             <div class="profile-image-overlay" style="background-color: {{custom_core.image_overlay_color}}; opacity: {{custom_core.image_overlay_strength}};"></div>
             <img src="{{current_profile.custom.profile_image.medium_thumbnail.url}}"  id="profile-image-splash" style="width: 100%; border-color:{{profile.custom.accent_color}};"/>
         </div>
@@ -62,7 +62,7 @@ href="{% static 'css/main/yb_buttons6.css' %}"/>
         </div>
 
 
-        <div id="profile-interaction-container" class="profile-CME profile-interaction-container yb-center-margin lr">
+        <div id="profile-interaction-container" class="profile-CME profile-interaction-container yb-margin-center lr">
             <button style="color: {{custom_splash.button_text_color}}; background-color: {{custom_splash.button_color}}; width: 25vw; max-width: 150px;" id="profile-button-connect" class="button-profile-interaction yb-button-flex {% if custom_splash.button_shape == 0 %}rounded{% else %} squared {% endif %} {% if button_format == 0%} bt-format-text {% elif button_format == 1 %} bt-format-icon {%else%} bt-format-hybrid{% endif %}" data-id = "{{current_profile.user.username}}"
             {% if request.user.id == current_profile.user.id %}
                 data-action="edit"

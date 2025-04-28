@@ -41,7 +41,7 @@ class BitForm(forms.ModelForm):
         attrs={
             "placeholder": "Title",
             "id": "bb-field-title",
-            "class": "yb-builderBit yb-tform-cntrOrigin bb-field yb-autoText squared font-large font-heavy align-center border-solid narrowBorder",
+            "class": "yb-builderBit yb-tform-cntrOrigin bb-field yb-font-auto squared font-large font-heavy align-center border-solid narrowBorder",
             "style": ""
             }
         ), label="",
@@ -51,7 +51,7 @@ class BitForm(forms.ModelForm):
         attrs={
             "placeholder": "Description",
             "id": "bb-field-body",
-            "class": "yb-builderBit yb-tform-cntrOrigin bb-field bg-gray-dark yb-autoText squared font-medium align-left border-solid narrowBorder"
+            "class": "yb-builderBit yb-tform-cntrOrigin bb-field bg-gray-dark yb-font-auto squared font-medium align-left border-solid narrowBorder"
             }
         ), label="",
     )
@@ -77,7 +77,7 @@ class BitForm(forms.ModelForm):
             attrs={
                 "placeholder":"Tags",
                 "id":"bb-field-tags",
-                "class":"yb-builderBit yb-tform-cntrOrigin bb-field bg-gray-dark yb-autoText squared font-medium align-left border-solid narrowBorder",
+                "class":"yb-builderBit yb-tform-cntrOrigin bb-field bg-gray-dark yb-font-auto squared font-medium align-left border-solid narrowBorder",
             }
         ), label = "",
     )
@@ -95,7 +95,7 @@ class BitForm(forms.ModelForm):
             attrs={
                 "placeholder":"Search Connections",
                 "id":"bb-field-bitShoutouts",
-                "class": "yb-builderBit yb-tform-cntrOrigin bb-field bg-gray-dark yb-autoText rounded font-heavy align-left border-solid narrowBorder",
+                "class": "yb-builderBit yb-tform-cntrOrigin bb-field bg-gray-dark yb-font-auto rounded font-heavy align-left border-solid narrowBorder",
             }
         ), label = "",
     )

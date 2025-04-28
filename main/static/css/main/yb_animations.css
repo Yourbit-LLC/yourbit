@@ -16,6 +16,13 @@
     100% { transform: scale(1); }
   }
 
+  @keyframes yb-bounceDown-shiftLeft {
+    0% { transform: scale(1) translate(-50%); }
+    50% { transform: scale(0.9) translate(-50%); }
+    100% { transform: scale(1) translate(-50%); }
+  }
+
+  
   
   @keyframes yb-playerBounceDown {
     0% { transform: scale(1); }

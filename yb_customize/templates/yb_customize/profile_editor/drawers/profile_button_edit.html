@@ -1,0 +1,88 @@
+{% load static %}
+<div class="yb-drawer-search" id="sticker-search-bar">
+    <h3 class="yb-font-auto yb-pText align-center">Edit Buttons</h3>
+    <div class='yb-close-drawer' id='yb-drawer-close' onclick="yb_closeDrawer(); yb_focusOff('profile-interaction-container', 'editable');"><svg class="yb-transform-center all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
+</div>
+<hr style="border-color: gray;">
+
+<div id="yb-container-button-edit" class="sticker-list-container" style="top: 0px !important; height: 29.5vh;">
+    <div class="yb-vScroll" style="position: relative; top: 0px; height: 100%; padding-bottom: 100px;">
+        <div>
+            <div id="font-style-section" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; grid-template-rows: 45px 35px auto auto; width: 95%; margin: auto; grid-gap: 10px;">
+                <h3 class="align-center squared font-white yb-dr-section-label">Adjust Background</h3>
+                <p class="field-cover-label yb-font-auto yb-pText align-left" style="grid-column: 1; grid-row: 2;">
+                    Button Color 
+                    
+                    <small style="color: skyblue; margin-left: 20px;"> 
+                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" style="position: relative; top: 30%; margin-right: 3px;" height="20px" fill="cyan"><path d="M446.67-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h166.67v66.67H280q-55.56 0-94.44 38.84-38.89 38.84-38.89 94.33 0 55.49 38.89 94.49 38.88 39 94.44 39h166.67V-280ZM323.33-446.67v-66.66h313.34v66.66H323.33Zm190 166.67v-66.67H680q55.56 0 94.44-38.84 38.89-38.84 38.89-94.33 0-55.49-38.89-94.49-38.88-39-94.44-39H513.33V-680H680q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H513.33Z"/></svg>
+                        {% comment %} <svg xmlns="http://www.w3.org/2000/svg" style="position: relative; top: 30%; margin-right: 3px;" height="20px" viewBox="0 -960 960 960" width="20px" fill="#e8eaed"><path d="M756.67-294.67 704-348q47.33-10.33 78.33-46.17 31-35.83 31-83.83 0-55.33-39-94.33t-94.33-39H523.33V-678H680q83 0 141.5 58.5T880-478q0 60.33-33.83 109.67-33.84 49.33-89.5 73.66Zm-149.34-150-66.66-66.66h96v66.66h-29.34ZM806.67-56l-746-746L108-849.33l746 746L806.67-56Zm-360-224H280q-83 0-141.5-58.5T80-480q0-71 43.67-125.67 43.66-54.66 111.66-69.66l62 62H280q-55.33 0-94.33 39t-39 94.33q0 55.33 39 94.33t94.33 39h166.67V-280ZM323.33-446.67v-66.66h74.34L464-446.67H323.33Z"/></svg> {% endcomment %}
+                        Button
+                    </small> 
+                </p>  
+                <div class = "color-circle yb-margin-center tb" id="button-color-circle" name="button" style="position: relative; margin-right: 10px; background-color: {{button_color}}; grid-column: 2; grid-row: 2; height: 25px; width: 25px;"></div>  
+                <input class="coloris color-input" type="text" name="button-color" style="display: none;" id="button-color-picker" value="{{button_color}}">  
+                <hr style="grid-row: 3; grid-column-start: 1; grid-column-end: 3; width: 100%; border-color: gray;">
+                <p class="field-cover-label yb-font-auto yb-pText align-left" style="grid-column: 1; grid-row: 4;">Button Shape </p>  
+                <div id="shape-options" style="display: grid; right: 0px; grid-column: 2; grid-row: 4; grid-template-columns: 1fr 1fr;" class="yb-font-auto align-center">
+                    <div>
+                        <label for="rounded-button">
+                            <input class="button-shape-radio" type="radio" id="rounded-button" name="button-shape" value="0" {% if button_shape == 0 %} checked {% endif %}>
+                            <span class="button-shape-icon"><svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"><path d="M480-289.33q79.67 0 135.17-55.5 55.5-55.5 55.5-135.17 0-79.67-55.5-135.17-55.5-55.5-135.17-55.5-79.67 0-135.17 55.5-55.5 55.5-55.5 135.17 0 79.67 55.5 135.17 55.5 55.5 135.17 55.5ZM480-80q-82.33 0-155.33-31.5-73-31.5-127.34-85.83Q143-251.67 111.5-324.67T80-480q0-83 31.5-156t85.83-127q54.34-54 127.34-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 82.33-31.5 155.33-31.5 73-85.5 127.34Q709-143 636-111.5T480-80Zm0-66.67q139.33 0 236.33-97.33t97-236q0-139.33-97-236.33t-236.33-97q-138.67 0-236 97-97.33 97-97.33 236.33 0 138.67 97.33 236 97.33 97.33 236 97.33ZM480-480Z"/></svg>
+                        </label>                    
+                        <br>
+                    </div>
+                    <div>
+                        <label for="squared-button">
+                            <input class="button-shape-radio" type="radio" id="squared-button" name="button-shape" value="1" {% if button_shape == 1 %} checked {% endif %}>
+                            <span class="button-shape-icon"><svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"><path d="M282.67-282.67h394.66v-394.66H282.67v394.66Zm-96 162.67q-27 0-46.84-19.83Q120-159.67 120-186.67v-586.66q0-27 19.83-46.84Q159.67-840 186.67-840h586.66q27 0 46.84 19.83Q840-800.33 840-773.33v586.66q0 27-19.83 46.84Q800.33-120 773.33-120H186.67Zm0-66.67h586.66v-586.66H186.67v586.66Zm0-586.66v586.66-586.66Z"/></svg></span>
+                        </label>
+                        <br>
+                        
+                    </div>  
+                </div>
+
+            </div>
+        </div>
+        <br>
+        <div style="padding-bottom: 50px;">
+            <div id="font-style-section" class="yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-gray yb-margin-T10" style="position: relative; display:grid; grid-template-columns: 1fr 1fr; grid-template-rows: 45px 35px auto 35px auto 35px; width: 95%; margin: auto; grid-gap: 10px;">
+                <h3 class="align-center squared font-white yb-dr-section-label">Adjust Font</h3>
+                
+                                
+                <p class="field-cover-label yb-font-auto yb-pText align-left" style="grid-column: 1; grid-row: 2;">Label</p>
+                <div id="yb-field-container-align-text" class="yb-field-container" style="grid-column: 2; grid-row: 2;">
+                    <select type="text" class='notify-field yb-padding-ALL5 font-medium squared yb-bg-autoGray yb-font-autoGray' name="yb-align-text" id="yb-align-text" style="width: 95%; margin-left: auto; margin-right: auto;">
+                        <option value="0">Text</option>
+                        <option value="1">Icons</option>
+                    </select>
+                </div>
+
+                <hr style="grid-row: 3; grid-column-start: 1; grid-column-end: 3; width: 100%; border-color: gray;">
+                <p class="field-cover-label yb-font-auto yb-pText align-left" style="grid-column: 1; grid-row: 4;">
+                    Font Color 
+                    <small style="color: skyblue; margin-left: 20px;"> 
+                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" style="position: relative; top: 30%; margin-right: 3px;" height="20px" fill="cyan"><path d="M446.67-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h166.67v66.67H280q-55.56 0-94.44 38.84-38.89 38.84-38.89 94.33 0 55.49 38.89 94.49 38.88 39 94.44 39h166.67V-280ZM323.33-446.67v-66.66h313.34v66.66H323.33Zm190 166.67v-66.67H680q55.56 0 94.44-38.84 38.89-38.84 38.89-94.33 0-55.49-38.89-94.49-38.88-39-94.44-39H513.33V-680H680q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H513.33Z"/></svg>
+                        {% comment %} <svg xmlns="http://www.w3.org/2000/svg" style="position: relative; top: 30%; margin-right: 3px;" height="20px" viewBox="0 -960 960 960" width="20px" fill="#e8eaed"><path d="M756.67-294.67 704-348q47.33-10.33 78.33-46.17 31-35.83 31-83.83 0-55.33-39-94.33t-94.33-39H523.33V-678H680q83 0 141.5 58.5T880-478q0 60.33-33.83 109.67-33.84 49.33-89.5 73.66Zm-149.34-150-66.66-66.66h96v66.66h-29.34ZM806.67-56l-746-746L108-849.33l746 746L806.67-56Zm-360-224H280q-83 0-141.5-58.5T80-480q0-71 43.67-125.67 43.66-54.66 111.66-69.66l62 62H280q-55.33 0-94.33 39t-39 94.33q0 55.33 39 94.33t94.33 39h166.67V-280ZM323.33-446.67v-66.66h74.34L464-446.67H323.33Z"/></svg> {% endcomment %}
+                        Button Text
+                    </small> 
+                </p>  
+                <div class = "color-circle yb-margin-center tb" id="button-text-color-circle" name="button-text-color" style="position: relative; margin-right: 10px; background-color: {{button_text_color}}; grid-column: 2; grid-row: 4; height: 25px; width: 25px;"></div>  
+                <input class="coloris color-input" type="text" name="button-text-color" style="display: none;" id="button-text-color-picker" value="{{button_text_color}}">  
+                <hr style="grid-row: 5; grid-column-start: 1; grid-column-end: 3; width: 100%; border-color: gray;">
+                <p class="field-cover-label yb-font-auto yb-pText align-left" style="grid-column: 1; grid-row: 6;">
+                    Font Size
+                                        
+                    <small style="color: skyblue; margin-left: 20px;"> 
+                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" style="position: relative; top: 30%; margin-right: 3px;" height="20px" fill="cyan"><path d="M446.67-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h166.67v66.67H280q-55.56 0-94.44 38.84-38.89 38.84-38.89 94.33 0 55.49 38.89 94.49 38.88 39 94.44 39h166.67V-280ZM323.33-446.67v-66.66h313.34v66.66H323.33Zm190 166.67v-66.67H680q55.56 0 94.44-38.84 38.89-38.84 38.89-94.33 0-55.49-38.89-94.49-38.88-39-94.44-39H513.33V-680H680q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H513.33Z"/></svg>
+                        {% comment %} <svg xmlns="http://www.w3.org/2000/svg" style="position: relative; top: 30%; margin-right: 3px;" height="20px" viewBox="0 -960 960 960" width="20px" fill="#e8eaed"><path d="M756.67-294.67 704-348q47.33-10.33 78.33-46.17 31-35.83 31-83.83 0-55.33-39-94.33t-94.33-39H523.33V-678H680q83 0 141.5 58.5T880-478q0 60.33-33.83 109.67-33.84 49.33-89.5 73.66Zm-149.34-150-66.66-66.66h96v66.66h-29.34ZM806.67-56l-746-746L108-849.33l746 746L806.67-56Zm-360-224H280q-83 0-141.5-58.5T80-480q0-71 43.67-125.67 43.66-54.66 111.66-69.66l62 62H280q-55.33 0-94.33 39t-39 94.33q0 55.33 39 94.33t94.33 39h166.67V-280ZM323.33-446.67v-66.66h74.34L464-446.67H323.33Z"/></svg> {% endcomment %}
+                        Button Text
+                    </small> 
+                </p>  
+                <input type="range" id="font-size-text-slider"  class="yb-ranger" min="0" max="5" step="1" style="grid-column: 2;" value="{{text_size}}">   
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="{% static 'scripts/yb_customize/yb_splash_button_edit.js' %}"></script>

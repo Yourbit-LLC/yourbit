@@ -18,8 +18,8 @@
 </div>
 <div id="profile-page-splash" class="yb-fsContainer">
 
-    <div id="profile-splash-label" class = "yb-splash-label profile yb-center-transform all align-center">
-        <div id="profile-image-container" class="profile-image-container yb-center-margin all plainBorder border-solid narrowBorder circle">
+    <div id="profile-splash-label" class = "yb-splash-label profile yb-transform-center all align-center">
+        <div id="profile-image-container" class="profile-image-container yb-margin-center all plainBorder border-solid narrowBorder circle">
             <img src="{{current_profile.custom.profile_image.medium_thumbnail.url}}"  id="profile-image-splash" style="width: 100%; border-color:{{profile.custom.accent_color}};"/>
         </div>
         <div class="profile-name-splash" id="profile-name-splash">
@@ -30,7 +30,7 @@
         </div>
 
 
-        <div id="profile-interaction-container" class="profile-CME profile-interaction-container yb-center-margin lr">
+        <div id="profile-interaction-container" class="profile-CME profile-interaction-container yb-margin-center lr">
             <button style="color: {{profile.custom.profile_splash.button_text_color}}; background-color: {{profile.custom.profile_splash.button_color}}; width: 25vw; max-width: 150px;" id="profile-button-connect" class="button-profile-interaction yb-button-flex" data-id = "{{current_profile.user.username}}"
             {% if request.user.id == current_profile.user.id %}
                 data-action="edit"
@@ -99,6 +99,6 @@
 
 </div>
 
-<script class="page-script" type="text/javascript" src="{% static 'scripts/yb_bitstream/yb_bitstream1.js' %}"></script>
+<script class="page-script" type="text/javascript" src="{% static 'scripts/yb_bitstream/yb_bitstream17.js' %}"></script>
 <script class="page-script" id="page-script" type="text/javascript" src="{% static 'scripts/yb_profile/yb_profile.js' %}"></script>
 

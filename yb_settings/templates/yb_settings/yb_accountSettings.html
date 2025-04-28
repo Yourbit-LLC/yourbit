@@ -2,15 +2,15 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/yb_settings/yourbit_settings.css' %}"/>
 <div id='div-header' onclick="yb_toggleSettingsMenu()" class="div-header">
-    <div class="cb-panel-back"><svg class="yb-center-margin tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
-    <h3 class="yb-fillWidth yb-margin-L10 yb-autoText yb-center-margin tb"></h3>
-    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('settings-account');"><svg class="yb-center-transform all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
+    <div class="cb-panel-back"><svg class="yb-margin-center tb" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24"><path class="yb-autoFill" d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></div>
+    <h3 class="yb-fillWidth yb-margin-L10 yb-font-auto yb-margin-center tb"></h3>
+    <div class='yb-button-close' id='cb-panel-close' onclick="yb_toggle2WayContainer('settings-account');"><svg class="yb-transform-center all yb-icon small" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div>
 </div>
 
 <div class="yb-flexColumn" id="settings-info">
-    <svg class="yb-autoFill yb-center-margin lr" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e8eaed"><path d="M400-485q-66 0-108-42t-42-108q0-66 42-108t108-42q66 0 108 42t42 108q0 66-42 108t-108 42ZM80-164v-94q0-35 17.5-63t50.5-43q72-32 133.5-46T400-424h23q-6 14-9 27.5t-5 32.5h-9q-58 0-113.5 12.5T172-310q-16 8-24 22.5t-8 29.5v34h269q5 18 12 32.5t17 27.5H80Zm587 44-10-66q-17-5-34.5-14.5T593-222l-55 12-25-42 47-44q-2-9-2-25t2-25l-47-44 25-42 55 12q12-12 29.5-21.5T657-456l10-66h54l10 66q17 5 34.5 14.5T795-420l55-12 25 42-47 44q2 9 2 25t-2 25l47 44-25 42-55-12q-12 12-29.5 21.5T731-186l-10 66h-54Zm27-121q36 0 58-22t22-58q0-36-22-58t-58-22q-36 0-58 22t-22 58q0 36 22 58t58 22ZM400-545q39 0 64.5-25.5T490-635q0-39-25.5-64.5T400-725q-39 0-64.5 25.5T310-635q0 39 25.5 64.5T400-545Zm0-90Zm9 411Z"/></svg>
+    <svg class="yb-autoFill yb-margin-center lr" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e8eaed"><path d="M400-485q-66 0-108-42t-42-108q0-66 42-108t108-42q66 0 108 42t42 108q0 66-42 108t-108 42ZM80-164v-94q0-35 17.5-63t50.5-43q72-32 133.5-46T400-424h23q-6 14-9 27.5t-5 32.5h-9q-58 0-113.5 12.5T172-310q-16 8-24 22.5t-8 29.5v34h269q5 18 12 32.5t17 27.5H80Zm587 44-10-66q-17-5-34.5-14.5T593-222l-55 12-25-42 47-44q-2-9-2-25t2-25l-47-44 25-42 55 12q12-12 29.5-21.5T657-456l10-66h54l10 66q17 5 34.5 14.5T795-420l55-12 25 42-47 44q2 9 2 25t-2 25l47 44-25 42-55-12q-12 12-29.5 21.5T731-186l-10 66h-54Zm27-121q36 0 58-22t22-58q0-36-22-58t-58-22q-36 0-58 22t-22 58q0 36 22 58t58 22ZM400-545q39 0 64.5-25.5T490-635q0-39-25.5-64.5T400-725q-39 0-64.5 25.5T310-635q0 39 25.5 64.5T400-545Zm0-90Zm9 411Z"/></svg>
     <h3 class="align-center yb-pHead">ACCOUNT</h3>
-    <p style="font-size: small; font-weight: 550; padding-left: 5px; padding-right: 5px; font-family: 'Roboto', sans-serif; text-align: center;" class="yb-autoText yb-pText">Manage account, content, and privacy settings here.</p>    
+    <p style="font-size: small; font-weight: 550; padding-left: 5px; padding-right: 5px; font-family: 'Roboto', sans-serif; text-align: center;" class="yb-font-auto yb-pText">Manage account, content, and privacy settings here.</p>    
 
 </div>
 
@@ -22,9 +22,9 @@
         <h4 class="yb-pHead">Account Information</h4>
         <!--Edit Name-->
         <div id = "field-container-first-name" class="yb-field-container">
-            <div id="display-first-name" class="yb-field-split top squared yb-bg-autoGray yb-autoText yb-pText yb-margin-T10">
+            <div id="display-first-name" class="yb-field-split top squared yb-bg-autoGray yb-font-auto yb-pText yb-margin-T10">
                 <p class="field-cover-label align-left" style="grid-column: 1;">First Name: </p>
-                <input name="first_name" id='field-first-name' value="{{user.first_name}}" class="yb-input-transparent yb-form-field right yb-autoText yb-pText account-field" style="grid-column: 2;">
+                <input name="first_name" id='field-first-name' value="{{user.first_name}}" class="yb-input-transparent yb-form-field right yb-font-auto yb-pText account-field" style="grid-column: 2;">
             </div>
             
         
@@ -32,12 +32,12 @@
         
         
         <div id = "field-container-last-name" class="yb-field-container">
-            <div id="display-last-name" class="yb-field-split middle yb-bg-autoGray yb-autoText yb-pText"><p class="field-cover-label align-left" style="grid-column: 1;">Last Name: </p><input name="last_name" id='field-last-name' value="{{user.last_name}}" class="yb-input-transparent right yb-autoText yb-pText account-field" style="grid-column: 2;"></div>
+            <div id="display-last-name" class="yb-field-split middle yb-bg-autoGray yb-font-auto yb-pText"><p class="field-cover-label align-left" style="grid-column: 1;">Last Name: </p><input name="last_name" id='field-last-name' value="{{user.last_name}}" class="yb-input-transparent right yb-font-auto yb-pText account-field" style="grid-column: 2;"></div>
             <input id='field-last-name' value="{{user.last_name}}" class="yb-input-singleLine yb-form-field yb-panel squared yb-pText" style="display:none;">
         </div>
         
-        <div id="display-name" style="position:relative;" class="yb-field-split middle squared yb-bg-autoGray yb-autoText yb-pText">
-            <p class="field-cover-label align-left yb-autoText yb-pText" style="grid-column: 1; font-size: auto;">Show Real Name: </p>        
+        <div id="display-name" style="position:relative;" class="yb-field-split middle squared yb-bg-autoGray yb-font-auto yb-pText">
+            <p class="field-cover-label align-left yb-font-auto yb-pText" style="grid-column: 1; font-size: auto;">Show Real Name: </p>        
             <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px; width: 45px; text-align: left;">
                 <label class="yb-switch-round" id="display-name" >
                     <input type="checkbox" class="checkbox notification-check" name="real_name_visibility" id="yb-check-default-public" {% if real_name_visibility %} checked {% endif %}>
@@ -48,16 +48,16 @@
         
         <div id = "field-container-display-name" class="yb-field-container" style="{% if real_name_visibility %}opacity: 0.5;{% endif %}">
             <div id="display-name" class="yb-field-split middle yb-bg-autoGray yb-pText">
-                <p class="field-cover-label align-left yb-autoText yb-pText" style="grid-column: 1;">Display Name: </p><input name="display_name" id='field-last-name' value="{{active_profile.display_name}}" class="yb-input-transparent yb-form-field right yb-autoText yb-pText account-field" style="grid-column: 2;"></div>
+                <p class="field-cover-label align-left yb-font-auto yb-pText" style="grid-column: 1;">Display Name: </p><input name="display_name" id='field-last-name' value="{{active_profile.display_name}}" class="yb-input-transparent yb-form-field right yb-font-auto yb-pText account-field" style="grid-column: 2;"></div>
             <input id='field-last-name' value="{{active_profile.display_name}}" class="yb-input-singleLine yb-panel squared yb-pText" style="display:none;">
         </div>
 
         <!--Edit Username-->
 
         <div id="field-container-username" class="yb-field-container">
-            <div id="display-username" class="yb-field-split middle yb-bg-autoGray yb-autoText  yb-pText">
+            <div id="display-username" class="yb-field-split middle yb-bg-autoGray yb-font-auto  yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Username: </p>
-                <input name="username" id='field-username' value="{{user.username}}" class="yb-input-transparent yb-form-field right yb-autoText yb-pText account-field" style="grid-column: 2;">
+                <input name="username" id='field-username' value="{{user.username}}" class="yb-input-transparent yb-form-field right yb-font-auto yb-pText account-field" style="grid-column: 2;">
             </div>
             <input id='field-username' value="{{user.username}}" class="yb-input-singleLine yb-panel squared yb-pText" style="display:none;">
             <p id="username-error" class="yb-field-error under yb-bg-autoGray" style="color:red; font-size: 12px;"></p>
@@ -66,9 +66,9 @@
         <!--Edit Email Address-->
         
         <div id="field-container-email-address" class="yb-field-container">
-            <div id="display-email" class="yb-field-split middle yb-bg-autoGray yb-autoText yb-pText">
+            <div id="display-email" class="yb-field-split middle yb-bg-autoGray yb-font-auto yb-pText">
                 <p class="field-cover-label align-left" style="grid-column: 1;">Email: </p>
-                <input name="email" id='field-email' value="{{user.email}}" class="yb-input-transparent yb-form-field right yb-autoText yb-pText account-field" style="grid-column: 2;">
+                <input name="email" id='field-email' value="{{user.email}}" class="yb-input-transparent yb-form-field right yb-font-auto yb-pText account-field" style="grid-column: 2;">
             </div>
             
             <p id="email-error" class="yb-field-error under yb-bg-autoGray" style="color:red; font-size: 12px;"></p>
@@ -77,23 +77,23 @@
         <!--Edit Phone Number-->
         
         <div id = "field-container-phone-number" class="yb-field-container">
-            <div id="display-phone-number" class="yb-field-split bottom yb-bg-autoGray yb-autoText yb-pText"><p class="field-cover-label align-left" style="grid-column: 1;">Phone: </p><input name="phone_number" type="tel" id='field-phone' value="{{user.phone_number}}" class="yb-input-transparent yb-form-field right yb-autoText yb-pText account-field" style="grid-column: 2;"></div>
+            <div id="display-phone-number" class="yb-field-split bottom yb-bg-autoGray yb-font-auto yb-pText"><p class="field-cover-label align-left" style="grid-column: 1;">Phone: </p><input name="phone_number" type="tel" id='field-phone' value="{{user.phone_number}}" class="yb-input-transparent yb-form-field right yb-font-auto yb-pText account-field" style="grid-column: 2;"></div>
             <input id='field-phone-number' value="{{user.phone_number}}" class="yb-input-singleLine yb-panel squared yb-pText" style="display: none;">
             <p class="yb-field-error under"></p>
         </div>    
         <button class="yb-button-wide bg-autoGray font-gray yb-button-halfWidth squared yb-form-save" type="button" style="margin-top: 20px;" disabled>Save Changes</button>
     </div>
     <br>
-    <div class = "setting-sub-container yb-autoText yb-pText">
+    <div class = "setting-sub-container yb-font-auto yb-pText">
         <hr>
         <h4 style="margin-top: 10px; margin-bottom: 0;" class="yb-pHead">API Keys</h4>
         <p class="font-small">
             API keys are used to access Yourbit data in third-party apps. Click the button below to request or remove API keys.
         </p>
         <br>
-        <button type="button" onclick="yb_2WayPage(2, 'manage-keys')" style="width:150px; box-shadow: 0px 0px 10px black;" class="yb-button-wide squared yb-bg-autoGray yb-autoText"><b>Manage Keys<b></button>
+        <button type="button" onclick="yb_2WayPage(2, 'manage-keys')" style="width:150px; box-shadow: 0px 0px 10px black;" class="yb-button-wide squared yb-bg-autoGray yb-font-auto"><b>Manage Keys<b></button>
     </div>
-    <div class = "setting-sub-container yb-autoText yb-pText">
+    <div class = "setting-sub-container yb-font-auto yb-pText">
         <hr>
         <br>
         <b>Change Password</b>
@@ -111,7 +111,7 @@
         <label for="checkbox-password-reminder"><small>Send me reminders to update my password</small></label> {% endcomment %}
     </div>
     <br>
-    <div class="setting-sub-container yb-autoText yb-pText">
+    <div class="setting-sub-container yb-font-auto yb-pText">
         <hr>
         {% comment %} <b>Delete Account</b>
         <p style="font-size: small;"> The big red button below will eject you from Yourbit, along with all of your belongings,
@@ -138,7 +138,7 @@
 
 {% comment %} <script class="page-script" type="text/javascript" src="{% static 'scripts/yb-account-settings.js' %}"></script> {% endcomment %}
 {% comment %} <script class = "page-script" type="text/javascript" src="{% static 'scripts/yb_settings/yb_accountSettings.js' %}"></script> {% endcomment %}
-<script class = "page-script" type="text/javascript" src="{% static 'scripts/main/yb_forms3.js' %}"></script>
+<script class = "page-script" type="text/javascript" src="{% static 'scripts/main/yb_forms4.js' %}"></script>
 <script>
     $(document).ready(function(){
         tw_hideLoading();

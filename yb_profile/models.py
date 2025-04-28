@@ -132,41 +132,53 @@ class ProfileInfo(models.Model):
     profile = models.OneToOneField(Profile, related_name='profile_info', blank=True, on_delete=models.CASCADE)
 
     #Contact Info
-    email = models.EmailField(max_length=150)
-    phone_number = models.CharField(max_length=150)
-    address = models.CharField(max_length=150)
-    website = models.CharField(max_length=150)
+    email = models.EmailField(max_length=150, default="Not Specified")
+    phone_number = models.CharField(max_length=150, default="Not Specified")
+    address = models.CharField(max_length=150, default="Not Specified")
+    website = models.CharField(max_length=150, default="Not Specified")
+    twitter_handle = models.CharField(max_length=150, default="Not Specified")
+    facebook_handle = models.CharField(max_length=150, default="Not Specified")
+    instagram_handle = models.CharField(max_length=150, default="Not Specified")
+    linkedin_handle = models.CharField(max_length=150, default="Not Specified")
+    tiktok_handle = models.CharField(max_length=150, default="Not Specified")
+    youtube_handle = models.CharField(max_length=150, default="Not Specified")
+    snapchat_handle = models.CharField(max_length=150, default="Not Specified")
 
     #Location
-    city = models.CharField(max_length = 150)
-    state = models.CharField(max_length = 150)
-    country = models.CharField(max_length = 150)
+    city = models.CharField(max_length = 150, default="Not Specified")
+    state = models.CharField(max_length = 150, default="Not Specified") 
+    country = models.CharField(max_length = 150, default="Not Specified")
 
     #Shared industry sector field
-    industry = models.CharField(max_length=150)
+    industry = models.CharField(max_length=150, blank=  True)
 
     #Education
     currently_attending_hs = models.BooleanField(default=False)
-    high_school = models.CharField(max_length = 150)
+    high_school = models.CharField(max_length = 150, default="Not Specified")
     year_graduated_hs = models.IntegerField(default = 0)
     currently_attending_u = models.BooleanField(default=False)
-    college = models.CharField(max_length = 150, blank=True)
+    college = models.CharField(max_length = 150, default="Not Specified")
     year_graduated_u = models.IntegerField(default = 0)
-    field_of_study = models.CharField(max_length = 150)
+    field_of_study = models.CharField(max_length = 150, default="Not Specified")
 
     #Location
-    hometown = models.CharField(max_length = 150)
-    country = models.CharField(max_length = 150)
-    country_of_origin = models.CharField(max_length = 150)
+    hometown = models.CharField(max_length = 150, default="Not Specified")
+    country = models.CharField(max_length = 150, default="Not Specified")
+    country_of_origin = models.CharField(max_length = 150, default="Not Specified")
 
     #Religion
-    religion = models.CharField(max_length=150)
-    place_of_worship = models.CharField(max_length = 150)
+    religion = models.CharField(max_length=150, default="Not Specified")
+    place_of_worship = models.CharField(max_length = 150, default="Not Specified")
 
     #Workplace
-    occupation = models.CharField(max_length=150)
-    company = models.CharField(max_length=150)
+    current_job = models.CharField(max_length=150, default="Not Specified")
+    current_role = models.CharField(max_length=150, default="Not Specified")
     year_started = models.IntegerField(default = 0)
+
+    first_job = models.CharField(max_length=150, default="Not Specified")
+    first_role = models.CharField(max_length=150, default="Not Specified")
+    first_year_started = models.IntegerField(default = 0)
+
 
     #Relationships
     relationship_status = models.CharField(max_length = 100, default = 'Single')
