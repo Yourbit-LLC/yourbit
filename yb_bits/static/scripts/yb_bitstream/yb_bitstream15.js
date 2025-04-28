@@ -105,6 +105,7 @@ function yb_renderBit(data) {
     these_containers[0].appendChild(this_bit.built_bit);
     these_containers[0].appendChild(bit_separator)
 
+    let this_node = document.getElementById(this_bit.built_bit.id);
     //Observe the global bit
     bitObserver.observe(this_node);
 
@@ -116,6 +117,7 @@ function yb_renderBit(data) {
         this_bit.built_bit.id = `bit-${data.type}-${data.id}`;
         these_containers[1].appendChild(this_bit.built_bit);
         these_containers[1].appendChild(bit_separator);
+        this_node = document.getElementById(this_bit.built_bit.id);
 
         //Observe the space specific bit
         bitObserver.observe(this_node);
