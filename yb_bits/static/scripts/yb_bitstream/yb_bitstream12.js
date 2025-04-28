@@ -88,7 +88,7 @@ function yb_getBitContainers(type=null) {
         } else if (type == "photo") {
             return [global_space_container, photo_space_container];
         } else {
-            console.log("Error finding matching space to '" + type + "'");
+            return [global_space_container, chat_space_container, video_space_container, photo_space_container];
         }
     }
 }
@@ -186,7 +186,7 @@ function yb_updateFeed(update, data) {
 
             //Create a load point to end the section
             let load_point = yb_createLoadPoint("bitstream");
-            let these_containers = yb_getBitContainers(data[i].type)
+            let these_containers = yb_getBitContainers()
             
             for (let i = 0; i < these_containers.length; i++) {
                 these_containers[i].appendChild(load_point);
@@ -238,7 +238,7 @@ function yb_updateFeed(update, data) {
 
             //Create a load point to end the section
             let load_point = yb_createLoadPoint("bitstream");
-            let these_containers = yb_getBitContainers(data[i].type);
+            let these_containers = yb_getBitContainers();
 
             for (let i = 0; i < these_containers.length; i++) {
                 these_containers[i].appendChild(load_point);    
