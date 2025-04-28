@@ -97,6 +97,7 @@ function yb_renderBit(data) {
     let this_bit = yb_buildBit(data);
     let these_containers = yb_getBitContainers(data.type); 
     let bit_separator = yb_createElement("hr", "flat-bit-separator", `bit-separator-g-${data.id}`);
+    console.log(these_containers);
 
     //Append global bit to the global bitstream container
     let this_node = these_containers[0].appendChild(this_bit.built_bit);
