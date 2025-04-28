@@ -1271,6 +1271,7 @@
 }
 .bit-container {
     position: relative;
+    transform: translate(100vw, 100vh);
     transition: 0.75s;
     padding-bottom: 30px;
 }
@@ -1281,21 +1282,15 @@
     
 }
 
-.bit-container.start {
-    transform: translateY(0vh);
-    transition: 0.75s;
-}
-
 .bit-container.open {
     transform: translate(0, 0) !important;
     transition: 0.75s;
 }
 
-.bit-container-left {
-    transform: translate(-100vw, 0vh);
+.bit-container.left {
+    transform: translate(-100vw, 0vh) !important;
     transition: 0.75s;
 }
-
 
 .attached-photo-container.expanded {
     position: fixed;
