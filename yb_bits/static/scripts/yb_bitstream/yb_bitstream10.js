@@ -1,8 +1,5 @@
 var bit_container; //The container that is currently active containing bits
-const global_space_container = document.getElementById("global-bit-container"); //The container that contains the global space
-const chat_space_container = document.getElementById("chat-bit-container"); //The container that contains the chat space
-const video_space_container = document.getElementById("video-bit-container"); //The container that contains the video space
-const photo_space_container = document.getElementById("photo-bit-container"); //The container that contains the photo space
+
 var bitstream_index = new Map(); //Stores captured information on each bit in bitstream
 var bitstream_data = new Map(); //Stores captured information on current bitstream
 var loaded_bits = []; //Stores IDs of bits that have been loaded
@@ -76,6 +73,10 @@ function yb_createLoadPoint(type) {
 
 
 function yb_getBitContainers(type=null) {
+    const global_space_container = document.getElementById("global-bit-container"); //The container that contains the global space
+    const chat_space_container = document.getElementById("chat-bit-container"); //The container that contains the chat space
+    const video_space_container = document.getElementById("video-bit-container"); //The container that contains the video space
+    const photo_space_container = document.getElementById("photo-bit-container"); //The container that contains the photo space
     if (yb_getSessionValues('location') === 'profile') {
         return [document.getElementById("profile-bit-container")];
     } else {
