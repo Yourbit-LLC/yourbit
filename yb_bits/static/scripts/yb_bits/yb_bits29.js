@@ -472,10 +472,7 @@ function yb_createInteractions(bit) {
         like_button.classList.add("active");
         if (yb_getSessionValues("bit-colors-on") == "True" && yb_getSessionValues("only-my-colors") == "False"){
             like_button.style.backgroundColor = bit.custom.button_color;
-        }
-        
-        
-
+        }    
     } 
 
     
@@ -508,12 +505,7 @@ function yb_createInteractions(bit) {
         if (yb_getSessionValues("bit-colors-on") == "True" && yb_getSessionValues("only-my-colors") == "False"){
             dislike_button.style.backgroundColor = bit.custom.button_color;
         }
-        
-
-        
     } 
-
-    
 
     bit_interactions.appendChild(dislike_button);
     let dislike_counter = yb_createElement("p", "counter", `dislike-count-${bit.id}`);

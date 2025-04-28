@@ -13,11 +13,12 @@ function yb_handleCreateBitResponse(response) {
     if (current_location === 'home') {
 
         //Get home feed container
-        let bit_container = document.getElementById("bit-container");
+        let bit_container = document.querySelector('.bit-container.active');
 
         //If in feed place bit at current location
         bit_container.prepend(this_bit.built_bit);
         this_bit.built_bit.classList.add("yb-bounceDown-1");
+
     } else {
         //If not at home show notification of creation success
         let body = "Bit created successfully";

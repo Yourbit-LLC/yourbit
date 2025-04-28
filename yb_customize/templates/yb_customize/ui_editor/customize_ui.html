@@ -9,18 +9,6 @@
 <input type="hidden" id="yb-form-config" data-form-id="ui-editor-form" data-message="UI Customizations Saved" data-change-state="false" data-saves="true">
 
 
-<form class="master-form" id="ui-master-form">
-    <input name="primary_color" type="hidden" id="master-primary-color" value="{{custom_ui.primary_color}}">
-    <input name="icon_color" type="hidden" id="master-icon-color" value="{{custom_ui.icon_color}}">
-    <input name="accent_color" type="hidden" id="master-accent-color" value="{{custom_ui.accent_color}}">
-    <input name="title_font_color" type="hidden" id="master-title-font-color" value="{{custom_ui.name_font_color}}">
-    <input name="text_font_color" type="hidden" id="master-text-font-color" value="{{custom_ui.username_font_color}}">
-    <input name="button_color" type="hidden" id="master-button-color" value="{{custom_ui.button_color}}">
-    <input name="button_text_color" type="hidden" id="master-button-text-color" value="{{custom_ui.button_text_color}}">
-
-</form>
-
-
 <div class="yb-fillWidth align-center" style="margin-top: 50px;">
     {% if custom_core.ui_colors_on == True %}
         <button class="yb-button-flex rg-toggle-button green font-white rounded yb-margin-center lr active" style="width: 150px;" id="custom-ui-toggle">Custom UI: <b>ON</b></button>
@@ -40,9 +28,9 @@
     <br>
 </div>
 
-<script class="page-script" type="text/javascript" src="{% static 'scripts/yb_customize/yb_toolbar.js' %}"></script>
 <script src="{% static 'scripts/yb_customize/ui_editor.js' %}"></script>
 <script src="{% static 'scripts/main/yb_forms4.js' %}"></script>
+<script class="page-script" type="text/javascript" src="{% static 'scripts/yb_customize/yb_toolbar.js' %}"></script>
 <script>
     $(document).ready(function() {
         $(MAIN_LOADING_SCREEN).fadeOut(500).animate({opacity: 0}, 500);

@@ -1,4 +1,8 @@
 var bit_container; //The container that is currently active containing bits
+const global_space_container = document.getElementById("global-bit-container"); //The container that contains the global space
+const chat_space_container = document.getElementById("chat-bit-container"); //The container that contains the chat space
+const video_space_container = document.getElementById("video-bit-container"); //The container that contains the video space
+const photo_space_container = document.getElementById("photo-bit-container"); //The container that contains the photo space
 var bitstream_index = new Map(); //Stores captured information on each bit in bitstream
 var bitstream_data = new Map(); //Stores captured information on current bitstream
 var loaded_bits = []; //Stores IDs of bits that have been loaded
@@ -71,35 +75,53 @@ function yb_createLoadPoint(type) {
 }
 
 
-function yb_getBitContainer() {
+function yb_getBitContainers(type=null) {
     if (yb_getSessionValues('location') === 'profile') {
-        bit_container = document.getElementById("profile-bit-container");
+        return document.getElementById("profile-bit-container");
     } else {
-
-        bit_container = document.getElementById("bit-container");
+        //Always return global space container, plus bit type container
+        if (type == "chat") {
+            return global_space_container, chat_space_container;
+        } else if (type == "video") {
+            return global_space_container, video_space_container;
+        } else if (type == "photo") {
+            return global_space_container, photo_space_container;
+        } 
     }
-
-    return bit_container;
-
 }
 
-
-
 function yb_renderBit(data) {
-    
-
+    //Render the bit to the bitstream
     let this_bit = yb_buildBit(data);
-    yb_getBitContainer().appendChild(this_bit.built_bit);
-    let bit_separator = yb_createElement("hr", "flat-bit-separator", `bit-separator-${data.id}`);
-    yb_getBitContainer().appendChild(bit_separator);
-    bitObserver.observe(this_bit.built_bit);
+    let these_containers = yb_getBitContainers(data.type); 
+    let bit_separator = yb_createElement("hr", "flat-bit-separator", `bit-separator-g-${data.id}`);
 
+    //Append global bit to the global bitstream container
+    let this_node = these_containers[0].appendChild(this_bit.built_bit);
+    this_node.id = `bit-global-${data.id}`;
+    these_containers[0].appendChild(bit_separator)
+
+    //Observe the global bit
+    bitObserver.observe(this_node);
+
+    //Append space specific bit to bitstream container
+    bit_separator = yb_createElement("hr", "flat-bit-separator", `bit-separator-${data.type}-${data.id}`);
     
+    //Append space specific bit to the space specific bitstream container
+    this_node = these_containers[1].appendChild(this_bit.built_bit);
+    this_node.id = `bit-${data.type}-${data.id}`;
+    these_containers[1].appendChild(bit_separator);
+
+    //Observe the space specific bit
+    bitObserver.observe(this_node);
 }
 
 function yb_jumpToBit (bit_id) {
+    //Get active space
+    let active_space = yb_getSessionValues('space');
+
     //Jump to a specific bit in the bitstream
-    let bit = document.getElementById(`bit-${bit_id}`);
+    let bit = document.getElementById(`bit-${active_space}-${bit_id}`);
     if (bit) {
         bit.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else {
@@ -123,7 +145,6 @@ function yb_showSwipeUp() {
     // data = {"update": true, };
     // yb_getFeed(true, true);
 // }
-
 
 function yb_updateFeed(update, data) {
     //Update the feed
@@ -176,9 +197,7 @@ function yb_updateFeed(update, data) {
             $("#no-bits-message").show();
 
         }
-        
-
-        
+            
     } else {
         //Update the feed
         if (data.length > 0) {
@@ -198,7 +217,11 @@ function yb_updateFeed(update, data) {
 
             //Create a load point to end the section
             let load_point = yb_createLoadPoint("bitstream");
-            yb_getBitContainer().appendChild(load_point);
+            let these_containers = yb_getBitContainers(data[i].type);
+
+            for (let i = 0; i < these_containers.length; i++) {
+                these_containers[i].appendChild(load_point);    
+            }
 
             //Preload the next page
             let next_data = {"update": true, "page": 2};
@@ -325,3 +348,28 @@ function yb_getFeed(data={"update": false, "page": 1}) {
     // Send the request to the backend
     yb_requestFeed(request_data);
 }
+
+/*
+
+    The get from bitstream function returns 2 bits from the bitstream.
+    The first bit is the global bit, which is the bit that is displayed in the global bitstream container.
+    The second bit is the space bit, which is the bit that is displayed in the space specific bitstream container.
+
+*/
+
+function yb_getFromBitstream(id) {
+    let global_bit = document.getElementById(`bit-g-${id}`);
+    let space_bit = null;
+
+    if (global_bit.getAttribute("data-type") == "video") {
+        space_bit = document.getElementById(`bit-v-${id}`);
+    } else if (global_bit.getAttribute("data-type") == "photo") {
+        space_bit = document.getElementById(`bit-p-${id}`);
+    }
+    else if (global_bit.getAttribute("data-type") == "chat") {
+        space_bit = document.getElementById(`bit-c-${id}`);
+    }
+
+    return space_bit, global_bit;
+}
+

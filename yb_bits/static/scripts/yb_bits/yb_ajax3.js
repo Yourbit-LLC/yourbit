@@ -13,7 +13,7 @@ function yb_handleCreateBitResponse(response) {
     if (current_location === 'home') {
 
         //Get home feed container
-        let bit_container = document.getElementById("bit-container");
+        let bit_container = document.querySelector('.bit-container.active');
 
         //If in feed place bit at current location
         bit_container.prepend(this_bit.built_bit);

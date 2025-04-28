@@ -57,94 +57,94 @@
 
     }
 
-    $(document).ready(function(){
+$(document).ready(function(){
 
-        send_comment.addEventListener("click", yb_pressSendComment);
+    send_comment.addEventListener("click", yb_pressSendComment);
+    
+    //Iterate through bits in video json to use in rendering the up next qeueue
+    for (var i = 0; i < video_json.length; i++) {
+        var bit = video_json[i];
+        var this_video = bit.video_upload;
+        var videoElement = yb_createElement("div", "yb-container-video-listItem", "yb-video-list-item-" + i);
+        videoElement.setAttribute("data-id", this_video.id);
         
-        //Iterate through bits in video json to use in rendering the up next qeueue
-        for (var i = 0; i < video_json.length; i++) {
-            var bit = video_json[i];
-            var this_video = bit.video_upload;
-            var videoElement = yb_createElement("div", "yb-container-video-listItem", "yb-video-list-item-" + i);
-            videoElement.setAttribute("data-id", this_video.id);
-            
-            if (video.thumbnail.storage_type == "yb") {
-                var thumbnail = this_video.thumbnail.image;
-            } else {
-                var thumbnail = this_video.thumbnail.ext_url;
-            }
+        if (video.thumbnail.storage_type == "yb") {
+            var thumbnail = this_video.thumbnail.image;
+        } else {
+            var thumbnail = this_video.thumbnail.ext_url;
+        }
 
-            videoElement.innerHTML = `
-                <div class="yb-container-thumbnail-listItem">
-                    <img style="width:100%;" src='${thumbnail}' alt='Thumbnail'>
+        videoElement.innerHTML = `
+            <div class="yb-container-thumbnail-listItem">
+                <img style="width:100%;" src='${thumbnail}' alt='Thumbnail'>
+            </div>
+            <div class="yb-container-videoInfo-listItem">
+                <h4>${video.title}</h4>
+                <div class="yb-flexRow">
+                    <p class="yb-font-autoGray"><small>${bit.profile.username}</small></p>
+                    <p class="yb-font-autoGray"><small>${bit.watch_count}</small></p>
                 </div>
-                <div class="yb-container-videoInfo-listItem">
-                    <h4>${video.title}</h4>
-                    <div class="yb-flexRow">
-                        <p class="yb-font-autoGray"><small>${bit.profile.username}</small></p>
-                        <p class="yb-font-autoGray"><small>${bit.watch_count}</small></p>
-                    </div>
-                </div>
-            `;
+            </div>
+        `;
 
-            videoElement.addEventListener("click", function() {
-                cancelCountdown();
-                yb_getNextVideo(this.videoId);
-            });
-            document.getElementById("yb-up-next").appendChild(videoElement);
+        videoElement.addEventListener("click", function() {
+            cancelCountdown();
+            yb_getNextVideo(this.videoId);
+        });
+        document.getElementById("yb-up-next").appendChild(videoElement);
+    }
+});
+
+$(video).ready(function() {
+    video.play();
+
+    video.addEventListener('ended', function() {
+        // Action to take when the video ends
+        if (VIDEO_QUEUE.length > 0) {
+            countdown_container.style.display = "block";
+            startVideoCountdown();
+        } else {
+            console.log("No more videos in queue")
         }
     });
 
-    $(video).ready(function() {
-        video.play();
-
-        video.addEventListener('ended', function() {
-            // Action to take when the video ends
-            if (VIDEO_QUEUE.length > 0) {
-                countdown_container.style.display = "block";
-                startVideoCountdown();
-            } else {
-                console.log("No more videos in queue")
-            }
-        });
-
-        video.addEventListener('play', function() {
-            // Action to take when the video is played
-            cancelCountdown();
-        });
-
-           
-
-        about_section.addEventListener("click", function(){
-            console.log("clicked")
-            let about_state = about_section.getAttribute("data-state")
-            if (about_state == "closed") {
-                about_section.setAttribute("data-state", "open");
-                description.style.display = "block";
-
-                var parent = about_section.parentElement; // Adjust this if your element is nested deeper
-                var rect = about_section.getBoundingClientRect();
-                var parentRect = parent.getBoundingClientRect();
-                
-                // Calculate the offset to scroll
-                var offsetTop = rect.top - parentRect.top + parent.scrollTop;
-                
-                parent.scrollTo({
-                    top: offsetTop,
-                    behavior: "smooth"
-                });
-            } else {
-                console.log("About state open")
-                about_section.setAttribute("data-state", "closed");
-                description.style.display = "none";
-
-            }
-        })
-
+    video.addEventListener('play', function() {
+        // Action to take when the video is played
+        cancelCountdown();
+    });
 
         
-        console.log('The video is now playing!');
 
+    about_section.addEventListener("click", function(){
+        console.log("clicked")
+        let about_state = about_section.getAttribute("data-state")
+        if (about_state == "closed") {
+            about_section.setAttribute("data-state", "open");
+            description.style.display = "block";
 
+            var parent = about_section.parentElement; // Adjust this if your element is nested deeper
+            var rect = about_section.getBoundingClientRect();
+            var parentRect = parent.getBoundingClientRect();
+            
+            // Calculate the offset to scroll
+            var offsetTop = rect.top - parentRect.top + parent.scrollTop;
+            
+            parent.scrollTo({
+                top: offsetTop,
+                behavior: "smooth"
+            });
+        } else {
+            console.log("About state open")
+            about_section.setAttribute("data-state", "closed");
+            description.style.display = "none";
 
+        }
     })
+
+
+    
+    console.log('The video is now playing!');
+
+
+
+})

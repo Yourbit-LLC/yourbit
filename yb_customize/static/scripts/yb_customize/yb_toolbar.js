@@ -5,6 +5,7 @@ try {
     var redo_button = document.getElementsByClassName("yb-redo-button")[0];
     var reset_button = document.getElementsByClassName("yb-reset-button")[0];
     var toolbar_config = document.getElementById("yb-toolbar-config");
+    var form_name = toolbar_config.getAttribute("data-form-name");
 } catch (e) {
     console.log(e);
     yb_toolbar = document.getElementById("yb-toolbar");
@@ -13,6 +14,8 @@ try {
     redo_button = document.getElementsByClassName("yb-redo-button")[0];
     reset_button = document.getElementsByClassName("yb-reset-button")[0];
     toolbar_config = document.getElementById("yb-toolbar-config");
+    form_name = toolbar_config.getAttribute("data-form-name");
+    console.log("Error: yb_toolbar not found. Make sure the toolbar and toolbar-config is loaded before this script.");
 }
 
 var edit_history = [
