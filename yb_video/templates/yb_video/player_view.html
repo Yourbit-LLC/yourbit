@@ -1,4 +1,11 @@
 {% load static %}
+<head>
+    <meta property="og:title" content="{{bit.title}}" />
+    <meta property="og:type" content="video.movie" />
+    <meta property="og:url" content="https://yourbit.me/bits/view/{{bit.id}}/" />
+    <meta property="og:image" content="{{bit.video_upload.thumbnail.medium_thumbnail_ext}}" />
+    <meta property="og:video" content="{{bit.video_upload.ext_url}}" />
+</head>
 <style>
     {% if custom_core.bit_colors_on == False %}
         
