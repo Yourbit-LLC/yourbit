@@ -132,7 +132,8 @@ function yb_pressShowComments(e){
 
 function yb_toggleBitButton(button, this_element) {
     let csrf_token = getCSRF();
-    let this_button = this_element
+    let this_button = this_element;
+    let this_id = this_element.getAttribute("data-catid");
     let this_count = this_element.parentElement.querySelector(`#${button}-count-${this_id}`);
     let this_icon = this_element.querySelector(`#${button}-icon-${this_id}`);
     let this_count_int = parseInt(this_count.innerHTML);
