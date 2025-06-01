@@ -112,3 +112,9 @@ def change_user_perspective(request, *args, **kwargs):
     this_user.save()
 
     return HttpResponse("success")
+
+def child_safety_policy(request, *args, **kwargs):
+    return render(request, "main/child_safety_policy.html", {
+        'title': "Child Safety Policy",
+        'content': "This is the child safety policy content.",
+    })
